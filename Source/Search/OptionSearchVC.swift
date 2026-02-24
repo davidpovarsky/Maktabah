@@ -76,6 +76,8 @@ class OptionSearchVC: NSViewController {
                 button?.borderShape = .circle
             }
         } else {
+            progressTable.controlSize = .regular
+            progressRows.controlSize = .regular
             // Fallback on earlier versions
         }
     }
@@ -559,7 +561,7 @@ extension OptionSearchVC: ResultsDelegate {
                     return
                 }
 
-                await bkConn.connect(archive: arc)
+                bkConn.connect(archive: arc)
 
                 for item in itemsInArchive {
                     guard !Task.isCancelled else { return }

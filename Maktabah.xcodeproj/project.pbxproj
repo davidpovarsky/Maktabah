@@ -78,7 +78,6 @@
 		4B65CCBB2EE06C5D0085CEB4 /* LibraryViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65CCBA2EE06C5D0085CEB4 /* LibraryViewManager.swift */; };
 		4B65CCC02EE0A10F0085CEB4 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65CCBF2EE0A10F0085CEB4 /* SearchEngine.swift */; };
 		4B68AE2C2F20576700CB3ED9 /* AppUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68AE2B2F20576700CB3ED9 /* AppUpdate.swift */; };
-		4B6AD4EF2EF86A7D004669F5 /* TarjamahDataManagerU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AD4EE2EF86A7D004669F5 /* TarjamahDataManagerU.swift */; };
 		4B6AF22F2EE5692A002EBFFC /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AF22E2EE5692A002EBFFC /* AppMode.swift */; };
 		4B6AF2332EE57CCD002EBFFC /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AF2322EE57CCD002EBFFC /* Toolbar.swift */; };
 		4B6AF2362EE58394002EBFFC /* IbarotTextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AF2342EE58394002EBFFC /* IbarotTextVC.swift */; };
@@ -813,7 +812,6 @@
 				4B32022C2EDAFE85003B95D1 /* AppDelegate.swift in Sources */,
 				4B65CCBB2EE06C5D0085CEB4 /* LibraryViewManager.swift in Sources */,
 				4BD728252EE4544C00ACEB7C /* StringExt.swift in Sources */,
-				4B6AD4EF2EF86A7D004669F5 /* TarjamahDataManagerU.swift in Sources */,
 				4BAB8A492F28682200732FC9 /* ArabicTextRenderer.swift in Sources */,
 				4B20DB792EE7D1BB00B97126 /* ReusableFunc.swift in Sources */,
 				4B3B966D2F35A74400B57E1D /* BookUpdateManager.swift in Sources */,
@@ -1153,7 +1151,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
@@ -1207,7 +1205,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
