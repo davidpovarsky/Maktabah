@@ -29,14 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     override init() {
         super.init()
         registerCustomFonts()
-        // 1. Cek apakah path sudah diset
-        if AppConfig.basePath == nil {
-            // Jika belum ada, paksa user pilih folder
-            selectFolder(nil)
-        } else {
-            // Inisiasi singleton main.db special.db
-            _ = DatabaseManager.shared
-        }
+        AppConfig.initializeMode()
+        CoreDatabaseBootstrap.run()
 
         UserDefaults.standard.register(defaults: ["AplFirstLaunch": true])
         let wc = WindowController()

@@ -9,8 +9,6 @@ import Foundation
 import SQLite
 import SQLite3
 
-let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
-
 final class BookUpdateManager {
     static let shared = BookUpdateManager()
 
@@ -141,10 +139,9 @@ final class BookUpdateManager {
     }
 
     private func getBookVersionState(bookId: Int) throws -> BookVersionState {
-        guard let basePath = DatabaseManager.shared.basePath else {
+        guard let mainPath = AppConfig.mainDatabasePath else {
             return .unknownVersion
         }
-        let mainPath = "\(basePath)/Files/main.sqlite"
         let db = try openDatabase(path: mainPath)
         defer { sqlite3_close(db) }
 
@@ -428,13 +425,12 @@ final class BookUpdateManager {
     }
 
     private func bookNeedsUpdate(id: Int, newVersion: Int64) throws -> Bool {
-        guard let basePath = DatabaseManager.shared.basePath else {
+        guard let mainPath = AppConfig.mainDatabasePath else {
             #if DEBUG
                 print("⚠️ [Update Check] basePath is nil")
             #endif
             return false
         }
-        let mainPath = "\(basePath)/Files/main.sqlite"
 
         #if DEBUG
             print(
@@ -512,33 +508,129 @@ final class BookUpdateManager {
     }
 
     private func insertBookMetadata(_ metadata: BookMetadata) throws {
-        guard let db = DatabaseManager.shared.db else { return }
+        guard let mainPath = AppConfig.mainDatabasePath else { return }
 
-        let manager = DatabaseManager.shared
-        let insert = manager.booksTable.insert(
-            manager.bokId <- metadata.bkid,
-            manager.bokCat <- metadata.cat ?? 0,
-            manager.bokName <- metadata.bk,
-            manager.bokArchive <- metadata.archive,
-            manager.bokBithoqoh <- metadata.betaka ?? "",
-            manager.bokMuallif <- metadata.authno ?? 0,
-            manager.bokInf <- metadata.inf ?? "",
-            manager.tafseerNam <- metadata.tafseerNam,
-            manager.bVer <- metadata.bVer
-        )
+        var db: OpaquePointer?
+        guard
+            sqlite3_open_v2(
+                mainPath,
+                &db,
+                SQLITE_OPEN_READWRITE,
+                nil
+            ) == SQLITE_OK,
+            let db
+        else {
+            let message =
+            db.map { String(cString: sqlite3_errmsg($0)) }
+            ?? "Failed to open main.sqlite"
+            sqlite3_close(db)
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: message]
+            )
+        }
+        defer { sqlite3_close(db) }
 
-        try db.run(insert)
+        let sql = """
+        INSERT INTO `0bok` (`bkid`, `cat`, `bk`, `Archive`, `betaka`, `authno`, `inf`, `TafseerNam`, `bVer`)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+        """
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [
+                    NSLocalizedDescriptionKey: String(cString: sqlite3_errmsg(db))
+                ]
+            )
+        }
+        defer { sqlite3_finalize(stmt) }
+
+        sqlite3_bind_int64(stmt, 1, Int64(metadata.bkid))
+        sqlite3_bind_int64(stmt, 2, Int64(metadata.cat ?? 0))
+        sqlite3_bind_text(stmt, 3, metadata.bk, -1, sqliteTransient)
+        sqlite3_bind_int64(stmt, 4, Int64(metadata.archive))
+        sqlite3_bind_text(stmt, 5, metadata.betaka ?? "", -1, sqliteTransient)
+        sqlite3_bind_int64(stmt, 6, Int64(metadata.authno ?? 0))
+        sqlite3_bind_text(stmt, 7, metadata.inf ?? "", -1, sqliteTransient)
+        if let tafseerNam = metadata.tafseerNam {
+            sqlite3_bind_text(stmt, 8, tafseerNam, -1, sqliteTransient)
+        } else {
+            sqlite3_bind_null(stmt, 8)
+        }
+        if let bVer = metadata.bVer {
+            sqlite3_bind_int64(stmt, 9, Int64(bVer))
+        } else {
+            sqlite3_bind_null(stmt, 9)
+        }
+
+        guard sqlite3_step(stmt) == SQLITE_DONE else {
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [
+                    NSLocalizedDescriptionKey: String(cString: sqlite3_errmsg(db))
+                ]
+            )
+        }
     }
 
     private func updateBookVersion(_ metadata: BookMetadata) throws {
-        guard let db = DatabaseManager.shared.db else { return }
+        guard let mainPath = AppConfig.mainDatabasePath else { return }
 
-        let manager = DatabaseManager.shared
-        let query = manager.booksTable.filter(
-            manager.bokId == metadata.bkid
-        )
-        
-        try db.run(query.update(manager.bVer <- metadata.bVer))
+        var db: OpaquePointer?
+        guard
+            sqlite3_open_v2(
+                mainPath,
+                &db,
+                SQLITE_OPEN_READWRITE,
+                nil
+            ) == SQLITE_OK,
+            let db
+        else {
+            let message =
+            db.map { String(cString: sqlite3_errmsg($0)) }
+            ?? "Failed to open main.sqlite"
+            sqlite3_close(db)
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: message]
+            )
+        }
+        defer { sqlite3_close(db) }
+
+        let sql = "UPDATE `0bok` SET `bVer` = ? WHERE `bkid` = ?;"
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [
+                    NSLocalizedDescriptionKey: String(cString: sqlite3_errmsg(db))
+                ]
+            )
+        }
+        defer { sqlite3_finalize(stmt) }
+
+        if let bVer = metadata.bVer {
+            sqlite3_bind_int64(stmt, 1, Int64(bVer))
+        } else {
+            sqlite3_bind_null(stmt, 1)
+        }
+        sqlite3_bind_int64(stmt, 2, Int64(metadata.bkid))
+
+        guard sqlite3_step(stmt) == SQLITE_DONE else {
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [
+                    NSLocalizedDescriptionKey: String(cString: sqlite3_errmsg(db))
+                ]
+            )
+        }
         #if DEBUG
             print("[Update Version] bVer berhasil diperbarui ke \(metadata.bVer ?? 0) untuk book \(metadata.bkid)")
         #endif
@@ -550,8 +642,7 @@ final class BookUpdateManager {
         workingDirectory: URL,
         newVersion: Int64
     ) async throws {
-        guard let basePath = DatabaseManager.shared.basePath else { return }
-        let specialPath = "\(basePath)/Files/special.sqlite"
+        guard let specialPath = AppConfig.specialDatabasePath else { return }
 
         let specialDb = try openDatabase(path: specialPath)
         defer { sqlite3_close(specialDb) }
@@ -776,17 +867,20 @@ final class BookUpdateManager {
         }
     }
 
-    private func convertBookDatabase(at url: URL, bookId: Int) throws {
+    func convertBookDatabase(at url: URL, bookId: Int) throws {
         let db = try openDatabase(path: url.path)
         defer { sqlite3_close(db) }
 
         let tableName = "b\(bookId)"
         let tempTable = "\(tableName)_zstd"
-        let columns = try loadTableColumns(tableName: tableName, db: db)
+        let columns = try ArchiveDatabaseTools.loadTableColumns(
+            tableName: tableName,
+            db: db
+        )
 
         try withTransaction(db) {
             try exec(db, "DROP TABLE IF EXISTS \(tempTable);")
-            let createSQL = makeCreateTableSQL(
+            let createSQL = ArchiveDatabaseTools.makeCreateTableSQL(
                 tableName: tempTable,
                 columns: columns
             )
@@ -879,13 +973,11 @@ final class BookUpdateManager {
         bookId: Int,
         ftsSourceURL: URL
     ) throws {
-        guard let basePath = DatabaseManager.shared.basePath else { return }
-        let targetPath = "\(basePath)/\(archiveId).sqlite"
-        let ftsDBPath = "\(basePath)/\(archiveId)_fts.sqlite"
+        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId),
+              let ftsDBPath = AppConfig.archiveFtsDatabasePath(archiveId: archiveId)
+        else { return }
         let db = try openDatabase(path: targetPath)
         defer { sqlite3_close(db) }
-
-        registerNormalizeFunction(db: db)
 
         try exec(db, "ATTACH DATABASE '\(sourceURL.path)' AS source_db;")
         try exec(
@@ -900,88 +992,34 @@ final class BookUpdateManager {
         }
 
         try withTransaction(db) {
-            try replaceTable(
+            let tableName = "b\(bookId)"
+            let ftsTable = "\(tableName)_fts"
+            try ArchiveDatabaseTools.replaceTable(
                 db: db,
-                tableName: "b\(bookId)",
+                tableName: tableName,
                 sourceSchema: "source_db"
             )
 
-            try replaceTable(
+            try ArchiveDatabaseTools.replaceTable(
                 db: db,
                 tableName: "t\(bookId)",
                 sourceSchema: "source_db"
             )
 
-            let tableName = "b\(bookId)"
-            let ftsTable = "\(tableName)_fts"
-            try exec(db, "DROP TABLE IF EXISTS fts_db.\(ftsTable);")
-            try exec(
-                db,
-                "CREATE VIRTUAL TABLE fts_db.\(ftsTable) USING fts5(nass_clean, content='', tokenize='unicode61');"
+            try ArchiveDatabaseTools.buildFTS(
+                db: db,
+                ftsSchema: "fts_db",
+                ftsTable: ftsTable,
+                sourceSchema: "fts_source_db",
+                sourceTable: tableName
             )
-
-            let insertFTS = """
-                INSERT INTO fts_db.\(ftsTable)(rowid, nass_clean)
-                SELECT id, normalize_arabic(nass)
-                FROM fts_source_db.\(tableName)
-                WHERE nass IS NOT NULL AND nass != '';
-            """
-            try exec(db, insertFTS)
         }
 
         try exec(db, "VACUUM;")
     }
 
-    private func replaceTable(
-        db: OpaquePointer,
-        tableName: String,
-        sourceSchema: String
-    ) throws {
-        let columns = try loadTableColumns(
-            tableName: tableName,
-            db: db,
-            schemaName: sourceSchema
-        )
-
-        let createSQL = makeCreateTableSQL(
-            tableName: tableName,
-            columns: columns
-        )
-
-        try exec(db, "DROP TABLE IF EXISTS \(tableName);")
-        try exec(db, createSQL)
-        try exec(
-            db,
-            "INSERT INTO \"\(tableName)\" SELECT * FROM \(sourceSchema).\"\(tableName)\";"
-        )
-    }
-
-    func registerNormalizeFunction(db: OpaquePointer?) {
-        sqlite3_create_function_v2(
-            db,
-            "normalize_arabic",
-            1,
-            SQLITE_UTF8,
-            nil,
-            { context, argc, argv in
-                guard argc == 1, let arg = argv?[0] else { return }
-                guard let textPtr = sqlite3_value_text(arg) else { return }
-                let input = String(cString: textPtr)
-                var normalized = input.replacingOccurrences(
-                    of: "\\n",
-                    with: " "
-                )
-                normalized = input.normalizeArabic()
-                sqlite3_result_text(context, normalized, -1, SQLITE_TRANSIENT)
-            },
-            nil,
-            nil,
-            nil
-        )
-    }
-
     private func makeWorkingDirectory() throws -> URL {
-        guard let basePath = DatabaseManager.shared.basePath else {
+        guard let filesPath = AppConfig.databaseFilesPath else {
             throw NSError(
                 domain: "BookUpdate",
                 code: -4,
@@ -991,8 +1029,7 @@ final class BookUpdateManager {
             )
         }
 
-        let directory = URL(fileURLWithPath: basePath)
-            .appendingPathComponent("Files", isDirectory: true)
+        let directory = URL(fileURLWithPath: filesPath)
             .appendingPathComponent("Updates", isDirectory: true)
 
         if !FileManager.default.fileExists(atPath: directory.path) {
@@ -1117,52 +1154,6 @@ final class BookUpdateManager {
         }
     }
 
-    private func loadTableColumns(
-        tableName: String,
-        db: OpaquePointer,
-        schemaName: String = "main"
-    ) throws -> [TableColumnInfo] {
-        let sql = "PRAGMA \(schemaName).table_info('\(tableName)');"
-        var stmt: OpaquePointer?
-        guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
-            throw sqliteError(
-                db,
-                message: "Gagal load info tabel \(tableName)."
-            )
-        }
-        defer { sqlite3_finalize(stmt) }
-
-        var columns: [TableColumnInfo] = []
-        while sqlite3_step(stmt) == SQLITE_ROW {
-            let name = String(cString: sqlite3_column_text(stmt, 1))
-            let type = String(cString: sqlite3_column_text(stmt, 2))
-            let isPrimaryKey = sqlite3_column_int(stmt, 5) == 1
-            columns.append(
-                TableColumnInfo(
-                    name: name,
-                    type: type,
-                    isPrimaryKey: isPrimaryKey
-                )
-            )
-        }
-        return columns
-    }
-
-    private func makeCreateTableSQL(
-        tableName: String,
-        columns: [TableColumnInfo]
-    ) -> String {
-        let definitions = columns.map { column -> String in
-            let primaryKey = column.isPrimaryKey ? " PRIMARY KEY" : ""
-            if column.name.lowercased() == "nass" {
-                return "\(column.name) BLOB\(primaryKey)"
-            }
-            return "\(column.name) \(column.type)\(primaryKey)"
-        }
-        return
-            "CREATE TABLE \(tableName) (\(definitions.joined(separator: ", ")));"
-    }
-
     private func bindColumnValue(
         from selectStmt: OpaquePointer,
         to insertStmt: OpaquePointer,
@@ -1231,46 +1222,6 @@ final class BookUpdateManager {
         }
         return String(cString: textPtr)
     }
-
-    /* LEGACY
-    func applyUpdates(from indexURL: URL, authIndexURL: URL?) async throws
-        -> [BookUpdateResult]
-    {
-        let entries = try await fetchIndexEntries(from: indexURL)
-        let authEntries = try await fetchAuthIndexEntriesIfNeeded(
-            from: authIndexURL
-        )
-        let authIndexMap = Dictionary(
-            uniqueKeysWithValues: authEntries.map { ($0.authId, $0) }
-        )
-        var results: [BookUpdateResult] = []
-    
-        for entry in entries {
-            do {
-                if let result = try await process(
-                    entry,
-                    authIndex: authIndexMap
-                ) {
-                    results.append(result)
-                }
-            } catch {
-                print(
-                    "Gagal memproses bkid \(entry.bkid): \(error.localizedDescription)"
-                )
-                // Lanjut ke baris berikutnya, jangan berhenti
-                continue
-            }
-        }
-    
-        return results
-    }
-     */
-}
-
-private struct TableColumnInfo {
-    let name: String
-    let type: String
-    let isPrimaryKey: Bool
 }
 
 private enum CSVParser {

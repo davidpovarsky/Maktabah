@@ -25,8 +25,6 @@ actor TarjamahDatabaseActor {
 class TarjamahGlobalManager {
     static let shared = TarjamahGlobalManager()
 
-    private let basePath = DatabaseManager.shared.basePath
-
     // MARK: - Caching
     // Cache koneksi per archive (1.sqlite, 2.sqlite...)
     private var connectionPools: [Int: SQLiteConnectionPool] = [:]
@@ -42,9 +40,13 @@ class TarjamahGlobalManager {
     private var dbActor: TarjamahDatabaseActor?
 
     private init() {
-        guard let basePath else { return }
+        setupConnection()
+    }
+
+    func setupConnection() {
+        guard let specialPath = AppConfig.specialDatabasePath else { return }
         // Inisialisasi actor
-        self.dbActor = try? TarjamahDatabaseActor(dbPath: "\(basePath)/Files/special.sqlite")
+        dbActor = try? TarjamahDatabaseActor(dbPath: specialPath)
     }
 
     // MARK: - 1. Global Search (String) with Pause & Streaming
@@ -387,11 +389,12 @@ class TarjamahGlobalManager {
         poolLock.lock()
         defer { poolLock.unlock() }
 
-        guard let basePath else { return nil }
+        guard let dbPath = AppConfig.archiveDatabasePath(archiveId: archive) else {
+            return nil
+        }
 
         if let pool = connectionPools[archive] { return pool }
 
-        let dbPath = "\(basePath)/\(archive).sqlite"
         guard FileManager.default.fileExists(atPath: dbPath) else {
             throw NSError(domain: "Tarjamah", code: -5, userInfo: [NSLocalizedDescriptionKey: "File missing: \(dbPath)"])
         }

@@ -175,9 +175,7 @@ class LibraryDataManager {
     }
 
     func getDatabasePath(forArchive archiveId: Int) -> String? {
-        // Sesuaikan dengan lokasi file database Anda
-        guard let documentsPath = DatabaseManager.shared.basePath else { return nil }
-        return "\(documentsPath)/\(archiveId).sqlite"
+        AppConfig.archiveDatabasePath(archiveId: archiveId)
     }
 
     func getCheckedTables(_ items: [Any]) -> Set<String> {
@@ -496,6 +494,7 @@ extension LibraryDataManager {
 
 extension Notification.Name {
     static let booksChanged = Notification.Name("booksChanged")
+    static let bookIntegrated = Notification.Name("bookIntegrated")
 }
 
 // MARK: - Type-safe Posting Helper

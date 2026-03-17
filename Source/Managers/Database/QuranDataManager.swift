@@ -15,7 +15,7 @@ class QuranDataManager {
     private(set) var surahNodes: [SurahNode] = []
     private(set) lazy var tafseerBooks: [BooksData] = []
 
-    let path = DatabaseManager.shared.specialPath
+    let path = AppConfig.specialDatabasePath
 
     let bkConn = BookConnection()
     private(set) var selectedQuran: (aya: Int, surah: Int)?
@@ -40,7 +40,7 @@ class QuranDataManager {
         #if DEBUG
         print("QuranDataManager connect")
         #endif
-        bkConn.connect(archive: book.archive)
+        try? bkConn.connect(archive: book.archive)
         selectedBook = book
     }
 

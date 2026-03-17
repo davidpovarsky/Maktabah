@@ -39,6 +39,9 @@
         }
       }
     },
+    "%lld%%" : {
+      "shouldTranslate" : false
+    },
     "AccessNeeded" : {
       "comment" : "Alert Memilih Folder Master",
       "localizations" : {
@@ -240,6 +243,7 @@
       }
     },
     "Cancel" : {
+      "comment" : "Cancel action button\nCancel active archive download button",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -380,6 +384,28 @@
         }
       }
     },
+    "Confirm Download Message" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى التنزيل للوصول إلى الكتاب."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please download to access book."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silakan unduh untuk mengakses kitab."
+          }
+        }
+      }
+    },
     "Context" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -393,6 +419,253 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Konteks"
+          }
+        }
+      }
+    },
+    "Copying tables and rebuilding FTS index..." : {
+      "comment" : "Book integrate phase message",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نسخ الجداول وإعادة بناء مؤشر FTS..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyalin tabel dan membangun kembali indeks FTS..."
+          }
+        }
+      }
+    },
+    "core.error.cancelled" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم إلغاء التنزيل."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Download cancelled."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduhan dibatalkan."
+          }
+        }
+      }
+    },
+    "core.error.decompressionFailed" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل في فك الضغط “٪%1$@:%2$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Failed to decompress “%1$@”: %2$@."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal dekompresi file “%1$@”: %2$@."
+          }
+        }
+      }
+    },
+    "core.error.destinationUnavailable" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعذر إنشاء مجلد الوجهة."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The destination folder could not be created."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder tujuan tidak dapat dibuat."
+          }
+        }
+      }
+    },
+    "core.error.downloadFailed" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الملف “%@” غير مكتمل بعد التنزيل."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "File “%@” is incomplete after download."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File “%@“ tidak lengkap setelah diunduh."
+          }
+        }
+      }
+    },
+    "core.error.httpStatus" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل تنزيل “%1$@” (HTTP %2$lld)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Failed to download “%1$@” (HTTP %2$lld)."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal mengunduh “%1$@” (HTTP %2$lld)."
+          }
+        }
+      }
+    },
+    "core.error.invalidBaseURL" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عنوان URL للتنزيل غير صالح. يرجى التحقق من التكوين الخاص بك."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invalid download URL. Please check your configuration."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL unduhan tidak valid. Silakan periksa konfigurasi Anda."
+          }
+        }
+      }
+    },
+    "core.error.invalidResponse" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استجابة الخادم غير صالحة."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invalid server response."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respons server tidak valid."
+          }
+        }
+      }
+    },
+    "core.modal.downloading" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنزيل قاعدة البيانات. من فضلك انتظر..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Downloading database. Please wait…"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengunduh basis data. Mohon tunggu..."
+          }
+        }
+      }
+    },
+    "core.modal.message" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتطلب التطبيق ملف قاعدة البيانات الرئيسي (~ 120 ميغابايت) الذي يتم تنزيله مرة واحدة عند فتحه لأول مرة. سيتم حفظ الملف في مجلد دعم التطبيقات."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application requires the main database file (~120 MB) that is downloaded once when first opened. The file will be saved in the Application Support folder."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maktabah memerlukan file database utama (~120 MB) yang diunduh sekali saat pertama kali dibuka. File akan disimpan di folder Application Support."
+          }
+        }
+      }
+    },
+    "core.modal.title" : {
+      "comment" : "Core download modal title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملف قاعدة البيانات مطلوب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Database File Needed"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Database Diperlukan"
           }
         }
       }
@@ -502,7 +775,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تَرْتيباً تَنازُليًّا حَسْبَ الأَوْلَويّةِ"
+            "value" : "ترتيبا تنازليا"
           }
         },
         "id" : {
@@ -525,6 +798,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "Download" : {
+      "comment" : "Download action button",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنزيل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh"
           }
         }
       }
@@ -583,6 +873,40 @@
         }
       }
     },
+    "Downloading" : {
+      "comment" : "Downloading badge",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحميل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengunduh"
+          }
+        }
+      }
+    },
+    "Downloading book file from server..." : {
+      "comment" : "Book integrate downloading message",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنزيل ملف الكتاب من الخادم..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengunduh file kitab dari server..."
+          }
+        }
+      }
+    },
     "Downloading books... (%lld/%lld)" : {
       "localizations" : {
         "ar" : {
@@ -637,6 +961,35 @@
           }
         }
       }
+    },
+    "Error" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
+    "error.decompressionFailed.%lld.%@" : {
+      "shouldTranslate" : false
+    },
+    "error.downloadFailed.%lld" : {
+      "shouldTranslate" : false
+    },
+    "error.httpStatus.%lld.%lld" : {
+      "shouldTranslate" : false
+    },
+    "error.invalidBaseURL" : {
+      "shouldTranslate" : false
+    },
+    "error.invalidResponse" : {
+      "shouldTranslate" : false
+    },
+    "error.networkUnavailable" : {
+      "shouldTranslate" : false
     },
     "errorCreateFolderDesc" : {
       "extractionState" : "manual",
@@ -1026,6 +1379,22 @@
         }
       }
     },
+    "Factory Setting" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعداد المصنع"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengaturan Awal"
+          }
+        }
+      }
+    },
     "Failed: %@" : {
       "localizations" : {
         "ar" : {
@@ -1138,6 +1507,40 @@
     },
     "ID: %lld" : {
       "shouldTranslate" : false
+    },
+    "Integrating" : {
+      "comment" : "Integrating badge",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دمج"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integrasi"
+          }
+        }
+      }
+    },
+    "Integrating Book" : {
+      "comment" : "Book integrate phase title",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كتاب متكامل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengintegrasikan Kitab"
+          }
+        }
+      }
     },
     "Later" : {
       "localizations" : {
@@ -1490,6 +1893,23 @@
         }
       }
     },
+    "Please wait, this process cannot be cancelled." : {
+      "comment" : "Book integrate phase detail",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى الانتظار، لا يمكن إلغاء هذه العملية."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mohon tunggu, proses ini tidak dapat dibatalkan."
+          }
+        }
+      }
+    },
     "Processing: %@ (%lld/%lld)" : {
       "localizations" : {
         "ar" : {
@@ -1545,6 +1965,22 @@
         }
       }
     },
+    "Quit" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خروج"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar"
+          }
+        }
+      }
+    },
     "QuranMenuBar" : {
       "localizations" : {
         "ar" : {
@@ -1585,6 +2021,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pembaca Kitab"
+          }
+        }
+      }
+    },
+    "Ready to Download" : {
+      "comment" : "Ready to download badge",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاهز للتنزيل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siap diunduh"
           }
         }
       }
@@ -1863,6 +2316,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Daftar Isi"
+          }
+        }
+      }
+    },
+    "Try Again" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حاول مرة أخرى"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
           }
         }
       }

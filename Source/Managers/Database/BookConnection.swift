@@ -10,7 +10,6 @@ import SQLite
 
 class BookConnection {
 
-    let basePath = DatabaseManager.shared.basePath
     private(set) var db: Connection?
     static let tocTreeCache = NSCache<NSNumber, NSArray>()
     private let totalPartsCache = NSCache<NSString, NSNumber>()
@@ -20,15 +19,20 @@ class BookConnection {
         totalPartsCache.name = "BookTotalPartsCache"
     }
 
-    func connect(archive: Int) {
-        guard let basePath else { return }
-        do {
-            db = try Connection("\(basePath)/\(archive).sqlite")
-        } catch {
-            #if DEBUG
-                print("error connect to book.sqlite")
-            #endif
+    /// Connect ke archive database dengan availability check
+    /// - Parameter archive: Archive ID (1-20, sesuai kolom Archive di tabel 0bok)
+    /// - Throws: ArchiveError jika archive tidak tersedia
+    func connect(archive: Int) throws {
+        guard let archivePath = AppConfig.archiveDatabasePath(archiveId: archive) else {
+            throw ArchiveError.databasePathNotAvailable
         }
+
+        // Check apakah archive tersedia
+        guard DatabaseManager.shared.checkArchiveAvailability(archiveId: archive) else {
+            throw ArchiveError.archiveNotAvailable(archiveId: archive)
+        }
+
+        db = try Connection(archivePath, readonly: true)
     }
 
     /*
@@ -84,7 +88,7 @@ class BookConnection {
 
         // pastikan koneksi
         if db == nil {
-            connect(archive: archive)
+            try? connect(archive: archive)
         }
 
         guard let db else { return nil }
@@ -611,7 +615,7 @@ extension BookConnection {
     /// Mengambil semua entri TOC dari database.
     func getTOCEntries(_ book: BooksData) async -> [TOC] {
         var tocEntries: [TOC] = []
-        connect(archive: book.archive)
+        try? connect(archive: book.archive)
         guard let db else { return [] }
 
         do {

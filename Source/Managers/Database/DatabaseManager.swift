@@ -28,7 +28,6 @@ class DatabaseManager {
     let bokMuallif = Expression<Int>("authno")
     let bokInf = Expression<String>("inf")
     let tafseerNam = Expression<String?>("TafseerNam")
-    let bVer = Expression<Int?>("bVer")
 
     // Column definitions untuk 0cat
     let catId = Expression<Int>("id")
@@ -43,30 +42,33 @@ class DatabaseManager {
     let authInf = Expression<String>("inf")
     let authLng = Expression<String>("Lng")
 
-    var basePath: String?
-    var specialPath: String?
-
     var shortsCache: [String: [String: String]] = [:]
 
+    // MARK: - Archive Availability
+    private var archiveAvailabilityCache: [Int: Bool] = [:]
+
     private init() {
-        guard let base = AppConfig.basePath else {
+        setupFolders()
+    }
+
+    func setupFolders() {
+        // Database files path (main.sqlite, special.sqlite)
+        guard let mainPath = AppConfig.mainDatabasePath,
+              let specialPath = AppConfig.specialDatabasePath
+        else {
+            print("databaseFilesPath is nil - database will not be initialized")
             return
         }
 
         do {
-            let mainPath = "\(base)/Files/main.sqlite"
-            let specialPath = "\(base)/Files/special.sqlite"
-
-            db = try Connection(mainPath)
-            dbSpecial = try Connection(specialPath)
-            basePath = base
-            self.specialPath = specialPath
+            db = try Connection(mainPath, readonly: true)
+            dbSpecial = try Connection(specialPath, readonly: true)
         } catch {
             UserDefaults.standard.removeObject(forKey: AppConfig.storageKey)
             ReusableFunc.showAlert(
                 title: NSLocalizedString("Folder Not Found", comment: ""),
                 message: NSLocalizedString(
-                    "Application Will Terminate because Folder Location Not Found on \(base)",
+                    "Application Will Terminate because Folder Location Not Found on \(AppConfig.databaseFilesPath ?? "N/A")",
                     comment: ""
                 )
             )
@@ -260,5 +262,61 @@ class DatabaseManager {
         }
 
         return resultAuthor
+    }
+
+    // MARK: - Archive File Management
+
+    /// Check apakah archive file tersedia untuk buku tertentu
+    /// - Parameter archiveId: Nomor archive (1-20, sesuai kolom Archive di tabel 0bok)
+    /// - Returns: True jika baik {archiveId}.sqlite dan {archiveId}_fts.sqlite tersedia
+    func checkArchiveAvailability(archiveId: Int) -> Bool {
+        // Check cache dulu
+        if let cached = archiveAvailabilityCache[archiveId] {
+            return cached
+        }
+
+        let fm = FileManager.default
+        guard let archiveFile = AppConfig.archiveDatabasePath(archiveId: archiveId),
+              let ftsFtsFile = AppConfig.archiveFtsDatabasePath(archiveId: archiveId)
+        else {
+            return false
+        }
+
+        let archiveExists = fm.fileExists(atPath: archiveFile)
+        let ftsExists = fm.fileExists(atPath: ftsFtsFile)
+        let isAvailable: Bool
+
+        // Kedua file harus ada dan bukan file kosong.
+        if archiveExists && ftsExists {
+            let archiveSize =
+            (try? fm.attributesOfItem(atPath: archiveFile)[.size] as? NSNumber)?
+                .int64Value ?? 0
+            let ftsSize =
+            (try? fm.attributesOfItem(atPath: ftsFtsFile)[.size] as? NSNumber)?
+                .int64Value ?? 0
+            isAvailable = archiveSize > 0 && ftsSize > 0
+        } else {
+            isAvailable = false
+        }
+
+        // Cache result
+        archiveAvailabilityCache[archiveId] = isAvailable
+
+        #if DEBUG
+            if isAvailable {
+                print("Archive \(archiveId) is available at: \(archiveFile)")
+            } else {
+                print("Archive \(archiveId) is NOT available")
+                print("Looking in: \(AppConfig.archiveFilesPath ?? "N/A")")
+            }
+        #endif
+
+        return isAvailable
+    }
+
+    /// Invalidate cache untuk archive specific (call setelah download single archive)
+    func invalidateArchiveCache(archiveId: Int) {
+        archiveAvailabilityCache.removeValue(forKey: archiveId)
+        print("Cache invalidated for archive \(archiveId)")
     }
 }

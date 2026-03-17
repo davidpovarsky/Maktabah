@@ -84,6 +84,12 @@
 		4B6AF2372EE58394002EBFFC /* IbarotTextVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B6AF2352EE58394002EBFFC /* IbarotTextVC.xib */; };
 		4B73BF452EF0799E001ED591 /* AnnotationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73BF442EF0799E001ED591 /* AnnotationCellView.swift */; };
 		4B73BF472EF09D67001ED591 /* AnnotationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73BF462EF09D67001ED591 /* AnnotationDelegate.swift */; };
+		4B8C9DD12F6984120049E4EF /* ArchiveDatabaseTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DCE2F6984120049E4EF /* ArchiveDatabaseTools.swift */; };
+		4B8C9DD22F6984120049E4EF /* BookArchiveIntegrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DCF2F6984120049E4EF /* BookArchiveIntegrator.swift */; };
+		4B8C9DD32F6984120049E4EF /* BookDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DD02F6984120049E4EF /* BookDownloadManager.swift */; };
+		4B8C9DD72F69848F0049E4EF /* IntegrationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DD62F69848F0049E4EF /* IntegrationCache.swift */; };
+		4B8C9DD92F6985210049E4EF /* ArchiveErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DD82F6985210049E4EF /* ArchiveErrors.swift */; };
+		4B8C9DE42F6995EE0049E4EF /* ProgressBooksDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */; };
 		4B96D3412F3612BD0018D902 /* BookUpdateVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3402F3612BD0018D902 /* BookUpdateVM.swift */; };
 		4B96D3432F3612D50018D902 /* BookUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3422F3612D50018D902 /* BookUpdateView.swift */; };
 		4B96D3532F3675290018D902 /* BookUpdateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3522F3675290018D902 /* BookUpdateModels.swift */; };
@@ -110,6 +116,8 @@
 		4BD6C33C2EE6AA7F008684E3 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C33B2EE6AA7F008684E3 /* MainWindow.swift */; };
 		4BD728232EE44C5500ACEB7C /* IbarotTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD728222EE44C5500ACEB7C /* IbarotTextView.swift */; };
 		4BD728252EE4544C00ACEB7C /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD728242EE4544C00ACEB7C /* StringExt.swift */; };
+		4BDAB9842F69B946007D0945 /* CoreDatabaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */; };
+		4BDAB9862F69C2A8007D0945 /* CoreDownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB9852F69C2A8007D0945 /* CoreDownloadProgressView.swift */; };
 		4BEC35912F34BA330038FC0F /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC35902F34BA330038FC0F /* DatabaseError.swift */; };
 		4BF392B32EFC924400460756 /* ResultWriter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392B52EFC924400460756 /* ResultWriter.xib */; };
 		4BF392B72EFC97C500460756 /* AnnotationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392B92EFC97C500460756 /* AnnotationsVC.xib */; };
@@ -218,13 +226,18 @@
 		4B65CCBA2EE06C5D0085CEB4 /* LibraryViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewManager.swift; sourceTree = "<group>"; };
 		4B65CCBF2EE0A10F0085CEB4 /* SearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngine.swift; sourceTree = "<group>"; };
 		4B68AE2B2F20576700CB3ED9 /* AppUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdate.swift; sourceTree = "<group>"; };
-		4B6AD4EE2EF86A7D004669F5 /* TarjamahDataManagerU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarjamahDataManagerU.swift; sourceTree = "<group>"; };
 		4B6AF22E2EE5692A002EBFFC /* AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
 		4B6AF2322EE57CCD002EBFFC /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		4B6AF2342EE58394002EBFFC /* IbarotTextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IbarotTextVC.swift; sourceTree = "<group>"; };
 		4B6AF2352EE58394002EBFFC /* IbarotTextVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IbarotTextVC.xib; sourceTree = "<group>"; };
 		4B73BF442EF0799E001ED591 /* AnnotationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationCellView.swift; sourceTree = "<group>"; };
 		4B73BF462EF09D67001ED591 /* AnnotationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDelegate.swift; sourceTree = "<group>"; };
+		4B8C9DCE2F6984120049E4EF /* ArchiveDatabaseTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveDatabaseTools.swift; sourceTree = "<group>"; };
+		4B8C9DCF2F6984120049E4EF /* BookArchiveIntegrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookArchiveIntegrator.swift; sourceTree = "<group>"; };
+		4B8C9DD02F6984120049E4EF /* BookDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDownloadManager.swift; sourceTree = "<group>"; };
+		4B8C9DD62F69848F0049E4EF /* IntegrationCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationCache.swift; sourceTree = "<group>"; };
+		4B8C9DD82F6985210049E4EF /* ArchiveErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveErrors.swift; sourceTree = "<group>"; };
+		4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBooksDownload.swift; sourceTree = "<group>"; };
 		4B96D3402F3612BD0018D902 /* BookUpdateVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateVM.swift; sourceTree = "<group>"; };
 		4B96D3422F3612D50018D902 /* BookUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateView.swift; sourceTree = "<group>"; };
 		4B96D3522F3675290018D902 /* BookUpdateModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateModels.swift; sourceTree = "<group>"; };
@@ -257,6 +270,8 @@
 		4BD6C33B2EE6AA7F008684E3 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		4BD728222EE44C5500ACEB7C /* IbarotTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IbarotTextView.swift; sourceTree = "<group>"; };
 		4BD728242EE4544C00ACEB7C /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDatabaseDownloader.swift; sourceTree = "<group>"; };
+		4BDAB9852F69C2A8007D0945 /* CoreDownloadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDownloadProgressView.swift; sourceTree = "<group>"; };
 		4BEC35902F34BA330038FC0F /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		4BF392B42EFC924400460756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ResultWriter.xib; sourceTree = "<group>"; };
 		4BF392B62EFC924400460756 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ResultWriter.xcstrings; sourceTree = "<group>"; };
@@ -403,10 +418,15 @@
 			isa = PBXGroup;
 			children = (
 				4B56955F2EEFDAFB00ABEB48 /* AnnotationManager.swift */,
+				4B8C9DCE2F6984120049E4EF /* ArchiveDatabaseTools.swift */,
+				4B8C9DCF2F6984120049E4EF /* BookArchiveIntegrator.swift */,
 				4B540F462EDF25A4001D8C0B /* BookConnection.swift */,
+				4B8C9DD02F6984120049E4EF /* BookDownloadManager.swift */,
 				4B3B966C2F35A74400B57E1D /* BookUpdateManager.swift */,
+				4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */,
 				4BEC35902F34BA330038FC0F /* DatabaseError.swift */,
 				4B32024D2EDB13C0003B95D1 /* DatabaseManager.swift */,
+				4B8C9DD62F69848F0049E4EF /* IntegrationCache.swift */,
 				4B33928A2EE02E710028C706 /* LibraryDataManager.swift */,
 				4B6100EA2EFA769200CCBED6 /* QuranDataManager.swift */,
 				4B5EC2982EE334C600991F39 /* ResultsHandler.swift */,
@@ -429,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				4B5695582EEFDAAE00ABEB48 /* Annotations.swift */,
+				4B8C9DD82F6985210049E4EF /* ArchiveErrors.swift */,
 				4B5B4BA12EE8404C000C22D5 /* BackgroundOptions.swift */,
 				4B58EDC82EE3D1E000073495 /* BookmarkModel.swift */,
 				4B96D3522F3675290018D902 /* BookUpdateModels.swift */,
@@ -446,8 +467,10 @@
 			isa = PBXGroup;
 			children = (
 				4B0139DF2EEAFC3000424CFA /* CustomSplitView.swift */,
+				4BDAB9852F69C2A8007D0945 /* CoreDownloadProgressView.swift */,
 				4BD728222EE44C5500ACEB7C /* IbarotTextView.swift */,
 				4BD6C33B2EE6AA7F008684E3 /* MainWindow.swift */,
+				4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */,
 				4B5E70682EF4FEFC00E7D351 /* SharedPopover.swift */,
 				4B03185E2F41E7BC00CB1677 /* SplitVC.swift */,
 				4B6AF2322EE57CCD002EBFFC /* Toolbar.swift */,
@@ -482,7 +505,6 @@
 			children = (
 				4B63E1E62EE965E800D58F3B /* RowiDataManager.swift */,
 				4B9A0AE12EEC17CC0049202E /* TarjamahDataManager.swift */,
-				4B6AD4EE2EF86A7D004669F5 /* TarjamahDataManagerU.swift */,
 			);
 			path = Narrathor;
 			sourceTree = "<group>";
@@ -809,6 +831,7 @@
 				4B0EED392EFAB38800585C31 /* QuranTafseerVC.swift in Sources */,
 				4B47F3992EE9A36D009A399F /* RowiProtocols.swift in Sources */,
 				4B6100F22EFA8C7F00CCBED6 /* QuranNashVC.swift in Sources */,
+				4B8C9DD92F6985210049E4EF /* ArchiveErrors.swift in Sources */,
 				4B32022C2EDAFE85003B95D1 /* AppDelegate.swift in Sources */,
 				4B65CCBB2EE06C5D0085CEB4 /* LibraryViewManager.swift in Sources */,
 				4BD728252EE4544C00ACEB7C /* StringExt.swift in Sources */,
@@ -834,11 +857,16 @@
 				4B6100EB2EFA769200CCBED6 /* QuranDataManager.swift in Sources */,
 				4B9DDA892EFC343F0003A9FF /* QuranWindow.swift in Sources */,
 				4BEC35912F34BA330038FC0F /* DatabaseError.swift in Sources */,
+				4B8C9DD12F6984120049E4EF /* ArchiveDatabaseTools.swift in Sources */,
+				4B8C9DD22F6984120049E4EF /* BookArchiveIntegrator.swift in Sources */,
+				4B8C9DD32F6984120049E4EF /* BookDownloadManager.swift in Sources */,
+				4B8C9DD72F69848F0049E4EF /* IntegrationCache.swift in Sources */,
 				F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */,
 				4B2FAD9A2EED472E008E933E /* TOCLoader.swift in Sources */,
 				4B20DB7F2EE7EE1F00B97126 /* SearchMode.swift in Sources */,
 				4B63E1ED2EE9758A00D58F3B /* LoadMoreCell.swift in Sources */,
 				4B63E1E42EE9425400D58F3B /* RowiResultsVC.swift in Sources */,
+				4BDAB9862F69C2A8007D0945 /* CoreDownloadProgressView.swift in Sources */,
 				4B5EC29E2EE33E3200991F39 /* ResultWriter.swift in Sources */,
 				4B96D3412F3612BD0018D902 /* BookUpdateVM.swift in Sources */,
 				4B5695642EF06E8B00ABEB48 /* AnnotationsOutlineDataSource.swift in Sources */,
@@ -849,6 +877,7 @@
 				4B4C97122F1F026C0051503E /* Narrathor.swift in Sources */,
 				4B56955C2EEFDAAE00ABEB48 /* AnnotationEditorVC.swift in Sources */,
 				4B96D3432F3612D50018D902 /* BookUpdateView.swift in Sources */,
+				4B8C9DE42F6995EE0049E4EF /* ProgressBooksDownload.swift in Sources */,
 				4B68AE2C2F20576700CB3ED9 /* AppUpdate.swift in Sources */,
 				4B65CCC02EE0A10F0085CEB4 /* SearchEngine.swift in Sources */,
 				4B3202502EDB1B5A003B95D1 /* DataModel.swift in Sources */,
@@ -875,6 +904,7 @@
 				4B65CCB82EE059B60085CEB4 /* OptionSearchVC.swift in Sources */,
 				4B0139E22EEB281C00424CFA /* BookPageCache.swift in Sources */,
 				4B0139E42EEB2FDF00424CFA /* StringInterner.swift in Sources */,
+				4BDAB9842F69B946007D0945 /* CoreDatabaseDownloader.swift in Sources */,
 				4B5DF9382EDC3DBF0082DE7F /* ViewOptions.swift in Sources */,
 				4BA393642EF0D30200736DFF /* ArabicFont.swift in Sources */,
 				4B9A0AE22EEC17CC0049202E /* TarjamahDataManager.swift in Sources */,

@@ -553,9 +553,54 @@ extension IbarotTextVC: LibraryDelegate {
     func didSelectBook(for book: BooksData) async {
         if currentBook?.id == book.id { return }
 
-        didChangeBook(book: book)
-        bookDB.connect(archive: book.archive)
-        fetchInitialBook()
+        do {
+            try await connectBookWithBundleFallback(book)
+            didChangeBook(book: book)
+            fetchInitialBook()
+        } catch is CancellationError {
+            return
+        } catch {
+            await MainActor.run {
+                ReusableFunc.showAlert(
+                    title: DatabaseError.bookNotFound(book.id).localizedDescription,
+                    message: error.localizedDescription,
+                    style: .critical
+                )
+            }
+        }
+    }
+
+    func connectBookWithBundleFallback(_ book: BooksData) async throws {
+        if !AppConfig.isUsingBundleMode {
+            try bookDB.connect(archive: book.archive)
+            return
+        }
+
+        // Jika sudah terintegrasi, skip konfirmasi dan langsung connect
+        guard !BookArchiveIntegrator.shared.isBookIntegrated(book) else {
+            try bookDB.connect(archive: book.archive)
+            return
+        }
+
+        // Tampilkan konfirmasi dulu
+        let confirmed = await BookIntegrateModalCenter.shared
+            .presentAndWaitForConfirmation(book: book)
+        guard confirmed else { throw CancellationError() }
+
+        defer {
+            Task { @MainActor in
+                BookIntegrateModalCenter.shared.dismiss()
+            }
+        }
+
+        try await BookArchiveIntegrator.shared.ensureBookIntegrated(
+            book,
+            onIntegrating: {
+                await BookIntegrateModalCenter.shared.showIntegrating()
+            }
+        )
+
+        try bookDB.connect(archive: book.archive)
     }
 }
 
@@ -624,7 +669,7 @@ extension IbarotTextVC: TarjamahBDelegate {
 
         if currentBook?.id != bookData.id {
             didChangeBook(book: bookData)
-            bookDB.connect(archive: bookData.archive)
+            try? bookDB.connect(archive: bookData.archive)
         } else {
             return
         }
@@ -688,7 +733,7 @@ extension IbarotTextVC: ReaderStateComponent {
 
         // 1. Load data buku & halaman
         if let book = state.currentBook {
-            bookDB.connect(archive: book.archive)
+            try? bookDB.connect(archive: book.archive)
             if currentBook?.id != book.id {
                 didChangeBook(book: book)
             }
