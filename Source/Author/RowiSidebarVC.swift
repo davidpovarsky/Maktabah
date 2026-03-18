@@ -12,6 +12,7 @@ class RowiSidebarVC: NSViewController {
     @IBOutlet weak var searchField: NSSearchField!
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
 
     private let folderCellIdentifier = NSUserInterfaceItemIdentifier(
         CellIViewIdentifier.outlineParent.rawValue

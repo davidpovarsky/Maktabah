@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="outlineView" destination="7JP-mG-e0c" id="NoB-01-nnG"/>
                 <outlet property="scrollView" destination="2m4-D5-RbW" id="n0E-Rr-jFw"/>
+                <outlet property="scrollViewBottomConstraint" destination="84I-28-Qtg" id="8xU-bO-SLC"/>
                 <outlet property="scrollViewTopConstraint" destination="e8L-eo-aQF" id="3wX-05-VQf"/>
                 <outlet property="searchField" destination="x2L-D2-shA" id="rWd-F8-98w"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>

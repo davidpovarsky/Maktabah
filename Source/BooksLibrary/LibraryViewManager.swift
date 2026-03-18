@@ -8,6 +8,7 @@
 import Cocoa
 
 class LibraryViewManager: NSObject {
+    static let filterSegmentIndexKey = "LibraryFilterSegmentIndex"
 
     weak var outlineView: NSOutlineView!
     weak var delegate: LibraryViewDelegate?
@@ -15,6 +16,7 @@ class LibraryViewManager: NSObject {
 
     var searchView: Bool = false
     var downloadView: Bool = false
+    var showOnlyDownloaded: Bool = false
 
     var checkBoxToggle: (() -> Void)?
 
@@ -43,6 +45,23 @@ class LibraryViewManager: NSObject {
         displayedCategories = data.allRootCategories
         buildBookLookup()
         outlineView.reloadData()
+    }
+
+    /// Filter tampilan berdasarkan status download kitab.
+    /// - Parameter onlyDownloaded:
+    /// `true` = hanya kitab yang sudah didownload,
+    /// `false` = semua kitab.
+    func applyDownloadFilter(_ onlyDownloaded: Bool) {
+        showOnlyDownloaded = onlyDownloaded
+        displayedCategories =
+            onlyDownloaded
+            ? data.filterIntegrated()
+            : data.allRootCategories
+        outlineView.reloadData()
+    }
+
+    func applyDownloadFilter(forSegmentIndex index: Int) {
+        applyDownloadFilter(index == 1)
     }
 
     func buildBookLookup() {
@@ -304,7 +323,7 @@ extension LibraryViewManager {
     private func handleIntegratedBookUpdate(_ bookId: Int) {
         guard let book = data.booksById[bookId] else { return }
 
-        if searchView {
+        if !downloadView {
             guard BookArchiveIntegrator.shared.isBookIntegrated(book) else { return }
             insertIntegratedBookIntoDisplayed(book)
             return

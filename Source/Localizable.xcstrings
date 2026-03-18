@@ -121,6 +121,22 @@
         }
       }
     },
+    "All" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua"
+          }
+        }
+      }
+    },
     "All %lld books processed successfully." : {
       "comment" : "Status message when all tasks finished successfully",
       "localizations" : {
@@ -2027,12 +2043,11 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mohon periksa kelengkapan database."
           }
         }
-      },
-      "shouldTranslate" : false
+      }
     },
     "Needs update" : {
       "localizations" : {
