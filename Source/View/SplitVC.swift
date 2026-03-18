@@ -136,6 +136,11 @@ class SplitVC: NSSplitViewController {
         }
 
         currentMode = mode
+
+        ibarotTextVC.updateLibraryReference(
+            for: mode,
+            library: libraryVC
+        )
     }
 
     // MARK: - Viewer Mode Setup

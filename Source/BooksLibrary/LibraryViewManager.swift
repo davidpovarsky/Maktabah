@@ -57,6 +57,7 @@ class LibraryViewManager: NSObject {
             onlyDownloaded
             ? data.filterIntegrated()
             : data.allRootCategories
+        buildBookLookup()
         outlineView.reloadData()
     }
 
@@ -250,7 +251,7 @@ extension LibraryViewManager: NSSearchFieldDelegate {
     }
 
     // Helper function untuk restore seleksi berdasarkan nama buku
-    private func restoreSelection(byBookName bookName: String) {
+    func restoreSelection(byBookName bookName: String) {
         guard let (category, book) = bookLookup[bookName] else { return }
 
         outlineView.expandItem(category)

@@ -24,6 +24,7 @@ class IbarotTextVC: NSViewController {
     var bookDB: BookConnection = .init()
 
     var sidebarVC: SidebarVC?
+    var libraryVC: LibraryVC?
 
     let defaultTitle: String = "المكتبة الإسلامية"
     let subtitle: String = "لتيسر البحث العبارة"
@@ -108,6 +109,13 @@ class IbarotTextVC: NSViewController {
 
         currentBook = book
         updateWindowTitle(id: book.id)
+
+        /// Pilih kitab di `LibraryVC`
+        libraryVC?.dataVM.restoreSelection(byBookName: book.book)
+    }
+
+    func updateLibraryReference(for mode: AppMode, library: LibraryVC?) {
+        libraryVC = (mode == .viewer) ? library : nil
     }
 
     func fetchInitialBook() {
