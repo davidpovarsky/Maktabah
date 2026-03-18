@@ -456,6 +456,14 @@ class LibraryDataManager {
         }
     }
 
+    func filterIntegrated() -> [CategoryData] {
+        return allRootCategories.compactMap { root in
+            applyHierarchyFilter(to: root) {
+                BookArchiveIntegrator.shared.isBookIntegrated($0)
+            }
+        }
+    }
+
     func loadBookInfo(_ id: Int, completion: @escaping () -> Void?) {
         defer { completion() }
         guard let book = booksById[id],

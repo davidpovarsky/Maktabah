@@ -80,18 +80,41 @@ class OptionSearchVC: NSViewController {
             progressRows.controlSize = .regular
             // Fallback on earlier versions
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .libraryFolderChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+            isDataLoaded = false // Reset local flag
+            setupUI()
+        }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if isDataLoaded, bkId.isEmpty { return }
+        if !bkId.isEmpty { return }
+        setupUI()
+    }
+
+    private func setupUI() {
+        if isDataLoaded { return }
         setupIndeterminateProgress()
-        Task.detached(priority: .userInitiated) {
-            await LibraryDataManager.shared.loadData()
-            await LibraryDataManager.shared.buildArchive()
+        Task.detached(priority: .userInitiated) { [weak self, weak libraryViewManager] in
+            guard let self, let libraryViewManager else { return }
+            await ldm.loadData()
+            await ldm.buildArchive()
             await MainActor.run { [weak self] in
                 guard let self else { return }
-                libraryViewManager?.prepareData()
+                if AppConfig.isUsingBundleMode {
+                    let filtered = ldm.filterIntegrated()
+                    libraryViewManager.displayedCategories = filtered
+                    libraryViewManager.buildBookLookup()
+                    libraryViewManager.outlineView.reloadData()
+                } else {
+                    libraryViewManager.prepareData()
+                }
                 isDataLoaded = true
                 resetIndeterminateProgress(true)
             }

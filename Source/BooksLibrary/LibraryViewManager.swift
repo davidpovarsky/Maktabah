@@ -304,6 +304,12 @@ extension LibraryViewManager {
     private func handleIntegratedBookUpdate(_ bookId: Int) {
         guard let book = data.booksById[bookId] else { return }
 
+        if searchView {
+            guard BookArchiveIntegrator.shared.isBookIntegrated(book) else { return }
+            insertIntegratedBookIntoDisplayed(book)
+            return
+        }
+
         let row = outlineView.row(forItem: book)
         if row >= 0 {
             outlineView.reloadItem(book)
@@ -338,6 +344,114 @@ extension LibraryViewManager {
             }
         }
         return nil
+    }
+
+    private func findPathToBook(bookId: Int, in categories: [CategoryData]) -> [CategoryData]? {
+        for category in categories {
+            for child in category.children {
+                if let b = child as? BooksData, b.id == bookId {
+                    return [category]
+                }
+                if let sub = child as? CategoryData,
+                   let path = findPathToBook(bookId: bookId, in: [sub]) {
+                    return [category] + path
+                }
+            }
+        }
+        return nil
+    }
+
+    private func insertBook(
+        _ book: BooksData,
+        originalCategory: CategoryData,
+        targetCategory: CategoryData
+    ) {
+        if targetCategory.children.contains(where: { ($0 as? BooksData)?.id == book.id }) {
+            return
+        }
+
+        let originalIndex = originalCategory.children.firstIndex {
+            ($0 as? BooksData)?.id == book.id
+        } ?? originalCategory.children.count
+
+        let existingBooks = targetCategory.children.compactMap { $0 as? BooksData }
+        var insertBookIndex = 0
+        for existingBook in existingBooks {
+            let existingIndex = originalCategory.children.firstIndex {
+                ($0 as? BooksData)?.id == existingBook.id
+            } ?? originalCategory.children.count
+            if existingIndex > originalIndex {
+                break
+            }
+            insertBookIndex += 1
+        }
+
+        let firstBookIndex = targetCategory.children.firstIndex { $0 is BooksData } ?? targetCategory.children.count
+        let insertIndex = firstBookIndex + insertBookIndex
+        targetCategory.children.insert(book, at: insertIndex)
+    }
+
+    private func insertCategory(_ category: CategoryData, into list: inout [CategoryData]) {
+        let insertIndex = list.firstIndex { $0.order > category.order } ?? list.count
+        list.insert(category, at: insertIndex)
+    }
+
+    private func insertCategory(_ category: CategoryData, into children: inout [Any]) {
+        let firstBookIndex = children.firstIndex { $0 is BooksData } ?? children.count
+        let categoryIndex = children.enumerated().first { _, element in
+            guard let existing = element as? CategoryData else { return false }
+            return existing.order > category.order
+        }?.offset ?? firstBookIndex
+        let insertIndex = min(categoryIndex, firstBookIndex)
+        children.insert(category, at: insertIndex)
+    }
+
+    private func insertIntegratedBookIntoDisplayed(_ book: BooksData) {
+        guard let path = findPathToBook(bookId: book.id, in: data.allRootCategories),
+              let originalLeaf = path.last
+        else { return }
+
+        let rootId = path[0].id
+        let rootWasPresent = displayedCategories.contains { $0.id == rootId }
+
+        var currentParent: CategoryData?
+        for category in path {
+            if let parent = currentParent {
+                if let existing = parent.children.compactMap({ $0 as? CategoryData })
+                    .first(where: { $0.id == category.id }) {
+                    currentParent = existing
+                } else {
+                    let clone = category.copy() as! CategoryData
+                    clone.children = []
+                    insertCategory(clone, into: &parent.children)
+                    currentParent = clone
+                }
+            } else {
+                if let existing = displayedCategories.first(where: { $0.id == category.id }) {
+                    currentParent = existing
+                } else {
+                    let clone = category.copy() as! CategoryData
+                    clone.children = []
+                    insertCategory(clone, into: &displayedCategories)
+                    currentParent = clone
+                }
+            }
+        }
+
+        guard let leaf = currentParent else { return }
+        insertBook(book, originalCategory: originalLeaf, targetCategory: leaf)
+
+        if !rootWasPresent {
+            outlineView.reloadData()
+        } else if let root = displayedCategories.first(where: { $0.id == rootId }) {
+            outlineView.reloadItem(root, reloadChildren: true)
+        } else {
+            outlineView.reloadData()
+        }
+
+        if let bookName = selectedBookName {
+            restoreSelection(byBookName: bookName)
+        }
     }
 
     private func handleBookInserted(categoryId: Int, book: BooksData) {
