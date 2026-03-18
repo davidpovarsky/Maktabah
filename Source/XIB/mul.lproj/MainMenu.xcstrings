@@ -457,30 +457,6 @@
         }
       }
     },
-    "BG5-CL-Qwq.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Personal Data…\"; ObjectID = \"BG5-CL-Qwq\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "البيانات الشخصية… "
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Personal Data…"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Data Personal…"
-          }
-        }
-      }
-    },
     "bib-Uj-vzu.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"File\"; ObjectID = \"bib-Uj-vzu\";",
       "extractionState" : "extracted_with_value",
@@ -549,30 +525,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gunakan Pilihan untuk Temukan"
-          }
-        }
-      }
-    },
-    "c7u-af-R3k.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Master Library...\"; ObjectID = \"c7u-af-R3k\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "المجلد الرئيسي"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Master Library..."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Folder Master…"
           }
         }
       }
@@ -1581,6 +1533,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tampilkan Bar Alat"
+          }
+        }
+      }
+    },
+    "suQ-Vw-rFu.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Download Books...\"; ObjectID = \"suQ-Vw-rFu\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحميل الكتب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Download Books..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Kitab…"
           }
         }
       }

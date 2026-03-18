@@ -39,6 +39,45 @@
         }
       }
     },
+    "%lld books to download." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld كتب للتنزيل."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld kitab untuk diunduh."
+          }
+        }
+      }
+    },
+    "%lld completed, %lld failed." : {
+      "comment" : "Status message showing count of completed and failed downloads",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld اكتمل, %2$lld فشل."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld completed, %2$lld failed."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld berhasil, %2$lld gagal."
+          }
+        }
+      }
+    },
     "%lld%%" : {
       "shouldTranslate" : false
     },
@@ -78,6 +117,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tambahkan Catatan"
+          }
+        }
+      }
+    },
+    "All %lld books processed successfully." : {
+      "comment" : "Status message when all tasks finished successfully",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تمت معالجة جميع كتب %lld بنجاح."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua %lld kitab berhasil diproses."
           }
         }
       }
@@ -127,6 +183,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anotasi"
+          }
+        }
+      }
+    },
+    "Annotations & Search Results" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التعليقات ونتائج البحث"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anotasi & Hasil Pencarian"
           }
         }
       }
@@ -187,6 +259,22 @@
         }
       }
     },
+    "Begin downloading..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابدأ في التنزيل..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai mengunduh..."
+          }
+        }
+      }
+    },
     "Blue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -238,6 +326,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pembaruan Kitab"
+          }
+        }
+      }
+    },
+    "Bundle Mode" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وضع الحزمة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode Bundel"
           }
         }
       }
@@ -313,6 +417,22 @@
         }
       }
     },
+    "Choose Annotations Folder…" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر مجلد التعليقات..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Folder Anotasi..."
+          }
+        }
+      }
+    },
     "Choose Folder" : {
       "localizations" : {
         "ar" : {
@@ -325,6 +445,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Folder"
+          }
+        }
+      }
+    },
+    "Choose Library Folder…" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر مجلد المكتبة..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Folder Perpustakaan..."
           }
         }
       }
@@ -402,6 +538,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Silakan unduh untuk mengakses kitab."
+          }
+        }
+      }
+    },
+    "Connection Error" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خطأ في الاتصال"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi Error"
           }
         }
       }
@@ -702,6 +854,22 @@
         }
       }
     },
+    "Database Mode" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وضع قاعدة البيانات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode Basis Data"
+          }
+        }
+      }
+    },
     "Date Created" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -803,7 +971,7 @@
       }
     },
     "Download" : {
-      "comment" : "Download action button",
+      "comment" : "Download action button\nStart bulk download",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -815,6 +983,55 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unduh"
+          }
+        }
+      }
+    },
+    "Download Book" : {
+      "comment" : "Bulk download window title",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحميل الكتاب"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Kitab"
+          }
+        }
+      }
+    },
+    "Download Complete. Begin integrating..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اكتمل التنزيل. ابدأ في دمج..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Selesai. Mulai mengintegrasikan..."
+          }
+        }
+      }
+    },
+    "Download Full Library (Google Drive)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قم بتنزيل المكتبة الكاملة (Google Drive)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Perpustakaan Lengkap (Google Drive)"
           }
         }
       }
@@ -837,6 +1054,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fase unduhan selesai (%1$lld/%2$lld). Memulai proses…"
+          }
+        }
+      }
+    },
+    "Download Selective Library…" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Selective Library…"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Perpustakaan Selektif..."
           }
         }
       }
@@ -886,6 +1119,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mengunduh"
+          }
+        }
+      }
+    },
+    "Downloading %lld of %lld books..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنزيل %1$lld من كتب %2$lld..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Downloading %1$lld of %2$lld books..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengunduh %1$lld dari %2$lld kitab…"
           }
         }
       }
@@ -941,6 +1196,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mengunduh..."
+          }
+        }
+      }
+    },
+    "Downloads" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التنزيلات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduhan"
           }
         }
       }
@@ -1488,6 +1759,22 @@
         }
       }
     },
+    "Full Library will open the download link in your browser." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ستفتح المكتبة الكاملة رابط التنزيل في متصفحك."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perpustakaan Lengkap akan membuka tautan unduhan di peramban Anda."
+          }
+        }
+      }
+    },
     "Green" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1624,6 +1911,22 @@
         }
       }
     },
+    "Library Storage" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تخزين المكتبة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penyimpanan Perpustakaan"
+          }
+        }
+      }
+    },
     "Loading update lists..." : {
       "localizations" : {
         "ar" : {
@@ -1685,6 +1988,51 @@
           }
         }
       }
+    },
+    "migrationFailed" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل الترحيل إلى مجلد مخصص."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to migrate to custom folder."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal migrasi ke folder kustom."
+          }
+        }
+      }
+    },
+    "migrationFailedInfo" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى التحقق من اكتمال قاعدة البيانات."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check the completeness of the database."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mohon periksa kelengkapan database."
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "Needs update" : {
       "localizations" : {
@@ -1753,6 +2101,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak ada kitab terpilih"
+          }
+        }
+      }
+    },
+    "No books were successfully downloaded." : {
+      "comment" : "Status message when no books were downloaded",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لم يتم تنزيل أي كتب بنجاح."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada buku yang berhasil diunduh."
+          }
+        }
+      }
+    },
+    "No internet connection. Skipping downloads." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يوجد اتصال بالإنترنت. تخطي التنزيلات."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada koneksi internet. Melewati unduhan."
           }
         }
       }
@@ -1889,6 +2270,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pink"
+          }
+        }
+      }
+    },
+    "Please check your internet connection" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يرجى التحقق من اتصالك بالإنترنت"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mohon periksa koneksi internet Anda"
           }
         }
       }
@@ -2202,6 +2599,22 @@
         }
       }
     },
+    "Select book to download." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر كتابا لتنزيله."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih kitab untuk diunduh."
+          }
+        }
+      }
+    },
     "separateWordsSearchDesc" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2248,6 +2661,22 @@
         }
       }
     },
+    "Settings" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإعدادات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengaturan"
+          }
+        }
+      }
+    },
     "Skipped" : {
       "localizations" : {
         "ar" : {
@@ -2276,6 +2705,106 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memulai pembaruan %lld kitab…"
+          }
+        }
+      }
+    },
+    "Stop" : {
+      "comment" : "Stop bulk download",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توقف"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop"
+          }
+        }
+      }
+    },
+    "Stopped downloads. %lld books completed." : {
+      "comment" : "Status message when user manually stops downloads",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توقفت التنزيلات.%lld اكتملت الكتب."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduhan dihentikan. %lld kitab selesai."
+          }
+        }
+      }
+    },
+    "Stopped. %lld books completed." : {
+      "comment" : "Status message when the task is cancelled",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توقف.%lld اكتملت الكتب."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dihentikan. %lld kitab selesai."
+          }
+        }
+      }
+    },
+    "Stopping downloads. Integrating completed books..." : {
+      "comment" : "Bulk download stopping message",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إيقاف التنزيلات. دمج الكتب المكتملة..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menghentikan unduhan. Mengintegrasikan kitab yang selesai..."
+          }
+        }
+      }
+    },
+    "Switch to Bundle Mode" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التبديل إلى وضع الحزمة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beralih ke Mode Bundel"
+          }
+        }
+      }
+    },
+    "There's Nothing Books to Download." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يوجد شيء كتب لتنزيلها."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Ada Buku untuk Diunduh."
           }
         }
       }
@@ -2381,6 +2910,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Update selected (%lld)"
+          }
+        }
+      }
+    },
+    "Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استخدم قاعدة البيانات المدمجة في التطبيق (للقراءة فقط). بالنسبة للمكتبة الكاملة، قم بتعطيل هذا واختر مجلدا مخصصا."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunakan basis data bawaan aplikasi (hanya baca). Untuk Perpustakaan Lengkap, nonaktifkan ini dan pilih folder khusus."
           }
         }
       }

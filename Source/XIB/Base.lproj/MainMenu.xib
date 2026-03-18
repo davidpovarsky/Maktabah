@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -45,8 +45,17 @@
                                     <action selector="checkUpdatesClicked:" target="Voe-Tx-rLC" id="NEM-wL-Lkp"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Download Books..." keyEquivalent=";" id="suQ-Vw-rFu">
+                                <connections>
+                                    <action selector="downloadLibrary:" target="Voe-Tx-rLC" id="WJy-cU-gHc"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                <connections>
+                                    <action selector="openSettings:" target="Voe-Tx-rLC" id="Hre-Jx-JHZ"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="eX5-N9-Nzw"/>
                             <menuItem title="Services" id="NMo-om-nkz">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -94,18 +103,6 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="LoS-O1-D6M"/>
-                            <menuItem title="Master Library..." keyEquivalent="o" id="c7u-af-R3k">
-                                <connections>
-                                    <action selector="selectFolder:" target="Voe-Tx-rLC" id="UCA-je-1lc"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Personal Data…" id="BG5-CL-Qwq">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="changeBaseFolder:" target="Voe-Tx-rLC" id="Ye3-Pz-jrl"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
@@ -451,7 +448,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="200" y="121"/>
+            <point key="canvasLocation" x="510" y="83"/>
         </menu>
     </objects>
     <resources>

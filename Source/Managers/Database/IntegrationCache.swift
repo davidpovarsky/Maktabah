@@ -94,6 +94,43 @@ final class IntegrationCache {
         saveJSON(bookIds: bookIds, for: archiveId)
     }
 
+    /// Build cache untuk semua archive yang ada di disk (panggil saat app launch di background).
+    func buildAllIfNeeded() {
+        guard AppConfig.isUsingBundleMode,
+              let basePath = AppConfig.archiveFilesPath
+        else { return }
+        let baseURL = URL(fileURLWithPath: basePath)
+
+        // Temukan semua file `N.sqlite` (archive, bukan _fts)
+        let candidates = (try? fm.contentsOfDirectory(at: baseURL,
+                                                      includingPropertiesForKeys: nil)) ?? []
+        let archiveIds = candidates.compactMap { url -> Int? in
+            let name = url.lastPathComponent
+            guard name.hasSuffix(".sqlite"),
+                  !name.contains("_fts"),
+                  !name.contains(".tmp."),
+                  let id = Int(name.dropLast(".sqlite".count))
+            else { return nil }
+            return id
+        }
+
+        for id in archiveIds {
+            build(for: id)
+        }
+    }
+
+    // periphery:ignore
+    /// Invalidasi cache untuk archive tertentu (misal setelah rollback / manual fix).
+    func invalidate(archiveId: Int) {
+        queue.async(flags: .barrier) { [self] in
+            integrated.removeValue(forKey: archiveId)
+            loadedArchives.remove(archiveId)
+        }
+        if let file = cacheFile(for: archiveId) {
+            try? fm.removeItem(at: file)
+        }
+    }
+
     // MARK: - Internal: load from JSON
 
     private func ensureLoaded(archiveId: Int) {

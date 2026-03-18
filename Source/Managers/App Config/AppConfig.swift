@@ -16,20 +16,6 @@ struct AppConfig {
     static let bookReleaseBaseURLKey = "book_release_base_url"
     static let bookIndexURLKey = "book_index_url"
 
-    // MARK: - Bundle Database Path
-    /// Path ke database files di Bundle: .app/Contents/Resources/Files/
-    /// Berisi: main.sqlite, special.sqlite, special_fts.sqlite
-    static var bundleDatabasePath: String? {
-        guard let resourcePath = Bundle.main.resourcePath else { return nil }
-        let bundleDbPath = "\(resourcePath)/Files"
-
-        let fm = FileManager.default
-        if fm.fileExists(atPath: bundleDbPath) {
-            return bundleDbPath
-        }
-        return nil
-    }
-
     // MARK: - Archive Cache Path (untuk Bundle Mode)
     /// Path untuk archive files saat menggunakan Bundle Mode
     /// Located at: ~/Library/Application Support/Maktabah/Caches/
@@ -123,23 +109,6 @@ struct AppConfig {
     static var coreDatabasePath: String? {
         guard !hasCustomDatabaseFolder() else { return nil }
         return archiveCachePath
-    }
-
-    /// Apakah core database files sudah tersedia di Caches/
-    static var areCoreFilesAvailable: Bool {
-        guard let dir = coreDatabasePath else {
-            // Custom mode — anggap tersedia (dikelola user)
-            return true
-        }
-        let fm = FileManager.default
-        for name in ["main.sqlite", "special.sqlite"] {
-            let path = URL(fileURLWithPath: dir).appendingPathComponent(name).path
-            guard fm.fileExists(atPath: path) else { return false }
-            let size = (try? fm.attributesOfItem(atPath: path)[.size]
-                        as? NSNumber)?.int64Value ?? 0
-            guard size > 0 else { return false }
-        }
-        return true
     }
 
     // MARK: - Helper: Database File Paths
@@ -347,33 +316,6 @@ struct AppConfig {
         }
     }
 
-    static func initialize() {
-        // 1. Check jika user sudah memilih custom database folder
-        if AppConfig.hasCustomDatabaseFolder() {
-            #if DEBUG
-                print(
-                    "Custom database folder detected - initializing with custom path"
-                )
-            #endif
-            _ = DatabaseManager.shared
-        }
-        // 2. Check jika sudah dalam Bundle Mode
-        else if AppConfig.isUsingBundleMode {
-            #if DEBUG
-                print("Bundle Mode detected - using cached bundle databases")
-            #endif
-            _ = DatabaseManager.shared
-        }
-        // 3. First launch - setup Bundle Mode
-        else {
-            #if DEBUG
-                print("First launch detected - setting up Bundle Mode")
-            #endif
-            AppConfig.migrateToBundleMode()
-            _ = DatabaseManager.shared
-        }
-    }
-
     // MARK: - Bundle Initialization & Migration Methods
 
     /// Setup Bundle Mode: Initialize untuk menggunakan database dari Bundle
@@ -381,12 +323,6 @@ struct AppConfig {
     /// - main.sqlite, special.sqlite berada di: .app/Contents/Resources/Files/
     /// - Archive files akan berada di: ~/Library/Application Support/Maktabah/Caches/
     static func setupBundleMode() -> Bool {
-        // Verify bundle database path tersedia
-        guard bundleDatabasePath != nil else {
-            print("Bundle database path tidak tersedia")
-            return false
-        }
-
         // Ensure archive cache folder exists
         let fm = FileManager.default
         guard let cachePath = archiveCachePath else {
@@ -410,7 +346,6 @@ struct AppConfig {
             isUsingBundleMode = true
             #if DEBUG
                 print("Bundle Mode setup selesai")
-                print("Database files: \(bundleDatabasePath ?? "N/A")")
                 print("Archive cache: \(cachePath)")
             #endif
             return true
@@ -429,9 +364,63 @@ struct AppConfig {
         _ = setupBundleMode()
     }
 
+    /// Migrate ke Custom Mode: Switch dari Bundle ke user-selected folder
+    /// - Parameter folderUrl: URL folder yang dipilih user
+    /// - Returns: True jika migration berhasil
+    static func migrateToCustomMode(folderUrl: URL) -> Bool {
+        do {
+            // 1. Save custom folder bookmark
+            saveBookmark(url: folderUrl, key: customDatabaseFolderKey)
+
+            // 2. Create Files subdirectory structure di custom folder
+            let fm = FileManager.default
+            let filesDir = folderUrl.appendingPathComponent("Files", isDirectory: true)
+
+            if !fm.fileExists(atPath: filesDir.path) {
+                try fm.createDirectory(at: filesDir, withIntermediateDirectories: true)
+            }
+
+            // 3. Copy bundle databases ke custom folder jika belum ada
+            if let bundlePath = archiveCachePath {
+                let mainSqFile = "main.sqlite"
+                let specialSqFile = "special.sqlite"
+                // let specialFtsSqFile = "special_fts.sqlite"
+
+                for fileName in [mainSqFile, specialSqFile] {
+                    let sourcePath = "\(bundlePath)/\(fileName)"
+                    let destPath = filesDir.appendingPathComponent(fileName).path
+
+                    // Copy hanya jika destination belum ada (respect existing user files)
+                    if !fm.fileExists(atPath: destPath) && fm.fileExists(atPath: sourcePath) {
+                        try fm.copyItem(atPath: sourcePath, toPath: destPath)
+                        #if DEBUG
+                            print("Copied \(fileName) ke custom folder")
+                        #endif
+                    }
+                }
+            }
+
+            // 4. Disable Bundle Mode
+            isUsingBundleMode = false
+            #if DEBUG
+                print("Migrated to Custom Mode: \(folderUrl.path)")
+            #endif
+            return true
+        } catch {
+            #if DEBUG
+                print("Error migrating to Custom Mode:", error)
+            #endif
+            return false
+        }
+    }
+
     /// Check jika user sudah setup custom database folder
     static func hasCustomDatabaseFolder() -> Bool {
         return UserDefaults.standard.data(forKey: customDatabaseFolderKey) != nil
     }
 
+}
+
+extension Notification.Name {
+    static let libraryFolderChanged = Notification.Name("libraryFolderChanged")
 }

@@ -14,6 +14,9 @@ class LibraryViewManager: NSObject {
     let data: LibraryDataManager = .shared
 
     var searchView: Bool = false
+    var downloadView: Bool = false
+
+    var checkBoxToggle: (() -> Void)?
 
     var displayedCategories: [CategoryData] = []
 
@@ -22,9 +25,14 @@ class LibraryViewManager: NSObject {
     private var selectedBookName: String?
     private var bookLookup: [String: (category: CategoryData, book: BooksData)] = [:]
 
-    init(outlineView: NSOutlineView, searchField: DSFSearchField, searchView: Bool = false) {
+    init(outlineView: NSOutlineView,
+         searchField: DSFSearchField,
+         searchView: Bool = false,
+         downloadView: Bool = false
+    ) {
         self.outlineView = outlineView
-        self.searchView = searchView
+        self.searchView = searchView || downloadView
+        self.downloadView = downloadView
         self.searchField = searchField
         super.init()
         self.setupDSFSearchField()
@@ -81,6 +89,8 @@ class LibraryViewManager: NSObject {
             book.isChecked = newState
             ReusableFunc.updateBuiltInRecents(with: book.book, in: searchField)
         }
+
+        checkBoxToggle?()
     }
 
     // Helper rekursif untuk mencentang category & children
@@ -234,7 +244,6 @@ extension LibraryViewManager: NSSearchFieldDelegate {
     }
 }
 
-
 extension LibraryViewManager {
 
     private func setupNotificationObservers() {
@@ -244,6 +253,65 @@ extension LibraryViewManager {
             queue: .main
         ) { [weak self] notification in
             self?.handleBooksChanged(notification)
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .bookIntegrated,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let bookId = notification.object as? Int else { return }
+            self?.reloadParentCategory(ofBookId: bookId)
+        }
+    }
+
+    /// Dipanggil setelah kitab selesai diintegrasikan ke archive.
+    /// - `downloadView` (BulkDownloadVC): hapus kitab dari tree karena sudah tidak
+    ///   termasuk "belum didownload" lagi.
+    /// - Library biasa: reload parent category agar status/icon ter-update.
+    private func reloadParentCategory(ofBookId bookId: Int) {
+        if !downloadView {
+            handleIntegratedBookUpdate(bookId)
+            return
+        }
+
+        func findParent(in categories: [CategoryData]) -> CategoryData? {
+            for category in categories {
+                for child in category.children {
+                    if let b = child as? BooksData, b.id == bookId { return category }
+                    if let sub = child as? CategoryData,
+                       let found = findParent(in: [sub]) { return found }
+                }
+            }
+            return nil
+        }
+
+        guard let parent = findParent(in: displayedCategories) else { return }
+
+        // Hapus kitab dari children parent — kitab sudah terintegrasi,
+        // tidak perlu tampil lagi di daftar "belum didownload".
+        parent.children.removeAll { ($0 as? BooksData)?.id == bookId }
+
+        if parent.children.isEmpty {
+            // Parent kosong → hapus juga dari displayedCategories
+            displayedCategories.removeAll { $0 === parent }
+            outlineView.reloadData()
+        } else {
+            outlineView.reloadItem(parent, reloadChildren: true)
+        }
+    }
+
+    private func handleIntegratedBookUpdate(_ bookId: Int) {
+        guard let book = data.booksById[bookId] else { return }
+
+        let row = outlineView.row(forItem: book)
+        if row >= 0 {
+            outlineView.reloadItem(book)
+            return
+        }
+
+        if let parent = findParentCategory(ofBookId: bookId, in: displayedCategories) {
+            outlineView.reloadItem(parent, reloadChildren: true)
         }
     }
 
@@ -259,6 +327,17 @@ extension LibraryViewManager {
         if !payload.updatedBookIds.isEmpty {
             reloadUpdatedBooks(payload.updatedBookIds)
         }
+    }
+
+    private func findParentCategory(ofBookId bookId: Int, in categories: [CategoryData]) -> CategoryData? {
+        for category in categories {
+            for child in category.children {
+                if let b = child as? BooksData, b.id == bookId { return category }
+                if let sub = child as? CategoryData,
+                   let found = findParentCategory(ofBookId: bookId, in: [sub]) { return found }
+            }
+        }
+        return nil
     }
 
     private func handleBookInserted(categoryId: Int, book: BooksData) {

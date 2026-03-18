@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     fileprivate var mainWindowController: NSWindowController!
 
     fileprivate weak var quranWindow: NSWindow?
+    fileprivate weak var settingsWindow: NSWindow?
 
     fileprivate var keyWindow: MainWindow? {
         NSApp.keyWindow as? MainWindow
@@ -190,80 +191,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
     }
 
-    func changeBaseUrl(to newURL: URL) throws {
+    @IBAction func openSettings(_ sender: Any?) {
+        if let settingsWindow {
+            settingsWindow.center()
+            settingsWindow.makeKeyAndOrderFront(nil)
+            return
+        }
 
-        let fm = FileManager.default
+        let contentView = SettingsView()
+        let hostingView = NSHostingView(rootView: contentView)
+        hostingView.frame = NSRect(x: 0, y: 0, width: 600, height: 520)
 
-        // 1. Ambil base lama SEBELUM apa pun
-        let oldURL = AppConfig.folder(
-            for: AppConfig.annotationsAndResultsFolder
+        let window = NSWindow(
+            contentRect: hostingView.frame,
+            styleMask: [.titled, .closable, .miniaturizable, .resizable],
+            backing: .buffered,
+            defer: false
         )
 
-        // 2. Validasi folder baru
-        var isDir: ObjCBool = false
-        guard fm.fileExists(atPath: newURL.path, isDirectory: &isDir),
-              isDir.boolValue else {
-            throw StorageError.invalidDirectory
-        }
+        window.center()
+        window.title = String(localized: "Settings")
+        window.contentView = hostingView
+        window.isReleasedWhenClosed = false
+        window.makeKeyAndOrderFront(sender)
 
-        // 3. Tutup DB lama dulu
-        // db = nil
-
-        // 4. Security scope
-        guard newURL.startAccessingSecurityScopedResource() else {
-            throw StorageError.cannotAccessSecurityScope
-        }
-
-        defer {
-            newURL.stopAccessingSecurityScopedResource()
-        }
-
-        // 5. Pindahkan data (kalau ada base lama)
-        if let oldURL, fm.fileExists(atPath: oldURL.path) {
-            let filesToMove = ["Annotations.sqlite", "SearchResults.sqlite"]
-            
-            for fileName in filesToMove {
-                let sourceFile = oldURL.appendingPathComponent(fileName)
-                let destFile = newURL.appendingPathComponent(fileName)
-                
-                // Cek apakah file sumber ada dan file tujuan belum ada
-                if fm.fileExists(atPath: sourceFile.path) && !fm.fileExists(atPath: destFile.path) {
-                    try fm.moveItem(at: sourceFile, to: destFile)
-                } else {
-                    try fm.removeItem(at: sourceFile)
-                }
-            }
-        }
-
-        // 6. SIMPAN bookmark TERAKHIR (commit)
-        AppConfig.saveBookmark(url: newURL, key: AppConfig.annotationsAndResultsFolder)
-
-        // 7. Re-init DB
-        try AnnotationManager.shared.setupAnnotations(at: newURL)
-        try ResultsHandler.shared.setupResultDatabase(at: newURL)
+        settingsWindow = window
+        NSApp.activate(ignoringOtherApps: true)
     }
-    
-    @IBAction func changeBaseFolder(_ sender: Any) {
-        let panel = NSOpenPanel()
-        panel.message = NSLocalizedString("personalFolder", comment: "")
-        panel.prompt = NSLocalizedString("Choose Folder", comment: "")
-        
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.canCreateDirectories = true
-        panel.allowsMultipleSelection = false
-        
-        panel.level = .floating
-        
-        let response = panel.runModal()
 
-        if response == .OK, let url = panel.url {
-            do {
-                try changeBaseUrl(to: url)
-            } catch {
-                ReusableFunc.showAlert(title: "errorFolderAnnotations".localized, message: error.localizedDescription)
-            }
-        }
+    @IBAction func downloadLibrary(_ sender: Any?) {
+        SettingsActions.downloadSelectiveLibrary()
     }
 
     @IBAction fileprivate func checkUpdatesClicked(_ sender: Any?) {
@@ -298,45 +255,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // 4. Jalankan sebagai Modal
         NSApp.runModal(for: window)
-    }
-
-    @IBAction fileprivate func selectFolder(_ sender: Any?) {
-        let panel = NSOpenPanel()
-        panel.message = NSLocalizedString("appNeedAccess", comment: "")
-        panel.prompt = NSLocalizedString("Choose Folder", comment: "")
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.allowsMultipleSelection = false
-
-        // Memastikan panel muncul di paling depan
-        panel.level = .floating
-
-        let response = panel.runModal()
-
-        if response == .OK, let url = panel.url {
-            // Simpan path
-            AppConfig.saveBookmark(url: url, key: AppConfig.storageKey)
-            if sender is NSMenuItem {
-                ReusableFunc.showAlert(title: "masterFolderRenewed".localized, message: "masterFolderRenewedInfo".localized)
-                NSApp.terminate(nil)
-            }
-            #if DEBUG
-            print("Path disimpan: \(url.path)")
-            #endif
-        } else {
-            // Jika user klik 'Cancel' atau menutup dialog tanpa memilih
-            if sender is NSMenuItem {
-                return
-            }
-            let alert = NSAlert()
-            alert.messageText = NSLocalizedString("AccessNeeded", comment: "Alert Memilih Folder Master")
-            alert.informativeText = NSLocalizedString("FolderMasterPenjelasan", comment: "Informasi Alert Memilih Folder Master")
-            alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-            // Tutup aplikasi
-            NSApplication.shared.terminate(nil)
-        }
     }
 
     fileprivate func registerCustomFonts() {

@@ -127,11 +127,6 @@ final class CoreDatabaseDownloader: NSObject {
         }
     }
 
-    func cancelDownload() {
-        session?.invalidateAndCancel()
-        session = nil
-    }
-
     // MARK: - Private: orchestrate
 
     private func downloadMissingCoreFiles(
@@ -199,7 +194,7 @@ final class CoreDatabaseDownloader: NSObject {
         let task = sess.downloadTask(with: url)
         task.resume()
         semaphore.wait()
-        sess.invalidateAndCancel()
+        session?.invalidateAndCancel()
         session = nil
 
         if let error = downloadError { throw error }

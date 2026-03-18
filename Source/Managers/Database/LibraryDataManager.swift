@@ -24,59 +24,107 @@ class LibraryDataManager {
 
     private(set) var isDataLoaded = false
 
-    let coordinator = LoadCoordinator()
+    private var loadingTask: Task<Void, Never>?
 
     private init() {}
 
     func loadData() async {
-        guard !isDataLoaded else {
-            await coordinator.markLoaded()
+        if isDataLoaded { return }
+
+        if let existingTask = loadingTask {
+            await existingTask.value
             return
         }
 
-        do {
-            // Fetch semua kategori (sudah terurut berdasarkan catord)
-            let allCategories = try db.fetchAllCategories()
-            allRootCategories = try buildHierarchy(allCategories)
-            isDataLoaded = true
-            await coordinator.markLoaded()
-        } catch {
-            #if DEBUG
-            print("Error loading data: \(error)")
-            #endif
+        let newTask = Task {
+            do {
+                let results = try await Task.detached(priority: .userInitiated)
+                { [unowned self] in
+                    let allCategories = try db.fetchAllCategories()
+                    let (localRootCats, localCategoryMap) =
+                        buildCategoryHierarchy(from: allCategories)
+                    let localBooksById = try loadBooksAndIndex(
+                        for: allCategories
+                    )
+                    return (localRootCats, localCategoryMap, localBooksById)
+                }.value
+
+                allRootCategories = results.0
+                categoryMap = results.1
+                booksById = results.2
+                isDataLoaded = true
+
+                // Bangun integration cache di background setelah data siap.
+                // buildAllIfNeeded() hanya scan SQLite untuk archive yang belum ada
+                // cache-nya — setelah itu filterNotIntegrated/filterIntegrated O(1).
+                Task.detached(priority: .background) {
+                    IntegrationCache.shared.buildAllIfNeeded()
+                }
+            } catch {
+                #if DEBUG
+                    print("Error loading data: \(error)")
+                #endif
+            }
+
+            // 5. Bersihkan task reference setelah selesai
+            loadingTask = nil
         }
+
+        loadingTask = newTask
+        await newTask.value
     }
 
-    func buildHierarchy(_ allCategories: [CategoryData]) throws -> [CategoryData] {
-        // Build hierarki berdasarkan level dan urutan
-        var rootCats: [CategoryData] = []
+    // MARK: - Helpers for loading data
+    private func buildCategoryHierarchy(from allCategories: [CategoryData]) -> (
+        rootCats: [CategoryData], categoryMap: [Int: CategoryData]
+    ) {
+        var localCategoryMap: [Int: CategoryData] = [:]
+        var localRootCats: [CategoryData] = []
         var currentRoot: CategoryData?
 
+        // Build hierarki berdasarkan level dan urutan
         for cat in allCategories {
-            categoryMap[cat.id] = cat
+            localCategoryMap[cat.id] = cat
 
             if cat.level == 0 {
-                // Ini kategori root
-                rootCats.append(cat)
+                localRootCats.append(cat)
                 currentRoot = cat
             } else if cat.level == 1, let root = currentRoot {
-                // Ini child dari root terakhir
                 root.children.append(cat)
             }
         }
+
+        return (localRootCats, localCategoryMap)
+    }
+
+    private func loadBooksAndIndex(for allCategories: [CategoryData]) throws
+        -> [Int: BooksData]
+    {
+        var localBooksById: [Int: BooksData] = [:]
 
         // Load buku untuk setiap kategori
         for cat in allCategories {
             let books = try db.fetchBooks(forCategory: cat.id)
             cat.children.append(contentsOf: books)
             for book in books {
-                if booksById[book.id] == nil {
-                    booksById[book.id] = book
+                if localBooksById[book.id] == nil {
+                    localBooksById[book.id] = book
                 }
             }
         }
 
-        return rootCats
+        return localBooksById
+    }
+
+    func resetState() {
+        loadingTask?.cancel()
+        loadingTask = nil
+        isDataLoaded = false
+        allRootCategories.removeAll()
+        categoryMap.removeAll()
+        booksById.removeAll()
+        archives.removeAll()
+        archivesBuiltFromFullData = false
     }
 
     func getBook(_ ids: [Int]) -> [BooksData] {
@@ -324,6 +372,8 @@ class LibraryDataManager {
         searchIsRunning = false
     }
 
+    // MARK: - Generic Hierarchy Filtering logic
+
     func filterContent(with searchText: String, displayedCategories: inout [CategoryData]) -> Bool {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
 
@@ -363,6 +413,47 @@ class LibraryDataManager {
         }
 
         return nil
+    }
+
+    /// Fungsi helper utama untuk memfilter hierarchy berdasarkan kondisi buku dan kategori.
+    private func applyHierarchyFilter(
+        to category: CategoryData,
+        bookCondition: (BooksData) -> Bool,
+        includeCategoryIfEmpty: (CategoryData) -> Bool = { _ in false }
+    ) -> CategoryData? {
+        let filteredChildren: [Any] = category.children.compactMap { child in
+            if let book = child as? BooksData {
+                return bookCondition(book) ? book : nil
+            } else if let subCategory = child as? CategoryData {
+                return applyHierarchyFilter(
+                    to: subCategory,
+                    bookCondition: bookCondition,
+                    includeCategoryIfEmpty: includeCategoryIfEmpty
+                )
+            }
+            return nil
+        }
+
+        // Tentukan apakah kategori ini harus disertakan
+        let shouldInclude =
+        !filteredChildren.isEmpty || includeCategoryIfEmpty(category)
+
+        if shouldInclude {
+            let cloned = category.copy() as! CategoryData
+            cloned.children = filteredChildren
+            return cloned
+        }
+
+        return nil
+    }
+
+    /// Kembalikan salinan hierarchy yang hanya berisi kitab yang belum terintegrasi.
+    func filterNotIntegrated() -> [CategoryData] {
+        return allRootCategories.compactMap { root in
+            applyHierarchyFilter(to: root) {
+                !BookArchiveIntegrator.shared.isBookIntegrated($0)
+            }
+        }
     }
 
     func loadBookInfo(_ id: Int, completion: @escaping () -> Void?) {

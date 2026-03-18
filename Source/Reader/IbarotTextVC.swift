@@ -44,7 +44,15 @@ class IbarotTextVC: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        NotificationCenter.default.addObserver(
+            forName: .libraryFolderChanged,
+            object: nil,
+            queue: .current
+        ) { [weak self] _ in
+            guard let self else { return }
+            bookDB = .init()
+            sidebarVC?.setupLoader(bookConnection: bookDB)
+        }
     }
 
     override func viewDidAppear() {

@@ -61,6 +61,8 @@ class SidebarVC: NSViewController {
         searchField.searchSubmitCallback = { [weak self] query in
             self?.startSearch(query)
         }
+
+        setupLoader(bookConnection: db)
         // Do view setup here.
     }
 
@@ -83,6 +85,13 @@ class SidebarVC: NSViewController {
 //            ve.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 //            ve.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 //        ])
+    }
+
+    func setupLoader(bookConnection: BookConnection) {
+        tocLoader = nil
+        tocLoader = TOCLoaderRefCount(connFactory: {
+            bookConnection
+        })
     }
 
     @IBAction func performFindPanelAction(_ sender: Any) {

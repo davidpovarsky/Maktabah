@@ -88,7 +88,6 @@ class OptionSearchVC: NSViewController {
         setupIndeterminateProgress()
         Task.detached(priority: .userInitiated) {
             await LibraryDataManager.shared.loadData()
-            await LibraryDataManager.shared.coordinator.waitUntilLoaded()
             await LibraryDataManager.shared.buildArchive()
             await MainActor.run { [weak self] in
                 guard let self else { return }
