@@ -3,6 +3,9 @@
   <a href="https://github.com/bismillah-100/Maktabah/releases/latest">
     <img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8FAPPLICATION_-latest-blue" alt="Download">
   </a>
+  <a href="https://github.com/bismillah-100/Maktabah/releases">
+    <img src="https://img.shields.io/github/downloads/bismillah-100/Maktabah/total?label=DOWNLOADED&color=purple" alt="DOWNLOADED">
+  </a>
   <a href="https://drive.google.com/file/d/1lAinUQ9Eh_W4_4r3MNfX84Ee3AOCVt_B/view?usp=sharing">
     <img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8FDATABASE_-11GB-orange" alt="Database">
   </a>
@@ -16,7 +19,7 @@ Created as Sadaqah Jariyah — may it be beneficial for studying religious scien
 
 ---
 
-## ScreenShots
+## Screenshots
 ![App-Mode](https://raw.githubusercontent.com/bismillah-100/Maktabah/main/Screenshots/AppMode.gif)
 
 ---
@@ -33,6 +36,8 @@ See the [LICENSE](LICENSE) file for full details.
 ## Installation Guide
 
 ### 1. Download the Database
+>This step is required only for v1.4.2 and earlier. Newer versions utilize on-demand book downloading.
+
 The library database (approx. 11GB) must be downloaded separately.
 - Download from [Google Drive](https://drive.google.com/file/d/1lAinUQ9Eh_W4_4r3MNfX84Ee3AOCVt_B/view?usp=sharing).
 - Extract the downloaded file to any folder of your choice.
@@ -41,14 +46,17 @@ The library database (approx. 11GB) must be downloaded separately.
 - Download the [Application](https://github.com/bismillah-100/Maktabah/releases/latest).
 - Open the .zip file.
 - Drag Maktabah.app into your Applications folder.
-- Choose the location of the Database folder that has been downloaded and extracted.
+- Choose the location of the Database folder that has been downloaded and extracted.*
+>*Required only for v1.4.2 and earlier.
 
 ### 3. Launch the Application
 - Open Maktabah Syamilah from your Applications folder.
 - First-time launch: Right-click the app → select "Open" (required due to ad-hoc signing).
-- A dialog will appear asking you to locate the database.
-- Select the database folder you extracted earlier.
+- A dialog will appear asking you to locate the database.*
+- Select the database folder you extracted earlier.*
 - The app is now ready to use!
+
+>*Required only for v1.4.2 and earlier.
 
 ---
 
@@ -96,8 +104,8 @@ Option 2 — System Settings:
 
 This application is currently in early development. Your feedback is highly appreciated for future improvements!
 
-- **Bug Reports** — [Open an Issue](https://github.com/bismillah-100/Maktabah/issues/new) on GitHub
-- **Feature Requests** — [Open an Issue](https://github.com/bismillah-100/Maktabah/issues/new) on GitHub
+- **Bug Reports** — use the [Bug Report Template](.github/ISSUE_TEMPLATE/bug_report.md)
+- **Feature Requests** — use the [Feature Request Template](.github/ISSUE_TEMPLATE/feature_request.md)
 
 ---
 
@@ -105,8 +113,11 @@ This application is currently in early development. Your feedback is highly appr
 
 Contributions are welcome and greatly appreciated!
 
-- **Translation & Documentation** — Improvements to docs or translations are also welcome via Pull Request.
-- **Code Contributions** — Fork the repository, make your changes, and submit a Pull Request.
+Please read the [Contributing Guide](CONTRIBUTING.md) for details on:  
+- Reporting issues
+- Development workflow
+- Coding style (SwiftFormat rules)
+- Milestones & releases
 
 > Requires Xcode 26 or later.
 
