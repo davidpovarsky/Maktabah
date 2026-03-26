@@ -374,15 +374,20 @@ class LibraryDataManager {
 
     // MARK: - Generic Hierarchy Filtering logic
 
-    func filterContent(with searchText: String, displayedCategories: inout [CategoryData]) -> Bool {
+    func filterContent(
+        with searchText: String,
+        displayedCategories: inout [CategoryData],
+        baseCategories: [CategoryData]? = nil
+    ) -> Bool {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
+        let base = baseCategories ?? allRootCategories
 
         if trimmed.isEmpty {
-            // Tampilkan semua
-            displayedCategories = allRootCategories
+            // Tampilkan semua (sesuai base)
+            displayedCategories = base
         } else {
-            // Filter
-            displayedCategories = allRootCategories.compactMap { rootCategory in
+            // Filter dari base
+            displayedCategories = base.compactMap { rootCategory in
                 filterCategory(rootCategory, searchText: trimmed.lowercased())
             }
         }

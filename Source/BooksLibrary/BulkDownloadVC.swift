@@ -320,8 +320,7 @@ final class BulkDownloadVC: NSViewController {
             searchView: true,
             downloadView: true
         )
-        vm.displayedCategories = categories
-        vm.buildBookLookup()
+        vm.setBaseCategories(categories, reload: false)
         vm.checkBoxToggle = { [weak self] in
             self?.updateDownloadButtonState()
         }

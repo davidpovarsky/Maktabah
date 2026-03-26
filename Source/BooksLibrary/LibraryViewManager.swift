@@ -21,6 +21,7 @@ class LibraryViewManager: NSObject {
     var checkBoxToggle: (() -> Void)?
 
     var displayedCategories: [CategoryData] = []
+    private var baseCategories: [CategoryData] = []
 
     weak var searchField: DSFSearchField!
 
@@ -42,9 +43,7 @@ class LibraryViewManager: NSObject {
     }
 
     func prepareData() {
-        displayedCategories = data.allRootCategories
-        buildBookLookup()
-        outlineView.reloadData()
+        setBaseCategories(data.allRootCategories, reload: true)
     }
 
     /// Filter tampilan berdasarkan status download kitab.
@@ -53,12 +52,11 @@ class LibraryViewManager: NSObject {
     /// `false` = semua kitab.
     func applyDownloadFilter(_ onlyDownloaded: Bool) {
         showOnlyDownloaded = onlyDownloaded
-        displayedCategories =
+        let filtered =
             onlyDownloaded
             ? data.filterIntegrated()
             : data.allRootCategories
-        buildBookLookup()
-        outlineView.reloadData()
+        setBaseCategories(filtered, reload: true)
     }
 
     func applyDownloadFilter(forSegmentIndex index: Int) {
@@ -80,6 +78,15 @@ class LibraryViewManager: NSObject {
 
         for category in displayedCategories {
             traverse(category)
+        }
+    }
+
+    func setBaseCategories(_ categories: [CategoryData], reload: Bool) {
+        baseCategories = categories
+        displayedCategories = categories
+        buildBookLookup()
+        if reload {
+            outlineView.reloadData()
         }
     }
 
@@ -229,7 +236,12 @@ extension LibraryViewManager: NSSearchFieldDelegate {
 
         let workItem = DispatchWorkItem { [weak self, query] in
             guard let self else { return }
-            let foundData = data.filterContent(with: query, displayedCategories: &displayedCategories)
+            let base = baseCategories.isEmpty ? displayedCategories : baseCategories
+            let foundData = data.filterContent(
+                with: query,
+                displayedCategories: &displayedCategories,
+                baseCategories: base
+            )
 
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
@@ -315,6 +327,7 @@ extension LibraryViewManager {
         if parent.children.isEmpty {
             // Parent kosong → hapus juga dari displayedCategories
             displayedCategories.removeAll { $0 === parent }
+            baseCategories = displayedCategories
             outlineView.reloadData()
         } else {
             outlineView.reloadItem(parent, reloadChildren: true)
@@ -497,7 +510,12 @@ extension LibraryViewManager {
                 // Re-apply filter
                 let currentQuery = searchField.stringValue
                 if !currentQuery.isEmpty {
-                    _ = data.filterContent(with: currentQuery, displayedCategories: &displayedCategories)
+                    let base = baseCategories.isEmpty ? displayedCategories : baseCategories
+                    _ = data.filterContent(
+                        with: currentQuery,
+                        displayedCategories: &displayedCategories,
+                        baseCategories: base
+                    )
                     outlineView.reloadData()
                 }
             }

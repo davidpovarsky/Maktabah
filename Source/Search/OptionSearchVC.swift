@@ -109,9 +109,7 @@ class OptionSearchVC: NSViewController {
                 guard let self else { return }
                 if AppConfig.isUsingBundleMode {
                     let filtered = ldm.filterIntegrated()
-                    libraryViewManager.displayedCategories = filtered
-                    libraryViewManager.buildBookLookup()
-                    libraryViewManager.outlineView.reloadData()
+                    libraryViewManager.setBaseCategories(filtered, reload: true)
                 } else {
                     libraryViewManager.prepareData()
                 }
