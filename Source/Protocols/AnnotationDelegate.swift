@@ -27,10 +27,13 @@ extension IbarotTextVC: AnnotationDelegate {
         Task.detached { [weak self, book, contentId, annotation] in
             guard let self else { return }
 
-            try? await bookDB.connect(archive: book.archive)
-
             if await currentBook?.id != bkId {
-                await didChangeBook(book: book)
+                do {
+                    try await displayBook(book)
+                    try await bookDB.connect(archive: book.archive)
+                } catch {
+                    return
+                }
             }
 
             await handleDelegate(contentId, fromResults: true)

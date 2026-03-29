@@ -9,8 +9,7 @@ import Foundation
 
 enum ArabicFont: String, CaseIterable {
     case kfgqpcUthmanTahaNaskh       = "KFGQPC Uthman Taha Naskh"
-    case kfgqpcUthmanTahaNaskhBold   = "KFGQPC Uthman Taha Naskh Bold"
-    case arabicTypeSet = "Arabic Typesetting"
+    case scheherazadeNew = "Scheherazade New"
     case lateef = "Lateef"
     case lateefBold = "Lateef Bold"
     case geezaPro                    = "Geeza Pro"

@@ -36,6 +36,7 @@
 		4B3202502EDB1B5A003B95D1 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32024F2EDB1B5A003B95D1 /* DataModel.swift */; };
 		4B3202722EDB5E3D003B95D1 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3202712EDB5E3D003B95D1 /* Navigation.swift */; };
 		4B33928B2EE02E710028C706 /* LibraryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33928A2EE02E710028C706 /* LibraryDataManager.swift */; };
+		4B3AFA122F76DB1000FB9C05 /* UthmanTN1-Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3AFA112F76DB1000FB9C05 /* UthmanTN1-Ver10.otf */; };
 		4B3B966D2F35A74400B57E1D /* BookUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B966C2F35A74400B57E1D /* BookUpdateManager.swift */; };
 		4B47F3992EE9A36D009A399F /* RowiProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F3982EE9A36D009A399F /* RowiProtocols.swift */; };
 		4B4846262EF06F3800EAA36C /* AnnotationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4846242EF06F3800EAA36C /* AnnotationsVC.swift */; };
@@ -52,8 +53,6 @@
 		4B5DF9342EDC2FE60082DE7F /* LibraryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5DF9322EDC2FE60082DE7F /* LibraryVC.swift */; };
 		4B5DF9382EDC3DBF0082DE7F /* ViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5DF9362EDC3DBF0082DE7F /* ViewOptions.swift */; };
 		4B5DF93B2EDC43FB0082DE7F /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5DF93A2EDC43FB0082DE7F /* UserDefaults.swift */; };
-		4B5DF93F2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B5DF93D2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Bold.ttf */; };
-		4B5DF9402EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B5DF93E2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Regular.ttf */; };
 		4B5E70692EF4FEFC00E7D351 /* SharedPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E70682EF4FEFC00E7D351 /* SharedPopover.swift */; };
 		4B5EC2962EE331D500991F39 /* SavedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EC2942EE331D500991F39 /* SavedResults.swift */; };
 		4B5EC2992EE334C600991F39 /* ResultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EC2982EE334C600991F39 /* ResultsHandler.swift */; };
@@ -127,7 +126,7 @@
 		4BF392BB2EFC98E900460756 /* AnnotationEditorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392BD2EFC98E900460756 /* AnnotationEditorVC.xib */; };
 		4BF392BF2EFC9AB800460756 /* SearchSidebarVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392C12EFC9AB800460756 /* SearchSidebarVC.xib */; };
 		4BF392EC2EFCC15700460756 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392EB2EFCC15700460756 /* Localizable.xcstrings */; };
-		4BFCD84C2F10744800E41F8A /* Arabic Typesetting Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84B2F10744800E41F8A /* Arabic Typesetting Regular.ttf */; };
+		4BFCD84C2F10744800E41F8A /* ScheherazadeNew-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */; };
 		4BFCD84F2F10746600E41F8A /* Lateef-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */; };
 		4BFCD8502F10746600E41F8A /* Lateef-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84E2F10746600E41F8A /* Lateef-Bold.ttf */; };
 		F300A2EC2F2DCE860095015E /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F300A2EB2F2DCE860095015E /* StorageError.swift */; };
@@ -187,6 +186,7 @@
 		4B33CCA72EEEF12000CCAE59 /* zstd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zstd.h; sourceTree = "<group>"; };
 		4B33CCA82EEEF12900CCAE59 /* libzstd.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libzstd.dylib; sourceTree = "<group>"; };
 		4B33CCAC2EEEF2CB00CCAE59 /* zstd_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zstd_errors.h; sourceTree = "<group>"; };
+		4B3AFA112F76DB1000FB9C05 /* UthmanTN1-Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1-Ver10.otf"; sourceTree = "<group>"; };
 		4B3B966C2F35A74400B57E1D /* BookUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateManager.swift; sourceTree = "<group>"; };
 		4B47F3982EE9A36D009A399F /* RowiProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowiProtocols.swift; sourceTree = "<group>"; };
 		4B4846242EF06F3800EAA36C /* AnnotationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsVC.swift; sourceTree = "<group>"; };
@@ -203,8 +203,6 @@
 		4B5DF9322EDC2FE60082DE7F /* LibraryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryVC.swift; sourceTree = "<group>"; };
 		4B5DF9362EDC3DBF0082DE7F /* ViewOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOptions.swift; sourceTree = "<group>"; };
 		4B5DF93A2EDC43FB0082DE7F /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		4B5DF93D2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KFGQPC Uthman Taha Naskh Bold.ttf"; sourceTree = "<group>"; };
-		4B5DF93E2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KFGQPC Uthman Taha Naskh Regular.ttf"; sourceTree = "<group>"; };
 		4B5E70682EF4FEFC00E7D351 /* SharedPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedPopover.swift; sourceTree = "<group>"; };
 		4B5EC2942EE331D500991F39 /* SavedResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedResults.swift; sourceTree = "<group>"; };
 		4B5EC2982EE334C600991F39 /* ResultsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsHandler.swift; sourceTree = "<group>"; };
@@ -287,7 +285,7 @@
 		4BF392C02EFC9AB800460756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchSidebarVC.xib; sourceTree = "<group>"; };
 		4BF392C22EFC9AB800460756 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SearchSidebarVC.xcstrings; sourceTree = "<group>"; };
 		4BF392EB2EFCC15700460756 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		4BFCD84B2F10744800E41F8A /* Arabic Typesetting Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arabic Typesetting Regular.ttf"; sourceTree = "<group>"; };
+		4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScheherazadeNew-Regular.ttf"; sourceTree = "<group>"; };
 		4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lateef-Regular.ttf"; sourceTree = "<group>"; };
 		4BFCD84E2F10746600E41F8A /* Lateef-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lateef-Bold.ttf"; sourceTree = "<group>"; };
 		F300A2EB2F2DCE860095015E /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
@@ -560,11 +558,10 @@
 		4B5DF93C2EDC495C0082DE7F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				4BFCD84B2F10744800E41F8A /* Arabic Typesetting Regular.ttf */,
+				4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */,
 				4BFCD84E2F10746600E41F8A /* Lateef-Bold.ttf */,
 				4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */,
-				4B5DF93D2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Bold.ttf */,
-				4B5DF93E2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Regular.ttf */,
+				4B3AFA112F76DB1000FB9C05 /* UthmanTN1-Ver10.otf */,
 				4BA393632EF0D30200736DFF /* ArabicFont.swift */,
 			);
 			path = Fonts;
@@ -788,11 +785,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B0139E82EEB3CB000424CFA /* InitProgress.xib in Resources */,
-				4B5DF9402EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Regular.ttf in Resources */,
 				4BA7269A2EFC760C003CA0ED /* SidebarVC.xib in Resources */,
 				4BA726922EFC714F003CA0ED /* BookInfo.xib in Resources */,
 				4BF392BF2EFC9AB800460756 /* SearchSidebarVC.xib in Resources */,
 				4B32022E2EDAFE88003B95D1 /* Assets.xcassets in Resources */,
+				4B3AFA122F76DB1000FB9C05 /* UthmanTN1-Ver10.otf in Resources */,
 				F349073F2F3064A10036CDAF /* IconMaktabah.icon in Resources */,
 				4BA726962EFC72E6003CA0ED /* LibraryVC.xib in Resources */,
 				4BA726A62EFC7B38003CA0ED /* OptionSearchVC.xib in Resources */,
@@ -805,13 +802,12 @@
 				4B9A0AE52EEC51C20049202E /* Result.xib in Resources */,
 				4B63E1EB2EE9752F00D58F3B /* LoadMoreCell.xib in Resources */,
 				4B6100F32EFA8C7F00CCBED6 /* QuranNashVC.xib in Resources */,
-				4B5DF93F2EDC498B0082DE7F /* KFGQPC Uthman Taha Naskh Bold.ttf in Resources */,
 				4BA726AE2EFC8088003CA0ED /* RowiResultsVC.xib in Resources */,
 				4BFCD84F2F10746600E41F8A /* Lateef-Regular.ttf in Resources */,
 				4BA726A22EFC7885003CA0ED /* Navigation.xib in Resources */,
 				4B6AF2372EE58394002EBFFC /* IbarotTextVC.xib in Resources */,
 				4B20DB7D2EE7D84100B97126 /* ResultCellView.xib in Resources */,
-				4BFCD84C2F10744800E41F8A /* Arabic Typesetting Regular.ttf in Resources */,
+				4BFCD84C2F10744800E41F8A /* ScheherazadeNew-Regular.ttf in Resources */,
 				4BFCD8502F10746600E41F8A /* Lateef-Bold.ttf in Resources */,
 				4BF392EC2EFCC15700460756 /* Localizable.xcstrings in Resources */,
 				4B63E1D92EE9408800D58F3B /* Header.xib in Resources */,

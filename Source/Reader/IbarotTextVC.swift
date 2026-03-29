@@ -447,6 +447,24 @@ extension IbarotTextVC: NavigationDelegate {
         }
     }
 
+    func displayBook(_ book: BooksData) async throws {
+        do {
+            try await connectBookWithBundleFallback(book)
+            didChangeBook(book: book)
+            fetchInitialBook()
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {
+            await MainActor.run {
+                ReusableFunc.showAlert(
+                    title: DatabaseError.bookNotFound(book.id).localizedDescription,
+                    message: error.localizedDescription,
+                    style: .critical
+                )
+            }
+        }
+    }
+
     func handleDelegate(_ contentId: Int, fromResults: Bool = false) {
         guard let currentBook,
             let content = bookDB.getContent(
@@ -568,22 +586,7 @@ extension IbarotTextVC: SidebarDelegate {
 extension IbarotTextVC: LibraryDelegate {
     func didSelectBook(for book: BooksData) async {
         if currentBook?.id == book.id { return }
-
-        do {
-            try await connectBookWithBundleFallback(book)
-            didChangeBook(book: book)
-            fetchInitialBook()
-        } catch is CancellationError {
-            return
-        } catch {
-            await MainActor.run {
-                ReusableFunc.showAlert(
-                    title: DatabaseError.bookNotFound(book.id).localizedDescription,
-                    message: error.localizedDescription,
-                    style: .critical
-                )
-            }
-        }
+        try? await displayBook(book)
     }
 
     func connectBookWithBundleFallback(_ book: BooksData) async throws {
@@ -684,7 +687,7 @@ extension IbarotTextVC: TarjamahBDelegate {
         }
 
         if currentBook?.id != bookData.id {
-            didChangeBook(book: bookData)
+            try? await displayBook(bookData)
             try? bookDB.connect(archive: bookData.archive)
         } else {
             return
@@ -751,7 +754,7 @@ extension IbarotTextVC: ReaderStateComponent {
         if let book = state.currentBook {
             try? bookDB.connect(archive: book.archive)
             if currentBook?.id != book.id {
-                didChangeBook(book: book)
+                didChangeBook(book: book, loadSidebar: false)
             }
 
             if let id = state.currentID,

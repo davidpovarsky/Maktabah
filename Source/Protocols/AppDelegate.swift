@@ -259,11 +259,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     fileprivate func registerCustomFonts() {
         let fontFiles = [
-            "KFGQPC Uthman Taha Naskh Bold.ttf",
-            "KFGQPC Uthman Taha Naskh Regular.ttf",
+            "UthmanTN1-Ver10.otf",
             "Lateef-Regular.ttf",
             "Lateef-Bold.ttf",
-            "Arabic Typesetting Regular.ttf",
+            "ScheherazadeNew-Regular.ttf",
         ]
 
         for fontFile in fontFiles {

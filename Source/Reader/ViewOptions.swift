@@ -33,6 +33,7 @@ class ViewOptions: NSViewController {
     var popover: Bool = true
 
     let screenTimeManager = ScreenTimeManager.shared
+    private let fontPanelItemTitle = "Font Panel..."
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,8 @@ class ViewOptions: NSViewController {
         loadHarakatSetting()
         screenTimeCheckbox.state = screenTimeManager.isExtended() ? .on : .off
         loadAnnotationSetting()
+        fontOptions.userInterfaceLayoutDirection = .leftToRight
+        fontOptions.menu?.userInterfaceLayoutDirection = .leftToRight
     }
 
     override func viewDidAppear() {
@@ -105,16 +108,23 @@ class ViewOptions: NSViewController {
             fontOptions.addItem(withTitle: font.rawValue)
         }
 
-        // 4. Atur item yang saat ini dipilih atau ditampilkan (opsional)
-        // Jika Anda ingin menampilkan nilai yang sudah disimpan di UserDefaults saat startup:
-        if let savedFontName = UserDefaults.standard.string(forKey: UserDefaults.TextViewKeys.fontName) {
-            // Coba pilih item yang namanya sama.
-            // Jika tidak ada, nilainya akan tetap menjadi yang pertama atau kosong.
-            fontOptions.selectItem(withTitle: savedFontName)
-        } else {
-            // Jika belum ada yang tersimpan, pilih item pertama sebagai default
-            fontOptions.selectItem(withTitle: state.defaultFontName)
+        let savedFontName = UserDefaults.standard.string(forKey: UserDefaults.TextViewKeys.fontName)
+            ?? state.defaultFontName
+
+        ensureCustomFontItemIfNeeded(fontName: savedFontName)
+
+        if let menu = fontOptions.menu {
+            menu.addItem(.separator())
+            let fontPanelItem = NSMenuItem(
+                title: fontPanelItemTitle,
+                action: #selector(openFontPanel(_:)),
+                keyEquivalent: ""
+            )
+            fontPanelItem.target = self
+            menu.addItem(fontPanelItem)
         }
+
+        selectFontItem(for: savedFontName)
 
         // 5. Penting: Setel target dan action untuk menangani pilihan baru
         // Action ini akan dipanggil saat pengguna memilih item dari daftar
@@ -125,7 +135,7 @@ class ViewOptions: NSViewController {
     private func loadSettings() {
         // Load font name
         let fontName = defaults.string(forKey: UserDefaults.TextViewKeys.fontName) ?? state.defaultFontName
-        fontOptions.selectItem(withTitle: fontName)
+        selectFontItem(for: fontName)
     }
 
     private func setupLineHeightPopUpButton() {
@@ -153,7 +163,13 @@ class ViewOptions: NSViewController {
     }
 
     @objc private func fontSelected(_ sender: NSPopUpButton) {
-        guard let fontName = sender.titleOfSelectedItem else { return }
+        guard let item = sender.selectedItem else { return }
+        if item.title == fontPanelItemTitle {
+            openFontPanel(sender)
+            selectFontItem(for: state.fontName)
+            return
+        }
+        let fontName = (item.representedObject as? String) ?? item.title
         state.setFont(fontName)  // ← simpel!
     }
 
@@ -212,6 +228,69 @@ class ViewOptions: NSViewController {
 
             hStack.addArrangedSubview(optionView)
         }
+    }
+
+    // MARK: - Font Panel
+    @objc private func openFontPanel(_ sender: Any?) {
+        let manager = NSFontManager.shared
+        manager.target = self
+        manager.setSelectedFont(state.currentFont, isMultiple: false)
+        manager.orderFrontFontPanel(self)
+    }
+
+    @objc func changeFont(_ sender: NSFontManager) {
+        let newFont = sender.convert(state.currentFont)
+        let fontName = newFont.fontName
+        state.setFont(fontName)
+        ensureCustomFontItemIfNeeded(fontName: fontName)
+        selectFontItem(for: fontName)
+    }
+
+    private func selectFontItem(for fontName: String) {
+        if let item = fontOptions.item(withTitle: fontName) {
+            fontOptions.select(item)
+            return
+        }
+        if let item = fontOptions.menu?.items.first(where: { ($0.representedObject as? String) == fontName }) {
+            fontOptions.select(item)
+        }
+    }
+
+    private func ensureCustomFontItemIfNeeded(fontName: String) {
+        if fontOptions.item(withTitle: fontName) != nil {
+            return
+        }
+        if fontOptions.menu?.items.first(where: { ($0.representedObject as? String) == fontName }) != nil {
+            return
+        }
+        let displayTitle = displayNameForFont(fontName)
+        let customItem = NSMenuItem(title: displayTitle, action: nil, keyEquivalent: "")
+        customItem.representedObject = fontName
+
+        if let menu = fontOptions.menu,
+           let insertIndex = menu.items.firstIndex(where: { $0.isSeparatorItem }) {
+            menu.insertItem(customItem, at: insertIndex)
+        } else {
+            fontOptions.menu?.addItem(customItem)
+        }
+    }
+
+    private func displayNameForFont(_ fontName: String) -> String {
+        let rawName = NSFont(name: fontName, size: 12.0)?.displayName
+            ?? NSFont(name: fontName, size: 12.0)?.familyName
+            ?? fontName
+        let trimmed = stripRegular(from: rawName)
+        return trimmed.isEmpty ? fontName : trimmed
+    }
+
+    private func stripRegular(from name: String) -> String {
+        if name.hasSuffix(" Regular") {
+            return String(name.dropLast(" Regular".count))
+        }
+        if name.hasSuffix("-Regular") {
+            return String(name.dropLast("-Regular".count))
+        }
+        return name
     }
 
     // Handler ketika salah satu opsi diklik
