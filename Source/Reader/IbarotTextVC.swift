@@ -753,7 +753,11 @@ extension IbarotTextVC: ReaderStateComponent {
         // 1. Load data buku & halaman
         if let book = state.currentBook {
             try? bookDB.connect(archive: book.archive)
-            if currentBook?.id != book.id {
+            if AppConfig.isUsingBundleMode,
+               !BookArchiveIntegrator.shared.isBookIntegrated(book) {
+                currentBook = nil
+                return
+            } else if currentBook?.id != book.id {
                 didChangeBook(book: book, loadSidebar: false)
             }
 
