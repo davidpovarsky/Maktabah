@@ -79,7 +79,8 @@ class MainWindow: NSWindow {
         mainToolbar.autosavesConfiguration = true // Ini yang menangani simpan/restore otomatis
         mainToolbar.delegate = self
         mainToolbar.allowsUserCustomization = true
-        
+        mainToolbar.displayMode = .iconOnly
+
         if #available(macOS 15, *) {
             #if compiler(>=6.0)
             mainToolbar.allowsDisplayModeCustomization = true
