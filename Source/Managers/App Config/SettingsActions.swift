@@ -9,6 +9,7 @@ import Foundation
 enum SettingsActions {
     private static let fullLibraryDownloadURL =
         "https://drive.google.com/file/d/1lAinUQ9Eh_W4_4r3MNfX84Ee3AOCVt_B/view?usp=share_link"
+    private static var coreDownloadModal: CoreDownloadModalCenter?
 
     static func chooseAnnotationsAndResultsFolder() {
         let panel = NSOpenPanel()
@@ -100,24 +101,56 @@ enum SettingsActions {
         return false
     }
 
-    static func switchToBundleMode(showSuccessAlert: Bool) -> Bool {
-        AppConfig.migrateToBundleMode()
-        LibraryDataManager.shared.resetState()
-        DatabaseManager.shared.setupFolders()
-        TarjamahGlobalManager.shared.setupConnection()
-        NotificationCenter.default.post(
-            name: .libraryFolderChanged,
-            object: nil
+    static func switchToBundleMode(onCompletion: (() -> Void)? = nil) {
+        let wasBundleMode = AppConfig.isUsingBundleMode
+        let previousCustomBookmark = UserDefaults.standard.data(
+            forKey: AppConfig.customDatabaseFolderKey
         )
 
-        if showSuccessAlert {
-            ReusableFunc.showAlert(
-                title: "Bundle Mode",
-                message: "Bundle Mode enabled."
+        AppConfig.migrateToBundleMode()
+
+        let finishSetup = {
+            LibraryDataManager.shared.resetState()
+            DatabaseManager.shared.setupFolders()
+            TarjamahGlobalManager.shared.setupConnection()
+            NotificationCenter.default.post(
+                name: .libraryFolderChanged,
+                object: nil
             )
         }
 
-        return AppConfig.isUsingBundleMode
+        let restorePreviousMode = {
+            if let previousCustomBookmark {
+                UserDefaults.standard.set(
+                    previousCustomBookmark,
+                    forKey: AppConfig.customDatabaseFolderKey
+                )
+                AppConfig.isUsingBundleMode = false
+            } else {
+                AppConfig.isUsingBundleMode = wasBundleMode
+            }
+        }
+
+        let downloader = CoreDatabaseDownloader()
+        if !downloader.areBundleCoreFilesReady() {
+            let modal = CoreDownloadModalCenter(downloader: downloader)
+            coreDownloadModal = modal
+            modal.runNonBlocking { result in
+                switch result {
+                case .downloaded:
+                    finishSetup()
+                case .choseFolder:
+                    break
+                case .quit:
+                    restorePreviousMode()
+                }
+                onCompletion?()
+                coreDownloadModal = nil
+            }
+        } else {
+            finishSetup()
+            onCompletion?()
+        }
     }
 
     static func downloadSelectiveLibrary() {

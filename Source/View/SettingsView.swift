@@ -6,12 +6,13 @@
 import SwiftUI
 
 final class SettingsViewModel: ObservableObject {
+    static var shared: SettingsViewModel = .init()
     @Published var isBundleMode: Bool = AppConfig.isUsingBundleMode
     @Published var databaseFilesPath: String = "N/A"
     @Published var archiveFilesPath: String = "N/A"
     @Published var annotationsPath: String = "N/A"
 
-    init() {
+    private init() {
         refreshPaths()
     }
 
@@ -26,8 +27,11 @@ final class SettingsViewModel: ObservableObject {
 
     func setBundleMode(_ enabled: Bool) {
         if enabled {
-            _ = SettingsActions.switchToBundleMode(showSuccessAlert: false)
-            refreshPaths()
+            SettingsActions.switchToBundleMode(
+                onCompletion: { [weak self] in
+                    self?.refreshPaths()
+                }
+            )
             return
         }
         let success = SettingsActions.selectLibraryFolder(
@@ -64,7 +68,7 @@ final class SettingsViewModel: ObservableObject {
 // MARK: - Settings View
 
 struct SettingsView: View {
-    @StateObject private var viewModel = SettingsViewModel()
+    @StateObject private var viewModel = SettingsViewModel.shared
 
     var body: some View {
         Form {

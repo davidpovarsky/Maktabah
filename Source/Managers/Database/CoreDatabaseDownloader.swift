@@ -108,6 +108,12 @@ final class CoreDatabaseDownloader: NSObject {
         CoreFile.allCases.allSatisfy { fileExistsAndHasSize(for: $0) }
     }
 
+    func areBundleCoreFilesReady() -> Bool {
+        CoreFile.allCases.allSatisfy { fileExistsAndHasSize(
+            for: $0, path: AppConfig.archiveCachePath)
+        }
+    }
+
     // MARK: - Download (non-async, background thread)
 
     /// Mulai download semua core files yang belum tersedia.
@@ -140,20 +146,52 @@ final class CoreDatabaseDownloader: NSObject {
             throw CoreDownloadError.invalidBaseURL
         }
 
-        for (index, file) in missing.enumerated() {
-            let fileURL = baseURL
+        let fileURLs = missing.map { file in
+            baseURL
                 .appendingPathComponent(tag)
                 .appendingPathComponent(file.releaseFilename)
+        }
 
-            try downloadSingleFile(file, from: fileURL) { progress in
-                let base = Double(index) / Double(missing.count)
-                let step = 1.0 / Double(missing.count)
-                let combined = base + progress * step
-                let pct = Int((combined * 100).rounded())
+        // HEAD request ke semua file untuk dapat ukuran total
+        let fileSizes: [Int64] = fileURLs.map { url in
+            var req = URLRequest(url: url)
+            req.httpMethod = "HEAD"
+            var size: Int64 = 0
+            let sem = DispatchSemaphore(value: 0)
+            URLSession.shared.dataTask(with: req) { _, resp, _ in
+                size = (resp as? HTTPURLResponse)?
+                    .value(forHTTPHeaderField: "Content-Length")
+                    .flatMap { Int64($0) } ?? 0
+                sem.signal()
+            }.resume()
+            sem.wait()
+            return size
+        }
+
+        let grandTotal = fileSizes.reduce(0, +)  // 0 jika semua HEAD gagal
+        var cumulativeOffset: Int64 = 0           // bytes dari file-file yang sudah selesai
+
+        for (i, (file, fileURL)) in zip(missing, fileURLs).enumerated() {
+            let offsetAtStart = cumulativeOffset
+
+            try downloadSingleFile(file, from: fileURL) { bytesWritten, _, _ in
+                let totalWritten = offsetAtStart + bytesWritten
+
+                let combinedProgress: Double = grandTotal > 0
+                ? Double(totalWritten) / Double(grandTotal)
+                : (Double(i) + Double(bytesWritten) / max(1, Double(fileSizes[i]))) / Double(missing.count)
+
+                let writtenMB = String(format: "%.1f", Double(totalWritten) / 1_048_576)
+                let totalStr  = grandTotal > 0
+                ? String(format: "%.1f MB", Double(grandTotal) / 1_048_576)
+                : "? MB"
+
                 DispatchQueue.main.async {
-                    onProgress(combined, "\(pct)%")
+                    onProgress(combinedProgress, "\(writtenMB) / \(totalStr)")
                 }
             }
+
+            cumulativeOffset += fileSizes[i] > 0 ? fileSizes[i] : 0
         }
     }
 
@@ -162,7 +200,7 @@ final class CoreDatabaseDownloader: NSObject {
     private func downloadSingleFile(
         _ coreFile: CoreFile,
         from url: URL,
-        onProgress: @escaping (Double) -> Void
+        onProgress: @escaping (_ bytesWritten: Int64, _ totalBytes: Int64, _ progress: Double) -> Void
     ) throws {
         guard let destDir = AppConfig.coreDatabasePath else {
             throw CoreDownloadError.destinationUnavailable
@@ -267,8 +305,12 @@ final class CoreDatabaseDownloader: NSObject {
 
     // MARK: - Private: helpers
 
-    private func fileExistsAndHasSize(for coreFile: CoreFile) -> Bool {
-        guard let dirPath = AppConfig.coreDatabasePath else { return false }
+    private func fileExistsAndHasSize(
+        for coreFile: CoreFile,
+        path: String? = nil
+    ) -> Bool {
+        let dirPath = path == nil ? AppConfig.coreDatabasePath : path
+        guard let dirPath else { return false }
         let path = URL(fileURLWithPath: dirPath)
             .appendingPathComponent(coreFile.filename).path
         guard fileManager.fileExists(atPath: path) else { return false }
@@ -281,12 +323,12 @@ final class CoreDatabaseDownloader: NSObject {
 // MARK: - URLSession Delegate
 
 private final class CoreDownloadDelegate: NSObject, URLSessionDownloadDelegate {
-    private let onProgress: (Double) -> Void
+    private let onProgress: (Int64, Int64, Double) -> Void
     private let onFinish: (URL?, Error?) -> Void
     private var httpError: Error?
 
     init(
-        onProgress: @escaping (Double) -> Void,
+        onProgress: @escaping (Int64, Int64, Double) -> Void,
         onFinish: @escaping (URL?, Error?) -> Void
     ) {
         self.onProgress = onProgress
@@ -301,7 +343,8 @@ private final class CoreDownloadDelegate: NSObject, URLSessionDownloadDelegate {
         totalBytesExpectedToWrite: Int64
     ) {
         guard totalBytesExpectedToWrite > 0 else { return }
-        onProgress(Double(totalBytesWritten) / Double(totalBytesExpectedToWrite))
+        let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+        onProgress(totalBytesWritten, totalBytesExpectedToWrite, progress)
     }
 
     func urlSession(
@@ -369,12 +412,22 @@ final class CoreDatabaseBootstrap {
 
 // MARK: - CoreDownloadModalCenter
 
+enum CoreDownloadModalResult {
+    case downloaded
+    case choseFolder
+    case quit
+}
+
 /// Modal sinkron-blocking untuk download core files.
 /// Berjalan di main thread; download di-dispatch ke background.
 final class CoreDownloadModalCenter {
     private let downloader: CoreDatabaseDownloader
     private var window: NSWindow?
     private var progressState: CoreDownloadProgressState?
+    private let fileManager = FileManager.default
+    private var onCompletion: ((CoreDownloadModalResult) -> Void)?
+    private weak var sheetParent: NSWindow?
+    private var presentedAsSheet: Bool = false
 
     init(downloader: CoreDatabaseDownloader) {
         self.downloader = downloader
@@ -384,9 +437,31 @@ final class CoreDownloadModalCenter {
 
     /// Tampilkan modal dan block main thread via NSApp.runModal sampai download selesai
     /// atau user memilih keluar.
-    func runBlocking() {
+    func runBlocking(onCompletion: ((CoreDownloadModalResult) -> Void)? = nil) {
+        self.onCompletion = onCompletion
+        presentedAsSheet = false
+        sheetParent = nil
         showConfirmation()
-        // NSApp.runModal di dalam showConfirmation/startDownload yang mengendalikan loop.
+    }
+
+    func runNonBlocking(
+        parentWindow: NSWindow? = nil,
+        onCompletion: ((CoreDownloadModalResult) -> Void)? = nil
+    ) {
+        self.onCompletion = onCompletion
+        let state = CoreDownloadProgressState()
+        progressState = state
+
+        presentWindow(state: state)
+
+        if let parent = parentWindow ?? NSApp.keyWindow ?? NSApp.mainWindow {
+            presentedAsSheet = true
+            sheetParent = parent
+            parent.beginSheet(window!)
+        } else {
+            presentedAsSheet = false
+            sheetParent = nil
+        }
     }
 
     // MARK: - Private: modal lifecycle
@@ -405,7 +480,8 @@ final class CoreDownloadModalCenter {
         let view = CoreDownloadProgressView(
             state: state,
             onDownload: { [weak self] in self?.userDidTapDownload() },
-            onQuit:     { [weak self] in self?.userDidTapQuit() }
+            onChooseFolder: { [weak self] in self?.userDidTapChooseFolder() },
+            onQuit: { [weak self] in self?.userDidTapQuit() }
         )
         let hosting = NSHostingView(rootView: view)
         // Beri lebar tetap dulu, biarkan SwiftUI menghitung tinggi yang dibutuhkan
@@ -416,7 +492,6 @@ final class CoreDownloadModalCenter {
         let w = makeWindow(contentView: hosting, size: fittedSize)
         window = w
         w.center()
-        w.makeKeyAndOrderFront(nil)
     }
 
     private func userDidTapDownload() {
@@ -439,25 +514,74 @@ final class CoreDownloadModalCenter {
                     )
                     self?.progressState?.progress = 0
                 } else {
-                    // Berhasil: tutup modal
-                    NSApp.stopModal()
-                    self?.window?.orderOut(nil)
-                    self?.window?.close()
-                    self?.window = nil
-                    self?.progressState = nil
-                    NSApplication.shared.activate(ignoringOtherApps: true)
+                    self?.closeModal(result: .downloaded)
                 }
             }
         )
     }
 
+    private func userDidTapChooseFolder() {
+        let success = SettingsActions.selectLibraryFolder(
+            showSuccessAlert: false,
+            shouldTerminateOnCancel: false
+        )
+
+        guard success else { return }
+
+        if coreFilesExistInSelectedFolder() {
+            closeModal(result: .choseFolder)
+        } else {
+            SettingsActions.switchToBundleMode()
+            ReusableFunc.showAlert(
+                title: String(
+                    localized: "core.modal.missingFiles.title",
+                    defaultValue: "Database files not found"
+                ),
+                message: String(
+                    localized: "core.modal.missingFiles.message",
+                    defaultValue: "The selected folder doesn’t contain “Files/main.sqlite” and “Files/special.sqlite”. Choose another folder or download the core database."
+                )
+            )
+        }
+    }
+
     private func userDidTapQuit() {
-        NSApp.stopModal()
-        window?.orderOut(nil)
+        closeModal(result: .quit)
+        if !presentedAsSheet {
+            NSApp.terminate(nil)
+        }
+    }
+
+    private func closeModal(result: CoreDownloadModalResult) {
+        if presentedAsSheet, let parent = sheetParent, let w = window {
+            parent.endSheet(w)
+        } else {
+            NSApp.stopModal()
+            window?.orderOut(nil)
+        }
         window?.close()
         window = nil
         progressState = nil
-        NSApp.terminate(nil)
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        let completion = onCompletion
+        onCompletion = nil
+        completion?(result)
+    }
+
+    private func coreFilesExistInSelectedFolder() -> Bool {
+        guard let basePath = AppConfig.databaseFilesPath else { return false }
+        let baseURL = URL(fileURLWithPath: basePath)
+        let mainPath = baseURL.appendingPathComponent("main.sqlite").path
+        let specialPath = baseURL.appendingPathComponent("special.sqlite").path
+        return fileExistsAndHasSize(at: mainPath)
+            && fileExistsAndHasSize(at: specialPath)
+    }
+
+    private func fileExistsAndHasSize(at path: String) -> Bool {
+        guard fileManager.fileExists(atPath: path) else { return false }
+        let size = (try? fileManager.attributesOfItem(atPath: path)[.size]
+                    as? NSNumber)?.int64Value ?? 0
+        return size > 0
     }
 
     private func makeWindow(contentView: NSView, size: NSSize) -> NSWindow {

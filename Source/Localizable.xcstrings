@@ -814,6 +814,52 @@
         }
       }
     },
+    "core.modal.missingFiles.message" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يحتوي المجلد المحدد على \"Files/main.sqlite\" و\"Files/special.sqlite\". اختر مجلدا آخر أو قم بتنزيل قاعدة البيانات الأساسية."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The selected folder doesn’t contain “Files/main.sqlite” and “Files/special.sqlite”. Choose another folder or download the core database."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder yang dipilih tidak berisi \"Files/main.sqlite\" dan \"Files/special.sqlite\". Pilih folder lain atau unduh basis data inti."
+          }
+        }
+      }
+    },
+    "core.modal.missingFiles.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لم يتم العثور على ملفات قاعدة البيانات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Database files not found"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File basis data tidak ditemukan"
+          }
+        }
+      }
+    },
     "core.modal.title" : {
       "comment" : "Core download modal title",
       "extractionState" : "extracted_with_value",
