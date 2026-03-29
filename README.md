@@ -31,6 +31,15 @@ This project is licensed under the [GNU General Public License v3.0](LICENSE).
 You are free to use, modify, and distribute this application under the terms of the GPL v3.
 See the [LICENSE](LICENSE) file for full details.
 
+### Third-Party Fonts
+
+- **KFGQPC Uthman Taha Naskh** — This font can be distributed freely for both commercial and non-commercial use, according to the Arabic license terms available here: http://fonts.qurancomplex.gov.sa/?page_id=40.
+- **Lateef, Scheherazade New** — © SIL International, licensed under the [SIL Open Font License 1.1](https://openfontlicense.org).
+
+### Third-Party Libraries
+
+- **zstd** — © Meta Platforms, Inc., licensed under the [BSD 3-Clause License](https://github.com/facebook/zstd/blob/dev/LICENSE).
+
 ---
 
 ## Installation Guide
