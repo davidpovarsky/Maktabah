@@ -10,7 +10,9 @@ import Cocoa
 class SearchSidebarVC: NSViewController {
     @IBOutlet weak var searchField: DSFSearchField!
     @IBOutlet weak var outlineView: NSOutlineView!
-
+    @IBOutlet weak var selectAllButton: NSButton!
+    @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint!
+    
     var dataVM: LibraryViewManager!
 
     override func viewDidLoad() {

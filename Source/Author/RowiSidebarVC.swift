@@ -9,7 +9,7 @@ import Cocoa
 
 class RowiSidebarVC: NSViewController {
     @IBOutlet weak var outlineView: NSOutlineView!
-    @IBOutlet weak var searchField: NSSearchField!
+    @IBOutlet weak var searchField: DSFSearchField!
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
@@ -32,16 +32,8 @@ class RowiSidebarVC: NSViewController {
     var searchFieldIsHidden: Bool = true
     var searchWork: DispatchWorkItem?
 
-    override func loadView() {
-        var topLevelObjects: NSArray? = nil
-        Bundle.main.loadNibNamed("LibraryVC", owner: self, topLevelObjects: &topLevelObjects)
-
-        if let views = topLevelObjects as? [Any],
-           let libraryView = views.first(where: { $0 is NSView }) as? NSView {
-            self.view = libraryView
-        } else {
-            self.view = NSView()
-        }
+    override var nibName: NSNib.Name? {
+        "LibraryVC"
     }
 
     override func viewDidLoad() {
@@ -90,7 +82,7 @@ class RowiSidebarVC: NSViewController {
     func setupOutlineView() {
         outlineView.dataSource = self
         outlineView.delegate = self
-        searchField.action = #selector(searchFieldChanged(_:))
+        searchField.delegate = self
     }
 
     func loadData() async {
@@ -238,5 +230,12 @@ extension RowiSidebarVC: NSOutlineViewDelegate {
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         return 26
+    }
+}
+
+extension RowiSidebarVC: NSSearchFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        guard let searchField = obj.object as? NSSearchField else { return }
+        searchFieldChanged(searchField)
     }
 }

@@ -35,3 +35,60 @@ protocol LibraryViewDelegate: AnyObject {
 protocol OptionSearchDelegate: AnyObject {
     func didSelectResult(for id: Int, highlightText: String) async
 }
+
+protocol SearchableLibrarySidebar: AnyObject {
+    var searchField: DSFSearchField! { get set }
+    func connectSearchField(_ field: DSFSearchField)
+}
+
+// LibraryVC
+extension LibraryVC: SearchableLibrarySidebar {
+    func connectSearchField(_ field: DSFSearchField) {
+        guard let searchField else {
+            print("searchField nil")
+            return
+        }
+        field.delegate = searchField.delegate
+        dataVM.searchField = field
+        if searchField != field {
+            searchField.removeFromSuperview()
+        }
+        self.searchField = field
+        dataVM.setupDSFSearchField()
+        updateContentInset()
+    }
+}
+
+// SearchSidebarVC
+extension SearchSidebarVC: SearchableLibrarySidebar {
+    func connectSearchField(_ field: DSFSearchField) {
+        guard let searchField else {
+            print("searchField nil")
+            return
+        }
+
+        field.delegate = searchField.delegate
+        dataVM.searchField = field
+        if searchField != field {
+            searchField.removeFromSuperview()
+        }
+        self.searchField = field
+        dataVM.setupDSFSearchField()
+        scrollViewTopConstraint.constant = 0
+    }
+}
+
+// atau buat computed var yang wrap-nya
+extension RowiSidebarVC: SearchableLibrarySidebar {
+    func connectSearchField(_ field: DSFSearchField) {
+        guard let searchField else {
+            print("searchField nil")
+            return
+        }
+        field.delegate = searchField.delegate
+        if searchField != field {
+            searchField.removeFromSuperview()
+        }
+        self.searchField = field
+    }
+}

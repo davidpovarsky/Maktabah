@@ -10,6 +10,7 @@ import SwiftUI
 struct CoreDownloadProgressView: View {
     @ObservedObject var state: CoreDownloadProgressState
     let onDownload: () -> Void
+    let onChooseFolder: () -> Void
     let onQuit: () -> Void
 
     var body: some View {
@@ -127,6 +128,12 @@ struct CoreDownloadProgressView: View {
 
     private var confirmationButtons: some View {
         HStack(spacing: 12) {
+            Button(
+                "Choose Library Folder…",
+                action: onChooseFolder
+            )
+            .buttonStyle(.bordered)
+
             Spacer()
             Button(
                 String(localized:"Quit"),
@@ -192,4 +199,49 @@ struct CoreDownloadProgressView: View {
         }
         .transition(.opacity.combined(with: .move(edge: .bottom)))
     }
+}
+
+
+#Preview("Confirmation") {
+    CoreDownloadProgressView(
+        state: {
+            let s = CoreDownloadProgressState()
+            s.phase = .confirmation
+            return s
+        }(),
+        onDownload: {},
+        onChooseFolder: {},
+        onQuit: {}
+    )
+    .padding()
+}
+
+#Preview("Downloading") {
+    CoreDownloadProgressView(
+        state: {
+            let s = CoreDownloadProgressState()
+            s.phase = .downloading
+            s.progress = 0.42
+            s.detail = "42.3 MB of 100 MB"  // ← jangan include % di sini
+            return s
+        }(),
+        onDownload: {},
+        onChooseFolder: {},
+        onQuit: {}
+    )
+    .padding()
+}
+
+#Preview("Error") {
+    CoreDownloadProgressView(
+        state: {
+            let s = CoreDownloadProgressState()
+            s.phase = .error("Connection timed out. Check your internet connection.")
+            return s
+        }(),
+        onDownload: {},
+        onChooseFolder: {},
+        onQuit: {}
+    )
+    .padding()
 }

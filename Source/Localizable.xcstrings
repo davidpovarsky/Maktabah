@@ -2560,6 +2560,22 @@
         }
       }
     },
+    "Search Books" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البحث في الكتب"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari Kitab"
+          }
+        }
+      }
+    },
     "Search books..." : {
       "localizations" : {
         "ar" : {

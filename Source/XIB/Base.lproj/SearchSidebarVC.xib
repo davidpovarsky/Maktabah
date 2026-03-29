@@ -9,7 +9,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SearchSidebarVC" customModule="Maktabah" customModuleProvider="target">
             <connections>
                 <outlet property="outlineView" destination="kk9-Dg-fOm" id="e8U-Ol-mUh"/>
+                <outlet property="scrollViewTopConstraint" destination="tRp-4u-KXU" id="G58-gS-zGH"/>
                 <outlet property="searchField" destination="UNf-te-qvs" id="MHX-Eb-swQ"/>
+                <outlet property="selectAllButton" destination="YTn-NH-Mir" id="EHN-Y0-AVR"/>
                 <outlet property="view" destination="J1w-Su-YGs" id="uie-hY-FSO"/>
             </connections>
         </customObject>
@@ -48,7 +50,7 @@
                                                 <rect key="frame" x="12" y="1" width="154" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="pKX-Nb-9D6">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="pKX-Nb-9D6">
                                                         <rect key="frame" x="1" y="0.0" width="133" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="Pid-GY-B9s">
@@ -74,7 +76,7 @@
                                                 <rect key="frame" x="12" y="29" width="154" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="9Mo-VX-QaC">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="9Mo-VX-QaC">
                                                         <rect key="frame" x="1" y="0.0" width="133" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="dTH-Vq-7nB">
@@ -125,7 +127,7 @@
                         <action selector="selectAllBook:" target="-2" id="GcF-Qo-eCK"/>
                     </connections>
                 </button>
-                <searchField wantsLayer="YES" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="always" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNf-te-qvs" customClass="DSFSearchField" customModule="Maktabah" customModuleProvider="target">
+                <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="always" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNf-te-qvs" customClass="DSFSearchField" customModule="Maktabah" customModuleProvider="target">
                     <rect key="frame" x="4" y="440" width="170" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="sKR-bj-dq2"/>
@@ -144,9 +146,9 @@
                 <constraint firstAttribute="bottom" secondItem="Lsp-0W-zag" secondAttribute="bottom" id="Ddm-wp-Rie"/>
                 <constraint firstItem="Lsp-0W-zag" firstAttribute="leading" secondItem="J1w-Su-YGs" secondAttribute="leading" id="KU5-H5-0zU"/>
                 <constraint firstAttribute="trailing" secondItem="YTn-NH-Mir" secondAttribute="trailing" constant="8" id="RVv-Yk-esc"/>
-                <constraint firstItem="Lsp-0W-zag" firstAttribute="top" secondItem="YTn-NH-Mir" secondAttribute="bottom" constant="8" symbolic="YES" id="YqI-PH-ypq"/>
                 <constraint firstAttribute="trailing" secondItem="Lsp-0W-zag" secondAttribute="trailing" id="a6B-rH-s2V"/>
                 <constraint firstItem="YTn-NH-Mir" firstAttribute="leading" secondItem="J1w-Su-YGs" secondAttribute="leading" constant="20" symbolic="YES" id="rEL-Cu-nog"/>
+                <constraint firstItem="Lsp-0W-zag" firstAttribute="top" secondItem="J1w-Su-YGs" secondAttribute="top" constant="115" id="tRp-4u-KXU"/>
                 <constraint firstItem="YTn-NH-Mir" firstAttribute="top" secondItem="UNf-te-qvs" secondAttribute="bottom" constant="8" symbolic="YES" id="urb-tZ-tx9"/>
             </constraints>
             <point key="canvasLocation" x="-23" y="-108"/>

@@ -42,6 +42,7 @@ class SplitVC: NSSplitViewController {
     // MARK: - Split View Items
     private(set) var sidebarItem: NSSplitViewItem!
     private(set) var contentItem: NSSplitViewItem!
+    private(set) var searchFieldAccessoryItem: Any?
 
     /// Persistent container sidebar split item supaya
     /// sidebarItem tidak dibuat ulang setiap kali switchToMode.
@@ -141,6 +142,30 @@ class SplitVC: NSSplitViewController {
             for: mode,
             library: libraryVC
         )
+
+        if #available(macOS 26.1, *) {
+            let button: NSButton? = currentMode == .search
+            ? searchSidebarVC!.selectAllButton
+            : nil
+
+            if currentMode == .search {
+                unhideSearchField()
+                if let accessoryItem = searchFieldAccessoryItem as? SplitVCAccessoryItem,
+                   let sidebar = activeSidebarForSearch {
+                    sidebar.connectSearchField(accessoryItem.searchField)
+                    accessoryItem.addButton(button)
+                }
+
+                return
+            }
+
+            setupSearchFieldTahoe(searchFieldIsHidden)
+            if let accessoryItem = searchFieldAccessoryItem as? SplitVCAccessoryItem,
+               let sidebar = activeSidebarForSearch {
+                sidebar.connectSearchField(accessoryItem.searchField)
+                accessoryItem.addButton(button)
+            }
+        }
     }
 
     // MARK: - Viewer Mode Setup
@@ -229,8 +254,18 @@ class SplitVC: NSSplitViewController {
 
         // Remove existing children
         for existing in container.children {
-            existing.view.removeFromSuperview()
-            existing.removeFromParent()
+            if #available(macOS 26, *) {
+                if existing is SplitVCAccessoryItem { continue }
+                existing.view.isHidden = true
+            } else {
+                existing.view.removeFromSuperview()
+                existing.removeFromParent()
+            }
+        }
+
+        guard !container.children.contains(child) else {
+            child.view.isHidden = false
+            return
         }
 
         // Embed new child
@@ -279,6 +314,53 @@ class SplitVC: NSSplitViewController {
         addSplitViewItem(item)
     }
 
+    // MARK: AccessoryView
+    var searchFieldIsHidden: Bool = true
+
+    /// Sidebar yang sedang aktif, diperlakukan seragam sebagai SearchableLibrarySidebar.
+    private var activeSidebarForSearch: (any SearchableLibrarySidebar)? {
+        switch currentMode {
+        case .viewer: return libraryVC
+        case .search: return searchSidebarVC
+        case .author: return rowiSidebarVC
+        }
+    }
+
+    @available(macOS 26.1, *)
+    func setupSearchFieldTahoe(_ hide: Bool = true) {
+        if !searchFieldIsHidden,
+           let accessoryItem = searchFieldAccessoryItem as? SplitVCAccessoryItem {
+            accessoryItem.removeFromParent()
+            return
+        }
+
+        unhideSearchField()
+    }
+
+    @available(macOS 26.1, *)
+    func unhideSearchField() {
+        let accessoryVC: SplitVCAccessoryItem
+        let searchField: DSFSearchField
+
+        if let existing = searchFieldAccessoryItem as? SplitVCAccessoryItem {
+            accessoryVC = existing
+            searchField = existing.setupView(mode: currentMode)
+        } else {
+            accessoryVC = SplitVCAccessoryItem()
+            searchField = accessoryVC.setupView(mode: currentMode)
+            searchFieldAccessoryItem = accessoryVC
+        }
+
+        // Sambungkan ke sidebar yang aktif — tanpa switch-case
+        if let sidebar = activeSidebarForSearch {
+            sidebar.connectSearchField(searchField)
+        }
+
+        guard sidebarItem.topAlignedAccessoryViewControllers.isEmpty else { return }
+        accessoryVC.preferredScrollEdgeEffectStyle = .soft
+        sidebarItem.addTopAlignedAccessoryViewController(accessoryVC)
+    }
+
     deinit {
         #if DEBUG
             print("SplitVC deinit")
@@ -320,6 +402,12 @@ extension SplitVC {
     func hideLibrarySearchField() {
         switch currentMode {
         case .viewer:
+            if #available(macOS 26.1, *) {
+                searchFieldIsHidden.toggle()
+                setupSearchFieldTahoe()
+                libraryVC?.updateContentInset()
+                return
+            }
             if let libraryVC = libraryVC {
                 libraryVC.searchFieldIsHidden.toggle()
                 libraryVC.unhideSearchField()
@@ -329,6 +417,11 @@ extension SplitVC {
                 libraryVC.searchField.becomeFirstResponder()
             }
         case .author:
+            if #available(macOS 26.1, *) {
+                searchFieldIsHidden.toggle()
+                setupSearchFieldTahoe()
+                return
+            }
             if let libraryVC = rowiSidebarVC {
                 libraryVC.searchFieldIsHidden.toggle()
                 libraryVC.unhideSearchField()
