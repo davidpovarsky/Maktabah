@@ -37,70 +37,79 @@ extension String {
     }
 
     func cleanedTextWithRanges() -> CleanedTextResult {
-        var cleaned = self
+        var finalString = ""
+        finalString.reserveCapacity(self.count)
+
         var coloredRanges: [NSRange] = []
+        coloredRanges.reserveCapacity(8)
 
-        // --- Langkah 1: Penggantian Awal dan Penghapusan ---
-        cleaned.removeAll { ["¬", "§"].contains($0) }
-        cleaned = cleaned.replacingOccurrences(of: "\\n", with: "\n")
+        var curlyStartLocations: [Int] = []
+        var squareStartLocations: [Int] = []
+        var parenthesisStartLocations: [Int] = []
 
-        // --- Langkah 2: Penggantian Kurung Kurawal Dinamis (dan Catat Range) ---
-        let bracketPattern = "[{}]"
+        let removableCharacters: Set<Character> = ["¬", "§"]
+        var index = startIndex
 
-        do {
-            let regex = try NSRegularExpression(pattern: bracketPattern, options: [])
-            let range = NSRange(cleaned.startIndex..., in: cleaned)
+        while index < endIndex {
+            let character = self[index]
 
-            var finalString = cleaned
-            var offset = 0 // Offset untuk melacak perubahan panjang string
-            var lastOpeningBracketLocation: Int? // Catat lokasi '{' atau '﴿'
-
-            regex.enumerateMatches(in: cleaned, options: [], range: range) { (match, flags, stop) in
-                guard let match = match else { return }
-
-                guard let originalRange = Range(match.range, in: cleaned) else { return }
-                let matchedCharacter = String(cleaned[originalRange])
-                let replacement: String
-
-                switch matchedCharacter {
-                case "{":
-                    replacement = replacementL
-
-                    // Catat lokasi kurung kurawal pembuka yang disesuaikan
-                    lastOpeningBracketLocation = match.range.location + offset + replacement.count
-
-                case "}":
-                    replacement = replacementR
-
-                    // Jika ada kurung kurawal pembuka sebelumnya, hitung range
-                    if let startLocation = lastOpeningBracketLocation {
-                        let endLocation = match.range.location + offset // Lokasi penutup yang disesuaikan
-
-                        // Range untuk konten di antara kurung kurawal
-                        let rangeToColor = NSRange(location: startLocation,
-                                                   length: endLocation - startLocation)
-                        coloredRanges.append(rangeToColor)
-
-                        lastOpeningBracketLocation = nil // Reset
-                    }
-                default:
-                    return
-                }
-
-                let adjustedRange = NSRange(location: match.range.location + offset, length: match.range.length)
-
-                if let swiftRange = Range(adjustedRange, in: finalString) {
-                    finalString.replaceSubrange(swiftRange, with: replacement)
-                    offset += (replacement.count - matchedCharacter.count)
-                }
+            if removableCharacters.contains(character) {
+                index = self.index(after: index)
+                continue
             }
 
-            return CleanedTextResult(text: finalString, coloredRanges: coloredRanges)
+            if character == "\\",
+               let nextIndex = self.index(index, offsetBy: 1, limitedBy: endIndex),
+               nextIndex < endIndex,
+               self[nextIndex] == "n" {
+                finalString.append("\n")
+                index = self.index(after: nextIndex)
+                continue
+            }
 
-        } catch {
-            print("Error compiling regex:", error)
-            return CleanedTextResult(text: cleaned, coloredRanges: [])
+            switch character {
+            case "{":
+                let startLocation = finalString.utf16.count
+                finalString += replacementL
+                curlyStartLocations.append(startLocation)
+            case "}":
+                if let startLocation = curlyStartLocations.popLast() {
+                    let length = (finalString.utf16.count - startLocation) + replacementR.utf16.count
+                    if length >= 0 {
+                        coloredRanges.append(NSRange(location: startLocation, length: length))
+                    }
+                }
+                finalString += replacementR
+            case "[":
+                squareStartLocations.append(finalString.utf16.count)
+                finalString.append(character)
+            case "]":
+                if let startLocation = squareStartLocations.popLast() {
+                    let length = (finalString.utf16.count - startLocation) + 1
+                    if length > 0 {
+                        coloredRanges.append(NSRange(location: startLocation, length: length))
+                    }
+                }
+                finalString.append(character)
+            case "(":
+                parenthesisStartLocations.append(finalString.utf16.count)
+                finalString.append(character)
+            case ")":
+                if let startLocation = parenthesisStartLocations.popLast() {
+                    let length = (finalString.utf16.count - startLocation) + 1
+                    if length > 0 {
+                        coloredRanges.append(NSRange(location: startLocation, length: length))
+                    }
+                }
+                finalString.append(character)
+            default:
+                finalString.append(character)
+            }
+
+            index = self.index(after: index)
         }
+
+        return CleanedTextResult(text: finalString, coloredRanges: coloredRanges)
     }
 
     func cleanedText() -> String {
