@@ -39,6 +39,8 @@ class BooksData: Codable {
     let book: String
     let archive: Int
     let muallif: Int
+    var downloadFilename: String?
+    var compressedDownloadSize: Int64?
     var tafseerNam: String?
     var bithoqoh: String {
         didSet {

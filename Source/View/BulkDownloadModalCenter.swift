@@ -93,8 +93,6 @@ final class BulkDownloadModalCenter {
         shouldStopDownloads = true
         Task {
             await BookDownloadManager.shared.cancelAllDownloads()
-            downloadTask?.cancel()
-            downloadTask = nil
             await MainActor.run { [weak vc] in
                 vc?.statusLabel.stringValue = NSLocalizedString(
                     "Stopping downloads. Integrating completed books...",
@@ -139,7 +137,7 @@ final class BulkDownloadModalCenter {
             }
 
             for await (bookId, result) in group {
-                if shouldStopDownloads || Task.isCancelled {
+                if Task.isCancelled {
                     group.cancelAll()
                     break
                 }
@@ -222,6 +220,7 @@ final class BulkDownloadModalCenter {
         }
 
         // ── Selesai ───────────────────────────────────────────────────────────
+        downloadTask = nil
         vc.setDownloading(false)
 
         let failedCount = books.filter {

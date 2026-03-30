@@ -282,13 +282,21 @@ final class BookDownloadManager {
 
 // MARK: - Book Download Index
 
-private struct BundleBookIndexEntry: Decodable {
+struct BundleBookIndexEntry: Decodable {
     let bkid: Int
     let filename: String
     let release: String
+    let sizeZst: Int64?
+
+    enum CodingKeys: String, CodingKey {
+        case bkid
+        case filename
+        case release
+        case sizeZst = "size_zst"
+    }
 }
 
-private actor BookDownloadIndexCache {
+actor BookDownloadIndexCache {
     static let shared = BookDownloadIndexCache()
 
     private var cachedEntries: [Int: BundleBookIndexEntry] = [:]
@@ -322,6 +330,24 @@ private actor BookDownloadIndexCache {
             urlSession: urlSession
         )
         return entries[bookId]
+    }
+
+    func entries(
+        indexURL: URL,
+        urlSession: URLSession
+    ) async throws -> [Int: BundleBookIndexEntry] {
+        if cachedEntries.isEmpty {
+            loadCachedIndexIfNeeded()
+        }
+
+        let now = Date()
+        if let lastFetch,
+           now.timeIntervalSince(lastFetch) < ttl,
+           !cachedEntries.isEmpty {
+            return cachedEntries
+        }
+
+        return try await fetchIndex(indexURL: indexURL, urlSession: urlSession)
     }
 
     private func fetchIndex(

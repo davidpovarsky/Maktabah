@@ -52,6 +52,7 @@ class LibraryDataManager {
                 allRootCategories = results.0
                 categoryMap = results.1
                 booksById = results.2
+                await applyBundleDownloadMetadataIfNeeded()
                 isDataLoaded = true
 
                 // Bangun integration cache di background setelah data siap.
@@ -114,6 +115,28 @@ class LibraryDataManager {
         }
 
         return localBooksById
+    }
+
+    private func applyBundleDownloadMetadataIfNeeded() async {
+        guard AppConfig.isUsingBundleMode,
+              let indexURL = AppConfig.bookIndexURL else { return }
+
+        do {
+            let entries = try await BookDownloadIndexCache.shared.entries(
+                indexURL: indexURL,
+                urlSession: URLSession.shared
+            )
+
+            for (bookId, entry) in entries {
+                guard let book = booksById[bookId] else { continue }
+                book.downloadFilename = entry.filename
+                book.compressedDownloadSize = entry.sizeZst
+            }
+        } catch {
+            #if DEBUG
+                print("Failed to apply bundle download metadata:", error)
+            #endif
+        }
     }
 
     func resetState() {

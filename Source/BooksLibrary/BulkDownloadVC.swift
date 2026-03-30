@@ -182,7 +182,10 @@ final class BulkDownloadVC: NSViewController {
             localized: "Select book to download."
         )
         statusLabel.lineBreakMode = .byTruncatingTail
+        statusLabel.maximumNumberOfLines = 1
+        statusLabel.usesSingleLineMode = true
         statusLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        statusLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
         // Stop button
         stopButton.title = NSLocalizedString(
@@ -248,6 +251,14 @@ final class BulkDownloadVC: NSViewController {
         bgView.contentView = footerStack
         bgView.cornerRadius = 999
         footerView = bgView
+
+        progressStack.translatesAutoresizingMaskIntoConstraints = false
+        controlsStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressStack.leadingAnchor.constraint(equalTo: footerStack.leadingAnchor, constant: 8),
+            controlsStack.trailingAnchor.constraint(equalTo: footerStack.trailingAnchor, constant: -8),
+            progressStack.trailingAnchor.constraint(lessThanOrEqualTo: controlsStack.leadingAnchor, constant: -12)
+        ])
     }
 
     private func venturaSubViews() {
@@ -275,7 +286,7 @@ final class BulkDownloadVC: NSViewController {
         NSLayoutConstraint.activate([
             // Footer stack menempel di bawah, kiri, dan kanan
             footerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            footerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            footerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16),
             footerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
         ])
 
@@ -330,10 +341,7 @@ final class BulkDownloadVC: NSViewController {
         outlineView.dataSource = vm
         outlineView.reloadData()
 
-        let totalBooks = countBooks(in: categories)
-        statusLabel.stringValue = String(
-            localized: "\(totalBooks) books to download."
-        )
+        updateSelectionSummary()
     }
 
     private func countBooks(in categories: [CategoryData]) -> Int {
@@ -349,6 +357,49 @@ final class BulkDownloadVC: NSViewController {
         }
         categories.forEach { traverse($0) }
         return count
+    }
+
+    private func selectionSummary() -> String {
+        let selectedBooks = checkedBooks()
+        let selectedCount = selectedBooks.count
+        let totalBooks = countBooks(in: dataVM?.displayedCategories ?? [])
+
+        guard selectedCount > 0 else {
+            return String(localized: "\(totalBooks) books to download.")
+        }
+
+        let title = String(localized: "\(selectedCount) book selected")
+
+        let totalCompressedSize = selectedBooks.reduce(Int64(0)) {
+            $0 + max(0, $1.compressedDownloadSize ?? 0)
+        }
+
+        let knownSizeCount = selectedBooks.reduce(0) {
+            $0 + (($1.compressedDownloadSize ?? 0) > 0 ? 1 : 0)
+        }
+
+        if knownSizeCount == selectedCount && totalCompressedSize > 0 {
+            let sizeString = ByteCountFormatter.string(
+                fromByteCount: totalCompressedSize,
+                countStyle: .file
+            )
+            return title + " (\(sizeString))."
+        }
+
+        if knownSizeCount > 0 && totalCompressedSize > 0 {
+            let sizeString = ByteCountFormatter.string(
+                fromByteCount: totalCompressedSize,
+                countStyle: .file
+            )
+            return title + " ±(\(sizeString))."
+        }
+
+        return title + "."
+    }
+
+    private func updateSelectionSummary() {
+        guard !stopButton.isEnabled else { return }
+        statusLabel.stringValue = selectionSummary()
     }
 
     // MARK: - Public API (dipanggil BulkDownloadModalCenter)
@@ -449,6 +500,7 @@ final class BulkDownloadVC: NSViewController {
 
     private func updateDownloadButtonState() {
         downloadButton.isEnabled = !checkedBooks().isEmpty
+        updateSelectionSummary()
     }
 
     // MARK: - Actions
