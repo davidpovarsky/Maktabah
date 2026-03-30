@@ -82,12 +82,25 @@ class QuranSplitVC: NSSplitViewController {
     func setupClosure() {
         tafseerVC.didSelectBook = { [weak self] book in
             guard let self else { return }
-            let manager = QuranDataManager.shared
-            manager.connect(to: book)
-            if let (aya, surah) = manager.selectedQuran,
-               let surahNode = manager.surahNodes.first(where: { $0.id == surah }),
-               let ayatQuran = sidebarSurah.ayaLookup[surah]?[aya] {
-                textVC.didSelectAya(surahNode, aya: ayatQuran)
+            Task.detached { [weak self, weak book] in
+                guard let self, let book else { return }
+                let manager = QuranDataManager.shared
+                do {
+                    try await connectBookWithBundleFallback(book, manager: manager)
+                } catch is CancellationError {
+                    return
+                } catch {
+                    await MainActor.run {
+                        ReusableFunc.showAlert(
+                            title: DatabaseError.bookNotFound(
+                                book.id
+                            ).localizedDescription,
+                            message: ArchiveError.archiveNotAvailable(
+                                archiveId: book.archive
+                            ).localizedDescription
+                        )
+                    }
+                }
             }
         }
 
@@ -98,6 +111,46 @@ class QuranSplitVC: NSSplitViewController {
             }
 
             sidebarSurah.selectNode(aya: aya, surah: surah, delegate: true)
+        }
+    }
+
+    func connectBookWithBundleFallback(
+        _ book: BooksData,
+        manager: QuranDataManager
+    ) async throws {
+        if !AppConfig.isUsingBundleMode {
+            manager.connect(to: book)
+            return
+        }
+
+        guard !BookArchiveIntegrator.shared.isBookIntegrated(book) else {
+            manager.connect(to: book)
+            return
+        }
+
+        let confirmed = await BookIntegrateModalCenter.shared
+            .presentAndWaitForConfirmation(book: book)
+        guard confirmed else { throw CancellationError() }
+
+        defer {
+            Task { @MainActor in
+                BookIntegrateModalCenter.shared.dismiss()
+            }
+        }
+
+        try await BookArchiveIntegrator.shared.ensureBookIntegrated(
+            book,
+            onIntegrating: {
+                await BookIntegrateModalCenter.shared.showIntegrating()
+            }
+        )
+
+        manager.connect(to: book)
+
+        if let (aya, surah) = manager.selectedQuran,
+           let surahNode = manager.surahNodes.first(where: { $0.id == surah }),
+           let ayatQuran = sidebarSurah.ayaLookup[surah]?[aya] {
+            textVC.didSelectAya(surahNode, aya: ayatQuran)
         }
     }
 
