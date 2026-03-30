@@ -42,9 +42,9 @@ class AnnotationEditorVC: NSViewController {
         colorWell.isHidden = underLine.state == .on
         
         if #available(macOS 26, *) {
-            saveButton.borderShape = .circle
-            deleteButton.borderShape = .circle
-            segmentedControl.borderShape = .circle
+            saveButton.borderShape = .capsule
+            deleteButton.borderShape = .capsule
+            segmentedControl.borderShape = .capsule
         }
         
         setupSegmentLayout()

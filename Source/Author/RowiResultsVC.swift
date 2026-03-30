@@ -102,14 +102,14 @@ class RowiResultsVC: NSViewController {
         }
         hStackOptions.addArrangedSubview(hStackSearch)
         if #available(macOS 26, *) {
-            optionSegment.borderShape = .circle
+            optionSegment.borderShape = .capsule
             let btns = [tilmidz, syaikh, takdil, mulakhosh]
             btns.forEach { btn in
-                btn?.borderShape = .circle
+                btn?.borderShape = .capsule
             }
             hStackSearch.subviews.forEach { view in
                 if let v = view as? NSButton {
-                    v.borderShape = .circle
+                    v.borderShape = .capsule
                 }
             }
         }

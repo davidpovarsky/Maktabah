@@ -35,7 +35,7 @@ class ResultWriter: NSViewController {
         outlineView.delegate = resultsVM
         if #available(macOS 26, *) {
             nsBtns.forEach { button in
-                button.borderShape = .circle
+                button.borderShape = .capsule
             }
         }
         // Do view setup here.

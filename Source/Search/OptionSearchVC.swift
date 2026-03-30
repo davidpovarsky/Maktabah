@@ -67,13 +67,13 @@ class OptionSearchVC: NSViewController {
         if #available(macOS 26.0, *) {
             progressTable.controlSize = .small
             progressRows.controlSize = .small
-            optionsSegment.borderShape = .circle
+            optionsSegment.borderShape = .capsule
             let btn = [
                 cleanUpButton, startButton, stopButton, insertNewResults,
                 displayResults,
             ]
             btn.forEach { button in
-                button?.borderShape = .circle
+                button?.borderShape = .capsule
             }
         } else {
             progressTable.controlSize = .regular

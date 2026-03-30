@@ -23,7 +23,7 @@ class BookInfo: NSViewController {
         super.viewDidLoad()
         xBtn.isHidden = popOver
         if #available(macOS 26.0, *) {
-            segmentedControl.borderShape = .circle
+            segmentedControl.borderShape = .capsule
         } else {
             // Fallback on earlier versions
         }

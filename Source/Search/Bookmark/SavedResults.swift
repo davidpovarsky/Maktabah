@@ -26,7 +26,7 @@ class SavedResults: NSViewController {
         outlineView.dataSource = resultsVM
         outlineView.delegate = resultsVM
         if #available(macOS 26.0, *) {
-            xButton.borderShape = .circle
+            xButton.borderShape = .capsule
         }
         // Do view setup here.
     }
