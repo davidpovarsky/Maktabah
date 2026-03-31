@@ -94,24 +94,25 @@ class OptionSearchVC: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if !bkId.isEmpty { return }
         setupUI()
     }
 
     private func setupUI() {
         if isDataLoaded { return }
         setupIndeterminateProgress()
-        Task.detached(priority: .userInitiated) { [weak self, weak libraryViewManager] in
-            guard let self, let libraryViewManager else { return }
+        Task.detached(priority: .userInitiated) { [weak self] in
+            guard let self else { return }
             await ldm.loadData()
             await ldm.buildArchive()
             await MainActor.run { [weak self] in
                 guard let self else { return }
-                if AppConfig.isUsingBundleMode {
-                    let filtered = ldm.filterIntegrated()
-                    libraryViewManager.setBaseCategories(filtered, reload: true)
-                } else {
-                    libraryViewManager.prepareData()
+                if let libraryViewManager {
+                    if AppConfig.isUsingBundleMode {
+                        let filtered = ldm.filterIntegrated()
+                        libraryViewManager.setBaseCategories(filtered, reload: true)
+                    } else {
+                        libraryViewManager.prepareData()
+                    }
                 }
                 isDataLoaded = true
                 resetIndeterminateProgress(true)
