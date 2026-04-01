@@ -213,7 +213,7 @@ extension MainWindow: NSToolbarDelegate {
             .textViewOptions,
         ]
 
-        if #available(macOS 26, *) {
+        if #available(macOS 26, *), !Self.rtl {
             items.append(.trackingSeparator)
         }
 
@@ -243,7 +243,7 @@ extension MainWindow: NSToolbarDelegate {
         ]
 
         // Menyisipkan tepat setelah .displayNotations
-        if #available(macOS 26.0, *) {
+        if #available(macOS 26.0, *), !Self.rtl {
             items.append(.trackingSeparator)
         }
 
@@ -274,7 +274,7 @@ extension MainWindow: NSToolbarDelegate {
 
         case .trackingSeparator:
             // Pastikan pengecekan macOS yang benar (TrackingSeparator muncul di macOS 13+)
-            guard let rootSplitVC = contentViewController as? SplitVC else {
+            guard let rootSplitVC = contentViewController as? SplitVC, !Self.rtl else {
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
             }
 
