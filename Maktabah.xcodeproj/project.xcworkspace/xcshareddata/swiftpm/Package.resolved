@@ -1,0 +1,15 @@
+{
+  "originHash" : "4f474ecbe8becac6410a5256b00888665e0bce65fcd3e116504aa00dfe16fa99",
+  "pins" : [
+    {
+      "identity" : "sqlite.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bismillah-100/SQLite.swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "964c300fb0736699ce945c9edb56ecd62eba27a3"
+      }
+    }
+  ],
+  "version" : 3
+}
