@@ -193,11 +193,11 @@ Gw
                                                         <rect key="frame" x="18" y="0.0" width="307" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" id="7qg-H5-TJd">
+                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" id="7qg-H5-TJd" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="1" width="307" height="28"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" title="إسم الكتاب" id="5CR-zY-QO2">
-                                                                    <font key="font" size="17" name="KFGQPCUthmanTahaNaskh"/>
+                                                                    <font key="font" metaFont="system" size="17"/>
                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
@@ -217,22 +217,22 @@ Gw
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-dl-eyr">
                                                                         <rect key="frame" x="0.0" y="67" width="307" height="29"/>
                                                                         <subviews>
-                                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1fZ-a9-Tws">
+                                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1fZ-a9-Tws" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
                                                                                 <rect key="frame" x="2" y="5" width="116" height="22"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="22" id="PqM-3c-TGl"/>
                                                                                 </constraints>
                                                                                 <textFieldCell key="cell" lineBreakMode="clipping" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="24H-kp-f1e">
-                                                                                    <font key="font" size="15" name="KFGQPCUthmanTahaNaskh"/>
+                                                                                    <font key="font" metaFont="system" size="15"/>
                                                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                             </textField>
-                                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" id="2R2-3G-cwO">
+                                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" id="2R2-3G-cwO" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
                                                                                 <rect key="frame" x="122" y="0.0" width="187" height="29"/>
                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                 <textFieldCell key="cell" truncatesLastVisibleLine="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="con-e3-q0L">
-                                                                                    <font key="font" size="17" name="KFGQPCUthmanTahaNaskh"/>
+                                                                                    <font key="font" metaFont="system" size="17"/>
                                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
@@ -256,10 +256,10 @@ Gw
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </stackView>
-                                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="VFX-Tp-KGa">
+                                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="VFX-Tp-KGa" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
                                                                         <rect key="frame" x="-2" y="28" width="311" height="29"/>
                                                                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="1GY-dH-4Fl">
-                                                                            <font key="font" size="17" name="KFGQPCUthmanTahaNaskh"/>
+                                                                            <font key="font" metaFont="system" size="17"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>

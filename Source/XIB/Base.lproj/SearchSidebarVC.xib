@@ -50,21 +50,21 @@
                                                 <rect key="frame" x="12" y="1" width="154" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="pKX-Nb-9D6">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="pKX-Nb-9D6" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
                                                         <rect key="frame" x="1" y="0.0" width="133" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="Pid-GY-B9s">
-                                                            <font key="font" size="16" name="KFGQPCUthmanTahaNaskh"/>
+                                                            <font key="font" metaFont="system" size="16"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" id="Dij-1N-lee">
+                                                    <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" id="Dij-1N-lee" customClass="BundledArabicButton" customModule="Maktabah" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="154" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="right" state="on" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" inset="2" id="j4A-Zh-rzT">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" size="13" name="KFGQPCUthmanTahaNaskh"/>
+                                                            <font key="font" metaFont="system" size="13"/>
                                                         </buttonCell>
                                                     </button>
                                                 </subviews>
@@ -76,21 +76,21 @@
                                                 <rect key="frame" x="12" y="29" width="154" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="9Mo-VX-QaC">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="9Mo-VX-QaC" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
                                                         <rect key="frame" x="1" y="0.0" width="133" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="dTH-Vq-7nB">
-                                                            <font key="font" size="16" name="KFGQPCUthmanTahaNaskh"/>
+                                                            <font key="font" metaFont="system" size="16"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" id="nzD-VQ-u4b">
+                                                    <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" id="nzD-VQ-u4b" customClass="BundledArabicButton" customModule="Maktabah" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="154" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="right" state="on" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" inset="2" id="NMY-ga-0Cp">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" size="13" name="KFGQPCUthmanTahaNaskh"/>
+                                                            <font key="font" metaFont="system" size="13"/>
                                                         </buttonCell>
                                                     </button>
                                                 </subviews>
@@ -114,11 +114,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTn-NH-Mir">
+                <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTn-NH-Mir" customClass="BundledArabicButton" customModule="Maktabah" customModuleProvider="target">
                     <rect key="frame" x="20" y="409" width="150" height="23"/>
                     <buttonCell key="cell" type="check" title="اختر كل الكتب الموجودة" bezelStyle="regularSquare" imagePosition="leading" alignment="right" state="on" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" inset="2" id="uzy-nO-FzB">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="16" name="KFGQPCUthmanTahaNaskh"/>
+                        <font key="font" metaFont="system" size="16"/>
                     </buttonCell>
                     <constraints>
                         <constraint firstAttribute="height" constant="23" id="wwP-YJ-pA6"/>

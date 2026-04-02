@@ -8,6 +8,11 @@
 import Cocoa
 
 class ReusableFunc {
+    static func bundledArabicFont(ofSize size: CGFloat) -> NSFont {
+        NSFont(name: "KFGQPCUthmanTahaNaskh", size: size)
+            ?? NSFont.systemFont(ofSize: size)
+    }
+
     static func setupSearchField(
         _ searchField: NSSearchField,
         systemSymbolName: String = "line.3.horizontal.decrease.circle"

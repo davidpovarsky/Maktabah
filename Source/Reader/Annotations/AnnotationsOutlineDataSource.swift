@@ -598,6 +598,11 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             value: paragraphStyle,
             range: NSRange(location: 0, length: text.count)
         )
+        attributedString.addAttribute(
+            .font,
+            value: ReusableFunc.bundledArabicFont(ofSize: 17),
+            range: NSRange(location: 0, length: text.count)
+        )
         let fullRg = NSRange(location: 0, length: attributedString.length)
 
         switch annotation.type {

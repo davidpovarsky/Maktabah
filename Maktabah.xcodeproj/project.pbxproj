@@ -35,6 +35,8 @@
 		4B32024E2EDB13C0003B95D1 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32024D2EDB13C0003B95D1 /* DatabaseManager.swift */; };
 		4B3202502EDB1B5A003B95D1 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32024F2EDB1B5A003B95D1 /* DataModel.swift */; };
 		4B3202722EDB5E3D003B95D1 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3202712EDB5E3D003B95D1 /* Navigation.swift */; };
+		4B3252CF2F7E0A8300521AF9 /* BundledArabicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3252CE2F7E0A8300521AF9 /* BundledArabicTextField.swift */; };
+		4B3252D02F7E0A8300521AF9 /* BundledArabicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3252CD2F7E0A8300521AF9 /* BundledArabicButton.swift */; };
 		4B33928B2EE02E710028C706 /* LibraryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33928A2EE02E710028C706 /* LibraryDataManager.swift */; };
 		4B3AFA122F76DB1000FB9C05 /* UthmanTN1-Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3AFA112F76DB1000FB9C05 /* UthmanTN1-Ver10.otf */; };
 		4B3B966D2F35A74400B57E1D /* BookUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B966C2F35A74400B57E1D /* BookUpdateManager.swift */; };
@@ -183,6 +185,8 @@
 		4B32024D2EDB13C0003B95D1 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		4B32024F2EDB1B5A003B95D1 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4B3202712EDB5E3D003B95D1 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		4B3252CD2F7E0A8300521AF9 /* BundledArabicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledArabicButton.swift; sourceTree = "<group>"; };
+		4B3252CE2F7E0A8300521AF9 /* BundledArabicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledArabicTextField.swift; sourceTree = "<group>"; };
 		4B33928A2EE02E710028C706 /* LibraryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDataManager.swift; sourceTree = "<group>"; };
 		4B33CCA72EEEF12000CCAE59 /* zstd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zstd.h; sourceTree = "<group>"; };
 		4B33CCA82EEEF12900CCAE59 /* libzstd.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libzstd.dylib; sourceTree = "<group>"; };
@@ -317,6 +321,8 @@
 			children = (
 				4BA393702EF1E6BC00736DFF /* SearchField */,
 				4B63E1D72EE93FED00D58F3B /* TableCellViews */,
+				4B3252CD2F7E0A8300521AF9 /* BundledArabicButton.swift */,
+				4B3252CE2F7E0A8300521AF9 /* BundledArabicTextField.swift */,
 				4B0139E62EEB3CB000424CFA /* InitProgress.xib */,
 				4B0139E72EEB3CB000424CFA /* InitProgress.swift */,
 				4B0139EE2EEB3D5E00424CFA /* Header.h */,
@@ -752,7 +758,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2620;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					4B3202272EDAFE85003B95D1 = {
 						CreatedOnToolsVersion = 15.2;
@@ -841,6 +847,8 @@
 				4B0EED392EFAB38800585C31 /* QuranTafseerVC.swift in Sources */,
 				4B47F3992EE9A36D009A399F /* RowiProtocols.swift in Sources */,
 				4B6100F22EFA8C7F00CCBED6 /* QuranNashVC.swift in Sources */,
+				4B3252CF2F7E0A8300521AF9 /* BundledArabicTextField.swift in Sources */,
+				4B3252D02F7E0A8300521AF9 /* BundledArabicButton.swift in Sources */,
 				4B8C9DD92F6985210049E4EF /* ArchiveErrors.swift in Sources */,
 				4B32022C2EDAFE85003B95D1 /* AppDelegate.swift in Sources */,
 				4B65CCBB2EE06C5D0085CEB4 /* LibraryViewManager.swift in Sources */,
