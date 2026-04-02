@@ -24,6 +24,7 @@
 		4B20DB7D2EE7D84100B97126 /* ResultCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B20DB7C2EE7D84100B97126 /* ResultCellView.xib */; };
 		4B20DB7F2EE7EE1F00B97126 /* SearchMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B20DB7E2EE7EE1F00B97126 /* SearchMode.swift */; };
 		4B20DB822EE7EEE400B97126 /* BookInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B20DB802EE7EEE400B97126 /* BookInfo.swift */; };
+		4B22B2F12F7E3BD300741EEC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4B22B2F02F7E3BD300741EEC /* PrivacyInfo.xcprivacy */; };
 		4B2FAD9A2EED472E008E933E /* TOCLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2FAD992EED472E008E933E /* TOCLoader.swift */; };
 		4B32022C2EDAFE85003B95D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32022B2EDAFE85003B95D1 /* AppDelegate.swift */; };
 		4B32022E2EDAFE88003B95D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B32022D2EDAFE88003B95D1 /* Assets.xcassets */; };
@@ -84,6 +85,7 @@
 		4B6AF2372EE58394002EBFFC /* IbarotTextVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B6AF2352EE58394002EBFFC /* IbarotTextVC.xib */; };
 		4B73BF452EF0799E001ED591 /* AnnotationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73BF442EF0799E001ED591 /* AnnotationCellView.swift */; };
 		4B73BF472EF09D67001ED591 /* AnnotationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73BF462EF09D67001ED591 /* AnnotationDelegate.swift */; };
+		4B88322F2F7EB3A7004C6213 /* libzstd in Frameworks */ = {isa = PBXBuildFile; productRef = 4B88322E2F7EB3A7004C6213 /* libzstd */; };
 		4B8C9DD12F6984120049E4EF /* ArchiveDatabaseTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DCE2F6984120049E4EF /* ArchiveDatabaseTools.swift */; };
 		4B8C9DD22F6984120049E4EF /* BookArchiveIntegrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DCF2F6984120049E4EF /* BookArchiveIntegrator.swift */; };
 		4B8C9DD32F6984120049E4EF /* BookDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DD02F6984120049E4EF /* BookDownloadManager.swift */; };
@@ -96,10 +98,9 @@
 		4B9A0AE22EEC17CC0049202E /* TarjamahDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE12EEC17CC0049202E /* TarjamahDataManager.swift */; };
 		4B9A0AE52EEC51C20049202E /* Result.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE42EEC51C20049202E /* Result.xib */; };
 		4B9A0AE72EEC53320049202E /* CellIViewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE62EEC53320049202E /* CellIViewIdentifier.swift */; };
+		4B9C83062F7EAE1C00CE1800 /* ZstdShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C83052F7EAE1C00CE1800 /* ZstdShim.swift */; };
 		4B9DDA892EFC343F0003A9FF /* QuranWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9DDA882EFC343F0003A9FF /* QuranWindow.swift */; };
 		4BA393642EF0D30200736DFF /* ArabicFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA393632EF0D30200736DFF /* ArabicFont.swift */; };
-		4BA3936D2EF15F3300736DFF /* libzstd.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B33CCA82EEEF12900CCAE59 /* libzstd.dylib */; };
-		4BA3936E2EF15F3300736DFF /* libzstd.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 4B33CCA82EEEF12900CCAE59 /* libzstd.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4BA393722EF1E6CD00736DFF /* DSFSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA393712EF1E6CD00736DFF /* DSFSearchField.swift */; };
 		4BA726922EFC714F003CA0ED /* BookInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA726942EFC714F003CA0ED /* BookInfo.xib */; };
 		4BA726962EFC72E6003CA0ED /* LibraryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA726982EFC72E6003CA0ED /* LibraryVC.xib */; };
@@ -139,27 +140,12 @@
 		F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C449542F2B12E200DA7032 /* SearchCellView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		4BA3936F2EF15F3300736DFF /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4BA3936E2EF15F3300736DFF /* libzstd.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		4B0139DF2EEAFC3000424CFA /* CustomSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplitView.swift; sourceTree = "<group>"; };
 		4B0139E12EEB281C00424CFA /* BookPageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageCache.swift; sourceTree = "<group>"; };
 		4B0139E32EEB2FDF00424CFA /* StringInterner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringInterner.swift; sourceTree = "<group>"; };
 		4B0139E62EEB3CB000424CFA /* InitProgress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitProgress.xib; sourceTree = "<group>"; };
 		4B0139E72EEB3CB000424CFA /* InitProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitProgress.swift; sourceTree = "<group>"; };
-		4B0139EE2EEB3D5E00424CFA /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		4B01CA0F2EFCD7B2002A66FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4B01CA112EFCD7B2002A66FA /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
 		4B01CA2F2EFD366E002A66FA /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -173,6 +159,7 @@
 		4B20DB7C2EE7D84100B97126 /* ResultCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCellView.xib; sourceTree = "<group>"; };
 		4B20DB7E2EE7EE1F00B97126 /* SearchMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMode.swift; sourceTree = "<group>"; };
 		4B20DB802EE7EEE400B97126 /* BookInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfo.swift; sourceTree = "<group>"; };
+		4B22B2F02F7E3BD300741EEC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4B2649912F355BE100479175 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/AnnotationEditorVC.xcstrings; sourceTree = "<group>"; };
 		4B2FAD992EED472E008E933E /* TOCLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOCLoader.swift; sourceTree = "<group>"; };
 		4B3202282EDAFE85003B95D1 /* Maktabah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maktabah.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,9 +175,6 @@
 		4B3252CD2F7E0A8300521AF9 /* BundledArabicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledArabicButton.swift; sourceTree = "<group>"; };
 		4B3252CE2F7E0A8300521AF9 /* BundledArabicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledArabicTextField.swift; sourceTree = "<group>"; };
 		4B33928A2EE02E710028C706 /* LibraryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDataManager.swift; sourceTree = "<group>"; };
-		4B33CCA72EEEF12000CCAE59 /* zstd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zstd.h; sourceTree = "<group>"; };
-		4B33CCA82EEEF12900CCAE59 /* libzstd.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libzstd.dylib; sourceTree = "<group>"; };
-		4B33CCAC2EEEF2CB00CCAE59 /* zstd_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zstd_errors.h; sourceTree = "<group>"; };
 		4B3AFA112F76DB1000FB9C05 /* UthmanTN1-Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1-Ver10.otf"; sourceTree = "<group>"; };
 		4B3B966C2F35A74400B57E1D /* BookUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateManager.swift; sourceTree = "<group>"; };
 		4B47F3982EE9A36D009A399F /* RowiProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowiProtocols.swift; sourceTree = "<group>"; };
@@ -249,6 +233,7 @@
 		4B9A0AE12EEC17CC0049202E /* TarjamahDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarjamahDataManager.swift; sourceTree = "<group>"; };
 		4B9A0AE42EEC51C20049202E /* Result.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Result.xib; sourceTree = "<group>"; };
 		4B9A0AE62EEC53320049202E /* CellIViewIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIViewIdentifier.swift; sourceTree = "<group>"; };
+		4B9C83052F7EAE1C00CE1800 /* ZstdShim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZstdShim.swift; sourceTree = "<group>"; };
 		4B9DDA882EFC343F0003A9FF /* QuranWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranWindow.swift; sourceTree = "<group>"; };
 		4BA393632EF0D30200736DFF /* ArabicFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArabicFont.swift; sourceTree = "<group>"; };
 		4BA393712EF1E6CD00736DFF /* DSFSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSFSearchField.swift; sourceTree = "<group>"; };
@@ -309,7 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B32024C2EDB12B2003B95D1 /* SQLite in Frameworks */,
-				4BA3936D2EF15F3300736DFF /* libzstd.dylib in Frameworks */,
+				4B88322F2F7EB3A7004C6213 /* libzstd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +310,6 @@
 				4B3252CE2F7E0A8300521AF9 /* BundledArabicTextField.swift */,
 				4B0139E62EEB3CB000424CFA /* InitProgress.xib */,
 				4B0139E72EEB3CB000424CFA /* InitProgress.swift */,
-				4B0139EE2EEB3D5E00424CFA /* Header.h */,
 			);
 			path = "Add-On View";
 			sourceTree = "<group>";
@@ -340,6 +324,7 @@
 				4B5DF93A2EDC43FB0082DE7F /* UserDefaults.swift */,
 				4BDAB98D2F69E957007D0945 /* SettingsActions.swift */,
 				F300A2EB2F2DCE860095015E /* StorageError.swift */,
+				4B9C83052F7EAE1C00CE1800 /* ZstdShim.swift */,
 			);
 			path = "App Config";
 			sourceTree = "<group>";
@@ -373,41 +358,15 @@
 				4B4C97092F1EFC7E0051503E /* Protocols */,
 				4B6AF2382EE58751002EBFFC /* Reader */,
 				4B65CCB12EE058AA0085CEB4 /* Search */,
-				4B33CCA42EEEF0EB00CCAE59 /* Third-Party */,
 				4B4C970B2F1EFCD40051503E /* View */,
 				4B4C970C2F1EFD150051503E /* XIB */,
 				4B32022D2EDAFE88003B95D1 /* Assets.xcassets */,
 				F349073E2F3064A10036CDAF /* IconMaktabah.icon */,
 				4BF392EB2EFCC15700460756 /* Localizable.xcstrings */,
+				4B22B2F02F7E3BD300741EEC /* PrivacyInfo.xcprivacy */,
 				F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		4B33CCA42EEEF0EB00CCAE59 /* Third-Party */ = {
-			isa = PBXGroup;
-			children = (
-				4B33CCA62EEEF10300CCAE59 /* lib */,
-				4B33CCA52EEEF0FC00CCAE59 /* include */,
-			);
-			path = "Third-Party";
-			sourceTree = "<group>";
-		};
-		4B33CCA52EEEF0FC00CCAE59 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				4B33CCA72EEEF12000CCAE59 /* zstd.h */,
-				4B33CCAC2EEEF2CB00CCAE59 /* zstd_errors.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		4B33CCA62EEEF10300CCAE59 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				4B33CCA82EEEF12900CCAE59 /* libzstd.dylib */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		4B4C97072F1EFC310051503E /* Managers */ = {
@@ -736,7 +695,6 @@
 				4B3202242EDAFE85003B95D1 /* Sources */,
 				4B3202252EDAFE85003B95D1 /* Frameworks */,
 				4B3202262EDAFE85003B95D1 /* Resources */,
-				4BA3936F2EF15F3300736DFF /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -745,6 +703,7 @@
 			name = Maktabah;
 			packageProductDependencies = (
 				4B32024B2EDB12B2003B95D1 /* SQLite */,
+				4B88322E2F7EB3A7004C6213 /* libzstd */,
 			);
 			productName = maktab;
 			productReference = 4B3202282EDAFE85003B95D1 /* Maktabah.app */;
@@ -778,6 +737,7 @@
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
 				4B32024A2EDB12B2003B95D1 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
 			);
 			productRefGroup = 4B3202292EDAFE85003B95D1 /* Products */;
 			projectDirPath = "";
@@ -799,6 +759,7 @@
 				4BF392BF2EFC9AB800460756 /* SearchSidebarVC.xib in Resources */,
 				4B32022E2EDAFE88003B95D1 /* Assets.xcassets in Resources */,
 				4B3AFA122F76DB1000FB9C05 /* UthmanTN1-Ver10.otf in Resources */,
+				4B22B2F12F7E3BD300741EEC /* PrivacyInfo.xcprivacy in Resources */,
 				F349073F2F3064A10036CDAF /* IconMaktabah.icon in Resources */,
 				4BA726962EFC72E6003CA0ED /* LibraryVC.xib in Resources */,
 				4BA726A62EFC7B38003CA0ED /* OptionSearchVC.xib in Resources */,
@@ -920,6 +881,7 @@
 				4B6100ED2EFA773C00CCBED6 /* Quran.swift in Sources */,
 				4BBCC9962F72C8870020D3CA /* SplitVCAccessoryItem.swift in Sources */,
 				4B5EC2992EE334C600991F39 /* ResultsHandler.swift in Sources */,
+				4B9C83062F7EAE1C00CE1800 /* ZstdShim.swift in Sources */,
 				4B03185F2F41E7BD00CB1677 /* SplitVC.swift in Sources */,
 				4B65CCB82EE059B60085CEB4 /* OptionSearchVC.swift in Sources */,
 				4B0139E22EEB281C00424CFA /* BookPageCache.swift in Sources */,
@@ -1103,6 +1065,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1169,6 +1132,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1196,17 +1160,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = IconMaktabah;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_ENTITLEMENTS = Source/Maktabah.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
-				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
 				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
 				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
@@ -1214,11 +1180,12 @@
 				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
 				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/zstd/include";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: dev.kbcdrn@gmail.com";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
@@ -1227,19 +1194,20 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Source/Third-Party/lib",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-lzstd";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Source/Add-On View/Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1250,17 +1218,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = IconMaktabah;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Source/Maktabah.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
-				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
 				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
 				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
@@ -1268,12 +1238,13 @@
 				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
 				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/zstd/include";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: dev.kbcdrn@gmail.com";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
@@ -1282,19 +1253,20 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Source/Third-Party/lib",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 2.0;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-lzstd";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Source/Add-On View/Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1331,6 +1303,14 @@
 				version = 0.15.3;
 			};
 		};
+		4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/zstd.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1338,6 +1318,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4B32024A2EDB12B2003B95D1 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
 			productName = SQLite;
+		};
+		4B88322E2F7EB3A7004C6213 /* libzstd */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */;
+			productName = libzstd;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,13 +1,22 @@
 {
-  "originHash" : "4f474ecbe8becac6410a5256b00888665e0bce65fcd3e116504aa00dfe16fa99",
+  "originHash" : "75873c644a880b841e8c8a22916236a37ec50ea8974d00a120947c7a2dcc879a",
   "pins" : [
     {
       "identity" : "sqlite.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bismillah-100/SQLite.swift.git",
+      "location" : "https://github.com/stephencelis/SQLite.swift.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "964c300fb0736699ce945c9edb56ecd62eba27a3"
+        "revision" : "a95fc6df17d108bd99210db5e8a9bac90fe984b8",
+        "version" : "0.15.3"
+      }
+    },
+    {
+      "identity" : "zstd",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/facebook/zstd.git",
+      "state" : {
+        "revision" : "f8745da6ff1ad1e7bab384bd1f9d742439278e99",
+        "version" : "1.5.7"
       }
     }
   ],
