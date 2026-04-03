@@ -11,7 +11,9 @@ import Network
 
 enum BookDownloadError: LocalizedError {
     case invalidBaseURL
+    case bookNotAvailable(bookId: Int)
     case invalidResponse
+    case indexRequestFailed(statusCode: Int)
     case httpStatus(bookId: Int, statusCode: Int)
     case downloadFailed(bookId: Int)
     case decompressionFailed(bookId: Int, reason: String)
@@ -21,8 +23,12 @@ enum BookDownloadError: LocalizedError {
         switch self {
         case .invalidBaseURL:
             return String(localized: "error.invalidBaseURL")
+        case .bookNotAvailable(let bookId):
+            return "Book \(bookId) is not available in the download index."
         case .invalidResponse:
             return String(localized: "error.invalidResponse")
+        case .indexRequestFailed(let statusCode):
+            return "Index request failed with HTTP status \(statusCode)."
         case .httpStatus(let bookId, let statusCode):
             return String(localized: "error.httpStatus.\(bookId).\(statusCode)")
         case .downloadFailed(let bookId):
@@ -131,7 +137,7 @@ final class BookDownloadManager {
 
         let candidates = await candidateURLs(for: bookId)
         guard !candidates.isEmpty else {
-            throw BookDownloadError.invalidBaseURL
+            throw BookDownloadError.bookNotAvailable(bookId: bookId)
         }
         var lastError: Error?
 
@@ -302,7 +308,7 @@ actor BookDownloadIndexCache {
     private var cachedEntries: [Int: BundleBookIndexEntry] = [:]
     private var lastFetch: Date?
     private var inFlight: Task<[Int: BundleBookIndexEntry], Error>?
-    private let ttl: TimeInterval = 60 * 60
+    private let ttl: TimeInterval = 60 * 60 * 24
     private let etagKey = "book_index_etag"
     private let lastModifiedKey = "book_index_last_modified"
 
@@ -359,52 +365,41 @@ actor BookDownloadIndexCache {
         }
 
         let task = Task { () throws -> [Int: BundleBookIndexEntry] in
-            var request = URLRequest(url: indexURL)
-            request.cachePolicy = .reloadIgnoringLocalCacheData
-
             let defaults = UserDefaults.standard
-            if let etag = defaults.string(forKey: etagKey) {
-                request.setValue(etag, forHTTPHeaderField: "If-None-Match")
-            }
-            if let lastModified = defaults.string(forKey: lastModifiedKey) {
-                request.setValue(lastModified, forHTTPHeaderField: "If-Modified-Since")
-            }
+            let (initialData, initialHTTP) = try await performIndexRequest(
+                indexURL: indexURL,
+                urlSession: urlSession,
+                includeValidators: true
+            )
 
-            let (data, response) = try await urlSession.data(for: request)
-            guard let http = response as? HTTPURLResponse else {
-                throw BookDownloadError.invalidResponse
-            }
-
-            if http.statusCode == 304 {
+            if initialHTTP.statusCode == 304 {
                 if cachedEntries.isEmpty {
                     loadCachedIndexIfNeeded()
                 }
-                guard !cachedEntries.isEmpty else {
-                    throw BookDownloadError.invalidResponse
+                if !cachedEntries.isEmpty {
+                    return cachedEntries
                 }
-                return cachedEntries
+
+                defaults.removeObject(forKey: etagKey)
+                defaults.removeObject(forKey: lastModifiedKey)
+
+                let (retryData, retryHTTP) = try await performIndexRequest(
+                    indexURL: indexURL,
+                    urlSession: urlSession,
+                    includeValidators: false
+                )
+                return try decodeAndCacheEntries(
+                    from: retryData,
+                    http: retryHTTP,
+                    defaults: defaults
+                )
             }
 
-            guard (200..<300).contains(http.statusCode) else {
-                throw BookDownloadError.invalidResponse
-            }
-
-            let decoder = JSONDecoder()
-            let entries = try decoder.decode([BundleBookIndexEntry].self, from: data)
-            var mapped: [Int: BundleBookIndexEntry] = [:]
-            mapped.reserveCapacity(entries.count)
-            for entry in entries {
-                mapped[entry.bkid] = entry
-            }
-
-            if let etag = http.value(forHTTPHeaderField: "ETag") {
-                defaults.set(etag, forKey: etagKey)
-            }
-            if let lastModified = http.value(forHTTPHeaderField: "Last-Modified") {
-                defaults.set(lastModified, forKey: lastModifiedKey)
-            }
-            saveCachedIndex(data: data)
-            return mapped
+            return try decodeAndCacheEntries(
+                from: initialData,
+                http: initialHTTP,
+                defaults: defaults
+            )
         }
 
         inFlight = task
@@ -423,6 +418,58 @@ actor BookDownloadIndexCache {
     private func cacheFileURL() -> URL? {
         guard let cachePath = AppConfig.archiveCachePath else { return nil }
         return URL(fileURLWithPath: cachePath).appendingPathComponent("index.json")
+    }
+
+    private func performIndexRequest(
+        indexURL: URL,
+        urlSession: URLSession,
+        includeValidators: Bool
+    ) async throws -> (Data, HTTPURLResponse) {
+        var request = URLRequest(url: indexURL)
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+
+        if includeValidators {
+            let defaults = UserDefaults.standard
+            if let etag = defaults.string(forKey: etagKey) {
+                request.setValue(etag, forHTTPHeaderField: "If-None-Match")
+            }
+            if let lastModified = defaults.string(forKey: lastModifiedKey) {
+                request.setValue(lastModified, forHTTPHeaderField: "If-Modified-Since")
+            }
+        }
+
+        let (data, response) = try await urlSession.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw BookDownloadError.invalidResponse
+        }
+        return (data, http)
+    }
+
+    private func decodeAndCacheEntries(
+        from data: Data,
+        http: HTTPURLResponse,
+        defaults: UserDefaults
+    ) throws -> [Int: BundleBookIndexEntry] {
+        guard (200..<300).contains(http.statusCode) else {
+            throw BookDownloadError.indexRequestFailed(statusCode: http.statusCode)
+        }
+
+        let decoder = JSONDecoder()
+        let entries = try decoder.decode([BundleBookIndexEntry].self, from: data)
+        var mapped: [Int: BundleBookIndexEntry] = [:]
+        mapped.reserveCapacity(entries.count)
+        for entry in entries {
+            mapped[entry.bkid] = entry
+        }
+
+        if let etag = http.value(forHTTPHeaderField: "ETag") {
+            defaults.set(etag, forKey: etagKey)
+        }
+        if let lastModified = http.value(forHTTPHeaderField: "Last-Modified") {
+            defaults.set(lastModified, forKey: lastModifiedKey)
+        }
+        saveCachedIndex(data: data)
+        return mapped
     }
 
     private func loadCachedIndexIfNeeded() {
