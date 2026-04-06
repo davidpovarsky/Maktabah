@@ -8,6 +8,9 @@
 
 import Cocoa
 import SwiftUI
+#if DIRECT_DISTRIBUTION
+import Sparkle
+#endif
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -26,6 +29,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     fileprivate var windowObserver: NSObjectProtocol?
+
+    #if DIRECT_DISTRIBUTION
+    lazy var updaterController = SPUStandardUpdaterController(
+        startingUpdater: true,
+        updaterDelegate: self,
+        userDriverDelegate: nil
+    )
+    #endif
 
     override init() {
         super.init()
@@ -67,9 +78,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorDark : 3])
         UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorLight : 0])
         UserDefaults.standard.register(defaults: ["annotationsLayoutDirection": 1])
-        // AppUpdate UserDefaults
-        UserDefaults.standard.register(defaults: ["SuppressUpdateCheck": true])
-        // Insert code here to initialize your application
+
         Task.detached(priority: .low) { [unowned self] in
             await Task.yield()
             await checkAppUpdates(true)

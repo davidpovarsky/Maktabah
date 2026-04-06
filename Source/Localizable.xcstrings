@@ -221,6 +221,7 @@
     },
     "Application Update" : {
       "comment" : "Judul NSAlert untuk update aplikasi",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -396,6 +397,7 @@
       }
     },
     "Check at Start" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1137,6 +1139,7 @@
       }
     },
     "Download Update" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1892,6 +1895,7 @@
       }
     },
     "Later" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2135,6 +2139,7 @@
       }
     },
     "New Version %@ available" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2888,6 +2893,7 @@
     },
     "This is the latest version" : {
       "comment" : "Aplikasi sudah versi terbaru",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2991,6 +2997,12 @@
         }
       }
     },
+    "Updates are managed by the App Store" : {
+
+    },
+    "Use the App Store to install the latest version of this build." : {
+
+    },
     "Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder." : {
       "localizations" : {
         "ar" : {
@@ -3022,6 +3034,7 @@
       "shouldTranslate" : false
     },
     "View Details" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

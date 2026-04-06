@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "2640"
-   version = "2.2">
+   version = "2.1">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B3202272EDAFE85003B95D1"
-               BuildableName = "Maktabah.app"
-               BlueprintName = "Maktabah"
-               ReferencedContainer = "container:Maktabah.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "NO"
@@ -71,9 +57,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B3202272EDAFE85003B95D1"
+            BlueprintIdentifier = "4B7C90A02F83494200454BE1"
             BuildableName = "Maktabah.app"
-            BlueprintName = "Maktabah"
+            BlueprintName = "Maktabah-Direct"
             ReferencedContainer = "container:Maktabah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -88,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B3202272EDAFE85003B95D1"
+            BlueprintIdentifier = "4B7C90A02F83494200454BE1"
             BuildableName = "Maktabah.app"
-            BlueprintName = "Maktabah"
+            BlueprintName = "Maktabah-Direct"
             ReferencedContainer = "container:Maktabah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

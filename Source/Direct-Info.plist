@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUFeedURL</key>
+	<string>https://bismillah-100.github.io/Maktabah/appcast.xml</string>
+	<key>SUEnableInstallerLauncherService</key>
+	<true/>
+	<key>SUPublicEDKey</key>
+	<string>0CmyvFiWdVbs95tlTGWmSQcEcknDNjYxJYUBJTnaO2A=</string>
+</dict>
+</plist>

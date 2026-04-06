@@ -15,6 +15,7 @@ struct AppConfig {
     static let bookDownloadBaseURLKey = "book_download_base_url"
     static let bookReleaseBaseURLKey = "book_release_base_url"
     static let bookIndexURLKey = "book_index_url"
+    static let appcastURLKey = "appcast_url"
 
     // MARK: - Archive Cache Path (untuk Bundle Mode)
     /// Path untuk archive files saat menggunakan Bundle Mode
@@ -216,6 +217,20 @@ struct AppConfig {
             return url
         }
         return URL(string: "https://raw.githubusercontent.com/bismillah-100/Kitab/main/index.json")
+    }
+
+    // MARK: - App Updates
+    static var appcastURL: URL? {
+        if let raw = UserDefaults.standard.string(forKey: appcastURLKey)?
+            .trimmingCharacters(in: .whitespacesAndNewlines),
+           !raw.isEmpty,
+           let url = URL(string: raw) {
+            return url
+        }
+
+        return URL(
+            string: "https://bismillah-100.github.io/Maktabah/appcast.xml"
+        )
     }
 
     static var appSupportDir: URL? {
