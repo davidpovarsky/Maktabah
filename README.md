@@ -3,15 +3,15 @@
   <a href="https://github.com/bismillah-100/Maktabah/releases/latest">
     <img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8FAPPLICATION_-latest-blue" alt="Download">
   </a>
+  <a>
+    <img src="https://img.shields.io/badge/%E2%9C%94%20NOTARIZED_-v2+-orange" alt=“NOTARIZED”>
+  </a>
   <a href="https://github.com/bismillah-100/Maktabah/releases">
     <img src="https://img.shields.io/github/downloads/bismillah-100/Maktabah/total?label=DOWNLOADED&color=purple" alt="DOWNLOADED">
   </a>
-  <a href="https://drive.google.com/file/d/1lAinUQ9Eh_W4_4r3MNfX84Ee3AOCVt_B/view?usp=sharing">
-    <img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8FDATABASE_-11GB-orange" alt="Database">
-  </a>
-  <a href="#">
+  <a>
     <img src="https://img.shields.io/badge/required-macOS_13%2B-darkgreen" alt="Requirement">
-  </a>
+    </a>
 </p>
 
 A free application to access the Maktabah Syamilah library on macOS.
@@ -24,85 +24,19 @@ Created as Sadaqah Jariyah — may it be beneficial for studying religious scien
 
 ---
 
-## License
+## Installation
 
-This project is licensed under the [GNU General Public License v3.0](LICENSE).
-
-You are free to use, modify, and distribute this application under the terms of the GPL v3.
-See the [LICENSE](LICENSE) file for full details.
-
-### Third-Party Fonts
-
-- **KFGQPC Uthman Taha Naskh** — This font can be distributed freely for both commercial and non-commercial use, according to the Arabic license terms available here: http://fonts.qurancomplex.gov.sa/?page_id=40.
-- **Lateef, Scheherazade New** — © SIL International, licensed under the [SIL Open Font License 1.1](https://openfontlicense.org).
-
-### Third-Party Libraries
-
-- **zstd** — © Meta Platforms, Inc., licensed under the [BSD 3-Clause License](https://github.com/facebook/zstd/blob/dev/LICENSE).
-
----
-
-## Installation Guide
-
-### 1. Download the Database
->This step is required only for v1.4.2 and earlier. Newer versions utilize on-demand book downloading.
-
-The library database (approx. 11GB) must be downloaded separately.
-- Download from [Google Drive](https://drive.google.com/file/d/1lAinUQ9Eh_W4_4r3MNfX84Ee3AOCVt_B/view?usp=sharing).
-- Extract the downloaded file to any folder of your choice.
-
-### 2. Install the Application
-- Download the [Application](https://github.com/bismillah-100/Maktabah/releases/latest).
-- Open the .zip file.
-- Drag Maktabah.app into your Applications folder.
-- Choose the location of the Database folder that has been downloaded and extracted.*
->*Required only for v1.4.2 and earlier.
-
-### 3. Launch the Application
-- Open Maktabah Syamilah from your Applications folder.
-- First-time launch: Right-click the app → select "Open" (required due to ad-hoc signing).
-- A dialog will appear asking you to locate the database.*
-- Select the database folder you extracted earlier.*
-- The app is now ready to use!
-
->*Required only for v1.4.2 and earlier.
-
----
-
-## Troubleshooting
-
-**"App cannot be opened because the developer cannot be identified"**
-
-Option 1 — Right-click:
-- Right-click on the app → select "Open".
-- Click "Open" again in the dialog box that appears.
-- This step is only required once.
-
-Option 2 — System Settings:
-- Open **System Settings** → **Privacy & Security**.
-- Scroll down and click **"Open Anyway"** next to the Maktabah entry.
-- This step is only required once.
-
-**"Database not found"**
-- Ensure you have downloaded the full 11GB database.
-- Extract all files completely to any folder.
-- When the app prompts for the database location, select the folder where the extracted files are stored.
-
-**App crashes or errors**
-- Ensure your macOS version is Latest Ventura or later.
-- Restart the application.
-- If the error persists, please [open an Issue](https://github.com/bismillah-100/Maktabah/issues/new).
+- **v2.0 and later** — [docs/v2.md](docs/v2.md)
+- **v1.4.2 and earlier** — [docs/v1.md](docs/v1.md)
 
 ---
 
 ## Features
-
+- Notarized.
 - Complete access to the Maktabah Syamilah library.
 - Full-Text Search capabilities.
-- Annotations.
-- Highlight.
-- Multi tab.
-- Multi window.
+- Annotations & Highlight.
+- Multi tab & window.
 - View Customization.
 - Books Update.
 - Light/Dark Mode Support.
@@ -122,13 +56,28 @@ This application is currently in early development. Your feedback is highly appr
 
 Contributions are welcome and greatly appreciated!
 
-Please read the [Contributing Guide](CONTRIBUTING.md) for details on:  
+Please read the [Contributing Guide](CONTRIBUTING.md) for details on:
 - Reporting issues
 - Development workflow
 - Coding style (SwiftFormat rules)
 - Milestones & releases
 
 > Requires Xcode 26 or later.
+
+---
+
+## License
+
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
+
+### Third-Party Fonts
+
+- **KFGQPC Uthman Taha Naskh** — freely distributable; see http://fonts.qurancomplex.gov.sa/?page_id=40.
+- **Lateef, Scheherazade New** — © SIL International, licensed under the [SIL Open Font License 1.1](https://openfontlicense.org).
+
+### Third-Party Libraries
+
+- **zstd** — © Meta Platforms, Inc., licensed under the [BSD 3-Clause License](https://github.com/facebook/zstd/blob/dev/LICENSE).
 
 ---
 
