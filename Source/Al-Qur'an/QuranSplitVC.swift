@@ -118,13 +118,18 @@ class QuranSplitVC: NSSplitViewController {
         _ book: BooksData,
         manager: QuranDataManager
     ) async throws {
-        if !AppConfig.isUsingBundleMode {
+        func jumpToVerses() {
             manager.connect(to: book)
-            return
+            if let (aya, surah) = manager.selectedQuran,
+               let surahNode = manager.surahNodes.first(where: { $0.id == surah }),
+               let ayatQuran = sidebarSurah.ayaLookup[surah]?[aya] {
+                textVC.didSelectAya(surahNode, aya: ayatQuran)
+            }
         }
 
-        guard !BookArchiveIntegrator.shared.isBookIntegrated(book) else {
-            manager.connect(to: book)
+        if !AppConfig.isUsingBundleMode ||
+            BookArchiveIntegrator.shared.isBookIntegrated(book) {
+            jumpToVerses()
             return
         }
 
@@ -145,13 +150,7 @@ class QuranSplitVC: NSSplitViewController {
             }
         )
 
-        manager.connect(to: book)
-
-        if let (aya, surah) = manager.selectedQuran,
-           let surahNode = manager.surahNodes.first(where: { $0.id == surah }),
-           let ayatQuran = sidebarSurah.ayaLookup[surah]?[aya] {
-            textVC.didSelectAya(surahNode, aya: ayatQuran)
-        }
+        jumpToVerses()
     }
 
     static func addNSView(to view: NSView) {
