@@ -353,6 +353,7 @@ class IbarotTextView: NSTextView {
             #selector(NSTextView.stopSpeaking(_:)),
             #selector(NSText.showGuessPanel(_:)),
             #selector(NSTextView.orderFrontSubstitutionsPanel(_:)),
+            #selector(NSTextView.pasteAsPlainText(_:)),
         ]
 
         let identifierKeywords = [
@@ -396,13 +397,16 @@ class IbarotTextView: NSTextView {
             return
         }
 
+        let dict = "character.book.closed"
+        let char = "character.bubble"
+
         let iconMap: [(String, String)] = [
-            ("Look", "text.magnifyingglass.rtl"),
-            ("Cari", "text.magnifyingglass.rtl"),
-            ("بحث", "text.magnifyingglass.rtl"),
-            ("Translate", "character.bubble"),
-            ("Terjemah", "character.bubble"),
-            ("ترجمة", "character.bubble"),
+            ("Look", dict),
+            ("Cari", dict),
+            ("بحث", dict),
+            ("Translate", char),
+            ("Terjemah", char),
+            ("ترجمة", char),
         ]
 
         // Public selector
@@ -580,8 +584,11 @@ class IbarotTextView: NSTextView {
 
         // Find and add share item
         if let shareItem = filtered.first(where: {
-            $0.title.localizedStandardContains("Share")
+            $0.title.localizedStandardContains("Share") ||
+            $0.title.localizedStandardContains("Bagikan") ||
+            $0.title.localizedStandardContains("مشاركة")
         }) {
+            shareItem.image = NSImage(systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)
             menu.addItem(.separator())
             menu.addItem(shareItem)
             menu.addItem(.separator())
@@ -590,7 +597,8 @@ class IbarotTextView: NSTextView {
         // Add remaining items
         let remaining = filtered.filter { item in
             ![
-                "Share", "Copy", "Salin", "نسخ",
+                "Share", "Bagikan", "مشاركة",
+                "Copy", "Salin", "نسخ",
                 "Look", "Cari", "بحث",
                 "Translate", "Terjemah", "ترجمة",
             ].contains(where: { item.title.localizedStandardContains($0) })
