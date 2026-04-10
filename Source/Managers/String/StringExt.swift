@@ -7,6 +7,8 @@
 
 import AppKit
 
+typealias CleanedTextAndFootnoteRange = (result: CleanedTextResult, footnoteRanges: [NSRange])
+
 enum KutubMode {
     case normal        // pola: ( ... )
     case mulakhos      // pola: ... tanpa kurung
@@ -36,16 +38,12 @@ extension String {
         String(unicodeScalars.filter { !$0.isArabicHarakat })
     }
 
-    func cleanedTextWithRanges() -> CleanedTextResult {
+    func cleanedTextWithRanges() -> CleanedTextAndFootnoteRange {
         var finalString = ""
         finalString.reserveCapacity(self.count)
 
         var coloredRanges: [NSRange] = []
         coloredRanges.reserveCapacity(8)
-
-        var curlyStartLocations: [Int] = []
-        var squareStartLocations: [Int] = []
-        var parenthesisStartLocations: [Int] = []
 
         let removableCharacters: Set<Character> = ["¬", "§"]
         var index = startIndex
@@ -69,39 +67,18 @@ extension String {
 
             switch character {
             case "{":
-                let startLocation = finalString.utf16.count
+                let symbolStart = finalString.utf16.count
                 finalString += replacementL
-                curlyStartLocations.append(startLocation)
+                coloredRanges.append(NSRange(location: symbolStart, length: replacementL.utf16.count))
             case "}":
-                if let startLocation = curlyStartLocations.popLast() {
-                    let length = (finalString.utf16.count - startLocation) + replacementR.utf16.count
-                    if length >= 0 {
-                        coloredRanges.append(NSRange(location: startLocation, length: length))
-                    }
-                }
+                let symbolStart = finalString.utf16.count
                 finalString += replacementR
-            case "[":
-                squareStartLocations.append(finalString.utf16.count)
+                coloredRanges.append(NSRange(location: symbolStart, length: replacementR.utf16.count))
+            case "(", ")", "[", "]", "«", "»", ".", "،", ",", ":", "!", "/", "؟", "?", "\"", ";", "؛", "|":
+                // Simbol yang selalu di-highlight di mana saja
+                let symbolStart = finalString.utf16.count
                 finalString.append(character)
-            case "]":
-                if let startLocation = squareStartLocations.popLast() {
-                    let length = (finalString.utf16.count - startLocation) + 1
-                    if length > 0 {
-                        coloredRanges.append(NSRange(location: startLocation, length: length))
-                    }
-                }
-                finalString.append(character)
-            case "(":
-                parenthesisStartLocations.append(finalString.utf16.count)
-                finalString.append(character)
-            case ")":
-                if let startLocation = parenthesisStartLocations.popLast() {
-                    let length = (finalString.utf16.count - startLocation) + 1
-                    if length > 0 {
-                        coloredRanges.append(NSRange(location: startLocation, length: length))
-                    }
-                }
-                finalString.append(character)
+                coloredRanges.append(NSRange(location: symbolStart, length: 1))
             default:
                 finalString.append(character)
             }
@@ -109,7 +86,70 @@ extension String {
             index = self.index(after: index)
         }
 
-        return CleanedTextResult(text: finalString, coloredRanges: coloredRanges)
+        // Post-process: highlight pola kontekstual (hanya di awal baris)
+        let structural = finalString.structuralHighlightRanges()
+        coloredRanges += structural.colored
+
+        return CleanedTextAndFootnoteRange(
+            CleanedTextResult(
+                text: finalString,
+                coloredRanges: coloredRanges
+            ),
+            structural.footnote
+        )
+    }
+
+    /// Highlight pola struktural di awal baris:
+    /// - `(...)` → seluruh konten termasuk kurung
+    /// - `<token> -` → seluruh token + `-`
+    /// - `___+` → garis pemisah footnote; teks setelahnya masuk footnoteRanges
+    private func structuralHighlightRanges() -> (colored: [NSRange], footnote: [NSRange]) {
+        guard !isEmpty else { return ([], []) }
+
+        enum Cached {
+            // `(...)` di awal baris — highlight seluruh match termasuk kurung dan isi
+            static let label = try? NSRegularExpression(
+                pattern: #"^\s*\([^)]+\)"#,
+                options: .anchorsMatchLines
+            )
+            // `<token> -` di awal baris — highlight token + dash saja (tidak seluruh baris)
+            static let closer = try? NSRegularExpression(
+                pattern: #"^\s*\S+\s*-"#,
+                options: .anchorsMatchLines
+            )
+            // Garis pemisah `___+`
+            static let separator = try? NSRegularExpression(pattern: #"_{3,}"#)
+        }
+
+        var colored: [NSRange] = []
+        var footnote: [NSRange] = []
+        let ns = self as NSString
+        let fullRange = NSRange(location: 0, length: ns.length)
+
+        // Pola 1: `(١)` / `(a)` / `(أ)` di awal baris — seluruh match
+        Cached.label?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match else { return }
+            colored.append(match.range)
+        }
+
+        // Pola 2: `٢٢ -` / `أ-` di awal baris — seluruh match
+        Cached.closer?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match else { return }
+            colored.append(match.range)
+        }
+
+        // Pola 3: garis pemisah `___+` — highlight garis, teks setelahnya = footnote
+        Cached.separator?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match else { return }
+            colored.append(match.range)
+            // Footnote: dari akhir separator sampai akhir string
+            let afterSep = match.range.location + match.range.length
+            if afterSep < ns.length {
+                footnote.append(NSRange(location: afterSep, length: ns.length - afterSep))
+            }
+        }
+
+        return (colored, footnote)
     }
 
     func cleanedText() -> String {
@@ -274,10 +314,12 @@ extension String {
         let arabicDigits = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"]
         var result = self
         
+
         for (index, digit) in arabicDigits.enumerated() {
             result = result.replacingOccurrences(of: String(index), with: digit)
         }
         
+
         return result
     }
 }

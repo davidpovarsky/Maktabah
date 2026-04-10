@@ -12,11 +12,14 @@ class IbarotTextView: NSTextView {
     let renderer = ArabicTextRenderer()  // ← NEW
     let annotationCoordinator = AnnotationCoordinator()  // ← NEW
 
+    private(set) var currentRenderResult: ArabicRenderResult?
+    private(set) var footnoteRanges: [NSRange] = []
     private var annotationObserver: NSObjectProtocol?
     private var annotationClickSetting: NSObjectProtocol?
 
     override var string: String {
         didSet {
+            currentRenderResult = nil
             let attributedString = NSMutableAttributedString(
                 string: string,
                 attributes: state.defaultAttributes
@@ -219,6 +222,7 @@ class IbarotTextView: NSTextView {
     }
 
     func loadText(_ text: String) {
+        currentRenderResult = nil
         let attributedString = NSMutableAttributedString(
             string: text,
             attributes: state.defaultAttributes
@@ -227,16 +231,18 @@ class IbarotTextView: NSTextView {
     }
 
     func loadIbarotText(_ text: String, color: NSColor = .header) {
-        let attributedString = renderer.render(
+        let renderResult = renderer.render(
             text: text,
             highlightColor: color,
             showHarakat: state.showHarakat
         )
+        currentRenderResult = renderResult
+        footnoteRanges = renderResult.footnoteRanges
 
         guard let ts = textStorage, let lm = layoutManager else { return }
 
         ts.beginEditing()
-        ts.setAttributedString(attributedString)
+        ts.setAttributedString(renderResult.attributedString)
 
         if let bkId = self.bkId, let contentId = self.contentId {
             let anns = AnnotationManager.shared.loadAnnotations(
@@ -246,7 +252,8 @@ class IbarotTextView: NSTextView {
             renderer.applyAnnotations(
                 anns,
                 to: ts,
-                showHarakat: state.showHarakat
+                showHarakat: state.showHarakat,
+                replacementEvents: renderResult.replacementEvents
             )
         }
 
@@ -310,6 +317,7 @@ class IbarotTextView: NSTextView {
         print("attributedString:", attributedString.string)
         #endif
 
+        currentRenderResult = nil
         textStorage?.setAttributedString(attributedString)
     }
 
@@ -444,7 +452,7 @@ class IbarotTextView: NSTextView {
         // Check di lokasi klik dulu
         if let charIndex = characterIndexForPoint(pointInView),
             let existing = annotationCoordinator.findAnnotation(
-                at: charIndex,
+                at: sourceOffset(forDisplayedOffset: charIndex),
                 bkId: bkId,
                 contentId: contentId,
                 showHarakat: state.showHarakat
@@ -468,10 +476,11 @@ class IbarotTextView: NSTextView {
             extraItems.append(buildDeleteItem(existing))
         } else {
             // Jika tidak ada di klik, cek selection dengan logic yang lebih baik
-            let sel = self.selectedRange()
-            if sel.length > 0,
+            let displayedSelection = self.selectedRange()
+            let selection = sourceRange(forDisplayedRange: displayedSelection)
+            if selection.length > 0,
                 let existing = annotationCoordinator.findBestAnnotation(
-                    overlapping: sel,
+                    overlapping: selection,
                     bkId: bkId,
                     contentId: contentId,
                     showHarakat: state.showHarakat
@@ -479,13 +488,13 @@ class IbarotTextView: NSTextView {
             {
                 if let note = textStorage?.attribute(
                     NSAttributedString.Key("annotationID"),
-                    at: sel.location,
+                    at: displayedSelection.location,
                     effectiveRange: nil
                 ) as? Int64 {
                     extraItems.append(
                         buildEditNoteItem(
                             noteId: note,
-                            charIndex: sel.location,
+                            charIndex: displayedSelection.location,
                             annotation: existing
                         )
                     )
@@ -630,7 +639,7 @@ class IbarotTextView: NSTextView {
         if let ts = textStorage {
             ts.beginEditing()
 
-            let range = state.showHarakat ? ann.rangeDiacritics : ann.range
+            let range = displayedRange(for: ann)
             removeAttributesForRange(range, in: ts)
 
             ts.endEditing()
@@ -659,9 +668,11 @@ class IbarotTextView: NSTextView {
             let part = part
         else { return }
 
+        let sourceSelection = sourceRange(forDisplayedRange: selectedRange)
+
         // Cek apakah sudah ada anotasi di range ini
         if let annotation = annotationCoordinator.findBestAnnotation(
-            overlapping: selectedRange,
+            overlapping: sourceSelection,
             bkId: bkId,
             contentId: contentId,
             showHarakat: state.showHarakat
@@ -693,8 +704,8 @@ class IbarotTextView: NSTextView {
 
         // CREATE: Belum ada anotasi, buat baru
         let annotation = try annotationCoordinator.saveHighlight(
-            text: string,
-            range: selectedRange,
+            text: sourceTextForAnnotations(),
+            range: sourceSelection,
             color: color,
             bkId: bkId,
             contentId: contentId,
@@ -712,7 +723,8 @@ class IbarotTextView: NSTextView {
             renderer.applyAnnotations(
                 [annotation],
                 to: ts,
-                showHarakat: state.showHarakat
+                showHarakat: state.showHarakat,
+                replacementEvents: currentRenderResult?.replacementEvents ?? []
             )
         }
     }
@@ -744,8 +756,9 @@ class IbarotTextView: NSTextView {
     }
 
     @IBAction func annotateSelection(_ sender: Any?) {
-        let sel = self.selectedRange()
-        guard sel.length > 0,
+        let displayedSelection = self.selectedRange()
+        let selection = sourceRange(forDisplayedRange: displayedSelection)
+        guard selection.length > 0,
             let bkId, let contentId,
             let page, let part
         else { return }
@@ -753,13 +766,13 @@ class IbarotTextView: NSTextView {
         // Cek dulu apakah ada annotation yang sudah ada di cache untuk bkId/contentId
         // dan yang overlap dengan selection saat ini.
         if let existing = annotationCoordinator.findBestAnnotation(
-            overlapping: sel,
+            overlapping: selection,
             bkId: bkId,
             contentId: contentId,
             showHarakat: state.showHarakat
         ) {
             // Jika ada, buka editor untuk annotation yang sudah ada
-            let middleIndex = sel.location + (sel.length / 2)
+            let middleIndex = displayedSelection.location + (displayedSelection.length / 2)
             presentAnnotationEditorForNewAnnotation(
                 existing,
                 atCharIndex: middleIndex
@@ -770,13 +783,13 @@ class IbarotTextView: NSTextView {
         let calculator = ArabicRangeCalculator()
 
         // Tidak ada annotation existing -> buat baru
-        let middleIndex = sel.location + (sel.length / 2)
-        let ns = self.string as NSString
-        let selectedText = ns.substring(with: sel)
+        let middleIndex = displayedSelection.location + (displayedSelection.length / 2)
+        let ns = sourceTextForAnnotations() as NSString
+        let selectedText = ns.substring(with: selection)
         let (rangeWithDiacritics, rangeWithoutDiacritics) =
             calculator.calculateRanges(
-                for: sel,
-                in: string,
+                for: selection,
+                in: sourceTextForAnnotations(),
                 selectedText: selectedText,
                 diacriticsText: diacriticsIbarot,
                 showHarakat: state.showHarakat
@@ -792,7 +805,7 @@ class IbarotTextView: NSTextView {
             type: .highlight,
             note: nil,
             createdAt: Int64(Date().timeIntervalSince1970),
-            context: ns.substring(with: sel),
+            context: ns.substring(with: selection),
             page: page,
             part: part
         )
@@ -834,7 +847,8 @@ class IbarotTextView: NSTextView {
         renderer.applyAnnotations(
             anns,
             to: ts,
-            showHarakat: state.showHarakat
+            showHarakat: state.showHarakat,
+            replacementEvents: currentRenderResult?.replacementEvents ?? []
         )
 
         ts.endEditing()
@@ -885,6 +899,27 @@ class IbarotTextView: NSTextView {
         {
             presentAnnotationEditor(ann, atCharIndex: charIndex, in: self)
         }
+    }
+
+    func displayedRange(for annotation: Annotation) -> NSRange {
+        let range = state.showHarakat ? annotation.rangeDiacritics : annotation.range
+        return displayedRange(forStoredRange: range)
+    }
+
+    private func displayedRange(forStoredRange range: NSRange) -> NSRange {
+        currentRenderResult?.remapDisplayedRange(range) ?? range
+    }
+
+    private func sourceRange(forDisplayedRange range: NSRange) -> NSRange {
+        currentRenderResult?.remapSourceRange(range) ?? range
+    }
+
+    private func sourceOffset(forDisplayedOffset offset: Int) -> Int {
+        currentRenderResult?.sourceOffset(forDisplayedOffset: offset, affinity: .leading) ?? offset
+    }
+
+    private func sourceTextForAnnotations() -> String {
+        currentRenderResult?.sourceText ?? string
     }
 }
 

@@ -166,20 +166,28 @@ class IbarotTextVC: NSViewController {
             let defaults = UserDefaults.standard
 
             var fontSize = CGFloat(defaults.textViewFontSize)
-
             if fontSize == 0 { fontSize = defaultFontSize }
 
             let fontName = defaults.textViewFontName
 
-            if let font = NSFont(name: fontName, size: fontSize) {
-                textView.font = font
+            guard let baseFont = NSFont(name: fontName, size: fontSize),
+                  let textStorage = textView.textStorage
+            else { return }
 
-                // Update semua teks yang ada
-                if let textStorage = textView.textStorage {
-                    let range = NSRange(location: 0, length: textStorage.length)
-                    textStorage.addAttribute(.font, value: font, range: range)
+            let fullRange = NSRange(location: 0, length: textStorage.length)
+            let savedFootnoteRanges = textView.footnoteRanges
+
+            textStorage.beginEditing()
+            textStorage.addAttribute(.font, value: baseFont, range: fullRange)
+
+            if !savedFootnoteRanges.isEmpty {
+                let footnoteFont = NSFont(name: fontName, size: fontSize - 2) ?? baseFont.withSize(fontSize - 2)
+                for range in savedFootnoteRanges where range.location + range.length <= textStorage.length {
+                    textStorage.addAttribute(.font, value: footnoteFont, range: range)
                 }
             }
+            textStorage.endEditing()
+            textView.typingAttributes[.font] = baseFont
         } else {
             refreshCurrentPage()
         }
@@ -487,8 +495,7 @@ extension IbarotTextVC: NavigationDelegate {
 
     @MainActor
     func highlighAndScrollToAnns(_ ann: Annotation) {
-        let diacritics = TextViewState.shared.showHarakat
-        let range = diacritics ? ann.rangeDiacritics : ann.range
+        let range = textView.displayedRange(for: ann)
 
         textView.scrollRangeToVisible(range)
         Task { [weak self] in

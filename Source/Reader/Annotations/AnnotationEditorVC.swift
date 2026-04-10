@@ -221,7 +221,7 @@ extension IbarotTextView: AnnotationEditorDelegate {
                 guard delete.bkId == key.bkId,
                       delete.contentId == key.contentId
                 else { continue }
-                let range = TextViewState.shared.showHarakat ? delete.rangeDiacritics : delete.range
+                let range = displayedRange(for: delete)
                 // 1) Hapus atribut visual pada range yang dihapus
                 removeAttributesForRange(range, in: ts)
             }
