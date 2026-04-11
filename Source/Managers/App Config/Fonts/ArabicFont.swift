@@ -14,8 +14,7 @@ enum ArabicFont: String, CaseIterable {
     case lateefBold = "Lateef Bold"
     case geezaPro                    = "Geeza Pro"
     case damascus                    = "Damascus"
-    case alBayan                     = "Al Bayan"
-    case alNile                      = "Al Nile"
+    case alBayan                     = "Al Bayan Plain"
     case baghdad                     = "Baghdad"
     case nadeem                      = "Nadeem"
 }

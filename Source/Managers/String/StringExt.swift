@@ -17,7 +17,7 @@ enum KutubMode {
 extension String {
 
     private var replacementL: String {
-        if UserDefaults.standard.textViewFontName == "Al Bayan" ||
+        if UserDefaults.standard.textViewFontName == ArabicFont.alBayan.rawValue ||
             UserDefaults.standard.textViewFontName == "DecoType Naskh" {
             " ﴾"
         } else {
@@ -26,7 +26,7 @@ extension String {
     }
 
     private var replacementR: String {
-        if UserDefaults.standard.textViewFontName == "Al Bayan" ||
+        if UserDefaults.standard.textViewFontName == ArabicFont.alBayan.rawValue ||
             UserDefaults.standard.textViewFontName == "DecoType Naskh" {
             "﴿ "
         } else {
