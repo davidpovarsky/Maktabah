@@ -29,7 +29,7 @@ class SplitVCAccessoryItem: NSSplitViewItemAccessoryViewController {
             recentsAutosaveName: librarySavedName
         )
         search.placeholderString = libraryPlaceholder
-
+        ReusableFunc.setupSearchField(search)
         return search
     }()
 
@@ -39,15 +39,17 @@ class SplitVCAccessoryItem: NSSplitViewItemAccessoryViewController {
             recentsAutosaveName: librarySavedName
         )
         search.placeholderString = libraryPlaceholder
-
+        ReusableFunc.setupSearchField(search)
         return search
     }()
 
     lazy var authorSearchField: DSFSearchField = {
-        DSFSearchField(
+        let search = DSFSearchField(
             frame: .zero,
             recentsAutosaveName: "RecentsRowiSidebarSearchField"
         )
+        ReusableFunc.setupSearchField(search)
+        return search
     }()
 
     private weak var cachedSelectAllButton: NSButton?

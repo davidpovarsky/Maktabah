@@ -31,7 +31,6 @@ class ReusableFunc {
                 searchButton.alternateImage = customImage
             }
         }
-        searchField.focusRingType = .none
     }
 
     static func updateBuiltInRecents(with newQuery: String, in searchField: NSSearchField) {
