@@ -48,10 +48,13 @@ class AnnotationsVC: NSViewController {
         static let fieldPart = 104
         static let ascending = 201
         static let descending = 202
+        static let groupingBook = 301
+        static let groupingTag = 302
     }
 
     private var selectedSortField: AnnotationSortField = .createdAt
     private var selectedSortAscending = false
+    private var selectedGroupingMode: AnnotationGroupingMode = .book
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +94,7 @@ class AnnotationsVC: NSViewController {
         outlineView.delegate = dataSource
         outlineView.usesAutomaticRowHeights = true
         dataSource.updateSorting(field: selectedSortField, isAscending: selectedSortAscending)
+        dataSource.updateGrouping(mode: selectedGroupingMode)
     }
 
     @IBAction func searchFieldDidChange(_ sender: NSSearchField) {
@@ -146,6 +150,21 @@ class AnnotationsVC: NSViewController {
             item.tag = tag
             menu.addItem(item)
         }
+        menu.addItem(.separator())
+        let groupingItems: [(String, Int)] = [
+            ("Group by Book".localized, SortMenuTag.groupingBook),
+            ("Group by Tag".localized, SortMenuTag.groupingTag),
+        ]
+        for (title, tag) in groupingItems {
+            let item = NSMenuItem(
+                title: title,
+                action: #selector(selectGroupingMode(_:)),
+                keyEquivalent: ""
+            )
+            item.target = self
+            item.tag = tag
+            menu.addItem(item)
+        }
         sortingButton.image = NSImage(
             systemSymbolName: "arrow.up.arrow.down.circle",
             accessibilityDescription: "Sort"
@@ -170,6 +189,23 @@ class AnnotationsVC: NSViewController {
         applySorting()
     }
 
+    @objc private func selectGroupingMode(_ sender: NSMenuItem) {
+        switch sender.tag {
+        case SortMenuTag.groupingBook:
+            selectedGroupingMode = .book
+        case SortMenuTag.groupingTag:
+            selectedGroupingMode = .tag
+        default:
+            return
+        }
+
+        dataSource.updateGrouping(mode: selectedGroupingMode)
+        if !searchField.stringValue.isEmpty {
+            outlineView.expandItem(nil, expandChildren: true)
+        }
+        updateSortMenuState()
+    }
+
     private func applySorting() {
         dataSource.updateSorting(
             field: selectedSortField,
@@ -187,6 +223,10 @@ class AnnotationsVC: NSViewController {
         menu.item(
             withTag: selectedSortAscending
                 ? SortMenuTag.ascending : SortMenuTag.descending
+        )?.state = .on
+        menu.item(
+            withTag: selectedGroupingMode == .book
+                ? SortMenuTag.groupingBook : SortMenuTag.groupingTag
         )?.state = .on
         let fieldTag: Int = {
             switch selectedSortField {

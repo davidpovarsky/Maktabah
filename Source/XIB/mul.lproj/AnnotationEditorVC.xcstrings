@@ -72,6 +72,18 @@
           }
         }
       }
+    },
+    "OEi-nT-YGS.placeholderString" : {
+      "comment" : "Class = \"NSTokenFieldCell\"; placeholderString = \"Tags...\"; ObjectID = \"OEi-nT-YGS\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tags..."
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

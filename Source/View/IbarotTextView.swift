@@ -700,7 +700,8 @@ class IbarotTextView: NSTextView {
                 page: annotation.page,
                 part: annotation.part,
                 pageArb: annotation.pageArb,
-                partArb: annotation.partArb
+                partArb: annotation.partArb,
+                tags: annotation.tags
             )
 
             try AnnotationManager.shared.updateAnnotation(updated)
@@ -815,7 +816,8 @@ class IbarotTextView: NSTextView {
             createdAt: Int64(Date().timeIntervalSince1970),
             context: ns.substring(with: selection),
             page: page,
-            part: part
+            part: part,
+            tags: []
         )
 
         presentAnnotationEditorForNewAnnotation(ann, atCharIndex: middleIndex)

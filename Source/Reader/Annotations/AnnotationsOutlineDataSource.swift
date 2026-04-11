@@ -43,6 +43,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     // Simpan search text untuk re-apply filter setelah perubahan
     private var currentSearchText: String?
+    private(set) var groupingMode: AnnotationGroupingMode = .book
 
     let menu = NSMenu()
 
@@ -109,6 +110,14 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     }
 
     private func handleAnnotationChange(_ notification: Notification) {
+        if groupingMode == .tag {
+            if let searchText = currentSearchText, !searchText.isEmpty {
+                applySearchFilter(text: searchText)
+            }
+            outlineView?.reloadData()
+            return
+        }
+
         guard
             let userInfo = notification.userInfo,
             let changeTypeRaw = userInfo[AnnotationNotificationKeys.changeType] as? String,
@@ -148,24 +157,24 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             return
         }
 
-        let bookRow = outlineView.row(forItem: location.bookNode)
-        if bookRow == -1 {
+        let parentRow = outlineView.row(forItem: location.parentNode)
+        if parentRow == -1 {
             outlineView.insertItems(
-                at: IndexSet(integer: location.bookIndex),
+                at: IndexSet(integer: location.parentIndex),
                 inParent: nil,
                 withAnimation: .slideDown
             )
             return
         }
 
-        if outlineView.isItemExpanded(location.bookNode) {
+        if outlineView.isItemExpanded(location.parentNode) {
             outlineView.insertItems(
                 at: IndexSet(integer: location.annotationIndex),
-                inParent: location.bookNode,
+                inParent: location.parentNode,
                 withAnimation: .slideDown
             )
         } else {
-            outlineView.reloadItem(location.bookNode, reloadChildren: false)
+            outlineView.reloadItem(location.parentNode, reloadChildren: false)
         }
     }
 
@@ -232,15 +241,15 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     }
 
     private func findAnnotationLocation(in root: AnnotationNode?, annotationId: Int64) -> (
-        bookNode: AnnotationNode,
-        bookIndex: Int,
+        parentNode: AnnotationNode,
+        parentIndex: Int,
         annotationIndex: Int
     )? {
         guard let root else { return nil }
 
-        for (bookIndex, bookNode) in root.children.enumerated() {
-            if let annotationIndex = bookNode.children.firstIndex(where: { $0.annotation?.id == annotationId }) {
-                return (bookNode, bookIndex, annotationIndex)
+        for (parentIndex, parentNode) in root.children.enumerated() {
+            if let annotationIndex = parentNode.children.firstIndex(where: { $0.annotation?.id == annotationId }) {
+                return (parentNode, parentIndex, annotationIndex)
             }
         }
         return nil
@@ -264,6 +273,11 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     func updateSorting(field: AnnotationSortField, isAscending: Bool) {
         AnnotationManager.shared.updateSorting(field: field, isAscending: isAscending)
+    }
+
+    func updateGrouping(mode: AnnotationGroupingMode) {
+        groupingMode = mode
+        AnnotationManager.shared.updateGroupingMode(mode)
     }
 
     // MARK: - Export RTF
@@ -432,6 +446,9 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         // Ciri: item.annotation == nil (berdasarkan struktur data Anda)
         // =========================================================
         if item.annotation == nil {
+            if item.kind == .tag || item.kind == .untagged {
+                return
+            }
             // Opsional: Tambahkan Alert Konfirmasi di sini jika ingin lebih aman
 
             // 1. Loop semua children dan hapus dari Database
@@ -624,11 +641,19 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-")"
         cell.context.attributedStringValue = attributedString
 
-        if annotation.note == nil {
+        var secondaryText: [String] = []
+        if let note = annotation.note, !note.isEmpty {
+            secondaryText.append(note)
+        }
+        if !annotation.tags.isEmpty {
+            secondaryText.append(annotation.tags.map { "#\($0)" }.joined(separator: " "))
+        }
+
+        if secondaryText.isEmpty {
             cell.note.isHidden = true
         } else {
             cell.note.isHidden = false
-            cell.note.stringValue = annotation.note ?? "-"
+            cell.note.stringValue = secondaryText.joined(separator: "   ")
         }
 
         let timestampInt64 = annotation.createdAt
@@ -656,7 +681,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
         guard let node = item as? AnnotationNode, node.annotation != nil else {
             return 30
         }
-        return 70
+        return node.annotation?.tags.isEmpty == false ? 86 : 70
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
@@ -711,6 +736,13 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             deleteAction.image = img
         }
 
+        if let outlineView,
+           let node = outlineView.item(atRow: row) as? AnnotationNode,
+           node.annotation == nil,
+           (node.kind == AnnotationNodeKind.tag || node.kind == AnnotationNodeKind.untagged) {
+            return []
+        }
+
         return [deleteAction]
     }
 }
@@ -762,7 +794,10 @@ extension AnnotationOutlineDataSource {
             )
             let noteMatches =
                 ann.note?.removingHarakat().contains(searchText) ?? false
-            annotationMatches = contextMatches || noteMatches
+            let tagMatches = ann.tags.contains {
+                $0.removingHarakat().lowercased().contains(searchText)
+            }
+            annotationMatches = contextMatches || noteMatches || tagMatches
         }
 
         // Jika node ini sendiri cocok (baik title, context, atau note)

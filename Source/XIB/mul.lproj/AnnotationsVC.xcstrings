@@ -49,30 +49,6 @@
         }
       }
     },
-    "AQp-Mb-0ne.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Export Selected Annotation(s)\"; ObjectID = \"AQp-Mb-0ne\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تصدير التعليقات المختارة"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Export Selected Annotation(s)"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ekspor Anotasi yang Dipilih"
-          }
-        }
-      }
-    },
     "bGY-rp-DNk.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"إسم الكتاب\"; ObjectID = \"bGY-rp-DNk\";",
       "extractionState" : "extracted_with_value",
@@ -194,13 +170,25 @@
       }
     },
     "sqc-hL-GGa.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Export Selection\"; ObjectID = \"sqc-hL-GGa\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Export Selected Annotation(s)\"; ObjectID = \"sqc-hL-GGa\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "تصدير التعليقات المختارة"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Export Selection"
+            "value" : "Export Selected Annotation(s)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ekspor Anotasi yang Dipilih"
           }
         }
       }

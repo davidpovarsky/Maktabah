@@ -23,6 +23,8 @@ class AnnotationEditorVC: NSViewController {
     
     @IBOutlet weak var segmentedControl: NSSegmentedControl!
 
+    @IBOutlet weak var tagsField: NSTokenField!
+
     // MARK: - Data
     var annotation: Annotation!
     weak var delegate: AnnotationEditorDelegate?
@@ -72,6 +74,7 @@ class AnnotationEditorVC: NSViewController {
         } else {
             colorWell.color = NSColor.yellow
         }
+        tagsField.objectValue = annotation.tags
     }
 
     // MARK: - Actions
@@ -95,7 +98,8 @@ class AnnotationEditorVC: NSViewController {
             page: annotation.page,
             part: annotation.part,
             pageArb: annotation.pageArb,
-            partArb: annotation.partArb
+            partArb: annotation.partArb,
+            tags: normalizedTags()
         )
 
         // Persist ke DB
@@ -142,6 +146,17 @@ class AnnotationEditorVC: NSViewController {
     @IBAction func underLineTapped(_ sender: NSButton) {
         annotation.type = underLine.state == .on ? .underline : .highlight
         colorWell.isHidden = underLine.state == .on
+    }
+
+    private func normalizedTags() -> [String] {
+        if let tokens = tagsField.objectValue as? [String] {
+            return tokens
+        }
+
+        return tagsField.stringValue
+            .split(separator: ",")
+            .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
     }
 }
 
