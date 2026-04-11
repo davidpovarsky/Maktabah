@@ -509,14 +509,45 @@ extension IbarotTextVC: NavigationDelegate {
     func highlightAndScrollToText(_ searchText: String) {
         guard let textStorage = textView.textStorage else { return }
 
-        let fullText = textStorage.string
-            .normalizeArabic(false)
-            .replacingOccurrences(of: "\\n", with: "\n")
+        let rawText = textStorage.string
 
-        let lowerFullText = fullText
+        // Bangun mapping: index di normalizedText → UTF-16 offset di rawText
+        // Karena NSRange pakai UTF-16 offset
+        var normalizedChars: [Character] = []
+        var indexMap: [Int] = []  // normalizedIndex → utf16 offset di rawText
 
-        let searchTerms =
-            searchText
+        let diacritics = CharacterSet(charactersIn: "\u{064B}\u{064C}\u{064D}\u{064E}\u{064F}\u{0650}\u{0651}\u{0652}\u{0670}\u{0653}\u{0654}\u{0655}")
+
+        var utf16Offset = 0
+        for char in rawText {
+            let scalars = char.unicodeScalars
+            let isDiacritic = scalars.count == 1 && diacritics.contains(scalars.first!)
+            let isTatweel = scalars.count == 1 && scalars.first!.value == 0x0640
+
+            if isDiacritic || isTatweel {
+                // karakter ini dihapus dalam normalisasi, skip dari map
+                utf16Offset += char.utf16.count
+                continue
+            }
+
+            // Alef variants → ا (1-to-1, panjang UTF-16 sama)
+            let alefVariants: Set<Unicode.Scalar> = ["أ", "إ", "آ", "ٱ"]
+            let normalizedChar: Character
+            if scalars.count == 1, let scalar = scalars.first, alefVariants.contains(scalar) {
+                normalizedChar = "ا"
+            } else {
+                normalizedChar = char
+            }
+
+            indexMap.append(utf16Offset)
+            normalizedChars.append(normalizedChar)
+            utf16Offset += char.utf16.count
+        }
+
+        let normalizedText = String(normalizedChars)
+
+        // Normalisasi search terms (sama: removeDiacritics = true)
+        let searchTerms = searchText
             .split(separator: ",")
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
@@ -524,7 +555,6 @@ extension IbarotTextVC: NavigationDelegate {
 
         guard !searchTerms.isEmpty else { return }
 
-        // Warna berbeda untuk tiap term (opsional)
         let colors: [NSColor] = [
             .highlightText,
             NSColor.magenta.withAlphaComponent(0.4),
@@ -537,40 +567,47 @@ extension IbarotTextVC: NavigationDelegate {
 
         for (index, searchTerm) in searchTerms.enumerated() {
             let color = colors[index % colors.count]
-            var searchRange = lowerFullText.startIndex..<lowerFullText.endIndex
+            var searchStart = normalizedText.startIndex
 
-            while let found = lowerFullText.range(
-                of: searchTerm,
-                options: [.diacriticInsensitive],
-                range: searchRange
-            ) {
-                let nsRange = NSRange(found, in: fullText)
+            while searchStart < normalizedText.endIndex,
+                  let found = normalizedText.range(
+                    of: searchTerm,
+                    options: [.diacriticInsensitive],
+                    range: searchStart..<normalizedText.endIndex
+                  )
+            {
+                // Konversi range di normalizedText → utf16 offset di rawText
+                let normStartIdx = normalizedText.distance(from: normalizedText.startIndex, to: found.lowerBound)
+                let normEndIdx   = normalizedText.distance(from: normalizedText.startIndex, to: found.upperBound)
+
+                guard normStartIdx < indexMap.count else { break }
+
+                let rawUtf16Start = indexMap[normStartIdx]
+                // rawUtf16End: ambil dari indexMap[normEndIdx] kalau ada,
+                // kalau normEndIdx tepat di ujung pakai total utf16 rawText
+                let rawUtf16End: Int
+                if normEndIdx < indexMap.count {
+                    rawUtf16End = indexMap[normEndIdx]
+                } else {
+                    rawUtf16End = rawText.utf16.count
+                }
+
+                let nsRange = NSRange(location: rawUtf16Start, length: rawUtf16End - rawUtf16Start)
 
                 if firstMatchRange == nil {
                     firstMatchRange = nsRange
                 }
 
                 var hasBackground = false
-                textStorage.enumerateAttribute(
-                    .backgroundColor,
-                    in: nsRange,
-                    options: []
-                ) { value, _, stop in
-                    if value != nil {
-                        hasBackground = true
-                        stop.pointee = true
-                    }
+                textStorage.enumerateAttribute(.backgroundColor, in: nsRange, options: []) { value, _, stop in
+                    if value != nil { hasBackground = true; stop.pointee = true }
                 }
 
                 if !hasBackground {
-                    textStorage.addAttribute(
-                        .backgroundColor,
-                        value: color,
-                        range: nsRange
-                    )
+                    textStorage.addAttribute(.backgroundColor, value: color, range: nsRange)
                 }
 
-                searchRange = found.upperBound..<lowerFullText.endIndex
+                searchStart = found.upperBound
             }
         }
 
