@@ -233,3 +233,22 @@ private extension DSFSearchField {
         return createRTLAttributedTitle(for: truncated + ellipsis)
     }
 }
+
+
+class ClearSearchFieldCell: NSSearchFieldCell {
+    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+        // Gambar background transparan, tapi tetap gambar search icon & text
+        super.drawInterior(withFrame: cellFrame, in: controlView)
+    }
+
+    override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
+        // Skip background, langsung gambar border rounded saja
+        let path = NSBezierPath(roundedRect: cellFrame.insetBy(dx: 0.5, dy: 0.5),
+                                xRadius: cellFrame.height / 2,
+                                yRadius: cellFrame.height / 2)
+        NSColor.gray.withAlphaComponent(0.15).setFill()
+        path.fill()
+
+        drawInterior(withFrame: cellFrame, in: controlView)
+    }
+}

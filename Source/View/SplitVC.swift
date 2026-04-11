@@ -478,18 +478,9 @@ extension SplitVC {
         if sender as? NSButton == nil,
             AnnotationsVC.panel == nil
         {
-            let panel = NSPanel()
-            panel.styleMask.insert([.utilityWindow, .resizable, .closable])
-            panel.isFloatingPanel = true
-            panel.title = "Annotations".localized
-            panel.delegate = vc
-            panel.contentViewController = vc
-            panel.makeKeyAndOrderFront(sender)
-            vc.shareBtn.isHidden = false
-            vc.windowBtn.isHidden = true
-            vc.setting.isHidden = false
-            panel.setFrameAutosaveName("AnnotationsPanel")
-            AnnotationsVC.panel = panel
+            _ = vc
+            vc.viewDidAppear()
+            vc.openAsPanel()
             return
         } else if let panel = AnnotationsVC.panel {
             panel.makeKeyAndOrderFront(nil)

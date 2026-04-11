@@ -10,7 +10,7 @@ import Cocoa
 
 class AnnotationsVC: NSViewController {
     @IBOutlet weak var outlineView: NSOutlineView!
-    @IBOutlet weak var shareBtn: NSButton!
+    @IBOutlet weak var shareBtn: NSPopUpButton!
     @IBOutlet weak var windowBtn: NSButton!
     @IBOutlet weak var setting: NSPopUpButton!
     @IBOutlet weak var sortingButton: NSPopUpButton!
@@ -18,7 +18,11 @@ class AnnotationsVC: NSViewController {
     @IBOutlet weak var hideOnMenuItem: NSMenuItem!
     @IBOutlet weak var searchField: DSFSearchField!
     @IBOutlet weak var xBtn: NSButton!
-
+    @IBOutlet weak var headerStackView: NSStackView!
+    @IBOutlet weak var rootStackView: NSStackView!
+    @IBOutlet weak var scrollView: NSScrollView!
+    @IBOutlet weak var topConstraintHeaderStack: NSLayoutConstraint!
+    
     @objc dynamic var isRowUnselected: Bool = true
 
     var floatPanel: Bool {
@@ -66,7 +70,7 @@ class AnnotationsVC: NSViewController {
         }
         outlineView.deselectAll(nil)
         dataSource.outlineView = outlineView
-
+        rootStackView.insertArrangedSubview(headerStackView, at: 0)
         Task { [weak self] in
             guard let self else { return }
             reloadAnnotations(nil)
@@ -244,8 +248,6 @@ class AnnotationsVC: NSViewController {
     }
 
     @IBAction func openInNewWindow(_ sender: Any) {
-        // Jika VC masih di popover, lepas first responder dulu lalu tutup popover.
-        // Re-parent view dilakukan di run loop berikutnya agar tidak bentrok window ownership.
         if let window = view.window {
             window.makeFirstResponder(nil)
         }
@@ -253,26 +255,58 @@ class AnnotationsVC: NSViewController {
         SharedPopover.annotationsPopover.performClose(sender)
 
         DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-
-            let panel = NSPanel()
-            panel.styleMask.insert([.utilityWindow, .resizable, .closable])
-            panel.title = "Annotations".localized
-            panel.delegate = self
-            shareBtn.isHidden = false
-            windowBtn.isHidden = true
-            setting.isHidden = false
-            floatMenuItem.isHidden = false
-            hideOnMenuItem.isHidden = false
-            floatMenuItem.state = floatPanel ? .on : .off
-            hideOnMenuItem.state = hideOnPanel ? .on : .off
-            panel.contentViewController = self
-            panel.isFloatingPanel = floatPanel
-            panel.hidesOnDeactivate = hideOnPanel
-            panel.makeKeyAndOrderFront(sender)
-            panel.setFrameAutosaveName("AnnotationsPanel")
-            Self.panel = panel
+            self?.openAsPanel()
         }
+    }
+
+    func openAsPanel() {
+        let panel = NSPanel()
+        panel.styleMask.insert([.fullSizeContentView, .titled])
+        panel.styleMask.insert([.utilityWindow, .resizable, .closable])
+        panel.title = "Annotations".localized
+        panel.delegate = self
+        shareBtn.isHidden = false
+        windowBtn.isHidden = true
+        setting.isHidden = false
+        floatMenuItem.isHidden = false
+        hideOnMenuItem.isHidden = false
+        floatMenuItem.state = floatPanel ? .on : .off
+        hideOnMenuItem.state = hideOnPanel ? .on : .off
+        panel.contentViewController = self
+        panel.isFloatingPanel = floatPanel
+        panel.hidesOnDeactivate = hideOnPanel
+        panel.makeKeyAndOrderFront(nil)
+        panel.setFrameAutosaveName("AnnotationsPanel")
+        Self.panel = panel
+
+        setupLayoutPanel(panel)
+    }
+
+    func setupLayoutPanel(_ panel: NSPanel) {
+        rootStackView.removeArrangedSubview(scrollView)
+        rootStackView.removeArrangedSubview(headerStackView)
+        rootStackView.removeFromSuperview()
+
+        topConstraintHeaderStack.isActive = false
+
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            searchField.heightAnchor.constraint(equalToConstant: 26),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+
+        let titlebarAccessoryView = NSTitlebarAccessoryViewController()
+        titlebarAccessoryView.view = headerStackView
+        titlebarAccessoryView.layoutAttribute = .bottom
+        if #available(macOS 26.1, *) {
+            titlebarAccessoryView.preferredScrollEdgeEffectStyle = .soft
+        }
+
+        panel.addTitlebarAccessoryViewController(titlebarAccessoryView)
     }
 
     deinit {

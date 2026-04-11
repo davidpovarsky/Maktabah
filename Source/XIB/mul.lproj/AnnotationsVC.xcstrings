@@ -51,7 +51,7 @@
     },
     "AQp-Mb-0ne.ibShadowedToolTip" : {
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Export Selected Annotation(s)\"; ObjectID = \"AQp-Mb-0ne\";",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -189,6 +189,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muat Ulang Anotasi"
+          }
+        }
+      }
+    },
+    "sqc-hL-GGa.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Export Selection\"; ObjectID = \"sqc-hL-GGa\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Export Selection"
           }
         }
       }
