@@ -88,6 +88,7 @@ final class BulkDownloadVC: NSViewController {
         progressBar.startAnimation(nil)
         ReusableFunc.setupSearchField(searchField)
         setupTopView()
+        setupSearchField()
         scrollViewTopConstraint.constant = 0
 
         Task.detached { [weak self] in
@@ -104,35 +105,45 @@ final class BulkDownloadVC: NSViewController {
 
     // MARK: - Setup
 
+    private func setupSearchField() {
+        let oldCell = searchField.cell as? NSSearchFieldCell
+        let newCell = ClearSearchFieldCell()
+
+        // Restore konfigurasi penting
+        newCell.placeholderString = oldCell?.placeholderString
+        newCell.searchButtonCell = oldCell?.searchButtonCell
+        newCell.cancelButtonCell = oldCell?.cancelButtonCell
+        newCell.target = oldCell?.target
+        newCell.action = oldCell?.action
+        newCell.isEditable = oldCell?.isEditable ?? true
+        newCell.isSelectable = oldCell?.isSelectable ?? true
+        newCell.font = oldCell?.font
+        newCell.isBezeled = true
+        newCell.bezelStyle = .roundedBezel
+
+        searchField.cell = newCell
+    }
+
     private func setupTopView() {
         searchField.removeFromSuperview()
         selectAllButton.removeFromSuperview()
 
-        let bg: NSView
-
-        if #available(macOS 26, *) {
-            let glass = NSGlassEffectView()
-            glass.cornerRadius = 999
-            searchField.drawsBackground = false
-            glass.contentView = searchField
-            bg = glass
-        } else {
-            bg = searchField
-        }
-
-        let stackView = NSStackView(views: [bg, selectAllButton])
+        let stackView = NSStackView(views: [searchField, selectAllButton])
         stackView.orientation = .vertical
         stackView.spacing = 8
         stackView.alignment = .leading
         stackView.userInterfaceLayoutDirection = .rightToLeft
         // Kurangi inset agar tidak memakan ruang tinggi yang terbatas di titlebar
         stackView.edgeInsets = NSEdgeInsets(top: 8, left: 12, bottom: 20, right: -12)
-
-        bg.translatesAutoresizingMaskIntoConstraints = false
+        searchField.constraints.forEach { c in
+            c.isActive = false
+        }
+        searchField.translatesAutoresizingMaskIntoConstraints = false
         selectAllButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bg.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 12),
-            bg.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -12),
+            searchField.heightAnchor.constraint(equalToConstant: 26),
+            searchField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 12),
+            searchField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -12),
             selectAllButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 12),
         ])
 
