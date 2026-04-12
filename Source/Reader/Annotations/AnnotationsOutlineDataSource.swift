@@ -639,21 +639,14 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
 
         cell.pagePart.stringValue =
             "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-")"
+            + annotation.tags.map { " -- \($0)" }.joined(separator: " ")
         cell.context.attributedStringValue = attributedString
 
-        var secondaryText: [String] = []
-        if let note = annotation.note, !note.isEmpty {
-            secondaryText.append(note)
-        }
-        if !annotation.tags.isEmpty {
-            secondaryText.append(annotation.tags.map { "#\($0)" }.joined(separator: " "))
-        }
-
-        if secondaryText.isEmpty {
+        if annotation.note == nil {
             cell.note.isHidden = true
-        } else {
+        } else if let note = annotation.note {
             cell.note.isHidden = false
-            cell.note.stringValue = secondaryText.joined(separator: "   ")
+            cell.note.stringValue = note
         }
 
         let timestampInt64 = annotation.createdAt
@@ -681,7 +674,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
         guard let node = item as? AnnotationNode, node.annotation != nil else {
             return 30
         }
-        return node.annotation?.tags.isEmpty == false ? 86 : 70
+        return 70
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {

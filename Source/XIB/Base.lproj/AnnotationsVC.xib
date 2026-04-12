@@ -62,7 +62,7 @@
                                                         <rect key="frame" x="18" y="0.0" width="307" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" id="7qg-H5-TJd" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
+                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" id="7qg-H5-TJd" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="1" width="307" height="28"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" title="إسم الكتاب" id="5CR-zY-QO2">
@@ -80,26 +80,25 @@
                                                         <rect key="frame" x="18" y="30" width="307" height="124"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fxr-Y5-sIE">
-                                                                <rect key="frame" x="0.0" y="14" width="307" height="96"/>
+                                                            <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fxr-Y5-sIE">
+                                                                <rect key="frame" x="0.0" y="11" width="298" height="103"/>
                                                                 <subviews>
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-dl-eyr">
-                                                                        <rect key="frame" x="0.0" y="58" width="307" height="38"/>
+                                                                        <rect key="frame" x="0.0" y="54" width="298" height="49"/>
                                                                         <subviews>
-                                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1fZ-a9-Tws" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
-                                                                                <rect key="frame" x="2" y="14" width="116" height="22"/>
+                                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="jfg-tF-iw6">
+                                                                                <rect key="frame" x="2" y="27" width="80" height="14"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="22" id="PqM-3c-TGl"/>
+                                                                                    <constraint firstAttribute="height" constant="14" id="x5s-mY-ags"/>
                                                                                 </constraints>
-                                                                                <textFieldCell key="cell" lineBreakMode="clipping" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="24H-kp-f1e">
-                                                                                    <font key="font" metaFont="system" size="15"/>
+                                                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="jT9-vR-fhD">
+                                                                                    <font key="font" textStyle="footnote" name=".SFNS-Regular"/>
                                                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                             </textField>
-                                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" id="2R2-3G-cwO" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
-                                                                                <rect key="frame" x="122" y="9" width="187" height="29"/>
-                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2R2-3G-cwO" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
+                                                                                <rect key="frame" x="86" y="29" width="214" height="20"/>
                                                                                 <textFieldCell key="cell" truncatesLastVisibleLine="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="con-e3-q0L">
                                                                                     <font key="font" metaFont="system" size="17"/>
                                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -109,7 +108,7 @@
                                                                         </subviews>
                                                                         <edgeInsets key="edgeInsets" left="4" right="0.0" top="-2" bottom="0.0"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="1fZ-a9-Tws" firstAttribute="top" secondItem="JfH-dl-eyr" secondAttribute="top" constant="2" id="JXu-yh-GV3"/>
+                                                                            <constraint firstItem="jfg-tF-iw6" firstAttribute="top" secondItem="JfH-dl-eyr" secondAttribute="top" constant="8" id="ctH-Df-lzA"/>
                                                                         </constraints>
                                                                         <visibilityPriorities>
                                                                             <integer value="1000"/>
@@ -125,34 +124,24 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </stackView>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="VFX-Tp-KGa" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
-                                                                        <rect key="frame" x="-2" y="28" width="311" height="20"/>
+                                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="VFX-Tp-KGa" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
+                                                                        <rect key="frame" x="-2" y="27" width="302" height="19"/>
                                                                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="1GY-dH-4Fl">
-                                                                            <font key="font" metaFont="system" size="17"/>
+                                                                            <font key="font" metaFont="system" size="15"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="jfg-tF-iw6">
-                                                                        <rect key="frame" x="2" y="0.0" width="80" height="18"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="18" id="x5s-mY-ags"/>
-                                                                        </constraints>
-                                                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="jT9-vR-fhD">
-                                                                            <font key="font" metaFont="system" size="16"/>
+                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1fZ-a9-Tws" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
+                                                                        <rect key="frame" x="184" y="0.0" width="116" height="19"/>
+                                                                        <textFieldCell key="cell" lineBreakMode="clipping" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="24H-kp-f1e">
+                                                                            <font key="font" metaFont="system" size="15"/>
                                                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
                                                                 </subviews>
                                                                 <edgeInsets key="edgeInsets" left="4" right="0.0" top="0.0" bottom="0.0"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="JfH-dl-eyr" secondAttribute="trailing" id="0bu-aG-ICg"/>
-                                                                    <constraint firstItem="JfH-dl-eyr" firstAttribute="top" secondItem="Fxr-Y5-sIE" secondAttribute="top" id="2qX-M6-okn"/>
-                                                                    <constraint firstItem="VFX-Tp-KGa" firstAttribute="leading" secondItem="Fxr-Y5-sIE" secondAttribute="leading" id="4NF-OK-8IW"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="VFX-Tp-KGa" secondAttribute="trailing" id="UUF-nc-iDl"/>
-                                                                    <constraint firstItem="JfH-dl-eyr" firstAttribute="leading" secondItem="Fxr-Y5-sIE" secondAttribute="leading" id="mzr-4O-0xu"/>
-                                                                </constraints>
                                                                 <visibilityPriorities>
                                                                     <integer value="1000"/>
                                                                     <integer value="1000"/>
@@ -169,18 +158,40 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </stackView>
-                                                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Tux-dJ-aS8">
-                                                                <rect key="frame" x="0.0" y="-2" width="307" height="5"/>
+                                                            <box boxType="custom" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="M87-2D-Tqv">
+                                                                <rect key="frame" x="306" y="0.0" width="1" height="124"/>
+                                                                <view key="contentView" id="plV-Uu-aKi">
+                                                                    <rect key="frame" x="0.0" y="1" width="1" height="122"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                </view>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="1" id="3CJ-LV-b5N"/>
+                                                                </constraints>
+                                                                <color key="borderColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                            </box>
+                                                            <box boxType="custom" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UQT-81-vV5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="306" height="1"/>
+                                                                <view key="contentView" id="Zzk-oG-ao1">
+                                                                    <rect key="frame" x="1" y="0.0" width="304" height="1"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                </view>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="V2z-uf-Pfe"/>
+                                                                </constraints>
+                                                                <color key="borderColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                             </box>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="Tux-dJ-aS8" secondAttribute="bottom" id="HDg-E9-ykb"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Fxr-Y5-sIE" secondAttribute="bottom" constant="14" id="MUP-Sx-Dk0"/>
-                                                            <constraint firstItem="Fxr-Y5-sIE" firstAttribute="top" secondItem="Sd4-lt-7QG" secondAttribute="top" constant="14" id="Q6m-g6-bPC"/>
-                                                            <constraint firstItem="Fxr-Y5-sIE" firstAttribute="leading" secondItem="Sd4-lt-7QG" secondAttribute="leading" id="jfe-Yz-eGo"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Fxr-Y5-sIE" secondAttribute="trailing" id="s12-Ha-shO"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Tux-dJ-aS8" secondAttribute="trailing" id="tjv-Mp-C3d"/>
-                                                            <constraint firstItem="Tux-dJ-aS8" firstAttribute="leading" secondItem="Sd4-lt-7QG" secondAttribute="leading" id="u5R-8w-fUJ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="M87-2D-Tqv" secondAttribute="bottom" id="6BF-3O-dXC"/>
+                                                            <constraint firstAttribute="trailing" secondItem="UQT-81-vV5" secondAttribute="trailing" constant="1" id="8Ag-MT-svJ"/>
+                                                            <constraint firstItem="M87-2D-Tqv" firstAttribute="top" secondItem="Sd4-lt-7QG" secondAttribute="top" id="9LV-Qd-5UM"/>
+                                                            <constraint firstAttribute="trailing" secondItem="M87-2D-Tqv" secondAttribute="trailing" id="LUf-XV-3ca"/>
+                                                            <constraint firstItem="Fxr-Y5-sIE" firstAttribute="top" secondItem="Sd4-lt-7QG" secondAttribute="top" constant="10" id="Mqs-zk-qRX"/>
+                                                            <constraint firstItem="M87-2D-Tqv" firstAttribute="leading" secondItem="Fxr-Y5-sIE" secondAttribute="trailing" constant="8" id="buX-1y-uKx"/>
+                                                            <constraint firstItem="Fxr-Y5-sIE" firstAttribute="leading" secondItem="UQT-81-vV5" secondAttribute="leading" id="dhE-vQ-f4h"/>
+                                                            <constraint firstItem="UQT-81-vV5" firstAttribute="top" secondItem="Fxr-Y5-sIE" secondAttribute="bottom" constant="10" id="kLg-qf-Swh"/>
+                                                            <constraint firstAttribute="bottom" secondItem="UQT-81-vV5" secondAttribute="bottom" id="oF5-rb-go4"/>
+                                                            <constraint firstItem="UQT-81-vV5" firstAttribute="leading" secondItem="Sd4-lt-7QG" secondAttribute="leading" id="yPN-ke-29B"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="context" destination="2R2-3G-cwO" id="nBg-5E-nmW"/>
@@ -220,7 +231,7 @@
                 <constraint firstItem="un8-N4-Ho6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="baq-zu-vF8"/>
                 <constraint firstAttribute="trailing" secondItem="un8-N4-Ho6" secondAttribute="trailing" id="tdi-dS-SZ3"/>
             </constraints>
-            <point key="canvasLocation" x="-30" y="147.5"/>
+            <point key="canvasLocation" x="-30" y="147"/>
         </customView>
         <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="eCu-j7-aef">
             <rect key="frame" x="0.0" y="0.0" width="398" height="38"/>
@@ -241,7 +252,7 @@ Gw
                         <action selector="dismissController:" target="-2" id="opE-Oo-yr4"/>
                     </connections>
                 </button>
-                <searchField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="always" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VC9-sz-DwV" customClass="DSFSearchField" customModule="Maktabah" customModuleProvider="target">
+                <searchField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="always" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VC9-sz-DwV" customClass="DSFSearchField" customModule="Maktabah" customModuleProvider="target">
                     <rect key="frame" x="55" y="7" width="198" height="24"/>
                     <searchFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Annotations" usesSingleLineMode="YES" bezelStyle="round" recentsAutosaveName="AnnotationsSearchField" id="D37-GP-9Dr" customClass="ClearSearchFieldCell" customModule="Maktabah" customModuleProvider="target">
                         <font key="font" metaFont="system"/>
@@ -283,7 +294,7 @@ Gw
                         <menu key="menu" id="4Hi-ew-itn">
                             <items>
                                 <menuItem image="square.and.arrow.up" catalog="system" hidden="YES" id="g5g-Lo-vP5"/>
-                                <menuItem title="Export Selection" id="sqc-hL-GGa">
+                                <menuItem title="Export Selected Annotation(s)" id="sqc-hL-GGa">
                                     <attributedString key="attributedTitle"/>
                                     <connections>
                                         <action selector="saveRTFToFile:" target="-2" id="VHQ-6u-BXP"/>
