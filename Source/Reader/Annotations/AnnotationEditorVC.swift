@@ -50,6 +50,8 @@ class AnnotationEditorVC: NSViewController {
         }
         
         setupSegmentLayout()
+        tagsField.delegate = self
+        tagsField.completionDelay = 0.5
     }
     
     private func setupSegmentLayout() {
@@ -148,6 +150,20 @@ class AnnotationEditorVC: NSViewController {
         colorWell.isHidden = underLine.state == .on
     }
 
+    // MARK: - Tag Suggestions
+
+    /// Ambil semua tag yang sudah ada di DB, dikecualikan yang sudah dipilih.
+    private func existingTagSuggestions(matching substring: String) -> [String] {
+        let allTags = AnnotationManager.shared.allTagNames()
+        let currentTokens = (tagsField.objectValue as? [String] ?? [])
+            .map { $0.lowercased() }
+        let query = substring.lowercased()
+        return allTags.filter { tag in
+            !currentTokens.contains(tag.lowercased()) &&
+            tag.lowercased().hasPrefix(query)
+        }
+    }
+
     private func normalizedTags() -> [String] {
         if let tokens = tagsField.objectValue as? [String] {
             return tokens
@@ -157,6 +173,21 @@ class AnnotationEditorVC: NSViewController {
             .split(separator: ",")
             .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty }
+    }
+}
+
+
+// MARK: - NSTokenFieldDelegate
+
+extension AnnotationEditorVC: NSTokenFieldDelegate {
+    func tokenField(
+        _ tokenField: NSTokenField,
+        completionsForSubstring substring: String,
+        indexOfToken tokenIndex: Int,
+        indexOfSelectedItem selectedIndex: UnsafeMutablePointer<Int>?
+    ) -> [Any]? {
+        guard !substring.isEmpty else { return nil }
+        return existingTagSuggestions(matching: substring)
     }
 }
 

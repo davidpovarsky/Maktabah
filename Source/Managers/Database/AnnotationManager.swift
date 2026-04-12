@@ -64,6 +64,7 @@ final class AnnotationManager {
     private var cacheById: [Int64: Annotation] = [:]
     private var cacheByContent: [ContentKey: [Annotation]] = [:]
     private var cacheTagsByAnnotationId: [Int64: [String]] = [:]
+    private var cachedAllTagNames: [String]? = nil
 
     private var _rootNode: AnnotationNode?
     private let treeQueue = DispatchQueue(label: "com.maktab.annotationManager.treeQueue", qos: .userInitiated)
@@ -401,6 +402,7 @@ final class AnnotationManager {
             cacheById.removeAll()
             cacheByContent.removeAll()
             cacheTagsByAnnotationId.removeAll()
+            cachedAllTagNames = nil
         }
     }
 
@@ -801,6 +803,22 @@ final class AnnotationManager {
             .lowercased()
     }
 
+    /// Semua nama tag unik yang ada di DB, diurutkan case-insensitive.
+    func allTagNames() -> [String] {
+        if let cached = cacheQueue.sync(execute: { cachedAllTagNames }) {
+            return cached
+        }
+        guard let db else { return [] }
+        do {
+            let names = try db.prepare(tagsTable.select(tagName).order(tagName.collate(.nocase)))
+                .map { $0[tagName] }
+            cacheQueue.sync { cachedAllTagNames = names }
+            return names
+        } catch {
+            return []
+        }
+    }
+
     private func loadTags(for annotationId: Int64) -> [String] {
         if let cached = cacheQueue.sync(execute: { cacheTagsByAnnotationId[annotationId] }) {
             return cached
@@ -857,6 +875,9 @@ final class AnnotationManager {
                 )
             )
         }
+
+        // Invalidate flat tag cache — struktur tag mungkin berubah
+        cacheQueue.sync { cachedAllTagNames = nil }
 
         try deleteUnusedTags(in: db)
     }
