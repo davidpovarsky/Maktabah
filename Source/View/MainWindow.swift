@@ -2,7 +2,7 @@
 //  MainWindow.swift
 //  maktab
 //
-//  Simplified window dengan single container
+//  Fix SegmentedControl State on Multi Window
 //
 
 import Cocoa
@@ -17,7 +17,7 @@ class MainWindow: NSWindow {
     }()
 
     var currentMode: AppMode {
-        UserDefaults.standard.lastAppMode
+        splitVC.currentMode
     }
 
     static var rtl: Bool {
@@ -48,13 +48,14 @@ class MainWindow: NSWindow {
     func setupContentView(restoreState: Bool = true) {
         let currentFrame = frame
         // Restore last mode
+        splitVC.currentMode = UserDefaults.standard.lastAppMode
+
         if !restoreState {
             splitVC.setupForMode(currentMode)
             splitVC.setupAutoSave()
             splitVC.stateManager.setState(ReaderState(), for: currentMode)
         }
         contentViewController = splitVC
-        splitVC.currentMode = currentMode
 
         configureToolbarIfNeeded()
 
