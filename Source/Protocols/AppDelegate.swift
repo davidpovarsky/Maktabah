@@ -59,17 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         BookConnection.tocTreeCache.countLimit = 20
         BookConnection.tocTreeCache.totalCostLimit = 50 * 1024 * 1024
 
-        windowObserver = NotificationCenter.default.addObserver(
-            forName: NSWindow.didBecomeKeyNotification,
-            object: nil,
-            queue: .current,
-            using: { notif in
-                guard let window = notif.object as? MainWindow else {
-                    return
-                }
-
-                window.setAnnotationsPanelDelegate()
-            })
+        setupWindowObserver()
 
         showDiacriticMenuItem.state = UserDefaults.standard.textViewShowHarakat ? .on : .off
         _ = ScreenTimeManager.shared // untuk init supaya pengaturan diload.
@@ -105,18 +95,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
-        persistCurrentState()
-        return .terminateNow
-    }
-
     func applicationWillTerminate(_ aNotification: Notification) {
         ScreenTimeManager.shared.cancel()
         // Insert code here to tear down your application
-    }
-
-    func applicationDidResignActive(_ notification: Notification) {
-        persistCurrentState()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
@@ -133,6 +114,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             newWindow(sender)
         }
         return true
+    }
+
+    // MARK: - Window Management
+
+    func setupWindowObserver() {
+        windowObserver = NotificationCenter.default.addObserver(
+            forName: NSWindow.didBecomeKeyNotification,
+            object: nil,
+            queue: .current,
+            using: { [unowned self] notif in
+                guard let window = notif.object as? MainWindow,
+                      let windowController = window.windowController as? WindowController
+                else {
+                    return
+                }
+
+                if mainWindowController != windowController {
+                    mainWindowController = windowController
+                }
+            }
+        )
+
+        NotificationCenter.default.addObserver(
+            forName: NSWindow.willCloseNotification,
+            object: nil,
+            queue: .current
+        ) { [unowned self] notif in
+            guard let window = notif.object as? MainWindow else {
+                return
+            }
+
+            window.splitVC.persistCurrentStateToDisk()
+            if mainWindowController?.window === window {
+                mainWindowController = nil
+            }
+        }
     }
 
     // MARK: - App Launch
@@ -173,31 +190,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Switch to last mode (this will restore the state)
         window.setupView()
         window.displayIfNeeded()
-    }
-
-    // MARK: - App Termination
-
-    func persistCurrentState() {
-        guard let window = keyWindow,
-            let splitVC = window.contentViewController as? SplitVC
-        else {
-            return
-        }
-
-        let mode = splitVC.currentMode
-
-        // Save current state
-        splitVC.stateManager.saveState(
-            for: splitVC.currentMode,
-            components: splitVC.components(for: mode)
-        )
-
-        // Persist to disk
-        splitVC.stateManager.persistToDisk()
-
-        #if DEBUG
-            print("Persisted state before app termination")
-        #endif
     }
 
     @IBAction func openSettings(_ sender: Any?) {

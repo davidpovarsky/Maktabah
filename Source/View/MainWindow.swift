@@ -181,8 +181,6 @@ class MainWindow: NSWindow {
         print("MainWindow close() called")
         #endif
 
-        splitVC.persistCurrentStateToDisk()
-
         super.close()
 
         contentViewController = nil
