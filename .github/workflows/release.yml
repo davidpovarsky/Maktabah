@@ -11,9 +11,16 @@ on:
         description: "Tag to release (e.g., v1.0.0)"
         required: true
         type: string
+      skip_deployment:
+        description: "Skip deploying appcast to GitHub Pages"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   build:
@@ -147,6 +154,12 @@ jobs:
             "build/exported/Maktabah.app" \
             "build/${ZIP_NAME}"
 
+      # Attest Build Provenance
+      - name: Attest Build Provenance
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: "build/${{ steps.vars.outputs.PRODUCT_NAME }}-${{ steps.tag.outputs.TAG_NAME }}.zip"
+
       # Upload ke GitHub Release
       - name: Upload Release Asset
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
@@ -185,28 +198,118 @@ jobs:
 
           # Simpan appcast.xml ke root workspace
           cp build/sparkle_staging/appcast.xml appcast.xml
+
+          # Inject <sparkle:releaseNotesLink> yang dihapus generate_appcast
+          python3 - <<'PYEOF2'
+          import re
+
+          with open('appcast.xml', 'r') as f:
+              xml = f.read()
+
+          tag = '<sparkle:releaseNotesLink>https://bismillah-100.github.io/Maktabah/releases-notes.html</sparkle:releaseNotesLink>'
+
+          # Sisipkan setelah <enclosure ... /> di setiap <item>
+          xml = re.sub(r'(<enclosure[^>]*/\s*>)', '\\1\n            ' + tag, xml, flags=re.DOTALL)
+
+          with open('appcast.xml', 'w') as f:
+              f.write(xml)
+
+          print('releaseNotesLink berhasil di-inject.')
+          PYEOF2
+
           echo "appcast.xml berhasil dibuat:"
           cat appcast.xml
 
-      # Push appcast.xml ke branch gh-pages
-      - name: Deploy Appcast to GitHub Pages
+      # Push appcast.xml dan releases-notes.html ke gh-pages sekaligus
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.skip_deployment)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          TAG="${{ steps.tag.outputs.TAG_NAME }}"
+          VERSION="${TAG#v}"
+          VERSION="${VERSION#V}"
+          RELEASE_DATE=$(date +"%B %d, %Y")
+          TAG_MESSAGE=$(git tag -l --format='%(contents)' "$TAG" 2>/dev/null || echo "")
 
           rm -rf /tmp/maktabah-gh-pages
           git fetch origin gh-pages
           git worktree add /tmp/maktabah-gh-pages origin/gh-pages
 
+          # Update releases-notes.html: sisipkan section baru setelah <body>
+          python3 - <<PYEOF3
+          import re, os, sys
+
+          version = "$VERSION"
+          release_date = "$RELEASE_DATE"
+          tag_message = """$TAG_MESSAGE"""
+          notes_file = "/tmp/maktabah-gh-pages/releases-notes.html"
+
+          # Parse tag message -> sections
+          sections = {}
+          current_section = None
+          current_items = []
+
+          for line in tag_message.strip().split('\n'):
+              line = line.strip()
+              if line.lower() in ['new', 'changes', 'fixes', 'improvements']:
+                  if current_section and current_items:
+                      sections[current_section] = current_items
+                  current_section = line.capitalize()
+                  current_items = []
+              elif line and current_section:
+                  item = re.sub(r'^[-*]\s*', '', line)
+                  if item:
+                      current_items.append(item)
+
+          if current_section and current_items:
+              sections[current_section] = current_items
+
+          # Build HTML section baru
+          html_section = f'''<h2>Version {version}</h2>
+          <p class="version">{release_date}</p>
+          '''
+
+          for section in ['New', 'Changes', 'Fixes', 'Improvements']:
+              if section in sections and sections[section]:
+                  html_section += f'<h3>{section}</h3>\n<ul>\n'
+                  for item in sections[section]:
+                      html_section += f'  <li>{item}</li>\n'
+                  html_section += '</ul>\n'
+
+          html_section += '\n<hr>\n'
+
+          # Sisipkan tepat setelah <body>
+          with open(notes_file, 'r') as f:
+              content = f.read()
+
+          marker = '<body>'
+          idx = content.find(marker)
+          if idx == -1:
+              print("ERROR: <body> tidak ditemukan")
+              sys.exit(1)
+
+          insert_at = idx + len(marker)
+          new_content = content[:insert_at] + '\n\n' + html_section + content[insert_at:]
+
+          with open(notes_file, 'w') as f:
+              f.write(new_content)
+
+          print(f"releases-notes.html updated untuk versi {version}")
+          PYEOF3
+
+          # Copy appcast.xml
           cp appcast.xml /tmp/maktabah-gh-pages/appcast.xml
 
+          # Commit keduanya sekaligus — satu push, tidak ada double trigger
           cd /tmp/maktabah-gh-pages
-          git add appcast.xml
+          git add appcast.xml releases-notes.html
 
           if git diff --cached --quiet; then
-            echo "No appcast changes to publish."
+            echo "No changes to publish."
             exit 0
           fi
 
-          git commit -m "appcast: ${{ steps.tag.outputs.TAG_NAME }}"
+          git commit -m "release: ${{ steps.tag.outputs.TAG_NAME }}"
           git push origin HEAD:gh-pages

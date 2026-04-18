@@ -35,7 +35,14 @@ jobs:
       if: matrix.language == 'swift'
       uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: "26.3"
+        xcode-version: latest
+
+    - name: Clean SPM cache
+      if: matrix.language == 'swift'
+      shell: bash
+      run: |
+        rm -rf ~/Library/Caches/org.swift.swiftpm
+        rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v4
@@ -51,10 +58,11 @@ jobs:
           -project Maktabah.xcodeproj \
           -scheme Maktabah-Direct \
           -configuration Release \
-          -resolvePackageDependencies \
+          -skipPackagePluginValidation \
           -derivedDataPath build \
           CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+          CODE_SIGNING_ALLOWED=NO \
+          ENABLE_TESTABILITY=NO
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
