@@ -206,6 +206,8 @@ final class AnnotationManager {
         // Update caches
         var saved = annotation
         saved.id = rowId
+        saved.pageArb = String(saved.page).convertToArabicDigits()
+        saved.partArb = String(saved.part).convertToArabicDigits()
         saved.tags = sanitizeTagNames(annotation.tags)
         cacheQueue.sync {
             cacheById[rowId] = saved
