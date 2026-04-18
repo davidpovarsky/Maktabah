@@ -637,9 +637,21 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             )
         }
 
-        cell.pagePart.stringValue =
-            "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-")"
-            + annotation.tags.map { " -- \($0)" }.joined(separator: " ")
+        let page = "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-")"
+        let tags = annotation.tags.map { " -- \($0)" }.joined(separator: " ")
+
+        cell.pagePart.stringValue = switch groupingMode {
+        case .book:
+            page + tags
+        case .tag:
+            if let book = LibraryDataManager.shared
+                .getBook([annotation.bkId]).first?.book {
+                page + tags + "\n" + book
+            } else {
+                page
+            }
+        }
+
         cell.context.attributedStringValue = attributedString
 
         if annotation.note == nil {

@@ -17,5 +17,6 @@ class AnnotationCellView: NSTableCellView {
         super.awakeFromNib()
         context.maximumNumberOfLines = 2
         note.maximumNumberOfLines = 4
+        pagePart.maximumNumberOfLines = 2
     }
 }
