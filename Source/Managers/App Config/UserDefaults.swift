@@ -158,6 +158,19 @@ extension UserDefaults {
         }
     }
 
+    // MARK: - SPLIT VIEW CONTROLLER
+
+    static let sidebarSearchHidden = "sidebarSearchFieldIsHidden"
+
+    var sidebarSearchField: Bool {
+        get {
+            bool(forKey: Self.sidebarSearchHidden)
+        }
+        set {
+            set(newValue, forKey: Self.sidebarSearchHidden)
+        }
+    }
+
     enum TextViewKeys {
         static let fontSize = "textViewFontSize"
         static let fontName = "textViewFontName"

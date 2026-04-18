@@ -159,7 +159,11 @@ class SplitVC: NSSplitViewController {
                 return
             }
 
-            setupSearchFieldTahoe(searchFieldIsHidden)
+            if !searchFieldIsHidden {
+                setupSearchFieldTahoe()
+            } else {
+                removeAccessoryView()
+            }
             if let accessoryItem = searchFieldAccessoryItem as? SplitVCAccessoryItem,
                let sidebar = activeSidebarForSearch {
                 sidebar.connectSearchField(accessoryItem.searchField)
@@ -315,7 +319,14 @@ class SplitVC: NSSplitViewController {
     }
 
     // MARK: AccessoryView
-    var searchFieldIsHidden: Bool = true
+    var searchFieldIsHidden: Bool {
+        get {
+            UserDefaults.standard.sidebarSearchField
+        }
+        set {
+            UserDefaults.standard.sidebarSearchField = newValue
+        }
+    }
 
     /// Sidebar yang sedang aktif, diperlakukan seragam sebagai SearchableLibrarySidebar.
     private var activeSidebarForSearch: (any SearchableLibrarySidebar)? {
@@ -327,10 +338,9 @@ class SplitVC: NSSplitViewController {
     }
 
     @available(macOS 26.1, *)
-    func setupSearchFieldTahoe(_ hide: Bool = true) {
-        if !searchFieldIsHidden,
-           let accessoryItem = searchFieldAccessoryItem as? SplitVCAccessoryItem {
-            accessoryItem.removeFromParent()
+    private func setupSearchFieldTahoe() {
+        if searchFieldIsHidden {
+            removeAccessoryView()
             return
         }
 
@@ -338,7 +348,19 @@ class SplitVC: NSSplitViewController {
     }
 
     @available(macOS 26.1, *)
+    private func removeAccessoryView() {
+        if let accessoryItem = searchFieldAccessoryItem as? SplitVCAccessoryItem {
+            accessoryItem.removeFromParent()
+        }
+    }
+
+    @available(macOS 26.1, *)
     func unhideSearchField() {
+        if currentState.isSidebarCollapsed {
+            searchFieldIsHidden = true
+            return
+        }
+
         let accessoryVC: SplitVCAccessoryItem
         let searchField: DSFSearchField
 
@@ -400,6 +422,7 @@ extension SplitVC {
     }
 
     func hideLibrarySearchField() {
+        print("hideLibrarySearchField")
         switch currentMode {
         case .viewer:
             if #available(macOS 26.1, *) {
