@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet var menu: NSMenu!
     @IBOutlet weak var viewMenu: NSMenu!
+    @IBOutlet weak var appUpdatesMenuItem: NSMenuItem!
     @IBOutlet weak var showDiacriticMenuItem: NSMenuItem!
 
     @IBOutlet weak var controlMenu: NSMenu!
@@ -73,10 +74,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorLight : 0])
         UserDefaults.standard.register(defaults: ["annotationsLayoutDirection": 1])
 
+        #if DIRECT_DISTRIBUTION
         Task.detached(priority: .low) { [unowned self] in
             await Task.yield()
             await checkAppUpdates(true)
         }
+        #else
+        appUpdatesMenuItem.isHidden = true
+        #endif
 
         do {
             if let annotationsFolder = AppConfig.folder(
@@ -229,9 +234,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction fileprivate func checkUpdatesClicked(_ sender: Any?) {
+        #if DIRECT_DISTRIBUTION
         Task.detached { [unowned self] in
             await checkAppUpdates(false)
         }
+        #endif
     }
 
     @IBAction fileprivate func checkBooksUpdates(_ sender: Any?) {

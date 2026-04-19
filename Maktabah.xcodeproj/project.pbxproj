@@ -78,7 +78,6 @@
 		4B65CCB82EE059B60085CEB4 /* OptionSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65CCB62EE059B60085CEB4 /* OptionSearchVC.swift */; };
 		4B65CCBB2EE06C5D0085CEB4 /* LibraryViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65CCBA2EE06C5D0085CEB4 /* LibraryViewManager.swift */; };
 		4B65CCC02EE0A10F0085CEB4 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65CCBF2EE0A10F0085CEB4 /* SearchEngine.swift */; };
-		4B68AE2C2F20576700CB3ED9 /* AppUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B68AE2B2F20576700CB3ED9 /* AppUpdate.swift */; };
 		4B6AF22F2EE5692A002EBFFC /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AF22E2EE5692A002EBFFC /* AppMode.swift */; };
 		4B6AF2332EE57CCD002EBFFC /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AF2322EE57CCD002EBFFC /* Toolbar.swift */; };
 		4B6AF2362EE58394002EBFFC /* IbarotTextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AF2342EE58394002EBFFC /* IbarotTextVC.swift */; };
@@ -1068,7 +1067,6 @@
 				4B56955C2EEFDAAE00ABEB48 /* AnnotationEditorVC.swift in Sources */,
 				4B96D3432F3612D50018D902 /* BookUpdateView.swift in Sources */,
 				4B8C9DE42F6995EE0049E4EF /* ProgressBooksDownload.swift in Sources */,
-				4B68AE2C2F20576700CB3ED9 /* AppUpdate.swift in Sources */,
 				4B65CCC02EE0A10F0085CEB4 /* SearchEngine.swift in Sources */,
 				4B3202502EDB1B5A003B95D1 /* DataModel.swift in Sources */,
 				4B03D9D72F42DD6D004E0FDB /* ReaderStateManager.swift in Sources */,

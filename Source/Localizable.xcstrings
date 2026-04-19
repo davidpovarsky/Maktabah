@@ -3048,12 +3048,6 @@
         }
       }
     },
-    "Updates are managed by the App Store" : {
-
-    },
-    "Use the App Store to install the latest version of this build." : {
-
-    },
     "Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder." : {
       "localizations" : {
         "ar" : {
