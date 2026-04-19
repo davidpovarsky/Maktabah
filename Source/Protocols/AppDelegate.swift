@@ -19,6 +19,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var viewMenu: NSMenu!
     @IBOutlet weak var showDiacriticMenuItem: NSMenuItem!
 
+    @IBOutlet weak var controlMenu: NSMenu!
+    @IBOutlet weak var clickEditAnnotationMenuItem: NSMenuItem!
+    @IBOutlet weak var screenTimeMenuItem: NSMenuItem!
+    
     fileprivate var mainWindowController: NSWindowController!
 
     fileprivate weak var quranWindow: NSWindow?
@@ -61,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         setupWindowObserver()
 
-        showDiacriticMenuItem.state = UserDefaults.standard.textViewShowHarakat ? .on : .off
+        controlMenu.delegate = self
         _ = ScreenTimeManager.shared // untuk init supaya pengaturan diload.
 
         UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.lineHeight : 1.0])
@@ -478,6 +482,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.isReleasedWhenClosed = false
     }
 
+    @IBAction private func extendScreenTime(_ sender: NSMenuItem) {
+        let screenTime = ScreenTimeManager.shared
+        sender.state == .off ? screenTime.extend() : screenTime.cancel()
+    }
+
+    @IBAction private func clickableAnnotation(_ sender: NSMenuItem) {
+        let shouldEnable = sender.state == .off
+        TextViewState.shared.setClickableAnnotation(shouldEnable)
+    }
+
     @IBAction func showDiacritics(_ sender: NSMenuItem) {
         TextViewState.shared.toggleHarakat()
     }
@@ -516,5 +530,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let windowObserver {
             NotificationCenter.default.removeObserver(windowObserver)
         }
+    }
+}
+
+extension AppDelegate: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        guard menu === controlMenu else { return }
+
+        showDiacriticMenuItem.state = TextViewState.shared
+            .showHarakat ? .on : .off
+
+        clickEditAnnotationMenuItem.state = TextViewState.shared
+            .clickableAnnotation ? .on : .off
+
+        screenTimeMenuItem.state = ScreenTimeManager.shared
+            .isExtended() ? .on : .off
     }
 }

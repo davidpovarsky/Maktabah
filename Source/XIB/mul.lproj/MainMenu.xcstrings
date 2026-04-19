@@ -577,6 +577,30 @@
         }
       }
     },
+    "CTQ-BL-o1M.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Click-Edit Annotation\"; ObjectID = \"CTQ-BL-o1M\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التعليق التوضيحي للتحرير بالنقر"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Click-Edit Annotation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klik-Edit Anotasi"
+          }
+        }
+      }
+    },
     "cwL-P1-jid.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Links\"; ObjectID = \"cwL-P1-jid\";",
       "extractionState" : "extracted_with_value",
@@ -1149,6 +1173,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Layanan"
+          }
+        }
+      }
+    },
+    "NR2-2W-jMg.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Extend 10 minutes\"; ObjectID = \"NR2-2W-jMg\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تمديد 10 دقائق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Extend 10 minutes"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perpanjang 10 mnt."
           }
         }
       }

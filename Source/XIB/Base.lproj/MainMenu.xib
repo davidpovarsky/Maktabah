@@ -14,7 +14,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Maktabah" customModuleProvider="target">
             <connections>
+                <outlet property="appUpdatesMenuItem" destination="eWT-Pc-0td" id="2uG-Mn-yNq"/>
+                <outlet property="clickEditAnnotationMenuItem" destination="CTQ-BL-o1M" id="6iV-FM-rBT"/>
+                <outlet property="controlMenu" destination="PWj-n5-XEq" id="PCJ-2c-OPC"/>
                 <outlet property="menu" destination="AYu-sK-qS6" id="46G-1l-30G"/>
+                <outlet property="screenTimeMenuItem" destination="NR2-2W-jMg" id="D7m-Ee-6rh"/>
                 <outlet property="showDiacriticMenuItem" destination="Y4E-8o-mIS" id="HcY-n4-T9R"/>
                 <outlet property="viewMenu" destination="HyV-fh-RgO" id="7J4-nY-7nl"/>
             </connections>
@@ -346,30 +350,43 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Control" id="PWj-n5-XEq">
                         <items>
-                            <menuItem title="Decrease Font Size" image="textformat.size.smaller.ar" catalog="system" keyEquivalent="-" id="Hig-Uf-zpK">
+                            <menuItem title="Decrease Font Size" secondaryImage="textformat.size.smaller.ar" catalog="system" keyEquivalent="-" id="Hig-Uf-zpK">
                                 <connections>
                                     <action selector="decreaseFontSize:" target="Voe-Tx-rLC" id="PbT-Xn-Wcu"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Increase Font Size" image="textformat.size.larger.ar" catalog="system" keyEquivalent="+" id="ocO-2S-Uvi">
+                            <menuItem title="Increase Font Size" secondaryImage="textformat.size.larger.ar" catalog="system" keyEquivalent="+" id="ocO-2S-Uvi">
                                 <connections>
                                     <action selector="increaseFontSize:" target="Voe-Tx-rLC" id="pQf-KW-1Gn"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show Diacritics" image="textformat.size.ar" catalog="system" keyEquivalent="A" id="Y4E-8o-mIS">
+                            <menuItem isSeparatorItem="YES" id="vXL-lp-Bkn"/>
+                            <menuItem title="Click-Edit Annotation" secondaryImage="filemenu.and.pointer.arrow.rtl" catalog="system" keyEquivalent="E" id="CTQ-BL-o1M">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                <connections>
+                                    <action selector="clickableAnnotation:" target="Voe-Tx-rLC" id="gYT-F5-Eba"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Extend 10 minutes" secondaryImage="display" catalog="system" keyEquivalent="L" id="NR2-2W-jMg">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                <connections>
+                                    <action selector="extendScreenTime:" target="Voe-Tx-rLC" id="9bt-qS-yqJ"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show Diacritics" secondaryImage="textformat.size.ar" catalog="system" keyEquivalent="A" id="Y4E-8o-mIS">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                 <connections>
                                     <action selector="showDiacritics:" target="Voe-Tx-rLC" id="03n-md-sNw"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="8TA-o4-jDi"/>
-                            <menuItem title="Next Page" image="arrow.left" catalog="system" keyEquivalent="" id="CRE-7g-vUN">
+                            <menuItem title="Next Page" secondaryImage="arrow.left" catalog="system" keyEquivalent="" id="CRE-7g-vUN">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="nextPage:" target="-1" id="lOY-Kh-117"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Previous Page" image="arrow.right" catalog="system" keyEquivalent="" id="aJX-oS-mds">
+                            <menuItem title="Previous Page" secondaryImage="arrow.right" catalog="system" keyEquivalent="" id="aJX-oS-mds">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="previousPage:" target="-1" id="wuH-wi-xyZ"/>
@@ -454,6 +471,8 @@
     <resources>
         <image name="arrow.left" catalog="system" width="16" height="12"/>
         <image name="arrow.right" catalog="system" width="16" height="12"/>
+        <image name="display" catalog="system" width="20" height="15"/>
+        <image name="filemenu.and.pointer.arrow.rtl" catalog="system" width="20" height="17"/>
         <image name="textformat.size.ar" catalog="system" width="18" height="13"/>
         <image name="textformat.size.larger.ar" catalog="system" width="11" height="13"/>
         <image name="textformat.size.smaller.ar" catalog="system" width="10" height="11"/>

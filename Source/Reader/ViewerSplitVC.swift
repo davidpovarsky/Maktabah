@@ -151,10 +151,6 @@ class ViewerSplitVC: NSSplitViewController {
                   let on = userInfo["on"] as? Bool
             else { return }
             self?.ibarotVC.toggleHarakat(on)
-
-            if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
-                appDelegate.showDiacriticMenuItem.state = on ? .on : .off
-            }
         })
     }
 
