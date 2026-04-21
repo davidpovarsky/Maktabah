@@ -332,7 +332,6 @@ class AnnotationsVC: NSViewController {
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            searchField.heightAnchor.constraint(equalToConstant: 26),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -344,6 +343,15 @@ class AnnotationsVC: NSViewController {
         titlebarAccessoryView.layoutAttribute = .bottom
         if #available(macOS 26.1, *) {
             titlebarAccessoryView.preferredScrollEdgeEffectStyle = .soft
+        } else {
+            let oldF = titlebarAccessoryView.view.frame
+            titlebarAccessoryView.view.frame = NSRect(
+                origin: oldF.origin,
+                size: CGSize(
+                    width: oldF.width,
+                    height: oldF.height + 14
+                )
+            )
         }
 
         panel.addTitlebarAccessoryViewController(titlebarAccessoryView)

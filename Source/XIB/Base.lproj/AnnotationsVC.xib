@@ -289,7 +289,7 @@ Gw
                         </menu>
                     </popUpButtonCell>
                 </popUpButton>
-                <popUpButton wantsLayer="YES" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Fxs-bp-Gth">
+                <popUpButton wantsLayer="YES" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Fxs-bp-Gth" userLabel="Share Button">
                     <rect key="frame" x="334" y="12" width="27" height="18"/>
                     <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="sqc-hL-GGa" id="5Az-iR-xSt">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -359,7 +359,7 @@ Gw
             <edgeInsets key="edgeInsets" left="8" right="8" top="0.0" bottom="0.0"/>
             <constraints>
                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="0BA-F4-JyB"/>
-                <constraint firstItem="Fxs-bp-Gth" firstAttribute="top" secondItem="eCu-j7-aef" secondAttribute="top" constant="8" id="iBK-js-nnJ"/>
+                <constraint firstItem="Fxs-bp-Gth" firstAttribute="centerY" secondItem="eCu-j7-aef" secondAttribute="centerY" constant="-2" id="iBK-js-nnJ"/>
             </constraints>
             <visibilityPriorities>
                 <integer value="1000"/>
