@@ -104,8 +104,9 @@ final class AnnotationColorMenuView: NSView {
     override func layout() {
         super.layout()
 
-        var x = hPad
         let y = vPad / 3
+        let isRTL = MainWindow.rtl
+        var x = isRTL ? bounds.width - hPad - circleSize : hPad
 
         for btn in colorButtons {
             btn.frame = NSRect(
@@ -114,14 +115,21 @@ final class AnnotationColorMenuView: NSView {
                 width: circleSize,
                 height: circleSize
             )
-            x += circleSize + gap
+            x += isRTL ? -(circleSize + gap) : (circleSize + gap)
         }
 
         // Separator
         if let sep = separatorView {
-            x -= gap / 2
-            sep.frame = NSRect(x: x, y: y + 2, width: sepWidth, height: circleSize - 4)
-            x += sepWidth + gap / 2
+            let sepX = isRTL ? (x + circleSize + gap / 2) : (x - gap / 2)
+            sep.frame = NSRect(
+                x: sepX,
+                y: y + 2,
+                width: sepWidth,
+                height: circleSize - 4
+            )
+            if !isRTL {
+                x += sepWidth + gap / 2
+            }
         }
 
         // Underline button
