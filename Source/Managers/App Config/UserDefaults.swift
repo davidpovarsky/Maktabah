@@ -81,6 +81,36 @@ extension UserDefaults {
     }
     
     // MARK: - AnnotationsState
+
+    var selectedAnnSortField: AnnotationSortField {
+        get {
+            let int = integer(forKey: AnnotationsKeys.selectedAnnSortField)
+            return AnnotationSortField.init(rawValue: int) ?? .createdAt
+        }
+        set {
+            set(newValue.rawValue, forKey: AnnotationsKeys.selectedAnnSortField)
+        }
+    }
+
+    var selectedAnnAscending: Bool {
+        get {
+            bool(forKey: AnnotationsKeys.selectedAnnAscending)
+        }
+        set {
+            set(newValue, forKey: AnnotationsKeys.selectedAnnAscending)
+        }
+    }
+
+    var selectedAnnGroupingMode: AnnotationGroupingMode {
+        get {
+            let int = integer(forKey: AnnotationsKeys.selectedAnnGroupingMode)
+            return AnnotationGroupingMode.init(rawValue: int) ?? .book
+        }
+        set {
+            set(newValue.rawValue, forKey: AnnotationsKeys.selectedAnnGroupingMode)
+        }
+    }
+
     var annotationFloatWindow: Bool {
         get {
             if bool(forKey: TextViewKeys.annotationFloatWindow) {
@@ -194,5 +224,11 @@ extension UserDefaults {
         static let annotationClick = "enableAnnotationClick"
         static let annotationFloatWindow = "annotationsFloatWindow"
         static let annotationHideWindow = "annotationsHideWindow"
+    }
+
+    enum AnnotationsKeys {
+        static let selectedAnnSortField = "selectedAnnSortField"
+        static let selectedAnnAscending = "selectedAnnAscending"
+        static let selectedAnnGroupingMode = "selectedAnnGroupingMode"
     }
 }

@@ -52,9 +52,22 @@ class AnnotationsVC: NSViewController {
         static let groupingTag = 302
     }
 
-    private var selectedSortField: AnnotationSortField = .createdAt
-    private var selectedSortAscending = false
-    private var selectedGroupingMode: AnnotationGroupingMode = .book
+    private let defaults = UserDefaults.standard
+
+    private var selectedSortField: AnnotationSortField {
+        get { defaults.selectedAnnSortField }
+        set { defaults.selectedAnnSortField = newValue }
+    }
+
+    private var selectedSortAscending: Bool {
+        get { defaults.selectedAnnAscending }
+        set { defaults.selectedAnnAscending = newValue }
+    }
+
+    private var selectedGroupingMode: AnnotationGroupingMode {
+        get { defaults.selectedAnnGroupingMode }
+        set { defaults.selectedAnnGroupingMode = newValue }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,12 +102,14 @@ class AnnotationsVC: NSViewController {
         if sender != nil {
             AnnotationManager.shared.connect()
         }
-        dataSource.reload()
         outlineView.dataSource = dataSource
         outlineView.delegate = dataSource
         outlineView.usesAutomaticRowHeights = true
+        selectedGroupingMode == .book
+            ? dataSource.reload()
+            : dataSource.updateGrouping(mode: selectedGroupingMode)
+
         dataSource.updateSorting(field: selectedSortField, isAscending: selectedSortAscending)
-        dataSource.updateGrouping(mode: selectedGroupingMode)
     }
 
     @IBAction func searchFieldDidChange(_ sender: NSSearchField) {
@@ -174,12 +189,12 @@ class AnnotationsVC: NSViewController {
     }
 
     @objc private func selectSortField(_ sender: NSMenuItem) {
-        switch sender.tag {
-        case SortMenuTag.fieldCreatedAt: selectedSortField = .createdAt
-        case SortMenuTag.fieldContext: selectedSortField = .context
-        case SortMenuTag.fieldPage: selectedSortField = .page
-        case SortMenuTag.fieldPart: selectedSortField = .part
-        default: return
+        selectedSortField = switch sender.tag {
+        case SortMenuTag.fieldCreatedAt: .createdAt
+        case SortMenuTag.fieldContext: .context
+        case SortMenuTag.fieldPage: .page
+        case SortMenuTag.fieldPart: .part
+        default: .createdAt
         }
         applySorting()
     }
