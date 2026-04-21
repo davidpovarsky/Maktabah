@@ -220,13 +220,17 @@
       }
     },
     "Application Update" : {
-      "comment" : "Judul NSAlert untuk update aplikasi",
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "تحديث التطبيق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application Update"
           }
         },
         "id" : {
@@ -397,7 +401,6 @@
       }
     },
     "Check at Start" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3044,6 +3047,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Update selected (%lld)"
+          }
+        }
+      }
+    },
+    "Updates" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحديثات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembaruan"
           }
         }
       }

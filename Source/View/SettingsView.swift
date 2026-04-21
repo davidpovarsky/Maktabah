@@ -12,6 +12,15 @@ final class SettingsViewModel: ObservableObject {
     @Published var archiveFilesPath: String = "N/A"
     @Published var annotationsPath: String = "N/A"
 
+    #if DIRECT_DISTRIBUTION
+    @Published var autoCheckAppUpdates: Bool = true
+
+    func setAutoCheckAppUpdates(_ enabled: Bool) {
+        UserDefaults.standard.autoCheckAppUpdates = enabled
+        refreshPaths()
+    }
+    #endif
+
     private init() {
         refreshPaths()
     }
@@ -23,6 +32,9 @@ final class SettingsViewModel: ObservableObject {
             AppConfig.folder(for: AppConfig.annotationsAndResultsFolder)?
                 .path ?? "N/A"
         isBundleMode = AppConfig.isUsingBundleMode
+        #if DIRECT_DISTRIBUTION
+        autoCheckAppUpdates = UserDefaults.standard.autoCheckAppUpdates
+        #endif
     }
 
     func setBundleMode(_ enabled: Bool) {
@@ -141,6 +153,25 @@ struct SettingsView: View {
             } header: {
                 Text("Downloads")
             }
+
+            // MARK: Updates
+            #if DIRECT_DISTRIBUTION
+            Section {
+                Toggle(isOn: Binding(
+                    get: { viewModel.autoCheckAppUpdates },
+                    set: { viewModel.setAutoCheckAppUpdates($0) }
+                )) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Application Update")
+                        Text("Check at Start")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }.controlSize(.regular)
+            } header: {
+                Text("Updates")
+            }
+            #endif
         }
         .formStyle(.grouped)
         .controlSize(.large)

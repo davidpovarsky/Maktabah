@@ -120,6 +120,18 @@ extension UserDefaults {
         }
     }
 
+    #if DIRECT_DISTRIBUTION
+    static let autoCheckAppUpdatesKey = "autoCheckAppUpdates"
+    var autoCheckAppUpdates: Bool {
+        get {
+            bool(forKey: Self.autoCheckAppUpdatesKey)
+        }
+        set {
+            set(newValue, forKey: Self.autoCheckAppUpdatesKey)
+        }
+    }
+    #endif
+
     // MARK: - COLOR HIGHLIGHTS
 
     static let recentColorsKey = "recentHighlightColors"

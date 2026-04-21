@@ -75,7 +75,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: ["annotationsLayoutDirection": 1])
 
         #if DIRECT_DISTRIBUTION
+        UserDefaults.standard.register(
+            defaults: [UserDefaults.autoCheckAppUpdatesKey : true]
+        )
         Task.detached(priority: .low) { [unowned self] in
+            if !UserDefaults.standard.autoCheckAppUpdates { return }
             await Task.yield()
             await checkAppUpdates(true)
         }
