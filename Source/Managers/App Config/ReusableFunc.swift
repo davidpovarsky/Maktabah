@@ -345,6 +345,9 @@ class ReusableFunc {
         let option2Label = createTitleLabel(text: NSLocalizedString("separateWordsSearchTitle", comment: ""))
         let option2Desc = createDescLabel(text: NSLocalizedString("separateWordsSearchDesc", comment: ""))
 
+        let option3Label = createTitleLabel(text: String(localized: "anyWordsSearchTitle"))
+        let option3Desc = createDescLabel(text: String(localized: "anyWordsSearchDesc"))
+
         // 5. Tambahkan Konten ke StackView
         stackView.addArrangedSubview(option1Label)
         stackView.addArrangedSubview(option1Desc)
@@ -353,6 +356,11 @@ class ReusableFunc {
 
         stackView.addArrangedSubview(option2Label)
         stackView.addArrangedSubview(option2Desc)
+
+        stackView.addArrangedSubview(createSeparator())
+
+        stackView.addArrangedSubview(option3Label)
+        stackView.addArrangedSubview(option3Desc)
 
         // 6. Konfigurasi dan Tampilkan Popover
         searchHelpPopover.contentViewController = contentVC

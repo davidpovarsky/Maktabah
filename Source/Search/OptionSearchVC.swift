@@ -122,37 +122,12 @@ class OptionSearchVC: NSViewController {
 
     func compactButton() {
         if compactConfigured { return }
+        guard let stackView = optionsSegment
+            .superview as? NSStackView
+        else { return }
+
+        stackView.spacing = 4
         helpButton.isHidden = true
-        cleanUpButton.title.removeAll()
-        cleanUpButton.image = NSImage(
-            systemSymbolName: "xmark.square.fill",
-            accessibilityDescription: nil
-        )
-        optionsSegment.setLabel("", forSegment: 0)
-        optionsSegment.setLabel("", forSegment: 1)
-        optionsSegment.setImage(
-            NSImage(
-                systemSymbolName: "text.viewfinder",
-                accessibilityDescription: nil
-            ),
-            forSegment: 0
-        )
-        optionsSegment.setImage(
-            NSImage(
-                systemSymbolName: "a.magnify",
-                accessibilityDescription: nil
-            ),
-            forSegment: 1
-        )
-        optionsSegment.setWidth(26, forSegment: 0)
-        optionsSegment.setWidth(26, forSegment: 1)
-        let f = searchField.frame
-        searchField.frame = NSRect(
-            x: f.origin.x,
-            y: f.origin.y,
-            width: 128,
-            height: f.height
-        )
         searchField.placeholderString = "searchInThisBook".localized
         if let ismKitabColumn {
             tableView.removeTableColumn(ismKitabColumn)
@@ -404,10 +379,13 @@ class OptionSearchVC: NSViewController {
     }
 
     @IBAction func optionsSegmentDidCange(_ sender: NSSegmentedControl) {
-        if sender.selectedSegment == 1 {
-            searchOptions = .contains
-        } else {
+        let selectedSegment = sender.selectedSegment
+        if selectedSegment == 0 {
             searchOptions = .phrase
+        } else if selectedSegment == 1 {
+            searchOptions = .contains
+        } else if selectedSegment == 2 {
+            searchOptions = .or
         }
     }
 

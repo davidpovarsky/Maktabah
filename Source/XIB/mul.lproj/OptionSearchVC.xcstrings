@@ -49,8 +49,8 @@
         }
       }
     },
-    "e7E-8s-TbD.ibShadowedLabels[0]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; e7E-8s-TbD.ibShadowedLabels[0] = \"Exact Phrase\"; ObjectID = \"e7E-8s-TbD\";",
+    "e7E-8s-TbD.ibShadowedToolTips[0]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; e7E-8s-TbD.ibShadowedToolTips[0] = \"Exact Phrase\"; ObjectID = \"e7E-8s-TbD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
@@ -73,8 +73,8 @@
         }
       }
     },
-    "e7E-8s-TbD.ibShadowedLabels[1]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; e7E-8s-TbD.ibShadowedLabels[1] = \"Separate Words\"; ObjectID = \"e7E-8s-TbD\";",
+    "e7E-8s-TbD.ibShadowedToolTips[1]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; e7E-8s-TbD.ibShadowedToolTips[1] = \"Separate Words\"; ObjectID = \"e7E-8s-TbD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
@@ -97,26 +97,26 @@
         }
       }
     },
-    "LY6-Tg-5yf.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Stop & Clear\"; ObjectID = \"LY6-Tg-5yf\";",
+    "e7E-8s-TbD.ibShadowedToolTips[2]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; e7E-8s-TbD.ibShadowedToolTips[2] = \"Match Any Word\"; ObjectID = \"e7E-8s-TbD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "انهاء بحذف النتائج"
+            "value" : "تطابق أي كلمة"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Stop & Clear"
+            "value" : "Match Any Word"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stop & Bersihkan"
+            "value" : "Cocokkan Kata Apa pun"
           }
         }
       }

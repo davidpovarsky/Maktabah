@@ -501,6 +501,9 @@ final class SearchEngine {
             // Gunakan AND - semua keyword harus ada (tapi tidak harus bersebelahan)
             ftsQuery = normalizedKeywords.joined(separator: " AND ")
             // Result: "كتاب AND العلم AND النافع"
+        case .or:
+            ftsQuery = normalizedKeywords.joined(separator: " OR ")
+            // Result: "الحمد OR حمد"
         }
 
         searchTask = Task.detached(priority: .userInitiated) { [weak self, ftsQuery] in

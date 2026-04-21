@@ -288,7 +288,7 @@ class LibraryDataManager {
         case .phrase:
             if query.trimmingCharacters(in: .whitespaces).isEmpty { return }
             searchKeywords = [query.normalizeArabic()]
-        case .contains:
+        case .contains, .or:
             searchKeywords = query.normalizeArabic().components(separatedBy: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
                 .filter { !$0.isEmpty }
