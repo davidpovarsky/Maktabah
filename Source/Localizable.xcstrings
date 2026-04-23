@@ -640,6 +640,22 @@
         }
       }
     },
+    "Copy" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نسخ"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salin"
+          }
+        }
+      }
+    },
     "Copying tables and rebuilding FTS index..." : {
       "comment" : "Book integrate phase message",
       "localizations" : {

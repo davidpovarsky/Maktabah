@@ -57,6 +57,16 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         return item
     }()
 
+    lazy var copyMenuItem: NSMenuItem = {
+        let item = NSMenuItem()
+        item.title = NSLocalizedString("Copy", comment: "")
+        item.image = NSImage(
+            systemSymbolName: "doc.on.doc",
+            accessibilityDescription: ""
+        )
+        return item
+    }()
+
     override init() {
         super.init()
         setupTreeObserver()
@@ -353,6 +363,10 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         if !menu.items.contains(deleteMenuItem) {
             menu.addItem(deleteMenuItem)
         }
+
+        if !menu.items.contains(copyMenuItem) {
+            menu.addItem(copyMenuItem)
+        }
         outlineView?.menu = menu
     }
 
@@ -365,12 +379,23 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         AnnotationManager.shared.updateGroupingMode(mode)
     }
 
+    // MARK: - Copy Action
+
+    @objc func copyClickedAnnotation(_ sender: NSMenuItem) {
+        guard let rtfData = exportToRTF() else { return }
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setData(rtfData, forType: .rtf)
+    }
+
     // MARK: - Export RTF
 
     func exportToRTF(nodes: [AnnotationNode]? = nil) -> Data? {
         guard let outlineView else { return nil }
 
-        let row = outlineView.selectedRow
+        let row = outlineView.clickedRow == -1
+            ? outlineView.selectedRow
+            : outlineView.clickedRow
 
         guard let item = outlineView.item(atRow: row) as? AnnotationNode else {
             return nil
@@ -495,10 +520,10 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                     : dateFormatter.string(from: targetDate)
 
                 let metaText =
-                    "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-") • \(dateString)\n"
+                    "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-") \(annotation.tags.map { " -- \($0)" }.joined(separator: " ")) \n \(dateString)"
 
                 let attrMeta = NSAttributedString(
-                    string: metaText,
+                    string: metaText + "\n",
                     attributes: [
                         .font: NSFont.systemFont(ofSize: 12),
                         .foregroundColor: NSColor.tertiaryLabelColor,
@@ -935,5 +960,9 @@ extension AnnotationOutlineDataSource: NSMenuDelegate {
         deleteMenuItem.representedObject = clickedRow
         deleteMenuItem.target = self
         deleteMenuItem.action = #selector(deleteItem(_:))
+
+        copyMenuItem.isHidden = clickedRow == -1
+        copyMenuItem.target = self
+        copyMenuItem.action = #selector(copyClickedAnnotation(_:))
     }
 }
