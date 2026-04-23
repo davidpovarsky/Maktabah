@@ -3,7 +3,7 @@
 //  maktab
 //
 //  Created by MacBook on 15/12/25.
-//  Granular UI Update
+//  Granular Tag UI Update
 //
 
 import Foundation
@@ -28,6 +28,25 @@ struct AnnotationNotificationKeys {
     static let changeType = "changeType"
     static let annotation = "annotation"
     static let annotationId = "annotationId"
+    static let addedTagNodes = "addedTagNodes"  // [AnnotationNode] tag node baru
+    static let removedTagNodes = "removedTagNodes"  // [AnnotationNode] tag node yang hilang
+    static let updatedTagNodes = "updatedTagNodes"  // [AnnotationNode] tag node yang hanya update isi
+}
+
+struct TagUpdateDiff {
+    struct RemovedEntry {
+        let annotationNode: AnnotationNode  // node anotasi yang dihapus
+        let tagNode: AnnotationNode // tag node induknya
+        let tagNodeBecomesEmpty: Bool // apakah tag node ikut hilang dari root
+    }
+    struct AddedEntry {
+        let annotationNode: AnnotationNode  // node anotasi yang ditambahkan
+        let tagNode: AnnotationNode // tag node induknya
+        let tagNodeIsNew: Bool // apakah tag node baru dibuat
+    }
+    let removed: [RemovedEntry]
+    let added: [AddedEntry]
+    let updated: [AnnotationNode] // annotation node yang hanya di-update teks/warna
 }
 
 final class AnnotationManager {
@@ -81,6 +100,8 @@ final class AnnotationManager {
 
     // Serial queue to protect caches
     private let cacheQueue = DispatchQueue(label: "com.maktab.annotationManager.cacheQueue", qos: .userInitiated)
+
+    var _pendingTagDiff: TagUpdateDiff?
 
     private init() {}
 
@@ -256,12 +277,7 @@ final class AnnotationManager {
             cacheByContent[key] = arr
         }
 
-        if groupingMode == .tag {
-            buildAnnotationTree()
-            postChangeNotification(type: .updated, annotation: updatedAnnotation)
-        } else {
-            updateAnnotationInTree(updatedAnnotation)
-        }
+        updateAnnotationInTree(updatedAnnotation)
     }
 
     // MARK: - Delete annotation
@@ -555,7 +571,7 @@ final class AnnotationManager {
         treeQueue.async { [weak self] in
             guard let self else { return }
             guard self.groupingMode == .book else {
-                self.buildAnnotationTree()
+                self.addAnnotationToTree(annotation)
                 self.postChangeNotification(type: .added, annotation: annotation)
                 return
             }
@@ -600,7 +616,7 @@ final class AnnotationManager {
         treeQueue.async { [weak self] in
             guard let self else { return }
             guard self.groupingMode == .book else {
-                self.buildAnnotationTree()
+                self.updateAnnotationInTagTree(annotation)
                 self.postChangeNotification(type: .updated, annotation: annotation)
                 return
             }
@@ -625,7 +641,7 @@ final class AnnotationManager {
         treeQueue.async { [weak self] in
             guard let self else { return }
             guard self.groupingMode == .book else {
-                self.buildAnnotationTree()
+                self.removeAnnotationFromTagTree(id: id)
                 self.postChangeNotification(type: .deleted, annotation: deletedAnnotation, annotationId: id)
                 return
             }
@@ -648,6 +664,221 @@ final class AnnotationManager {
             }
 
             postChangeNotification(type: .deleted, annotation: deletedAnnotation, annotationId: id)
+        }
+    }
+
+    // MARK: - Tag Tree Manipulation (Granular)
+
+    private func addAnnotationToTagTree(_ annotation: Annotation) {
+        guard let root = _rootNode else {
+            buildAnnotationTree()
+            return
+        }
+
+        let tags = sanitizeTagNames(annotation.tags)
+        let targetTags: [String] = tags.isEmpty ? [] : tags  // kosong = untagged
+
+        let displayTitle: String = {
+            if let note = annotation.note, !note.isEmpty { return note }
+            return annotation.context
+        }()
+
+        if tags.isEmpty {
+            // Masukkan ke node "Untagged"
+            if let untaggedNode = root.children.first(where: { $0.kind == .untagged }) {
+                let newNode = AnnotationNode(
+                    title: displayTitle, kind: .annotation, annotation: annotation)
+                let idx = untaggedNode.children.insertionIndex(for: newNode, using: compareNodes)
+                untaggedNode.children.insert(newNode, at: idx)
+            } else {
+                // Buat node Untagged baru
+                let untaggedNode = AnnotationNode(title: "Untagged".localized, kind: .untagged)
+                let newNode = AnnotationNode(
+                    title: displayTitle, kind: .annotation, annotation: annotation)
+                untaggedNode.children.append(newNode)
+                root.children.append(untaggedNode)
+            }
+        } else {
+            for tag in targetTags {
+                if let tagNode = root.children.first(where: { $0.kind == .tag && $0.title == tag })
+                {
+                    let newNode = AnnotationNode(
+                        title: displayTitle, kind: .annotation, annotation: annotation)
+                    let idx = tagNode.children.insertionIndex(for: newNode, using: compareNodes)
+                    tagNode.children.insert(newNode, at: idx)
+                } else {
+                    // Buat tag node baru, insert sorted
+                    let tagNode = AnnotationNode(title: tag, kind: .tag)
+                    let newNode = AnnotationNode(
+                        title: displayTitle, kind: .annotation, annotation: annotation)
+                    tagNode.children.append(newNode)
+                    // Insert tag node secara alfabetis (sebelum Untagged)
+                    let insertIdx =
+                        root.children.firstIndex(where: { node in
+                            guard node.kind == .tag else { return node.kind == .untagged }
+                            return tag.localizedCaseInsensitiveCompare(node.title)
+                                == .orderedAscending
+                        })
+                        ?? (root.children.firstIndex(where: { $0.kind == .untagged })
+                            ?? root.children.endIndex)
+                    root.children.insert(tagNode, at: insertIdx)
+                }
+            }
+        }
+    }
+
+    private func updateAnnotationInTagTree(_ annotation: Annotation) {
+        guard let id = annotation.id, let root = _rootNode else {
+            buildAnnotationTree()
+            return
+        }
+
+        let displayTitle: String = {
+            if let note = annotation.note, !note.isEmpty { return note }
+            return annotation.context
+        }()
+
+        let newTags = Set(sanitizeTagNames(annotation.tags))
+
+        var existingTagNodes: [AnnotationNode] = []
+        for tagNode in root.children {
+            if tagNode.children.contains(where: { $0.annotation?.id == id }) {
+                existingTagNodes.append(tagNode)
+            }
+        }
+
+        let existingTagNames = Set(existingTagNodes.compactMap { $0.kind == .tag ? $0.title : nil })
+        let isCurrentlyUntagged = existingTagNodes.contains(where: { $0.kind == .untagged })
+
+        var removedEntries: [TagUpdateDiff.RemovedEntry] = []
+        var addedEntries: [TagUpdateDiff.AddedEntry] = []
+        var updatedNodes: [AnnotationNode] = []
+
+        // Hapus dari tag yang sudah tidak ada
+        for tagNode in existingTagNodes
+        where existingTagNames.subtracting(newTags).contains(tagNode.title) {
+            // Capture annotation node SEBELUM dihapus
+            if let annNode = tagNode.children.first(where: { $0.annotation?.id == id }) {
+                let becomesEmpty = tagNode.children.filter { $0.annotation?.id != id }.isEmpty
+                removedEntries.append(.init(
+                    annotationNode: annNode,
+                    tagNode: tagNode,
+                    tagNodeBecomesEmpty: becomesEmpty
+                ))
+                tagNode.children.removeAll { $0.annotation?.id == id }
+                if becomesEmpty {
+                    root.children.removeAll { $0 === tagNode }
+                }
+            }
+        }
+
+        // Hapus dari untagged jika sekarang punya tag
+        if isCurrentlyUntagged && !newTags.isEmpty {
+            if let untaggedNode = root.children.first(where: { $0.kind == .untagged }) {
+                if let annNode = untaggedNode.children.first(where: { $0.annotation?.id == id }) {
+                    let becomesEmpty = untaggedNode.children.filter { $0.annotation?.id != id }.isEmpty
+                    removedEntries.append(.init(
+                        annotationNode: annNode,
+                        tagNode: untaggedNode,
+                        tagNodeBecomesEmpty: becomesEmpty
+                    ))
+                    untaggedNode.children.removeAll { $0.annotation?.id == id }
+                    if becomesEmpty {
+                        root.children.removeAll { $0 === untaggedNode }
+                    }
+                }
+            }
+        }
+
+        // Update node yang masih ada (tag tidak berubah, hanya teks/warna)
+        for tagNode in root.children
+        where existingTagNames.intersection(newTags).contains(tagNode.title) {
+            if let node = tagNode.children.first(where: { $0.annotation?.id == id }) {
+                node.title = displayTitle
+                node.annotation = annotation
+                updatedNodes.append(node)
+            }
+        }
+
+        // Tambah ke tag baru
+        for tag in newTags.subtracting(existingTagNames) {
+            if let tagNode = root.children.first(where: { $0.kind == .tag && $0.title == tag }) {
+                let newNode = AnnotationNode(
+                    title: displayTitle, kind: .annotation, annotation: annotation)
+                let idx = tagNode.children.insertionIndex(for: newNode, using: compareNodes)
+                tagNode.children.insert(newNode, at: idx)
+                addedEntries.append(.init(
+                    annotationNode: newNode,
+                    tagNode: tagNode,
+                    tagNodeIsNew: false
+                ))
+            } else {
+                let tagNode = AnnotationNode(title: tag, kind: .tag)
+                let newNode = AnnotationNode(
+                    title: displayTitle, kind: .annotation, annotation: annotation)
+                tagNode.children.append(newNode)
+                let insertIdx =
+                    root.children.firstIndex(where: { node in
+                        guard node.kind == .tag else { return node.kind == .untagged }
+                        return tag.localizedCaseInsensitiveCompare(node.title) == .orderedAscending
+                    })
+                    ?? (root.children.firstIndex(where: { $0.kind == .untagged })
+                        ?? root.children.endIndex)
+                root.children.insert(tagNode, at: insertIdx)
+                addedEntries.append(.init(
+                    annotationNode: newNode,
+                    tagNode: tagNode,
+                    tagNodeIsNew: true
+                ))
+            }
+        }
+
+        // Masuk untagged jika sekarang tidak ada tag
+        if newTags.isEmpty && !isCurrentlyUntagged {
+            if let untaggedNode = root.children.first(where: { $0.kind == .untagged }) {
+                let newNode = AnnotationNode(
+                    title: displayTitle, kind: .annotation, annotation: annotation)
+                let idx = untaggedNode.children.insertionIndex(for: newNode, using: compareNodes)
+                untaggedNode.children.insert(newNode, at: idx)
+                addedEntries.append(.init(
+                    annotationNode: newNode,
+                    tagNode: untaggedNode,
+                    tagNodeIsNew: false
+                ))
+            } else {
+                let untaggedNode = AnnotationNode(title: "Untagged".localized, kind: .untagged)
+                let newNode = AnnotationNode(
+                    title: displayTitle, kind: .annotation, annotation: annotation)
+                untaggedNode.children.append(newNode)
+                root.children.append(untaggedNode)
+                addedEntries.append(.init(
+                    annotationNode: newNode,
+                    tagNode: untaggedNode,
+                    tagNodeIsNew: true
+                ))
+            }
+        }
+
+        // Simpan diff untuk dipakai DataSource
+        _pendingTagDiff = TagUpdateDiff(
+            removed: removedEntries,
+            added: addedEntries,
+            updated: updatedNodes
+        )
+    }
+
+    private func removeAnnotationFromTagTree(id: Int64) {
+        guard let root = _rootNode else { return }
+
+        var emptyTagNodes: [AnnotationNode] = []
+        for tagNode in root.children {
+            tagNode.children.removeAll { $0.annotation?.id == id }
+            if tagNode.children.isEmpty {
+                emptyTagNodes.append(tagNode)
+            }
+        }
+        for empty in emptyTagNodes {
+            root.children.removeAll { $0 === empty }
         }
     }
 

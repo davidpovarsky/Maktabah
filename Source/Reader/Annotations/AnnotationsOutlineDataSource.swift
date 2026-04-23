@@ -3,7 +3,7 @@
 //  maktab
 //
 //  Created by MacBook on 15/12/25.
-//  Granular UI Update
+//  Granular Tag UI Update
 //
 
 import Cocoa
@@ -110,14 +110,6 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     }
 
     private func handleAnnotationChange(_ notification: Notification) {
-        if groupingMode == .tag {
-            if let searchText = currentSearchText, !searchText.isEmpty {
-                applySearchFilter(text: searchText)
-            }
-            outlineView?.reloadData()
-            return
-        }
-
         guard
             let userInfo = notification.userInfo,
             let changeTypeRaw = userInfo[AnnotationNotificationKeys.changeType] as? String,
@@ -180,6 +172,12 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     private func handleUpdatedAnnotation(annotationId: Int64) {
         guard let outlineView else { return }
+
+        if groupingMode == .tag {
+            handleTagModeUpdate(annotationId: annotationId)
+            return
+        }
+
         guard let row = rowIndex(forAnnotationId: annotationId) else {
             outlineView.reloadData()
             return
@@ -190,6 +188,93 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             forRowIndexes: IndexSet(integer: row),
             columnIndexes: columns
         )
+    }
+
+    private func handleTagModeUpdate(annotationId: Int64) {
+        guard let outlineView else { return }
+        guard let diff = AnnotationManager.shared._pendingTagDiff else {
+            outlineView.reloadData()
+            return
+        }
+
+        // Reload semua jika pembaruan terlalu banyak
+        let totalChanges = diff.updated.count 
+            + diff.removed.count + diff.added.count
+        if totalChanges > 100 {
+            outlineView.reloadData()
+            return
+        }
+
+        AnnotationManager.shared._pendingTagDiff = nil
+
+        outlineView.beginUpdates()
+        let columns = IndexSet(integersIn: 0..<outlineView.numberOfColumns)
+
+        // 1. Reload annotation node yang hanya ganti teks/warna (tag tidak berubah)
+        //    Outline view masih punya state lama, row masih valid.
+        for annNode in diff.updated {
+            let row = outlineView.row(forItem: annNode)
+            if row != -1 {
+                outlineView.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: columns)
+            }
+        }
+
+        // 2. Remove — outline view belum di-update, childIndex masih valid
+        for entry in diff.removed {
+            if entry.tagNodeBecomesEmpty {
+                // Seluruh tag node ikut dihapus
+                let tagIdx = outlineView.childIndex(forItem: entry.tagNode)
+                if tagIdx != -1 {
+                    outlineView.removeItems(
+                        at: IndexSet(integer: tagIdx),
+                        inParent: nil,
+                        withAnimation: .slideUp
+                    )
+                }
+            } else {
+                // Hanya annotation node yang dihapus, tag node tetap ada
+                let annIdx = outlineView.childIndex(forItem: entry.annotationNode)
+                if annIdx != -1 {
+                    outlineView.removeItems(
+                        at: IndexSet(integer: annIdx),
+                        inParent: entry.tagNode,
+                        withAnimation: .slideUp
+                    )
+                }
+            }
+        }
+
+        // 3. Insert — gunakan index dari tree model yang sudah diupdate
+        let root = AnnotationManager.shared.rootNode
+        for entry in diff.added {
+            if entry.tagNodeIsNew {
+                // Tag node baru — insert ke root
+                if let rootIdx = root?.children.firstIndex(where: { $0 === entry.tagNode }) {
+                    outlineView.insertItems(
+                        at: IndexSet(integer: rootIdx),
+                        inParent: nil,
+                        withAnimation: .slideDown
+                    )
+                    // Tag node baru collapsed by default, tidak perlu insert children
+                }
+            } else {
+                // Tag node sudah ada — insert annotation node di dalamnya
+                if outlineView.isItemExpanded(entry.tagNode) {
+                    if let annIdx = entry.tagNode.children.firstIndex(where: { $0 === entry.annotationNode }) {
+                        outlineView.insertItems(
+                            at: IndexSet(integer: annIdx),
+                            inParent: entry.tagNode,
+                            withAnimation: .slideDown
+                        )
+                    }
+                } else {
+                    // Collapsed — reload supaya badge/count ter-update jika ada
+                    outlineView.reloadItem(entry.tagNode, reloadChildren: false)
+                }
+            }
+        }
+
+        outlineView.endUpdates()
     }
 
     private func handleDeletedAnnotation(annotationId: Int64) {
