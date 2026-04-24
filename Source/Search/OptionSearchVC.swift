@@ -22,6 +22,15 @@ class OptionSearchVC: NSViewController {
     @IBOutlet weak var displayResults: NSButton!
     @IBOutlet weak var insertNewResults: NSButton!
 
+    /// Menu Item Copy
+    lazy var copyMenuItem: NSMenuItem = {
+       let item = NSMenuItem()
+        item.title = String(localized: "Copy")
+        item.action = #selector(copy(_:))
+        item.target = self
+        return item 
+    }()
+
     // Array penampung hasil
     var results: [SearchResultItem] = []
 
@@ -80,6 +89,12 @@ class OptionSearchVC: NSViewController {
             progressRows.controlSize = .regular
             // Fallback on earlier versions
         }
+
+        tableView.menu = NSMenu()
+        tableView.menu?.addItem(copyMenuItem)
+        tableView.menu?.delegate = self
+
+        tableView.allowsMultipleSelection = true
 
         NotificationCenter.default.addObserver(
             forName: .libraryFolderChanged,
@@ -401,6 +416,10 @@ class OptionSearchVC: NSViewController {
         searchField.becomeFirstResponder()
     }
 
+    @IBAction func copy(_ sender: Any?) {
+        ReusableFunc.copyResults(results, tableView: tableView)
+    }
+
     deinit {
         #if DEBUG
             print("deinit OptionSearchVC")
@@ -695,5 +714,13 @@ extension OptionSearchVC: ReaderStateComponent {
         searchField.stringValue = ""
         searchText = ""
         tableView.reloadData()
+    }
+}
+
+
+extension OptionSearchVC: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        let clickedRow = tableView.clickedRow
+        copyMenuItem.isHidden = clickedRow < 0
     }
 }

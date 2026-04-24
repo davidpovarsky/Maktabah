@@ -19,7 +19,14 @@ struct TarjamahMen: Codable {
 }
 
 /// Hasil tarjamah lengkap dengan konten
-struct TarjamahResult: Codable {
+struct TarjamahResult: Codable, CopyableResult {
     let tarjamah: TarjamahMen
     let content: String    // Konten dari tabel b{bkid}
+
+    var bookTitle: String { tarjamah.bookTitle ?? "" }
+    var page: Int { -1 }
+    var part: Int { -1 }
+    var attributedText: NSAttributedString {
+        NSAttributedString(string: content)
+    }
 }

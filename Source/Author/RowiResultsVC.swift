@@ -85,6 +85,13 @@ class RowiResultsVC: NSViewController {
     var sidebarTarjamahList: [TarjamahResult] = []
     var searchTarjamahList: [TarjamahResult] = []
 
+    lazy var copyMenuItem: NSMenuItem = {
+        let item = NSMenuItem()
+        item.title = String(localized: "Copy")
+        item.action = #selector(copy(_:))
+        return item
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         rowiTextField.allowsExpansionToolTips = true
@@ -113,13 +120,23 @@ class RowiResultsVC: NSViewController {
                 }
             }
         }
-        // Do view setup here.
+
+        tableView.allowsMultipleSelection = true
+        // TableView Menu
+        let menu = NSMenu()
+        menu.delegate = self
+        menu.addItem(copyMenuItem)
+        tableView.menu = menu
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         updateWindowTitle()
         ReusableFunc.setupSearchField(searchField)
+    }
+
+    @IBAction func copy(_ sender: Any?) {
+        ReusableFunc.copyResults(tarjamahList, tableView: tableView)
     }
 
     @MainActor
@@ -446,5 +463,12 @@ extension RowiResultsVC: ReaderStateComponent {
         #if DEBUG
             print("🔄 Updated UI for restored mode: \(rowiMode)")
         #endif
+    }
+}
+
+extension RowiResultsVC: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        let clickedRow = tableView.clickedRow
+        copyMenuItem.isHidden = clickedRow < 0
     }
 }

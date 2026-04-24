@@ -248,6 +248,8 @@
 		4BAB8A4C2F286C8A00732FC9 /* AnnotationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB8A4B2F286C8A00732FC9 /* AnnotationCoordinator.swift */; };
 		4BB174422F1AFAFF00BF1A2F /* ScreenTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB174412F1AFAFF00BF1A2F /* ScreenTimeManager.swift */; };
 		4BBCC9962F72C8870020D3CA /* SplitVCAccessoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCC9952F72C8870020D3CA /* SplitVCAccessoryItem.swift */; };
+		4BCCCB622F9C41310027EC18 /* CopyableResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCCB612F9C41310027EC18 /* CopyableResult.swift */; };
+		4BCCCB632F9C41310027EC18 /* CopyableResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCCB612F9C41310027EC18 /* CopyableResult.swift */; };
 		4BD6C33C2EE6AA7F008684E3 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C33B2EE6AA7F008684E3 /* MainWindow.swift */; };
 		4BD728232EE44C5500ACEB7C /* IbarotTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD728222EE44C5500ACEB7C /* IbarotTextView.swift */; };
 		4BD728252EE4544C00ACEB7C /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD728242EE4544C00ACEB7C /* StringExt.swift */; };
@@ -394,6 +396,7 @@
 		4BAB8A4B2F286C8A00732FC9 /* AnnotationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationCoordinator.swift; sourceTree = "<group>"; };
 		4BB174412F1AFAFF00BF1A2F /* ScreenTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeManager.swift; sourceTree = "<group>"; };
 		4BBCC9952F72C8870020D3CA /* SplitVCAccessoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitVCAccessoryItem.swift; sourceTree = "<group>"; };
+		4BCCCB612F9C41310027EC18 /* CopyableResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableResult.swift; sourceTree = "<group>"; };
 		4BD6C33B2EE6AA7F008684E3 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		4BD728222EE44C5500ACEB7C /* IbarotTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IbarotTextView.swift; sourceTree = "<group>"; };
 		4BD728242EE4544C00ACEB7C /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
@@ -559,6 +562,7 @@
 			children = (
 				4B73BF462EF09D67001ED591 /* AnnotationDelegate.swift */,
 				4B32022B2EDAFE85003B95D1 /* AppDelegate.swift */,
+				4BCCCB612F9C41310027EC18 /* CopyableResult.swift */,
 				4B3202482EDB10FA003B95D1 /* Protocols.swift */,
 				4B47F3982EE9A36D009A399F /* RowiProtocols.swift */,
 			);
@@ -1048,6 +1052,7 @@
 				4B18185E2F45377200AFFAEE /* AnnotationColorMenuView.swift in Sources */,
 				4B6100EB2EFA769200CCBED6 /* QuranDataManager.swift in Sources */,
 				4B9DDA892EFC343F0003A9FF /* QuranWindow.swift in Sources */,
+				4BCCCB622F9C41310027EC18 /* CopyableResult.swift in Sources */,
 				4BEC35912F34BA330038FC0F /* DatabaseError.swift in Sources */,
 				4B8C9DD12F6984120049E4EF /* ArchiveDatabaseTools.swift in Sources */,
 				4B8C9DD22F6984120049E4EF /* BookArchiveIntegrator.swift in Sources */,
@@ -1124,6 +1129,7 @@
 				4B7C90B02F83494200454BE1 /* QuranTafseerVC.swift in Sources */,
 				4B7C90B12F83494200454BE1 /* RowiProtocols.swift in Sources */,
 				4B7C90B22F83494200454BE1 /* QuranNashVC.swift in Sources */,
+				4BCCCB632F9C41310027EC18 /* CopyableResult.swift in Sources */,
 				4B7C90B32F83494200454BE1 /* BundledArabicTextField.swift in Sources */,
 				4B7C90B42F83494200454BE1 /* BundledArabicButton.swift in Sources */,
 				4B7C90B52F83494200454BE1 /* ArchiveErrors.swift in Sources */,

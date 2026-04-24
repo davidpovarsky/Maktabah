@@ -106,7 +106,7 @@ class BookContent {
     }
 }
 
-struct SearchResultItem: Codable {
+struct SearchResultItem: Codable, CopyableResult {
     let archive: String
     let tableName: String
     let bookId: Int

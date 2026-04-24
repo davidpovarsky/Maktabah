@@ -2347,6 +2347,28 @@
         }
       }
     },
+    "noSelection" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يوجد اختيار"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Selection"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada seleksi"
+          }
+        }
+      }
+    },
     "Page" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2466,6 +2488,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mohon tunggu, proses ini tidak dapat dibatalkan."
+          }
+        }
+      }
+    },
+    "pleaseSelectARow" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "من فضلك اختر الصف"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please select a row"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mohon pilih baris"
           }
         }
       }
