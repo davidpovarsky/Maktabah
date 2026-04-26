@@ -8,6 +8,8 @@
 import Cocoa
 
 class AnnotationCellView: NSTableCellView {
+    static let pagePartLineLimit = 2
+
     @IBOutlet weak var note: NSTextField!
     @IBOutlet weak var context: NSTextField!
     @IBOutlet weak var date: NSTextField!
@@ -15,8 +17,12 @@ class AnnotationCellView: NSTableCellView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        context.maximumNumberOfLines = 2
-        note.maximumNumberOfLines = 4
-        pagePart.maximumNumberOfLines = 2
+        applyLineLimits()
+    }
+
+    func applyLineLimits() {
+        note.maximumNumberOfLines = UserDefaults.standard.annMaxNumberOfLines
+        context.maximumNumberOfLines = UserDefaults.standard.ctxMaxNumberOfLines
+        pagePart.maximumNumberOfLines = Self.pagePartLineLimit
     }
 }

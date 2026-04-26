@@ -25,6 +25,30 @@
         }
       }
     },
+    "4qn-Pb-FYf.title" : {
+      "comment" : "Class = \"NSMenu\"; title = \"Context\"; ObjectID = \"4qn-Pb-FYf\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سياق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Context"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konteks"
+          }
+        }
+      }
+    },
     "5CR-zY-QO2.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"إسم الكتاب\"; ObjectID = \"5CR-zY-QO2\";",
       "extractionState" : "extracted_with_value",
@@ -49,6 +73,30 @@
         }
       }
     },
+    "9TP-SM-DJb.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Context\"; ObjectID = \"9TP-SM-DJb\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سياق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Context"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konteks"
+          }
+        }
+      }
+    },
     "bGY-rp-DNk.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"إسم الكتاب\"; ObjectID = \"bGY-rp-DNk\";",
       "extractionState" : "extracted_with_value",
@@ -69,6 +117,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "إسم الكتاب"
+          }
+        }
+      }
+    },
+    "cmz-g1-w4L.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Annotation\"; ObjectID = \"cmz-g1-w4L\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعليق توضيحي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Annotation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anotasi"
           }
         }
       }
@@ -121,6 +193,30 @@
         }
       }
     },
+    "JW2-5h-5b3.title" : {
+      "comment" : "Class = \"NSMenu\"; title = \"Line Limits\"; ObjectID = \"JW2-5h-5b3\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حدود الخط"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Line Limits"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batas Baris"
+          }
+        }
+      }
+    },
     "knc-G1-fIX.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Reveal in Finder\"; ObjectID = \"knc-G1-fIX\";",
       "extractionState" : "extracted_with_value",
@@ -169,13 +265,61 @@
         }
       }
     },
+    "Rej-sK-p8Y.title" : {
+      "comment" : "Class = \"NSMenu\"; title = \"Annotation\"; ObjectID = \"Rej-sK-p8Y\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعليق توضيحي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Annotation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anotasi"
+          }
+        }
+      }
+    },
+    "s4z-lJ-nPy.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Line Limits\"; ObjectID = \"s4z-lJ-nPy\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حدود الخط"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Line Limits"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batas Baris"
+          }
+        }
+      }
+    },
     "sqc-hL-GGa.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Export Selected Annotation(s)\"; ObjectID = \"sqc-hL-GGa\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "تصدير التعليقات المختارة"
           }
         },
@@ -187,7 +331,7 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ekspor Anotasi yang Dipilih"
           }
         }

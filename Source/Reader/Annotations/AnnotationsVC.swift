@@ -23,6 +23,8 @@ class AnnotationsVC: NSViewController {
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var topConstraintHeaderStack: NSLayoutConstraint!
     
+    @IBOutlet weak var annotationLineMenu: NSMenu!
+    @IBOutlet weak var contextLineMenu: NSMenu!
     @objc dynamic var isRowUnselected: Bool = true
 
     var floatPanel: Bool {
@@ -89,6 +91,7 @@ class AnnotationsVC: NSViewController {
         rootStackView.insertArrangedSubview(headerStackView, at: 0)
         Task { [weak self] in
             guard let self else { return }
+            setupMaxLine()
             reloadAnnotations(nil)
             await MainActor.run { [weak self] in
                 guard let self else { return }
@@ -129,6 +132,66 @@ class AnnotationsVC: NSViewController {
         }
 
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.3, execute: workItem!)
+    }
+
+    @objc func contextMenuAction(_ sender: NSMenuItem) {
+        guard let lineLimit = Int(sender.title) else { return }
+        defaults.ctxMaxNumberOfLines = lineLimit
+        updateLineMenuState()
+        refreshAnnotationRowHeights()
+    }
+
+    @objc func annotationMenuAction(_ sender: NSMenuItem) {
+        guard let lineLimit = Int(sender.title) else { return }
+        defaults.annMaxNumberOfLines = lineLimit
+        updateLineMenuState()
+        refreshAnnotationRowHeights()
+    }
+
+    private func setupMaxLine() {
+        for i in 1...2 {
+            let menuItem = NSMenuItem(
+                title: "\(i)",
+                action: #selector(contextMenuAction(_:)),
+                keyEquivalent: ""
+            )
+            menuItem.target = self
+            // 'at' menentukan posisi index di dalam menu
+            contextLineMenu.addItem(menuItem)
+        }
+
+        for i in 1...4 {
+            let menuItem = NSMenuItem(
+                title: "\(i)",
+                action: #selector(annotationMenuAction(_:)),
+                keyEquivalent: ""
+            )
+            menuItem.target = self
+
+            annotationLineMenu.addItem(menuItem)
+        }
+
+        updateLineMenuState()
+    }
+
+    private func updateLineMenuState() {
+        for item in contextLineMenu.items {
+            item.state = item.title == "\(defaults.ctxMaxNumberOfLines)"
+                ? .on : .off
+        }
+
+        for item in annotationLineMenu.items {
+            item.state = item.title == "\(defaults.annMaxNumberOfLines)"
+                ? .on : .off
+        }
+    }
+
+    private func refreshAnnotationRowHeights() {
+        outlineView.reloadData()
+        guard outlineView.numberOfRows > 0 else { return }
+        outlineView.noteHeightOfRows(
+            withIndexesChanged: IndexSet(integersIn: 0..<outlineView.numberOfRows)
+        )
     }
 
     private func setupSortMenu() {

@@ -134,6 +134,32 @@ extension UserDefaults {
             set(newValue, forKey: TextViewKeys.annotationHideWindow)
         }
     }
+    
+    var annMaxNumberOfLines: Int {
+        get {
+            let max = integer(
+                forKey: AnnotationsKeys.annMaxNumberOfLines
+            )
+
+            if max == 0 { return 4 } else { return max }
+        }
+        set {
+            set(newValue, forKey: AnnotationsKeys.annMaxNumberOfLines)
+        }
+    }
+    
+    var ctxMaxNumberOfLines: Int {
+        get {
+            let max = integer(
+                forKey: AnnotationsKeys.ctxMaxNumberOfLines
+            )
+
+            if max == 0 { return 2 } else { return max }
+        }
+        set {
+            set(newValue, forKey: AnnotationsKeys.ctxMaxNumberOfLines)
+        }
+    }
 
     // MARK: - APP MODE
 
@@ -230,5 +256,7 @@ extension UserDefaults {
         static let selectedAnnSortField = "selectedAnnSortField"
         static let selectedAnnAscending = "selectedAnnAscending"
         static let selectedAnnGroupingMode = "selectedAnnGroupingMode"
+        static let annMaxNumberOfLines = "annMaxNumberOfLines"
+        static let ctxMaxNumberOfLines = "ctxMaxNumberOfLines"
     }
 }
