@@ -75,7 +75,7 @@ enum AnnotationNodeKind {
     case annotation
 }
 
-final class AnnotationNode {
+final class AnnotationNode: Equatable, Hashable {
     var title: String
     var children: [AnnotationNode] = []
     var annotation: Annotation? // optional, kalau node ini representasi annotation
@@ -89,6 +89,14 @@ final class AnnotationNode {
         self.title = title
         self.kind = kind
         self.annotation = annotation
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
+    }
+
+    static func == (lhs: AnnotationNode, rhs: AnnotationNode) -> Bool {
+        lhs === rhs
     }
 }
 

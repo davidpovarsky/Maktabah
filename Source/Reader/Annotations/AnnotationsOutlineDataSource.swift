@@ -3,7 +3,7 @@
 //  maktab
 //
 //  Created by MacBook on 15/12/25.
-//  Granular Tag UI Update
+//  Add menu item to handle Tag and handle delete item menu for multiple cases
 //
 
 import Cocoa
@@ -11,19 +11,21 @@ import Cocoa
 class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     weak var delegate: AnnotationDelegate?
     weak var outlineView: NSOutlineView?
+    var onAddTagsRequested: (([Int64], NSRect) -> Void)?
+    var onRemoveTagsRequested: (([Int64], NSRect) -> Void)?
 
     let paragraphStyle = NSMutableParagraphStyle()
 
     private(set) var filteredRootNode: AnnotationNode?
 
     private var currentRootNode: AnnotationNode? {
-        return filteredRootNode ?? AnnotationManager.shared.rootNode
+        filteredRootNode ?? AnnotationManager.shared.rootNode
     }
 
     private var treeObserver: NSObjectProtocol?
     private var annotationChangeObserver: NSObjectProtocol?
 
-    // Cache Formatter
+    /// Cache Formatter
     private let calendar = Calendar.current
 
     private lazy var dateFormatter: DateFormatter = {
@@ -67,6 +69,28 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         return item
     }()
 
+    lazy var addTagMenuItem: NSMenuItem = {
+        let item = NSMenuItem()
+        item.title = "Add Tags".localized + threeDots
+        item.image = NSImage(
+            systemSymbolName: "tag",
+            accessibilityDescription: ""
+        )
+        return item
+    }()
+
+    lazy var removeTagMenuItem: NSMenuItem = {
+        let item = NSMenuItem()
+        item.title = "Remove Tags".localized + threeDots
+        item.image = NSImage(
+            systemSymbolName: "tag.slash",
+            accessibilityDescription: ""
+        )
+        return item
+    }()
+
+    private let threeDots = "..."
+
     override init() {
         super.init()
         setupTreeObserver()
@@ -89,6 +113,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     }
 
     // MARK: - Setup Notification Observer
+
     private func setupTreeObserver() {
         treeObserver = NotificationCenter.default.addObserver(
             forName: .annotationTreeDidUpdate,
@@ -142,11 +167,21 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
         switch changeType {
         case .added:
-            handleAddedAnnotation(annotationId: annotationId)
-        case .updated:
-            handleUpdatedAnnotation(annotationId: annotationId)
-        case .deleted:
-            handleDeletedAnnotation(annotationId: annotationId)
+            if groupingMode == .tag {
+                let diff = userInfo[AnnotationNotificationKeys.tagDiff] as? TagUpdateDiff
+                handleTagModeUpdate(annotationId: annotationId, diff: diff)
+            } else {
+                handleAddedAnnotation(annotationId: annotationId)
+            }
+        case .updated, .deleted:
+            if groupingMode == .tag {
+                let diff = userInfo[AnnotationNotificationKeys.tagDiff] as? TagUpdateDiff
+                handleTagModeUpdate(annotationId: annotationId, diff: diff)
+            } else if changeType == .updated {
+                handleUpdatedAnnotation(annotationId: annotationId)
+            } else {
+                handleDeletedAnnotation(annotationId: annotationId)
+            }
         }
     }
 
@@ -183,42 +218,35 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     private func handleUpdatedAnnotation(annotationId: Int64) {
         guard let outlineView else { return }
 
-        if groupingMode == .tag {
-            handleTagModeUpdate(annotationId: annotationId)
-            return
-        }
-
         guard let row = rowIndex(forAnnotationId: annotationId) else {
             outlineView.reloadData()
             return
         }
 
-        let columns = IndexSet(integersIn: 0..<outlineView.numberOfColumns)
+        let columns = IndexSet(integersIn: 0 ..< outlineView.numberOfColumns)
         outlineView.reloadData(
             forRowIndexes: IndexSet(integer: row),
             columnIndexes: columns
         )
     }
 
-    private func handleTagModeUpdate(annotationId: Int64) {
+    private func handleTagModeUpdate(annotationId _: Int64, diff: TagUpdateDiff?) {
         guard let outlineView else { return }
-        guard let diff = AnnotationManager.shared._pendingTagDiff else {
+        guard let diff = diff else {
             outlineView.reloadData()
             return
         }
 
         // Reload semua jika pembaruan terlalu banyak
-        let totalChanges = diff.updated.count 
+        let totalChanges = diff.updated.count
             + diff.removed.count + diff.added.count
         if totalChanges > 100 {
             outlineView.reloadData()
             return
         }
 
-        AnnotationManager.shared._pendingTagDiff = nil
-
         outlineView.beginUpdates()
-        let columns = IndexSet(integersIn: 0..<outlineView.numberOfColumns)
+        let columns = IndexSet(integersIn: 0 ..< outlineView.numberOfColumns)
 
         // 1. Reload annotation node yang hanya ganti teks/warna (tag tidak berubah)
         //    Outline view masih punya state lama, row masih valid.
@@ -229,28 +257,22 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             }
         }
 
-        // 2. Remove — outline view belum di-update, childIndex masih valid
+        // 2. Remove — gunakan oldIndex dari diff karena model sudah terupdate
+        // Kelompokkan penghapusan berdasarkan parent node
+        var removalsByParent: [AnnotationNode?: [Int]] = [:]
         for entry in diff.removed {
-            if entry.tagNodeBecomesEmpty {
-                // Seluruh tag node ikut dihapus
-                let tagIdx = outlineView.childIndex(forItem: entry.tagNode)
-                if tagIdx != -1 {
-                    outlineView.removeItems(
-                        at: IndexSet(integer: tagIdx),
-                        inParent: nil,
-                        withAnimation: .slideUp
-                    )
-                }
-            } else {
-                // Hanya annotation node yang dihapus, tag node tetap ada
-                let annIdx = outlineView.childIndex(forItem: entry.annotationNode)
-                if annIdx != -1 {
-                    outlineView.removeItems(
-                        at: IndexSet(integer: annIdx),
-                        inParent: entry.tagNode,
-                        withAnimation: .slideUp
-                    )
-                }
+            let parent = entry.tagNodeBecomesEmpty ? nil : entry.tagNode
+            removalsByParent[parent, default: []].append(entry.oldIndex)
+        }
+
+        for (parent, indices) in removalsByParent {
+            let indexSet = IndexSet(indices.filter { $0 != -1 })
+            if !indexSet.isEmpty {
+                outlineView.removeItems(
+                    at: indexSet,
+                    inParent: parent,
+                    withAnimation: .slideUp
+                )
             }
         }
 
@@ -289,8 +311,10 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     private func handleDeletedAnnotation(annotationId: Int64) {
         guard let outlineView else { return }
+
         guard let row = rowIndex(forAnnotationId: annotationId),
-              let item = outlineView.item(atRow: row) as? AnnotationNode else {
+              let item = outlineView.item(atRow: row) as? AnnotationNode
+        else {
             outlineView.reloadData()
             return
         }
@@ -305,14 +329,15 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             )
         } else {
             outlineView.reloadItem(
-                parent, 
+                parent,
                 reloadChildren: true
             )
         }
 
         if let parentNode = parent as? AnnotationNode,
            parentNode.children.isEmpty,
-           !(AnnotationManager.shared.rootNode?.children.contains { $0 === parentNode } ?? false) {
+           !(AnnotationManager.shared.rootNode?.children.contains { $0 === parentNode } ?? false)
+        {
             let parentIndex = outlineView.childIndex(forItem: parentNode)
             if parentIndex != -1 {
                 outlineView.removeItems(
@@ -326,7 +351,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     private func rowIndex(forAnnotationId annotationId: Int64) -> Int? {
         guard let outlineView else { return nil }
-        for row in 0..<outlineView.numberOfRows {
+        for row in 0 ..< outlineView.numberOfRows {
             guard let node = outlineView.item(atRow: row) as? AnnotationNode else { continue }
             if node.annotation?.id == annotationId {
                 return row
@@ -351,6 +376,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     }
 
     // MARK: - Public Methods
+
     func reload() {
         // Trigger build tree jika belum ada
         //        if AnnotationManager.shared.rootNode == nil {
@@ -359,15 +385,6 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
         AnnotationManager.shared.buildAnnotationTree()
         filteredRootNode = nil
-        menu.delegate = self
-        if !menu.items.contains(deleteMenuItem) {
-            menu.addItem(deleteMenuItem)
-        }
-
-        if !menu.items.contains(copyMenuItem) {
-            menu.addItem(copyMenuItem)
-        }
-        outlineView?.menu = menu
     }
 
     func updateSorting(field: AnnotationSortField, isAscending: Bool) {
@@ -381,11 +398,23 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     // MARK: - Copy Action
 
-    @objc func copyClickedAnnotation(_ sender: NSMenuItem) {
+    @objc func copyClickedAnnotation(_: NSMenuItem) {
         guard let rtfData = exportToRTF() else { return }
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setData(rtfData, forType: .rtf)
+    }
+
+    @objc private func addTagClicked(_: NSMenuItem) {
+        let annotationIDs = prepareContextMenuSelection()
+        guard !annotationIDs.isEmpty else { return }
+        onAddTagsRequested?(annotationIDs, contextMenuAnchorRect())
+    }
+
+    @objc private func removeTagClicked(_: NSMenuItem) {
+        let annotationIDs = prepareContextMenuSelection()
+        guard !annotationIDs.isEmpty else { return }
+        onRemoveTagsRequested?(annotationIDs, contextMenuAnchorRect())
     }
 
     // MARK: - Export RTF
@@ -430,7 +459,6 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         paragraphStyle.paragraphSpacing = 8
 
         for node in nodes {
-
             // =========================
             // HEADER BUKU / FOLDER
             // =========================
@@ -495,7 +523,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 // -------------------------
                 if let noteText = annotation.note {
                     let attrNote = NSAttributedString(
-                        string: "حَاشِيَة: \(noteText)\n",
+                        string: "\"\(noteText)\"\n",
                         attributes: [
                             .font: NSFont.systemFont(ofSize: 13),
                             .foregroundColor: NSColor.secondaryLabelColor,
@@ -513,14 +541,15 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 )
                 let dateString =
                     calendar.isDateInToday(targetDate)
-                    ? relativeFormatter.localizedString(
-                        for: targetDate,
-                        relativeTo: Date()
-                    )
-                    : dateFormatter.string(from: targetDate)
+                        ? relativeFormatter.localizedString(
+                            for: targetDate,
+                            relativeTo: Date()
+                        )
+                        : dateFormatter.string(from: targetDate)
 
+                let kitab = LibraryDataManager.shared.getBook([annotation.bkId]).first?.book ?? "<Unknown Book>"
                 let metaText =
-                    "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-") \(annotation.tags.map { " -- \($0)" }.joined(separator: " ")) \n \(dateString)"
+                    "\(kitab) • الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-") \(annotation.tags.map { " -- \($0)" }.joined(separator: " "))\n\(dateString)"
 
                 let attrMeta = NSAttributedString(
                     string: metaText + "\n",
@@ -542,109 +571,120 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     // MARK: - Delete Action
 
     @objc func deleteItem(_ sender: NSMenuItem) {
-        guard let outlineView, let row = sender.representedObject as? Int else {
-            return
+        guard let outlineView else { return }
+
+        // Swipe-to-delete menyetel representedObject = row.
+        // Context menu tidak, jadi gunakan effectiveNodes.
+        let nodes: [AnnotationNode]
+        if let row = sender.representedObject as? Int {
+            guard let node = outlineView.item(atRow: row) as? AnnotationNode else { return }
+            nodes = [node]
+        } else {
+            nodes = effectiveNodes(for: outlineView)
         }
 
-        // Ambil item dari baris tersebut
-        guard let item = outlineView.item(atRow: row) as? AnnotationNode else {
-            return
+        guard !nodes.isEmpty else { return }
+
+        let annotationNodes = nodes.filter { $0.annotation != nil }
+        let tagRootNodes = nodes.filter { $0.kind == .tag }
+        let bookRootNodes = nodes.filter { $0.kind == .book }
+        let untaggedNodes = nodes.filter { $0.kind == .untagged }
+
+        // Untagged root tidak bisa dihapus
+        guard untaggedNodes.isEmpty else { return }
+
+        if groupingMode == .tag {
+            if !annotationNodes.isEmpty, !tagRootNodes.isEmpty {
+                // Mode Tag, seleksi campuran → hapus tag root + anotasi
+                performDeleteTagRoots(tagRootNodes)
+                performDeleteAnnotations(annotationNodes)
+            } else if !tagRootNodes.isEmpty {
+                // Hanya tag root
+                performDeleteTagRoots(tagRootNodes)
+            } else {
+                // Hanya anotasi
+                performDeleteAnnotations(annotationNodes)
+            }
+        } else {
+            // Book mode
+            if !annotationNodes.isEmpty, !bookRootNodes.isEmpty {
+                // Seleksi campuran → hapus anotasi saja (bukan book root)
+                performDeleteAnnotations(annotationNodes)
+            } else if !bookRootNodes.isEmpty {
+                // Hanya book root → hapus semua anotasi di dalamnya
+                performDeleteBookRoots(bookRootNodes)
+            } else {
+                // Hanya anotasi
+                performDeleteAnnotations(annotationNodes)
+            }
         }
+    }
 
-        // =========================================================
-        // KONDISI 1: ITEM ADALAH PARENT (BUKU/FOLDER)
-        // Ciri: item.annotation == nil (berdasarkan struktur data Anda)
-        // =========================================================
-        if item.annotation == nil {
-            if item.kind == .tag || item.kind == .untagged {
-                return
-            }
-            // Opsional: Tambahkan Alert Konfirmasi di sini jika ingin lebih aman
-
-            // 1. Loop semua children dan hapus dari Database
-            // Kita gunakan reverse loop atau copy array agar aman saat iterasi
-            let childrenToDelete = item.children
-            let annotations: [Annotation] = Array(
-                childrenToDelete.compactMap { $0.annotation }
-            )
-
-            for child in childrenToDelete {
-                if let annotation = child.annotation, let id = annotation.id {
-                    do {
-                        try AnnotationManager.shared.deleteAnnotation(id: id)
-                    } catch {
-                        print("Gagal menghapus anotasi ID \(id): \(error)")
-                    }
-                }
-            }
-
-            // 2. Hapus Parent Item dari UI (OutlineView)
-            // Parent dari item ini (biasanya nil jika ini level teratas/root)
-            // let parentGroup = outlineView.parent(forItem: item)
-            let index = outlineView.childIndex(forItem: item)
-
-            if index != -1 {
-                outlineView.removeItems(
-                    at: IndexSet(integer: index),
-                    inParent: nil,  // nil tidak masalah untuk top-level item
-                    withAnimation: .slideUp
-                )
-            }
-
-            // 3. Beritahu sistem bahwa tree berubah drastis
-            NotificationCenter.default.post(
-                name: .annotationDidDeleteFromOutline,
-                object: nil,
-                userInfo: ["annotations": annotations]
-            )
-        }
-
-        // =========================================================
-        // KONDISI 2: ITEM ADALAH CHILD (SINGLE ANNOTATION)
-        // =========================================================
-        else {
-            // Pastikan punya parent (karena child pasti di dalam folder buku)
-            guard let parent = outlineView.parent(forItem: item) else { return }
-
-            guard let annotation = item.annotation,
-                let id = annotation.id
-            else {
-                #if DEBUG
-                    print("error node, annotation, id.")
-                #endif
-                return
-            }
-
-            let childIndex = outlineView.childIndex(forItem: item)
-
+    /// Hapus tag dari semua anotasi yang memilikinya (anotasi tidak dihapus)
+    private func performDeleteTagRoots(_ nodes: [AnnotationNode]) {
+        for node in nodes where node.kind == .tag {
             do {
-                // Hapus dari Database
-                try AnnotationManager.shared.deleteAnnotation(id: id)
-
-                // Hapus dari UI
-                outlineView.removeItems(
-                    at: IndexSet(integer: childIndex),
-                    inParent: parent,
-                    withAnimation: .slideUp
-                )
-
-                NotificationCenter.default.post(
-                    name: .annotationDidDeleteFromOutline,
-                    object: nil,
-                    userInfo: ["annotations": [annotation]]
-                )
-
-                // (Opsional) Cek jika parent menjadi kosong, apakah mau dihapus juga?
-                // if parentNode.children.isEmpty { ... remove parent ... }
+                try AnnotationManager.shared.deleteTag(named: node.title)
             } catch {
                 #if DEBUG
-                    print("error delete single annotation: \(error)")
+                    print("Error deleting tag '\(node.title)': \(error)")
                 #endif
             }
         }
     }
 
+    /// Hapus anotasi satu per satu (notification chain menangani UI update)
+    private func performDeleteAnnotations(_ nodes: [AnnotationNode]) {
+        var deleted: [Annotation] = []
+        for node in nodes {
+            guard let annotation = node.annotation, let id = annotation.id else { continue }
+            do {
+                try AnnotationManager.shared.deleteAnnotation(id: id)
+                deleted.append(annotation)
+            } catch {
+                #if DEBUG
+                    print("Error deleting annotation \(id): \(error)")
+                #endif
+            }
+        }
+        guard !deleted.isEmpty else { return }
+        NotificationCenter.default.post(
+            name: .annotationDidDeleteFromOutline,
+            object: nil,
+            userInfo: ["annotations": deleted]
+        )
+    }
+
+    /// Hapus book root: hapus semua anotasi di dalamnya
+    private func performDeleteBookRoots(_ nodes: [AnnotationNode]) {
+        var deleted: [Annotation] = []
+        for bookNode in nodes where bookNode.kind == .book {
+            for childNode in bookNode.children {
+                guard let annotation = childNode.annotation, let id = annotation.id else {
+                    continue
+                }
+                do {
+                    try AnnotationManager.shared.deleteAnnotation(id: id)
+                    deleted.append(annotation)
+                } catch {
+                    #if DEBUG
+                        print(
+                            "Error deleting annotation \(id) from book '\(bookNode.title)': \(error)"
+                        )
+                    #endif
+                }
+            }
+        }
+        guard !deleted.isEmpty else { return }
+        NotificationCenter.default.post(
+            name: .annotationDidDeleteFromOutline,
+            object: nil,
+            userInfo: ["annotations": deleted]
+        )
+    }
+
     // MARK: - NSOutlineViewDataSource
+
     func outlineView(
         _ outlineView: NSOutlineView,
         numberOfChildrenOfItem item: Any?
@@ -708,11 +748,11 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
 
         // Node anotasi
         guard let annotation = node.annotation,
-            let color = NSColor(hex: annotation.colorHex),
-            let cell = outlineView.makeView(
-                withIdentifier: NSUserInterfaceItemIdentifier("AnnotationCell"),
-                owner: self
-            ) as? AnnotationCellView
+              let color = NSColor(hex: annotation.colorHex),
+              let cell = outlineView.makeView(
+                  withIdentifier: NSUserInterfaceItemIdentifier("AnnotationCell"),
+                  owner: self
+              ) as? AnnotationCellView
         else {
             return nil
         }
@@ -755,7 +795,8 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             page + tags
         case .tag:
             if let book = LibraryDataManager.shared
-                .getBook([annotation.bkId]).first?.book {
+                .getBook([annotation.bkId]).first?.book
+            {
                 page + tags + "\n" + book
             } else {
                 page
@@ -777,14 +818,13 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             timeIntervalSince1970: TimeInterval(timestampInt64)
         )
 
-        let formattedString: String
-        if calendar.isDateInToday(targetDate) {
-            formattedString = relativeFormatter.localizedString(
+        let formattedString: String = if calendar.isDateInToday(targetDate) {
+            relativeFormatter.localizedString(
                 for: targetDate,
                 relativeTo: Date()
             )
         } else {
-            formattedString = dateFormatter.string(from: targetDate)
+            dateFormatter.string(from: targetDate)
         }
 
         cell.date.stringValue = formattedString
@@ -795,7 +835,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
         -> CGFloat
     {
         guard let node = item as? AnnotationNode,
-            let annotation = node.annotation
+              let annotation = node.annotation
         else {
             return 30
         }
@@ -811,16 +851,15 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             paragraphStyle: paragraphStyle
         )
 
-        let noteHeight: CGFloat
-        if let note = annotation.note, !note.isEmpty {
-            noteHeight = measuredHeight(
+        let noteHeight: CGFloat = if let note = annotation.note, !note.isEmpty {
+            measuredHeight(
                 for: note,
                 width: contentWidth,
                 font: NSFont.systemFont(ofSize: 15),
                 lineLimit: UserDefaults.standard.annMaxNumberOfLines
             )
         } else {
-            noteHeight = 0
+            0
         }
 
         let page = "الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-")"
@@ -830,7 +869,8 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             page + tags
         case .tag:
             if let book = LibraryDataManager.shared
-                .getBook([annotation.bkId]).first?.book {
+                .getBook([annotation.bkId]).first?.book
+            {
                 page + tags + "\n" + book
             } else {
                 page
@@ -863,7 +903,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
         onSelectItem?(row)
 
         guard let item = outlineView.item(atRow: row) as? AnnotationNode,
-            let annotation = item.annotation
+              let annotation = item.annotation
         else {
             #if DEBUG
                 print("outlineView item not as Annotations")
@@ -879,7 +919,6 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
         rowActionsForRow row: Int,
         edge: NSTableView.RowActionEdge
     ) -> [NSTableViewRowAction] {
-
         guard edge == .trailing else { return [] }
 
         let deleteAction = NSTableViewRowAction(
@@ -909,7 +948,8 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
         if let outlineView,
            let node = outlineView.item(atRow: row) as? AnnotationNode,
            node.annotation == nil,
-           (node.kind == AnnotationNodeKind.tag || node.kind == AnnotationNodeKind.untagged) {
+           node.kind == AnnotationNodeKind.tag || node.kind == AnnotationNodeKind.untagged
+        {
             return []
         }
 
@@ -918,6 +958,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
 }
 
 // MARK: - Search Extension
+
 extension AnnotationOutlineDataSource {
     private func measuredHeight(
         for text: String,
@@ -1004,6 +1045,7 @@ extension AnnotationOutlineDataSource {
         if titleMatches || annotationMatches {
             let copiedNode = AnnotationNode(
                 title: sourceNode.title,
+                kind: sourceNode.kind,
                 annotation: sourceNode.annotation
             )
             // Jika node induk cocok, kita biasanya ingin menampilkan semua anaknya
@@ -1026,6 +1068,7 @@ extension AnnotationOutlineDataSource {
         if !matchingChildren.isEmpty {
             let copiedNode = AnnotationNode(
                 title: sourceNode.title,
+                kind: sourceNode.kind,
                 annotation: sourceNode.annotation
             )
             copiedNode.children = matchingChildren
@@ -1037,17 +1080,109 @@ extension AnnotationOutlineDataSource {
 }
 
 // MARK: - Menu Delegate
+
 extension AnnotationOutlineDataSource: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         guard let outlineView else { return }
-        let clickedRow = outlineView.clickedRow
-        deleteMenuItem.isHidden = clickedRow == -1
-        deleteMenuItem.representedObject = clickedRow
+
+        let nodes = effectiveNodes(for: outlineView)
+        let annotationIDs = prepareContextMenuSelection()
+
+        let hasAnnotations = nodes.contains { $0.annotation != nil }
+        let hasTagRoots = nodes.contains { $0.kind == .tag }
+        let hasBookRoots = nodes.contains { $0.kind == .book }
+        let hasUntaggedRoot = nodes.contains { $0.kind == .untagged }
+
+        // Untagged root: tidak bisa dihapus via menu
+        let shouldHideDelete = nodes.isEmpty || hasUntaggedRoot
+
+        deleteMenuItem.isHidden = shouldHideDelete
         deleteMenuItem.target = self
         deleteMenuItem.action = #selector(deleteItem(_:))
 
-        copyMenuItem.isHidden = clickedRow == -1
+        if !shouldHideDelete {
+            switch (groupingMode, hasAnnotations, hasTagRoots, hasBookRoots) {
+            case (.tag, true, true, _):
+                // Mix anotasi + tag root → hapus keduanya
+                deleteMenuItem.title = String(localized: .deleteTagAnnotation)
+            case (.tag, false, true, _):
+                // Hanya tag root
+                deleteMenuItem.title = String(localized: .deleteTag)
+            case (.book, true, _, true):
+                // Mix anotasi + book root → hapus anotasi saja
+                deleteMenuItem.title = String(localized: .deleteAnnotation)
+            default:
+                deleteMenuItem.title = String(localized: "Delete")
+            }
+        }
+
+        copyMenuItem.isHidden = outlineView.clickedRow == -1
         copyMenuItem.target = self
         copyMenuItem.action = #selector(copyClickedAnnotation(_:))
+
+        addTagMenuItem.isHidden = annotationIDs.isEmpty
+        addTagMenuItem.target = self
+        addTagMenuItem.action = #selector(addTagClicked(_:))
+
+        removeTagMenuItem.isHidden = annotationIDs.isEmpty
+        removeTagMenuItem.target = self
+        removeTagMenuItem.action = #selector(removeTagClicked(_:))
+    }
+
+    func setupOutlineMenu() {
+        menu.delegate = self
+
+        if !menu.items.contains(addTagMenuItem) {
+            menu.addItem(addTagMenuItem)
+        }
+
+        if !menu.items.contains(removeTagMenuItem) {
+            menu.addItem(removeTagMenuItem)
+        }
+
+        if !menu.items.contains(copyMenuItem) {
+            menu.addItem(.separator())
+            menu.addItem(copyMenuItem)
+        }
+
+        if !menu.items.contains(deleteMenuItem) {
+            menu.addItem(.separator())
+            menu.addItem(deleteMenuItem)
+        }
+
+        outlineView?.menu = menu
+    }
+}
+
+private extension AnnotationOutlineDataSource {
+    private func effectiveRows(for outlineView: NSOutlineView) -> IndexSet {
+        let clickedRow = outlineView.clickedRow
+        if clickedRow == -1 { return outlineView.selectedRowIndexes }
+        return outlineView.selectedRowIndexes.contains(clickedRow)
+            ? outlineView.selectedRowIndexes
+            : IndexSet(integer: clickedRow)
+    }
+
+    private func effectiveNodes(for outlineView: NSOutlineView) -> [AnnotationNode] {
+        effectiveRows(for: outlineView).compactMap {
+            outlineView.item(atRow: $0) as? AnnotationNode
+        }
+    }
+
+    func prepareContextMenuSelection() -> [Int64] {
+        guard let outlineView else { return [] }
+        let nodes = effectiveNodes(for: outlineView)
+        // Kembalikan kosong jika ada node yang bukan annotation
+        guard nodes.allSatisfy({ $0.annotation != nil }) else { return [] }
+        return nodes.compactMap { $0.annotation?.id }
+    }
+
+    func contextMenuAnchorRect() -> NSRect {
+        guard let outlineView else { return .zero }
+        let anchorRow = outlineView.clickedRow >= 0
+            ? outlineView.clickedRow
+            : outlineView.selectedRow
+        guard anchorRow >= 0 else { return outlineView.bounds }
+        return outlineView.rect(ofRow: anchorRow)
     }
 }

@@ -19,4 +19,6 @@ enum CellIViewIdentifier: String {
     case bookmarkChildNib = "ResultCellView"
     case searchCellNib = "SearchCellView"
     case searchCell = "searchCellView"
+    case tagNib = "Tag"
+    case tagCell = "tagCell"
 }

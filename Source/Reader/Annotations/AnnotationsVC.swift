@@ -39,6 +39,7 @@ class AnnotationsVC: NSViewController {
 
     let dataSource: AnnotationOutlineDataSource = .init()
     var workItem: DispatchWorkItem?
+    private var tagPopover: NSPopover?
 
     var popover: Bool = true
     var isDataLoaded = false
@@ -76,6 +77,21 @@ class AnnotationsVC: NSViewController {
         floatMenuItem.state = .on
         setupSortMenu()
         ReusableFunc.setupSearchField(searchField)
+        outlineView.allowsMultipleSelection = true
+        dataSource.onAddTagsRequested = { [weak self] annotationIDs, anchorRect in
+            self?.presentTagPopover(
+                mode: .add,
+                annotationIDs: annotationIDs,
+                anchorRect: anchorRect
+            )
+        }
+        dataSource.onRemoveTagsRequested = { [weak self] annotationIDs, anchorRect in
+            self?.presentTagPopover(
+                mode: .remove,
+                annotationIDs: annotationIDs,
+                anchorRect: anchorRect
+            )
+        }
     }
 
     override func viewDidAppear() {
@@ -93,6 +109,7 @@ class AnnotationsVC: NSViewController {
             guard let self else { return }
             setupMaxLine()
             reloadAnnotations(nil)
+            dataSource.setupOutlineMenu()
             await MainActor.run { [weak self] in
                 guard let self else { return }
                 ReusableFunc.closeProgressWindow(view)
@@ -317,6 +334,84 @@ class AnnotationsVC: NSViewController {
         menu.item(withTag: fieldTag)?.state = .on
     }
 
+    private func presentTagPopover(
+        mode: AnnotationTagVC.Mode,
+        annotationIDs: [Int64],
+        anchorRect: NSRect
+    ) {
+        tagPopover?.performClose(nil)
+
+        let tagVC = AnnotationTagVC()
+        tagVC.mode = mode
+        tagVC.annotationIDs = annotationIDs
+        tagVC.availableTags = switch mode {
+        case .add:
+            AnnotationManager.shared.allTagNames()
+        case .remove:
+            commonTags(for: annotationIDs)
+        }
+        tagVC.onSubmit = { [weak self] mode, tags, annotationIDs in
+            self?.applyTags(tags, mode: mode, to: annotationIDs)
+        }
+        tagVC.onCancel = { [weak self] in
+            self?.tagPopover = nil
+        }
+
+        let popover = NSPopover()
+        popover.contentViewController = tagVC
+        popover.behavior = .transient
+        popover.show(relativeTo: anchorRect, of: outlineView, preferredEdge: .maxY)
+        tagPopover = popover
+    }
+
+    private func applyTags(
+        _ tags: [String],
+        mode: AnnotationTagVC.Mode,
+        to annotationIDs: [Int64]
+    ) {
+        guard !annotationIDs.isEmpty else { return }
+
+        do {
+            switch mode {
+            case .add:
+                for tag in tags {
+                    try AnnotationManager.shared.addTag(tag, toAnnotationIDs: annotationIDs)
+                }
+            case .remove:
+                for tag in tags {
+                    try AnnotationManager.shared.removeTag(tag, fromAnnotationIDs: annotationIDs)
+                }
+            }
+            tagPopover?.performClose(nil)
+        } catch {
+            ReusableFunc.showAlert(title: "Error", message: error.localizedDescription)
+        }
+    }
+
+    private func commonTags(for annotationIDs: [Int64]) -> [String] {
+        let annotations = annotationIDs.compactMap {
+            AnnotationManager.shared.loadAnnotationById($0)
+        }
+        guard let firstAnnotation = annotations.first else { return [] }
+
+        let commonNormalized = annotations.dropFirst().reduce(
+            Set(firstAnnotation.tags.map(normalizedTagName))
+        ) { partialResult, annotation in
+            partialResult.intersection(Set(annotation.tags.map(normalizedTagName)))
+        }
+
+        return firstAnnotation.tags.filter {
+            commonNormalized.contains(normalizedTagName($0))
+        }
+    }
+
+    private func normalizedTagName(_ name: String) -> String {
+        name
+            .folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+    }
+
     @IBAction func saveRTFToFile(_ sender: Any?) {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [.rtf]
@@ -444,6 +539,7 @@ class AnnotationsVC: NSViewController {
 
 extension AnnotationsVC: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
+        tagPopover?.performClose(nil)
         SharedPopover.annotationsVC = nil
         SharedPopover.annotationsPopover.contentViewController = nil
         Self.panel?.delegate = nil

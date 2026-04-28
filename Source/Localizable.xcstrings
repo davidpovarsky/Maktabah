@@ -121,6 +121,22 @@
         }
       }
     },
+    "Add Tags" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إضافة علامات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambahkan Tag"
+          }
+        }
+      }
+    },
     "All" : {
       "localizations" : {
         "ar" : {
@@ -1030,6 +1046,29 @@
         }
       }
     },
+    "Delete Annotation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف التعليق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Annotation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Anotasi"
+          }
+        }
+      }
+    },
     "Delete Highlight" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1060,6 +1099,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Sorotan & Catatan"
+          }
+        }
+      }
+    },
+    "Delete Tag" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف العلامة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Tag"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tag"
+          }
+        }
+      }
+    },
+    "Delete Tag & Annotation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف العلامة والتعليق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Tag & Annotation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tag & Anotasi"
           }
         }
       }
@@ -2642,6 +2727,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siap diunduh"
+          }
+        }
+      }
+    },
+    "Remove Tags" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إزالة العلامات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bersihkan Tag"
           }
         }
       }
