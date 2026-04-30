@@ -103,9 +103,12 @@ class LibraryDataManager {
     {
         var localBooksById: [Int: BooksData] = [:]
 
-        // Load buku untuk setiap kategori
+        // Fetch all books grouped by category to avoid N+1 query
+        let allBooksGrouped = try db.fetchAllBooksGroupedByCategory()
+
+        // Assign buku untuk setiap kategori
         for cat in allCategories {
-            let books = try db.fetchBooks(forCategory: cat.id)
+            let books = allBooksGrouped[cat.id] ?? []
             cat.children.append(contentsOf: books)
             for book in books {
                 if localBooksById[book.id] == nil {
@@ -271,15 +274,17 @@ class LibraryDataManager {
         return checkedTables
     }
 
-    func performSearch(tableToScan: Set<String> = [],
-                       searchEngine: SearchEngine,
-                       query: String,
-                       mode: SearchMode,
-                       onInitialize: @escaping (Int) -> Void, // totalTables
-                       onTableProgress: @escaping (Int) -> Void, // completedTables
-                       onRowProgress: @escaping (String, String, Int, Int) -> Void,  // ✅ BARU
-                       completion: @escaping (SearchResultItem) -> Void,
-                       onComplete: @escaping () -> Void) async {
+    func performSearch(
+        tableToScan: Set<String> = [],
+        searchEngine: SearchEngine,
+        query: String,
+        mode: SearchMode,
+        onInitialize: @escaping (Int) -> Void,  // totalTables
+        onTableProgress: @escaping (Int) -> Void,  // completedTables
+        onRowProgress: @escaping (String, String, Int, Int) -> Void,  // ✅ BARU
+        completion: @escaping (SearchResultItem) -> Void,
+        onComplete: @escaping () -> Void
+    ) async {
         searchIsRunning = true
         let allowed = tableToScan
 
@@ -296,21 +301,22 @@ class LibraryDataManager {
 
         if searchKeywords.isEmpty { return }
 
-        var relevantArchives = Set<Int>()
+        var allowedByArchive: [Int: Set<String>] = [:]
         for tableName in allowed {
             let bookId = Int(tableName.dropFirst()) ?? 0
             if let book = booksById[bookId] {
-                relevantArchives.insert(book.archive)
+                allowedByArchive[book.archive, default: []].insert(tableName)
             }
         }
 
         #if DEBUG
-        print("🎯 Filter: Dari \(archives.count) archive → \(relevantArchives.count) relevan")
+            print(
+                "Filter: Dari \(archives.count) archive → \(allowedByArchive.keys.count) relevan")
         #endif
 
         var totalTables = 0
 
-        for archiveId in relevantArchives.sorted() {
+        for archiveId in allowedByArchive.keys.sorted() {
             guard let archiveInfo = archives[archiveId] else { continue }
             guard let dbPath = getDatabasePath(forArchive: archiveId) else { return }
             let connections = createConnections(dbPath: dbPath, count: 4)
@@ -320,18 +326,23 @@ class LibraryDataManager {
                 continue
             }
 
-            // Filter tables yang relevan untuk archive ini
-            let relevantTablesForArchive = archiveInfo.tables.filter { allowed.contains($0) }
+            // Validasi: pastikan table ada di archive dan diizinkan (O(1) lookup per item)
+            let allowedForThisArchive = allowedByArchive[archiveId] ?? []
+            let relevantTablesForArchive = archiveInfo.tables.filter {
+                allowedForThisArchive.contains($0)
+            }
+            guard !relevantTablesForArchive.isEmpty else { continue }
+
             totalTables += relevantTablesForArchive.count
 
             searchEngine.registerDB(
                 archiveId: String(archiveId),
-                tables: archiveInfo.tables, // Masih kirim semua tables, filtering di worker
+                tables: archiveInfo.tables,  // Masih kirim semua tables, filtering di worker
                 connections: connections,
                 batchSize: 200
             )
             #if DEBUG
-            print("✅ Worker archive \(archiveId): \(relevantTablesForArchive.count) tables")
+                print("Worker archive \(archiveId): \(relevantTablesForArchive.count) tables")
             #endif
         }
 
@@ -371,16 +382,18 @@ class LibraryDataManager {
                         let snippet = content.nash
                             .normalizeArabic()
                             .snippetAround(keywords: searchKeywords, contextLength: 60)
-                        let highlightedSnippet = snippet.highlightedAttributedText(keywords: searchKeywords)
-                        completion(SearchResultItem(
-                            archive: archive,
-                            tableName: tableName,
-                            bookId: content.id,
-                            bookTitle: bookTitle,
-                            page: content.page,
-                            part: content.part,
-                            attributedText: highlightedSnippet
-                        ))
+                        let highlightedSnippet = snippet.highlightedAttributedText(
+                            keywords: searchKeywords)
+                        completion(
+                            SearchResultItem(
+                                archive: archive,
+                                tableName: tableName,
+                                bookId: content.id,
+                                bookTitle: bookTitle,
+                                page: content.page,
+                                part: content.part,
+                                attributedText: highlightedSnippet
+                            ))
                     }
                 },
                 onComplete: { [weak self] in

@@ -98,6 +98,27 @@ class DatabaseManager {
         return categories
     }
 
+    func fetchAllBooksGroupedByCategory() throws -> [Int: [BooksData]] {
+        guard let db = db else { return [:] }
+
+        var groupedBooks: [Int: [BooksData]] = [:]
+
+        for row in try db.prepare(booksTable) {
+            let catId = row[bokCat]
+            let book = BooksData(
+                id: row[bokId],
+                book: row[bokName],
+                archive: row[bokArchive],
+                muallif: row[bokMuallif]
+            )
+            book.tafseerNam = row[tafseerNam]?.isEmpty == true ? nil : row[tafseerNam]
+
+            groupedBooks[catId, default: []].append(book)
+        }
+
+        return groupedBooks
+    }
+    
     func fetchBooks(forCategory catId: Int) throws -> [BooksData] {
         try fetchBooks(forCategory: catId, bookIds: nil)
     }
