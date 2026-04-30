@@ -89,6 +89,16 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         return item
     }()
 
+    lazy var renameTagMenuItem: NSMenuItem = {
+        let item = NSMenuItem()
+        item.title = String(localized: "Rename Tag") + threeDots
+        item.image = NSImage(
+            systemSymbolName: "pencil.line",
+            accessibilityDescription: ""
+        )
+        return item
+    }()
+
     private let threeDots = "..."
 
     override init() {
@@ -415,6 +425,89 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         let annotationIDs = prepareContextMenuSelection()
         guard !annotationIDs.isEmpty else { return }
         onRemoveTagsRequested?(annotationIDs, contextMenuAnchorRect())
+    }
+
+    @objc private func renameTagClicked(_ sender: NSMenuItem) {
+        guard let outlineView else { return }
+
+        let nodes = effectiveNodes(for: outlineView)
+        guard nodes.count == 1,
+            let tagNode = nodes.first,
+            tagNode.kind == .tag
+        else { return }
+
+        let row = outlineView.row(forItem: tagNode)
+        guard row != -1,
+              let cell = outlineView.view(atColumn: 0, row: row, makeIfNecessary: false) as? NSTableCellView,
+              let textField = cell.textField else { return }
+
+        textField.isEditable = true
+        textField.target = self
+        textField.action = #selector(tagRenameDidComplete(_:))
+        outlineView.window?.makeFirstResponder(textField)
+    }
+
+    @objc private func tagRenameDidComplete(_ sender: NSTextField) {
+        sender.isEditable = false
+        sender.target = nil
+        sender.action = nil
+        
+        guard let outlineView else { return }
+        
+        let row = outlineView.row(for: sender)
+        guard row != -1,
+              let tagNode = outlineView.item(atRow: row) as? AnnotationNode,
+              tagNode.kind == .tag else {
+            return
+        }
+
+        let currentName = tagNode.title
+        let newName = sender.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !newName.isEmpty, newName != currentName else {
+            sender.stringValue = currentName
+            return
+        }
+
+        func rename(from currentName: String, to newName: String) {
+            do {
+                try AnnotationManager.shared.renameTag(from: currentName, to: newName)
+            } catch {
+                sender.stringValue = currentName
+                let errorAlert = NSAlert()
+                errorAlert.messageText = String(localized: "Rename Failed")
+                errorAlert.informativeText = error.localizedDescription
+                errorAlert.runModal()
+            }
+        }
+
+        // ── Deteksi merge: cek case-insensitively apakah newName sudah ada ──
+        let existingTags = AnnotationManager.shared.allTagNames()
+        let wouldMerge = existingTags.contains {
+            $0.caseInsensitiveCompare(newName) == .orderedSame
+                && $0.caseInsensitiveCompare(currentName) != .orderedSame
+        }
+
+        if wouldMerge {
+            sender.stringValue = currentName
+            let tagMergePopoverVC = TagMergePopoverVC(oldName: currentName, newName: newName)
+            let popover = NSPopover()
+            popover.contentViewController = tagMergePopoverVC
+            popover.behavior = .transient
+            popover.show(relativeTo: sender.frame, of: sender, preferredEdge: .maxY)
+
+            tagMergePopoverVC.onConfirm = { [weak popover] in
+                popover?.performClose(nil)
+                rename(from: currentName, to: newName)
+            }
+
+            tagMergePopoverVC.onCancel = { [weak sender, weak popover] in
+                print("Merge cancelled, keeping original name: \(currentName)")
+                sender?.stringValue = currentName
+                popover?.performClose(nil)
+            }
+        } else {
+            rename(from: currentName, to: newName)
+        }
     }
 
     // MARK: - Export RTF
@@ -1127,6 +1220,12 @@ extension AnnotationOutlineDataSource: NSMenuDelegate {
         removeTagMenuItem.isHidden = annotationIDs.isEmpty
         removeTagMenuItem.target = self
         removeTagMenuItem.action = #selector(removeTagClicked(_:))
+
+        // Rename Tag: hanya tampil jika satu tag root dipilih, dan mode Tag
+        let isSingleTagRoot = nodes.count == 1 && nodes.first?.kind == .tag
+        renameTagMenuItem.isHidden = !isSingleTagRoot || groupingMode != .tag
+        renameTagMenuItem.target = self
+        renameTagMenuItem.action = #selector(renameTagClicked(_:))
     }
 
     func setupOutlineMenu() {
@@ -1138,6 +1237,10 @@ extension AnnotationOutlineDataSource: NSMenuDelegate {
 
         if !menu.items.contains(removeTagMenuItem) {
             menu.addItem(removeTagMenuItem)
+        }
+
+        if !menu.items.contains(renameTagMenuItem) {  // ← BARU
+            menu.addItem(renameTagMenuItem)
         }
 
         if !menu.items.contains(copyMenuItem) {

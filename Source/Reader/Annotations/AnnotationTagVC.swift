@@ -458,7 +458,9 @@ extension AnnotationTagVC: NSTokenFieldDelegate {
         shouldAdd tokens: [Any],
         at index: Int
     ) -> [Any] {
-        applyFilter(nil)
+        DispatchQueue.main.async { [weak self] in
+            self?.applyFilter("")
+        }
         return tokens
     }
 }

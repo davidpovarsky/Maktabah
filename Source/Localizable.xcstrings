@@ -4,6 +4,28 @@
     "" : {
       "shouldTranslate" : false
     },
+    "'%@' already exists. All annotations from '%@' will be merged into '%@'." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%1$@' موجود بالفعل. سيتم دمج جميع التعليقات من '%2$@' في '%3$@'."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%1$@' already exists. All annotations from '%2$@' will be merged into '%3$@'."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%1$@' sudah ada. Semua anotasi dari '%2$@' akan digabungkan ke dalam '%3$@'."
+          }
+        }
+      }
+    },
     "%@" : {
       "shouldTranslate" : false
     },
@@ -127,6 +149,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "إضافة علامات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Tags"
           }
         },
         "id" : {
@@ -2237,6 +2265,52 @@
         }
       }
     },
+    "Merge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دمج"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merge"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gabungkan"
+          }
+        }
+      }
+    },
+    "Merge Tags?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دمج العلامات؟"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merge Tags?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gabungkan Tag?"
+          }
+        }
+      }
+    },
     "migrationFailed" : {
       "localizations" : {
         "ar" : {
@@ -2319,6 +2393,9 @@
           }
         }
       }
+    },
+    "New tag name" : {
+
     },
     "New Version %@ available" : {
       "extractionState" : "stale",
@@ -2739,10 +2816,85 @@
             "value" : "إزالة العلامات"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Tags"
+          }
+        },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bersihkan Tag"
+          }
+        }
+      }
+    },
+    "Rename" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تسمية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Nama"
+          }
+        }
+      }
+    },
+    "Rename Failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشلت إعادة التسمية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename Failed"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal Mengubah Nama"
+          }
+        }
+      }
+    },
+    "Rename Tag" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تسمية العلامة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename Tag"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Nama Tag"
           }
         }
       }
@@ -3214,6 +3366,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "غير موسومة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untagged"
           }
         },
         "id" : {
