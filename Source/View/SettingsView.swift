@@ -11,6 +11,8 @@ final class SettingsViewModel: ObservableObject {
     @Published var databaseFilesPath: String = "N/A"
     @Published var archiveFilesPath: String = "N/A"
     @Published var annotationsPath: String = "N/A"
+    @Published var useICloud: Bool = AppConfig.useICloud
+    @Published var isProcessingICloud = false
 
     #if DIRECT_DISTRIBUTION
     @Published var autoCheckAppUpdates: Bool = true
@@ -32,6 +34,7 @@ final class SettingsViewModel: ObservableObject {
             AppConfig.folder(for: AppConfig.annotationsAndResultsFolder)?
                 .path ?? "N/A"
         isBundleMode = AppConfig.isUsingBundleMode
+        useICloud = AppConfig.useICloud
         #if DIRECT_DISTRIBUTION
         autoCheckAppUpdates = UserDefaults.standard.autoCheckAppUpdates
         #endif
@@ -74,6 +77,28 @@ final class SettingsViewModel: ObservableObject {
 
     func openSelectiveDownload() {
         SettingsActions.downloadSelectiveLibrary()
+    }
+
+    func setICloud(_ enabled: Bool) {
+        // Simpan nilai lama untuk rollback
+        let previous = useICloud
+
+        // Terapkan nilai baru optimistically, lalu disable toggle via flag terpisah
+        useICloud = enabled
+        isProcessingICloud = true
+
+        AppConfig.setUseICloud(enabled) { [weak self] error in
+            guard let self else { return }
+            self.isProcessingICloud = false
+
+            if let error {
+                self.useICloud = previous  // rollback
+                ReusableFunc.showAlert(
+                    title: NSLocalizedString("errorICloud", comment: ""),
+                    message: error.localizedDescription
+                )
+            }
+        }
     }
 }
 
@@ -122,12 +147,27 @@ struct SettingsView: View {
 
             // MARK: Annotations & Search Results
             Section {
+                Toggle(isOn: Binding(
+                    get: { viewModel.useICloud },
+                    set: { viewModel.setICloud($0) }
+                )) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Use iCloud")
+                        Text("Sync annotations and search results across devices using iCloud Drive.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .controlSize(.regular)
+                .disabled(viewModel.isProcessingICloud)
+
                 PathRow(label: "Current Path", path: viewModel.annotationsPath)
 
                 Button("Choose Annotations Folder…") {
                     viewModel.chooseAnnotationsFolder()
                 }
                 .padding(.top, 4)
+                .disabled(viewModel.useICloud)
             } header: {
                 Text("Annotations & Search Results")
             }

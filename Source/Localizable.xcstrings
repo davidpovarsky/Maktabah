@@ -1616,6 +1616,28 @@
         }
       }
     },
+    "errorICloud" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "حدث خطأ أثناء محاولة تنزيل ملف في iCloud Drive"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred when trying to download a file in iCloud Drive"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Terjadi kesalahan saat mencoba mengunduh file di iCloud Drive"
+          }
+        }
+      }
+    },
     "errorMovingFolderDesc" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3269,6 +3291,28 @@
         }
       }
     },
+    "Sync annotations and search results across devices using iCloud Drive." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قم بمزامنة التعليقات التوضيحية والنتائج عبر الأجهزة باستخدام iCloud Drive."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selaraskan anotasi dan hasil pencarian di seluruh perangkat menggunakan iCloud Drive."
+          }
+        }
+      }
+    },
+    "Table of Contents" : {
+
+    },
+    "The core database files are not ready yet. Finish the initial download first." : {
+      "comment" : "Missing core files alert message"
+    },
     "There's Nothing Books to Download." : {
       "localizations" : {
         "ar" : {
@@ -3426,6 +3470,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pembaruan"
+          }
+        }
+      }
+    },
+    "Use iCloud" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استخدام iCloud"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunakan iCloud"
           }
         }
       }

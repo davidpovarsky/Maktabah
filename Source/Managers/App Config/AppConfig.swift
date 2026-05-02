@@ -292,7 +292,35 @@ struct AppConfig {
         }
     }
 
+    static let useICloudKey = "use_icloud_for_annotations"
+
+    // MARK: - iCloud Support
+    static var useICloud: Bool {
+        get { UserDefaults.standard.bool(forKey: useICloudKey) }
+        set { UserDefaults.standard.set(newValue, forKey: useICloudKey) }
+    }
+
+    static var iCloudFolderURL: URL? {
+        guard let url = FileManager.default.url(forUbiquityContainerIdentifier: nil)?
+            .appendingPathComponent("Documents", isDirectory: true) else {
+            return nil
+        }
+
+        let fm = FileManager.default
+        if !fm.fileExists(atPath: url.path) {
+            try? fm.createDirectory(at: url, withIntermediateDirectories: true)
+        }
+
+        return url
+    }
+
     static func folder(for key: String) -> URL? {
+        if key == annotationsAndResultsFolder {
+            if useICloud, let iCloud = iCloudFolderURL {
+                return iCloud
+            }
+        }
+
         if let custom = resolvedPath(for: key) {
             return custom
         }
@@ -434,6 +462,98 @@ struct AppConfig {
         return UserDefaults.standard.data(forKey: customDatabaseFolderKey) != nil
     }
 
+
+    /// Toggle iCloud support for annotations dan migrate files.
+    /// Dipanggil dari Settings toggle (main thread). Operasi file dijalankan di background.
+    /// - Parameters:
+    ///   - use: true = aktifkan iCloud, false = nonaktifkan
+    ///   - completion: dipanggil di main thread setelah selesai, berisi error jika gagal
+    static func setUseICloud(_ use: Bool, completion: @escaping (Error?) -> Void) {
+        let oldURL = AppConfig.folder(for: AppConfig.annotationsAndResultsFolder)
+
+        // Set dulu sebelum folder() dipanggil lagi
+        useICloud = use
+
+        guard let newURL = AppConfig.folder(for: AppConfig.annotationsAndResultsFolder) else {
+            useICloud = !use  // rollback
+            DispatchQueue.main.async { completion(StorageError.invalidDirectory) }
+            return
+        }
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                if let oldURL, oldURL.standardized != newURL.standardized {
+                    let fm = FileManager.default
+                    let baseFiles = ["Annotations.sqlite", "SearchResults.sqlite"]
+                    let extensions = ["", "-wal", "-shm"]
+
+                    for fileName in baseFiles {
+                        for ext in extensions {
+                            let fullFileName = fileName + ext
+                            let sourceFile = oldURL.appendingPathComponent(fullFileName)
+                            let destFile = newURL.appendingPathComponent(fullFileName)
+
+                            guard fm.fileExists(atPath: sourceFile.path) else { continue }
+
+                            // Pindah dari iCloud ke lokal: pastikan file sudah didownload dulu
+                            if !use {
+                                try? fm.startDownloadingUbiquitousItem(at: sourceFile)
+
+                                let deadline = Date().addingTimeInterval(15.0)
+                                var downloaded = false
+
+                                while Date() < deadline {
+                                    if let vals = try? sourceFile.resourceValues(
+                                        forKeys: [.ubiquitousItemDownloadingStatusKey]
+                                    ), vals.ubiquitousItemDownloadingStatus == .current {
+                                        downloaded = true
+                                        break
+                                    }
+                                    // Fallback: cek apakah bukan placeholder .icloud
+                                    let isPlaceholder = sourceFile.pathExtension == "icloud"
+                                        || sourceFile.lastPathComponent.hasPrefix(".")
+                                    if !isPlaceholder && fm.fileExists(atPath: sourceFile.path) {
+                                        downloaded = true
+                                        break
+                                    }
+                                    Thread.sleep(forTimeInterval: 0.5)
+                                }
+
+                                if !downloaded {
+                                    #if DEBUG
+                                        print("Timeout menunggu download iCloud: \(fullFileName)")
+                                    #endif
+                                    continue
+                                }
+                            }
+
+                            // Move file
+                            if !fm.fileExists(atPath: destFile.path) {
+                                try fm.moveItem(at: sourceFile, to: destFile)
+                            } else {
+                                try? fm.removeItem(at: sourceFile)
+                            }
+
+                            // Kalau aktifkan iCloud, trigger download di tujuan
+                            if use {
+                                try? fm.startDownloadingUbiquitousItem(at: destFile)
+                            }
+                        }
+                    }
+                }
+
+                // Setup database di main thread setelah file siap
+                try AnnotationManager.shared.setupAnnotations(at: newURL)
+                try ResultsHandler.shared.setupResultDatabase(at: newURL)
+
+                DispatchQueue.main.async { completion(nil) }
+            } catch {
+                // Rollback useICloud kalau gagal
+                useICloud = !use
+                DispatchQueue.main.async { completion(error) }
+            }
+        }
+    }
 }
 
 extension Notification.Name {
