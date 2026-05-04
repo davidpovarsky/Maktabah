@@ -68,25 +68,61 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
           rm /tmp/cert.p12
 
+      # Install Provisioning Profile macOS
+      - name: Install Provisioning Profile
+        env:
+          PROFILE_DATA: ${{ secrets.MAKTABAH_DIRECT_PROVISIONING_PROFILE }}
+          UUID_PROFILE: ${{ secrets.UUID_PROFILE }}
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$PROFILE_DATA" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/$UUID_PROFILE.provisionprofile
+
       # Build archive macOS
       - name: Build archive
         env:
           TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          UUID_PROFILE: ${{ secrets.UUID_PROFILE }}
         run: |
+          python3 - <<EOF
+          import os, re
+          path = 'Maktabah.xcodeproj/project.pbxproj'
+          with open(path, 'r') as f:
+              content = f.read()
+          
+          # 1. Patch Target-level (Maktabah-Direct Release)
+          target_config_id = '4B7C912D2F83494200454BE1'
+          uuid = os.environ['UUID_PROFILE']
+          team = os.environ['TEAM_ID']
+          
+          pattern = r'(' + target_config_id + r' /\* Release \*/ = \{[^{]*buildSettings = \{)(.*?)(\};)'
+          def replace_target(match):
+              h, s, f = match.group(1), match.group(2), match.group(3)
+              for k in ['CODE_SIGN_STYLE', 'CODE_SIGN_IDENTITY', 'PROVISIONING_PROFILE_SPECIFIER', 'DEVELOPMENT_TEAM']:
+                  s = re.sub(rf'\s+{k}\s+=\s+[^;]+;', '', s)
+              new = f'\n\t\t\t\tCODE_SIGN_STYLE = Manual;\n\t\t\t\tCODE_SIGN_IDENTITY = "Developer ID Application";\n\t\t\t\tPROVISIONING_PROFILE_SPECIFIER = "{uuid}";\n\t\t\t\tDEVELOPMENT_TEAM = {team};'
+              return h + new + s + f
+          content = re.sub(pattern, replace_target, content, flags=re.DOTALL)
+
+          # 2. Patch Project-level (agar tidak fallback ke Development)
+          content = content.replace('CODE_SIGN_IDENTITY = "Apple Development";', 'CODE_SIGN_IDENTITY = "Developer ID Application";')
+          
+          with open(path, 'w') as f:
+              f.write(content)
+          print("Successfully patched project for manual Developer ID signing.")
+          EOF
+
           xcodebuild archive \
             -project Maktabah.xcodeproj \
             -scheme Maktabah-Direct \
             -archivePath "build/Maktabah.xcarchive" \
             -configuration Release \
             -destination "generic/platform=macOS" \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Developer ID Application" \
-            DEVELOPMENT_TEAM="$TEAM_ID" \
             OTHER_CODE_SIGN_FLAGS="--timestamp --options=runtime"
 
       - name: Export Developer ID App
         env:
           TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          UUID_PROFILE: ${{ secrets.UUID_PROFILE }}
         run: |
           cat > build/ExportOptions.plist <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
@@ -99,6 +135,11 @@ jobs:
             <string>manual</string>
             <key>teamID</key>
             <string>${TEAM_ID}</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.Drn.maktabah</key>
+              <string>${UUID_PROFILE}</string>
+            </dict>
           </dict>
           </plist>
           EOF
