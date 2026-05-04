@@ -219,7 +219,7 @@ extension UserDefaults {
             let data = newValue.compactMap {
                 try? NSKeyedArchiver.archivedData(
                     withRootObject: $0,
-                    requiringSecureCoding: false
+                    requiringSecureCoding: true
                 )
             }
             set(data, forKey: Self.recentColorsKey)

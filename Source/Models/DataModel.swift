@@ -5,6 +5,7 @@
 //  Created by MacBook on 29/11/25.
 //
 
+import AppKit
 import Foundation
 import SQLite
 
@@ -155,8 +156,9 @@ struct SearchResultItem: Codable, CopyableResult {
 
         let data = try NSKeyedArchiver.archivedData(
             withRootObject: attributedText,
-            requiringSecureCoding: false
+            requiringSecureCoding: true
         )
+
         try container.encode(data, forKey: .attributedText)
     }
 
@@ -172,10 +174,19 @@ struct SearchResultItem: Codable, CopyableResult {
 
         let data = try container.decode(Data.self, forKey: .attributedText)
 
+        let allowedClasses = [
+            NSAttributedString.self,
+            NSMutableAttributedString.self,
+            NSColor.self,
+            NSFont.self,
+            NSParagraphStyle.self,
+            NSMutableParagraphStyle.self
+        ]
+
         attributedText = try NSKeyedUnarchiver.unarchivedObject(
-            ofClass: NSAttributedString.self,
+            ofClasses: allowedClasses,
             from: data
-        ) ?? NSAttributedString(string: "")
+        ) as? NSAttributedString ?? NSAttributedString(string: "")
     }
 }
 
