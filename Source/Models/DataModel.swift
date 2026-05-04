@@ -5,7 +5,9 @@
 //  Created by MacBook on 29/11/25.
 //
 
+#if canImport(AppKit)
 import AppKit
+#endif
 import Foundation
 import SQLite
 
@@ -174,6 +176,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
 
         let data = try container.decode(Data.self, forKey: .attributedText)
 
+        #if os(macOS)
         let allowedClasses = [
             NSAttributedString.self,
             NSMutableAttributedString.self,
@@ -187,8 +190,14 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
             ofClasses: allowedClasses,
             from: data
         ) as? NSAttributedString ?? NSAttributedString(string: "")
+        #else
+        attributedText = try NSKeyedUnarchiver.unarchivedObject(
+            ofClass: NSAttributedString.self,
+            from: data
+        ) ?? NSAttributedString(string: "")
+        #endif
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(bookId)
     }

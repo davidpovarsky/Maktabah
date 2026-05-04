@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "2640"
-   version = "2.1">
+   LastUpgradeVersion = "2630"
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,21 +15,11 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B3202272EDAFE85003B95D1"
+               BlueprintIdentifier = "F30576DD2FA46222005732C6"
                BuildableName = "Maktabah.app"
-               BlueprintName = "Maktabah"
+               BlueprintName = "Maktabah-iOS"
                ReferencedContainer = "container:Maktabah.xcodeproj">
             </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <TestPlanReference
-               reference = "container:Update.xctestplan">
-            </TestPlanReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
@@ -36,26 +27,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <TestPlans>
-         <TestPlanReference
-            reference = "container:Update.xctestplan"
-            default = "YES">
-         </TestPlanReference>
-      </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B96D3482F36389D0018D902"
-               BuildableName = "MaktabahTests.xctest"
-               BlueprintName = "MaktabahTests"
-               ReferencedContainer = "container:Maktabah.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -71,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B3202272EDAFE85003B95D1"
+            BlueprintIdentifier = "F30576DD2FA46222005732C6"
             BuildableName = "Maktabah.app"
-            BlueprintName = "Maktabah"
+            BlueprintName = "Maktabah-iOS"
             ReferencedContainer = "container:Maktabah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -88,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B3202272EDAFE85003B95D1"
+            BlueprintIdentifier = "F30576DD2FA46222005732C6"
             BuildableName = "Maktabah.app"
-            BlueprintName = "Maktabah"
+            BlueprintName = "Maktabah-iOS"
             ReferencedContainer = "container:Maktabah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

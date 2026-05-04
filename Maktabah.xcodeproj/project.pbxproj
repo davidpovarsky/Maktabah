@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04C59D40A8B1C84C6AAC9181 /* iOSSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6505EE880DD50A217DB489F1 /* iOSSearchViewModel.swift */; };
 		4B0139E02EEAFC3000424CFA /* CustomSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0139DF2EEAFC3000424CFA /* CustomSplitView.swift */; };
 		4B0139E22EEB281C00424CFA /* BookPageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0139E12EEB281C00424CFA /* BookPageCache.swift */; };
 		4B0139E42EEB2FDF00424CFA /* StringInterner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0139E32EEB2FDF00424CFA /* StringInterner.swift */; };
@@ -268,12 +269,101 @@
 		4BFCD84C2F10744800E41F8A /* ScheherazadeNew-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */; };
 		4BFCD84F2F10746600E41F8A /* Lateef-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */; };
 		4BFCD8502F10746600E41F8A /* Lateef-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84E2F10746600E41F8A /* Lateef-Bold.ttf */; };
+		CFAA7B20E067D5BB75E4EB23 /* MaktabahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */; };
+		D27D27301FA4DE1E54F91CB2 /* iOSHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4467AA97C7701F822736B80 /* iOSHistoryViewModel.swift */; };
 		F300A2EC2F2DCE860095015E /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F300A2EB2F2DCE860095015E /* StorageError.swift */; };
+		F30576E52FA46222005732C6 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B01CA2F2EFD366E002A66FA /* AppConfig.swift */; };
+		F30576E82FA46222005732C6 /* AnnotationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B56955F2EEFDAFB00ABEB48 /* AnnotationManager.swift */; };
+		F30576EC2FA46222005732C6 /* SettingsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB98D2F69E957007D0945 /* SettingsActions.swift */; };
+		F30576EE2FA46222005732C6 /* RowiProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F3982EE9A36D009A399F /* RowiProtocols.swift */; };
+		F30576F22FA46222005732C6 /* ArchiveErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DD82F6985210049E4EF /* ArchiveErrors.swift */; };
+		F30576F52FA46222005732C6 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD728242EE4544C00ACEB7C /* StringExt.swift */; };
+		F30576F62FA46222005732C6 /* ArabicTextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB8A482F28682200732FC9 /* ArabicTextRenderer.swift */; };
+		F30576F72FA46222005732C6 /* ReusableFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B20DB782EE7D1BB00B97126 /* ReusableFunc.swift */; };
+		F30576F82FA46222005732C6 /* BookUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B966C2F35A74400B57E1D /* BookUpdateManager.swift */; };
+		F30576F92FA46222005732C6 /* AnnotationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73BF462EF09D67001ED591 /* AnnotationDelegate.swift */; };
+		F30576FB2FA46222005732C6 /* AnnotationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB8A4B2F286C8A00732FC9 /* AnnotationCoordinator.swift */; };
+		F30576FC2FA46222005732C6 /* BookConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B540F462EDF25A4001D8C0B /* BookConnection.swift */; };
+		F30576FE2FA46222005732C6 /* BookUpdateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3522F3675290018D902 /* BookUpdateModels.swift */; };
+		F30577012FA46222005732C6 /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F300A2EB2F2DCE860095015E /* StorageError.swift */; };
+		F30577032FA46222005732C6 /* LibraryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33928A2EE02E710028C706 /* LibraryDataManager.swift */; };
+		F30577052FA46222005732C6 /* ReaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B03D9D02F42DB5B004E0FDB /* ReaderState.swift */; };
+		F30577062FA46222005732C6 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5DF93A2EDC43FB0082DE7F /* UserDefaults.swift */; };
+		F30577072FA46222005732C6 /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6AF22E2EE5692A002EBFFC /* AppMode.swift */; };
+		F30577082FA46222005732C6 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3202482EDB10FA003B95D1 /* Protocols.swift */; };
+		F305770A2FA46222005732C6 /* QuranDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6100EA2EFA769200CCBED6 /* QuranDataManager.swift */; };
+		F305770C2FA46222005732C6 /* CopyableResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCCB612F9C41310027EC18 /* CopyableResult.swift */; };
+		F305770D2FA46222005732C6 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC35902F34BA330038FC0F /* DatabaseError.swift */; };
+		F305770E2FA46222005732C6 /* ArchiveDatabaseTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DCE2F6984120049E4EF /* ArchiveDatabaseTools.swift */; };
+		F305770F2FA46222005732C6 /* BookArchiveIntegrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DCF2F6984120049E4EF /* BookArchiveIntegrator.swift */; };
+		F30577102FA46222005732C6 /* BookDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DD02F6984120049E4EF /* BookDownloadManager.swift */; };
+		F30577112FA46222005732C6 /* IntegrationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DD62F69848F0049E4EF /* IntegrationCache.swift */; };
+		F30577132FA46222005732C6 /* TOCLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2FAD992EED472E008E933E /* TOCLoader.swift */; };
+		F30577142FA46222005732C6 /* SearchMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B20DB7E2EE7EE1F00B97126 /* SearchMode.swift */; };
+		F305771A2FA46222005732C6 /* BookUpdateVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3402F3612BD0018D902 /* BookUpdateVM.swift */; };
+		F30577202FA46222005732C6 /* Narrathor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C97112F1F026C0051503E /* Narrathor.swift */; };
+		F30577252FA46222005732C6 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65CCBF2EE0A10F0085CEB4 /* SearchEngine.swift */; };
+		F30577262FA46222005732C6 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32024F2EDB1B5A003B95D1 /* DataModel.swift */; };
+		F305772B2FA46222005732C6 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58EDCD2EE3DDEE00073495 /* ResultsViewModel.swift */; };
+		F305772D2FA46222005732C6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32024D2EDB13C0003B95D1 /* DatabaseManager.swift */; };
+		F305772F2FA46222005732C6 /* BookmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58EDC82EE3D1E000073495 /* BookmarkModel.swift */; };
+		F30577302FA46222005732C6 /* RowiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63E1E82EE9671000D58F3B /* RowiModel.swift */; };
+		F30577342FA46222005732C6 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5695582EEFDAAE00ABEB48 /* Annotations.swift */; };
+		F30577362FA46222005732C6 /* RowiDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B63E1E62EE965E800D58F3B /* RowiDataManager.swift */; };
+		F30577372FA46222005732C6 /* Quran.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6100EC2EFA773C00CCBED6 /* Quran.swift */; };
+		F305773B2FA46222005732C6 /* ResultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EC2982EE334C600991F39 /* ResultsHandler.swift */; };
+		F305773C2FA46222005732C6 /* ZstdShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C83052F7EAE1C00CE1800 /* ZstdShim.swift */; };
+		F305773F2FA46222005732C6 /* BookPageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0139E12EEB281C00424CFA /* BookPageCache.swift */; };
+		F30577402FA46222005732C6 /* StringInterner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0139E32EEB2FDF00424CFA /* StringInterner.swift */; };
+		F30577432FA46222005732C6 /* ArabicFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA393632EF0D30200736DFF /* ArabicFont.swift */; };
+		F30577442FA46222005732C6 /* TarjamahDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE12EEC17CC0049202E /* TarjamahDataManager.swift */; };
+		F30577482FA46222005732C6 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = F30576DE2FA46222005732C6 /* SQLite */; };
+		F30577492FA46222005732C6 /* libzstd in Frameworks */ = {isa = PBXBuildFile; productRef = F30576E02FA46222005732C6 /* libzstd */; };
+		F305774F2FA46222005732C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B32022D2EDAFE88003B95D1 /* Assets.xcassets */; };
+		F30577502FA46222005732C6 /* UthmanTN1-Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B3AFA112F76DB1000FB9C05 /* UthmanTN1-Ver10.otf */; };
+		F30577512FA46222005732C6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4B22B2F02F7E3BD300741EEC /* PrivacyInfo.xcprivacy */; };
+		F30577522FA46222005732C6 /* IconMaktabah.icon in Resources */ = {isa = PBXBuildFile; fileRef = F349073E2F3064A10036CDAF /* IconMaktabah.icon */; };
+		F305775A2FA46222005732C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */; };
+		F305775F2FA46222005732C6 /* Lateef-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */; };
+		F30577642FA46222005732C6 /* ScheherazadeNew-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */; };
+		F30577652FA46222005732C6 /* Lateef-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84E2F10746600E41F8A /* Lateef-Bold.ttf */; };
+		F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392EB2EFCC15700460756 /* Localizable.xcstrings */; };
+		F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777A2FA463B1005732C6 /* iOSMainView.swift */; };
+		F30577852FA463B1005732C6 /* SearchModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777B2FA463B1005732C6 /* SearchModeView.swift */; };
+		F30577862FA463B1005732C6 /* ViewerModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777C2FA463B1005732C6 /* ViewerModeView.swift */; };
+		F30577872FA463B1005732C6 /* iOSAnnotationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577702FA463B1005732C6 /* iOSAnnotationViewModel.swift */; };
+		F30577882FA463B1005732C6 /* AuthorModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577782FA463B1005732C6 /* AuthorModeView.swift */; };
+		F30577892FA463B1005732C6 /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777F2FA463B1005732C6 /* BookListViewController.swift */; };
+		F305778A2FA463B1005732C6 /* iOSReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577732FA463B1005732C6 /* iOSReaderViewModel.swift */; };
+		F305778B2FA463B1005732C6 /* iOSReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577752FA463B1005732C6 /* iOSReaderView.swift */; };
+		F305778C2FA463B1005732C6 /* AnnotationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577772FA463B1005732C6 /* AnnotationListView.swift */; };
+		F305778D2FA463B1005732C6 /* iOSLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577792FA463B1005732C6 /* iOSLibraryView.swift */; };
+		F305778E2FA463B1005732C6 /* ViewOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777D2FA463B1005732C6 /* ViewOptionsView.swift */; };
+		F305778F2FA463B1005732C6 /* iOSIbarotTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577812FA463B1005732C6 /* iOSIbarotTextView.swift */; };
+		F30577902FA463B1005732C6 /* iOSNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577722FA463B1005732C6 /* iOSNavigationManager.swift */; };
+		F30577912FA463B1005732C6 /* iOSLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577712FA463B1005732C6 /* iOSLibraryViewModel.swift */; };
+		F30577922FA463B1005732C6 /* BookListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577802FA463B1005732C6 /* BookListWrapper.swift */; };
+		F30577932FA4982A005732C6 /* TextViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB8A452F2867A200732FC9 /* TextViewState.swift */; };
 		F30577952FA4987B005732C6 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577942FA4987B005732C6 /* NotificationName.swift */; };
 		F30577962FA4987B005732C6 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577942FA4987B005732C6 /* NotificationName.swift */; };
 		F30577972FA4987B005732C6 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577942FA4987B005732C6 /* NotificationName.swift */; };
+		F30577992FA4BE8D005732C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */; };
 		F323BCA22F2EE70200EFD4F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */; };
 		F349073F2F3064A10036CDAF /* IconMaktabah.icon in Resources */ = {isa = PBXBuildFile; fileRef = F349073E2F3064A10036CDAF /* IconMaktabah.icon */; };
+		F363824E2FA6C6150006636C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB98B2F69E860007D0945 /* SettingsView.swift */; };
+		F36382512FA6FA1E0006636C /* BootstrapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382502FA6FA1E0006636C /* BootstrapManager.swift */; };
+		F36382532FA6FABF0006636C /* BootstrapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382522FA6FABF0006636C /* BootstrapView.swift */; };
+		F36382552FA6FAE10006636C /* CoreDownloaderGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382542FA6FAE10006636C /* CoreDownloaderGateView.swift */; };
+		F363825B2FA702A00006636C /* iPhoneLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F363825A2FA702A00006636C /* iPhoneLayout.swift */; };
+		F363825D2FA702D10006636C /* iPadLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F363825C2FA702D10006636C /* iPadLayout.swift */; };
+		F36382642FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382632FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift */; };
+		F36382662FA761070006636C /* iOSSearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382652FA761070006636C /* iOSSearchFilterViewController.swift */; };
+		F36382692FA7BFB40006636C /* iOSAnnotationEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */; };
+		F38FF42E2FA817D9003E7B71 /* iOSBookInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */; };
+		F38FF4302FA82034003E7B71 /* iOSRowiSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */; };
+		F38FF4322FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */; };
+		F38FF4342FA820B3003E7B71 /* iOSAuthorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF4332FA820B3003E7B71 /* iOSAuthorViewModel.swift */; };
+		F38FF4362FA89EEE003E7B71 /* iOSReaderTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */; };
 		F3902E8C2F9EE1CA004BA5D1 /* AnnotationTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */; };
 		F3902E8D2F9EE1CA004BA5D1 /* AnnotationTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */; };
 		F3902EAF2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */; };
@@ -282,6 +372,9 @@
 		F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C449542F2B12E200DA7032 /* SearchCellView.swift */; };
 		F3D0815D2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
 		F3D0815E2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
+		F3DD69E32FA4F76100BFEA0F /* ProgressBooksDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */; };
+		F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */; };
+		FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -427,12 +520,46 @@
 		4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScheherazadeNew-Regular.ttf"; sourceTree = "<group>"; };
 		4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lateef-Regular.ttf"; sourceTree = "<group>"; };
 		4BFCD84E2F10746600E41F8A /* Lateef-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lateef-Bold.ttf"; sourceTree = "<group>"; };
+		6505EE880DD50A217DB489F1 /* iOSSearchViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = iOSSearchViewModel.swift; sourceTree = "<group>"; };
+		88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MaktabahApp.swift; sourceTree = "<group>"; };
+		9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = iOSHistoryView.swift; sourceTree = "<group>"; };
+		A4467AA97C7701F822736B80 /* iOSHistoryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = iOSHistoryViewModel.swift; sourceTree = "<group>"; };
 		F300A2EB2F2DCE860095015E /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
+		F305776F2FA46222005732C6 /* Maktabah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maktabah.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30577702FA463B1005732C6 /* iOSAnnotationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAnnotationViewModel.swift; sourceTree = "<group>"; };
+		F30577712FA463B1005732C6 /* iOSLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSLibraryViewModel.swift; sourceTree = "<group>"; };
+		F30577722FA463B1005732C6 /* iOSNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSNavigationManager.swift; sourceTree = "<group>"; };
+		F30577732FA463B1005732C6 /* iOSReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderViewModel.swift; sourceTree = "<group>"; };
+		F30577752FA463B1005732C6 /* iOSReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderView.swift; sourceTree = "<group>"; };
+		F30577772FA463B1005732C6 /* AnnotationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationListView.swift; sourceTree = "<group>"; };
+		F30577782FA463B1005732C6 /* AuthorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModeView.swift; sourceTree = "<group>"; };
+		F30577792FA463B1005732C6 /* iOSLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSLibraryView.swift; sourceTree = "<group>"; };
+		F305777A2FA463B1005732C6 /* iOSMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMainView.swift; sourceTree = "<group>"; };
+		F305777B2FA463B1005732C6 /* SearchModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModeView.swift; sourceTree = "<group>"; };
+		F305777C2FA463B1005732C6 /* ViewerModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerModeView.swift; sourceTree = "<group>"; };
+		F305777D2FA463B1005732C6 /* ViewOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOptionsView.swift; sourceTree = "<group>"; };
+		F305777F2FA463B1005732C6 /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		F30577802FA463B1005732C6 /* BookListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListWrapper.swift; sourceTree = "<group>"; };
+		F30577812FA463B1005732C6 /* iOSIbarotTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSIbarotTextView.swift; sourceTree = "<group>"; };
 		F30577942FA4987B005732C6 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F323BCA12F2EE70200EFD4F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA32F2EE71800EFD4F4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA42F2EE71A00EFD4F4 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F349073E2F3064A10036CDAF /* IconMaktabah.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = IconMaktabah.icon; sourceTree = "<group>"; };
+		F36382502FA6FA1E0006636C /* BootstrapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapManager.swift; sourceTree = "<group>"; };
+		F36382522FA6FABF0006636C /* BootstrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapView.swift; sourceTree = "<group>"; };
+		F36382542FA6FAE10006636C /* CoreDownloaderGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDownloaderGateView.swift; sourceTree = "<group>"; };
+		F363825A2FA702A00006636C /* iPhoneLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneLayout.swift; sourceTree = "<group>"; };
+		F363825C2FA702D10006636C /* iPadLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadLayout.swift; sourceTree = "<group>"; };
+		F36382632FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSHierarchicalCollectionViewController.swift; sourceTree = "<group>"; };
+		F36382652FA761070006636C /* iOSSearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSearchFilterViewController.swift; sourceTree = "<group>"; };
+		F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAnnotationEditorSheet.swift; sourceTree = "<group>"; };
+		F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoView.swift; sourceTree = "<group>"; };
+		F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiSidebarView.swift; sourceTree = "<group>"; };
+		F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiHierarchicalCollectionViewController.swift; sourceTree = "<group>"; };
+		F38FF4332FA820B3003E7B71 /* iOSAuthorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAuthorViewModel.swift; sourceTree = "<group>"; };
+		F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderTabView.swift; sourceTree = "<group>"; };
 		F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTagVC.swift; sourceTree = "<group>"; };
 		F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMergePopoverVC.swift; sourceTree = "<group>"; };
 		F3C449542F2B12E200DA7032 /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
@@ -457,6 +584,15 @@
 				4B7C91322F834CF700454BE1 /* Sparkle in Frameworks */,
 				4B7C91082F83494200454BE1 /* SQLite in Frameworks */,
 				4B7C91092F83494200454BE1 /* libzstd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F30577472FA46222005732C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F30577482FA46222005732C6 /* SQLite in Frameworks */,
+				F30577492FA46222005732C6 /* libzstd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +641,7 @@
 			children = (
 				4B3202282EDAFE85003B95D1 /* Maktabah.app */,
 				4B7C912E2F83494200454BE1 /* Maktabah.app */,
+				F305776F2FA46222005732C6 /* Maktabah.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -516,6 +653,7 @@
 				4B6100DB2EFA720F00CCBED6 /* Al-Qur'an */,
 				4BBC97692EE2659E00C1E22B /* Author */,
 				4B65CCB02EE058570085CEB4 /* BooksLibrary */,
+				F30577832FA463B1005732C6 /* iOS */,
 				4B4C97072F1EFC310051503E /* Managers */,
 				4B4C970A2F1EFCAB0051503E /* Models */,
 				4B4C97092F1EFC7E0051503E /* Protocols */,
@@ -855,6 +993,94 @@
 			path = Author;
 			sourceTree = "<group>";
 		};
+		F30577742FA463B1005732C6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F36382502FA6FA1E0006636C /* BootstrapManager.swift */,
+				F30577702FA463B1005732C6 /* iOSAnnotationViewModel.swift */,
+				F38FF4332FA820B3003E7B71 /* iOSAuthorViewModel.swift */,
+				F30577712FA463B1005732C6 /* iOSLibraryViewModel.swift */,
+				F30577722FA463B1005732C6 /* iOSNavigationManager.swift */,
+				F30577732FA463B1005732C6 /* iOSReaderViewModel.swift */,
+				6505EE880DD50A217DB489F1 /* iOSSearchViewModel.swift */,
+				A4467AA97C7701F822736B80 /* iOSHistoryViewModel.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		F30577762FA463B1005732C6 /* Reader */ = {
+			isa = PBXGroup;
+			children = (
+				F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */,
+				F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */,
+				F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */,
+				F30577752FA463B1005732C6 /* iOSReaderView.swift */,
+			);
+			path = Reader;
+			sourceTree = "<group>";
+		};
+		F305777E2FA463B1005732C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F363824F2FA6F9F10006636C /* Bootstrap */,
+				F36382672FA7610F0006636C /* Common */,
+				F30577762FA463B1005732C6 /* Reader */,
+				F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */,
+				F30577772FA463B1005732C6 /* AnnotationListView.swift */,
+				F30577782FA463B1005732C6 /* AuthorModeView.swift */,
+				F30577792FA463B1005732C6 /* iOSLibraryView.swift */,
+				F305777A2FA463B1005732C6 /* iOSMainView.swift */,
+				F363825C2FA702D10006636C /* iPadLayout.swift */,
+				F363825A2FA702A00006636C /* iPhoneLayout.swift */,
+				F305777B2FA463B1005732C6 /* SearchModeView.swift */,
+				F305777C2FA463B1005732C6 /* ViewerModeView.swift */,
+				F305777D2FA463B1005732C6 /* ViewOptionsView.swift */,
+				F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */,
+				9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F30577822FA463B1005732C6 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				F305777F2FA463B1005732C6 /* BookListViewController.swift */,
+				F30577802FA463B1005732C6 /* BookListWrapper.swift */,
+				F30577812FA463B1005732C6 /* iOSIbarotTextView.swift */,
+			);
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
+		F30577832FA463B1005732C6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */,
+				F30577742FA463B1005732C6 /* Managers */,
+				F305777E2FA463B1005732C6 /* Views */,
+				F30577822FA463B1005732C6 /* Wrappers */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		F363824F2FA6F9F10006636C /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				F36382522FA6FABF0006636C /* BootstrapView.swift */,
+				F36382542FA6FAE10006636C /* CoreDownloaderGateView.swift */,
+			);
+			path = Bootstrap;
+			sourceTree = "<group>";
+		};
+		F36382672FA7610F0006636C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F36382632FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift */,
+				F36382652FA761070006636C /* iOSSearchFilterViewController.swift */,
+				F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -901,6 +1127,27 @@
 			productReference = 4B7C912E2F83494200454BE1 /* Maktabah.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F30576DD2FA46222005732C6 /* Maktabah-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F305776C2FA46222005732C6 /* Build configuration list for PBXNativeTarget "Maktabah-iOS" */;
+			buildPhases = (
+				F30576E22FA46222005732C6 /* Sources */,
+				F30577472FA46222005732C6 /* Frameworks */,
+				F305774A2FA46222005732C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Maktabah-iOS";
+			packageProductDependencies = (
+				F30576DE2FA46222005732C6 /* SQLite */,
+				F30576E02FA46222005732C6 /* libzstd */,
+			);
+			productName = maktab;
+			productReference = F305776F2FA46222005732C6 /* Maktabah.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -938,6 +1185,7 @@
 			targets = (
 				4B3202272EDAFE85003B95D1 /* Maktabah */,
 				4B7C90A02F83494200454BE1 /* Maktabah-Direct */,
+				F30576DD2FA46222005732C6 /* Maktabah-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1020,6 +1268,23 @@
 				4B7C91282F83494200454BE1 /* AnnotationEditorVC.xib in Resources */,
 				4B7C91292F83494200454BE1 /* ViewOptions.xib in Resources */,
 				4B7C912A2F83494200454BE1 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F305774A2FA46222005732C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F305774F2FA46222005732C6 /* Assets.xcassets in Resources */,
+				F30577502FA46222005732C6 /* UthmanTN1-Ver10.otf in Resources */,
+				F30577512FA46222005732C6 /* PrivacyInfo.xcprivacy in Resources */,
+				F30577992FA4BE8D005732C6 /* LaunchScreen.storyboard in Resources */,
+				F30577522FA46222005732C6 /* IconMaktabah.icon in Resources */,
+				F305775A2FA46222005732C6 /* InfoPlist.strings in Resources */,
+				F305775F2FA46222005732C6 /* Lateef-Regular.ttf in Resources */,
+				F30577642FA46222005732C6 /* ScheherazadeNew-Regular.ttf in Resources */,
+				F30577652FA46222005732C6 /* Lateef-Bold.ttf in Resources */,
+				F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1243,7 +1508,95 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F30576E22FA46222005732C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,
+				F3DD69E32FA4F76100BFEA0F /* ProgressBooksDownload.swift in Sources */,
+				F30577932FA4982A005732C6 /* TextViewState.swift in Sources */,
+				F36382642FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift in Sources */,
+				F30576E52FA46222005732C6 /* AppConfig.swift in Sources */,
+				F30576E82FA46222005732C6 /* AnnotationManager.swift in Sources */,
+				F30576EC2FA46222005732C6 /* SettingsActions.swift in Sources */,
+				F30576EE2FA46222005732C6 /* RowiProtocols.swift in Sources */,
+				F30576F22FA46222005732C6 /* ArchiveErrors.swift in Sources */,
+				F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */,
+				F30577852FA463B1005732C6 /* SearchModeView.swift in Sources */,
+				F30577862FA463B1005732C6 /* ViewerModeView.swift in Sources */,
+				F36382662FA761070006636C /* iOSSearchFilterViewController.swift in Sources */,
+				F30577872FA463B1005732C6 /* iOSAnnotationViewModel.swift in Sources */,
+				F30577882FA463B1005732C6 /* AuthorModeView.swift in Sources */,
+				F38FF4342FA820B3003E7B71 /* iOSAuthorViewModel.swift in Sources */,
+				F30577892FA463B1005732C6 /* BookListViewController.swift in Sources */,
+				F305778A2FA463B1005732C6 /* iOSReaderViewModel.swift in Sources */,
+				F305778B2FA463B1005732C6 /* iOSReaderView.swift in Sources */,
+				F305778C2FA463B1005732C6 /* AnnotationListView.swift in Sources */,
+				F305778D2FA463B1005732C6 /* iOSLibraryView.swift in Sources */,
+				F363824E2FA6C6150006636C /* SettingsView.swift in Sources */,
+				F305778E2FA463B1005732C6 /* ViewOptionsView.swift in Sources */,
+				F305778F2FA463B1005732C6 /* iOSIbarotTextView.swift in Sources */,
+				F30577902FA463B1005732C6 /* iOSNavigationManager.swift in Sources */,
+				F30577912FA463B1005732C6 /* iOSLibraryViewModel.swift in Sources */,
+				F30577922FA463B1005732C6 /* BookListWrapper.swift in Sources */,
+				F30576F52FA46222005732C6 /* StringExt.swift in Sources */,
+				F30576F62FA46222005732C6 /* ArabicTextRenderer.swift in Sources */,
+				F30576F72FA46222005732C6 /* ReusableFunc.swift in Sources */,
+				F30576F82FA46222005732C6 /* BookUpdateManager.swift in Sources */,
+				F30576F92FA46222005732C6 /* AnnotationDelegate.swift in Sources */,
+				F363825B2FA702A00006636C /* iPhoneLayout.swift in Sources */,
+				F30576FB2FA46222005732C6 /* AnnotationCoordinator.swift in Sources */,
+				F30576FC2FA46222005732C6 /* BookConnection.swift in Sources */,
+				F36382512FA6FA1E0006636C /* BootstrapManager.swift in Sources */,
+				F30576FE2FA46222005732C6 /* BookUpdateModels.swift in Sources */,
+				F30577012FA46222005732C6 /* StorageError.swift in Sources */,
+				F30577032FA46222005732C6 /* LibraryDataManager.swift in Sources */,
+				F30577052FA46222005732C6 /* ReaderState.swift in Sources */,
+				F30577062FA46222005732C6 /* UserDefaults.swift in Sources */,
+				F30577072FA46222005732C6 /* AppMode.swift in Sources */,
+				F30577082FA46222005732C6 /* Protocols.swift in Sources */,
+				F38FF4302FA82034003E7B71 /* iOSRowiSidebarView.swift in Sources */,
+				F305770A2FA46222005732C6 /* QuranDataManager.swift in Sources */,
+				F305770C2FA46222005732C6 /* CopyableResult.swift in Sources */,
+				F305770D2FA46222005732C6 /* DatabaseError.swift in Sources */,
+				F305770E2FA46222005732C6 /* ArchiveDatabaseTools.swift in Sources */,
+				F305770F2FA46222005732C6 /* BookArchiveIntegrator.swift in Sources */,
+				F38FF4322FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift in Sources */,
+				F30577102FA46222005732C6 /* BookDownloadManager.swift in Sources */,
+				F30577112FA46222005732C6 /* IntegrationCache.swift in Sources */,
+				F30577132FA46222005732C6 /* TOCLoader.swift in Sources */,
+				F30577142FA46222005732C6 /* SearchMode.swift in Sources */,
+				F36382692FA7BFB40006636C /* iOSAnnotationEditorSheet.swift in Sources */,
+				F305771A2FA46222005732C6 /* BookUpdateVM.swift in Sources */,
+				F30577202FA46222005732C6 /* Narrathor.swift in Sources */,
+				F30577252FA46222005732C6 /* SearchEngine.swift in Sources */,
 				F30577952FA4987B005732C6 /* NotificationName.swift in Sources */,
+				F38FF4362FA89EEE003E7B71 /* iOSReaderTabView.swift in Sources */,
+				F30577262FA46222005732C6 /* DataModel.swift in Sources */,
+				F38FF42E2FA817D9003E7B71 /* iOSBookInfoView.swift in Sources */,
+				F305772B2FA46222005732C6 /* ResultsViewModel.swift in Sources */,
+				F305772D2FA46222005732C6 /* DatabaseManager.swift in Sources */,
+				F305772F2FA46222005732C6 /* BookmarkModel.swift in Sources */,
+				F36382532FA6FABF0006636C /* BootstrapView.swift in Sources */,
+				F30577302FA46222005732C6 /* RowiModel.swift in Sources */,
+				F30577342FA46222005732C6 /* Annotations.swift in Sources */,
+				F30577362FA46222005732C6 /* RowiDataManager.swift in Sources */,
+				F30577372FA46222005732C6 /* Quran.swift in Sources */,
+				F305773B2FA46222005732C6 /* ResultsHandler.swift in Sources */,
+				F305773C2FA46222005732C6 /* ZstdShim.swift in Sources */,
+				F305773F2FA46222005732C6 /* BookPageCache.swift in Sources */,
+				F30577402FA46222005732C6 /* StringInterner.swift in Sources */,
+				F30577432FA46222005732C6 /* ArabicFont.swift in Sources */,
+				F30577442FA46222005732C6 /* TarjamahDataManager.swift in Sources */,
+				F36382552FA6FAE10006636C /* CoreDownloaderGateView.swift in Sources */,
+				CFAA7B20E067D5BB75E4EB23 /* MaktabahApp.swift in Sources */,
+				04C59D40A8B1C84C6AAC9181 /* iOSSearchViewModel.swift in Sources */,
+				F363825D2FA702D10006636C /* iPadLayout.swift in Sources */,
+				D27D27301FA4DE1E54F91CB2 /* iOSHistoryViewModel.swift in Sources */,
+				FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -1630,7 +1983,6 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_ENTITLEMENTS = Source/MaktabahDirect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 21;
@@ -1690,7 +2042,6 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Source/MaktabahDirect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 21;
@@ -1741,6 +2092,87 @@
 			};
 			name = Release;
 		};
+		F305776D2FA46222005732C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = IconMaktabah;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
+				CODE_SIGN_ENTITLEMENTS = Source/Maktabah.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: dev.kbcdrn@gmail.com";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
+				PRODUCT_NAME = Maktabah;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F305776E2FA46222005732C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = IconMaktabah;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = Source/Maktabah.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: dev.kbcdrn@gmail.com";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
+				PRODUCT_NAME = Maktabah;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1767,6 +2199,15 @@
 			buildConfigurations = (
 				4B7C912C2F83494200454BE1 /* Debug */,
 				4B7C912D2F83494200454BE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F305776C2FA46222005732C6 /* Build configuration list for PBXNativeTarget "Maktabah-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F305776D2FA46222005732C6 /* Debug */,
+				F305776E2FA46222005732C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1814,6 +2255,22 @@
 				version = 1.5.7;
 			};
 		};
+		F30576DF2FA46222005732C6 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.16.0;
+			};
+		};
+		F30576E12FA46222005732C6 /* XCRemoteSwiftPackageReference "zstd" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/zstd.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1840,6 +2297,16 @@
 		4B88322E2F7EB3A7004C6213 /* libzstd */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */;
+			productName = libzstd;
+		};
+		F30576DE2FA46222005732C6 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F30576DF2FA46222005732C6 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+		F30576E02FA46222005732C6 /* libzstd */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F30576E12FA46222005732C6 /* XCRemoteSwiftPackageReference "zstd" */;
 			productName = libzstd;
 		};
 /* End XCSwiftPackageProductDependency section */
