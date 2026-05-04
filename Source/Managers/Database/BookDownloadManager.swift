@@ -308,7 +308,7 @@ actor BookDownloadIndexCache {
     private var cachedEntries: [Int: BundleBookIndexEntry] = [:]
     private var lastFetch: Date?
     private var inFlight: Task<[Int: BundleBookIndexEntry], Error>?
-    private let ttl: TimeInterval = 60 * 60 * 24
+    private let ttl: TimeInterval = 60 * 60 * 24 * 7
     private let etagKey = "book_index_etag"
     private let lastModifiedKey = "book_index_last_modified"
 
@@ -477,6 +477,13 @@ actor BookDownloadIndexCache {
               let data = try? Data(contentsOf: fileURL) else {
             return
         }
+        
+        // Ambil tanggal modifikasi file agar TTL berfungsi setelah restart aplikasi
+        if let attributes = try? FileManager.default.attributesOfItem(atPath: fileURL.path),
+           let modificationDate = attributes[.modificationDate] as? Date {
+            lastFetch = modificationDate
+        }
+
         let decoder = JSONDecoder()
         guard let entries = try? decoder.decode([BundleBookIndexEntry].self, from: data) else {
             return
