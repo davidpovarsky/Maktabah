@@ -5,7 +5,11 @@
 //  Created by MacBook on 29/11/25.
 //
 
-import Cocoa
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 import Foundation
 import SQLite
 
@@ -75,7 +79,11 @@ class DatabaseManager {
             #if DEBUG
                 print(error.localizedDescription)
             #endif
+            #if os(macOS)
             NSApp.terminate(nil)
+            #else
+            fatalError("Application Terminated: Folder Location Not Found")
+            #endif
         }
     }
 

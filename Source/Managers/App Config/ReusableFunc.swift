@@ -5,14 +5,19 @@
 //  Created by MacBook on 09/12/25.
 //
 
-import Cocoa
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 
 class ReusableFunc {
-    static func bundledArabicFont(ofSize size: CGFloat) -> NSFont {
-        NSFont(name: "KFGQPCUthmanTahaNaskh", size: size)
-            ?? NSFont.systemFont(ofSize: size)
+    static func bundledArabicFont(ofSize size: CGFloat) -> PlatformFont {
+        PlatformFont(name: "KFGQPCUthmanTahaNaskh", size: size)
+            ?? PlatformFont.systemFont(ofSize: size)
     }
 
+    #if os(macOS)
     static func setupSearchField(
         _ searchField: NSSearchField,
         systemSymbolName: String = "line.3.horizontal.decrease.circle"
@@ -146,22 +151,37 @@ class ReusableFunc {
             scrollViewTopConstraint.constant = 0
         }
     }
+    #endif
 
-    /// Menampilkan jendela peringatan (`NSAlert`) standar kepada pengguna.
-    ///
-    /// Fungsi ini bersifat modal, yang berarti pengguna harus menutup peringatan sebelum melanjutkan interaksi dengan aplikasi.
-    /// Ini ideal untuk notifikasi penting atau kesalahan yang memerlukan perhatian segera dari pengguna.
-    ///
-    /// - Parameters:
-    ///   - title: Judul yang akan ditampilkan di jendela peringatan.
-    ///   - message: Pesan informatif yang lebih detail di bawah judul.
+    /// Menampilkan jendela peringatan standar kepada pengguna.
+    #if os(macOS)
     static func showAlert(title: String, message: String, style: NSAlert.Style = .warning) {
         let alert = NSAlert()
-        alert.alertStyle = style // Mengatur gaya peringatan, default adalah .warning
-        alert.messageText = title // Mengatur judul peringatan
-        alert.informativeText = message // Mengatur pesan detail peringatan
-        alert.runModal() // Menampilkan peringatan secara modal
+        alert.alertStyle = style
+        alert.messageText = title
+        alert.informativeText = message
+        alert.runModal()
     }
+    #else
+    static func showAlert(title: String, message: String) {
+        guard let topVC = getTopViewController() else { return }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        topVC.present(alert, animated: true)
+    }
+
+    static func getTopViewController() -> UIViewController? {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let rootVC = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController else {
+            return nil
+        }
+        var topVC = rootVC
+        while let presentedVC = topVC.presentedViewController {
+            topVC = presentedVC
+        }
+        return topVC
+    }
+    #endif
 
     // MARK: - Fungsi Pemeriksaan Koneksi Internet Langsung
 
@@ -268,6 +288,7 @@ class ReusableFunc {
         return output
     }
 
+    #if os(macOS)
     static func helpSearchOpt(_ sender: NSButton) {
         let searchHelpPopover: NSPopover = NSPopover()
 
@@ -377,4 +398,5 @@ class ReusableFunc {
         else { return NSImage() }
         return image
     }
+    #endif
 }

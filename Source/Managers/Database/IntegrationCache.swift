@@ -127,9 +127,9 @@ final class IntegrationCache {
         queue.async(flags: .barrier) { [self] in
             integrated.removeValue(forKey: archiveId)
             loadedArchives.remove(archiveId)
-        }
-        if let file = cacheFile(for: archiveId) {
-            try? fm.removeItem(at: file)
+            if let file = cacheFile(for: archiveId) {
+                try? fm.removeItem(at: file)
+            }
         }
     }
 

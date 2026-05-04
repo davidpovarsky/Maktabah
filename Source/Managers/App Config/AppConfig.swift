@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(iOS)
+import UIKit
+#endif
 
 struct AppConfig {
     static let storageKey = "selected_shamela_bookmark" // Ubah key agar fresh
@@ -265,14 +270,24 @@ struct AppConfig {
 
         var isStale = false
         do {
+            #if os(macOS)
+            let options: URL.BookmarkResolutionOptions = [.withSecurityScope]
+            #else
+            let options: URL.BookmarkResolutionOptions = []
+            #endif
             let url = try URL(
                 resolvingBookmarkData: data,
-                options: [.withSecurityScope],
+                options: options,
                 relativeTo: nil,
                 bookmarkDataIsStale: &isStale
             )
 
-            if url.startAccessingSecurityScopedResource() {
+            #if os(macOS)
+            let startAccess = url.startAccessingSecurityScopedResource()
+            #else
+            let startAccess = true
+            #endif
+            if startAccess {
                 return url
             }
         } catch {
@@ -283,7 +298,12 @@ struct AppConfig {
 
     static func saveBookmark(url: URL, key: String) {
         do {
-            let bookmarkData = try url.bookmarkData(options: .withSecurityScope,
+            #if os(macOS)
+            let options: URL.BookmarkCreationOptions = .withSecurityScope
+            #else
+            let options: URL.BookmarkCreationOptions = []
+            #endif
+            let bookmarkData = try url.bookmarkData(options: options,
                                                     includingResourceValuesForKeys: nil,
                                                     relativeTo: nil)
             UserDefaults.standard.set(bookmarkData, forKey: key)
@@ -462,6 +482,31 @@ struct AppConfig {
         return UserDefaults.standard.data(forKey: customDatabaseFolderKey) != nil
     }
 
+    static func setupAnnotationsAndResults() {
+        do {
+            if let annotationsFolder = AppConfig.folder(
+                for: AppConfig.annotationsAndResultsFolder
+            ) {
+                try AnnotationManager.shared.setupAnnotations(at: annotationsFolder)
+            }
+        } catch {
+            #if os(macOS)
+            ReusableFunc.showAlert(title: NSLocalizedString("errorFolderAnnotations", comment: error.localizedDescription), message: "")
+            #endif
+        }
+
+        do {
+            if let resultsFolder = AppConfig.folder(
+                for: AppConfig.annotationsAndResultsFolder
+            ) {
+                try ResultsHandler.shared.setupResultDatabase(at: resultsFolder)
+            }
+        } catch {
+            #if os(macOS)
+            ReusableFunc.showAlert(title: NSLocalizedString("errorFolderSearchResults", comment: error.localizedDescription), message: "")
+            #endif
+        }
+    }
 
     /// Toggle iCloud support for annotations dan migrate files.
     /// Dipanggil dari Settings toggle (main thread). Operasi file dijalankan di background.

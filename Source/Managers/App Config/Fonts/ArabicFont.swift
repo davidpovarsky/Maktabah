@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 
 enum ArabicFont: String, CaseIterable {
     case kfgqpcUthmanTahaNaskh       = "KFGQPC Uthman Taha Naskh"
@@ -17,4 +22,50 @@ enum ArabicFont: String, CaseIterable {
     case alBayan                     = "Al Bayan Plain"
     case baghdad                     = "Baghdad"
     case nadeem                      = "Nadeem"
+    
+    static func registerCustomFonts() {
+        let fontFiles = [
+            "UthmanTN1-Ver10.otf",
+            "Lateef-Regular.ttf",
+            "Lateef-Bold.ttf",
+            "ScheherazadeNew-Regular.ttf",
+        ]
+
+        for fontFile in fontFiles {
+            // Buat URL sementara dari String
+            let tempURL = URL(fileURLWithPath: fontFile)
+
+            // Ambil nama tanpa ekstensi dan ekstensinya
+            let fileNameWithoutExtension = tempURL.deletingPathExtension().lastPathComponent
+            let fileExtension = tempURL.pathExtension
+
+            guard let fontURL = Bundle.main.url(forResource: fileNameWithoutExtension,
+                                                withExtension: fileExtension) else {
+                print("Font file tidak ditemukan: \(fontFile)")
+                continue
+            }
+
+            guard let fontDataProvider = CGDataProvider(url: fontURL as CFURL) else {
+                print("Tidak bisa load font data: \(fontFile)")
+                continue
+            }
+
+            guard let font = CGFont(fontDataProvider) else {
+                print("Tidak bisa create CGFont: \(fontFile)")
+                continue
+            }
+
+            var error: Unmanaged<CFError>?
+            if !CTFontManagerRegisterGraphicsFont(font, &error) {
+                print("Error registering font: \(fontFile)")
+                if let error = error?.takeRetainedValue() {
+                    print("Error detail: \(error)")
+                }
+            } else {
+                if let postScriptName = font.postScriptName {
+                    print("Font berhasil diregister: \(postScriptName)")
+                }
+            }
+        }
+    }
 }

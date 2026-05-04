@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CoreDownloadProgressView: View {
-    @ObservedObject var state: CoreDownloadProgressState
+    var state: CoreDownloadProgressState
     let onDownload: () -> Void
     let onChooseFolder: () -> Void
     let onQuit: () -> Void

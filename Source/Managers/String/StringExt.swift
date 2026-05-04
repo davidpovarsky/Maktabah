@@ -5,7 +5,11 @@
 //  Created by MacBook on 06/12/25.
 //
 
+#if canImport(AppKit)
 import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 
 typealias CleanedTextAndFootnoteRange = (result: CleanedTextResult, footnoteRanges: [NSRange])
 
@@ -296,8 +300,8 @@ extension String {
                 let nsRange = NSRange(found, in: self)
 
                 // Set warna highlight
-                attributed.addAttribute(.backgroundColor, value: NSColor.systemYellow.withAlphaComponent(0.4), range: nsRange)
-                // attributed.addAttribute(.foregroundColor, value: NSColor.black, range: nsRange) // Opsional: agar kontras
+                attributed.addAttribute(.backgroundColor, value: PlatformColor.systemYellow.withAlphaComponent(0.4), range: nsRange)
+                // attributed.addAttribute(.foregroundColor, value: PlatformColor.black, range: nsRange) // Opsional: agar kontras
 
                 if found.upperBound < self.endIndex {
                     searchRange = found.upperBound..<self.endIndex

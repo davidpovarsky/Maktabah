@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Cocoa
 
 class AnnotationCoordinator {
     private let manager = AnnotationManager.shared
@@ -65,7 +64,7 @@ class AnnotationCoordinator {
     func saveHighlight(
         text: String,
         range: NSRange,
-        color: NSColor,
+        color: PlatformColor,
         bkId: Int,
         contentId: Int,
         page: Int,

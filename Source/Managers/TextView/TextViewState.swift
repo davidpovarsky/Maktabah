@@ -6,16 +6,24 @@
 //
 
 import Foundation
-import Cocoa
+import Observation
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 
 // TextViewState.swift - NEW FILE
-class TextViewState: ObservableObject {
+#if os(iOS)
+@Observable
+#endif
+class TextViewState {
     static let shared = TextViewState()
 
     private let defaults = UserDefaults.standard
 
     // MARK: - Published Properties
-    @Published private(set) var showHarakat: Bool {
+    private(set) var showHarakat: Bool {
         didSet {
             defaults.textViewShowHarakat = showHarakat
             NotificationCenter.default.post(name: .didChangeHarakat, object: nil, userInfo: ["on": showHarakat])
@@ -26,26 +34,30 @@ class TextViewState: ObservableObject {
     var boldAttributes: [NSAttributedString.Key: Any] {
         var attrs = defaultAttributes // Mulai dari defaultAttributes
         attrs[.font] = currentFont
-        attrs[.foregroundColor] = NSColor.header
+        #if os(macOS)
+        attrs[.foregroundColor] = NSColor(named: "HeaderColor") ?? NSColor.textColor
+        #else
+        attrs[.foregroundColor] = UIColor(named: "HeaderColor") ?? UIColor.label
+        #endif
         // paragraphStyle sudah ada di defaultAttributes
         return attrs
     }
 
-    @Published private(set) var lineHeight: Double {
+    private(set) var lineHeight: Double {
         didSet {
             defaults.lineHeight = lineHeight
             NotificationCenter.default.post(name: .didChangeLineHeight, object: nil)
         }
     }
 
-    @Published private(set) var fontSize: CGFloat {
+    private(set) var fontSize: CGFloat {
         didSet {
             defaults.textViewFontSize = Float(fontSize)
             NotificationCenter.default.post(name: .didChangeFont, object: nil, userInfo: ["redraw": false])
         }
     }
 
-    @Published private(set) var fontName: String {
+    private(set) var fontName: String {
         didSet {
             defaults.textViewFontName = fontName
             let shouldRedraw = needsRedraw(oldFont: oldValue, newFont: fontName)
@@ -53,7 +65,14 @@ class TextViewState: ObservableObject {
         }
     }
     
-    @Published private(set) var clickableAnnotation: Bool {
+    private(set) var backgroundColorIndex: Int {
+        didSet {
+            defaults.textViewBackgroundColorLight = backgroundColorIndex
+            NotificationCenter.default.post(name: .didChangeBackground, object: nil)
+        }
+    }
+    
+    private(set) var clickableAnnotation: Bool {
         didSet {
             defaults.enableAnnotationClick = clickableAnnotation
             NotificationCenter.default.post(name: .didChangeClickableAnnotation, object: nil,
@@ -62,8 +81,8 @@ class TextViewState: ObservableObject {
     }
 
     // MARK: - Computed Properties
-    var currentFont: NSFont {
-        NSFont(name: fontName, size: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
+    var currentFont: PlatformFont {
+        PlatformFont(name: fontName, size: fontSize) ?? PlatformFont.systemFont(ofSize: fontSize)
     }
 
     var paragraphStyle: NSParagraphStyle {
@@ -75,11 +94,16 @@ class TextViewState: ObservableObject {
     }
 
     var defaultAttributes: [NSAttributedString.Key: Any] {
-        [
+        var attrs: [NSAttributedString.Key: Any] = [
             .font: currentFont,
-            .foregroundColor: NSColor.labelColor,
             .paragraphStyle: paragraphStyle
         ]
+        #if os(macOS)
+        attrs[.foregroundColor] = NSColor.labelColor
+        #else
+        attrs[.foregroundColor] = UIColor.label
+        #endif
+        return attrs
     }
 
     // Default values
@@ -95,6 +119,7 @@ class TextViewState: ObservableObject {
         self.fontSize = savedSize > 0 ? CGFloat(savedSize) : 19.0
 
         self.fontName = defaults.textViewFontName
+        self.backgroundColorIndex = defaults.textViewBackgroundColorLight
         self.clickableAnnotation = defaults.enableAnnotationClick
     }
 
@@ -105,6 +130,10 @@ class TextViewState: ObservableObject {
 
     func setLineHeight(_ newHeight: Double) {
         lineHeight = newHeight
+    }
+
+    func setBackgroundColorIndex(_ index: Int) {
+        backgroundColorIndex = index
     }
 
     func changeFontSize(by delta: CGFloat) {
@@ -123,14 +152,15 @@ class TextViewState: ObservableObject {
     }
 
     /// Masukkan warna baru ke indeks 0. Duplikat dipindah ke depan. Maks 5.
-    func pushRecentHighlightColor(_ color: NSColor) {
+    func pushRecentHighlightColor(_ color: PlatformColor) {
         var list = defaults.recentHighlightColors
         list.removeAll { colorApproxEqual($0, color) }
         list.insert(color, at: 0)
         defaults.recentHighlightColors = Array(list.prefix(UserDefaults.maxRecentColors))
     }
 
-    private func colorApproxEqual(_ a: NSColor, _ b: NSColor) -> Bool {
+    private func colorApproxEqual(_ a: PlatformColor, _ b: PlatformColor) -> Bool {
+        #if os(macOS)
         guard let ar = a.usingColorSpace(.deviceRGB),
             let br = b.usingColorSpace(.deviceRGB)
         else { return false }
@@ -138,6 +168,14 @@ class TextViewState: ObservableObject {
         return abs(ar.redComponent - br.redComponent) < t
             && abs(ar.greenComponent - br.greenComponent) < t
             && abs(ar.blueComponent - br.blueComponent) < t
+        #else
+        var r1: CGFloat = 0, g1: CGFloat = 0, b1: CGFloat = 0, a1: CGFloat = 0
+        var r2: CGFloat = 0, g2: CGFloat = 0, b2: CGFloat = 0, a2: CGFloat = 0
+        guard a.getRed(&r1, green: &g1, blue: &b1, alpha: &a1),
+              b.getRed(&r2, green: &g2, blue: &b2, alpha: &a2) else { return false }
+        let t: CGFloat = 0.01
+        return abs(r1 - r2) < t && abs(g1 - g2) < t && abs(b1 - b2) < t
+        #endif
     }
 
     func lastUsedColor() -> String {

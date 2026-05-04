@@ -6,7 +6,11 @@
 //
 
 import Foundation
-import Cocoa
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 
 struct ArabicRenderResult {
     let sourceText: String
@@ -99,7 +103,7 @@ class ArabicTextRenderer {
 
     func render(
         text: String,
-        highlightColor: NSColor = .header,
+        highlightColor: PlatformColor = .header,
         showHarakat: Bool
     ) -> ArabicRenderResult {
         let processedText = showHarakat ? text : text.removingHarakat()
@@ -132,7 +136,7 @@ class ArabicTextRenderer {
 
     func applyAnnotations(
         _ annotations: [Annotation],
-        to textStorage: NSTextStorage,
+        to textStorage: NSMutableAttributedString,
         showHarakat: Bool,
         replacementEvents: [HonorificReplacementEvent] = []
     ) {
@@ -170,7 +174,7 @@ class ArabicTextRenderer {
         }
     }
 
-    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: NSColor) -> NSAttributedString {
+    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: PlatformColor) -> NSAttributedString {
         let result = results.result
         let footnoteRanges = results.footnoteRanges
         let attributedString = NSMutableAttributedString(
@@ -183,8 +187,13 @@ class ArabicTextRenderer {
         if !footnoteRanges.isEmpty {
             let baseFont = state.currentFont
             let smallerFont = baseFont.withSize(baseFont.pointSize - 2)
+            #if os(macOS)
+            let footnoteColor = PlatformColor.secondaryLabelColor
+            #else
+            let footnoteColor = PlatformColor.secondaryLabel
+            #endif
             let footnoteAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: NSColor.secondaryLabelColor,
+                .foregroundColor: footnoteColor,
                 .font: smallerFont
             ]
             for range in footnoteRanges {
@@ -207,9 +216,9 @@ class ArabicTextRenderer {
         return attributedString
     }
 
-    private func applyAnnotation(_ ann: Annotation, at range: NSRange, to textStorage: NSTextStorage) {
+    private func applyAnnotation(_ ann: Annotation, at range: NSRange, to textStorage: NSMutableAttributedString) {
         if ann.type == .highlight {
-            let color = NSColor(hex: ann.colorHex) ?? .yellow
+            let color = PlatformColor(hex: ann.colorHex) ?? .yellow
             textStorage.removeAttribute(.backgroundColor, range: range)
             textStorage.addAttribute(.backgroundColor, value: color.withAlphaComponent(0.6), range: range)
             textStorage.removeAttribute(.underlineStyle, range: range)

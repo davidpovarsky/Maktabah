@@ -5,7 +5,11 @@
 //  Created by MacBook on 25/04/26.
 //
 
+#if canImport(AppKit)
 import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 import Foundation
 
 /// Format Results untuk disalin
@@ -28,6 +32,7 @@ extension CopyableResult {
     }
 }
 
+#if os(macOS)
 extension Array where Element: CopyableResult {
     func copyToClipboard(at rows: IndexSet) {
         var dataToCopy = ""
@@ -69,3 +74,5 @@ extension ReusableFunc {
         items.copyToClipboard(at: selectedRows)
     }
 }
+#endif
+

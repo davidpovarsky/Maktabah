@@ -6,7 +6,15 @@
 //  Granular UI Update
 //
 
-import Cocoa
+#if canImport(AppKit)
+import AppKit
+typealias PlatformColor = NSColor
+typealias PlatformFont = NSFont
+#elseif canImport(UIKit)
+import UIKit
+typealias PlatformColor = UIColor
+typealias PlatformFont = UIFont
+#endif
 
 extension RandomAccessCollection {
     /// Menentukan indeks di mana sebuah elemen harus disisipkan ke dalam koleksi
@@ -55,9 +63,9 @@ struct Annotation {
     let contentId: Int        // BookContent.id
     var range: NSRange        // NSRange berbasis UTF-16 (NSString)
     let rangeDiacritics: NSRange
-    let colorHex: String      // "#RRGGBB"
+    var colorHex: String      // "#RRGGBB"
     var type: AnnotationMode          // "highlight" atau "underline"
-    let note: String?         // catatan opsional
+    var note: String?         // catatan opsional
     let createdAt: Int64      // timestamp
     let context: String       // Konteks yang dianotasi
     let page: Int
@@ -118,7 +126,7 @@ enum AnnotationMode: Int {
     }
 }
 
-extension NSColor {
+extension PlatformColor {
     convenience init?(hex: String) {
         var s = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         if s.hasPrefix("#") { s.removeFirst() }
@@ -129,15 +137,36 @@ extension NSColor {
         let r = CGFloat((hexNum & 0xFF0000) >> 16) / 255.0
         let g = CGFloat((hexNum & 0x00FF00) >> 8) / 255.0
         let b = CGFloat(hexNum & 0x0000FF) / 255.0
+        
+        #if os(macOS)
         self.init(srgbRed: r, green: g, blue: b, alpha: 1.0)
+        #else
+        self.init(red: r, green: g, blue: b, alpha: 1.0)
+        #endif
     }
 
     func hexString() -> String {
         let defaultColor = "#FF9300"
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+
+        #if os(macOS)
         guard let rgb = self.usingColorSpace(.deviceRGB) else { return defaultColor }
-        let r = Int(round(rgb.redComponent * 255))
-        let g = Int(round(rgb.greenComponent * 255))
-        let b = Int(round(rgb.blueComponent * 255))
-        return String(format: "#%02X%02X%02X", r, g, b)
+        r = rgb.redComponent
+        g = rgb.greenComponent
+        b = rgb.blueComponent
+        #else
+        if !self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+            return defaultColor
+        }
+        #endif
+
+        let ri = Int(round(r * 255))
+        let gi = Int(round(g * 255))
+        let bi = Int(round(b * 255))
+        return String(format: "#%02X%02X%02X", ri, gi, bi)
     }
 }
+

@@ -6,9 +6,11 @@
 //  ke ~/Library/Application Support/Maktabah/Caches/
 //
 
-import AppKit
 import Foundation
 import SwiftUI
+#if canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - CoreFile
 
@@ -381,6 +383,8 @@ private final class CoreDownloadDelegate: NSObject, URLSessionDownloadDelegate {
 
 // MARK: - CoreDatabaseBootstrap
 
+#if os(macOS)
+
 /// Entry point yang dipanggil sinkron dari AppDelegate.applicationDidFinishLaunching
 /// (pada main thread). Menampilkan modal blocking jika core files belum tersedia,
 /// lalu memanggil DatabaseManager.shared.setupFolders() setelah siap.
@@ -619,3 +623,19 @@ final class CoreDownloadProgressState: ObservableObject {
     @Published var progress: Double = 0
     @Published var detail: String = ""
 }
+
+#elseif os(iOS)
+import Observation
+@Observable
+final class CoreDownloadProgressState {
+    enum Phase: Equatable {
+        case confirmation
+        case downloading
+        case error(String)
+    }
+
+    var phase: Phase = .confirmation
+    var progress: Double = 0
+    var detail: String = ""
+}
+#endif

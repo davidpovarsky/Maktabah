@@ -87,25 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         appUpdatesMenuItem.isHidden = true
         #endif
 
-        do {
-            if let annotationsFolder = AppConfig.folder(
-                for: AppConfig.annotationsAndResultsFolder
-            ) {
-                try AnnotationManager.shared.setupAnnotations(at: annotationsFolder)
-            }
-        } catch {
-            ReusableFunc.showAlert(title: NSLocalizedString("errorFolderAnnotations", comment: error.localizedDescription), message: "")
-        }
-        
-        do {
-            if let resultsFolder = AppConfig.folder(
-                for: AppConfig.annotationsAndResultsFolder
-            ) {
-                try ResultsHandler.shared.setupResultDatabase(at: resultsFolder)
-            }
-        } catch {
-            ReusableFunc.showAlert(title: NSLocalizedString("errorFolderSearchResults", comment: error.localizedDescription), message: "")
-        }
+        AppConfig.setupAnnotationsAndResults()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

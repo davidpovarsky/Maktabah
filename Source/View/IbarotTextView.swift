@@ -933,11 +933,6 @@ class IbarotTextView: NSTextView {
     }
 }
 
-struct CleanedTextResult {
-    let text: String
-    let coloredRanges: [NSRange]  // Range dalam string 'text'
-}
-
 extension IbarotTextView {
 
     // MARK: - buildHighlightGroup (pengganti)

@@ -5,7 +5,11 @@
 //  Created by MacBook on 30/11/25.
 //
 
+#if canImport(AppKit)
 import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 
 private let key = "LastAppMode"
 
@@ -193,13 +197,13 @@ extension UserDefaults {
     static let recentColorsKey = "recentHighlightColors"
     static let maxRecentColors = 5
 
-    static let defaultHighlightColors: [NSColor] = [
-        .systemYellow, .systemGreen, .highlightBlue, .systemPink, .systemPurple,
+    static let defaultHighlightColors: [PlatformColor] = [
+        .systemYellow, .systemGreen, .systemPink, .systemPurple,
     ]
 
     /// Warna highlight terbaru. Index 0 = paling baru. Maks 5.
     /// Fallback ke warna default jika belum pernah diisi.
-    var recentHighlightColors: [NSColor] {
+    var recentHighlightColors: [PlatformColor] {
         get {
             guard
                 let dataArray = array(forKey: Self.recentColorsKey) as? [Data],
@@ -209,7 +213,7 @@ extension UserDefaults {
             }
             let colors = dataArray.compactMap {
                 try? NSKeyedUnarchiver.unarchivedObject(
-                    ofClass: NSColor.self,
+                    ofClass: PlatformColor.self,
                     from: $0
                 )
             }

@@ -6,7 +6,11 @@
 //  Granular Tag UI Update
 //
 
+#if canImport(AppKit)
 import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 import Foundation
 import SQLite
 
@@ -695,6 +699,41 @@ final class AnnotationManager {
         return result
     }
 
+    // MARK: - Load by bkId
+
+    func loadAnnotations(bkId: Int) -> [Annotation] {
+        if let cached = cacheQueue.sync(execute: { cacheByBook[bkId] }) {
+            return cached
+        }
+
+        guard let db else { return [] }
+        var result: [Annotation] = []
+        do {
+            let query = annotationsTable
+                .filter(annBkId == bkId)
+                .order(annStart)
+            for row in try db.prepare(query) {
+                result.append(makeAnnotation(from: row, bkId: bkId))
+            }
+
+            let grouped = Dictionary(grouping: result) { ann in
+                ContentKey(bkId: bkId, contentId: ann.contentId)
+            }
+            cacheQueue.sync {
+                cacheByBook[bkId] = result
+                for (key, anns) in grouped {
+                    cacheByContent[key] = anns
+                }
+                for ann in result {
+                    if let id = ann.id { cacheById[id] = ann }
+                }
+            }
+        } catch {
+            print("loadAnnotations error:", error)
+        }
+        return result
+    }
+
     // MARK: - Load single annotation by id
 
     func loadAnnotationById(_ id: Int64) -> Annotation? {
@@ -1332,24 +1371,24 @@ final class AnnotationManager {
 
         for tagNode in root.children {
             var indicesToRemove: [Int] = []
-            
+
             for (idx, child) in tagNode.children.enumerated() {
                 guard let id = child.annotation?.id, let updatedAnn = updatedAnnsDict[id] else { continue }
-                
+
                 let newTags = Set(self.sanitizeTagNames(updatedAnn.tags))
-                
+
                 let displayTitle: String = {
                     if let note = updatedAnn.note, !note.isEmpty { return note }
                     return updatedAnn.context
                 }()
-                
+
                 let shouldRemove: Bool
                 if tagNode.kind == .untagged {
                     shouldRemove = !newTags.isEmpty
                 } else {
                     shouldRemove = !newTags.contains(tagNode.title)
                 }
-                
+
                 if shouldRemove {
                     indicesToRemove.append(idx)
                 } else {
@@ -1358,11 +1397,11 @@ final class AnnotationManager {
                     updatedNodes.append(child)
                 }
             }
-            
+
             if !indicesToRemove.isEmpty {
                 let becomesEmpty = indicesToRemove.count == tagNode.children.count
                 let oldTagIndex = root.children.firstIndex(where: { $0 === tagNode }) ?? -1
-                
+
                 for idx in indicesToRemove {
                     removedEntries.append(.init(
                         annotationNode: tagNode.children[idx],
@@ -1371,7 +1410,7 @@ final class AnnotationManager {
                         oldIndex: becomesEmpty ? oldTagIndex : idx
                     ))
                 }
-                
+
                 for idx in indicesToRemove.reversed() {
                     tagNode.children.remove(at: idx)
                 }
@@ -1385,12 +1424,12 @@ final class AnnotationManager {
         for annotation in annotations {
             guard let id = annotation.id else { continue }
             let newTags = Set(self.sanitizeTagNames(annotation.tags))
-            
+
             let displayTitle: String = {
                 if let note = annotation.note, !note.isEmpty { return note }
                 return annotation.context
             }()
-            
+
             if newTags.isEmpty {
                 if let untaggedNode = root.children.first(where: { $0.kind == .untagged }) {
                     if !untaggedNode.children.contains(where: { $0.annotation?.id == id }) {
@@ -1419,12 +1458,12 @@ final class AnnotationManager {
                         let tagNode = AnnotationNode(title: tag, kind: .tag)
                         let newNode = AnnotationNode(title: displayTitle, kind: .annotation, annotation: annotation)
                         tagNode.children.append(newNode)
-                        
+
                         let insertIdx = root.children.firstIndex(where: { node in
                             guard node.kind == .tag else { return node.kind == .untagged }
                             return tag.localizedCaseInsensitiveCompare(node.title) == .orderedAscending
                         }) ?? (root.children.firstIndex(where: { $0.kind == .untagged }) ?? root.children.endIndex)
-                        
+
                         root.children.insert(tagNode, at: insertIdx)
                         addedEntries.append(.init(annotationNode: newNode, tagNode: tagNode, tagNodeIsNew: true))
                     }
@@ -1447,7 +1486,7 @@ final class AnnotationManager {
 
     private func pushRecentColor(_ annotation: Annotation) {
         if annotation.type == .highlight,
-           let color = NSColor(hex: annotation.colorHex)
+           let color = PlatformColor(hex: annotation.colorHex)
         {
             TextViewState.shared.pushRecentHighlightColor(color)
         }

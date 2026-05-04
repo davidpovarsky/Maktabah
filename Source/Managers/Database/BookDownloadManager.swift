@@ -308,7 +308,7 @@ actor BookDownloadIndexCache {
     private var cachedEntries: [Int: BundleBookIndexEntry] = [:]
     private var lastFetch: Date?
     private var inFlight: Task<[Int: BundleBookIndexEntry], Error>?
-    private let ttl: TimeInterval = 60 * 60 * 24 * 7
+    private let ttl: TimeInterval = 60 * 60 * 24 * 30
     private let etagKey = "book_index_etag"
     private let lastModifiedKey = "book_index_last_modified"
 

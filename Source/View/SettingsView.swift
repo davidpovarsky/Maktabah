@@ -39,7 +39,8 @@ final class SettingsViewModel: ObservableObject {
         autoCheckAppUpdates = UserDefaults.standard.autoCheckAppUpdates
         #endif
     }
-
+    
+    #if os(macOS)
     func setBundleMode(_ enabled: Bool) {
         if enabled {
             SettingsActions.switchToBundleMode(
@@ -56,6 +57,7 @@ final class SettingsViewModel: ObservableObject {
         if !success { isBundleMode = true }
         refreshPaths()
     }
+    #endif
 
     func chooseAnnotationsFolder() {
         SettingsActions.chooseAnnotationsAndResultsFolder()
@@ -71,6 +73,7 @@ final class SettingsViewModel: ObservableObject {
         refreshPaths()
     }
 
+    #if os(macOS)
     func openFullLibraryDownload() {
         SettingsActions.openFullLibraryDownloadURL()
     }
@@ -78,6 +81,7 @@ final class SettingsViewModel: ObservableObject {
     func openSelectiveDownload() {
         SettingsActions.downloadSelectiveLibrary()
     }
+    #endif
 
     func setICloud(_ enabled: Bool) {
         // Simpan nilai lama untuk rollback
@@ -110,6 +114,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             // MARK: Database Mode
+            #if os(macOS)
             Section {
                 Toggle(isOn: Binding(
                     get: { viewModel.isBundleMode },
@@ -144,6 +149,7 @@ struct SettingsView: View {
             } header: {
                 Text("Library Storage")
             }
+            #endif
 
             // MARK: Annotations & Search Results
             Section {
@@ -173,6 +179,7 @@ struct SettingsView: View {
             }
 
             // MARK: Downloads
+            #if os(macOS)
             Section {
                 HStack(spacing: 8) {
                     Button("Download Full Library (Google Drive)") {
@@ -193,6 +200,7 @@ struct SettingsView: View {
             } header: {
                 Text("Downloads")
             }
+            #endif
 
             // MARK: Updates
             #if DIRECT_DISTRIBUTION
@@ -215,7 +223,9 @@ struct SettingsView: View {
         }
         .formStyle(.grouped)
         .controlSize(.large)
+        #if os(macOS)
         .frame(minWidth: 520, minHeight: 480)
+        #endif
     }
 }
 

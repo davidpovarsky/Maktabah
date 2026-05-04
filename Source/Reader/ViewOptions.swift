@@ -309,12 +309,3 @@ class ViewOptions: NSViewController {
         NotificationCenter.default.post(name: .didChangeBackground, object: nil)
     }
 }
-
-extension Notification.Name {
-    // static let backgroundDidChange = Notification.Name("backgroundDidChange")
-    static let didChangeClickableAnnotation = Notification.Name("didChangeClickableAnnotation")
-    static let didChangeHarakat = Notification.Name("didChangeHarakat")
-    static let didChangeBackground = Notification.Name("didChangeBackground")
-    static let didChangeFont = Notification.Name("didChangeFont")
-    static let didChangeLineHeight = Notification.Name("didChangeLineHeight")
-}

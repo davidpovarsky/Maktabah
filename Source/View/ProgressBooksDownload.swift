@@ -5,22 +5,38 @@
 //  Created by MacBook on 02/03/26.
 //
 
-import AppKit
 import SwiftUI
+#if canImport(AppKit)
+import AppKit
+#endif
+
+import Observation
 
 @MainActor
-final class BundleArchiveDownloadProgressState: ObservableObject {
+#if os(iOS)
+@Observable
+#endif
+final class BundleArchiveDownloadProgressState {
     enum Mode {
         case confirmation
         case downloading
         case integrating
     }
-
+    
+    #if os(macOS)
     @Published var title: String
     @Published var message: String
     @Published var detail: String
     @Published var progress: Double
     @Published var mode: Mode
+
+    #elseif os(iOS)
+    var title: String
+    var message: String
+    var detail: String
+    var progress: Double
+    var mode: Mode
+    #endif
 
     init(
         title: String,
@@ -38,7 +54,10 @@ final class BundleArchiveDownloadProgressState: ObservableObject {
 }
 
 struct BundleArchiveDownloadProgressView: View {
-    @ObservedObject var state: BundleArchiveDownloadProgressState
+    #if os(macOS)
+    @ObservedObject
+    #endif
+    var state: BundleArchiveDownloadProgressState
     let onConfirm: () -> Void
     let onCancel: () -> Void
 
@@ -182,19 +201,25 @@ struct BundleArchiveDownloadProgressView: View {
         .background(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .fill(.regularMaterial)
+                .shadow(color: .black.opacity(0.3), radius: 12, x: 0, y: 4)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .strokeBorder(.quaternary, lineWidth: 1)
         )
-        .frame(width: 380, height: 200)
+        .frame(maxWidth: 380, minHeight: 200)
         .animation(.easeInOut(duration: 0.2), value: state.mode)
         .animation(.linear(duration: 0.15), value: state.progress)
         .controlSize(.large)
     }
 }
 
+
 // MARK: - BookIntegrateModalCenter
+
+#if os(macOS)
+
+extension BundleArchiveDownloadProgressState: ObservableObject {}
 
 /// Modal konfirmasi + progress untuk proses integrasi per-book
 /// (download kitab → copy tables → rebuild FTS).
@@ -385,3 +410,5 @@ final class BookIntegrateModalCenter {
         return w
     }
 }
+
+#endif

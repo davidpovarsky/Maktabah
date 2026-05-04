@@ -11,4 +11,8 @@ enum AppMode: Int {
     case viewer
     case search
     case author
+    #if os(iOS)
+    case annotations
+    case history
+    #endif
 }

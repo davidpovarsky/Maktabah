@@ -5,7 +5,11 @@
 //  Created by MacBook on 29/11/25.
 //
 
-import Cocoa
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
 
 protocol SidebarDelegate: AnyObject {
     func didSelectItem(_ id: Int)
@@ -36,6 +40,7 @@ protocol OptionSearchDelegate: AnyObject {
     func didSelectResult(for id: Int, highlightText: String) async
 }
 
+#if os(macOS)
 protocol SearchableLibrarySidebar: AnyObject {
     var searchField: DSFSearchField! { get set }
     func connectSearchField(_ field: DSFSearchField)
@@ -92,3 +97,5 @@ extension RowiSidebarVC: SearchableLibrarySidebar {
         self.searchField = field
     }
 }
+#endif
+

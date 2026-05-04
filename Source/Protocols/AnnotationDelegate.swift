@@ -16,6 +16,7 @@ protocol AnnotationEditorDelegate: AnyObject {
     func annotationEditorDidDelete(_ deleted: [Annotation])
 }
 
+#if os(macOS)
 extension IbarotTextVC: AnnotationDelegate {
     func didSelect(annotation: Annotation) {
         let bkId = annotation.bkId
@@ -41,3 +42,5 @@ extension IbarotTextVC: AnnotationDelegate {
         }
     }
 }
+#endif
+

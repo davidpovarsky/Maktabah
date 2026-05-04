@@ -13,6 +13,11 @@ enum AuthorDisplayMode: Equatable, Codable {
     case bookContent  // Tampilan dari table selection (buku biasa)
 }
 
+struct CleanedTextResult {
+    let text: String
+    let coloredRanges: [NSRange]  // Range dalam string 'text'
+}
+
 /// State untuk satu instance viewer (bisa untuk mode berbeda)
 struct ReaderState: Codable {
     var currentBook: BooksData?

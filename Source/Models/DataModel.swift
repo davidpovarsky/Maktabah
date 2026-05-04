@@ -35,7 +35,7 @@ struct TOC {
     let id: Int
 }
 
-class BooksData: Codable {
+class BooksData: Codable, Identifiable {
     let id: Int
     let book: String
     let archive: Int
@@ -107,7 +107,7 @@ class BookContent {
     }
 }
 
-struct SearchResultItem: Codable, CopyableResult {
+struct SearchResultItem: Codable, CopyableResult, Hashable {
     let archive: String
     let tableName: String
     let bookId: Int
@@ -187,6 +187,10 @@ struct SearchResultItem: Codable, CopyableResult {
             ofClasses: allowedClasses,
             from: data
         ) as? NSAttributedString ?? NSAttributedString(string: "")
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(bookId)
     }
 }
 
