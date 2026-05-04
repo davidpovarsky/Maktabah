@@ -338,6 +338,9 @@ class DatabaseManager {
     /// Invalidate cache untuk archive specific (call setelah download single archive)
     func invalidateArchiveCache(archiveId: Int) {
         archiveAvailabilityCache.removeValue(forKey: archiveId)
-        print("Cache invalidated for archive \(archiveId)")
+        IntegrationCache.shared.invalidate(archiveId: archiveId)
+        #if DEBUG
+            print("Cache invalidated for archive \(archiveId)")
+        #endif
     }
 }

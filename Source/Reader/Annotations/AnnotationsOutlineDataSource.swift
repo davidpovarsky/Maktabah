@@ -1129,7 +1129,7 @@ extension AnnotationOutlineDataSource {
             let noteMatches =
                 ann.note?.removingHarakat().contains(searchText) ?? false
             let tagMatches = ann.tags.contains {
-                $0.removingHarakat().lowercased().contains(searchText)
+                $0.removingHarakat().localizedStandardContains(searchText)
             }
             annotationMatches = contextMatches || noteMatches || tagMatches
         }

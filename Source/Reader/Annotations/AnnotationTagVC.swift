@@ -331,8 +331,7 @@ class AnnotationTagVC: NSViewController {
         var base = availableTags.filter { !activeTokens.contains($0) }
         
         if !trimmed.isEmpty {
-            let lowered = trimmed.lowercased()
-            base = base.filter { $0.lowercased().contains(lowered) }
+            base = base.filter { $0.localizedStandardContains(trimmed) }
         }
         
         filteredTags = base

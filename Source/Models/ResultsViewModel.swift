@@ -372,11 +372,10 @@ class ResultsViewModel {
         let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !q.isEmpty else { return [] }
 
-        let lower = q.lowercased()
         var matches: [FolderNode] = []
 
         for (_, node) in folderById {
-            if node.name.lowercased().contains(lower) {
+            if node.name.localizedStandardContains(q) {
                 matches.append(node)
             }
         }
@@ -389,11 +388,10 @@ class ResultsViewModel {
         let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !q.isEmpty else { return [] }
 
-        let lower = q.lowercased()
         var matches: [ResultNode] = []
 
         for (_, r) in resultById {
-            if r.name.lowercased().contains(lower) {
+            if r.name.localizedStandardContains(q) {
                 matches.append(r)
             }
         }

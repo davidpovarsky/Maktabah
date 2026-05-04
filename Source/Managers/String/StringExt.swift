@@ -451,21 +451,29 @@ extension String {
     }
 }
 
+
 extension String {
     func normalizeArabic(_ removeDiacritics: Bool = true) -> String {
-        let diacritics = CharacterSet(charactersIn: "\u{064B}\u{064C}\u{064D}\u{064E}\u{064F}\u{0650}\u{0651}\u{0652}\u{0670}\u{0653}\u{0654}\u{0655}")
-        var out = self
+        var result = ""
+        result.reserveCapacity(utf8.count)
 
-        if removeDiacritics {
-            let filteredScalars = out.unicodeScalars.filter { !diacritics.contains($0) }
-            out = String(String.UnicodeScalarView(filteredScalars))
+        for scalar in unicodeScalars {
+            let val = scalar.value
+
+            if removeDiacritics {
+                if scalar.isArabicHarakat { continue }
+            }
+
+            if val == 0x0640 { continue }
+
+            if val == 0x0623 || val == 0x0625 || val == 0x0622 || val == 0x0671 {
+                result.unicodeScalars.append("\u{0627}") // "ا"
+            } else {
+                result.unicodeScalars.append(scalar)
+            }
         }
 
-        var str = String(out)
-        str = str.replacingOccurrences(of: "\u{0640}", with: "")
-        let alefVariants = CharacterSet(charactersIn: "أإآٱ")
-        str = str.unicodeScalars.map { alefVariants.contains($0) ? "ا" : String($0) }.joined()
-        return str
+        return result
     }
 }
 

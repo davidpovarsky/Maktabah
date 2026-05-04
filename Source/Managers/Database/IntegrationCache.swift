@@ -59,6 +59,8 @@ final class IntegrationCache {
     func markIntegrated(bookId: Int, archiveId: Int) {
         guard AppConfig.isUsingBundleMode else { return }
         queue.async(flags: .barrier) { [self] in
+            // Pastikan cache archive ini sudah di-load agar kita tidak menimpa data lama
+            ensureLoaded(archiveId: archiveId)
             if integrated[archiveId] == nil {
                 integrated[archiveId] = []
             }

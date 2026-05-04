@@ -222,7 +222,7 @@ class SidebarVC: NSViewController {
         } else {
             // filter semua node (termasuk child)
             let allNodes = ranges.map { $0.node }
-            let matches = allNodes.filter { $0.bab.lowercased().contains(query) }
+            let matches = allNodes.filter { $0.bab.localizedStandardContains(query) }
 
             // bikin tree baru hanya dengan node yang cocok
             filteredTree = matches
