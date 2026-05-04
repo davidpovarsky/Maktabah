@@ -86,6 +86,7 @@ final class AnnotationManager {
 
     private var cacheById: [Int64: Annotation] = [:]
     private var cacheByContent: [ContentKey: [Annotation]] = [:]
+    private var cacheByBook: [Int: [Annotation]] = [:]
     private var cacheTagsByAnnotationId: [Int64: [String]] = [:]
     private var cachedAllTagNames: [String]?
 
@@ -241,10 +242,13 @@ final class AnnotationManager {
             cacheTagsByAnnotationId[rowId] = saved.tags
             let key = ContentKey(bkId: saved.bkId, contentId: saved.contentId)
             var arr = cacheByContent[key] ?? []
-            // Optimization using insertionIndex helper for basic range sort
             let idx = arr.insertionIndex(for: saved) { $0.range.location < $1.range.location }
             arr.insert(saved, at: idx)
             cacheByContent[key] = arr
+            // cacheByBook: append jika sudah ada, invalidate jika belum
+            if cacheByBook[saved.bkId] != nil {
+                cacheByBook[saved.bkId]!.append(saved)
+            }
         }
 
         addAnnotationToTree(saved)
@@ -282,6 +286,15 @@ final class AnnotationManager {
                 arr.insert(updatedAnnotation, at: idx)
             }
             cacheByContent[key] = arr
+            // cacheByBook: update in-place jika ada
+            if var bookArr = cacheByBook[updatedAnnotation.bkId] {
+                if let idx = bookArr.firstIndex(where: { $0.id == id }) {
+                    bookArr[idx] = updatedAnnotation
+                } else {
+                    bookArr.append(updatedAnnotation)
+                }
+                cacheByBook[updatedAnnotation.bkId] = bookArr
+            }
         }
 
         updateAnnotationInTree(updatedAnnotation)
@@ -443,6 +456,9 @@ final class AnnotationManager {
         cacheQueue.sync {
             cacheById.removeValue(forKey: id)
             cacheTagsByAnnotationId.removeValue(forKey: id)
+            if let bkId = annotationToDelete?.bkId {
+                cacheByBook[bkId] = cacheByBook[bkId]?.filter { $0.id != id }
+            }
             for (key, anns) in cacheByContent {
                 if let idx = anns.firstIndex(where: { $0.id == id }) {
                     var copy = anns
@@ -496,6 +512,11 @@ final class AnnotationManager {
                 if let idx = cachedArr.firstIndex(where: { $0.id == annId }) {
                     cachedArr[idx] = ann
                     cacheByContent[key] = cachedArr
+                }
+                if var bookArr = cacheByBook[ann.bkId],
+                   let idx = bookArr.firstIndex(where: { $0.id == annId }) {
+                    bookArr[idx] = ann
+                    cacheByBook[ann.bkId] = bookArr
                 }
                 updatedAnnotations.append(ann)
             }
@@ -615,6 +636,35 @@ final class AnnotationManager {
         }
     }
 
+    // MARK: - Private helper
+
+    private func makeAnnotation(from row: Row, bkId: Int) -> Annotation {
+        let id = row[annId]
+        let page = row[annPage]
+        let part = row[annPart]
+        return Annotation(
+            id: id,
+            bkId: bkId,
+            contentId: row[annContentId],
+            range: NSRange(location: row[annStart], length: row[annLength]),
+            rangeDiacritics: NSRange(location: row[annStartDiac], length: row[annLengthDiac]),
+            colorHex: row[annColor],
+            type: AnnotationMode.from(int: row[annType]),
+            note: row[annNote],
+            createdAt: row[annCreatedAt],
+            context: row[annContext],
+            page: page,
+            part: part,
+            pageArb: String(page).convertToArabicDigits(),
+            partArb: String(part).convertToArabicDigits(),
+            tags: loadTags(for: id)
+        )
+    }
+
+    private func makeAnnotation(from row: Row) -> Annotation {
+        makeAnnotation(from: row, bkId: row[annBkId])
+    }
+
     // MARK: - Load annotations for a book content
 
     func loadAnnotations(bkId: Int, contentId: Int) -> [Annotation] {
@@ -627,40 +677,12 @@ final class AnnotationManager {
         guard let db else { return [] }
         var result: [Annotation] = []
         do {
-            let query = annotationsTable.filter(annBkId == bkId && annContentId == contentId).order(annStart)
+            let query = annotationsTable
+                .filter(annBkId == bkId && annContentId == contentId)
+                .order(annStart)
             for row in try db.prepare(query) {
-                let id = row[annId]
-                let start = row[annStart]
-                let length = row[annLength]
-                let startDiac = row[annStartDiac]
-                let lengthDiac = row[annLengthDiac]
-                let color = row[annColor]
-                let type = row[annType]
-                let note = row[annNote]
-                let created = row[annCreatedAt]
-                let context = row[annContext]
-                let page = row[annPage]
-                let part = row[annPart]
-                let ann = Annotation(
-                    id: id,
-                    bkId: bkId,
-                    contentId: contentId,
-                    range: NSRange(location: start, length: length),
-                    rangeDiacritics: NSRange(location: startDiac, length: lengthDiac),
-                    colorHex: color,
-                    type: AnnotationMode.from(int: type),
-                    note: note,
-                    createdAt: created,
-                    context: context,
-                    page: page,
-                    part: part,
-                    pageArb: String(page).convertToArabicDigits(),
-                    partArb: String(part).convertToArabicDigits(),
-                    tags: loadTags(for: id)
-                )
-                result.append(ann)
+                result.append(makeAnnotation(from: row, bkId: bkId))
             }
-
             cacheQueue.sync {
                 cacheByContent[key] = result
                 for ann in result {
@@ -684,25 +706,7 @@ final class AnnotationManager {
         do {
             let query = annotationsTable.filter(annId == id)
             if let row = try db.pluck(query) {
-                let page = row[annPage]
-                let part = row[annPart]
-                let ann = Annotation(
-                    id: row[annId],
-                    bkId: row[annBkId],
-                    contentId: row[annContentId],
-                    range: NSRange(location: row[annStart], length: row[annLength]),
-                    rangeDiacritics: NSRange(location: row[annStartDiac], length: row[annLengthDiac]),
-                    colorHex: row[annColor],
-                    type: AnnotationMode.from(int: row[annType]),
-                    note: row[annNote],
-                    createdAt: row[annCreatedAt],
-                    context: row[annContext],
-                    page: page,
-                    part: part,
-                    pageArb: String(page).convertToArabicDigits(),
-                    partArb: String(part).convertToArabicDigits(),
-                    tags: loadTags(for: id)
-                )
+                let ann = makeAnnotation(from: row)
                 cacheQueue.sync {
                     cacheById[id] = ann
                     let key = ContentKey(bkId: ann.bkId, contentId: ann.contentId)
@@ -727,6 +731,7 @@ final class AnnotationManager {
         cacheQueue.sync {
             cacheById.removeAll()
             cacheByContent.removeAll()
+            cacheByBook.removeAll()
             cacheTagsByAnnotationId.removeAll()
             cachedAllTagNames = nil
         }
@@ -740,37 +745,7 @@ final class AnnotationManager {
         do {
             let query = annotationsTable.order(annStart)
             for row in try db.prepare(query) {
-                let id = row[annId]
-                let bkId = row[annBkId]
-                let start = row[annStart]
-                let length = row[annLength]
-                let startDiac = row[annStartDiac]
-                let lengthDiac = row[annLengthDiac]
-                let contentId = row[annContentId]
-                let color = row[annColor]
-                let type = row[annType]
-                let note = row[annNote]
-                let created = row[annCreatedAt]
-                let page = row[annPage]
-                let part = row[annPart]
-                let ann = Annotation(
-                    id: id,
-                    bkId: bkId,
-                    contentId: contentId,
-                    range: NSRange(location: start, length: length),
-                    rangeDiacritics: NSRange(location: startDiac, length: lengthDiac),
-                    colorHex: color,
-                    type: AnnotationMode.from(int: type),
-                    note: note,
-                    createdAt: created,
-                    context: row[annContext],
-                    page: page,
-                    part: part,
-                    pageArb: String(page).convertToArabicDigits(),
-                    partArb: String(part).convertToArabicDigits(),
-                    tags: loadTags(for: id)
-                )
-                result.append(ann)
+                result.append(makeAnnotation(from: row))
             }
         } catch {
             print("loadAnnotations error:", error)
@@ -1081,14 +1056,14 @@ final class AnnotationManager {
                 let annNode = tagNode.children[annIdx]
                 let becomesEmpty = tagNode.children.count == 1
                 let oldIndex = becomesEmpty ? (root.children.firstIndex(where: { $0 === tagNode }) ?? -1) : annIdx
-                
+
                 removedEntries.append(.init(
                     annotationNode: annNode,
                     tagNode: tagNode,
                     tagNodeBecomesEmpty: becomesEmpty,
                     oldIndex: oldIndex
                 ))
-                
+
                 tagNode.children.remove(at: annIdx)
                 if becomesEmpty {
                     root.children.removeAll { $0 === tagNode }
@@ -1110,7 +1085,7 @@ final class AnnotationManager {
                         tagNodeBecomesEmpty: becomesEmpty,
                         oldIndex: oldIndex
                     ))
-                    
+
                     untaggedNode.children.remove(at: annIdx)
                     if becomesEmpty {
                         root.children.removeAll { $0 === untaggedNode }
@@ -1310,6 +1285,15 @@ final class AnnotationManager {
                     cachedAnnotations.insert(annotation, at: index)
                 }
                 cacheByContent[key] = cachedAnnotations
+
+                if var bookArr = cacheByBook[annotation.bkId] {
+                    if let index = bookArr.firstIndex(where: { $0.id == id }) {
+                        bookArr[index] = annotation
+                    } else {
+                        bookArr.append(annotation)
+                    }
+                    cacheByBook[annotation.bkId] = bookArr
+                }
             }
         }
 
