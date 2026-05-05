@@ -275,6 +275,7 @@ struct AppConfig {
             #else
             let options: URL.BookmarkResolutionOptions = []
             #endif
+
             let url = try URL(
                 resolvingBookmarkData: data,
                 options: options,
@@ -282,11 +283,7 @@ struct AppConfig {
                 bookmarkDataIsStale: &isStale
             )
 
-            #if os(macOS)
             let startAccess = url.startAccessingSecurityScopedResource()
-            #else
-            let startAccess = true
-            #endif
             if startAccess {
                 return url
             }
@@ -508,12 +505,19 @@ struct AppConfig {
         }
     }
 
+    enum MigrationResolution {
+        case ask
+        case keepDestination
+        case overwriteDestination
+    }
+
     /// Toggle iCloud support for annotations dan migrate files.
     /// Dipanggil dari Settings toggle (main thread). Operasi file dijalankan di background.
     /// - Parameters:
     ///   - use: true = aktifkan iCloud, false = nonaktifkan
+    ///   - resolution: resolusi konflik file jika ada di tujuan
     ///   - completion: dipanggil di main thread setelah selesai, berisi error jika gagal
-    static func setUseICloud(_ use: Bool, completion: @escaping (Error?) -> Void) {
+    static func setUseICloud(_ use: Bool, resolution: MigrationResolution = .ask, completion: @escaping (Error?) -> Void) {
         let oldURL = AppConfig.folder(for: AppConfig.annotationsAndResultsFolder)
 
         // Set dulu sebelum folder() dipanggil lagi
@@ -532,54 +536,66 @@ struct AppConfig {
                     let baseFiles = ["Annotations.sqlite", "SearchResults.sqlite"]
                     let extensions = ["", "-wal", "-shm"]
 
+                    // Phase 1: Check for collisions
+                    var hasCollision = false
+                    if resolution == .ask {
+                        for fileName in baseFiles {
+                            let sourceFile = oldURL.appendingPathComponent(fileName)
+                            guard fm.fileExists(atPath: sourceFile.path) else { continue }
+                            
+                            let destFile = newURL.appendingPathComponent(fileName)
+                            let icloudFile = newURL.appendingPathComponent(".\(fileName).icloud")
+                            
+                            if fm.fileExists(atPath: destFile.path) || fm.fileExists(atPath: icloudFile.path) {
+                                hasCollision = true
+                                break
+                            }
+                        }
+                        
+                        if hasCollision {
+                            useICloud = !use // rollback
+                            DispatchQueue.main.async { completion(StorageError.collision(nil)) }
+                            return
+                        }
+                    }
+
+                    // Phase 2: Execute migration
                     for fileName in baseFiles {
                         for ext in extensions {
                             let fullFileName = fileName + ext
                             let sourceFile = oldURL.appendingPathComponent(fullFileName)
                             let destFile = newURL.appendingPathComponent(fullFileName)
+                            let destICloudFile = newURL.appendingPathComponent(".\(fullFileName).icloud")
 
+                            let destExists = fm.fileExists(atPath: destFile.path) || fm.fileExists(atPath: destICloudFile.path)
+
+                            // Jika user memilih keepDestination dan file tujuan ada, 
+                            // cukup hapus source dan pastikan dest terdownload jika itu iCloud
+                            if resolution == .keepDestination && destExists {
+                                try? fm.removeItem(at: sourceFile)
+                                if use {
+                                    try? downloadICloudItem(at: destFile)
+                                }
+                                continue
+                            }
+
+                            // Jika source file tidak ada, skip.
                             guard fm.fileExists(atPath: sourceFile.path) else { continue }
 
-                            // Pindah dari iCloud ke lokal: pastikan file sudah didownload dulu
+                            // Jika oldURL adalah iCloud (artinya pindah ke lokal), atau sebaliknya,
+                            // pastikan source ter-download sebelum dipindahkan.
                             if !use {
-                                try? fm.startDownloadingUbiquitousItem(at: sourceFile)
-
-                                let deadline = Date().addingTimeInterval(15.0)
-                                var downloaded = false
-
-                                while Date() < deadline {
-                                    if let vals = try? sourceFile.resourceValues(
-                                        forKeys: [.ubiquitousItemDownloadingStatusKey]
-                                    ), vals.ubiquitousItemDownloadingStatus == .current {
-                                        downloaded = true
-                                        break
-                                    }
-                                    // Fallback: cek apakah bukan placeholder .icloud
-                                    let isPlaceholder = sourceFile.pathExtension == "icloud"
-                                        || sourceFile.lastPathComponent.hasPrefix(".")
-                                    if !isPlaceholder && fm.fileExists(atPath: sourceFile.path) {
-                                        downloaded = true
-                                        break
-                                    }
-                                    Thread.sleep(forTimeInterval: 0.5)
-                                }
-
-                                if !downloaded {
-                                    #if DEBUG
-                                        print("Timeout menunggu download iCloud: \(fullFileName)")
-                                    #endif
-                                    continue
-                                }
+                                try? downloadICloudItem(at: sourceFile)
                             }
 
-                            // Move file
-                            if !fm.fileExists(atPath: destFile.path) {
-                                try fm.moveItem(at: sourceFile, to: destFile)
-                            } else {
-                                try? fm.removeItem(at: sourceFile)
+                            if destExists {
+                                try? fm.removeItem(at: destFile)
+                                try? fm.removeItem(at: destICloudFile)
                             }
 
-                            // Kalau aktifkan iCloud, trigger download di tujuan
+                            try fm.moveItem(at: sourceFile, to: destFile)
+
+                            // Kalau aktifkan iCloud, pastikan terupload/terdownload
                             if use {
                                 try? fm.startDownloadingUbiquitousItem(at: destFile)
                             }
@@ -597,6 +613,36 @@ struct AppConfig {
                 useICloud = !use
                 DispatchQueue.main.async { completion(error) }
             }
+        }
+    }
+    
+    private static func downloadICloudItem(at url: URL) throws {
+        let fm = FileManager.default
+        try fm.startDownloadingUbiquitousItem(at: url)
+
+        let deadline = Date().addingTimeInterval(15.0)
+        var downloaded = false
+
+        while Date() < deadline {
+            if let vals = try? url.resourceValues(
+                forKeys: [.ubiquitousItemDownloadingStatusKey]
+            ), vals.ubiquitousItemDownloadingStatus == .current {
+                downloaded = true
+                break
+            }
+            let isPlaceholder = url.pathExtension == "icloud" || url.lastPathComponent.hasPrefix(".")
+            if !isPlaceholder && fm.fileExists(atPath: url.path) {
+                downloaded = true
+                break
+            }
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+
+        if !downloaded {
+            #if DEBUG
+            print("Timeout menunggu download iCloud: \(url.lastPathComponent)")
+            #endif
+            throw StorageError.downloadTimeout(url.lastPathComponent)
         }
     }
 }

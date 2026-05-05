@@ -261,6 +261,29 @@
         }
       }
     },
+    "annotationMoveFolderFileExistsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم العثور على التعليقات التوضيحية الحالية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Existing Annotations Found"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anotasi Yang Ada Ditemukan"
+          }
+        }
+      }
+    },
     "Annotations" : {
       "comment" : "Annotations Window Title",
       "localizations" : {
@@ -290,6 +313,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anotasi & Hasil Pencarian"
+          }
+        }
+      }
+    },
+    "annotationsMoveFolderFileExistsDesc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التعليقات التوضيحية موجودة بالفعل في مجلد الوجهة. هل ترغب في الاحتفاظ بها (وحذف القديمة) أو الكتابة فوقها بالقديمة؟"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annotations already exist in the destination folder. Would you like to keep them (and delete the old ones) or overwrite them with the old ones?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anotasi sudah ada di folder tujuan. Apakah Anda ingin menggunakan anotasi di folder tujuan (dan menghapus yang lama) atau menimpa anotasi di folder tujuan dengan yang lama?"
           }
         }
       }
@@ -1403,7 +1449,7 @@
       }
     },
     "Download" : {
-      "comment" : "Download action button\nStart bulk download",
+      "comment" : "Download action button",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2502,6 +2548,29 @@
         }
       }
     },
+    "keepExistingDeleteOld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "احتفظ بالوجود (احذف القديم)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Existing (Delete Old)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pertahankan yang Sudah Ada (Hapus yang Lama)"
+          }
+        }
+      }
+    },
     "LCSMenuClearRecentsTitle" : {
       "localizations" : {
         "ar" : {
@@ -3131,6 +3200,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Urutan"
+          }
+        }
+      }
+    },
+    "overwriteExisting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكتابة فوق الموجود"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overwrite Existing"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timpa Yang Ada"
           }
         }
       }
@@ -4795,7 +4887,7 @@
       }
     },
     "ج" : {
-
+      "shouldTranslate" : false
     },
     "ج: %lld" : {
       "localizations" : {
@@ -4820,7 +4912,7 @@
       }
     },
     "ص" : {
-
+      "shouldTranslate" : false
     },
     "ص: %lld" : {
       "localizations" : {

@@ -20,7 +20,22 @@ enum SettingsActions {
     private static var documentPickerCoordinator: DocumentPickerCoordinator?
     #endif
 
-    static func chooseAnnotationsAndResultsFolder() {
+    static func chooseAnnotationsAndResultsFolder(resolution: AppConfig.MigrationResolution = .ask, retryURL: URL? = nil, onCompletion: @escaping (Result<URL, Error>?) -> Void) {
+        let processURL = { (url: URL) in
+            do {
+                try changeAnnotationsBaseUrl(to: url, resolution: resolution)
+                AnnotationManager.shared.buildAnnotationTree()
+                onCompletion(.success(url))
+            } catch {
+                onCompletion(.failure(error))
+            }
+        }
+        
+        if let retryURL = retryURL {
+            processURL(retryURL)
+            return
+        }
+
         #if os(macOS)
         let panel = NSOpenPanel()
         panel.message = NSLocalizedString("personalFolder", comment: "")
@@ -34,33 +49,19 @@ enum SettingsActions {
         let response = panel.runModal()
 
         if response == .OK, let url = panel.url {
-            do {
-                try changeAnnotationsBaseUrl(to: url)
-            } catch {
-                ReusableFunc.showAlert(
-                    title: "errorFolderAnnotations".localized,
-                    message: error.localizedDescription
-                )
-            }
-
-            AnnotationManager.shared.buildAnnotationTree()
+            processURL(url)
+        } else {
+            onCompletion(nil)
         }
         #else
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
         picker.allowsMultipleSelection = false
         
         documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
-            do {
-                try changeAnnotationsBaseUrl(to: url)
-                AnnotationManager.shared.buildAnnotationTree()
-            } catch {
-                ReusableFunc.showAlert(
-                    title: "errorFolderAnnotations".localized,
-                    message: error.localizedDescription
-                )
-            }
+            processURL(url)
             documentPickerCoordinator = nil
         }, onCancel: {
+            onCompletion(nil)
             documentPickerCoordinator = nil
         })
         picker.delegate = documentPickerCoordinator
@@ -71,7 +72,8 @@ enum SettingsActions {
 
     static func selectLibraryFolder(
         showSuccessAlert: Bool,
-        shouldTerminateOnCancel: Bool
+        shouldTerminateOnCancel: Bool,
+        onCompletion: ((Bool) -> Void)? = nil
     ) -> Bool {
         #if os(macOS)
         let panel = NSOpenPanel()
@@ -85,7 +87,9 @@ enum SettingsActions {
         let response = panel.runModal()
 
         if response == .OK, let url = panel.url {
-            return performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
+            let success = performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
+            onCompletion?(success)
+            return success
         }
 
         if shouldTerminateOnCancel {
@@ -93,15 +97,18 @@ enum SettingsActions {
             NSApp.terminate(nil)
         }
 
+        onCompletion?(false)
         return false
         #else
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
         picker.allowsMultipleSelection = false
         
         documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
-            _ = performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
+            let success = performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
+            onCompletion?(success)
             documentPickerCoordinator = nil
         }, onCancel: {
+            onCompletion?(false)
             documentPickerCoordinator = nil
         })
         picker.delegate = documentPickerCoordinator
@@ -224,7 +231,42 @@ enum SettingsActions {
         #endif
     }
 
-    private static func changeAnnotationsBaseUrl(to newURL: URL) throws {
+    static func selectLocalFolderForICloudDisable(onCompletion: @escaping (URL?) -> Void) {
+        #if os(macOS)
+        let panel = NSOpenPanel()
+        panel.message = NSLocalizedString("personalFolder", comment: "")
+        panel.prompt = NSLocalizedString("Choose Folder", comment: "")
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.canCreateDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.level = .floating
+
+        let response = panel.runModal()
+
+        if response == .OK, let url = panel.url {
+            onCompletion(url)
+        } else {
+            onCompletion(nil)
+        }
+        #else
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+        picker.allowsMultipleSelection = false
+        
+        documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
+            onCompletion(url)
+            documentPickerCoordinator = nil
+        }, onCancel: {
+            onCompletion(nil)
+            documentPickerCoordinator = nil
+        })
+        picker.delegate = documentPickerCoordinator
+        
+        ReusableFunc.getTopViewController()?.present(picker, animated: true)
+        #endif
+    }
+
+    private static func changeAnnotationsBaseUrl(to newURL: URL, resolution: AppConfig.MigrationResolution) throws {
         let fm = FileManager.default
 
         let oldURL = AppConfig.folder(
@@ -238,7 +280,6 @@ enum SettingsActions {
             throw StorageError.invalidDirectory
         }
 
-        #if os(macOS)
         guard newURL.startAccessingSecurityScopedResource() else {
             throw StorageError.cannotAccessSecurityScope
         }
@@ -246,22 +287,40 @@ enum SettingsActions {
         defer {
             newURL.stopAccessingSecurityScopedResource()
         }
-        #endif
 
         if let oldURL, fm.fileExists(atPath: oldURL.path) {
-            let filesToMove = ["Annotations.sqlite", "SearchResults.sqlite"]
+            let filesToMove = ["Annotations.sqlite", "SearchResults.sqlite", "Annotations.sqlite-wal", "Annotations.sqlite-shm", "SearchResults.sqlite-wal", "SearchResults.sqlite-shm"]
 
+            // Phase 1: Check for collisions
+            if resolution == .ask {
+                for fileName in filesToMove {
+                    let sourceFile = oldURL.appendingPathComponent(fileName)
+                    guard fm.fileExists(atPath: sourceFile.path) else { continue }
+                    
+                    let destFile = newURL.appendingPathComponent(fileName)
+                    if fm.fileExists(atPath: destFile.path) {
+                        throw StorageError.collision(newURL)
+                    }
+                }
+            }
+
+            // Phase 2: Execute migration
             for fileName in filesToMove {
                 let sourceFile = oldURL.appendingPathComponent(fileName)
                 let destFile = newURL.appendingPathComponent(fileName)
 
-                if fm.fileExists(atPath: sourceFile.path)
-                    && !fm.fileExists(atPath: destFile.path)
-                {
-                    try fm.moveItem(at: sourceFile, to: destFile)
-                } else {
-                    try fm.removeItem(at: sourceFile)
+                guard fm.fileExists(atPath: sourceFile.path) else { continue }
+
+                if fm.fileExists(atPath: destFile.path) {
+                    if resolution == .keepDestination {
+                        try? fm.removeItem(at: sourceFile)
+                        continue
+                    } else if resolution == .overwriteDestination {
+                        try? fm.removeItem(at: destFile)
+                    }
                 }
+
+                try fm.moveItem(at: sourceFile, to: destFile)
             }
         }
 

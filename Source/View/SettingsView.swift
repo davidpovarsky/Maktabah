@@ -13,9 +13,18 @@ final class SettingsViewModel: ObservableObject {
     @Published var annotationsPath: String = "N/A"
     @Published var useICloud: Bool = AppConfig.useICloud
     @Published var isProcessingICloud = false
+    @Published var showCollisionAlert = false
+    
+    enum PendingCollisionAction {
+        case icloud(use: Bool, previous: Bool)
+        case moveFolder(url: URL)
+    }
+    
+    private var pendingCollisionAction: PendingCollisionAction?
 
     #if DIRECT_DISTRIBUTION
     @Published var autoCheckAppUpdates: Bool = true
+
 
     func setAutoCheckAppUpdates(_ enabled: Bool) {
         UserDefaults.standard.autoCheckAppUpdates = enabled
@@ -50,27 +59,52 @@ final class SettingsViewModel: ObservableObject {
             )
             return
         }
-        let success = SettingsActions.selectLibraryFolder(
+        _ = SettingsActions.selectLibraryFolder(
             showSuccessAlert: false,
             shouldTerminateOnCancel: false
-        )
-        if !success { isBundleMode = true }
-        refreshPaths()
+        ) { [weak self] success in
+            DispatchQueue.main.async {
+                if !success { self?.isBundleMode = true }
+                self?.refreshPaths()
+            }
+        }
     }
     #endif
 
     func chooseAnnotationsFolder() {
-        SettingsActions.chooseAnnotationsAndResultsFolder()
-        refreshPaths()
+        SettingsActions.chooseAnnotationsAndResultsFolder(resolution: .ask) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                switch result {
+                case .success:
+                    self.refreshPaths()
+                case .failure(let error):
+                    if let storageError = error as? StorageError, case .collision(let url) = storageError, let safeUrl = url {
+                        self.pendingCollisionAction = .moveFolder(url: safeUrl)
+                        self.showCollisionAlert = true
+                    } else {
+                        ReusableFunc.showAlert(
+                            title: NSLocalizedString("errorFolderAnnotations", comment: ""),
+                            message: error.localizedDescription
+                        )
+                    }
+                case .none:
+                    break // Cancelled
+                }
+            }
+        }
     }
 
     func chooseLibraryFolder() {
-        let success = SettingsActions.selectLibraryFolder(
+        _ = SettingsActions.selectLibraryFolder(
             showSuccessAlert: true,
             shouldTerminateOnCancel: false
-        )
-        if success { isBundleMode = false }
-        refreshPaths()
+        ) { [weak self] success in
+            DispatchQueue.main.async {
+                if success { self?.isBundleMode = false }
+                self?.refreshPaths()
+            }
+        }
     }
 
     #if os(macOS)
@@ -84,23 +118,117 @@ final class SettingsViewModel: ObservableObject {
     #endif
 
     func setICloud(_ enabled: Bool) {
-        // Simpan nilai lama untuk rollback
         let previous = useICloud
+        if enabled {
+            // Terapkan nilai baru optimistically, lalu disable toggle via flag terpisah
+            useICloud = true
+            isProcessingICloud = true
 
-        // Terapkan nilai baru optimistically, lalu disable toggle via flag terpisah
-        useICloud = enabled
-        isProcessingICloud = true
+            AppConfig.setUseICloud(true, resolution: .ask) { [weak self] error in
+                guard let self else { return }
+                self.isProcessingICloud = false
 
-        AppConfig.setUseICloud(enabled) { [weak self] error in
-            guard let self else { return }
-            self.isProcessingICloud = false
+                if let storageError = error as? StorageError, case .collision = storageError {
+                    self.pendingCollisionAction = .icloud(use: true, previous: previous)
+                    self.showCollisionAlert = true
+                } else if let error {
+                    self.useICloud = previous  // rollback
+                    ReusableFunc.showAlert(
+                        title: NSLocalizedString("errorICloud", comment: ""),
+                        message: error.localizedDescription
+                    )
+                } else {
+                    AnnotationManager.shared.buildAnnotationTree()
+                }
+                self.refreshPaths()
+            }
+        } else {
+            useICloud = false
+            isProcessingICloud = true
+            SettingsActions.selectLocalFolderForICloudDisable { [weak self] url in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    if let url = url {
+                        AppConfig.saveBookmark(url: url, key: AppConfig.annotationsAndResultsFolder)
+                        
+                        AppConfig.setUseICloud(false, resolution: .ask) { [weak self] error in
+                            guard let self = self else { return }
+                            self.isProcessingICloud = false
+                            if let storageError = error as? StorageError, case .collision = storageError {
+                                self.pendingCollisionAction = .icloud(use: false, previous: previous)
+                                self.showCollisionAlert = true
+                            } else if let error {
+                                self.useICloud = previous
+                                ReusableFunc.showAlert(
+                                    title: NSLocalizedString("errorICloud", comment: ""),
+                                    message: error.localizedDescription
+                                )
+                            } else {
+                                AnnotationManager.shared.buildAnnotationTree()
+                            }
+                            self.refreshPaths()
+                        }
+                    } else {
+                        self.useICloud = previous
+                        self.isProcessingICloud = false
+                        self.refreshPaths()
+                    }
+                }
+            }
+        }
+    }
 
-            if let error {
-                self.useICloud = previous  // rollback
-                ReusableFunc.showAlert(
-                    title: NSLocalizedString("errorICloud", comment: ""),
-                    message: error.localizedDescription
-                )
+    func resolveCollision(_ resolution: AppConfig.MigrationResolution) {
+        guard let action = pendingCollisionAction else { return }
+        
+        switch action {
+        case .icloud(let use, let previous):
+            if resolution == .ask {
+                self.useICloud = previous
+                self.refreshPaths()
+                self.pendingCollisionAction = nil
+                return
+            }
+            
+            self.isProcessingICloud = true
+            AppConfig.setUseICloud(use, resolution: resolution) { [weak self] error in
+                guard let self = self else { return }
+                self.isProcessingICloud = false
+                self.pendingCollisionAction = nil
+                if let error {
+                    self.useICloud = previous
+                    ReusableFunc.showAlert(
+                        title: NSLocalizedString("errorICloud", comment: ""),
+                        message: error.localizedDescription
+                    )
+                } else {
+                    AnnotationManager.shared.buildAnnotationTree()
+                }
+                self.refreshPaths()
+            }
+            
+        case .moveFolder(let url):
+            if resolution == .ask {
+                self.pendingCollisionAction = nil
+                return
+            }
+            
+            SettingsActions.chooseAnnotationsAndResultsFolder(resolution: resolution, retryURL: url) { [weak self] result in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    self.pendingCollisionAction = nil
+                    switch result {
+                    case .success:
+                        self.refreshPaths()
+                    case .failure(let error):
+                        ReusableFunc.showAlert(
+                            title: NSLocalizedString("errorFolderAnnotations", comment: ""),
+                            message: error.localizedDescription
+                        )
+                    case .none:
+                        break
+                    }
+                }
             }
         }
     }
@@ -226,6 +354,19 @@ struct SettingsView: View {
         #if os(macOS)
         .frame(minWidth: 520, minHeight: 480)
         #endif
+        .alert(.annotationMoveFolderFileExistsTitle, isPresented: $viewModel.showCollisionAlert) {
+            Button(.keepExistingDeleteOld) {
+                viewModel.resolveCollision(.keepDestination)
+            }
+            Button(.overwriteExisting, role: .destructive) {
+                viewModel.resolveCollision(.overwriteDestination)
+            }
+            Button("Cancel", role: .cancel) {
+                viewModel.resolveCollision(.ask) // used as cancel
+            }
+        } message: {
+            Text(.annotationsMoveFolderFileExistsDesc)
+        }
     }
 }
 
