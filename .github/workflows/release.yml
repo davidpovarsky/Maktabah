@@ -287,6 +287,14 @@ jobs:
           tag_message = """$TAG_MESSAGE"""
           notes_file = "/tmp/maktabah-gh-pages/releases-notes.html"
 
+          # Hapus blok signature yang ikut tersimpan di annotated tag
+          tag_message = re.sub(
+              r'\n*-----BEGIN (?:SSH|PGP) SIGNATURE-----.*?-----END (?:SSH|PGP) SIGNATURE-----\n*',
+              '\n',
+              tag_message,
+              flags=re.DOTALL,
+          ).strip()
+
           # Parse tag message -> sections
           sections = {}
           current_section = None
@@ -324,6 +332,14 @@ jobs:
           # Sisipkan tepat setelah <body>
           with open(notes_file, 'r') as f:
               content = f.read()
+
+          existing_version_pattern = re.compile(
+              rf'<h2>\s*Version\s+{re.escape(version)}\s*</h2>',
+              flags=re.IGNORECASE,
+          )
+          if existing_version_pattern.search(content):
+              print(f"Version {version} sudah ada di releases-notes.html, skip insert.")
+              sys.exit(0)
 
           marker = '<body>'
           idx = content.find(marker)
