@@ -58,9 +58,11 @@ final class IntegrationCache {
     /// Tandai kitab sebagai terintegrasi dan persist ke JSON.
     func markIntegrated(bookId: Int, archiveId: Int) {
         guard AppConfig.isUsingBundleMode else { return }
+
+        // Pastikan cache archive ini sudah di-load di luar barrier agar tidak deadlock
+        ensureLoaded(archiveId: archiveId)
+
         queue.async(flags: .barrier) { [self] in
-            // Pastikan cache archive ini sudah di-load agar kita tidak menimpa data lama
-            ensureLoaded(archiveId: archiveId)
             if integrated[archiveId] == nil {
                 integrated[archiveId] = []
             }
@@ -83,17 +85,23 @@ final class IntegrationCache {
         guard fm.fileExists(atPath: archivePath),
               fm.fileExists(atPath: ftsPath) else {
             // Archive belum ada → cache kosong, simpan supaya kita tahu sudah di-scan
-            saveJSON(bookIds: [], for: archiveId)
+            queue.async(flags: .barrier) { [self] in
+                if loadedArchives.contains(archiveId) { return }
+                integrated[archiveId] = []
+                loadedArchives.insert(archiveId)
+                saveJSON(bookIds: [], for: archiveId)
+            }
             return
         }
 
         let bookIds = scanIntegratedBookIds(archivePath: archivePath, ftsPath: ftsPath)
 
         queue.async(flags: .barrier) { [self] in
+            if loadedArchives.contains(archiveId) { return }
             integrated[archiveId] = Set(bookIds)
             loadedArchives.insert(archiveId)
+            saveJSON(bookIds: bookIds, for: archiveId)
         }
-        saveJSON(bookIds: bookIds, for: archiveId)
     }
 
     /// Build cache untuk semua archive yang ada di disk (panggil saat app launch di background).
@@ -156,6 +164,7 @@ final class IntegrationCache {
         }
 
         queue.async(flags: .barrier) { [self] in
+            if loadedArchives.contains(archiveId) { return }
             integrated[archiveId] = Set(json.bookIds)
             loadedArchives.insert(archiveId)
         }
