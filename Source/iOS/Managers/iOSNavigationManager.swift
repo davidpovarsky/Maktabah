@@ -152,10 +152,16 @@ class iOSNavigationManager {
             book.book
         )
 
+        var sizeString = ""
+        if let size = book.compressedDownloadSize, size > 0 {
+            sizeString = ByteCountFormatter.string(fromByteCount: size, countStyle: .file)
+        }
+
         bookIntegrationState = BundleArchiveDownloadProgressState(
             title: book.book,
             message: message,
-            mode: .confirmation
+            mode: .confirmation,
+            totalSizeString: sizeString
         )
     }
 

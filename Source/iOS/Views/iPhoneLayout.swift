@@ -19,7 +19,7 @@ struct iPhoneLayout: View {
         switch selectedTab {
         case .viewer: String(localized: "Search Library")
         case .search: String(localized: "Filter Books to Search")
-        case .author: String(localized: "Search Authors")
+        case .author: String(localized: "Search Narrators")
         case .annotations: String(localized: "Search Annotations")
         case .history: String(localized: "Search History & Favorites")
         }

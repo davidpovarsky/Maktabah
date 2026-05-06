@@ -102,12 +102,18 @@ struct CoreDownloadProgressView: View {
     private var bodyText: some View {
         switch state.phase {
         case .confirmation:
-            Text(
-                String(localized: "core.modal.message")
-            )
-            .font(.callout)
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.leading)
+            let message = String(localized: "core.modal.message")
+            if state.totalSizeString.isEmpty {
+                Text(message)
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.leading)
+            } else {
+                Text("\(message) (\(state.totalSizeString))")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
         case .downloading:
             Text(
                 NSLocalizedString(

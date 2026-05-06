@@ -28,8 +28,16 @@ final class iOSBootstrapManager {
             return
         }
 
-        isChecking = false
-        coreDownloadState.phase = .confirmation
+        downloader.fetchTotalDownloadSize { [weak self] size in
+            Task { @MainActor in
+                if size > 0 {
+                    let mb = Double(size) / 1_048_576
+                    self?.coreDownloadState.totalSizeString = String(format: "%.1f MB", mb)
+                }
+                self?.isChecking = false
+                self?.coreDownloadState.phase = .confirmation
+            }
+        }
     }
 
     func startDownload() {

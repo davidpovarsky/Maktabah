@@ -52,7 +52,7 @@ struct iOSCoreDownloadGateView: View {
 
             switch state.phase {
             case .confirmation:
-                Button("Download", action: onDownload)
+                Button(String(localized: "Download"), action: onDownload)
                     .buttonStyle(.borderedProminent)
                     .frame(maxWidth: .infinity, alignment: .trailing)
 
@@ -75,7 +75,7 @@ struct iOSCoreDownloadGateView: View {
                 }
 
             case .error:
-                Button("Try Again", action: onDownload)
+                Button(String(localized: "Try Again"), action: onDownload)
                     .buttonStyle(.borderedProminent)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
@@ -94,16 +94,21 @@ struct iOSCoreDownloadGateView: View {
 
     private var badgeText: String {
         switch state.phase {
-        case .confirmation: "Ready to Download"
-        case .downloading: "Downloading"
+        case .confirmation: String(localized: "Ready to Download")
+        case .downloading: String(localized: "Downloading")
         case .error: "Error"
         }
     }
 
     private var bodyText: String {
-        switch state.phase {
-        case .confirmation: "This app needs the core database files before the library can be used."
-        case .downloading: "Downloading database. Please wait…"
+        return switch state.phase {
+        case .confirmation:
+            if state.totalSizeString.isEmpty {
+                String(localized: "core.modal.message")
+            } else {
+                String(localized: .coreModalMessageDownloadsize(state.totalSizeString))
+            }
+        case .downloading: String(localized: "core.modal.downloading")
         case let .error(message): message
         }
     }

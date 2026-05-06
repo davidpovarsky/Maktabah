@@ -29,6 +29,7 @@ final class BundleArchiveDownloadProgressState {
     @Published var detail: String
     @Published var progress: Double
     @Published var mode: Mode
+    @Published var totalSizeString: String
 
     #elseif os(iOS)
     var title: String
@@ -36,6 +37,7 @@ final class BundleArchiveDownloadProgressState {
     var detail: String
     var progress: Double
     var mode: Mode
+    var totalSizeString: String
     #endif
 
     init(
@@ -43,13 +45,15 @@ final class BundleArchiveDownloadProgressState {
         message: String,
         detail: String = "",
         progress: Double = 0,
-        mode: Mode = .confirmation
+        mode: Mode = .confirmation,
+        totalSizeString: String = ""
     ) {
         self.title = title
         self.message = message
         self.detail = detail
         self.progress = progress
         self.mode = mode
+        self.totalSizeString = totalSizeString
     }
 }
 
@@ -122,11 +126,19 @@ struct BundleArchiveDownloadProgressView: View {
             }
 
             // Message / description
-            Text(state.message)
-                .font(.callout)
-                .foregroundStyle(.secondary)
-                .lineLimit(state.mode == .confirmation ? nil : 2)
-                .multilineTextAlignment(.leading)
+            if state.mode == .confirmation && !state.totalSizeString.isEmpty {
+                Text("\(state.message) (\(state.totalSizeString))")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+            } else {
+                Text(state.message)
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(state.mode == .confirmation ? nil : 2)
+                    .multilineTextAlignment(.leading)
+            }
 
             if state.mode != .confirmation {
                 VStack(alignment: .leading, spacing: 8) {
@@ -266,10 +278,16 @@ final class BookIntegrateModalCenter {
             book.book
         )
 
+        var sizeString = ""
+        if let size = book.compressedDownloadSize, size > 0 {
+            sizeString = ByteCountFormatter.string(fromByteCount: size, countStyle: .file)
+        }
+
         let state = BundleArchiveDownloadProgressState(
             title: book.book,
             message: message,
-            mode: .confirmation
+            mode: .confirmation,
+            totalSizeString: sizeString
         )
         progressState = state
 

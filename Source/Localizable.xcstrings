@@ -35,6 +35,17 @@
     "%@" : {
       "shouldTranslate" : false
     },
+    "%@ (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (%2$@)"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
     "%lld book selected" : {
       "localizations" : {
         "ar" : {
@@ -1072,23 +1083,16 @@
       }
     },
     "core.modal.downloading" : {
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "تنزيل قاعدة البيانات. من فضلك انتظر..."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Downloading database. Please wait…"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Mengunduh basis data. Mohon tunggu..."
           }
         }
@@ -1099,19 +1103,42 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "يتطلب التطبيق ملف قاعدة البيانات الرئيسي (~ 120 ميغابايت) الذي يتم تنزيله مرة واحدة عند فتحه لأول مرة. سيتم حفظ الملف في مجلد دعم التطبيقات."
+            "value" : "يتطلب التطبيق ملف قاعدة البيانات الرئيسي (~ 17,96 ميغابايت) الذي يتم تنزيله مرة واحدة عند فتحه لأول مرة. سيتم حفظ الملف في مجلد دعم التطبيقات."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Application requires the main database file (~120 MB) that is downloaded once when first opened. The file will be saved in the Application Support folder."
+            "value" : "Application requires the main database file (~17,96 MB) that is downloaded once when first opened. The file will be saved in the Application Support folder."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maktabah memerlukan file database utama (~120 MB) yang diunduh sekali saat pertama kali dibuka. File akan disimpan di folder Application Support."
+            "value" : "Maktabah memerlukan file database utama (~17,96 MB) yang diunduh sekali saat pertama kali dibuka. File akan disimpan di folder Application Support."
+          }
+        }
+      }
+    },
+    "core.modal.message.downloadsize" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يحتاج هذا التطبيق إلى ملفات قاعدة البيانات الأساسية (%@) قبل استخدام المكتبة."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app needs the core database files (%@) before the library can be used."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplikasi ini membutuhkan file basis data inti (%@) sebelum perpustakaan dapat digunakan."
           }
         }
       }
@@ -2713,28 +2740,6 @@
         }
       }
     },
-    "Loading Authors..." : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "جاري تحميل المؤلفين..."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loading Authors..."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Memuat Penulis..."
-          }
-        }
-      }
-    },
     "Loading Library..." : {
       "localizations" : {
         "ar" : {
@@ -2753,6 +2758,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memuat Perpustakaan..."
+          }
+        }
+      }
+    },
+    "Loading Narrators..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاري تحميل الراوة…"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memuat Rowi…"
           }
         }
       }
@@ -3782,11 +3803,12 @@
       }
     },
     "Search Authors" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "البحث في المؤلفين"
+            "value" : "البحث في الرواة"
           }
         },
         "en" : {
@@ -3798,7 +3820,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cari Penulis"
+            "value" : "Cari Rowi"
           }
         }
       }
@@ -3963,6 +3985,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Perpustakaan"
+          }
+        }
+      }
+    },
+    "Search Narrators" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البحث في الرواة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari Rowi"
           }
         }
       }
@@ -4903,7 +4941,7 @@
       }
     },
     "ج" : {
-
+      "shouldTranslate" : false
     },
     "ج: %lld" : {
       "localizations" : {

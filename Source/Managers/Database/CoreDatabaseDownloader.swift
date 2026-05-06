@@ -116,6 +116,50 @@ final class CoreDatabaseDownloader: NSObject {
         }
     }
 
+    /// Ambil total ukuran download core files (HEAD request).
+    func fetchTotalDownloadSize(onCompletion: @escaping (Int64) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self else { return }
+
+            let missing = CoreFile.allCases.filter { !self.fileExistsAndHasSize(for: $0) }
+            guard !missing.isEmpty else {
+                onCompletion(0)
+                return
+            }
+
+            guard let baseURL = AppConfig.coreReleaseBaseURL,
+                  let tag = AppConfig.coreReleaseTag
+            else {
+                onCompletion(0)
+                return
+            }
+
+            let fileURLs = missing.map { file in
+                baseURL
+                    .appendingPathComponent(tag)
+                    .appendingPathComponent(file.releaseFilename)
+            }
+
+            let fileSizes: [Int64] = fileURLs.map { url in
+                var req = URLRequest(url: url)
+                req.httpMethod = "HEAD"
+                var size: Int64 = 0
+                let sem = DispatchSemaphore(value: 0)
+                URLSession.shared.dataTask(with: req) { _, resp, _ in
+                    size = (resp as? HTTPURLResponse)?
+                        .value(forHTTPHeaderField: "Content-Length")
+                        .flatMap { Int64($0) } ?? 0
+                    sem.signal()
+                }.resume()
+                sem.wait()
+                return size
+            }
+
+            let grandTotal = fileSizes.reduce(0, +)
+            onCompletion(grandTotal)
+        }
+    }
+
     // MARK: - Download (non-async, background thread)
 
     /// Mulai download semua core files yang belum tersedia.
@@ -456,6 +500,15 @@ final class CoreDownloadModalCenter {
         let state = CoreDownloadProgressState()
         progressState = state
 
+        downloader.fetchTotalDownloadSize { [weak state] size in
+            DispatchQueue.main.async {
+                if size > 0 {
+                    let mb = Double(size) / 1_048_576
+                    state?.totalSizeString = String(format: "%.1f MB", mb)
+                }
+            }
+        }
+
         presentWindow(state: state)
 
         if let parent = parentWindow ?? NSApp.keyWindow ?? NSApp.mainWindow {
@@ -473,6 +526,15 @@ final class CoreDownloadModalCenter {
     private func showConfirmation() {
         let state = CoreDownloadProgressState()
         progressState = state
+
+        downloader.fetchTotalDownloadSize { [weak state] size in
+            DispatchQueue.main.async {
+                if size > 0 {
+                    let mb = Double(size) / 1_048_576
+                    state?.totalSizeString = String(format: "%.1f MB", mb)
+                }
+            }
+        }
 
         presentWindow(state: state)
 
@@ -622,6 +684,7 @@ final class CoreDownloadProgressState: ObservableObject {
     @Published var phase: Phase = .confirmation
     @Published var progress: Double = 0
     @Published var detail: String = ""
+    @Published var totalSizeString: String = ""
 }
 
 #elseif os(iOS)
@@ -637,5 +700,6 @@ final class CoreDownloadProgressState {
     var phase: Phase = .confirmation
     var progress: Double = 0
     var detail: String = ""
+    var totalSizeString: String = ""
 }
 #endif

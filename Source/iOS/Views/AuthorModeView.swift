@@ -8,7 +8,7 @@ struct AuthorModeView: View {
     var body: some View {
         Group {
             if viewModel.isLoading {
-                ProgressView("Loading Authors...")
+                ProgressView("Loading Narrators...")
             } else {
                 iOSRowiSidebarView(viewModel: viewModel, searchQuery: navigationManager.searchText)
                     .ignoresSafeArea(edges: [.vertical])
