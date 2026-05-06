@@ -298,7 +298,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             let colors = UserDefaults.standard.recentHighlightColors
             let highlightActions = colors.map { color in
                 UIAction(
-                    title: "", // Kosongkan judul agar fokus ke warna
+                    title: color.accessibilityName.capitalized, // Gunakan nama warna agar tampil di iPad
                     image: UIImage(systemName: "circle.fill")?.withTintColor(color, renderingMode: .alwaysOriginal)
                 ) { [weak self] _ in
                     self?.parent.onAddAnnotation?(sourceRange, .highlight, sourceText, color)
@@ -307,13 +307,13 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
             // Gunakan .displayInline agar ikon warna berjajar ke samping (seperti palet)
             let highlightMenu = UIMenu(
-                title: "",
+                title: String(localized: "Highlight"),
                 options: .displayInline,
                 children: highlightActions
             )
 
             let underlineAction = UIAction(
-                title: "",
+                title: String(localized: .underline),
                 image: UIImage(systemName: "underline")
             ) { [weak self] _ in
                 self?.parent.onAddAnnotation?(sourceRange, .underline, sourceText, .black)
