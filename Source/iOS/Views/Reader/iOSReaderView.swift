@@ -3,7 +3,10 @@ import SwiftUI
 struct iOSReaderView: View {
     let book: BooksData
     let initialContentId: Int?
-    var ipad: Bool = false
+    var ipad: Bool {
+        MaktabahApp.isIpad
+    }
+
     var viewModel: iOSReaderViewModel
     var textViewState = TextViewState.shared
 
@@ -20,13 +23,11 @@ struct iOSReaderView: View {
 
     init(book: BooksData,
          viewModel: iOSReaderViewModel? = nil,
-         initialContentId: Int? = nil,
-         ipad: Bool = false)
+         initialContentId: Int? = nil)
     {
         self.book = book
         self.initialContentId = initialContentId
         self.viewModel = viewModel ?? iOSReaderViewModel(book: book)
-        self.ipad = ipad
     }
 
     var backgroundColor: Color {
@@ -35,7 +36,7 @@ struct iOSReaderView: View {
             .bgSepia,
             .bgSepiaDark,
             .bgGray,
-            .bgDark,
+            .black,
         ]
         let index = textViewState.backgroundColorIndex
 
@@ -112,80 +113,81 @@ struct iOSReaderView: View {
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
 
-            Divider()
-
             // Bottom Toolbar
-            HStack {
-                Button(action: {
-                    viewModel.goToNextPage()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .keyboardShortcut(.leftArrow, modifiers: [])
-
-                Text(viewModel.statusSubtitle)
-                    .font(.caption)
-                    .multilineTextAlignment(.center)
-
-                Button(action: {
-                    viewModel.goToPrevPage()
-                }) {
-                    Image(systemName: "chevron.right")
-                }
-
-                .keyboardShortcut(.rightArrow, modifiers: [])
-                .padding(.trailing, 8)
-
-                Button(action: {
-                    withAnimation {
-                        showingNavigation.toggle()
+            if !ipad {
+                Divider()
+                HStack {
+                    Button(action: {
+                        viewModel.goToNextPage()
+                    }) {
+                        Image(systemName: "chevron.left")
                     }
-                }) {
-                    Image(systemName: "slider.horizontal.3")
-                        .foregroundColor(showingNavigation ? .accentColor : .primary)
-                }
+                    .keyboardShortcut(.leftArrow, modifiers: [])
 
-                Spacer()
+                    Text(viewModel.statusSubtitle)
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
 
-                Button(action: {
-                    showingOptions = true
-                }) {
-                    Image(systemName: "textformat")
-                }
-                .popover(isPresented: $showingOptions) {
-                    ViewOptionsView()
-                        .frame(width: 300, height: 500)
-                        .presentationCompactAdaptation(.popover)
-                        .environment(\.colorScheme, isDarkMode ? .dark : .light)
-                }
-                .padding(.trailing, 8)
+                    Button(action: {
+                        viewModel.goToPrevPage()
+                    }) {
+                        Image(systemName: "chevron.right")
+                    }
 
-                Button(action: {
-                    showingTOC = true
-                }) {
-                    Image(systemName: "list.bullet")
-                }
-                .padding(.trailing, 8)
+                    .keyboardShortcut(.rightArrow, modifiers: [])
+                    .padding(.trailing, 8)
 
-                Button(action: {
-                    showingAnnotationsList = true
-                }) {
-                    Image(systemName: "quote.closing")
-                }
-                .padding(.trailing, 8)
+                    Button(action: {
+                        withAnimation {
+                            showingNavigation.toggle()
+                        }
+                    }) {
+                        Image(systemName: "slider.horizontal.3")
+                            .foregroundColor(showingNavigation ? .accentColor : .primary)
+                    }
 
-                Button(action: {
-                    showingSearch = true
-                }) {
-                    Image(systemName: "magnifyingglass")
+                    Spacer()
+
+                    Button(action: {
+                        showingOptions = true
+                    }) {
+                        Image(systemName: "textformat")
+                    }
+                    .popover(isPresented: $showingOptions) {
+                        ViewOptionsView()
+                            .frame(width: 300, height: 500)
+                            .presentationCompactAdaptation(.popover)
+                    }
+                    .padding(.trailing, 8)
+
+                    Button(action: {
+                        showingTOC = true
+                    }) {
+                        Image(systemName: "list.bullet")
+                    }
+                    .padding(.trailing, 8)
+
+                    Button(action: {
+                        showingAnnotationsList = true
+                    }) {
+                        Image(systemName: "quote.closing")
+                    }
+                    .padding(.trailing, 8)
+
+                    Button(action: {
+                        showingSearch = true
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                    }
                 }
+                .padding()
+                .background(backgroundColor)
             }
-            .padding()
-            .background(backgroundColor)
         }
         .background(backgroundColor)
         .environment(\.colorScheme, isDarkMode ? .dark : .light)
         .navigationBarTitleDisplayMode(.inline)
+        .buttonStyle(LiquidGlassButtonStyle())
         .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -204,13 +206,11 @@ struct iOSReaderView: View {
                     }
                     .popover(isPresented: $showingBookInfo) {
                         iOSBookInfoView(book: book)
-                            .presentationCompactAdaptation(.popover)
-                            .frame(maxWidth: 350, maxHeight: 450)
-                            .environment(\.colorScheme, isDarkMode ? .dark : .light)
                     }
                 }
             }
         }
+        .preferredColorScheme(ipad ? isDarkMode ? .dark : .light : nil)
         .onAppear {
             if viewModel.contentText.isEmpty {
                 viewModel.loadInitialContent(initialContentId: initialContentId)
@@ -227,7 +227,6 @@ struct iOSReaderView: View {
                 viewModel.fetchContentById(contentId)
                 showingSearch = false
             }, viewModel: viewModel.searchViewModel)
-                .environment(\.colorScheme, isDarkMode ? .dark : .light)
         }
         .sheet(isPresented: $showingTOC) {
             iOSTOCView(
@@ -238,7 +237,6 @@ struct iOSReaderView: View {
                     showingTOC = false
                 }
             )
-            .environment(\.colorScheme, isDarkMode ? .dark : .light)
         }
         .sheet(isPresented: $showingAnnotationsList) {
             iOSBookAnnotationsView(
@@ -249,7 +247,6 @@ struct iOSReaderView: View {
                     showingAnnotationsList = false
                 }
             )
-            .environment(\.colorScheme, isDarkMode ? .dark : .light)
         }
         .sheet(isPresented: Binding(
             get: { showingAnnotationActionSheet && tappedAnnotationId != nil },
@@ -265,7 +262,6 @@ struct iOSReaderView: View {
                         viewModel.deleteAnnotation(id: idToDelete)
                     }
                 )
-                .environment(\.colorScheme, isDarkMode ? .dark : .light)
                 .presentationDetents([.medium, .large])
             }
         }
@@ -593,6 +589,19 @@ struct iOSBookAnnotationsView: View {
         } else {
             let allAnns = AnnotationManager.shared.loadAnnotations(bkId: bookId)
             bookAnnotations = allAnns
+        }
+    }
+}
+
+struct LiquidGlassButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        if #available(iOS 26, *) {
+            // Karena iOS 26 belum ada, ini adalah simulasi
+            configuration.label
+                .buttonStyle(GlassProminentButtonStyle())
+        } else {
+            configuration.label
+                .buttonStyle(BorderedProminentButtonStyle())
         }
     }
 }

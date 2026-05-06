@@ -2511,6 +2511,22 @@
         }
       }
     },
+    "Home" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منزل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beranda"
+          }
+        }
+      }
+    },
     "ID: %lld" : {
       "shouldTranslate" : false
     },
@@ -4887,7 +4903,7 @@
       }
     },
     "ج" : {
-      "shouldTranslate" : false
+
     },
     "ج: %lld" : {
       "localizations" : {

@@ -10,10 +10,14 @@ struct iPadLayout: View {
     @Binding var selectedTab: iOSTab
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var showSettings: Bool
+    
     @State private var showingSearchHelp = false
     @State private var showingAddFavorites = false
+    @State private var path: [iOSTab] = []
+    
+    @StateObject private var historyViewModel = iOSHistoryViewModel.shared
 
-    private var searchPrompt: String {
+    private func searchPrompt(for tab: iOSTab) -> String {
         switch selectedTab {
         case .viewer: String(localized: "Search Library")
         case .search: String(localized: "Filter Books to Search")
@@ -25,126 +29,107 @@ struct iPadLayout: View {
 
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            TabView(selection: $selectedTab) {
-                iOSLibraryView()
-                    .tabItem { Label(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon) }
-                    .tag(iOSTab.viewer)
+            NavigationStack(path: $path) {
+                List {
+                    Section {
+                        ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
+                            NavigationLink(value: tab) {
+                                Label(tab.title, systemImage: tab.icon)
+                            }
+                            .foregroundStyle(.primary)
+                        }
+                    }
 
-                SearchModeView()
-                    .tabItem { Label(iOSTab.search.title, systemImage: iOSTab.search.icon) }
-                    .tag(iOSTab.search)
+                    if !historyViewModel.favoriteBooks.isEmpty {
+                        Section(header: Text("Favorites".localized)) {
+                            ForEach(historyViewModel.favoriteBooks, id: \.id) { book in
+                                BookRowView(book: book, isFavorite: true, viewModel: historyViewModel) {
+                                    bManager.openBook(book)
+                                }
+                            }
+                            .onDelete { offsets in
+                                for index in offsets {
+                                    let book = historyViewModel.favoriteBooks[index]
+                                    historyViewModel.toggleFavorite(book.id)
+                                }
+                            }
+                        }
+                    }
 
-                AuthorModeView()
-                    .tabItem { Label(iOSTab.author.title, systemImage: iOSTab.author.icon) }
-                    .tag(iOSTab.author)
-
-                AnnotationListView()
-                    .tabItem { Label(iOSTab.annotations.title, systemImage: iOSTab.annotations.icon) }
-                    .tag(iOSTab.annotations)
-
-                iOSHistoryView()
-                    .tabItem { Label(iOSTab.history.title, systemImage: iOSTab.history.icon) }
-                    .tag(iOSTab.history)
-            }
-            .navigationTitle(selectedTab.title)
-            .navigationBarTitleDisplayMode(.automatic)
-            .searchable(text: $bManager.searchText, placement: .sidebar, prompt: searchPrompt.localized)
-            .onChange(of: selectedTab) { _, newValue in
-                bManager.switchToMode(newValue.appMode)
-            }
-            .padding(.horizontal, 0.3)
-            .toolbar {
-                modeToolbar()
+                    if !historyViewModel.historyBooks.isEmpty {
+                        Section(header: Text("History".localized)) {
+                            ForEach(historyViewModel.historyBooks, id: \.id) { book in
+                                BookRowView(
+                                    book: book,
+                                    isFavorite: historyViewModel.favoriteBookIds.contains(book.id),
+                                    viewModel: historyViewModel
+                                ) {
+                                    bManager.openBook(book)
+                                }
+                            }
+                            .onDelete { offsets in
+                                for index in offsets {
+                                    let book = historyViewModel.historyBooks[index]
+                                    historyViewModel.removeHistory(book.id)
+                                }
+                            }
+                        }
+                    }
+                }
+                .navigationTitle("Home")
+                .navigationBarTitleDisplayMode(.large)
+                .listStyle(.insetGrouped)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button { showSettings = true } label: {
+                            Image(systemName: "gear")
+                        }
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: { showingAddFavorites = true }) {
+                            Image(systemName: "plus")
+                        }
+                    }
+                }
+                .navigationDestination(for: iOSTab.self) { tab in
+                    destinationView(for: tab)
+                }
             }
         } detail: {
             iOSReaderTabView()
         }
         .sheet(isPresented: $showingAddFavorites) {
-            iOSAddFavoriteSheet(viewModel: iOSHistoryViewModel.shared)
+            iOSAddFavoriteSheet(viewModel: historyViewModel)
+        }
+        .onAppear {
+            historyViewModel.loadBooksData()
         }
     }
 
-    @ToolbarContentBuilder
-    private func modeToolbar() -> some ToolbarContent {
-        ToolbarItem(placement: .topBarLeading) {
-            Button { showSettings = true } label: {
-                Image(systemName: "gear")
+    @ViewBuilder
+    private func destinationView(for tab: iOSTab) -> some View {
+        Group {
+            switch tab {
+            case .viewer:
+                iOSLibraryView()
+            case .search:
+                SearchModeView()
+            case .author:
+                AuthorModeView()
+            case .annotations:
+                AnnotationListView()
+            case .history:
+                EmptyView()
             }
         }
-
-        switch selectedTab {
-        case .viewer:
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    bManager.libraryViewModel.showOnlyDownloaded.toggle()
-                } label: {
-                    Image(systemName: bManager.libraryViewModel.showOnlyDownloaded
-                        ? "line.3.horizontal.decrease.circle.fill"
-                        : "line.3.horizontal.decrease.circle")
-                }
+        .navigationTitle(tab.title)
+        .navigationBarTitleDisplayMode(.large)
+        .searchable(text: $bManager.searchText, placement: .sidebar, prompt: searchPrompt(for: tab).localized)
+        .onAppear {
+            if selectedTab != tab {
+                selectedTab = tab
+                bManager.switchToMode(tab.appMode)
             }
-        case .search:
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                if bManager.searchViewModel.isSearching {
-                    Button(action: { bManager.searchViewModel.stopSearch() }) {
-                        Image(systemName: "stop").foregroundColor(.red)
-                    }
-                } else {
-                    Button(action: { bManager.searchViewModel.startSearch() }) {
-                        Image(systemName: "play")
-                    }
-                }
-
-                Button(action: { showingSearchHelp = true }) {
-                    Image(systemName: "questionmark.circle")
-                }
-                .popover(isPresented: $showingSearchHelp) {
-                    SearchHelpView()
-                        .frame(width: 300, height: 450)
-                        .presentationCompactAdaptation(.popover)
-                }
-
-                if !bManager.searchViewModel.results.isEmpty {
-                    Button(action: {
-                        bManager.searchViewModel.stopSearch()
-                        bManager.searchViewModel.results = []
-                        bManager.searchViewModel.query = ""
-                    }) {
-                        Image(systemName: "xmark.circle")
-                    }
-                }
-            }
-        case .annotations:
-            ToolbarItem(placement: .topBarTrailing) {
-                @Bindable var viewModel = bManager.annotationViewModel
-                Menu {
-                    Picker("Group By", selection: $viewModel.groupingMode) {
-                        Text("Book").tag(AnnotationGroupingMode.book)
-                        Text("Tag").tag(AnnotationGroupingMode.tag)
-                    }
-                    Divider()
-                    Picker("Sort By", selection: $viewModel.sortField) {
-                        Text("Date Created").tag(AnnotationSortField.createdAt)
-                        Text("Context").tag(AnnotationSortField.context)
-                        Text("Page").tag(AnnotationSortField.page)
-                        Text("Part").tag(AnnotationSortField.part)
-                    }
-                    Picker("Order", selection: $viewModel.sortAscending) {
-                        Text("Ascending").tag(true)
-                        Text("Descending").tag(false)
-                    }
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down.circle")
-                }
-            }
-        case .history:
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: { showingAddFavorites = true }) {
-                    Image(systemName: "plus")
-                }
-            }
-        default:
-            ToolbarItem(placement: .topBarTrailing) { EmptyView() }
         }
     }
 }
