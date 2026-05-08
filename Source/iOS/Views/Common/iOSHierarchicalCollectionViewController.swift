@@ -2,7 +2,7 @@ import UIKit
 
 // MARK: - Shared Types
 
-enum LibraryItem: Hashable {
+enum LibraryItem: Hashable, @unchecked Sendable {
     case category(CategoryData)
     case book(BooksData)
 
