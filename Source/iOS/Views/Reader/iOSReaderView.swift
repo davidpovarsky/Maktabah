@@ -373,30 +373,9 @@ struct iOSBookSearchView: View {
                 Divider()
 
                 // Results List
-                List(viewModel.results, id: \.bookId) { item in
-                    Button(action: {
-                        onSelect(item.bookId, viewModel.query)
-                    }) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(AttributedString(item.attributedText))
-                                .font(.body)
-                                .lineLimit(3)
-                                .multilineTextAlignment(.trailing)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .environment(\.layoutDirection, .rightToLeft)
-
-                            HStack {
-                                Text("Part: \(item.part)")
-                                Spacer()
-                                Text("Page: \(item.page)")
-                            }
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        }
-                        .padding(.vertical, 4)
-                    }
+                SearchResultsListView(results: viewModel.results, showsBookTitle: false) { item in
+                    onSelect(item.bookId, viewModel.query)
                 }
-                .listStyle(PlainListStyle())
             }
             .navigationTitle("Search in \(book.book)")
             .navigationBarTitleDisplayMode(.inline)

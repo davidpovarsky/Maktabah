@@ -100,35 +100,8 @@ struct SearchModeView: View {
                 }
             } else {
                 // Results List
-                List(viewModel.results, id: \.bookId) { item in
-                    Button(action: { handleSelection(item) }) {
-                        VStack(alignment: .trailing, spacing: 4) {
-                            HStack {
-                                Text(
-                                    "ص: \(item.page)".convertToArabicDigits() +
-                                        " -" + "ج: \(item.part)".convertToArabicDigits()
-                                )
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                                .environment(\.layoutDirection, .leftToRight)
-
-                                Spacer()
-
-                                Text(item.bookTitle)
-                                    .font(iOSReaderViewModel.kfgqpc)
-                                    .foregroundColor(.primary)
-                                    .multilineTextAlignment(.trailing)
-                            }
-
-                            Text(AttributedString(item.attributedText))
-                                .font(iOSReaderViewModel.kfgqpc)
-                                .lineLimit(3)
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.trailing)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                        }
-                        .padding(.vertical, 4)
-                    }
+                SearchResultsListView(results: viewModel.results) { item in
+                    handleSelection(item)
                 }
             }
 

@@ -374,6 +374,7 @@
 		F3D0815E2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
 		F3DD69E32FA4F76100BFEA0F /* ProgressBooksDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */; };
 		F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */; };
+		F3EB89702FAF94EF00ED75F0 /* SearchResultsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */; };
 		FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -565,6 +566,7 @@
 		F3C449542F2B12E200DA7032 /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
 		F3C449552F2B12E200DA7032 /* SearchCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCellView.xib; sourceTree = "<group>"; };
 		F3D0815C2F9EFE5C00E017C7 /* Tag.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tag.xib; sourceTree = "<group>"; };
+		F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1032,6 +1034,7 @@
 				F305777A2FA463B1005732C6 /* iOSMainView.swift */,
 				F363825C2FA702D10006636C /* iPadLayout.swift */,
 				F363825A2FA702A00006636C /* iPhoneLayout.swift */,
+				F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */,
 				F305777B2FA463B1005732C6 /* SearchModeView.swift */,
 				F305777C2FA463B1005732C6 /* ViewerModeView.swift */,
 				F305777D2FA463B1005732C6 /* ViewOptionsView.swift */,
@@ -1549,6 +1552,7 @@
 				F30576FC2FA46222005732C6 /* BookConnection.swift in Sources */,
 				F36382512FA6FA1E0006636C /* BootstrapManager.swift in Sources */,
 				F30576FE2FA46222005732C6 /* BookUpdateModels.swift in Sources */,
+				F3EB89702FAF94EF00ED75F0 /* SearchResultsListView.swift in Sources */,
 				F30577012FA46222005732C6 /* StorageError.swift in Sources */,
 				F30577032FA46222005732C6 /* LibraryDataManager.swift in Sources */,
 				F30577052FA46222005732C6 /* ReaderState.swift in Sources */,
