@@ -6,18 +6,26 @@ struct AnnotationListView: View {
     var body: some View {
         @Bindable var viewModel = navigationManager.annotationViewModel
         List(viewModel.rootNodes, children: \.children) { node in
-            Button(action: {
-                handleSelection(node)
-            }) {
+            if node.kind == .annotation {
+                Button(action: {
+                    handleSelection(node)
+                }) {
+                    AnnotationNodeRow(node: node, viewModel: viewModel)
+                }
+                .buttonStyle(.plain)
+            } else {
                 AnnotationNodeRow(node: node, viewModel: viewModel)
+                    .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
         }
         .onAppear {
+            viewModel.searchText = navigationManager.searchText
             viewModel.loadAnnotations()
         }
         .listStyle(.insetGrouped)
-        .searchable(text: $viewModel.searchText, prompt: "Search Annotations")
+        .onChange(of: navigationManager.searchText) { _, newValue in
+            viewModel.searchText = newValue
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -135,6 +143,7 @@ struct AnnotationNodeRow: View {
                     Image(systemName: iconForKind(node.kind))
                         .foregroundColor(.accentColor)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
