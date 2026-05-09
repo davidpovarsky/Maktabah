@@ -57,6 +57,7 @@ struct iOSReaderView: View {
                 text: $viewModel.contentText,
                 annotations: viewModel.currentAnnotations,
                 searchText: $viewModel.searchText,
+                viewModel: viewModel,
                 onAddAnnotation: { range, mode, sourceText, color in
                     viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
                 },
@@ -210,7 +211,6 @@ struct iOSReaderView: View {
                 }
             }
         }
-        .preferredColorScheme(ipad ? isDarkMode ? .dark : .light : nil)
         .onAppear {
             if viewModel.contentText.isEmpty {
                 viewModel.loadInitialContent(initialContentId: initialContentId)

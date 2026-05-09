@@ -25,13 +25,18 @@ struct MaktabahApp: App {
     var body: some Scene {
         WindowGroup {
             iOSBootstrapView()
-                .preferredColorScheme(
-                    Self.isIpad
-                        ? isDarkMode
-                            ? .dark
-                            : .light
-                    : nil
-                )
+                .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
+        }
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func applyIpadColorScheme(isIpad: Bool, isDarkMode: Bool) -> some View {
+        if isIpad {
+            self.preferredColorScheme(isDarkMode ? .dark : .light)
+        } else {
+            self // Tidak menerapkan modifier apa-apa jika bukan iPad
         }
     }
 }

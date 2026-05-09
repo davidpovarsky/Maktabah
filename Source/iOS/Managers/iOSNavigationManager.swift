@@ -51,6 +51,10 @@ class iOSNavigationManager {
 
     func closeTab(id: UUID) {
         if let index = openTabs.firstIndex(where: { $0.id == id }) {
+            if activeTabId == id {
+                openTabs[index].viewModel.saveCurrentState()
+            }
+
             openTabs.remove(at: index)
             if activeTabId == id {
                 activeTabId = openTabs.last?.id
@@ -59,6 +63,10 @@ class iOSNavigationManager {
     }
 
     func selectTab(id: UUID) {
+        if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId })
+        {
+            currentTab.viewModel.saveCurrentState()
+        }
         activeTabId = id
     }
 
@@ -185,6 +193,11 @@ class iOSNavigationManager {
 
     private func presentReader(_ book: BooksData, initialContentId: Int?) {
         switchToMode(.viewer)
+
+        if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId })
+        {
+            currentTab.viewModel.saveCurrentState()
+        }
 
         if let existingTabIndex = openTabs.firstIndex(where: { $0.book.id == book.id }) {
             activeTabId = openTabs[existingTabIndex].id

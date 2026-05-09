@@ -30,6 +30,7 @@ class iOSCustomIbarotTextView: UITextView {
         // Disable scrolling if we want SwiftUI ScrollView to handle it,
         // or enable it if this textView takes the whole screen.
         isScrollEnabled = true
+        contentInsetAdjustmentBehavior = .always
         textContainerInset = UIEdgeInsets(
             top: 10, left: 10, bottom: 10, right: 10
         )
@@ -166,6 +167,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
     @Binding var text: String
     var annotations: [Annotation] = []
     @Binding var searchText: String
+    
+    var viewModel: iOSReaderViewModel
 
     // Callbacks for the ViewModel to handle menu actions
     var onAddAnnotation: ((NSRange, AnnotationMode, String, UIColor) -> Void)?
@@ -190,6 +193,14 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
         textView.onUnderline = { sourceRange, sourceText in
             onAddAnnotation?(sourceRange, .underline, sourceText, .black)
+        }
+        
+        viewModel.fetchScrollPosition = { [weak textView] in
+            textView?.contentOffset
+        }
+        
+        viewModel.fetchSelectedRange = { [weak textView] in
+            textView?.selectedRange
         }
 
         container.addSubview(textView)
@@ -245,6 +256,17 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
 
         textView.attributedText = attributedString
+        
+        // Restore Scroll & Selection exactly once per content ID
+        if context.coordinator.restoredContentId != viewModel.currentContentId {
+            if let scroll = viewModel.state.scrollPosition {
+                textView.setContentOffset(scroll, animated: false)
+            }
+            if let range = viewModel.state.selectedRange {
+                textView.selectedRange = range
+            }
+            context.coordinator.restoredContentId = viewModel.currentContentId
+        }
 
         if !searchText.isEmpty {
             DispatchQueue.main.async {
@@ -256,6 +278,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     class Coordinator: NSObject, UITextViewDelegate {
         var parent: iOSIbarotTextView
         var currentRenderResult: ArabicRenderResult?
+        var restoredContentId: Int?
 
         init(_ parent: iOSIbarotTextView) {
             self.parent = parent

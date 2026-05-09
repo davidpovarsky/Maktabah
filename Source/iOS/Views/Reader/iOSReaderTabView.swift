@@ -27,23 +27,17 @@ struct iOSReaderTabView: View {
     }
 
     var body: some View {
-        if bManager.openTabs.count > 0 {
-            // Tab Content
-            TabView(selection: Binding(
-                get: { bManager.activeTabId },
-                set: { bManager.activeTabId = $0 }
-            )) {
-                ForEach(bManager.openTabs) { tab in
-                    iOSReaderView(
-                        book: tab.book,
-                        viewModel: tab.viewModel,
-                        initialContentId: tab.initialContentId
-                    )
-                    .tag(tab.id as UUID?)
-                }
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .background(backgroundColor)
+        if bManager.openTabs.count > 0,
+           let activeTab = bManager.openTabs.first(where: { $0.id == bManager.activeTabId })
+               ?? bManager.openTabs.first
+        {
+            iOSReaderView(
+                book: activeTab.book,
+                viewModel: activeTab.viewModel,
+                initialContentId: activeTab.initialContentId
+            )
+            .ignoresSafeArea(edges: .vertical)
+            .id(activeTab.id)
             .toolbar {
                 if bManager.openTabs.count > 1 {
                     ToolbarItem(placement: .principal) {
@@ -57,15 +51,10 @@ struct iOSReaderTabView: View {
                                         onClose: { bManager.closeTab(id: tab.id) },
                                         darkMode: isDarkMode
                                     )
-
-                                    if index < bManager.openTabs.count - 1 {
-                                        Divider()
-                                            .frame(height: 16)
-                                    }
                                 }
                             }
-                            .padding(3)
-                            .background(Color(.systemFill).opacity(0.8))
+                            .padding(4)
+                            .background(Color(.systemBackground).opacity(0.4))
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                         }
                         .environment(\.layoutDirection, .leftToRight)
@@ -132,7 +121,7 @@ struct iOSReaderBottomToolbarView: View {
             .multilineTextAlignment(.center)
             .frame(width: 100)
 
-        Spacer()
+        if MaktabahApp.isIpad { Spacer() }
 
         Button(action: {
             viewModel.goToNextPage()
@@ -198,8 +187,7 @@ struct iOSReaderBottomToolbarView: View {
             .frame(width: 300)
             .presentationCompactAdaptation(.popover)
         }
-
-        Spacer()
+        if MaktabahApp.isIpad { Spacer() }
 
         Button(action: {
             showingOptions = true
@@ -224,7 +212,7 @@ struct iOSReaderBottomToolbarView: View {
             Image(systemName: "quote.closing")
         }
 
-        Spacer()
+        if MaktabahApp.isIpad { Spacer() }
 
         Button(action: {
             showingSearch = true
@@ -274,49 +262,46 @@ struct ReaderTabItemView: View {
     let onClose: () -> Void
     let darkMode: Bool
 
+    var activeColor: Color {
+        if #available(iOS 26.0, *) {
+            return Color.accentColor
+        } else {
+            return Color(uiColor: .systemBackground)
+        }
+    }
+
     var body: some View {
-        HStack(spacing: 6) {
-            Button(action: onClose) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 8, weight: .regular))
-                    .foregroundColor(
-                        isActive
-                            ? (darkMode ? Color.white : Color.black)
-                            : (darkMode ? Color.white.opacity(0.4) : Color.black.opacity(0.3))
-                    )
-                    .padding(3)
-                    .background(
-                        isActive
-                            ? (darkMode ? Color.white.opacity(0.15) : Color.black.opacity(0.1))
-                            : Color.clear
-                    )
-                    .clipShape(Circle())
+        HStack(spacing: 4) {
+            if isActive {
+                Button(action: onClose) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundColor(Color.white.opacity(0.8))
+                        .padding(2)
+                        .background(Color.secondary.opacity(0.5))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
 
             Text(tab.book.book)
-                .font(.subheadline)
-                .fontWeight(.regular)
+                .fontWeight(isActive ? .medium : .regular)
                 .lineLimit(1)
                 .foregroundColor(
                     isActive
-                        ? (darkMode ? Color.white : Color.black)
-                        : (darkMode ? Color.white.opacity(0.5) : Color.black.opacity(0.4))
+                        ? activeColor
+                        : .primary
                 )
         }
         .padding(.horizontal, 12)
-        .padding(.vertical, 2)
+        .padding(.vertical, 6)
         .background(
             isActive
-                ? (darkMode ? Color.white.opacity(0.15) : Color.black.opacity(0.08))
-                : (darkMode ? Color.white.opacity(0.05) : Color.black.opacity(0.04))
+                ? Color.secondary
+                : Color.clear
         )
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .contentShape(Rectangle())
         .onTapGesture { onSelect() }
     }
-}
-
-#Preview {
-    iOSReaderTabView()
 }

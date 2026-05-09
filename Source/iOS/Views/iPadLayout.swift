@@ -17,6 +17,24 @@ struct iPadLayout: View {
     
     @StateObject private var historyViewModel = iOSHistoryViewModel.shared
 
+    private var filteredFavorites: [BooksData] {
+        if bManager.searchText.isEmpty || !path.isEmpty {
+            return historyViewModel.favoriteBooks
+        }
+        return historyViewModel.favoriteBooks.filter {
+            $0.book.localizedCaseInsensitiveContains(bManager.searchText)
+        }
+    }
+
+    private var filteredHistory: [BooksData] {
+        if bManager.searchText.isEmpty || !path.isEmpty {
+            return historyViewModel.historyBooks
+        }
+        return historyViewModel.historyBooks.filter {
+            $0.book.localizedCaseInsensitiveContains(bManager.searchText)
+        }
+    }
+
     private func searchPrompt(for tab: iOSTab) -> String {
         switch selectedTab {
         case .viewer: String(localized: "Search Library")
@@ -40,25 +58,25 @@ struct iPadLayout: View {
                         }
                     }
 
-                    if !historyViewModel.favoriteBooks.isEmpty {
+                    if !filteredFavorites.isEmpty {
                         Section(header: Text("Favorites".localized)) {
-                            ForEach(historyViewModel.favoriteBooks, id: \.id) { book in
+                            ForEach(filteredFavorites, id: \.id) { book in
                                 BookRowView(book: book, isFavorite: true, viewModel: historyViewModel) {
                                     bManager.openBook(book)
                                 }
                             }
                             .onDelete { offsets in
                                 for index in offsets {
-                                    let book = historyViewModel.favoriteBooks[index]
+                                    let book = filteredFavorites[index]
                                     historyViewModel.toggleFavorite(book.id)
                                 }
                             }
                         }
                     }
 
-                    if !historyViewModel.historyBooks.isEmpty {
+                    if !filteredHistory.isEmpty {
                         Section(header: Text("History".localized)) {
-                            ForEach(historyViewModel.historyBooks, id: \.id) { book in
+                            ForEach(filteredHistory, id: \.id) { book in
                                 BookRowView(
                                     book: book,
                                     isFavorite: historyViewModel.favoriteBookIds.contains(book.id),
@@ -69,7 +87,7 @@ struct iPadLayout: View {
                             }
                             .onDelete { offsets in
                                 for index in offsets {
-                                    let book = historyViewModel.historyBooks[index]
+                                    let book = filteredHistory[index]
                                     historyViewModel.removeHistory(book.id)
                                 }
                             }
@@ -79,6 +97,7 @@ struct iPadLayout: View {
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(.large)
                 .listStyle(.insetGrouped)
+                .searchable(text: $bManager.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Favorites & History".localized)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button { showSettings = true } label: {
@@ -124,7 +143,7 @@ struct iPadLayout: View {
         }
         .navigationTitle(tab.title)
         .navigationBarTitleDisplayMode(.large)
-        .searchable(text: $bManager.searchText, placement: .sidebar, prompt: searchPrompt(for: tab).localized)
+        .searchable(text: $bManager.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: searchPrompt(for: tab).localized)
         .onAppear {
             if selectedTab != tab {
                 selectedTab = tab

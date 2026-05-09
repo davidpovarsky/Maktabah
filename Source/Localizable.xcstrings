@@ -3399,6 +3399,7 @@
       }
     },
     "Please check your internet connection" : {
+      "comment" : "Network error message",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3802,29 +3803,6 @@
         }
       }
     },
-    "Search Authors" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "البحث في الرواة"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search Authors"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cari Rowi"
-          }
-        }
-      }
-    },
     "Search Books" : {
       "localizations" : {
         "ar" : {
@@ -3875,6 +3853,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Isi"
+          }
+        }
+      }
+    },
+    "Search Favorites & History" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البحث عن المفضلة والتاريخ"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari Favorit & Riwayat"
           }
         }
       }

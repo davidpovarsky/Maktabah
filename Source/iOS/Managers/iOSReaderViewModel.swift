@@ -36,6 +36,20 @@ class iOSReaderViewModel {
 
     var tocNodes: [TOCNode] = []
     var currentAnnotations: [Annotation] = []
+    
+    var state: ReaderState = ReaderState()
+    
+    var fetchScrollPosition: (() -> CGPoint?)?
+    var fetchSelectedRange: (() -> NSRange?)?
+
+    func saveCurrentState() {
+        if let scroll = fetchScrollPosition?() {
+            state.scrollPosition = scroll
+        }
+        if let range = fetchSelectedRange?() {
+            state.selectedRange = range
+        }
+    }
 
     private var diacriticsText: String {
         BookPageCache.shared.get(
@@ -113,6 +127,13 @@ class iOSReaderViewModel {
         currentPart = content.part
         currentPage = content.page
         currentContentId = content.id
+        
+        // Sync to state
+        state.currentBook = book
+        state.currentID = content.id
+        state.currentPart = content.part
+        state.currentPage = content.page
+        
         loadAnnotations()
         updateNavigationLimits()
     }

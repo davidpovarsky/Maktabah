@@ -65,7 +65,7 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
 
     func makeListConfiguration() -> UICollectionLayoutListConfiguration {
         var config = UICollectionLayoutListConfiguration(
-            appearance: UIDevice.current.userInterfaceIdiom == .pad ? .sidebar : .insetGrouped
+            appearance: .insetGrouped
         )
         config.showsSeparators = true
         return config
