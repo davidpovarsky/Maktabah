@@ -480,29 +480,31 @@ struct AppConfig {
     }
 
     static func setupAnnotationsAndResults() {
-        do {
-            if let annotationsFolder = AppConfig.folder(
-                for: AppConfig.annotationsAndResultsFolder
-            ) {
-                try AnnotationManager.shared.setupAnnotations(at: annotationsFolder)
+        let activeFolder = AppConfig.folder(for: AppConfig.annotationsAndResultsFolder)
+
+        AnnotationsResultsFileMonitor.shared.suppressCallbacks {
+            do {
+                if let annotationsFolder = activeFolder {
+                    try AnnotationManager.shared.setupAnnotations(at: annotationsFolder)
+                }
+            } catch {
+                #if os(macOS)
+                ReusableFunc.showAlert(title: NSLocalizedString("errorFolderAnnotations", comment: error.localizedDescription), message: "")
+                #endif
             }
-        } catch {
-            #if os(macOS)
-            ReusableFunc.showAlert(title: NSLocalizedString("errorFolderAnnotations", comment: error.localizedDescription), message: "")
-            #endif
+
+            do {
+                if let resultsFolder = activeFolder {
+                    try ResultsHandler.shared.setupResultDatabase(at: resultsFolder)
+                }
+            } catch {
+                #if os(macOS)
+                ReusableFunc.showAlert(title: NSLocalizedString("errorFolderSearchResults", comment: error.localizedDescription), message: "")
+                #endif
+            }
         }
 
-        do {
-            if let resultsFolder = AppConfig.folder(
-                for: AppConfig.annotationsAndResultsFolder
-            ) {
-                try ResultsHandler.shared.setupResultDatabase(at: resultsFolder)
-            }
-        } catch {
-            #if os(macOS)
-            ReusableFunc.showAlert(title: NSLocalizedString("errorFolderSearchResults", comment: error.localizedDescription), message: "")
-            #endif
-        }
+        AnnotationsResultsFileMonitor.shared.updatePresentedFiles(in: activeFolder)
     }
 
     enum MigrationResolution {
@@ -604,8 +606,11 @@ struct AppConfig {
                 }
 
                 // Setup database di main thread setelah file siap
-                try AnnotationManager.shared.setupAnnotations(at: newURL)
-                try ResultsHandler.shared.setupResultDatabase(at: newURL)
+                try AnnotationsResultsFileMonitor.shared.suppressCallbacks {
+                    try AnnotationManager.shared.setupAnnotations(at: newURL)
+                    try ResultsHandler.shared.setupResultDatabase(at: newURL)
+                }
+                AnnotationsResultsFileMonitor.shared.updatePresentedFiles(in: newURL)
 
                 DispatchQueue.main.async { completion(nil) }
             } catch {

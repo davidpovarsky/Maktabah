@@ -374,6 +374,9 @@
 		F3D0815E2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
 		F3DD69E32FA4F76100BFEA0F /* ProgressBooksDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */; };
 		F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */; };
+		F3EB896B2FAF776A00ED75F0 /* AnnotationsResultsFilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB896A2FAF776900ED75F0 /* AnnotationsResultsFilePresenter.swift */; };
+		F3EB896C2FAF776A00ED75F0 /* AnnotationsResultsFilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB896A2FAF776900ED75F0 /* AnnotationsResultsFilePresenter.swift */; };
+		F3EB896D2FAF776A00ED75F0 /* AnnotationsResultsFilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB896A2FAF776900ED75F0 /* AnnotationsResultsFilePresenter.swift */; };
 		F3EB89702FAF94EF00ED75F0 /* SearchResultsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */; };
 		FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */; };
 /* End PBXBuildFile section */
@@ -567,6 +570,7 @@
 		F3C449552F2B12E200DA7032 /* SearchCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCellView.xib; sourceTree = "<group>"; };
 		F3D0815C2F9EFE5C00E017C7 /* Tag.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tag.xib; sourceTree = "<group>"; };
 		F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsListView.swift; sourceTree = "<group>"; };
+		F3EB896A2FAF776900ED75F0 /* AnnotationsResultsFilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsResultsFilePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				4B5DF93C2EDC495C0082DE7F /* Fonts */,
+				F3EB896A2FAF776900ED75F0 /* AnnotationsResultsFilePresenter.swift */,
 				4B01CA2F2EFD366E002A66FA /* AppConfig.swift */,
 				4B68AE2B2F20576700CB3ED9 /* AppUpdate.swift */,
 				4B20DB782EE7D1BB00B97126 /* ReusableFunc.swift */,
@@ -1308,6 +1313,7 @@
 				4B58EDCB2EE3DBE800073495 /* ResultsViewManager.swift in Sources */,
 				4B0139E92EEB3CB000424CFA /* InitProgress.swift in Sources */,
 				4BDAB98E2F69E957007D0945 /* SettingsActions.swift in Sources */,
+				F3EB896D2FAF776A00ED75F0 /* AnnotationsResultsFilePresenter.swift in Sources */,
 				4B0EED392EFAB38800585C31 /* QuranTafseerVC.swift in Sources */,
 				4B47F3992EE9A36D009A399F /* RowiProtocols.swift in Sources */,
 				4B6100F22EFA8C7F00CCBED6 /* QuranNashVC.swift in Sources */,
@@ -1439,6 +1445,7 @@
 				4B7C90C22F83494200454BE1 /* BulkDownloadVC.swift in Sources */,
 				4B7C90C32F83494200454BE1 /* CellIViewIdentifier.swift in Sources */,
 				4B7C90C42F83494200454BE1 /* StorageError.swift in Sources */,
+				F3EB896B2FAF776A00ED75F0 /* AnnotationsResultsFilePresenter.swift in Sources */,
 				4B7C90C52F83494200454BE1 /* SidebarVC.swift in Sources */,
 				4B7C90C62F83494200454BE1 /* LibraryDataManager.swift in Sources */,
 				4B7C90C72F83494200454BE1 /* WindowController.swift in Sources */,
@@ -1556,6 +1563,7 @@
 				F30577012FA46222005732C6 /* StorageError.swift in Sources */,
 				F30577032FA46222005732C6 /* LibraryDataManager.swift in Sources */,
 				F30577052FA46222005732C6 /* ReaderState.swift in Sources */,
+				F3EB896C2FAF776A00ED75F0 /* AnnotationsResultsFilePresenter.swift in Sources */,
 				F30577062FA46222005732C6 /* UserDefaults.swift in Sources */,
 				F30577072FA46222005732C6 /* AppMode.swift in Sources */,
 				F30577082FA46222005732C6 /* Protocols.swift in Sources */,

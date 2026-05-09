@@ -329,8 +329,11 @@ enum SettingsActions {
             key: AppConfig.annotationsAndResultsFolder
         )
 
-        try AnnotationManager.shared.setupAnnotations(at: newURL)
-        try ResultsHandler.shared.setupResultDatabase(at: newURL)
+        try AnnotationsResultsFileMonitor.shared.suppressCallbacks {
+            try AnnotationManager.shared.setupAnnotations(at: newURL)
+            try ResultsHandler.shared.setupResultDatabase(at: newURL)
+        }
+        AnnotationsResultsFileMonitor.shared.updatePresentedFiles(in: newURL)
     }
 }
 
