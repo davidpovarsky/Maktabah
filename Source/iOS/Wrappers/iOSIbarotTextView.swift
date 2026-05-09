@@ -318,10 +318,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
             let sourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
 
             // Create color actions for the highlight menu
-            let colors = UserDefaults.standard.recentHighlightColors
+            let colors = Array(UserDefaults.standard.recentHighlightColors.prefix(UserDefaults.maxRecentColors))
             let highlightActions = colors.map { color in
                 UIAction(
-                    title: color.accessibilityName.capitalized, // Gunakan nama warna agar tampil di iPad
+                    title: MaktabahApp.isIpad ? color.accessibilityName.capitalized : "", // Gunakan nama warna agar tampil di iPad
                     image: UIImage(systemName: "circle.fill")?.withTintColor(color, renderingMode: .alwaysOriginal)
                 ) { [weak self] _ in
                     self?.parent.onAddAnnotation?(sourceRange, .highlight, sourceText, color)
@@ -336,7 +336,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             )
 
             let underlineAction = UIAction(
-                title: String(localized: .underline),
+                title: MaktabahApp.isIpad ? String(localized: .underline) : "",
                 image: UIImage(systemName: "underline")
             ) { [weak self] _ in
                 self?.parent.onAddAnnotation?(sourceRange, .underline, sourceText, .black)

@@ -201,6 +201,42 @@ extension UserDefaults {
         .systemYellow, .systemGreen, .systemPink, .systemPurple,
     ]
 
+    private static func normalizedRecentHighlightColors(_ colors: [PlatformColor]) -> [PlatformColor] {
+        var normalized: [PlatformColor] = []
+
+        for color in colors {
+            if normalized.contains(where: { recentHighlightColorsEqual($0, color) }) {
+                continue
+            }
+            normalized.append(color)
+            if normalized.count == maxRecentColors {
+                break
+            }
+        }
+
+        return normalized.isEmpty ? defaultHighlightColors : normalized
+    }
+
+    private static func recentHighlightColorsEqual(_ lhs: PlatformColor, _ rhs: PlatformColor) -> Bool {
+        #if canImport(AppKit)
+        guard let l = lhs.usingColorSpace(.deviceRGB),
+              let r = rhs.usingColorSpace(.deviceRGB) else { return false }
+        let t: CGFloat = 0.01
+        return abs(l.redComponent - r.redComponent) < t
+            && abs(l.greenComponent - r.greenComponent) < t
+            && abs(l.blueComponent - r.blueComponent) < t
+        #else
+        var lr: CGFloat = 0, lg: CGFloat = 0, lb: CGFloat = 0, la: CGFloat = 0
+        var rr: CGFloat = 0, rg: CGFloat = 0, rb: CGFloat = 0, ra: CGFloat = 0
+        guard lhs.getRed(&lr, green: &lg, blue: &lb, alpha: &la),
+              rhs.getRed(&rr, green: &rg, blue: &rb, alpha: &ra) else { return false }
+        let t: CGFloat = 0.01
+        return abs(lr - rr) < t
+            && abs(lg - rg) < t
+            && abs(lb - rb) < t
+        #endif
+    }
+
     /// Warna highlight terbaru. Index 0 = paling baru. Maks 5.
     /// Fallback ke warna default jika belum pernah diisi.
     var recentHighlightColors: [PlatformColor] {
@@ -217,10 +253,10 @@ extension UserDefaults {
                     from: $0
                 )
             }
-            return colors.isEmpty ? Self.defaultHighlightColors : colors
+            return Self.normalizedRecentHighlightColors(colors)
         }
         set {
-            let data = newValue.compactMap {
+            let data = Self.normalizedRecentHighlightColors(newValue).compactMap {
                 try? NSKeyedArchiver.archivedData(
                     withRootObject: $0,
                     requiringSecureCoding: true
