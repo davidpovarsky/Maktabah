@@ -36,7 +36,6 @@ struct iOSReaderTabView: View {
                 viewModel: activeTab.viewModel,
                 initialContentId: activeTab.initialContentId
             )
-            .ignoresSafeArea(edges: .vertical)
             .id(activeTab.id)
             .toolbar {
                 if bManager.openTabs.count > 1 {
@@ -70,27 +69,6 @@ struct iOSReaderTabView: View {
                             .foregroundStyle(isDarkMode ? .white : .black)
                     }
                 }
-
-                if let activeTab = bManager.openTabs.first(where: { $0.id == bManager.activeTabId }) {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: { showingBookInfo = true }) {
-                            Image(systemName: "info.circle")
-                        }
-                        .popover(isPresented: $showingBookInfo) {
-                            iOSBookInfoView(book: activeTab.book)
-                                .presentationCompactAdaptation(.popover)
-                                .frame(maxWidth: 350, maxHeight: 450)
-                        }
-                    }
-
-                    if MaktabahApp.isIpad {
-                        ToolbarItemGroup(placement: .bottomBar) {
-                            iOSReaderBottomToolbarView(
-                                viewModel: activeTab.viewModel
-                            )
-                        }
-                    }
-                }
             }
         } else {
             VStack(spacing: 16) {
@@ -115,79 +93,55 @@ struct iOSReaderBottomToolbarView: View {
     @State private var showingSearch = false
 
     var body: some View {
-        Text(viewModel.statusSubtitle)
-            .font(.system(size: 13))
-            .lineLimit(1)
-            .multilineTextAlignment(.center)
-            .frame(width: 100)
-
-        if MaktabahApp.isIpad { Spacer() }
-
-        Button(action: {
-            viewModel.goToNextPage()
-        }) {
-            Image(systemName: "chevron.left")
-        }
-        .keyboardShortcut(.leftArrow, modifiers: [])
-
-        Button(action: {
-            viewModel.goToPrevPage()
-        }) {
-            Image(systemName: "chevron.right")
-        }
-        .keyboardShortcut(.rightArrow, modifiers: [])
-
-        Button(action: {
+        Button(viewModel.statusSubtitle, action: {
             showingNavigation.toggle()
-        }) {
-            Image(systemName: "slider.horizontal.3")
-                .foregroundColor(showingNavigation ? .accentColor : .primary)
-        }
+        })
         .popover(isPresented: $showingNavigation) {
-            VStack(spacing: 16) {
-                if viewModel.totalParts > 1 {
-                    HStack {
-                        Text("ج")
-                            .font(.caption)
-                            .frame(width: 40)
-                        Slider(value: Binding(
-                            get: {
-                                let part = viewModel.currentPart ?? 1
-                                return Double(part <= 0 ? 1 : part)
-                            },
-                            set: { viewModel.jumpToPart(Int($0)) }
-                        ), in: 1 ... Double(viewModel.totalParts), step: 1)
-                        Text("\(viewModel.totalParts)".convertToArabicDigits())
-                            .font(.caption)
-                            .frame(width: 40)
+                    VStack(spacing: 16) {
+                        if viewModel.totalParts > 1 {
+                            HStack {
+                                Text("ج")
+                                    .font(.caption)
+                                    .frame(width: 40)
+                                Slider(value: Binding(
+                                    get: {
+                                        let part = viewModel.currentPart ?? 1
+                                        return Double(part <= 0 ? 1 : part)
+                                    },
+                                    set: { viewModel.jumpToPart(Int($0)) }
+                                ), in: 1 ... Double(viewModel.totalParts), step: 1)
+                                Text("\(viewModel.totalParts)".convertToArabicDigits())
+                                    .font(.caption)
+                                    .frame(width: 40)
+                            }
+                            .environment(\.layoutDirection, .rightToLeft)
+                        }
+
+                        if viewModel.maxPageInPart > viewModel.minPageInPart {
+                            HStack {
+                                Text("ص")
+                                    .font(.caption)
+                                    .frame(width: 40)
+                                Slider(value: Binding(
+                                    get: {
+                                        let page = viewModel.currentPage ?? 1
+                                        return Double(page <= 0 ? 1 : page)
+                                    },
+                                    set: { viewModel.jumpToPage(Int($0)) }
+                                ), in: Double(viewModel.minPageInPart) ... Double(viewModel.maxPageInPart), step: 1)
+                                Text("\(viewModel.maxPageInPart)".convertToArabicDigits())
+                                    .font(.caption)
+                                    .frame(width: 40)
+                            }
+                            .environment(\.layoutDirection, .rightToLeft)
+                        }
                     }
-                    .environment(\.layoutDirection, .rightToLeft)
+                    .padding()
+                    .frame(width: 300)
+                    .presentationCompactAdaptation(.popover)
                 }
 
-                if viewModel.maxPageInPart > viewModel.minPageInPart {
-                    HStack {
-                        Text("ص")
-                            .font(.caption)
-                            .frame(width: 40)
-                        Slider(value: Binding(
-                            get: {
-                                let page = viewModel.currentPage ?? 1
-                                return Double(page <= 0 ? 1 : page)
-                            },
-                            set: { viewModel.jumpToPage(Int($0)) }
-                        ), in: Double(viewModel.minPageInPart) ... Double(viewModel.maxPageInPart), step: 1)
-                        Text("\(viewModel.maxPageInPart)".convertToArabicDigits())
-                            .font(.caption)
-                            .frame(width: 40)
-                    }
-                    .environment(\.layoutDirection, .rightToLeft)
-                }
-            }
-            .padding()
-            .frame(width: 300)
-            .presentationCompactAdaptation(.popover)
-        }
-        if MaktabahApp.isIpad { Spacer() }
+        Spacer()
 
         Button(action: {
             showingOptions = true

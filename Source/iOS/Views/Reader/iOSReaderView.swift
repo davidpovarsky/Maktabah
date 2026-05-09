@@ -52,163 +52,59 @@ struct iOSReaderView: View {
 
     var body: some View {
         @Bindable var viewModel = viewModel
-        VStack(spacing: 0) {
-            iOSIbarotTextView(
-                text: $viewModel.contentText,
-                annotations: viewModel.currentAnnotations,
-                searchText: $viewModel.searchText,
-                viewModel: viewModel,
-                onAddAnnotation: { range, mode, sourceText, color in
-                    viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
-                },
-                onTapAnnotation: { annId in
-                    tappedAnnotationId = annId
-                    showingAnnotationActionSheet = true
-                }
-            )
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(backgroundColor)
-
-            if showingNavigation {
-                VStack(spacing: 8) {
-                    if viewModel.totalParts > 1 {
-                        HStack {
-                            Text("ج")
-                                .font(.caption)
-                                .frame(width: 40)
-                            Slider(value: Binding(
-                                get: {
-                                    let part = viewModel.currentPart ?? 1
-                                    return Double(part <= 0 ? 1 : part)
-                                },
-                                set: { viewModel.jumpToPart(Int($0)) }
-                            ), in: 1 ... Double(viewModel.totalParts), step: 1)
-                            Text("\(viewModel.totalParts)".convertToArabicDigits())
-                                .font(.caption)
-                                .frame(width: 40)
-                        }
-                        .environment(\.layoutDirection, .rightToLeft)
-                    }
-
-                    if viewModel.maxPageInPart > viewModel.minPageInPart {
-                        HStack {
-                            Text("ص")
-                                .font(.caption)
-                                .frame(width: 40)
-                            Slider(value: Binding(
-                                get: {
-                                    let page = viewModel.currentPage ?? 1
-                                    return Double(page <= 0 ? 1 : page)
-                                },
-                                set: { viewModel.jumpToPage(Int($0)) }
-                            ), in: Double(viewModel.minPageInPart) ... Double(viewModel.maxPageInPart), step: 1)
-                            Text("\(viewModel.maxPageInPart)".convertToArabicDigits())
-                                .font(.caption)
-                                .frame(width: 40)
-                        }
-                        .environment(\.layoutDirection, .rightToLeft)
-                    }
-                }
-                .padding()
-                .background(backgroundColor)
-                .transition(.move(edge: .bottom).combined(with: .opacity))
+        iOSIbarotTextView(
+            text: $viewModel.contentText,
+            annotations: viewModel.currentAnnotations,
+            searchText: $viewModel.searchText,
+            viewModel: viewModel,
+            onAddAnnotation: { range, mode, sourceText, color in
+                viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
+            },
+            onTapAnnotation: { annId in
+                tappedAnnotationId = annId
+                showingAnnotationActionSheet = true
             }
-
-            // Bottom Toolbar
-            if !ipad {
-                Divider()
-                HStack {
-                    Button(action: {
-                        viewModel.goToNextPage()
-                    }) {
-                        Image(systemName: "chevron.left")
-                    }
-                    .keyboardShortcut(.leftArrow, modifiers: [])
-
-                    Text(viewModel.statusSubtitle)
-                        .font(.caption)
-                        .multilineTextAlignment(.center)
-
-                    Button(action: {
-                        viewModel.goToPrevPage()
-                    }) {
-                        Image(systemName: "chevron.right")
-                    }
-
-                    .keyboardShortcut(.rightArrow, modifiers: [])
-                    .padding(.trailing, 8)
-
-                    Button(action: {
-                        withAnimation {
-                            showingNavigation.toggle()
-                        }
-                    }) {
-                        Image(systemName: "slider.horizontal.3")
-                            .foregroundColor(showingNavigation ? .accentColor : .primary)
-                    }
-
-                    Spacer()
-
-                    Button(action: {
-                        showingOptions = true
-                    }) {
-                        Image(systemName: "textformat")
-                    }
-                    .popover(isPresented: $showingOptions) {
-                        ViewOptionsView()
-                            .frame(width: 300, height: 500)
-                            .presentationCompactAdaptation(.popover)
-                    }
-                    .padding(.trailing, 8)
-
-                    Button(action: {
-                        showingTOC = true
-                    }) {
-                        Image(systemName: "list.bullet")
-                    }
-                    .padding(.trailing, 8)
-
-                    Button(action: {
-                        showingAnnotationsList = true
-                    }) {
-                        Image(systemName: "quote.closing")
-                    }
-                    .padding(.trailing, 8)
-
-                    Button(action: {
-                        showingSearch = true
-                    }) {
-                        Image(systemName: "magnifyingglass")
-                    }
-                }
-                .padding()
-                .background(backgroundColor)
-            }
-        }
+        )
         .background(backgroundColor)
-        .environment(\.colorScheme, isDarkMode ? .dark : .light)
+        .ignoresSafeArea(edges: .vertical)
+        .legacyVisibleToolbarBackgrounds()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .preferredColorScheme(isDarkMode ? .dark : .light)
+        .navigationTitle(viewModel.book.book)
         .navigationBarTitleDisplayMode(.inline)
-        .buttonStyle(LiquidGlassButtonStyle())
         .toolbar(.hidden, for: .tabBar)
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                if !ipad {
-                    Text(book.book)
-                        .font(iOSReaderViewModel.kfgqpc)
-                        .foregroundColor(isDarkMode ? .white : .black)
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    showingBookInfo = true
+                }) {
+                    Image(systemName: "info.circle")
+                }
+                .popover(isPresented: $showingBookInfo) {
+                    iOSBookInfoView(book: book)
+                        .presentationCompactAdaptation(.popover)
+                        .frame(maxWidth: 350, maxHeight: 450)
                 }
             }
-            ToolbarItem(placement: .topBarTrailing) {
-                if !ipad {
-                    Button(action: {
-                        showingBookInfo = true
-                    }) {
-                        Image(systemName: "info.circle")
-                    }
-                    .popover(isPresented: $showingBookInfo) {
-                        iOSBookInfoView(book: book)
-                    }
+
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button(action: {
+                    viewModel.goToNextPage()
+                }) {
+                    Image(systemName: "chevron.left")
                 }
+                .keyboardShortcut(.leftArrow, modifiers: [])
+
+                Button(action: {
+                    viewModel.goToPrevPage()
+                }) {
+                    Image(systemName: "chevron.right")
+                }
+                .keyboardShortcut(.rightArrow, modifiers: [])
+            }
+
+            ToolbarItemGroup(placement: .bottomBar) {
+                iOSReaderBottomToolbarView(viewModel: viewModel)
             }
         }
         .onAppear {
@@ -593,15 +489,15 @@ struct iOSBookAnnotationsView: View {
     }
 }
 
-struct LiquidGlassButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        if #available(iOS 26, *) {
-            // Karena iOS 26 belum ada, ini adalah simulasi
-            configuration.label
-                .buttonStyle(GlassProminentButtonStyle())
+private extension View {
+    @ViewBuilder
+    func legacyVisibleToolbarBackgrounds() -> some View {
+        if #unavailable(iOS 26) {
+            self
+                .toolbarBackground(.visible, for: .navigationBar)
+                .toolbarBackground(.visible, for: .bottomBar)
         } else {
-            configuration.label
-                .buttonStyle(BorderedProminentButtonStyle())
+            self
         }
     }
 }
