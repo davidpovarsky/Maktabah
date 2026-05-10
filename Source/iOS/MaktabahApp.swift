@@ -2,6 +2,8 @@ import SwiftUI
 
 @main
 struct MaktabahApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+
     static var isIpad: Bool {
         if UIDevice.current.userInterfaceIdiom == .pad {
             true
@@ -26,6 +28,14 @@ struct MaktabahApp: App {
         WindowGroup {
             iOSBootstrapView()
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                iOSHistoryViewModel.shared.refreshFromCloud()
+            }
+            if newPhase == .background {
+                iOSHistoryViewModel.shared.saveToUserDefaults()
+            }
         }
     }
 }

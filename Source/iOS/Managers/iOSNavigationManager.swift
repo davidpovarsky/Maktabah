@@ -140,7 +140,7 @@ class iOSNavigationManager {
         }
 
         await MainActor.run {
-            iOSHistoryViewModel.shared.addBookToHistory(book.id)
+            iOSHistoryViewModel.shared.addBookToHistory(book.id, lastContentId: initialContentId)
         }
 
         presentReader(book, initialContentId: initialContentId)

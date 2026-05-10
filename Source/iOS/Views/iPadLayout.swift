@@ -62,7 +62,7 @@ struct iPadLayout: View {
                         Section(header: Text("Favorites".localized)) {
                             ForEach(filteredFavorites, id: \.id) { book in
                                 BookRowView(book: book, isFavorite: true, viewModel: historyViewModel) {
-                                    bManager.openBook(book)
+                                    bManager.openBook(book, initialContentId: historyViewModel.lastContentId(for: book.id))
                                 }
                             }
                             .onDelete { offsets in
@@ -82,7 +82,7 @@ struct iPadLayout: View {
                                     isFavorite: historyViewModel.favoriteBookIds.contains(book.id),
                                     viewModel: historyViewModel
                                 ) {
-                                    bManager.openBook(book)
+                                    bManager.openBook(book, initialContentId: historyViewModel.lastContentId(for: book.id))
                                 }
                             }
                             .onDelete { offsets in

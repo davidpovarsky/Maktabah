@@ -10,7 +10,7 @@ struct iOSHistoryView: View {
                 Section(header: Text("Favorites")) {
                     ForEach(viewModel.favoriteBooks, id: \.id) { book in
                         BookRowView(book: book, isFavorite: true, viewModel: viewModel) {
-                            navigationManager.openBook(book)
+                            navigationManager.openBook(book, initialContentId: viewModel.lastContentId(for: book.id))
                         }
                     }
                     .onDelete(perform: removeFavorite)
@@ -21,7 +21,7 @@ struct iOSHistoryView: View {
                 Section(header: Text("History")) {
                     ForEach(viewModel.historyBooks, id: \.id) { book in
                         BookRowView(book: book, isFavorite: viewModel.favoriteBookIds.contains(book.id), viewModel: viewModel) {
-                            navigationManager.openBook(book)
+                            navigationManager.openBook(book, initialContentId: viewModel.lastContentId(for: book.id))
                         }
                     }
                     .onDelete(perform: removeHistory)
