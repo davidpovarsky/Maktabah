@@ -261,8 +261,10 @@ struct SettingsView: View {
 
             // MARK: Library Storage
             Section {
-                PathRow(label: "Database Files", path: viewModel.databaseFilesPath)
-                PathRow(label: "Archive Files", path: viewModel.archiveFilesPath)
+                if !viewModel.isBundleMode {
+                    PathRow(label: "Database Files", path: viewModel.databaseFilesPath)
+                    PathRow(label: "Archive Files", path: viewModel.archiveFilesPath)
+                }
 
                 HStack(spacing: 8) {
                     Button("Choose Library Folder…") {
@@ -295,7 +297,9 @@ struct SettingsView: View {
                 .controlSize(.regular)
                 .disabled(viewModel.isProcessingICloud)
 
-                PathRow(label: "Current Path", path: viewModel.annotationsPath)
+                if !viewModel.useICloud {
+                    PathRow(label: "Current Path", path: viewModel.annotationsPath)
+                }
 
                 Button("Choose Annotations Folder…") {
                     viewModel.chooseAnnotationsFolder()

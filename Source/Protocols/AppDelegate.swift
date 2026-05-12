@@ -74,6 +74,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorLight : 0])
         UserDefaults.standard.register(defaults: ["annotationsLayoutDirection": 1])
 
+        if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
+            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: true])
+        }
+
         #if DIRECT_DISTRIBUTION
         UserDefaults.standard.register(
             defaults: [UserDefaults.autoCheckAppUpdatesKey : true]
