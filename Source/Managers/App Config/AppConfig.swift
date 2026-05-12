@@ -332,12 +332,6 @@ struct AppConfig {
     }
 
     static func folder(for key: String) -> URL? {
-        if key == annotationsAndResultsFolder {
-            if useICloud, let iCloud = iCloudFolderURL {
-                return iCloud
-            }
-        }
-
         if let custom = resolvedPath(for: key) {
             return custom
         }
@@ -482,29 +476,51 @@ struct AppConfig {
     static func setupAnnotationsAndResults() {
         let activeFolder = AppConfig.folder(for: AppConfig.annotationsAndResultsFolder)
 
-        AnnotationsResultsFileMonitor.shared.suppressCallbacks {
-            do {
-                if let annotationsFolder = activeFolder {
-                    try AnnotationManager.shared.setupAnnotations(at: annotationsFolder)
-                }
-            } catch {
-                #if os(macOS)
-                ReusableFunc.showAlert(title: NSLocalizedString("errorFolderAnnotations", comment: error.localizedDescription), message: "")
-                #endif
-            }
-
-            do {
-                if let resultsFolder = activeFolder {
-                    try ResultsHandler.shared.setupResultDatabase(at: resultsFolder)
-                }
-            } catch {
-                #if os(macOS)
-                ReusableFunc.showAlert(title: NSLocalizedString("errorFolderSearchResults", comment: error.localizedDescription), message: "")
-                #endif
-            }
+        // Migrasi dari iCloud Drive ke folder aktif jika aktif
+        if useICloud, let iCloud = iCloudFolderURL, let dest = activeFolder,
+           iCloud.standardized != dest.standardized {
+            migrateFiles(from: iCloud, to: dest)
         }
 
-        AnnotationsResultsFileMonitor.shared.updatePresentedFiles(in: activeFolder)
+        do {
+            if let annotationsFolder = activeFolder {
+                try AnnotationManager.shared.setupAnnotations(at: annotationsFolder)
+            }
+        } catch {
+            ReusableFunc.showAlert(
+                title: String(localized: "errorFolderAnnotations"),
+                message: error.localizedDescription
+            )
+        }
+
+        do {
+            if let resultsFolder = activeFolder {
+                try ResultsHandler.shared.setupResultDatabase(at: resultsFolder)
+            }
+        } catch {
+            ReusableFunc.showAlert(
+                title: String(localized: "errorFolderSearchResults"),
+                message: error.localizedDescription
+            )
+        }
+    }
+
+    private static func migrateFiles(from sourceURL: URL, to destURL: URL) {
+        let fm = FileManager.default
+        let files = ["Annotations.sqlite", "SearchResults.sqlite"]
+        let exts = ["", "-wal", "-shm"]
+
+        for file in files {
+            for ext in exts {
+                let fullFile = file + ext
+                let source = sourceURL.appendingPathComponent(fullFile)
+                let destination = destURL.appendingPathComponent(fullFile)
+
+                if fm.fileExists(atPath: source.path), !fm.fileExists(atPath: destination.path) {
+                    try? fm.moveItem(at: source, to: destination)
+                }
+            }
+        }
     }
 
     enum MigrationResolution {
@@ -520,135 +536,24 @@ struct AppConfig {
     ///   - resolution: resolusi konflik file jika ada di tujuan
     ///   - completion: dipanggil di main thread setelah selesai, berisi error jika gagal
     static func setUseICloud(_ use: Bool, resolution: MigrationResolution = .ask, completion: @escaping (Error?) -> Void) {
-        let oldURL = AppConfig.folder(for: AppConfig.annotationsAndResultsFolder)
-
-        // Set dulu sebelum folder() dipanggil lagi
+        let oldFolder = AppConfig.folder(for: annotationsAndResultsFolder)
         useICloud = use
 
-        guard let newURL = AppConfig.folder(for: AppConfig.annotationsAndResultsFolder) else {
-            useICloud = !use  // rollback
-            DispatchQueue.main.async { completion(StorageError.invalidDirectory) }
-            return
-        }
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                if let oldURL, oldURL.standardized != newURL.standardized {
-                    let fm = FileManager.default
-                    let baseFiles = ["Annotations.sqlite", "SearchResults.sqlite"]
-                    let extensions = ["", "-wal", "-shm"]
-
-                    // Phase 1: Check for collisions
-                    var hasCollision = false
-                    if resolution == .ask {
-                        for fileName in baseFiles {
-                            let sourceFile = oldURL.appendingPathComponent(fileName)
-                            guard fm.fileExists(atPath: sourceFile.path) else { continue }
-                            
-                            let destFile = newURL.appendingPathComponent(fileName)
-                            let icloudFile = newURL.appendingPathComponent(".\(fileName).icloud")
-                            
-                            if fm.fileExists(atPath: destFile.path) || fm.fileExists(atPath: icloudFile.path) {
-                                hasCollision = true
-                                break
-                            }
-                        }
-                        
-                        if hasCollision {
-                            useICloud = !use // rollback
-                            DispatchQueue.main.async { completion(StorageError.collision(nil)) }
-                            return
-                        }
-                    }
-
-                    // Phase 2: Execute migration
-                    for fileName in baseFiles {
-                        for ext in extensions {
-                            let fullFileName = fileName + ext
-                            let sourceFile = oldURL.appendingPathComponent(fullFileName)
-                            let destFile = newURL.appendingPathComponent(fullFileName)
-                            let destICloudFile = newURL.appendingPathComponent(".\(fullFileName).icloud")
-
-                            let destExists = fm.fileExists(atPath: destFile.path) || fm.fileExists(atPath: destICloudFile.path)
-
-                            // Jika user memilih keepDestination dan file tujuan ada, 
-                            // cukup hapus source dan pastikan dest terdownload jika itu iCloud
-                            if resolution == .keepDestination && destExists {
-                                try? fm.removeItem(at: sourceFile)
-                                if use {
-                                    try? downloadICloudItem(at: destFile)
-                                }
-                                continue
-                            }
-
-                            // Jika source file tidak ada, skip.
-                            guard fm.fileExists(atPath: sourceFile.path) else { continue }
-
-                            // Jika oldURL adalah iCloud (artinya pindah ke lokal), atau sebaliknya,
-                            // pastikan source ter-download sebelum dipindahkan.
-                            if !use {
-                                try? downloadICloudItem(at: sourceFile)
-                            }
-
-                            if destExists {
-                                try? fm.removeItem(at: destFile)
-                                try? fm.removeItem(at: destICloudFile)
-                            }
-
-                            try fm.moveItem(at: sourceFile, to: destFile)
-
-                            // Kalau aktifkan iCloud, pastikan terupload/terdownload
-                            if use {
-                                try? fm.startDownloadingUbiquitousItem(at: destFile)
-                            }
-                        }
-                    }
-                }
-
-                // Setup database di main thread setelah file siap
-                try AnnotationsResultsFileMonitor.shared.suppressCallbacks {
-                    try AnnotationManager.shared.setupAnnotations(at: newURL)
-                    try ResultsHandler.shared.setupResultDatabase(at: newURL)
-                }
-                AnnotationsResultsFileMonitor.shared.updatePresentedFiles(in: newURL)
-
-                DispatchQueue.main.async { completion(nil) }
-            } catch {
-                // Rollback useICloud kalau gagal
-                useICloud = !use
-                DispatchQueue.main.async { completion(error) }
+        if use {
+            // 1. Move files from CURRENT folder (could be custom or old iCloud Drive) to appSupportDir
+            if let source = oldFolder, let dest = appSupportDir, source.standardized != dest.standardized {
+                migrateFiles(from: source, to: dest)
             }
-        }
-    }
-    
-    private static func downloadICloudItem(at url: URL) throws {
-        let fm = FileManager.default
-        try fm.startDownloadingUbiquitousItem(at: url)
 
-        let deadline = Date().addingTimeInterval(15.0)
-        var downloaded = false
+            // 2. Reset bookmark to default local storage to avoid iCloud Drive conflicts
+            UserDefaults.standard.removeObject(forKey: annotationsAndResultsFolder)
 
-        while Date() < deadline {
-            if let vals = try? url.resourceValues(
-                forKeys: [.ubiquitousItemDownloadingStatusKey]
-            ), vals.ubiquitousItemDownloadingStatus == .current {
-                downloaded = true
-                break
-            }
-            let isPlaceholder = url.pathExtension == "icloud" || url.lastPathComponent.hasPrefix(".")
-            if !isPlaceholder && fm.fileExists(atPath: url.path) {
-                downloaded = true
-                break
-            }
-            Thread.sleep(forTimeInterval: 0.5)
-        }
+            // 3. Re-initialize databases at the default location
+            setupAnnotationsAndResults()
 
-        if !downloaded {
-            #if DEBUG
-            print("Timeout menunggu download iCloud: \(url.lastPathComponent)")
-            #endif
-            throw StorageError.downloadTimeout(url.lastPathComponent)
+            CloudKitSyncManager.shared.setupAndInitialSync()
         }
+        DispatchQueue.main.async { completion(nil) }
     }
 }
 

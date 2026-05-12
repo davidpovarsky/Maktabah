@@ -811,6 +811,22 @@
         }
       }
     },
+    "CloudKit token has been reset. Full sync will start." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم إعادة تعيين رمز CloudKit. ستبدأ المزامنة الكاملة."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token CloudKit telah diatur ulang. Sinkronisasi penuh akan dimulai."
+          }
+        }
+      }
+    },
     "Completed! %lld/%lld books successfully updated." : {
       "localizations" : {
         "ar" : {
@@ -1083,16 +1099,23 @@
       }
     },
     "core.modal.downloading" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "تنزيل قاعدة البيانات. من فضلك انتظر..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Downloading database. Please wait…"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mengunduh basis data. Mohon tunggu..."
           }
         }
@@ -1476,7 +1499,7 @@
       }
     },
     "Download" : {
-      "comment" : "Download action button",
+      "comment" : "Download action button\nStart bulk download",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1526,7 +1549,21 @@
       }
     },
     "Download Failed" : {
-      "comment" : "Download failed alert title"
+      "comment" : "Download failed alert title",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل التنزيل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduhan Gagal"
+          }
+        }
+      }
     },
     "Download Full Library (Google Drive)" : {
       "localizations" : {
@@ -3525,6 +3562,22 @@
         }
       }
     },
+    "Re-Synchronise All Data" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة مزامنة جميع البيانات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinkronkan Ulang Semua Data"
+          }
+        }
+      }
+    },
     "Reader" : {
       "localizations" : {
         "ar" : {
@@ -4349,6 +4402,28 @@
         }
       }
     },
+    "success" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نجاح"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berhasil"
+          }
+        }
+      }
+    },
     "Switch to Bundle Mode" : {
       "localizations" : {
         "ar" : {
@@ -4365,18 +4440,18 @@
         }
       }
     },
-    "Sync annotations and search results across devices using iCloud Drive." : {
+    "Sync annotations and search results across devices with CloudKit." : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "قم بمزامنة التعليقات التوضيحية والنتائج عبر الأجهزة باستخدام iCloud Drive."
+            "value" : "قم بمزامنة التعليقات التوضيحية والنتائج عبر الأجهزة باستخدام CloudKit."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selaraskan anotasi dan hasil pencarian di seluruh perangkat menggunakan iCloud Drive."
+            "value" : "Selaraskan anotasi dan hasil pencarian di seluruh perangkat dengan CloudKit."
           }
         }
       }
@@ -4657,18 +4732,18 @@
         }
       }
     },
-    "Use iCloud" : {
+    "Use CloudKit" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "استخدام iCloud"
+            "value" : "استخدام CloudKit"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gunakan iCloud"
+            "value" : "Gunakan CloudKit"
           }
         }
       }

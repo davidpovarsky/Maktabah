@@ -73,6 +73,10 @@ struct Annotation {
     var pageArb: String?
     var partArb: String?
     var tags: [String] = []
+
+    // CloudKit Sync Support
+    var ckRecordId: String?
+    var lastModified: Int64?
 }
 
 enum AnnotationNodeKind {

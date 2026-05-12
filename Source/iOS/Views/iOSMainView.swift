@@ -116,6 +116,7 @@ struct iOSMainView: View {
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .active {
                 iOSHistoryViewModel.shared.refreshFromCloud()
+                CloudKitSyncManager.shared.fetchChanges()
             }
             if newPhase == .background {
                 iOSHistoryViewModel.shared.saveToUserDefaults()

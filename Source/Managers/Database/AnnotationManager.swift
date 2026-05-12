@@ -74,6 +74,8 @@ final class AnnotationManager {
     private(set) var annContext = Expression<String>("context")
     private(set) var annPage = Expression<Int>("page")
     private(set) var annPart = Expression<Int>("part")
+    private(set) var annCkRecordId = Expression<String?>("ckRecordId")
+    private(set) var annLastModified = Expression<Int64?>("lastModified")
     private(set) var tagsTable = Table("tags")
     private(set) var tagId = Expression<Int64>("id")
     private(set) var tagName = Expression<String>("name")
@@ -149,11 +151,24 @@ final class AnnotationManager {
             )
         }
 
-        dbURL = folderURL.appendingPathComponent("Annotations.sqlite")
+        let url = folderURL.appendingPathComponent("Annotations.sqlite")
+        dbURL = url
+
+        // Deteksi database baru - gunakan .path (property) bukan .path() (function)
+        let isNewDatabase = !fm.fileExists(atPath: url.path)
+
+        #if DEBUG
+        print("AnnotationManager: setupAnnotations at \(url.path), isNewDatabase: \(isNewDatabase)")
+        #endif
+
         connect()
         clearAllCaches()
         invalidateTree()
         try setupAnnotationsDatabase()
+
+        if isNewDatabase {
+            CloudKitSyncManager.shared.resetChangeToken()
+        }
     }
 
     // MARK: - Setup DB in Application Support
@@ -176,6 +191,18 @@ final class AnnotationManager {
             t.column(annPage)
         })
 
+        if let db = db {
+            let columns = try db.prepare("PRAGMA table_info(annotations)")
+                .map { row in row[1] as! String }  // index 1 = nama kolom
+
+            if !columns.contains("ckRecordId") {
+                try db.run(annotationsTable.addColumn(annCkRecordId))
+            }
+            if !columns.contains("lastModified") {
+                try db.run(annotationsTable.addColumn(annLastModified))
+            }
+        }
+
         try db?.run(annotationsTable.createIndex(
             annBkId, annContentId, ifNotExists: true
         ))
@@ -197,6 +224,55 @@ final class AnnotationManager {
             unique: true,
             ifNotExists: true
         ))
+
+        if let db = db {
+            try backfillCloudKitFieldsIfNeeded(in: db) { backfilled in
+                if !backfilled.isEmpty {
+                    DispatchQueue.global(qos: .background).async {
+                        CloudKitSyncManager.shared.upload(annotations: backfilled)
+                    }
+                }
+            }
+        }
+    }
+
+    func backfillCloudKitFieldsIfNeeded(in db: Connection, completion: (([Annotation]) -> Void)? = nil) throws {
+        let nullRecords = annotationsTable.filter(annCkRecordId == nil)
+
+        let count = try db.scalar(nullRecords.count)
+        if count == 0 {
+            completion?([])
+            return
+        }
+
+        var backfilledAnnotations: [Annotation] = []
+        let now = Int64(Date().timeIntervalSince1970)
+
+        try db.transaction {
+            for row in try db.prepare(nullRecords) {
+                let id = row[annId]
+                let bkId = row[annBkId]
+                let contentId = row[annContentId]
+                let start = row[annStart]
+                let createdAt = row[annCreatedAt]
+
+                // Deterministic ID: legacy_bkId_contentId_start_createdAt
+                // Jika file di device lain sama persis, ID ini akan identik dan tidak duplikat di CloudKit.
+                let deterministicID = "legacy_\(bkId)_\(contentId)_\(start)_\(createdAt)"
+
+                try db.run(annotationsTable.filter(annId == id).update(
+                    annCkRecordId <- deterministicID,
+                    annLastModified <- now
+                ))
+
+                var annotation = makeAnnotation(from: row)
+                annotation.ckRecordId = deterministicID
+                annotation.lastModified = now
+                backfilledAnnotations.append(annotation)
+            }
+        }
+
+        completion?(backfilledAnnotations)
     }
 
     func connect() {
@@ -215,32 +291,41 @@ final class AnnotationManager {
     func addAnnotation(_ annotation: Annotation) throws -> Int64 {
         guard let db else { throw NSError(domain: "DBNil", code: 1) }
         var rowId: Int64 = 0
+        
+        var annotationToSave = annotation
+        if annotationToSave.ckRecordId == nil {
+            annotationToSave.ckRecordId = UUID().uuidString
+        }
+        annotationToSave.lastModified = Int64(Date().timeIntervalSince1970)
+
         try db.transaction {
             let insert = annotationsTable.insert(
-                annBkId <- annotation.bkId,
-                annContentId <- annotation.contentId,
-                annStart <- annotation.range.location,
-                annLength <- annotation.range.length,
-                annStartDiac <- annotation.rangeDiacritics.location,
-                annLengthDiac <- annotation.rangeDiacritics.length,
-                annColor <- annotation.colorHex,
-                annType <- annotation.type.rawValue,
-                annNote <- annotation.note,
-                annCreatedAt <- annotation.createdAt,
-                annContext <- annotation.context,
-                annPart <- annotation.part,
-                annPage <- annotation.page
+                annBkId <- annotationToSave.bkId,
+                annContentId <- annotationToSave.contentId,
+                annStart <- annotationToSave.range.location,
+                annLength <- annotationToSave.range.length,
+                annStartDiac <- annotationToSave.rangeDiacritics.location,
+                annLengthDiac <- annotationToSave.rangeDiacritics.length,
+                annColor <- annotationToSave.colorHex,
+                annType <- annotationToSave.type.rawValue,
+                annNote <- annotationToSave.note,
+                annCreatedAt <- annotationToSave.createdAt,
+                annContext <- annotationToSave.context,
+                annPart <- annotationToSave.part,
+                annPage <- annotationToSave.page,
+                annCkRecordId <- annotationToSave.ckRecordId,
+                annLastModified <- annotationToSave.lastModified
             )
             rowId = try db.run(insert)
-            try self.replaceTags(self.sanitizeTagNames(annotation.tags), for: rowId, in: db)
+            try self.replaceTags(self.sanitizeTagNames(annotationToSave.tags), for: rowId, in: db)
         }
 
         // Update caches
-        var saved = annotation
+        var saved = annotationToSave
         saved.id = rowId
         saved.pageArb = String(saved.page).convertToArabicDigits()
         saved.partArb = String(saved.part).convertToArabicDigits()
-        saved.tags = sanitizeTagNames(annotation.tags)
+        saved.tags = sanitizeTagNames(annotationToSave.tags)
         cacheQueue.sync {
             cacheById[rowId] = saved
             cacheTagsByAnnotationId[rowId] = saved.tags
@@ -256,6 +341,10 @@ final class AnnotationManager {
         }
 
         addAnnotationToTree(saved)
+        
+        // Trigger CloudKit Upload
+        CloudKitSyncManager.shared.upload(annotations: [saved])
+        
         return rowId
     }
 
@@ -266,17 +355,21 @@ final class AnnotationManager {
         guard let id = annotation.id else { throw NSError(domain: "NoID", code: 2) }
         let row = annotationsTable.filter(annId == id)
         let normalizedTags = sanitizeTagNames(annotation.tags)
+        
+        var updatedAnnotation = annotation
+        updatedAnnotation.lastModified = Int64(Date().timeIntervalSince1970)
+        
         try db.transaction {
             try db.run(row.update(
-                annColor <- annotation.colorHex,
-                annType <- annotation.type.rawValue,
-                annNote <- annotation.note
+                annColor <- updatedAnnotation.colorHex,
+                annType <- updatedAnnotation.type.rawValue,
+                annNote <- updatedAnnotation.note,
+                annLastModified <- updatedAnnotation.lastModified
             ))
             try self.replaceTags(normalizedTags, for: id, in: db)
         }
 
         // Update caches
-        var updatedAnnotation = annotation
         updatedAnnotation.tags = normalizedTags
         cacheQueue.sync {
             cacheById[id] = updatedAnnotation
@@ -302,6 +395,9 @@ final class AnnotationManager {
         }
 
         updateAnnotationInTree(updatedAnnotation)
+        
+        // Trigger CloudKit Upload
+        CloudKitSyncManager.shared.upload(annotations: [updatedAnnotation])
     }
 
     // MARK: - Rename Tag
@@ -473,6 +569,10 @@ final class AnnotationManager {
         }
 
         removeAnnotationFromTree(id: id, deletedAnnotation: annotationToDelete)
+        
+        if let ckRecordId = annotationToDelete?.ckRecordId {
+            CloudKitSyncManager.shared.delete(ckRecordIds: [ckRecordId])
+        }
     }
 
     // MARK: - Delete Tag (hapus tag dari semua anotasi)
@@ -661,7 +761,9 @@ final class AnnotationManager {
             part: part,
             pageArb: String(page).convertToArabicDigits(),
             partArb: String(part).convertToArabicDigits(),
-            tags: loadTags(for: id)
+            tags: loadTags(for: id),
+            ckRecordId: row[annCkRecordId],
+            lastModified: row[annLastModified]
         )
     }
 
@@ -1675,5 +1777,160 @@ final class AnnotationManager {
             FROM annotation_tags
         )
         """)
+    }
+
+    // MARK: - CloudKit Sync Apply
+    
+    func applyCloudKitChanges(annotationsToSave: [Annotation], recordIdsToDelete: [String]) {
+        guard let db else { return }
+
+        var addedAnnotations: [Annotation] = []
+        var updatedAnnotations: [Annotation] = []
+        var deletedIds: [Int64] = []
+        var deletedAnnotations: [Annotation] = []
+
+        do {
+            try db.transaction {
+                // Process Deletions
+                for ckId in recordIdsToDelete {
+                    let query = annotationsTable.filter(annCkRecordId == ckId)
+                    if let row = try db.pluck(query) {
+                        let localId = row[annId]
+                        deletedIds.append(localId)
+                        deletedAnnotations.append(makeAnnotation(from: row))
+                        try db.run(annotationTagsTable.filter(annotationTagAnnotationId == localId).delete())
+                        try db.run(query.delete())
+                    }
+                }
+
+                // Process Saves/Updates
+                for var ann in annotationsToSave {
+                    guard let ckId = ann.ckRecordId else { continue }
+                    let query = annotationsTable.filter(annCkRecordId == ckId)
+
+                    if let row = try db.pluck(query) {
+                        // Update existing
+                        let localId = row[annId]
+                        ann.id = localId // Keep local ID
+
+                        let localLastMod = try? row.get(annLastModified)
+                        let remoteLastMod = ann.lastModified ?? 0
+
+                        // LWW (Last Writer Wins) conflict resolution
+                        if remoteLastMod >= (localLastMod ?? 0) {
+                            try db.run(query.update(
+                                annColor <- ann.colorHex,
+                                annType <- ann.type.rawValue,
+                                annNote <- ann.note,
+                                annLastModified <- ann.lastModified
+                            ))
+                            try self.replaceTags(self.sanitizeTagNames(ann.tags), for: localId, in: db)
+                            updatedAnnotations.append(ann)
+                        }
+                    } else {
+                        // Insert new - Use insert(or: .replace) to handle potential unique constraint conflicts
+                        let insert = annotationsTable.insert(or: .replace,
+                            annBkId <- ann.bkId,
+                            annContentId <- ann.contentId,
+                            annStart <- ann.range.location,
+                            annLength <- ann.range.length,
+                            annStartDiac <- ann.rangeDiacritics.location,
+                            annLengthDiac <- ann.rangeDiacritics.length,
+                            annColor <- ann.colorHex,
+                            annType <- ann.type.rawValue,
+                            annNote <- ann.note,
+                            annCreatedAt <- ann.createdAt,
+                            annContext <- ann.context,
+                            annPart <- ann.part,
+                            annPage <- ann.page,
+                            annCkRecordId <- ckId,
+                            annLastModified <- ann.lastModified
+                        )
+                        let rowId = try db.run(insert)
+                        ann.id = rowId
+                        try self.replaceTags(self.sanitizeTagNames(ann.tags), for: rowId, in: db)
+                        addedAnnotations.append(ann)
+                    }
+                }
+
+                try self.deleteUnusedTags(in: db)
+            }
+
+            let totalChanges = addedAnnotations.count + updatedAnnotations.count + deletedAnnotations.count
+
+            if totalChanges > 0, totalChanges < 100 {
+                // Incremental Cache Update
+                cacheQueue.sync {
+                    cachedAllTagNames = nil
+
+                    for ann in deletedAnnotations {
+                        guard let id = ann.id else { continue }
+                        cacheById.removeValue(forKey: id)
+                        cacheTagsByAnnotationId.removeValue(forKey: id)
+                        cacheByBook[ann.bkId] = cacheByBook[ann.bkId]?.filter { $0.id != id }
+                        let key = ContentKey(bkId: ann.bkId, contentId: ann.contentId)
+                        cacheByContent[key] = cacheByContent[key]?.filter { $0.id != id }
+                    }
+
+                    for ann in addedAnnotations {
+                        guard let id = ann.id else { continue }
+                        cacheById[id] = ann
+                        cacheTagsByAnnotationId[id] = ann.tags
+                        let key = ContentKey(bkId: ann.bkId, contentId: ann.contentId)
+                        var arr = cacheByContent[key] ?? []
+                        let idx = arr.insertionIndex(for: ann) { $0.range.location < $1.range.location }
+                        arr.insert(ann, at: idx)
+                        cacheByContent[key] = arr
+                        if cacheByBook[ann.bkId] != nil {
+                            cacheByBook[ann.bkId]!.append(ann)
+                        }
+                    }
+
+                    for ann in updatedAnnotations {
+                        guard let id = ann.id else { continue }
+                        cacheById[id] = ann
+                        cacheTagsByAnnotationId[id] = ann.tags
+                        let key = ContentKey(bkId: ann.bkId, contentId: ann.contentId)
+                        var arr = cacheByContent[key] ?? []
+                        if let idx = arr.firstIndex(where: { $0.id == id }) {
+                            arr[idx] = ann
+                        } else {
+                            let idx = arr.insertionIndex(for: ann) { $0.range.location < $1.range.location }
+                            arr.insert(ann, at: idx)
+                        }
+                        cacheByContent[key] = arr
+                        if var bookArr = cacheByBook[ann.bkId] {
+                            if let idx = bookArr.firstIndex(where: { $0.id == id }) {
+                                bookArr[idx] = ann
+                            } else {
+                                bookArr.append(ann)
+                            }
+                            cacheByBook[ann.bkId] = bookArr
+                        }
+                    }
+                }
+
+                // Incremental Tree Update (UI)
+                for ann in deletedAnnotations {
+                    if let id = ann.id { self.removeAnnotationFromTree(id: id, deletedAnnotation: ann) }
+                }
+                for ann in addedAnnotations {
+                    self.addAnnotationToTree(ann)
+                }
+                for ann in updatedAnnotations {
+                    self.updateAnnotationInTree(ann)
+                }
+            } else if totalChanges >= 100 {
+                // Bulk Update: Reload Everything
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.clearAllCaches()
+                    self.invalidateTree()
+                    self.buildAnnotationTree()
+                }
+            }
+        } catch {
+            print("AnnotationManager: Failed to apply CloudKit changes - \\(error)")
+        }
     }
 }

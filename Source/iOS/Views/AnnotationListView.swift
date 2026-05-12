@@ -47,6 +47,14 @@ struct AnnotationListView: View {
                         Text("Ascending").tag(true)
                         Text("Descending").tag(false)
                     }
+                    
+                    Divider()
+                    
+                    Button(role: .destructive) {
+                        CloudKitSyncManager.shared.resetChangeToken()
+                    } label: {
+                        Label("Re-Synchronise All Data", systemImage: "arrow.counterclockwise.icloud")
+                    }
                 } label: {
                     Image(systemName: "arrow.up.arrow.down.circle")
                 }

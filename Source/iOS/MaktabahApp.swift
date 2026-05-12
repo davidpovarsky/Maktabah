@@ -1,8 +1,10 @@
 import SwiftUI
+import CloudKit
 
 @main
 struct MaktabahApp: App {
     @Environment(\.scenePhase) private var scenePhase
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     static var isIpad: Bool {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -21,6 +23,7 @@ struct MaktabahApp: App {
         AppConfig.initializeMode()
         ArabicFont.registerCustomFonts()
         AppConfig.setupAnnotationsAndResults()
+        CloudKitSyncManager.shared.initializeOnLaunch()
         // CoreDatabaseBootstrap.run()
     }
 
@@ -29,6 +32,18 @@ struct MaktabahApp: App {
             iOSBootstrapView()
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        application.registerForRemoteNotifications()
+    }
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        CloudKitSyncManager.shared.fetchChanges()
+        completionHandler(.newData)
     }
 }
 

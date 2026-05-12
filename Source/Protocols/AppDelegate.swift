@@ -8,6 +8,7 @@
 
 import Cocoa
 import SwiftUI
+import CloudKit
 #if DIRECT_DISTRIBUTION
 import Sparkle
 #endif
@@ -92,9 +93,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
 
         AppConfig.setupAnnotationsAndResults()
+        CloudKitSyncManager.shared.initializeOnLaunch()
+        // Register for CloudKit remote notifications
+        NSApplication.shared.registerForRemoteNotifications()
+    }
+
+    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
+        Task {
+            try await Task.sleep(for: .seconds(5))
+            CloudKitSyncManager.shared.fetchChanges()
+        }
+    }
+
+    func applicationDidBecomeActive(_ notification: Notification) {
+        CloudKitSyncManager.shared.fetchChanges()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+        CloudKitSyncManager.shared.resetSyncingKey(syncing: false)
         ScreenTimeManager.shared.cancel()
         // Insert code here to tear down your application
     }

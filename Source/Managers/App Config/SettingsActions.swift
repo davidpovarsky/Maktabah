@@ -54,19 +54,34 @@ enum SettingsActions {
             onCompletion(nil)
         }
         #else
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
-        picker.allowsMultipleSelection = false
-        
-        documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
-            processURL(url)
-            documentPickerCoordinator = nil
-        }, onCancel: {
-            onCompletion(nil)
-            documentPickerCoordinator = nil
+        let showPicker = {
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+            picker.allowsMultipleSelection = false
+            
+            documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
+                processURL(url)
+                documentPickerCoordinator = nil
+            }, onCancel: {
+                onCompletion(nil)
+                documentPickerCoordinator = nil
+            })
+            picker.delegate = documentPickerCoordinator
+            
+            ReusableFunc.getTopViewController()?.present(picker, animated: true)
+        }
+
+        let alert = UIAlertController(
+            title: NSLocalizedString("personalFolder", comment: ""),
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Choose Folder", comment: ""), style: .default) { _ in
+            showPicker()
         })
-        picker.delegate = documentPickerCoordinator
-        
-        ReusableFunc.getTopViewController()?.present(picker, animated: true)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            onCompletion(nil)
+        })
+        ReusableFunc.getTopViewController()?.present(alert, animated: true)
         #endif
     }
 
@@ -100,21 +115,40 @@ enum SettingsActions {
         onCompletion?(false)
         return false
         #else
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
-        picker.allowsMultipleSelection = false
-        
-        documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
-            let success = performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
-            onCompletion?(success)
-            documentPickerCoordinator = nil
-        }, onCancel: {
-            onCompletion?(false)
-            documentPickerCoordinator = nil
+        let showPicker = {
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+            picker.allowsMultipleSelection = false
+            
+            documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
+                let success = performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
+                onCompletion?(success)
+                documentPickerCoordinator = nil
+            }, onCancel: {
+                onCompletion?(false)
+                documentPickerCoordinator = nil
+            })
+            picker.delegate = documentPickerCoordinator
+            
+            ReusableFunc.getTopViewController()?.present(picker, animated: true)
+        }
+
+        let alert = UIAlertController(
+            title: NSLocalizedString("appNeedAccess", comment: ""),
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Choose Folder", comment: ""), style: .default) { _ in
+            showPicker()
         })
-        picker.delegate = documentPickerCoordinator
-        
-        ReusableFunc.getTopViewController()?.present(picker, animated: true)
-        return true // On iOS, we return true as we've shown the picker
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            if shouldTerminateOnCancel {
+                // On iOS we don't usually terminate the app, but we can show an alert
+                showAccessNeededAlert()
+            }
+            onCompletion?(false)
+        })
+        ReusableFunc.getTopViewController()?.present(alert, animated: true)
+        return true // On iOS, we return true as we've shown the alert/picker
         #endif
     }
 
@@ -250,19 +284,34 @@ enum SettingsActions {
             onCompletion(nil)
         }
         #else
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
-        picker.allowsMultipleSelection = false
-        
-        documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
-            onCompletion(url)
-            documentPickerCoordinator = nil
-        }, onCancel: {
-            onCompletion(nil)
-            documentPickerCoordinator = nil
+        let showPicker = {
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+            picker.allowsMultipleSelection = false
+            
+            documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
+                onCompletion(url)
+                documentPickerCoordinator = nil
+            }, onCancel: {
+                onCompletion(nil)
+                documentPickerCoordinator = nil
+            })
+            picker.delegate = documentPickerCoordinator
+            
+            ReusableFunc.getTopViewController()?.present(picker, animated: true)
+        }
+
+        let alert = UIAlertController(
+            title: NSLocalizedString("personalFolder", comment: ""),
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Choose Folder", comment: ""), style: .default) { _ in
+            showPicker()
         })
-        picker.delegate = documentPickerCoordinator
-        
-        ReusableFunc.getTopViewController()?.present(picker, animated: true)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            onCompletion(nil)
+        })
+        ReusableFunc.getTopViewController()?.present(alert, animated: true)
         #endif
     }
 
@@ -329,11 +378,8 @@ enum SettingsActions {
             key: AppConfig.annotationsAndResultsFolder
         )
 
-        try AnnotationsResultsFileMonitor.shared.suppressCallbacks {
-            try AnnotationManager.shared.setupAnnotations(at: newURL)
-            try ResultsHandler.shared.setupResultDatabase(at: newURL)
-        }
-        AnnotationsResultsFileMonitor.shared.updatePresentedFiles(in: newURL)
+        try AnnotationManager.shared.setupAnnotations(at: newURL)
+        try ResultsHandler.shared.setupResultDatabase(at: newURL)
     }
 }
 
