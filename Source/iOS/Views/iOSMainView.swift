@@ -45,6 +45,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
 // MARK: - Main View
 
 struct iOSMainView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var navigationManager = iOSNavigationManager()
     @State private var selectedTab: iOSTab = .viewer
@@ -111,6 +112,14 @@ struct iOSMainView: View {
                 message: Text(item.message),
                 dismissButton: .default(Text("OK"))
             )
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                iOSHistoryViewModel.shared.refreshFromCloud()
+            }
+            if newPhase == .background {
+                iOSHistoryViewModel.shared.saveToUserDefaults()
+            }
         }
     }
 }

@@ -29,14 +29,6 @@ struct MaktabahApp: App {
             iOSBootstrapView()
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
         }
-        .onChange(of: scenePhase) { oldPhase, newPhase in
-            if newPhase == .active {
-                iOSHistoryViewModel.shared.refreshFromCloud()
-            }
-            if newPhase == .background {
-                iOSHistoryViewModel.shared.saveToUserDefaults()
-            }
-        }
     }
 }
 
