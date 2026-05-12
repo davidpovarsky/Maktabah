@@ -74,6 +74,7 @@ final class CloudKitSyncManager {
     }
 
     private func performInitialUploadCheck() {
+        // 1. Backfill Annotations
         if let db = AnnotationManager.shared.db {
             try? AnnotationManager.shared.backfillCloudKitFieldsIfNeeded(in: db) { backfilled in
                 if !backfilled.isEmpty {
@@ -85,6 +86,12 @@ final class CloudKitSyncManager {
             }
         }
 
+        // 2. Backfill Results
+        if let db = ResultsHandler.shared.db {
+            try? ResultsHandler.shared.backfillResultsCloudKitFieldsIfNeeded(in: db)
+        }
+
+        // 3. Initial Upload
         if !UserDefaults.standard.bool(forKey: "CloudKitSyncManager_InitialUploadDone") {
             print("CloudKitSyncManager: Performing initial upload of all data...")
             uploadAllLocalData()
@@ -93,12 +100,26 @@ final class CloudKitSyncManager {
     }
 
     private func uploadAllLocalData() {
+        // 1. Upload Annotations
         let allAnnotations = AnnotationManager.shared.loadAnnotations()
         let batchSize = 200
         for i in stride(from: 0, to: allAnnotations.count, by: batchSize) {
             let endIndex = min(i + batchSize, allAnnotations.count)
             let batch = Array(allAnnotations[i ..< endIndex])
             upload(annotations: batch)
+        }
+
+        // 2. Upload Folders & Results
+        let allFolders = ResultsHandler.shared.fetchAllSyncFolders()
+        for i in stride(from: 0, to: allFolders.count, by: batchSize) {
+            let endIndex = min(i + batchSize, allFolders.count)
+            uploadResultsData(folders: Array(allFolders[i ..< endIndex]), results: [])
+        }
+
+        let allResults = ResultsHandler.shared.fetchAllSyncResults()
+        for i in stride(from: 0, to: allResults.count, by: batchSize) {
+            let endIndex = min(i + batchSize, allResults.count)
+            uploadResultsData(folders: [], results: Array(allResults[i ..< endIndex]))
         }
     }
 
@@ -145,6 +166,51 @@ final class CloudKitSyncManager {
                 if let ckError = error as? CKError {
                     print("Detail CKError: code=\(ckError.code.rawValue), info=\(ckError.userInfo)")
                 }
+            }
+            #endif
+        }
+        operation.qualityOfService = .userInitiated
+        privateDatabase.add(operation)
+    }
+
+    func uploadResultsData(folders: [SyncFolder], results: [SyncResult]) {
+        guard AppConfig.useICloud else { return }
+
+        var recordsToSave: [CKRecord] = []
+
+        for f in folders {
+            guard let ckId = f.ckRecordId else { continue }
+            let record = CKRecord(recordType: "SearchFolder", recordID: CKRecord.ID(recordName: ckId, zoneID: zoneId))
+            record["name"] = f.name
+            record["lastModified"] = f.lastModified ?? Int64(Date().timeIntervalSince1970)
+            record["parentCkRecordId"] = f.parentCkRecordId
+            recordsToSave.append(record)
+        }
+
+        for r in results {
+            guard let ckId = r.ckRecordId else { continue }
+            let record = CKRecord(recordType: "SearchResult", recordID: CKRecord.ID(recordName: ckId, zoneID: zoneId))
+            record["name"] = r.name
+            record["query"] = r.query
+            record["archive"] = r.archive
+            record["bkId"] = r.bkId
+            record["contentId"] = r.contentId
+            record["lastModified"] = r.lastModified ?? Int64(Date().timeIntervalSince1970)
+            record["folderCkRecordId"] = r.folderCkRecordId
+            recordsToSave.append(record)
+        }
+
+        guard !recordsToSave.isEmpty else { return }
+
+        let operation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
+        operation.savePolicy = .changedKeys
+        operation.modifyRecordsResultBlock = { result in
+            #if DEBUG
+            switch result {
+            case .success:
+                print("CloudKitSyncManager: Berhasil upload \(recordsToSave.count) data pencarian.")
+            case .failure(let error):
+                print("CloudKitSyncManager: Gagal upload data pencarian: \(error.localizedDescription)")
             }
             #endif
         }
@@ -322,11 +388,21 @@ final class CloudKitSyncManager {
 
     private func applyChangesLocally(recordsToSave: [CKRecord], recordIDsToDelete: [CKRecord.ID]) {
         var annotations: [Annotation] = []
+        var folders: [SyncFolder] = []
+        var searchResults: [SyncResult] = []
 
         for record in recordsToSave {
             if record.recordType == recordType {
                 if let ann = parseAnnotation(from: record) {
                     annotations.append(ann)
+                }
+            } else if record.recordType == "SearchFolder" {
+                if let folder = parseSyncFolder(from: record) {
+                    folders.append(folder)
+                }
+            } else if record.recordType == "SearchResult" {
+                if let res = parseSyncResult(from: record) {
+                    searchResults.append(res)
                 }
             }
         }
@@ -335,6 +411,14 @@ final class CloudKitSyncManager {
 
         if !annotations.isEmpty || !recordIDsToDelete.isEmpty {
             AnnotationManager.shared.applyCloudKitChanges(annotationsToSave: annotations, recordIdsToDelete: idsToDelete)
+        }
+
+        if !folders.isEmpty || !recordIDsToDelete.isEmpty {
+            ResultsHandler.shared.applyCloudKitFolderChanges(foldersToSave: folders, recordIdsToDelete: idsToDelete)
+        }
+
+        if !searchResults.isEmpty || !recordIDsToDelete.isEmpty {
+            ResultsHandler.shared.applyCloudKitResultChanges(resultsToSave: searchResults, recordIdsToDelete: idsToDelete)
         }
     }
 
@@ -378,6 +462,40 @@ final class CloudKitSyncManager {
             tags: tags,
             ckRecordId: record.recordID.recordName,
             lastModified: lastModified
+        )
+    }
+
+    private func parseSyncFolder(from record: CKRecord) -> SyncFolder? {
+        guard let name = record["name"] as? String else { return nil }
+        return SyncFolder(
+            id: nil,
+            name: name,
+            parent: nil,
+            ckRecordId: record.recordID.recordName,
+            lastModified: record["lastModified"] as? Int64,
+            parentCkRecordId: record["parentCkRecordId"] as? String
+        )
+    }
+
+    private func parseSyncResult(from record: CKRecord) -> SyncResult? {
+        guard let name = record["name"] as? String,
+              let query = record["query"] as? String,
+              let archive = record["archive"] as? Int,
+              let bkId = record["bkId"] as? Int,
+              let contentId = record["contentId"] as? String
+        else { return nil }
+
+        return SyncResult(
+            id: nil,
+            folderId: nil,
+            name: name,
+            query: query,
+            archive: archive,
+            bkId: bkId,
+            contentId: contentId,
+            ckRecordId: record.recordID.recordName,
+            lastModified: record["lastModified"] as? Int64,
+            folderCkRecordId: record["folderCkRecordId"] as? String
         )
     }
 
