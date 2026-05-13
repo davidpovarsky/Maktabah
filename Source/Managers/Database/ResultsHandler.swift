@@ -212,6 +212,21 @@ class ResultsHandler {
         }
     }
 
+    func nukeDatabase() {
+        guard let db = db else { return }
+        do {
+            try db.transaction {
+                try db.run(results.delete())
+                try db.run(foldersTbl.delete())
+            }
+            #if DEBUG
+            print("ResultsHandler: Local database purged.")
+            #endif
+        } catch {
+            print("ResultsHandler: Failed to purge database - \(error)")
+        }
+    }
+
     private func makeSyncFolder(from row: Row) -> SyncFolder {
         SyncFolder(
             id: row[id],

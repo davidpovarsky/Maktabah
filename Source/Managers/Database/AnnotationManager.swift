@@ -1778,6 +1778,24 @@ final class AnnotationManager {
         """)
     }
 
+    func nukeDatabase() {
+        guard let db = db else { return }
+        do {
+            try db.transaction {
+                try db.run(annotationTagsTable.delete())
+                try db.run(annotationsTable.delete())
+                try db.run(tagsTable.delete())
+            }
+            clearAllCaches()
+            invalidateTree()
+            #if DEBUG
+            print("AnnotationManager: Local database purged.")
+            #endif
+        } catch {
+            print("AnnotationManager: Failed to purge database - \(error)")
+        }
+    }
+
     // MARK: - CloudKit Sync Apply
     
     func applyCloudKitChanges(annotationsToSave: [Annotation], recordIdsToDelete: [String]) {

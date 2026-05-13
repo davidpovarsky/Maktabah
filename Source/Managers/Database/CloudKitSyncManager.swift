@@ -14,9 +14,12 @@ final class CloudKitSyncManager {
     private let zoneId: CKRecordZone.ID
 
     private let changeTokenKey = "CKServerChangeToken_AnnotationsZone"
-    private let isSyncingKey = "CloudKitSyncManager_IsSyncing"
+    private let pendingUploadsKey = "CloudKitSyncManager_PendingUploads"
+    private var isSyncing = false
+    private let syncQueue = DispatchQueue(label: "com.maktabah.cloudkitsync", attributes: .concurrent)
 
     private let recordType = "Annotation"
+    private var accountChangeObserver: NSObjectProtocol?
 
     private init() {
         container = CKContainer(identifier: "iCloud.Maktabah")
@@ -26,8 +29,63 @@ final class CloudKitSyncManager {
         setupAccountChangeObserver()
     }
 
+    private func addPendingUploads(_ ids: [String]) {
+        syncQueue.async(flags: .barrier) {
+            var pending = UserDefaults.standard.stringArray(forKey: self.pendingUploadsKey) ?? []
+            for id in ids where !pending.contains(id) {
+                pending.append(id)
+            }
+            UserDefaults.standard.set(pending, forKey: self.pendingUploadsKey)
+        }
+    }
+
+    private func removePendingUploads(_ ids: [String]) {
+        syncQueue.async(flags: .barrier) {
+            var pending = UserDefaults.standard.stringArray(forKey: self.pendingUploadsKey) ?? []
+            pending.removeAll { ids.contains($0) }
+            UserDefaults.standard.set(pending, forKey: self.pendingUploadsKey)
+        }
+    }
+
+    private func retryPendingUploads() {
+        let pending = UserDefaults.standard.stringArray(forKey: pendingUploadsKey) ?? []
+        guard !pending.isEmpty else { return }
+        
+        let allAnnotations = AnnotationManager.shared.loadAnnotations()
+        let toUploadAnn = allAnnotations.filter { ann in
+            guard let ckId = ann.ckRecordId else { return false }
+            return pending.contains(ckId)
+        }
+        
+        let allFolders = ResultsHandler.shared.fetchAllSyncFolders()
+        let toUploadFolders = allFolders.filter { f in
+            guard let ckId = f.ckRecordId else { return false }
+            return pending.contains(ckId)
+        }
+        
+        let allResults = ResultsHandler.shared.fetchAllSyncResults()
+        let toUploadResults = allResults.filter { r in
+            guard let ckId = r.ckRecordId else { return false }
+            return pending.contains(ckId)
+        }
+        
+        if !toUploadAnn.isEmpty {
+            #if DEBUG
+            print("CloudKitSyncManager: Retrying \(toUploadAnn.count) pending annotation uploads...")
+            #endif
+            upload(annotations: toUploadAnn)
+        }
+        
+        if !toUploadFolders.isEmpty || !toUploadResults.isEmpty {
+            #if DEBUG
+            print("CloudKitSyncManager: Retrying pending folder/result uploads...")
+            #endif
+            uploadResultsData(folders: toUploadFolders, results: toUploadResults)
+        }
+    }
+
     private func setupAccountChangeObserver() {
-        NotificationCenter.default.addObserver(
+        accountChangeObserver = NotificationCenter.default.addObserver(
             forName: .CKAccountChanged,
             object: nil,
             queue: .main
@@ -62,6 +120,9 @@ final class CloudKitSyncManager {
 
                 // Check for backfill and initial upload
                 self?.performInitialUploadCheck()
+                
+                // Retry any previously failed uploads
+                self?.retryPendingUploads()
 
             case .failure(let error):
                 #if DEBUG
@@ -93,40 +154,67 @@ final class CloudKitSyncManager {
 
         // 3. Initial Upload
         if !UserDefaults.standard.bool(forKey: "CloudKitSyncManager_InitialUploadDone") {
+            #if DEBUG
             print("CloudKitSyncManager: Performing initial upload of all data...")
-            uploadAllLocalData()
-            UserDefaults.standard.set(true, forKey: "CloudKitSyncManager_InitialUploadDone")
+            #endif
+            uploadAllLocalData { success in
+                if success {
+                    UserDefaults.standard.set(true, forKey: "CloudKitSyncManager_InitialUploadDone")
+                }
+            }
         }
     }
 
-    private func uploadAllLocalData() {
+    private func uploadAllLocalData(completion: @escaping (Bool) -> Void) {
+        let group = DispatchGroup()
+        var hasError = false
+        let batchSize = 200
+
         // 1. Upload Annotations
         let allAnnotations = AnnotationManager.shared.loadAnnotations()
-        let batchSize = 200
         for i in stride(from: 0, to: allAnnotations.count, by: batchSize) {
             let endIndex = min(i + batchSize, allAnnotations.count)
             let batch = Array(allAnnotations[i ..< endIndex])
-            upload(annotations: batch)
+            group.enter()
+            upload(annotations: batch) { result in
+                if case .failure = result { hasError = true }
+                group.leave()
+            }
         }
 
         // 2. Upload Folders & Results
         let allFolders = ResultsHandler.shared.fetchAllSyncFolders()
         for i in stride(from: 0, to: allFolders.count, by: batchSize) {
             let endIndex = min(i + batchSize, allFolders.count)
-            uploadResultsData(folders: Array(allFolders[i ..< endIndex]), results: [])
+            group.enter()
+            uploadResultsData(folders: Array(allFolders[i ..< endIndex]), results: []) { result in
+                if case .failure = result { hasError = true }
+                group.leave()
+            }
         }
 
         let allResults = ResultsHandler.shared.fetchAllSyncResults()
         for i in stride(from: 0, to: allResults.count, by: batchSize) {
             let endIndex = min(i + batchSize, allResults.count)
-            uploadResultsData(folders: [], results: Array(allResults[i ..< endIndex]))
+            group.enter()
+            uploadResultsData(folders: [], results: Array(allResults[i ..< endIndex])) { result in
+                if case .failure = result { hasError = true }
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completion(!hasError)
         }
     }
 
     // MARK: - Upload (Insert/Update)
 
-    func upload(annotations: [Annotation]) {
-        guard AppConfig.useICloud else { return }
+    func upload(annotations: [Annotation], completion: ((Result<Void, Error>) -> Void)? = nil) {
+        guard AppConfig.useICloud else {
+            completion?(.success(()))
+            return
+        }
 
         let recordsToSave = annotations.compactMap { ann -> CKRecord? in
             guard let ckRecordIdStr = ann.ckRecordId else { return nil }
@@ -152,20 +240,33 @@ final class CloudKitSyncManager {
             return record
         }
 
-        guard !recordsToSave.isEmpty else { return }
+        guard !recordsToSave.isEmpty else {
+            completion?(.success(()))
+            return
+        }
 
         let operation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
         operation.savePolicy = .changedKeys
-        operation.modifyRecordsResultBlock = { result in
+        
+        let recordIdsStrings = recordsToSave.map { $0.recordID.recordName }
+        addPendingUploads(recordIdsStrings)
+
+        operation.modifyRecordsResultBlock = { [weak self] result in
+            completion?(result.map { _ in () })
             #if DEBUG
             switch result {
             case .success:
-                print("CloudKitSyncManager: Berhasil upload \(recordsToSave.count) anotasi.")
+                print("CloudKitSyncManager: Berhasil upload \(recordsToSave.count) records.")
+                self?.removePendingUploads(recordIdsStrings)
             case .failure(let error):
                 print("CloudKitSyncManager: Gagal upload. Error: \(error.localizedDescription)")
                 if let ckError = error as? CKError {
                     print("Detail CKError: code=\(ckError.code.rawValue), info=\(ckError.userInfo)")
                 }
+            }
+            #else
+            if case .success = result {
+                self?.removePendingUploads(recordIdsStrings)
             }
             #endif
         }
@@ -173,8 +274,11 @@ final class CloudKitSyncManager {
         privateDatabase.add(operation)
     }
 
-    func uploadResultsData(folders: [SyncFolder], results: [SyncResult]) {
-        guard AppConfig.useICloud else { return }
+    func uploadResultsData(folders: [SyncFolder], results: [SyncResult], completion: ((Result<Void, Error>) -> Void)? = nil) {
+        guard AppConfig.useICloud else {
+            completion?(.success(()))
+            return
+        }
 
         var recordsToSave: [CKRecord] = []
 
@@ -200,17 +304,30 @@ final class CloudKitSyncManager {
             recordsToSave.append(record)
         }
 
-        guard !recordsToSave.isEmpty else { return }
+        guard !recordsToSave.isEmpty else {
+            completion?(.success(()))
+            return
+        }
 
         let operation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
         operation.savePolicy = .changedKeys
-        operation.modifyRecordsResultBlock = { result in
+        
+        let recordIdsStrings = recordsToSave.map { $0.recordID.recordName }
+        addPendingUploads(recordIdsStrings)
+
+        operation.modifyRecordsResultBlock = { [weak self] result in
+            completion?(result.map { _ in () })
             #if DEBUG
             switch result {
             case .success:
                 print("CloudKitSyncManager: Berhasil upload \(recordsToSave.count) data pencarian.")
+                self?.removePendingUploads(recordIdsStrings)
             case .failure(let error):
                 print("CloudKitSyncManager: Gagal upload data pencarian: \(error.localizedDescription)")
+            }
+            #else
+            if case .success = result {
+                self?.removePendingUploads(recordIdsStrings)
             }
             #endif
         }
@@ -287,12 +404,18 @@ final class CloudKitSyncManager {
 
     // MARK: - Fetch Changes (Delta)
 
-    func fetchChanges() {
+    func fetchChanges(retryCount: Int = 0) {
         guard AppConfig.useICloud else { return }
 
         // Prevent concurrent syncs
-        if UserDefaults.standard.bool(forKey: isSyncingKey) { return }
-        UserDefaults.standard.set(true, forKey: isSyncingKey)
+        var shouldProceed = false
+        syncQueue.sync {
+            if !isSyncing {
+                isSyncing = true
+                shouldProceed = true
+            }
+        }
+        guard shouldProceed else { return }
 
         var previousToken: CKServerChangeToken?
 
@@ -347,12 +470,10 @@ final class CloudKitSyncManager {
                 self.resetSyncingKey(syncing: false)
 
                 if moreComing {
-                    self.fetchChanges()
+                    self.fetchChanges(retryCount: 0)
                 }
             case .failure(let error):
-                #if DEBUG
-                print("error saat fetch changes:", error.localizedDescription)
-                #endif
+                self.handleCloudKitError(error, operationType: .fetchChanges, retryCount: retryCount)
                 self.resetSyncingKey(syncing: false)
             }
         }
@@ -361,8 +482,105 @@ final class CloudKitSyncManager {
         privateDatabase.add(operation)
     }
 
+    // MARK: - Error Handling
+
+    private enum CKOperationType {
+        case fetchChanges, upload, delete, subscribe
+    }
+
+    private func handleCloudKitError(_ error: Error, operationType: CKOperationType, retryCount: Int = 0) {
+        guard let ckError = error as? CKError else {
+            #if DEBUG
+            print("CloudKitSyncManager: Non-CKError occurred: \(error.localizedDescription)")
+            #endif
+            return
+        }
+
+        switch ckError.code {
+        case .changeTokenExpired:
+            #if DEBUG
+            print("CloudKitSyncManager: Token expired. Resetting and re-fetching...")
+            #endif
+            resetChangeToken()
+
+        case .serviceUnavailable, .requestRateLimited, .zoneBusy:
+            let retryDelay = ckError.retryAfterSeconds ?? 3.0
+            #if DEBUG
+            print("CloudKitSyncManager: Server busy/unavailable. Retrying in \(retryDelay)s...")
+            #endif
+            if retryCount < 3 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + retryDelay) {
+                    switch operationType {
+                    case .fetchChanges: self.fetchChanges(retryCount: retryCount + 1)
+                    default: break // Simple operations might be retried by the system or user trigger
+                    }
+                }
+            }
+
+        case .zoneNotFound:
+            #if DEBUG
+            print("CloudKitSyncManager: Zone not found. Re-initializing...")
+            #endif
+            initializeOnLaunch()
+
+        case .serverRecordChanged:
+            #if DEBUG
+            print("CloudKitSyncManager: Server record changed. Resolving conflict...")
+            #endif
+            guard let serverRecord = ckError.userInfo[CKRecordChangedErrorServerRecordKey] as? CKRecord,
+                  let localRecord = ckError.userInfo[CKRecordChangedErrorClientRecordKey] as? CKRecord else { return }
+                  
+            let serverLastModified = serverRecord["lastModified"] as? Int64 ?? 0
+            let localLastModified = localRecord["lastModified"] as? Int64 ?? 0
+            
+            if localLastModified >= serverLastModified {
+                // Local is newer, force save
+                let operation = CKModifyRecordsOperation(recordsToSave: [localRecord], recordIDsToDelete: nil)
+                operation.savePolicy = .allKeys // Force overwrite
+                operation.qualityOfService = .userInitiated
+                privateDatabase.add(operation)
+            } else {
+                // Server is newer, applying changes locally
+                applyChangesLocally(recordsToSave: [serverRecord], recordIDsToDelete: [])
+            }
+
+        case .partialFailure:
+            #if DEBUG
+            print("CloudKitSyncManager: Partial failure occurred.")
+            if let partialErrors = ckError.userInfo[CKPartialErrorsByItemIDKey] as? [NSObject: Error] {
+                for (id, error) in partialErrors {
+                    print("   - Item \(id) failed: \(error.localizedDescription)")
+                }
+            }
+            #endif
+
+        case .notAuthenticated:
+            #if DEBUG
+            print("CloudKitSyncManager: User not authenticated. Sync disabled.")
+            #endif
+            DispatchQueue.main.async {
+                ReusableFunc.showAlert(
+                    title: "iCloud Error",
+                    message: ckError.localizedDescription
+                )
+            }
+
+        case .networkUnavailable, .networkFailure:
+            #if DEBUG
+            print("CloudKitSyncManager: Network issues. Sync will resume when online.")
+            #endif
+
+        default:
+            #if DEBUG
+            print("CloudKitSyncManager: Unhandled error (\(ckError.code.rawValue)): \(ckError.localizedDescription)")
+            #endif
+        }
+    }
+
     func resetSyncingKey(syncing: Bool) {
-        UserDefaults.standard.set(syncing, forKey: isSyncingKey)
+        syncQueue.async(flags: .barrier) { [weak self] in
+            self?.isSyncing = syncing
+        }
     }
 
     private func saveToken(_ token: CKServerChangeToken?) {
@@ -513,9 +731,16 @@ final class CloudKitSyncManager {
         operation.modifySubscriptionsResultBlock = { result in
             switch result {
             case .success:
+                #if DEBUG
                 print("CloudKitSyncManager: Subscribed to zone changes")
+                #endif
             case .failure(let error):
-                print("CloudKitSyncManager: Failed to subscribe: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    ReusableFunc.showAlert(
+                        title: "CloudKitSyncManager",
+                        message: "Failed to subscribe: \(error.localizedDescription)"
+                    )
+                }
             }
         }
         operation.qualityOfService = .utility
@@ -525,7 +750,9 @@ final class CloudKitSyncManager {
     func resetChangeToken() {
         UserDefaults.standard.removeObject(forKey: changeTokenKey)
         UserDefaults.standard.removeObject(forKey: "CloudKitSyncManager_InitialUploadDone")
-        print("Change token direset, fetch ulang dari awal")
+
+        // Also clear syncing key to be safe
+        resetSyncingKey(syncing: false)
         fetchChanges()
     }
 }
