@@ -62,6 +62,29 @@ class iOSReaderViewModel {
 
     init(book: BooksData) {
         self.book = book
+        setupNotificationObservers()
+    }
+
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            forName: .annotationDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.loadAnnotations()
+            }
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .annotationTreeDidUpdate,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.loadAnnotations()
+            }
+        }
     }
 
     func loadInitialContent(initialContentId: Int? = nil) {
@@ -193,8 +216,10 @@ class iOSReaderViewModel {
                 mode: mode
             )
             loadAnnotations()
+            triggerHapticFeedback(.success)
         } catch {
             print("Failed to save annotation: \(error)")
+            triggerHapticFeedback(.error)
         }
     }
 
@@ -202,8 +227,10 @@ class iOSReaderViewModel {
         do {
             try AnnotationManager.shared.deleteAnnotation(id: id)
             loadAnnotations()
+            triggerHapticFeedback(.warning)
         } catch {
             print("Failed to delete annotation: \(error.localizedDescription)")
+            triggerHapticFeedback(.error)
         }
     }
 
@@ -211,8 +238,26 @@ class iOSReaderViewModel {
         do {
             try AnnotationManager.shared.updateAnnotation(annotation)
             loadAnnotations()
+            triggerHapticFeedback(.success)
         } catch {
             print("Failed to update annotation: \(error.localizedDescription)")
+            triggerHapticFeedback(.error)
+        }
+    }
+
+    private enum HapticType {
+        case success, error, warning
+    }
+
+    private func triggerHapticFeedback(_ type: HapticType) {
+        let generator = UINotificationFeedbackGenerator()
+        switch type {
+        case .success:
+            generator.notificationOccurred(.success)
+        case .error:
+            generator.notificationOccurred(.error)
+        case .warning:
+            generator.notificationOccurred(.warning)
         }
     }
 

@@ -447,9 +447,16 @@ struct iOSBookAnnotationsView: View {
             .listStyle(.plain)
             .navigationTitle("Annotations")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: Button("Close") {
-                presentationMode.wrappedValue.dismiss()
-            })
+            .navigationBarItems(
+                leading: Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                },
+                trailing: Button(action: {
+                    CloudKitSyncManager.shared.resetChangeToken()
+                }) {
+                    Image(systemName: "arrow.counterclockwise.icloud")
+                }
+            )
             .onAppear {
                 loadBookAnnotations()
             }

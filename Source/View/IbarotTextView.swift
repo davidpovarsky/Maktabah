@@ -81,6 +81,22 @@ class IbarotTextView: NSTextView {
             self?.annotationEditorDidDelete(anns)
         }
 
+        NotificationCenter.default.addObserver(
+            forName: .annotationDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            self?.handleIncrementalAnnotationChange(notification)
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .annotationTreeDidUpdate,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.refreshAnnotations()
+        }
+
         annotationClickSetting = NotificationCenter.default.addObserver(
             forName: .didChangeClickableAnnotation,
             object: nil,
@@ -930,6 +946,62 @@ class IbarotTextView: NSTextView {
 
     private func sourceTextForAnnotations() -> String {
         currentRenderResult?.sourceText ?? string
+    }
+
+    private func handleIncrementalAnnotationChange(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let changeTypeRaw = userInfo[AnnotationNotificationKeys.changeType] as? String,
+              let changeType = AnnotationChangeType(rawValue: changeTypeRaw),
+              let ts = textStorage
+        else { return }
+
+        let annotation = userInfo[AnnotationNotificationKeys.annotation] as? Annotation
+        let annotationId = userInfo[AnnotationNotificationKeys.annotationId] as? Int64
+
+        ts.beginEditing()
+        switch changeType {
+        case .added:
+            if let ann = annotation, ann.bkId == self.bkId, ann.contentId == self.contentId {
+                renderer.applyAnnotations(
+                    [ann],
+                    to: ts,
+                    showHarakat: state.showHarakat,
+                    replacementEvents: currentRenderResult?.replacementEvents ?? []
+                )
+            }
+        case .updated:
+            if let ann = annotation, ann.bkId == self.bkId, ann.contentId == self.contentId, let id = ann.id {
+                removeAttributesForAnnotationId(id)
+                renderer.applyAnnotations(
+                    [ann],
+                    to: ts,
+                    showHarakat: state.showHarakat,
+                    replacementEvents: currentRenderResult?.replacementEvents ?? []
+                )
+            }
+        case .deleted:
+            if let id = annotationId {
+                removeAttributesForAnnotationId(id)
+            }
+        }
+        ts.endEditing()
+    }
+
+    private func removeAttributesForAnnotationId(_ id: Int64) {
+        guard let ts = textStorage else { return }
+        let fullRange = NSRange(location: 0, length: ts.length)
+        ts.enumerateAttribute(
+            NSAttributedString.Key("annotationID"),
+            in: fullRange,
+            options: []
+        ) { value, range, _ in
+            if let attrId = value as? Int64, attrId == id {
+                ts.removeAttribute(.backgroundColor, range: range)
+                ts.removeAttribute(.underlineStyle, range: range)
+                ts.removeAttribute(.link, range: range)
+                ts.removeAttribute(NSAttributedString.Key("annotationID"), range: range)
+            }
+        }
     }
 }
 
