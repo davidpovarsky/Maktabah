@@ -197,10 +197,7 @@ struct BundleArchiveDownloadProgressView: View {
                     .keyboardShortcut(.cancelAction)
 
                     Button(
-                        NSLocalizedString(
-                            "Download",
-                            comment: "Download action button"
-                        ),
+                        String(localized:"Download"),
                         action: onConfirm
                     )
                     .buttonStyle(.borderedProminent)

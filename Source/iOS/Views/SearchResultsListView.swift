@@ -48,5 +48,6 @@ struct SearchResultRow: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(.vertical, 4)
+        .contentShape(Rectangle())
     }
 }

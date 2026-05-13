@@ -116,11 +116,7 @@ struct CoreDownloadProgressView: View {
             }
         case .downloading:
             Text(
-                NSLocalizedString(
-                    "core.modal.downloading",
-                    value: "Downloading database. Please wait…",
-                    comment: ""
-                )
+                String(localized:"core.modal.downloading")
             )
             .font(.callout)
             .foregroundStyle(.secondary)

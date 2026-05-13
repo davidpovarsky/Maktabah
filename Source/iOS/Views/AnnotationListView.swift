@@ -15,7 +15,6 @@ struct AnnotationListView: View {
                 .buttonStyle(.plain)
             } else {
                 AnnotationNodeRow(node: node, viewModel: viewModel)
-                    .contentShape(Rectangle())
             }
         }
         .onAppear {
@@ -82,14 +81,14 @@ struct AnnotationNodeRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(ann.context)
                         .font(iOSReaderViewModel.kfgqpc)
-                        .lineLimit(3)
+                        .lineLimit(2)
                         .truncationMode(.tail)
-                        .multilineTextAlignment(.trailing)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .frame(maxWidth: .infinity, alignment: .leading)
 
                     if let note = ann.note, !note.isEmpty {
                         Text(note)
                             .font(.caption)
+                            .lineLimit(4)
                             .foregroundColor(.secondary)
                     }
 
@@ -112,7 +111,7 @@ struct AnnotationNodeRow: View {
                                     .foregroundColor(.secondary)
                                     .lineLimit(1)
                                     .truncationMode(.middle)
-                                    .frame(maxWidth: 120, alignment: .trailing)
+                                    .frame(maxWidth: 120, alignment: .leading)
                             }
                         } else {
                             if !ann.tags.isEmpty {
@@ -121,7 +120,7 @@ struct AnnotationNodeRow: View {
                                     .foregroundColor(.secondary)
                                     .lineLimit(1)
                                     .truncationMode(.tail)
-                                    .frame(maxWidth: 120, alignment: .trailing)
+                                    .frame(maxWidth: 120, alignment: .leading)
                             }
                         }
 
@@ -133,6 +132,7 @@ struct AnnotationNodeRow: View {
                         }
                     }
                 }
+                .environment(\.layoutDirection, .rightToLeft)
                 .padding(.vertical, 4)
                 // Add swipe actions for deletion on iOS 15+
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -147,6 +147,7 @@ struct AnnotationNodeRow: View {
                 Label {
                     Text(node.title)
                         .font(iOSReaderViewModel.kfgqpc)
+                        .lineLimit(1)
                 } icon: {
                     Image(systemName: iconForKind(node.kind))
                         .foregroundColor(.accentColor)
@@ -154,6 +155,7 @@ struct AnnotationNodeRow: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+        .contentShape(Rectangle())
     }
 
     private func iconForKind(_ kind: AnnotationNodeKind) -> String {

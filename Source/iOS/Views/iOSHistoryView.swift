@@ -73,6 +73,7 @@ struct BookRowView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
             }
+            .contentShape(Rectangle())
         }
     }
 }

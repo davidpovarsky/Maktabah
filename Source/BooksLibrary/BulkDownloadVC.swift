@@ -208,10 +208,7 @@ final class BulkDownloadVC: NSViewController {
         stopButton.action = #selector(stopTapped)
 
         // Download button
-        downloadButton.title = NSLocalizedString(
-            "Download",
-            comment: "Start bulk download"
-        )
+        downloadButton.title = String(localized:"Download")
         downloadButton.keyEquivalent = "\r"
         downloadButton.target = self
         downloadButton.action = #selector(downloadTapped)

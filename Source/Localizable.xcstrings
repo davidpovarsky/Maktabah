@@ -1099,7 +1099,6 @@
       }
     },
     "core.modal.downloading" : {
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1109,7 +1108,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Downloading database. Please wait…"
           }
         },
@@ -1499,7 +1498,7 @@
       }
     },
     "Download" : {
-      "comment" : "Download action button\nStart bulk download",
+      "comment" : "Download action button",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

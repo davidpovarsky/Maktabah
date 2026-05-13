@@ -49,6 +49,7 @@ struct SearchModeView: View {
                                                     .font(.caption)
                                                     .foregroundColor(.secondary)
                                             }
+                                            .contentShape(Rectangle())
                                         }
                                     }
                                     .onDelete { offsets in

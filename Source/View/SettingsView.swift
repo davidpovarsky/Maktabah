@@ -278,7 +278,6 @@ struct SettingsView: View {
                     .padding(.top, 4)
                 #else
                 actionButtons
-                    .padding(.top, 4)
                 #endif
             } header: {
                 Text("Annotations & Search Results")
