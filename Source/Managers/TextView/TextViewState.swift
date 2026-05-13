@@ -81,6 +81,10 @@ class TextViewState {
     }
 
     // MARK: - Computed Properties
+    var isDarkMode: Bool {
+        backgroundColorIndex > 1
+    }
+
     var currentFont: PlatformFont {
         PlatformFont(name: fontName, size: fontSize) ?? PlatformFont.systemFont(ofSize: fontSize)
     }

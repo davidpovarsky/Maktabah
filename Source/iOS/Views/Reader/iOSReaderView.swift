@@ -8,7 +8,7 @@ struct iOSReaderView: View {
     }
 
     var viewModel: iOSReaderViewModel
-    var textViewState = TextViewState.shared
+    @State private var textViewState = TextViewState.shared
 
     @State private var showingTOC = false
     @State private var showingOptions = false
@@ -47,7 +47,7 @@ struct iOSReaderView: View {
     }
 
     var isDarkMode: Bool {
-        textViewState.backgroundColorIndex > 1
+        textViewState.isDarkMode
     }
 
     var body: some View {
@@ -82,6 +82,7 @@ struct iOSReaderView: View {
                 }
                 .popover(isPresented: $showingBookInfo) {
                     iOSBookInfoView(book: book)
+                        .preferredColorScheme(isDarkMode ? .dark : .light)
                         .presentationCompactAdaptation(.popover)
                         .frame(maxWidth: 350, maxHeight: 450)
                 }

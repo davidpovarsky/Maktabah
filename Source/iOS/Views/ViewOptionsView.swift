@@ -3,7 +3,7 @@ import SwiftUI
 struct ViewOptionsView: View {
     @Environment(\.presentationMode) var presentationMode
 
-    var state = TextViewState.shared
+    @State private var state = TextViewState.shared
 
     let fontOptions = ArabicFont.allCases.map(\.rawValue)
     let lineHeights = [1.0, 1.1, 1.2, 1.3, 1.4, 1.5]
@@ -108,5 +108,6 @@ struct ViewOptionsView: View {
                 presentationMode.wrappedValue.dismiss()
             })
         }
+        .preferredColorScheme(state.isDarkMode ? .dark : .light)
     }
 }

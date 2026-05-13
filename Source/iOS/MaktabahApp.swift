@@ -15,8 +15,7 @@ struct MaktabahApp: App {
     }
 
     var isDarkMode: Bool {
-        TextViewState.shared
-            .backgroundColorIndex > 1
+        TextViewState.shared.isDarkMode
     }
 
     init() {

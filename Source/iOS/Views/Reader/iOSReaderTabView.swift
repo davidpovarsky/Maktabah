@@ -3,8 +3,7 @@ import SwiftUI
 struct iOSReaderTabView: View {
     @Environment(iOSNavigationManager.self) var bManager
     @State private var showingBookInfo = false
-
-    var textViewState = TextViewState.shared
+    @State private var textViewState = TextViewState.shared
 
     var backgroundColor: Color {
         let colors: [Color] = [
@@ -23,7 +22,7 @@ struct iOSReaderTabView: View {
     }
 
     var isDarkMode: Bool {
-        textViewState.backgroundColorIndex > 1
+        textViewState.isDarkMode
     }
 
     var body: some View {
@@ -86,11 +85,16 @@ struct iOSReaderTabView: View {
 
 struct iOSReaderBottomToolbarView: View {
     @Bindable var viewModel: iOSReaderViewModel
+    @State private var textViewState = TextViewState.shared
     @State private var showingNavigation = false
     @State private var showingOptions = false
     @State private var showingTOC = false
     @State private var showingAnnotationsList = false
     @State private var showingSearch = false
+
+    var isDarkMode: Bool {
+        textViewState.isDarkMode
+    }
 
     var body: some View {
         Button(viewModel.statusSubtitle, action: {
@@ -111,6 +115,7 @@ struct iOSReaderBottomToolbarView: View {
             ViewOptionsView()
                 .frame(width: 300, height: 500)
                 .presentationCompactAdaptation(.popover)
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
 
         Button(action: {
