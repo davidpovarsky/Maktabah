@@ -14,7 +14,6 @@ class IbarotTextView: NSTextView {
 
     private(set) var currentRenderResult: ArabicRenderResult?
     private(set) var footnoteRanges: [NSRange] = []
-    private var annotationObserver: NSObjectProtocol?
     private var annotationClickSetting: NSObjectProtocol?
 
     override var string: String {
@@ -65,21 +64,6 @@ class IbarotTextView: NSTextView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupTextView()
-        annotationObserver = NotificationCenter.default.addObserver(
-            forName: .annotationDidDeleteFromOutline,
-            object: nil,
-            queue: .main
-        ) { [weak self] notification in
-            guard let userInfo = notification.userInfo,
-                let anns = userInfo["annotations"] as? [Annotation]
-            else {
-                #if DEBUG
-                    print("error notification")
-                #endif
-                return
-            }
-            self?.annotationEditorDidDelete(anns)
-        }
 
         NotificationCenter.default.addObserver(
             forName: .annotationDidChange,
@@ -124,8 +108,7 @@ class IbarotTextView: NSTextView {
             {
                 presentAnnotationEditor(
                     ann,
-                    atCharIndex: charIndex,
-                    in: self
+                    atCharIndex: charIndex
                 )
             }
         }
@@ -176,14 +159,11 @@ class IbarotTextView: NSTextView {
         #if DEBUG
             print("deinit IbarotTextView")
         #endif
-        if let annotationObserver,
-           let annotationClickSetting
+        if let annotationClickSetting
         {
-            NotificationCenter.default.removeObserver(annotationObserver)
             NotificationCenter.default.removeObserver(annotationClickSetting)
         }
         annotationClickSetting = nil
-        annotationObserver = nil
     }
 
     private func setupTextView() {
@@ -642,7 +622,6 @@ class IbarotTextView: NSTextView {
 
     @objc private func deleteAnnotationMenuItem(_ sender: NSMenuItem) {
         guard let idAny = sender.representedObject else { return }
-        // id mungkin Optional<Int64> atau Int64
         let id: Int64?
         if let i = idAny as? Int64 {
             id = i
@@ -652,24 +631,11 @@ class IbarotTextView: NSTextView {
             id = nil
         }
 
-        guard let annId = id,
-            let ann = AnnotationManager.shared.loadAnnotationById(annId)
-        else { return }
+        guard let annId = id else { return }
 
-        // Hapus dari manager / database
+        // Cukup hapus dari manager. 
+        // UI akan terupdate otomatis via handleIncrementalAnnotationChange
         try? AnnotationManager.shared.deleteAnnotation(id: annId)
-
-        // Update UI: hapus atribut annotation dari textStorage dan reapply annotations
-        if let ts = textStorage {
-            ts.beginEditing()
-
-            let range = displayedRange(for: ann)
-            removeAttributesForRange(range, in: ts)
-
-            ts.endEditing()
-
-            setSelectedRange(NSRange(location: NSNotFound, length: 0))
-        }
     }
 
     // MARK: - applyHighlightWithColor
@@ -798,7 +764,7 @@ class IbarotTextView: NSTextView {
         ) {
             // Jika ada, buka editor untuk annotation yang sudah ada
             let middleIndex = displayedSelection.location + (displayedSelection.length / 2)
-            presentAnnotationEditorForNewAnnotation(
+            presentAnnotationEditor(
                 existing,
                 atCharIndex: middleIndex
             )
@@ -836,7 +802,7 @@ class IbarotTextView: NSTextView {
             tags: []
         )
 
-        presentAnnotationEditorForNewAnnotation(ann, atCharIndex: middleIndex)
+        presentAnnotationEditor(ann, atCharIndex: middleIndex)
     }
 
     func refreshAnnotations() {
@@ -880,13 +846,12 @@ class IbarotTextView: NSTextView {
         ts.endEditing()
     }
 
-    func presentAnnotationEditorForNewAnnotation(
+    func presentAnnotationEditor(
         _ annotation: Annotation,
         atCharIndex charIndex: Int
     ) {
         let editor = AnnotationEditorVC()
         editor.annotation = annotation
-        editor.delegate = self
 
         let pop = NSPopover()
         pop.contentViewController = editor
@@ -923,7 +888,7 @@ class IbarotTextView: NSTextView {
         if let (_, charIndex, ann) = sender.representedObject
             as? (Int64, Int, Annotation)
         {
-            presentAnnotationEditor(ann, atCharIndex: charIndex, in: self)
+            presentAnnotationEditor(ann, atCharIndex: charIndex)
         }
     }
 
@@ -985,23 +950,39 @@ class IbarotTextView: NSTextView {
             }
         }
         ts.endEditing()
+        
+        // UI Cleanup
+        setSelectedRange(NSRange(location: NSNotFound, length: 0))
+        colorMenuView.reloadColors()
     }
 
     private func removeAttributesForAnnotationId(_ id: Int64) {
         guard let ts = textStorage else { return }
         let fullRange = NSRange(location: 0, length: ts.length)
+        var rangesToClear: [NSRange] = []
+        
         ts.enumerateAttribute(
             NSAttributedString.Key("annotationID"),
             in: fullRange,
             options: []
         ) { value, range, _ in
             if let attrId = value as? Int64, attrId == id {
-                ts.removeAttribute(.backgroundColor, range: range)
-                ts.removeAttribute(.underlineStyle, range: range)
-                ts.removeAttribute(.link, range: range)
-                ts.removeAttribute(NSAttributedString.Key("annotationID"), range: range)
+                rangesToClear.append(range)
             }
         }
+        
+        guard !rangesToClear.isEmpty else { return }
+        
+        ts.beginEditing()
+        for range in rangesToClear {
+            ts.removeAttribute(.backgroundColor, range: range)
+            ts.removeAttribute(.underlineStyle, range: range)
+            ts.removeAttribute(.link, range: range)
+            ts.removeAttribute(NSAttributedString.Key("annotationID"), range: range)
+            ts.removeAttribute(NSAttributedString.Key("annotationNote"), range: range)
+            ts.removeAttribute(NSAttributedString.Key("underlineColor"), range: range)
+        }
+        ts.endEditing()
     }
 }
 

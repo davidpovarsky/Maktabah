@@ -198,7 +198,7 @@ extension UserDefaults {
     static let maxRecentColors = 5
 
     static let defaultHighlightColors: [PlatformColor] = [
-        .systemYellow, .systemGreen, .systemPink, .systemPurple,
+        .systemYellow, .systemGreen, .highlightBlue, .systemPink, .systemPurple,
     ]
 
     private static func normalizedRecentHighlightColors(_ colors: [PlatformColor]) -> [PlatformColor] {

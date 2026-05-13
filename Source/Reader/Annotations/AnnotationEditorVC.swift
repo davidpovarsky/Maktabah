@@ -27,7 +27,6 @@ class AnnotationEditorVC: NSViewController {
 
     // MARK: - Data
     var annotation: Annotation!
-    weak var delegate: AnnotationEditorDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,39 +104,28 @@ class AnnotationEditorVC: NSViewController {
         )
 
         // Persist ke DB
-        delegate?.annotationEditorDidSave(updated)
+        do {
+            if updated.id == nil {
+                try AnnotationManager.shared.addAnnotation(updated)
+            } else {
+                try AnnotationManager.shared.updateAnnotation(updated)
+            }
+        } catch {
+            print("Gagal menyimpan/update anotasi:", error)
+        }
+        
         cancelTapped()
     }
 
     @objc func deleteTapped() {
         guard let id = annotation.id else { return }
 
-        // Ambil annotation dari cache/DB sebelum dihapus
-        guard let annToRemove = AnnotationManager.shared.loadAnnotationById(id) else {
-            // fallback: jika tidak ditemukan, tetap coba hapus by id
-            do {
-                try AnnotationManager.shared.deleteAnnotation(id: id)
-                // delegate tidak punya range; kita bisa notify dengan annotation minimal
-                if let ann = annotation {
-                    delegate?.annotationEditorDidDelete([ann])
-                }
-                cancelTapped()
-            } catch {
-                print(error)
-            }
-            return
-        }
-
         do {
             // Hapus di DB + cache
             try AnnotationManager.shared.deleteAnnotation(id: id)
-
-            // Notify delegate dengan objek annotation yang sudah diambil sebelumnya
-            delegate?.annotationEditorDidDelete([annToRemove])
-
             cancelTapped()
         } catch {
-            print(error)
+            print("Gagal menghapus anotasi:", error)
         }
     }
 
@@ -188,103 +176,5 @@ extension AnnotationEditorVC: NSTokenFieldDelegate {
     ) -> [Any]? {
         guard !substring.isEmpty else { return nil }
         return existingTagSuggestions(matching: substring)
-    }
-}
-
-
-// Pastikan AppDelegate sudah import Cocoa dan memiliki textView outlet
-extension IbarotTextView: AnnotationEditorDelegate {
-    // Panggil ini dari textView clickedOnLink (saat user klik annotation://id)
-    func presentAnnotationEditor(_ annotation: Annotation, atCharIndex charIndex: Int, in textView: NSTextView) {
-        let editor = AnnotationEditorVC()
-        editor.annotation = annotation
-        editor.delegate = self
-
-        let pop = NSPopover()
-        pop.contentViewController = editor
-        pop.behavior = .transient
-
-        // simpan popover di property jika perlu (agar tidak dealloc)
-        // misal: self.currentPopover = pop
-
-        // Hit lokasi glyph rect untuk charIndex
-        if let layoutManager = textView.layoutManager,
-           let textContainer = textView.textContainer {
-            let glyphIndex = layoutManager.glyphIndexForCharacter(at: charIndex)
-            let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer)
-            let containerOrigin = textView.textContainerOrigin
-            let screenRect = NSRect(x: glyphRect.origin.x + containerOrigin.x,
-                                    y: glyphRect.origin.y + containerOrigin.y,
-                                    width: glyphRect.width, height: glyphRect.height)
-            pop.show(relativeTo: screenRect, of: textView, preferredEdge: .maxY)
-        } else {
-            pop.show(relativeTo: textView.bounds, of: textView, preferredEdge: .maxY)
-        }
-    }
-
-    // MARK: - AnnotationEditorDelegate
-    func annotationEditorDidSave(_ annotation: Annotation) {
-        // Jika annotation.id == nil → baru, simpan; jika ada id → update
-        var annToSave = annotation
-        if annToSave.id == nil {
-            do {
-                let newId = try AnnotationManager.shared.addAnnotation(annToSave)
-                annToSave.id = newId
-            } catch {
-                #if DEBUG
-                print("Gagal menyimpan anotasi baru:", error)
-                #endif
-                return
-            }
-        } else {
-            do {
-                try AnnotationManager.shared.updateAnnotation(annToSave)
-            } catch {
-                #if DEBUG
-                print("Gagal update anotasi:", error)
-                #endif
-                return
-            }
-        }
-
-        // Apply annotations ulang untuk content terkait (gunakan bkId/contentId)
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            refreshAnnotations()
-            setSelectedRange(NSRange(location: NSNotFound, length: 0))
-            colorMenuView.reloadColors()
-        }
-    }
-
-    func annotationEditorDidDelete(_ deleted: [Annotation]) {
-        guard !deleted.isEmpty, let ts = textStorage,
-              let key = contentKey() else { return }
-
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            ts.beginEditing()
-            for delete in deleted {
-                guard delete.bkId == key.bkId,
-                      delete.contentId == key.contentId
-                else { continue }
-                let range = displayedRange(for: delete)
-                // 1) Hapus atribut visual pada range yang dihapus
-                removeAttributesForRange(range, in: ts)
-            }
-            setSelectedRange(NSRange(location: NSNotFound, length: 0))
-            ts.endEditing()
-        }
-    }
-
-    func removeAttributesForRange(_ range: NSRange, in textStorage: NSTextStorage) {
-        guard range.location >= 0, range.length > 0, range.location + range.length <= textStorage.length else { return }
-        textStorage.beginEditing()
-        defer { textStorage.endEditing() }
-
-        textStorage.removeAttribute(.backgroundColor, range: range)
-        textStorage.removeAttribute(.underlineStyle, range: range)
-        textStorage.removeAttribute(.link, range: range)
-        textStorage.removeAttribute(NSAttributedString.Key("annotationNote"), range: range)
-        textStorage.removeAttribute(NSAttributedString.Key("underlineColor"), range: range)
     }
 }

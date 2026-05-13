@@ -728,29 +728,19 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     /// Hapus anotasi satu per satu (notification chain menangani UI update)
     private func performDeleteAnnotations(_ nodes: [AnnotationNode]) {
-        var deleted: [Annotation] = []
         for node in nodes {
             guard let annotation = node.annotation, let id = annotation.id else { continue }
             do {
                 try AnnotationManager.shared.deleteAnnotation(id: id)
-                deleted.append(annotation)
             } catch {
                 #if DEBUG
                     print("Error deleting annotation \(id): \(error)")
                 #endif
             }
         }
-        guard !deleted.isEmpty else { return }
-        NotificationCenter.default.post(
-            name: .annotationDidDeleteFromOutline,
-            object: nil,
-            userInfo: ["annotations": deleted]
-        )
     }
 
-    /// Hapus book root: hapus semua anotasi di dalamnya
     private func performDeleteBookRoots(_ nodes: [AnnotationNode]) {
-        var deleted: [Annotation] = []
         for bookNode in nodes where bookNode.kind == .book {
             for childNode in bookNode.children {
                 guard let annotation = childNode.annotation, let id = annotation.id else {
@@ -758,7 +748,6 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 }
                 do {
                     try AnnotationManager.shared.deleteAnnotation(id: id)
-                    deleted.append(annotation)
                 } catch {
                     #if DEBUG
                         print(
@@ -768,12 +757,6 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 }
             }
         }
-        guard !deleted.isEmpty else { return }
-        NotificationCenter.default.post(
-            name: .annotationDidDeleteFromOutline,
-            object: nil,
-            userInfo: ["annotations": deleted]
-        )
     }
 
     // MARK: - NSOutlineViewDataSource

@@ -18,7 +18,6 @@ import SQLite
 
 extension Notification.Name {
     static let annotationDidChange = Notification.Name("annotationDidChange")
-    static let annotationDidDeleteFromOutline = Notification.Name("annotationDeletedFromOutlineView")
     static let annotationTreeDidUpdate = Notification.Name("annotationTreeDidUpdate")
 }
 

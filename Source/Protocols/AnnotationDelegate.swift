@@ -11,11 +11,6 @@ protocol AnnotationDelegate: AnyObject {
     func didSelect(annotation: Annotation)
 }
 
-protocol AnnotationEditorDelegate: AnyObject {
-    func annotationEditorDidSave(_ annotation: Annotation)
-    func annotationEditorDidDelete(_ deleted: [Annotation])
-}
-
 #if os(macOS)
 extension IbarotTextVC: AnnotationDelegate {
     func didSelect(annotation: Annotation) {
