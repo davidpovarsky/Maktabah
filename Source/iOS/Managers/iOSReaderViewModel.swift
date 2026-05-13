@@ -163,26 +163,57 @@ class iOSReaderViewModel {
     }
 
     func updateNavigationLimits() {
-        guard let currentPart else { return }
+        guard let part = currentPart else { return }
         let bkid = String(book.id)
-        totalParts = bookConnection.getTotalParts(bkid: bkid)
-        let juz = currentPart < 1 ? 1 : currentPart
-        minPageInPart = bookConnection.getMinPagesInPart(bkid: bkid, part: juz)
-        maxPageInPart = bookConnection.getPagesInPart(bkid: bkid, part: juz)
+
+        Task { [weak self] in
+            guard let self else { return }
+            let total = await Task.detached(priority: .userInitiated) {
+                await self.bookConnection.getTotalParts(bkid: bkid)
+            }.value
+
+            let juz = part < 1 ? 1 : part
+            let limits = await Task.detached(priority: .userInitiated) {
+                let minPg = await self.bookConnection.getMinPagesInPart(bkid: bkid, part: juz)
+                let maxPg = await self.bookConnection.getPagesInPart(bkid: bkid, part: juz)
+                return (minPg, maxPg)
+            }.value
+
+            await MainActor.run {
+                self.totalParts = total
+                self.minPageInPart = limits.0
+                self.maxPageInPart = limits.1
+            }
+        }
     }
 
     func jumpToPart(_ part: Int) {
         let bkid = String(book.id)
-        let minPage = bookConnection.getMinPagesInPart(bkid: bkid, part: part)
-        if let content = bookConnection.getContent(bkid: bkid, part: part, page: minPage) {
-            updateContentState(with: content)
+        Task { [weak self] in
+            guard let self else { return }
+            let result = await Task.detached(priority: .userInitiated) {
+                let minPage = await self.bookConnection.getMinPagesInPart(bkid: bkid, part: part)
+                return await self.bookConnection.getContent(bkid: bkid, part: part, page: minPage)
+            }.value
+
+            if let content = result {
+                updateContentState(with: content)
+            }
         }
     }
 
     func jumpToPage(_ page: Int) {
+        let bkid = String(book.id)
         let part = currentPart ?? -1 <= 1 ? 1 : currentPart!
-        if let content = bookConnection.getContent(bkid: String(book.id), part: part, page: page) {
-            updateContentState(with: content)
+        Task { [weak self] in
+            guard let self else { return }
+            let result = await Task.detached(priority: .userInitiated) {
+                await self.bookConnection.getContent(bkid: bkid, part: part, page: page)
+            }.value
+
+            if let content = result {
+                updateContentState(with: content)
+            }
         }
     }
 

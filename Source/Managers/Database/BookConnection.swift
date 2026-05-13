@@ -179,6 +179,20 @@ class BookConnection {
 }
 
 extension BookConnection {
+    private func parsePartValue(_ value: Any?) -> Int {
+        if let intValue = value as? Int64 {
+            return Int(intValue)
+        }
+        if let strValue = value as? String {
+            // Jika part berbentuk "1-2", ambil angka pertama
+            if let dashIndex = strValue.firstIndex(of: "-") {
+                return Int(strValue[..<dashIndex]) ?? 1
+            }
+            return Int(strValue) ?? 1
+        }
+        return 1
+    }
+
     /// UPDATED: getContent dengan decompress otomatis
     func getContent(bkid: String, contentId: Int, quran: Bool = false)
         -> BookContent?
@@ -218,7 +232,7 @@ extension BookConnection {
 
                 let id = row[2] as? Int64 ?? 0
 
-                let part = row[3] as? Int64 ?? 0
+                let part = parsePartValue(row[3])
 
                 // Apply shorts mapping
                 let finalNass =
@@ -230,7 +244,7 @@ extension BookConnection {
                     id: Int(id),
                     nash: finalNass,
                     page: Int(page),
-                    part: Int(part)
+                    part: part
                 )
 
                 if quran {
@@ -277,7 +291,7 @@ extension BookConnection {
 
                 let id = row[2] as? Int64 ?? -1
 
-                let part = row[3] as? Int64 ?? 0
+                let part = parsePartValue(row[3])
 
                 // Apply shorts mapping
                 let finalNass =
@@ -289,7 +303,7 @@ extension BookConnection {
                     id: Int(id),
                     nash: finalNass,
                     page: Int(page),
-                    part: Int(part)
+                    part: part
                 )
 
                 setCache(bkId: bkid, content: content)
@@ -332,7 +346,7 @@ extension BookConnection {
                 let page = row[1] as? Int64 ?? -1
 
                 let id = row[2] as? Int64 ?? -1
-                let partValue = row[3] as? Int64 ?? -1
+                let partValue = parsePartValue(row[3])
 
                 let finalNass = applyShortsMapping(
                     to: decompressedNass,
@@ -343,7 +357,7 @@ extension BookConnection {
                     id: Int(id),
                     nash: finalNass,
                     page: Int(page),
-                    part: Int(partValue)
+                    part: partValue
                 )
 
                 setCache(bkId: bkid, content: content)

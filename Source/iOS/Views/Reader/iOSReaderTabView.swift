@@ -97,49 +97,8 @@ struct iOSReaderBottomToolbarView: View {
             showingNavigation.toggle()
         })
         .popover(isPresented: $showingNavigation) {
-                    VStack(spacing: 16) {
-                        if viewModel.totalParts > 1 {
-                            HStack {
-                                Text("ج")
-                                    .font(.caption)
-                                    .frame(width: 40)
-                                Slider(value: Binding(
-                                    get: {
-                                        let part = viewModel.currentPart ?? 1
-                                        return Double(part <= 0 ? 1 : part)
-                                    },
-                                    set: { viewModel.jumpToPart(Int($0)) }
-                                ), in: 1 ... Double(viewModel.totalParts), step: 1)
-                                Text("\(viewModel.totalParts)".convertToArabicDigits())
-                                    .font(.caption)
-                                    .frame(width: 40)
-                            }
-                            .environment(\.layoutDirection, .rightToLeft)
-                        }
-
-                        if viewModel.maxPageInPart > viewModel.minPageInPart {
-                            HStack {
-                                Text("ص")
-                                    .font(.caption)
-                                    .frame(width: 40)
-                                Slider(value: Binding(
-                                    get: {
-                                        let page = viewModel.currentPage ?? 1
-                                        return Double(page <= 0 ? 1 : page)
-                                    },
-                                    set: { viewModel.jumpToPage(Int($0)) }
-                                ), in: Double(viewModel.minPageInPart) ... Double(viewModel.maxPageInPart), step: 1)
-                                Text("\(viewModel.maxPageInPart)".convertToArabicDigits())
-                                    .font(.caption)
-                                    .frame(width: 40)
-                            }
-                            .environment(\.layoutDirection, .rightToLeft)
-                        }
-                    }
-                    .padding()
-                    .frame(width: 300)
-                    .presentationCompactAdaptation(.popover)
-                }
+            iOSReaderNavigationPopoverView(viewModel: viewModel)
+        }
 
         Spacer()
 
@@ -257,5 +216,131 @@ struct ReaderTabItemView: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .contentShape(Rectangle())
         .onTapGesture { onSelect() }
+    }
+}
+
+// MARK: - Navigation Popover View
+
+struct iOSReaderNavigationPopoverView: View {
+    @Bindable var viewModel: iOSReaderViewModel
+    @State private var textViewState = TextViewState.shared
+    
+    // Feedback and local slider states
+    @State private var localPart: Double = 1
+    @State private var localPage: Double = 1
+    @State private var isSlidingPart = false
+    @State private var isSlidingPage = false
+    @State private var debounceTask: Task<Void, Never>?
+
+    var body: some View {
+        VStack(spacing: 20) {
+            if viewModel.totalParts > 1 {
+                VStack(spacing: 8) {
+                    if isSlidingPart {
+                        Text("الجزء: \(Int(localPart))".convertToArabicDigits())
+                            .font(.headline)
+                            .foregroundColor(.accentColor)
+                    } else {
+                        Text("الجزء")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
+                        Text("١".convertToArabicDigits())
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        
+                        Slider(value: $localPart, in: 1 ... Double(max(1, viewModel.totalParts)), step: 1) { editing in
+                            isSlidingPart = editing
+                            if !editing {
+                                viewModel.jumpToPart(Int(localPart))
+                            }
+                        }
+                        
+                        Text("\(viewModel.totalParts)".convertToArabicDigits())
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .environment(\.layoutDirection, .rightToLeft)
+            }
+
+            if viewModel.maxPageInPart > viewModel.minPageInPart {
+                VStack(spacing: 8) {
+                    if isSlidingPage {
+                        Text("الصفحة: \(Int(localPage))".convertToArabicDigits())
+                            .font(.headline)
+                            .foregroundColor(.accentColor)
+                    } else {
+                        Text("الصفحة")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    HStack {
+                        Text("\(viewModel.minPageInPart)".convertToArabicDigits())
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        
+                        Slider(value: $localPage, in: Double(viewModel.minPageInPart) ... Double(viewModel.maxPageInPart), step: 1) { editing in
+                            isSlidingPage = editing
+                            if !editing {
+                                viewModel.jumpToPage(Int(localPage))
+                            }
+                        }
+                        
+                        Text("\(viewModel.maxPageInPart)".convertToArabicDigits())
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .environment(\.layoutDirection, .rightToLeft)
+            }
+        }
+        .padding()
+        .frame(width: 300)
+        .presentationCompactAdaptation(.popover)
+        .preferredColorScheme(textViewState.isDarkMode ? .dark : .light)
+        .onAppear {
+            localPart = Double(max(1, viewModel.currentPart ?? 1))
+            localPage = Double(max(1, viewModel.currentPage ?? 1))
+        }
+        .onChange(of: viewModel.currentPart) { _, newValue in
+            if !isSlidingPart {
+                localPart = Double(max(1, newValue ?? 1))
+            }
+        }
+        .onChange(of: viewModel.currentPage) { _, newValue in
+            if !isSlidingPage {
+                localPage = Double(max(1, newValue ?? 1))
+            }
+        }
+        .onChange(of: localPart) { _, newValue in
+            if isSlidingPart {
+                debounceJump(mode: .part, value: Int(newValue))
+            }
+        }
+        .onChange(of: localPage) { _, newValue in
+            if isSlidingPage {
+                debounceJump(mode: .page, value: Int(newValue))
+            }
+        }
+    }
+    
+    private enum JumpMode { case part, page }
+
+    private func debounceJump(mode: JumpMode, value: Int) {
+        debounceTask?.cancel()
+        debounceTask = Task {
+            try? await Task.sleep(nanoseconds: 250_000_000) // 0.25s
+            if !Task.isCancelled {
+                if mode == .part {
+                    viewModel.jumpToPart(value)
+                } else {
+                    viewModel.jumpToPage(value)
+                }
+            }
+        }
     }
 }
