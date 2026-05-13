@@ -169,6 +169,8 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
         let annotation = userInfo[AnnotationNotificationKeys.annotation] as? Annotation
         let annotationId = (userInfo[AnnotationNotificationKeys.annotationId] as? Int64) ?? annotation?.id
+        let oldParentIndex = userInfo[AnnotationNotificationKeys.oldParentIndex] as? Int
+        let newParentIndex = userInfo[AnnotationNotificationKeys.newParentIndex] as? Int
 
         guard let annotationId else {
             outlineView?.reloadData()
@@ -181,7 +183,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 let diff = userInfo[AnnotationNotificationKeys.tagDiff] as? TagUpdateDiff
                 handleTagModeUpdate(annotationId: annotationId, diff: diff)
             } else {
-                handleAddedAnnotation(annotationId: annotationId)
+                handleAddedAnnotation(annotationId: annotationId, oldParentIndex: oldParentIndex, newParentIndex: newParentIndex)
             }
         case .updated, .deleted:
             if groupingMode == .tag {
@@ -190,12 +192,12 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             } else if changeType == .updated {
                 handleUpdatedAnnotation(annotationId: annotationId)
             } else {
-                handleDeletedAnnotation(annotationId: annotationId)
+                handleDeletedAnnotation(annotationId: annotationId, oldParentIndex: oldParentIndex, newParentIndex: newParentIndex)
             }
         }
     }
 
-    private func handleAddedAnnotation(annotationId: Int64) {
+    private func handleAddedAnnotation(annotationId: Int64, oldParentIndex: Int?, newParentIndex: Int?) {
         guard let outlineView else { return }
         guard
             let location = findAnnotationLocation(in: AnnotationManager.shared.rootNode, annotationId: annotationId)
@@ -205,7 +207,13 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         }
 
         let parentRow = outlineView.row(forItem: location.parentNode)
+        
+        if let oldIdx = oldParentIndex, let newIdx = newParentIndex, oldIdx != newIdx, parentRow != -1 {
+            outlineView.moveItem(at: oldIdx, inParent: nil, to: newIdx, inParent: nil)
+        }
+
         if parentRow == -1 {
+            // Note: location.parentIndex will be the *new* index because we find location in the updated rootNode
             outlineView.insertItems(
                 at: IndexSet(integer: location.parentIndex),
                 inParent: nil,
@@ -319,7 +327,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         outlineView.endUpdates()
     }
 
-    private func handleDeletedAnnotation(annotationId: Int64) {
+    private func handleDeletedAnnotation(annotationId: Int64, oldParentIndex: Int?, newParentIndex: Int?) {
         guard let outlineView else { return }
 
         guard let row = rowIndex(forAnnotationId: annotationId),
@@ -342,6 +350,10 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 parent,
                 reloadChildren: true
             )
+        }
+
+        if let oldIdx = oldParentIndex, let newIdx = newParentIndex, oldIdx != newIdx {
+            outlineView.moveItem(at: oldIdx, inParent: nil, to: newIdx, inParent: nil)
         }
 
         if let parentNode = parent as? AnnotationNode,

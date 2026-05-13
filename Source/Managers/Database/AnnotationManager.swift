@@ -34,6 +34,8 @@ enum AnnotationNotificationKeys {
     static let annotation = "annotation"
     static let annotationId = "annotationId"
     static let tagDiff = "tagDiff"
+    static let oldParentIndex = "oldParentIndex"
+    static let newParentIndex = "newParentIndex"
 }
 
 struct TagUpdateDiff {
@@ -113,7 +115,7 @@ final class AnnotationManager {
 
     // MARK: - Private helper to post notification
 
-    private func postChangeNotification(type: AnnotationChangeType, annotation: Annotation? = nil, annotationId: Int64? = nil, diff: TagUpdateDiff? = nil) {
+    private func postChangeNotification(type: AnnotationChangeType, annotation: Annotation? = nil, annotationId: Int64? = nil, diff: TagUpdateDiff? = nil, oldParentIndex: Int? = nil, newParentIndex: Int? = nil) {
         var userInfo: [String: Any] = [AnnotationNotificationKeys.changeType: type.rawValue]
 
         if let ann = annotation {
@@ -125,6 +127,12 @@ final class AnnotationManager {
         }
         if let diff = diff {
             userInfo[AnnotationNotificationKeys.tagDiff] = diff
+        }
+        if let oldIdx = oldParentIndex {
+            userInfo[AnnotationNotificationKeys.oldParentIndex] = oldIdx
+        }
+        if let newIdx = newParentIndex {
+            userInfo[AnnotationNotificationKeys.newParentIndex] = newIdx
         }
 
         DispatchQueue.main.async {
@@ -1023,16 +1031,21 @@ final class AnnotationManager {
             let index = bookNode.children.insertionIndex(for: annotationNode, using: compareNodes)
             bookNode.children.insert(annotationNode, at: index)
 
+            var oldParentIdx: Int?
+            var newParentIdx: Int?
+
             // Jika sorting berdasarkan Date, posisi bookNode di root mungkin perlu bergeser
             if sortOption.field == .createdAt {
                 if let oldIndex = root.children.firstIndex(where: { $0 === bookNode }) {
+                    oldParentIdx = oldIndex
                     root.children.remove(at: oldIndex)
                 }
                 let newIndex = root.children.insertionIndex(for: bookNode, using: compareNodes)
                 root.children.insert(bookNode, at: newIndex)
+                newParentIdx = newIndex
             }
 
-            postChangeNotification(type: .added, annotation: annotation)
+            postChangeNotification(type: .added, annotation: annotation, oldParentIndex: oldParentIdx, newParentIndex: newParentIdx)
         }
     }
 
@@ -1078,12 +1091,25 @@ final class AnnotationManager {
                 if let index = bookNode.children.firstIndex(where: { $0.annotation?.id == id }) {
                     bookNode.children.remove(at: index)
 
+                    var oldParentIdx: Int?
+                    var newParentIdx: Int?
+
                     if bookNode.children.isEmpty {
                         if let bookIndex = root.children.firstIndex(where: { $0 === bookNode }) {
                             root.children.remove(at: bookIndex)
                         }
+                    } else if sortOption.field == .createdAt {
+                        if let oldIdx = root.children.firstIndex(where: { $0 === bookNode }) {
+                            oldParentIdx = oldIdx
+                            root.children.remove(at: oldIdx)
+                        }
+                        let newIdx = root.children.insertionIndex(for: bookNode, using: compareNodes)
+                        root.children.insert(bookNode, at: newIdx)
+                        newParentIdx = newIdx
                     }
-                    break
+                    
+                    postChangeNotification(type: .deleted, annotation: deletedAnnotation, annotationId: id, oldParentIndex: oldParentIdx, newParentIndex: newParentIdx)
+                    return
                 }
             }
 
