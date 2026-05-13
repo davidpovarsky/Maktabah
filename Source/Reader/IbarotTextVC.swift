@@ -247,12 +247,13 @@ class IbarotTextVC: NSViewController {
         let page = content.page
         let part = content.part
 
-        textView.bkId = currentBook?.id
-        textView.contentId = id
-        textView.part = part
-        textView.page = page
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            textView.bkId = currentBook?.id
+            textView.contentId = id
+            textView.part = part
+            textView.page = page
 
-        Task { @MainActor in
             // Display content
             textView?.loadIbarotText(nash, color: NSColor.header)
 
