@@ -439,6 +439,38 @@
         }
       }
     },
+    "Are you sure you want to delete the downloaded content for \"%@\"?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل أنت متأكد من أنك تريد حذف المحتوى الذي تم تنزيله لـ \"%@\"؟"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apakah Anda yakin ingin menghapus konten yang diunduh untuk \"%@\"?"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete the downloaded content for %lld books?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل أنت متأكد من أنك تريد حذف المحتوى الذي تم تنزيله لـ %lld من الكتب؟"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apakah Anda yakin ingin menghapus konten yang diunduh untuk %lld kitab?"
+          }
+        }
+      }
+    },
     "Ascending" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -724,6 +756,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Folder Perpustakaan..."
+          }
+        }
+      }
+    },
+    "Cleanup Downloaded Data (Bundle Mode)" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنظيف البيانات التي تم تنزيلها (وضع الحزمة)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bersihkan Data yang Diunduh (Mode Bundel)"
           }
         }
       }
@@ -1358,6 +1406,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Anotasi"
+          }
+        }
+      }
+    },
+    "Delete Download" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف التنزيل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Unduhan"
           }
         }
       }
@@ -4097,6 +4161,22 @@
         }
       }
     },
+    "Select" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحديد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih"
+          }
+        }
+      }
+    },
     "Select a book to read" : {
       "localizations" : {
         "ar" : {
@@ -4582,6 +4662,22 @@
         }
       }
     },
+    "This will delete all downloaded SQLite files, index, and cache from the bundle mode storage." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سيؤدي هذا إلى حذف جميع ملفات SQLite التي تم تنزيلها، والفهرس، وذاكرة التخزين المؤقت من تخزين وضع الحزمة."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini akan menghapus semua file SQLite yang diunduh, indeks, dan cache dari penyimpanan mode bundel."
+          }
+        }
+      }
+    },
     "toggleTableOfContents" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5057,6 +5153,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentang Penulis:"
+          }
+        }
+      }
+    },
+    "Optimization" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحسين"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimasi"
+          }
+        }
+      }
+    },
+    "Optimize Database" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحسين قاعدة البيانات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimasi Database"
+          }
+        }
+      }
+    },
+    "Optimization is needed to reclaim disk space after deleting books." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التحسين مطلوب لاستعادة مساحة القرص بعد حذف الكتب."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimasi diperlukan untuk memulihkan ruang disk setelah menghapus kitab."
           }
         }
       }

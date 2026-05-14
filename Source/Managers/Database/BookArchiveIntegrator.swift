@@ -72,8 +72,21 @@ final class BookArchiveIntegrator {
         to: sqlite3_destructor_type.self
     )
 
-    private init() {}
+    private let vacuumKey = "PendingVacuumArchiveIds"
+    private var pendingVacuumArchiveIds: Set<Int> = []
 
+    private init() {
+        let saved = UserDefaults.standard.array(forKey: vacuumKey) as? [Int] ?? []
+        self.pendingVacuumArchiveIds = Set(saved)
+    }
+
+    private func savePendingVacuumIds() {
+        UserDefaults.standard.set(Array(pendingVacuumArchiveIds), forKey: vacuumKey)
+    }
+
+    var hasPendingVacuum: Bool {
+        !pendingVacuumArchiveIds.isEmpty
+    }
 
     func isBookIntegrated(_ book: BooksData) -> Bool {
         guard AppConfig.isUsingBundleMode else { return true }
@@ -145,12 +158,105 @@ final class BookArchiveIntegrator {
         }
     }
 
+    /// Menghapus kitab dari archive dan FTS.
+    func removeBookFromArchive(_ book: BooksData) async throws {
+        guard AppConfig.isUsingBundleMode else { return }
+        guard book.archive > 0 else { return }
+        guard let archiveDbPath = AppConfig.archiveDatabasePath(archiveId: book.archive),
+              let ftsDbPath = AppConfig.archiveFtsDatabasePath(archiveId: book.archive)
+        else {
+            return
+        }
+
+        try await BookArchiveSingleFlight.shared.run(bookId: book.id) { [weak self] in
+            guard let self else { return }
+
+            let archiveWritePath = try prepareWritableDatabasePath(archiveDbPath)
+            let ftsWritePath = try prepareWritableDatabasePath(ftsDbPath)
+
+            let archiveDb = try openDatabase(path: archiveWritePath)
+            let ftsDb = try openDatabase(path: ftsWritePath)
+
+            defer {
+                sqlite3_close(archiveDb)
+                sqlite3_close(ftsDb)
+            }
+
+            let bookTable = "b\(book.id)"
+            let tocTable = "t\(book.id)"
+            let ftsTable = "\(bookTable)_fts"
+
+            try exec(archiveDb, "DROP TABLE IF EXISTS \(bookTable);")
+            try exec(archiveDb, "DROP TABLE IF EXISTS \(tocTable);")
+            try exec(ftsDb, "DROP TABLE IF EXISTS \(ftsTable);")
+
+            try replaceDatabaseIfNeeded(tempPath: archiveWritePath, originalPath: archiveDbPath)
+            try replaceDatabaseIfNeeded(tempPath: ftsWritePath, originalPath: ftsDbPath)
+
+            self.pendingVacuumArchiveIds.insert(book.archive)
+            self.savePendingVacuumIds()
+
+            finalizeRemoval(book: book)
+        }
+    }
+
+    /// Menjalankan VACUUM pada semua archive yang tertunda.
+    /// Dipanggil secara manual dari menu Settings (iOS).
+    func vacuumPendingArchives() {
+        guard AppConfig.isUsingBundleMode, !pendingVacuumArchiveIds.isEmpty else { return }
+
+        for archiveId in pendingVacuumArchiveIds {
+            guard let archiveDbPath = AppConfig.archiveDatabasePath(archiveId: archiveId),
+                  let ftsDbPath = AppConfig.archiveFtsDatabasePath(archiveId: archiveId)
+            else {
+                continue
+            }
+
+            #if DEBUG
+            print("[Vacuum] Attempting archive: \(archiveId)")
+            #endif
+            
+            // Mencoba vacuum. Jika buku sedang dibuka, ini mungkin gagal (Busy),
+            // namun sesuai instruksi, kita akan tetap membersihkan daftar ID setelah proses selesai.
+            vacuum(path: archiveDbPath)
+            vacuum(path: ftsDbPath)
+        }
+
+        // Sesuai instruksi: setelah vacuum selesai (percobaan dilakukan), hapus semua IDs.
+        pendingVacuumArchiveIds.removeAll()
+        savePendingVacuumIds()
+    }
+
+    @discardableResult
+    private func vacuum(path: String) -> Bool {
+        var db: OpaquePointer?
+        var success = false
+        
+        // Gunakan OPEN_READWRITE tanpa CREATE agar tidak membuat file baru jika tidak ada.
+        if sqlite3_open_v2(path, &db, SQLITE_OPEN_READWRITE, nil) == SQLITE_OK {
+            // Jika database sedang digunakan, ini akan mengembalikan SQLITE_BUSY
+            if sqlite3_exec(db, "VACUUM;", nil, nil, nil) == SQLITE_OK {
+                success = true
+            }
+        }
+        sqlite3_close(db)
+        return success
+    }
+
     /// Invalidasi cache DB, hapus file sementara, update IntegrationCache,
     /// lalu beri tahu LibraryViewManager agar refresh parent row.
     private func finalizeIntegration(book: BooksData) {
         DatabaseManager.shared.invalidateArchiveCache(archiveId: book.archive)
         BookDownloadManager.shared.removeCachedBook(bookId: book.id)
         IntegrationCache.shared.markIntegrated(bookId: book.id, archiveId: book.archive)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .bookIntegrated, object: book.id)
+        }
+    }
+
+    private func finalizeRemoval(book: BooksData) {
+        DatabaseManager.shared.invalidateArchiveCache(archiveId: book.archive)
+        IntegrationCache.shared.unmarkIntegrated(bookId: book.id, archiveId: book.archive)
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .bookIntegrated, object: book.id)
         }

@@ -14,6 +14,9 @@ final class SettingsViewModel: ObservableObject {
     @Published var useICloud: Bool = AppConfig.useICloud
     @Published var isProcessingICloud = false
     @Published var showCollisionAlert = false
+    @Published var hasBundledData: Bool = false
+    @Published var hasPendingVacuum: Bool = false
+    @Published var isVacuuming: Bool = false
     
     enum PendingCollisionAction {
         case moveFolder(url: URL)
@@ -45,6 +48,61 @@ final class SettingsViewModel: ObservableObject {
         useICloud = AppConfig.useICloud
         #if DIRECT_DISTRIBUTION
         autoCheckAppUpdates = UserDefaults.standard.autoCheckAppUpdates
+        #endif
+        checkBundledData()
+        hasPendingVacuum = BookArchiveIntegrator.shared.hasPendingVacuum
+    }
+
+    func runVacuum() {
+        isVacuuming = true
+        Task.detached(priority: .userInitiated) {
+            BookArchiveIntegrator.shared.vacuumPendingArchives()
+            await MainActor.run {
+                self.isVacuuming = false
+                // Re-check pending vacuum status to update UI
+                self.hasPendingVacuum = BookArchiveIntegrator.shared.hasPendingVacuum
+                self.refreshPaths()
+            }
+        }
+    }
+
+    func checkBundledData() {
+        #if os(macOS)
+        guard let path = AppConfig.archiveCachePath else {
+            hasBundledData = false
+            return
+        }
+        let fm = FileManager.default
+        guard let items = try? fm.contentsOfDirectory(atPath: path) else {
+            hasBundledData = false
+            return
+        }
+        // Check if any relevant files exist
+        hasBundledData = items.contains { 
+            $0.hasSuffix(".sqlite") || $0 == "index.json" || $0 == "integration_cache" || $0 == "Books"
+        }
+        #else
+        hasBundledData = false
+        #endif
+    }
+
+    func cleanupBundledData() {
+        #if os(macOS)
+        guard let path = AppConfig.archiveCachePath else { return }
+        let url = URL(fileURLWithPath: path)
+        let fm = FileManager.default
+        
+        do {
+            let items = try fm.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+            for item in items {
+                try fm.removeItem(at: item)
+            }
+            refreshPaths()
+        } catch {
+            #if DEBUG
+            print("Failed to cleanup bundled data:", error)
+            #endif
+        }
         #endif
     }
     
@@ -247,7 +305,19 @@ struct SettingsView: View {
                     }
                     .disabled(viewModel.isBundleMode)
                 }
-                .padding(.top, 4)
+
+                if !viewModel.isBundleMode && viewModel.hasBundledData {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Button("Cleanup Downloaded Data (Bundle Mode)") {
+                            viewModel.cleanupBundledData()
+                        }
+                        .foregroundColor(.red)
+
+                        Text("This will delete all downloaded SQLite files, index, and cache from the bundle mode storage.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
             } header: {
                 Text("Library Storage")
             }
@@ -282,6 +352,33 @@ struct SettingsView: View {
             } header: {
                 Text("Annotations & Search Results")
             }
+
+            // MARK: Optimization (iOS Only)
+            #if os(iOS)
+            if viewModel.hasPendingVacuum || viewModel.isVacuuming {
+                Section {
+                    Button(action: {
+                        viewModel.runVacuum()
+                    }) {
+                        HStack {
+                            Text("Optimize Database")
+                            if viewModel.isVacuuming {
+                                Spacer()
+                                ProgressView()
+                            }
+                        }
+                    }
+                    .disabled(viewModel.isVacuuming)
+
+                    Text("Optimization is needed to reclaim disk space after deleting books.")
+                        .padding(2)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } header: {
+                    Text("Optimization")
+                }
+            }
+            #endif
 
             // MARK: Downloads
             #if os(macOS)

@@ -112,7 +112,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         CloudKitSyncManager.shared.resetSyncingKey(syncing: false)
         ScreenTimeManager.shared.cancel()
-        // Insert code here to tear down your application
+        BookArchiveIntegrator.shared.vacuumPendingArchives()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {

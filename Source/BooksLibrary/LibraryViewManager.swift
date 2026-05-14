@@ -40,6 +40,13 @@ class LibraryViewManager: NSObject {
         super.init()
         self.setupDSFSearchField()
         setupNotificationObservers()
+        setupContextMenu()
+    }
+
+    private func setupContextMenu() {
+        let menu = NSMenu()
+        menu.delegate = self
+        outlineView.menu = menu
     }
 
     func prepareData() {
@@ -61,6 +68,7 @@ class LibraryViewManager: NSObject {
 
     func applyDownloadFilter(forSegmentIndex index: Int) {
         applyDownloadFilter(index == 1)
+        outlineView?.allowsMultipleSelection = index == 1
     }
 
     func buildBookLookup() {
@@ -204,6 +212,8 @@ extension LibraryViewManager: NSOutlineViewDelegate {
             return
         }
 
+        if outlineView.selectedRowIndexes.count > 1 { return }
+
         let selectedRow = outlineView.selectedRow
         Task {
             await delegate?.didSelectItem(selectedRow)
@@ -221,6 +231,59 @@ extension LibraryViewManager: NSOutlineViewDelegate {
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         26
+    }
+
+    @objc func deleteBookAction(_ sender: NSMenuItem) {
+        guard let books = sender.representedObject as? [BooksData] else { return }
+
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("Delete Download", comment: "")
+        
+        if books.count == 1 {
+            alert.informativeText = String(localized: "Are you sure you want to delete the downloaded content for \"\(books[0].book)\"?")
+        } else {
+            alert.informativeText = String(localized: "Are you sure you want to delete the downloaded content for \(books.count) books?")
+        }
+        
+        alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
+        alert.alertStyle = .warning
+
+        if alert.runModal() == .alertFirstButtonReturn {
+            Task {
+                for book in books {
+                    try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+                }
+            }
+        }
+    }
+}
+
+extension LibraryViewManager: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.removeAllItems()
+
+        let clickedRow = outlineView.clickedRow
+        let rowsToProcess = ReusableFunc.resolveRowsToProcess(selectedRows: outlineView.selectedRowIndexes, clickedRow: clickedRow)
+        
+        var integratedBooks: [BooksData] = []
+        for row in rowsToProcess {
+            if let book = outlineView.item(atRow: row) as? BooksData,
+               BookArchiveIntegrator.shared.isBookIntegrated(book) {
+                integratedBooks.append(book)
+            }
+        }
+
+        guard !integratedBooks.isEmpty, AppConfig.isUsingBundleMode else {
+            return
+        }
+
+        let deleteItem = NSMenuItem(title: NSLocalizedString("Delete Download", comment: ""),
+                                    action: #selector(deleteBookAction(_:)),
+                                    keyEquivalent: "")
+        deleteItem.target = self
+        deleteItem.representedObject = integratedBooks
+        menu.addItem(deleteItem)
     }
 }
 
@@ -338,8 +401,18 @@ extension LibraryViewManager {
         guard let book = data.booksById[bookId] else { return }
 
         if !downloadView {
-            guard BookArchiveIntegrator.shared.isBookIntegrated(book) else { return }
-            insertIntegratedBookIntoDisplayed(book)
+            if BookArchiveIntegrator.shared.isBookIntegrated(book) {
+                insertIntegratedBookIntoDisplayed(book)
+            } else {
+                if showOnlyDownloaded {
+                    removeBookFromDisplayed(bookId: bookId)
+                } else {
+                    let row = outlineView.row(forItem: book)
+                    if row >= 0 {
+                        outlineView.reloadItem(book)
+                    }
+                }
+            }
             return
         }
 
@@ -351,6 +424,55 @@ extension LibraryViewManager {
 
         if let parent = findParentCategory(ofBookId: bookId, in: displayedCategories) {
             outlineView.reloadItem(parent, reloadChildren: true)
+        }
+    }
+
+    private func removeBookFromDisplayed(bookId: Int) {
+        func findAndRemove(in list: inout [CategoryData]) -> Bool {
+            var anyChanged = false
+            for i in (0..<list.count).reversed() {
+                let category = list[i]
+                let initialCount = category.children.count
+                category.children.removeAll { ($0 as? BooksData)?.id == bookId }
+
+                if category.children.count < initialCount {
+                    anyChanged = true
+                    if category.children.isEmpty {
+                        list.remove(at: i)
+                    }
+                }
+
+                // Cek subkategori
+                var subChanged = false
+                for j in (0..<category.children.count).reversed() {
+                    if let sub = category.children[j] as? CategoryData {
+                        var subList = [sub]
+                        if findAndRemove(in: &subList) {
+                            if subList.isEmpty {
+                                category.children.remove(at: j)
+                            }
+                            subChanged = true
+                        }
+                    }
+                }
+
+                if subChanged {
+                    anyChanged = true
+                    if category.children.isEmpty {
+                        list.remove(at: i)
+                    }
+                }
+
+                if anyChanged {
+                    return true
+                }
+            }
+            return false
+        }
+
+        if findAndRemove(in: &displayedCategories) {
+            baseCategories = displayedCategories
+            outlineView.reloadData()
         }
     }
 

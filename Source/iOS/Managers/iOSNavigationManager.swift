@@ -39,6 +39,34 @@ class iOSNavigationManager {
     private var pendingBook: BooksData?
     private var pendingContentId: Int?
 
+    init() {
+        setupObservers()
+    }
+
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(
+            forName: .bookIntegrated,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let self, let bookId = notification.object as? Int else { return }
+            Task { @MainActor in
+                self.handleBookIntegrationChanged(bookId: bookId)
+            }
+        }
+    }
+
+    private func handleBookIntegrationChanged(bookId: Int) {
+        // If a book is no longer integrated, close its tab
+        let tabsToClose = openTabs.filter { tab in
+            tab.book.id == bookId && !BookArchiveIntegrator.shared.isBookIntegrated(tab.book)
+        }
+
+        for tab in tabsToClose {
+            closeTab(id: tab.id)
+        }
+    }
+
     func switchToMode(_ mode: AppMode) {
         currentMode = mode
     }
@@ -51,13 +79,21 @@ class iOSNavigationManager {
 
     func closeTab(id: UUID) {
         if let index = openTabs.firstIndex(where: { $0.id == id }) {
+            let tab = openTabs[index]
             if activeTabId == id {
-                openTabs[index].viewModel.saveCurrentState()
+                tab.viewModel.saveCurrentState()
             }
 
             openTabs.remove(at: index)
             if activeTabId == id {
                 activeTabId = openTabs.last?.id
+                if let nextTabId = activeTabId, let nextTab = openTabs.first(where: { $0.id == nextTabId }) {
+                    selectedBook = nextTab.book
+                } else {
+                    selectedBook = nil
+                }
+            } else if selectedBook?.id == tab.book.id {
+                selectedBook = nil
             }
         }
     }

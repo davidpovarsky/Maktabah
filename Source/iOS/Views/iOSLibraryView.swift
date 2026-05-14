@@ -8,16 +8,12 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
     var viewModel: iOSLibraryViewModel?
     var onBookSelected: ((BooksData) -> Void)?
     var onSelectionChanged: (() -> Void)?
+    var onDeleteBook: ((BooksData) -> Void)?
+    var onDownloadBook: ((BooksData) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
-
-        let longPress = UILongPressGestureRecognizer(
-            target: self,
-            action: #selector(handleLongPress(_:))
-        )
-        collectionView.addGestureRecognizer(longPress)
     }
 
     // MARK: - Cell Registrations
@@ -106,28 +102,6 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
             }
         }
     }
-
-    @objc private func handleLongPress(_ recognizer: UILongPressGestureRecognizer) {
-        guard recognizer.state == .began,
-              let viewModel
-        else { return }
-
-        let point = recognizer.location(in: collectionView)
-        guard let indexPath = collectionView.indexPathForItem(at: point),
-              let item = dataSource.itemIdentifier(for: indexPath)
-        else { return }
-
-        viewModel.isSelectionMode = true
-        switch item {
-        case let .category(category):
-            viewModel.toggleCategorySelection(category)
-        case let .book(book):
-            viewModel.toggleBookSelection(book)
-        }
-
-        reloadVisibleItems()
-        onSelectionChanged?()
-    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -152,12 +126,54 @@ extension iOSLibraryViewController: UICollectionViewDelegate {
         guard case let .book(book) = item else { return }
         onBookSelected?(book)
     }
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let indexPath = indexPaths.first,
+              let item = dataSource.itemIdentifier(for: indexPath),
+              case let .book(book) = item,
+              let viewModel = viewModel
+        else {
+            return nil
+        }
+
+        let isDownloaded = BookArchiveIntegrator.shared.isBookIntegrated(book)
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+            let selectAction = UIAction(
+                title: String(localized: "Select") + "...",
+                image: UIImage(systemName: "checkmark.circle")
+            ) { _ in
+                viewModel.enterSelectionMode(selecting: book)
+                self?.reloadVisibleItems()
+                self?.onSelectionChanged?()
+            }
+
+            let mainAction: UIAction
+            if isDownloaded {
+                mainAction = UIAction(
+                    title: String(localized: "Delete Download"),
+                    image: UIImage(systemName: "trash"),
+                    attributes: .destructive
+                ) { _ in
+                    self?.onDeleteBook?(book)
+                }
+            } else {
+                mainAction = UIAction(title: String(localized: "Download"), image: UIImage(systemName: "icloud.and.arrow.down")) { _ in
+                    self?.onDownloadBook?(book)
+                }
+            }
+
+            return UIMenu(title: "", children: [mainAction, selectAction])
+        }
+    }
 }
 
 // MARK: - SwiftUI View
 
 struct iOSLibraryView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
+    @State private var showingDeleteConfirmation = false
+    @State private var singleBookToDelete: BooksData?
 
     var body: some View {
         let viewModel = navigationManager.libraryViewModel
@@ -169,7 +185,14 @@ struct iOSLibraryView: View {
                 showOnlyDownloaded: Binding(
                     get: { viewModel.showOnlyDownloaded },
                     set: { viewModel.showOnlyDownloaded = $0 }
-                )
+                ),
+                onDeleteSingleBook: { book in
+                    singleBookToDelete = book
+                },
+                onDownloadSingleBook: { book in
+                    viewModel.enterSelectionMode(selecting: book)
+                    startSelectedDownloads(using: viewModel)
+                }
             )
             .ignoresSafeArea(edges: [.vertical])
             .onChange(of: navigationManager.searchText) { _, newValue in
@@ -197,16 +220,29 @@ struct iOSLibraryView: View {
                     .disabled(viewModel.isBulkDownloading)
                 }
 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .topBarTrailing) {
                     Button {
-                        startSelectedDownloads(using: viewModel)
+                        showingDeleteConfirmation = true
                     } label: {
                         Label(
-                            "Download" + " (\(viewModel.selectedDownloadCount))",
-                            systemImage: "tray.and.arrow.down.fill"
+                            "Delete",
+                            systemImage: "trash"
                         )
                     }
-                    .disabled(viewModel.selectedDownloadCount == 0 || viewModel.isBulkDownloading)
+                    .disabled(viewModel.selectedDeleteCount == 0 || viewModel.isBulkDownloading)
+                    .tint(.red)
+
+                    if !viewModel.showOnlyDownloaded {
+                        Button {
+                            startSelectedDownloads(using: viewModel)
+                        } label: {
+                            Label(
+                                "Download" + " (\(viewModel.selectedDownloadCount))",
+                                systemImage: "tray.and.arrow.down.fill"
+                            )
+                        }
+                        .disabled(viewModel.selectedDownloadCount == 0 || viewModel.isBulkDownloading)
+                    }
                 }
             } else {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -219,6 +255,36 @@ struct iOSLibraryView: View {
                     }
                 }
             }
+        }
+        .alert("Delete Download", isPresented: $showingDeleteConfirmation) {
+            Button("Delete", role: .destructive) {
+                viewModel.startBulkDeletion {
+                    // Refreshed
+                }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Are you sure you want to delete the downloaded content for \(viewModel.selectedDeleteCount) books?")
+        }
+        .alert("Delete Download", isPresented: Binding(
+            get: { singleBookToDelete != nil },
+            set: { if !$0 { singleBookToDelete = nil } }
+        )) {
+            Button("Delete", role: .destructive) {
+                if let book = singleBookToDelete {
+                    Task {
+                        try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+                        await viewModel.refreshLibrary()
+                        await MainActor.run {
+                            SettingsViewModel.shared.refreshPaths()
+                        }
+                        singleBookToDelete = nil
+                    }
+                }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Are you sure you want to delete the downloaded content for \"\(singleBookToDelete?.book ?? "")\"?")
         }
     }
 
@@ -256,6 +322,8 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
     let navigationManager: iOSNavigationManager
     let viewModel: iOSLibraryViewModel
     @Binding var showOnlyDownloaded: Bool
+    var onDeleteSingleBook: ((BooksData) -> Void)?
+    var onDownloadSingleBook: ((BooksData) -> Void)?
 
     func makeCoordinator() -> Coordinator {
         Coordinator(navigationManager: navigationManager, viewModel: viewModel)
@@ -271,6 +339,8 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         vc.onSelectionChanged = {
             context.coordinator.viewModel.selectedBookIds = context.coordinator.viewModel.selectedBookIds
         }
+        vc.onDeleteBook = onDeleteSingleBook
+        vc.onDownloadBook = onDownloadSingleBook
 
         Task {
             await context.coordinator.viewModel.loadLibrary()
@@ -278,7 +348,7 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
                 // Saat awal load, init tracker dari UserDefaults
                 context.coordinator.viewModel._showOnlyDownloadedTracker = context.coordinator.viewModel.showOnlyDownloaded
                 let categories = context.coordinator.viewModel.displayedCategories
-                context.coordinator.lastAppliedCategoriesSignature = context.coordinator.categoriesSignature(categories)
+                context.coordinator.lastAppliedCategoriesSignature = context.coordinator.categoriesSignature(categories, deep: false)
                 vc.applyCategories(categories)
             }
         }
@@ -288,18 +358,26 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: iOSLibraryViewController, context: Context) {
         uiViewController.viewModel = context.coordinator.viewModel
-        // Ini akan dipanggil SwiftUI ketika state berubah.
-        // Rebuild snapshot hanya saat data/filter/search mengubah isi tree.
-        // Perubahan seleksi cukup reconfigure item visible agar scroll tidak reset ke atas.
-        if !context.coordinator.viewModel.isLoading {
-            let categories = context.coordinator.viewModel.displayedCategories
-            let signature = context.coordinator.categoriesSignature(categories)
-            if signature != context.coordinator.lastAppliedCategoriesSignature {
-                context.coordinator.lastAppliedCategoriesSignature = signature
-                uiViewController.applyCategories(categories)
-            } else {
-                uiViewController.reloadVisibleItems()
-            }
+        uiViewController.onDeleteBook = onDeleteSingleBook
+        uiViewController.onDownloadBook = onDownloadSingleBook
+        
+        // Hanya proses jika tidak sedang loading
+        guard !context.coordinator.viewModel.isLoading else { return }
+
+        let categories = context.coordinator.viewModel.displayedCategories
+        let isSearching = !context.coordinator.viewModel.searchText.isEmpty
+        let isFiltering = context.coordinator.viewModel.showOnlyDownloaded
+        
+        // Buat signature yang lebih efisien
+        let signature = context.coordinator.categoriesSignature(categories, deep: isSearching || isFiltering)
+        
+        if signature != context.coordinator.lastAppliedCategoriesSignature {
+            context.coordinator.lastAppliedCategoriesSignature = signature
+            uiViewController.applyCategories(categories)
+        } else {
+            // Jika hanya seleksi yang berubah, reconfigure item yang terlihat saja.
+            // Ini JAUH lebih cepat daripada apply snapshot penuh.
+            uiViewController.reloadVisibleItems()
         }
     }
 
@@ -313,14 +391,21 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
             self.viewModel = viewModel
         }
 
-        func categoriesSignature(_ categories: [CategoryData]) -> [String] {
+        /// Signature untuk mendeteksi perubahan struktur pohon (bukan seleksi).
+        /// Jika `deep` false, hanya cek root categories (cocok untuk mode normal).
+        /// Jika `deep` true, cek semua (cocok saat filter/search aktif).
+        func categoriesSignature(_ categories: [CategoryData], deep: Bool) -> [String] {
+            if !deep {
+                // Sangat cepat: hanya ID root categories
+                return categories.map { "r-\($0.id)" }
+            }
+            
             var result: [String] = []
-
             func appendCategory(_ category: CategoryData) {
-                result.append("category-\(category.id)")
+                result.append("c\(category.id)")
                 for child in category.children {
                     if let book = child as? BooksData {
-                        result.append("book-\(book.id)")
+                        result.append("b\(book.id)")
                     } else if let subCategory = child as? CategoryData {
                         appendCategory(subCategory)
                     }

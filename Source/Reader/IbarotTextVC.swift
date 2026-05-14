@@ -54,6 +54,19 @@ class IbarotTextVC: NSViewController {
             bookDB = .init()
             sidebarVC?.setupLoader(bookConnection: bookDB)
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .bookIntegrated,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let self, let bookId = notification.object as? Int else { return }
+            if let currentBook = self.currentBook, currentBook.id == bookId {
+                if !BookArchiveIntegrator.shared.isBookIntegrated(currentBook) {
+                    self.clearUI()
+                }
+            }
+        }
     }
 
     override func viewDidAppear() {
@@ -406,6 +419,7 @@ extension IbarotTextVC {
         textView.contentId = nil
         textView.string.removeAll()
         sidebarVC?.cleanUpOutlineView()
+        bookDB = .init()
         windowTitle = ""
         windowSubtitle = ""
         if splitVC?.currentMode != .author {

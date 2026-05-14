@@ -71,6 +71,18 @@ final class IntegrationCache {
         }
     }
 
+    /// Hapus tanda kitab sebagai terintegrasi dan persist ke JSON.
+    func unmarkIntegrated(bookId: Int, archiveId: Int) {
+        guard AppConfig.isUsingBundleMode else { return }
+
+        ensureLoaded(archiveId: archiveId)
+
+        queue.async(flags: .barrier) { [self] in
+            integrated[archiveId]?.remove(bookId)
+            persistCache(for: archiveId)
+        }
+    }
+
     /// Bangun cache untuk archive tertentu dengan scan SQLite sekali.
     /// Hanya perlu dipanggil bila cache file belum ada.
     func build(for archiveId: Int) {

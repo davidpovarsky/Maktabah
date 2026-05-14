@@ -19,23 +19,32 @@ class iOSLibraryViewModel {
             UserDefaults.standard.set(newValue ? 1 : 0, forKey: "filterSegmentIndex")
             // Update the tracker to notify SwiftUI that displayedCategories needs to be recomputed
             _showOnlyDownloadedTracker = newValue
+            updateDisplayedCategories()
         }
     }
 
     var searchText: String = "" {
         didSet {
-            // Just updating the text will trigger SwiftUI if it's used, but let's make sure
+            if oldValue != searchText {
+                updateDisplayedCategories()
+            }
         }
     }
 
     var isLoading = true
 
     var isSelectionMode = false
-    var selectedBookIds: Set<Int> = []
+    var selectedBookIds: Set<Int> = [] {
+        didSet {
+            // Perubahan seleksi tidak perlu updateDisplayedCategories()
+            // karena displayedCategories hanya peduli pada struktur data (filter/search)
+        }
+    }
     var isBulkDownloading = false
     private var bulkDownloadTask: Task<Void, Never>?
 
     private var hasLoadedLibrary = false
+    private var _cachedDisplayedCategories: [CategoryData] = []
 
     init() {
         setupObservers()
@@ -49,6 +58,7 @@ class iOSLibraryViewModel {
         ) { [weak self] _ in
             Task { @MainActor in
                 self?.rootCategories = LibraryDataManager.shared.allRootCategories
+                self?.updateDisplayedCategories()
             }
         }
 
@@ -64,13 +74,20 @@ class iOSLibraryViewModel {
     }
 
     var displayedCategories: [CategoryData] {
+        if _cachedDisplayedCategories.isEmpty && !rootCategories.isEmpty && searchText.isEmpty && !showOnlyDownloaded {
+            return rootCategories
+        }
+        return _cachedDisplayedCategories
+    }
+
+    private func updateDisplayedCategories() {
         var base = rootCategories
         if showOnlyDownloaded {
             base = LibraryDataManager.shared.filterIntegrated()
         }
 
         if searchText.isEmpty {
-            return base
+            _cachedDisplayedCategories = base
         } else {
             var filtered: [CategoryData] = []
             _ = LibraryDataManager.shared.filterContent(
@@ -78,7 +95,7 @@ class iOSLibraryViewModel {
                 displayedCategories: &filtered,
                 baseCategories: base
             )
-            return filtered
+            _cachedDisplayedCategories = filtered
         }
     }
 
@@ -95,6 +112,7 @@ class iOSLibraryViewModel {
         isLoading = true
         await LibraryDataManager.shared.loadData()
         rootCategories = LibraryDataManager.shared.allRootCategories
+        updateDisplayedCategories()
         isLoading = false
         hasLoadedLibrary = LibraryDataManager.shared.isDataLoaded
     }
@@ -104,7 +122,7 @@ class iOSLibraryViewModel {
     }
 
     var selectedDownloadBooks: [BooksData] {
-        booksForSelectedIds(in: displayedCategories)
+        booksForSelectedIds(in: displayedCategories).filter { !isBookDownloaded($0) }
     }
 
     var selectedDownloadCount: Int {
@@ -124,7 +142,7 @@ class iOSLibraryViewModel {
     }
 
     func isBookSelectable(_ book: BooksData) -> Bool {
-        !isBookDownloaded(book)
+        true
     }
 
     func isBookSelected(_ book: BooksData) -> Bool {
@@ -132,7 +150,6 @@ class iOSLibraryViewModel {
     }
 
     func toggleBookSelection(_ book: BooksData) {
-        guard isBookSelectable(book) else { return }
         if selectedBookIds.contains(book.id) {
             selectedBookIds.remove(book.id)
         } else {
@@ -141,7 +158,7 @@ class iOSLibraryViewModel {
     }
 
     func selectableBooks(in category: CategoryData) -> [BooksData] {
-        getAllBooks(in: category).filter { isBookSelectable($0) }
+        getAllBooks(in: category)
     }
 
     func isCategorySelected(_ category: CategoryData) -> Bool {
@@ -164,6 +181,34 @@ class iOSLibraryViewModel {
             books.forEach { selectedBookIds.remove($0.id) }
         } else {
             books.forEach { selectedBookIds.insert($0.id) }
+        }
+    }
+
+    var selectedDeleteBooks: [BooksData] {
+        booksForSelectedIds(in: displayedCategories).filter { isBookDownloaded($0) }
+    }
+
+    var selectedDeleteCount: Int {
+        selectedDeleteBooks.count
+    }
+
+    func startBulkDeletion(onFinished: @escaping () -> Void) {
+        let books = selectedDeleteBooks
+        guard !books.isEmpty else { return }
+
+        Task {
+            for book in books {
+                try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+            }
+            await refreshLibrary()
+            exitSelectionMode()
+
+            // Pemicu refresh UI Settings hanya sekali setelah seluruh proses hapus selesai
+            await MainActor.run {
+                SettingsViewModel.shared.refreshPaths()
+            }
+
+            onFinished()
         }
     }
 

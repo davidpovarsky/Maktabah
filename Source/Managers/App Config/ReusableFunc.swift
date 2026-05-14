@@ -130,6 +130,19 @@ class ReusableFunc {
     }
 
     // MARK: - OTHERS
+    static func resolveRowsToProcess(selectedRows: IndexSet, clickedRow: Int) -> IndexSet {
+        if selectedRows.contains(clickedRow), selectedRows.count > 1 {
+            return selectedRows
+        }
+        if !selectedRows.isEmpty, clickedRow < 0 {
+            return selectedRows
+        }
+        if clickedRow >= 0 {
+            return IndexSet(integer: clickedRow)
+        }
+        return selectedRows
+    }
+
     static func unhideSearchField(
         searchFieldIsHidden: Bool,
         searchField: NSSearchField,
