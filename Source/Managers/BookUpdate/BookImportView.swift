@@ -228,6 +228,29 @@ struct OfflineImportFormView: View {
             }
             .background(.ultraThinMaterial)
         }
+        .overlay {
+            #if !os(macOS)
+            if isImporting {
+                ZStack {
+                    Color.black.opacity(0.25)
+                        .ignoresSafeArea()
+
+                    VStack(spacing: 16) {
+                        ProgressView()
+                            .controlSize(.large)
+                        Text("Importing Book...")
+                            .font(.headline)
+                    }
+                    .padding(32)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(16)
+                    .shadow(radius: 10)
+                }
+                .transition(.opacity)
+            }
+            #endif
+        }
+        .animation(.easeInOut, value: isImporting)
         .sheet(isPresented: $showBookPicker) {
             SearchSelectionView(
                 title: "Select Book to Replace",
@@ -247,7 +270,7 @@ struct OfflineImportFormView: View {
         }
         .sheet(isPresented: $showAuthorPicker) {
             SearchSelectionView(
-                title: "Select Registered Author",
+                title: "Select Registered Author".localized,
                 items: authors.map {
                     SearchSelectionItem(id: $0.id, title: $0.muallif.nama, subtitle: "ID: \($0.id)")
                 },
@@ -333,7 +356,7 @@ struct OfflineImportFormView: View {
         }
         .buttonStyle(.plain)
         .help("Converter Tool & Help")
-        .popover(isPresented: $showHelpPopover, arrowEdge: .bottom) {
+        .popover(isPresented: $showHelpPopover) {
             VStack(alignment: .leading, spacing: 12) {
                 Text(.convertImportHelpTitle)
                     .font(.headline)
@@ -342,21 +365,27 @@ struct OfflineImportFormView: View {
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
 
+                Divider()
+
                 Button {
                     if let converterURL {
                         openURL(converterURL)
                     }
                     showHelpPopover = false
                 } label: {
-                    Label("Open Web Converter", systemImage: "arrow.up.right.app")
+                    Label("Open Web Converter", systemImage: "safari")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+                #if !os(macOS)
+                .buttonBorderShape(.capsule)
+                #else
                 .controlSize(.large)
+                #endif
             }
-            .presentationCompactAdaptation(.popover)
             .padding()
-            .frame(minWidth: 280, minHeight: 220)
+            .presentationCompactAdaptation(.popover)
+            .frame(width: 280)
         }
     }
 
@@ -386,11 +415,13 @@ struct OfflineImportFormView: View {
             #endif
         }
         .buttonStyle(.borderedProminent)
-        .controlSize(.large)
         .tint(.red)
         .disabled(isImporting)
         #if !os(macOS)
         .frame(maxWidth: .infinity)
+        .buttonBorderShape(.capsule)
+        #else
+        .controlSize(.large)
         #endif
     }
 
@@ -411,10 +442,12 @@ struct OfflineImportFormView: View {
                     #endif
             }
             .buttonStyle(.borderedProminent)
-            .controlSize(.large)
             .disabled(!isValid || isImporting)
             #if !os(macOS)
+            .buttonBorderShape(.capsule)
             .frame(maxWidth: .infinity)
+            #else
+            .controlSize(.large)
             #endif
         }
         #if !os(macOS)

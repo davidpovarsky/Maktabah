@@ -29,8 +29,41 @@ class iOSSearchViewModel {
     private let ldm = LibraryDataManager.shared
 
     init() {
+        setupObservers()
         loadLibraryData()
         loadHistory()
+    }
+
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(
+            forName: .bookIntegrated,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.updateDisplayedCategories()
+            }
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .booksChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.updateDisplayedCategories()
+            }
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .libraryFolderChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.loadLibraryData()
+            }
+        }
     }
 
     func loadHistory() {

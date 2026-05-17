@@ -322,13 +322,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             BookUpdateManager.shared.integrateBooks(metadata: metadata)
 
             ReusableFunc.showAlert(
-                title: "Import Successful",
-                message: "The book has been successfully imported."
+                title: String(localized: .importSuccessTitle),
+                message: String(localized: .importSuccessDesc)
             )
         } catch {
             ReusableFunc.showAlert(
-                title: "Import Failed",
-                message: "Error: \(error.localizedDescription)"
+                title: "Import Error",
+                message: error.localizedDescription
             )
 
             #if DEBUG

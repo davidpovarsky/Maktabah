@@ -109,8 +109,8 @@ class iOSReaderViewModel {
             Task {
                 let tocEntries = await bookConnection.getTOCEntries(book)
                 let nodes = tree(from: tocEntries)
-                DispatchQueue.main.async {
-                    self.tocNodes = nodes
+                DispatchQueue.main.async { [weak self] in
+                    self?.tocNodes = nodes
                 }
             }
 
@@ -127,8 +127,8 @@ class iOSReaderViewModel {
 
     func fetchContentById(_ contentId: Int) {
         if let content = bookConnection.getContent(bkid: String(book.id), contentId: contentId, quran: false) {
-            DispatchQueue.main.async {
-                self.updateContentState(with: content)
+            DispatchQueue.main.async { [weak self] in
+                self?.updateContentState(with: content)
             }
         }
     }

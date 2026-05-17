@@ -174,6 +174,7 @@ struct iOSLibraryView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     @State private var showingDeleteConfirmation = false
     @State private var singleBookToDelete: BooksData?
+    @State private var showingImportSheet = false
 
     var body: some View {
         let viewModel = navigationManager.libraryViewModel
@@ -245,13 +246,48 @@ struct iOSLibraryView: View {
                     }
                 }
             } else {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
+                        showingImportSheet = true
+                    } label: {
+                        Image(systemName: "plus.viewfinder")
+                    }
+
                     Button {
                         viewModel.showOnlyDownloaded.toggle()
                     } label: {
                         Image(systemName: viewModel.showOnlyDownloaded
                             ? "line.3.horizontal.decrease.circle.fill"
                             : "line.3.horizontal.decrease.circle")
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showingImportSheet) {
+            NavigationView {
+                OfflineImportFormView { url, metadata, authorRow in
+                    // Handle the import here using BookUpdateManager
+                    let updateManager = BookUpdateManager.shared
+                    do {
+                        let result = try await updateManager.importOfflineUpdate(
+                            from: url,
+                            providedMetadata: metadata,
+                            authorRow: authorRow
+                        )
+                        try await LibraryDataManager.shared.processBookUpdates([result])
+                        updateManager.integrateBooks(metadata: metadata)
+
+                        showingImportSheet = false
+
+                        ReusableFunc.showAlert(
+                            title: String(localized: .importSuccessTitle),
+                            message: String(localized: .importSuccessDesc)
+                        )
+                    } catch {
+                        ReusableFunc.showAlert(
+                            title: "Import Error",
+                            message: error.localizedDescription
+                        )
                     }
                 }
             }
@@ -360,17 +396,17 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         uiViewController.viewModel = context.coordinator.viewModel
         uiViewController.onDeleteBook = onDeleteSingleBook
         uiViewController.onDownloadBook = onDownloadSingleBook
-        
+
         // Hanya proses jika tidak sedang loading
         guard !context.coordinator.viewModel.isLoading else { return }
 
         let categories = context.coordinator.viewModel.displayedCategories
         let isSearching = !context.coordinator.viewModel.searchText.isEmpty
         let isFiltering = context.coordinator.viewModel.showOnlyDownloaded
-        
+
         // Buat signature yang lebih efisien
         let signature = context.coordinator.categoriesSignature(categories, deep: isSearching || isFiltering)
-        
+
         if signature != context.coordinator.lastAppliedCategoriesSignature {
             context.coordinator.lastAppliedCategoriesSignature = signature
             uiViewController.applyCategories(categories)
@@ -399,7 +435,7 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
                 // Sangat cepat: hanya ID root categories
                 return categories.map { "r-\($0.id)" }
             }
-            
+
             var result: [String] = []
             func appendCategory(_ category: CategoryData) {
                 result.append("c\(category.id)")

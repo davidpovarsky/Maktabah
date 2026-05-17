@@ -57,7 +57,20 @@ class iOSLibraryViewModel {
             queue: .main
         ) { [weak self] _ in
             Task { @MainActor in
-                self?.rootCategories = LibraryDataManager.shared.allRootCategories
+                // Buat array baru untuk memastikan @Observable mendeteksi perubahan identitas
+                self?.rootCategories = Array(LibraryDataManager.shared.allRootCategories)
+                self?.updateDisplayedCategories()
+            }
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .booksChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                // LibraryDataManager sudah diupdate in-place, kita hanya perlu refresh UI
+                self?.rootCategories = Array(LibraryDataManager.shared.allRootCategories)
                 self?.updateDisplayedCategories()
             }
         }

@@ -231,6 +231,7 @@
 		4B96D3432F3612D50018D902 /* BookUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3422F3612D50018D902 /* BookUpdateView.swift */; };
 		4B0000022F3612D50018D902 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
 		4B0000032F3612D50018D902 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
+		4B0000042F3612D50018D902 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
 		4B96D3532F3675290018D902 /* BookUpdateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3522F3675290018D902 /* BookUpdateModels.swift */; };
 		4B9A0AE22EEC17CC0049202E /* TarjamahDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE12EEC17CC0049202E /* TarjamahDataManager.swift */; };
 		4B9A0AE52EEC51C20049202E /* Result.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE42EEC51C20049202E /* Result.xib */; };
@@ -1534,6 +1535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0000042F3612D50018D902 /* BookImportView.swift in Sources */,
 				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,
 				F3DD69E32FA4F76100BFEA0F /* ProgressBooksDownload.swift in Sources */,
 				F30577932FA4982A005732C6 /* TextViewState.swift in Sources */,
