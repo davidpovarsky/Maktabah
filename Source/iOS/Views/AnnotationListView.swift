@@ -2,6 +2,9 @@ import SwiftUI
 
 struct AnnotationListView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
+    @State private var showMissingBookAlert = false
+    @State private var missingBookId: Int = 0
+    @AppStorage("hideMissingBookAnnotations") private var hideMissingBookAnnotations: Bool = false
 
     var body: some View {
         @Bindable var viewModel = navigationManager.annotationViewModel
@@ -25,6 +28,17 @@ struct AnnotationListView: View {
         .onChange(of: navigationManager.searchText) { _, newValue in
             viewModel.searchText = newValue
         }
+        .onChange(of: hideMissingBookAnnotations) { _, _ in
+            viewModel.applyFilter()
+        }
+        .alert(
+            .bookNotFound(bookID: missingBookId),
+            isPresented: $showMissingBookAlert
+        ) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(.bookMissingOnAnnotationClick)
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -46,9 +60,9 @@ struct AnnotationListView: View {
                         Text("Ascending").tag(true)
                         Text("Descending").tag(false)
                     }
-                    
+
                     Divider()
-                    
+
                     Button(role: .destructive) {
                         CloudKitSyncManager.shared.resetChangeToken()
                     } label: {
@@ -65,6 +79,9 @@ struct AnnotationListView: View {
         if node.kind == .annotation, let ann = node.annotation {
             if let book = LibraryDataManager.shared.getBook([ann.bkId]).first {
                 navigationManager.openBook(book, initialContentId: Int(ann.contentId))
+            } else {
+                missingBookId = ann.bkId
+                showMissingBookAlert = true
             }
         }
     }
@@ -109,6 +126,13 @@ struct AnnotationNodeRow: View {
                                 Text(book.book)
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                                    .frame(maxWidth: 120, alignment: .leading)
+                            } else {
+                                Text(.bookNotFound(bookID: ann.bkId))
+                                    .font(.caption2)
+                                    .foregroundColor(.red)
                                     .lineLimit(1)
                                     .truncationMode(.middle)
                                     .frame(maxWidth: 120, alignment: .leading)

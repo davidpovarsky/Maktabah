@@ -17,7 +17,9 @@ final class SettingsViewModel: ObservableObject {
     @Published var hasBundledData: Bool = false
     @Published var hasPendingVacuum: Bool = false
     @Published var isVacuuming: Bool = false
-    
+
+    @AppStorage("hideMissingBookAnnotations") var hideMissingBookAnnotations: Bool = false
+
     enum PendingCollisionAction {
         case moveFolder(url: URL)
     }
@@ -324,7 +326,18 @@ struct SettingsView: View {
             #endif
 
             // MARK: Annotations & Search Results
+
             Section {
+                Toggle(isOn: $viewModel.hideMissingBookAnnotations) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Hide Missing Book Annotations")
+                        Text("Hide annotations if the corresponding book is not found in the local library.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .controlSize(.regular)
+
                 Toggle(isOn: Binding(
                     get: { viewModel.useICloud },
                     set: { viewModel.setICloud($0) }

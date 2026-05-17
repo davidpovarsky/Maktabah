@@ -27,9 +27,8 @@ enum DatabaseError: Error, LocalizedError {
                 comment: ""
             )
         case .bookNotFound(let id):
-            return NSLocalizedString(
-                "Book with ID \(id) not found.",
-                comment: ""
+            return String(
+                localized: .bookNotFound(bookID: id)
             )
         case .other(let message):
             return NSLocalizedString(

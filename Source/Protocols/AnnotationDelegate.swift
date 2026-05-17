@@ -17,6 +17,12 @@ extension IbarotTextVC: AnnotationDelegate {
         let bkId = annotation.bkId
         let contentId = annotation.contentId
         guard let book = LibraryDataManager.shared.getBook([bkId]).first else {
+            DispatchQueue.main.async {
+                ReusableFunc.showAlert(
+                    title: String(localized: .bookNotFound(bookID: bkId)),
+                    message: String(localized: .bookMissingOnAnnotationClick)
+                )
+            }
             return
         }
 

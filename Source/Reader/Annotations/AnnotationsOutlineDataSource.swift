@@ -3,7 +3,7 @@
 //  maktab
 //
 //  Created by MacBook on 15/12/25.
-//  Add menu item to handle Tag and handle delete item menu for multiple cases
+//  Handle offline imported books
 //
 
 import Cocoa
@@ -17,9 +17,42 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     let paragraphStyle = NSMutableParagraphStyle()
 
     private(set) var filteredRootNode: AnnotationNode?
+    private var cachedRootNode: AnnotationNode?
 
     private var currentRootNode: AnnotationNode? {
-        filteredRootNode ?? AnnotationManager.shared.rootNode
+        if let cachedRootNode { return cachedRootNode }
+
+        let baseRoot = filteredRootNode ?? AnnotationManager.shared.rootNode
+        let hideMissing = UserDefaults.standard.bool(forKey: "hideMissingBookAnnotations")
+
+        if hideMissing, let base = baseRoot {
+            let newRoot = AnnotationNode(title: base.title, kind: base.kind, annotation: nil)
+            newRoot.children = filterOutMissingBooks(from: base.children)
+            cachedRootNode = newRoot
+            return newRoot
+        }
+
+        cachedRootNode = baseRoot
+        return baseRoot
+    }
+
+    private func filterOutMissingBooks(from nodes: [AnnotationNode]) -> [AnnotationNode] {
+        var result: [AnnotationNode] = []
+        for node in nodes {
+            if node.kind == .annotation, let ann = node.annotation {
+                if LibraryDataManager.shared.getBook([ann.bkId]).first != nil {
+                    result.append(node)
+                }
+            } else {
+                let filteredChildren = filterOutMissingBooks(from: node.children)
+                if !filteredChildren.isEmpty {
+                    let copy = AnnotationNode(title: node.title, kind: node.kind, annotation: nil)
+                    copy.children = filteredChildren
+                    result.append(copy)
+                }
+            }
+        }
+        return result
     }
 
     private var treeObserver: NSObjectProtocol?
@@ -113,6 +146,8 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             print("Annotations Data Source deinit")
         #endif
 
+        UserDefaults.standard.removeObserver(self, forKeyPath: "hideMissingBookAnnotations")
+
         if let treeObserver {
             NotificationCenter.default.removeObserver(treeObserver)
         }
@@ -135,6 +170,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     }
 
     private func handleTreeUpdate() {
+        cachedRootNode = nil
         // Re-apply filter jika ada
         if let searchText = currentSearchText, !searchText.isEmpty {
             applySearchFilter(text: searchText)
@@ -152,6 +188,16 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         ) { [weak self] notification in
             self?.handleAnnotationChange(notification)
         }
+
+        UserDefaults.standard.addObserver(self, forKeyPath: "hideMissingBookAnnotations", options: .new, context: nil)
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "hideMissingBookAnnotations" {
+            DispatchQueue.main.async { [weak self] in
+                self?.handleTreeUpdate()
+            }
+        }
     }
 
     private func handleAnnotationChange(_ notification: Notification) {
@@ -161,8 +207,12 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             let changeType = AnnotationChangeType(rawValue: changeTypeRaw)
         else { return }
 
-        if let searchText = currentSearchText, !searchText.isEmpty {
-            applySearchFilter(text: searchText)
+        let hideMissing = UserDefaults.standard.bool(forKey: "hideMissingBookAnnotations")
+        if (currentSearchText != nil && !currentSearchText!.isEmpty) || hideMissing {
+            cachedRootNode = nil
+            if let searchText = currentSearchText, !searchText.isEmpty {
+                applySearchFilter(text: searchText)
+            }
             outlineView?.reloadData()
             return
         }
@@ -207,7 +257,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         }
 
         let parentRow = outlineView.row(forItem: location.parentNode)
-        
+
         if let oldIdx = oldParentIndex, let newIdx = newParentIndex, oldIdx != newIdx, parentRow != -1 {
             outlineView.moveItem(at: oldIdx, inParent: nil, to: newIdx, inParent: nil)
         }
@@ -407,6 +457,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
         AnnotationManager.shared.buildAnnotationTree()
         filteredRootNode = nil
+        cachedRootNode = nil
     }
 
     func updateSorting(field: AnnotationSortField, isAscending: Bool) {
@@ -444,8 +495,8 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
         let nodes = effectiveNodes(for: outlineView)
         guard nodes.count == 1,
-            let tagNode = nodes.first,
-            tagNode.kind == .tag
+              let tagNode = nodes.first,
+              tagNode.kind == .tag
         else { return }
 
         let row = outlineView.row(forItem: tagNode)
@@ -463,13 +514,14 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
         sender.isEditable = false
         sender.target = nil
         sender.action = nil
-        
+
         guard let outlineView else { return }
-        
+
         let row = outlineView.row(for: sender)
         guard row != -1,
               let tagNode = outlineView.item(atRow: row) as? AnnotationNode,
-              tagNode.kind == .tag else {
+              tagNode.kind == .tag
+        else {
             return
         }
 
@@ -887,7 +939,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             {
                 page + tags + "\n" + book
             } else {
-                page
+                page + tags + "\n" + String(localized: .bookNotFound(bookID: annotation.bkId))
             }
         }
 
@@ -961,7 +1013,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
             {
                 page + tags + "\n" + book
             } else {
-                page
+                page + tags + "\n" + String(localized: .bookNotFound(bookID: annotation.bkId))
             }
         }
 
@@ -1081,6 +1133,7 @@ extension AnnotationOutlineDataSource {
 
     func applySearchFilter(text: String?) {
         currentSearchText = text
+        cachedRootNode = nil
 
         guard let originalRoot = AnnotationManager.shared.rootNode else {
             filteredRootNode = nil
@@ -1234,7 +1287,7 @@ extension AnnotationOutlineDataSource: NSMenuDelegate {
             menu.addItem(removeTagMenuItem)
         }
 
-        if !menu.items.contains(renameTagMenuItem) {  // ← BARU
+        if !menu.items.contains(renameTagMenuItem) {
             menu.addItem(renameTagMenuItem)
         }
 

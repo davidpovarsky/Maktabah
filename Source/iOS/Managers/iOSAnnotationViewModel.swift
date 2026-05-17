@@ -105,13 +105,41 @@ class iOSAnnotationViewModel {
 
     private func reloadFromManager() {
         if let coreNodes = AnnotationManager.shared.rootNode?.children {
-            let mapped = coreNodes.map { iOSAnnotationNode(from: $0) }
+            let hideMissing = UserDefaults.standard.bool(forKey: "hideMissingBookAnnotations")
+
+            var filteredCoreNodes = coreNodes
+            if hideMissing {
+                filteredCoreNodes = filterOutMissingBooks(from: coreNodes)
+            }
+
+            let mapped = filteredCoreNodes.map { iOSAnnotationNode(from: $0) }
             if searchText.isEmpty {
                 rootNodes = mapped
             } else {
                 rootNodes = filterNodes(mapped, with: searchText.lowercased())
             }
         }
+    }
+
+    private func filterOutMissingBooks(from nodes: [AnnotationNode]) -> [AnnotationNode] {
+        var result: [AnnotationNode] = []
+        for node in nodes {
+            if node.kind == .annotation, let ann = node.annotation {
+                // If it's a leaf node, check if book exists
+                if LibraryDataManager.shared.getBook([ann.bkId]).first != nil {
+                    result.append(node)
+                }
+            } else {
+                // If it's a group node, filter its children recursively
+                let filteredChildren = filterOutMissingBooks(from: node.children)
+                if !filteredChildren.isEmpty {
+                    let copy = AnnotationNode(title: node.title, kind: node.kind, annotation: nil)
+                    copy.children = filteredChildren
+                    result.append(copy)
+                }
+            }
+        }
+        return result
     }
 
     func applyFilter() {

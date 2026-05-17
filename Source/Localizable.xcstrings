@@ -738,6 +738,52 @@
         }
       }
     },
+    "bookMissingOnAnnotationClick" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لم يتم العثور على الكتاب الخاص بهذه الملحوظة. إذا كان هذا الكتاب مستورداً يدوياً (Offline)، فيرجى التأكد من استيراده أيضاً على هذا الجهاز بنفس المعرف (ID) المستخدم في الجهاز الآخر، أو قم بإخفائه من الإعدادات."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The book for this annotation was not found. If this is an offline imported book, ensure you have also imported it on this device using the same ID as on your other device, or hide it via Settings."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitab untuk anotasi ini tidak ditemukan. Jika ini adalah kitab hasil import offline, pastikan Anda juga meng-import kitab tersebut di perangkat ini dengan id yang sama di perangkat lain, atau sembunyikan dari Pengaturan."
+          }
+        }
+      }
+    },
+    "bookNotFound" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ".لم يتم العثور pada الكتاب الذي يحمل المعرف %1$(bookID)lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book with ID %1$(bookID)lld not found."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buku dengan ID %1$(bookID)lld tidak ditemukan."
+          }
+        }
+      }
+    },
     "Books Updates" : {
       "localizations" : {
         "ar" : {
@@ -2919,6 +2965,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grup Tag"
+          }
+        }
+      }
+    },
+    "Hide annotations if the corresponding book is not found in the local library." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إخفاء الحواشي إذا لم يتم العثور على الكتاب المقابل في المكتبة المحلية."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembunyikan anotasi jika kitab yang bersangkutan tidak ditemukan di perpustakaan lokal."
+          }
+        }
+      }
+    },
+    "Hide Missing Book Annotations" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إخفاء حواشي الكتب المفقودة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembunyikan Anotasi Kitab yang Hilang"
           }
         }
       }
