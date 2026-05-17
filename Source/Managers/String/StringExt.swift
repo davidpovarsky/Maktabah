@@ -121,8 +121,11 @@ extension String {
                 pattern: #"^\s*\S+\s*-"#,
                 options: .anchorsMatchLines
             )
-            // Garis pemisah `___+`
-            static let separator = try? NSRegularExpression(pattern: #"_{3,}"#)
+            // Garis pemisah `___+` (hanya jika satu baris penuh)
+            static let separator = try? NSRegularExpression(
+                pattern: #"^_{3,}$"#,
+                options: .anchorsMatchLines
+            )
         }
 
         var colored: [NSRange] = []
