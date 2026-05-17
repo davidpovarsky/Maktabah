@@ -168,18 +168,17 @@ class IbarotTextView: NSTextView {
 
     private func setupTextView() {
         // Setup untuk teks Arab
-        alignment = .right  // RTL untuk Arab
+        alignment = .natural  // RTL untuk Arab
         isEditable = false
         isAutomaticLinkDetectionEnabled = false
         linkTextAttributes = [:]
         displaysLinkToolTips = false
         textContainerInset = NSSize(width: 8, height: 4)
+        wantsLayer = true
         enclosingScrollView?.autohidesScrollers = true
         enclosingScrollView?.hasVerticalScroller = true
         enclosingScrollView?.hasHorizontalScroller = false
 
-        // Layout optimization - DISABLE untuk smooth scroll
-        layoutManager?.allowsNonContiguousLayout = false
         linkTextAttributes = [
             .cursor: NSCursor.pointingHand,
             .underlineStyle: 0,
@@ -226,16 +225,23 @@ class IbarotTextView: NSTextView {
         textStorage?.setAttributedString(attributedString)
     }
 
-    func loadIbarotText(_ text: String, color: NSColor = .header) {
+    func loadIbarotText(
+        _ text: String,
+        color: NSColor = .header,
+        isMultiLanguage: Bool? = false
+    ) {
         let renderResult = renderer.render(
             text: text,
             highlightColor: color,
-            showHarakat: state.showHarakat
+            showHarakat: state.showHarakat,
+            isMultiLanguage: isMultiLanguage ?? false
         )
         currentRenderResult = renderResult
         footnoteRanges = renderResult.footnoteRanges
 
         guard let ts = textStorage, let lm = layoutManager else { return }
+
+        lm.allowsNonContiguousLayout = true
 
         ts.beginEditing()
         ts.setAttributedString(renderResult.attributedString)

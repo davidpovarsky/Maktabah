@@ -23,8 +23,8 @@ class iOSCustomIbarotTextView: UITextView {
     private func setupView() {
         isEditable = false
         isSelectable = true
-        textAlignment = .right
-        semanticContentAttribute = .forceRightToLeft
+        textAlignment = .natural
+        semanticContentAttribute = .unspecified
         backgroundColor = .clear
 
         // Disable scrolling if we want SwiftUI ScrollView to handle it,
@@ -167,6 +167,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     @Binding var text: String
     var annotations: [Annotation] = []
     @Binding var searchText: String
+    var isMultiLanguage: Bool = false
     
     var viewModel: iOSReaderViewModel
 
@@ -218,13 +219,22 @@ struct iOSIbarotTextView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let textView = uiView.subviews.first as? iOSCustomIbarotTextView else { return }
 
+        if isMultiLanguage {
+            textView.textAlignment = .natural
+            textView.semanticContentAttribute = .unspecified
+        } else {
+            textView.textAlignment = .right
+            textView.semanticContentAttribute = .forceRightToLeft
+        }
+
         let renderer = ArabicTextRenderer()
         let headerColor = UIColor.header
 
         let renderResult = renderer.render(
             text: text,
             highlightColor: headerColor,
-            showHarakat: state.showHarakat
+            showHarakat: state.showHarakat,
+            isMultiLanguage: isMultiLanguage
         )
 
         textView.currentRenderResult = renderResult

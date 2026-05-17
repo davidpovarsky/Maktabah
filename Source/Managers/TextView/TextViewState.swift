@@ -92,6 +92,7 @@ class TextViewState {
     var paragraphStyle: NSParagraphStyle {
         let style = NSMutableParagraphStyle()
         style.paragraphSpacingBefore = 2.0
+        style.alignment = .right // Default ke kanan untuk aplikasi Maktabah
         style.baseWritingDirection = .rightToLeft
         style.lineHeightMultiple = lineHeight
         return style

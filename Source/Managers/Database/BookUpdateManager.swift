@@ -693,7 +693,7 @@ final class BookUpdateManager {
         defer { sqlite3_close(db) }
 
         let sql = """
-        INSERT INTO `0bok` (`bkid`, `cat`, `bk`, `Archive`, `betaka`, `authno`, `inf`, `TafseerNam`, `bVer`)
+        INSERT INTO `0bok` (`bkid`, `cat`, `bk`, `Archive`, `betaka`, `authno`, `inf`, `TafseerNam`, `bVer`, `PdfCs`)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         """
         var stmt: OpaquePointer?
@@ -725,6 +725,12 @@ final class BookUpdateManager {
         } else {
             sqlite3_bind_null(stmt, 9)
         }
+        if let pdfCs = metadata.pdfCs {
+            sqlite3_bind_int64(stmt, 10, Int64(pdfCs))
+        } else {
+            sqlite3_bind_null(stmt, 10)
+        }
+
         guard sqlite3_step(stmt) == SQLITE_DONE else {
             throw NSError(
                 domain: "BookUpdate",
@@ -869,13 +875,21 @@ final class BookUpdateManager {
         defer { sqlite3_close(db) }
 
         let sql = """
-            SELECT bkid, bk, cat, betaka, inf, authno, archive, TafseerNam, bVer, link
+            SELECT bkid, bk, cat, betaka, inf, authno, archive, TafseerNam, bVer, link, PdfCs
             FROM main_update
             WHERE bkid = ? LIMIT 1;
             """
         var stmt: OpaquePointer?
         if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) != SQLITE_OK {
-            return nil
+            // Fallback if PdfCs column is missing
+            let fallbackSql = """
+                SELECT bkid, bk, cat, betaka, inf, authno, archive, TafseerNam, bVer, link
+                FROM main_update
+                WHERE bkid = ? LIMIT 1;
+                """
+            guard sqlite3_prepare_v2(db, fallbackSql, -1, &stmt, nil) == SQLITE_OK else {
+                return nil
+            }
         }
         defer { sqlite3_finalize(stmt) }
 
@@ -892,7 +906,12 @@ final class BookUpdateManager {
         let tafseerNam = columnText(stmt, index: 7)
         let bVer = sqlite3_column_int(stmt, 8)
         let link = columnText(stmt, index: 9)
-        
+
+        var pdfCs: Int? = nil
+        if sqlite3_column_count(stmt) > 10 {
+            pdfCs = Int(sqlite3_column_int(stmt, 10))
+        }
+
         return BookMetadata(
             bkid: bkid,
             cat: Int(cat),
@@ -903,7 +922,8 @@ final class BookUpdateManager {
             inf: inf.isEmpty ? nil : inf,
             tafseerNam: tafseerNam.isEmpty ? nil : tafseerNam,
             bVer: Int(bVer),
-            link: link.isEmpty ? nil : link
+            link: link.isEmpty ? nil : link,
+            pdfCs: pdfCs
         )
     }
 
@@ -1036,7 +1056,7 @@ final class BookUpdateManager {
             tableName: tableName,
             db: db
         )
-        
+
         if columns.isEmpty {
             throw sqliteError(db, message: "Tabel \(tableName) tidak ditemukan di file sumber.")
         }
@@ -1133,19 +1153,19 @@ final class BookUpdateManager {
     private func renameTablesIfNeeded(at url: URL, to targetId: Int) throws {
         let db = try openDatabase(path: url.path)
         defer { sqlite3_close(db) }
-        
+
         let targetBTable = "b\(targetId)"
         let targetTTable = "t\(targetId)"
-        
+
         var existingBTable: String? = nil
         var existingTTable: String? = nil
-        
+
         let sql = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE '%_fts%' AND name NOT LIKE '%_zstd%';"
         var stmt: OpaquePointer?
         if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {
             var bCandidates: [String] = []
             var tCandidates: [String] = []
-            
+
             while sqlite3_step(stmt) == SQLITE_ROW {
                 if let name = sqlite3_column_text(stmt, 0) {
                     let tableName = String(cString: name)
@@ -1157,12 +1177,12 @@ final class BookUpdateManager {
                 }
             }
             sqlite3_finalize(stmt)
-            
+
             // Prefer b<numbers>, then 'b', then any b*
             existingBTable = bCandidates.first(where: { $0.dropFirst().allSatisfy({ $0.isNumber }) && !$0.dropFirst().isEmpty })
                 ?? bCandidates.first(where: { $0 == "b" })
                 ?? bCandidates.first
-            
+
             // Prefer t<numbers>, then 't', then any t*
             existingTTable = tCandidates.first(where: { $0.dropFirst().allSatisfy({ $0.isNumber }) && !$0.dropFirst().isEmpty })
                 ?? tCandidates.first(where: { $0 == "t" })
@@ -1170,11 +1190,11 @@ final class BookUpdateManager {
         } else {
             sqlite3_finalize(stmt)
         }
-        
+
         if let existingB = existingBTable, existingB != targetBTable {
             try exec(db, "ALTER TABLE \"\(existingB)\" RENAME TO \"\(targetBTable)\";")
         }
-        
+
         if let existingT = existingTTable, existingT != targetTTable {
             try exec(db, "ALTER TABLE \"\(existingT)\" RENAME TO \"\(targetTTable)\";")
         }

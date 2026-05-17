@@ -30,6 +30,7 @@ struct OfflineImportFormView: View {
     @State private var authorLng: String = ""
     @State private var authorHigriD: String = ""
     @State private var oVerText: String = "1"
+    @State private var isMultiLanguage: Bool = true
 
     @State private var maxBkid: Int = 0
     @State private var maxAuthid: Int = 0
@@ -109,6 +110,8 @@ struct OfflineImportFormView: View {
                     Stepper("\(archiveId)", value: $archiveId, in: 1 ... 20)
                         .disabled(!isNewBook)
                 }
+
+                Toggle("Multi-Language", isOn: $isMultiLanguage)
 
                 LabeledContent("Edition") {
                     TextField("", text: $betaka, prompt: Text("Optional"))
@@ -452,7 +455,8 @@ struct OfflineImportFormView: View {
             inf: inf.isEmpty ? nil : inf,
             tafseerNam: tafseerNam.isEmpty ? nil : tafseerNam,
             bVer: Int(bVerText) ?? 1,
-            link: nil
+            link: nil,
+            pdfCs: isMultiLanguage ? 3 : 0
         )
 
         await onImport(url, metadata, authorRow)

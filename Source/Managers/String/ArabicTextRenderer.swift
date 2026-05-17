@@ -104,7 +104,8 @@ class ArabicTextRenderer {
     func render(
         text: String,
         highlightColor: PlatformColor = .header,
-        showHarakat: Bool
+        showHarakat: Bool,
+        isMultiLanguage: Bool = false
     ) -> ArabicRenderResult {
         let processedText = showHarakat ? text : text.removingHarakat()
         let (cleanedResult, footnoteRanges) = processedText.cleanedTextWithRanges()
@@ -128,7 +129,11 @@ class ArabicTextRenderer {
 
         return ArabicRenderResult(
             sourceText: cleanedResult.text,
-            attributedString: createAttributedString(from: result, color: highlightColor),
+            attributedString: createAttributedString(
+                from: result,
+                color: highlightColor,
+                isMultiLanguage: isMultiLanguage
+            ),
             replacementEvents: replacementResult.events,
             footnoteRanges: remappedFootnoteRanges
         )
@@ -174,13 +179,57 @@ class ArabicTextRenderer {
         }
     }
 
-    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: PlatformColor) -> NSAttributedString {
+    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: PlatformColor, isMultiLanguage: Bool) -> NSAttributedString {
         let result = results.result
         let footnoteRanges = results.footnoteRanges
+        
+        // Buat string dasar tanpa .paragraphStyle dulu
+        var baseAttributes = state.defaultAttributes
+        
+        if !isMultiLanguage {
+            let rtlStyle = (self.state.paragraphStyle.mutableCopy() as? NSMutableParagraphStyle) ?? NSMutableParagraphStyle()
+            rtlStyle.alignment = .right
+            rtlStyle.baseWritingDirection = .rightToLeft
+            baseAttributes[.paragraphStyle] = rtlStyle
+        } else {
+            baseAttributes.removeValue(forKey: .paragraphStyle)
+        }
+        
         let attributedString = NSMutableAttributedString(
             string: result.text,
-            attributes: state.defaultAttributes
+            attributes: baseAttributes
         )
+
+        if isMultiLanguage {
+            // Cache style objek untuk efisiensi (agar tidak create objek di setiap paragraf)
+            let ltrStyle = (self.state.paragraphStyle.mutableCopy() as? NSMutableParagraphStyle) ?? NSMutableParagraphStyle()
+            ltrStyle.alignment = .left
+            ltrStyle.baseWritingDirection = .leftToRight
+            
+            let rtlStyle = (self.state.paragraphStyle.mutableCopy() as? NSMutableParagraphStyle) ?? NSMutableParagraphStyle()
+            rtlStyle.alignment = .right
+            rtlStyle.baseWritingDirection = .rightToLeft
+
+            // Deteksi dan terapkan arah/alignment per paragraf
+            let nsString = result.text as NSString
+            let fullRange = NSRange(location: 0, length: nsString.length)
+            
+            nsString.enumerateSubstrings(in: fullRange, options: .byParagraphs) { (substring, substringRange, _, _) in
+                guard let substring = substring else { return }
+                
+                // Pilih style yang sudah di-cache
+                let style: NSMutableParagraphStyle
+                if substring.hasPrefix("\u{202A}") || substring.hasPrefix("\u{202D}") {
+                    style = ltrStyle
+                } else if substring.hasPrefix("\u{202B}") || substring.hasPrefix("\u{202E}") {
+                    style = rtlStyle
+                } else {
+                    style = rtlStyle // Fallback RTL
+                }
+                
+                attributedString.addAttribute(.paragraphStyle, value: style, range: substringRange)
+            }
+        }
 
         // Footnote: font lebih kecil + warna sekunder — apply sebelum coloredRanges
         // agar highlight simbol di dalam footnote tetap pakai warna header

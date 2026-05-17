@@ -268,7 +268,10 @@ class IbarotTextVC: NSViewController {
             textView.page = page
 
             // Display content
-            textView?.loadIbarotText(nash, color: NSColor.header)
+            textView?.loadIbarotText(
+                nash, color: NSColor.header,
+                isMultiLanguage: currentBook?.isMultiLanguage
+            )
 
             // Scroll to top
             textView?.scrollToBeginningOfDocument(nil)

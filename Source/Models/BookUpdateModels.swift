@@ -50,6 +50,7 @@ struct BookMetadata {
     let tafseerNam: String?
     let bVer: Int?
     let link: String?
+    let pdfCs: Int?
 }
 
 // MARK: - Update Status untuk UI

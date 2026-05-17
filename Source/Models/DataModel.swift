@@ -46,6 +46,10 @@ class BooksData: Codable, Identifiable {
     var downloadFilename: String?
     var compressedDownloadSize: Int64?
     var tafseerNam: String?
+    var pdfCs: Int?
+    var isMultiLanguage: Bool {
+        return pdfCs == 3
+    }
     var bithoqoh: String {
         didSet {
             bithoqoh = bithoqoh.convertToArabicDigits()

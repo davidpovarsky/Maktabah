@@ -31,8 +31,9 @@ class DatabaseManager {
     let bokBithoqoh = Expression<String>("betaka")
     let bokMuallif = Expression<Int>("authno")
     let bokInf = Expression<String>("inf")
+    let bokPdfCs = Expression<Int?>("PdfCs")
     let tafseerNam = Expression<String?>("TafseerNam")
-
+ 
     // Column definitions untuk 0cat
     let catId = Expression<Int>("id")
     let catName = Expression<String>("name")
@@ -121,7 +122,7 @@ class DatabaseManager {
             )
             book.catId = catId
             book.tafseerNam = row[tafseerNam]?.isEmpty == true ? nil : row[tafseerNam]
-
+            book.pdfCs = row[bokPdfCs]
             groupedBooks[catId, default: []].append(book)
         }
 
@@ -181,6 +182,7 @@ class DatabaseManager {
                 muallif: row[bokMuallif]
             )
             book.tafseerNam = row[tafseerNam]?.isEmpty == true ? nil : row[tafseerNam]
+            book.pdfCs = try? row.get(bokPdfCs)
             books.append(book)
         }
 

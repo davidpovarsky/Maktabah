@@ -56,6 +56,7 @@ struct iOSReaderView: View {
             text: $viewModel.contentText,
             annotations: viewModel.currentAnnotations,
             searchText: $viewModel.searchText,
+            isMultiLanguage: book.isMultiLanguage,
             viewModel: viewModel,
             onAddAnnotation: { range, mode, sourceText, color in
                 viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
