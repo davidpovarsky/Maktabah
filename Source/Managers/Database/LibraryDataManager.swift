@@ -512,6 +512,28 @@ class LibraryDataManager {
         else { return }
         db.fetchBooksInfo(for: book)
     }
+
+    func removeBookFromMemory(id: Int, muallifId: Int) {
+        if id > 32792 {
+            booksById.removeValue(forKey: id)
+            for root in allRootCategories {
+                removeBookFromHierarchy(root, bookId: id)
+            }
+        }
+
+        if id > 2515 {
+            authorsCache.removeValue(forKey: muallifId)
+        }
+    }
+
+    private func removeBookFromHierarchy(_ category: CategoryData, bookId: Int) {
+        category.children.removeAll { ($0 as? BooksData)?.id == bookId }
+        for child in category.children {
+            if let sub = child as? CategoryData {
+                removeBookFromHierarchy(sub, bookId: bookId)
+            }
+        }
+    }
 }
 
 extension LibraryDataManager {

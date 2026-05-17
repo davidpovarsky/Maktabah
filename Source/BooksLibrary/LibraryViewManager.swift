@@ -398,7 +398,10 @@ extension LibraryViewManager {
     }
 
     private func handleIntegratedBookUpdate(_ bookId: Int) {
-        guard let book = data.booksById[bookId] else { return }
+        guard let book = data.booksById[bookId] else {
+            removeBookFromDisplayed(bookId: bookId)
+            return
+        }
 
         if !downloadView {
             if BookArchiveIntegrator.shared.isBookIntegrated(book) {

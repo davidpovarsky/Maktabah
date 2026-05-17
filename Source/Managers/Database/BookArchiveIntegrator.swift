@@ -193,6 +193,22 @@ final class BookArchiveIntegrator {
             try replaceDatabaseIfNeeded(tempPath: archiveWritePath, originalPath: archiveDbPath)
             try replaceDatabaseIfNeeded(tempPath: ftsWritePath, originalPath: ftsDbPath)
 
+            // Hapus dari main.sqlite jika bkid > 32792
+            if book.id > 32792, let mainDbPath = AppConfig.mainDatabasePath {
+                let mainDb = try openDatabase(path: mainDbPath)
+                // Menggunakan Raw String agar tanda kutip ganda terbaca jelas
+                let query = #"DELETE FROM "0bok" WHERE bkid = \#(book.id);"#
+                try exec(mainDb, query)
+                sqlite3_close(mainDb)
+            }
+
+            // Hapus dari special.sqlite jika authid > 2515
+            if book.muallif > 2515, let specialDbPath = AppConfig.specialDatabasePath {
+                let specialDb = try openDatabase(path: specialDbPath)
+                try exec(specialDb, "DELETE FROM Auth WHERE authid = \(book.muallif);")
+                sqlite3_close(specialDb)
+            }
+
             self.pendingVacuumArchiveIds.insert(book.archive)
             self.savePendingVacuumIds()
 
@@ -257,6 +273,7 @@ final class BookArchiveIntegrator {
     private func finalizeRemoval(book: BooksData) {
         DatabaseManager.shared.invalidateArchiveCache(archiveId: book.archive)
         IntegrationCache.shared.unmarkIntegrated(bookId: book.id, archiveId: book.archive)
+        LibraryDataManager.shared.removeBookFromMemory(id: book.id, muallifId: book.muallif)
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .bookIntegrated, object: book.id)
         }
