@@ -229,6 +229,8 @@
 		4B8C9DE42F6995EE0049E4EF /* ProgressBooksDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */; };
 		4B96D3412F3612BD0018D902 /* BookUpdateVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3402F3612BD0018D902 /* BookUpdateVM.swift */; };
 		4B96D3432F3612D50018D902 /* BookUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3422F3612D50018D902 /* BookUpdateView.swift */; };
+		4B0000022F3612D50018D902 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
+		4B0000032F3612D50018D902 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
 		4B96D3532F3675290018D902 /* BookUpdateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96D3522F3675290018D902 /* BookUpdateModels.swift */; };
 		4B9A0AE22EEC17CC0049202E /* TarjamahDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE12EEC17CC0049202E /* TarjamahDataManager.swift */; };
 		4B9A0AE52EEC51C20049202E /* Result.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A0AE42EEC51C20049202E /* Result.xib */; };
@@ -474,6 +476,8 @@
 		4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBooksDownload.swift; sourceTree = "<group>"; };
 		4B96D3402F3612BD0018D902 /* BookUpdateVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateVM.swift; sourceTree = "<group>"; };
 		4B96D3422F3612D50018D902 /* BookUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateView.swift; sourceTree = "<group>"; };
+		4B0000012F3612D50018D902 /* BookImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookImportView.swift; sourceTree = "<group>"; };
+
 		4B96D3522F3675290018D902 /* BookUpdateModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateModels.swift; sourceTree = "<group>"; };
 		4B9A0AE12EEC17CC0049202E /* TarjamahDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarjamahDataManager.swift; sourceTree = "<group>"; };
 		4B9A0AE42EEC51C20049202E /* Result.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Result.xib; sourceTree = "<group>"; };
@@ -933,14 +937,16 @@
 			sourceTree = "<group>";
 		};
 		4B96D33F2F3612A10018D902 /* BookUpdate */ = {
-			isa = PBXGroup;
-			children = (
-				4B96D3402F3612BD0018D902 /* BookUpdateVM.swift */,
-				4B96D3422F3612D50018D902 /* BookUpdateView.swift */,
-			);
-			path = BookUpdate;
-			sourceTree = "<group>";
+		        isa = PBXGroup;
+		        children = (
+		                4B0000012F3612D50018D902 /* BookImportView.swift */,
+		                4B96D3402F3612BD0018D902 /* BookUpdateVM.swift */,
+		                4B96D3422F3612D50018D902 /* BookUpdateView.swift */,
+		        );
+		        path = BookUpdate;
+		        sourceTree = "<group>";
 		};
+
 		4B9A0AE32EEC51980049202E /* OutlineView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1370,6 +1376,8 @@
 				4B313A212F9A0FC60061FCC1 /* ResultCellView.swift in Sources */,
 				4B56955C2EEFDAAE00ABEB48 /* AnnotationEditorVC.swift in Sources */,
 				4B96D3432F3612D50018D902 /* BookUpdateView.swift in Sources */,
+				4B0000022F3612D50018D902 /* BookImportView.swift in Sources */,
+
 				4B8C9DE42F6995EE0049E4EF /* ProgressBooksDownload.swift in Sources */,
 				4B65CCC02EE0A10F0085CEB4 /* SearchEngine.swift in Sources */,
 				4B3202502EDB1B5A003B95D1 /* DataModel.swift in Sources */,
@@ -1481,6 +1489,8 @@
 				4B7C90E22F83494200454BE1 /* Narrathor.swift in Sources */,
 				4B7C90E32F83494200454BE1 /* AnnotationEditorVC.swift in Sources */,
 				4B7C90E42F83494200454BE1 /* BookUpdateView.swift in Sources */,
+				4B0000032F3612D50018D902 /* BookImportView.swift in Sources */,
+
 				4B7C90E52F83494200454BE1 /* ProgressBooksDownload.swift in Sources */,
 				4B7C90E62F83494200454BE1 /* AppUpdate.swift in Sources */,
 				4B313A222F9A0FC60061FCC1 /* ResultCellView.swift in Sources */,
@@ -1883,7 +1893,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 55;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -1911,7 +1921,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1941,7 +1951,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 55;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -1970,7 +1980,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1999,7 +2009,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 55;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -2028,7 +2038,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
@@ -2058,7 +2068,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 55;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -2088,7 +2098,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
@@ -2117,7 +2127,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 55;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2133,7 +2143,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
@@ -2158,7 +2168,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 55;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2175,7 +2185,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;

@@ -42,6 +42,7 @@ class BooksData: Codable, Identifiable {
     let book: String
     let archive: Int
     let muallif: Int
+    var catId: Int?
     var downloadFilename: String?
     var compressedDownloadSize: Int64?
     var tafseerNam: String?

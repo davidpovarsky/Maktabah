@@ -9,6 +9,7 @@
 import Cocoa
 import SwiftUI
 import CloudKit
+import UniformTypeIdentifiers
 #if DIRECT_DISTRIBUTION
 import Sparkle
 #endif
@@ -273,6 +274,67 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // 4. Jalankan sebagai Modal
         NSApp.runModal(for: window)
+    }
+
+    @IBAction func importOfflineBook(_ sender: Any?) {
+        showOfflineImportWindow()
+    }
+
+    private func showOfflineImportWindow() {
+        let contentView = OfflineImportFormView(onImport: { [unowned self]
+            (url: URL, metadata: BookMetadata, authorRow: [String: Any]?) async in
+            await performCustomImport(
+                url: url,
+                metadata: metadata,
+                authorRow: authorRow
+            )
+        })
+
+        let hostingView = NSHostingView(rootView: contentView)
+        hostingView.frame = NSRect(x: 0, y: 0, width: 600, height: 600)
+
+        let window = NSWindow(
+            contentRect: hostingView.frame,
+            styleMask: [.fullSizeContentView, .titled, .closable, .resizable],
+            backing: .buffered,
+            defer: false
+        )
+
+        window.center()
+        window.titleVisibility = .hidden
+        window.title = "Import Offline Book"
+        window.contentView = hostingView
+        window.isReleasedWhenClosed = false
+        window.makeKeyAndOrderFront(nil as Any?)
+    }
+
+    @MainActor
+    private func performCustomImport(url: URL, metadata: BookMetadata, authorRow: [String: Any]?) async {
+        do {
+            let result = try await BookUpdateManager
+                .shared.importOfflineUpdate (
+                    from: url,
+                    providedMetadata: metadata,
+                    authorRow: authorRow
+                )
+
+            try? await LibraryDataManager.shared.processBookUpdates([result])
+            BookUpdateManager.shared.integrateBooks(metadata: metadata)
+
+            ReusableFunc.showAlert(
+                title: "Import Successful",
+                message: "The book has been successfully imported."
+            )
+        } catch {
+            ReusableFunc.showAlert(
+                title: "Import Failed",
+                message: "Error: \(error.localizedDescription)"
+            )
+
+            #if DEBUG
+                print("[Offline Import] Failed to import book from \(url.lastPathComponent): \(error)")
+            #endif
+        }
     }
 
     fileprivate func registerCustomFonts() {

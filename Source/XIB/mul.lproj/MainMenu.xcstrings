@@ -745,6 +745,30 @@
         }
       }
     },
+    "eVU-tN-cWf.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Import Book...\"; ObjectID = \"eVU-tN-cWf\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استيراد كتاب..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Import Book..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Kitab..."
+          }
+        }
+      }
+    },
     "eWT-Pc-0td.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Check Updates...\"; ObjectID = \"eWT-Pc-0td\";",
       "extractionState" : "extracted_with_value",

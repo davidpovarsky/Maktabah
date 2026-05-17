@@ -42,9 +42,9 @@ class DatabaseManager {
     // Column definitions untuk Auth (dari getAuthor)
     let authTable = Table("Auth")
     let authId = Expression<Int>("authid")
-    let authName = Expression<String>("auth")
-    let authInf = Expression<String>("inf")
-    let authLng = Expression<String>("Lng")
+    let authName = Expression<String?>("auth")
+    let authInf = Expression<String?>("inf")
+    let authLng = Expression<String?>("Lng")
 
     var shortsCache: [String: [String: String]] = [:]
 
@@ -119,12 +119,42 @@ class DatabaseManager {
                 archive: row[bokArchive],
                 muallif: row[bokMuallif]
             )
+            book.catId = catId
             book.tafseerNam = row[tafseerNam]?.isEmpty == true ? nil : row[tafseerNam]
 
             groupedBooks[catId, default: []].append(book)
         }
 
         return groupedBooks
+    }
+
+    func getMaxBookId() -> Int {
+        guard let db = db else { return 0 }
+        let maxId = bokId.max
+        return (try? db.scalar(booksTable.select(maxId))) ?? 0
+    }
+
+    func getMaxAuthId() -> Int {
+        guard let dbSpecial = dbSpecial else { return 0 }
+        let maxId = authId.max
+        return (try? dbSpecial.scalar(authTable.select(maxId))) ?? 0
+    }
+
+    func fetchAllAuthors() -> [(id: Int, muallif: Muallif)] {
+        guard let dbSpecial = dbSpecial else { return [] }
+        var authors: [(id: Int, muallif: Muallif)] = []
+        do {
+            for row in try dbSpecial.prepare(authTable) {
+                let id = row[authId]
+                let auth = row[authName] ?? ""
+                let inf = row[authInf] ?? ""
+                let lng = row[authLng] ?? ""
+                authors.append((id: id, muallif: Muallif(nama: auth, info: inf, namaLengkap: lng)))
+            }
+        } catch {
+            print("Error fetchAllAuthors: \(error)")
+        }
+        return authors
     }
     
     func fetchBooks(forCategory catId: Int) throws -> [BooksData] {
@@ -269,9 +299,9 @@ class DatabaseManager {
             let query = authTable.filter(authId == id)
 
             if let row = try dbSpecial.pluck(query) {
-                let auth = try row.get(authName)
-                let inf = try row.get(authInf)
-                let lng = try row.get(authLng)
+                let auth = try row.get(authName) ?? ""
+                let inf = try row.get(authInf) ?? ""
+                let lng = try row.get(authLng) ?? ""
 
                 let author = Muallif(
                     nama: auth,

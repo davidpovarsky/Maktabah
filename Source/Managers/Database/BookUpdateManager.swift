@@ -355,6 +355,166 @@ final class BookUpdateManager {
         )
     }
 
+    func importOfflineUpdate(
+        from url: URL,
+        providedMetadata: BookMetadata? = nil,
+        authorRow: [String: Any]? = nil
+    ) async throws -> BookUpdateResult {
+        let metadata: BookMetadata
+        if let provided = providedMetadata {
+            metadata = provided
+        } else {
+            guard let readMeta = try readBookMetadata(from: url, fallbackBookId: 0) else {
+                throw NSError(
+                    domain: "BookUpdate",
+                    code: -6,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Metadata kitab (tabel main_update) tidak ditemukan di file sqlite tersebut."
+                    ]
+                )
+            }
+            metadata = readMeta
+        }
+
+        return try await executeOfflineImport(url: url, metadata: metadata, authorRow: authorRow)
+    }
+
+    private func executeOfflineImport(
+        url: URL,
+        metadata: BookMetadata,
+        authorRow: [String: Any]?
+    ) async throws -> BookUpdateResult {
+        // 1. Langsung buat tabel di arsip target di awal sesuai permintaan user
+        try preCreateArchiveTables(archiveId: metadata.archive, bookId: metadata.bkid)
+
+        let workingDirectory = try makeWorkingDirectory()
+
+        let downloadedBookURL = workingDirectory.appendingPathComponent(
+            "book_\(metadata.bkid)_\(UUID().uuidString).sqlite"
+        )
+        try FileManager.default.copyItem(at: url, to: downloadedBookURL)
+
+        let ftsSourceURL = workingDirectory.appendingPathComponent(
+            "b\(metadata.bkid)_fts_source_\(UUID().uuidString).sqlite"
+        )
+        try FileManager.default.copyItem(at: url, to: ftsSourceURL)
+
+        #if DEBUG
+            print("[Import] Initial: \(listAllTables(at: downloadedBookURL))")
+        #endif
+
+        try renameTablesIfNeeded(at: downloadedBookURL, to: metadata.bkid)
+        try renameTablesIfNeeded(at: ftsSourceURL, to: metadata.bkid)
+
+        let entry = BookIndexEntry(
+            bkid: metadata.bkid,
+            bk: metadata.bk,
+            category: metadata.cat ?? 0,
+            versionName: Int64(metadata.bVer ?? 0),
+            downloadURL: "",
+            fileSize: 0
+        )
+
+        // Handle custom author row insertion if needed
+        if let authorRow = authorRow, let specialPath = AppConfig.specialDatabasePath {
+            do {
+                let specialDb = try openDatabase(path: specialPath)
+                defer { sqlite3_close(specialDb) }
+                try insertAuthorRow(authorRow, into: specialDb)
+            } catch {
+                DispatchQueue.main.async {
+                    ReusableFunc.showAlert(
+                        title: "Error",
+                        message: "[Offline Import] Failed to insert author row: \(error)"
+                    )
+                }
+            }
+        }
+
+        let exists = try bookExists(id: metadata.bkid)
+
+        try convertBookDatabase(
+            at: downloadedBookURL,
+            bookId: metadata.bkid
+        )
+
+        try replaceArchiveDatabase(
+            with: downloadedBookURL,
+            archiveId: metadata.archive,
+            bookId: metadata.bkid,
+            ftsSourceURL: ftsSourceURL
+        )
+
+        if !exists {
+            try insertBookMetadata(metadata)
+        } else {
+            try updateBookVersion(metadata)
+        }
+
+        // Cleanup
+        try? FileManager.default.removeItem(at: downloadedBookURL)
+        try? FileManager.default.removeItem(at: ftsSourceURL)
+
+        return BookUpdateResult(
+            bookId: metadata.bkid,
+            catId: entry.category,
+            action: exists ? .updated : .inserted
+        )
+    }
+
+    private func preCreateArchiveTables(archiveId: Int, bookId: Int) throws {
+        guard let targetPath = AppConfig.archiveDatabasePath(archiveId: archiveId) else { return }
+
+        // Membuka database arsip (misal 20.sqlite)
+        var db: OpaquePointer?
+        guard sqlite3_open_v2(targetPath, &db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, nil) == SQLITE_OK, let db else {
+            sqlite3_close(db)
+            return
+        }
+        defer { sqlite3_close(db) }
+
+        #if DEBUG
+            print("[Import] Pre-creating tables in archive \(archiveId)...")
+        #endif
+
+        let schema = "(nass BLOB, part INTEGER, id INTEGER, page INTEGER)"
+        try exec(db, "CREATE TABLE IF NOT EXISTS \"b\(bookId)\" \(schema);")
+        try exec(db, "CREATE TABLE IF NOT EXISTS \"t\(bookId)\" \(schema);")
+    }
+
+    #if DEBUG
+    private func listAllTables(at url: URL) -> [String] {
+        guard let db = try? openDatabase(path: url.path) else { return [] }
+        defer { sqlite3_close(db) }
+        var objects: [String] = []
+        let sql = "SELECT name FROM sqlite_master WHERE type IN ('table', 'view');"
+        var stmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {
+            while sqlite3_step(stmt) == SQLITE_ROW {
+                if let name = sqlite3_column_text(stmt, 0) {
+                    objects.append(String(cString: name))
+                }
+            }
+        }
+        sqlite3_finalize(stmt)
+        return objects
+    }
+    #endif
+
+    @MainActor
+    func integrateBooks(metadata: BookMetadata) {
+        // Mark as integrated since the tables are already copied to the archive
+        IntegrationCache.shared.markIntegrated(
+            bookId: metadata.bkid,
+            archiveId: metadata.archive
+        )
+
+        NotificationCenter.default.post(
+            name: .bookIntegrated,
+            object: metadata.bkid
+        )
+    }
+
     func applyStagedBookUpdate(
         _ stagedUpdate: StagedBookUpdate,
         knownExists: Bool? = nil
@@ -534,7 +694,7 @@ final class BookUpdateManager {
 
         let sql = """
         INSERT INTO `0bok` (`bkid`, `cat`, `bk`, `Archive`, `betaka`, `authno`, `inf`, `TafseerNam`, `bVer`)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         """
         var stmt: OpaquePointer?
         guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
@@ -565,7 +725,6 @@ final class BookUpdateManager {
         } else {
             sqlite3_bind_null(stmt, 9)
         }
-
         guard sqlite3_step(stmt) == SQLITE_DONE else {
             throw NSError(
                 domain: "BookUpdate",
@@ -715,7 +874,7 @@ final class BookUpdateManager {
             WHERE bkid = ? LIMIT 1;
             """
         var stmt: OpaquePointer?
-        guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+        if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) != SQLITE_OK {
             return nil
         }
         defer { sqlite3_finalize(stmt) }
@@ -733,7 +892,7 @@ final class BookUpdateManager {
         let tafseerNam = columnText(stmt, index: 7)
         let bVer = sqlite3_column_int(stmt, 8)
         let link = columnText(stmt, index: 9)
-
+        
         return BookMetadata(
             bkid: bkid,
             cat: Int(cat),
@@ -877,6 +1036,10 @@ final class BookUpdateManager {
             tableName: tableName,
             db: db
         )
+        
+        if columns.isEmpty {
+            throw sqliteError(db, message: "Tabel \(tableName) tidak ditemukan di file sumber.")
+        }
 
         try withTransaction(db) {
             try exec(db, "DROP TABLE IF EXISTS \(tempTable);")
@@ -967,6 +1130,56 @@ final class BookUpdateManager {
         }
     }
 
+    private func renameTablesIfNeeded(at url: URL, to targetId: Int) throws {
+        let db = try openDatabase(path: url.path)
+        defer { sqlite3_close(db) }
+        
+        let targetBTable = "b\(targetId)"
+        let targetTTable = "t\(targetId)"
+        
+        var existingBTable: String? = nil
+        var existingTTable: String? = nil
+        
+        let sql = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE '%_fts%' AND name NOT LIKE '%_zstd%';"
+        var stmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {
+            var bCandidates: [String] = []
+            var tCandidates: [String] = []
+            
+            while sqlite3_step(stmt) == SQLITE_ROW {
+                if let name = sqlite3_column_text(stmt, 0) {
+                    let tableName = String(cString: name)
+                    if tableName.hasPrefix("b") {
+                        bCandidates.append(tableName)
+                    } else if tableName.hasPrefix("t") {
+                        tCandidates.append(tableName)
+                    }
+                }
+            }
+            sqlite3_finalize(stmt)
+            
+            // Prefer b<numbers>, then 'b', then any b*
+            existingBTable = bCandidates.first(where: { $0.dropFirst().allSatisfy({ $0.isNumber }) && !$0.dropFirst().isEmpty })
+                ?? bCandidates.first(where: { $0 == "b" })
+                ?? bCandidates.first
+            
+            // Prefer t<numbers>, then 't', then any t*
+            existingTTable = tCandidates.first(where: { $0.dropFirst().allSatisfy({ $0.isNumber }) && !$0.dropFirst().isEmpty })
+                ?? tCandidates.first(where: { $0 == "t" })
+                ?? tCandidates.first
+        } else {
+            sqlite3_finalize(stmt)
+        }
+        
+        if let existingB = existingBTable, existingB != targetBTable {
+            try exec(db, "ALTER TABLE \"\(existingB)\" RENAME TO \"\(targetBTable)\";")
+        }
+        
+        if let existingT = existingTTable, existingT != targetTTable {
+            try exec(db, "ALTER TABLE \"\(existingT)\" RENAME TO \"\(targetTTable)\";")
+        }
+    }
+
     private func replaceArchiveDatabase(
         with sourceURL: URL,
         archiveId: Int,
@@ -1015,7 +1228,17 @@ final class BookUpdateManager {
             )
         }
 
-        try exec(db, "VACUUM;")
+        IntegrationCache.shared.markIntegrated(
+            bookId: bookId,
+            archiveId: archiveId
+        )
+
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(
+                name: .bookIntegrated,
+                object: bookId
+            )
+        }
     }
 
     private func makeWorkingDirectory() throws -> URL {
