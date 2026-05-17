@@ -114,6 +114,7 @@ extension iOSSearchFilterViewController: UICollectionViewDelegate {
 
 struct SearchFilterUIKitView: UIViewControllerRepresentable {
     @Bindable var viewModel: iOSSearchViewModel
+    var onTap: () -> Void = {}
 
     func makeUIViewController(context: Context) -> iOSSearchFilterViewController {
         let vc = iOSSearchFilterViewController()
@@ -121,6 +122,12 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
         vc.onSelectionChanged = { ids in
             viewModel.selectedBookIds = ids
         }
+        vc.additionalSafeAreaInsets.bottom = 50
+
+        let tap = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
+        tap.cancelsTouchesInView = false
+        vc.view.addGestureRecognizer(tap)
+
         return vc
     }
 
@@ -134,13 +141,24 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
         if uiViewController.selectedBookIds != viewModel.selectedBookIds {
             uiViewController.selectedBookIds = viewModel.selectedBookIds
         }
+
+        context.coordinator.onTap = onTap
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(onTap: onTap)
     }
 
     class Coordinator {
         var lastCategories: [CategoryData] = []
+        var onTap: () -> Void
+
+        init(onTap: @escaping () -> Void) {
+            self.onTap = onTap
+        }
+
+        @objc func handleTap() {
+            onTap()
+        }
     }
 }

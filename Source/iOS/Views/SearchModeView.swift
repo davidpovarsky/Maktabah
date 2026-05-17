@@ -5,170 +5,214 @@ struct SearchModeView: View {
     @State private var showingFilter = false
     @State private var showingHelp = false
     @FocusState private var isSearchFieldFocused: Bool
+    @State private var inputBarHeight: CGFloat = 60 // fallback default
 
     var body: some View {
         @Bindable var viewModel = navigationManager.searchViewModel
         VStack(spacing: 0) {
             if viewModel.results.isEmpty {
-                VStack(spacing: 0) {
-                    ZStack(alignment: .bottom) {
-                        SearchFilterUIKitView(viewModel: viewModel)
-                            .ignoresSafeArea(edges: [.bottom])
-
-                        if isSearchFieldFocused, !viewModel.searchHistory.isEmpty {
-                            VStack(spacing: 0) {
-                                HStack {
-                                    Text("Search History")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                    Spacer()
-                                    Button("Clear All") {
-                                        viewModel.searchHistory.forEach { viewModel.removeFromHistory($0) }
-                                    }
-                                    .font(.caption)
-                                }
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                .background(Color(.secondarySystemBackground))
-
-                                List {
-                                    ForEach(viewModel.searchHistory, id: \.self) { historyQuery in
-                                        Button(action: {
-                                            viewModel.query = historyQuery
-                                            viewModel.addToHistory(historyQuery)
-                                            isSearchFieldFocused = false
-                                            viewModel.startSearch()
-                                        }) {
-                                            HStack {
-                                                Image(systemName: "clock.arrow.circlepath")
-                                                    .foregroundColor(.secondary)
-                                                Text(historyQuery)
-                                                    .foregroundColor(.primary)
-                                                Spacer()
-                                                Image(systemName: "arrow.up.left")
-                                                    .font(.caption)
-                                                    .foregroundColor(.secondary)
-                                            }
-                                            .contentShape(Rectangle())
-                                        }
-                                    }
-                                    .onDelete { offsets in
-                                        for index in offsets {
-                                            let item = viewModel.searchHistory[index]
-                                            viewModel.removeFromHistory(item)
-                                        }
-                                    }
-                                }
-                                .listStyle(PlainListStyle())
-                            }
-                            .frame(maxHeight: 250)
-                            .background(Color(.systemBackground))
-                            .cornerRadius(12)
-                            .shadow(radius: 10)
-                            .padding(.horizontal)
-                            .padding(.bottom, 8)
-                            .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .opacity))
-                            .zIndex(2)
-                        }
-                    }
-
-                    Divider()
-                    // Search Bar
-                    TextField("Search...", text: $viewModel.query)
-                        .focused($isSearchFieldFocused)
-                        .submitLabel(.search)
-                        .onSubmit {
-                            viewModel.addToHistory(viewModel.query)
-                            viewModel.startSearch()
-                        }
-                        .frame(height: 40)
-                        .padding([.leading, .trailing], 10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                                .stroke(.tertiary, lineWidth: 1)
-                        )
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-
-                    Picker("Mode", selection: $viewModel.searchMode) {
-                        Text("==").tag(SearchMode.phrase)
-                        Text("&").tag(SearchMode.contains)
-                        Text("/").tag(SearchMode.or)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
-                    .padding(.bottom)
-                }
+                filterAndInputView(viewModel: viewModel)
             } else {
-                // Results List
-                SearchResultsListView(results: viewModel.results) { item in
-                    handleSelection(item)
-                }
+                searchResultsView(viewModel: viewModel)
             }
 
-            // Progress
-            if viewModel.isSearching {
-                VStack(alignment: .leading) {
-                    ProgressView(
-                        value: Double(viewModel.completedTables),
-                        total: Double(max(viewModel.totalTables, 1))
-                    )
-                    .progressViewStyle(LinearProgressViewStyle())
-
-                    if viewModel.totalRowsInTable > 0 {
-                        ProgressView(
-                            value: Double(viewModel.completedRowsInTable),
-                            total: Double(viewModel.totalRowsInTable)
-                        )
-                        .progressViewStyle(LinearProgressViewStyle())
-                        .padding(.top, 4)
-                    }
-                }
-                .padding(.horizontal)
-            }
+            searchProgressView(viewModel: viewModel)
         }
-        .toolbar(content: {
-            ToolbarItem(placement: .topBarTrailing) {
-                if viewModel.isSearching {
-                    Button(action: { viewModel.stopSearch() }) {
-                        Image(systemName: "stop")
-                            .foregroundColor(.red)
-                    }
-                } else {
-                    Button(action: { viewModel.startSearch() }) {
-                        Image(systemName: "play")
-                    }
-                }
-            }
-
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {
-                    showingHelp = true
-                }) {
-                    Image(systemName: "questionmark.circle")
-                }
-                .popover(isPresented: $showingHelp) {
-                    SearchHelpView()
-                        .frame(width: 300, height: 450)
-                        .presentationCompactAdaptation(.popover)
-                }
-            }
-
-            ToolbarItem(placement: .topBarTrailing) {
-                if !viewModel.results.isEmpty {
-                    Button(action: {
-                        viewModel.stopSearch()
-                        viewModel.results = []
-                        viewModel.query = ""
-                    }) {
-                        Image(systemName: "xmark.circle")
-                    }
-                }
-            }
-        })
+        .toolbar {
+            toolbarContent(viewModel: viewModel)
+        }
         .onChange(of: navigationManager.searchText) { _, newValue in
             viewModel.filterText = newValue
             viewModel.updateDisplayedCategories()
+        }
+    }
+
+    // MARK: - Sub-views
+
+    private func filterAndInputView(viewModel: iOSSearchViewModel) -> some View {
+        ZStack(alignment: .bottom) {
+            SearchFilterUIKitView(viewModel: viewModel, onTap: {
+                isSearchFieldFocused = false
+            })
+            .ignoresSafeArea(edges: .vertical)
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                bottomInputBar(viewModel: viewModel)
+                    .background {
+                        GeometryReader { geo in
+                            Color.clear
+                                .onAppear { inputBarHeight = geo.size.height }
+                                .onChange(of: geo.size.height) { _, h in inputBarHeight = h }
+                        }
+                    }
+            }
+
+            searchHistoryOverlay(viewModel: viewModel)
+        }
+    }
+
+    private func searchResultsView(viewModel: iOSSearchViewModel) -> some View {
+        SearchResultsListView(results: viewModel.results) { item in
+            handleSelection(item)
+        }
+    }
+
+    @ViewBuilder
+    private func searchProgressView(viewModel: iOSSearchViewModel) -> some View {
+        if viewModel.isSearching {
+            VStack(alignment: .leading) {
+                ProgressView(
+                    value: Double(viewModel.completedTables),
+                    total: Double(max(viewModel.totalTables, 1))
+                )
+                .progressViewStyle(LinearProgressViewStyle())
+
+                if viewModel.totalRowsInTable > 0 {
+                    ProgressView(
+                        value: Double(viewModel.completedRowsInTable),
+                        total: Double(viewModel.totalRowsInTable)
+                    )
+                    .progressViewStyle(LinearProgressViewStyle())
+                    .padding(.top, 4)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .background(.ultraThinMaterial)
+        }
+    }
+
+    @ViewBuilder
+    private func bottomInputBar(viewModel: iOSSearchViewModel) -> some View {
+        @Bindable var viewModel = viewModel
+        HStack(alignment: .center, spacing: 8) {
+            // Search Bar
+            TextField("Search...", text: $viewModel.query)
+                .focused($isSearchFieldFocused)
+                .submitLabel(.search)
+                .onSubmit {
+                    viewModel.addToHistory(viewModel.query)
+                    viewModel.startSearch()
+                }
+                .padding(.horizontal, 12)
+                .frame(height: 32)
+                .background(.quinary)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 18)
+                        .stroke(.secondary, lineWidth: 1)
+                )
+                .cornerRadius(18)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
+
+            Picker("Mode", selection: $viewModel.searchMode) {
+                Image(systemName: "text.quote").tag(SearchMode.phrase)
+                Image(systemName: "checklist.checked").tag(SearchMode.contains)
+                Image(systemName: "checklist").tag(SearchMode.or)
+            }
+            .frame(width: 120)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
+            .pickerStyle(SegmentedPickerStyle())
+        }
+        .padding(.vertical)
+        .padding(.horizontal, 20)
+    }
+
+    @ViewBuilder
+    private func searchHistoryOverlay(viewModel: iOSSearchViewModel) -> some View {
+        if isSearchFieldFocused, !viewModel.searchHistory.isEmpty {
+            VStack(spacing: 0) {
+                HStack {
+                    Text("Search History")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Button("Clear All") {
+                        viewModel.searchHistory.forEach { viewModel.removeFromHistory($0) }
+                    }
+                    .font(.caption)
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .background(Color(.secondarySystemBackground))
+
+                List {
+                    ForEach(viewModel.searchHistory, id: \.self) { historyQuery in
+                        Button(action: {
+                            viewModel.query = historyQuery
+                            viewModel.addToHistory(historyQuery)
+                            isSearchFieldFocused = false
+                            viewModel.startSearch()
+                        }) {
+                            HStack {
+                                Image(systemName: "clock.arrow.circlepath")
+                                    .foregroundColor(.secondary)
+                                Text(historyQuery)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                Image(systemName: "arrow.up.left")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                    }
+                    .onDelete { offsets in
+                        for index in offsets {
+                            let item = viewModel.searchHistory[index]
+                            viewModel.removeFromHistory(item)
+                        }
+                    }
+                }
+                .listStyle(PlainListStyle())
+            }
+            .frame(maxHeight: 250)
+            .background(Color(.systemBackground))
+            .cornerRadius(12)
+            .shadow(radius: 10)
+            .padding(.horizontal)
+            .padding(.bottom, inputBarHeight)
+            .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .opacity))
+            .zIndex(2)
+        }
+    }
+
+    @ToolbarContentBuilder
+    private func toolbarContent(viewModel: iOSSearchViewModel) -> some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            if viewModel.isSearching {
+                Button(action: { viewModel.stopSearch() }) {
+                    Image(systemName: "stop")
+                        .foregroundColor(.red)
+                }
+            } else {
+                Button(action: { viewModel.startSearch() }) {
+                    Image(systemName: "play")
+                }
+            }
+        }
+
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: {
+                showingHelp = true
+            }) {
+                Image(systemName: "questionmark.circle")
+            }
+            .popover(isPresented: $showingHelp) {
+                SearchHelpView()
+                    .frame(width: 300, height: 450)
+                    .presentationCompactAdaptation(.popover)
+            }
+        }
+
+        ToolbarItem(placement: .topBarTrailing) {
+            if !viewModel.results.isEmpty {
+                Button(action: {
+                    viewModel.stopSearch()
+                    viewModel.results = []
+                    viewModel.query = ""
+                }) {
+                    Image(systemName: "xmark.circle")
+                }
+            }
         }
     }
 
