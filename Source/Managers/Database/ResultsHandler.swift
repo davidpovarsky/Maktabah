@@ -143,6 +143,13 @@ class ResultsHandler {
             );
             """)
 
+            try exec("""
+            CREATE TABLE IF NOT EXISTS sync_pending (
+                ck_record_id TEXT PRIMARY KEY,
+                operation TEXT NOT NULL CHECK(operation IN ('upload', 'delete')),
+                queued_at INTEGER NOT NULL
+            );
+            """)
 
             // Migration for existing databases
             let folderCols = try listTableColumns(tableName: foldersTable)
@@ -300,6 +307,27 @@ class ResultsHandler {
         }
     }
 
+    // MARK: - Sync Pending Helpers
+
+    func addPendingSync(ckRecordId: String, operation: String) {
+        guard let db else { return }
+        let now = Int64(Date().timeIntervalSince1970)
+        let sql = "INSERT OR REPLACE INTO sync_pending (ck_record_id, operation, queued_at) VALUES (?, ?, ?);"
+        try? db.execute(query: sql, parameters: [ckRecordId, operation, now])
+    }
+
+    func removePendingSync(ckRecordIds: [String]) {
+        guard let db else { return }
+        let placeholders = ckRecordIds.map { _ in "?" }.joined(separator: ",")
+        let sql = "DELETE FROM sync_pending WHERE ck_record_id IN (\(placeholders));"
+        try? db.execute(query: sql, parameters: ckRecordIds)
+    }
+
+    func fetchPendingSync(operation: String) -> [String] {
+        guard let db else { return [] }
+        let sql = "SELECT ck_record_id FROM sync_pending WHERE operation = ? ORDER BY queued_at ASC;"
+        return (try? db.fetch(query: sql, parameters: [operation]) { $0.string(at: 0) ?? "" }) ?? []
+    }
 
     func nukeDatabase() {
         do {
