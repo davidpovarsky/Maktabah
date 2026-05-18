@@ -2087,6 +2087,14 @@ final class AnnotationManager {
 
             if totalChanges > 0, totalChanges < 100 {
                 // Incremental Cache Update
+                let affectedContentKeys = Set(
+                    (addedAnnotations + updatedAnnotations + deletedAnnotations).map {
+                        ContentKey(bkId: $0.bkId, contentId: $0.contentId)
+                    }
+                )
+                let affectedBookIds = Set(
+                    (addedAnnotations + updatedAnnotations + deletedAnnotations).map(\.bkId)
+                )
                 cacheQueue.sync {
                     cachedAllTagNames = nil
 
@@ -2094,46 +2102,27 @@ final class AnnotationManager {
                         guard let id = ann.id else { continue }
                         cacheById.removeValue(forKey: id)
                         cacheTagsByAnnotationId.removeValue(forKey: id)
-                        cacheByBook[ann.bkId] = cacheByBook[ann.bkId]?.filter { $0.id != id }
-                        let key = ContentKey(bkId: ann.bkId, contentId: ann.contentId)
-                        cacheByContent[key] = cacheByContent[key]?.filter { $0.id != id }
                     }
 
                     for ann in addedAnnotations {
                         guard let id = ann.id else { continue }
                         cacheById[id] = ann
                         cacheTagsByAnnotationId[id] = ann.tags
-                        let key = ContentKey(bkId: ann.bkId, contentId: ann.contentId)
-                        var arr = cacheByContent[key] ?? []
-                        let idx = arr.insertionIndex(for: ann) { $0.range.location < $1.range.location }
-                        arr.insert(ann, at: idx)
-                        cacheByContent[key] = arr
-                        if cacheByBook[ann.bkId] != nil {
-                            cacheByBook[ann.bkId]!.append(ann)
-                        }
                     }
 
                     for ann in updatedAnnotations {
                         guard let id = ann.id else { continue }
                         cacheById[id] = ann
                         cacheTagsByAnnotationId[id] = ann.tags
-                        let key = ContentKey(bkId: ann.bkId, contentId: ann.contentId)
-                        var arr = cacheByContent[key] ?? []
-                        if let idx = arr.firstIndex(where: { $0.id == id }) {
-                            arr[idx] = ann
-                        } else {
-                            let idx = arr.insertionIndex(for: ann) { $0.range.location < $1.range.location }
-                            arr.insert(ann, at: idx)
-                        }
-                        cacheByContent[key] = arr
-                        if var bookArr = cacheByBook[ann.bkId] {
-                            if let idx = bookArr.firstIndex(where: { $0.id == id }) {
-                                bookArr[idx] = ann
-                            } else {
-                                bookArr.append(ann)
-                            }
-                            cacheByBook[ann.bkId] = bookArr
-                        }
+                    }
+
+                    // Per-page and per-book caches must not be rebuilt from a partial CloudKit delta,
+                    // or reader views can observe only the changed annotations for a page.
+                    for key in affectedContentKeys {
+                        cacheByContent.removeValue(forKey: key)
+                    }
+                    for bkId in affectedBookIds {
+                        cacheByBook.removeValue(forKey: bkId)
                     }
                 }
 
