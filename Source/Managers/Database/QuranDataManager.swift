@@ -10,7 +10,7 @@ import SQLite3
 
 class QuranDataManager {
     static var shared: QuranDataManager = .init()
-    private var db: OpaquePointer?
+    private var db: SQLiteDatabase?
 
     private(set) var surahNodes: [SurahNode] = []
     private(set) lazy var tafseerBooks: [BooksData] = []
@@ -24,36 +24,33 @@ class QuranDataManager {
 
     private init() {
         guard let path else { return }
-        if sqlite3_open(path, &db) != SQLITE_OK {
-            do { sqlite3_close(db) }
-            #if DEBUG
-            print("error saat mencoba membuka database")
-            #endif
+        do {
+            db = try SQLiteDatabase(path: path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+        } catch {
+#if DEBUG
+            print("error saat mencoba membuka database:", error)
+#endif
         }
     }
 
-    deinit {
-        sqlite3_close(db)
-    }
-
     func connect(to book: BooksData) {
-        #if DEBUG
+#if DEBUG
         print("QuranDataManager connect")
-        #endif
+#endif
         try? bkConn.connect(archive: book.archive)
         selectedBook = book
     }
 
     @discardableResult
     func loadTafseer(for aya: Int, in surah: Int) -> String? {
-        #if DEBUG
+#if DEBUG
         print("loadTafseer")
-        #endif
+#endif
         selectedQuran = (aya: aya, surah: surah)
         guard let selectedBook else {
-            #if DEBUG
+#if DEBUG
             print("no selectedBook")
-            #endif
+#endif
             return nil
         }
         currentBookContent = bkConn.fetchTafseer(
@@ -70,6 +67,8 @@ class QuranDataManager {
     // =====================================================
 
     func fetchSurahNodes() throws {
+        guard let db else { return }
+
         let sql = """
         SELECT
             q.Id,
@@ -83,20 +82,14 @@ class QuranDataManager {
         ORDER BY q.sora, q.aya
         """
 
-        var stmt: OpaquePointer?
-        if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) != SQLITE_OK {
-            throw error("prepare failed")
-        }
-        defer { sqlite3_finalize(stmt) }
-
         // Grouping sementara
         var surahMap: [Int: (name: String, aya: [Quran])] = [:]
 
-        while sqlite3_step(stmt) == SQLITE_ROW {
-            let nass  = String(cString: sqlite3_column_text(stmt, 1))
-            let sora  = Int(sqlite3_column_int64(stmt, 2))
-            let aya   = Int(sqlite3_column_int64(stmt, 3))
-            let surahName = String(cString: sqlite3_column_text(stmt, 5))
+        try db.fetch(query: sql) { row in
+            let nass = row.string(at: 1) ?? ""
+            let sora = row.int(at: 2)
+            let aya = row.int(at: 3)
+            let surahName = row.string(at: 5) ?? ""
 
             let ayat = Quran(
                 nass: nass,
@@ -112,7 +105,7 @@ class QuranDataManager {
         // Build node berurutan
         let nodes = surahMap
             .sorted { $0.key < $1.key }
-            .map { (key, value) in
+            .map { key, value in
                 SurahNode(
                     id: key,
                     surah: value.name,
@@ -121,9 +114,9 @@ class QuranDataManager {
             }
 
         surahNodes = nodes
-        #if DEBUG
+#if DEBUG
         print("total nodes:", nodes.count)
-        #endif
+#endif
     }
 
     func buildTafseerMap() {
@@ -138,9 +131,9 @@ class QuranDataManager {
             }
         }
 
-        #if DEBUG
+#if DEBUG
         print("tafseerBooks:", tafseerBooks.count)
-        #endif
+#endif
     }
 
     func nextPage() -> BookContent? {
@@ -176,7 +169,7 @@ class QuranDataManager {
 
         return tafseerBooks.filter {
             $0.book.contains(q)
-            || ($0.tafseerNam?.contains(q) ?? false)
+                || ($0.tafseerNam?.contains(q) ?? false)
         }
     }
 
@@ -189,16 +182,5 @@ class QuranDataManager {
         return surahNodes.compactMap { surah in
             surah.surah.contains(nq) ? surah : nil
         }
-    }
-
-    // =====================================================
-    // ERROR
-    // =====================================================
-
-    private func error(_ message: String) -> Error {
-        let msg = String(cString: sqlite3_errmsg(db))
-        return NSError(domain: "SQLite", code: 2, userInfo: [
-            NSLocalizedDescriptionKey: "\(message): \(msg)"
-        ])
     }
 }

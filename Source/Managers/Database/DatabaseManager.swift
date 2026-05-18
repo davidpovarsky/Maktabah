@@ -11,45 +11,48 @@ import AppKit
 import UIKit
 #endif
 import Foundation
-import SQLite
+import SQLite3
 
 // DatabaseManager.swift
 class DatabaseManager {
     static var shared: DatabaseManager = .init()
 
-    private(set) var db: Connection?
-    private(set) var dbSpecial: Connection?
+    private(set) var db: SQLiteDatabase?
+    private(set) var dbSpecial: SQLiteDatabase?
+    private let lock = NSLock()
 
-    let booksTable = Table("0bok")
-    let categoryTable = Table("0cat")
+    // Table names
+    private let booksTableName = "\"0bok\""
+    private let categoryTableName = "\"0cat\""
+    private let authTableName = "Auth"
 
-    // Column definitions untuk 0bok
-    let bokId = Expression<Int>("bkid")
-    let bokCat = Expression<Int>("cat")
-    let bokName = Expression<String>("bk")
-    let bokArchive = Expression<Int>("Archive")
-    let bokBithoqoh = Expression<String>("betaka")
-    let bokMuallif = Expression<Int>("authno")
-    let bokInf = Expression<String>("inf")
-    let bokPdfCs = Expression<Int?>("PdfCs")
-    let tafseerNam = Expression<String?>("TafseerNam")
- 
-    // Column definitions untuk 0cat
-    let catId = Expression<Int>("id")
-    let catName = Expression<String>("name")
-    let catLevel = Expression<Int>("Lvl")
-    let catOrder = Expression<Int>("catord")
+    // Column names untuk 0bok
+    private let colBokId = "bkid"
+    private let colBokCat = "cat"
+    private let colBokName = "bk"
+    private let colBokArchive = "Archive"
+    private let colBokBithoqoh = "betaka"
+    private let colBokMuallif = "authno"
+    private let colBokInf = "inf"
+    private let colBokPdfCs = "PdfCs"
+    private let colTafseerNam = "TafseerNam"
 
-    // Column definitions untuk Auth (dari getAuthor)
-    let authTable = Table("Auth")
-    let authId = Expression<Int>("authid")
-    let authName = Expression<String?>("auth")
-    let authInf = Expression<String?>("inf")
-    let authLng = Expression<String?>("Lng")
+    // Column names untuk 0cat
+    private let colCatId = "id"
+    private let colCatName = "name"
+    private let colCatLevel = "Lvl"
+    private let colCatOrder = "catord"
+
+    // Column names untuk Auth
+    private let colAuthId = "authid"
+    private let colAuthName = "auth"
+    private let colAuthInf = "inf"
+    private let colAuthLng = "Lng"
 
     var shortsCache: [String: [String: String]] = [:]
 
     // MARK: - Archive Availability
+
     private var archiveAvailabilityCache: [Int: Bool] = [:]
 
     private init() {
@@ -57,6 +60,13 @@ class DatabaseManager {
     }
 
     func setupFolders() {
+        lock.lock()
+        defer { lock.unlock() }
+
+        // Tutup koneksi lama jika ada
+        db = nil
+        dbSpecial = nil
+
         // Database files path (main.sqlite, special.sqlite)
         guard let mainPath = AppConfig.mainDatabasePath,
               let specialPath = AppConfig.specialDatabasePath
@@ -65,224 +75,211 @@ class DatabaseManager {
             return
         }
 
+        let flags = SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
+
         do {
-            db = try Connection(mainPath, readonly: true)
-            dbSpecial = try Connection(specialPath, readonly: true)
+            db = try SQLiteDatabase(path: mainPath, flags: flags)
         } catch {
-            UserDefaults.standard.removeObject(forKey: AppConfig.storageKey)
-            ReusableFunc.showAlert(
-                title: NSLocalizedString("Folder Not Found", comment: ""),
-                message: NSLocalizedString(
-                    "Application Will Terminate because Folder Location Not Found on \(AppConfig.databaseFilesPath ?? "N/A")",
-                    comment: ""
-                )
-            )
-            #if DEBUG
-                print(error.localizedDescription)
-            #endif
-            #if os(macOS)
-            NSApp.terminate(nil)
-            #else
-            fatalError("Application Terminated: Folder Location Not Found")
-            #endif
+            handleSetupError()
+            return
         }
+
+        do {
+            dbSpecial = try SQLiteDatabase(path: specialPath, flags: flags)
+        } catch {
+            handleSetupError()
+            return
+        }
+    }
+
+    private func handleSetupError() {
+        UserDefaults.standard.removeObject(forKey: AppConfig.storageKey)
+        ReusableFunc.showAlert(
+            title: NSLocalizedString("Folder Not Found", comment: ""),
+            message: NSLocalizedString(
+                "Application Will Terminate because Folder Location Not Found on \(AppConfig.databaseFilesPath ?? "N/A")",
+                comment: ""
+            )
+        )
+        #if os(macOS)
+        NSApp.terminate(nil)
+        #else
+        fatalError("Application Terminated: Folder Location Not Found")
+        #endif
     }
 
     func fetchAllCategories() throws -> [CategoryData] {
-        guard let db = db else { return [] }
+        lock.lock()
+        defer { lock.unlock() }
 
-        var categories: [CategoryData] = []
+        guard let db else { return [] }
 
-        // Urutkan berdasarkan catord untuk menjaga hierarki yang benar
-        for row in try db.prepare(categoryTable.order(catOrder, catId)) {
-            let category = CategoryData(
-                id: row[catId],
-                name: row[catName],
-                level: row[catLevel],
-                order: row[catOrder]
-            )
-            categories.append(category)
+        let sql = "SELECT \(colCatId), \(colCatName), \(colCatLevel), \(colCatOrder) FROM \(categoryTableName) ORDER BY \(colCatOrder), \(colCatId)"
+
+        return try db.fetch(query: sql) { row in
+            let id = row.int(at: 0)
+            let name = row.string(at: 1) ?? ""
+            let level = row.int(at: 2)
+            let order = row.int(at: 3)
+            return CategoryData(id: id, name: name, level: level, order: order)
         }
-
-        return categories
     }
 
     func fetchAllBooksGroupedByCategory() throws -> [Int: [BooksData]] {
-        guard let db = db else { return [:] }
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard let db else { return [:] }
 
         var groupedBooks: [Int: [BooksData]] = [:]
+        let sql = "SELECT \(colBokId), \(colBokName), \(colBokArchive), \(colBokMuallif), \(colBokCat), \(colTafseerNam), \(colBokPdfCs) FROM \(booksTableName)"
 
-        for row in try db.prepare(booksTable) {
-            let catId = row[bokCat]
-            let book = BooksData(
-                id: row[bokId],
-                book: row[bokName],
-                archive: row[bokArchive],
-                muallif: row[bokMuallif]
-            )
+        let books = try db.fetch(query: sql) { row -> BooksData in
+            let id = row.int(at: 0)
+            let name = row.string(at: 1) ?? ""
+            let archive = row.int(at: 2)
+            let muallif = row.int(at: 3)
+            let catId = row.int(at: 4)
+
+            let tafseer = row.string(at: 5)
+            let pdfCs = !row.isNull(at: 6) ? row.int(at: 6) : nil
+
+            let book = BooksData(id: id, book: name, archive: archive, muallif: muallif)
             book.catId = catId
-            book.tafseerNam = row[tafseerNam]?.isEmpty == true ? nil : row[tafseerNam]
-            book.pdfCs = row[bokPdfCs]
-            groupedBooks[catId, default: []].append(book)
+            book.tafseerNam = (tafseer?.isEmpty == true) ? nil : tafseer
+            book.pdfCs = pdfCs
+            return book
+        }
+
+        for book in books {
+            if let catId = book.catId {
+                groupedBooks[catId, default: []].append(book)
+            }
         }
 
         return groupedBooks
     }
 
     func getMaxBookId() -> Int {
-        guard let db = db else { return 0 }
-        let maxId = bokId.max
-        return (try? db.scalar(booksTable.select(maxId))) ?? 0
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard let db else { return 0 }
+        let sql = "SELECT MAX(\(colBokId)) FROM \(booksTableName)"
+
+        return (try? db.fetch(query: sql) { row in
+            row.int(at: 0)
+        }.first) ?? 0
     }
 
     func getMaxAuthId() -> Int {
+        lock.lock()
+        defer { lock.unlock() }
+
         guard let dbSpecial = dbSpecial else { return 0 }
-        let maxId = authId.max
-        return (try? dbSpecial.scalar(authTable.select(maxId))) ?? 0
+        let sql = "SELECT MAX(\(colAuthId)) FROM \(authTableName)"
+
+        return (try? dbSpecial.fetch(query: sql) { row in
+            row.int(at: 0)
+        }.first) ?? 0
     }
 
     func fetchAllAuthors() -> [(id: Int, muallif: Muallif)] {
+        lock.lock()
+        defer { lock.unlock() }
+
         guard let dbSpecial = dbSpecial else { return [] }
-        var authors: [(id: Int, muallif: Muallif)] = []
-        do {
-            for row in try dbSpecial.prepare(authTable) {
-                let id = row[authId]
-                let auth = row[authName] ?? ""
-                let inf = row[authInf] ?? ""
-                let lng = row[authLng] ?? ""
-                authors.append((id: id, muallif: Muallif(nama: auth, info: inf, namaLengkap: lng)))
-            }
-        } catch {
-            print("Error fetchAllAuthors: \(error)")
-        }
-        return authors
-    }
-    
-    func fetchBooks(forCategory catId: Int) throws -> [BooksData] {
-        try fetchBooks(forCategory: catId, bookIds: nil)
+        let sql = "SELECT \(colAuthId), \(colAuthName), \(colAuthInf), \(colAuthLng) FROM \(authTableName)"
+
+        return (try? dbSpecial.fetch(query: sql) { row in
+            let id = row.int(at: 0)
+            let auth = row.string(at: 1) ?? ""
+            let inf = row.string(at: 2) ?? ""
+            let lng = row.string(at: 3) ?? ""
+            return (id: id, muallif: Muallif(nama: auth, info: inf, namaLengkap: lng))
+        }) ?? []
     }
 
-    // Fetch buku spesifik di category (atau semua jika bookIds = nil)
-    func fetchBooks(forCategory catId: Int, bookIds: Set<Int>?) throws -> [BooksData] {
-        guard let db = db else { return [] }
-
-        var query = booksTable.filter(bokCat == catId)
-
-        // Filter by specific bookIds if provided
-        if let bookIds = bookIds, !bookIds.isEmpty {
-            query = query.filter(bookIds.contains(bokId))
-        }
-
-        var books: [BooksData] = []
-        for row in try db.prepare(query) {
-            let book = BooksData(
-                id: row[bokId],
-                book: row[bokName],
-                archive: row[bokArchive],
-                muallif: row[bokMuallif]
-            )
-            book.tafseerNam = row[tafseerNam]?.isEmpty == true ? nil : row[tafseerNam]
-            book.pdfCs = try? row.get(bokPdfCs)
-            books.append(book)
-        }
-
-        return books
-    }
-
-    // Fetch single book by ID (untuk update individual)
     func fetchBook(byId bookId: Int) throws -> BooksData? {
-        guard let db = db else { throw
-            NSError(domain: DatabaseError.noConnection.localizedDescription,
-                    code: 1)
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard let db else {
+            throw NSError(domain: "No database connection", code: 1)
         }
 
-        let query = booksTable.filter(bokId == bookId).limit(1)
+        let sql = "SELECT \(colBokId), \(colBokName), \(colBokArchive), \(colBokMuallif), \(colTafseerNam), \(colBokPdfCs) FROM \(booksTableName) WHERE \(colBokId) = ? LIMIT 1"
 
-        guard let row = try db.pluck(query) else { throw
-            NSError(domain: DatabaseError.bookNotFound(bookId).localizedDescription, code: 1)
+        let books = try db.fetch(query: sql, parameters: [bookId]) { row -> BooksData in
+            let id = row.int(at: 0)
+            let name = row.string(at: 1) ?? ""
+            let archive = row.int(at: 2)
+            let muallif = row.int(at: 3)
+            let tafseer = row.string(at: 4)
+            let pdfCs = !row.isNull(at: 5) ? row.int(at: 5) : nil
+
+            let book = BooksData(id: id, book: name, archive: archive, muallif: muallif)
+            book.tafseerNam = (tafseer?.isEmpty == true) ? nil : tafseer
+            book.pdfCs = pdfCs
+            return book
         }
 
-        let book = BooksData(
-            id: row[bokId],
-            book: row[bokName],
-            archive: row[bokArchive],
-            muallif: row[bokMuallif]
-        )
-        book.tafseerNam = row[tafseerNam]?.isEmpty == true ? nil : row[tafseerNam]
-
-        return book
+        if let book = books.first {
+            return book
+        } else {
+            throw NSError(domain: "Book not found", code: 1)
+        }
     }
 
+    func bookExists(id: Int) -> Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        guard let db else { return false }
+
+        let sql = "SELECT 1 FROM `0bok` WHERE `bkid` = ? LIMIT 1;"
+        return (try? db.fetch(query: sql, parameters: [id]) { _ in true }.first) ?? false
+    }
 
     func fetchBooksInfo(for bookData: BooksData) {
-        guard let db = DatabaseManager.shared.db else {
-            #if DEBUG
-                print("Database connection is nil.")
-            #endif
-            return
-        }
+        lock.lock()
+        defer { lock.unlock() }
 
-        do {
-            // 1. Definisikan query: Cari baris di tabel "0bok"
-            //    di mana bkid (bokId) sama dengan ID buku yang diberikan.
-            let query = booksTable.filter(bokId == bookData.id)
+        guard let db else { return }
 
-            // 2. Eksekusi query dan ambil baris pertama
-            if let row = try db.pluck(query) {
+        let sql = "SELECT \(colBokBithoqoh), \(colBokInf) FROM \(booksTableName) WHERE \(colBokId) = ?"
 
-                // 3. Ekstrak data menggunakan Expression objects
-                let betaka = try row.get(bokBithoqoh)
-                let inf = try row.get(bokInf)
-
-                // 4. Modifikasi objek BooksData yang shared (in-place)
-                // didSet pada properti BooksData akan memicu pemrosesan string.
-                bookData.bithoqoh = betaka
-                bookData.info = inf
-
-                #if DEBUG
-                    print("Successfully loaded info for book \(bookData.id).")
-                #endif
-            }
-        } catch {
-            #if DEBUG
-                print("Error fetching book info using SQLite.swift: \(error)")
-            #endif
+        if let info = try? db.fetch(query: sql, parameters: [bookData.id], mapping: { row -> (String, String) in
+            return (row.string(at: 0) ?? "", row.string(at: 1) ?? "")
+        }).first {
+            bookData.bithoqoh = info.0
+            bookData.info = info.1
         }
     }
 
     func loadShortsForBook(_ bkid: String) -> [String: String] {
-        // cek cache dulu
-        if let cached = DatabaseManager.shared.shortsCache[bkid] {
+        if let cached = shortsCache[bkid] {
             return cached
         }
 
-        guard let dbSpecial = DatabaseManager.shared.dbSpecial else {
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard let dbSpecial = dbSpecial else {
             return [:]
         }
 
         var dict: [String: String] = [:]
+        let sql = "SELECT Ramz, Nass FROM shorts WHERE Bk = ?"
 
-        do {
-            let sql = "SELECT Ramz, Nass FROM shorts WHERE Bk = ?"
-            let stmt = try dbSpecial.prepare(sql, bkid)
-
-            for row in stmt {
-                if let code = row[0] as? String,
-                    let text = row[1] as? String
-                {
-                    dict[code] = text
-                }
+        if let results = try? dbSpecial.fetch(query: sql, parameters: [bkid], mapping: { row -> (String, String) in
+            return (row.string(at: 0) ?? "", row.string(at: 1) ?? "")
+        }) {
+            for res in results {
+                dict[res.0] = res.1
             }
-
-            // simpan ke cache untuk pemakaian berikutnya
-            DatabaseManager.shared.shortsCache[bkid] = dict
-
-        } catch {
-            #if DEBUG
-                print("Error loading shorts mapping for book \(bkid): \(error)")
-            #endif
         }
 
+        shortsCache[bkid] = dict
         return dict
     }
 
@@ -291,47 +288,31 @@ class DatabaseManager {
             return cached
         }
 
-        guard let dbSpecial = DatabaseManager.shared.dbSpecial else {
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard let dbSpecial = dbSpecial else {
             return nil
         }
-        var resultAuthor: Muallif? = nil
 
-        do {
-            // Menggunakan Expression dan Table untuk kueri
-            let query = authTable.filter(authId == id)
+        let sql = "SELECT \(colAuthName), \(colAuthInf), \(colAuthLng) FROM \(authTableName) WHERE \(colAuthId) = ? LIMIT 1"
 
-            if let row = try dbSpecial.pluck(query) {
-                let auth = try row.get(authName) ?? ""
-                let inf = try row.get(authInf) ?? ""
-                let lng = try row.get(authLng) ?? ""
-
-                let author = Muallif(
-                    nama: auth,
-                    info: inf,
-                    namaLengkap: lng
-                )
-
-                resultAuthor = author
-                LibraryDataManager.shared.authorsCache[id] = author
-            }
-        } catch {
-            #if DEBUG
-                print(
-                    "Error fetching author \(id): \(error.localizedDescription)"
-                )
-            #endif
+        if let author = try? dbSpecial.fetch(query: sql, parameters: [id], mapping: { row -> Muallif in
+            let auth = row.string(at: 0) ?? ""
+            let inf = row.string(at: 1) ?? ""
+            let lng = row.string(at: 2) ?? ""
+            return Muallif(nama: auth, info: inf, namaLengkap: lng)
+        }).first {
+            LibraryDataManager.shared.authorsCache[id] = author
+            return author
         }
 
-        return resultAuthor
+        return nil
     }
 
     // MARK: - Archive File Management
 
-    /// Check apakah archive file tersedia untuk buku tertentu
-    /// - Parameter archiveId: Nomor archive (1-20, sesuai kolom Archive di tabel 0bok)
-    /// - Returns: True jika baik {archiveId}.sqlite dan {archiveId}_fts.sqlite tersedia
     func checkArchiveAvailability(archiveId: Int) -> Bool {
-        // Check cache dulu
         if let cached = archiveAvailabilityCache[archiveId] {
             return cached
         }
@@ -347,40 +328,20 @@ class DatabaseManager {
         let ftsExists = fm.fileExists(atPath: ftsFtsFile)
         let isAvailable: Bool
 
-        // Kedua file harus ada dan bukan file kosong.
         if archiveExists && ftsExists {
-            let archiveSize =
-            (try? fm.attributesOfItem(atPath: archiveFile)[.size] as? NSNumber)?
-                .int64Value ?? 0
-            let ftsSize =
-            (try? fm.attributesOfItem(atPath: ftsFtsFile)[.size] as? NSNumber)?
-                .int64Value ?? 0
+            let archiveSize = (try? fm.attributesOfItem(atPath: archiveFile)[.size] as? NSNumber)?.int64Value ?? 0
+            let ftsSize = (try? fm.attributesOfItem(atPath: ftsFtsFile)[.size] as? NSNumber)?.int64Value ?? 0
             isAvailable = archiveSize > 0 && ftsSize > 0
         } else {
             isAvailable = false
         }
 
-        // Cache result
         archiveAvailabilityCache[archiveId] = isAvailable
-
-        #if DEBUG
-            if isAvailable {
-                print("Archive \(archiveId) is available at: \(archiveFile)")
-            } else {
-                print("Archive \(archiveId) is NOT available")
-                print("Looking in: \(AppConfig.archiveFilesPath ?? "N/A")")
-            }
-        #endif
-
         return isAvailable
     }
 
-    /// Invalidate cache untuk archive specific (call setelah download single archive)
     func invalidateArchiveCache(archiveId: Int) {
         archiveAvailabilityCache.removeValue(forKey: archiveId)
         IntegrationCache.shared.invalidate(archiveId: archiveId)
-        #if DEBUG
-            print("Cache invalidated for archive \(archiveId)")
-        #endif
     }
 }

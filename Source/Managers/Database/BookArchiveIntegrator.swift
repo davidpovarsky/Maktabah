@@ -421,7 +421,8 @@ final class BookArchiveIntegrator {
 
     private func openDatabase(path: String) throws -> OpaquePointer {
         var dbPtr: OpaquePointer?
-        if sqlite3_open_v2(path, &dbPtr, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, nil) != SQLITE_OK {
+        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX
+        if sqlite3_open_v2(path, &dbPtr, flags, nil) != SQLITE_OK {
             let errCode = Int(sqlite3_errcode(dbPtr))
             let errMsg: String
             if let raw = dbPtr, let cMsg = sqlite3_errmsg(raw) {
@@ -436,6 +437,7 @@ final class BookArchiveIntegrator {
                 userInfo: [NSLocalizedDescriptionKey: errMsg]
             )
         }
+        sqlite3_busy_timeout(dbPtr, 5000)
         return dbPtr!
     }
 
@@ -588,7 +590,8 @@ final class BookArchiveIntegrator {
 
     private func openReadOnlyDatabase(path: String) throws -> OpaquePointer {
         var dbPtr: OpaquePointer?
-        if sqlite3_open_v2(path, &dbPtr, SQLITE_OPEN_READONLY, nil) != SQLITE_OK {
+        let flags = SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
+        if sqlite3_open_v2(path, &dbPtr, flags, nil) != SQLITE_OK {
             let errCode = Int(sqlite3_errcode(dbPtr))
             let errMsg = dbPtr.flatMap { String(cString: sqlite3_errmsg($0)) } ?? "Unknown error"
             sqlite3_close(dbPtr)
@@ -598,6 +601,7 @@ final class BookArchiveIntegrator {
                 userInfo: [NSLocalizedDescriptionKey: errMsg]
             )
         }
+        sqlite3_busy_timeout(dbPtr, 5000)
         return dbPtr!
     }
 

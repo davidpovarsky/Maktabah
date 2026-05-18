@@ -479,6 +479,8 @@ struct AppConfig {
         // Migrasi dari iCloud Drive ke folder aktif jika aktif
         if useICloud, let iCloud = iCloudFolderURL, let dest = activeFolder,
            iCloud.standardized != dest.standardized {
+            AnnotationManager.shared.disconnect()
+            ResultsHandler.shared.disconnect()
             migrateFiles(from: iCloud, to: dest)
         }
 

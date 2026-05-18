@@ -6,24 +6,24 @@
 //
 
 import Foundation
-import SQLite
+import SQLite3
 
 class RowiDataManager {
     static let shared = RowiDataManager()
 
-    let rowa = Table("rowa")
-    let id = Expression<Int>("id")
-    let name = Expression<String?>("name")
-    let aqual = Expression<String?>("AQUAL")
-    let rotba = Expression<String?>("ROTBA")
-    let rZahbi = Expression<String?>("R_ZAHBI")
-    let sheok = Expression<String?>("sheok")
-    let telmez = Expression<String?>("telmez")
-    let isoName = Expression<String>("IsoName")
-    let tabaqa = Expression<String?>("TABAQA")
-    let who = Expression<String?>("WHO")
-    let wulida = Expression<String?>("birth")
-    let tuwuffi = Expression<String?>("death")
+    private let tableName = "rowa"
+    private let colId = "id"
+    private let colName = "name"
+    private let colAqual = "AQUAL"
+    private let colRotba = "ROTBA"
+    private let colRZahbi = "R_ZAHBI"
+    private let colSheok = "sheok"
+    private let colTelmez = "telmez"
+    private let colIsoName = "IsoName"
+    private let colTabaqa = "TABAQA"
+    private let colWho = "WHO"
+    private let colWulida = "birth"
+    private let colTuwuffi = "death"
 
     private(set) var tabaqaGroups: [TabaqaGroup] = []
     private var allRowis: [Rowi] = []
@@ -36,27 +36,22 @@ class RowiDataManager {
             return
         }
 
+        let sql = "SELECT \(colId), \(colTabaqa), \(colIsoName) FROM \(tableName)"
+        allRowis.removeAll()
+
         do {
-            // 2. DEFINE QUERY DENGAN .select()
-            // Ini memastikan query SQL yang dijalankan adalah:
-            // SELECT "id", "name", "TABAQA" FROM "rowa"
-            let query = rowa.select(id, tabaqa, isoName)
+            allRowis = try db.fetch(query: sql) { row -> Rowi in
+                let id = row.int(at: 0)
+                let tabaqa = row.string(at: 1)
+                let isoName = row.string(at: 2) ?? ""
 
-            allRowis.removeAll()
-
-            // 3. Gunakan query yang sudah didefinisikan
-            for row in try db.prepare(query) {
-                let rowi = Rowi(
-                    id: row[id],
-                    tabaqa: row[tabaqa],
-                    isoName: row[isoName]
+                return Rowi(
+                    id: id,
+                    tabaqa: tabaqa,
+                    isoName: isoName
                 )
-
-                allRowis.append(rowi)
             }
-
             groupByTabaqa()
-
         } catch {
             print("Error loading data: \(error)")
         }
@@ -67,31 +62,39 @@ class RowiDataManager {
             return
         }
 
+        let sql = "SELECT \(colName), \(colWulida), \(colAqual), \(colRotba), \(colRZahbi), \(colSheok), \(colTelmez), \(colWho), \(colTuwuffi) FROM \(tableName) WHERE \(colId) = ? LIMIT 1"
+
         do {
-            let rowiId = rowi.id
-
-            // 1. Definisikan query dengan filter
-            let query = rowa.filter(id == rowiId)
-
-            // 2. Gunakan .first untuk mengambil hanya baris pertama (yang diharapkan)
-            if let row = try db.pluck(query) {
-                rowi.name = row[name]
-                rowi.wulida = row[wulida]
-                rowi.aqual = row[aqual]
-                rowi.rotba = row[rotba]
-                rowi.rZahbi = row[rZahbi]
-                rowi.sheok = row[sheok]
-                rowi.telmez = row[telmez]
-                rowi.who = row[who]
-                rowi.tuwuffi = row[tuwuffi]
+            if let result = try db.fetch(query: sql, parameters: [rowi.id], mapping: { row -> (String?, String?, String?, String?, String?, String?, String?, String?, String?) in
+                return (
+                    row.string(at: 0),
+                    row.string(at: 1),
+                    row.string(at: 2),
+                    row.string(at: 3),
+                    row.string(at: 4),
+                    row.string(at: 5),
+                    row.string(at: 6),
+                    row.string(at: 7),
+                    row.string(at: 8)
+                )
+            }).first {
+                rowi.name = result.0
+                rowi.wulida = result.1
+                rowi.aqual = result.2
+                rowi.rotba = result.3
+                rowi.rZahbi = result.4
+                rowi.sheok = result.5
+                rowi.telmez = result.6
+                rowi.who = result.7
+                rowi.tuwuffi = result.8
                 rowi.isLoaded = true
-            }
 
-            #if DEBUG
-            print("rowi:", rowi.name ?? "", "maulid:", rowi.wulida ?? "", "rutbah:", rowi.rotba ?? "")
-            #endif
+                #if DEBUG
+                print("rowi:", rowi.name ?? "", "maulid:", rowi.wulida ?? "", "rutbah:", rowi.rotba ?? "")
+                #endif
+            }
         } catch {
-            print(error)
+            print("loadRowiData error:", error)
         }
     }
 
@@ -115,7 +118,6 @@ class RowiDataManager {
         // Proses kode struktural F-P sesuai urutan
         for code in TabaqaGroup.orderedCodes {
             if let rowis = grouped[code], !rowis.isEmpty {
-
                 // *** Menggunakan fungsi normalisasi nama ***
                 let name = TabaqaGroup.getNormalizedTabaqaName(for: code)
 
@@ -142,7 +144,7 @@ class RowiDataManager {
         }
     }
 
-    // Ubah completion handler agar mengembalikan jumlah item yang dimuat
+    /// Ubah completion handler agar mengembalikan jumlah item yang dimuat
     func loadMore(_ parent: TabaqaGroup, completion: @escaping (Int?) -> Void) {
         // Cek jumlah item sebelum dimuat
         let previousCount = parent.displayedRowis.count

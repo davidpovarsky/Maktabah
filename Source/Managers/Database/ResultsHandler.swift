@@ -5,8 +5,8 @@
 //  Created by MacBook on 05/12/25.
 //
 
-import SQLite
 import Foundation
+import SQLite3
 
 // MARK: - Sync Models
 
@@ -33,178 +33,266 @@ struct SyncResult {
 }
 
 class ResultsHandler {
-    private(set) var db: Connection!
+    private(set) var db: SQLiteDatabase?
     static var shared: ResultsHandler = .init()
 
-    let foldersTbl = Table("folders")
-    let id = Expression<Int64>("id")
-    let name = Expression<String>("name")
-    let parent = Expression<Int64?>("parent")
-    let ckRecordId = Expression<String?>("ckRecordId")
-    let lastModified = Expression<Int64?>("lastModified")
-    let parentCkRecordId = Expression<String?>("parentCkRecordId")
+    private let foldersTable = "folders"
+    private let colId = "id"
+    private let colName = "name"
+    private let colParent = "parent"
+    private let colCkRecordId = "ckRecordId"
+    private let colLastModified = "lastModified"
+    private let colParentCkRecordId = "parentCkRecordId"
 
-    let results = Table("results")
-    let folderId = Expression<Int64?>("folder_id")
-    let query = Expression<String>("query")
-    let archive = Expression<Int>("archives")
-    let bkId = Expression<Int>("bkId")
-    let contentId = Expression<String>("contentId")
-    let resCkRecordId = Expression<String?>("ckRecordId")
-    let resLastModified = Expression<Int64?>("lastModified")
-    let folderCkRecordId = Expression<String?>("folderCkRecordId")
+    private let resultsTable = "results"
+    private let colFolderId = "folder_id"
+    private let colQuery = "query"
+    private let colArchive = "archives"
+    private let colBkId = "bkId"
+    private let colContentId = "contentId"
+    private let colResCkRecordId = "ckRecordId"
+    private let colResLastModified = "lastModified"
+    private let colFolderCkRecordId = "folderCkRecordId"
+
+    func disconnect() {
+        db?.checkpoint()
+        db = nil
+    }
 
     private init() {}
 
-    func setupResultDatabase(at URL: URL?) throws {
-        guard let folderURL = URL else { throw NSError(domain: "maktabah", code: 404) }
+    func setupResultDatabase(at folderURL: URL?) throws {
+        guard let folderURL = folderURL else { throw NSError(domain: "maktabah", code: 404) }
         let url = folderURL.appendingPathComponent("SearchResults.sqlite")
-        
+
         let fm = FileManager.default
         let isNewDatabase = !fm.fileExists(atPath: url.path)
-        
-        db = try Connection(url.path)
+
+        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX
+
+        do {
+            db = try SQLiteDatabase(path: url.path, flags: flags)
+            enableWALMode()
+        } catch {
+            throw NSError(domain: "ResultsHandler", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to open SearchResults database: \(error.localizedDescription)"])
+        }
+
         createTables()
-        
+
         if isNewDatabase {
             CloudKitSyncManager.shared.resetChangeToken()
         }
     }
 
-    func createTables() {
+    private func enableWALMode() {
+        guard let db else { return }
         do {
-            guard let db else {
-                ReusableFunc.showAlert(title: "Database not initialized", message: "")
-                return
-            }
+            let mode = try db.fetch(query: "PRAGMA journal_mode = WAL;") { row in
+                row.string(at: 0) ?? ""
+            }.first
 
-            // MARK: - folders table
-            try db.run(foldersTbl.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
-                t.column(name)
-                t.column(parent)
-                t.column(ckRecordId)
-                t.column(lastModified)
-                t.column(parentCkRecordId)
-                t.unique(name, parent)
-            })
-
-            // MARK: - results table
-            try db.run(results.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
-                t.column(folderId)
-                t.column(name)
-                t.column(query)
-                t.column(archive)
-                t.column(bkId)
-                t.column(contentId)
-                t.column(resCkRecordId)
-                t.column(resLastModified)
-                t.column(folderCkRecordId)
-                t.unique(folderId, name, bkId)
-            })
-            
-            // Migration for existing databases
-            let folderCols = try db.prepare("PRAGMA table_info(folders)").map { $0[1] as! String }
-            if !folderCols.contains("ckRecordId") {
-                _ = try? db.run(foldersTbl.addColumn(ckRecordId))
+            #if DEBUG
+            if mode?.lowercased() != "wal" {
+                let currentMode = mode ?? "unknown"
+                print("ResultsHandler: failed to enable WAL mode, current mode: \(currentMode)")
             }
-            if !folderCols.contains("lastModified") {
-                _ = try? db.run(foldersTbl.addColumn(lastModified))
-            }
-            if !folderCols.contains("parentCkRecordId") {
-                _ = try? db.run(foldersTbl.addColumn(parentCkRecordId))
-            }
-            
-            let resultCols = try db.prepare("PRAGMA table_info(results)").map { $0[1] as! String }
-            if !resultCols.contains("ckRecordId") {
-                _ = try? db.run(results.addColumn(resCkRecordId))
-            }
-            if !resultCols.contains("lastModified") {
-                _ = try? db.run(results.addColumn(resLastModified))
-            }
-            if !resultCols.contains("folderCkRecordId") {
-                _ = try? db.run(results.addColumn(folderCkRecordId))
-            }
-            
-            if let db = db as Connection? {
-                try backfillResultsCloudKitFieldsIfNeeded(in: db)
-            }
-            
+            #endif
         } catch {
             #if DEBUG
-            print("Error creating tables: \(error)")
+            print("ResultsHandler: error enabling WAL mode: \(error)")
             #endif
+        }
+    }
+
+    func createTables() {
+        guard db != nil else {
+            ReusableFunc.showAlert(title: "Database not initialized", message: "")
+            return
+        }
+
+        do {
+            // MARK: - folders table
+
+            try exec("""
+            CREATE TABLE IF NOT EXISTS \(foldersTable) (
+                \(colId) INTEGER PRIMARY KEY AUTOINCREMENT,
+                \(colName) TEXT,
+                \(colParent) INTEGER,
+                \(colCkRecordId) TEXT,
+                \(colLastModified) INTEGER,
+                \(colParentCkRecordId) TEXT,
+                UNIQUE(\(colName), \(colParent))
+            );
+            """)
+
+            // MARK: - results table
+
+            try exec("""
+            CREATE TABLE IF NOT EXISTS \(resultsTable) (
+                \(colId) INTEGER PRIMARY KEY AUTOINCREMENT,
+                \(colFolderId) INTEGER,
+                \(colName) TEXT,
+                \(colQuery) TEXT,
+                \(colArchive) INTEGER,
+                \(colBkId) INTEGER,
+                \(colContentId) TEXT,
+                \(colResCkRecordId) TEXT,
+                \(colResLastModified) INTEGER,
+                \(colFolderCkRecordId) TEXT,
+                UNIQUE(\(colFolderId), \(colName), \(colBkId))
+            );
+            """)
+
+
+            // Migration for existing databases
+            let folderCols = try listTableColumns(tableName: foldersTable)
+            if !folderCols.contains(colCkRecordId) {
+                try exec("ALTER TABLE \(foldersTable) ADD COLUMN \(colCkRecordId) TEXT;")
+            }
+            if !folderCols.contains(colLastModified) {
+                try exec("ALTER TABLE \(foldersTable) ADD COLUMN \(colLastModified) INTEGER;")
+            }
+            if !folderCols.contains(colParentCkRecordId) {
+                try exec("ALTER TABLE \(foldersTable) ADD COLUMN \(colParentCkRecordId) TEXT;")
+            }
+
+            let resultCols = try listTableColumns(tableName: resultsTable)
+            if !resultCols.contains(colResCkRecordId) {
+                try exec("ALTER TABLE \(resultsTable) ADD COLUMN \(colResCkRecordId) TEXT;")
+            }
+            if !resultCols.contains(colResLastModified) {
+                try exec("ALTER TABLE \(resultsTable) ADD COLUMN \(colResLastModified) INTEGER;")
+            }
+            if !resultCols.contains(colFolderCkRecordId) {
+                try exec("ALTER TABLE \(resultsTable) ADD COLUMN \(colFolderCkRecordId) TEXT;")
+            }
+
+            try backfillResultsCloudKitFieldsIfNeeded()
+
+        } catch {
+#if DEBUG
+            print("Error creating tables: \(error)")
+#endif
         }
 
         createUniqueIndex()
     }
 
-    func backfillResultsCloudKitFieldsIfNeeded(in db: Connection) throws {
+    // MARK: - Native SQLite3 Helpers
+
+    private func exec(_ sql: String) throws {
+        guard let db else { return }
+        try db.execute(query: sql)
+    }
+
+    private func transaction(_ block: () throws -> Void) throws {
+        try exec("BEGIN TRANSACTION;")
+        do {
+            try block()
+            try exec("COMMIT;")
+        } catch {
+            try? exec("ROLLBACK;")
+            throw error
+        }
+    }
+
+    private func listTableColumns(tableName: String) throws -> [String] {
+        guard let db else { return [] }
+        let sql = "PRAGMA table_info('\(tableName)');"
+        return try db.fetch(query: sql) { row in
+            row.string(at: 1) ?? ""
+        }
+    }
+
+    func backfillResultsCloudKitFieldsIfNeeded() throws {
+        guard let db else { return }
         let now = Int64(Date().timeIntervalSince1970)
-        
+
         // 1. Backfill Folders (Order by parent to ensure top-down backfill)
-        let nullFolders = foldersTbl.filter(ckRecordId == nil).order(parent.asc)
         var foldersToUpload: [SyncFolder] = []
-        
-        try db.transaction {
-            for row in try db.prepare(nullFolders) {
-                let fId = row[id]
-                let fName = row[name]
-                let fParent = row[parent]
-                
-                // Deterministic ID based on name and parent's ckRecordId
+
+        try transaction {
+            let sql = "SELECT * FROM \(foldersTable) WHERE \(colCkRecordId) IS NULL ORDER BY \(colParent) ASC"
+
+            let folders = try db.fetch(query: sql) { row -> (Int64, String, Int64?) in
+                let fId = row.int64(at: 0)
+                let fName = row.string(at: 1) ?? ""
+                let fParent = !row.isNull(at: 2) ? row.int64(at: 2) : nil
+                return (fId, fName, fParent)
+            }
+
+            for folder in folders {
+                let fId = folder.0
+                let fName = folder.1
+                let fParent = folder.2
+
                 var parentIdentifier = "root"
                 if let pid = fParent {
-                    parentIdentifier = try db.pluck(foldersTbl.filter(id == pid))?[ckRecordId] ?? "orphan_\(pid)"
+                    let findParentSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+                    if let parentCKId = try db.fetch(query: findParentSql, parameters: [pid], mapping: { $0.string(at: 0) }).first {
+                        parentIdentifier = parentCKId ?? ""
+                    } else {
+                        parentIdentifier = "orphan_\(pid)"
+                    }
                 }
-                
+
                 let detId = "folder_\(fName)_\(parentIdentifier)"
-                
-                try db.run(foldersTbl.filter(id == fId).update(
-                    ckRecordId <- detId,
-                    lastModified <- now,
-                    parentCkRecordId <- (parentIdentifier == "root" ? nil : parentIdentifier)
-                ))
-                
-                if let updated = try db.pluck(foldersTbl.filter(id == fId)) {
-                    foldersToUpload.append(makeSyncFolder(from: updated))
+                let pCkId = parentIdentifier == "root" ? "NULL" : "'\(parentIdentifier)'"
+
+                try exec("UPDATE \(foldersTable) SET \(colCkRecordId) = '\(detId)', \(colLastModified) = \(now), \(colParentCkRecordId) = \(pCkId) WHERE \(colId) = \(fId);")
+
+                // Reload to upload
+                let reloadSql = "SELECT * FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+                if let reloaded = try db.fetch(query: reloadSql, parameters: [fId], mapping: { self.makeSyncFolder(from: $0) }).first {
+                    foldersToUpload.append(reloaded)
                 }
             }
         }
-        
+
         // 2. Backfill Results
-        let nullResults = results.filter(resCkRecordId == nil)
         var resultsToUpload: [SyncResult] = []
-        
-        try db.transaction {
-            for row in try db.prepare(nullResults) {
-                let rId = row[id]
-                let rFolderId = row[folderId]
-                let rName = row[name]
-                let rBkId = row[bkId]
-                let rArchive = row[archive]
-                
-                // Deterministic ID based on properties and folder's ckRecordId
+
+        try transaction {
+            let sql = "SELECT * FROM \(resultsTable) WHERE \(colResCkRecordId) IS NULL"
+
+            let results = try db.fetch(query: sql) { row -> (Int64, Int64?, String, Int, Int) in
+                let rId = row.int64(at: 0)
+                let rFolderId = !row.isNull(at: 1) ? row.int64(at: 1) : nil
+                let rName = row.string(at: 2) ?? ""
+                let rBkId = row.int(at: 5)
+                let rArchive = row.int(at: 4)
+                return (rId, rFolderId, rName, rBkId, rArchive)
+            }
+
+            for res in results {
+                let rId = res.0
+                let rFolderId = res.1
+                let rName = res.2
+                let rBkId = res.3
+                let rArchive = res.4
+
                 var folderIdentifier = "root"
                 if let fid = rFolderId {
-                    folderIdentifier = try db.pluck(foldersTbl.filter(id == fid))?[ckRecordId] ?? "orphan_\(fid)"
+                    let findFolderSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+                    if let folderCKId = try db.fetch(query: findFolderSql, parameters: [fid], mapping: { $0.string(at: 0) }).compactMap({ $0 }).first {
+                        folderIdentifier = folderCKId
+                    } else {
+                        folderIdentifier = "orphan_\(fid)"
+                    }
                 }
-                
+
                 let detId = "result_\(folderIdentifier)_\(rName)_\(rBkId)_\(rArchive)"
-                
-                try db.run(results.filter(id == rId).update(
-                    resCkRecordId <- detId,
-                    resLastModified <- now,
-                    folderCkRecordId <- (folderIdentifier == "root" ? nil : folderIdentifier)
-                ))
-                
-                if let updated = try db.pluck(results.filter(id == rId)) {
-                    resultsToUpload.append(makeSyncResult(from: updated))
+                let fCkId = folderIdentifier == "root" ? "NULL" : "'\(folderIdentifier)'"
+
+                try exec("UPDATE \(resultsTable) SET \(colResCkRecordId) = '\(detId)', \(colResLastModified) = \(now), \(colFolderCkRecordId) = \(fCkId) WHERE \(colId) = \(rId);")
+
+                let reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colId) = ? LIMIT 1"
+                if let reloaded = try db.fetch(query: reloadSql, parameters: [rId], mapping: { self.makeSyncResult(from: $0) }).first {
+                    resultsToUpload.append(reloaded)
                 }
             }
         }
-        
+
         if !foldersToUpload.isEmpty || !resultsToUpload.isEmpty {
             DispatchQueue.global(qos: .background).async {
                 CloudKitSyncManager.shared.uploadResultsData(folders: foldersToUpload, results: resultsToUpload)
@@ -212,165 +300,171 @@ class ResultsHandler {
         }
     }
 
+
     func nukeDatabase() {
-        guard let db = db else { return }
         do {
-            try db.transaction {
-                try db.run(results.delete())
-                try db.run(foldersTbl.delete())
+            try transaction {
+                try exec("DELETE FROM \(resultsTable);")
+                try exec("DELETE FROM \(foldersTable);")
             }
-            #if DEBUG
+#if DEBUG
             print("ResultsHandler: Local database purged.")
-            #endif
+#endif
         } catch {
             print("ResultsHandler: Failed to purge database - \(error)")
         }
     }
 
-    private func makeSyncFolder(from row: Row) -> SyncFolder {
+    private func makeSyncFolder(from row: SQLiteRow) -> SyncFolder {
         SyncFolder(
-            id: row[id],
-            name: row[name],
-            parent: row[parent],
-            ckRecordId: row[ckRecordId],
-            lastModified: row[lastModified],
-            parentCkRecordId: row[parentCkRecordId]
+            id: row.int64(at: 0),
+            name: row.string(at: 1) ?? "",
+            parent: !row.isNull(at: 2) ? row.int64(at: 2) : nil,
+            ckRecordId: row.string(at: 3),
+            lastModified: !row.isNull(at: 4) ? row.int64(at: 4) : nil,
+            parentCkRecordId: row.string(at: 5)
         )
     }
 
-    private func makeSyncResult(from row: Row) -> SyncResult {
+    private func makeSyncResult(from row: SQLiteRow) -> SyncResult {
         SyncResult(
-            id: row[id],
-            folderId: row[folderId],
-            name: row[name],
-            query: row[query],
-            archive: row[archive],
-            bkId: row[bkId],
-            contentId: row[contentId],
-            ckRecordId: row[resCkRecordId],
-            lastModified: row[resLastModified],
-            folderCkRecordId: row[folderCkRecordId]
+            id: row.int64(at: 0),
+            folderId: !row.isNull(at: 1) ? row.int64(at: 1) : nil,
+            name: row.string(at: 2) ?? "",
+            query: row.string(at: 3) ?? "",
+            archive: row.int(at: 4),
+            bkId: row.int(at: 5),
+            contentId: row.string(at: 6) ?? "",
+            ckRecordId: row.string(at: 7),
+            lastModified: !row.isNull(at: 8) ? row.int64(at: 8) : nil,
+            folderCkRecordId: row.string(at: 9)
         )
     }
 
     func createUniqueIndex() {
         do {
-            try db.run("CREATE UNIQUE INDEX IF NOT EXISTS idx_folders_parent_name ON folders (COALESCE(parent, 0), name)")
-            try db.run("CREATE UNIQUE INDEX IF NOT EXISTS idx_results_folder_name ON results (COALESCE(folder_id, 0), name)")
+            try exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_folders_parent_name ON folders (COALESCE(parent, 0), name)")
+            try exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_results_folder_name ON results (COALESCE(folder_id, 0), name)")
             // optional: mencegah duplikat konten yang sama di folder yang sama
-            try db.run("DROP INDEX IF EXISTS idx_results_folder_name")
-            try db.run("CREATE UNIQUE INDEX IF NOT EXISTS idx_results_folder_name_bk ON results (COALESCE(folder_id, 0), name, bkId)")
+            try exec("DROP INDEX IF EXISTS idx_results_folder_name")
+            try exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_results_folder_name_bk ON results (COALESCE(folder_id, 0), name, bkId)")
         } catch {
-            #if DEBUG
+#if DEBUG
             print("Create index error:", error)
-            #endif
+#endif
         }
     }
 }
 
 extension ResultsHandler {
     func insertRootFolder(name: String) throws -> Int64? {
+        guard let db else { return nil }
         let cId = UUID().uuidString
         let now = Int64(Date().timeIntervalSince1970)
-        
-        let insert = foldersTbl.insert(
-            self.name <- name,
-            parent <- nil,
-            ckRecordId <- cId,
-            lastModified <- now
-        )
-        let rowId = try db.run(insert)
-        
-        if let row = try db.pluck(foldersTbl.filter(id == rowId)) {
-            CloudKitSyncManager.shared.uploadResultsData(folders: [makeSyncFolder(from: row)], results: [])
+
+        let sql = "INSERT INTO \(foldersTable) (\(colName), \(colParent), \(colCkRecordId), \(colLastModified)) VALUES (?, NULL, ?, ?);"
+
+        try db.execute(query: sql, parameters: [name, cId, now])
+        let rowId = db.lastInsertRowId()
+
+        let reloadSql = "SELECT * FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+        if let reloaded = try db.fetch(query: reloadSql, parameters: [rowId], mapping: { self.makeSyncFolder(from: $0) }).first {
+            CloudKitSyncManager.shared.uploadResultsData(folders: [reloaded], results: [])
         }
-        
+
         return rowId
     }
 
     func insertSubFolder(parentNode: FolderNode, name: String) throws -> Int64? {
+        guard let db else { return nil }
         let cId = UUID().uuidString
         let now = Int64(Date().timeIntervalSince1970)
-        
-        // Fetch parent ckRecordId
-        let pCkId = try db.pluck(foldersTbl.filter(id == parentNode.id))?[ckRecordId]
 
-        let insert = foldersTbl.insert(
-            self.name <- name,
-            parent <- parentNode.id,
-            ckRecordId <- cId,
-            lastModified <- now,
-            parentCkRecordId <- pCkId
-        )
-        let rowId = try db.run(insert)
-        
-        if let row = try db.pluck(foldersTbl.filter(id == rowId)) {
-            CloudKitSyncManager.shared.uploadResultsData(folders: [makeSyncFolder(from: row)], results: [])
+        // Fetch parent ckRecordId
+        var pCkId: String? = nil
+        let findParentSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+        if let parentCkRecordId = try db.fetch(query: findParentSql, parameters: [parentNode.id], mapping: { $0.string(at: 0) }).compactMap({ $0 }).first {
+            pCkId = parentCkRecordId
         }
-        
+
+        let sql = "INSERT INTO \(foldersTable) (\(colName), \(colParent), \(colCkRecordId), \(colLastModified), \(colParentCkRecordId)) VALUES (?, ?, ?, ?, ?);"
+        var params: [Any] = [name, parentNode.id, cId, now]
+        if let pCkId = pCkId {
+            params.append(pCkId)
+        } else {
+            params.append(NSNull())
+        }
+
+        try db.execute(query: sql, parameters: params)
+        let rowId = db.lastInsertRowId()
+
+        let reloadSql = "SELECT * FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+        if let reloaded = try db.fetch(query: reloadSql, parameters: [rowId], mapping: { self.makeSyncFolder(from: $0) }).first {
+            CloudKitSyncManager.shared.uploadResultsData(folders: [reloaded], results: [])
+        }
+
         return rowId
     }
 
     func fetchFolderTree() -> [FolderNode] {
+        guard let db else { return [] }
         var nodes: [Int64: FolderNode] = [:]
         var roots: [FolderNode] = []
 
+        let sql = "SELECT \(colId), \(colName), \(colParent) FROM \(foldersTable)"
         do {
-            for row in try db.prepare(foldersTbl) {
-                let node = FolderNode(id: row[id], name: row[name])
-                nodes[row[id]] = node
+            let rows = try db.fetch(query: sql) { row -> (id: Int64, name: String, parent: Int64?) in
+                let fid = row.int64(at: 0)
+                let fname = row.string(at: 1) ?? ""
+                let fparent = !row.isNull(at: 2) ? row.int64(at: 2) : nil
+
+                let node = FolderNode(id: fid, name: fname)
+                nodes[fid] = node
+                return (id: fid, name: fname, parent: fparent)
             }
 
-            // isi children
-            for row in try db.prepare(foldersTbl) {
-                if let parentId = row[parent], let parentNode = nodes[parentId] {
-                    parentNode.children.append(nodes[row[id]]!)
+            for row in rows {
+                if let parentId = row.parent, let parentNode = nodes[parentId] {
+                    parentNode.children.append(nodes[row.id]!)
                 } else {
-                    roots.append(nodes[row[id]]!)
+                    roots.append(nodes[row.id]!)
                 }
             }
         } catch {
-            print("Fetch folder tree error:", error)
+            print("Failed to fetch folder tree: \(error)")
         }
 
         return roots
     }
 
     func deleteFolder(_ folderId: Int64) {
+        guard let db else { return }
         do {
-            // Collect ckRecordIds for CloudKit deletion
             let allFolderIds = getAllDescendantIds(of: folderId)
             var ckIdsToDelete: [String] = []
-            
+
             for fId in allFolderIds {
-                if let ckId = try db.pluck(foldersTbl.filter(id == fId))?[ckRecordId] {
+                let findFolderSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+                if let ckId = try db.fetch(query: findFolderSql, parameters: [fId], mapping: { $0.string(at: 0) }).compactMap({ $0 }).first {
                     ckIdsToDelete.append(ckId)
                 }
-                // results for this folder
-                let resQuery = results.filter(self.folderId == fId)
-                for res in try db.prepare(resQuery) {
-                    if let rCkId = res[resCkRecordId] {
-                        ckIdsToDelete.append(rCkId)
-                    }
-                }
+
+                let findResSql = "SELECT \(colResCkRecordId) FROM \(resultsTable) WHERE \(colFolderId) = ?"
+                let resCkIds = try db.fetch(query: findResSql, parameters: [fId]) { $0.string(at: 0) }
+                ckIdsToDelete.append(contentsOf: resCkIds.compactMap { $0 })
             }
 
-            try db.transaction {
-                // Delete semua results
+            try transaction {
                 for id in allFolderIds {
-                    let resultsToDelete = results.filter(self.folderId == id)
-                    try db.run(resultsToDelete.delete())
+                    try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = \(id);")
                 }
-
-                // Delete semua folders (dari child ke parent)
                 for id in allFolderIds.reversed() {
-                    let folder = foldersTbl.filter(self.id == id)
-                    try db.run(folder.delete())
+                    try exec("DELETE FROM \(foldersTable) WHERE \(colId) = \(id);")
                 }
             }
-            
+
             if !ckIdsToDelete.isEmpty {
-                CloudKitSyncManager.shared.delete(ckRecordIds: ckIdsToDelete)
+                CloudKitSyncManager.shared.delete(ckRecordIds: ckIdsToDelete, target: .result)
             }
         } catch {
             print("❌ Delete transaction failed:", error)
@@ -378,17 +472,30 @@ extension ResultsHandler {
     }
 
     func deleteResult(_ folderId: Int64?, name: String) {
-        let query = results.filter(self.folderId == folderId && self.name == name)
+        guard let db else { return }
+        var ckIds: [String] = []
+        let sql: String
+        var params: [Any] = []
+
+        if let fid = folderId {
+            sql = "SELECT \(colResCkRecordId) FROM \(resultsTable) WHERE \(colFolderId) = ? AND \(colName) = ?"
+            params = [fid, name]
+        } else {
+            sql = "SELECT \(colResCkRecordId) FROM \(resultsTable) WHERE \(colFolderId) IS NULL AND \(colName) = ?"
+            params = [name]
+        }
+
         do {
-            var ckIds: [String] = []
-            for row in try db.prepare(query) {
-                if let ckId = row[resCkRecordId] { ckIds.append(ckId) }
+            ckIds = try db.fetch(query: sql, parameters: params, mapping: { $0.string(at: 0) ?? "" })
+
+            if let fid = folderId {
+                try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = \(fid) AND \(colName) = '\(name.replacingOccurrences(of: "'", with: "''"))';")
+            } else {
+                try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) IS NULL AND \(colName) = '\(name.replacingOccurrences(of: "'", with: "''"))';")
             }
-            
-            try db.run(query.delete())
-            
+
             if !ckIds.isEmpty {
-                CloudKitSyncManager.shared.delete(ckRecordIds: ckIds)
+                CloudKitSyncManager.shared.delete(ckRecordIds: ckIds, target: .result)
             }
         } catch {
             print(error.localizedDescription)
@@ -396,44 +503,63 @@ extension ResultsHandler {
     }
 
     func updateParent(of id: Int64, to newParentId: Int64?) throws {
-        let folder = foldersTbl.filter(self.id == id)
+        guard let db else { return }
         let now = Int64(Date().timeIntervalSince1970)
-        
+
         var pCkId: String? = nil
         if let pid = newParentId {
-            pCkId = try db.pluck(foldersTbl.filter(self.id == pid))?[ckRecordId]
+            let findParentSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+            if let fetchedCkId = try db.fetch(query: findParentSql, parameters: [pid], mapping: { $0.string(at: 0) }).compactMap({ $0 }).first {
+                pCkId = fetchedCkId
+            }
         }
-        
-        try db.run(folder.update(
-            parent <- newParentId,
-            lastModified <- now,
-            parentCkRecordId <- pCkId
-        ))
-        
-        if let row = try db.pluck(folder) {
-            CloudKitSyncManager.shared.uploadResultsData(folders: [makeSyncFolder(from: row)], results: [])
+
+        let updateSql = "UPDATE \(foldersTable) SET \(colParent) = ?, \(colLastModified) = ?, \(colParentCkRecordId) = ? WHERE \(colId) = ?;"
+        let params: [Any] = [newParentId ?? NSNull(), now, pCkId ?? NSNull(), id]
+        try db.execute(query: updateSql, parameters: params)
+
+        let reloadSql = "SELECT * FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+        if let reloaded = try db.fetch(query: reloadSql, parameters: [id], mapping: { self.makeSyncFolder(from: $0) }).first {
+            CloudKitSyncManager.shared.uploadResultsData(folders: [reloaded], results: [])
         }
     }
 
     func updateResultParent(newParentId: Int64?, oldParent: Int64?, name: String) throws {
-        let query = results.filter(folderId == oldParent && self.name == name)
+        guard let db else { return }
         let now = Int64(Date().timeIntervalSince1970)
-        
+
         var fCkId: String? = nil
         if let fid = newParentId {
-            fCkId = try db.pluck(foldersTbl.filter(self.id == fid))?[ckRecordId]
+            let findFolderSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+            if let fetchedCkId = try db.fetch(query: findFolderSql, parameters: [fid], mapping: { $0.string(at: 0) }).compactMap({ $0 }).first {
+                fCkId = fetchedCkId
+            }
         }
-        
-        try db.run(query.update(
-            folderId <- newParentId,
-            resLastModified <- now,
-            folderCkRecordId <- fCkId
-        ))
-        
-        var updated: [SyncResult] = []
-        for row in try db.prepare(query) {
-            updated.append(makeSyncResult(from: row))
+
+        let updateSql: String
+        var params: [Any] = [newParentId ?? NSNull(), now, fCkId ?? NSNull()]
+
+        if let old = oldParent {
+            updateSql = "UPDATE \(resultsTable) SET \(colFolderId) = ?, \(colResLastModified) = ?, \(colFolderCkRecordId) = ? WHERE \(colFolderId) = ? AND \(colName) = ?;"
+            params.append(contentsOf: [old, name])
+        } else {
+            updateSql = "UPDATE \(resultsTable) SET \(colFolderId) = ?, \(colResLastModified) = ?, \(colFolderCkRecordId) = ? WHERE \(colFolderId) IS NULL AND \(colName) = ?;"
+            params.append(name)
         }
+
+        try db.execute(query: updateSql, parameters: params)
+
+        let reloadSql: String
+        var reloadParams: [Any] = []
+        if let nid = newParentId {
+            reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colFolderId) = ? AND \(colName) = ?"
+            reloadParams = [nid, name]
+        } else {
+            reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colFolderId) IS NULL AND \(colName) = ?"
+            reloadParams = [name]
+        }
+
+        let updated = try db.fetch(query: reloadSql, parameters: reloadParams) { self.makeSyncResult(from: $0) }
         if !updated.isEmpty {
             CloudKitSyncManager.shared.uploadResultsData(folders: [], results: updated)
         }
@@ -442,54 +568,92 @@ extension ResultsHandler {
 
 extension ResultsHandler {
     func insertResult(_ archive: Int, bkId: Int, contentId: String, folderId: Int64?, query: String, name: String) throws {
+        guard let db else { return }
         let cId = UUID().uuidString
         let now = Int64(Date().timeIntervalSince1970)
-        
+
         var fCkId: String? = nil
         if let fid = folderId {
-            fCkId = try db.pluck(foldersTbl.filter(id == fid))?[ckRecordId]
+            let findFolderSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+            if let fetchedCkId = try db.fetch(query: findFolderSql, parameters: [fid], mapping: { $0.string(at: 0) }).compactMap({ $0 }).first {
+                fCkId = fetchedCkId
+            }
         }
 
-        let insert = results.insert(
-            self.folderId <- folderId,
-            self.name <- name,
-            self.query <- query,
-            self.archive <- archive,
-            self.bkId <- bkId,
-            self.contentId <- contentId,
-            self.resCkRecordId <- cId,
-            self.resLastModified <- now,
-            self.folderCkRecordId <- fCkId
-        )
-        let rowId = try db.run(insert)
-        
-        if let row = try db.pluck(results.filter(id == rowId)) {
-            CloudKitSyncManager.shared.uploadResultsData(folders: [], results: [makeSyncResult(from: row)])
+        let sql = """
+        INSERT INTO \(resultsTable) (
+            \(colFolderId), \(colName), \(colQuery), \(colArchive),
+            \(colBkId), \(colContentId), \(colResCkRecordId), \(colResLastModified),
+            \(colFolderCkRecordId)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+        """
+
+        let params: [Any] = [
+            folderId ?? NSNull(),
+            name,
+            query,
+            archive,
+            bkId,
+            contentId,
+            cId,
+            now,
+            fCkId ?? NSNull()
+        ]
+
+        try db.execute(query: sql, parameters: params)
+        let rowId = db.lastInsertRowId()
+
+        let reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colId) = ? LIMIT 1"
+        if let reloaded = try db.fetch(query: reloadSql, parameters: [rowId], mapping: { self.makeSyncResult(from: $0) }).first {
+            CloudKitSyncManager.shared.uploadResultsData(folders: [], results: [reloaded])
         }
     }
 
     func fetchResults(forFolder folderId: Int64?) -> [ResultNode] {
+        guard let db else { return [] }
         var groupedResults: [String: (id: Int64, parentId: Int64?, items: [SavedResultsItem])] = [:]
 
+        let sql: String
+        var params: [Any] = []
+        if let fid = folderId {
+            sql = "SELECT * FROM \(resultsTable) WHERE \(colFolderId) = ?"
+            params = [fid]
+        } else {
+            sql = "SELECT * FROM \(resultsTable) WHERE \(colFolderId) IS NULL"
+        }
+
         do {
-            let query = results.filter(self.folderId == folderId)
+            let results = try db.fetch(query: sql, parameters: params) { row -> (Int64, Int64?, String, String, Int, Int, String) in
+                return (
+                    row.int64(at: 0),
+                    !row.isNull(at: 1) ? row.int64(at: 1) : nil,
+                    row.string(at: 2) ?? "",
+                    row.string(at: 3) ?? "",
+                    row.int(at: 4),
+                    row.int(at: 5),
+                    row.string(at: 6) ?? ""
+                )
+            }
 
-            for row in try db.prepare(query) {
-                let queryName = row[self.query]
-                let savedName = row[name]
-                let resultId = row[id]
-                let parentId = row[self.folderId]   // Int64?
+            for res in results {
+                let resultId = res.0
+                let parentId = res.1
+                let savedName = res.2
+                let queryName = res.3
+                let rArchive = res.4
+                let rBkId = res.5
+                let rContentId = res.6
 
-                let contentsId = row[contentId].components(separatedBy: ",")
+                let contentsId = rContentId.components(separatedBy: ",")
 
                 for cid in contentsId {
                     guard let idInt = Int(cid),
-                          let book = LibraryDataManager.shared.getBook([row[bkId]]).first
+                          let book = LibraryDataManager.shared.getBook([rBkId]).first
                     else { continue }
 
                     let item = SavedResultsItem(
-                        archive: String(row[archive]),
-                        tableName: String(row[bkId]),
+                        archive: String(rArchive),
+                        tableName: String(rBkId),
                         query: queryName,
                         bookId: idInt,
                         bookTitle: book.book
@@ -503,120 +667,130 @@ extension ResultsHandler {
                 }
             }
         } catch {
-            print("Fetch results error:", error)
+            print("Failed to fetch results: \(error)")
         }
 
         return groupedResults.map {
             ResultNode(
                 id: $0.value.id,
-                parentId: $0.value.parentId, // ResultNode harus menerima Int64?
+                parentId: $0.value.parentId,
                 name: $0.key,
                 items: $0.value.items
             )
         }
         .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
     }
-
 }
-
 
 extension ResultsHandler {
     func updateFolderName(id folderId: Int64, newName: String) throws {
-        let row = foldersTbl.filter(id == folderId)
+        guard let db else { return }
         let now = Int64(Date().timeIntervalSince1970)
-        try db.run(row.update(
-            name <- newName,
-            lastModified <- now
-        ))
-        
-        if let updated = try db.pluck(row) {
-            CloudKitSyncManager.shared.uploadResultsData(folders: [makeSyncFolder(from: updated)], results: [])
+        let sql = "UPDATE \(foldersTable) SET \(colName) = ?, \(colLastModified) = ? WHERE \(colId) = ?;"
+        try db.execute(query: sql, parameters: [newName, now, folderId])
+
+        let reloadSql = "SELECT * FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
+        if let reloaded = try db.fetch(query: reloadSql, parameters: [folderId], mapping: { self.makeSyncFolder(from: $0) }).first {
+            CloudKitSyncManager.shared.uploadResultsData(folders: [reloaded], results: [])
         }
     }
 
     func updateResultQueryName(folderId: Int64?, oldName: String, newName: String) throws {
-        let query = results.filter(self.folderId == folderId && self.name == oldName)
+        guard let db else { return }
         let now = Int64(Date().timeIntervalSince1970)
-        try db.run(query.update(
-            self.name <- newName,
-            resLastModified <- now
-        ))
-        
-        var updatedResults: [SyncResult] = []
-        for row in try db.prepare(query) {
-            updatedResults.append(makeSyncResult(from: row))
+        let sql: String
+        var params: [Any] = []
+
+        if let fid = folderId {
+            sql = "UPDATE \(resultsTable) SET \(colName) = ?, \(colResLastModified) = ? WHERE \(colFolderId) = ? AND \(colName) = ?;"
+            params = [newName, now, fid, oldName]
+        } else {
+            sql = "UPDATE \(resultsTable) SET \(colName) = ?, \(colResLastModified) = ? WHERE \(colFolderId) IS NULL AND \(colName) = ?;"
+            params = [newName, now, oldName]
         }
+
+        try db.execute(query: sql, parameters: params)
+
+        let reloadSql: String
+        var reloadParams: [Any] = []
+        if let fid = folderId {
+            reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colFolderId) = ? AND \(colName) = ?"
+            reloadParams = [fid, newName]
+        } else {
+            reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colFolderId) IS NULL AND \(colName) = ?"
+            reloadParams = [newName]
+        }
+
+        let updatedResults = try db.fetch(query: reloadSql, parameters: reloadParams) { self.makeSyncResult(from: $0) }
+
         if !updatedResults.isEmpty {
             CloudKitSyncManager.shared.uploadResultsData(folders: [], results: updatedResults)
         }
     }
 
     func updateResultsFolder(oldFolderId: Int64, newFolderId: Int64) {
+        guard let db else { return }
+        let now = Int64(Date().timeIntervalSince1970)
+
+        var fCkId: String? = nil
+        let findFolderSql = "SELECT \(colCkRecordId) FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
         do {
-            let query = results.filter(folderId == oldFolderId)
-            let now = Int64(Date().timeIntervalSince1970)
-            
-            var fCkId: String? = nil
-            if let fid = try? db.pluck(foldersTbl.filter(id == newFolderId))?[ckRecordId] {
-                fCkId = fid
+            if let fetchedCkId = try db.fetch(query: findFolderSql, parameters: [newFolderId], mapping: { $0.string(at: 0) }).compactMap({ $0 }).first {
+                fCkId = fetchedCkId
             }
-            
-            try db.run(query.update(
-                folderId <- newFolderId,
-                resLastModified <- now,
-                folderCkRecordId <- fCkId
-            ))
-            
-            var updatedResults: [SyncResult] = []
-            for row in try db.prepare(query) {
-                updatedResults.append(makeSyncResult(from: row))
-            }
+
+            let updateSql = "UPDATE \(resultsTable) SET \(colFolderId) = ?, \(colResLastModified) = ?, \(colFolderCkRecordId) = ? WHERE \(colFolderId) = ?;"
+            let params: [Any] = [newFolderId, now, fCkId ?? NSNull(), oldFolderId]
+            try db.execute(query: updateSql, parameters: params)
+
+            let reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colFolderId) = ?"
+            let updatedResults = try db.fetch(query: reloadSql, parameters: [newFolderId]) { self.makeSyncResult(from: $0) }
+
             if !updatedResults.isEmpty {
                 CloudKitSyncManager.shared.uploadResultsData(folders: [], results: updatedResults)
             }
         } catch {
-            print("Update results folder error:", error)
+            print("Failed to update results folder: \(error)")
         }
     }
 
     func getAllDescendantIds(of folderId: Int64) -> [Int64] {
+        guard let db else { return [folderId] }
         var ids: [Int64] = [folderId]
 
+        let sql = "SELECT \(colId) FROM \(foldersTable) WHERE \(colParent) = ?"
         do {
-            let children = foldersTbl.filter(parent == folderId)
-            for row in try db.prepare(children) {
-                let childId = row[id]
+            let children = try db.fetch(query: sql, parameters: [folderId]) { $0.int64(at: 0) }
+            for childId in children {
                 ids.append(contentsOf: getAllDescendantIds(of: childId))
             }
         } catch {
-            print("Get descendants error:", error)
+            print("Failed to get descendant IDs: \(error)")
         }
 
         return ids
     }
-    
+
     func fetchAllSyncFolders() -> [SyncFolder] {
-        var results: [SyncFolder] = []
+        guard let db else { return [] }
+        let sql = "SELECT * FROM \(foldersTable)"
         do {
-            for row in try db.prepare(foldersTbl) {
-                results.append(makeSyncFolder(from: row))
-            }
+            return try db.fetch(query: sql) { self.makeSyncFolder(from: $0) }
         } catch {
-            print("fetchAllSyncFolders error: \(error)")
+            print("Failed to fetch all sync folders: \(error)")
+            return []
         }
-        return results
     }
-    
+
     func fetchAllSyncResults() -> [SyncResult] {
-        var resultsList: [SyncResult] = []
+        guard let db else { return [] }
+        let sql = "SELECT * FROM \(resultsTable)"
         do {
-            for row in try db.prepare(results) {
-                resultsList.append(makeSyncResult(from: row))
-            }
+            return try db.fetch(query: sql) { self.makeSyncResult(from: $0) }
         } catch {
-            print("fetchAllSyncResults error: \(error)")
+            print("Failed to fetch all sync results: \(error)")
+            return []
         }
-        return resultsList
     }
 }
 
@@ -625,68 +799,59 @@ extension ResultsHandler {
 extension ResultsHandler {
     func applyCloudKitFolderChanges(foldersToSave: [SyncFolder], recordIdsToDelete: [String]) {
         guard let db else { return }
-        
+
         do {
-            try db.transaction {
+            try transaction {
                 // 1. Process Deletions
                 for ckId in recordIdsToDelete {
-                    let query = foldersTbl.filter(ckRecordId == ckId)
-                    if let row = try db.pluck(query) {
-                        let localId = row[id]
-                        
-                        // Recursive delete everything locally for this folder
+                    let findSql = "SELECT \(colId) FROM \(foldersTable) WHERE \(colCkRecordId) = ? LIMIT 1"
+                    if let localId = try db.fetch(query: findSql, parameters: [ckId], mapping: { $0.int64(at: 0) }).first {
                         let allLocalIds = getAllDescendantIds(of: localId)
                         for fId in allLocalIds {
-                            try db.run(results.filter(folderId == fId).delete())
-                            try db.run(foldersTbl.filter(id == fId).delete())
+                            try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = \(fId);")
+                            try exec("DELETE FROM \(foldersTable) WHERE \(colId) = \(fId);")
                         }
                     }
                 }
-                
+
                 // 2. Process Saves/Updates (Pass 1: Upsert Folders)
                 for folder in foldersToSave {
                     guard let ckId = folder.ckRecordId else { continue }
-                    let query = foldersTbl.filter(ckRecordId == ckId)
-                    
-                    if let row = try db.pluck(query) {
-                        let localLastMod = row[lastModified] ?? 0
+
+                    var existingLocalId: Int64 = -1
+                    var localLastMod: Int64 = 0
+                    let findSql = "SELECT \(colId), \(colLastModified) FROM \(foldersTable) WHERE \(colCkRecordId) = ? LIMIT 1"
+                    if let row = try db.fetch(query: findSql, parameters: [ckId], mapping: { ($0.int64(at: 0), $0.int64(at: 1)) }).first {
+                        existingLocalId = row.0
+                        localLastMod = row.1
+                    }
+
+                    if existingLocalId != -1 {
                         let remoteLastMod = folder.lastModified ?? 0
-                        
                         if remoteLastMod >= localLastMod {
-                            try db.run(query.update(
-                                name <- folder.name,
-                                lastModified <- folder.lastModified,
-                                parentCkRecordId <- folder.parentCkRecordId
-                            ))
+                            let upSql = "UPDATE \(foldersTable) SET \(colName) = ?, \(colLastModified) = ?, \(colParentCkRecordId) = ? WHERE \(colId) = ?;"
+                            try db.execute(query: upSql, parameters: [folder.name, folder.lastModified ?? 0, folder.parentCkRecordId ?? NSNull(), existingLocalId])
                         }
                     } else {
-                        try db.run(foldersTbl.insert(
-                            name <- folder.name,
-                            ckRecordId <- ckId,
-                            lastModified <- folder.lastModified,
-                            parentCkRecordId <- folder.parentCkRecordId
-                        ))
+                        let insSql = "INSERT INTO \(foldersTable) (\(colName), \(colCkRecordId), \(colLastModified), \(colParentCkRecordId)) VALUES (?, ?, ?, ?);"
+                        try db.execute(query: insSql, parameters: [folder.name, ckId, folder.lastModified ?? 0, folder.parentCkRecordId ?? NSNull()])
                     }
                 }
-                
+
                 // 3. Pass 2: Resolve Parent Pointers
                 for folder in foldersToSave {
                     guard let ckId = folder.ckRecordId else { continue }
                     if let pCkId = folder.parentCkRecordId {
-                        if let pRow = try db.pluck(foldersTbl.filter(ckRecordId == pCkId)) {
-                            let pLocalId = pRow[id]
-                            try db.run(foldersTbl.filter(ckRecordId == ckId).update(
-                                parent <- pLocalId
-                            ))
+                        let findParentSql = "SELECT \(colId) FROM \(foldersTable) WHERE \(colCkRecordId) = ? LIMIT 1"
+                        if let pLocalId = try db.fetch(query: findParentSql, parameters: [pCkId], mapping: { $0.int64(at: 0) }).first {
+                            try exec("UPDATE \(foldersTable) SET \(colParent) = \(pLocalId) WHERE \(colCkRecordId) = '\(ckId)';")
                         }
                     } else {
-                        try db.run(foldersTbl.filter(ckRecordId == ckId).update(
-                            parent <- nil
-                        ))
+                        try exec("UPDATE \(foldersTable) SET \(colParent) = NULL WHERE \(colCkRecordId) = '\(ckId)';")
                     }
                 }
             }
-            
+
             // Post notification for UI refresh
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .annotationTreeDidUpdate, object: nil)
@@ -695,60 +860,72 @@ extension ResultsHandler {
             print("ResultsHandler: Failed to apply folder changes - \(error)")
         }
     }
-    
+
     func applyCloudKitResultChanges(resultsToSave: [SyncResult], recordIdsToDelete: [String]) {
         guard let db else { return }
-        
+
         do {
-            try db.transaction {
+            try transaction {
                 // 1. Process Deletions
                 for ckId in recordIdsToDelete {
-                    _ = try? db.run(results.filter(resCkRecordId == ckId).delete())
+                    try exec("DELETE FROM \(resultsTable) WHERE \(colResCkRecordId) = '\(ckId)';")
                 }
-                
+
                 // 2. Process Saves/Updates
                 for res in resultsToSave {
                     guard let ckId = res.ckRecordId else { continue }
-                    let recordQuery = results.filter(resCkRecordId == ckId)
-                    
+
                     // Resolve folderId
                     var fLocalId: Int64? = nil
                     if let fCkId = res.folderCkRecordId {
-                        fLocalId = try db.pluck(foldersTbl.filter(ckRecordId == fCkId))?[id]
+                        let findFolderSql = "SELECT \(colId) FROM \(foldersTable) WHERE \(colCkRecordId) = ? LIMIT 1"
+                        if let localFid = try db.fetch(query: findFolderSql, parameters: [fCkId], mapping: { $0.int64(at: 0) }).first {
+                            fLocalId = localFid
+                        }
                     }
-                    
-                    if let row = try db.pluck(recordQuery) {
-                        let localLastMod = row[resLastModified] ?? 0
+
+                    var existingLocalId: Int64 = -1
+                    var localLastMod: Int64 = 0
+                    let findResSql = "SELECT \(colId), \(colResLastModified) FROM \(resultsTable) WHERE \(colResCkRecordId) = ? LIMIT 1"
+                    if let row = try db.fetch(query: findResSql, parameters: [ckId], mapping: { ($0.int64(at: 0), $0.int64(at: 1)) }).first {
+                        existingLocalId = row.0
+                        localLastMod = row.1
+                    }
+
+                    if existingLocalId != -1 {
                         let remoteLastMod = res.lastModified ?? 0
-                        
                         if remoteLastMod >= localLastMod {
-                            try db.run(recordQuery.update(
-                                folderId <- fLocalId,
-                                name <- res.name,
-                                self.query <- res.query,
-                                archive <- res.archive,
-                                bkId <- res.bkId,
-                                contentId <- res.contentId,
-                                resLastModified <- res.lastModified,
-                                folderCkRecordId <- res.folderCkRecordId
-                            ))
+                            let upSql = """
+                            UPDATE \(resultsTable) SET 
+                            \(colFolderId) = ?, \(colName) = ?, \(colQuery) = ?, \(colArchive) = ?,
+                            \(colBkId) = ?, \(colContentId) = ?, \(colResLastModified) = ?, \(colFolderCkRecordId) = ?
+                            WHERE \(colId) = ?;
+                            """
+                            let params: [Any] = [
+                                fLocalId ?? NSNull(), res.name, res.query, res.archive,
+                                res.bkId, res.contentId, res.lastModified ?? 0, res.folderCkRecordId ?? NSNull(),
+                                existingLocalId
+                            ]
+                            try db.execute(query: upSql, parameters: params)
                         }
                     } else {
-                        try db.run(results.insert(
-                            folderId <- fLocalId,
-                            name <- res.name,
-                            self.query <- res.query,
-                            archive <- res.archive,
-                            bkId <- res.bkId,
-                            contentId <- res.contentId,
-                            resCkRecordId <- ckId,
-                            resLastModified <- res.lastModified,
-                            folderCkRecordId <- res.folderCkRecordId
-                        ))
+                        let insSql = """
+                        INSERT INTO \(resultsTable) (
+                            \(colFolderId), \(colName), \(colQuery), \(colArchive),
+                            \(colBkId), \(colContentId), \(colResCkRecordId), \(colResLastModified),
+                            \(colFolderCkRecordId)
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+                        """
+                        let params: [Any] = [
+                            fLocalId ?? NSNull(), res.name, res.query, res.archive,
+                            res.bkId, res.contentId, ckId, res.lastModified ?? 0,
+                            res.folderCkRecordId ?? NSNull()
+                        ]
+                        try db.execute(query: insSql, parameters: params)
                     }
                 }
             }
-            
+
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .annotationTreeDidUpdate, object: nil)
             }

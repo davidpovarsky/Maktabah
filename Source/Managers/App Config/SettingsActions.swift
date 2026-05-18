@@ -337,6 +337,9 @@ enum SettingsActions {
             newURL.stopAccessingSecurityScopedResource()
         }
 
+        AnnotationManager.shared.disconnect()
+        ResultsHandler.shared.disconnect()
+
         if let oldURL, fm.fileExists(atPath: oldURL.path) {
             let filesToMove = ["Annotations.sqlite", "SearchResults.sqlite", "Annotations.sqlite-wal", "Annotations.sqlite-shm", "SearchResults.sqlite-wal", "SearchResults.sqlite-shm"]
 

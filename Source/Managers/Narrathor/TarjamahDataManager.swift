@@ -7,7 +7,6 @@
 //  Refactored: Unified Manager + Pause/Resume + Streaming Results
 
 import Foundation
-import SQLite
 import SQLite3
 
 actor TarjamahDatabaseActor {

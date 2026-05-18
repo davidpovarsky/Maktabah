@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SQLite
 import SQLite3
 
 final class BookUpdateManager {
@@ -577,11 +576,7 @@ final class BookUpdateManager {
     }
 
     private func bookExists(id: Int) throws -> Bool {
-        guard let db = DatabaseManager.shared.db else { return false }
-        let query = DatabaseManager.shared.booksTable.filter(
-            DatabaseManager.shared.bokId == id
-        )
-        return try db.pluck(query) != nil
+        return DatabaseManager.shared.bookExists(id: id)
     }
 
     private func bookNeedsUpdate(id: Int, newVersion: Int64) throws -> Bool {
@@ -1370,10 +1365,13 @@ final class BookUpdateManager {
 
     private func openDatabase(path: String) throws -> OpaquePointer {
         var db: OpaquePointer?
-        if sqlite3_open(path, &db) != SQLITE_OK {
+        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX
+        if sqlite3_open_v2(path, &db, flags, nil) == SQLITE_OK {
+            sqlite3_busy_timeout(db, 5000)
+            return db!
+        } else {
             throw sqliteError(db, message: "Gagal membuka database \(path)")
         }
-        return db!
     }
 
     private func exec(_ db: OpaquePointer, _ sql: String) throws {

@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import SQLite
 
 class ResultWriter: NSViewController {
     @IBOutlet weak var textField: NSTextField!

@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import SQLite
 
 class ViewerSplitVC: NSSplitViewController {
     weak var ibarotTextItem: NSSplitViewItem?
