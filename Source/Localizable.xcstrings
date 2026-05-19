@@ -800,6 +800,29 @@
         }
       }
     },
+    "bulkBookDownloadAlert" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل أنت متأكد من أنك تريد تنزيل %1$(totalBook)lld كتاباً؟"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to download %1$(totalBook)lld books?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apakah Anda yakin ingin mengunduh %1$(totalBook)lld buku?"
+          }
+        }
+      }
+    },
     "Bundle Mode" : {
       "localizations" : {
         "ar" : {

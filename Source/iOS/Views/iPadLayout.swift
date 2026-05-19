@@ -110,6 +110,23 @@ struct iPadLayout: View {
                         }
                     }
                 }
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    if !bManager.activeIntegrationStates.isEmpty {
+                        VStack(spacing: 0) {
+                            ForEach(bManager.activeIntegrationStates) { state in
+                                iOSBookDownloadProgressView(
+                                    state: state,
+                                    onConfirm: { bManager.confirmPendingBookIntegration(state: state) },
+                                    onCancel: { bManager.cancelPendingBookIntegration(state: state) }
+                                )
+                                .background(.ultraThinMaterial)
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
+                            }
+                        }
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                }
+                .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: bManager.activeIntegrationStates.count)
                 .navigationDestination(for: iOSTab.self) { tab in
                     destinationView(for: tab)
                 }

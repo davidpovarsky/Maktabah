@@ -191,8 +191,10 @@ struct iOSLibraryView: View {
                     singleBookToDelete = book
                 },
                 onDownloadSingleBook: { book in
-                    viewModel.enterSelectionMode(selecting: book)
-                    startSelectedDownloads(using: viewModel)
+                    navigationManager.showBookIntegrationConfirmation(
+                        for: book,
+                        initialContentId: nil
+                    )
                 }
             )
             .ignoresSafeArea(edges: [.vertical])
@@ -210,6 +212,58 @@ struct iOSLibraryView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(.systemBackground).opacity(0.6))
+            }
+
+            if !navigationManager.activeIntegrationStates.isEmpty {
+                VStack(spacing: 0) {
+                    Spacer()
+                    ForEach(navigationManager.activeIntegrationStates) { state in
+                        iOSBookDownloadProgressView(
+                            state: state,
+                            onConfirm: { navigationManager.confirmPendingBookIntegration(state: state) },
+                            onCancel: { navigationManager.cancelPendingBookIntegration(state: state) }
+                        )
+                        .background(.ultraThinMaterial)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(10)
+            }
+        }
+        .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: navigationManager.activeIntegrationStates.count)
+        .onChange(of: viewModel.selectedBookIds) { _, _ in
+            guard !viewModel.isBulkDownloading else { return }
+
+            let downloadBooks = viewModel.selectedDownloadBooks
+            if !downloadBooks.isEmpty {
+                // Hanya update/tampilkan jika belum ada proses bulk confirmation aktif.
+                let hasBulkConfirmation = navigationManager.activeIntegrationStates.contains { state in
+                    if case .bulk = state.pendingData, state.mode == .confirmation { return true }
+                    return false
+                }
+
+                if !hasBulkConfirmation {
+                    navigationManager.showBulkDownloadConfirmation(books: downloadBooks)
+                } else {
+                    // Update existing bulk confirmation with new selection
+                    if let bulkState = navigationManager.activeIntegrationStates.first(where: {
+                        if case .bulk = $0.pendingData, $0.mode == .confirmation { return true }
+                        return false
+                    }) {
+                        // We need to re-show or update it.
+                        // Simplest is to remove and re-add or just update the state if possible.
+                        // For now, let's remove the old confirmation and add new one to refresh size.
+                        navigationManager.activeIntegrationStates.removeAll { $0.id == bulkState.id }
+                        navigationManager.showBulkDownloadConfirmation(books: downloadBooks)
+                    }
+                }
+            } else {
+                // Jika seleksi download kosong, hapus bar konfirmasi bulk
+                navigationManager.activeIntegrationStates.removeAll { state in
+                    if case .bulk = state.pendingData, state.mode == .confirmation { return true }
+                    return false
+                }
             }
         }
         .toolbar {
@@ -232,18 +286,6 @@ struct iOSLibraryView: View {
                     }
                     .disabled(viewModel.selectedDeleteCount == 0 || viewModel.isBulkDownloading)
                     .tint(.red)
-
-                    if !viewModel.showOnlyDownloaded {
-                        Button {
-                            startSelectedDownloads(using: viewModel)
-                        } label: {
-                            Label(
-                                "Download" + " (\(viewModel.selectedDownloadCount))",
-                                systemImage: "tray.and.arrow.down.fill"
-                            )
-                        }
-                        .disabled(viewModel.selectedDownloadCount == 0 || viewModel.isBulkDownloading)
-                    }
                 }
             } else {
                 ToolbarItemGroup(placement: .topBarTrailing) {
@@ -333,10 +375,10 @@ struct iOSLibraryView: View {
             message: String(localized: "Begin downloading..."),
             mode: .downloading
         )
-        navigationManager.bookIntegrationState = state
+        navigationManager.activeIntegrationStates.append(state)
 
         viewModel.startBulkDownload(progressState: state) { message in
-            navigationManager.bookIntegrationState = nil
+            navigationManager.activeIntegrationStates.removeAll { $0.id == state.id }
             viewModel.exitSelectionMode()
 
             if let message {
@@ -403,16 +445,17 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         let categories = context.coordinator.viewModel.displayedCategories
         let isSearching = !context.coordinator.viewModel.searchText.isEmpty
         let isFiltering = context.coordinator.viewModel.showOnlyDownloaded
+        let isSelectionMode = context.coordinator.viewModel.isSelectionMode
 
-        // Buat signature yang lebih efisien
-        let signature = context.coordinator.categoriesSignature(categories, deep: isSearching || isFiltering)
+        // Buat signature yang lebih efisien.
+        // Jika sedang seleksi, gunakan deep signature untuk mendeteksi perubahan status integrasi/removal.
+        let signature = context.coordinator.categoriesSignature(categories, deep: isSearching || isFiltering || isSelectionMode)
 
         if signature != context.coordinator.lastAppliedCategoriesSignature {
             context.coordinator.lastAppliedCategoriesSignature = signature
             uiViewController.applyCategories(categories)
         } else {
-            // Jika hanya seleksi yang berubah, reconfigure item yang terlihat saja.
-            // Ini JAUH lebih cepat daripada apply snapshot penuh.
+            // Jika hanya seleksi yang berubah (ID yang sama), reconfigure item yang terlihat saja.
             uiViewController.reloadVisibleItems()
         }
     }

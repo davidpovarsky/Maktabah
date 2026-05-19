@@ -31,7 +31,25 @@ struct iOSHistoryView: View {
                     .foregroundColor(.secondary)
             }
         }
+        .listStyle(.insetGrouped)
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if !navigationManager.activeIntegrationStates.isEmpty {
+                VStack(spacing: 0) {
+                    ForEach(navigationManager.activeIntegrationStates) { state in
+                        iOSBookDownloadProgressView(
+                            state: state,
+                            onConfirm: { navigationManager.confirmPendingBookIntegration(state: state) },
+                            onCancel: { navigationManager.cancelPendingBookIntegration(state: state) }
+                        )
+                        .background(.ultraThinMaterial)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
         .navigationTitle("History & Favorites")
+        .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: navigationManager.activeIntegrationStates.count)
         .onAppear {
             viewModel.loadBooksData()
         }
@@ -56,6 +74,7 @@ struct BookRowView: View {
     let book: BooksData
     let isFavorite: Bool
     @ObservedObject var viewModel: iOSHistoryViewModel
+    @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     let action: () -> Void
 
     var body: some View {

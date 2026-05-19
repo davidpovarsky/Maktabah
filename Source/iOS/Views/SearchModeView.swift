@@ -58,26 +58,41 @@ struct SearchModeView: View {
 
     @ViewBuilder
     private func searchProgressView(viewModel: iOSSearchViewModel) -> some View {
-        if viewModel.isSearching {
-            VStack(alignment: .leading) {
-                ProgressView(
-                    value: Double(viewModel.completedTables),
-                    total: Double(max(viewModel.totalTables, 1))
-                )
-                .progressViewStyle(LinearProgressViewStyle())
+        let integrationState = navigationManager.bookIntegrationState
+        if viewModel.isSearching || integrationState != nil {
+            VStack(alignment: .leading, spacing: 0) {
+                if viewModel.isSearching {
+                    VStack(alignment: .leading) {
+                        ProgressView(
+                            value: Double(viewModel.completedTables),
+                            total: Double(max(viewModel.totalTables, 1))
+                        )
+                        .progressViewStyle(LinearProgressViewStyle())
 
-                if viewModel.totalRowsInTable > 0 {
-                    ProgressView(
-                        value: Double(viewModel.completedRowsInTable),
-                        total: Double(viewModel.totalRowsInTable)
+                        if viewModel.totalRowsInTable > 0 {
+                            ProgressView(
+                                value: Double(viewModel.completedRowsInTable),
+                                total: Double(viewModel.totalRowsInTable)
+                            )
+                            .progressViewStyle(LinearProgressViewStyle())
+                            .padding(.top, 4)
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                }
+
+                if let state = integrationState {
+                    iOSBookDownloadProgressView(
+                        state: state,
+                        onConfirm: { navigationManager.confirmPendingBookIntegration() },
+                        onCancel: { navigationManager.cancelPendingBookIntegration() }
                     )
-                    .progressViewStyle(LinearProgressViewStyle())
-                    .padding(.top, 4)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
             .background(.ultraThinMaterial)
+            .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: integrationState != nil)
         }
     }
 

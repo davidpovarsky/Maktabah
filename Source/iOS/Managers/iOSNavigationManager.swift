@@ -1,3 +1,4 @@
+import Foundation
 import SwiftUI
 
 /// Manages the navigation and current mode for the iOS application.
@@ -26,7 +27,7 @@ class iOSNavigationManager {
     var selectedContentId: Int?
     var searchText: String = ""
     var showViewOptions: Bool = false
-    var bookIntegrationState: BundleArchiveDownloadProgressState?
+    var activeIntegrationStates: [BundleArchiveDownloadProgressState] = []
     var alertMessage: AlertMessage?
 
     var libraryViewModel = iOSLibraryViewModel()
@@ -35,9 +36,6 @@ class iOSNavigationManager {
 
     var openTabs: [ReaderTab] = []
     var activeTabId: UUID?
-
-    private var pendingBook: BooksData?
-    private var pendingContentId: Int?
 
     init() {
         setupObservers()
@@ -99,61 +97,79 @@ class iOSNavigationManager {
     }
 
     func selectTab(id: UUID) {
-        if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId })
-        {
+        if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId }) {
             currentTab.viewModel.saveCurrentState()
         }
         activeTabId = id
     }
 
-    func confirmPendingBookIntegration() {
-        guard let book = pendingBook,
-              let state = bookIntegrationState
-        else {
-            return
-        }
+    func confirmPendingBookIntegration(state: BundleArchiveDownloadProgressState) {
+        guard let pendingData = state.pendingData else { return }
 
-        state.mode = .downloading
-        state.message = NSLocalizedString(
-            "Downloading book file from server...",
-            comment: "Book integrate downloading message"
-        )
-        state.detail = ""
-        state.progress = 0
+        switch pendingData {
+        case .bulk:
+            state.mode = .downloading
+            libraryViewModel.startBulkDownload(progressState: state) { [weak self] message in
+                self?.activeIntegrationStates.removeAll { $0.id == state.id }
+                self?.libraryViewModel.exitSelectionMode()
 
-        Task {
-            do {
-                try await BookArchiveIntegrator.shared.ensureBookIntegrated(
-                    book,
-                    onIntegrating: { [weak self] in
-                        await MainActor.run { [weak self] in
-                            self?.showIntegratingState()
-                        }
-                    }
-                )
-
-                await MainActor.run {
-                    self.presentReader(book, initialContentId: self.pendingContentId)
-                    self.clearPendingBookIntegration()
-                }
-            } catch is CancellationError {
-                await MainActor.run {
-                    self.clearPendingBookIntegration()
-                }
-            } catch {
-                await MainActor.run {
-                    self.clearPendingBookIntegration()
-                    self.alertMessage = AlertMessage(
-                        title: NSLocalizedString("Download Failed", comment: "Download failed alert title"),
-                        message: error.localizedDescription
+                if let message {
+                    self?.alertMessage = AlertMessage(
+                        title: NSLocalizedString(
+                            "Download Book",
+                            comment: "Bulk download window title"
+                        ),
+                        message: message
                     )
+                }
+            }
+
+        case .single(let book, let initialContentId):
+            state.mode = .downloading
+            state.message = NSLocalizedString(
+                "Downloading book file from server...",
+                comment: "Book integrate downloading message"
+            )
+            state.detail = ""
+            state.progress = 0
+
+            Task {
+                do {
+                    try await BookArchiveIntegrator.shared.ensureBookIntegrated(
+                        book,
+                        onIntegrating: { [weak self] in
+                            await MainActor.run { [weak self] in
+                                self?.showIntegratingState(for: state)
+                            }
+                        }
+                    )
+
+                    await MainActor.run {
+                        self.presentReader(book, initialContentId: initialContentId)
+                        self.activeIntegrationStates.removeAll { $0.id == state.id }
+                    }
+                } catch is CancellationError {
+                    await MainActor.run {
+                        self.activeIntegrationStates.removeAll { $0.id == state.id }
+                    }
+                } catch {
+                    await MainActor.run {
+                        self.activeIntegrationStates.removeAll { $0.id == state.id }
+                        self.alertMessage = AlertMessage(
+                            title: NSLocalizedString("Download Failed", comment: "Download failed alert title"),
+                            message: error.localizedDescription
+                        )
+                    }
                 }
             }
         }
     }
 
-    func cancelPendingBookIntegration() {
-        clearPendingBookIntegration()
+    func cancelPendingBookIntegration(state: BundleArchiveDownloadProgressState) {
+        if case .bulk = state.pendingData {
+            libraryViewModel.exitSelectionMode()
+        }
+        activeIntegrationStates.removeAll { $0.id == state.id }
     }
 
     private func openBookAsync(_ book: BooksData, initialContentId: Int?) async {
@@ -182,12 +198,17 @@ class iOSNavigationManager {
         presentReader(book, initialContentId: initialContentId)
     }
 
-    private func showBookIntegrationConfirmation(
+    func showBookIntegrationConfirmation(
         for book: BooksData,
         initialContentId: Int?
     ) {
-        pendingBook = book
-        pendingContentId = initialContentId
+        // Prevent duplicate confirmation for the same book
+        if activeIntegrationStates.contains(where: {
+            if case .single(let b, _) = $0.pendingData { return b.id == book.id }
+            return false
+        }) {
+            return
+        }
 
         let bodyFormat = String(localized: "Confirm Download Message")
         let message = String(
@@ -201,16 +222,50 @@ class iOSNavigationManager {
             sizeString = ByteCountFormatter.string(fromByteCount: size, countStyle: .file)
         }
 
-        bookIntegrationState = BundleArchiveDownloadProgressState(
+        let state = BundleArchiveDownloadProgressState(
             title: book.book,
             message: message,
             mode: .confirmation,
             totalSizeString: sizeString
         )
+        state.pendingData = .single(book: book, contentId: initialContentId)
+        activeIntegrationStates.append(state)
     }
 
-    private func showIntegratingState() {
-        guard let state = bookIntegrationState else { return }
+    func showBulkDownloadConfirmation(books: [BooksData]) {
+        // Prevent multiple bulk confirmations
+        if activeIntegrationStates.contains(where: {
+            if case .bulk = $0.pendingData { return true }
+            return false
+        }) {
+            return
+        }
+
+        let totalSize = books.reduce(0) { $0 + ($1.compressedDownloadSize ?? 0) }
+        var sizeString = ""
+        if totalSize > 0 {
+            sizeString = ByteCountFormatter.string(fromByteCount: Int64(totalSize), countStyle: .file)
+        }
+
+        let message = String(
+            format: String(
+                localized: .bulkBookDownloadAlert(
+                    totalBook: books.count
+                )
+            )
+        )
+
+        let state = BundleArchiveDownloadProgressState(
+            title: String(localized: "Download Book"),
+            message: message,
+            mode: .confirmation,
+            totalSizeString: sizeString
+        )
+        state.pendingData = .bulk(books: books)
+        activeIntegrationStates.append(state)
+    }
+
+    private func showIntegratingState(for state: BundleArchiveDownloadProgressState) {
         state.mode = .integrating
         state.title = NSLocalizedString(
             "Integrating Book",
@@ -230,8 +285,7 @@ class iOSNavigationManager {
     private func presentReader(_ book: BooksData, initialContentId: Int?) {
         switchToMode(.viewer)
 
-        if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId })
-        {
+        if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId }) {
             currentTab.viewModel.saveCurrentState()
         }
 
@@ -257,8 +311,6 @@ class iOSNavigationManager {
     }
 
     private func clearPendingBookIntegration() {
-        pendingBook = nil
-        pendingContentId = nil
-        bookIntegrationState = nil
+        activeIntegrationStates.removeAll { $0.mode == .confirmation }
     }
 }

@@ -84,28 +84,6 @@ struct iOSMainView: View {
                     }
             }
         }
-        .overlay(alignment: .center) {
-            if let state = navigationManager.bookIntegrationState {
-                BundleArchiveDownloadProgressView(
-                    state: state,
-                    onConfirm: { navigationManager.confirmPendingBookIntegration() },
-                    onCancel: { navigationManager.cancelPendingBookIntegration() }
-                )
-                .padding()
-                .transition(
-                    .opacity.combined(
-                        with: .scale(
-                            scale: 0.5,
-                            anchor: .center
-                        )
-                    )
-                )
-            }
-        }
-        .animation(
-            .easeOut(duration: 0.3),
-            value: navigationManager.bookIntegrationState != nil
-        )
         .alert(item: $navigationManager.alertMessage) { item in
             Alert(
                 title: Text(item.title),

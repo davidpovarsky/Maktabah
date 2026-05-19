@@ -16,13 +16,21 @@ import Observation
 #if os(iOS)
 @Observable
 #endif
-final class BundleArchiveDownloadProgressState {
+final class BundleArchiveDownloadProgressState: Identifiable {
+    let id = UUID()
+
     enum Mode {
         case confirmation
         case downloading
         case integrating
     }
-    
+    enum PendingData {
+        case single(book: BooksData, contentId: Int?)
+        case bulk(books: [BooksData])
+    }
+
+    var pendingData: PendingData?
+
     #if os(macOS)
     @Published var title: String
     @Published var message: String
@@ -197,7 +205,7 @@ struct BundleArchiveDownloadProgressView: View {
                     .keyboardShortcut(.cancelAction)
 
                     Button(
-                        String(localized:"Download"),
+                        String(localized: "Download"),
                         action: onConfirm
                     )
                     .buttonStyle(.borderedProminent)
@@ -223,6 +231,85 @@ struct BundleArchiveDownloadProgressView: View {
     }
 }
 
+struct iOSBookDownloadProgressView: View {
+    var state: BundleArchiveDownloadProgressState
+    var onConfirm: (() -> Void)? = nil
+    var onCancel: (() -> Void)? = nil
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "tray.and.arrow.down.fill")
+                            .font(.caption)
+                            .foregroundColor(.accentColor)
+                        Text(state.title)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .lineLimit(1)
+                    }
+
+                    if state.mode == .confirmation {
+                        Text(state.message + (state.totalSizeString.isEmpty ? "" : " (\(state.totalSizeString))"))
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .lineLimit(2)
+                    } else {
+                        Text(state.message)
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                    }
+                }
+
+                Spacer()
+
+                if state.mode == .confirmation {
+                    HStack(spacing: 2) {
+                        Button(action: { onCancel?() }) {
+                            Image(systemName: "xmark")
+                        }
+                        .buttonBorderShapeCircle()
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
+
+                        Button(action: { onConfirm?() }) {
+                            Image(systemName: "checkmark")
+                        }
+                        .buttonBorderShapeCircle()
+                        .buttonStyle(.borderedProminent)
+                    }
+                } else {
+                    Text(state.detail)
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+
+            if state.mode != .confirmation {
+                ProgressView(value: state.progress)
+                    .progressViewStyle(LinearProgressViewStyle())
+                    .tint(.accentColor)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 10)
+    }
+}
+
+extension View {
+    /// Memberikan bentuk lingkaran pada border tombol jika tersedia di sistem operasi.
+    /// Jika tidak tersedia, maka tidak akan menerapkan perubahan bentuk (fallback ke default).
+    @ViewBuilder
+    func buttonBorderShapeCircle() -> some View {
+        if #available(macOS 14.0, iOS 17.0, tvOS 17.0, watchOS 10.0, *) {
+            self.buttonBorderShape(.circle)
+        } else {
+            self
+        }
+    }
+}
 
 // MARK: - BookIntegrateModalCenter
 
@@ -292,7 +379,7 @@ final class BookIntegrateModalCenter {
             rootView: BundleArchiveDownloadProgressView(
                 state: state,
                 onConfirm: { [weak self] in self?.confirmAndStartProgress() },
-                onCancel:  { [weak self] in self?.cancelDownload() }
+                onCancel: { [weak self] in self?.cancelDownload() }
             )
         )
         hostingView.frame = NSRect(x: 0, y: 0, width: 380, height: 200)
