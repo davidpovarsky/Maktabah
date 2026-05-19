@@ -31,9 +31,14 @@ struct SearchModeView: View {
 
     private func filterAndInputView(viewModel: iOSSearchViewModel) -> some View {
         ZStack(alignment: .bottom) {
-            SearchFilterUIKitView(viewModel: viewModel, onTap: {
-                isSearchFieldFocused = false
-            })
+            SearchFilterUIKitView(
+                viewModel: viewModel,
+                displayedCategories: viewModel.displayedCategories,
+                updateTrigger: viewModel.updateTrigger,
+                onTap: {
+                    isSearchFieldFocused = false
+                }
+            )
             .ignoresSafeArea(edges: .vertical)
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 bottomInputBar(viewModel: viewModel)
@@ -58,8 +63,8 @@ struct SearchModeView: View {
 
     @ViewBuilder
     private func searchProgressView(viewModel: iOSSearchViewModel) -> some View {
-        let integrationState = navigationManager.bookIntegrationState
-        if viewModel.isSearching || integrationState != nil {
+        let integrationStates = navigationManager.activeIntegrationStates
+        if viewModel.isSearching || !integrationStates.isEmpty {
             VStack(alignment: .leading, spacing: 0) {
                 if viewModel.isSearching {
                     VStack(alignment: .leading) {
@@ -82,17 +87,17 @@ struct SearchModeView: View {
                     .padding(.vertical, 8)
                 }
 
-                if let state = integrationState {
+                ForEach(integrationStates) { state in
                     iOSBookDownloadProgressView(
                         state: state,
-                        onConfirm: { navigationManager.confirmPendingBookIntegration() },
-                        onCancel: { navigationManager.cancelPendingBookIntegration() }
+                        onConfirm: { navigationManager.confirmPendingBookIntegration(state: state) },
+                        onCancel: { navigationManager.cancelPendingBookIntegration(state: state) }
                     )
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
             .background(.ultraThinMaterial)
-            .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: integrationState != nil)
+            .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: integrationStates.count)
         }
     }
 
@@ -295,9 +300,14 @@ struct SearchModeView_Previews: PreviewProvider {
                 .environment(iOSNavigationManager())
                 .previewDisplayName("Search")
             NavigationStack {
-                SearchFilterUIKitView(viewModel: iOSSearchViewModel())
-                    .navigationTitle("Filter Search")
-                    .navigationBarTitleDisplayMode(.inline)
+                let vm = iOSSearchViewModel()
+                SearchFilterUIKitView(
+                    viewModel: vm,
+                    displayedCategories: vm.displayedCategories,
+                    updateTrigger: vm.updateTrigger
+                )
+                .navigationTitle("Filter Search")
+                .navigationBarTitleDisplayMode(.inline)
             }
             .previewDisplayName("Search Filter")
         }

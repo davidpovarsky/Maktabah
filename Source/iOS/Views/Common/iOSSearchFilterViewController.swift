@@ -114,6 +114,8 @@ extension iOSSearchFilterViewController: UICollectionViewDelegate {
 
 struct SearchFilterUIKitView: UIViewControllerRepresentable {
     @Bindable var viewModel: iOSSearchViewModel
+    var displayedCategories: [CategoryData]
+    var updateTrigger: Int = 0
     var onTap: () -> Void = {}
 
     func makeUIViewController(context: Context) -> iOSSearchFilterViewController {
@@ -124,41 +126,80 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
         }
         vc.additionalSafeAreaInsets.bottom = 50
 
-        let tap = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
+        let tap = UITapGestureRecognizer(
+            target: context.coordinator,
+            action: #selector(Coordinator.handleTap)
+        )
         tap.cancelsTouchesInView = false
         vc.view.addGestureRecognizer(tap)
+
+        // Terapkan kategori awal
+        let sig = context.coordinator.categoriesSignature(displayedCategories)
+        context.coordinator.lastSignature = sig
+        vc.applyCategories(displayedCategories)
 
         return vc
     }
 
     func updateUIViewController(_ uiViewController: iOSSearchFilterViewController, context: Context) {
-        // Hanya rebuild snapshot kalau categories berubah
-        if context.coordinator.lastCategories != viewModel.displayedCategories {
-            context.coordinator.lastCategories = viewModel.displayedCategories
-            uiViewController.applyCategories(viewModel.displayedCategories)
-        }
+        context.coordinator.onTap = onTap
 
-        if uiViewController.selectedBookIds != viewModel.selectedBookIds {
+        let structureChanged = context.coordinator.hasChanged(
+            categories: displayedCategories,
+            trigger: updateTrigger
+        )
+
+        if structureChanged {
+            uiViewController.selectedBookIds = viewModel.selectedBookIds
+            uiViewController.applyCategories(displayedCategories)
+        } else if uiViewController.selectedBookIds != viewModel.selectedBookIds {
             uiViewController.selectedBookIds = viewModel.selectedBookIds
         }
-
-        context.coordinator.onTap = onTap
     }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(onTap: onTap)
     }
 
+    // MARK: - Coordinator
+
     class Coordinator {
-        var lastCategories: [CategoryData] = []
+        var lastSignature: [String] = []
+        var lastTrigger: Int = -1
         var onTap: () -> Void
 
         init(onTap: @escaping () -> Void) {
             self.onTap = onTap
         }
 
-        @objc func handleTap() {
-            onTap()
+        @objc func handleTap() { onTap() }
+
+        /// Deep signature — selalu deep karena filter/search selalu aktif di sini.
+        func categoriesSignature(_ categories: [CategoryData]) -> [String] {
+            var result: [String] = []
+            func walk(_ cat: CategoryData) {
+                result.append("c\(cat.id)")
+                for child in cat.children {
+                    if let b = child as? BooksData {
+                        result.append("b\(b.id)")
+                    } else if let sub = child as? CategoryData {
+                        walk(sub)
+                    }
+                }
+            }
+            categories.forEach { walk($0) }
+            return result
         }
+
+        func hasChanged( categories: [CategoryData], trigger: Int) -> Bool {
+            let newSig = categoriesSignature(categories)
+            let changed = newSig != lastSignature || trigger != lastTrigger
+            if changed {
+                lastSignature = newSig
+                lastTrigger = trigger
+            }
+            return changed
+        }
+
     }
 }

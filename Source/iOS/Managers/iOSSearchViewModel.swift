@@ -21,6 +21,7 @@ class iOSSearchViewModel {
     var selectedBookIds: Set<Int> = []
     var filterText: String = ""
     var displayedCategories: [CategoryData] = []
+    var updateTrigger: Int = 0
 
     var searchHistory: [String] = []
     private let historyKey = "iOSSearchHistory"
@@ -117,6 +118,8 @@ class iOSSearchViewModel {
                 ldm.filterCategory(root, searchText: filterText.lowercased())
             }
         }
+
+        updateTrigger += 1
     }
 
     func startSearch() {
@@ -165,7 +168,7 @@ class iOSSearchViewModel {
                 onTableProgress: { completed in
                     Task { @MainActor in self.completedTables = completed }
                 },
-                onRowProgress: { archiveId, tableName, current, total in
+                onRowProgress: { _, tableName, current, total in
                     Task { @MainActor in
                         self.currentTable = tableName
                         self.completedRowsInTable = current

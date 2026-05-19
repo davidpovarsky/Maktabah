@@ -105,7 +105,11 @@ struct iOSAddFavoriteSheet: View {
 
     var body: some View {
         NavigationStack {
-            SearchFilterUIKitView(viewModel: searchViewModel)
+            SearchFilterUIKitView(
+                viewModel: searchViewModel,
+                displayedCategories: searchViewModel.displayedCategories,
+                updateTrigger: searchViewModel.updateTrigger
+            )
                 .ignoresSafeArea(edges: [.vertical])
                 .navigationTitle("Select Favorites")
                 .navigationBarTitleDisplayMode(.inline)
