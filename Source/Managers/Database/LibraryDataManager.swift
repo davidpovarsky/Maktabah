@@ -23,6 +23,7 @@ class LibraryDataManager {
     lazy var authorsCache: [Int: Muallif] = [:]
 
     private(set) var isDataLoaded = false
+    private var isAuthorsLoaded = false
 
     private var loadingTask: Task<Void, Never>?
 
@@ -142,15 +143,38 @@ class LibraryDataManager {
         }
     }
 
+    func getAllAuthors() -> [(id: Int, muallif: Muallif)] {
+        if isAuthorsLoaded {
+            return authorsCache.map { (id: $0.key, muallif: $0.value) }
+        }
+
+        let fetched = DatabaseManager.shared.fetchAllAuthors()
+        for author in fetched {
+            authorsCache[author.id] = author.muallif
+        }
+        isAuthorsLoaded = true
+        return fetched
+    }
+
     func resetState() {
         loadingTask?.cancel()
         loadingTask = nil
         isDataLoaded = false
+        isAuthorsLoaded = false
         allRootCategories.removeAll()
         categoryMap.removeAll()
+        authorsCache.removeAll()
         booksById.removeAll()
         archives.removeAll()
         archivesBuiltFromFullData = false
+    }
+
+    func updateAuthorInCache(id: Int, muallif: Muallif) {
+        authorsCache[id] = muallif
+    }
+
+    func removeAuthorFromCache(id: Int) {
+        authorsCache.removeValue(forKey: id)
     }
 
     func getBook(_ ids: [Int]) -> [BooksData] {
@@ -522,7 +546,7 @@ class LibraryDataManager {
         }
 
         if id > 2515 {
-            authorsCache.removeValue(forKey: muallifId)
+            removeAuthorFromCache(id: muallifId)
         }
     }
 

@@ -43,6 +43,7 @@ struct OfflineImportFormView: View {
     @State private var showAuthorPicker = false
     @State private var showFilePicker = false
     @State private var showHelpPopover = false
+    @State private var isLoadingData: Bool = true
 
     private let converterURL = URL(
         string: "https://maktabah-web-converter-dfbmqvd2wyzupyxlb38p5y.streamlit.app"
@@ -50,7 +51,22 @@ struct OfflineImportFormView: View {
 
     var body: some View {
         Form {
-            // MARK: - Book Section
+            if isLoadingData {
+                Section {
+                    HStack {
+                        Spacer()
+                        VStack(spacing: 12) {
+                            ProgressView()
+                            Text("Loading Library...")
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 32)
+                        Spacer()
+                    }
+                }
+            } else {
+                // MARK: - Book Section
+
 
             Section("Book Information") {
                 Picker("Book Type", selection: $isNewBook) {
@@ -191,6 +207,7 @@ struct OfflineImportFormView: View {
                     }
                 }
             }
+            }
         }
         .formStyle(.grouped)
         .safeAreaInset(edge: .top, spacing: 0) {
@@ -325,6 +342,7 @@ struct OfflineImportFormView: View {
         if sqliteURL == nil { return false }
         if !isNewBook && selectedBookId == nil { return false }
         if bookName.isEmpty { return false }
+        if categoryId == 0 { return false }
         if isNewAuthor {
             if authorName.isEmpty { return false }
         } else {
@@ -334,16 +352,29 @@ struct OfflineImportFormView: View {
     }
 
     private func setupData() async {
-        maxBkid = DatabaseManager.shared.getMaxBookId()
-        maxAuthid = DatabaseManager.shared.getMaxAuthId()
+        isLoadingData = true
+        defer { isLoadingData = false }
+        
+        let results = await Task.detached(priority: .userInitiated) {
+            let maxBkid = DatabaseManager.shared.getMaxBookId()
+            let maxAuthid = DatabaseManager.shared.getMaxAuthId()
 
-        categories = Array(LibraryDataManager.shared.categoryMap.values).sorted(by: {
-            $0.id < $1.id
-        })
+            let categories = Array(LibraryDataManager.shared.categoryMap.values).sorted(by: {
+                $0.id < $1.id
+            })
 
-        authors = DatabaseManager.shared.fetchAllAuthors().sorted(by: { $0.id < $1.id })
+            let authors = LibraryDataManager.shared.getAllAuthors().sorted(by: { $0.id < $1.id })
 
-        books = Array(LibraryDataManager.shared.booksById.values).sorted(by: { $0.book < $1.book })
+            let books = Array(LibraryDataManager.shared.booksById.values).sorted(by: { $0.book < $1.book })
+            
+            return (maxBkid, maxAuthid, categories, authors, books)
+        }.value
+        
+        self.maxBkid = results.0
+        self.maxAuthid = results.1
+        self.categories = results.2
+        self.authors = results.3
+        self.books = results.4
     }
 
     private var helpButton: some View {

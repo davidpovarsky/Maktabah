@@ -1001,25 +1001,30 @@ final class BookUpdateManager {
         }
         defer { sqlite3_finalize(stmt) }
 
-        sqlite3_bind_int(stmt, 1, Int32(row["authid"] as? Int ?? 0))
+        let authId = row["authid"] as? Int ?? 0
+        let authName = row["auth"] as? String ?? ""
+        let authInf = row["inf"] as? String ?? ""
+        let authLng = row["Lng"] as? String ?? ""
+
+        sqlite3_bind_int(stmt, 1, Int32(authId))
         sqlite3_bind_text(
             stmt,
             2,
-            (row["auth"] as? String ?? ""),
+            authName,
             -1,
             sqliteTransient
         )
         sqlite3_bind_text(
             stmt,
             3,
-            (row["inf"] as? String ?? ""),
+            authInf,
             -1,
             sqliteTransient
         )
         sqlite3_bind_text(
             stmt,
             4,
-            (row["Lng"] as? String ?? ""),
+            authLng,
             -1,
             sqliteTransient
         )
@@ -1039,6 +1044,10 @@ final class BookUpdateManager {
         if sqlite3_step(stmt) != SQLITE_DONE {
             throw sqliteError(db, message: "Gagal insert Auth.")
         }
+
+        // Sync with LibraryDataManager cache
+        let muallif = Muallif(nama: authName, info: authInf, namaLengkap: authLng)
+        LibraryDataManager.shared.updateAuthorInCache(id: authId, muallif: muallif)
     }
 
     func convertBookDatabase(at url: URL, bookId: Int) throws {
