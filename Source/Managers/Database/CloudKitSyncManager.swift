@@ -584,6 +584,7 @@ final class CloudKitSyncManager {
             return
         }
 
+        let recordId = localRecord.recordID.recordName
         let serverLastModified = serverRecord["lastModified"] as? Int64 ?? 0
         let localLastModified = localRecord["lastModified"] as? Int64 ?? 0
 
@@ -599,7 +600,7 @@ final class CloudKitSyncManager {
             operation.modifyRecordsResultBlock = { [weak self] result in
                 switch result {
                 case .success:
-                    self?.removePendingUploads(pendingRecordIds)
+                    self?.removePendingUploads([recordId])
                     completion?(.success(()))
                 case .failure(let error):
                     completion?(.failure(error))
@@ -608,7 +609,7 @@ final class CloudKitSyncManager {
             privateDatabase.add(operation)
         } else {
             applyChangesLocally(recordsToSave: [serverRecord], recordIDsToDelete: [])
-            removePendingUploads(pendingRecordIds)
+            removePendingUploads([recordId])
             completion?(.success(()))
         }
     }
