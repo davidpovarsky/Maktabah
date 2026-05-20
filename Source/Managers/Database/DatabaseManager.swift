@@ -257,12 +257,12 @@ class DatabaseManager {
     }
 
     func loadShortsForBook(_ bkid: String) -> [String: String] {
+        lock.lock()
+        defer { lock.unlock() }
+
         if let cached = shortsCache[bkid] {
             return cached
         }
-
-        lock.lock()
-        defer { lock.unlock() }
 
         guard let dbSpecial = dbSpecial else {
             return [:]
@@ -284,7 +284,7 @@ class DatabaseManager {
     }
 
     func getAuthor(_ id: Int) -> Muallif? {
-        if let cached = LibraryDataManager.shared.authorsCache[id] {
+        if let cached = LibraryDataManager.shared.getAuthorFromCache(id: id) {
             return cached
         }
 
@@ -303,7 +303,7 @@ class DatabaseManager {
             let lng = row.string(at: 2) ?? ""
             return Muallif(nama: auth, info: inf, namaLengkap: lng)
         }).first {
-            LibraryDataManager.shared.authorsCache[id] = author
+            LibraryDataManager.shared.updateAuthorInCache(id: id, muallif: author)
             return author
         }
 
@@ -313,9 +313,12 @@ class DatabaseManager {
     // MARK: - Archive File Management
 
     func checkArchiveAvailability(archiveId: Int) -> Bool {
+        lock.lock()
         if let cached = archiveAvailabilityCache[archiveId] {
+            lock.unlock()
             return cached
         }
+        lock.unlock()
 
         let fm = FileManager.default
         guard let archiveFile = AppConfig.archiveDatabasePath(archiveId: archiveId),
@@ -336,12 +339,16 @@ class DatabaseManager {
             isAvailable = false
         }
 
+        lock.lock()
         archiveAvailabilityCache[archiveId] = isAvailable
+        lock.unlock()
         return isAvailable
     }
 
     func invalidateArchiveCache(archiveId: Int) {
+        lock.lock()
         archiveAvailabilityCache.removeValue(forKey: archiveId)
+        lock.unlock()
         IntegrationCache.shared.invalidate(archiveId: archiveId)
     }
 }

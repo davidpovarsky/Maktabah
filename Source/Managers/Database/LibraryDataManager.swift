@@ -11,69 +11,102 @@ class LibraryDataManager {
     static let shared = LibraryDataManager()
     var db: DatabaseManager = .shared
     
-    private(set) var allRootCategories: [CategoryData] = []
-    private(set) var categoryMap: [Int: CategoryData] = [:]
+    private let lock = NSRecursiveLock()
 
-    private(set) lazy var booksById: [Int: BooksData] = [:]
-    private(set) lazy var archives: [Int: ArchiveInfo] = [:]
-    private var archivesBuiltFromFullData: Bool = false
+    private var _allRootCategories: [CategoryData] = []
+    private var _categoryMap: [Int: CategoryData] = [:]
+    private var _booksById: [Int: BooksData] = [:]
+    private var _archives: [Int: ArchiveInfo] = [:]
+    private var _archivesBuiltFromFullData: Bool = false
+    private var _searchIsRunning: Bool = false
+    private var _authorsCache: [Int: Muallif] = [:]
+    private var _isDataLoaded = false
+    private var _isAuthorsLoaded = false
+    private var _loadingTask: Task<Void, Never>?
 
-    private(set) var searchIsRunning: Bool = false
+    var allRootCategories: [CategoryData] {
+        lock.withLock { _allRootCategories }
+    }
 
-    lazy var authorsCache: [Int: Muallif] = [:]
+    var categoryMap: [Int: CategoryData] {
+        lock.withLock { _categoryMap }
+    }
 
-    private(set) var isDataLoaded = false
-    private var isAuthorsLoaded = false
+    var booksById: [Int: BooksData] {
+        lock.withLock { _booksById }
+    }
 
-    private var loadingTask: Task<Void, Never>?
+    var archives: [Int: ArchiveInfo] {
+        lock.withLock { _archives }
+    }
+
+    var searchIsRunning: Bool {
+        lock.withLock { _searchIsRunning }
+    }
+
+    var authorsCache: [Int: Muallif] {
+        lock.withLock { _authorsCache }
+    }
+
+    var isDataLoaded: Bool {
+        lock.withLock { _isDataLoaded }
+    }
 
     private init() {}
 
     func loadData() async {
-        if isDataLoaded { return }
-
-        if let existingTask = loadingTask {
-            await existingTask.value
-            return
-        }
-
-        let newTask = Task {
-            do {
-                let results = try await Task.detached(priority: .userInitiated)
-                { [unowned self] in
-                    let allCategories = try db.fetchAllCategories()
-                    let (localRootCats, localCategoryMap) =
-                        buildCategoryHierarchy(from: allCategories)
-                    let localBooksById = try loadBooksAndIndex(
-                        for: allCategories
-                    )
-                    return (localRootCats, localCategoryMap, localBooksById)
-                }.value
-
-                allRootCategories = results.0
-                categoryMap = results.1
-                booksById = results.2
-                await applyBundleDownloadMetadataIfNeeded()
-                isDataLoaded = true
-
-                // Bangun integration cache di background setelah data siap.
-                // buildAllIfNeeded() hanya scan SQLite untuk archive yang belum ada
-                // cache-nya — setelah itu filterNotIntegrated/filterIntegrated O(1).
-                Task.detached(priority: .background) {
-                    IntegrationCache.shared.buildAllIfNeeded()
-                }
-            } catch {
-                #if DEBUG
-                    print("Error loading data: \(error)")
-                #endif
+        let taskToAwait: Task<Void, Never>? = lock.withLock {
+            if _isDataLoaded {
+                return nil
             }
+            if let existing = _loadingTask {
+                return existing
+            }
+            let newTask = Task { [self] in
+                do {
+                    let results = try await Task.detached(priority: .userInitiated) { [self] in
+                        let allCategories = try db.fetchAllCategories()
+                        let (localRootCats, localCategoryMap) =
+                            buildCategoryHierarchy(from: allCategories)
+                        let localBooksById = try loadBooksAndIndex(
+                            for: allCategories
+                        )
+                        return (localRootCats, localCategoryMap, localBooksById)
+                    }.value
 
-            // 5. Bersihkan task reference setelah selesai
-            loadingTask = nil
+                    lock.withLock {
+                        _allRootCategories = results.0
+                        _categoryMap = results.1
+                        _booksById = results.2
+                    }
+
+                    await applyBundleDownloadMetadataIfNeeded()
+
+                    lock.withLock {
+                        _isDataLoaded = true
+                    }
+
+                    // Bangun integration cache di background setelah data siap.
+                    Task.detached(priority: .background) {
+                        IntegrationCache.shared.buildAllIfNeeded()
+                    }
+                } catch {
+                    #if DEBUG
+                        print("Error loading data: \(error)")
+                    #endif
+                }
+
+                lock.withLock {
+                    _loadingTask = nil
+                }
+            }
+            _loadingTask = newTask
+            return newTask
         }
 
-        loadingTask = newTask
-        await newTask.value
+        if let task = taskToAwait {
+            await task.value
+        }
     }
 
     // MARK: - Helpers for loading data
@@ -131,10 +164,12 @@ class LibraryDataManager {
                 urlSession: URLSession.shared
             )
 
-            for (bookId, entry) in entries {
-                guard let book = booksById[bookId] else { continue }
-                book.downloadFilename = entry.filename
-                book.compressedDownloadSize = entry.sizeZst
+            lock.withLock {
+                for (bookId, entry) in entries {
+                    guard let book = _booksById[bookId] else { continue }
+                    book.downloadFilename = entry.filename
+                    book.compressedDownloadSize = entry.sizeZst
+                }
             }
         } catch {
             #if DEBUG
@@ -144,51 +179,82 @@ class LibraryDataManager {
     }
 
     func getAllAuthors() -> [(id: Int, muallif: Muallif)] {
-        if isAuthorsLoaded {
-            return authorsCache.map { (id: $0.key, muallif: $0.value) }
+        let (isLoaded, cachedRes) = lock.withLock {
+            if _isAuthorsLoaded {
+                return (true, _authorsCache.map { (id: $0.key, muallif: $0.value) })
+            }
+            return (false, [])
+        }
+        
+        if isLoaded {
+            return cachedRes
         }
 
         let fetched = DatabaseManager.shared.fetchAllAuthors()
-        for author in fetched {
-            authorsCache[author.id] = author.muallif
+        
+        lock.withLock {
+            for author in fetched {
+                _authorsCache[author.id] = author.muallif
+            }
+            _isAuthorsLoaded = true
         }
-        isAuthorsLoaded = true
         return fetched
     }
 
     func resetState() {
-        loadingTask?.cancel()
-        loadingTask = nil
-        isDataLoaded = false
-        isAuthorsLoaded = false
-        allRootCategories.removeAll()
-        categoryMap.removeAll()
-        authorsCache.removeAll()
-        booksById.removeAll()
-        archives.removeAll()
-        archivesBuiltFromFullData = false
+        lock.withLock {
+            _loadingTask?.cancel()
+            _loadingTask = nil
+            _isDataLoaded = false
+            _isAuthorsLoaded = false
+            _allRootCategories.removeAll()
+            _categoryMap.removeAll()
+            _authorsCache.removeAll()
+            _booksById.removeAll()
+            _archives.removeAll()
+            _archivesBuiltFromFullData = false
+        }
     }
 
     func updateAuthorInCache(id: Int, muallif: Muallif) {
-        authorsCache[id] = muallif
+        lock.withLock {
+            _authorsCache[id] = muallif
+        }
     }
 
     func removeAuthorFromCache(id: Int) {
-        authorsCache.removeValue(forKey: id)
+        lock.lock()
+        _authorsCache.removeValue(forKey: id)
+        lock.unlock()
+    }
+
+    func getAuthorFromCache(id: Int) -> Muallif? {
+        lock.withLock {
+            _authorsCache[id]
+        }
     }
 
     func getBook(_ ids: [Int]) -> [BooksData] {
         var books = [BooksData]()
-        for id in ids {
-            if let book = booksById[id] {
-                books.append(book)
-                continue
-            }
-
-            do {
-                if let book =  try db.fetchBook(byId: id) {
-                    booksById[id] = book
+        var idsToFetch = [Int]()
+        
+        lock.withLock {
+            for id in ids {
+                if let book = _booksById[id] {
                     books.append(book)
+                } else {
+                    idsToFetch.append(id)
+                }
+            }
+        }
+
+        for id in idsToFetch {
+            do {
+                if let book = try db.fetchBook(byId: id) {
+                    lock.withLock {
+                        _booksById[id] = book
+                        books.append(book)
+                    }
                 }
             } catch {
                 #if DEBUG
@@ -201,8 +267,11 @@ class LibraryDataManager {
     }
 
     func buildArchive() async {
-        if archivesBuiltFromFullData { return }
-        guard isDataLoaded else { return }
+        let (built, isLoaded, rootCats) = lock.withLock {
+            (_archivesBuiltFromFullData, _isDataLoaded, _allRootCategories)
+        }
+        if built || !isLoaded { return }
+
         // gunakan var lokal agar thread-safe selama build
         var archives: [Int: ArchiveInfo] = [:]
         var seenTables = Set<String>() // untuk menghindari duplikat
@@ -222,7 +291,7 @@ class LibraryDataManager {
         }
 
         // iterasi semua root category dan kumpulkan buku dari seluruh subtree
-        for root in allRootCategories {
+        for root in rootCats {
             let books = collectBooks(from: root)
             for book in books {
                 let archiveId = book.archive
@@ -247,9 +316,10 @@ class LibraryDataManager {
             }
         }
 
-        // assign ke property jika Anda mau menyimpan hasil build
-        self.archives = archives
-        archivesBuiltFromFullData = true
+        lock.withLock {
+            self._archives = archives
+            _archivesBuiltFromFullData = true
+        }
     }
 
     private func createConnections(dbPath: String, count: Int = 4) -> [DBConnectionType] {
@@ -309,13 +379,14 @@ class LibraryDataManager {
         completion: @escaping (SearchResultItem) -> Void,
         onComplete: @escaping () -> Void
     ) async {
-        searchIsRunning = true
         let allowed = tableToScan
 
         let searchKeywords: [String]
         switch mode {
         case .phrase:
-            if query.trimmingCharacters(in: .whitespaces).isEmpty { return }
+            if query.trimmingCharacters(in: .whitespaces).isEmpty {
+                return
+            }
             searchKeywords = [query.normalizeArabic()]
         case .contains, .or:
             searchKeywords = query.normalizeArabic().components(separatedBy: ",")
@@ -323,26 +394,35 @@ class LibraryDataManager {
                 .filter { !$0.isEmpty }
         }
 
-        if searchKeywords.isEmpty { return }
+        if searchKeywords.isEmpty {
+            return
+        }
 
-        var allowedByArchive: [Int: Set<String>] = [:]
-        for tableName in allowed {
-            let bookId = Int(tableName.dropFirst()) ?? 0
-            if let book = booksById[bookId] {
-                allowedByArchive[book.archive, default: []].insert(tableName)
+        let (archivesCount, allowedByArchive) = lock.withLock {
+            _searchIsRunning = true
+            var allowedByArchive: [Int: Set<String>] = [:]
+            for tableName in allowed {
+                let bookId = Int(tableName.dropFirst()) ?? 0
+                if let book = _booksById[bookId] {
+                    allowedByArchive[book.archive, default: []].insert(tableName)
+                }
             }
+            return (_archives.count, allowedByArchive)
         }
 
         #if DEBUG
             print(
-                "Filter: Dari \(archives.count) archive → \(allowedByArchive.keys.count) relevan")
+                "Filter: Dari \(archivesCount) archive → \(allowedByArchive.keys.count) relevan")
         #endif
 
         var totalTables = 0
 
         for archiveId in allowedByArchive.keys.sorted() {
             guard let archiveInfo = archives[archiveId] else { continue }
-            guard let dbPath = getDatabasePath(forArchive: archiveId) else { return }
+            guard let dbPath = getDatabasePath(forArchive: archiveId) else {
+                stopSearch()
+                return
+            }
             let connections = createConnections(dbPath: dbPath, count: 4)
 
             if connections.isEmpty {
@@ -370,7 +450,10 @@ class LibraryDataManager {
             #endif
         }
 
-        if totalTables == 0 { return }
+        if totalTables == 0 {
+            stopSearch()
+            return
+        }
 
         searchEngine.checkAndResumeIfNeeded { [weak self] resumed in
             guard let self, !resumed else { return }
@@ -402,7 +485,7 @@ class LibraryDataManager {
                 onResult: { tableName, archive, content in
                     Task { @MainActor in
                         let bookId = Int(tableName.dropFirst()) ?? 0
-                        let bookTitle = self.booksById[bookId]?.book ?? ""
+                        let bookTitle = self.lock.withLock { self._booksById[bookId]?.book ?? "" }
                         let snippet = content.nash
                             .normalizeArabic()
                             .snippetAround(keywords: searchKeywords, contextLength: 60)
@@ -429,7 +512,9 @@ class LibraryDataManager {
     }
 
     func stopSearch() {
-        searchIsRunning = false
+        lock.withLock {
+            _searchIsRunning = false
+        }
     }
 
     // MARK: - Generic Hierarchy Filtering logic
@@ -440,7 +525,8 @@ class LibraryDataManager {
         baseCategories: [CategoryData]? = nil
     ) -> Bool {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
-        let base = baseCategories ?? allRootCategories
+        
+        let base = baseCategories ?? lock.withLock { _allRootCategories }
 
         if trimmed.isEmpty {
             // Tampilkan semua (sesuai base)
@@ -514,7 +600,8 @@ class LibraryDataManager {
 
     /// Kembalikan salinan hierarchy yang hanya berisi kitab yang belum terintegrasi.
     func filterNotIntegrated() -> [CategoryData] {
-        return allRootCategories.compactMap { root in
+        let rootCats = lock.withLock { _allRootCategories }
+        return rootCats.compactMap { root in
             applyHierarchyFilter(to: root) {
                 !BookArchiveIntegrator.shared.isBookIntegrated($0)
             }
@@ -522,7 +609,8 @@ class LibraryDataManager {
     }
 
     func filterIntegrated() -> [CategoryData] {
-        return allRootCategories.compactMap { root in
+        let rootCats = lock.withLock { _allRootCategories }
+        return rootCats.compactMap { root in
             applyHierarchyFilter(to: root) {
                 BookArchiveIntegrator.shared.isBookIntegrated($0)
             }
@@ -538,15 +626,17 @@ class LibraryDataManager {
     }
 
     func removeBookFromMemory(id: Int, muallifId: Int) {
-        if id > 32792 {
-            booksById.removeValue(forKey: id)
-            for root in allRootCategories {
-                removeBookFromHierarchy(root, bookId: id)
+        lock.withLock {
+            if id > 32792 {
+                _booksById.removeValue(forKey: id)
+                for root in _allRootCategories {
+                    removeBookFromHierarchy(root, bookId: id)
+                }
             }
-        }
 
-        if id > 2515 {
-            removeAuthorFromCache(id: muallifId)
+            if muallifId > 2515 {
+                _authorsCache.removeValue(forKey: muallifId)
+            }
         }
     }
 
@@ -577,36 +667,40 @@ extension LibraryDataManager {
             case .inserted:
                 // Fetch buku baru dari database
                 if let book = try db.fetchBook(byId: bookId) {
-                    // Tambahkan ke data structures
-                    booksById[bookId] = book
+                    lock.withLock {
+                        // Tambahkan ke data structures
+                        _booksById[bookId] = book
 
-                    // Dapatkan category ID
-                    let categoryId = result.catId
+                        // Dapatkan category ID
+                        let categoryId = result.catId
 
-                    // Tambahkan ke category hierarchy
-                    if let category = categoryMap[categoryId] {
-                        category.children.append(book)
-                        insertedBooks.append((categoryId, book))
+                        // Tambahkan ke category hierarchy
+                        if let category = _categoryMap[categoryId] {
+                            category.children.append(book)
+                            insertedBooks.append((categoryId, book))
+                        }
                     }
 
                     // Update archive
-                    await updateArchiveForBooks([book])
+                    updateArchiveForBooks([book])
                 }
 
             case .updated:
                 // Fetch buku yang diupdate dari database
                 if let book = try db.fetchBook(byId: bookId) {
-                    // Update booksById cache
-                    booksById[bookId] = book
+                    lock.withLock {
+                        // Update booksById cache
+                        _booksById[bookId] = book
 
-                    // Update di hierarchy tree
-                    updateBookInHierarchy(book)
+                        // Update di hierarchy tree
+                        updateBookInHierarchy(book)
+                    }
 
                     // Clear cache
                     BookPageCache.shared.remove(bookId: bookId)
 
                     // Update archive
-                    await updateArchiveForBooks([book])
+                    updateArchiveForBooks([book])
 
                     updatedBookIds.insert(bookId)
                 }
@@ -629,7 +723,7 @@ extension LibraryDataManager {
     /// Update single book di hierarchy tree
     private func updateBookInHierarchy(_ updatedBook: BooksData) {
         // Cari book di tree dan replace
-        for category in allRootCategories {
+        for category in _allRootCategories {
             if replaceBookInCategory(category, with: updatedBook) {
                 break
             }
@@ -652,26 +746,30 @@ extension LibraryDataManager {
     }
 
     /// Update archive untuk beberapa buku
-    private func updateArchiveForBooks(_ books: [BooksData]) async {
-        for book in books {
-            let archiveId = book.archive
-            guard archiveId != 0 else { continue }
+    private func updateArchiveForBooks(_ books: [BooksData]) {
+        lock.withLock {
+            for book in books {
+                let archiveId = book.archive
+                guard archiveId != 0 else { continue }
 
-            let tableName = "b\(book.id)"
+                let tableName = "b\(book.id)"
 
-            if archives[archiveId] == nil {
-                archives[archiveId] = ArchiveInfo(tables: [], books: [])
+                if _archives[archiveId] == nil {
+                    _archives[archiveId] = ArchiveInfo(tables: [], books: [])
+                }
+
+                // Remove old entry if exists
+                if let index = _archives[archiveId]?.tables.firstIndex(of: tableName) {
+                    _archives[archiveId]?.tables.remove(at: index)
+                    if let booksCount = _archives[archiveId]?.books.count, index < booksCount {
+                        _archives[archiveId]?.books.remove(at: index)
+                    }
+                }
+
+                // Add new entry
+                _archives[archiveId]?.tables.append(tableName)
+                _archives[archiveId]?.books.append(book)
             }
-
-            // Remove old entry if exists
-            if let index = archives[archiveId]?.tables.firstIndex(of: tableName) {
-                archives[archiveId]?.tables.remove(at: index)
-                archives[archiveId]?.books.remove(at: index)
-            }
-
-            // Add new entry
-            archives[archiveId]?.tables.append(tableName)
-            archives[archiveId]?.books.append(book)
         }
     }
 }

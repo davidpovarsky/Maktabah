@@ -276,7 +276,7 @@ final class AnnotationManager {
 
                 let deterministicID = "legacy_\(bkId)_\(contentId)_\(start)_\(createdAt)"
 
-                try exec("UPDATE \(annotationsTable) SET \(colAnnCkRecordId) = '\(deterministicID)', \(colAnnLastModified) = \(now) WHERE \(colAnnId) = \(id);")
+                try exec("UPDATE \(annotationsTable) SET \(colAnnCkRecordId) = ?, \(colAnnLastModified) = ? WHERE \(colAnnId) = ?;", parameters: [deterministicID, now, id])
 
                 if var annotation = loadAnnotationById(id) {
                     annotation.ckRecordId = deterministicID
@@ -349,21 +349,14 @@ final class AnnotationManager {
 
     // MARK: - Native SQLite3 Helpers
 
-    private func exec(_ sql: String) throws {
+    private func exec(_ sql: String, parameters: [Any] = []) throws {
         guard let db else { return }
-        try db.execute(query: sql)
+        try db.execute(query: sql, parameters: parameters)
     }
 
     private func transaction(_ block: () throws -> Void) throws {
         guard let db else { return }
-        try db.execute(query: "BEGIN TRANSACTION;")
-        do {
-            try block()
-            try db.execute(query: "COMMIT;")
-        } catch {
-            try? db.execute(query: "ROLLBACK;")
-            throw error
-        }
+        try db.transaction(block)
     }
 
     private func listTableColumns(tableName: String) throws -> [String] {
@@ -565,8 +558,8 @@ final class AnnotationManager {
                     let insertRelSql = "INSERT OR IGNORE INTO \(annotationTagsTable) (\(colAnnotationTagAnnotationId), \(colAnnotationTagTagId)) VALUES (?, ?);"
                     try db.execute(query: insertRelSql, parameters: [annId, existingNewTagId])
                 }
-                try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagTagId) = \(oldTagId);")
-                try exec("DELETE FROM \(tagsTable) WHERE \(colTagId) = \(oldTagId);")
+                try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagTagId) = ?;", parameters: [oldTagId])
+                try exec("DELETE FROM \(tagsTable) WHERE \(colTagId) = ?;", parameters: [oldTagId])
             }
         } else {
             // SIMPLE RENAME
@@ -643,8 +636,8 @@ final class AnnotationManager {
         let annotationToDelete = loadAnnotationById(id)
 
         try transaction {
-            try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagAnnotationId) = \(id);")
-            try exec("DELETE FROM \(annotationsTable) WHERE \(colAnnId) = \(id);")
+            try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagAnnotationId) = ?;", parameters: [id])
+            try exec("DELETE FROM \(annotationsTable) WHERE \(colAnnId) = ?;", parameters: [id])
             try self.deleteUnusedTags()
         }
 
@@ -1919,7 +1912,7 @@ final class AnnotationManager {
     private func replaceTags(_ tags: [String], for annotationId: Int64) throws {
         guard let db else { return }
 
-        try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagAnnotationId) = \(annotationId);")
+        try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagAnnotationId) = ?;", parameters: [annotationId])
 
         for tag in tags {
             let normalized = normalizedTagName(tag)
@@ -2002,8 +1995,8 @@ final class AnnotationManager {
                         let localId = row.0
                         let ann = row.1
                         deletedAnnotations.append(ann)
-                        try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagAnnotationId) = \(localId);")
-                        try exec("DELETE FROM \(annotationsTable) WHERE \(colAnnId) = \(localId);")
+                        try exec("DELETE FROM \(annotationTagsTable) WHERE \(colAnnotationTagAnnotationId) = ?;", parameters: [localId])
+                        try exec("DELETE FROM \(annotationsTable) WHERE \(colAnnId) = ?;", parameters: [localId])
                     }
                 }
 

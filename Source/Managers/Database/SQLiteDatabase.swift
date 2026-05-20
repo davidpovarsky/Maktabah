@@ -51,7 +51,7 @@ struct SQLiteRow {
 
 class SQLiteDatabase {
     let dbPointer: OpaquePointer
-    private let lock = NSLock()
+    private let lock = NSRecursiveLock()
 
     init(path: String, flags: Int32 = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX) throws {
         var db: OpaquePointer?
@@ -68,10 +68,36 @@ class SQLiteDatabase {
         sqlite3_close(dbPointer)
     }
 
-    func execute(query: String, parameters: [Any] = []) throws {
+    func transaction(_ block: () throws -> Void) throws {
         lock.lock()
         defer { lock.unlock() }
 
+        try _executeNoLock(query: "BEGIN TRANSACTION;")
+        do {
+            try block()
+            try _executeNoLock(query: "COMMIT;")
+        } catch {
+            try? _executeNoLock(query: "ROLLBACK;")
+            throw error
+        }
+    }
+
+    func execute(query: String, parameters: [Any] = []) throws {
+        lock.lock()
+        defer { lock.unlock() }
+        try _executeNoLock(query: query, parameters: parameters)
+    }
+
+    @discardableResult
+    func fetch<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
+        lock.lock()
+        defer { lock.unlock() }
+        return try _fetchNoLock(query: query, parameters: parameters, mapping: mapping)
+    }
+
+    // MARK: - Internal no-lock variants (caller must hold lock)
+
+    private func _executeNoLock(query: String, parameters: [Any] = []) throws {
         var stmt: OpaquePointer?
         guard sqlite3_prepare_v2(dbPointer, query, -1, &stmt, nil) == SQLITE_OK else {
             let error = String(cString: sqlite3_errmsg(dbPointer))
@@ -88,10 +114,7 @@ class SQLiteDatabase {
     }
 
     @discardableResult
-    func fetch<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
-        lock.lock()
-        defer { lock.unlock() }
-
+    private func _fetchNoLock<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
         var stmt: OpaquePointer?
         guard sqlite3_prepare_v2(dbPointer, query, -1, &stmt, nil) == SQLITE_OK else {
             let error = String(cString: sqlite3_errmsg(dbPointer))
@@ -117,7 +140,9 @@ class SQLiteDatabase {
     }
 
     func checkpoint() {
-        try? execute(query: "PRAGMA wal_checkpoint(TRUNCATE);")
+        lock.lock()
+        defer { lock.unlock() }
+        try? _executeNoLock(query: "PRAGMA wal_checkpoint(TRUNCATE);")
     }
 
     private func bind(parameters: [Any], to stmt: OpaquePointer?) throws {
@@ -125,7 +150,7 @@ class SQLiteDatabase {
             let bindIndex = Int32(index + 1)
             switch value {
             case let intVal as Int:
-                sqlite3_bind_int(stmt, bindIndex, Int32(intVal))
+                sqlite3_bind_int64(stmt, bindIndex, Int64(intVal))
             case let int64Val as Int64:
                 sqlite3_bind_int64(stmt, bindIndex, int64Val)
             case let doubleVal as Double:
