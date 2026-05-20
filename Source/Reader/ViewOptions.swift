@@ -53,6 +53,13 @@ class ViewOptions: NSViewController {
         setupLineHeightPopUpButton()
     }
 
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        if NSFontManager.shared.target === self {
+            NSFontManager.shared.target = nil
+        }
+    }
+
     private func loadHarakatSetting() {
         let showHarakat = UserDefaults.standard.textViewShowHarakat
 

@@ -270,6 +270,13 @@ class IbarotTextView: NSTextView {
         renderer.updateLineHeight(in: ts)  // ← simpel!
     }
 
+    override func changeFont(_ sender: Any?) {
+        guard let fontManager = sender as? NSFontManager else { return }
+        let newFont = fontManager.convert(state.currentFont)
+        let fontName = newFont.fontName
+        state.setFont(fontName)
+    }
+
     // Fungsi yang diperbarui: menerima data rotba
     func displayAuthor(
         _ rotba: String,
