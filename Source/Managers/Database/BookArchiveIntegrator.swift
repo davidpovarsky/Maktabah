@@ -39,29 +39,43 @@ enum BookArchiveIntegrateError: LocalizedError {
 actor BookArchiveSingleFlight {
     static let shared = BookArchiveSingleFlight()
 
-    private var runningTasks: [Int: Task<Void, Error>] = [:]
+    /// Per-book dedup: buku yang sama tidak perlu integrasi ulang.
+    private var bookTasks: [Int: Task<Void, Error>] = [:]
+
+    /// Per-archive serialisasi: operasi baru mengantri setelah operasi sebelumnya selesai,
+    /// mencegah concurrent write ke file archive yang sama.
+    private var archiveTail: [Int: Task<Void, Error>] = [:]
 
     private init() {}
 
     func run(
+        archiveId: Int,
         bookId: Int,
         operation: @escaping () async throws -> Void
     ) async throws {
-        if let existingTask = runningTasks[bookId] {
+        // Dedup: buku yang sama sudah berjalan → cukup tunggu hasilnya.
+        if let existingTask = bookTasks[bookId] {
             try await existingTask.value
             return
         }
 
-        let task = Task {
+        // Ambil task terakhir pada archive ini (jika ada) sebagai predecessor.
+        let predecessor = archiveTail[archiveId]
+
+        // Task baru menunggu predecessor selesai sebelum menjalankan operasi.
+        let task = Task<Void, Error> {
+            _ = try? await predecessor?.value
             try await operation()
         }
-        runningTasks[bookId] = task
+
+        bookTasks[bookId] = task
+        archiveTail[archiveId] = task
 
         do {
             try await task.value
-            runningTasks.removeValue(forKey: bookId)
+            bookTasks.removeValue(forKey: bookId)
         } catch {
-            runningTasks.removeValue(forKey: bookId)
+            bookTasks.removeValue(forKey: bookId)
             throw error
         }
     }
@@ -120,7 +134,7 @@ final class BookArchiveIntegrator {
         // Notifikasi fase integrasi untuk caller (sekali per request).
         await onIntegrating?()
 
-        try await BookArchiveSingleFlight.shared.run(bookId: book.id) { [weak self] in
+        try await BookArchiveSingleFlight.shared.run(archiveId: book.archive, bookId: book.id) { [weak self] in
             guard let self else { return }
             if hasIntegratedBook(
                 archiveDbPath: archiveDbPath,
@@ -171,7 +185,7 @@ final class BookArchiveIntegrator {
             return
         }
 
-        try await BookArchiveSingleFlight.shared.run(bookId: book.id) { [weak self] in
+        try await BookArchiveSingleFlight.shared.run(archiveId: book.archive, bookId: book.id) { [weak self] in
             guard let self else { return }
 
             let archiveWritePath = try prepareWritableDatabasePath(archiveDbPath)
