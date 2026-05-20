@@ -187,20 +187,14 @@ class ResultsHandler {
 
     // MARK: - Native SQLite3 Helpers
 
-    private func exec(_ sql: String) throws {
+    private func exec(_ sql: String, parameters: [Any] = []) throws {
         guard let db else { return }
-        try db.execute(query: sql)
+        try db.execute(query: sql, parameters: parameters)
     }
 
     private func transaction(_ block: () throws -> Void) throws {
-        try exec("BEGIN TRANSACTION;")
-        do {
-            try block()
-            try exec("COMMIT;")
-        } catch {
-            try? exec("ROLLBACK;")
-            throw error
-        }
+        guard let db else { return }
+        try db.transaction(block)
     }
 
     private func listTableColumns(tableName: String) throws -> [String] {
@@ -244,9 +238,9 @@ class ResultsHandler {
                 }
 
                 let detId = "folder_\(fName)_\(parentIdentifier)"
-                let pCkId = parentIdentifier == "root" ? "NULL" : "'\(parentIdentifier)'"
+                let parentCkRecordIdValue: Any = parentIdentifier == "root" ? NSNull() : parentIdentifier
 
-                try exec("UPDATE \(foldersTable) SET \(colCkRecordId) = '\(detId)', \(colLastModified) = \(now), \(colParentCkRecordId) = \(pCkId) WHERE \(colId) = \(fId);")
+                try exec("UPDATE \(foldersTable) SET \(colCkRecordId) = ?, \(colLastModified) = ?, \(colParentCkRecordId) = ? WHERE \(colId) = ?;", parameters: [detId, now, parentCkRecordIdValue, fId])
 
                 // Reload to upload
                 let reloadSql = "SELECT * FROM \(foldersTable) WHERE \(colId) = ? LIMIT 1"
@@ -289,9 +283,9 @@ class ResultsHandler {
                 }
 
                 let detId = "result_\(folderIdentifier)_\(rName)_\(rBkId)_\(rArchive)"
-                let fCkId = folderIdentifier == "root" ? "NULL" : "'\(folderIdentifier)'"
+                let folderCkIdValue: Any = folderIdentifier == "root" ? NSNull() : folderIdentifier
 
-                try exec("UPDATE \(resultsTable) SET \(colResCkRecordId) = '\(detId)', \(colResLastModified) = \(now), \(colFolderCkRecordId) = \(fCkId) WHERE \(colId) = \(rId);")
+                try exec("UPDATE \(resultsTable) SET \(colResCkRecordId) = ?, \(colResLastModified) = ?, \(colFolderCkRecordId) = ? WHERE \(colId) = ?;", parameters: [detId, now, folderCkIdValue, rId])
 
                 let reloadSql = "SELECT * FROM \(resultsTable) WHERE \(colId) = ? LIMIT 1"
                 if let reloaded = try db.fetch(query: reloadSql, parameters: [rId], mapping: { self.makeSyncResult(from: $0) }).first {
@@ -445,10 +439,12 @@ extension ResultsHandler {
                 let fid = row.int64(at: 0)
                 let fname = row.string(at: 1) ?? ""
                 let fparent = !row.isNull(at: 2) ? row.int64(at: 2) : nil
-
-                let node = FolderNode(id: fid, name: fname)
-                nodes[fid] = node
                 return (id: fid, name: fname, parent: fparent)
+            }
+
+            for row in rows {
+                let node = FolderNode(id: row.id, name: row.name)
+                nodes[row.id] = node
             }
 
             for row in rows {
@@ -484,10 +480,10 @@ extension ResultsHandler {
 
             try transaction {
                 for id in allFolderIds {
-                    try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = \(id);")
+                    try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = ?;", parameters: [id])
                 }
                 for id in allFolderIds.reversed() {
-                    try exec("DELETE FROM \(foldersTable) WHERE \(colId) = \(id);")
+                    try exec("DELETE FROM \(foldersTable) WHERE \(colId) = ?;", parameters: [id])
                 }
             }
 
@@ -517,9 +513,9 @@ extension ResultsHandler {
             ckIds = try db.fetch(query: sql, parameters: params, mapping: { $0.string(at: 0) ?? "" })
 
             if let fid = folderId {
-                try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = \(fid) AND \(colName) = '\(name.replacingOccurrences(of: "'", with: "''"))';")
+                try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = ? AND \(colName) = ?;", parameters: [fid, name])
             } else {
-                try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) IS NULL AND \(colName) = '\(name.replacingOccurrences(of: "'", with: "''"))';")
+                try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) IS NULL AND \(colName) = ?;", parameters: [name])
             }
 
             if !ckIds.isEmpty {
@@ -836,8 +832,8 @@ extension ResultsHandler {
                     if let localId = try db.fetch(query: findSql, parameters: [ckId], mapping: { $0.int64(at: 0) }).first {
                         let allLocalIds = getAllDescendantIds(of: localId)
                         for fId in allLocalIds {
-                            try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = \(fId);")
-                            try exec("DELETE FROM \(foldersTable) WHERE \(colId) = \(fId);")
+                            try exec("DELETE FROM \(resultsTable) WHERE \(colFolderId) = ?;", parameters: [fId])
+                            try exec("DELETE FROM \(foldersTable) WHERE \(colId) = ?;", parameters: [fId])
                         }
                     }
                 }
@@ -872,10 +868,10 @@ extension ResultsHandler {
                     if let pCkId = folder.parentCkRecordId {
                         let findParentSql = "SELECT \(colId) FROM \(foldersTable) WHERE \(colCkRecordId) = ? LIMIT 1"
                         if let pLocalId = try db.fetch(query: findParentSql, parameters: [pCkId], mapping: { $0.int64(at: 0) }).first {
-                            try exec("UPDATE \(foldersTable) SET \(colParent) = \(pLocalId) WHERE \(colCkRecordId) = '\(ckId)';")
+                            try exec("UPDATE \(foldersTable) SET \(colParent) = ? WHERE \(colCkRecordId) = ?;", parameters: [pLocalId, ckId])
                         }
                     } else {
-                        try exec("UPDATE \(foldersTable) SET \(colParent) = NULL WHERE \(colCkRecordId) = '\(ckId)';")
+                        try exec("UPDATE \(foldersTable) SET \(colParent) = NULL WHERE \(colCkRecordId) = ?;", parameters: [ckId])
                     }
                 }
             }
@@ -896,7 +892,7 @@ extension ResultsHandler {
             try transaction {
                 // 1. Process Deletions
                 for ckId in recordIdsToDelete {
-                    try exec("DELETE FROM \(resultsTable) WHERE \(colResCkRecordId) = '\(ckId)';")
+                    try exec("DELETE FROM \(resultsTable) WHERE \(colResCkRecordId) = ?;", parameters: [ckId])
                 }
 
                 // 2. Process Saves/Updates
