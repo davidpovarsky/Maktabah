@@ -1,7 +1,6 @@
 import Combine
 import SwiftUI
 
-@MainActor
 @Observable
 class iOSSearchViewModel {
     var query: String = ""
@@ -29,41 +28,50 @@ class iOSSearchViewModel {
     private let searchEngine = SearchEngine()
     private let ldm = LibraryDataManager.shared
 
+    private var observerTokens: [NSObjectProtocol] = []
+
     init() {
         setupObservers()
         loadLibraryData()
         loadHistory()
     }
 
+    deinit {
+        removeObservers()
+    }
+
     private func setupObservers() {
-        NotificationCenter.default.addObserver(
+        let token1 = NotificationCenter.default.addObserver(
             forName: .bookIntegrated,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            Task { @MainActor in
-                self?.updateDisplayedCategories()
-            }
+            self?.updateDisplayedCategories()
         }
+        observerTokens.append(token1)
 
-        NotificationCenter.default.addObserver(
+        let token2 = NotificationCenter.default.addObserver(
             forName: .booksChanged,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            Task { @MainActor in
-                self?.updateDisplayedCategories()
-            }
+            self?.updateDisplayedCategories()
         }
+        observerTokens.append(token2)
 
-        NotificationCenter.default.addObserver(
+        let token3 = NotificationCenter.default.addObserver(
             forName: .libraryFolderChanged,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            Task { @MainActor in
-                self?.loadLibraryData()
-            }
+            self?.loadLibraryData()
+        }
+        observerTokens.append(token3)
+    }
+
+    private func removeObservers() {
+        observerTokens.forEach { token in
+            NotificationCenter.default.removeObserver(token)
         }
     }
 

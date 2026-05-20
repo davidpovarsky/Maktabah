@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import UIKit
 
 /// Manages the navigation and current mode for the iOS application.
 @MainActor
@@ -145,7 +146,11 @@ class iOSNavigationManager {
                     )
 
                     await MainActor.run {
-                        self.presentReader(book, initialContentId: initialContentId)
+                        if !MaktabahApp.isIpad && self.selectedBook != nil {
+                            // Do not automatically push a new book if there is already an active reader on iPhone
+                        } else {
+                            self.presentReader(book, initialContentId: initialContentId)
+                        }
                         self.activeIntegrationStates.removeAll { $0.id == state.id }
                     }
                 } catch is CancellationError {
@@ -241,10 +246,10 @@ class iOSNavigationManager {
             return
         }
 
-        let totalSize = books.reduce(0) { $0 + ($1.compressedDownloadSize ?? 0) }
+        let totalSize = books.reduce(0 as Int64) { $0 + ($1.compressedDownloadSize ?? 0) }
         var sizeString = ""
         if totalSize > 0 {
-            sizeString = ByteCountFormatter.string(fromByteCount: Int64(totalSize), countStyle: .file)
+            sizeString = ByteCountFormatter.string(fromByteCount: totalSize, countStyle: .file)
         }
 
         let message = String(
@@ -284,6 +289,7 @@ class iOSNavigationManager {
 
     private func presentReader(_ book: BooksData, initialContentId: Int?) {
         switchToMode(.viewer)
+        clearPendingBookIntegration()
 
         if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId }) {
             currentTab.viewModel.saveCurrentState()
