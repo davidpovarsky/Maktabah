@@ -22,6 +22,7 @@ enum IntegratePhase: Sendable {
 enum BookArchiveIntegrateError: LocalizedError {
     case invalidArchiveId(Int)
     case sourceTableMissing(String)
+    case fileReplacementFailed(String)
 
     var errorDescription: String? {
         switch self {
@@ -29,6 +30,8 @@ enum BookArchiveIntegrateError: LocalizedError {
             return "Invalid archive ID: \(id)."
         case .sourceTableMissing(let table):
             return "Source table missing: \(table)."
+        case .fileReplacementFailed(let reason):
+            return "Failed to replace database files: \(reason)"
         }
     }
 }
@@ -174,45 +177,84 @@ final class BookArchiveIntegrator {
             let archiveWritePath = try prepareWritableDatabasePath(archiveDbPath)
             let ftsWritePath = try prepareWritableDatabasePath(ftsDbPath)
 
-            let archiveDb = try openDatabase(path: archiveWritePath)
-            let ftsDb = try openDatabase(path: ftsWritePath)
+            var archiveDb: OpaquePointer? = try openDatabase(path: archiveWritePath)
+            var ftsDb: OpaquePointer? = try openDatabase(path: ftsWritePath)
 
             defer {
-                sqlite3_close(archiveDb)
-                sqlite3_close(ftsDb)
+                if let db = archiveDb { sqlite3_close(db) }
+                if let db = ftsDb { sqlite3_close(db) }
             }
 
             let bookTable = "b\(book.id)"
             let tocTable = "t\(book.id)"
             let ftsTable = "\(bookTable)_fts"
 
-            try exec(archiveDb, "DROP TABLE IF EXISTS \(bookTable);")
-            try exec(archiveDb, "DROP TABLE IF EXISTS \(tocTable);")
-            try exec(ftsDb, "DROP TABLE IF EXISTS \(ftsTable);")
+            do {
+                try exec(archiveDb, "DROP TABLE IF EXISTS \(bookTable);")
+                try exec(archiveDb, "DROP TABLE IF EXISTS \(tocTable);")
+                try exec(ftsDb, "DROP TABLE IF EXISTS \(ftsTable);")
+            } catch {
+                #if DEBUG
+                print("Error dropping tables during removal: \(error)")
+                #endif
+            }
 
-            try replaceDatabaseIfNeeded(tempPath: archiveWritePath, originalPath: archiveDbPath)
-            try replaceDatabaseIfNeeded(tempPath: ftsWritePath, originalPath: ftsDbPath)
+            // Close databases explicitly BEFORE replacing the files to prevent lock issues and resource leaks.
+            if let db = archiveDb {
+                sqlite3_close(db)
+                archiveDb = nil
+            }
+            if let db = ftsDb {
+                sqlite3_close(db)
+                ftsDb = nil
+            }
+
+            var fileReplacementFailedError: Error? = nil
+            do {
+                try replaceDatabaseIfNeeded(tempPath: archiveWritePath, originalPath: archiveDbPath)
+                try replaceDatabaseIfNeeded(tempPath: ftsWritePath, originalPath: ftsDbPath)
+            } catch {
+                #if DEBUG
+                print("Error replacing databases during removal: \(error)")
+                #endif
+                fileReplacementFailedError = error
+            }
 
             // Hapus dari main.sqlite jika bkid > 32792
             if book.id > 32792, let mainDbPath = AppConfig.mainDatabasePath {
-                let mainDb = try openDatabase(path: mainDbPath)
-                // Menggunakan Raw String agar tanda kutip ganda terbaca jelas
-                let query = #"DELETE FROM "0bok" WHERE bkid = \#(book.id);"#
-                try exec(mainDb, query)
-                sqlite3_close(mainDb)
+                do {
+                    let mainDb = try openDatabase(path: mainDbPath)
+                    let query = #"DELETE FROM "0bok" WHERE bkid = \#(book.id);"#
+                    try exec(mainDb, query)
+                    sqlite3_close(mainDb)
+                } catch {
+                    #if DEBUG
+                    print("Error deleting book from main database: \(error)")
+                    #endif
+                }
             }
 
             // Hapus dari special.sqlite jika authid > 2515
             if book.muallif > 2515, let specialDbPath = AppConfig.specialDatabasePath {
-                let specialDb = try openDatabase(path: specialDbPath)
-                try exec(specialDb, "DELETE FROM Auth WHERE authid = \(book.muallif);")
-                sqlite3_close(specialDb)
+                do {
+                    let specialDb = try openDatabase(path: specialDbPath)
+                    try exec(specialDb, "DELETE FROM Auth WHERE authid = \(book.muallif);")
+                    sqlite3_close(specialDb)
+                } catch {
+                    #if DEBUG
+                    print("Error deleting author from special database: \(error)")
+                    #endif
+                }
             }
 
             self.pendingVacuumArchiveIds.insert(book.archive)
             self.savePendingVacuumIds()
 
             finalizeRemoval(book: book)
+
+            if let error = fileReplacementFailedError {
+                throw BookArchiveIntegrateError.fileReplacementFailed(error.localizedDescription)
+            }
         }
     }
 
@@ -348,8 +390,17 @@ final class BookArchiveIntegrator {
             }
         #endif
 
-        let archiveDb = try openDatabase(path: archiveWritePath)
-        defer { sqlite3_close(archiveDb) }
+        var archiveDbPtr: OpaquePointer? = try openDatabase(path: archiveWritePath)
+        guard let archiveDb = archiveDbPtr else {
+            throw ArchiveError.databasePathNotAvailable
+        }
+        defer {
+            if let db = archiveDbPtr {
+                try? exec(db, "DETACH DATABASE fts_db;")
+                try? exec(db, "DETACH DATABASE source_db;")
+                sqlite3_close(db)
+            }
+        }
 
         #if DEBUG
             let isReadonly = sqlite3_db_readonly(archiveDb, "main") == 1
@@ -366,11 +417,6 @@ final class BookArchiveIntegrator {
             path: ftsWritePath,
             schema: "fts_db"
         )
-
-        defer {
-            try? exec(archiveDb, "DETACH DATABASE fts_db;")
-            try? exec(archiveDb, "DETACH DATABASE source_db;")
-        }
 
         let bookTable = "b\(bookId)"
         let tocTable = "t\(bookId)"
@@ -414,6 +460,12 @@ final class BookArchiveIntegrator {
                 tableName: tocTable
             )
         }
+
+        // Close connection explicitly before replacing database files to release locks and avoid resource leaks.
+        try exec(archiveDb, "DETACH DATABASE fts_db;")
+        try exec(archiveDb, "DETACH DATABASE source_db;")
+        sqlite3_close(archiveDb)
+        archiveDbPtr = nil
 
         try replaceDatabaseIfNeeded(tempPath: archiveWritePath, originalPath: archiveDbPath)
         try replaceDatabaseIfNeeded(tempPath: ftsWritePath, originalPath: ftsDbPath)
