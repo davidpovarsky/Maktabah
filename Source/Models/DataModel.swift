@@ -98,7 +98,7 @@ class CategoryData: NSCopying {
 
 class BookContent {
     let id: Int
-    var nash: String
+    let nash: String
     let page: Int
     let part: Int
 
@@ -107,7 +107,7 @@ class BookContent {
 
     init(id: Int, nash: String, page: Int = 1, part: Int = 1) {
         self.id = id
-        self.nash = nash.convertToArabicDigits()
+        self.nash = nash
         self.page = page
         self.part = part
     }

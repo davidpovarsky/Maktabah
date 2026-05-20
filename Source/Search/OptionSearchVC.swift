@@ -624,11 +624,18 @@ extension OptionSearchVC: ResultsDelegate {
             return nil
         }
 
-        let snippet = bookContent.nash.snippetAround(
-            keywords: [item.query],
+        let bookId = Int(item.tableName.dropFirst()) ?? 0
+        let book = LibraryDataManager.shared.booksById[bookId]
+        let isMultilingual = book?.isMultiLanguage ?? false
+
+        let normalizedNash = bookContent.nash.convertToArabicDigits(isMultilingual: isMultilingual)
+        let queryConverted = item.query.convertToArabicDigits(isMultilingual: isMultilingual)
+
+        let snippet = normalizedNash.snippetAround(
+            keywords: [queryConverted],
             contextLength: 60
         )
-        let attribute = snippet.highlightedAttributedText(keywords: [item.query]
+        let attribute = snippet.highlightedAttributedText(keywords: [queryConverted]
         )
 
         return SearchResultItem(

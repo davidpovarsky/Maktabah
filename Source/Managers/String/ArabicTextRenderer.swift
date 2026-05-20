@@ -107,7 +107,8 @@ class ArabicTextRenderer {
         showHarakat: Bool,
         isMultiLanguage: Bool = false
     ) -> ArabicRenderResult {
-        let processedText = showHarakat ? text : text.removingHarakat()
+        let textWithArabicDigits = text.convertToArabicDigits(isMultilingual: isMultiLanguage)
+        let processedText = showHarakat ? textWithArabicDigits : textWithArabicDigits.removingHarakat()
         let (cleanedResult, footnoteRanges) = processedText.cleanedTextWithRanges()
         let replacementResult = cleanedResult.text.replacingHonorificPhrasesIfSupported()
 

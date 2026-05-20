@@ -485,12 +485,17 @@ class LibraryDataManager {
                 onResult: { tableName, archive, content in
                     Task { @MainActor in
                         let bookId = Int(tableName.dropFirst()) ?? 0
-                        let bookTitle = self.lock.withLock { self._booksById[bookId]?.book ?? "" }
-                        let snippet = content.nash
+                        let (bookTitle, isMultilingual) = self.lock.withLock {
+                            let book = self._booksById[bookId]
+                            return (book?.book ?? "", book?.isMultiLanguage ?? false)
+                        }
+                        let normalizedNash = content.nash.convertToArabicDigits(isMultilingual: isMultilingual)
+                        let searchKeywordsConverted = searchKeywords.map { $0.convertToArabicDigits(isMultilingual: isMultilingual) }
+                        let snippet = normalizedNash
                             .normalizeArabic()
-                            .snippetAround(keywords: searchKeywords, contextLength: 60)
+                            .snippetAround(keywords: searchKeywordsConverted, contextLength: 60)
                         let highlightedSnippet = snippet.highlightedAttributedText(
-                            keywords: searchKeywords)
+                            keywords: searchKeywordsConverted)
                         completion(
                             SearchResultItem(
                                 archive: archive,

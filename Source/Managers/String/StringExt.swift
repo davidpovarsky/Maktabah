@@ -317,17 +317,86 @@ extension String {
         return attributed
     }
 
-    func convertToArabicDigits() -> String {
-        let arabicDigits = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"]
-        var result = self
-        
+    func convertToArabicDigits(isMultilingual: Bool = false) -> String {
+        let arabicDigits: [UnicodeScalar] = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"]
+        let latinDigitsRange = UnicodeScalar("0").value...UnicodeScalar("9").value
 
-        for (index, digit) in arabicDigits.enumerated() {
-            result = result.replacingOccurrences(of: String(index), with: digit)
+        // 1. Kasus non-multilingual (Lebih cepat, langsung map karakter angka)
+        if !isMultilingual {
+            var newScalars = String.UnicodeScalarView()
+            newScalars.reserveCapacity(self.unicodeScalars.count)
+            for scalar in self.unicodeScalars {
+                if latinDigitsRange.contains(scalar.value) {
+                    let digitValue = Int(scalar.value - 48) // ASCII '0' adalah 48
+                    newScalars.append(arabicDigits[digitValue])
+                } else {
+                    newScalars.append(scalar)
+                }
+            }
+            return String(newScalars)
         }
-        
 
-        return result
+        // 2. Kasus Multilingual (Deteksi paragraf Arab/Latin secara efisien)
+        var newScalars = String.UnicodeScalarView()
+        newScalars.reserveCapacity(self.unicodeScalars.count)
+
+        var currentParagraphScalars = [UnicodeScalar]()
+        currentParagraphScalars.reserveCapacity(512) // Buffer sementara per paragraf
+
+        var hasSeenLetter = false
+        var isArabicParagraph = false
+
+        func flushParagraph() {
+            if isArabicParagraph {
+                // Hanya konversi angka di paragraf Arab
+                for scalar in currentParagraphScalars {
+                    if latinDigitsRange.contains(scalar.value) {
+                        let digitValue = Int(scalar.value - 48)
+                        newScalars.append(arabicDigits[digitValue])
+                    } else {
+                        newScalars.append(scalar)
+                    }
+                }
+            } else {
+                // Tulis apa adanya untuk paragraf non-Arab (Latin)
+                newScalars.append(contentsOf: currentParagraphScalars)
+            }
+            currentParagraphScalars.removeAll(keepingCapacity: true)
+            hasSeenLetter = false
+            isArabicParagraph = false
+        }
+
+        for scalar in self.unicodeScalars {
+            currentParagraphScalars.append(scalar)
+
+            if scalar.value == 0x0A || scalar.value == 0x0D { // Karakter Newline (\n atau \r)
+                flushParagraph()
+            } else if !hasSeenLetter {
+                let char = Character(scalar)
+                if char.isLetter {
+                    hasSeenLetter = true
+                    // Cek apakah huruf pertama tersebut adalah huruf Arab
+                    isArabicParagraph = (0x0600...0x06FF).contains(scalar.value) ||
+                                        (0x0750...0x077F).contains(scalar.value) ||
+                                        (0x08A0...0x08FF).contains(scalar.value)
+                }
+            }
+        }
+
+        if !currentParagraphScalars.isEmpty {
+            flushParagraph()
+        }
+
+        return String(newScalars)
+    }
+}
+
+extension Character {
+    var isArabicLetter: Bool {
+        guard let scalar = unicodeScalars.first else { return false }
+        return (0x0600...0x06FF).contains(scalar.value) || 
+               (0x0750...0x077F).contains(scalar.value) || 
+               (0x08A0...0x08FF).contains(scalar.value)
     }
 }
 
