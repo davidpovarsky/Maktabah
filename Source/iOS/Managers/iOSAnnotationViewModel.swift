@@ -116,7 +116,7 @@ class iOSAnnotationViewModel {
             if searchText.isEmpty {
                 rootNodes = mapped
             } else {
-                rootNodes = filterNodes(mapped, with: searchText.lowercased())
+                rootNodes = filterNodes(mapped, with: searchText)
             }
         }
     }
@@ -154,7 +154,7 @@ class iOSAnnotationViewModel {
                 matchingChildren = filterNodes(children, with: query)
             }
 
-            let matchesSelf = node.title.lowercased().contains(query) || (node.annotation?.context.lowercased().contains(query) == true)
+            let matchesSelf = node.title.localizedStandardContains(query) || (node.annotation?.context.localizedStandardContains(query) == true)
 
             if matchesSelf || !matchingChildren.isEmpty {
                 var copy = node

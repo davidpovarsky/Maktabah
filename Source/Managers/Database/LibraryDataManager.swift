@@ -547,7 +547,7 @@ class LibraryDataManager {
         } else {
             // Filter dari base
             displayedCategories = base.compactMap { rootCategory in
-                filterCategory(rootCategory, searchText: trimmed.lowercased())
+                filterCategory(rootCategory, searchText: trimmed)
             }
         }
 

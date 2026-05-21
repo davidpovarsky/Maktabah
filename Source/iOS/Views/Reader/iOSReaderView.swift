@@ -198,12 +198,12 @@ struct iOSTOCView: View {
         if searchText.isEmpty {
             return nodes.map { iOSIdentifiableTOCNode($0) }
         } else {
-            let normalizedQuery = searchText.normalizeArabic(true).lowercased()
+            let normalizedQuery = searchText.normalizeArabic(true)
 
             func searchAndFlatten(nodes: [TOCNode]) -> [TOCNode] {
                 var matches: [TOCNode] = []
                 for node in nodes {
-                    if node.bab.normalizeArabic(true).lowercased().contains(normalizedQuery) {
+                    if node.bab.normalizeArabic(true).localizedStandardContains(normalizedQuery) {
                         let flatNode = TOCNode(from: TOC(bab: node.bab, level: node.level, sub: node.sub, id: node.id))
                         matches.append(flatNode)
                     }

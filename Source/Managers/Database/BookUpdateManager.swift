@@ -1052,7 +1052,7 @@ final class BookUpdateManager {
             return rows
         }
         if firstCell.trimmingCharacters(in: .whitespacesAndNewlines)
-            .lowercased() == headerKey
+            .caseInsensitiveCompare(headerKey) == .orderedSame
         {
             return Array(rows.dropFirst())
         }

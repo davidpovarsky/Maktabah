@@ -144,11 +144,9 @@ class AnnotationEditorVC: NSViewController {
     private func existingTagSuggestions(matching substring: String) -> [String] {
         let allTags = AnnotationManager.shared.allTagNames()
         let currentTokens = (tagsField.objectValue as? [String] ?? [])
-            .map { $0.lowercased() }
-        let query = substring.lowercased()
         return allTags.filter { tag in
-            !currentTokens.contains(tag.lowercased()) &&
-            tag.lowercased().hasPrefix(query)
+            !currentTokens.contains(where: { $0.caseInsensitiveCompare(tag) == .orderedSame }) &&
+            tag.range(of: substring, options: [.caseInsensitive, .anchored]) != nil
         }
     }
 

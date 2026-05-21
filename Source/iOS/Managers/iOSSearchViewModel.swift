@@ -123,7 +123,7 @@ class iOSSearchViewModel {
             displayedCategories = base
         } else {
             displayedCategories = base.compactMap { root in
-                ldm.filterCategory(root, searchText: filterText.lowercased())
+                ldm.filterCategory(root, searchText: filterText)
             }
         }
 
