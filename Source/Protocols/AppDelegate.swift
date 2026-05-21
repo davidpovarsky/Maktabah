@@ -97,6 +97,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         CloudKitSyncManager.shared.initializeOnLaunch()
         // Register for CloudKit remote notifications
         NSApplication.shared.registerForRemoteNotifications()
+        
+        showWelcomeScreenIfNeeded()
     }
 
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
@@ -108,6 +110,45 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidBecomeActive(_ notification: Notification) {
         CloudKitSyncManager.shared.fetchChanges()
+    }
+
+    func showWelcomeScreenIfNeeded() {
+        let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        let lastVersion = UserDefaults.standard.string(forKey: "lastVersionPrompted") ?? ""
+
+        if lastVersion != currentVersion {
+            let window = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 520, height: 500),
+                styleMask: [.fullSizeContentView, .titled],
+                backing: .buffered,
+                defer: false
+            )
+
+            let contentView = WelcomeScreenView { [weak self, weak window] in
+                guard let window else { return }
+                UserDefaults.standard.set(currentVersion, forKey: "lastVersionPrompted")
+
+                if let mainWin = self?.mainWindowController?.window, mainWin.sheets.contains(window) {
+                    mainWin.endSheet(window)
+                } else {
+                    window.close()
+                }
+            }
+
+            let hostingView = NSHostingView(rootView: contentView)
+            window.contentView = hostingView
+            window.title = "What's New"
+            window.titleVisibility = .hidden
+            window.titlebarAppearsTransparent = true
+            window.isReleasedWhenClosed = false
+
+            if let mainWin = mainWindowController?.window {
+                mainWin.beginSheet(window)
+            } else {
+                window.center()
+                window.makeKeyAndOrderFront(nil)
+            }
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

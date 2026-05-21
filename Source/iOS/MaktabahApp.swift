@@ -18,6 +18,13 @@ struct MaktabahApp: App {
         TextViewState.shared.isDarkMode
     }
 
+    @AppStorage("lastVersionPrompted") var lastVersionPrompted = ""
+    @State private var showWelcomeScreen = false
+
+    var currentVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    }
+
     init() {
         AppConfig.initializeMode()
         ArabicFont.registerCustomFonts()
@@ -30,6 +37,18 @@ struct MaktabahApp: App {
         WindowGroup {
             iOSBootstrapView()
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
+                .onAppear {
+                    if lastVersionPrompted != currentVersion {
+                        showWelcomeScreen = true
+                    }
+                }
+                .sheet(isPresented: $showWelcomeScreen) {
+                    WelcomeScreenView(onDismiss: {
+                        lastVersionPrompted = currentVersion
+                        showWelcomeScreen = false
+                    })
+                    .interactiveDismissDisabled()
+                }
         }
     }
 }

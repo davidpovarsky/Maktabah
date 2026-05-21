@@ -373,6 +373,9 @@
 		F3902E8D2F9EE1CA004BA5D1 /* AnnotationTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */; };
 		F3902EAF2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */; };
 		F3902EB02F9EE1CB004BA5D1 /* TagMergePopoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */; };
+		F3ABDF752FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
+		F3ABDF762FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
+		F3ABDF772FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
 		F3C449562F2B12E200DA7032 /* SearchCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3C449552F2B12E200DA7032 /* SearchCellView.xib */; };
 		F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C449542F2B12E200DA7032 /* SearchCellView.swift */; };
 		F3D0815D2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
@@ -573,6 +576,7 @@
 		F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTagVC.swift; sourceTree = "<group>"; };
 		F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMergePopoverVC.swift; sourceTree = "<group>"; };
 		F3A775572FB2288E00C82F7B /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS-Info.plist"; sourceTree = "<group>"; };
+		F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		F3C449542F2B12E200DA7032 /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
 		F3C449552F2B12E200DA7032 /* SearchCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCellView.xib; sourceTree = "<group>"; };
 		F3D0815C2F9EFE5C00E017C7 /* Tag.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tag.xib; sourceTree = "<group>"; };
@@ -755,8 +759,8 @@
 			isa = PBXGroup;
 			children = (
 				4BDAB9892F69E4E3007D0945 /* BulkDownloadModalCenter.swift */,
-				4B0139DF2EEAFC3000424CFA /* CustomSplitView.swift */,
 				4BDAB9852F69C2A8007D0945 /* CoreDownloadProgressView.swift */,
+				4B0139DF2EEAFC3000424CFA /* CustomSplitView.swift */,
 				4BD728222EE44C5500ACEB7C /* IbarotTextView.swift */,
 				4BD6C33B2EE6AA7F008684E3 /* MainWindow.swift */,
 				4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */,
@@ -765,6 +769,7 @@
 				4B03185E2F41E7BC00CB1677 /* SplitVC.swift */,
 				4BBCC9952F72C8870020D3CA /* SplitVCAccessoryItem.swift */,
 				4B6AF2322EE57CCD002EBFFC /* Toolbar.swift */,
+				F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */,
 				4B32023C2EDB0F76003B95D1 /* WindowController.swift */,
 			);
 			path = View;
@@ -1038,19 +1043,19 @@
 				F363824F2FA6F9F10006636C /* Bootstrap */,
 				F36382672FA7610F0006636C /* Common */,
 				F30577762FA463B1005732C6 /* Reader */,
-				F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */,
 				F30577772FA463B1005732C6 /* AnnotationListView.swift */,
 				F30577782FA463B1005732C6 /* AuthorModeView.swift */,
+				9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */,
 				F30577792FA463B1005732C6 /* iOSLibraryView.swift */,
 				F305777A2FA463B1005732C6 /* iOSMainView.swift */,
+				F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */,
 				F363825C2FA702D10006636C /* iPadLayout.swift */,
 				F363825A2FA702A00006636C /* iPhoneLayout.swift */,
-				F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */,
+				F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */,
 				F305777B2FA463B1005732C6 /* SearchModeView.swift */,
+				F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */,
 				F305777C2FA463B1005732C6 /* ViewerModeView.swift */,
 				F305777D2FA463B1005732C6 /* ViewOptionsView.swift */,
-				F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */,
-				9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1402,6 +1407,7 @@
 				4B65CCB82EE059B60085CEB4 /* OptionSearchVC.swift in Sources */,
 				4B0139E22EEB281C00424CFA /* BookPageCache.swift in Sources */,
 				4B0139E42EEB2FDF00424CFA /* StringInterner.swift in Sources */,
+				F3ABDF762FBF429700A8965E /* WelcomeScreenView.swift in Sources */,
 				4BDAB9842F69B946007D0945 /* CoreDatabaseDownloader.swift in Sources */,
 				4B5DF9382EDC3DBF0082DE7F /* ViewOptions.swift in Sources */,
 				4BA393642EF0D30200736DFF /* ArabicFont.swift in Sources */,
@@ -1489,6 +1495,7 @@
 				4B313A222F9A0FC60061FCC1 /* ResultCellView.swift in Sources */,
 				4B7C90E72F83494200454BE1 /* SearchEngine.swift in Sources */,
 				4B7C90E82F83494200454BE1 /* DataModel.swift in Sources */,
+				F3ABDF752FBF429700A8965E /* WelcomeScreenView.swift in Sources */,
 				4B7C90E92F83494200454BE1 /* ReaderStateManager.swift in Sources */,
 				4B7C90EA2F83494200454BE1 /* TextViewState.swift in Sources */,
 				4B7C90EB2F83494200454BE1 /* DSFSearchField.swift in Sources */,
@@ -1559,6 +1566,7 @@
 				F30576F52FA46222005732C6 /* StringExt.swift in Sources */,
 				F30576F62FA46222005732C6 /* ArabicTextRenderer.swift in Sources */,
 				F30576F72FA46222005732C6 /* ReusableFunc.swift in Sources */,
+				F3ABDF772FBF429700A8965E /* WelcomeScreenView.swift in Sources */,
 				F30576F82FA46222005732C6 /* BookUpdateManager.swift in Sources */,
 				F30576F92FA46222005732C6 /* AnnotationDelegate.swift in Sources */,
 				F363825B2FA702A00006636C /* iPhoneLayout.swift in Sources */,
