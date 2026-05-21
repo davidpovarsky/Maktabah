@@ -447,7 +447,7 @@ final class BookUpdateManager {
         if !exists {
             try insertBookMetadata(metadata)
         } else {
-            try updateBookVersion(metadata)
+            try updateBookMetadata(metadata)
         }
 
         // Cleanup
@@ -794,6 +794,206 @@ final class BookUpdateManager {
         #if DEBUG
             print("[Update Version] bVer berhasil diperbarui ke \(metadata.bVer ?? 0) untuk book \(metadata.bkid)")
         #endif
+    }
+
+    private func updateBookMetadata(_ metadata: BookMetadata) throws {
+        guard let mainPath = AppConfig.mainDatabasePath else { return }
+
+        var db: OpaquePointer?
+        guard
+            sqlite3_open_v2(
+                mainPath,
+                &db,
+                SQLITE_OPEN_READWRITE,
+                nil
+            ) == SQLITE_OK,
+            let db
+        else {
+            let message =
+            db.map { String(cString: sqlite3_errmsg($0)) }
+            ?? "Failed to open main.sqlite"
+            sqlite3_close(db)
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: message]
+            )
+        }
+        defer { sqlite3_close(db) }
+
+        let sql = """
+        UPDATE `0bok` SET 
+            `cat` = ?, 
+            `bk` = ?, 
+            `Archive` = ?, 
+            `betaka` = ?, 
+            `authno` = ?, 
+            `inf` = ?, 
+            `TafseerNam` = ?, 
+            `bVer` = ?, 
+            `PdfCs` = ?
+        WHERE `bkid` = ?;
+        """
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [
+                    NSLocalizedDescriptionKey: String(cString: sqlite3_errmsg(db))
+                ]
+            )
+        }
+        defer { sqlite3_finalize(stmt) }
+
+        sqlite3_bind_int64(stmt, 1, Int64(metadata.cat ?? 0))
+        sqlite3_bind_text(stmt, 2, metadata.bk, -1, sqliteTransient)
+        sqlite3_bind_int64(stmt, 3, Int64(metadata.archive))
+        sqlite3_bind_text(stmt, 4, metadata.betaka ?? "", -1, sqliteTransient)
+        sqlite3_bind_int64(stmt, 5, Int64(metadata.authno ?? 0))
+        sqlite3_bind_text(stmt, 6, metadata.inf ?? "", -1, sqliteTransient)
+        if let tafseerNam = metadata.tafseerNam {
+            sqlite3_bind_text(stmt, 7, tafseerNam, -1, sqliteTransient)
+        } else {
+            sqlite3_bind_null(stmt, 7)
+        }
+        if let bVer = metadata.bVer {
+            sqlite3_bind_int64(stmt, 8, Int64(bVer))
+        } else {
+            sqlite3_bind_null(stmt, 8)
+        }
+        if let pdfCs = metadata.pdfCs {
+            sqlite3_bind_int64(stmt, 9, Int64(pdfCs))
+        } else {
+            sqlite3_bind_null(stmt, 9)
+        }
+        sqlite3_bind_int64(stmt, 10, Int64(metadata.bkid))
+
+        guard sqlite3_step(stmt) == SQLITE_DONE else {
+            throw NSError(
+                domain: "BookUpdate",
+                code: -1,
+                userInfo: [
+                    NSLocalizedDescriptionKey: String(cString: sqlite3_errmsg(db))
+                ]
+            )
+        }
+        #if DEBUG
+            print("[Update Metadata] Metadata berhasil diperbarui untuk book \(metadata.bkid)")
+        #endif
+    }
+
+    func changeBookId(oldId: Int, newId: Int) throws {
+        guard let mainPath = AppConfig.mainDatabasePath else { return }
+
+        let db = try openDatabase(path: mainPath)
+        defer { sqlite3_close(db) }
+
+        // Step 0: Ambil archiveId dari main DB
+        var archiveId: Int = 20
+        let selectSql = "SELECT `Archive` FROM `0bok` WHERE `bkid` = ? LIMIT 1;"
+        var stmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, selectSql, -1, &stmt, nil) == SQLITE_OK {
+            sqlite3_bind_int64(stmt, 1, Int64(oldId))
+            if sqlite3_step(stmt) == SQLITE_ROW {
+                archiveId = Int(sqlite3_column_int64(stmt, 0))
+            }
+        }
+        sqlite3_finalize(stmt)
+
+        let archivePath = AppConfig.archiveDatabasePath(archiveId: archiveId)
+        let ftsPath = AppConfig.archiveFtsDatabasePath(archiveId: archiveId)
+
+        // Phase 1: Rename tabel archive DULU (sebelum main DB disentuh).
+        // Jika gagal di sini, main DB masih bersih → aman untuk retry.
+        if let archivePath {
+            let archiveDb = try openDatabase(path: archivePath)
+            defer { sqlite3_close(archiveDb) }
+
+            let sqlB = "ALTER TABLE \"b\(oldId)\" RENAME TO \"b\(newId)\";"
+            guard sqlite3_exec(archiveDb, sqlB, nil, nil, nil) == SQLITE_OK else {
+                throw NSError(
+                    domain: "BookUpdate", code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Gagal rename tabel b\(oldId) di archive."]
+                )
+            }
+
+            let sqlT = "ALTER TABLE \"t\(oldId)\" RENAME TO \"t\(newId)\";"
+            if sqlite3_exec(archiveDb, sqlT, nil, nil, nil) != SQLITE_OK {
+                // Rollback: kembalikan b rename
+                _ = sqlite3_exec(archiveDb,
+                    "ALTER TABLE \"b\(newId)\" RENAME TO \"b\(oldId)\";", nil, nil, nil)
+                throw NSError(
+                    domain: "BookUpdate", code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Gagal rename tabel t\(oldId) di archive."]
+                )
+            }
+        }
+
+        // Phase 2: Rename tabel FTS.
+        // Jika gagal, rollback Phase 1 agar main DB tetap bisa dijaga bersih.
+        if let ftsPath {
+            let ftsDb = try openDatabase(path: ftsPath)
+            defer { sqlite3_close(ftsDb) }
+
+            let sqlFTS = "ALTER TABLE \"b\(oldId)_fts\" RENAME TO \"b\(newId)_fts\";"
+            if sqlite3_exec(ftsDb, sqlFTS, nil, nil, nil) != SQLITE_OK {
+                rollbackBookIdRenames(archivePath: archivePath, ftsPath: nil,
+                                      oldId: oldId, newId: newId)
+                throw NSError(
+                    domain: "BookUpdate", code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Gagal rename tabel FTS b\(oldId)_fts."]
+                )
+            }
+        }
+
+        // Phase 3: Update main DB TERAKHIR.
+        // Kalau ini gagal, semua rename di atas di-rollback → data tetap konsisten.
+        let updateSql = "UPDATE `0bok` SET `bkid` = ? WHERE `bkid` = ?;"
+        var updateStmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, updateSql, -1, &updateStmt, nil) == SQLITE_OK else {
+            rollbackBookIdRenames(archivePath: archivePath, ftsPath: ftsPath,
+                                  oldId: oldId, newId: newId)
+            throw NSError(
+                domain: "BookUpdate", code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Gagal prepare update bkid di main database."]
+            )
+        }
+        sqlite3_bind_int64(updateStmt, 1, Int64(newId))
+        sqlite3_bind_int64(updateStmt, 2, Int64(oldId))
+        let stepResult = sqlite3_step(updateStmt)
+        sqlite3_finalize(updateStmt)
+
+        if stepResult != SQLITE_DONE {
+            rollbackBookIdRenames(archivePath: archivePath, ftsPath: ftsPath,
+                                  oldId: oldId, newId: newId)
+            throw NSError(
+                domain: "BookUpdate", code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Gagal update bkid di main database."]
+            )
+        }
+    }
+
+    /// Compensating rollback: kembalikan semua rename tabel ke nama semula.
+    /// Dipanggil jika Phase 3 (update main DB) gagal.
+    private func rollbackBookIdRenames(
+        archivePath: String?,
+        ftsPath: String?,
+        oldId: Int,
+        newId: Int
+    ) {
+        if let archivePath, let archiveDb = try? openDatabase(path: archivePath) {
+            defer { sqlite3_close(archiveDb) }
+            _ = sqlite3_exec(archiveDb,
+                "ALTER TABLE \"b\(newId)\" RENAME TO \"b\(oldId)\";", nil, nil, nil)
+            _ = sqlite3_exec(archiveDb,
+                "ALTER TABLE \"t\(newId)\" RENAME TO \"t\(oldId)\";", nil, nil, nil)
+        }
+        if let ftsPath, let ftsDb = try? openDatabase(path: ftsPath) {
+            defer { sqlite3_close(ftsDb) }
+            _ = sqlite3_exec(ftsDb,
+                "ALTER TABLE \"b\(newId)_fts\" RENAME TO \"b\(oldId)_fts\";", nil, nil, nil)
+        }
     }
 
     private func ensureAuthor(

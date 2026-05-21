@@ -993,6 +993,59 @@ final class AnnotationManager {
         }
     }
 
+    @discardableResult
+    func updateAnnotationsBookId(oldId: Int, newId: Int) throws -> [Annotation] {
+        guard let db else { return [] }
+        let now = Int64(Date().timeIntervalSince1970)
+
+        // 1. Fetch ID anotasi yang akan diupdate (untuk CloudKit sync)
+        let fetchSql = """
+        SELECT id FROM \(annotationsTable) WHERE \(colAnnBkId) = ?;
+        """
+
+        let affectedIds = (try? db.fetch(
+            query: fetchSql,
+            parameters: [oldId]) {
+                $0.int64(at: 0)
+            }
+        ) ?? []
+
+        // 2. Update bkId di DB — harus berhasil, jika tidak anotasi menunjuk bkId lama
+        let updateSql = """
+        UPDATE \(annotationsTable) SET \(colAnnBkId) = ?,
+        \(colAnnLastModified) = ? WHERE \(colAnnBkId) = ?;
+        """
+
+        try db.execute(query: updateSql, parameters: [newId, now, oldId])
+
+        clearAllCaches()
+        invalidateTree()
+
+        // 3. Load anotasi yang sudah diupdate + daftarkan pending sync sebagai safety net
+        // (Caller bertanggung jawab upload ke CloudKit setelah library data di-reload)
+        var annotationsToSync: [Annotation] = []
+        for annId in affectedIds {
+            if let ann = loadAnnotationById(annId) {
+                annotationsToSync.append(ann)
+                if let ckId = ann.ckRecordId {
+                    // Safety net: jika app crash sebelum upload, akan di-retry saat launch
+                    addPendingSync(ckRecordId: ckId, operation: "upload")
+                }
+            }
+        }
+
+        // Post notification untuk update UI
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(
+                name: .annotationDidChange,
+                object: self,
+                userInfo: [AnnotationNotificationKeys.changeType: AnnotationChangeType.updated.rawValue]
+            )
+        }
+
+        return annotationsToSync
+    }
+
     // MARK: - DISPLAY ALL ANNOTATIONS
 
     func loadAnnotations() -> [Annotation] {
@@ -1741,12 +1794,12 @@ final class AnnotationManager {
 
     private func populateBookTree(root: AnnotationNode, annotations: [Annotation]) {
         let grouped = Dictionary(grouping: annotations, by: { $0.bkId })
-        let sortedBooks = grouped.keys
-            .compactMap { LibraryDataManager.shared.getBook([$0]).first }
 
-        for book in sortedBooks {
-            let annsForBook = grouped[book.id] ?? []
-            let bookNode = AnnotationNode(title: book.book, kind: .book)
+        for bkId in grouped.keys {
+            let annsForBook = grouped[bkId] ?? []
+            let bookTitle = LibraryDataManager
+                .shared.getBook([bkId]).first?.book ?? "Unknown Book" + " (\(bkId))"
+            let bookNode = AnnotationNode(title: bookTitle, kind: .book)
 
             for ann in annsForBook {
                 let child = AnnotationNode(

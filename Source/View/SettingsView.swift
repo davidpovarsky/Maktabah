@@ -374,7 +374,7 @@ struct SettingsView: View {
                         viewModel.runVacuum()
                     }) {
                         HStack {
-                            Text("Optimize Database")
+                            Text(.optimizeDatabase)
                             if viewModel.isVacuuming {
                                 Spacer()
                                 ProgressView()
@@ -383,12 +383,12 @@ struct SettingsView: View {
                     }
                     .disabled(viewModel.isVacuuming)
 
-                    Text("Optimization is needed to reclaim disk space after deleting books.")
+                    Text(.optimizationIsNeededToReclaimDiskSpaceAfterDeletingBooks)
                         .padding(2)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } header: {
-                    Text("Optimization")
+                    Text(.optimization)
                 }
             }
             #endif

@@ -476,7 +476,8 @@ class iOSAnnotationViewModel {
     }
 
     private func createBookGroup(for bkId: Int) -> Int {
-        let title = LibraryDataManager.shared.getBook([bkId]).first?.book ?? "Unknown Book"
+        let title = LibraryDataManager
+            .shared.getBook([bkId]).first?.book ?? "Unknown Book" + " (\(bkId))"
         let newGroup = iOSAnnotationNode(
             id: groupID(for: title, kind: .book),
             title: title,

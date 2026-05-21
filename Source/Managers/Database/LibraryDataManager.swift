@@ -109,6 +109,14 @@ class LibraryDataManager {
         }
     }
 
+    func reloadAllData() async {
+        lock.withLock {
+            _isDataLoaded = false
+            _archivesBuiltFromFullData = false
+        }
+        await loadData()
+    }
+
     // MARK: - Helpers for loading data
     private func buildCategoryHierarchy(from allCategories: [CategoryData]) -> (
         rootCats: [CategoryData], categoryMap: [Int: CategoryData]

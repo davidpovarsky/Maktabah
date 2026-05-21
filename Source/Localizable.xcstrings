@@ -60,6 +60,28 @@
     "%lld" : {
       "shouldTranslate" : false
     },
+    "%lld Annotations Exist" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يوجد %lld تعليق توضيحي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Annotations Exist"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Anotasi Ditemukan"
+          }
+        }
+      }
+    },
     "%lld book selected" : {
       "localizations" : {
         "ar" : {
@@ -452,6 +474,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aplikasi memerlukan akses ke folder Database SQLite untuk melanjutkan."
+          }
+        }
+      }
+    },
+    "Archive ID" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رقم الأرشيف"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archive ID"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID Arsip"
           }
         }
       }
@@ -868,6 +912,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kategori (cat)"
+          }
+        }
+      }
+    },
+    "Change Book ID" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير رقم الكتاب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Book ID"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah ID Kitab"
           }
         }
       }
@@ -2116,6 +2182,28 @@
         }
       }
     },
+    "e.g., %lld" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مثال، %lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., %lld"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "contoh, %lld"
+          }
+        }
+      }
+    },
     "e.g., 256 AH" : {
       "localizations" : {
         "ar" : {
@@ -2128,6 +2216,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "misal: 256 H"
+          }
+        }
+      }
+    },
+    "e.g., 32793" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مثال، 32793"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., 32793"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "contoh, 32793"
           }
         }
       }
@@ -3106,6 +3216,72 @@
         }
       }
     },
+    "ID %@ already has %lld local annotations, possibly from CloudKit synchronization with another device for a different book. Proceed only if you are sure these annotations belong to this book." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المعرف %1$@ يحتوي بالفعل على %2$lld تعليقاً محلياً، ربما من مزامنة CloudKit مع جهاز أخر لكتاب مختلف. تابع فقط إذا كنت متأكداً من أن هذه التعليقات تخص هذا الكتاب."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID %1$@ already has %2$lld local annotations, possibly from CloudKit synchronization with another device for a different book. Proceed only if you are sure these annotations belong to this book."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID %1$@ sudah memiliki %2$lld anotasi lokal, kemungkinan dari sinkronisasi CloudKit dengan perangkat lain untuk kitab yang berbeda. Lanjutkan hanya jika Anda yakin anotasi ini milik kitab ini."
+          }
+        }
+      }
+    },
+    "ID already taken" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرقم مستخدم بالفعل"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID already taken"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID sudah terpakai"
+          }
+        }
+      }
+    },
+    "ID reserved by system" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الرقم محجوز من قبل النظام"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID reserved by system"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID dicadangkan oleh sistem"
+          }
+        }
+      }
+    },
     "ID: %lld" : {
       "shouldTranslate" : false
     },
@@ -3978,11 +4154,18 @@
       }
     },
     "Optimization" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "تحسين"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimization"
           }
         },
         "id" : {
@@ -3994,11 +4177,18 @@
       }
     },
     "Optimization is needed to reclaim disk space after deleting books." : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "التحسين مطلوب لاستعادة مساحة القرص بعد حذف الكتب."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimization is needed to reclaim disk space after deleting books."
           }
         },
         "id" : {
@@ -4010,11 +4200,18 @@
       }
     },
     "Optimize Database" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "تحسين قاعدة البيانات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimize Database"
           }
         },
         "id" : {
@@ -4443,6 +4640,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ubah Nama"
+          }
+        }
+      }
+    },
+    "Rename book ID in-place and migrate local annotations." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تغيير رقم الكتاب في مكانه وترحيل التعليقات التوضيحية المحلية."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename book ID in-place and migrate local annotations."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah ID kitab secara langsung dan migrasikan anotasi lokal."
           }
         }
       }
@@ -5865,6 +6084,28 @@
         }
       }
     },
+    "Will overwrite existing" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سيتم الكتابة فوق الموجود"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Will overwrite existing"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akan menimpa yang sudah ada"
+          }
+        }
+      }
+    },
     "Yellow" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5905,10 +6146,10 @@
       }
     },
     "الجزء" : {
-
+      "shouldTranslate" : false
     },
     "الصفحة" : {
-
+      "shouldTranslate" : false
     },
     "بطاقة الكتاب:" : {
       "localizations" : {
@@ -6019,54 +6260,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentang Penulis:"
-          }
-        }
-      }
-    },
-    "Optimization" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تحسين"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optimasi"
-          }
-        }
-      }
-    },
-    "Optimize Database" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تحسين قاعدة البيانات"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optimasi Database"
-          }
-        }
-      }
-    },
-    "Optimization is needed to reclaim disk space after deleting books." : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "التحسين مطلوب لاستعادة مساحة القرص بعد حذف الكتب."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optimasi diperlukan untuk memulihkan ruang disk setelah menghapus kitab."
           }
         }
       }

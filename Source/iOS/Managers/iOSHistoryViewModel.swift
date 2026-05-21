@@ -534,6 +534,25 @@ class iOSHistoryViewModel: ObservableObject {
             isApplyingRemoteUpdate = false
         }
     }
+
+    func migrateBookId(from oldId: Int, to newId: Int) {
+        guard let entry = entriesByBookId.removeValue(forKey: oldId) else { return }
+        let migrated = iOSReadingEntry(
+            bookId: newId,
+            lastContentId: entry.lastContentId,
+            lastOpenedAt: entry.lastOpenedAt,
+            favoritedAt: entry.favoritedAt,
+            positionUpdatedAt: entry.positionUpdatedAt,
+            favoriteUpdatedAt: entry.favoriteUpdatedAt,
+            updatedAt: Date(),
+            isFavorite: entry.isFavorite
+        )
+        entriesByBookId[newId] = migrated
+        if let idx = historyOrder.firstIndex(of: oldId) {
+            historyOrder[idx] = newId
+        }
+        persistAndReload(forceCloud: true)
+    }
 }
 
 private struct StoredReadingEntries: Codable {
