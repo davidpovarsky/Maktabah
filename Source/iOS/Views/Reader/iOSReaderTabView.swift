@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct iOSReaderTabView: View {
     @Environment(iOSNavigationManager.self) var bManager
@@ -235,7 +236,9 @@ struct iOSReaderNavigationPopoverView: View {
     @State private var localPage: Double = 1
     @State private var isSlidingPart = false
     @State private var isSlidingPage = false
-    @State private var debounceTask: Task<Void, Never>?
+
+    @State private var partJumpSubject = PassthroughSubject<Int, Never>()
+    @State private var pageJumpSubject = PassthroughSubject<Int, Never>()
 
     var body: some View {
         VStack(spacing: 20) {
@@ -323,29 +326,19 @@ struct iOSReaderNavigationPopoverView: View {
         }
         .onChange(of: localPart) { _, newValue in
             if isSlidingPart {
-                debounceJump(mode: .part, value: Int(newValue))
+                partJumpSubject.send(Int(newValue))
             }
         }
         .onChange(of: localPage) { _, newValue in
             if isSlidingPage {
-                debounceJump(mode: .page, value: Int(newValue))
+                pageJumpSubject.send(Int(newValue))
             }
         }
-    }
-    
-    private enum JumpMode { case part, page }
-
-    private func debounceJump(mode: JumpMode, value: Int) {
-        debounceTask?.cancel()
-        debounceTask = Task {
-            try? await Task.sleep(nanoseconds: 250_000_000) // 0.25s
-            if !Task.isCancelled {
-                if mode == .part {
-                    viewModel.jumpToPart(value)
-                } else {
-                    viewModel.jumpToPage(value)
-                }
-            }
+        .onReceive(partJumpSubject.debounce(for: .seconds(0.25), scheduler: RunLoop.main)) { value in
+            viewModel.jumpToPart(value)
+        }
+        .onReceive(pageJumpSubject.debounce(for: .seconds(0.25), scheduler: RunLoop.main)) { value in
+            viewModel.jumpToPage(value)
         }
     }
 }
