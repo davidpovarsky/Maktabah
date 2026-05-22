@@ -26,6 +26,22 @@
         }
       }
     },
+    "\"%@\" and all its contents will be permanently deleted." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سيتم حذف \"%@\" وجميع محتوياته نهائيًا."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" dan semua isinya akan dihapus secara permanen."
+          }
+        }
+      }
+    },
     "/" : {
       "shouldTranslate" : false
     },
@@ -1641,6 +1657,38 @@
         }
       }
     },
+    "Create" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إنشاء"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat"
+          }
+        }
+      }
+    },
+    "Create Folder" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إنشاء مجلد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat Folder"
+          }
+        }
+      }
+    },
     "Create New Folder" : {
       "localizations" : {
         "ar" : {
@@ -1796,6 +1844,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Unduhan"
+          }
+        }
+      }
+    },
+    "Delete Folder" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف المجلد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Folder"
           }
         }
       }
@@ -2898,6 +2962,22 @@
         }
       }
     },
+    "Folder Name" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إسم المجلد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Folder"
+          }
+        }
+      }
+    },
     "Folder Not Found" : {
       "localizations" : {
         "ar" : {
@@ -2933,6 +3013,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aplikasi tidak dapat berjalan tanpa folder database. Aplikasi akan ditutup."
+          }
+        }
+      }
+    },
+    "Folders" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المجلدات"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder"
           }
         }
       }
@@ -3796,6 +3892,38 @@
         }
       }
     },
+    "Move" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نقل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pindahkan"
+          }
+        }
+      }
+    },
+    "Move To" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نقل إلى"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pindahkan ke"
+          }
+        }
+      }
+    },
     "Multi-Language" : {
       "localizations" : {
         "ar" : {
@@ -3808,6 +3936,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Multibahasa"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاسم"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
           }
         }
       }
@@ -3938,6 +4082,22 @@
         }
       }
     },
+    "New Folder" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المجلد الجديد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder Baru"
+          }
+        }
+      }
+    },
     "No books selected" : {
       "localizations" : {
         "ar" : {
@@ -4005,6 +4165,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak ada riwayat terbaru"
+          }
+        }
+      }
+    },
+    "No Saved Results" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا توجد نتائج محفوظة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Ada Hasil Tersimpan"
           }
         }
       }
@@ -4506,6 +4682,22 @@
         }
       }
     },
+    "Query: %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الاستعلام: %@"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kueri: %@"
+          }
+        }
+      }
+    },
     "Quit" : {
       "localizations" : {
         "ar" : {
@@ -4689,6 +4881,38 @@
         }
       }
     },
+    "Rename Folder" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تسمية المجلد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Nama Folder"
+          }
+        }
+      }
+    },
+    "Rename Result" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تسمية النتيجة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Nama Hasil"
+          }
+        }
+      }
+    },
     "Rename Tag" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4750,6 +4974,38 @@
         }
       }
     },
+    "Results" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "النتائج"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasil"
+          }
+        }
+      }
+    },
+    "Root" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجذر"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dasar"
+          }
+        }
+      }
+    },
     "Rowi" : {
       "localizations" : {
         "ar" : {
@@ -4784,6 +5040,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "Save Results" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حفظ النتائج"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Hasil"
+          }
+        }
+      }
+    },
+    "Save Search Results" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حفظ نتائج البحث"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Hasil Pencarian"
+          }
+        }
+      }
+    },
+    "Save search results to access them later." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "احفظ نتائج البحث للوصول إليها لاحقًا."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan hasil pencarian untuk diakses nanti."
+          }
+        }
+      }
+    },
+    "Saved Results" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "النتائج المحفوظة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasil Tersimpan"
           }
         }
       }
@@ -4898,6 +5218,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Favorit & Riwayat"
+          }
+        }
+      }
+    },
+    "Search globally" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البحث في كل مكان"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari Apapun"
           }
         }
       }
@@ -5286,6 +5622,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Berkas"
+          }
+        }
+      }
+    },
+    "Select Folder" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حدد المجلد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Folder"
           }
         }
       }

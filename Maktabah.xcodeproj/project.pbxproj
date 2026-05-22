@@ -348,6 +348,10 @@
 		F30577972FA4987B005732C6 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577942FA4987B005732C6 /* NotificationName.swift */; };
 		F30577992FA4BE8D005732C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */; };
 		F31111912FC008F30024B638 /* ActiveIntegrationStatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31111902FC008F30024B638 /* ActiveIntegrationStatesView.swift */; };
+		F31111962FC00F060024B638 /* iOSResultWriterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31111922FC00F060024B638 /* iOSResultWriterView.swift */; };
+		F31111972FC00F060024B638 /* iOSSavedResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31111932FC00F060024B638 /* iOSSavedResultsView.swift */; };
+		F31111992FC0A9C00024B638 /* iOSFolderSelectionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31111982FC0A9C00024B638 /* iOSFolderSelectionGroup.swift */; };
+		F311119B2FC0A9D60024B638 /* iOSMoveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311119A2FC0A9D60024B638 /* iOSMoveItemView.swift */; };
 		F32167292FBAA39F00601DB3 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
 		F321672A2FBAA39F00601DB3 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
 		F321672B2FBAA39F00601DB3 /* BookImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0000012F3612D50018D902 /* BookImportView.swift */; };
@@ -557,6 +561,10 @@
 		F30577942FA4987B005732C6 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F31111902FC008F30024B638 /* ActiveIntegrationStatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveIntegrationStatesView.swift; sourceTree = "<group>"; };
+		F31111922FC00F060024B638 /* iOSResultWriterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSResultWriterView.swift; sourceTree = "<group>"; };
+		F31111932FC00F060024B638 /* iOSSavedResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSavedResultsView.swift; sourceTree = "<group>"; };
+		F31111982FC0A9C00024B638 /* iOSFolderSelectionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSFolderSelectionGroup.swift; sourceTree = "<group>"; };
+		F311119A2FC0A9D60024B638 /* iOSMoveItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMoveItemView.swift; sourceTree = "<group>"; };
 		F321672C2FBB2C0D00601DB3 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		F323BCA12F2EE70200EFD4F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA32F2EE71800EFD4F4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1045,6 +1053,7 @@
 				F363824F2FA6F9F10006636C /* Bootstrap */,
 				F36382672FA7610F0006636C /* Common */,
 				F30577762FA463B1005732C6 /* Reader */,
+				F31111952FC00F060024B638 /* Search */,
 				F30577772FA463B1005732C6 /* AnnotationListView.swift */,
 				F30577782FA463B1005732C6 /* AuthorModeView.swift */,
 				9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */,
@@ -1081,6 +1090,25 @@
 				F30577822FA463B1005732C6 /* Wrappers */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		F31111942FC00F060024B638 /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				F311119A2FC0A9D60024B638 /* iOSMoveItemView.swift */,
+				F31111982FC0A9C00024B638 /* iOSFolderSelectionGroup.swift */,
+				F31111922FC00F060024B638 /* iOSResultWriterView.swift */,
+				F31111932FC00F060024B638 /* iOSSavedResultsView.swift */,
+			);
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
+		F31111952FC00F060024B638 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F31111942FC00F060024B638 /* Bookmark */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		F363824F2FA6F9F10006636C /* Bootstrap */ = {
@@ -1587,6 +1615,8 @@
 				F30577082FA46222005732C6 /* Protocols.swift in Sources */,
 				F38FF4302FA82034003E7B71 /* iOSRowiSidebarView.swift in Sources */,
 				F305770A2FA46222005732C6 /* QuranDataManager.swift in Sources */,
+				F31111962FC00F060024B638 /* iOSResultWriterView.swift in Sources */,
+				F31111972FC00F060024B638 /* iOSSavedResultsView.swift in Sources */,
 				F305770C2FA46222005732C6 /* CopyableResult.swift in Sources */,
 				F305770D2FA46222005732C6 /* DatabaseError.swift in Sources */,
 				F305770E2FA46222005732C6 /* ArchiveDatabaseTools.swift in Sources */,
@@ -1601,8 +1631,10 @@
 				F30577202FA46222005732C6 /* Narrathor.swift in Sources */,
 				F30577252FA46222005732C6 /* SearchEngine.swift in Sources */,
 				F30577952FA4987B005732C6 /* NotificationName.swift in Sources */,
+				F31111992FC0A9C00024B638 /* iOSFolderSelectionGroup.swift in Sources */,
 				F38FF4362FA89EEE003E7B71 /* iOSReaderTabView.swift in Sources */,
 				F30577262FA46222005732C6 /* DataModel.swift in Sources */,
+				F311119B2FC0A9D60024B638 /* iOSMoveItemView.swift in Sources */,
 				F38FF42E2FA817D9003E7B71 /* iOSBookInfoView.swift in Sources */,
 				F305772B2FA46222005732C6 /* ResultsViewModel.swift in Sources */,
 				F305772D2FA46222005732C6 /* DatabaseManager.swift in Sources */,

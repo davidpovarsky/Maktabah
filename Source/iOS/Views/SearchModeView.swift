@@ -4,6 +4,8 @@ struct SearchModeView: View {
     @Environment(iOSNavigationManager.self) var navigationManager: iOSNavigationManager
     @State private var showingFilter = false
     @State private var showingHelp = false
+    @State private var showingSaveResults = false
+    @State private var showingSavedResults = false
     @FocusState private var isSearchFieldFocused: Bool
     @State private var inputBarHeight: CGFloat = 60 // fallback default
 
@@ -24,6 +26,12 @@ struct SearchModeView: View {
         .onChange(of: navigationManager.searchText) { _, newValue in
             viewModel.filterText = newValue
             viewModel.updateDisplayedCategories()
+        }
+        .sheet(isPresented: $showingSaveResults) {
+            iOSResultWriterView(results: viewModel.results, query: viewModel.query)
+        }
+        .sheet(isPresented: $showingSavedResults) {
+            iOSSavedResultsView()
         }
     }
 
@@ -199,6 +207,20 @@ struct SearchModeView: View {
             } else {
                 Button(action: { viewModel.startSearch() }) {
                     Image(systemName: "play")
+                }
+            }
+        }
+
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: { showingSavedResults = true }) {
+                Image(systemName: "bookmark")
+            }
+        }
+
+        ToolbarItem(placement: .topBarTrailing) {
+            if !viewModel.results.isEmpty {
+                Button(action: { showingSaveResults = true }) {
+                    Image(systemName: "pencil.line")
                 }
             }
         }

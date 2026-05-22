@@ -6,20 +6,31 @@
 //
 
 import Foundation
+#if os(iOS)
+import Observation
+#endif
 
+#if os(iOS)
+@Observable
+#endif
+@MainActor
 class ResultsViewModel {
     static var shared: ResultsViewModel = .init()
 
     let db: ResultsHandler = .shared
 
     // sumber data
-    private(set) var folderRoots: [FolderNode] = []
-    private(set) var folderResults: [Int64?: [ResultNode]] = [:] // hasil per folder (nullable key -> root)
+    var folderRoots: [FolderNode] = []
+    var folderResults: [Int64?: [ResultNode]] = [:] // hasil per folder (nullable key -> root)
 
     // CACHE STRUKTURAL (index untuk operasi cepat)
-    private(set) var folderById: [Int64: FolderNode] = [:]
-    private(set) var parentById: [Int64: Int64?] = [:]      // parentById[childId] = parentId (nil = root)
-    private(set) var resultById: [Int64: ResultNode] = [:]  // lookup ResultNode by id
+    var folderById: [Int64: FolderNode] = [:]
+    var parentById: [Int64: Int64?] = [:] // parentById[childId] = parentId (nil = root)
+    var resultById: [Int64: ResultNode] = [:] // lookup ResultNode by id
+
+    /// Dipanggil setelah setiap operasi yang mengubah data.
+    /// Mac (`ResultsViewManager`) menggunakannya untuk reload `NSOutlineView`.
+    var onDataChanged: (() -> Void)?
 
     private init() {}
 
@@ -32,6 +43,7 @@ class ResultsViewModel {
 
         folderRoots = roots
         rebuildFolderIndex()
+        onDataChanged?()
     }
 
     func dbLoadAllResults() async {
@@ -65,6 +77,7 @@ class ResultsViewModel {
 
         self.folderResults = allResults
         rebuildResultIndex()
+        onDataChanged?()
     }
 
     private func rebuildFolderIndex() {
@@ -113,6 +126,7 @@ class ResultsViewModel {
 
         // update caches
         updateFolder(node, newParent: nil)
+        onDataChanged?()
     }
 
     func addSubFolder(parentNode: FolderNode, name: String) throws {
@@ -124,6 +138,7 @@ class ResultsViewModel {
 
         // update caches
         updateFolder(newNode, newParent: parentNode.id)
+        onDataChanged?()
     }
 
     // Memperbarui nama folder — temukan node lewat index, jangan asumsi root
@@ -145,6 +160,7 @@ class ResultsViewModel {
                 folderRoots[idx].name = newName
             }
         }
+        onDataChanged?()
     }
 
     // Memperbarui nama result berdasarkan id (bukan name)
@@ -173,6 +189,7 @@ class ResultsViewModel {
 
         // update index
         resultById[resultId] = node
+        onDataChanged?()
     }
 
     func deleteFolder(node: FolderNode) {
@@ -202,6 +219,7 @@ class ResultsViewModel {
         for id in ids {
             removeFolder(id)
         }
+        onDataChanged?()
     }
 
     func deleteResult(_ parentFolderId: Int64?, name: String) {
@@ -267,6 +285,7 @@ class ResultsViewModel {
         for id in allIds {
             db.updateResultsFolder(oldFolderId: id, newFolderId: id)
         }
+        onDataChanged?()
     }
 
     // MARK: - Tree utilities
@@ -339,6 +358,7 @@ class ResultsViewModel {
 
         // Update index
         resultById[resultId] = node
+        onDataChanged?()
     }
 
     // MARK: - Find helpers using index

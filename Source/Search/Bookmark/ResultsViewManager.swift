@@ -7,6 +7,7 @@
 
 import Cocoa
 
+@MainActor
 class ResultsViewManager: NSObject {
     weak var outlineView: NSOutlineView!
 
@@ -118,6 +119,12 @@ class ResultsViewManager: NSObject {
 
         self.outlineView = outlineView
         self.delegate = delegate
+
+        vm.onDataChanged = { [weak outlineView] in
+            DispatchQueue.main.async {
+                outlineView?.reloadData()
+            }
+        }
     }
 
     func searchResults(for text: String) {

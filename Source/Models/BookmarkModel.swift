@@ -8,6 +8,10 @@
 import Foundation
 
 class FolderNode {
+#if os(iOS)
+@Observable
+#endif
+class FolderNode: Identifiable {
     let id: Int64
     var name: String
     var children: [FolderNode] = []
@@ -18,7 +22,10 @@ class FolderNode {
     }
 }
 
-class ResultNode {
+#if os(iOS)
+@Observable
+#endif
+class ResultNode: Identifiable {
     var id: Int64
     var parentId: Int64?
     var name: String

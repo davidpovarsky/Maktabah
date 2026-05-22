@@ -70,10 +70,8 @@ class SavedResults: NSViewController {
             if row >= 0,
                let item = outlineView.item(atRow: row) as? FolderNode {
                 try resultsVM.vm.addSubFolder(parentNode: item, name: name)
-                outlineView.reloadItem(item, reloadChildren: true)
             } else {
                 try resultsVM.vm.addRootFolder(name: name)
-                outlineView.reloadData()
             }
         } catch {
             ResultsViewManager.showAlertCreateFolderError(subFolder: row >= 0)
@@ -92,24 +90,15 @@ class SavedResults: NSViewController {
 
             if let parent = parentNode {
                 // --- KASUS: Item ada di dalam parent (Child Node) ---
-
-                // 2. TEMUKAN INDEKS item DALAM ARRAY ANAK parent
-                // Asumsi: Anda memiliki properti 'children' di FolderNode
                 guard let index = parent.children.firstIndex(where: { $0 === item }) else {
                     print("Error: Item tidak ditemukan di array children parent.")
                     return
                 }
                 indexToRemove = index
-
-                // 3. HAPUS DARI MODEL (DATA SOURCE) - BARU!
                 parent.children.remove(at: indexToRemove)
-
             } else {
                 // --- KASUS: Item adalah Node Level Atas (Root Node) ---
-
-                // Asumsi: Array root item Anda ada di suatu tempat (misalnya di ViewModel)
-                guard let rootViewModel = resultsVM?.vm else { return } // Ganti dengan path ke koleksi root Anda
-
+                guard let rootViewModel = resultsVM?.vm else { return }
                 guard let index = rootViewModel.folderRoots.firstIndex(where: { $0 === item }) else {
                     print("Error: Item tidak ditemukan di array root.")
                     return
@@ -117,9 +106,12 @@ class SavedResults: NSViewController {
                 indexToRemove = index
             }
 
-            // 4. HAPUS DARI TAMPILAN (VIEW)
-            // Gunakan indexToRemove yang baru ditemukan.
-            outlineView.removeItems(at: IndexSet(integer: indexToRemove), inParent: parentForViewUpdate)
+            // Hapus dari tampilan sebelum deleteFolder (agar animasi mulus)
+            outlineView.removeItems(
+                at: IndexSet(integer: indexToRemove),
+                inParent: parentForViewUpdate
+            )
+            // deleteFolder memutasikan ViewModel + memanggil onDataChanged
             resultsVM.vm.deleteFolder(node: item)
             return
         }
@@ -127,8 +119,6 @@ class SavedResults: NSViewController {
         if let item = outlineView.item(atRow: row) as? ResultNode {
             let parent = outlineView.parent(forItem: item) as? FolderNode
             resultsVM.vm.deleteResult(parent?.id, name: item.name)
-            // 3. Reload UI
-            outlineView.reloadItem(parent, reloadChildren: true)
         }
     }
     
@@ -152,8 +142,6 @@ class SavedResults: NSViewController {
 extension SavedResults {
     func dbLoadResults() async {
         await resultsVM.vm.dbLoadAllResults()
-        await MainActor.run { [weak self] in
-            self?.outlineView.reloadData()
-        }
+        // UI reload ditangani oleh onDataChanged callback di ResultsViewManager
     }
 }

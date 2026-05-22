@@ -8,6 +8,10 @@
 import Foundation
 import SQLite3
 
+extension Notification.Name {
+    static let savedResultsTreeDidUpdate = Notification.Name("savedResultsTreeDidUpdate")
+}
+
 // MARK: - Sync Models
 
 struct SyncFolder {
@@ -897,7 +901,7 @@ extension ResultsHandler {
 
             // Post notification for UI refresh
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .annotationTreeDidUpdate, object: nil)
+                NotificationCenter.default.post(name: .savedResultsTreeDidUpdate, object: nil)
             }
         } catch {
             print("ResultsHandler: Failed to apply folder changes - \(error)")
@@ -970,7 +974,7 @@ extension ResultsHandler {
             }
 
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .annotationTreeDidUpdate, object: nil)
+                NotificationCenter.default.post(name: .savedResultsTreeDidUpdate, object: nil)
             }
         } catch {
             print("ResultsHandler: Failed to apply result changes - \(error)")
