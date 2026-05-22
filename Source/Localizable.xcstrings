@@ -4169,6 +4169,22 @@
         }
       }
     },
+    "No results found for \"%@\"" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لم يتم العثور على نتائج لـ \"%@\""
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada hasil yang ditemukan untuk \"%@\""
+          }
+        }
+      }
+    },
     "No Saved Results" : {
       "localizations" : {
         "ar" : {
