@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import Combine
 
 // MARK: - View Controller
 
@@ -175,6 +176,7 @@ struct iOSLibraryView: View {
     @State private var showingDeleteConfirmation = false
     @State private var singleBookToDelete: BooksData?
     @State private var showingImportSheet = false
+    @State private var searchSubject = PassthroughSubject<String, Never>()
 
     var body: some View {
         let viewModel = navigationManager.libraryViewModel
@@ -199,7 +201,10 @@ struct iOSLibraryView: View {
             )
             .ignoresSafeArea(edges: [.vertical])
             .onChange(of: navigationManager.searchText) { _, newValue in
-                viewModel.searchText = newValue
+                searchSubject.send(newValue)
+            }
+            .onReceive(searchSubject.debounce(for: .seconds(0.3), scheduler: RunLoop.main)) { debouncedValue in
+                viewModel.searchText = debouncedValue
             }
 
             if viewModel.isLoading {

@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct SearchModeView: View {
     @Environment(iOSNavigationManager.self) var navigationManager: iOSNavigationManager
@@ -8,6 +9,7 @@ struct SearchModeView: View {
     @State private var showingSavedResults = false
     @FocusState private var isSearchFieldFocused: Bool
     @State private var inputBarHeight: CGFloat = 60 // fallback default
+    @State private var searchSubject = PassthroughSubject<String, Never>()
 
     var body: some View {
         @Bindable var viewModel = navigationManager.searchViewModel
@@ -24,7 +26,10 @@ struct SearchModeView: View {
             toolbarContent(viewModel: viewModel)
         }
         .onChange(of: navigationManager.searchText) { _, newValue in
-            viewModel.filterText = newValue
+            searchSubject.send(newValue)
+        }
+        .onReceive(searchSubject.debounce(for: .seconds(0.3), scheduler: RunLoop.main)) { debouncedValue in
+            viewModel.filterText = debouncedValue
             viewModel.updateDisplayedCategories()
         }
         .sheet(isPresented: $showingSaveResults) {

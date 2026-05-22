@@ -1,10 +1,12 @@
 import SwiftUI
+import Combine
 
 struct AnnotationListView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     @State private var showMissingBookAlert = false
     @State private var missingBookId: Int = 0
     @AppStorage("hideMissingBookAnnotations") private var hideMissingBookAnnotations: Bool = false
+    @State private var searchSubject = PassthroughSubject<String, Never>()
 
     var body: some View {
         @Bindable var viewModel = navigationManager.annotationViewModel
@@ -26,7 +28,10 @@ struct AnnotationListView: View {
         }
         .listStyle(.insetGrouped)
         .onChange(of: navigationManager.searchText) { _, newValue in
-            viewModel.searchText = newValue
+            searchSubject.send(newValue)
+        }
+        .onReceive(searchSubject.debounce(for: .seconds(0.3), scheduler: RunLoop.main)) { debouncedValue in
+            viewModel.searchText = debouncedValue
         }
         .onChange(of: hideMissingBookAnnotations) { _, _ in
             viewModel.applyFilter()

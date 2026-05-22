@@ -1,16 +1,19 @@
 import SwiftUI
+import Combine
 
 struct AuthorModeView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     @StateObject private var viewModel = iOSAuthorViewModel()
     @State private var navigateToReader = false
+    @State private var searchSubject = PassthroughSubject<String, Never>()
+    @State private var debouncedQuery: String = ""
 
     var body: some View {
         Group {
             if viewModel.isLoading {
                 ProgressView("Loading Narrators...")
             } else {
-                iOSRowiSidebarView(viewModel: viewModel, searchQuery: navigationManager.searchText)
+                iOSRowiSidebarView(viewModel: viewModel, searchQuery: debouncedQuery)
                     .ignoresSafeArea(edges: [.vertical])
                     // Trigger navigation when selectedRowi changes
                     .onChange(of: viewModel.selectedRowi) { _, newRowi in
@@ -19,7 +22,11 @@ struct AuthorModeView: View {
                         }
                     }
                     .onChange(of: navigationManager.searchText) { _, newQuery in
-                        viewModel.searchRowis(query: newQuery)
+                        searchSubject.send(newQuery)
+                    }
+                    .onReceive(searchSubject.debounce(for: .seconds(0.3), scheduler: RunLoop.main)) { debounced in
+                        debouncedQuery = debounced
+                        viewModel.searchRowis(query: debounced)
                     }
                     .navigationDestination(isPresented: $navigateToReader) {
                         iOSRowiReaderView(viewModel: viewModel)
