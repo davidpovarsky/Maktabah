@@ -85,18 +85,11 @@ struct SearchModeView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 8)
+                    .background(.ultraThinMaterial)
                 }
 
-                ForEach(integrationStates) { state in
-                    iOSBookDownloadProgressView(
-                        state: state,
-                        onConfirm: { navigationManager.confirmPendingBookIntegration(state: state) },
-                        onCancel: { navigationManager.cancelPendingBookIntegration(state: state) }
-                    )
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                }
+                ActiveIntegrationStatesView()
             }
-            .background(.ultraThinMaterial)
             .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: integrationStates.count)
         }
     }

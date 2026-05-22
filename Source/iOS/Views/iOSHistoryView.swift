@@ -32,24 +32,8 @@ struct iOSHistoryView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .safeAreaInset(edge: .bottom, spacing: 0) {
-            if !navigationManager.activeIntegrationStates.isEmpty {
-                VStack(spacing: 0) {
-                    ForEach(navigationManager.activeIntegrationStates) { state in
-                        iOSBookDownloadProgressView(
-                            state: state,
-                            onConfirm: { navigationManager.confirmPendingBookIntegration(state: state) },
-                            onCancel: { navigationManager.cancelPendingBookIntegration(state: state) }
-                        )
-                        .background(.ultraThinMaterial)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                    }
-                }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
-        }
+        .withActiveIntegrationStates()
         .navigationTitle("History & Favorites")
-        .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: navigationManager.activeIntegrationStates.count)
         .onAppear {
             viewModel.loadBooksData()
         }

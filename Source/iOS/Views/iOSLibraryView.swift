@@ -217,15 +217,7 @@ struct iOSLibraryView: View {
             if !navigationManager.activeIntegrationStates.isEmpty {
                 VStack(spacing: 0) {
                     Spacer()
-                    ForEach(navigationManager.activeIntegrationStates) { state in
-                        iOSBookDownloadProgressView(
-                            state: state,
-                            onConfirm: { navigationManager.confirmPendingBookIntegration(state: state) },
-                            onCancel: { navigationManager.cancelPendingBookIntegration(state: state) }
-                        )
-                        .background(.ultraThinMaterial)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                    }
+                    ActiveIntegrationStatesView()
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .zIndex(10)
