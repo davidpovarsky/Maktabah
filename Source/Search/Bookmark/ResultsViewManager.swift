@@ -13,7 +13,7 @@ class ResultsViewManager: NSObject {
 
     let vm: ResultsViewModel = .shared
 
-    private var searchWorkItem: DispatchWorkItem?
+    private var searchTask: Task<Void, Never>?
 
     var folderRoots: [FolderNode] {
         vm.folderRoots
@@ -120,14 +120,86 @@ class ResultsViewManager: NSObject {
         self.outlineView = outlineView
         self.delegate = delegate
 
-        vm.onDataChanged = { [weak outlineView] in
+        // Subscribe ke onTreeChange agar NSOutlineView bisa update inkremental
+        super.init()
+
+        vm.onTreeChange = { [weak self] change in
             DispatchQueue.main.async {
-                outlineView?.reloadData()
+                self?.applyTreeChange(change)
             }
         }
     }
 
+    func applyTreeChange(_ change: BookmarkTreeChange) {
+        guard !isSearching else {
+            // Jika sedang searching, mapping index terlalu rumit, kita pakai reloadData
+            outlineView.reloadData()
+            return
+        }
+
+        outlineView.beginUpdates()
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.2
+            context.timingFunction = CAMediaTimingFunction(name: .easeIn)
+            context.allowsImplicitAnimation = true
+
+            switch change {
+            case .fullReload:
+                outlineView.reloadData()
+
+            case .insertFolder(_, let parent, let index):
+                outlineView.insertItems(at: IndexSet(integer: index), inParent: parent, withAnimation: .effectGap)
+
+            case .removeFolder(_, let parent, let index):
+                outlineView.removeItems(at: IndexSet(integer: index), inParent: parent, withAnimation: .effectFade)
+
+            case .updateFolder(let folder):
+                outlineView.reloadItem(folder)
+
+            case .moveFolder(_, let oldParent, let oldIndex, let newParent, let newIndex):
+                outlineView.moveItem(at: oldIndex, inParent: oldParent, to: newIndex, inParent: newParent)
+                outlineView.reloadItem(newParent)
+                outlineView.reloadItem(oldParent)
+
+            case .insertResult(_, let parentId, let index):
+                if writer { return } // jika writer mode, result item tidak dimuat di outline
+                let parentFolder = parentId.flatMap { vm.findFolder($0) }
+                let folderCount = parentFolder?.children.count ?? vm.folderRoots.count
+                let outlineIndex = folderCount + index
+                outlineView.insertItems(at: IndexSet(integer: outlineIndex), inParent: parentFolder, withAnimation: .effectGap)
+                outlineView.reloadItem(parentFolder)
+
+            case .removeResult(_, let parentId, let index):
+                if writer { return }
+                let parentFolder = parentId.flatMap { vm.findFolder($0) }
+                let folderCount = parentFolder?.children.count ?? vm.folderRoots.count
+                let outlineIndex = folderCount + index
+                outlineView.removeItems(at: IndexSet(integer: outlineIndex), inParent: parentFolder, withAnimation: .effectFade)
+                outlineView.reloadItem(parentFolder)
+
+            case .updateResult(let result):
+                if writer { return }
+                outlineView.reloadItem(result)
+
+            case .moveResult(_, let oldParentId, let oldIndex, let newParentId, let newIndex):
+                if writer { return }
+                let oldParent = oldParentId.flatMap { vm.findFolder($0) }
+                let newParent = newParentId.flatMap { vm.findFolder($0) }
+
+                let oldFolderCount = oldParent?.children.count ?? vm.folderRoots.count
+                let newFolderCount = newParent?.children.count ?? vm.folderRoots.count
+
+                outlineView.moveItem(at: oldFolderCount + oldIndex, inParent: oldParent, to: newFolderCount + newIndex, inParent: newParent)
+                outlineView.reloadItem(newParent)
+                outlineView.reloadItem(oldParent)
+            }
+        }
+        outlineView.endUpdates()
+    }
+
     func searchResults(for text: String) {
+        searchTask?.cancel()
+
         if text.isEmpty {
             isSearching = false
             searchResultsByFolder.removeAll()
@@ -136,10 +208,12 @@ class ResultsViewManager: NSObject {
             return
         }
 
-        searchWorkItem?.cancel()
-
-        let workItem = DispatchWorkItem { [weak self] in
-            guard let self else { return }
+        searchTask = Task { @MainActor in
+            do {
+                try await Task.sleep(nanoseconds: 300_000_000)
+            } catch {
+                return // Task cancelled
+            }
 
             let query = text.lowercased()
 
@@ -166,14 +240,8 @@ class ResultsViewManager: NSObject {
 
             isSearching = true
 
-            DispatchQueue.main.async {
-                self.applySearchUI(resultsWithPath: resultsWithPath)
-            }
+            self.applySearchUI(resultsWithPath: resultsWithPath)
         }
-
-        searchWorkItem = workItem
-        DispatchQueue.global(qos: .userInitiated)
-            .asyncAfter(deadline: .now() + 0.3, execute: workItem)
     }
 
     private func applySearchUI(
@@ -473,18 +541,9 @@ extension ResultsViewManager {
             let draggedNode = vm.findFolder(draggedId)
         {
 
-            let oldParent = vm.findParent(of: draggedNode, in: vm.folderRoots)
-
             do {
                 try vm.moveNode(draggedNode: draggedNode, newParent: newParent)
-
-                // reload UI
-                outlineView.reloadItem(newParent, reloadChildren: true)
-                if let oldParent {
-                    outlineView.reloadItem(oldParent, reloadChildren: true)
-                } else {
-                    outlineView.reloadItem(nil, reloadChildren: true)  // penting: refresh root results
-                }
+                // UI update ditangani oleh onTreeChange secara inkremental
                 return true
             } catch {
                 ReusableFunc.showAlert(
@@ -505,16 +564,7 @@ extension ResultsViewManager {
             // Pindahkan di memory
             do {
                 try vm.moveResult(resultId, to: newParent?.id)
-                // Reload UI: jika ada old folder reload itu, kalau tidak reload root
-                if let oldParentId = Int64(idStr),
-                    let oldFolder = vm.findFolder(oldParentId)
-                {
-                    outlineView.reloadItem(oldFolder, reloadChildren: true)
-                } else {
-                    outlineView.reloadItem(nil, reloadChildren: true)  // penting: refresh root results
-                }
-
-                outlineView.reloadItem(newParent, reloadChildren: true)
+                // UI update ditangani oleh onTreeChange secara inkremental
                 return true
             } catch {
                 ReusableFunc.showAlert(

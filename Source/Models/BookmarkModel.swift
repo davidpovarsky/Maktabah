@@ -6,12 +6,14 @@
 //
 
 import Foundation
+#if canImport(Observation)
+import Observation
+#endif
 
-class FolderNode {
 #if os(iOS)
 @Observable
 #endif
-class FolderNode: Identifiable {
+class FolderNode: Identifiable, Hashable {
     let id: Int64
     var name: String
     var children: [FolderNode] = []
@@ -20,12 +22,20 @@ class FolderNode: Identifiable {
         self.id = id
         self.name = name
     }
+
+    static func == (lhs: FolderNode, rhs: FolderNode) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 #if os(iOS)
 @Observable
 #endif
-class ResultNode: Identifiable {
+class ResultNode: Identifiable, Equatable {
     var id: Int64
     var parentId: Int64?
     var name: String
@@ -37,10 +47,27 @@ class ResultNode: Identifiable {
         self.name = name
         self.items = items
     }
+
+    static func == (lhs: ResultNode, rhs: ResultNode) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 struct GroupedResult {
     let archive: Int
     let bkId: Int // tableName setelah dropFirst()
     var contentIds: [String] = []
+}
+
+enum BookmarkTreeChange {
+    case fullReload
+    case insertFolder(folder: FolderNode, parent: FolderNode?, index: Int)
+    case removeFolder(folder: FolderNode, parent: FolderNode?, index: Int)
+    case updateFolder(folder: FolderNode)
+    case moveFolder(folder: FolderNode, oldParent: FolderNode?, oldIndex: Int, newParent: FolderNode?, newIndex: Int)
+    
+    case insertResult(result: ResultNode, parentId: Int64?, index: Int)
+    case removeResult(result: ResultNode, parentId: Int64?, index: Int)
+    case updateResult(result: ResultNode)
+    case moveResult(result: ResultNode, oldParentId: Int64?, oldIndex: Int, newParentId: Int64?, newIndex: Int)
 }
