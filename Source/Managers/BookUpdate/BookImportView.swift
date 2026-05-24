@@ -160,6 +160,8 @@ struct OfflineImportFormView: View {
         }
         .textFieldStyle(.roundedBorder)
         #if os(iOS)
+        .scrollContentBackground(.hidden)
+        .background(Color.appBackground)
         .onChange(of: importMode) { _, newMode in
             if newMode == 2, let selectedBookId {
                 customBookIdText = "\(selectedBookId)"
@@ -222,6 +224,10 @@ struct OfflineImportFormView: View {
                 Spacer()
             }
         }
+        #if os(iOS)
+        .listRowBackground(Color.appCellBackground)
+        .scrollContentBackground(.hidden)
+        #endif
     }
 
     private var bookInformationSection: some View {
@@ -246,6 +252,10 @@ struct OfflineImportFormView: View {
                 bookMetadataFields
             }
         }
+        #if os(iOS)
+        .scrollContentBackground(.hidden)
+        .listRowBackground(Color.appCellBackground)
+        #endif
     }
 
     private var newBookIdField: some View {
@@ -256,8 +266,8 @@ struct OfflineImportFormView: View {
                         let system = id <= 32792
                         statusBadge(
                             text: system
-                            ? "ID reserved by system".localized
-                            : "Will overwrite existing".localized,
+                                ? "ID reserved by system".localized
+                                : "Will overwrite existing".localized,
                             color: system ? .red : .orange,
                             cornerRadius: 24
                         )
@@ -347,7 +357,6 @@ struct OfflineImportFormView: View {
         }
     }
 
-    @ViewBuilder
     private func statusBadge(
         text: String,
         color: Color,
@@ -437,6 +446,10 @@ struct OfflineImportFormView: View {
                 newAuthorFields
             }
         }
+        #if os(iOS)
+        .listRowBackground(Color.appCellBackground)
+        .scrollContentBackground(.hidden)
+        #endif
     }
 
     private var selectAuthorField: some View {
@@ -597,12 +610,12 @@ struct OfflineImportFormView: View {
             return (maxBkid, maxAuthid, categories, authors, books)
         }.value
 
-        self.maxBkid = results.0
-        self.maxAuthid = results.1
-        self.categories = results.2
-        self.authors = results.3
-        self.books = results.4
-        self.customBookIdText = "\(results.0 + 1)"
+        maxBkid = results.0
+        maxAuthid = results.1
+        categories = results.2
+        authors = results.3
+        books = results.4
+        customBookIdText = "\(results.0 + 1)"
     }
 
     private var helpButton: some View {
@@ -715,6 +728,7 @@ struct OfflineImportFormView: View {
             .buttonStyle(.borderedProminent)
             .disabled(!isValid || isImporting)
             #if !os(macOS)
+            .tint(.green)
             .buttonBorderShape(.capsule)
             .frame(maxWidth: .infinity)
             #else
@@ -915,6 +929,9 @@ struct SearchSelectionView: View {
         }
         #if os(macOS)
         .frame(width: 400, height: 500)
+        #else
+        .scrollContentBackground(.hidden)
+        .background(Color.appBackground)
         #endif
     }
 }

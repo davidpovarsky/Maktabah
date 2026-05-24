@@ -59,6 +59,8 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
             } else {
                 cell.accessories = [disclosure]
             }
+
+            cell.applyThemeConfigurationUpdateHandler()
         }
     }
 
@@ -101,6 +103,8 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
             } else {
                 cell.accessories = []
             }
+
+            cell.applyThemeConfigurationUpdateHandler()
         }
     }
 }
@@ -199,6 +203,7 @@ struct iOSLibraryView: View {
                     )
                 }
             )
+            .themeTint()
             .ignoresSafeArea(edges: [.vertical])
             .onChange(of: navigationManager.searchText) { _, newValue in
                 searchSubject.send(newValue)
@@ -208,15 +213,9 @@ struct iOSLibraryView: View {
             }
 
             if viewModel.isLoading {
-                VStack(spacing: 12) {
-                    ProgressView()
-                        .controlSize(.large)
-                    Text("Loading Library...")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(.systemBackground).opacity(0.6))
+                ProgressView("Loading Library...")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .themeBackground()
             }
 
             if !navigationManager.activeIntegrationStates.isEmpty {

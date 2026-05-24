@@ -12,8 +12,11 @@ struct AuthorModeView: View {
         Group {
             if viewModel.isLoading {
                 ProgressView("Loading Narrators...")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .themeBackground()
             } else {
                 iOSRowiSidebarView(viewModel: viewModel, searchQuery: debouncedQuery)
+                    .themeTint()
                     .ignoresSafeArea(edges: [.vertical])
                     // Trigger navigation when selectedRowi changes
                     .onChange(of: viewModel.selectedRowi) { _, newRowi in
@@ -57,7 +60,7 @@ struct iOSRowiReaderView: View {
             Divider()
 
             // Segmented Control Toolbar
-            HStack {
+            ThemeHStack {
                 Picker("Mode", selection: $viewModel.displayMode) {
                     ForEach(iOSRowiDisplayMode.allCases) { mode in
                         Text(mode.title).tag(mode)
@@ -66,7 +69,6 @@ struct iOSRowiReaderView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
             }
-            .background(Color(UIColor.systemBackground))
         }
         .navigationTitle(viewModel.selectedRowi?.isoName ?? "الراوي")
         .navigationBarTitleDisplayMode(.inline)

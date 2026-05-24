@@ -6,9 +6,11 @@ struct SearchResultsListView: View {
     let onSelect: (SearchResultItem) -> Void
 
     var body: some View {
-        List(results, id: \.bookId) { item in
-            Button(action: { onSelect(item) }) {
-                SearchResultRow(item: item, showsBookTitle: showsBookTitle)
+        ThemeList(isGrouped: false) {
+            ForEach(results, id: \.bookId) { item in
+                Button(action: { onSelect(item) }) {
+                    SearchResultRow(item: item, showsBookTitle: showsBookTitle)
+                }
             }
         }
         .listStyle(.plain)

@@ -19,6 +19,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var isVacuuming: Bool = false
 
     @AppStorage("hideMissingBookAnnotations") var hideMissingBookAnnotations: Bool = false
+    @AppStorage("useDefaultTheme") var useDefaultTheme: Bool = false
 
     enum PendingCollisionAction {
         case moveFolder(url: URL)
@@ -365,6 +366,27 @@ struct SettingsView: View {
             } header: {
                 Text("Annotations & Search Results")
             }
+            #if os(iOS)
+            .listRowBackground(Color.appCellBackground)
+            #endif
+
+            // MARK: Appearance (iOS Only)
+            #if os(iOS)
+            Section {
+                Toggle(isOn: $viewModel.useDefaultTheme) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Use System Theme")
+                        Text("Replace the default sepia theme with standard iOS system appereance.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .controlSize(.regular)
+            } header: {
+                Text("Appearance")
+            }
+            .listRowBackground(Color.appCellBackground)
+            #endif
 
             // MARK: Optimization (iOS Only)
             #if os(iOS)
@@ -378,6 +400,7 @@ struct SettingsView: View {
                             if viewModel.isVacuuming {
                                 Spacer()
                                 ProgressView()
+                                    .controlSize(.regular)
                             }
                         }
                     }
@@ -390,6 +413,7 @@ struct SettingsView: View {
                 } header: {
                     Text(.optimization)
                 }
+                .listRowBackground(Color.appCellBackground)
             }
             #endif
 
@@ -440,6 +464,9 @@ struct SettingsView: View {
         .controlSize(.large)
         #if os(macOS)
         .frame(minWidth: 520, minHeight: 480)
+        #else
+        .scrollContentBackground(.hidden)
+        .background(Color.appBackground)
         #endif
         .alert(.annotationMoveFolderFileExistsTitle, isPresented: $viewModel.showCollisionAlert) {
             Button(.keepExistingDeleteOld) {

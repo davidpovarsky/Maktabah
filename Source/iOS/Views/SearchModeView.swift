@@ -19,9 +19,10 @@ struct SearchModeView: View {
             } else {
                 searchResultsView(viewModel: viewModel)
             }
-
-            searchProgressView(viewModel: viewModel)
         }
+        .safeAreaInset(edge: .bottom, content: {
+            searchProgressView(viewModel: viewModel)
+        })
         .toolbar {
             toolbarContent(viewModel: viewModel)
         }
@@ -52,6 +53,7 @@ struct SearchModeView: View {
                     isSearchFieldFocused = false
                 }
             )
+            .themeTint()
             .ignoresSafeArea(edges: .vertical)
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 bottomInputBar(viewModel: viewModel)
@@ -158,9 +160,9 @@ struct SearchModeView: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 8)
-                .background(Color(.secondarySystemBackground))
+                .background(Color.appSecondaryBackground)
 
-                List {
+                ThemeList {
                     ForEach(viewModel.searchHistory, id: \.self) { historyQuery in
                         Button(action: {
                             viewModel.query = historyQuery
@@ -191,7 +193,7 @@ struct SearchModeView: View {
                 .listStyle(PlainListStyle())
             }
             .frame(maxHeight: 250)
-            .background(Color(.systemBackground))
+            .background(Color.appBackground)
             .cornerRadius(12)
             .shadow(radius: 10)
             .padding(.horizontal)
@@ -272,8 +274,8 @@ struct SearchModeView: View {
 
 struct SearchHelpView: View {
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
+        ThemeScrollView {
+            ThemeVStack(alignment: .leading, spacing: 12) {
                 Text(NSLocalizedString("searchOptionsHelp", comment: ""))
                     .font(.headline)
                     .padding(.bottom, 4)

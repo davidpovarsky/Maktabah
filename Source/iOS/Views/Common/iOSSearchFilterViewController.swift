@@ -70,6 +70,8 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
                 )),
                 .outlineDisclosure(options: .init(style: .header)),
             ]
+
+            cell.applyThemeConfigurationUpdateHandler()
         }
     }
 
@@ -85,6 +87,8 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
             content.imageProperties.tintColor = isSelected ? .tintColor : .secondaryLabel
 
             cell.contentConfiguration = content
+
+            cell.applyThemeConfigurationUpdateHandler()
         }
     }
 

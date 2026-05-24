@@ -16,7 +16,7 @@ struct iOSBootstrapView: View {
                 iOSMainView()
             } else {
                 ZStack {
-                    Color(.systemBackground)
+                    Color.appBackground
                         .ignoresSafeArea()
 
                     if bootstrapManager.isChecking {

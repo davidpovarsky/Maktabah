@@ -329,7 +329,6 @@
 		F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392EB2EFCC15700460756 /* Localizable.xcstrings */; };
 		F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777A2FA463B1005732C6 /* iOSMainView.swift */; };
 		F30577852FA463B1005732C6 /* SearchModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777B2FA463B1005732C6 /* SearchModeView.swift */; };
-		F30577862FA463B1005732C6 /* ViewerModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777C2FA463B1005732C6 /* ViewerModeView.swift */; };
 		F30577872FA463B1005732C6 /* iOSAnnotationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577702FA463B1005732C6 /* iOSAnnotationViewModel.swift */; };
 		F30577882FA463B1005732C6 /* AuthorModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577782FA463B1005732C6 /* AuthorModeView.swift */; };
 		F30577892FA463B1005732C6 /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777F2FA463B1005732C6 /* BookListViewController.swift */; };
@@ -359,6 +358,7 @@
 		F321672E2FBB2C0D00601DB3 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321672C2FBB2C0D00601DB3 /* SQLiteDatabase.swift */; };
 		F321672F2FBB2C0D00601DB3 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321672C2FBB2C0D00601DB3 /* SQLiteDatabase.swift */; };
 		F323BCA22F2EE70200EFD4F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */; };
+		F332143B2FC2750E006EC214 /* ThemeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33214392FC2750E006EC214 /* ThemeComponents.swift */; };
 		F349073F2F3064A10036CDAF /* IconMaktabah.icon in Resources */ = {isa = PBXBuildFile; fileRef = F349073E2F3064A10036CDAF /* IconMaktabah.icon */; };
 		F363824E2FA6C6150006636C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB98B2F69E860007D0945 /* SettingsView.swift */; };
 		F36382512FA6FA1E0006636C /* BootstrapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382502FA6FA1E0006636C /* BootstrapManager.swift */; };
@@ -553,7 +553,6 @@
 		F30577792FA463B1005732C6 /* iOSLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSLibraryView.swift; sourceTree = "<group>"; };
 		F305777A2FA463B1005732C6 /* iOSMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMainView.swift; sourceTree = "<group>"; };
 		F305777B2FA463B1005732C6 /* SearchModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModeView.swift; sourceTree = "<group>"; };
-		F305777C2FA463B1005732C6 /* ViewerModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerModeView.swift; sourceTree = "<group>"; };
 		F305777D2FA463B1005732C6 /* ViewOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOptionsView.swift; sourceTree = "<group>"; };
 		F305777F2FA463B1005732C6 /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		F30577802FA463B1005732C6 /* BookListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListWrapper.swift; sourceTree = "<group>"; };
@@ -569,6 +568,7 @@
 		F323BCA12F2EE70200EFD4F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA32F2EE71800EFD4F4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA42F2EE71A00EFD4F4 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F33214392FC2750E006EC214 /* ThemeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeComponents.swift; sourceTree = "<group>"; };
 		F349073E2F3064A10036CDAF /* IconMaktabah.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = IconMaktabah.icon; sourceTree = "<group>"; };
 		F36382502FA6FA1E0006636C /* BootstrapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapManager.swift; sourceTree = "<group>"; };
 		F36382522FA6FABF0006636C /* BootstrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapView.swift; sourceTree = "<group>"; };
@@ -1065,7 +1065,6 @@
 				F30577982FA4BE8D005732C6 /* LaunchScreen.storyboard */,
 				F305777B2FA463B1005732C6 /* SearchModeView.swift */,
 				F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */,
-				F305777C2FA463B1005732C6 /* ViewerModeView.swift */,
 				F305777D2FA463B1005732C6 /* ViewOptionsView.swift */,
 			);
 			path = Views;
@@ -1086,6 +1085,7 @@
 			children = (
 				88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */,
 				F30577742FA463B1005732C6 /* Managers */,
+				F332143A2FC2750E006EC214 /* Theme */,
 				F305777E2FA463B1005732C6 /* Views */,
 				F30577822FA463B1005732C6 /* Wrappers */,
 			);
@@ -1109,6 +1109,14 @@
 				F31111942FC00F060024B638 /* Bookmark */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		F332143A2FC2750E006EC214 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				F33214392FC2750E006EC214 /* ThemeComponents.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		F363824F2FA6F9F10006636C /* Bootstrap */ = {
@@ -1578,7 +1586,6 @@
 				F30576F22FA46222005732C6 /* ArchiveErrors.swift in Sources */,
 				F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */,
 				F30577852FA463B1005732C6 /* SearchModeView.swift in Sources */,
-				F30577862FA463B1005732C6 /* ViewerModeView.swift in Sources */,
 				F36382662FA761070006636C /* iOSSearchFilterViewController.swift in Sources */,
 				F30577872FA463B1005732C6 /* iOSAnnotationViewModel.swift in Sources */,
 				F30577882FA463B1005732C6 /* AuthorModeView.swift in Sources */,
@@ -1600,6 +1607,7 @@
 				F30576F72FA46222005732C6 /* ReusableFunc.swift in Sources */,
 				F3ABDF772FBF429700A8965E /* WelcomeScreenView.swift in Sources */,
 				F30576F82FA46222005732C6 /* BookUpdateManager.swift in Sources */,
+				F332143B2FC2750E006EC214 /* ThemeComponents.swift in Sources */,
 				F30576F92FA46222005732C6 /* AnnotationDelegate.swift in Sources */,
 				F363825B2FA702A00006636C /* iPhoneLayout.swift in Sources */,
 				F30576FB2FA46222005732C6 /* AnnotationCoordinator.swift in Sources */,

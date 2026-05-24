@@ -71,15 +71,16 @@ struct iOSReaderTabView: View {
                 }
             }
         } else {
-            VStack(spacing: 16) {
-                Image(systemName: "book.closed")
-                    .font(.system(size: 64))
-                    .foregroundColor(.secondary)
-                Text("Select a book to read")
-                    .font(.title3)
-                    .foregroundColor(.secondary)
+            ThemeView {
+                VStack(spacing: 16) {
+                    Image(systemName: "book.closed")
+                        .font(.system(size: 64))
+                        .foregroundColor(.secondary)
+                    Text("Select a book to read")
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }
@@ -309,6 +310,7 @@ struct iOSReaderNavigationPopoverView: View {
         .padding()
         .frame(width: 300)
         .presentationCompactAdaptation(.popover)
+        .presentationBackground(Color.appBackground)
         .preferredColorScheme(textViewState.isDarkMode ? .dark : .light)
         .onAppear {
             localPart = Double(max(1, viewModel.currentPart ?? 1))

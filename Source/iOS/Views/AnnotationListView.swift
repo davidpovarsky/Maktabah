@@ -10,23 +10,24 @@ struct AnnotationListView: View {
 
     var body: some View {
         @Bindable var viewModel = navigationManager.annotationViewModel
-        List(viewModel.rootNodes, children: \.children) { node in
-            if node.kind == .annotation {
-                Button(action: {
-                    handleSelection(node)
-                }) {
+        ThemeList(isGrouped: true) {
+            OutlineGroup(viewModel.rootNodes, children: \.children) { node in
+                if node.kind == .annotation {
+                    Button(action: {
+                        handleSelection(node)
+                    }) {
+                        AnnotationNodeRow(node: node, viewModel: viewModel)
+                    }
+                    .buttonStyle(.plain)
+                } else {
                     AnnotationNodeRow(node: node, viewModel: viewModel)
                 }
-                .buttonStyle(.plain)
-            } else {
-                AnnotationNodeRow(node: node, viewModel: viewModel)
             }
         }
         .onAppear {
             viewModel.searchText = navigationManager.searchText
             viewModel.loadAnnotations()
         }
-        .listStyle(.insetGrouped)
         .onChange(of: navigationManager.searchText) { _, newValue in
             searchSubject.send(newValue)
         }

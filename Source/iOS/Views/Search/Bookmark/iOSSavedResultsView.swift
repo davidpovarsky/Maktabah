@@ -37,6 +37,7 @@ struct iOSSavedResultsView: View {
                 if isLoading {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .themeBackground()
                 } else if viewModel.folderRoots.isEmpty,
                           (viewModel.folderResults[nil] ?? []).isEmpty {
                     ContentUnavailableView(
@@ -132,11 +133,11 @@ struct iOSSavedResultsView: View {
             isLoading = false
         }
     }
-    
+
     // MARK: - Global Flattened Search
-    
+
     private var flattenedSearchList: some View {
-        List {
+        ThemeList {
             let matchingFolders = allFolders.filter { $0.name.localizedStandardContains(searchText) }
             if !matchingFolders.isEmpty {
                 Section("Folders") {
@@ -157,12 +158,12 @@ struct iOSSavedResultsView: View {
                     }
                 }
             }
-            
+
             let matchingResults = allResults.filter {
                 $0.name.localizedStandardContains(searchText) ||
                 ($0.items.first?.query ?? "").localizedStandardContains(searchText)
             }
-            
+
             if !matchingResults.isEmpty {
                 Section("Results") {
                     ForEach(matchingResults) { result in
@@ -177,14 +178,13 @@ struct iOSSavedResultsView: View {
                     }
                 }
             }
-            
+
             if matchingFolders.isEmpty && matchingResults.isEmpty {
                 ContentUnavailableView.search(text: searchText)
             }
         }
-        .listStyle(.plain)
     }
-    
+
     private var allFolders: [FolderNode] {
         var list = [FolderNode]()
         func walk(_ node: FolderNode) {
@@ -194,7 +194,7 @@ struct iOSSavedResultsView: View {
         for root in viewModel.folderRoots { walk(root) }
         return list
     }
-    
+
     private var allResults: [ResultNode] {
         viewModel.folderResults.values.flatMap { $0 }
     }
@@ -308,13 +308,13 @@ struct iOSFolderContentList: View {
             return viewModel.folderRoots
         }
     }
-    
+
     private var results: [ResultNode] {
         viewModel.folderResults[folder?.id] ?? []
     }
 
     var body: some View {
-        List {
+        ThemeList {
             ForEach(children) { child in
                 NavigationLink(value: child) {
                     HStack {
@@ -330,7 +330,7 @@ struct iOSFolderContentList: View {
                     Button { onRenameFolder(child) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
                 }
             }
-            
+
             ForEach(results) { result in
                 ResultRow(result: result, action: { onSelectResult(result) })
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {

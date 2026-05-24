@@ -15,8 +15,8 @@ struct iOSBookInfoView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+            ThemeScrollView {
+                ThemeVStack(alignment: .leading, spacing: 16) {
                     Text(book.book)
                         .font(.title2)
                         .fontWeight(.bold)

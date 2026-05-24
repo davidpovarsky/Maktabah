@@ -17,14 +17,14 @@ struct iOSResultWriterView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section(header: Text("Save Search Results")) {
+            ThemeForm {
+                ThemeSection("Save Search Results") {
                     TextField("Name", text: $name)
                     Text("Query: \(query)")
                         .foregroundColor(.secondary)
                 }
 
-                Section(header: Text("Select Folder")) {
+                ThemeSection("Select Folder") {
                     iOSFolderSelectionGroup(selectedFolderId: $selectedFolderId)
                 }
             }

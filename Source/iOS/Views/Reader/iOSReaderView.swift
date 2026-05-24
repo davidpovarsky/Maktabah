@@ -243,7 +243,7 @@ struct iOSTOCView: View {
     var body: some View {
         NavigationView {
             ScrollViewReader { proxy in
-                List {
+                ThemeList(isGrouped: true) {
                     ForEach(identifiableNodes) { item in
                         TOCNodeRow(item: item, selectedId: selectedId, onSelect: onSelect, expandedPaths: $expandedPaths)
                     }
@@ -325,9 +325,9 @@ struct iOSBookSearchView: View {
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            ThemeVStack(spacing: 0) {
                 // Search Bar
-                HStack {
+                ThemeHStack {
                     TextField("Search in book...", text: $viewModel.query)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onSubmit {
@@ -404,7 +404,7 @@ struct iOSBookAnnotationsView: View {
 
     var body: some View {
         NavigationView {
-            List(bookAnnotations, id: \.id) { ann in
+            ThemeList(bookAnnotations, id: \.id, isGrouped: false) { ann in
                 Button(action: {
                     onSelect(ann)
                 }) {
@@ -446,7 +446,6 @@ struct iOSBookAnnotationsView: View {
                     .padding(.vertical, 4)
                 }
             }
-            .listStyle(.plain)
             .navigationTitle("Annotations")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(

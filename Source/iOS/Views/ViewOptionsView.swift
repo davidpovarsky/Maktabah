@@ -53,8 +53,8 @@ struct ViewOptionsView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Typography")) {
+            ThemeForm {
+                ThemeSection("Typography") {
                     Picker("Font", selection: fontNameBinding) {
                         ForEach(fontOptions, id: \.self) { font in
                             Text(font).tag(font)
@@ -77,12 +77,12 @@ struct ViewOptionsView: View {
                     }
                 }
 
-                Section(header: Text("Display")) {
+                ThemeSection("Display") {
                     Toggle("Show Harakat", isOn: showHarakatBinding)
                     Toggle("Clickable Annotations", isOn: clickableAnnotationBinding)
                 }
 
-                Section(header: Text("Background")) {
+                ThemeSection("Background") {
                     HStack(spacing: 20) {
                         ForEach(0 ..< backgroundColors.count, id: \.self) { index in
                             let isSelected = state.backgroundColorIndex == index

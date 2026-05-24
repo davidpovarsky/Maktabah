@@ -48,7 +48,7 @@ struct iPadLayout: View {
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             NavigationStack(path: $path) {
-                List {
+                ThemeList(isGrouped: true) {
                     Section {
                         ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
                             NavigationLink(value: tab) {

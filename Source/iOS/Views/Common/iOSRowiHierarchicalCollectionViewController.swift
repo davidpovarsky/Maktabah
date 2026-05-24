@@ -68,6 +68,7 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
             appearance: .insetGrouped
         )
         config.showsSeparators = true
+        config.backgroundColor = .appBackground
         return config
     }
 
@@ -75,6 +76,7 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
         let config = makeListConfiguration()
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .appBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.delegate = self
@@ -101,6 +103,8 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
             content.imageProperties.tintColor = .tintColor
             cell.contentConfiguration = content
             cell.accessories = [.outlineDisclosure(options: .init(style: .header))]
+
+            cell.applyThemeConfigurationUpdateHandler()
         }
 
         let rowiCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, Rowi> { cell, _, rowi in
@@ -111,6 +115,8 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
             content.image = UIImage(systemName: "person.text.rectangle.fill")
             cell.contentConfiguration = content
             cell.accessories = []
+
+            cell.applyThemeConfigurationUpdateHandler()
         }
 
         let loadMoreCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, TabaqaGroup> { cell, _, group in
@@ -120,6 +126,8 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
             content.textProperties.alignment = .center
             cell.contentConfiguration = content
             cell.accessories = []
+
+            cell.applyThemeConfigurationUpdateHandler()
         }
 
         dataSource = UICollectionViewDiffableDataSource<Int, RowiItem>(

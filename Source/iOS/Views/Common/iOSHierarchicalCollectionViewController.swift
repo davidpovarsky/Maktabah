@@ -44,6 +44,25 @@ extension BooksData: Hashable {
     }
 }
 
+// MARK: - UICollectionViewListCell Helper
+
+extension UICollectionViewListCell {
+    /// Menerapkan warna background tema secara dinamis, dan mereset saat sel difokuskan (isFocused).
+    func applyThemeConfigurationUpdateHandler() {
+        if SettingsViewModel.shared.useDefaultTheme { return }
+        configurationUpdateHandler = { cell, state in
+            if state.isFocused {
+                cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
+                return
+            }
+
+            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            backgroundConfig.backgroundColor = .appCellBackground
+            cell.backgroundConfiguration = backgroundConfig
+        }
+    }
+}
+
 // MARK: - Base Controller
 
 /// Base class untuk UICollectionView dengan layout hierarkis (outline).
@@ -76,6 +95,7 @@ class iOSHierarchicalCollectionViewController: UIViewController {
             appearance: .insetGrouped
         )
         config.showsSeparators = true
+        config.backgroundColor = .appBackground
         return config
     }
 
@@ -95,6 +115,7 @@ class iOSHierarchicalCollectionViewController: UIViewController {
         let config = makeListConfiguration()
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = SettingsViewModel.shared.useDefaultTheme ? .systemGroupedBackground : .appBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .automatic
         view.addSubview(collectionView)

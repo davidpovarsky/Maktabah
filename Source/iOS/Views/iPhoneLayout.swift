@@ -94,6 +94,7 @@ struct iPhoneLayout: View {
             .tabItem { Label(iOSTab.history.title, systemImage: iOSTab.history.icon) }
             .tag(iOSTab.history)
         }
+        .themeTint()
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: iOSHistoryViewModel.shared)
         }

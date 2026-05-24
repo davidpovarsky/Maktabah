@@ -450,6 +450,28 @@
         }
       }
     },
+    "Appearance" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المظهر"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tampilan"
+          }
+        }
+      }
+    },
     "Application Update" : {
       "localizations" : {
         "ar" : {
@@ -4968,6 +4990,28 @@
         }
       }
     },
+    "Replace the default sepia theme with standard iOS system appereance." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استبدل مظهر السيبيا الافتراضي بمظهر نظام iOS القياسي."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace the default sepia theme with standard iOS system appearance."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti tema sepia bawaan dengan tampilan sistem iOS standar."
+          }
+        }
+      }
+    },
     "ResetCurrentView" : {
       "localizations" : {
         "ar" : {
@@ -6280,6 +6324,28 @@
         }
       }
     },
+    "Use System Theme" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استخدم مظهر النظام"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use System Theme"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunakan Tema Sistem"
+          }
+        }
+      }
+    },
     "Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder." : {
       "localizations" : {
         "ar" : {
@@ -6349,6 +6415,7 @@
       }
     },
     "Viewer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -6371,6 +6438,7 @@
       }
     },
     "Viewer Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

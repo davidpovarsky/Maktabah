@@ -75,6 +75,9 @@ struct iOSMainView: View {
         .sheet(isPresented: $showSettings) {
             NavigationStack {
                 SettingsView()
+                    .listRowBackground(Color.appCellBackground)
+                    .background(Color.appBackground)
+                    .tint(.header)
                     .navigationTitle("Settings".localized)
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {

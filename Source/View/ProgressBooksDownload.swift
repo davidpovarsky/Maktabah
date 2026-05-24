@@ -279,6 +279,7 @@ struct iOSBookDownloadProgressView: View {
                         }
                         .buttonBorderShapeCircle()
                         .buttonStyle(.borderedProminent)
+                        .tint(.green)
                     }
                 } else {
                     Text(state.detail)

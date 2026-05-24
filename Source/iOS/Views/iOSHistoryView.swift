@@ -16,7 +16,7 @@ struct iOSHistoryView: View {
             searchText.isEmpty || book.book.normalizeArabic(true).localizedStandardContains(normalizedSearchText)
         }
 
-        List {
+        ThemeList(isGrouped: true) {
             if !filteredFavorites.isEmpty {
                 Section(header: Text("Favorites")) {
                     ForEach(filteredFavorites, id: \.id) { book in
@@ -47,7 +47,6 @@ struct iOSHistoryView: View {
                 }
             }
         }
-        .listStyle(.insetGrouped)
         .withActiveIntegrationStates()
         .navigationTitle("History & Favorites")
         .onAppear {

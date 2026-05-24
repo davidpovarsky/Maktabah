@@ -23,15 +23,15 @@ struct iOSAnnotationEditorSheet: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section(header: Text("Note")) {
+            ThemeForm {
+                ThemeSection("Note") {
                     TextEditor(text: $noteText)
                         .frame(minHeight: 100)
                         .environment(\.layoutDirection, .rightToLeft)
                         .multilineTextAlignment(.trailing)
                 }
 
-                Section(header: Text("Style")) {
+                ThemeSection("Style") {
                     Toggle("Underline", isOn: $isUnderline)
 
                     if !isUnderline {
@@ -56,11 +56,11 @@ struct iOSAnnotationEditorSheet: View {
                     }
                 }
 
-                Section(header: Text("Tags (comma separated)")) {
+                ThemeSection("Tags (comma separated)") {
                     TextField("tag1, tag2...", text: $tagsText)
                 }
 
-                Section {
+                ThemeSection {
                     Button(role: .destructive, action: {
                         if let id = annotation.id {
                             onDelete(id)

@@ -15,14 +15,13 @@ struct iOSMoveItemView: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            ThemeList(isGrouped: true) {
                 iOSFolderSelectionGroup(
                     selectedFolderId: $selectedFolderId,
                     disabledFolderIds: disabledFolderIds,
                     isRootDisabled: isRootDisabled
                 )
             }
-            .listStyle(.plain)
             .navigationTitle("Move To")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
