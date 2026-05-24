@@ -54,6 +54,14 @@ struct OfflineImportFormView: View {
 
     var body: some View {
         Form {
+            #if !os(macOS)
+            Section {
+                headerContent
+                    .padding(.vertical, 4)
+            }
+            .listRowBackground(Color.appCellBackground)
+            #endif
+
             if isLoadingData {
                 loadingView
             } else {
@@ -63,14 +71,25 @@ struct OfflineImportFormView: View {
                     authorInformationSection
                 }
             }
+
+            #if !os(macOS)
+            Section {
+                actionButtons
+                    .padding(.bottom)
+            }
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets())
+            #endif
         }
         .formStyle(.grouped)
+        #if os(macOS)
         .safeAreaInset(edge: .top, spacing: 0) {
             topHeaderView
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomActionView
         }
+        #endif
         .overlay {
             #if !os(macOS)
             if isImporting {
@@ -259,7 +278,7 @@ struct OfflineImportFormView: View {
     }
 
     private var newBookIdField: some View {
-        LabeledContent("New Book ID") {
+        AdaptiveLabeledContent("New Book ID") {
             HStack {
                 if isBookIdTaken {
                     if let id = Int(customBookIdText) {
@@ -282,7 +301,7 @@ struct OfflineImportFormView: View {
     }
 
     private var selectBookField: some View {
-        LabeledContent("Select Book") {
+        AdaptiveLabeledContent("Select Book") {
             Button(action: { showBookPicker = true }) {
                 HStack {
                     if let bookId = selectedBookId,
@@ -309,7 +328,7 @@ struct OfflineImportFormView: View {
     }
 
     private var changeBookIdField: some View {
-        LabeledContent("New Book ID") {
+        AdaptiveLabeledContent("New Book ID") {
             HStack {
                 if isBookIdTaken {
                     statusBadge(
@@ -392,11 +411,11 @@ struct OfflineImportFormView: View {
 
     private var bookMetadataFields: some View {
         Group {
-            LabeledContent("Book Name (bk)") {
+            AdaptiveLabeledContent("Book Name (bk)") {
                 TextField("", text: $bookName, prompt: Text("e.g., Sahih Bukhari"))
             }
 
-            LabeledContent("Category (cat)") {
+            AdaptiveLabeledContent("Category (cat)") {
                 Picker("", selection: $categoryId) {
                     Text("Select Category...").tag(0)
                     ForEach(categories, id: \.id) { cat in
@@ -407,26 +426,26 @@ struct OfflineImportFormView: View {
                 .labelsHidden()
             }
 
-            LabeledContent("Archive ID") {
+            AdaptiveLabeledContent("Archive ID") {
                 Stepper("\(archiveId)", value: $archiveId, in: 1 ... 20)
                     .disabled(importMode != 0)
             }
 
             Toggle("Multi-Language", isOn: $isMultiLanguage)
 
-            LabeledContent("Edition") {
+            AdaptiveLabeledContent("Edition") {
                 TextField("", text: $betaka, prompt: Text("Optional"))
             }
 
-            LabeledContent("Information (inf)") {
+            AdaptiveLabeledContent("Information (inf)") {
                 TextField("", text: $inf, prompt: Text("Optional"))
             }
 
-            LabeledContent("Tafseer Name") {
+            AdaptiveLabeledContent("Tafseer Name") {
                 TextField("", text: $tafseerNam, prompt: Text("Optional"))
             }
 
-            LabeledContent("Version") {
+            AdaptiveLabeledContent("Version") {
                 TextField("", text: $bVerText, prompt: Text("1"))
             }
         }
@@ -453,7 +472,7 @@ struct OfflineImportFormView: View {
     }
 
     private var selectAuthorField: some View {
-        LabeledContent("Select Author") {
+        AdaptiveLabeledContent("Select Author") {
             Button(action: { showAuthorPicker = true }) {
                 HStack {
                     if let authId = selectedAuthorId,
@@ -481,67 +500,72 @@ struct OfflineImportFormView: View {
 
     private var newAuthorFields: some View {
         Group {
-            LabeledContent("New Author ID") {
+            AdaptiveLabeledContent("New Author ID") {
                 Text("\(maxAuthid + 1)")
                     .foregroundColor(.secondary)
             }
 
-            LabeledContent("Author Name") {
+            AdaptiveLabeledContent("Author Name") {
                 TextField("", text: $authorName, prompt: Text("e.g., Al-Bukhari"))
             }
 
-            LabeledContent("Author Info") {
+            AdaptiveLabeledContent("Author Info") {
                 TextField("", text: $authorInf, prompt: Text("Optional"))
             }
 
-            LabeledContent("Full Name (Lng)") {
+            AdaptiveLabeledContent("Full Name (Lng)") {
                 TextField("", text: $authorLng, prompt: Text("Optional"))
             }
 
-            LabeledContent("Death Year") {
+            AdaptiveLabeledContent("Death Year") {
                 TextField("", text: $authorHigriD, prompt: Text("e.g., 256 AH"))
             }
 
-            LabeledContent("Version") {
+            AdaptiveLabeledContent("Version") {
                 TextField("", text: $oVerText, prompt: Text("1"))
             }
         }
     }
 
-    private var topHeaderView: some View {
-        VStack(spacing: 0) {
-            HStack {
-                if importMode == 2 {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Change Book ID")
-                            .font(.title2)
-                            .bold()
-                        Text("Rename book ID in-place and migrate local annotations.")
+    @ViewBuilder
+    private var headerContent: some View {
+        HStack {
+            if importMode == 2 {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Change Book ID")
+                        .font(.title2)
+                        .bold()
+                    Text("Rename book ID in-place and migrate local annotations.")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            } else {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Offline Book Import")
+                        .font(.title2)
+                        .bold()
+                    HStack {
+                        Text("File: \(sqliteURL?.lastPathComponent ?? "None selected")")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                    }
-                } else {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Offline Book Import")
-                            .font(.title2)
-                            .bold()
-                        HStack {
-                            Text("File: \(sqliteURL?.lastPathComponent ?? "None selected")")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Button("Select File") {
-                                showFilePicker = true
-                            }
-                            .font(.caption)
-                            .buttonStyle(.bordered)
-                            .controlSize(.small)
+                        Button("Select File") {
+                            showFilePicker = true
                         }
+                        .font(.caption)
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
                     }
                 }
-                Spacer()
-                helpButton
             }
-            .padding()
+            Spacer()
+            helpButton
+        }
+    }
+
+    private var topHeaderView: some View {
+        VStack(spacing: 0) {
+            headerContent
+                .padding()
             Divider()
         }
         .background(.ultraThinMaterial)
@@ -650,6 +674,7 @@ struct OfflineImportFormView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 #if !os(macOS)
+                .tint(.brown)
                 .buttonBorderShape(.capsule)
                 #else
                 .controlSize(.large)
@@ -875,6 +900,7 @@ struct SearchSelectionView: View {
     }
 
     var body: some View {
+        #if os(macOS)
         VStack(spacing: 0) {
             HStack {
                 Text(title)
@@ -884,7 +910,6 @@ struct SearchSelectionView: View {
                     dismiss()
                 }
                 .buttonStyle(.plain)
-                .foregroundColor(.accentColor)
             }
             .padding()
 
@@ -925,13 +950,69 @@ struct SearchSelectionView: View {
                 }
                 .buttonStyle(.plain)
             }
-            .listStyle(.inset)
         }
-        #if os(macOS)
+        .environment(\.layoutDirection, .rightToLeft)
         .frame(width: 400, height: 500)
         #else
+        NavigationStack {
+            ThemeList(filteredItems) { item in
+                Button(action: { onSelect(item) }) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.title)
+                            .font(.body)
+                            .fontWeight(.medium)
+                        Text(item.subtitle)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+            }
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $searchText, prompt: "Search...")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+        .environment(\.layoutDirection, .rightToLeft)
         .scrollContentBackground(.hidden)
-        .background(Color.appBackground)
+        .themeBackground()
+        #endif
+    }
+}
+
+// MARK: - Adaptive Labeled Content
+
+struct AdaptiveLabeledContent<Content: View>: View {
+    let title: LocalizedStringKey
+    @ViewBuilder let content: Content
+
+    init(_ title: LocalizedStringKey, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+
+    var body: some View {
+        #if os(macOS)
+        LabeledContent(title) {
+            content
+        }
+        #else
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            content
+        }
+        .padding(.vertical, 4)
         #endif
     }
 }
