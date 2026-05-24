@@ -3220,6 +3220,22 @@
         }
       }
     },
+    "Help" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المساعدة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bantuan"
+          }
+        }
+      }
+    },
     "Hide annotations if the corresponding book is not found in the local library." : {
       "localizations" : {
         "ar" : {

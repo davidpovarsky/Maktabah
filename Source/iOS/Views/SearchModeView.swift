@@ -205,7 +205,7 @@ struct SearchModeView: View {
 
     @ToolbarContentBuilder
     private func toolbarContent(viewModel: iOSSearchViewModel) -> some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
+        ToolbarItemGroup(placement: .topBarTrailing) {
             if viewModel.isSearching {
                 Button(action: { viewModel.stopSearch() }) {
                     Image(systemName: "stop")
@@ -216,36 +216,7 @@ struct SearchModeView: View {
                     Image(systemName: "play")
                 }
             }
-        }
 
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(action: { showingSavedResults = true }) {
-                Image(systemName: "bookmark")
-            }
-        }
-
-        ToolbarItem(placement: .topBarTrailing) {
-            if !viewModel.results.isEmpty {
-                Button(action: { showingSaveResults = true }) {
-                    Image(systemName: "pencil.line")
-                }
-            }
-        }
-
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(action: {
-                showingHelp = true
-            }) {
-                Image(systemName: "questionmark.circle")
-            }
-            .popover(isPresented: $showingHelp) {
-                SearchHelpView()
-                    .frame(width: 300, height: 450)
-                    .presentationCompactAdaptation(.popover)
-            }
-        }
-
-        ToolbarItem(placement: .topBarTrailing) {
             if !viewModel.results.isEmpty {
                 Button(action: {
                     viewModel.stopSearch()
@@ -254,6 +225,29 @@ struct SearchModeView: View {
                 }) {
                     Image(systemName: "xmark.circle")
                 }
+            }
+
+            Menu {
+                Button(action: { showingSavedResults = true }) {
+                    Label("Saved Results", systemImage: "bookmark")
+                }
+
+                if !viewModel.results.isEmpty {
+                    Button(action: { showingSaveResults = true }) {
+                        Label("Save Results", systemImage: "pencil.line")
+                    }
+                }
+
+                Button(action: { showingHelp = true }) {
+                    Label("Help", systemImage: "questionmark.circle")
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+            }
+            .popover(isPresented: $showingHelp) {
+                SearchHelpView()
+                    .frame(width: 300, height: 450)
+                    .presentationCompactAdaptation(.popover)
             }
         }
     }
