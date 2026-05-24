@@ -273,218 +273,228 @@ struct SettingsView: View {
     @StateObject private var viewModel = SettingsViewModel.shared
 
     var body: some View {
+        #if os(macOS)
+        macOSForm
+        #else
+        iOSForm
+        #endif
+    }
+}
+
+// MARK: - macOS Form
+#if os(macOS)
+extension SettingsView {
+    private var macOSForm: some View {
         Form {
-            // MARK: Database Mode
-            #if os(macOS)
-            Section {
-                Toggle(isOn: Binding(
-                    get: { viewModel.isBundleMode },
-                    set: { viewModel.setBundleMode($0) }
-                )) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Bundle Mode")
-                        Text("Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }.controlSize(.regular)
-            } header: {
-                Text("Database Mode")
-            }
-
-            // MARK: Library Storage
-            Section {
-                if !viewModel.isBundleMode {
-                    PathRow(label: "Database Files", path: viewModel.databaseFilesPath)
-                    PathRow(label: "Archive Files", path: viewModel.archiveFilesPath)
-                }
-
-                HStack(spacing: 8) {
-                    Button("Choose Library Folder…") {
-                        viewModel.chooseLibraryFolder()
-                    }
-                    Button("Switch to Bundle Mode") {
-                        viewModel.setBundleMode(true)
-                    }
-                    .disabled(viewModel.isBundleMode)
-                }
-
-                if !viewModel.isBundleMode && viewModel.hasBundledData {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Button("Cleanup Downloaded Data (Bundle Mode)") {
-                            viewModel.cleanupBundledData()
-                        }
-                        .foregroundColor(.red)
-
-                        Text("This will delete all downloaded SQLite files, index, and cache from the bundle mode storage.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-            } header: {
-                Text("Library Storage")
-            }
-            #endif
-
-            // MARK: Annotations & Search Results
-
-            Section {
-                Toggle(isOn: $viewModel.hideMissingBookAnnotations) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Hide Missing Book Annotations")
-                        Text("Hide annotations if the corresponding book is not found in the local library.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .controlSize(.regular)
-
-                Toggle(isOn: Binding(
-                    get: { viewModel.useICloud },
-                    set: { viewModel.setICloud($0) }
-                )) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Use CloudKit")
-                        Text("Sync annotations and search results across devices with CloudKit.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .controlSize(.regular)
-                .disabled(viewModel.isProcessingICloud)
-
-                if !viewModel.useICloud {
-                    PathRow(label: "Current Path", path: viewModel.annotationsPath)
-                }
-
-                #if os(macOS)
-                HStack { actionButtons }
-                    .padding(.top, 4)
-                #else
-                actionButtons
-                #endif
-            } header: {
-                Text("Annotations & Search Results")
-            }
-            #if os(iOS)
-            .listRowBackground(Color.appCellBackground)
-            #endif
-
-            // MARK: Appearance (iOS Only)
-            #if os(iOS)
-            Section {
-                Toggle(isOn: $viewModel.useDefaultTheme) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Use System Theme")
-                        Text("Replace the default sepia theme with standard iOS system appereance.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .controlSize(.regular)
-            } header: {
-                Text("Appearance")
-            }
-            .listRowBackground(Color.appCellBackground)
-            #endif
-
-            // MARK: Optimization (iOS Only)
-            #if os(iOS)
-            if viewModel.hasPendingVacuum || viewModel.isVacuuming {
-                Section {
-                    Button(action: {
-                        viewModel.runVacuum()
-                    }) {
-                        HStack {
-                            Text(.optimizeDatabase)
-                            if viewModel.isVacuuming {
-                                Spacer()
-                                ProgressView()
-                                    .controlSize(.regular)
-                            }
-                        }
-                    }
-                    .disabled(viewModel.isVacuuming)
-
-                    Text(.optimizationIsNeededToReclaimDiskSpaceAfterDeletingBooks)
-                        .padding(2)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                } header: {
-                    Text(.optimization)
-                }
-                .listRowBackground(Color.appCellBackground)
-            }
-            #endif
-
-            // MARK: Downloads
-            #if os(macOS)
-            Section {
-                HStack(spacing: 8) {
-                    Button("Download Full Library (Google Drive)") {
-                        viewModel.openFullLibraryDownload()
-                    }
-                    Button("Download Selective Library…") {
-                        viewModel.openSelectiveDownload()
-                    }
-                }
-                Label {
-                    Text("Full Library will open the download link in your browser.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                } icon: {
-                    Image(systemName: "exclamationmark.circle")
-                        .foregroundColor(.accentColor)
-                }
-            } header: {
-                Text("Downloads")
-            }
-            #endif
-
-            // MARK: Updates
+            databaseModeSection
+            libraryStorageSection
+            annotationsSection
+            downloadsSection
             #if DIRECT_DISTRIBUTION
-            Section {
-                Toggle(isOn: Binding(
-                    get: { viewModel.autoCheckAppUpdates },
-                    set: { viewModel.setAutoCheckAppUpdates($0) }
-                )) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Application Update")
-                        Text("Check at Start")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }.controlSize(.regular)
-            } header: {
-                Text("Updates")
-            }
+            updatesSection
             #endif
         }
         .formStyle(.grouped)
         .controlSize(.large)
-        #if os(macOS)
         .frame(minWidth: 520, minHeight: 480)
-        #else
-        .scrollContentBackground(.hidden)
-        .background(Color.appBackground)
-        #endif
         .alert(.annotationMoveFolderFileExistsTitle, isPresented: $viewModel.showCollisionAlert) {
-            Button(.keepExistingDeleteOld) {
-                viewModel.resolveCollision(.keepDestination)
-            }
-            Button(.overwriteExisting, role: .destructive) {
-                viewModel.resolveCollision(.overwriteDestination)
-            }
-            Button("Cancel", role: .cancel) {
-                viewModel.resolveCollision(.ask) // used as cancel
-            }
+            collisionAlertButtons
         } message: {
             Text(.annotationsMoveFolderFileExistsDesc)
         }
     }
 
+    private var databaseModeSection: some View {
+        Section {
+            Toggle(isOn: Binding(
+                get: { viewModel.isBundleMode },
+                set: { viewModel.setBundleMode($0) }
+            )) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Bundle Mode")
+                    Text("Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }.controlSize(.regular)
+        } header: {
+            Text("Database Mode")
+        }
+    }
+
+    private var libraryStorageSection: some View {
+        Section {
+            if !viewModel.isBundleMode {
+                PathRow(label: "Database Files", path: viewModel.databaseFilesPath)
+                PathRow(label: "Archive Files", path: viewModel.archiveFilesPath)
+            }
+
+            HStack(spacing: 8) {
+                Button("Choose Library Folder…") {
+                    viewModel.chooseLibraryFolder()
+                }
+                Button("Switch to Bundle Mode") {
+                    viewModel.setBundleMode(true)
+                }
+                .disabled(viewModel.isBundleMode)
+            }
+
+            if !viewModel.isBundleMode && viewModel.hasBundledData {
+                VStack(alignment: .leading, spacing: 8) {
+                    Button("Cleanup Downloaded Data (Bundle Mode)") {
+                        viewModel.cleanupBundledData()
+                    }
+                    .foregroundColor(.red)
+
+                    Text("This will delete all downloaded SQLite files, index, and cache from the bundle mode storage.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        } header: {
+            Text("Library Storage")
+        }
+    }
+
+    private var downloadsSection: some View {
+        Section {
+            HStack(spacing: 8) {
+                Button("Download Full Library (Google Drive)") {
+                    viewModel.openFullLibraryDownload()
+                }
+                Button("Download Selective Library…") {
+                    viewModel.openSelectiveDownload()
+                }
+            }
+            Label {
+                Text("Full Library will open the download link in your browser.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            } icon: {
+                Image(systemName: "exclamationmark.circle")
+                    .foregroundColor(.accentColor)
+            }
+        } header: {
+            Text("Downloads")
+        }
+    }
+}
+#endif
+
+// MARK: - iOS Form
+#if os(iOS)
+extension SettingsView {
+    private var iOSForm: some View {
+        Form {
+            annotationsSection
+                .listRowBackground(Color.appCellBackground)
+            appearanceSection
+                .listRowBackground(Color.appCellBackground)
+            
+            if viewModel.hasPendingVacuum || viewModel.isVacuuming {
+                optimizationSection
+                    .listRowBackground(Color.appCellBackground)
+            }
+        }
+        .formStyle(.grouped)
+        .controlSize(.large)
+        .scrollContentBackground(.hidden)
+        .background(Color.appBackground)
+        .alert(.annotationMoveFolderFileExistsTitle, isPresented: $viewModel.showCollisionAlert) {
+            collisionAlertButtons
+        } message: {
+            Text(.annotationsMoveFolderFileExistsDesc)
+        }
+    }
+
+    private var appearanceSection: some View {
+        Section {
+            Toggle(isOn: $viewModel.useDefaultTheme) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Use System Theme")
+                    Text("Replace the default sepia theme with standard iOS system appereance.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .controlSize(.regular)
+        } header: {
+            Text("Appearance")
+        }
+    }
+
+    private var optimizationSection: some View {
+        Section {
+            Button(action: {
+                viewModel.runVacuum()
+            }) {
+                HStack {
+                    Text(.optimizeDatabase)
+                    if viewModel.isVacuuming {
+                        Spacer()
+                        ProgressView()
+                            .controlSize(.regular)
+                    }
+                }
+            }
+            .disabled(viewModel.isVacuuming)
+
+            Text(.optimizationIsNeededToReclaimDiskSpaceAfterDeletingBooks)
+                .padding(2)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        } header: {
+            Text(.optimization)
+        }
+    }
+}
+#endif
+
+// MARK: - Shared Sections
+extension SettingsView {
+    private var annotationsSection: some View {
+        Section {
+            Toggle(isOn: $viewModel.hideMissingBookAnnotations) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Hide Missing Book Annotations")
+                    Text("Hide annotations if the corresponding book is not found in the local library.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .controlSize(.regular)
+
+            Toggle(isOn: Binding(
+                get: { viewModel.useICloud },
+                set: { viewModel.setICloud($0) }
+            )) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Use CloudKit")
+                    Text("Sync annotations and search results across devices with CloudKit.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .controlSize(.regular)
+            .disabled(viewModel.isProcessingICloud)
+
+            if !viewModel.useICloud {
+                PathRow(label: "Current Path", path: viewModel.annotationsPath)
+            }
+
+            #if os(macOS)
+            HStack { actionButtons }
+                .padding(.top, 4)
+            #else
+            actionButtons
+            #endif
+        } header: {
+            Text("Annotations & Search Results")
+        }
+    }
+    
     @ViewBuilder
-    var actionButtons: some View {
+    private var actionButtons: some View {
         Button("Choose Annotations Folder…") {
             viewModel.chooseAnnotationsFolder()
         }
@@ -497,6 +507,38 @@ struct SettingsView: View {
         .disabled(!viewModel.useICloud)
     }
 
+    @ViewBuilder
+    private var collisionAlertButtons: some View {
+        Button(.keepExistingDeleteOld) {
+            viewModel.resolveCollision(.keepDestination)
+        }
+        Button(.overwriteExisting, role: .destructive) {
+            viewModel.resolveCollision(.overwriteDestination)
+        }
+        Button("Cancel", role: .cancel) {
+            viewModel.resolveCollision(.ask) // used as cancel
+        }
+    }
+
+    #if DIRECT_DISTRIBUTION
+    private var updatesSection: some View {
+        Section {
+            Toggle(isOn: Binding(
+                get: { viewModel.autoCheckAppUpdates },
+                set: { viewModel.setAutoCheckAppUpdates($0) }
+            )) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Application Update")
+                    Text("Check at Start")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }.controlSize(.regular)
+        } header: {
+            Text("Updates")
+        }
+    }
+    #endif
 }
 
 // MARK: - Helpers
