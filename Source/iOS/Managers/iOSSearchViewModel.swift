@@ -28,6 +28,8 @@ class iOSSearchViewModel {
     private let searchEngine = SearchEngine()
     private let ldm = LibraryDataManager.shared
 
+    private let refreshSubject = PassthroughSubject<Void, Never>()
+    private var cancellables = Set<AnyCancellable>()
     private var observerTokens: [NSObjectProtocol] = []
 
     init() {
@@ -41,12 +43,19 @@ class iOSSearchViewModel {
     }
 
     private func setupObservers() {
+        refreshSubject
+            .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
+            .sink { [weak self] in
+                self?.updateDisplayedCategories()
+            }
+            .store(in: &cancellables)
+
         let token1 = NotificationCenter.default.addObserver(
             forName: .bookIntegrated,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.updateDisplayedCategories()
+            self?.refreshSubject.send(())
         }
         observerTokens.append(token1)
 
@@ -55,7 +64,7 @@ class iOSSearchViewModel {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.updateDisplayedCategories()
+            self?.refreshSubject.send(())
         }
         observerTokens.append(token2)
 

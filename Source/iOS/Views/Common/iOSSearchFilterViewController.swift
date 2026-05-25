@@ -138,8 +138,7 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
         vc.view.addGestureRecognizer(tap)
 
         // Terapkan kategori awal
-        let sig = context.coordinator.categoriesSignature(displayedCategories)
-        context.coordinator.lastSignature = sig
+        context.coordinator.lastTrigger = updateTrigger
         vc.applyCategories(displayedCategories)
 
         return vc
@@ -148,10 +147,7 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: iOSSearchFilterViewController, context: Context) {
         context.coordinator.onTap = onTap
 
-        let structureChanged = context.coordinator.hasChanged(
-            categories: displayedCategories,
-            trigger: updateTrigger
-        )
+        let structureChanged = context.coordinator.hasChanged(trigger: updateTrigger)
 
         if structureChanged {
             uiViewController.selectedBookIds = viewModel.selectedBookIds
@@ -168,7 +164,6 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
     // MARK: - Coordinator
 
     class Coordinator {
-        var lastSignature: [String] = []
         var lastTrigger: Int = -1
         var onTap: () -> Void
 
@@ -178,32 +173,12 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
 
         @objc func handleTap() { onTap() }
 
-        /// Deep signature — selalu deep karena filter/search selalu aktif di sini.
-        func categoriesSignature(_ categories: [CategoryData]) -> [String] {
-            var result: [String] = []
-            func walk(_ cat: CategoryData) {
-                result.append("c\(cat.id)")
-                for child in cat.children {
-                    if let b = child as? BooksData {
-                        result.append("b\(b.id)")
-                    } else if let sub = child as? CategoryData {
-                        walk(sub)
-                    }
-                }
-            }
-            categories.forEach { walk($0) }
-            return result
-        }
-
-        func hasChanged( categories: [CategoryData], trigger: Int) -> Bool {
-            let newSig = categoriesSignature(categories)
-            let changed = newSig != lastSignature || trigger != lastTrigger
-            if changed {
-                lastSignature = newSig
+        func hasChanged(trigger: Int) -> Bool {
+            if trigger != lastTrigger {
                 lastTrigger = trigger
+                return true
             }
-            return changed
+            return false
         }
-
     }
 }

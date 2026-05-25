@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
+import Combine
 
-@MainActor
 @Observable
 class iOSLibraryViewModel {
     var rootCategories: [CategoryData] = []
@@ -45,22 +45,32 @@ class iOSLibraryViewModel {
 
     private var hasLoadedLibrary = false
     private var _cachedDisplayedCategories: [CategoryData] = []
+    
+    var updateTrigger: Int = 0
+    private let refreshSubject = PassthroughSubject<Void, Never>()
+    private var cancellables = Set<AnyCancellable>()
 
     init() {
         setupObservers()
     }
 
     private func setupObservers() {
+        refreshSubject
+            .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
+            .sink { [weak self] in
+                Task { @MainActor in
+                    self?.rootCategories = Array(LibraryDataManager.shared.allRootCategories)
+                    self?.updateDisplayedCategories()
+                }
+            }
+            .store(in: &cancellables)
+
         NotificationCenter.default.addObserver(
             forName: .bookIntegrated,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            Task { @MainActor in
-                // Buat array baru untuk memastikan @Observable mendeteksi perubahan identitas
-                self?.rootCategories = Array(LibraryDataManager.shared.allRootCategories)
-                self?.updateDisplayedCategories()
-            }
+            self?.refreshSubject.send(())
         }
 
         NotificationCenter.default.addObserver(
@@ -68,11 +78,7 @@ class iOSLibraryViewModel {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            Task { @MainActor in
-                // LibraryDataManager sudah diupdate in-place, kita hanya perlu refresh UI
-                self?.rootCategories = Array(LibraryDataManager.shared.allRootCategories)
-                self?.updateDisplayedCategories()
-            }
+            self?.refreshSubject.send(())
         }
 
         NotificationCenter.default.addObserver(
@@ -110,6 +116,7 @@ class iOSLibraryViewModel {
             )
             _cachedDisplayedCategories = filtered
         }
+        updateTrigger += 1
     }
 
     func loadLibrary() async {
@@ -213,13 +220,8 @@ class iOSLibraryViewModel {
             for book in books {
                 try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
             }
-            await refreshLibrary()
-            exitSelectionMode()
 
-            // Pemicu refresh UI Settings hanya sekali setelah seluruh proses hapus selesai
-            await MainActor.run {
-                SettingsViewModel.shared.refreshPaths()
-            }
+            exitSelectionMode()
 
             onFinished()
         }
@@ -234,6 +236,7 @@ class iOSLibraryViewModel {
         }
     }
 
+    @MainActor
     func startBulkDownload(
         progressState: BundleArchiveDownloadProgressState,
         onFinished: @escaping (String?) -> Void
@@ -261,6 +264,7 @@ class iOSLibraryViewModel {
         }
     }
 
+    @MainActor
     private func runBulkDownload(
         books: [BooksData],
         progressState: BundleArchiveDownloadProgressState,
@@ -360,7 +364,6 @@ class iOSLibraryViewModel {
             return false
         }.count
 
-        await refreshLibrary()
         selectedBookIds.subtract(books.map(\.id))
         isBulkDownloading = false
         bulkDownloadTask = nil

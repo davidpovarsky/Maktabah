@@ -437,7 +437,7 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
                 // Saat awal load, init tracker dari UserDefaults
                 context.coordinator.viewModel._showOnlyDownloadedTracker = context.coordinator.viewModel.showOnlyDownloaded
                 let categories = context.coordinator.viewModel.displayedCategories
-                context.coordinator.lastAppliedCategoriesSignature = context.coordinator.categoriesSignature(categories, deep: false)
+                context.coordinator.lastUpdateTrigger = context.coordinator.viewModel.updateTrigger
                 vc.applyCategories(categories)
             }
         }
@@ -454,16 +454,11 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         guard !context.coordinator.viewModel.isLoading else { return }
 
         let categories = context.coordinator.viewModel.displayedCategories
-        let isSearching = !context.coordinator.viewModel.searchText.isEmpty
-        let isFiltering = context.coordinator.viewModel.showOnlyDownloaded
-        let isSelectionMode = context.coordinator.viewModel.isSelectionMode
+        let currentTrigger = context.coordinator.viewModel.updateTrigger
 
-        // Buat signature yang lebih efisien.
-        // Jika sedang seleksi, gunakan deep signature untuk mendeteksi perubahan status integrasi/removal.
-        let signature = context.coordinator.categoriesSignature(categories, deep: isSearching || isFiltering || isSelectionMode)
-
-        if signature != context.coordinator.lastAppliedCategoriesSignature {
-            context.coordinator.lastAppliedCategoriesSignature = signature
+        // Gunakan updateTrigger O(1) untuk mendeteksi perubahan struktur (tambah/hapus/filter)
+        if currentTrigger != context.coordinator.lastUpdateTrigger {
+            context.coordinator.lastUpdateTrigger = currentTrigger
             uiViewController.applyCategories(categories)
         } else {
             // Jika hanya seleksi yang berubah (ID yang sama), reconfigure item yang terlihat saja.
@@ -474,36 +469,11 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
     class Coordinator {
         let navigationManager: iOSNavigationManager
         let viewModel: iOSLibraryViewModel
-        var lastAppliedCategoriesSignature: [String] = []
+        var lastUpdateTrigger: Int = -1
 
         init(navigationManager: iOSNavigationManager, viewModel: iOSLibraryViewModel) {
             self.navigationManager = navigationManager
             self.viewModel = viewModel
-        }
-
-        /// Signature untuk mendeteksi perubahan struktur pohon (bukan seleksi).
-        /// Jika `deep` false, hanya cek root categories (cocok untuk mode normal).
-        /// Jika `deep` true, cek semua (cocok saat filter/search aktif).
-        func categoriesSignature(_ categories: [CategoryData], deep: Bool) -> [String] {
-            if !deep {
-                // Sangat cepat: hanya ID root categories
-                return categories.map { "r-\($0.id)" }
-            }
-
-            var result: [String] = []
-            func appendCategory(_ category: CategoryData) {
-                result.append("c\(category.id)")
-                for child in category.children {
-                    if let book = child as? BooksData {
-                        result.append("b\(book.id)")
-                    } else if let subCategory = child as? CategoryData {
-                        appendCategory(subCategory)
-                    }
-                }
-            }
-
-            categories.forEach { appendCategory($0) }
-            return result
         }
     }
 }
