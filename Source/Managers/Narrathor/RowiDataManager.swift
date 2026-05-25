@@ -177,9 +177,11 @@ class RowiDataManager {
             return
         }
 
+        let normalizedQuery = query.normalizeArabic()
+
         // Filter allRowis berdasarkan query
         let filtered = allRowis.filter { rowi in
-            rowi.isoName.localizedCaseInsensitiveContains(query)
+            rowi.isoName.normalizeArabic().localizedCaseInsensitiveContains(normalizedQuery)
         }
 
         // Group hasil filter berdasarkan tabaqa mentah (atau "Unknown" kalau nil)

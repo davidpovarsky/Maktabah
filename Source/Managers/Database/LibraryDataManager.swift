@@ -538,6 +538,7 @@ class LibraryDataManager {
         baseCategories: [CategoryData]? = nil
     ) -> Bool {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
+        let normalizedSearchText = trimmed.normalizeArabic()
         
         let base = baseCategories ?? lock.withLock { _allRootCategories }
 
@@ -547,7 +548,7 @@ class LibraryDataManager {
         } else {
             // Filter dari base
             displayedCategories = base.compactMap { rootCategory in
-                filterCategory(rootCategory, searchText: trimmed)
+                filterCategory(rootCategory, searchText: normalizedSearchText)
             }
         }
 
@@ -555,14 +556,15 @@ class LibraryDataManager {
     }
 
     func filterCategory(_ category: CategoryData, searchText: String) -> CategoryData? {
-        let categoryMatches = category.name.localizedStandardContains(searchText)
+        let normalizedSearch = searchText.normalizeArabic()
+        let categoryMatches = category.name.normalizeArabic().localizedStandardContains(normalizedSearch)
 
         // Filter children (bisa kategori atau buku)
         let filteredChildren = category.children.compactMap { child -> Any? in
             if let childCategory = child as? CategoryData {
-                return filterCategory(childCategory, searchText: searchText)
+                return filterCategory(childCategory, searchText: normalizedSearch)
             } else if let book = child as? BooksData {
-                if book.book.localizedStandardContains(searchText) {
+                if book.book.normalizeArabic().localizedStandardContains(normalizedSearch) {
                     return book
                 }
             }
