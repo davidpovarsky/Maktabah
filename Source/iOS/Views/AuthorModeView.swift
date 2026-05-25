@@ -47,29 +47,25 @@ struct iOSRowiReaderView: View {
     @ObservedObject var viewModel: iOSAuthorViewModel
 
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                Text(viewModel.rowiContentText)
-                    .font(iOSReaderViewModel.kfgqpcTitle)
-                    .padding()
-            }
-            .multilineTextAlignment(.leading)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .environment(\.layoutDirection, .rightToLeft)
-
-            Divider()
-
-            // Segmented Control Toolbar
-            ThemeHStack {
+        ThemeScrollView {
+            Text(viewModel.rowiContentText)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .multilineTextAlignment(.leading)
+                .environment(\.layoutDirection, .rightToLeft)
+                .padding()
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                // Segmented Control Toolbar
                 Picker("Mode", selection: $viewModel.displayMode) {
                     ForEach(iOSRowiDisplayMode.allCases) { mode in
                         Text(mode.title).tag(mode)
                     }
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
+                .pickerStyle(.segmented)
             }
         }
+        .toolbar(.hidden, for: .tabBar)
         .navigationTitle(viewModel.selectedRowi?.isoName ?? "الراوي")
         .navigationBarTitleDisplayMode(.inline)
     }

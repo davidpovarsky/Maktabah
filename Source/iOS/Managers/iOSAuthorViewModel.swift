@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 enum iOSRowiDisplayMode: Int, CaseIterable, Identifiable {
     case tilmidz = 0
@@ -43,6 +44,15 @@ class iOSAuthorViewModel: ObservableObject {
     @Published var rowiContentText: AttributedString = ""
 
     private let dataManager = RowiDataManager.shared
+    private var cancellables = Set<AnyCancellable>()
+
+    init() {
+        NotificationCenter.default.publisher(for: .didChangeHarakat)
+            .sink { [weak self] _ in
+                self?.updateRowiContent()
+            }
+            .store(in: &cancellables)
+    }
 
     func loadData() async {
         guard tabaqaGroups.isEmpty else { return }
@@ -66,6 +76,21 @@ class iOSAuthorViewModel: ObservableObject {
         dataManager.loadMore(group, completion: completion)
     }
 
+    private func renderText(_ text: String) -> AttributedString {
+        let renderer = ArabicTextRenderer()
+        let state = TextViewState.shared
+        let headerColor = UIColor.header
+
+        let renderResult = renderer.render(
+            text: text,
+            highlightColor: headerColor,
+            showHarakat: state.showHarakat,
+            isMultiLanguage: false
+        )
+        
+        return (try? AttributedString(renderResult.attributedString, including: \.uiKit)) ?? AttributedString(text)
+    }
+
     func displayAuthor(
         _ rotba: String,
         rZahbi: String,
@@ -81,8 +106,8 @@ class iOSAuthorViewModel: ObservableObject {
             var labelAttr = AttributedString(label)
             labelAttr.foregroundColor = .header
 
-            // Buat bagian Value (Default)
-            let valueAttr = AttributedString(value)
+            // Buat bagian Value (Default), diproses dengan ArabicTextRenderer
+            let valueAttr = renderText(value)
 
             // Gabungkan
             container.append(labelAttr)
@@ -112,16 +137,16 @@ class iOSAuthorViewModel: ObservableObject {
 
         switch displayMode {
         case .tilmidz:
-            rowiContentText = AttributedString(rowi.telmez ?? nullText)
+            rowiContentText = renderText(rowi.telmez ?? nullText)
         case .syaikh:
-            rowiContentText = AttributedString(rowi.sheok ?? nullText)
+            rowiContentText = renderText(rowi.sheok ?? nullText)
         case .takdil:
-            rowiContentText = AttributedString(rowi.aqual ?? nullText)
+            rowiContentText = renderText(rowi.aqual ?? nullText)
         case .mulakhosh:
             if let rotba = rowi.rotba, let rZahbi = rowi.rZahbi {
                 displayAuthor(rotba, rZahbi: rZahbi, for: rowi)
             } else {
-                rowiContentText = AttributedString(nullText)
+                rowiContentText = renderText(nullText)
             }
         }
     }
