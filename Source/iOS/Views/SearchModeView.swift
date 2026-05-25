@@ -261,7 +261,11 @@ struct SearchModeView: View {
             let table = item.tableName.hasPrefix("b") ? String(item.tableName.dropFirst()) : item.tableName
             if let tableInt = Int(table), let bookData = LibraryDataManager.shared.getBook([tableInt]).first {
                 await MainActor.run {
-                    navigationManager.openBook(bookData, initialContentId: item.bookId)
+                    navigationManager.openBook(
+                        bookData,
+                        initialContentId: item.bookId,
+                        searchText: navigationManager.searchViewModel.query
+                    )
                 }
             }
         }

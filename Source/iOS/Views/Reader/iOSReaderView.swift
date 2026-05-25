@@ -56,6 +56,7 @@ struct iOSReaderView: View {
             text: $viewModel.contentText,
             annotations: viewModel.currentAnnotations,
             searchText: $viewModel.searchText,
+            targetAnnotation: viewModel.targetAnnotation,
             isMultiLanguage: book.isMultiLanguage,
             viewModel: viewModel,
             onAddAnnotation: { range, mode, sourceText, color in
@@ -131,6 +132,8 @@ struct iOSReaderView: View {
                 nodes: viewModel.tocNodes,
                 selectedId: viewModel.findNodeId(forContentId: viewModel.currentContentId),
                 onSelect: { id in
+                    viewModel.searchText = ""
+                    viewModel.targetAnnotation = nil
                     viewModel.fetchContentById(id)
                     showingTOC = false
                 }
@@ -141,6 +144,7 @@ struct iOSReaderView: View {
                 bookId: book.id,
                 annotations: viewModel.currentAnnotations,
                 onSelect: { ann in
+                    viewModel.targetAnnotation = ann
                     viewModel.fetchContentById(Int(ann.contentId))
                     showingAnnotationsList = false
                 }

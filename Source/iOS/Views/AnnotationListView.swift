@@ -85,7 +85,7 @@ struct AnnotationListView: View {
     private func handleSelection(_ node: iOSAnnotationNode) {
         if node.kind == .annotation, let ann = node.annotation {
             if let book = LibraryDataManager.shared.getBook([ann.bkId]).first {
-                navigationManager.openBook(book, initialContentId: Int(ann.contentId))
+                navigationManager.openBook(book, initialContentId: Int(ann.contentId), targetAnnotation: ann)
             } else {
                 missingBookId = ann.bkId
                 showMissingBookAlert = true

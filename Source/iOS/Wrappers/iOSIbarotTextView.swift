@@ -160,6 +160,137 @@ class iOSCustomIbarotTextView: UITextView {
             scrollRangeToVisible(firstRange)
         }
     }
+
+    @MainActor
+    func highlighAndScrollToAnns(_ ann: Annotation) {
+        let range = displayedRange(for: ann)
+
+        scrollRangeToVisible(range)
+        Task { [weak self] in
+            await Task.yield()
+            await Task.yield()
+            self?.popupText(for: range)
+        }
+    }
+
+    private func popupText(for range: NSRange) {
+        guard let startPos = position(from: beginningOfDocument, offset: range.location),
+              let endPos = position(from: startPos, offset: range.length),
+              let textRange = textRange(from: startPos, to: endPos) else { return }
+
+        let rects = selectionRects(for: textRange)
+        
+        let path = UIBezierPath()
+        for selectionRect in rects {
+            let rect = selectionRect.rect
+            guard rect.width > 0, rect.height > 0 else { continue }
+            // Tambahkan padding kecil agar highlight tidak terlalu mepet
+            path.append(UIBezierPath(rect: rect.insetBy(dx: -2, dy: -2)))
+        }
+        
+        let totalRect = path.bounds
+        guard !totalRect.isNull, totalRect.width > 0, totalRect.height > 0 else { return }
+        
+        let containerView = UIView(frame: totalRect)
+        containerView.alpha = 0
+        containerView.transform = CGAffineTransform(scaleX: 1.35, y: 1.4)
+        
+        // 1. Background layer kuning dari gabungan rects
+        let bgLayer = CAShapeLayer()
+        let shiftedPath = UIBezierPath(cgPath: path.cgPath)
+        shiftedPath.apply(CGAffineTransform(translationX: -totalRect.minX, y: -totalRect.minY))
+        bgLayer.path = shiftedPath.cgPath
+        bgLayer.fillColor = UIColor.systemYellow.cgColor
+        containerView.layer.addSublayer(bgLayer)
+        
+        // 2. Teks di atasnya menggunakan UITextView dengan mengekstrak paragraf penuh
+        // Ini memastikan indentasi baris pertama selaras sempurna dengan teks asli
+        let nsString = textStorage.string as NSString
+        let fullParaRange = nsString.paragraphRange(for: range)
+        
+        let attrText = NSMutableAttributedString(attributedString: textStorage.attributedSubstring(from: fullParaRange))
+        let fullRangeLocal = NSRange(location: 0, length: attrText.length)
+        
+        // Sembunyikan semua teks di paragraf & hapus atribut anotasi lain (seperti link yang bisa meng-override warna text)
+        attrText.addAttribute(.foregroundColor, value: UIColor.clear, range: fullRangeLocal)
+        attrText.removeAttribute(.link, range: fullRangeLocal)
+        attrText.removeAttribute(.backgroundColor, range: fullRangeLocal)
+        attrText.removeAttribute(.underlineStyle, range: fullRangeLocal)
+        attrText.removeAttribute(.underlineColor, range: fullRangeLocal)
+        
+        // Hanya tampilkan bagian teks yang dianotasi
+        let localTargetRange = NSRange(location: range.location - fullParaRange.location, length: range.length)
+        attrText.addAttribute(.foregroundColor, value: UIColor.black, range: localTargetRange)
+        
+        // Buat UITextView dengan lebar yang SAMA dengan view aslinya agar layoutnya 100% identik
+        let textOverlay = UITextView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        textOverlay.attributedText = attrText
+        textOverlay.backgroundColor = .clear
+        textOverlay.isScrollEnabled = false
+        textOverlay.isEditable = false
+        textOverlay.isSelectable = false
+        textOverlay.textAlignment = self.textAlignment
+        textOverlay.semanticContentAttribute = self.semanticContentAttribute
+        textOverlay.textContainerInset = self.textContainerInset
+        textOverlay.textContainer.lineFragmentPadding = self.textContainer.lineFragmentPadding
+        textOverlay.clipsToBounds = false
+        
+        // Paksa layout agar kita bisa mencari posisi presisinya
+        textOverlay.layoutIfNeeded()
+        
+        if let localStart = textOverlay.position(from: textOverlay.beginningOfDocument, offset: localTargetRange.location),
+           let localEnd = textOverlay.position(from: localStart, offset: localTargetRange.length),
+           let localTextRange = textOverlay.textRange(from: localStart, to: localEnd) {
+            
+            let localRects = textOverlay.selectionRects(for: localTextRange)
+            var localTotalRect = CGRect.null
+            for r in localRects {
+                guard r.rect.width > 0, r.rect.height > 0 else { continue }
+                localTotalRect = localTotalRect.isNull ? r.rect : localTotalRect.union(r.rect)
+            }
+            
+            if !localTotalRect.isNull {
+                // Beri ruang tinggi secukupnya
+                textOverlay.frame.size.height = max(self.bounds.height, textOverlay.contentSize.height)
+                // Geser posisinya sehingga bagian target text tepat berada di (0,0) dari containerView
+                textOverlay.frame.origin = CGPoint(x: -localTotalRect.minX, y: -localTotalRect.minY)
+            }
+        }
+        
+        containerView.addSubview(textOverlay)
+        addSubview(containerView)
+
+        UIView.animate(
+            withDuration: 0.25, delay: 0,
+            usingSpringWithDamping: 0.45, initialSpringVelocity: 1.2,
+            options: [],
+            animations: {
+                containerView.alpha = 1
+                containerView.transform = .identity
+            }
+        ) { _ in
+            UIView.animate(
+                withDuration: 0.25, delay: 0,
+                options: .curveEaseIn,
+                animations: {
+                    containerView.alpha = 0
+                    containerView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                }
+            ) { _ in
+                containerView.removeFromSuperview()
+            }
+        }
+    }
+
+    func displayedRange(for annotation: Annotation) -> NSRange {
+        let state = TextViewState.shared
+        let range = state.showHarakat ? annotation.rangeDiacritics : annotation.range
+        return displayedRange(forStoredRange: range)
+    }
+
+    private func displayedRange(forStoredRange range: NSRange) -> NSRange {
+        currentRenderResult?.remapDisplayedRange(range) ?? range
+    }
 }
 
 /// SwiftUI Wrapper for iOSCustomIbarotTextView
@@ -167,6 +298,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     @Binding var text: String
     var annotations: [Annotation] = []
     @Binding var searchText: String
+    var targetAnnotation: Annotation? = nil
     var isMultiLanguage: Bool = false
     
     var viewModel: iOSReaderViewModel
@@ -278,10 +410,33 @@ struct iOSIbarotTextView: UIViewRepresentable {
             context.coordinator.restoredContentId = viewModel.currentContentId
         }
 
-        if !searchText.isEmpty {
-            DispatchQueue.main.async {
-                textView.highlightAndScrollToText(searchText)
+        let contentIdChanged = context.coordinator.lastHighlightedContentId != viewModel.currentContentId
+        if contentIdChanged {
+            context.coordinator.lastHighlightedContentId = viewModel.currentContentId
+            context.coordinator.processedSearchText = nil
+            context.coordinator.processedAnnotationId = nil
+        }
+
+        if let targetAnnotation = targetAnnotation {
+            if context.coordinator.processedAnnotationId != targetAnnotation.id || targetAnnotation.id == nil || contentIdChanged {
+                context.coordinator.processedAnnotationId = targetAnnotation.id
+                DispatchQueue.main.async {
+                    textView.highlighAndScrollToAnns(targetAnnotation)
+                }
             }
+        } else {
+            context.coordinator.processedAnnotationId = nil
+        }
+        
+        if !searchText.isEmpty {
+            if context.coordinator.processedSearchText != searchText || contentIdChanged {
+                context.coordinator.processedSearchText = searchText
+                DispatchQueue.main.async {
+                    textView.highlightAndScrollToText(searchText)
+                }
+            }
+        } else {
+            context.coordinator.processedSearchText = nil
         }
     }
 
@@ -289,6 +444,9 @@ struct iOSIbarotTextView: UIViewRepresentable {
         var parent: iOSIbarotTextView
         var currentRenderResult: ArabicRenderResult?
         var restoredContentId: Int?
+        var lastHighlightedContentId: Int?
+        var processedSearchText: String?
+        var processedAnnotationId: Int64?
 
         init(_ parent: iOSIbarotTextView) {
             self.parent = parent
@@ -327,36 +485,63 @@ struct iOSIbarotTextView: UIViewRepresentable {
             let sourceRange = currentRenderResult?.remapSourceRange(range) ?? range
             let sourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
 
-            // Create color actions for the highlight menu
-            let colors = Array(UserDefaults.standard.recentHighlightColors.prefix(UserDefaults.maxRecentColors))
-            let highlightActions = colors.map { color in
-                UIAction(
-                    title: MaktabahApp.isIpad ? color.accessibilityName.capitalized : "", // Gunakan nama warna agar tampil di iPad
-                    image: UIImage(systemName: "circle.fill")?.withTintColor(color, renderingMode: .alwaysOriginal)
+            var menuChildren: [UIMenuElement] = []
+
+            if let existing = parent.viewModel.findBestAnnotation(for: sourceRange) {
+                // Ada anotasi yang tumpang tindih
+                let editAction = UIAction(
+                    title: String(localized: "Edit Note"),
+                    image: UIImage(systemName: "square.and.pencil")
                 ) { [weak self] _ in
-                    self?.parent.onAddAnnotation?(sourceRange, .highlight, sourceText, color)
+                    if let id = existing.id {
+                        self?.parent.onTapAnnotation?(id)
+                    }
                 }
+
+                let deleteTitle = existing.note == nil ? String(localized: "Delete Highlight") : String(localized: "Delete Highlight & Note")
+                let deleteAction = UIAction(
+                    title: deleteTitle,
+                    image: UIImage(systemName: "trash"),
+                    attributes: .destructive
+                ) { [weak self] _ in
+                    if let id = existing.id {
+                        self?.parent.viewModel.deleteAnnotation(id: id)
+                    }
+                }
+
+                menuChildren = [editAction, deleteAction]
+            } else {
+                // Tidak ada anotasi, buat opsi Highlight & Underline
+                let colors = Array(UserDefaults.standard.recentHighlightColors.prefix(UserDefaults.maxRecentColors))
+                let highlightActions = colors.map { color in
+                    UIAction(
+                        title: MaktabahApp.isIpad ? color.accessibilityName.capitalized : "",
+                        image: UIImage(systemName: "circle.fill")?.withTintColor(color, renderingMode: .alwaysOriginal)
+                    ) { [weak self] _ in
+                        self?.parent.onAddAnnotation?(sourceRange, .highlight, sourceText, color)
+                    }
+                }
+
+                let highlightMenu = UIMenu(
+                    title: String(localized: "Highlight"),
+                    options: .displayInline,
+                    children: highlightActions
+                )
+
+                let underlineAction = UIAction(
+                    title: MaktabahApp.isIpad ? String(localized: "Underline") : "",
+                    image: UIImage(systemName: "underline")
+                ) { [weak self] _ in
+                    self?.parent.onAddAnnotation?(sourceRange, .underline, sourceText, .black)
+                }
+
+                menuChildren = [highlightMenu, underlineAction]
             }
 
-            // Gunakan .displayInline agar ikon warna berjajar ke samping (seperti palet)
-            let highlightMenu = UIMenu(
-                title: String(localized: "Highlight"),
-                options: .displayInline,
-                children: highlightActions
-            )
-
-            let underlineAction = UIAction(
-                title: MaktabahApp.isIpad ? String(localized: .underline) : "",
-                image: UIImage(systemName: "underline")
-            ) { [weak self] _ in
-                self?.parent.onAddAnnotation?(sourceRange, .underline, sourceText, .black)
-            }
-
-            // Menu utama Annotate
             let customMenu = UIMenu(
-                title: "",
+                title: String(localized: .annotation),
                 image: UIImage(systemName: "highlighter"),
-                children: [highlightMenu, underlineAction]
+                children: menuChildren
             )
 
             var actions = suggestedActions

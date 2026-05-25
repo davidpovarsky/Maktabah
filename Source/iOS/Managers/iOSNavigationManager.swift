@@ -70,9 +70,9 @@ class iOSNavigationManager {
         currentMode = mode
     }
 
-    func openBook(_ book: BooksData, initialContentId: Int? = nil) {
+    func openBook(_ book: BooksData, initialContentId: Int? = nil, searchText: String? = nil, targetAnnotation: Annotation? = nil) {
         Task {
-            await openBookAsync(book, initialContentId: initialContentId)
+            await openBookAsync(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
         }
     }
 
@@ -177,7 +177,7 @@ class iOSNavigationManager {
         activeIntegrationStates.removeAll { $0.id == state.id }
     }
 
-    private func openBookAsync(_ book: BooksData, initialContentId: Int?) async {
+    private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) async {
         if !CoreDatabaseDownloader().areCoreFilesReady() {
             alertMessage = AlertMessage(
                 title: NSLocalizedString("Database File Needed", comment: "Missing core files alert title"),
@@ -200,7 +200,7 @@ class iOSNavigationManager {
             iOSHistoryViewModel.shared.addBookToHistory(book.id, lastContentId: initialContentId)
         }
 
-        presentReader(book, initialContentId: initialContentId)
+        presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
     }
 
     func showBookIntegrationConfirmation(
@@ -287,7 +287,7 @@ class iOSNavigationManager {
         state.progress = 0
     }
 
-    private func presentReader(_ book: BooksData, initialContentId: Int?) {
+    private func presentReader(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) {
         switchToMode(.viewer)
         clearPendingBookIntegration()
 
@@ -301,11 +301,20 @@ class iOSNavigationManager {
             if let contentId = initialContentId {
                 var updatedTab = openTabs[existingTabIndex]
                 updatedTab.initialContentId = contentId
+                updatedTab.viewModel.searchText = searchText ?? ""
+                updatedTab.viewModel.targetAnnotation = targetAnnotation
                 updatedTab.viewModel.fetchContentById(contentId)
+                openTabs[existingTabIndex] = updatedTab
+            } else {
+                let updatedTab = openTabs[existingTabIndex]
+                updatedTab.viewModel.searchText = searchText ?? ""
+                updatedTab.viewModel.targetAnnotation = targetAnnotation
                 openTabs[existingTabIndex] = updatedTab
             }
         } else {
             let viewModel = iOSReaderViewModel(book: book)
+            viewModel.searchText = searchText ?? ""
+            viewModel.targetAnnotation = targetAnnotation
             viewModel.loadInitialContent(initialContentId: initialContentId)
             let newTab = ReaderTab(id: UUID(), book: book, initialContentId: initialContentId, viewModel: viewModel)
             openTabs.append(newTab)

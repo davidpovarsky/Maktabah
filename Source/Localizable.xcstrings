@@ -327,6 +327,23 @@
         }
       }
     },
+    "annotation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الحاشية"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anotasi"
+          }
+        }
+      }
+    },
     "annotationMoveFolderFileExistsTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6442,52 +6459,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opsi Tampilan"
-          }
-        }
-      }
-    },
-    "Viewer" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "العارض"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Viewer"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Viewer"
-          }
-        }
-      }
-    },
-    "Viewer Mode" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "وضع العارض"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Viewer Mode"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode Viewer"
           }
         }
       }

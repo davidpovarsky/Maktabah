@@ -13,6 +13,7 @@ class iOSReaderViewModel {
     var currentPage: Int?
     var currentContentId: Int = 0
     var searchText: String = ""
+    var targetAnnotation: Annotation? = nil
 
     var searchViewModel = iOSSearchViewModel()
 
@@ -121,6 +122,8 @@ class iOSReaderViewModel {
 
     func fetchContent(part: Int, page: Int) {
         if let content = bookConnection.getContent(bkid: String(book.id), part: part, page: page) {
+            searchText = ""
+            targetAnnotation = nil
             updateContentState(with: content)
         }
     }
@@ -135,12 +138,16 @@ class iOSReaderViewModel {
 
     func goToNextPage() {
         if let content = bookConnection.getNextPage(from: book, contentId: currentContentId, quran: false) {
+            searchText = ""
+            targetAnnotation = nil
             updateContentState(with: content)
         }
     }
 
     func goToPrevPage() {
         if let content = bookConnection.getPrevPage(from: book, contentId: currentContentId, quran: false) {
+            searchText = ""
+            targetAnnotation = nil
             updateContentState(with: content)
         }
     }
@@ -225,6 +232,15 @@ class iOSReaderViewModel {
                 bkId: book.id,
                 contentId: currentContentId
             )
+    }
+
+    func findBestAnnotation(for range: NSRange) -> Annotation? {
+        return annotationCoordinator.findBestAnnotation(
+            overlapping: range,
+            bkId: book.id,
+            contentId: currentContentId,
+            showHarakat: TextViewState.shared.showHarakat
+        )
     }
 
     func addAnnotation(
