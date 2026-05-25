@@ -3419,6 +3419,22 @@
     "ID: %lld" : {
       "shouldTranslate" : false
     },
+    "Import Book" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استيراد كتاب"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Kitab"
+          }
+        }
+      }
+    },
     "Import Now" : {
       "localizations" : {
         "ar" : {

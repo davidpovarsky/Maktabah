@@ -265,7 +265,7 @@ struct iOSLibraryView: View {
         .toolbar {
             if viewModel.isSelectionMode {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
+                    Button("Done") {
                         viewModel.exitSelectionMode()
                     }
                     .disabled(viewModel.isBulkDownloading)
@@ -284,19 +284,34 @@ struct iOSLibraryView: View {
                     .tint(.red)
                 }
             } else {
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button {
-                        showingImportSheet = true
-                    } label: {
-                        Image(systemName: "plus.viewfinder")
+                ToolbarItem(placement: .topBarTrailing) {
+                    Toggle(isOn: Binding(
+                        get: { viewModel.showOnlyDownloaded },
+                        set: { viewModel.showOnlyDownloaded = $0 }
+                    )) {
+                        Label("Downloaded", systemImage: "line.3.horizontal.decrease")
                     }
+                    .labelStyle(.iconOnly)
+                    .toggleStyle(.button)
+                }
 
-                    Button {
-                        viewModel.showOnlyDownloaded.toggle()
+                CustomToolbarSpacer(placement: .topBarTrailing)
+
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button {
+                            viewModel.enterSelectionMode()
+                        } label: {
+                            Label("Select".localized + "...", systemImage: "checkmark.circle")
+                        }
+
+                        Button {
+                            showingImportSheet = true
+                        } label: {
+                            Label("Import Book", systemImage: "plus.viewfinder")
+                        }
                     } label: {
-                        Image(systemName: viewModel.showOnlyDownloaded
-                            ? "line.3.horizontal.decrease.circle.fill"
-                            : "line.3.horizontal.decrease.circle")
+                        Image(systemName: "ellipsis")
                     }
                 }
             }

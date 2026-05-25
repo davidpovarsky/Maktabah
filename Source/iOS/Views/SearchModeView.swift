@@ -226,7 +226,11 @@ struct SearchModeView: View {
                     Image(systemName: "xmark.circle")
                 }
             }
+        }
 
+        CustomToolbarSpacer(placement: .topBarTrailing)
+
+        ToolbarItemGroup(placement: .topBarTrailing) {
             Menu {
                 Button(action: { showingSavedResults = true }) {
                     Label("Saved Results", systemImage: "bookmark")
@@ -242,7 +246,7 @@ struct SearchModeView: View {
                     Label("Help", systemImage: "questionmark.circle")
                 }
             } label: {
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: "ellipsis")
             }
             .popover(isPresented: $showingHelp) {
                 SearchHelpView()

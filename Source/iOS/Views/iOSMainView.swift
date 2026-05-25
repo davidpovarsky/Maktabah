@@ -123,6 +123,27 @@ extension View {
                     Image(systemName: "gear")
                 }
             }
+
+            CustomToolbarSpacer(placement: .topBarLeading)
+        }
+    }
+}
+
+// MARK: - Custom Toolbar Spacer
+
+struct CustomToolbarSpacer: ToolbarContent {
+    let placement: ToolbarItemPlacement
+    var minLength: CGFloat?
+
+    init(placement: ToolbarItemPlacement = .automatic, minLength: CGFloat? = 16) {
+        self.placement = placement
+        self.minLength = minLength
+    }
+
+    var body: some ToolbarContent {
+        if #available(iOS 26.0, *) {
+            // swiftlint:disable:next unavailable_function
+            ToolbarSpacer(placement: placement)
         }
     }
 }

@@ -31,13 +31,7 @@ struct iPhoneLayout: View {
                 iOSLibraryView()
                     .navigationTitle(iOSTab.viewer.title)
                     .adaptiveReaderPush(item: $bManager.selectedBook, manager: bManager)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button { showSettings = true } label: {
-                                Image(systemName: "gear")
-                            }
-                        }
-                    }
+                    .toolbarGeneral(showSettings: $showSettings)
             }
             .searchable(text: $bManager.searchText, placement: .toolbar, prompt: searchPrompt)
             .tabItem { Label(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon) }
