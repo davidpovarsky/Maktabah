@@ -197,7 +197,10 @@ class iOSNavigationManager {
         }
 
         await MainActor.run {
-            iOSHistoryViewModel.shared.addBookToHistory(book.id, lastContentId: initialContentId)
+            HistoryViewModel.shared.addBookToHistory(book.id)
+            if let initialContentId = initialContentId {
+                HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+            }
         }
 
         presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)

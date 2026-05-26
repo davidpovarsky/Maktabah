@@ -94,7 +94,7 @@ struct iPhoneLayout: View {
         }
         .themeTint()
         .sheet(isPresented: $showingAddFavorites) {
-            iOSAddFavoriteSheet(viewModel: iOSHistoryViewModel.shared)
+            iOSAddFavoriteSheet(viewModel: HistoryViewModel.shared)
         }
         .onChange(of: selectedTab) { _, newValue in
             bManager.switchToMode(newValue.appMode)

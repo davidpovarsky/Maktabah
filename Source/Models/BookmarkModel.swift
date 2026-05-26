@@ -35,7 +35,7 @@ class FolderNode: Identifiable, Hashable {
 #if os(iOS)
 @Observable
 #endif
-class ResultNode: Identifiable, Equatable {
+class ResultNode: Identifiable, Hashable {
     var id: Int64
     var parentId: Int64?
     var name: String
@@ -50,6 +50,10 @@ class ResultNode: Identifiable, Equatable {
 
     static func == (lhs: ResultNode, rhs: ResultNode) -> Bool {
         lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

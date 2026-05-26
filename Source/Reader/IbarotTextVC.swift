@@ -132,12 +132,20 @@ class IbarotTextVC: NSViewController {
     }
 
     func fetchInitialBook() {
-        guard let id = currentBook?.id,
-            let content = bookDB.getFirstContent(bkid: String(id))
-        else {
+        guard let id = currentBook?.id else { return }
+        
+        // Restore posisi terakhir baca dari History
+        if let lastContentId = HistoryViewModel.shared.entriesByBookId[id]?.lastContentId,
+           let content = bookDB.getContent(bkid: "\(id)", contentId: lastContentId) {
+            didChangePage(content: content)
+            didNavigateToContent(content)
             return
         }
+
+        // Fallback ke halaman pertama jika belum pernah dibaca
+        guard let content = bookDB.getFirstContent(bkid: "\(id)") else { return }
         didChangePage(content: content)
+        didNavigateToContent(content)
     }
 
     @MainActor
@@ -266,6 +274,10 @@ class IbarotTextVC: NSViewController {
             textView.contentId = id
             textView.part = part
             textView.page = page
+
+            if let bookId = currentBook?.id {
+                HistoryViewModel.shared.updateLastContentId(id, for: bookId)
+            }
 
             // Display content
             textView?.loadIbarotText(

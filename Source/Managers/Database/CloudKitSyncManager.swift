@@ -12,6 +12,7 @@ final class CloudKitSyncManager {
     enum SyncTarget {
         case annotation
         case result
+        case history
     }
 
     private let container: CKContainer
@@ -43,6 +44,8 @@ final class CloudKitSyncManager {
                     AnnotationManager.shared.addPendingSync(ckRecordId: id, operation: "upload")
                 case .result:
                     ResultsHandler.shared.addPendingSync(ckRecordId: id, operation: "upload")
+                case .history:
+                    HistoryViewModel.shared.addPendingSync(ckRecordId: id, operation: "upload")
                 }
             }
         }
@@ -52,6 +55,7 @@ final class CloudKitSyncManager {
         syncQueue.async(flags: .barrier) {
             AnnotationManager.shared.removePendingSync(ckRecordIds: ids)
             ResultsHandler.shared.removePendingSync(ckRecordIds: ids)
+            HistoryViewModel.shared.removePendingSync(ckRecordIds: ids)
         }
     }
 
@@ -63,6 +67,8 @@ final class CloudKitSyncManager {
                     AnnotationManager.shared.addPendingSync(ckRecordId: id, operation: "delete")
                 case .result:
                     ResultsHandler.shared.addPendingSync(ckRecordId: id, operation: "delete")
+                case .history:
+                    HistoryViewModel.shared.addPendingSync(ckRecordId: id, operation: "delete")
                 }
             }
         }
@@ -72,14 +78,16 @@ final class CloudKitSyncManager {
         syncQueue.async(flags: .barrier) {
             AnnotationManager.shared.removePendingSync(ckRecordIds: ids)
             ResultsHandler.shared.removePendingSync(ckRecordIds: ids)
+            HistoryViewModel.shared.removePendingSync(ckRecordIds: ids)
         }
     }
 
     private func retryPendingUploads() {
         let annPending = AnnotationManager.shared.fetchPendingSync(operation: "upload")
         let resPending = ResultsHandler.shared.fetchPendingSync(operation: "upload")
+        let histPending = HistoryViewModel.shared.fetchPendingSync(operation: "upload")
         
-        guard !annPending.isEmpty || !resPending.isEmpty else { return }
+        guard !annPending.isEmpty || !resPending.isEmpty || !histPending.isEmpty else { return }
         
         if !annPending.isEmpty {
             let allAnnotations = AnnotationManager.shared.loadAnnotations()
@@ -115,12 +123,27 @@ final class CloudKitSyncManager {
                 uploadResultsData(folders: toUploadFolders, results: toUploadResults)
             }
         }
+        
+        if !histPending.isEmpty {
+            let allHist = HistoryViewModel.shared.getAllEntries()
+            let toUploadHist = allHist.filter { entry in
+                guard let ckId = entry.ckRecordId else { return false }
+                return histPending.contains(ckId)
+            }
+            if !toUploadHist.isEmpty {
+                #if DEBUG
+                print("CloudKitSyncManager: Retrying \(toUploadHist.count) pending history uploads...")
+                #endif
+                uploadHistory(entries: toUploadHist)
+            }
+        }
     }
 
     private func retryPendingDeletes() {
         let annPending = AnnotationManager.shared.fetchPendingSync(operation: "delete")
         let resPending = ResultsHandler.shared.fetchPendingSync(operation: "delete")
-        let pending = annPending + resPending
+        let histPending = HistoryViewModel.shared.fetchPendingSync(operation: "delete")
+        let pending = annPending + resPending + histPending
         
         guard !pending.isEmpty else { return }
 
@@ -199,7 +222,17 @@ final class CloudKitSyncManager {
             try? ResultsHandler.shared.backfillResultsCloudKitFieldsIfNeeded()
         }
 
-        // 3. Initial Upload
+        // 3. Backfill History
+        HistoryViewModel.shared.backfillCloudKitFieldsIfNeeded { backfilled in
+            if !backfilled.isEmpty {
+                #if DEBUG
+                print("CloudKitSyncManager: Backfilled \(backfilled.count) history entries, uploading...")
+                #endif
+                self.uploadHistory(entries: backfilled)
+            }
+        }
+
+        // 4. Initial Upload
         if !UserDefaults.standard.bool(forKey: "CloudKitSyncManager_InitialUploadDone") {
             #if DEBUG
             print("CloudKitSyncManager: Performing initial upload of all data...")
@@ -245,6 +278,17 @@ final class CloudKitSyncManager {
             let endIndex = min(i + batchSize, allResults.count)
             group.enter()
             uploadResultsData(folders: [], results: Array(allResults[i ..< endIndex])) { result in
+                if case .failure = result { hasError = true }
+                group.leave()
+            }
+        }
+        
+        // 3. Upload History
+        let allHistory = HistoryViewModel.shared.getAllEntries()
+        for i in stride(from: 0, to: allHistory.count, by: batchSize) {
+            let endIndex = min(i + batchSize, allHistory.count)
+            group.enter()
+            uploadHistory(entries: Array(allHistory[i ..< endIndex])) { result in
                 if case .failure = result { hasError = true }
                 group.leave()
             }
@@ -378,6 +422,63 @@ final class CloudKitSyncManager {
                 if let ckError = error as? CKError {
                     print("Detail CKError: code=\(ckError.code.rawValue), info=\(ckError.userInfo)")
                 }
+                self?.handleUploadFailure(error, pendingRecordIds: recordIdsStrings, completion: completion)
+            }
+            #else
+            if case .success = result {
+                self?.removePendingUploads(recordIdsStrings)
+                completion?(.success(()))
+            } else if case .failure(let error) = result {
+                self?.handleUploadFailure(error, pendingRecordIds: recordIdsStrings, completion: completion)
+            }
+            #endif
+        }
+        operation.qualityOfService = .userInitiated
+        privateDatabase.add(operation)
+    }
+
+    func uploadHistory(entries: [ReadingEntry], completion: ((Result<Void, Error>) -> Void)? = nil) {
+        guard AppConfig.useICloud else {
+            completion?(.success(()))
+            return
+        }
+
+        let recordsToSave = entries.compactMap { entry -> CKRecord? in
+            guard let ckRecordIdStr = entry.ckRecordId else { return nil }
+            let recordId = CKRecord.ID(recordName: ckRecordIdStr, zoneID: zoneId)
+            let record = CKRecord(recordType: "ReadingEntry", recordID: recordId)
+
+            record["bookId"] = entry.bookId
+            record["lastContentId"] = entry.lastContentId
+            record["lastOpenedAt"] = entry.lastOpenedAt
+            record["favoritedAt"] = entry.favoritedAt
+            record["positionUpdatedAt"] = entry.positionUpdatedAt
+            record["isFavorite"] = entry.isFavorite
+            record["lastModified"] = Int64(entry.updatedAt.timeIntervalSince1970)
+
+            return record
+        }
+
+        guard !recordsToSave.isEmpty else {
+            completion?(.success(()))
+            return
+        }
+
+        let operation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: nil)
+        operation.savePolicy = .changedKeys
+        
+        let recordIdsStrings = recordsToSave.map { $0.recordID.recordName }
+        addPendingUploads(recordIdsStrings, target: .history)
+
+        operation.modifyRecordsResultBlock = { [weak self] result in
+            #if DEBUG
+            switch result {
+            case .success:
+                print("CloudKitSyncManager: Berhasil upload \(recordsToSave.count) data history.")
+                self?.removePendingUploads(recordIdsStrings)
+                completion?(.success(()))
+            case .failure(let error):
+                print("CloudKitSyncManager: Gagal upload data history: \(error.localizedDescription)")
                 self?.handleUploadFailure(error, pendingRecordIds: recordIdsStrings, completion: completion)
             }
             #else
@@ -777,6 +878,7 @@ final class CloudKitSyncManager {
         var annotations: [Annotation] = []
         var folders: [SyncFolder] = []
         var searchResults: [SyncResult] = []
+        var historyEntries: [ReadingEntry] = []
 
         for record in recordsToSave {
             if record.recordType == recordType {
@@ -791,6 +893,10 @@ final class CloudKitSyncManager {
                 if let res = parseSyncResult(from: record) {
                     searchResults.append(res)
                 }
+            } else if record.recordType == "ReadingEntry" {
+                if let entry = parseHistoryEntry(from: record) {
+                    historyEntries.append(entry)
+                }
             }
         }
 
@@ -799,13 +905,17 @@ final class CloudKitSyncManager {
         if !annotations.isEmpty || !recordIDsToDelete.isEmpty {
             AnnotationManager.shared.applyCloudKitChanges(annotationsToSave: annotations, recordIdsToDelete: idsToDelete)
         }
-
+        
         if !folders.isEmpty || !recordIDsToDelete.isEmpty {
             ResultsHandler.shared.applyCloudKitFolderChanges(foldersToSave: folders, recordIdsToDelete: idsToDelete)
         }
 
         if !searchResults.isEmpty || !recordIDsToDelete.isEmpty {
             ResultsHandler.shared.applyCloudKitResultChanges(resultsToSave: searchResults, recordIdsToDelete: idsToDelete)
+        }
+        
+        if !historyEntries.isEmpty || !recordIDsToDelete.isEmpty {
+            HistoryViewModel.shared.applyCloudKitChanges(entriesToSave: historyEntries, recordIdsToDelete: idsToDelete)
         }
     }
 
@@ -883,6 +993,23 @@ final class CloudKitSyncManager {
             ckRecordId: record.recordID.recordName,
             lastModified: record["lastModified"] as? Int64,
             folderCkRecordId: record["folderCkRecordId"] as? String
+        )
+    }
+
+    private func parseHistoryEntry(from record: CKRecord) -> ReadingEntry? {
+        guard let bookId = record["bookId"] as? Int,
+              let isFavorite = record["isFavorite"] as? Bool
+        else { return nil }
+        
+        return ReadingEntry(
+            bookId: bookId,
+            lastContentId: record["lastContentId"] as? Int,
+            lastOpenedAt: record["lastOpenedAt"] as? Date,
+            favoritedAt: record["favoritedAt"] as? Date,
+            positionUpdatedAt: record["positionUpdatedAt"] as? Date,
+            updatedAt: Date(timeIntervalSince1970: TimeInterval(record["lastModified"] as? Int64 ?? 0)),
+            isFavorite: isFavorite,
+            ckRecordId: record.recordID.recordName
         )
     }
 

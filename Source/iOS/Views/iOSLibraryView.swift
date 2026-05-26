@@ -424,7 +424,7 @@ private struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         let vc = iOSLibraryViewController()
         vc.viewModel = viewModel
         vc.onBookSelected = { book in
-            let lastId = iOSHistoryViewModel.shared.lastContentId(for: book.id)
+            let lastId = HistoryViewModel.shared.entriesByBookId[book.id]?.lastContentId
             context.coordinator.navigationManager.openBook(book, initialContentId: lastId)
         }
         vc.onSelectionChanged = {

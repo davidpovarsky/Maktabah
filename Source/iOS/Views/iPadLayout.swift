@@ -15,7 +15,7 @@ struct iPadLayout: View {
     @State private var showingAddFavorites = false
     @State private var path: [iOSTab] = []
     
-    @StateObject private var historyViewModel = iOSHistoryViewModel.shared
+    @StateObject private var historyViewModel = HistoryViewModel.shared
 
     private var filteredFavorites: [BooksData] {
         if bManager.searchText.isEmpty || !path.isEmpty {
@@ -62,7 +62,8 @@ struct iPadLayout: View {
                         Section(header: Text("Favorites".localized)) {
                             ForEach(filteredFavorites, id: \.id) { book in
                                 BookRowView(book: book, isFavorite: true, viewModel: historyViewModel) {
-                                    bManager.openBook(book, initialContentId: historyViewModel.lastContentId(for: book.id))
+                                    let lastId = historyViewModel.entriesByBookId[book.id]?.lastContentId
+                                    bManager.openBook(book, initialContentId: lastId)
                                 }
                             }
                             .onDelete { offsets in
@@ -82,13 +83,14 @@ struct iPadLayout: View {
                                     isFavorite: historyViewModel.favoriteBookIds.contains(book.id),
                                     viewModel: historyViewModel
                                 ) {
-                                    bManager.openBook(book, initialContentId: historyViewModel.lastContentId(for: book.id))
+                                    let lastId = historyViewModel.entriesByBookId[book.id]?.lastContentId
+                                    bManager.openBook(book, initialContentId: lastId)
                                 }
                             }
                             .onDelete { offsets in
                                 for index in offsets {
                                     let book = filteredHistory[index]
-                                    historyViewModel.removeHistory(book.id)
+                                    historyViewModel.removeHistory(for: book.id)
                                 }
                             }
                         }
@@ -124,9 +126,6 @@ struct iPadLayout: View {
         }
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
-        }
-        .onAppear {
-            historyViewModel.loadBooksData()
         }
     }
 

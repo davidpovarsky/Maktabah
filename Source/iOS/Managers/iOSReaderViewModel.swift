@@ -157,7 +157,7 @@ class iOSReaderViewModel {
         currentPart = content.part
         currentPage = content.page
         currentContentId = content.id
-        iOSHistoryViewModel.shared.updateLastContentId(content.id, for: book.id)
+        HistoryViewModel.shared.updateLastContentId(content.id, for: book.id)
         
         // Sync to state
         state.currentBook = book

@@ -856,7 +856,7 @@ struct OfflineImportFormView: View {
 
             #if !os(macOS)
             await MainActor.run {
-                iOSHistoryViewModel.shared.migrateBookId(from: oldId, to: newId)
+                HistoryViewModel.shared.migrateBookId(from: oldId, to: newId)
             }
             #endif
 

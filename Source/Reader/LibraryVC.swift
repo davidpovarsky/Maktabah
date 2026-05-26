@@ -74,14 +74,7 @@ class LibraryVC: NSViewController {
                 guard let self else { return }
                 dataVM.prepareData()
                 outlineView.reloadData()
-                if AppConfig.isUsingBundleMode {
-                    setupFilterSegment()
-                } else if let filterSegment {
-                    filterSegment.removeFromSuperview()
-                    self.filterSegment = nil
-                    bg?.removeFromSuperview()
-                    bg = nil
-                }
+                setupFilterSegment()
                 updateScrollViewConstraint(filterSegment: filterSegment != nil)
                 ReusableFunc.closeProgressWindow(view)
                 isDataLoaded = true
@@ -100,14 +93,33 @@ class LibraryVC: NSViewController {
     }
 
     private func setupFilterSegment() {
-        let all = String(localized: "All")
-        let downloaded = String(localized: "Downloaded")
+        // Hapus segment lama jika ada (mencegah tumpukan saat dipanggil ulang)
+        bg?.removeFromSuperview()
+        bg = nil
+        filterSegment = nil
+
+        var images = [
+            NSImage(systemSymbolName: "list.bullet", accessibilityDescription: "All")!,
+            NSImage(systemSymbolName: "star.fill", accessibilityDescription: "Favorites")!,
+            NSImage(systemSymbolName: "clock.fill", accessibilityDescription: "History")!,
+        ]
+
+        if AppConfig.isUsingBundleMode {
+            images.append(NSImage(systemSymbolName: "arrow.down.circle.fill", accessibilityDescription: "Downloaded")!)
+        }
+
         let segment = NSSegmentedControl(
-            labels: [all, downloaded],
+            images: images,
             trackingMode: .selectOne,
             target: self,
             action: #selector(filterSegmentChanged(_:))
         )
+
+        segment.segmentStyle = .capsule
+        segment.setToolTip(String(localized: "Library"), forSegment: 0)
+        segment.setToolTip(String(localized: "Favorites"), forSegment: 1)
+        segment.setToolTip(String(localized: "History"), forSegment: 2)
+        segment.setToolTip(String(localized: "Downloaded"), forSegment: 3)
 
         if #available(macOS 26, *) {
             segment.borderShape = .capsule
@@ -138,9 +150,12 @@ class LibraryVC: NSViewController {
             bg.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
 
-        segment.selectedSegment = UserDefaults.standard.integer(
-            forKey: LibraryViewManager.filterSegmentIndexKey
-        )
+        let savedSegment = UserDefaults.standard.integer(forKey: LibraryViewManager.filterSegmentIndexKey)
+        if savedSegment >= images.count {
+            segment.selectedSegment = 0
+        } else {
+            segment.selectedSegment = savedSegment
+        }
 
         filterSegment = segment
         dataVM.applyDownloadFilter(forSegmentIndex: segment.selectedSegment)
@@ -214,10 +229,8 @@ extension LibraryVC: LibraryViewDelegate {
         if row >= 0 {
             let item = outlineView.item(atRow: row)
             if let book = item as? BooksData {
-                print("Buku dipilih: \(book.book) (ID: \(book.id))")
+                HistoryViewModel.shared.addBookToHistory(book.id)
                 await delegate?.didSelectBook(for: book)
-            } else if let category = item as? CategoryData {
-                print("Kategori dipilih: \(category.name)")
             }
         }
     }

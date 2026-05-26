@@ -6,6 +6,14 @@
 //
 
 import Cocoa
+import Combine
+
+enum LibraryFilterMode: Int {
+    case all = 0
+    case favorites = 1
+    case history = 2
+    case downloaded = 3
+}
 
 class LibraryViewManager: NSObject {
     static let filterSegmentIndexKey = "LibraryFilterSegmentIndex"
@@ -22,6 +30,10 @@ class LibraryViewManager: NSObject {
 
     var displayedCategories: [CategoryData] = []
     private var baseCategories: [CategoryData] = []
+
+    private var filterMode: LibraryFilterMode = .all
+    private var isFlatMode: Bool = false
+    private var cancellables = Set<AnyCancellable>()
 
     weak var searchField: DSFSearchField!
 
@@ -41,6 +53,80 @@ class LibraryViewManager: NSObject {
         self.setupDSFSearchField()
         setupNotificationObservers()
         setupContextMenu()
+        setupHistoryObservers()
+    }
+
+    private func setupHistoryObservers() {
+        HistoryViewModel.shared.$historyBooks
+            .receive(on: DispatchQueue.main)
+            .debounce(for: .seconds(3), scheduler: DispatchQueue.main)
+            .sink { [weak self] newBooks in
+                guard let self = self else { return }
+                if self.filterMode == .history {
+                    self.updateFlatListIncrementally(newBooks: newBooks)
+                }
+            }
+            .store(in: &cancellables)
+
+        HistoryViewModel.shared.$favoriteBooks
+            .receive(on: DispatchQueue.main)
+            .debounce(for: .seconds(3), scheduler: DispatchQueue.main)
+            .sink { [weak self] newBooks in
+                guard let self = self else { return }
+                if self.filterMode == .favorites {
+                    self.updateFlatListIncrementally(newBooks: newBooks)
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    private func updateFlatListIncrementally(newBooks: [BooksData]) {
+        guard isFlatMode, let firstCat = displayedCategories.first else {
+            applyFilter(filterMode)
+            return
+        }
+
+        let oldBooks = firstCat.children as? [BooksData] ?? []
+
+        let oldIds = oldBooks.map { $0.id }
+        let newIds = newBooks.map { $0.id }
+
+        if oldIds == newIds { return } // Tidak ada perubahan urutan atau penambahan/pengurangan
+
+        var currentBooks = oldBooks
+        outlineView.beginUpdates()
+
+        // Hapus item lama yang sudah tidak ada
+        let newIdSet = Set(newIds)
+        for (index, oldBook) in currentBooks.enumerated().reversed() {
+            if !newIdSet.contains(oldBook.id) {
+                outlineView.removeItems(at: IndexSet(integer: index), inParent: nil, withAnimation: [.slideUp])
+                currentBooks.remove(at: index)
+            }
+        }
+
+        firstCat.children = currentBooks
+
+        // Insert dan Move item baru
+        for (newIndex, newBook) in newBooks.enumerated() {
+            if let oldIndex = currentBooks.firstIndex(where: { $0.id == newBook.id }) {
+                if oldIndex != newIndex {
+                    outlineView.moveItem(at: oldIndex, inParent: nil, to: newIndex, inParent: nil)
+                    let movedBook = currentBooks.remove(at: oldIndex)
+                    currentBooks.insert(movedBook, at: newIndex)
+                    firstCat.children = currentBooks
+                }
+            } else {
+                currentBooks.insert(newBook, at: newIndex)
+                firstCat.children = currentBooks
+                outlineView.insertItems(at: IndexSet(integer: newIndex), inParent: nil, withAnimation: [.slideDown])
+            }
+        }
+
+        firstCat.children = newBooks
+        outlineView.endUpdates()
+
+        buildBookLookup()
     }
 
     private func setupContextMenu() {
@@ -53,22 +139,50 @@ class LibraryViewManager: NSObject {
         setBaseCategories(data.allRootCategories, reload: true)
     }
 
-    /// Filter tampilan berdasarkan status download kitab.
-    /// - Parameter onlyDownloaded:
-    /// `true` = hanya kitab yang sudah didownload,
-    /// `false` = semua kitab.
-    func applyDownloadFilter(_ onlyDownloaded: Bool) {
-        showOnlyDownloaded = onlyDownloaded
-        let filtered =
-            onlyDownloaded
-            ? data.filterIntegrated()
-            : data.allRootCategories
+    /// Filter tampilan berdasarkan segment
+    func applyFilter(_ mode: LibraryFilterMode) {
+        filterMode = mode
+        var filtered: [CategoryData] = []
+
+        switch mode {
+        case .all:
+            showOnlyDownloaded = false
+            isFlatMode = false
+            filtered = data.allRootCategories
+            outlineView?.allowsMultipleSelection = false
+        case .downloaded:
+            showOnlyDownloaded = true
+            isFlatMode = false
+            filtered = data.filterIntegrated()
+            outlineView?.allowsMultipleSelection = true
+        case .favorites:
+            showOnlyDownloaded = false
+            isFlatMode = true
+            let favBooks = HistoryViewModel.shared.favoriteBooks
+            let cat = CategoryData(id: -1, name: String(localized: "Favorites"), level: 1, order: 0)
+            cat.children = favBooks
+            filtered = favBooks.isEmpty ? [] : [cat]
+            outlineView?.allowsMultipleSelection = false
+        case .history:
+            showOnlyDownloaded = false
+            isFlatMode = true
+            let histBooks = HistoryViewModel.shared.historyBooks
+            let cat = CategoryData(id: -2, name: String(localized: "History"), level: 1, order: 0)
+            cat.children = histBooks
+            filtered = histBooks.isEmpty ? [] : [cat]
+            outlineView?.allowsMultipleSelection = false
+        }
+
         setBaseCategories(filtered, reload: true)
+
+        if mode == .favorites || mode == .history {
+            outlineView?.expandItem(nil, expandChildren: true)
+        }
     }
 
     func applyDownloadFilter(forSegmentIndex index: Int) {
-        applyDownloadFilter(index == 1)
-        outlineView?.allowsMultipleSelection = index == 1
+        guard let mode = LibraryFilterMode(rawValue: index) else { return }
+        applyFilter(mode)
     }
 
     func buildBookLookup() {
@@ -145,6 +259,9 @@ extension LibraryViewManager: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item == nil {
+            if isFlatMode, let firstCat = displayedCategories.first {
+                return firstCat.children.count
+            }
             return displayedCategories.count
         }
 
@@ -157,6 +274,9 @@ extension LibraryViewManager: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if item == nil {
+            if isFlatMode, let firstCat = displayedCategories.first {
+                return firstCat.children[index]
+            }
             return displayedCategories[index]
         }
 
@@ -275,6 +395,7 @@ extension LibraryViewManager: NSMenuDelegate {
         }
 
         guard !integratedBooks.isEmpty, AppConfig.isUsingBundleMode else {
+            addFavoriteContextMenu(menu: menu, clickedRow: clickedRow)
             return
         }
 
@@ -284,6 +405,28 @@ extension LibraryViewManager: NSMenuDelegate {
         deleteItem.target = self
         deleteItem.representedObject = integratedBooks
         menu.addItem(deleteItem)
+
+        addFavoriteContextMenu(menu: menu, clickedRow: clickedRow)
+    }
+
+    private func addFavoriteContextMenu(menu: NSMenu, clickedRow: Int) {
+        if clickedRow >= 0, let book = outlineView.item(atRow: clickedRow) as? BooksData {
+            if !menu.items.isEmpty {
+                menu.addItem(NSMenuItem.separator())
+            }
+
+            let isFav = HistoryViewModel.shared.isFavorite(book.id)
+            let title = isFav ? String(localized: "Remove Favorite") : String(localized: "Add Favorite")
+            let favItem = NSMenuItem(title: title, action: #selector(toggleFavoriteAction(_:)), keyEquivalent: "")
+            favItem.target = self
+            favItem.representedObject = book
+            menu.addItem(favItem)
+        }
+    }
+
+    @objc func toggleFavoriteAction(_ sender: NSMenuItem) {
+        guard let book = sender.representedObject as? BooksData else { return }
+        HistoryViewModel.shared.toggleFavorite(book.id)
     }
 }
 
