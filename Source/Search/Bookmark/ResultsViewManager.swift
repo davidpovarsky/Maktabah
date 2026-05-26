@@ -124,9 +124,7 @@ class ResultsViewManager: NSObject {
         super.init()
 
         vm.onTreeChange = { [weak self] change in
-            DispatchQueue.main.async {
-                self?.applyTreeChange(change)
-            }
+            self?.applyTreeChange(change)
         }
     }
 
@@ -137,64 +135,60 @@ class ResultsViewManager: NSObject {
             return
         }
 
-        outlineView.beginUpdates()
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.2
-            context.timingFunction = CAMediaTimingFunction(name: .easeIn)
-            context.allowsImplicitAnimation = true
-
-            switch change {
-            case .fullReload:
-                outlineView.reloadData()
-
-            case .insertFolder(_, let parent, let index):
-                outlineView.insertItems(at: IndexSet(integer: index), inParent: parent, withAnimation: .effectGap)
-
-            case .removeFolder(_, let parent, let index):
-                outlineView.removeItems(at: IndexSet(integer: index), inParent: parent, withAnimation: .effectFade)
-
-            case .updateFolder(let folder):
-                outlineView.reloadItem(folder)
-
-            case .moveFolder(_, let oldParent, let oldIndex, let newParent, let newIndex):
-                outlineView.moveItem(at: oldIndex, inParent: oldParent, to: newIndex, inParent: newParent)
-                outlineView.reloadItem(newParent)
-                outlineView.reloadItem(oldParent)
-
-            case .insertResult(_, let parentId, let index):
-                if writer { return } // jika writer mode, result item tidak dimuat di outline
-                let parentFolder = parentId.flatMap { vm.findFolder($0) }
-                let folderCount = parentFolder?.children.count ?? vm.folderRoots.count
-                let outlineIndex = folderCount + index
-                outlineView.insertItems(at: IndexSet(integer: outlineIndex), inParent: parentFolder, withAnimation: .effectGap)
-                outlineView.reloadItem(parentFolder)
-
-            case .removeResult(_, let parentId, let index):
-                if writer { return }
-                let parentFolder = parentId.flatMap { vm.findFolder($0) }
-                let folderCount = parentFolder?.children.count ?? vm.folderRoots.count
-                let outlineIndex = folderCount + index
-                outlineView.removeItems(at: IndexSet(integer: outlineIndex), inParent: parentFolder, withAnimation: .effectFade)
-                outlineView.reloadItem(parentFolder)
-
-            case .updateResult(let result):
-                if writer { return }
-                outlineView.reloadItem(result)
-
-            case .moveResult(_, let oldParentId, let oldIndex, let newParentId, let newIndex):
-                if writer { return }
-                let oldParent = oldParentId.flatMap { vm.findFolder($0) }
-                let newParent = newParentId.flatMap { vm.findFolder($0) }
-
-                let oldFolderCount = oldParent?.children.count ?? vm.folderRoots.count
-                let newFolderCount = newParent?.children.count ?? vm.folderRoots.count
-
-                outlineView.moveItem(at: oldFolderCount + oldIndex, inParent: oldParent, to: newFolderCount + newIndex, inParent: newParent)
-                outlineView.reloadItem(newParent)
-                outlineView.reloadItem(oldParent)
-            }
+        if case .fullReload = change {
+            outlineView.reloadData()
+            return
         }
-        outlineView.endUpdates()
+
+        switch change {
+        case .insertFolder(_, let parent, let index):
+            outlineView.insertItems(at: IndexSet(integer: index), inParent: parent, withAnimation: .effectGap)
+
+        case .removeFolder(_, let parent, let index):
+            outlineView.removeItems(at: IndexSet(integer: index), inParent: parent, withAnimation: .effectFade)
+
+        case .updateFolder(let folder):
+            outlineView.reloadItem(folder)
+
+        case .moveFolder(_, let oldParent, let oldIndex, let newParent, let newIndex):
+            outlineView.moveItem(at: oldIndex, inParent: oldParent, to: newIndex, inParent: newParent)
+            outlineView.reloadItem(newParent)
+            outlineView.reloadItem(oldParent)
+
+        case .insertResult(_, let parentId, let index):
+            if writer { return }
+            let parentFolder = parentId.flatMap { vm.findFolder($0) }
+            let folderCount = parentFolder?.children.count ?? vm.folderRoots.count
+            let outlineIndex = folderCount + index
+            outlineView.insertItems(at: IndexSet(integer: outlineIndex), inParent: parentFolder, withAnimation: .effectGap)
+            outlineView.reloadItem(parentFolder)
+
+        case .removeResult(_, let parentId, let index):
+            if writer { return }
+            let parentFolder = parentId.flatMap { vm.findFolder($0) }
+            let folderCount = parentFolder?.children.count ?? vm.folderRoots.count
+            let outlineIndex = folderCount + index
+            outlineView.removeItems(at: IndexSet(integer: outlineIndex), inParent: parentFolder, withAnimation: .effectFade)
+            outlineView.reloadItem(parentFolder)
+
+        case .updateResult(let result):
+            if writer { return }
+            outlineView.reloadItem(result)
+
+        case .moveResult(_, let oldParentId, let oldIndex, let newParentId, let newIndex):
+            if writer { return }
+            let oldParent = oldParentId.flatMap { vm.findFolder($0) }
+            let newParent = newParentId.flatMap { vm.findFolder($0) }
+
+            let oldFolderCount = oldParent?.children.count ?? vm.folderRoots.count
+            let newFolderCount = newParent?.children.count ?? vm.folderRoots.count
+
+            outlineView.moveItem(at: oldFolderCount + oldIndex, inParent: oldParent, to: newFolderCount + newIndex, inParent: newParent)
+            if let newParent { outlineView.reloadItem(newParent) }
+            outlineView.reloadItem(oldParent)
+
+        default: break
+        }
     }
 
     func searchResults(for text: String) {

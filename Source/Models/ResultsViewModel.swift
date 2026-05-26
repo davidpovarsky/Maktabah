@@ -298,35 +298,27 @@ class ResultsViewModel {
     }
 
     func deleteResult(_ parentFolderId: Int64?, name: String) {
-        // Prefer deleting by id; but current API deletes by (parent,name)
         db.deleteResult(parentFolderId, name: name)
 
-        // remove from memory
-        if var results = folderResults[parentFolderId] {
-            var deletedIndices: [(ResultNode, Int)] = []
-            for (i, r) in results.enumerated() {
-                if r.name == name {
-                    deletedIndices.append((r, i))
-                }
-            }
+        guard var results = folderResults[parentFolderId] else { return }
 
-            let removed = results.filter { $0.name == name }
-            results.removeAll(where: { $0.name == name })
+        // Kumpulkan index yang akan dihapus
+        let deletedIndices: [(ResultNode, Int)] = results.enumerated().compactMap { (i, r) in
+            r.name == name ? (r, i) : nil
+        }
 
-            if results.isEmpty {
-                folderResults.removeValue(forKey: parentFolderId)
-            } else {
-                folderResults[parentFolderId] = results
-            }
+        // Hapus satu per satu dari belakang, notify setiap kali.
+        // Ini menjaga agar index tetap valid karena penghapusan dari
+        // belakang tidak menggeser posisi elemen sebelumnya.
+        for (r, i) in deletedIndices.reversed() {
+            results.remove(at: i)
+            folderResults[parentFolderId] = results.isEmpty ? nil : results
+            resultById.removeValue(forKey: r.id)
+            notifyChange(.removeResult(result: r, parentId: parentFolderId, index: i))
+        }
 
-            // remove from resultById
-            for r in removed {
-                resultById.removeValue(forKey: r.id)
-            }
-
-            for (r, i) in deletedIndices.reversed() {
-                notifyChange(.removeResult(result: r, parentId: parentFolderId, index: i))
-            }
+        if results.isEmpty {
+            folderResults.removeValue(forKey: parentFolderId)
         }
     }
 
