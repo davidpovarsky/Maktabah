@@ -917,6 +917,9 @@ final class CloudKitSyncManager {
     }
 
     func resetChangeToken() {
+        AnnotationManager.shared.db?.checkpoint()
+        ResultsHandler.shared.db?.checkpoint()
+
         UserDefaults.standard.removeObject(forKey: changeTokenKey)
         UserDefaults.standard.removeObject(forKey: "CloudKitSyncManager_InitialUploadDone")
 
