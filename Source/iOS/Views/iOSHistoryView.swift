@@ -110,31 +110,37 @@ struct iOSAddFavoriteSheet: View {
                 displayedCategories: searchViewModel.displayedCategories,
                 updateTrigger: searchViewModel.updateTrigger
             )
-                .ignoresSafeArea(edges: [.vertical])
-                .navigationTitle("Select Favorites")
-                .navigationBarTitleDisplayMode(.inline)
-                .searchable(text: $searchText, prompt: "Search Books")
-                .onChange(of: searchText) { _, newValue in
-                    searchViewModel.filterText = newValue
-                    searchViewModel.updateDisplayedCategories()
+            .ignoresSafeArea(edges: [.vertical])
+            .navigationTitle("Select Favorites")
+            .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $searchText, prompt: "Search Books")
+            .onChange(of: searchText) { _, newValue in
+                searchViewModel.filterText = newValue
+                searchViewModel.updateDisplayedCategories()
+            }
+            .onAppear {
+                searchViewModel.selectedBookIds = Set(viewModel.favoriteBookIds)
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") { dismiss() }
                 }
-                .onAppear {
-                    searchViewModel.selectedBookIds = Set(viewModel.favoriteBookIds)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button("Cancel") { dismiss() }
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Done") {
-                            viewModel.favoriteBookIds = Array(searchViewModel.selectedBookIds)
-                            viewModel.saveToUserDefaults()
-                            viewModel.loadBooksData()
-                            dismiss()
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") {
+                        let newFavs = searchViewModel.selectedBookIds
+                        let currentFavs = Set(viewModel.favoriteBookIds)
+                        for id in newFavs.subtracting(currentFavs) {
+                            viewModel.toggleFavorite(id)
                         }
-                        .fontWeight(.bold)
+                        for id in currentFavs.subtracting(newFavs) {
+                            viewModel.toggleFavorite(id)
+                        }
+                        dismiss()
                     }
+                    .fontWeight(.bold)
                 }
+            }
         }
+        .themeTint()
     }
 }

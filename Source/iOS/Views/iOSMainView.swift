@@ -77,7 +77,6 @@ struct iOSMainView: View {
                 SettingsView()
                     .listRowBackground(Color.appCellBackground)
                     .background(Color.appBackground)
-                    .tint(.header)
                     .navigationTitle("Settings".localized)
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -86,6 +85,7 @@ struct iOSMainView: View {
                         }
                     }
             }
+            .tint(.header)
         }
         .alert(item: $navigationManager.alertMessage) { item in
             Alert(
