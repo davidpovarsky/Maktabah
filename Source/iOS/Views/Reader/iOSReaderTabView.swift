@@ -113,6 +113,8 @@ struct iOSReaderBottomToolbarView: View {
         }) {
             Image(systemName: "textformat")
         }
+        .accessibilityLabel(String(localized: "Text Options"))
+        .help(String(localized: "Text Options"))
         .popover(isPresented: $showingOptions) {
             ViewOptionsView()
                 .frame(width: 300, height: 500)
@@ -125,12 +127,16 @@ struct iOSReaderBottomToolbarView: View {
         }) {
             Image(systemName: "list.bullet")
         }
+        .accessibilityLabel(String(localized: "Table of Contents"))
+        .help(String(localized: "Table of Contents"))
 
         Button(action: {
             showingAnnotationsList = true
         }) {
             Image(systemName: "quote.closing")
         }
+        .accessibilityLabel(String(localized: "Annotations"))
+        .help(String(localized: "Annotations"))
 
         if MaktabahApp.isIpad { Spacer() }
 
@@ -139,6 +145,8 @@ struct iOSReaderBottomToolbarView: View {
         }) {
             Image(systemName: "magnifyingglass")
         }
+        .accessibilityLabel(String(localized: "Search"))
+        .help(String(localized: "Search"))
         .sheet(isPresented: $showingSearch) {
             iOSBookSearchView(
                 book: viewModel.book,
@@ -201,6 +209,8 @@ struct ReaderTabItemView: View {
                         .background(Color.secondary.opacity(0.5))
                         .clipShape(Circle())
                 }
+                .accessibilityLabel(String(localized: "Close Tab"))
+                .help(String(localized: "Close Tab"))
                 .buttonStyle(.plain)
             }
 

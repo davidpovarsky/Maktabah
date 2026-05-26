@@ -223,6 +223,28 @@
         }
       }
     },
+    "Add Favorite" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إضافة إلى المفضلة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Favorite"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Favorit"
+          }
+        }
+      }
+    },
     "Add Note" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -291,6 +313,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semua %lld kitab berhasil diproses."
+          }
+        }
+      }
+    },
+    "All Anotations" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "كل التعليقات التوضيحية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Annotations"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua Anotasi"
           }
         }
       }
@@ -373,7 +417,13 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الحواشي"
+            "value" : "التعليقات التوضيحية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annotations"
           }
         },
         "id" : {
@@ -762,7 +812,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informasi Kitab"
+            "value" : "Info Kitab"
           }
         }
       }
@@ -775,10 +825,16 @@
             "value" : "معلومات الكتاب"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book Information"
+          }
+        },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informasi Kitab"
+            "value" : "Informasi Buku"
           }
         }
       }
@@ -1133,6 +1189,28 @@
         }
       }
     },
+    "Clear Results" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مسح النتائج"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Results"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Hasil"
+          }
+        }
+      }
+    },
     "Clear Selections" : {
       "localizations" : {
         "ar" : {
@@ -1202,10 +1280,38 @@
             "value" : "إغلاق"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "Close Tab" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إغلاق علامة التبويب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close Tab"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup Tab"
           }
         }
       }
@@ -1282,6 +1388,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koneksi Error"
+          }
+        }
+      }
+    },
+    "Contents" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المحتويات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contents"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar Isi"
           }
         }
       }
@@ -1371,6 +1499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "نسخ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
           }
         },
         "id" : {
@@ -1854,7 +1988,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "حذف التعليق"
+            "value" : "حذف التعليق التوضيحي"
           }
         },
         "en" : {
@@ -3691,6 +3825,28 @@
         }
       }
     },
+    "Library Options" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خيارات المكتبة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Library Options"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilihan Pustaka"
+          }
+        }
+      }
+    },
     "Library Storage" : {
       "localizations" : {
         "ar" : {
@@ -4050,6 +4206,50 @@
         }
       }
     },
+    "Navigation" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التنقل"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigasi"
+          }
+        }
+      }
+    },
+    "Navigation Page" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "صفحة التنقل"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigation Page"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halaman Navigasi"
+          }
+        }
+      }
+    },
     "Needs update" : {
       "localizations" : {
         "ar" : {
@@ -4165,6 +4365,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Folder Baru"
+          }
+        }
+      }
+    },
+    "Next Page" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الصفحة التالية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next Page"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halaman Berikutnya"
           }
         }
       }
@@ -4714,6 +4936,28 @@
         }
       }
     },
+    "Previous Page" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الصفحة السابقة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous Page"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halaman Sebelumnya"
+          }
+        }
+      }
+    },
     "Processing: %@ (%lld/%lld)" : {
       "localizations" : {
         "ar" : {
@@ -4874,6 +5118,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siap diunduh"
+          }
+        }
+      }
+    },
+    "Remove Favorite" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إزالة من المفضلة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Favorite"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Favorit"
           }
         }
       }
@@ -5161,6 +5427,12 @@
             "value" : "حفظ النتائج"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Results"
+          }
+        },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5261,6 +5533,28 @@
         }
       }
     },
+    "Search Book" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بحث عن كتاب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Book"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari Kitab"
+          }
+        }
+      }
+    },
     "Search Books" : {
       "localizations" : {
         "ar" : {
@@ -5298,7 +5592,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "بحث في المحتويات"
+            "value" : "بحث في الفهرس"
           }
         },
         "en" : {
@@ -5310,7 +5604,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cari Isi"
+            "value" : "Cari Daftar Isi"
           }
         }
       }
@@ -5413,6 +5707,28 @@
         }
       }
     },
+    "Search In Book" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بحث في الكتاب"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search In Book"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari di Kitab"
+          }
+        }
+      }
+    },
     "Search in book..." : {
       "localizations" : {
         "ar" : {
@@ -5469,6 +5785,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Rowi"
+          }
+        }
+      }
+    },
+    "Search Options" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خيارات البحث"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Options"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilihan Pencarian"
           }
         }
       }
@@ -5889,6 +6227,28 @@
         }
       }
     },
+    "Start Search" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بدء البحث"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Search"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Pencarian"
+          }
+        }
+      }
+    },
     "Starting %lld books update..." : {
       "localizations" : {
         "ar" : {
@@ -5918,6 +6278,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stop"
+          }
+        }
+      }
+    },
+    "Stop Search" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إيقاف البحث"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Search"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hentikan Pencarian"
           }
         }
       }
@@ -6017,6 +6399,28 @@
         }
       }
     },
+    "Switch Mode" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تبديل الوضع"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switch Mode"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti Mode"
+          }
+        }
+      }
+    },
     "Switch to Bundle Mode" : {
       "localizations" : {
         "ar" : {
@@ -6045,6 +6449,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selaraskan anotasi dan hasil pencarian di seluruh perangkat dengan CloudKit."
+          }
+        }
+      }
+    },
+    "Synchronize Data" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مزامنة البيانات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronize Data"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinkronisasi Data"
           }
         }
       }
@@ -6149,6 +6575,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tag (pisahkan dengan koma)"
+          }
+        }
+      }
+    },
+    "Text Options" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خيارات النص"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text Options"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilihan Teks"
           }
         }
       }

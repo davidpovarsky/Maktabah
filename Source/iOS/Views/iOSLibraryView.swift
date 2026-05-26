@@ -313,6 +313,8 @@ struct iOSLibraryView: View {
                     } label: {
                         Image(systemName: "ellipsis")
                     }
+                    .accessibilityLabel(String(localized: "Library Options"))
+                    .help(String(localized: "Library Options"))
                 }
             }
         }

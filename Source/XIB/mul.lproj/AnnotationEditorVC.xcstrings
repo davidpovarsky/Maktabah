@@ -73,14 +73,98 @@
         }
       }
     },
+    "mC2-JE-eAk.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Save Annotation\"; ObjectID = \"mC2-JE-eAk\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حفظ التعليق التوضيحي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Save Annotation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Anotasi"
+          }
+        }
+      }
+    },
     "OEi-nT-YGS.placeholderString" : {
       "comment" : "Class = \"NSTokenFieldCell\"; placeholderString = \"Tags...\"; ObjectID = \"OEi-nT-YGS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الأوسمة..."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Tags..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tag..."
+          }
+        }
+      }
+    },
+    "Oqy-F7-SBd.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Delete Annotation\"; ObjectID = \"Oqy-F7-SBd\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف التعليق التوضيحي"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete Annotation"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Anotasi"
+          }
+        }
+      }
+    },
+    "zqe-Sv-Jli.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Toggle Underline\"; ObjectID = \"zqe-Sv-Jli\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تسطير"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Toggle Underline"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garis Bawah"
           }
         }
       }

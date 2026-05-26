@@ -97,6 +97,30 @@
         }
       }
     },
+    "Ade-uD-gf7.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Close\"; ObjectID = \"Ade-uD-gf7\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إغلاق"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Close"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
     "bGY-rp-DNk.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"إسم الكتاب\"; ObjectID = \"bGY-rp-DNk\";",
       "extractionState" : "extracted_with_value",
@@ -165,6 +189,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Anotasi"
+          }
+        }
+      }
+    },
+    "dpV-5f-sNh.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Open in New Window\"; ObjectID = \"dpV-5f-sNh\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "افتح في نافذة جديدة"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open in New Window"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka di Jendela Baru"
           }
         }
       }

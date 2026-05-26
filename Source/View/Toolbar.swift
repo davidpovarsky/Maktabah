@@ -86,36 +86,36 @@ import Cocoa
          case .modeSelector:
              return customToolbarItem(
                  itemForItemIdentifier: .modeSelector,
-                 label: "Switch Mode", paletteLabel: "", toolTip: "",
+                 label: "Switch Mode", paletteLabel: "", toolTip: String(localized: "Switch Mode"),
                  itemContent: window.modeSegmentToolbarItem.view ?? NSView()
              )
          case .sidebarLeading:
-             return customToolbarItem(itemForItemIdentifier: .sidebarLeading, label: "Sidebar", paletteLabel: "", toolTip: "", itemContent: window.sidebarLeading.view ?? NSView()
+             return customToolbarItem(itemForItemIdentifier: .sidebarLeading, label: "Sidebar", paletteLabel: "", toolTip: String(localized: "Sidebar"), itemContent: window.sidebarLeading.view ?? NSView()
              )
          case .searchField:
-             return customToolbarItem(itemForItemIdentifier: .searchField, label: "Search In Book", paletteLabel: "", toolTip: "", itemContent: window.searchBook.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .searchField, label: "Search In Book", paletteLabel: "", toolTip: String(localized: "Search In Book"), itemContent: window.searchBook.view ?? NSView())
          case .searchSidebarLeadingContent:
-             return customToolbarItem(itemForItemIdentifier: .searchSidebarLeadingContent, label: "Search Book", paletteLabel: "", toolTip: "", itemContent: window.searchSidebarLeading.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .searchSidebarLeadingContent, label: "Search Book", paletteLabel: "", toolTip: String(localized: "Search Book"), itemContent: window.searchSidebarLeading.view ?? NSView())
          case .bookInfo:
-             return customToolbarItem(itemForItemIdentifier: .bookInfo, label: "Book Info", paletteLabel: "", toolTip: "", itemContent: window.bookInfo.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .bookInfo, label: "Book Info", paletteLabel: "", toolTip: String(localized: "Book Info"), itemContent: window.bookInfo.view ?? NSView())
          case .navSegment:
-             return customToolbarItem(itemForItemIdentifier: .navSegment, label: "Navigation", paletteLabel: "", toolTip: "", itemContent: window.navSegment.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .navSegment, label: "Navigation", paletteLabel: "", toolTip: String(localized: "Navigation"), itemContent: window.navSegment.view ?? NSView())
          case .copyDetails:
-             return customToolbarItem(itemForItemIdentifier: .copyDetails, label: "Copy", paletteLabel: "", toolTip: "", itemContent: window.copyWith.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .copyDetails, label: "Copy", paletteLabel: "", toolTip: String(localized: "Copy"), itemContent: window.copyWith.view ?? NSView())
          case .displayNotations:
-             return customToolbarItem(itemForItemIdentifier: .displayNotations, label: "All Anotations", paletteLabel: "", toolTip: "", itemContent: window.displayAnnotations.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .displayNotations, label: "All Anotations", paletteLabel: "", toolTip: String(localized: "All Anotations"), itemContent: window.displayAnnotations.view ?? NSView())
          case .bookmark:
-             return customToolbarItem(itemForItemIdentifier: .bookmark, label: "Bookmark", paletteLabel: "", toolTip: "", itemContent: window.displayBookmark.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .bookmark, label: "Bookmark", paletteLabel: "", toolTip: String(localized: "Bookmark"), itemContent: window.displayBookmark.view ?? NSView())
          case .insertBookmark:
-             return customToolbarItem(itemForItemIdentifier: .insertBookmark, label: "Save Results", paletteLabel: "", toolTip: "", itemContent: window.insertBookmark.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .insertBookmark, label: "Save Results", paletteLabel: "", toolTip: String(localized: "Save Results"), itemContent: window.insertBookmark.view ?? NSView())
          case .pageSlider:
-             return customToolbarItem(itemForItemIdentifier: .pageSlider, label: "Navigation Page", paletteLabel: "", toolTip: "", itemContent: window.navigationPage.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .pageSlider, label: "Navigation Page", paletteLabel: "", toolTip: String(localized: "Navigation Page"), itemContent: window.navigationPage.view ?? NSView())
          case .textViewOptions:
-             return customToolbarItem(itemForItemIdentifier: .textViewOptions, label: "View Options", paletteLabel: "", toolTip: "", itemContent: window.viewOpt.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .textViewOptions, label: "View Options", paletteLabel: "", toolTip: String(localized: "View Options"), itemContent: window.viewOpt.view ?? NSView())
          case .searchContents:
-             return customToolbarItem(itemForItemIdentifier: .searchContents, label: "Search Contents", paletteLabel: "", toolTip: "", itemContent: window.searchSidebarTrailing.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .searchContents, label: "Search Contents", paletteLabel: "", toolTip: String(localized: "Search Contents"), itemContent: window.searchSidebarTrailing.view ?? NSView())
          case .sidebarTrailing:
-             return customToolbarItem(itemForItemIdentifier: .sidebarTrailing, label: "Contents", paletteLabel: "", toolTip: "", itemContent: window.sidebarTrailing.view ?? NSView())
+             return customToolbarItem(itemForItemIdentifier: .sidebarTrailing, label: "Contents", paletteLabel: "", toolTip: String(localized: "Contents"), itemContent: window.sidebarTrailing.view ?? NSView())
          default:
              return item
          }

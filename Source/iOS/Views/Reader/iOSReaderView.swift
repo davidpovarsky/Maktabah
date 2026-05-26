@@ -82,6 +82,8 @@ struct iOSReaderView: View {
                 }) {
                     Image(systemName: "info.circle")
                 }
+                .accessibilityLabel(String(localized: "Book Information"))
+                .help(String(localized: "Book Information"))
                 .popover(isPresented: $showingBookInfo) {
                     iOSBookInfoView(book: book)
                         .preferredColorScheme(isDarkMode ? .dark : .light)
@@ -96,6 +98,8 @@ struct iOSReaderView: View {
                 }) {
                     Image(systemName: "chevron.left")
                 }
+                .accessibilityLabel(String(localized: "Next Page"))
+                .help(String(localized: "Next Page"))
                 .keyboardShortcut(.leftArrow, modifiers: [])
 
                 Button(action: {
@@ -103,6 +107,8 @@ struct iOSReaderView: View {
                 }) {
                     Image(systemName: "chevron.right")
                 }
+                .accessibilityLabel(String(localized: "Previous Page"))
+                .help(String(localized: "Previous Page"))
                 .keyboardShortcut(.rightArrow, modifiers: [])
             }
 
@@ -343,10 +349,14 @@ struct iOSBookSearchView: View {
                             Image(systemName: "stop.fill")
                                 .foregroundColor(.red)
                         }
+                        .accessibilityLabel(String(localized: "Stop Search"))
+                        .help(String(localized: "Stop Search"))
                     } else {
                         Button(action: { viewModel.startSearch() }) {
                             Image(systemName: "magnifyingglass")
                         }
+                        .accessibilityLabel(String(localized: "Start Search"))
+                        .help(String(localized: "Start Search"))
                     }
                 }
                 .padding()
@@ -461,6 +471,8 @@ struct iOSBookAnnotationsView: View {
                 }) {
                     Image(systemName: "arrow.counterclockwise.icloud")
                 }
+                .accessibilityLabel(String(localized: "Synchronize Data"))
+                .help(String(localized: "Synchronize Data"))
             )
             .onAppear {
                 loadBookAnnotations()

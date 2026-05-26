@@ -122,6 +122,8 @@ extension View {
                 Button { showSettings.wrappedValue = true } label: {
                     Image(systemName: "gear")
                 }
+                .accessibilityLabel(String(localized: "Settings"))
+                .help(String(localized: "Settings"))
             }
 
             CustomToolbarSpacer(placement: .topBarLeading)

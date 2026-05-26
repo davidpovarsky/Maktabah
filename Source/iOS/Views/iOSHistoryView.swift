@@ -89,6 +89,8 @@ struct BookRowView: View {
                     Image(systemName: isFavorite ? "star.fill" : "star")
                         .foregroundColor(isFavorite ? .yellow : .gray)
                 }
+                .accessibilityLabel(isFavorite ? String(localized: "Remove Favorite") : String(localized: "Add Favorite"))
+                .help(isFavorite ? String(localized: "Remove Favorite") : String(localized: "Add Favorite"))
                 .buttonStyle(PlainButtonStyle())
             }
             .contentShape(Rectangle())

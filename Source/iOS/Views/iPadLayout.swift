@@ -103,11 +103,15 @@ struct iPadLayout: View {
                         Button { showSettings = true } label: {
                             Image(systemName: "gear")
                         }
+                        .accessibilityLabel(String(localized: "Settings"))
+                        .help(String(localized: "Settings"))
                     }
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: { showingAddFavorites = true }) {
                             Image(systemName: "plus")
                         }
+                        .accessibilityLabel(String(localized: "Add Favorite"))
+                        .help(String(localized: "Add Favorite"))
                     }
                 }
                 .withActiveIntegrationStates()

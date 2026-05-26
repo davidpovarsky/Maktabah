@@ -121,6 +121,30 @@
         }
       }
     },
+    "cMj-3z-UH4.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Start Search\"; ObjectID = \"cMj-3z-UH4\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بدء البحث"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Start Search"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Pencarian"
+          }
+        }
+      }
+    },
     "CRl-Ap-Qp4.placeholderString" : {
       "comment" : "Class = \"NSSearchFieldCell\"; placeholderString = \"Search Narrator of Hadith\"; ObjectID = \"CRl-Ap-Qp4\";",
       "extractionState" : "extracted_with_value",
@@ -237,6 +261,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nama Rowi"
+          }
+        }
+      }
+    },
+    "xvn-qB-uWa.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Stop Search\"; ObjectID = \"xvn-qB-uWa\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إيقاف البحث"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Stop Search"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hentikan Pencarian"
           }
         }
       }

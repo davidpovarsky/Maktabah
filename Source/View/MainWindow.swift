@@ -292,7 +292,7 @@ extension MainWindow: NSToolbarDelegate {
                 identifier: .modeSelector,
                 label: "Mode",
                 paletteLabel: "Switch Mode",
-                toolTip: nil,
+                toolTip: control.toolTip,
                 view: control,
                 image: nil,
                 isNavigational: true
@@ -304,7 +304,7 @@ extension MainWindow: NSToolbarDelegate {
                 identifier: .navSegment,
                 label: "Navigasi",
                 paletteLabel: "Navigasi",
-                toolTip: nil,
+                toolTip: control.toolTip,
                 view: control,
                 image: nil,
                 isNavigational: false
@@ -317,6 +317,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Library",
                 systemImageName: "sidebar.leading",
                 action: #selector(sidebarLeadingToggle(_:)),
+                tooltip: String(localized: "Library"),
                 isNavigational: false
             )
 
@@ -327,6 +328,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Search Book",
                 systemImageName: "line.3.horizontal.decrease.circle",
                 action: #selector(hideLibrarySearchField(_:)),
+                tooltip: String(localized: "Search Book"),
                 isNavigational: false
             )
 
@@ -337,6 +339,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Book Info",
                 systemImageName: "info.circle",
                 action: #selector(bookInfo(_:)),
+                tooltip: String(localized: "Book Info"),
                 isNavigational: false
             )
 
@@ -347,6 +350,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Search Current Book",
                 systemImageName: "doc.text.magnifyingglass",
                 action: #selector(searchPopover(_:)),
+                tooltip: String(localized: .searchInThisBook),
                 isNavigational: false
             )
 
@@ -357,6 +361,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Page",
                 systemImageName: "slider.horizontal.below.rectangle",
                 action: #selector(navigationPage(_:)),
+                tooltip: String(localized: "Navigation Page"),
                 isNavigational: false
             )
 
@@ -367,6 +372,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "View",
                 systemImageName: "textformat.size.ar",
                 action: #selector(viewOptions(_:)),
+                tooltip: String(localized: "View Options"),
                 isNavigational: false
             )
 
@@ -377,6 +383,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Copy + Detail",
                 systemImageName: "doc.on.clipboard",
                 action: #selector(copyWith(_:)),
+                tooltip: String(localized: "Copy"),
                 isNavigational: false
             )
 
@@ -387,6 +394,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Annotations",
                 systemImageName: "quote.closing",
                 action: #selector(displayAllNotations(_:)),
+                tooltip: String(localized: "All Anotations"),
                 isNavigational: false
             )
 
@@ -397,6 +405,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Search Contents",
                 systemImageName: "rectangle.and.text.magnifyingglass.rtl",
                 action: #selector(searchSidebarTrailingContent(_:)),
+                tooltip: String(localized: "Search Contents"),
                 isNavigational: Self.rtl
             )
 
@@ -407,6 +416,7 @@ extension MainWindow: NSToolbarDelegate {
                 paletteLabel: "Contents",
                 systemImageName: "sidebar.trailing",
                 action: #selector(sidebarTrailing(_:)),
+                tooltip: String(localized: "Contents"),
                 isNavigational: Self.rtl
             )
 
@@ -433,6 +443,11 @@ extension MainWindow: NSToolbarDelegate {
         control.selectedSegment = currentMode.rawValue
         control.target = self
         control.action = #selector(modeSelectorChanged(_:))
+        control.setAccessibilityLabel(String(localized: "Switch Mode"))
+        control.toolTip = String(localized: "Switch Mode")
+        control.setToolTip(String(localized: "Reader"), forSegment: 0)
+        control.setToolTip(String(localized: "Search..."), forSegment: 1)
+        control.setToolTip(String(localized: "Narrators"), forSegment: 2)
         return control
     }
 
@@ -447,6 +462,10 @@ extension MainWindow: NSToolbarDelegate {
         control.setWidth(23, forSegment: 1)
         control.target = self
         control.action = #selector(pageControl(_:))
+        control.setAccessibilityLabel(String(localized: "Navigation"))
+        control.toolTip = String(localized: "Navigation")
+        control.setToolTip(String(localized: "Next Page"), forSegment: 0)
+        control.setToolTip(String(localized: "Previous Page"), forSegment: 1)
         return control
     }
 
@@ -456,6 +475,7 @@ extension MainWindow: NSToolbarDelegate {
         paletteLabel: String,
         systemImageName: String,
         action: Selector,
+        tooltip: String?,
         isNavigational: Bool
     ) -> NSToolbarItem {
         let image = ReusableFunc.systemImage(named: systemImageName)
@@ -469,7 +489,7 @@ extension MainWindow: NSToolbarDelegate {
             identifier: identifier,
             label: label,
             paletteLabel: paletteLabel,
-            toolTip: nil,
+            toolTip: tooltip,
             view: button,
             image: image,
             isNavigational: isNavigational

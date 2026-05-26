@@ -211,10 +211,14 @@ struct SearchModeView: View {
                     Image(systemName: "stop")
                         .foregroundColor(.red)
                 }
+                .accessibilityLabel(String(localized: "Stop Search"))
+                .help(String(localized: "Stop Search"))
             } else {
                 Button(action: { viewModel.startSearch() }) {
                     Image(systemName: "play")
                 }
+                .accessibilityLabel(String(localized: "Start Search"))
+                .help(String(localized: "Start Search"))
             }
 
             if !viewModel.results.isEmpty {
@@ -225,6 +229,8 @@ struct SearchModeView: View {
                 }) {
                     Image(systemName: "xmark.circle")
                 }
+                .accessibilityLabel(String(localized: "Clear Results"))
+                .help(String(localized: "Clear Results"))
             }
         }
 
@@ -248,6 +254,8 @@ struct SearchModeView: View {
             } label: {
                 Image(systemName: "ellipsis")
             }
+            .accessibilityLabel(String(localized: "Search Options"))
+            .help(String(localized: "Search Options"))
             .popover(isPresented: $showingHelp) {
                 SearchHelpView()
                     .frame(width: 300, height: 450)

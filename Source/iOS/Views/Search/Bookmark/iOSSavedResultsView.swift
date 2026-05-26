@@ -145,6 +145,7 @@ struct iOSSavedResultsView: View {
                         NavigationLink(value: folder) {
                             HStack {
                                 Image(systemName: "folder")
+                                    .accessibilityHidden(true)
                                 Text(folder.name)
                             }
                         }
@@ -319,6 +320,7 @@ struct iOSFolderContentList: View {
                 NavigationLink(value: child) {
                     HStack {
                         Image(systemName: "folder")
+                            .accessibilityHidden(true)
                         Text(child.name)
                     }
                 }
@@ -391,6 +393,7 @@ struct ResultRow: View {
         Button(action: action) {
             HStack {
                 Image(systemName: "doc.text.magnifyingglass")
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading) {
                     Text(result.name)
                         .foregroundStyle(.primary)
@@ -424,6 +427,7 @@ struct MoveDestinationRow: View {
             HStack {
                 Spacer().frame(width: CGFloat(level * 20))
                 Image(systemName: "folder")
+                    .accessibilityHidden(true)
                 Text(folder.name)
                 Spacer()
                 if selectedFolderId == folder.id {
