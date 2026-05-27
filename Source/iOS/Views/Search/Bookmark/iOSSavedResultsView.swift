@@ -344,6 +344,10 @@ struct iOSFolderContentList: View {
                     }
             }
         }
+        .refreshable {
+            CloudKitSyncManager.shared.fetchChanges()
+            try? await Task.sleep(nanoseconds: 1_000_000_000)
+        }
         .listStyle(.plain)
         .navigationTitle(folder?.name ?? "Saved Results".localized)
     }

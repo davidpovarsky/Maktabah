@@ -41,6 +41,10 @@ struct iOSHistoryView: View {
                 }
             }
         }
+        .refreshable {
+            CloudKitSyncManager.shared.fetchChanges()
+            try? await Task.sleep(nanoseconds: 1_000_000_000)
+        }
         .withActiveIntegrationStates()
         .navigationTitle("History & Favorites")
     }
