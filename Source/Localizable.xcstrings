@@ -3609,6 +3609,22 @@
         }
       }
     },
+    "Import Error" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خطأ في الاستيراد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Gagal"
+          }
+        }
+      }
+    },
     "Import Now" : {
       "localizations" : {
         "ar" : {
@@ -3621,6 +3637,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impor Sekarang"
+          }
+        }
+      }
+    },
+    "Import Success" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نجاح الاستيراد"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Berhasil"
           }
         }
       }

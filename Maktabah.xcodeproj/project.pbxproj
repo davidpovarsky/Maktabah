@@ -336,6 +336,8 @@
 		F305778B2FA463B1005732C6 /* iOSReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577752FA463B1005732C6 /* iOSReaderView.swift */; };
 		F305778C2FA463B1005732C6 /* AnnotationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577772FA463B1005732C6 /* AnnotationListView.swift */; };
 		F305778D2FA463B1005732C6 /* iOSLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577792FA463B1005732C6 /* iOSLibraryView.swift */; };
+		F305778D2FA463B1005732C7 /* iOSLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577792FA463B1005732C7 /* iOSLibraryViewController.swift */; };
+		F305778D2FA463B1005732C8 /* LibraryViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577792FA463B1005732C8 /* LibraryViewControllerWrapper.swift */; };
 		F305778E2FA463B1005732C6 /* ViewOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777D2FA463B1005732C6 /* ViewOptionsView.swift */; };
 		F305778F2FA463B1005732C6 /* iOSIbarotTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577812FA463B1005732C6 /* iOSIbarotTextView.swift */; };
 		F30577902FA463B1005732C6 /* iOSNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577722FA463B1005732C6 /* iOSNavigationManager.swift */; };
@@ -568,6 +570,8 @@
 		F30577772FA463B1005732C6 /* AnnotationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationListView.swift; sourceTree = "<group>"; };
 		F30577782FA463B1005732C6 /* AuthorModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModeView.swift; sourceTree = "<group>"; };
 		F30577792FA463B1005732C6 /* iOSLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSLibraryView.swift; sourceTree = "<group>"; };
+		F30577792FA463B1005732C7 /* iOSLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSLibraryViewController.swift; sourceTree = "<group>"; };
+		F30577792FA463B1005732C8 /* LibraryViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewControllerWrapper.swift; sourceTree = "<group>"; };
 		F305777A2FA463B1005732C6 /* iOSMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMainView.swift; sourceTree = "<group>"; };
 		F305777B2FA463B1005732C6 /* SearchModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModeView.swift; sourceTree = "<group>"; };
 		F305777D2FA463B1005732C6 /* ViewOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOptionsView.swift; sourceTree = "<group>"; };
@@ -1082,6 +1086,8 @@
 				F30577782FA463B1005732C6 /* AuthorModeView.swift */,
 				9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */,
 				F30577792FA463B1005732C6 /* iOSLibraryView.swift */,
+				F30577792FA463B1005732C7 /* iOSLibraryViewController.swift */,
+				F30577792FA463B1005732C8 /* LibraryViewControllerWrapper.swift */,
 				F305777A2FA463B1005732C6 /* iOSMainView.swift */,
 				F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */,
 				F363825C2FA702D10006636C /* iPadLayout.swift */,
@@ -1642,6 +1648,8 @@
 				F305778B2FA463B1005732C6 /* iOSReaderView.swift in Sources */,
 				F305778C2FA463B1005732C6 /* AnnotationListView.swift in Sources */,
 				F305778D2FA463B1005732C6 /* iOSLibraryView.swift in Sources */,
+				F305778D2FA463B1005732C7 /* iOSLibraryViewController.swift in Sources */,
+				F305778D2FA463B1005732C8 /* LibraryViewControllerWrapper.swift in Sources */,
 				F321672B2FBAA39F00601DB3 /* BookImportView.swift in Sources */,
 				F363824E2FA6C6150006636C /* SettingsView.swift in Sources */,
 				F305778E2FA463B1005732C6 /* ViewOptionsView.swift in Sources */,

@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 import Combine
 
+@MainActor
 @Observable
 class iOSLibraryViewModel {
     var rootCategories: [CategoryData] = []
@@ -43,6 +44,13 @@ class iOSLibraryViewModel {
     var isBulkDownloading = false
     private var bulkDownloadTask: Task<Void, Never>?
 
+    // MARK: - MVVM Refactoring Properties
+    var singleBookToDelete: BooksData? = nil
+    var showingDeleteConfirmation = false
+    var showingImportSheet = false
+    var importErrorMessage: String? = nil
+    var showImportSuccessAlert = false
+
     private var hasLoadedLibrary = false
     private var _cachedDisplayedCategories: [CategoryData] = []
     
@@ -78,7 +86,9 @@ class iOSLibraryViewModel {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.refreshSubject.send(())
+            Task { @MainActor in
+                self?.refreshSubject.send(())
+            }
         }
 
         NotificationCenter.default.addObserver(
@@ -86,7 +96,9 @@ class iOSLibraryViewModel {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.refreshSubject.send(())
+            Task { @MainActor in
+                self?.refreshSubject.send(())
+            }
         }
 
         NotificationCenter.default.addObserver(
@@ -232,6 +244,43 @@ class iOSLibraryViewModel {
             exitSelectionMode()
 
             onFinished()
+        }
+    }
+
+    // MARK: - MVVM Refactoring Methods
+
+    func notifySelectionChanged() {
+        selectedBookIds = selectedBookIds
+    }
+
+    func selectBook(_ book: BooksData, using navigationManager: iOSNavigationManager) {
+        let lastId = HistoryViewModel.shared.entriesByBookId[book.id]?.lastContentId
+        navigationManager.openBook(book, initialContentId: lastId)
+    }
+
+    func deleteSingleBook(_ book: BooksData) async {
+        try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+    }
+
+    func importOfflineBook(from url: URL, metadata: BookMetadata, authorRow: [String: Any]?) async {
+        let updateManager = BookUpdateManager.shared
+        do {
+            let result = try await updateManager.importOfflineUpdate(
+                from: url,
+                providedMetadata: metadata,
+                authorRow: authorRow
+            )
+            try await LibraryDataManager.shared.processBookUpdates([result])
+            updateManager.integrateBooks(metadata: metadata)
+
+            await MainActor.run {
+                showImportSuccessAlert = true
+                showingImportSheet = false
+            }
+        } catch {
+            await MainActor.run {
+                importErrorMessage = error.localizedDescription
+            }
         }
     }
 
