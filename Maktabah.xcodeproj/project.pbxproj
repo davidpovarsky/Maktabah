@@ -268,6 +268,7 @@
 		4BFCD84C2F10744800E41F8A /* ScheherazadeNew-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */; };
 		4BFCD84F2F10746600E41F8A /* Lateef-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */; };
 		4BFCD8502F10746600E41F8A /* Lateef-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFCD84E2F10746600E41F8A /* Lateef-Bold.ttf */; };
+		CA267055B8205DAFE55D7442 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CCE35AFE445BF8BEF37C5F /* CloudKitSyncable.swift */; };
 		CFAA7B20E067D5BB75E4EB23 /* MaktabahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */; };
 		CFEC4F5ACD6D4ADC1B7C5ECA /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373C7B02164CDBB77BFFF48 /* CloudKitSyncManager.swift */; };
 		F300A2EC2F2DCE860095015E /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F300A2EB2F2DCE860095015E /* StorageError.swift */; };
@@ -356,6 +357,20 @@
 		F321672D2FBB2C0D00601DB3 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321672C2FBB2C0D00601DB3 /* SQLiteDatabase.swift */; };
 		F321672E2FBB2C0D00601DB3 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321672C2FBB2C0D00601DB3 /* SQLiteDatabase.swift */; };
 		F321672F2FBB2C0D00601DB3 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321672C2FBB2C0D00601DB3 /* SQLiteDatabase.swift */; };
+		F321E0202FC7050F00CB37DD /* CloudKitCoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01C2FC7050F00CB37DD /* CloudKitCoreManager.swift */; };
+		F321E0212FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01B2FC7050F00CB37DD /* AnnotationSyncHandler.swift */; };
+		F321E0222FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01D2FC7050F00CB37DD /* HistorySyncHandler.swift */; };
+		F321E0232FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01E2FC7050F00CB37DD /* ResultSyncHandler.swift */; };
+		F321E0242FC7050F00CB37DD /* CloudKitCoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01C2FC7050F00CB37DD /* CloudKitCoreManager.swift */; };
+		F321E0252FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01B2FC7050F00CB37DD /* AnnotationSyncHandler.swift */; };
+		F321E0262FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01D2FC7050F00CB37DD /* HistorySyncHandler.swift */; };
+		F321E0272FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01E2FC7050F00CB37DD /* ResultSyncHandler.swift */; };
+		F321E0282FC7050F00CB37DD /* CloudKitCoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01C2FC7050F00CB37DD /* CloudKitCoreManager.swift */; };
+		F321E0292FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01B2FC7050F00CB37DD /* AnnotationSyncHandler.swift */; };
+		F321E02A2FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01D2FC7050F00CB37DD /* HistorySyncHandler.swift */; };
+		F321E02B2FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F321E01E2FC7050F00CB37DD /* ResultSyncHandler.swift */; };
+		F321E02C2FC7059100CB37DD /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CCE35AFE445BF8BEF37C5F /* CloudKitSyncable.swift */; };
+		F321E02D2FC7059100CB37DD /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CCE35AFE445BF8BEF37C5F /* CloudKitSyncable.swift */; };
 		F323BCA22F2EE70200EFD4F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */; };
 		F332143B2FC2750E006EC214 /* ThemeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33214392FC2750E006EC214 /* ThemeComponents.swift */; };
 		F349073F2F3064A10036CDAF /* IconMaktabah.icon in Resources */ = {isa = PBXBuildFile; fileRef = F349073E2F3064A10036CDAF /* IconMaktabah.icon */; };
@@ -542,6 +557,7 @@
 		6505EE880DD50A217DB489F1 /* iOSSearchViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = iOSSearchViewModel.swift; sourceTree = "<group>"; };
 		88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MaktabahApp.swift; sourceTree = "<group>"; };
 		9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = iOSHistoryView.swift; sourceTree = "<group>"; };
+		C2CCE35AFE445BF8BEF37C5F /* CloudKitSyncable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 		F300A2EB2F2DCE860095015E /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 		F305776F2FA46222005732C6 /* Maktabah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maktabah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30577702FA463B1005732C6 /* iOSAnnotationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAnnotationViewModel.swift; sourceTree = "<group>"; };
@@ -566,6 +582,10 @@
 		F31111982FC0A9C00024B638 /* iOSFolderSelectionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSFolderSelectionGroup.swift; sourceTree = "<group>"; };
 		F311119A2FC0A9D60024B638 /* iOSMoveItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMoveItemView.swift; sourceTree = "<group>"; };
 		F321672C2FBB2C0D00601DB3 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		F321E01B2FC7050F00CB37DD /* AnnotationSyncHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationSyncHandler.swift; sourceTree = "<group>"; };
+		F321E01C2FC7050F00CB37DD /* CloudKitCoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitCoreManager.swift; sourceTree = "<group>"; };
+		F321E01D2FC7050F00CB37DD /* HistorySyncHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySyncHandler.swift; sourceTree = "<group>"; };
+		F321E01E2FC7050F00CB37DD /* ResultSyncHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSyncHandler.swift; sourceTree = "<group>"; };
 		F323BCA12F2EE70200EFD4F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA32F2EE71800EFD4F4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA42F2EE71A00EFD4F4 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -703,6 +723,7 @@
 				4B96D33F2F3612A10018D902 /* BookUpdate */,
 				4BAB8A4A2F286C7D00732FC9 /* Annotations */,
 				4B01CA2E2EFD3656002A66FA /* App Config */,
+				F321E01F2FC7050F00CB37DD /* CloudKit */,
 				4B4C97082F1EFC380051503E /* Database */,
 				4B65CCBE2EE0A1050085CEB4 /* Engine */,
 				4B4C970E2F1F016D0051503E /* Library */,
@@ -745,6 +766,7 @@
 				4BCCCB612F9C41310027EC18 /* CopyableResult.swift */,
 				4B3202482EDB10FA003B95D1 /* Protocols.swift */,
 				4B47F3982EE9A36D009A399F /* RowiProtocols.swift */,
+				C2CCE35AFE445BF8BEF37C5F /* CloudKitSyncable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1113,6 +1135,17 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		F321E01F2FC7050F00CB37DD /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				F321E01B2FC7050F00CB37DD /* AnnotationSyncHandler.swift */,
+				F321E01C2FC7050F00CB37DD /* CloudKitCoreManager.swift */,
+				F321E01D2FC7050F00CB37DD /* HistorySyncHandler.swift */,
+				F321E01E2FC7050F00CB37DD /* ResultSyncHandler.swift */,
+			);
+			path = CloudKit;
+			sourceTree = "<group>";
+		};
 		F332143A2FC2750E006EC214 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -1446,6 +1479,10 @@
 				4B5EC2992EE334C600991F39 /* ResultsHandler.swift in Sources */,
 				4B9C83062F7EAE1C00CE1800 /* ZstdShim.swift in Sources */,
 				4B03185F2F41E7BD00CB1677 /* SplitVC.swift in Sources */,
+				F321E0282FC7050F00CB37DD /* CloudKitCoreManager.swift in Sources */,
+				F321E0292FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */,
+				F321E02A2FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */,
+				F321E02B2FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */,
 				4B65CCB82EE059B60085CEB4 /* OptionSearchVC.swift in Sources */,
 				4B0139E22EEB281C00424CFA /* BookPageCache.swift in Sources */,
 				4B0139E42EEB2FDF00424CFA /* StringInterner.swift in Sources */,
@@ -1457,6 +1494,7 @@
 				4B20DB822EE7EEE400B97126 /* BookInfo.swift in Sources */,
 				4B65CCB42EE059700085CEB4 /* SearchSidebarVC.swift in Sources */,
 				CFEC4F5ACD6D4ADC1B7C5ECA /* CloudKitSyncManager.swift in Sources */,
+				CA267055B8205DAFE55D7442 /* CloudKitSyncable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1519,7 @@
 				4B7C90B32F83494200454BE1 /* BundledArabicTextField.swift in Sources */,
 				4B7C90B42F83494200454BE1 /* BundledArabicButton.swift in Sources */,
 				4B7C90B52F83494200454BE1 /* ArchiveErrors.swift in Sources */,
+				F321E02C2FC7059100CB37DD /* CloudKitSyncable.swift in Sources */,
 				4B7C90B62F83494200454BE1 /* AppDelegate.swift in Sources */,
 				4B7C90B72F83494200454BE1 /* LibraryViewManager.swift in Sources */,
 				F30577962FA4987B005732C6 /* NotificationName.swift in Sources */,
@@ -1571,6 +1610,10 @@
 				4B7C91062F83494200454BE1 /* SearchSidebarVC.swift in Sources */,
 				FB254BD29A50C530E907662A /* CloudKitSyncManager.swift in Sources */,
 				F321672F2FBB2C0D00601DB3 /* SQLiteDatabase.swift in Sources */,
+				F321E0242FC7050F00CB37DD /* CloudKitCoreManager.swift in Sources */,
+				F321E0252FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */,
+				F321E0262FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */,
+				F321E0272FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1606,6 +1649,7 @@
 				F30577902FA463B1005732C6 /* iOSNavigationManager.swift in Sources */,
 				F30577912FA463B1005732C6 /* iOSLibraryViewModel.swift in Sources */,
 				F36D684D2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */,
+				F321E02D2FC7059100CB37DD /* CloudKitSyncable.swift in Sources */,
 				F30577922FA463B1005732C6 /* BookListWrapper.swift in Sources */,
 				F30576F52FA46222005732C6 /* StringExt.swift in Sources */,
 				F30576F62FA46222005732C6 /* ArabicTextRenderer.swift in Sources */,
@@ -1655,6 +1699,10 @@
 				F305772F2FA46222005732C6 /* BookmarkModel.swift in Sources */,
 				F36382532FA6FABF0006636C /* BootstrapView.swift in Sources */,
 				F30577302FA46222005732C6 /* RowiModel.swift in Sources */,
+				F321E0202FC7050F00CB37DD /* CloudKitCoreManager.swift in Sources */,
+				F321E0212FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */,
+				F321E0222FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */,
+				F321E0232FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */,
 				F30577342FA46222005732C6 /* Annotations.swift in Sources */,
 				F30577362FA46222005732C6 /* RowiDataManager.swift in Sources */,
 				F30577372FA46222005732C6 /* Quran.swift in Sources */,
