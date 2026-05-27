@@ -26,7 +26,7 @@ class iOSLibraryViewModel {
     var searchText: String = "" {
         didSet {
             if oldValue != searchText {
-                updateDisplayedCategories()
+                searchSubject.send(searchText)
             }
         }
     }
@@ -48,6 +48,7 @@ class iOSLibraryViewModel {
     
     var updateTrigger: Int = 0
     private let refreshSubject = PassthroughSubject<Void, Never>()
+    private let searchSubject = PassthroughSubject<String, Never>()
     private var cancellables = Set<AnyCancellable>()
 
     init() {
@@ -62,6 +63,13 @@ class iOSLibraryViewModel {
                     self?.rootCategories = Array(LibraryDataManager.shared.allRootCategories)
                     self?.updateDisplayedCategories()
                 }
+            }
+            .store(in: &cancellables)
+
+        searchSubject
+            .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.updateDisplayedCategories()
             }
             .store(in: &cancellables)
 

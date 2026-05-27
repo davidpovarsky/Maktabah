@@ -22,11 +22,12 @@ enum iOSRowiDisplayMode: Int, CaseIterable, Identifiable {
 }
 
 @MainActor
-class iOSAuthorViewModel: ObservableObject {
-    @Published var isLoading = true
-    @Published var tabaqaGroups: [TabaqaGroup] = []
+@Observable
+class iOSAuthorViewModel {
+    var isLoading = true
+    var tabaqaGroups: [TabaqaGroup] = []
 
-    @Published var selectedRowi: Rowi? {
+    var selectedRowi: Rowi? {
         didSet {
             if let rowi = selectedRowi {
                 dataManager.loadRowiData(rowi)
@@ -35,21 +36,43 @@ class iOSAuthorViewModel: ObservableObject {
         }
     }
 
-    @Published var displayMode: iOSRowiDisplayMode = .mulakhosh {
+    var displayMode: iOSRowiDisplayMode = .mulakhosh {
         didSet {
             updateRowiContent()
         }
     }
 
-    @Published var rowiContentText: AttributedString = ""
+    var rowiContentText: AttributedString = ""
+
+    /// Text saat ini di search bar (di-set oleh .searchable binding)
+    var searchText: String = "" {
+        didSet {
+            if oldValue != searchText {
+                searchSubject.send(searchText)
+            }
+        }
+    }
+
+    /// Query terakhir yang sudah di-debounce — untuk sidebar isSearching flag
+    private(set) var lastSearchQuery: String = ""
 
     private let dataManager = RowiDataManager.shared
     private var cancellables = Set<AnyCancellable>()
+    private let searchSubject = PassthroughSubject<String, Never>()
 
     init() {
         NotificationCenter.default.publisher(for: .didChangeHarakat)
             .sink { [weak self] _ in
                 self?.updateRowiContent()
+            }
+            .store(in: &cancellables)
+
+        searchSubject
+            .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
+            .sink { [weak self] query in
+                guard let self else { return }
+                lastSearchQuery = query
+                searchRowis(query: query)
             }
             .store(in: &cancellables)
     }

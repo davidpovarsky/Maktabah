@@ -556,15 +556,15 @@ class LibraryDataManager {
     }
 
     func filterCategory(_ category: CategoryData, searchText: String) -> CategoryData? {
-        let normalizedSearch = searchText.normalizeArabic()
-        let categoryMatches = category.name.normalizeArabic().localizedStandardContains(normalizedSearch)
+        let normalizedSearch = searchText.normalizeArabic(false)
+        let categoryMatches = category.name.normalizeArabic(false).localizedStandardContains(normalizedSearch)
 
         // Filter children (bisa kategori atau buku)
         let filteredChildren = category.children.compactMap { child -> Any? in
             if let childCategory = child as? CategoryData {
                 return filterCategory(childCategory, searchText: normalizedSearch)
             } else if let book = child as? BooksData {
-                if book.book.normalizeArabic().localizedStandardContains(normalizedSearch) {
+                if book.book.normalizeArabic(false).localizedStandardContains(normalizedSearch) {
                     return book
                 }
             }

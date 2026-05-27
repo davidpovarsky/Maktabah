@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 
 struct iOSAnnotationNode: Identifiable {
     let id: String
@@ -47,8 +48,15 @@ struct iOSAnnotationNode: Identifiable {
 class iOSAnnotationViewModel {
     var rootNodes: [iOSAnnotationNode] = []
     var searchText: String = "" {
-        didSet { applyFilter() }
+        didSet {
+            if oldValue != searchText {
+                searchSubject.send(searchText)
+            }
+        }
     }
+
+    private var cancellables = Set<AnyCancellable>()
+    private let searchSubject = PassthroughSubject<String, Never>()
 
     var groupingMode: AnnotationGroupingMode {
         get { UserDefaults.standard.selectedAnnGroupingMode }
@@ -75,6 +83,13 @@ class iOSAnnotationViewModel {
     }
 
     init() {
+        searchSubject
+            .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.applyFilter()
+            }
+            .store(in: &cancellables)
+
         NotificationCenter.default.addObserver(
             forName: .annotationTreeDidUpdate,
             object: nil,
@@ -148,13 +163,16 @@ class iOSAnnotationViewModel {
 
     private func filterNodes(_ nodes: [iOSAnnotationNode], with query: String) -> [iOSAnnotationNode] {
         var result: [iOSAnnotationNode] = []
+        let query = query.normalizeArabic(false)
+
         for node in nodes {
             var matchingChildren: [iOSAnnotationNode] = []
             if let children = node.children {
                 matchingChildren = filterNodes(children, with: query)
             }
 
-            let matchesSelf = node.title.localizedStandardContains(query) || (node.annotation?.context.localizedStandardContains(query) == true)
+            let matchesSelf = node.title.normalizeArabic(false).localizedStandardContains(query) ||
+                (node.annotation?.context.normalizeArabic(false).localizedStandardContains(query) == true)
 
             if matchesSelf || !matchingChildren.isEmpty {
                 var copy = node

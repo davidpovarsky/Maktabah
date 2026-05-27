@@ -15,17 +15,12 @@ struct iPhoneLayout: View {
     @Binding var showSettings: Bool
     @State private var showingAddFavorites = false
 
-    private var searchPrompt: String {
-        switch selectedTab {
-        case .viewer: String(localized: "Search Library")
-        case .search: String(localized: "Filter Books to Search")
-        case .author: String(localized: "Search Narrators")
-        case .annotations: String(localized: "Search Annotations")
-        case .history: String(localized: "Search History & Favorites")
-        }
-    }
-
     var body: some View {
+        @Bindable var libraryVM = bManager.libraryViewModel
+        @Bindable var searchVM = bManager.searchViewModel
+        @Bindable var authorVM = bManager.authorViewModel
+        @Bindable var annotationVM = bManager.annotationViewModel
+
         TabView(selection: $selectedTab) {
             NavigationStack {
                 iOSLibraryView()
@@ -33,7 +28,7 @@ struct iPhoneLayout: View {
                     .adaptiveReaderPush(item: $bManager.selectedBook, manager: bManager)
                     .toolbarGeneral(showSettings: $showSettings)
             }
-            .searchable(text: $bManager.searchText, placement: .toolbar, prompt: searchPrompt)
+            .searchable(text: $libraryVM.searchText, placement: .toolbar, prompt: String(localized: "Search Library"))
             .tabItem { Label(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon) }
             .tag(iOSTab.viewer)
 
@@ -43,7 +38,7 @@ struct iPhoneLayout: View {
                     .adaptiveReaderPush(item: $bManager.selectedBook, manager: bManager)
                     .toolbarGeneral(showSettings: $showSettings)
             }
-            .searchable(text: $bManager.searchText, placement: .toolbar, prompt: searchPrompt)
+            .searchable(text: $searchVM.filterText, placement: .toolbar, prompt: String(localized: "Filter Books to Search"))
             .tabItem { Label(iOSTab.search.title, systemImage: iOSTab.search.icon) }
             .tag(iOSTab.search)
 
@@ -53,7 +48,7 @@ struct iPhoneLayout: View {
                     .adaptiveReaderPush(item: $bManager.selectedBook, manager: bManager)
                     .toolbarGeneral(showSettings: $showSettings)
             }
-            .searchable(text: $bManager.searchText, placement: .toolbar, prompt: searchPrompt)
+            .searchable(text: $authorVM.searchText, placement: .toolbar, prompt: String(localized: "Search Narrators"))
             .tabItem { Label(iOSTab.author.title, systemImage: iOSTab.author.icon) }
             .tag(iOSTab.author)
 
@@ -63,7 +58,7 @@ struct iPhoneLayout: View {
                     .adaptiveReaderPush(item: $bManager.selectedBook, manager: bManager)
                     .toolbarGeneral(showSettings: $showSettings)
             }
-            .searchable(text: $bManager.searchText, placement: .toolbar, prompt: searchPrompt)
+            .searchable(text: $annotationVM.searchText, placement: .toolbar, prompt: String(localized: "Search Annotations"))
             .tabItem { Label(iOSTab.annotations.title, systemImage: iOSTab.annotations.icon) }
             .tag(iOSTab.annotations)
 
@@ -88,7 +83,14 @@ struct iPhoneLayout: View {
                         }
                     }
             }
-            .searchable(text: $bManager.searchText, placement: .toolbar, prompt: searchPrompt)
+            .searchable(
+                text: Binding(
+                    get: { HistoryViewModel.shared.searchText },
+                    set: { HistoryViewModel.shared.searchText = $0 }
+                ),
+                placement: .toolbar,
+                prompt: String(localized: "Search History & Favorites")
+            )
             .tabItem { Label(iOSTab.history.title, systemImage: iOSTab.history.icon) }
             .tag(iOSTab.history)
         }

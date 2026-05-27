@@ -4,6 +4,29 @@
     "" : {
       "shouldTranslate" : false
     },
+    ".filterByBooks" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تصفية حسب الكتب..."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Books…"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter berdasarkan Kitab…"
+          }
+        }
+      }
+    },
     "'%@' already exists. All annotations from '%@' will be merged into '%@'." : {
       "localizations" : {
         "ar" : {
@@ -3112,6 +3135,9 @@
           }
         }
       }
+    },
+    "Filter by kitab…" : {
+
     },
     "Finder" : {
       "localizations" : {

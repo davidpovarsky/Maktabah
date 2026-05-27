@@ -31,6 +31,23 @@ class HistoryViewModel: ObservableObject {
 
     @Published var historyBooks: [BooksData] = []
     @Published var favoriteBooks: [BooksData] = []
+    @Published var searchText: String = ""
+
+    var filteredFavorites: [BooksData] {
+        if searchText.isEmpty { return favoriteBooks }
+        let normalizedSearchText = searchText.normalizeArabic(false)
+        return favoriteBooks.filter { book in
+            book.book.normalizeArabic(false).localizedStandardContains(normalizedSearchText)
+        }
+    }
+
+    var filteredHistory: [BooksData] {
+        if searchText.isEmpty { return historyBooks }
+        let normalizedSearchText = searchText.normalizeArabic(false)
+        return historyBooks.filter { book in
+            book.book.normalizeArabic(false).localizedStandardContains(normalizedSearchText)
+        }
+    }
 
     private let maxHistoryCount = 50
     private let storageKey = "CloudReadingEntries"

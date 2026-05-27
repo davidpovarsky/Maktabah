@@ -5,16 +5,8 @@ struct iOSHistoryView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
 
     var body: some View {
-        let searchText = navigationManager.searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let normalizedSearchText = searchText.normalizeArabic(true)
-
-        let filteredFavorites = viewModel.favoriteBooks.filter { book in
-            searchText.isEmpty || book.book.normalizeArabic(true).localizedStandardContains(normalizedSearchText)
-        }
-        
-        let filteredHistory = viewModel.historyBooks.filter { book in
-            searchText.isEmpty || book.book.normalizeArabic(true).localizedStandardContains(normalizedSearchText)
-        }
+        let filteredFavorites = viewModel.filteredFavorites
+        let filteredHistory = viewModel.filteredHistory
 
         ThemeList(isGrouped: true) {
             if !filteredFavorites.isEmpty {
@@ -40,8 +32,8 @@ struct iOSHistoryView: View {
                     .onDelete(perform: removeHistory)
                 }
             } else if filteredFavorites.isEmpty {
-                if !searchText.isEmpty {
-                    Text("No results found for \"\(searchText)\"")
+                if !viewModel.searchText.isEmpty {
+                    Text("No results found for \"\(viewModel.searchText)\"")
                         .foregroundColor(.secondary)
                 } else {
                     Text("No recent history")

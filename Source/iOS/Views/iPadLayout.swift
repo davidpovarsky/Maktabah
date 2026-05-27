@@ -10,33 +10,40 @@ struct iPadLayout: View {
     @Binding var selectedTab: iOSTab
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var showSettings: Bool
-    
+
     @State private var showingSearchHelp = false
     @State private var showingAddFavorites = false
     @State private var path: [iOSTab] = []
-    
+
     @StateObject private var historyViewModel = HistoryViewModel.shared
 
+    // Sidebar search tetap lokal — dipakai hanya untuk filter sidebar (Favorites & History)
+    @State private var sidebarSearchText: String = ""
+
     private var filteredFavorites: [BooksData] {
-        if bManager.searchText.isEmpty || !path.isEmpty {
+        if sidebarSearchText.isEmpty || !path.isEmpty {
             return historyViewModel.favoriteBooks
         }
         return historyViewModel.favoriteBooks.filter {
-            $0.book.localizedCaseInsensitiveContains(bManager.searchText)
+            $0.book.normalizeArabic(false).contains(
+                sidebarSearchText.normalizeArabic(false)
+            )
         }
     }
 
     private var filteredHistory: [BooksData] {
-        if bManager.searchText.isEmpty || !path.isEmpty {
+        if sidebarSearchText.isEmpty || !path.isEmpty {
             return historyViewModel.historyBooks
         }
         return historyViewModel.historyBooks.filter {
-            $0.book.localizedCaseInsensitiveContains(bManager.searchText)
+            $0.book.normalizeArabic(false).contains(
+                sidebarSearchText.normalizeArabic(false)
+            )
         }
     }
 
     private func searchPrompt(for tab: iOSTab) -> String {
-        switch selectedTab {
+        switch tab {
         case .viewer: String(localized: "Search Library")
         case .search: String(localized: "Filter Books to Search")
         case .author: String(localized: "Search Narrators")
@@ -48,78 +55,39 @@ struct iPadLayout: View {
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             NavigationStack(path: $path) {
-                ThemeList(isGrouped: true) {
-                    Section {
-                        ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
-                            NavigationLink(value: tab) {
-                                Label(tab.title, systemImage: tab.icon)
+                sidebarContent
+                    .navigationTitle("Home")
+                    .navigationBarTitleDisplayMode(.large)
+                    .listStyle(.insetGrouped)
+                    .searchable(
+                        text: $sidebarSearchText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: "Search Favorites & History".localized
+                    )
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button {
+                                showSettings = true
+                            } label: {
+                                Image(systemName: "gear")
                             }
-                            .foregroundStyle(.primary)
+                            .accessibilityLabel(String(localized: "Settings"))
+                            .help(String(localized: "Settings"))
+                        }
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: { showingAddFavorites = true }) {
+                                Image(systemName: "plus")
+                            }
+                            .accessibilityLabel(
+                                String(localized: "Add Favorite")
+                            )
+                            .help(String(localized: "Add Favorite"))
                         }
                     }
-
-                    if !filteredFavorites.isEmpty {
-                        Section(header: Text("Favorites".localized)) {
-                            ForEach(filteredFavorites, id: \.id) { book in
-                                BookRowView(book: book, isFavorite: true, viewModel: historyViewModel) {
-                                    let lastId = historyViewModel.entriesByBookId[book.id]?.lastContentId
-                                    bManager.openBook(book, initialContentId: lastId)
-                                }
-                            }
-                            .onDelete { offsets in
-                                for index in offsets {
-                                    let book = filteredFavorites[index]
-                                    historyViewModel.toggleFavorite(book.id)
-                                }
-                            }
-                        }
+                    .withActiveIntegrationStates()
+                    .navigationDestination(for: iOSTab.self) { tab in
+                        destinationView(for: tab)
                     }
-
-                    if !filteredHistory.isEmpty {
-                        Section(header: Text("History".localized)) {
-                            ForEach(filteredHistory, id: \.id) { book in
-                                BookRowView(
-                                    book: book,
-                                    isFavorite: historyViewModel.favoriteBookIds.contains(book.id),
-                                    viewModel: historyViewModel
-                                ) {
-                                    let lastId = historyViewModel.entriesByBookId[book.id]?.lastContentId
-                                    bManager.openBook(book, initialContentId: lastId)
-                                }
-                            }
-                            .onDelete { offsets in
-                                for index in offsets {
-                                    let book = filteredHistory[index]
-                                    historyViewModel.removeHistory(for: book.id)
-                                }
-                            }
-                        }
-                    }
-                }
-                .navigationTitle("Home")
-                .navigationBarTitleDisplayMode(.large)
-                .listStyle(.insetGrouped)
-                .searchable(text: $bManager.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Favorites & History".localized)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button { showSettings = true } label: {
-                            Image(systemName: "gear")
-                        }
-                        .accessibilityLabel(String(localized: "Settings"))
-                        .help(String(localized: "Settings"))
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: { showingAddFavorites = true }) {
-                            Image(systemName: "plus")
-                        }
-                        .accessibilityLabel(String(localized: "Add Favorite"))
-                        .help(String(localized: "Add Favorite"))
-                    }
-                }
-                .withActiveIntegrationStates()
-                .navigationDestination(for: iOSTab.self) { tab in
-                    destinationView(for: tab)
-                }
             }
         } detail: {
             iOSReaderTabView()
@@ -130,24 +98,109 @@ struct iPadLayout: View {
     }
 
     @ViewBuilder
+    private var sidebarContent: some View {
+        ThemeList(isGrouped: true) {
+            Section {
+                ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
+                    NavigationLink(value: tab) {
+                        Label(tab.title, systemImage: tab.icon)
+                    }
+                    .foregroundStyle(.primary)
+                }
+            }
+
+            if !filteredFavorites.isEmpty {
+                Section(header: Text("Favorites".localized)) {
+                    ForEach(filteredFavorites, id: \.id) { book in
+                        BookRowView(
+                            book: book,
+                            isFavorite: true,
+                            viewModel: historyViewModel
+                        ) {
+                            let lastId = historyViewModel.entriesByBookId[
+                                book.id
+                            ]?.lastContentId
+                            bManager.openBook(book, initialContentId: lastId)
+                        }
+                    }
+                    .onDelete { offsets in
+                        for index in offsets {
+                            let book = filteredFavorites[index]
+                            historyViewModel.toggleFavorite(book.id)
+                        }
+                    }
+                }
+            }
+
+            if !filteredHistory.isEmpty {
+                Section(header: Text("History".localized)) {
+                    ForEach(filteredHistory, id: \.id) { book in
+                        BookRowView(
+                            book: book,
+                            isFavorite: historyViewModel.favoriteBookIds
+                                .contains(book.id),
+                            viewModel: historyViewModel
+                        ) {
+                            let lastId = historyViewModel.entriesByBookId[
+                                book.id
+                            ]?.lastContentId
+                            bManager.openBook(book, initialContentId: lastId)
+                        }
+                    }
+                    .onDelete { offsets in
+                        for index in offsets {
+                            let book = filteredHistory[index]
+                            historyViewModel.removeHistory(for: book.id)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
     private func destinationView(for tab: iOSTab) -> some View {
+        @Bindable var libraryVM = bManager.libraryViewModel
+        @Bindable var searchVM = bManager.searchViewModel
+        @Bindable var authorVM = bManager.authorViewModel
+        @Bindable var annotationVM = bManager.annotationViewModel
+
         Group {
             switch tab {
             case .viewer:
                 iOSLibraryView()
+                    .searchable(
+                        text: $libraryVM.searchText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: searchPrompt(for: tab).localized
+                    )
             case .search:
                 SearchModeView()
+                    .searchable(
+                        text: $searchVM.filterText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: searchPrompt(for: tab).localized
+                    )
             case .author:
                 AuthorModeView()
+                    .searchable(
+                        text: $authorVM.searchText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: searchPrompt(for: tab).localized
+                    )
             case .annotations:
                 AnnotationListView()
+                    .searchable(
+                        text: $annotationVM.searchText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: searchPrompt(for: tab).localized
+                    )
             case .history:
                 EmptyView()
             }
         }
         .navigationTitle(tab.title)
         .navigationBarTitleDisplayMode(.large)
-        .searchable(text: $bManager.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: searchPrompt(for: tab).localized)
         .onAppear {
             if selectedTab != tab {
                 selectedTab = tab

@@ -2,7 +2,7 @@ import SwiftUI
 import UIKit
 
 struct iOSRowiSidebarView: UIViewControllerRepresentable {
-    @ObservedObject var viewModel: iOSAuthorViewModel
+    var viewModel: iOSAuthorViewModel
     @Environment(\.isSearching) private var isSearching
     let searchQuery: String
 

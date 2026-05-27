@@ -18,7 +18,13 @@ class iOSSearchViewModel {
     var completedRowsInTable: Int = 0
 
     var selectedBookIds: Set<Int> = []
-    var filterText: String = ""
+    var filterText: String = "" {
+        didSet {
+            if oldValue != filterText {
+                filterSubject.send(filterText)
+            }
+        }
+    }
     var displayedCategories: [CategoryData] = []
     var updateTrigger: Int = 0
 
@@ -28,6 +34,7 @@ class iOSSearchViewModel {
     private let searchEngine = SearchEngine()
     private let ldm = LibraryDataManager.shared
 
+    private let filterSubject = PassthroughSubject<String, Never>()
     private let refreshSubject = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
     private var observerTokens: [NSObjectProtocol] = []
@@ -43,6 +50,13 @@ class iOSSearchViewModel {
     }
 
     private func setupObservers() {
+        filterSubject
+            .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.updateDisplayedCategories()
+            }
+            .store(in: &cancellables)
+
         refreshSubject
             .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
             .sink { [weak self] in
