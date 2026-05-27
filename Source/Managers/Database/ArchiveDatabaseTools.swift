@@ -131,7 +131,7 @@ enum ArchiveDatabaseTools {
         while sqlite3_step(stmt) == SQLITE_ROW {
             let name = String(cString: sqlite3_column_text(stmt, 1))
             let type = String(cString: sqlite3_column_text(stmt, 2))
-            let isPrimaryKey = sqlite3_column_int(stmt, 5) == 1
+            let isPrimaryKey = sqlite3_column_int64(stmt, 5) == 1
             columns.append(
                 TableColumnInfo(
                     name: name,

@@ -135,13 +135,11 @@ class QuranNashVC: NSViewController {
         // textStorage.removeAttribute(.backgroundColor, range: fullRange)
 
         // Cari teks (case insensitive, diacritic insensitive untuk Arab)
-        let lowerFullText = fullText.lowercased()
-        let lowerSearchText = searchText.lowercased()
-
-        var searchRange = lowerFullText.startIndex..<lowerFullText.endIndex
+        // Menghindari alokasi memori O(N) dengan mencari langsung di string original
+        var searchRange = fullText.startIndex..<fullText.endIndex
         var firstMatchRange: NSRange?
 
-        while let found = lowerFullText.range(of: lowerSearchText, options: [.diacriticInsensitive], range: searchRange) {
+        while let found = fullText.range(of: searchText, options: [.caseInsensitive, .diacriticInsensitive], range: searchRange) {
             let nsRange = NSRange(found, in: fullText)
 
             if firstMatchRange == nil {
@@ -162,7 +160,7 @@ class QuranNashVC: NSViewController {
                 textStorage.addAttribute(.backgroundColor, value: NSColor.highlightText, range: nsRange)
             }
 
-            searchRange = found.upperBound..<lowerFullText.endIndex
+            searchRange = found.upperBound..<fullText.endIndex
         }
 
         // Scroll ke match pertama

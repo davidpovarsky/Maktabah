@@ -1009,7 +1009,7 @@ final class BookUpdateManager {
 
         if !authorNeedsUpdate(
             authId: authId,
-            newVersion: Int(newVersion),
+            newVersion: newVersion,
             in: specialDb
         ) {
             return  // Skip jika versi sudah up-to-date
@@ -1088,35 +1088,35 @@ final class BookUpdateManager {
         }
         defer { sqlite3_finalize(stmt) }
 
-        sqlite3_bind_int(stmt, 1, Int32(fallbackBookId))
+        sqlite3_bind_int64(stmt, 1, Int64(fallbackBookId))
         guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
 
-        let bkid = Int(sqlite3_column_int(stmt, 0))
+        let bkid = Int(sqlite3_column_int64(stmt, 0))
         let bk = columnText(stmt, index: 1)
-        let cat = sqlite3_column_int(stmt, 2)
+        let cat = Int(sqlite3_column_int64(stmt, 2))
         let betaka = columnText(stmt, index: 3)
         let inf = columnText(stmt, index: 4)
-        let authno = sqlite3_column_int(stmt, 5)
-        let archive = sqlite3_column_int(stmt, 6)
+        let authno = Int(sqlite3_column_int64(stmt, 5))
+        let archive = Int(sqlite3_column_int64(stmt, 6))
         let tafseerNam = columnText(stmt, index: 7)
-        let bVer = sqlite3_column_int(stmt, 8)
+        let bVer = Int(sqlite3_column_int64(stmt, 8))
         let link = columnText(stmt, index: 9)
 
         var pdfCs: Int? = nil
         if sqlite3_column_count(stmt) > 10 {
-            pdfCs = Int(sqlite3_column_int(stmt, 10))
+            pdfCs = Int(sqlite3_column_int64(stmt, 10))
         }
 
         return BookMetadata(
             bkid: bkid,
-            cat: Int(cat),
+            cat: cat,
             bk: bk,
-            archive: Int(archive),
+            archive: archive,
             betaka: betaka.isEmpty ? nil : betaka,
-            authno: Int(authno),
+            authno: authno,
             inf: inf.isEmpty ? nil : inf,
             tafseerNam: tafseerNam.isEmpty ? nil : tafseerNam,
-            bVer: Int(bVer),
+            bVer: bVer,
             link: link.isEmpty ? nil : link,
             pdfCs: pdfCs
         )
@@ -1133,10 +1133,10 @@ final class BookUpdateManager {
         }
         defer { sqlite3_finalize(stmt) }
 
-        sqlite3_bind_int(stmt, 1, Int32(authId))
+        sqlite3_bind_int64(stmt, 1, Int64(authId))
 
         if sqlite3_step(stmt) == SQLITE_ROW {
-            return Int(sqlite3_column_int(stmt, 0))
+            return Int(sqlite3_column_int64(stmt, 0))
         }
         return nil
     }
@@ -1144,7 +1144,7 @@ final class BookUpdateManager {
     // Untuk cek apakah perlu update:
     private func authorNeedsUpdate(
         authId: Int,
-        newVersion: Int,
+        newVersion: Int64,
         in db: OpaquePointer
     ) -> Bool {
         guard let currentVersion = getAuthorVersion(authId: authId, in: db)
@@ -1168,15 +1168,15 @@ final class BookUpdateManager {
         }
         defer { sqlite3_finalize(stmt) }
 
-        sqlite3_bind_int(stmt, 1, Int32(authId))
+        sqlite3_bind_int64(stmt, 1, Int64(authId))
         guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
 
-        let authIdValue = Int(sqlite3_column_int(stmt, 0))
+        let authIdValue = Int(sqlite3_column_int64(stmt, 0))
         let authName = columnText(stmt, index: 1)
         let authInf = columnText(stmt, index: 2)
         let authLng = columnText(stmt, index: 3)
         let authHigri = columnText(stmt, index: 4)
-        let oVer = Int(sqlite3_column_int(stmt, 5))
+        let oVer = Int(sqlite3_column_int64(stmt, 5))
 
         return [
             "authid": authIdValue,
@@ -1206,7 +1206,7 @@ final class BookUpdateManager {
         let authInf = row["inf"] as? String ?? ""
         let authLng = row["Lng"] as? String ?? ""
 
-        sqlite3_bind_int(stmt, 1, Int32(authId))
+        sqlite3_bind_int64(stmt, 1, Int64(authId))
         sqlite3_bind_text(
             stmt,
             2,
@@ -1235,10 +1235,10 @@ final class BookUpdateManager {
             -1,
             sqliteTransient
         )
-        sqlite3_bind_int(
+        sqlite3_bind_int64(
             stmt,
             6,
-            Int32(row["oVer"] as? Int ?? 0)
+            Int64(row["oVer"] as? Int ?? 0)
         )
 
         if sqlite3_step(stmt) != SQLITE_DONE {

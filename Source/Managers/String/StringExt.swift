@@ -433,9 +433,9 @@ extension String {
      untuk kecepatan dan ringkasan kode yang lebih baik.
      */
     private func replaceSingleAbbreviations(with mapping: [String: String]) -> String {
-        // ... (Kode Regex seperti sebelumnya) ...
+        guard !mapping.isEmpty else { return self }
         let keys = mapping.keys.map { NSRegularExpression.escapedPattern(for: $0) }.joined(separator: "|")
-        let regex = try! Regex("(\(keys))")
+        guard let regex = try? Regex("(\(keys))") else { return self }
 
         // Lakukan penggantian single-pass
         return self.replacing(regex) { (match: Regex<AnyRegexOutput>.Match) in
@@ -472,7 +472,7 @@ extension String {
         formatter.locale = Locale(identifier: "ar")
 
         let pattern = #"(W)|([FGHIJKLMNOP])|([0-9]+)"#
-        let regex = try! NSRegularExpression(pattern: pattern)
+        guard let regex = try? NSRegularExpression(pattern: pattern) else { return self }
 
         let ns = self as NSString
         let matches = regex.matches(in: self, range: NSRange(location: 0, length: ns.length))

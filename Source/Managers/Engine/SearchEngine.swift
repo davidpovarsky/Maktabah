@@ -412,15 +412,16 @@ class SearchWorker {
                     // }
                 // }
 
-                let page = (row["page"] as? NSNumber) ?? 0
-                let id = (row["id"] as? NSNumber) ?? 0
-                let part = (row["part"] as? NSNumber) ?? 0
+                // Optimasi: Hilangkan bridging NSNumber, row mereturn Int murni
+                let page = (row["page"] as? Int) ?? 0
+                let id = (row["id"] as? Int) ?? 0
+                let part = (row["part"] as? Int) ?? 0
 
                 let content = BookContent(
-                    id: Int(truncating: id),
+                    id: id,
                     nash: nass,
-                    page: Int(truncating: page),
-                    part: Int(truncating: part)
+                    page: page,
+                    part: part
                 )
                 results.append(content)
             }
