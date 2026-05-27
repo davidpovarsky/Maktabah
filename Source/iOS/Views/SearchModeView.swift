@@ -8,6 +8,7 @@ struct SearchModeView: View {
     @State private var showingSavedResults = false
     @FocusState private var isSearchFieldFocused: Bool
     @State private var inputBarHeight: CGFloat = 60 // fallback default
+    @State private var kitabFilter: String = ""
 
     var body: some View {
         @Bindable var viewModel = navigationManager.searchViewModel
@@ -62,8 +63,26 @@ struct SearchModeView: View {
     }
 
     private func searchResultsView(viewModel: iOSSearchViewModel) -> some View {
-        SearchResultsListView(results: viewModel.results) { item in
+        let filtered: [SearchResultItem] = kitabFilter.isEmpty
+            ? viewModel.results
+            : viewModel.results.filter {
+                $0.bookTitle
+                    .normalizeArabic(false)
+                    .contains(
+                        kitabFilter.normalizeArabic(false)
+                )
+            }
+
+        return SearchResultsListView(results: filtered) { item in
             handleSelection(item)
+        }
+        .searchable(
+            text: $kitabFilter,
+            placement: .toolbar,
+            prompt: Text(.filterByBooks)
+        )
+        .onChange(of: viewModel.results) { _, _ in
+            kitabFilter = ""
         }
     }
 
@@ -196,6 +215,20 @@ struct SearchModeView: View {
 
     @ToolbarContentBuilder
     private func toolbarContent(viewModel: iOSSearchViewModel) -> some ToolbarContent {
+        ToolbarItem(placement: .cancellationAction) {
+            if !viewModel.results.isEmpty {
+                Button(action: {
+                    viewModel.stopSearch()
+                    viewModel.results = []
+                    viewModel.query = ""
+                }) {
+                    Image(systemName: "xmark.circle")
+                }
+                .accessibilityLabel(String(localized: "Clear Results"))
+                .help(String(localized: "Clear Results"))
+            }
+        }
+
         ToolbarItemGroup(placement: .topBarTrailing) {
             if viewModel.isSearching {
                 Button(action: { viewModel.stopSearch() }) {
@@ -210,18 +243,6 @@ struct SearchModeView: View {
                 }
                 .accessibilityLabel(String(localized: "Start Search"))
                 .help(String(localized: "Start Search"))
-            }
-
-            if !viewModel.results.isEmpty {
-                Button(action: {
-                    viewModel.stopSearch()
-                    viewModel.results = []
-                    viewModel.query = ""
-                }) {
-                    Image(systemName: "xmark.circle")
-                }
-                .accessibilityLabel(String(localized: "Clear Results"))
-                .help(String(localized: "Clear Results"))
             }
         }
 
