@@ -11,7 +11,7 @@ class iOSTOCViewModel {
     let nodes: [TOCNode]
     let selectedId: Int?
 
-    var expandedPaths: Set<Int> = []
+    var expandedPaths: Set<ObjectIdentifier> = []
     var searchText = ""
 
     init(nodes: [TOCNode], selectedId: Int?) {
@@ -56,16 +56,17 @@ class iOSTOCViewModel {
 
     func computeExpandedPaths() {
         guard let targetId = selectedId else { return }
-        var paths = Set<Int>()
+        var paths = Set<ObjectIdentifier>()
 
-        func search(nodes: [TOCNode], path: [Int]) -> Bool {
+        func search(nodes: [TOCNode], path: [ObjectIdentifier]) -> Bool {
             for node in nodes {
+                let nodeId = ObjectIdentifier(node)
                 if node.id == targetId {
                     paths.formUnion(path)
                     return true
                 }
                 if !node.children.isEmpty {
-                    if search(nodes: node.children, path: path + [node.id]) {
+                    if search(nodes: node.children, path: path + [nodeId]) {
                         paths.formUnion(path)
                         return true
                     }

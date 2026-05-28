@@ -53,3 +53,26 @@ struct iOSTOCView: View {
         }
     }
 }
+
+#Preview {
+    let node1 = TOCNode(from: TOC(bab: "المقدمة (Tanpa Sub)", level: 1, sub: 0, id: 1))
+    let node2 = TOCNode(from: TOC(bab: "كتاب الطهارة (Dengan Sub)", level: 1, sub: 0, id: 2))
+    let node2_1 = TOCNode(from: TOC(bab: "باب الوضوء", level: 2, sub: 1, id: 3))
+    let node2_2 = TOCNode(from: TOC(bab: "باب الغسل (Dengan Sub)", level: 2, sub: 1, id: 4))
+    let node2_2_1 = TOCNode(from: TOC(bab: "فصل في موجبات الغسل", level: 3, sub: 2, id: 5))
+    
+    node2_2.children = [node2_2_1]
+    node2.children = [node2_1, node2_2]
+    
+    let node3 = TOCNode(from: TOC(bab: "كتاب الصلاة", level: 1, sub: 0, id: 6))
+    
+    let mockNodes = [node1, node2, node3]
+    
+    return iOSTOCView(
+        nodes: mockNodes,
+        selectedId: 3,
+        onSelect: { selectedId in
+            print("Selected ID: \(selectedId)")
+        }
+    )
+}

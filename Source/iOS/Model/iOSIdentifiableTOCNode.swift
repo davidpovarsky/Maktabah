@@ -11,12 +11,12 @@ import Foundation
 
 /// We need an identifiable wrapper for TOCNode to work nicely with SwiftUI List
 struct iOSIdentifiableTOCNode: Identifiable {
-    let id: Int
+    let id: ObjectIdentifier
     let node: TOCNode
     var children: [iOSIdentifiableTOCNode]?
 
     init(_ node: TOCNode) {
-        id = node.id
+        self.id = ObjectIdentifier(node)
         self.node = node
         if !node.children.isEmpty {
             children = node.children.map { iOSIdentifiableTOCNode($0) }

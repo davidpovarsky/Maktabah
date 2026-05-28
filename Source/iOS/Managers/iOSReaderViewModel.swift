@@ -110,7 +110,7 @@ class iOSReaderViewModel {
             Task.detached { [weak self] in
                 guard let self else { return }
                 let tocEntries = await bookConnection.getTOCEntries(book)
-                let nodes = await tree(from: tocEntries)
+                let nodes = await bookConnection.buildTOCTree(from: tocEntries, bookId: book.id)
                 await MainActor.run { [weak self] in
                     self?.tocNodes = nodes
                 }
@@ -307,39 +307,6 @@ class iOSReaderViewModel {
         case .warning:
             generator.notificationOccurred(.warning)
         }
-    }
-
-    /// Adapted from AppKit's tree building logic
-    private func tree(from toc: [TOC]) -> [TOCNode] {
-        var rootNodes = [TOCNode]()
-        var nodeStack = [TOCNode]()
-        var allNodes = [TOCNode]()
-
-        for item in toc {
-            let newNode = TOCNode(from: item)
-            allNodes.append(newNode)
-
-            while let last = nodeStack.last, last.level >= newNode.level {
-                nodeStack.removeLast()
-            }
-
-            if let parent = nodeStack.last {
-                parent.children.append(newNode)
-            } else {
-                rootNodes.append(newNode)
-            }
-            nodeStack.append(newNode)
-        }
-
-        for (i, node) in allNodes.enumerated() {
-            if i < allNodes.count - 1 {
-                node.endID = allNodes[i + 1].id - 1
-            } else {
-                node.endID = Int.max
-            }
-        }
-
-        return rootNodes
     }
 
     func findNodeId(forContentId contentId: Int) -> Int? {

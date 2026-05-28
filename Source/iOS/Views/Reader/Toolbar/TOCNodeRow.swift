@@ -11,7 +11,7 @@ struct TOCNodeRow: View {
     let item: iOSIdentifiableTOCNode
     let selectedId: Int?
     let onSelect: (Int) -> Void
-    @Binding var expandedPaths: Set<Int>
+    @Binding var expandedPaths: Set<ObjectIdentifier>
 
     var isExpanded: Binding<Bool> {
         Binding(
@@ -27,8 +27,45 @@ struct TOCNodeRow: View {
     }
 
     var body: some View {
-        if let children = item.children, !children.isEmpty {
-            DisclosureGroup(isExpanded: isExpanded) {
+        Group {
+            // Baris item saat ini
+            HStack {
+                // Teks bab di sebelah kanan (leading = kanan di RTL)
+                nodeLabel
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                // Custom panah di sebelah kiri teks jika memiliki sub-bab
+                if let children = item.children, !children.isEmpty {
+                    Button(action: {
+                        withAnimation {
+                            if isExpanded.wrappedValue {
+                                expandedPaths.remove(item.id)
+                            } else {
+                                expandedPaths.insert(item.id)
+                            }
+                        }
+                    }) {
+                        Image(systemName: isExpanded.wrappedValue ? "chevron.down" : "chevron.left")
+                            .foregroundColor(.secondary)
+                            .font(.system(size: 14, weight: .semibold))
+                            // Berikan frame statis pada gambar agar ukurannya konsisten
+                            .frame(width: 16, height: 16, alignment: .center)
+                    }
+                    .buttonStyle(.plain)
+                    // Berikan frame statis pada area klik tombol
+                    .frame(width: 32, height: 32)
+                } else {
+                    // Placeholder agar sejajar dengan yang memiliki panah (lebar sama dengan tombol = 32)
+                    Spacer().frame(width: 32)
+                }
+            }
+            // Berikan indentasi di sebelah kanan berdasarkan level (RTL: leading = kanan)
+            .padding(.leading, CGFloat(max(0, item.node.level - 1)) * 24)
+            .id(item.id)
+            .environment(\.layoutDirection, .rightToLeft)
+            
+            // Rekursif untuk menampilkan sub-bab di bawahnya jika sedang diekspansi
+            if isExpanded.wrappedValue, let children = item.children, !children.isEmpty {
                 ForEach(children) { child in
                     TOCNodeRow(
                         item: child,
@@ -37,13 +74,7 @@ struct TOCNodeRow: View {
                         expandedPaths: $expandedPaths
                     )
                 }
-            } label: {
-                nodeLabel
             }
-            .id(item.id)
-        } else {
-            nodeLabel
-                .id(item.id)
         }
     }
 
@@ -68,7 +99,7 @@ struct TOCNodeRow: View {
         item: item,
         selectedId: 1,
         onSelect: { _ in },
-        expandedPaths: .constant(Set([1]))
+        expandedPaths: .constant(Set([item.id]))
     )
     .padding()
 }
