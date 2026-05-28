@@ -10,6 +10,7 @@ struct iOSReaderView: View {
     var viewModel: iOSReaderViewModel
     @State private var textViewState = TextViewState.shared
     @Environment(iOSNavigationManager.self) var bManager
+    @Environment(\.layoutDirection) private var layoutDirection
 
     @State private var showingTOC = false
     @State private var showingOptions = false
@@ -114,23 +115,13 @@ struct iOSReaderView: View {
             CustomToolbarSpacer(placement: .topBarTrailing)
 
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button(action: {
-                    viewModel.goToNextPage()
-                }) {
-                    Image(systemName: "chevron.left")
+                if layoutDirection == .rightToLeft {
+                    prevButton
+                    nextButton
+                } else {
+                    nextButton
+                    prevButton
                 }
-                .accessibilityLabel(String(localized: "Next Page"))
-                .help(String(localized: "Next Page"))
-                .keyboardShortcut(.leftArrow, modifiers: [])
-
-                Button(action: {
-                    viewModel.goToPrevPage()
-                }) {
-                    Image(systemName: "chevron.right")
-                }
-                .accessibilityLabel(String(localized: "Previous Page"))
-                .help(String(localized: "Previous Page"))
-                .keyboardShortcut(.rightArrow, modifiers: [])
             }
 
             ToolbarItemGroup(placement: .bottomBar) {
@@ -194,6 +185,24 @@ struct iOSReaderView: View {
                 .presentationDetents([.medium, .large])
             }
         }
+    }
+
+    private var nextButton: some View {
+        Button(action: { viewModel.goToNextPage() }) {
+            Image(systemName: "chevron.left")
+        }
+        .accessibilityLabel(String(localized: "Next Page"))
+        .help(String(localized: "Next Page"))
+        .keyboardShortcut(.leftArrow, modifiers: [])
+    }
+
+    private var prevButton: some View {
+        Button(action: { viewModel.goToPrevPage() }) {
+            Image(systemName: "chevron.right")
+        }
+        .accessibilityLabel(String(localized: "Previous Page"))
+        .help(String(localized: "Previous Page"))
+        .keyboardShortcut(.rightArrow, modifiers: [])
     }
 }
 
