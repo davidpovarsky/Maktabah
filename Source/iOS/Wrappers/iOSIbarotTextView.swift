@@ -403,6 +403,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
         if context.coordinator.restoredContentId != viewModel.currentContentId {
             if let scroll = viewModel.state.scrollPosition {
                 textView.setContentOffset(scroll, animated: false)
+            } else {
+                textView.setContentOffset(CGPoint(x: 0, y: -textView.adjustedContentInset.top), animated: false)
             }
             if let range = viewModel.state.selectedRange {
                 textView.selectedRange = range

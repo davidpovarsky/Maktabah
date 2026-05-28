@@ -166,6 +166,10 @@ class iOSReaderViewModel {
         state.currentPart = content.part
         state.currentPage = content.page
         
+        // Clear saved state so it scrolls to top on page change
+        state.scrollPosition = nil
+        state.selectedRange = nil
+        
         loadAnnotations()
         updateNavigationLimits()
     }
