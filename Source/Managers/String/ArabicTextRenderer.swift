@@ -133,7 +133,8 @@ class ArabicTextRenderer {
             attributedString: createAttributedString(
                 from: result,
                 color: highlightColor,
-                isMultiLanguage: isMultiLanguage
+                isMultiLanguage: isMultiLanguage,
+                ligatureRanges: replacementResult.replacementDisplayRanges
             ),
             replacementEvents: replacementResult.events,
             footnoteRanges: remappedFootnoteRanges
@@ -180,7 +181,7 @@ class ArabicTextRenderer {
         }
     }
 
-    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: PlatformColor, isMultiLanguage: Bool) -> NSAttributedString {
+    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: PlatformColor, isMultiLanguage: Bool, ligatureRanges: [NSRange] = []) -> NSAttributedString {
         let result = results.result
         let footnoteRanges = results.footnoteRanges
         
@@ -262,6 +263,31 @@ class ArabicTextRenderer {
                 attributedString.addAttributes(highlightAttributes, range: range)
             }
         }
+
+        // Apply Lateef font fallback specifically for ligatures if they are missing from current font
+        #if canImport(UIKit)
+        if !ligatureRanges.isEmpty {
+            let baseFont = state.currentFont
+            let ctFont = baseFont as CTFont
+            let fallbackFontName = "Lateef"
+
+            let fallbackFont = UIFont(name: fallbackFontName, size: baseFont.pointSize) ?? baseFont
+
+            for range in ligatureRanges {
+                if range.location + range.length <= attributedString.length {
+                    let substring = (attributedString.string as NSString).substring(with: range)
+                    let unichars = Array(substring.utf16)
+                    var glyphs = [CGGlyph](repeating: 0, count: unichars.count)
+                    
+                    let hasGlyph = CTFontGetGlyphsForCharacters(ctFont, unichars, &glyphs, unichars.count)
+                    
+                    if !hasGlyph {
+                        attributedString.addAttribute(.font, value: fallbackFont, range: range)
+                    }
+                }
+            }
+        }
+        #endif
 
         return attributedString
     }
