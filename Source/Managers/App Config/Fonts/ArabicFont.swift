@@ -45,26 +45,14 @@ enum ArabicFont: String, CaseIterable {
                 continue
             }
 
-            guard let fontDataProvider = CGDataProvider(url: fontURL as CFURL) else {
-                print("Tidak bisa load font data: \(fontFile)")
-                continue
-            }
-
-            guard let font = CGFont(fontDataProvider) else {
-                print("Tidak bisa create CGFont: \(fontFile)")
-                continue
-            }
-
             var error: Unmanaged<CFError>?
-            if !CTFontManagerRegisterGraphicsFont(font, &error) {
+            if !CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, &error) {
                 print("Error registering font: \(fontFile)")
                 if let error = error?.takeRetainedValue() {
                     print("Error detail: \(error)")
                 }
             } else {
-                if let postScriptName = font.postScriptName {
-                    print("Font berhasil diregister: \(postScriptName)")
-                }
+                print("Font berhasil diregister: \(fontFile)")
             }
         }
     }
