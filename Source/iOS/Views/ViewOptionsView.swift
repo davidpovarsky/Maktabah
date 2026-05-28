@@ -1,11 +1,20 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ViewOptionsView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @State private var state = TextViewState.shared
+    @ObservedObject private var userFontManager = UserFontManager.shared
+    
+    @State private var isImportingFont = false
+    @State private var showImportError = false
+    @State private var importErrorMessage = ""
+    @State private var fontToDelete: String = ""
 
-    let fontOptions = ArabicFont.allCases.map(\.rawValue)
+    var fontOptions: [String] {
+        ArabicFont.allCases.map(\.rawValue) + userFontManager.userFontNames
+    }
     let lineHeights = [1.0, 1.1, 1.2, 1.3, 1.4, 1.5]
     let backgroundColors: [Color] = [
         .white,
@@ -77,6 +86,36 @@ struct ViewOptionsView: View {
                     }
                 }
 
+                ThemeSection("Fonts") {
+                    Button("Import Font...") {
+                        isImportingFont = true
+                    }
+
+                    if !userFontManager.userFontNames.isEmpty {
+                        Picker("Delete Font", selection: $fontToDelete) {
+                            Text("Select Font...").tag("")
+                            ForEach(userFontManager.userFontNames, id: \.self) { font in
+                                Text(font).tag(font)
+                            }
+                        }
+
+                        if !fontToDelete.isEmpty {
+                            Button(role: .destructive, action: {
+                                if state.fontName == fontToDelete {
+                                    state.setFont(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue)
+                                }
+                                userFontManager.deleteFont(named: fontToDelete)
+                                fontToDelete = ""
+                            }) {
+                                HStack {
+                                    Image(systemName: "trash")
+                                    Text("Delete \(fontToDelete)")
+                                }
+                            }
+                        }
+                    }
+                }
+
                 ThemeSection("Display") {
                     Toggle("Show Harakat", isOn: showHarakatBinding)
                     Toggle("Clickable Annotations", isOn: clickableAnnotationBinding)
@@ -109,5 +148,30 @@ struct ViewOptionsView: View {
             })
         }
         .preferredColorScheme(state.isDarkMode ? .dark : .light)
+        .fileImporter(
+            isPresented: $isImportingFont,
+            allowedContentTypes: [.font],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                guard let url = urls.first else { return }
+                do {
+                    let fontName = try userFontManager.importFont(from: url)
+                    state.setFont(fontName)
+                } catch {
+                    importErrorMessage = error.localizedDescription
+                    showImportError = true
+                }
+            case .failure(let error):
+                importErrorMessage = error.localizedDescription
+                showImportError = true
+            }
+        }
+        .alert("Error", isPresented: $showImportError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(importErrorMessage)
+        }
     }
 }

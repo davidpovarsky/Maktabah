@@ -376,6 +376,7 @@
 		F323BCA22F2EE70200EFD4F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */; };
 		F332143B2FC2750E006EC214 /* ThemeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33214392FC2750E006EC214 /* ThemeComponents.swift */; };
 		F349073F2F3064A10036CDAF /* IconMaktabah.icon in Resources */ = {isa = PBXBuildFile; fileRef = F349073E2F3064A10036CDAF /* IconMaktabah.icon */; };
+		F34B708C2FC87BFF00BBE904 /* UserFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B708B2FC87BFF00BBE904 /* UserFontManager.swift */; };
 		F363824E2FA6C6150006636C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB98B2F69E860007D0945 /* SettingsView.swift */; };
 		F36382512FA6FA1E0006636C /* BootstrapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382502FA6FA1E0006636C /* BootstrapManager.swift */; };
 		F36382532FA6FABF0006636C /* BootstrapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382522FA6FABF0006636C /* BootstrapView.swift */; };
@@ -605,6 +606,7 @@
 		F323BCA42F2EE71A00EFD4F4 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F33214392FC2750E006EC214 /* ThemeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeComponents.swift; sourceTree = "<group>"; };
 		F349073E2F3064A10036CDAF /* IconMaktabah.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = IconMaktabah.icon; sourceTree = "<group>"; };
+		F34B708B2FC87BFF00BBE904 /* UserFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFontManager.swift; sourceTree = "<group>"; };
 		F36382502FA6FA1E0006636C /* BootstrapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapManager.swift; sourceTree = "<group>"; };
 		F36382522FA6FABF0006636C /* BootstrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapView.swift; sourceTree = "<group>"; };
 		F36382542FA6FAE10006636C /* CoreDownloaderGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDownloaderGateView.swift; sourceTree = "<group>"; };
@@ -1081,6 +1083,7 @@
 				F30577732FA463B1005732C6 /* iOSReaderViewModel.swift */,
 				6505EE880DD50A217DB489F1 /* iOSSearchViewModel.swift */,
 				F36B95DF2FC8513F002C716F /* iOSTOCViewModel.swift */,
+				F34B708B2FC87BFF00BBE904 /* UserFontManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1724,6 +1727,7 @@
 				F3EB89702FAF94EF00ED75F0 /* SearchResultsListView.swift in Sources */,
 				F30577012FA46222005732C6 /* StorageError.swift in Sources */,
 				F30577032FA46222005732C6 /* LibraryDataManager.swift in Sources */,
+				F34B708C2FC87BFF00BBE904 /* UserFontManager.swift in Sources */,
 				F30577052FA46222005732C6 /* ReaderState.swift in Sources */,
 				F30577062FA46222005732C6 /* UserDefaults.swift in Sources */,
 				F30577072FA46222005732C6 /* AppMode.swift in Sources */,

@@ -400,7 +400,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الحاشية"
+            "value" : "التعليق"
           }
         },
         "id" : {
@@ -440,7 +440,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "التعليقات التوضيحية"
+            "value" : "التعليقات"
           }
         },
         "en" : {
@@ -2005,6 +2005,22 @@
         }
       }
     },
+    "Delete %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف %@"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus %@"
+          }
+        }
+      }
+    },
     "Delete Annotation" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2056,6 +2072,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Folder"
+          }
+        }
+      }
+    },
+    "Delete Font" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف الخط"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Font"
           }
         }
       }
@@ -3625,6 +3657,22 @@
         }
       }
     },
+    "Import Font..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استيراد الخط..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Font..."
+          }
+        }
+      }
+    },
     "Import Now" : {
       "localizations" : {
         "ar" : {
@@ -4244,7 +4292,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "رواة"
+            "value" : "الرواة"
           }
         },
         "en" : {
@@ -6156,6 +6204,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Folder"
+          }
+        }
+      }
+    },
+    "Select Font..." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختر الخط..."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Font..."
           }
         }
       }

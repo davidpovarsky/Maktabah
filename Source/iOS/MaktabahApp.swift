@@ -30,6 +30,7 @@ struct MaktabahApp: App {
     init() {
         AppConfig.initializeMode()
         ArabicFont.registerCustomFonts()
+        UserFontManager.shared.registerUserFonts()
         AppConfig.setupAnnotationsAndResults()
         CloudKitSyncManager.shared.initializeOnLaunch()
         // CoreDatabaseBootstrap.run()
