@@ -4693,6 +4693,22 @@
         }
       }
     },
+    "Opened Books" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكتب المفتوحة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kitab yang Terbuka"
+          }
+        }
+      }
+    },
     "Optimization" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -400,6 +400,14 @@
 		F3ABDF752FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
 		F3ABDF762FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
 		F3ABDF772FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
+		F3B60E1E2FC7CC1600A9EF58 /* TOCNodeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E1D2FC7CC0D00A9EF58 /* TOCNodeRow.swift */; };
+		F3B60E202FC7CC3A00A9EF58 /* iOSBookSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E1F2FC7CC3A00A9EF58 /* iOSBookSearchView.swift */; };
+		F3B60E232FC7CC5600A9EF58 /* iOSBookAnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E222FC7CC5600A9EF58 /* iOSBookAnnotationsView.swift */; };
+		F3B60E262FC7CDA400A9EF58 /* iOSReaderNavigationPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E252FC7CDA400A9EF58 /* iOSReaderNavigationPopoverView.swift */; };
+		F3B60E282FC7CDCA00A9EF58 /* iOSReaderBottomToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E272FC7CDCA00A9EF58 /* iOSReaderBottomToolbarView.swift */; };
+		F3B60E2A2FC7CDE600A9EF58 /* ReaderTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E292FC7CDE600A9EF58 /* ReaderTabItemView.swift */; };
+		F3B60E2C2FC7FFA500A9EF58 /* iOSTOCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E2B2FC7FFA500A9EF58 /* iOSTOCView.swift */; };
+		F3B60E2E2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E2D2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift */; };
 		F3C449562F2B12E200DA7032 /* SearchCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3C449552F2B12E200DA7032 /* SearchCellView.xib */; };
 		F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C449542F2B12E200DA7032 /* SearchCellView.swift */; };
 		F3D0815D2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
@@ -613,6 +621,14 @@
 		F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMergePopoverVC.swift; sourceTree = "<group>"; };
 		F3A775572FB2288E00C82F7B /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS-Info.plist"; sourceTree = "<group>"; };
 		F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
+		F3B60E1D2FC7CC0D00A9EF58 /* TOCNodeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOCNodeRow.swift; sourceTree = "<group>"; };
+		F3B60E1F2FC7CC3A00A9EF58 /* iOSBookSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookSearchView.swift; sourceTree = "<group>"; };
+		F3B60E222FC7CC5600A9EF58 /* iOSBookAnnotationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookAnnotationsView.swift; sourceTree = "<group>"; };
+		F3B60E252FC7CDA400A9EF58 /* iOSReaderNavigationPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderNavigationPopoverView.swift; sourceTree = "<group>"; };
+		F3B60E272FC7CDCA00A9EF58 /* iOSReaderBottomToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderBottomToolbarView.swift; sourceTree = "<group>"; };
+		F3B60E292FC7CDE600A9EF58 /* ReaderTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderTabItemView.swift; sourceTree = "<group>"; };
+		F3B60E2B2FC7FFA500A9EF58 /* iOSTOCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTOCView.swift; sourceTree = "<group>"; };
+		F3B60E2D2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSIdentifiableTOCNode.swift; sourceTree = "<group>"; };
 		F3C449542F2B12E200DA7032 /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
 		F3C449552F2B12E200DA7032 /* SearchCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCellView.xib; sourceTree = "<group>"; };
 		F3D0815C2F9EFE5C00E017C7 /* Tag.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tag.xib; sourceTree = "<group>"; };
@@ -1067,6 +1083,7 @@
 		F30577762FA463B1005732C6 /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				F3B60E242FC7CC6E00A9EF58 /* Toolbar */,
 				F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */,
 				F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */,
 				F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */,
@@ -1115,6 +1132,7 @@
 			children = (
 				88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */,
 				F30577742FA463B1005732C6 /* Managers */,
+				F3B60E2F2FC8000800A9EF58 /* Model */,
 				F332143A2FC2750E006EC214 /* Theme */,
 				F305777E2FA463B1005732C6 /* Views */,
 				F30577822FA463B1005732C6 /* Wrappers */,
@@ -1178,6 +1196,28 @@
 				F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		F3B60E242FC7CC6E00A9EF58 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				F3B60E222FC7CC5600A9EF58 /* iOSBookAnnotationsView.swift */,
+				F3B60E1F2FC7CC3A00A9EF58 /* iOSBookSearchView.swift */,
+				F3B60E272FC7CDCA00A9EF58 /* iOSReaderBottomToolbarView.swift */,
+				F3B60E252FC7CDA400A9EF58 /* iOSReaderNavigationPopoverView.swift */,
+				F3B60E2B2FC7FFA500A9EF58 /* iOSTOCView.swift */,
+				F3B60E292FC7CDE600A9EF58 /* ReaderTabItemView.swift */,
+				F3B60E1D2FC7CC0D00A9EF58 /* TOCNodeRow.swift */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		F3B60E2F2FC8000800A9EF58 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3B60E2D2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1628,6 +1668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,
+				F3B60E2C2FC7FFA500A9EF58 /* iOSTOCView.swift in Sources */,
 				F31111912FC008F30024B638 /* ActiveIntegrationStatesView.swift in Sources */,
 				F3DD69E32FA4F76100BFEA0F /* ProgressBooksDownload.swift in Sources */,
 				F30577932FA4982A005732C6 /* TextViewState.swift in Sources */,
@@ -1649,6 +1690,7 @@
 				F305778C2FA463B1005732C6 /* AnnotationListView.swift in Sources */,
 				F305778D2FA463B1005732C6 /* iOSLibraryView.swift in Sources */,
 				F305778D2FA463B1005732C7 /* iOSLibraryViewController.swift in Sources */,
+				F3B60E2A2FC7CDE600A9EF58 /* ReaderTabItemView.swift in Sources */,
 				F305778D2FA463B1005732C8 /* LibraryViewControllerWrapper.swift in Sources */,
 				F321672B2FBAA39F00601DB3 /* BookImportView.swift in Sources */,
 				F363824E2FA6C6150006636C /* SettingsView.swift in Sources */,
@@ -1685,6 +1727,7 @@
 				F305770C2FA46222005732C6 /* CopyableResult.swift in Sources */,
 				F305770D2FA46222005732C6 /* DatabaseError.swift in Sources */,
 				F305770E2FA46222005732C6 /* ArchiveDatabaseTools.swift in Sources */,
+				F3B60E232FC7CC5600A9EF58 /* iOSBookAnnotationsView.swift in Sources */,
 				F305770F2FA46222005732C6 /* BookArchiveIntegrator.swift in Sources */,
 				F38FF4322FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift in Sources */,
 				F30577102FA46222005732C6 /* BookDownloadManager.swift in Sources */,
@@ -1707,17 +1750,21 @@
 				F305772F2FA46222005732C6 /* BookmarkModel.swift in Sources */,
 				F36382532FA6FABF0006636C /* BootstrapView.swift in Sources */,
 				F30577302FA46222005732C6 /* RowiModel.swift in Sources */,
+				F3B60E262FC7CDA400A9EF58 /* iOSReaderNavigationPopoverView.swift in Sources */,
 				F321E0202FC7050F00CB37DD /* CloudKitCoreManager.swift in Sources */,
 				F321E0212FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */,
 				F321E0222FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */,
 				F321E0232FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */,
 				F30577342FA46222005732C6 /* Annotations.swift in Sources */,
+				F3B60E2E2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift in Sources */,
 				F30577362FA46222005732C6 /* RowiDataManager.swift in Sources */,
+				F3B60E282FC7CDCA00A9EF58 /* iOSReaderBottomToolbarView.swift in Sources */,
 				F30577372FA46222005732C6 /* Quran.swift in Sources */,
 				F305773B2FA46222005732C6 /* ResultsHandler.swift in Sources */,
 				F305773C2FA46222005732C6 /* ZstdShim.swift in Sources */,
 				F305773F2FA46222005732C6 /* BookPageCache.swift in Sources */,
 				F30577402FA46222005732C6 /* StringInterner.swift in Sources */,
+				F3B60E1E2FC7CC1600A9EF58 /* TOCNodeRow.swift in Sources */,
 				F30577432FA46222005732C6 /* ArabicFont.swift in Sources */,
 				F30577442FA46222005732C6 /* TarjamahDataManager.swift in Sources */,
 				F36382552FA6FAE10006636C /* CoreDownloaderGateView.swift in Sources */,
@@ -1725,6 +1772,7 @@
 				04C59D40A8B1C84C6AAC9181 /* iOSSearchViewModel.swift in Sources */,
 				F363825D2FA702D10006636C /* iPadLayout.swift in Sources */,
 				FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */,
+				F3B60E202FC7CC3A00A9EF58 /* iOSBookSearchView.swift in Sources */,
 				240682637A5169A63619E577 /* CloudKitSyncManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
