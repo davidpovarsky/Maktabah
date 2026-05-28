@@ -15,33 +15,42 @@ struct iOSBookAnnotationsView: View {
 
     /// Load annotations specific to this book directly from the manager
     @State private var bookAnnotations: [Annotation] = []
+    @State private var searchText: String = ""
+
+    var filteredAnnotations: [Annotation] {
+        if searchText.isEmpty {
+            return bookAnnotations
+        } else {
+            let query = searchText.normalizeArabic(false)
+            return bookAnnotations.filter { ann in
+                ann.context.normalizeArabic(false).localizedStandardContains(query) ||
+                (ann.note?.normalizeArabic(false).localizedStandardContains(query) == true)
+            }
+        }
+    }
 
     var body: some View {
         NavigationView {
-            ThemeList(bookAnnotations, id: \.id, isGrouped: false) { ann in
+            ThemeList(filteredAnnotations, id: \.id, isGrouped: false) { ann in
                 Button(action: {
                     onSelect(ann)
                 }) {
-                    VStack(alignment: .trailing, spacing: 4) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text(ann.context)
                             .font(iOSReaderViewModel.kfgqpcTitle)
-                            .lineLimit(3)
-                            .truncationMode(.tail)
-                            .multilineTextAlignment(.trailing)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .lineLimit(2)
+                            .truncationMode(.middle)
 
                         if let note = ann.note, !note.isEmpty {
                             Text(note)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                                .multilineTextAlignment(.trailing)
-                                .frame(
-                                    maxWidth: .infinity,
-                                    alignment: .trailing
-                                )
+                                .frame(maxWidth: .infinity)
+                                .lineLimit(3)
+                                .truncationMode(.middle)
                         }
 
-                        HStack {
+                        HStack() {
                             Circle()
                                 .fill(Color(hex: ann.colorHex) ?? .yellow)
                                 .frame(width: 12, height: 12)
@@ -59,16 +68,14 @@ struct iOSBookAnnotationsView: View {
                                 Text("Vol: \(ann.partArb ?? "") Page: \(pgArb)")
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
-                                    .environment(
-                                        \.layoutDirection,
-                                        .leftToRight
-                                    )
                             }
                         }
                     }
                     .padding(.vertical, 4)
                 }
             }
+            .environment(\.layoutDirection, .rightToLeft)
+            .searchable(text: $searchText, prompt: String(localized: "Search Annotations"))
             .navigationTitle("Annotations")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(

@@ -90,6 +90,8 @@ struct iOSReaderBottomToolbarView: View {
                     forContentId: viewModel.currentContentId
                 ),
                 onSelect: { id in
+                    viewModel.searchText = ""
+                    viewModel.targetAnnotation = nil
                     viewModel.fetchContentById(id)
                     showingTOC = false
                 }
@@ -100,6 +102,7 @@ struct iOSReaderBottomToolbarView: View {
                 bookId: viewModel.book.id,
                 annotations: viewModel.currentAnnotations,
                 onSelect: { ann in
+                    viewModel.targetAnnotation = ann
                     viewModel.fetchContentById(Int(ann.contentId))
                     showingAnnotationsList = false
                 }
