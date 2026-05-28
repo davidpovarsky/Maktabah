@@ -14,6 +14,7 @@ struct iPhoneLayout: View {
     @Binding var selectedTab: iOSTab
     @Binding var showSettings: Bool
     @State private var showingAddFavorites = false
+    @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -41,7 +42,11 @@ struct iPhoneLayout: View {
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: HistoryViewModel.shared)
         }
+        .onAppear {
+            selectedTab = savedSelectedTab
+        }
         .onChange(of: selectedTab) { _, newValue in
+            savedSelectedTab = newValue
             bManager.switchToMode(newValue.appMode)
         }
     }
