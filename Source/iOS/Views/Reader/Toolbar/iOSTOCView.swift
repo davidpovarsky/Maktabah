@@ -8,87 +8,30 @@
 import SwiftUI
 
 struct iOSTOCView: View {
-    let nodes: [TOCNode]
-    let selectedId: Int?
+    @State private var viewModel: iOSTOCViewModel
     let onSelect: (Int) -> Void
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var expandedPaths: Set<Int> = []
-    @State private var searchText = ""
-
-    var identifiableNodes: [iOSIdentifiableTOCNode] {
-        if searchText.isEmpty {
-            return nodes.map { iOSIdentifiableTOCNode($0) }
-        } else {
-            let normalizedQuery = searchText.normalizeArabic(true)
-
-            func searchAndFlatten(nodes: [TOCNode]) -> [TOCNode] {
-                var matches: [TOCNode] = []
-                for node in nodes {
-                    if node.bab.normalizeArabic(true).localizedStandardContains(
-                        normalizedQuery
-                    ) {
-                        let flatNode = TOCNode(
-                            from: TOC(
-                                bab: node.bab,
-                                level: node.level,
-                                sub: node.sub,
-                                id: node.id
-                            )
-                        )
-                        matches.append(flatNode)
-                    }
-                    matches.append(
-                        contentsOf: searchAndFlatten(nodes: node.children)
-                    )
-                }
-                return matches
-            }
-
-            return searchAndFlatten(nodes: nodes).map {
-                iOSIdentifiableTOCNode($0)
-            }
-        }
-    }
-
-    func computeExpandedPaths() -> Set<Int> {
-        guard let targetId = selectedId else { return [] }
-        var paths = Set<Int>()
-
-        func search(nodes: [TOCNode], path: [Int]) -> Bool {
-            for node in nodes {
-                if node.id == targetId {
-                    paths.formUnion(path)
-                    return true
-                }
-                if !node.children.isEmpty {
-                    if search(nodes: node.children, path: path + [node.id]) {
-                        paths.formUnion(path)
-                        return true
-                    }
-                }
-            }
-            return false
-        }
-
-        _ = search(nodes: nodes, path: [])
-        return paths
+    init(nodes: [TOCNode], selectedId: Int?, onSelect: @escaping (Int) -> Void) {
+        self._viewModel = State(initialValue: iOSTOCViewModel(nodes: nodes, selectedId: selectedId))
+        self.onSelect = onSelect
     }
 
     var body: some View {
+        @Bindable var viewModel = viewModel
         NavigationView {
             ScrollViewReader { proxy in
                 ThemeList(isGrouped: true) {
-                    ForEach(identifiableNodes) { item in
+                    ForEach(viewModel.identifiableNodes) { item in
                         TOCNodeRow(
                             item: item,
-                            selectedId: selectedId,
+                            selectedId: viewModel.selectedId,
                             onSelect: onSelect,
-                            expandedPaths: $expandedPaths
+                            expandedPaths: $viewModel.expandedPaths
                         )
                     }
                 }
-                .searchable(text: $searchText, prompt: "Search Contents")
+                .searchable(text: $viewModel.searchText, prompt: "Search Contents")
                 .navigationTitle("Table of Contents")
                 .navigationBarItems(
                     leading: Button("Close") {
@@ -96,9 +39,10 @@ struct iOSTOCView: View {
                     }
                 )
                 .onAppear {
-                    expandedPaths = computeExpandedPaths()
-                    if let selectedId {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    viewModel.computeExpandedPaths()
+                    if let selectedId = viewModel.selectedId {
+                        Task {
+                            try await Task.sleep(for: .seconds(0.5))
                             withAnimation {
                                 proxy.scrollTo(selectedId, anchor: .center)
                             }

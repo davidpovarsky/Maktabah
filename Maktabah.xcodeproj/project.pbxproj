@@ -385,6 +385,7 @@
 		F36382642FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382632FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift */; };
 		F36382662FA761070006636C /* iOSSearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382652FA761070006636C /* iOSSearchFilterViewController.swift */; };
 		F36382692FA7BFB40006636C /* iOSAnnotationEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */; };
+		F36B95E02FC8513F002C716F /* iOSTOCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36B95DF2FC8513F002C716F /* iOSTOCViewModel.swift */; };
 		F36D684C2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */; };
 		F36D684D2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */; };
 		F36D684E2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */; };
@@ -612,6 +613,7 @@
 		F36382632FA760FF0006636C /* iOSHierarchicalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSHierarchicalCollectionViewController.swift; sourceTree = "<group>"; };
 		F36382652FA761070006636C /* iOSSearchFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSearchFilterViewController.swift; sourceTree = "<group>"; };
 		F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAnnotationEditorSheet.swift; sourceTree = "<group>"; };
+		F36B95DF2FC8513F002C716F /* iOSTOCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTOCViewModel.swift; sourceTree = "<group>"; };
 		F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoView.swift; sourceTree = "<group>"; };
 		F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiSidebarView.swift; sourceTree = "<group>"; };
@@ -1078,6 +1080,7 @@
 				F30577722FA463B1005732C6 /* iOSNavigationManager.swift */,
 				F30577732FA463B1005732C6 /* iOSReaderViewModel.swift */,
 				6505EE880DD50A217DB489F1 /* iOSSearchViewModel.swift */,
+				F36B95DF2FC8513F002C716F /* iOSTOCViewModel.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1702,6 +1705,7 @@
 				F305778F2FA463B1005732C6 /* iOSIbarotTextView.swift in Sources */,
 				F30577902FA463B1005732C6 /* iOSNavigationManager.swift in Sources */,
 				F30577912FA463B1005732C6 /* iOSLibraryViewModel.swift in Sources */,
+				F36B95E02FC8513F002C716F /* iOSTOCViewModel.swift in Sources */,
 				F36D684D2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */,
 				F321E02D2FC7059100CB37DD /* CloudKitSyncable.swift in Sources */,
 				F30577922FA463B1005732C6 /* BookListWrapper.swift in Sources */,

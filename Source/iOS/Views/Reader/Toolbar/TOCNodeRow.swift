@@ -52,7 +52,7 @@ struct TOCNodeRow: View {
             onSelect(item.node.id)
         }) {
             Text(item.node.bab)
-                .font(iOSReaderViewModel.kfgqpc)
+                .font(iOSReaderViewModel.kfgqpcTitle)
                 .foregroundColor(
                     item.node.id == selectedId ? .accentColor : .primary
                 )

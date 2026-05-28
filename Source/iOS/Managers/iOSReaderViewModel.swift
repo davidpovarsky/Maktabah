@@ -107,10 +107,11 @@ class iOSReaderViewModel {
             }
 
             // Fetch TOC
-            Task {
+            Task.detached { [weak self] in
+                guard let self else { return }
                 let tocEntries = await bookConnection.getTOCEntries(book)
-                let nodes = tree(from: tocEntries)
-                DispatchQueue.main.async { [weak self] in
+                let nodes = await tree(from: tocEntries)
+                await MainActor.run { [weak self] in
                     self?.tocNodes = nodes
                 }
             }
