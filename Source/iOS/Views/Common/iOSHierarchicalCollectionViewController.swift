@@ -52,11 +52,11 @@ extension UICollectionViewListCell {
         if SettingsViewModel.shared.useDefaultTheme { return }
         configurationUpdateHandler = { cell, state in
             if state.isFocused {
-                cell.backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
+                cell.backgroundConfiguration = UIBackgroundConfiguration.listCell()
                 return
             }
 
-            var backgroundConfig = UIBackgroundConfiguration.listGroupedCell()
+            var backgroundConfig = UIBackgroundConfiguration.listCell()
             backgroundConfig.backgroundColor = .appCellBackground
             cell.backgroundConfiguration = backgroundConfig
         }

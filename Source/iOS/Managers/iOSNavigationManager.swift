@@ -103,6 +103,10 @@ class iOSNavigationManager {
             currentTab.viewModel.saveCurrentState()
         }
         activeTabId = id
+        if let nextTab = openTabs.first(where: { $0.id == id }) {
+            selectedBook = nextTab.book
+            selectedContentId = nextTab.initialContentId
+        }
     }
 
     func confirmPendingBookIntegration(state: BundleArchiveDownloadProgressState) {

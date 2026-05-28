@@ -107,7 +107,8 @@ struct iOSMainView: View {
 extension View {
     func adaptiveReaderPush(item: Binding<BooksData?>, manager: iOSNavigationManager) -> some View {
         navigationDestination(item: item) { book in
-            let tab = manager.openTabs.first(where: { $0.book.id == book.id })
+            let tab = manager.openTabs.first(where: { $0.book.id == book.id && $0.id == manager.activeTabId })
+                   ?? manager.openTabs.first(where: { $0.book.id == book.id })
             iOSReaderView(book: book, viewModel: tab?.viewModel, initialContentId: manager.selectedContentId)
         }
     }

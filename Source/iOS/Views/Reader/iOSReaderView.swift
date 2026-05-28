@@ -9,6 +9,7 @@ struct iOSReaderView: View {
 
     var viewModel: iOSReaderViewModel
     @State private var textViewState = TextViewState.shared
+    @Environment(iOSNavigationManager.self) var bManager
 
     @State private var showingTOC = false
     @State private var showingOptions = false
@@ -20,6 +21,7 @@ struct iOSReaderView: View {
     @State private var showingEditNoteAlert = false
     @State private var editingNoteText = ""
     @State private var showingNavigation = false
+    @State private var showingTabsList = false
 
     init(book: BooksData,
          viewModel: iOSReaderViewModel? = nil,
@@ -72,7 +74,7 @@ struct iOSReaderView: View {
         .legacyVisibleToolbarBackgrounds()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .preferredColorScheme(isDarkMode ? .dark : .light)
-        .navigationTitle(viewModel.book.book)
+        .navigationTitle(bManager.openTabs.count > 1 ? "" : viewModel.book.book)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(.hidden, for: .tabBar)
         .toolbar {
@@ -91,6 +93,25 @@ struct iOSReaderView: View {
                         .frame(maxWidth: 350, maxHeight: 450)
                 }
             }
+
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                if !ipad, bManager.openTabs.count > 1 {
+                    Button {
+                        showingTabsList.toggle()
+                    } label: {
+                        Text(viewModel.book.book)
+                            .frame(maxWidth: 110)
+                            .contentShape(Rectangle())
+                    }
+                    .popover(isPresented: $showingTabsList) {
+                        iOSReaderTabsPopoverView(isPresented: $showingTabsList)
+                        .frame(maxWidth: 350)
+                        .presentationCompactAdaptation(.popover)
+                    }
+                }
+            }
+
+            CustomToolbarSpacer(placement: .topBarTrailing)
 
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button(action: {

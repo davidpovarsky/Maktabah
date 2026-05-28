@@ -408,6 +408,7 @@
 		F3B60E2A2FC7CDE600A9EF58 /* ReaderTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E292FC7CDE600A9EF58 /* ReaderTabItemView.swift */; };
 		F3B60E2C2FC7FFA500A9EF58 /* iOSTOCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E2B2FC7FFA500A9EF58 /* iOSTOCView.swift */; };
 		F3B60E2E2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E2D2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift */; };
+		F3B60E312FC8017D00A9EF58 /* iOSReaderTabsPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B60E302FC8017D00A9EF58 /* iOSReaderTabsPopoverView.swift */; };
 		F3C449562F2B12E200DA7032 /* SearchCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3C449552F2B12E200DA7032 /* SearchCellView.xib */; };
 		F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C449542F2B12E200DA7032 /* SearchCellView.swift */; };
 		F3D0815D2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
@@ -629,6 +630,7 @@
 		F3B60E292FC7CDE600A9EF58 /* ReaderTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderTabItemView.swift; sourceTree = "<group>"; };
 		F3B60E2B2FC7FFA500A9EF58 /* iOSTOCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTOCView.swift; sourceTree = "<group>"; };
 		F3B60E2D2FC7FFE400A9EF58 /* iOSIdentifiableTOCNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSIdentifiableTOCNode.swift; sourceTree = "<group>"; };
+		F3B60E302FC8017D00A9EF58 /* iOSReaderTabsPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderTabsPopoverView.swift; sourceTree = "<group>"; };
 		F3C449542F2B12E200DA7032 /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
 		F3C449552F2B12E200DA7032 /* SearchCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCellView.xib; sourceTree = "<group>"; };
 		F3D0815C2F9EFE5C00E017C7 /* Tag.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tag.xib; sourceTree = "<group>"; };
@@ -1205,6 +1207,7 @@
 				F3B60E1F2FC7CC3A00A9EF58 /* iOSBookSearchView.swift */,
 				F3B60E272FC7CDCA00A9EF58 /* iOSReaderBottomToolbarView.swift */,
 				F3B60E252FC7CDA400A9EF58 /* iOSReaderNavigationPopoverView.swift */,
+				F3B60E302FC8017D00A9EF58 /* iOSReaderTabsPopoverView.swift */,
 				F3B60E2B2FC7FFA500A9EF58 /* iOSTOCView.swift */,
 				F3B60E292FC7CDE600A9EF58 /* ReaderTabItemView.swift */,
 				F3B60E1D2FC7CC0D00A9EF58 /* TOCNodeRow.swift */,
@@ -1678,6 +1681,7 @@
 				F30576EC2FA46222005732C6 /* SettingsActions.swift in Sources */,
 				F30576EE2FA46222005732C6 /* RowiProtocols.swift in Sources */,
 				F30576F22FA46222005732C6 /* ArchiveErrors.swift in Sources */,
+				F3B60E312FC8017D00A9EF58 /* iOSReaderTabsPopoverView.swift in Sources */,
 				F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */,
 				F30577852FA463B1005732C6 /* SearchModeView.swift in Sources */,
 				F36382662FA761070006636C /* iOSSearchFilterViewController.swift in Sources */,
