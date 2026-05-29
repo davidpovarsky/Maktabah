@@ -19,7 +19,15 @@ class SidebarVC: NSViewController {
 
     var tocTree: [TOCNode] = []
     var idToRow: [Int: Int] = [:]
-    var ranges: [TOCRange] = []
+    var ranges: [TOCRange] = [] {
+        didSet {
+            nodeIdCache.removeAll()
+            for r in ranges {
+                nodeIdCache[r.node.id] = r.node
+            }
+        }
+    }
+    private var nodeIdCache: [Int: TOCNode] = [:]
     var tocLoader: TOCLoaderRefCount!
 
     var filteredTree: [TOCNode] = []
@@ -265,9 +273,8 @@ class SidebarVC: NSViewController {
     }
 
     func findNodeById(_ id: Int) -> TOCNode? {
-        // cari di ranges atau di tocTree (ranges seharusnya mencakup semua node)
-        if let r = ranges.first(where: { $0.node.id == id }) { return r.node }
-        return nil
+        // pencarian O(1) menggunakan pre-computed dictionary cache
+        return nodeIdCache[id]
     }
 
     // cari path dari root ke node (termasuk node itu sendiri)
