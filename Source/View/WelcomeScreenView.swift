@@ -27,69 +27,149 @@ private struct FeatureItem {
 }
 
 private func makeFeatures() -> [FeatureItem] {
-    [
+    #if os(iOS)
+    return [
         FeatureItem(
-            iconName: "arrow.triangle.2.circlepath.icloud.fill",
+            iconName: "books.vertical.fill",
             iconColor: .blue,
             title: Lang.pick(
-                ar: "تحديث المزامنة",
-                id: "Pembaruan Sinkronisasi",
-                en: "Sync Update"
+                ar: "تبويبات متعددة على الآيفون",
+                id: "Multi-Tab di iPhone",
+                en: "Multi-Tab on iPhone"
             ),
             description: Lang.pick(
-                ar: "نظام مزامنة CloudKit جديد. يرجى تحديث التطبيق على جميع أجهزتك لتجنب تعارض البيانات.",
-                id: "Sistem sinkronisasi CloudKit baru. Mohon perbarui aplikasi di semua perangkat Anda agar data tidak konflik.",
-                en: "New CloudKit sync system. Please update the app on all your devices to avoid data conflicts."
+                ar: "افتح أكثر من كتاب وانتقل بين القراءات بسهولة أكبر.",
+                id: "Buka beberapa buku dan pindah antar bacaan dengan lebih mudah.",
+                en: "Open multiple books and switch between readings more easily."
             ),
             badge: Lang.pick(
-                ar: "مهمة",
-                id: "Penting",
-                en: "Important"
+                ar: "جديد",
+                id: "Baru",
+                en: "New"
+            )
+        ),
+        FeatureItem(
+            iconName: "paintpalette.fill",
+            iconColor: .brown,
+            title: Lang.pick(
+                ar: "مظهر سيبيا جديد",
+                id: "Tema Sepia Baru",
+                en: "New Sepia Theme"
+            ),
+            description: Lang.pick(
+                ar: "مظهر مخصص أكثر هدوءاً وراحة للقراءة الطويلة.",
+                id: "Tema custom yang lebih tenang dan nyaman untuk membaca lama.",
+                en: "A calmer custom theme designed for longer reading sessions."
+            )
+        ),
+        FeatureItem(
+            iconName: "textformat",
+            iconColor: .purple,
+            title: Lang.pick(
+                ar: "خطوط قارئ مخصصة",
+                id: "Font Kustom Reader",
+                en: "Custom Reader Fonts"
+            ),
+            description: Lang.pick(
+                ar: "استورد خطوطك الخاصة واخترها مباشرة من إعدادات القراءة.",
+                id: "Impor font sendiri dan pakai langsung dari pengaturan reader.",
+                en: "Import your own fonts and use them directly from reader settings."
+            )
+        ),
+        FeatureItem(
+            iconName: "text.magnifyingglass",
+            iconColor: .green,
+            title: Lang.pick(
+                ar: "بحث عربي أدق",
+                id: "Pencarian Arab Lebih Akurat",
+                en: "Better Arabic Search"
+            ),
+            description: Lang.pick(
+                ar: "تحسين البحث في أسماء الكتب والرواة مع فلترة النتائج حسب الكتاب.",
+                id: "Pencarian kitab dan perawi ditingkatkan, termasuk filter hasil berdasarkan buku.",
+                en: "Improved book and narrator search, including filtering results by book."
+            )
+        ),
+        FeatureItem(
+            iconName: "arrow.triangle.2.circlepath.icloud.fill",
+            iconColor: .orange,
+            title: Lang.pick(
+                ar: "مزامنة أكثر ثباتاً",
+                id: "Sinkronisasi Lebih Stabil",
+                en: "More Stable Sync"
+            ),
+            description: Lang.pick(
+                ar: "تحسين مزامنة CloudKit للسجل والمفضلة والملاحظات ونتائج البحث المحفوظة.",
+                id: "CloudKit diperkuat untuk riwayat, favorit, catatan, dan hasil pencarian tersimpan.",
+                en: "CloudKit sync is stronger for history, favorites, annotations, and saved search results."
+            )
+        ),
+    ]
+    #else
+    return [
+        FeatureItem(
+            iconName: "clock.fill",
+            iconColor: .blue,
+            title: Lang.pick(
+                ar: "المفضلة والسجل",
+                id: "Favorit & Riwayat",
+                en: "Favorites & History"
+            ),
+            description: Lang.pick(
+                ar: "أصبحت الكتب المفضلة وسجل القراءة متاحة على Mac، وتتم مزامنتها بين iPhone وiPad وMac.",
+                id: "Kitab favorit dan riwayat bacaan kini tersedia di Mac. Semua disinkronkan antar perangkat iPhone, iPad, dan Mac.",
+                en: "Favorite books and reading history are now available on Mac and sync across iPhone, iPad, and Mac."
+            ),
+            badge: Lang.pick(
+                ar: "جديد",
+                id: "Baru",
+                en: "New"
             )
         ),
         FeatureItem(
             iconName: "square.and.arrow.down.on.square.fill",
             iconColor: .green,
             title: Lang.pick(
-                ar: "الاستيراد والتنزيل الجماعي",
-                id: "Impor Buku & Unduhan Serentak",
-                en: "Import & Bulk Download"
+                ar: "ترحيل استيراد الكتب",
+                id: "Migrasi Impor Kitab",
+                en: "Book Import Migration"
             ),
             description: Lang.pick(
-                ar: "نزّل كتباً كثيرة دفعةً واحدة واستورد الكتب دون الحاجة إلى اتصال بالإنترنت.",
-                id: "Unduh banyak buku sekaligus dan impor buku secara offline dengan mudah.",
-                en: "Download many books at once and import books offline without an internet connection."
+                ar: "تحسين ترحيل معرفات الكتب عند الاستيراد حتى تبقى الملاحظات ونتائج البحث مرتبطة بالكتاب الصحيح.",
+                id: "Migrasi ID kitab saat impor diperbaiki agar catatan dan hasil pencarian tetap tersambung ke kitab yang benar.",
+                en: "Book ID migration during import has been improved so annotations and saved search results stay linked to the right book."
             )
         ),
         FeatureItem(
-            iconName: "text.bubble.fill",
+            iconName: "accessibility",
             iconColor: .orange,
             title: Lang.pick(
-                ar: "دعم متعدد اللغات",
-                id: "Dukungan Multibahasa",
-                en: "Multilingual Support"
+                ar: "تحسين إمكانية الوصول",
+                id: "Aksesibilitas Diperluas",
+                en: "Expanded Accessibility"
             ),
             description: Lang.pick(
-                ar: "تحسين كبير في عرض النصوص متعددة اللغات على شاشة القراءة.",
-                id: "Rendering adaptif terhadap kitab multibahasa (RTL & LTR).",
-                en: "Significantly improved multilingual book text rendering."
+                ar: "إضافة ميزات إمكانية الوصول والتلميحات في عدة أجزاء من التطبيق.",
+                id: "Fitur aksesibilitas dan tooltip ditambahkan di beberapa bagian aplikasi.",
+                en: "Accessibility features and tooltips have been added in several parts of the app."
             )
         ),
         FeatureItem(
-            iconName: "internaldrive.fill",
+            iconName: "arrow.triangle.2.circlepath.icloud.fill",
             iconColor: .purple,
             title: Lang.pick(
-                ar: "أداء أقصى",
-                id: "Performa Maksimal",
-                en: "Maximum Performance"
+                ar: "مزامنة CloudKit",
+                id: "Sinkronisasi CloudKit",
+                en: "CloudKit Sync"
             ),
             description: Lang.pick(
-                ar: "محرك قاعدة بيانات محلي جديد لتصفح وبحث فوري.",
-                id: "Mesin database native yang baru untuk kecepatan navigasi dan pencarian yang instan.",
-                en: "New native database engine for instant navigation and search speed."
+                ar: "أصبحت مزامنة نتائج البحث المحفوظة والملاحظات أكثر ثباتاً بين الأجهزة.",
+                id: "Sinkronisasi hasil pencarian tersimpan yang lebih stabil antar perangkat.",
+                en: "Saved search results and annotations now sync more reliably across devices."
             )
         ),
     ]
+    #endif
 }
 
 // MARK: - Views
@@ -136,7 +216,7 @@ struct WelcomeScreenView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                 }
-                .controlSize(.large)
+                .controlSize(.regular)
                 .buttonStyle(.borderedProminent)
                 .tint(.accentColor)
                 .padding(.horizontal, 24)
