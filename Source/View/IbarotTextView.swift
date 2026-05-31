@@ -228,8 +228,18 @@ class IbarotTextView: NSTextView {
     func loadIbarotText(
         _ text: String,
         color: NSColor = .header,
-        isMultiLanguage: Bool? = false
+        isMultiLanguage: Bool? = false,
+        keepScrollPosition: Bool = false
     ) {
+        var scrollPercentage: CGFloat = 0
+        var visibleRect: NSRect = .zero
+        
+        if keepScrollPosition, let scrollView = enclosingScrollView {
+            visibleRect = scrollView.documentVisibleRect
+            let totalHeight = scrollView.documentView?.frame.size.height ?? 0
+            scrollPercentage = totalHeight > 0 ? (visibleRect.origin.y / totalHeight) : 0
+        }
+
         let renderResult = renderer.render(
             text: text,
             highlightColor: color,
@@ -263,6 +273,14 @@ class IbarotTextView: NSTextView {
 
         let fullRange = NSRange(location: 0, length: ts.length)
         lm.ensureLayout(forCharacterRange: fullRange)
+
+        if keepScrollPosition, let scrollView = enclosingScrollView {
+            let newTotalHeight = scrollView.documentView?.frame.size.height ?? 0
+            let targetY = scrollPercentage * newTotalHeight
+            let targetPoint = NSPoint(x: visibleRect.origin.x, y: targetY)
+            scrollView.contentView.scroll(to: targetPoint)
+            scrollView.reflectScrolledClipView(scrollView.contentView)
+        }
     }
 
     func updateLineHeight() {

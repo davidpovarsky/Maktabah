@@ -12,15 +12,6 @@ class IbarotTextVC: NSViewController {
 
     private let defaultFontSize: CGFloat = 18.0
 
-    private var showHarakat: Bool {
-        get {
-            return UserDefaults.standard.textViewShowHarakat
-        }
-        set {
-            UserDefaults.standard.textViewShowHarakat = newValue
-        }
-    }
-
     var bookDB: BookConnection = .init()
 
     var sidebarVC: SidebarVC?
@@ -215,7 +206,6 @@ class IbarotTextVC: NSViewController {
     }
 
     func toggleHarakat(_ on: Bool) {
-        showHarakat = on ? true : false
         refreshCurrentPage()
     }
 
@@ -227,7 +217,7 @@ class IbarotTextVC: NSViewController {
             )
         else { return }
 
-        textView.loadIbarotText(content.nash, color: NSColor.header)
+        textView.loadIbarotText(content.nash, color: NSColor.header, keepScrollPosition: true)
     }
 
     func applyBackgroundColor(_ color: NSColor) {
