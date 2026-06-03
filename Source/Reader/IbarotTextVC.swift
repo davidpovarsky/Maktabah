@@ -307,17 +307,22 @@ class IbarotTextVC: NSViewController {
         }
     }
 
-    func copyWith() {
+    @IBAction func copyWith(_ sender: Any? = nil) {
         guard let currentBook,
             let window = view.window
         else { return }
 
         // Ambil attributed string dari textView
-        let attributedText = textView.attributedString()
+        let attributedText: NSAttributedString
+
+        attributedText = textView.selectedRange.length > 1
+            ? textView.attributedString()
+                .attributedSubstring(from: textView.selectedRange())
+            : textView.attributedString()
 
         // Buat tambahan footer dengan style default (plain)
         let footer =
-            "\n\n\n__________\n" + currentBook.book + " " + window.title + " - "
+            "\n\n__________\n" + currentBook.book + " " + window.title + " - "
             + window.subtitle
         let footerAttr = NSAttributedString(string: footer)
 

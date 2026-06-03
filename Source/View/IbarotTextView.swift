@@ -549,9 +549,27 @@ class IbarotTextView: NSTextView {
                 item.title.localizedStandardContains($0)
             }) {
                 extraItems.append(item)
+                if item.action == #selector(NSText.copy(_:)) {
+                    extraItems.append(.separator())
+                    extraItems.append(buildCopyWithReferenceItem())
+                }
             }
         }
         return extraItems
+    }
+
+    private func buildCopyWithReferenceItem() -> NSMenuItem {
+        let item = NSMenuItem(
+            title: String(localized: .copyWithReference),
+            action: #selector(IbarotTextVC.copyWith(_:)),
+            keyEquivalent: ""
+        )
+        item.image = NSImage(
+            systemSymbolName: "doc.on.clipboard",
+            accessibilityDescription: nil
+        )
+        item.target = nil
+        return item
     }
 
     private func buildEditNoteItem(

@@ -1555,6 +1555,29 @@
         }
       }
     },
+    "copyWithReference" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نسخ مع الإشارة المرجعية"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy with Reference"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salin dengan Referensi"
+          }
+        }
+      }
+    },
     "core.error.cancelled" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -6298,6 +6321,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pengaturan"
+          }
+        }
+      }
+    },
+    "Share with Reference" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مشاركة مع المرجع"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share with Reference"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagikan dengan Referensi"
           }
         }
       }

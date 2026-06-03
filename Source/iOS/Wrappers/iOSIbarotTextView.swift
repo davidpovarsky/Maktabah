@@ -454,6 +454,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             self.parent = parent
         }
 
+
         func textView(
             _ textView: UITextView,
             primaryActionFor textItem: UITextItem,
@@ -488,6 +489,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             let sourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
 
             var menuChildren: [UIMenuElement] = []
+            var actions = suggestedActions
 
             if let existing = parent.viewModel.findBestAnnotation(for: sourceRange) {
                 // Ada anotasi yang tumpang tindih
@@ -517,7 +519,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 let colors = Array(UserDefaults.standard.recentHighlightColors.prefix(UserDefaults.maxRecentColors))
                 let highlightActions = colors.map { color in
                     UIAction(
-                        title: MaktabahApp.isIpad ? color.accessibilityName.capitalized : "",
+                        title: color.accessibilityName.capitalized,
                         image: UIImage(systemName: "circle.fill")?.withTintColor(color, renderingMode: .alwaysOriginal)
                     ) { [weak self] _ in
                         self?.parent.onAddAnnotation?(sourceRange, .highlight, sourceText, color)
@@ -531,7 +533,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 )
 
                 let underlineAction = UIAction(
-                    title: MaktabahApp.isIpad ? String(localized: "Underline") : "",
+                    title: String(localized: "Underline"),
                     image: UIImage(systemName: "underline")
                 ) { [weak self] _ in
                     self?.parent.onAddAnnotation?(sourceRange, .underline, sourceText, .black)
@@ -540,15 +542,110 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 menuChildren = [highlightMenu, underlineAction]
             }
 
+            if let shareContent = shareContent(sourceText: sourceText, sourceRange: sourceRange) {
+                let shareAction = UIAction(
+                    title: String(localized: "Share with Reference"),
+                    image: UIImage(systemName: "square.and.arrow.up")
+                ) { [weak self, weak textView] _ in
+                    guard let self, let textView else { return }
+                    self.presentShareSheet(
+                        content: shareContent,
+                        from: textView,
+                        selectedRange: range
+                    )
+                }
+                actions.insert(shareAction, at: 1)
+            }
+
             let customMenu = UIMenu(
                 title: String(localized: .annotation),
                 image: UIImage(systemName: "highlighter"),
                 children: menuChildren
             )
 
-            var actions = suggestedActions
-            actions.insert(customMenu, at: 0)
+            actions.insert(customMenu, at: 1)
             return UIMenu(children: actions)
+        }
+
+        private func shareContent(sourceText: String, sourceRange: NSRange) -> String? {
+            guard let selectedText = substring(sourceText, in: sourceRange)?
+                .trimmingCharacters(in: .whitespacesAndNewlines),
+                  !selectedText.isEmpty else { return nil }
+
+            let book = parent.viewModel.book.book
+
+            var referencePage: [String] = []
+
+            if let part = parent.viewModel.currentPart, part != -1 {
+                referencePage.append(
+                    "ج: \(part)"
+                        .convertToArabicDigits()
+                )
+            }
+
+            if let page = parent.viewModel.currentPage {
+                referencePage.append(
+                    "ص: \(page)"
+                        .convertToArabicDigits()
+                )
+            }
+
+            let referenceLines = "~ \(book) - \(referencePage.joined(separator: " • "))"
+
+            return "\(selectedText)\n\n\(referenceLines)"
+        }
+
+        private func substring(_ text: String, in range: NSRange) -> String? {
+            guard range.location >= 0,
+                  range.length > 0,
+                  range.location + range.length <= (text as NSString).length else { return nil }
+
+            return (text as NSString).substring(with: range)
+        }
+
+        private func presentShareSheet(
+            content: String,
+            from textView: UITextView,
+            selectedRange: NSRange
+        ) {
+            guard let topVC = ReusableFunc.getTopViewController() else { return }
+
+            let activityVC = UIActivityViewController(
+                activityItems: [content],
+                applicationActivities: nil
+            )
+
+            if let popover = activityVC.popoverPresentationController {
+                popover.sourceView = textView
+                popover.sourceRect = selectionRect(in: textView, range: selectedRange)
+                popover.permittedArrowDirections = [.up, .down]
+            }
+
+            topVC.present(activityVC, animated: true)
+        }
+
+        private func selectionRect(in textView: UITextView, range: NSRange) -> CGRect {
+            guard let start = textView.position(from: textView.beginningOfDocument, offset: range.location),
+                  let end = textView.position(from: start, offset: range.length),
+                  let textRange = textView.textRange(from: start, to: end) else {
+                return CGRect(
+                    x: textView.bounds.midX,
+                    y: textView.bounds.midY,
+                    width: 1,
+                    height: 1
+                )
+            }
+
+            let rect = textView.firstRect(for: textRange)
+            guard !rect.isNull, !rect.isInfinite else {
+                return CGRect(
+                    x: textView.bounds.midX,
+                    y: textView.bounds.midY,
+                    width: 1,
+                    height: 1
+                )
+            }
+            return rect
         }
     }
 }
