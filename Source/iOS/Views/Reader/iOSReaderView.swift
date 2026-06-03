@@ -68,7 +68,9 @@ struct iOSReaderView: View {
             onTapAnnotation: { annId in
                 tappedAnnotationId = annId
                 showingAnnotationActionSheet = true
-            }
+            },
+            onNavigateNext: { viewModel.goToNextPage() },
+            onNavigatePrev: { viewModel.goToPrevPage() }
         )
         .background(backgroundColor)
         .ignoresSafeArea(edges: .vertical)

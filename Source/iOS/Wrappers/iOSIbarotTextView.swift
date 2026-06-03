@@ -293,6 +293,86 @@ class iOSCustomIbarotTextView: UITextView {
     }
 }
 
+// MARK: - Pull Navigation Indicator
+
+enum PullDirection {
+    case prev, next
+}
+
+class PullNavigationIndicatorView: UIView {
+    private let chevronView = UIImageView()
+    private let label = UILabel()
+    private let stackView = UIStackView()
+    private let direction: PullDirection
+
+    init(direction: PullDirection) {
+        self.direction = direction
+        super.init(frame: .zero)
+        setupView()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupView() {
+        let symbolName = direction == .prev ? "chevron.compact.up" : "chevron.compact.down"
+        let config = UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold)
+        chevronView.image = UIImage(systemName: symbolName, withConfiguration: config)
+        chevronView.tintColor = .secondaryLabel
+        chevronView.contentMode = .scaleAspectFit
+
+        label.text = direction == .prev
+            ? String(localized: "Previous Page")
+            : String(localized: "Next Page")
+        label.font = .preferredFont(forTextStyle: .footnote)
+        label.textColor = .secondaryLabel
+        label.textAlignment = .center
+
+        if direction == .prev {
+            stackView.addArrangedSubview(chevronView)
+            stackView.addArrangedSubview(label)
+        } else {
+            stackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(chevronView)
+        }
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 2
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
+
+        alpha = 0
+    }
+
+    func updateProgress(_ progress: CGFloat) {
+        let clamped = min(max(progress, 0), 1)
+        alpha = clamped
+        let scale = 0.8 + 0.2 * clamped
+        transform = CGAffineTransform(scaleX: scale, y: scale)
+
+        if clamped >= 1.0 {
+            chevronView.tintColor = .label
+            label.textColor = .label
+        } else {
+            chevronView.tintColor = .secondaryLabel
+            label.textColor = .secondaryLabel
+        }
+    }
+
+    func reset() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 0
+            self.transform = .identity
+        }
+    }
+}
+
 /// SwiftUI Wrapper for iOSCustomIbarotTextView
 struct iOSIbarotTextView: UIViewRepresentable {
     @Binding var text: String
@@ -307,6 +387,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
     var onAddAnnotation: ((NSRange, AnnotationMode, String, UIColor) -> Void)?
     var onTapAnnotation: ((Int64) -> Void)?
 
+    // Pull-to-navigate callbacks
+    var onNavigateNext: (() -> Void)?
+    var onNavigatePrev: (() -> Void)?
+
     var state = TextViewState.shared
 
     func makeCoordinator() -> Coordinator {
@@ -315,10 +399,12 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UIView {
         let container = UIView()
+        container.clipsToBounds = true
 
         let textView = iOSCustomIbarotTextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = context.coordinator
+        textView.alwaysBounceVertical = true
 
         textView.onHighlight = { sourceRange, sourceText in
             let color = UserDefaults.standard.recentHighlightColors.first ?? .yellow
@@ -338,12 +424,34 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         container.addSubview(textView)
 
+        // Pull navigation indicators
+        let topIndicator = PullNavigationIndicatorView(direction: .prev)
+        topIndicator.translatesAutoresizingMaskIntoConstraints = false
+        topIndicator.tag = 1001
+        container.addSubview(topIndicator)
+
+        let bottomIndicator = PullNavigationIndicatorView(direction: .next)
+        bottomIndicator.translatesAutoresizingMaskIntoConstraints = false
+        bottomIndicator.tag = 1002
+        container.addSubview(bottomIndicator)
+
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: container.topAnchor),
             textView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             textView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             textView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+
+            topIndicator.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            topIndicator.topAnchor.constraint(equalTo: container.safeAreaLayoutGuide.topAnchor, constant: 8),
+            topIndicator.heightAnchor.constraint(equalToConstant: 44),
+
+            bottomIndicator.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            bottomIndicator.bottomAnchor.constraint(equalTo: container.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            bottomIndicator.heightAnchor.constraint(equalToConstant: 44),
         ])
+
+        context.coordinator.topIndicator = topIndicator
+        context.coordinator.bottomIndicator = bottomIndicator
 
         return container
     }
@@ -450,10 +558,110 @@ struct iOSIbarotTextView: UIViewRepresentable {
         var processedSearchText: String?
         var processedAnnotationId: Int64?
 
+        // Pull-to-navigate state
+        weak var topIndicator: PullNavigationIndicatorView?
+        weak var bottomIndicator: PullNavigationIndicatorView?
+        private let pullThreshold: CGFloat = 80
+        private var hasTriggeredHaptic = false
+        private var activePullDirection: PullDirection?
+        private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
+
         init(_ parent: iOSIbarotTextView) {
             self.parent = parent
         }
 
+        // MARK: - Pull-to-Navigate Scroll Detection
+
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = scrollView.contentSize.height
+            let boundsHeight = scrollView.bounds.height
+            let adjustedTopInset = scrollView.adjustedContentInset.top
+            let adjustedBottomInset = scrollView.adjustedContentInset.bottom
+
+            // 1. Batas Atas (Previous Page)
+            let topOverscroll = -(offsetY + adjustedTopInset)
+            let isTopOverscrolling = handleOverscroll(
+                topOverscroll,
+                direction: .prev,
+                scrollView: scrollView,
+                onUpdate: { [weak self] progress in self?.topIndicator?.updateProgress(progress) },
+                onReset: { [weak self] in self?.topIndicator?.reset() }
+            )
+
+            if isTopOverscrolling { return }
+
+            // 2. Batas Bawah (Next Page)
+            let maxOffsetY = contentHeight + adjustedBottomInset - boundsHeight
+            let effectiveMaxOffsetY = max(maxOffsetY, -adjustedTopInset)
+            let bottomOverscroll = offsetY - effectiveMaxOffsetY
+
+            let isBottomOverscrolling = handleOverscroll(
+                bottomOverscroll,
+                direction: .next,
+                scrollView: scrollView,
+                onUpdate: { [weak self] progress in self?.bottomIndicator?.updateProgress(progress) },
+                onReset: { [weak self] in self?.bottomIndicator?.reset() }
+            )
+
+            if isBottomOverscrolling { return }
+
+            // Bersihkan state jika dilepas di posisi tengah/normal
+            if !scrollView.isTracking {
+                activePullDirection = nil
+            }
+        }
+
+        private func handleOverscroll(
+            _ overscroll: CGFloat,
+            direction: PullDirection,
+            scrollView: UIScrollView,
+            onUpdate: (CGFloat) -> Void,
+            onReset: () -> Void
+        ) -> Bool {
+            if overscroll > 0 {
+                if scrollView.isTracking {
+                    let progress = min(overscroll / pullThreshold, 1.0)
+                    onUpdate(progress)
+                    activePullDirection = direction
+
+                    if overscroll >= pullThreshold {
+                        if !hasTriggeredHaptic {
+                            hasTriggeredHaptic = true
+                            hapticGenerator.impactOccurred()
+                        }
+                    } else {
+                        hasTriggeredHaptic = false
+                    }
+
+                    if !hasTriggeredHaptic {
+                        hapticGenerator.prepare()
+                    }
+                }
+                return true // Mengembalikan true untuk menandakan state sedang overscroll
+            } else {
+                onReset()
+                return false
+            }
+        }
+
+        func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+            defer {
+                hasTriggeredHaptic = false
+                activePullDirection = nil
+                topIndicator?.reset()
+                bottomIndicator?.reset()
+            }
+
+            guard hasTriggeredHaptic, let direction = activePullDirection else { return }
+
+            switch direction {
+            case .prev:
+                parent.onNavigatePrev?()
+            case .next:
+                parent.onNavigateNext?()
+            }
+        }
 
         func textView(
             _ textView: UITextView,
