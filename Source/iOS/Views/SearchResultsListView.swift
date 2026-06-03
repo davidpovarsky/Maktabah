@@ -22,34 +22,70 @@ struct SearchResultRow: View {
     var showsBookTitle: Bool = true
 
     var body: some View {
-        VStack(alignment: .trailing, spacing: 4) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack {
+                if showsBookTitle {
+                    Text(item.bookTitle)
+                        .font(iOSReaderViewModel.kfgqpcTitle)
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.leading)
+
+                    Divider()
+                        .frame(maxHeight: 18)
+                }
+
                 Text(
                     "ص: \(item.page)".convertToArabicDigits() +
                         " -" + "ج: \(item.part)".convertToArabicDigits()
                 )
                 .font(.caption)
                 .foregroundColor(.secondary)
-                .environment(\.layoutDirection, .leftToRight)
-
-                if showsBookTitle {
-                    Spacer()
-
-                    Text(item.bookTitle)
-                        .font(iOSReaderViewModel.kfgqpc)
-                        .foregroundColor(.primary)
-                        .multilineTextAlignment(.trailing)
-                }
             }
 
             Text(AttributedString(item.attributedText))
                 .font(iOSReaderViewModel.kfgqpc)
                 .lineLimit(3)
                 .foregroundColor(.primary)
-                .multilineTextAlignment(.trailing)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .environment(\.layoutDirection, .rightToLeft)
         .padding(.vertical, 4)
         .contentShape(Rectangle())
     }
 }
+
+#Preview {
+    let items = [
+        SearchResultItem(
+            archive: "1",
+            tableName: "t1",
+            bookId: 1,
+            bookTitle: "كتاب الإيمان",
+            page: 12,
+            part: 1,
+            attributedText: NSAttributedString(string: "هذا نص تجريبي للبحث الأول يوضح كيفية ظهور نتائج البحث.")
+        ),
+        SearchResultItem(
+            archive: "1",
+            tableName: "t1",
+            bookId: 2,
+            bookTitle: "صحيح البخاري",
+            page: 45,
+            part: 2,
+            attributedText: NSAttributedString(string: "مثال آخر لنتيجة البحث يحتوي على بعض الكلمات المفتاحية.")
+        ),
+        SearchResultItem(
+            archive: "1",
+            tableName: "t1",
+            bookId: 3,
+            bookTitle: "فتح الباري",
+            page: 108,
+            part: 3,
+            attributedText: NSAttributedString(string: "النص الثالث والأخير في المعاينة لتأكيد جودة التصميم والترتيب.")
+        )
+    ]
+    
+    return SearchResultsListView(results: items, onSelect: { _ in })
+}
+
