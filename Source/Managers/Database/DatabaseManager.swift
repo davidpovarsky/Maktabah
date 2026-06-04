@@ -135,7 +135,7 @@ class DatabaseManager {
         guard let db else { return [:] }
 
         var groupedBooks: [Int: [BooksData]] = [:]
-        let sql = "SELECT \(colBokId), \(colBokName), \(colBokArchive), \(colBokMuallif), \(colBokCat), \(colTafseerNam), \(colBokPdfCs) FROM \(booksTableName)"
+        let sql = "SELECT \(colBokId), \(colBokName), \(colBokArchive), \(colBokMuallif), \(colBokCat), \(colTafseerNam), \(colBokPdfCs) FROM \(booksTableName) ORDER BY \(colBokName) ASC"
 
         let books = try db.fetch(query: sql) { row -> BooksData in
             let id = row.int(at: 0)
