@@ -61,11 +61,11 @@ final class BookPageCache {
         defer { lock.unlock() }
         cache.removeObject(forKey: k)
     }
+     */
 
     func removeAll() {
         lock.lock()
         defer { lock.unlock() }
         cache.removeAllObjects()
     }
-     */
 }

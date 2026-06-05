@@ -49,6 +49,9 @@ class BooksData: Codable, Identifiable {
     var isMultiLanguage: Bool {
         return pdfCs == 3
     }
+    var isImported: Bool {
+        return pdfCs == 4
+    }
     var bithoqoh: String {
         didSet {
             bithoqoh = bithoqoh.convertToArabicDigits()

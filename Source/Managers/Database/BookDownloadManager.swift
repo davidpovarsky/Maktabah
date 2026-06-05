@@ -340,14 +340,19 @@ actor BookDownloadIndexCache {
 
     func entries(
         indexURL: URL,
-        urlSession: URLSession
+        urlSession: URLSession,
+        forceRefresh: Bool = false
     ) async throws -> [Int: BundleBookIndexEntry] {
-        if cachedEntries.isEmpty {
+        if forceRefresh {
+            cachedEntries = [:]
+            lastFetch = nil
+        } else if cachedEntries.isEmpty {
             loadCachedIndexIfNeeded()
         }
 
         let now = Date()
-        if let lastFetch,
+        if !forceRefresh,
+           let lastFetch,
            now.timeIntervalSince(lastFetch) < ttl,
            !cachedEntries.isEmpty {
             return cachedEntries

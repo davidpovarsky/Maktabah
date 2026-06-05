@@ -180,7 +180,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%1$lld completed, %2$lld failed."
           }
         },
@@ -779,6 +779,22 @@
         }
       }
     },
+    "Bi-Annual Routine Check until toggled off and on again." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فحص دوري نصف سنوي حتى إيقاف المفتاح وإعادة تشغيله."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemeriksaan rutin setengah tahunan hingga tombol dinonaktifkan dan dinyalakan ulang."
+          }
+        }
+      }
+    },
     "Blue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1365,7 +1381,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Completed! %1$lld/%2$lld books successfully updated."
           }
         },
@@ -1579,7 +1595,6 @@
       }
     },
     "core.error.cancelled" : {
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1589,7 +1604,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Download cancelled."
           }
         },
@@ -1920,6 +1935,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buat Folder Baru"
+          }
+        }
+      }
+    },
+    "Current" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تيار"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saat ini"
           }
         }
       }
@@ -3863,6 +3894,22 @@
         }
       }
     },
+    "Later" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاحق"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nanti"
+          }
+        }
+      }
+    },
     "LCSMenuClearRecentsTitle" : {
       "localizations" : {
         "ar" : {
@@ -3985,6 +4032,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Penyimpanan Perpustakaan"
+          }
+        }
+      }
+    },
+    "Library Update" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحديث المكتبة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembaruan Perpustakaan"
+          }
+        }
+      }
+    },
+    "Library Update Available" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحديث المكتبة متاح"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terdapat Pembaruan Perpustakaan"
           }
         }
       }
@@ -4405,6 +4484,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "New"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baru"
+          }
+        }
+      }
+    },
+    "New" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جديد"
           }
         },
         "id" : {
@@ -6263,6 +6358,22 @@
         }
       }
     },
+    "Semi-Annual Check" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فحص نصف سنوي"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengecekan Setengah Tahunan"
+          }
+        }
+      }
+    },
     "separateWordsSearchDesc" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6937,6 +7048,22 @@
         }
       }
     },
+    "Update Now" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحديث الآن"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perbarui Sekarang"
+          }
+        }
+      }
+    },
     "Update Only" : {
       "localizations" : {
         "ar" : {
@@ -6981,6 +7108,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pembaruan"
+          }
+        }
+      }
+    },
+    "Updating Library" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تحديث المكتبة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memperbarui Perpustakaan"
           }
         }
       }
@@ -7065,6 +7208,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versi"
+          }
+        }
+      }
+    },
+    "Version %@ is available. The core database contains books metadata and categories." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإصدار %@ متاح. تحتوي قاعدة البيانات الأساسية على بيانات وصفية وفئات للكتب."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versi %@ tersedia. Basis data inti berisi metadata dan kategori buku."
           }
         }
       }

@@ -92,6 +92,53 @@ class DatabaseManager {
         }
     }
 
+    /// Reopen database connections dan reset cache library
+    /// serta mengirim notifikasi.
+    func reloadConnectionAndLibrary() {
+        LibraryDataManager.shared.resetState()
+        DatabaseManager.shared.setupFolders()
+        TarjamahGlobalManager.shared.setupConnection()
+        BookPageCache.shared.removeAll()
+        NotificationCenter.default.post(
+            name: .libraryFolderChanged,
+            object: nil
+        )
+    }
+
+    /// Read version from table 'v' in main.sqlite
+    /// Returns nil if table doesn't exist or query fails
+    func getLocalVersionDisplay() -> String? {
+        // Check if table 'v' exists
+        let checkQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='v'"
+
+        var tableExists = false
+        do {
+            try db?.fetch(query: checkQuery) { _ in
+                tableExists = true
+            }
+        } catch {
+            return nil
+        }
+
+        guard tableExists else {
+            return nil // Table 'v' doesn't exist
+        }
+
+        // Get version from table 'v'
+        let query = "SELECT version FROM v LIMIT 1"
+
+        var version: String?
+        do {
+            try db?.fetch(query: query) { row in
+                version = row.string(at: 0)
+            }
+        } catch {
+            return nil
+        }
+
+        return version
+    }
+
     private func handleSetupError() {
         UserDefaults.standard.removeObject(forKey: AppConfig.storageKey)
         ReusableFunc.showAlert(

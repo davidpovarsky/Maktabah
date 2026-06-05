@@ -399,6 +399,7 @@
 		F3902E8D2F9EE1CA004BA5D1 /* AnnotationTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */; };
 		F3902EAF2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */; };
 		F3902EB02F9EE1CB004BA5D1 /* TagMergePopoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */; };
+		F3A20B142FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A20B132FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift */; };
 		F3ABDF752FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
 		F3ABDF762FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
 		F3ABDF772FBF429700A8965E /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */; };
@@ -415,6 +416,9 @@
 		F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C449542F2B12E200DA7032 /* SearchCellView.swift */; };
 		F3D0815D2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
 		F3D0815E2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
+		F3D46E9B2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */; };
+		F3D46E9C2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */; };
+		F3D46E9D2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */; };
 		F3DD69E32FA4F76100BFEA0F /* ProgressBooksDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C9DE32F6995EE0049E4EF /* ProgressBooksDownload.swift */; };
 		F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */; };
 		F3EB89702FAF94EF00ED75F0 /* SearchResultsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */; };
@@ -624,6 +628,7 @@
 		F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderTabView.swift; sourceTree = "<group>"; };
 		F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTagVC.swift; sourceTree = "<group>"; };
 		F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMergePopoverVC.swift; sourceTree = "<group>"; };
+		F3A20B132FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCoreUpdateProgressOverlayView.swift; sourceTree = "<group>"; };
 		F3A775572FB2288E00C82F7B /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS-Info.plist"; sourceTree = "<group>"; };
 		F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		F3B60E1D2FC7CC0D00A9EF58 /* TOCNodeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOCNodeRow.swift; sourceTree = "<group>"; };
@@ -638,6 +643,7 @@
 		F3C449542F2B12E200DA7032 /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
 		F3C449552F2B12E200DA7032 /* SearchCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCellView.xib; sourceTree = "<group>"; };
 		F3D0815C2F9EFE5C00E017C7 /* Tag.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tag.xib; sourceTree = "<group>"; };
+		F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUpdateAlert.swift; sourceTree = "<group>"; };
 		F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -772,6 +778,7 @@
 				4B3B966C2F35A74400B57E1D /* BookUpdateManager.swift */,
 				3373C7B02164CDBB77BFFF48 /* CloudKitSyncManager.swift */,
 				4BDAB9832F69B946007D0945 /* CoreDatabaseDownloader.swift */,
+				F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */,
 				4BEC35902F34BA330038FC0F /* DatabaseError.swift */,
 				4B32024D2EDB13C0003B95D1 /* DatabaseManager.swift */,
 				F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */,
@@ -1189,6 +1196,7 @@
 		F363824F2FA6F9F10006636C /* Bootstrap */ = {
 			isa = PBXGroup;
 			children = (
+				F3A20B132FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift */,
 				F36382522FA6FABF0006636C /* BootstrapView.swift */,
 				F36382542FA6FAE10006636C /* CoreDownloaderGateView.swift */,
 			);
@@ -1491,6 +1499,7 @@
 				4B2FAD9A2EED472E008E933E /* TOCLoader.swift in Sources */,
 				4B20DB7F2EE7EE1F00B97126 /* SearchMode.swift in Sources */,
 				4B63E1ED2EE9758A00D58F3B /* LoadMoreCell.swift in Sources */,
+				F3D46E9B2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */,
 				4B63E1E42EE9425400D58F3B /* RowiResultsVC.swift in Sources */,
 				4BDAB9862F69C2A8007D0945 /* CoreDownloadProgressView.swift in Sources */,
 				F321672E2FBB2C0D00601DB3 /* SQLiteDatabase.swift in Sources */,
@@ -1584,6 +1593,7 @@
 				4B7C90BB2F83494200454BE1 /* BookUpdateManager.swift in Sources */,
 				F321672A2FBAA39F00601DB3 /* BookImportView.swift in Sources */,
 				4B7C90BC2F83494200454BE1 /* AnnotationDelegate.swift in Sources */,
+				F3D46E9C2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */,
 				4B7C90BD2F83494200454BE1 /* IbarotTextView.swift in Sources */,
 				4B7C90BE2F83494200454BE1 /* AnnotationCoordinator.swift in Sources */,
 				4B7C90BF2F83494200454BE1 /* BookConnection.swift in Sources */,
@@ -1717,6 +1727,7 @@
 				F30576F72FA46222005732C6 /* ReusableFunc.swift in Sources */,
 				F3ABDF772FBF429700A8965E /* WelcomeScreenView.swift in Sources */,
 				F30576F82FA46222005732C6 /* BookUpdateManager.swift in Sources */,
+				F3D46E9D2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */,
 				F332143B2FC2750E006EC214 /* ThemeComponents.swift in Sources */,
 				F30576F92FA46222005732C6 /* AnnotationDelegate.swift in Sources */,
 				F363825B2FA702A00006636C /* iPhoneLayout.swift in Sources */,
@@ -1749,6 +1760,7 @@
 				F36382692FA7BFB40006636C /* iOSAnnotationEditorSheet.swift in Sources */,
 				F305771A2FA46222005732C6 /* BookUpdateVM.swift in Sources */,
 				F30577202FA46222005732C6 /* Narrathor.swift in Sources */,
+				F3A20B142FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift in Sources */,
 				F30577252FA46222005732C6 /* SearchEngine.swift in Sources */,
 				F30577952FA4987B005732C6 /* NotificationName.swift in Sources */,
 				F31111992FC0A9C00024B638 /* iOSFolderSelectionGroup.swift in Sources */,
@@ -2061,7 +2073,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 96;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -2089,7 +2101,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.2;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2119,7 +2131,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 96;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -2148,7 +2160,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.2;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2177,7 +2189,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 96;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -2206,7 +2218,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.2;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
@@ -2236,7 +2248,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 96;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				ENABLE_APP_SANDBOX = YES;
@@ -2266,7 +2278,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.2;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
@@ -2295,7 +2307,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 96;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2311,7 +2323,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
@@ -2336,7 +2348,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 96;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = Q37L5CJ4ZG;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2353,7 +2365,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;

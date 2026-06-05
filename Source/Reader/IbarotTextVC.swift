@@ -217,7 +217,12 @@ class IbarotTextVC: NSViewController {
             )
         else { return }
 
-        textView.loadIbarotText(content.nash, color: NSColor.header, keepScrollPosition: true)
+        textView.loadIbarotText(
+            content.nash,
+            color: NSColor.header,
+            isImported: currentBook.isImported,
+            keepScrollPosition: true
+        )
     }
 
     func applyBackgroundColor(_ color: NSColor) {
@@ -272,7 +277,8 @@ class IbarotTextVC: NSViewController {
             // Display content
             textView?.loadIbarotText(
                 nash, color: NSColor.header,
-                isMultiLanguage: currentBook?.isMultiLanguage
+                isMultiLanguage: currentBook?.isMultiLanguage,
+                isImported: currentBook?.isImported ?? false
             )
 
             // Scroll to top

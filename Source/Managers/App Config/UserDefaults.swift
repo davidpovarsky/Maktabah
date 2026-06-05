@@ -183,14 +183,24 @@ extension UserDefaults {
     #if DIRECT_DISTRIBUTION
     static let autoCheckAppUpdatesKey = "autoCheckAppUpdates"
     var autoCheckAppUpdates: Bool {
-        get {
-            bool(forKey: Self.autoCheckAppUpdatesKey)
-        }
-        set {
-            set(newValue, forKey: Self.autoCheckAppUpdatesKey)
-        }
+        get { bool(forKey: Self.autoCheckAppUpdatesKey) }
+        set { set(newValue, forKey: Self.autoCheckAppUpdatesKey) }
     }
     #endif
+
+    static let enableAutoCoreVersionCheckKey = "enableAutoCoreVersionCheck"
+    var enableAutoCoreVersionCheck: Bool {
+        get {
+            if object(forKey: Self.enableAutoCoreVersionCheckKey) == nil {
+                return true // default: auto-check on
+            }
+            return bool(forKey: Self.enableAutoCoreVersionCheckKey)
+        }
+        set {
+            set(newValue, forKey: Self.enableAutoCoreVersionCheckKey)
+            if !newValue { AppConfig.forceRefreshCoreVersion() }
+        }
+    }
 
     // MARK: - COLOR HIGHLIGHTS
 

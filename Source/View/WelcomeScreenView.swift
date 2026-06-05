@@ -30,17 +30,17 @@ private func makeFeatures() -> [FeatureItem] {
     #if os(iOS)
     return [
         FeatureItem(
-            iconName: "books.vertical.fill",
+            iconName: "arrow.up.and.down",
             iconColor: .blue,
             title: Lang.pick(
-                ar: "تبويبات متعددة على الآيفون",
-                id: "Multi-Tab di iPhone",
-                en: "Multi-Tab on iPhone"
+                ar: "التمرير المستمر",
+                id: "Gulir Terus-menerus",
+                en: "Continuous Scrolling"
             ),
             description: Lang.pick(
-                ar: "افتح أكثر من كتاب وانتقل بين القراءات بسهولة أكبر.",
-                id: "Buka beberapa buku dan pindah antar bacaan dengan lebih mudah.",
-                en: "Open multiple books and switch between readings more easily."
+                ar: "اسحب لأعلى أو لأسفل لتغيير الصفحة التالية أو السابقة.",
+                id: "Tarik ke atas atau bawah untuk ganti halaman berikutnya atau sebelumnya.",
+                en: "Pull up or down to go to the next or previous page."
             ),
             badge: Lang.pick(
                 ar: "جديد",
@@ -49,59 +49,59 @@ private func makeFeatures() -> [FeatureItem] {
             )
         ),
         FeatureItem(
-            iconName: "paintpalette.fill",
-            iconColor: .brown,
-            title: Lang.pick(
-                ar: "مظهر سيبيا جديد",
-                id: "Tema Sepia Baru",
-                en: "New Sepia Theme"
-            ),
-            description: Lang.pick(
-                ar: "مظهر مخصص أكثر هدوءاً وراحة للقراءة الطويلة.",
-                id: "Tema custom yang lebih tenang dan nyaman untuk membaca lama.",
-                en: "A calmer custom theme designed for longer reading sessions."
-            )
-        ),
-        FeatureItem(
-            iconName: "textformat",
-            iconColor: .purple,
-            title: Lang.pick(
-                ar: "خطوط قارئ مخصصة",
-                id: "Font Kustom Reader",
-                en: "Custom Reader Fonts"
-            ),
-            description: Lang.pick(
-                ar: "استورد خطوطك الخاصة واخترها مباشرة من إعدادات القراءة.",
-                id: "Impor font sendiri dan pakai langsung dari pengaturan reader.",
-                en: "Import your own fonts and use them directly from reader settings."
-            )
-        ),
-        FeatureItem(
-            iconName: "text.magnifyingglass",
+            iconName: "square.and.arrow.up.fill",
             iconColor: .green,
             title: Lang.pick(
-                ar: "بحث عربي أدق",
-                id: "Pencarian Arab Lebih Akurat",
-                en: "Better Arabic Search"
+                ar: "مشاركة النص مع المرجع",
+                id: "Bagikan Teks dengan Konteks",
+                en: "Share Text with Reference"
             ),
             description: Lang.pick(
-                ar: "تحسين البحث في أسماء الكتب والرواة مع فلترة النتائج حسب الكتاب.",
-                id: "Pencarian kitab dan perawi ditingkatkan, termasuk filter hasil berdasarkan buku.",
-                en: "Improved book and narrator search, including filtering results by book."
+                ar: "شارك النص المحدد مع اسم الكتاب ورقم الصفحة.",
+                id: "Bagikan teks yang dipilih beserta nama kitab dan nomor halaman.",
+                en: "Share selected text with book name and page number."
             )
         ),
         FeatureItem(
-            iconName: "arrow.triangle.2.circlepath.icloud.fill",
+            iconName: "arrow.clockwise.circle.fill",
             iconColor: .orange,
             title: Lang.pick(
-                ar: "مزامنة أكثر ثباتاً",
-                id: "Sinkronisasi Lebih Stabil",
-                en: "More Stable Sync"
+                ar: "تحديث مكتبة الكتب",
+                id: "Pembaruan Pustaka Kitab",
+                en: "Library Updates"
             ),
             description: Lang.pick(
-                ar: "تحسين مزامنة CloudKit للسجل والمفضلة والملاحظات ونتائج البحث المحفوظة.",
-                id: "CloudKit diperkuat untuk riwayat, favorit, catatan, dan hasil pencarian tersimpan.",
-                en: "CloudKit sync is stronger for history, favorites, annotations, and saved search results."
+                ar: "إشعار تلقائي عند توفر إصدار جديد من قاعدة البيانات الأساسية.",
+                id: "Notifikasi otomatis saat versi baru database inti tersedia.",
+                en: "Automatic notification when a new core database version is available."
+            )
+        ),
+        FeatureItem(
+            iconName: "list.bullet",
+            iconColor: .purple,
+            title: Lang.pick(
+                ar: "ترتيب الكتب أبجدياً",
+                id: "Pengurutan Kitab A-Z",
+                en: "A-Z Book Sorting"
+            ),
+            description: Lang.pick(
+                ar: "ترتيب تلقائي للكتب حسب الاسم.",
+                id: "Kitab diurutkan otomatis menurut nama.",
+                en: "Books are automatically sorted by name."
+            )
+        ),
+        FeatureItem(
+            iconName: "hand.tap.fill",
+            iconColor: .indigo,
+            title: Lang.pick(
+                ar: "وضع القراءة الغامر",
+                id: "Mode Baca Imersif",
+                en: "Immersive Reading Mode"
+            ),
+            description: Lang.pick(
+                ar: "انقر لتبديل إظهار وإخفاء شريط التنقل.",
+                id: "Ketuk untuk menampilkan/menyembunyikan bilah navigasi.",
+                en: "Tap to toggle show/hide the navigation bar."
             )
         ),
     ]

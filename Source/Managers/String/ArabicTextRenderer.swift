@@ -105,17 +105,27 @@ class ArabicTextRenderer {
         text: String,
         highlightColor: PlatformColor = .header,
         showHarakat: Bool,
-        isMultiLanguage: Bool = false
+        isMultiLanguage: Bool = false,
+        isImported: Bool = false
     ) -> ArabicRenderResult {
         let textWithArabicDigits = text.convertToArabicDigits(isMultilingual: isMultiLanguage)
         let processedText = showHarakat ? textWithArabicDigits : textWithArabicDigits.removingHarakat()
-        let (cleanedResult, footnoteRanges) = processedText.cleanedTextWithRanges()
+
+        // Strip <span data-type="title"> tags for imported books and collect header ranges
+        let (cleanedText, importedHeaderRanges) = isImported
+            ? processedText.stripSpanTags()
+            : (processedText, [NSRange]())
+
+        let (cleanedResult, footnoteRanges) = cleanedText.cleanedTextWithRanges()
         let replacementResult = cleanedResult.text.replacingHonorificPhrasesIfSupported()
 
         let remappedColoredRanges = cleanedResult.coloredRanges.map {
             replacementResult.remapDisplayedRange($0)
         }
         let remappedFootnoteRanges = footnoteRanges.map {
+            replacementResult.remapDisplayedRange($0)
+        }
+        let remappedImportedHeaderRanges = importedHeaderRanges.map {
             replacementResult.remapDisplayedRange($0)
         }
         let displayResult = CleanedTextResult(
@@ -134,7 +144,8 @@ class ArabicTextRenderer {
                 from: result,
                 color: highlightColor,
                 isMultiLanguage: isMultiLanguage,
-                ligatureRanges: replacementResult.replacementDisplayRanges
+                ligatureRanges: replacementResult.replacementDisplayRanges,
+                importedHeaderRanges: remappedImportedHeaderRanges
             ),
             replacementEvents: replacementResult.events,
             footnoteRanges: remappedFootnoteRanges
@@ -181,7 +192,7 @@ class ArabicTextRenderer {
         }
     }
 
-    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: PlatformColor, isMultiLanguage: Bool, ligatureRanges: [NSRange] = []) -> NSAttributedString {
+    private func createAttributedString(from results: CleanedTextAndFootnoteRange, color: PlatformColor, isMultiLanguage: Bool, ligatureRanges: [NSRange] = [], importedHeaderRanges: [NSRange] = []) -> NSAttributedString {
         let result = results.result
         let footnoteRanges = results.footnoteRanges
         
@@ -261,6 +272,18 @@ class ArabicTextRenderer {
         for range in result.coloredRanges {
             if range.location + range.length <= attributedString.length {
                 attributedString.addAttributes(highlightAttributes, range: range)
+            }
+        }
+
+        // Apply header color to imported book TOC spans
+        if !importedHeaderRanges.isEmpty {
+            let headerColorAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: color
+            ]
+            for range in importedHeaderRanges {
+                if range.location + range.length <= attributedString.length {
+                    attributedString.addAttributes(headerColorAttributes, range: range)
+                }
             }
         }
 

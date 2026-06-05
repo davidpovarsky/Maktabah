@@ -229,6 +229,7 @@ class IbarotTextView: NSTextView {
         _ text: String,
         color: NSColor = .header,
         isMultiLanguage: Bool? = false,
+        isImported: Bool = false,
         keepScrollPosition: Bool = false
     ) {
         var scrollPercentage: CGFloat = 0
@@ -244,7 +245,8 @@ class IbarotTextView: NSTextView {
             text: text,
             highlightColor: color,
             showHarakat: state.showHarakat,
-            isMultiLanguage: isMultiLanguage ?? false
+            isMultiLanguage: isMultiLanguage ?? false,
+            isImported: isImported
         )
         currentRenderResult = renderResult
         footnoteRanges = renderResult.footnoteRanges

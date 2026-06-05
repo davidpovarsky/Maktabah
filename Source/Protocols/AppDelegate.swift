@@ -45,6 +45,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     )
     #endif
 
+    // Core Update Properties
+    var coreUpdateAlertWindow: NSWindow?
+    var coreDownloadProgressWindow: NSWindow?
+    var coreDownloadProgressState: CoreDownloadProgressState?
+    var coreDownloadProgressView: CoreDownloadProgressView?
+    var coreDownloader: CoreDatabaseDownloader?
+
     override init() {
         super.init()
         registerCustomFonts()
@@ -97,8 +104,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         CloudKitSyncManager.shared.initializeOnLaunch()
         // Register for CloudKit remote notifications
         NSApplication.shared.registerForRemoteNotifications()
-        
+
+        /*
         showWelcomeScreenIfNeeded()
+         */
+
+        // Check for core database updates (blocking, throttled 6 months)
+        checkCoreDatabaseUpdate()
     }
 
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
@@ -112,6 +124,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         CloudKitSyncManager.shared.fetchChanges()
     }
 
+    /*
     func showWelcomeScreenIfNeeded() {
         let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
         let lastVersion = UserDefaults.standard.string(forKey: "lastVersionPrompted") ?? ""
@@ -150,6 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+     */
 
     func applicationWillTerminate(_ aNotification: Notification) {
         CloudKitSyncManager.shared.resetSyncingKey(syncing: false)

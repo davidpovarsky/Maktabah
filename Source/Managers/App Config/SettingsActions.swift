@@ -163,9 +163,7 @@ enum SettingsActions {
             return false
         }
 
-        LibraryDataManager.shared.resetState()
-        DatabaseManager.shared.setupFolders()
-        TarjamahGlobalManager.shared.setupConnection()
+        DatabaseManager.shared.reloadConnectionAndLibrary()
 
         if showSuccessAlert {
             ReusableFunc.showAlert(
@@ -173,11 +171,6 @@ enum SettingsActions {
                 message: "masterFolderRenewedInfo".localized
             )
         }
-
-        NotificationCenter.default.post(
-            name: .libraryFolderChanged,
-            object: nil
-        )
 
         #if DEBUG
             print("Custom folder selected and migrated: \(url.path)")
@@ -208,13 +201,7 @@ enum SettingsActions {
         AppConfig.migrateToBundleMode()
 
         let finishSetup = {
-            LibraryDataManager.shared.resetState()
-            DatabaseManager.shared.setupFolders()
-            TarjamahGlobalManager.shared.setupConnection()
-            NotificationCenter.default.post(
-                name: .libraryFolderChanged,
-                object: nil
-            )
+            DatabaseManager.shared.reloadConnectionAndLibrary()
         }
 
         let restorePreviousMode = {

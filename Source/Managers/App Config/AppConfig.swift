@@ -224,6 +224,59 @@ struct AppConfig {
         return URL(string: "https://raw.githubusercontent.com/bismillah-100/Kitab/main/index.json")
     }
 
+    // MARK: - Core Database Update Check (version.txt based, cached 6 months)
+
+    static let coreVersionURLKey = "core_version_url"
+    static let lastCoreVersionCheckKey = "last_core_version_check"
+    static let cachedCoreVersionKey = "cached_core_version"
+
+    /// URL untuk version.txt di GitHub
+    /// Default: https://raw.githubusercontent.com/bismillah-100/Kitab/main/version.txt
+    static var coreVersionURL: URL? {
+        if let raw = UserDefaults.standard.string(forKey: coreVersionURLKey)?
+            .trimmingCharacters(in: .whitespacesAndNewlines),
+           !raw.isEmpty,
+           let url = URL(string: raw) {
+            return url
+        }
+        return URL(string: "https://raw.githubusercontent.com/bismillah-100/Kitab/main/version.txt")
+    }
+
+    /// Interval cache: 6 bulan dalam detik
+    private static let coreVersionCacheInterval: TimeInterval = 180 * 24 * 60 * 60 // ~6 bulan
+
+    /// Cek apakah perlu check versi terbaru (throttle 6 bulan, dinonaktifkan jika auto-check off)
+    static var shouldCheckCoreVersion: Bool {
+        if !UserDefaults.standard.enableAutoCoreVersionCheck {
+            return false
+        }
+
+        guard let lastCheck = UserDefaults.standard.object(forKey: lastCoreVersionCheckKey) as? Date else {
+            return true
+        }
+        return Date().timeIntervalSince(lastCheck) >= coreVersionCacheInterval
+    }
+
+    /// Versi core yang di-cache (tag)
+    static var cachedCoreVersion: String? {
+        get { UserDefaults.standard.string(forKey: cachedCoreVersionKey) }
+        set { UserDefaults.standard.set(newValue, forKey: cachedCoreVersionKey) }
+    }
+
+    /// Tandai telah selesai check versi
+    static func markCoreVersionCheckDone(newVersion: String?) {
+        if let v = newVersion {
+            UserDefaults.standard.set(Date(), forKey: lastCoreVersionCheckKey)
+            UserDefaults.standard.set(v, forKey: cachedCoreVersionKey)
+        }
+    }
+
+    /// Force refresh: hapus cache dan check ulang
+    static func forceRefreshCoreVersion() {
+        UserDefaults.standard.removeObject(forKey: lastCoreVersionCheckKey)
+        UserDefaults.standard.removeObject(forKey: cachedCoreVersionKey)
+    }
+
     // MARK: - App Updates
     static var appcastURL: URL? {
         if let raw = UserDefaults.standard.string(forKey: appcastURLKey)?

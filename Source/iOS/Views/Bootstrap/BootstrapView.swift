@@ -34,5 +34,29 @@ struct iOSBootstrapView: View {
         .task {
             bootstrapManager.prepareIfNeeded()
         }
+        .overlay {
+            if bootstrapManager.showCoreUpdateAlert {
+                ZStack {
+                    Color.black.opacity(0.45)
+                        .ignoresSafeArea()
+                        .contentShape(Rectangle())
+                        .onTapGesture { }
+                        .simultaneousGesture(DragGesture())
+
+                    CoreUpdateAlertView(
+                        newVersion: bootstrapManager.availableCoreVersion ?? "",
+                        onUpdate: { bootstrapManager.performCoreUpdate() },
+                        onDismiss: { bootstrapManager.showCoreUpdateAlert = false }
+                    )
+                    .zIndex(1)
+                }
+            }
+
+            if bootstrapManager.isUpdating {
+                iOSCoreUpdateProgressOverlayView(
+                    state: bootstrapManager.coreDownloadState
+                )
+            }
+        }
     }
 }

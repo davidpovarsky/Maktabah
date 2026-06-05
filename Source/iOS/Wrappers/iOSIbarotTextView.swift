@@ -380,6 +380,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     @Binding var searchText: String
     var targetAnnotation: Annotation? = nil
     var isMultiLanguage: Bool = false
+    var isImported: Bool = false
     
     var viewModel: iOSReaderViewModel
 
@@ -474,7 +475,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
             text: text,
             highlightColor: headerColor,
             showHarakat: state.showHarakat,
-            isMultiLanguage: isMultiLanguage
+            isMultiLanguage: isMultiLanguage,
+            isImported: isImported
         )
 
         textView.currentRenderResult = renderResult

@@ -23,6 +23,7 @@ struct iOSReaderView: View {
     @State private var editingNoteText = ""
     @State private var showingNavigation = false
     @State private var showingTabsList = false
+    @State private var isReading = false
 
     init(book: BooksData,
          viewModel: iOSReaderViewModel? = nil,
@@ -61,6 +62,7 @@ struct iOSReaderView: View {
             searchText: $viewModel.searchText,
             targetAnnotation: viewModel.targetAnnotation,
             isMultiLanguage: book.isMultiLanguage,
+            isImported: book.isImported,
             viewModel: viewModel,
             onAddAnnotation: { range, mode, sourceText, color in
                 viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
@@ -80,6 +82,17 @@ struct iOSReaderView: View {
         .navigationTitle(bManager.openTabs.count > 1 ? "" : viewModel.book.book)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(.hidden, for: .tabBar)
+        .if(!MaktabahApp.isIpad) { view in
+            view.toolbarVisibility(
+                isReading ? .hidden : .visible,
+                for: .navigationBar, .bottomBar
+            )
+        }
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                isReading.toggle()
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
@@ -218,5 +231,10 @@ private extension View {
         } else {
             self
         }
+    }
+
+    @ViewBuilder
+    func `if`(_ condition: Bool, transform: (Self) -> some View) -> some View {
+        if condition { transform(self) } else { self }
     }
 }

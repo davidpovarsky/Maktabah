@@ -17,6 +17,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var hasBundledData: Bool = false
     @Published var hasPendingVacuum: Bool = false
     @Published var isVacuuming: Bool = false
+    @Published var enableAutoCoreVersionCheck: Bool = true
 
     @AppStorage("hideMissingBookAnnotations") var hideMissingBookAnnotations: Bool = false
     @AppStorage("useDefaultTheme") var useDefaultTheme: Bool = false
@@ -54,6 +55,7 @@ final class SettingsViewModel: ObservableObject {
         #endif
         checkBundledData()
         hasPendingVacuum = BookArchiveIntegrator.shared.hasPendingVacuum
+        enableAutoCoreVersionCheck = UserDefaults.standard.enableAutoCoreVersionCheck
     }
 
     func runVacuum() {
@@ -265,6 +267,18 @@ final class SettingsViewModel: ObservableObject {
             }
         }
     }
+
+    func setEnableAutoCoreVersionCheck(_ on: Bool) {
+        UserDefaults.standard.enableAutoCoreVersionCheck = on
+        enableAutoCoreVersionCheck = on
+        if on {
+            AppConfig.forceRefreshCoreVersion()
+        } else {
+            AppConfig.markCoreVersionCheckDone(
+                newVersion: DatabaseManager.shared.getLocalVersionDisplay()
+            )
+        }
+    }
 }
 
 // MARK: - Settings View
@@ -290,9 +304,7 @@ extension SettingsView {
             libraryStorageSection
             annotationsSection
             downloadsSection
-            #if DIRECT_DISTRIBUTION
             updatesSection
-            #endif
         }
         .formStyle(.grouped)
         .controlSize(.large)
@@ -395,6 +407,8 @@ extension SettingsView {
                 optimizationSection
                     .listRowBackground(Color.appCellBackground)
             }
+
+            updatesSection
         }
         .formStyle(.grouped)
         .controlSize(.large)
@@ -520,9 +534,9 @@ extension SettingsView {
         }
     }
 
-    #if DIRECT_DISTRIBUTION
     private var updatesSection: some View {
         Section {
+            #if os(macOS) && DIRECT_DISTRIBUTION
             Toggle(isOn: Binding(
                 get: { viewModel.autoCheckAppUpdates },
                 set: { viewModel.setAutoCheckAppUpdates($0) }
@@ -534,11 +548,27 @@ extension SettingsView {
                         .foregroundStyle(.secondary)
                 }
             }.controlSize(.regular)
+            #endif
+
+            Toggle(isOn: Binding(
+                get: { viewModel.enableAutoCoreVersionCheck },
+                set: { viewModel.setEnableAutoCoreVersionCheck($0) }
+            )) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Library Update")
+                    Text("Semi-Annual Check")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Text("Bi-Annual Routine Check until toggled off and on again.")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .controlSize(.regular)
         } header: {
             Text("Updates")
         }
     }
-    #endif
 }
 
 // MARK: - Helpers

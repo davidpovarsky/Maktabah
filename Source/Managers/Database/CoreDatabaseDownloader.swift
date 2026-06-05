@@ -179,6 +179,97 @@ final class CoreDatabaseDownloader: NSObject {
         }
     }
 
+    // MARK: - Core Updater (version.txt + 6 month cache)
+
+    /// Force refresh index.json for book downloads
+    /// - Parameters:
+    ///   - forceRefresh: hapus TTL cache untuk force download baru
+    ///   - onProgress: dipanggil di main thread dengan progress 0.0-1.0 dan detail string
+    func fetchIndexJSON(
+        forceRefresh: Bool,
+        onProgress: @escaping (Double, String) -> Void
+    ) async throws {
+        // 1. Hapus TTL cache jika diminta
+        if forceRefresh {
+            UserDefaults.standard.removeObject(forKey: "book_index_etag")
+            UserDefaults.standard.removeObject(forKey: "book_index_last_modified")
+        }
+
+        // 2. Get URL
+        guard let indexURL = AppConfig.bookIndexURL else {
+            throw CoreDownloadError.invalidBaseURL
+        }
+
+        // 3. Fetch dengan progress sederhana
+        onProgress(0.1, "Checking index...")
+        let cache = BookDownloadIndexCache.shared
+        let entries = try await cache.entries(
+            indexURL: indexURL,
+            urlSession: URLSession.shared,
+            forceRefresh: forceRefresh
+        )
+        onProgress(1.0, "Index ready (\(entries.count) books)")
+    }
+
+    /// Update core database ke versi terbaru
+    /// Mengganti tag di UserDefaults dan download file baru
+    /// Termasuk fetch index.json untuk memastikan mapping buku terbaru
+    func updateToVersion(_ newTag: String, onProgress: @escaping ProgressHandler, onCompletion: @escaping CompletionHandler) {
+        // 1. Hapus file lama
+        for file in CoreFile.allCases {
+            if let path = AppConfig.coreDatabasePath {
+                let filePath = URL(fileURLWithPath: path)
+                    .appendingPathComponent(file.filename).path
+                try? FileManager.default.removeItem(atPath: filePath)
+            }
+        }
+
+        // 2. Download ulang dengan tag baru - gunakan Task untuk async
+        Task.detached(priority: .userInitiated) { [weak self, onProgress, onCompletion] in
+            guard let self else { return }
+
+            do {
+                // Phase 1: Download core files (progress 0-45%)
+                try await withCheckedThrowingContinuation { [weak self] (continuation: CheckedContinuation<Void, Error>) in
+                    guard let self else { return }
+                    do {
+                        try downloadMissingCoreFiles { progress, detail in
+                            let adjustedProgress = progress * 0.45
+                            DispatchQueue.main.async {
+                                onProgress(adjustedProgress, "Core: \(detail)")
+                            }
+                        }
+                        continuation.resume()
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                }
+
+                // Phase 2: Reset progress & download index.json (progress 50-95%)
+                await MainActor.run {
+                    onProgress(0.5, "Updating book index...")
+                }
+
+                try await fetchIndexJSON(forceRefresh: true) { idxProgress, idxDetail in
+                    let adjustedProgress = 0.5 + (idxProgress * 0.45)
+                    Task { @MainActor in
+                        onProgress(adjustedProgress, idxDetail)
+                    }
+                }
+
+                UserDefaults.standard.set(newTag, forKey: AppConfig.coreReleaseTagKey)
+
+                await MainActor.run {
+                    onCompletion(nil)
+                }
+            } catch {
+                await MainActor.run {
+                    onCompletion(error)
+                }
+            }
+        }
+    }
+
     // MARK: - Private: orchestrate
 
     private func downloadMissingCoreFiles(
@@ -388,8 +479,9 @@ private final class CoreDownloadDelegate: NSObject, URLSessionDownloadDelegate {
         totalBytesWritten: Int64,
         totalBytesExpectedToWrite: Int64
     ) {
-        guard totalBytesExpectedToWrite > 0 else { return }
-        let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+        let progress = totalBytesExpectedToWrite > 0
+            ? Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+            : 0
         onProgress(totalBytesWritten, totalBytesExpectedToWrite, progress)
     }
 

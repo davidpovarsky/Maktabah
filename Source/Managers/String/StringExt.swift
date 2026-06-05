@@ -103,6 +103,118 @@ extension String {
         )
     }
 
+    /// Removes `<span data-type="title" ...>text</span>` tags found at the start of paragraphs.
+    /// Returns the cleaned text and the ranges (in display coordinates) where header color should be applied.
+    func stripSpanTags() -> (text: String, headerRanges: [NSRange]) {
+        enum Cached {
+            static let spanTag = try? NSRegularExpression(
+                pattern: #"<span[^>]*data-type=(?:[\'\"]?)title(?:[\'\"]?)[^>]*>(.*?)</span>"#,
+                options: []
+            )
+            static let anchorTag = try? NSRegularExpression(
+                pattern: #"<a\s[^>]*href="inr://[^"]*"[^>]*>(.*?)</a>"#,
+                options: []
+            )
+            static let hadeethTag = try? NSRegularExpression(
+                pattern: #"<hadeeth[^>]*>"#,
+                options: []
+            )
+        }
+
+        guard let spanRegex = Cached.spanTag,
+              let anchorRegex = Cached.anchorTag,
+              let hadeethRegex = Cached.hadeethTag else {
+            return (self, [])
+        }
+
+        // 1. Bridge ke NSString satu kali di awal untuk akurasi NSRange (UTF-16)
+        let nsSelf = self as NSString
+        let fullRange = NSRange(location: 0, length: nsSelf.length)
+
+        enum MatchType {
+            case header(innerText: String)
+            case anchor(innerText: String)
+            case hadeeth
+        }
+
+        var allMatches: [(range: NSRange, type: MatchType)] = []
+
+        // 2. Scan seluruh dokumen sekaligus (Sangat cepat meskipun banyak bab)
+        spanRegex.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            let inner = nsSelf.substring(with: match.range(at: 1))
+            allMatches.append((match.range, .header(innerText: inner)))
+        }
+
+        anchorRegex.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            let inner = nsSelf.substring(with: match.range(at: 1))
+            allMatches.append((match.range, .anchor(innerText: inner)))
+        }
+
+        hadeethRegex.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            allMatches.append((match.range, .hadeeth))
+        }
+
+        // Jika bersih dari tag, langsung return untuk menghemat CPU & Memori
+        if allMatches.isEmpty {
+            return (self, [])
+        }
+
+        // 3. Urutkan berdasarkan posisi kemunculan dari depan ke belakang
+        allMatches.sort { $0.range.location < $1.range.location }
+
+        // Alokasikan satu mutable string tunggal untuk manipulasi data
+        let mutableString = nsSelf.mutableCopy() as! NSMutableString
+
+        // 4. Modifikasi string dari BELAKANG ke DEPAN (Backward Pass)
+        // Cara ini menjaga indeks karakter di bagian depan agar tidak bergeser saat mutasi
+        for m in allMatches.reversed() {
+            let replacement: String
+            switch m.type {
+            case .header(let inner):
+                replacement = inner
+            case .anchor(let inner):
+                replacement = inner
+            case .hadeeth:
+                replacement = ""
+            }
+            mutableString.replaceCharacters(in: m.range, with: replacement)
+        }
+
+        let finalString = mutableString as String
+        var headerRanges: [NSRange] = []
+        var deltaOffset = 0
+
+        // 5. Hitung ulang range Header dari DEPAN ke BELAKANG (Forward Pass)
+        // Delta offset melacak akumulasi perubahan panjang karakter (ditambah/dikurangi)
+        for m in allMatches {
+            let oldLength = m.range.length
+            let newLength: Int
+
+            switch m.type {
+            case .header(let inner):
+                let innerLength = (inner as NSString).length
+                newLength = innerLength + 1
+
+                let newLocation = m.range.location + deltaOffset
+                headerRanges.append(NSRange(location: newLocation, length: innerLength))
+
+            case .anchor(let inner):
+                newLength = (inner as NSString).length
+
+            case .hadeeth:
+                newLength = 0
+            }
+
+            // Hitung selisih perubahan karakter untuk match berikutnya
+            deltaOffset += (newLength - oldLength)
+        }
+
+        return (finalString, headerRanges)
+    }
+
     /// Highlight pola struktural di awal baris:
     /// - `(...)` → seluruh konten termasuk kurung
     /// - `<token> -` → seluruh token + `-`
