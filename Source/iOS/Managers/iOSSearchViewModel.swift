@@ -166,10 +166,6 @@ class iOSSearchViewModel {
             return
         }
 
-        if ldm.searchIsRunning {
-            return
-        }
-
         isSearching = true
         isPaused = false
         results = []
@@ -222,7 +218,6 @@ class iOSSearchViewModel {
 
     func stopSearch() {
         searchEngine.stop()
-        ldm.stopSearch()
         isSearching = false
         isPaused = false
     }

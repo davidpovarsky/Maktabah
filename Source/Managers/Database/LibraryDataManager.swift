@@ -18,8 +18,7 @@ class LibraryDataManager {
     private var _booksById: [Int: BooksData] = [:]
     private var _archives: [Int: ArchiveInfo] = [:]
     private var _archivesBuiltFromFullData: Bool = false
-    private var _searchIsRunning: Bool = false
-    private var _authorsCache: [Int: Muallif] = [:]
+        private var _authorsCache: [Int: Muallif] = [:]
     private var _isDataLoaded = false
     private var _isAuthorsLoaded = false
     private var _loadingTask: Task<Void, Never>?
@@ -38,10 +37,6 @@ class LibraryDataManager {
 
     var archives: [Int: ArchiveInfo] {
         lock.withLock { _archives }
-    }
-
-    var searchIsRunning: Bool {
-        lock.withLock { _searchIsRunning }
     }
 
     var authorsCache: [Int: Muallif] {
@@ -407,7 +402,6 @@ class LibraryDataManager {
         }
 
         let (archivesCount, allowedByArchive) = lock.withLock {
-            _searchIsRunning = true
             var allowedByArchive: [Int: Set<String>] = [:]
             for tableName in allowed {
                 let bookId = Int(tableName.dropFirst()) ?? 0
@@ -428,7 +422,6 @@ class LibraryDataManager {
         for archiveId in allowedByArchive.keys.sorted() {
             guard let archiveInfo = archives[archiveId] else { continue }
             guard let dbPath = getDatabasePath(forArchive: archiveId) else {
-                stopSearch()
                 return
             }
             let connections = createConnections(dbPath: dbPath, count: 4)
@@ -459,7 +452,6 @@ class LibraryDataManager {
         }
 
         if totalTables == 0 {
-            stopSearch()
             return
         }
 
@@ -516,17 +508,10 @@ class LibraryDataManager {
                             ))
                     }
                 },
-                onComplete: { [weak self] in
+                onComplete: {
                     onComplete()
-                    self?.stopSearch()
                 }
             )
-        }
-    }
-
-    func stopSearch() {
-        lock.withLock {
-            _searchIsRunning = false
         }
     }
 

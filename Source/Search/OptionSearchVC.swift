@@ -356,11 +356,6 @@ class OptionSearchVC: NSViewController {
         let isRunning = searchEngine.isRunning()
 
         if !isRunning, !isPaused {
-            if ldm.searchIsRunning {
-                ReusableFunc.showAlert(title: String(localized: "searchIsRunning"), message: "")
-                updateStartButton(state: .off)
-                return
-            }
             setupIndeterminateProgress()
         }
 
@@ -383,7 +378,6 @@ class OptionSearchVC: NSViewController {
 
     @IBAction func stopSearch(_ sender: Any?) {
         searchEngine.stop()
-        ldm.stopSearch()
         startButton.state = .off
         startButton.image = NSImage(
             systemSymbolName: "play.fill",
