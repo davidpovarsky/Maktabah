@@ -218,7 +218,9 @@ struct BundleArchiveDownloadProgressView: View {
         .background(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .fill(.regularMaterial)
+                #if os(iOS)
                 .shadow(color: .black.opacity(0.3), radius: 12, x: 0, y: 4)
+                #endif
         )
         .overlay(
             RoundedRectangle(cornerRadius: 12, style: .continuous)

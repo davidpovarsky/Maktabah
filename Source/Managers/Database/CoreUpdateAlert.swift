@@ -35,26 +35,9 @@ struct CoreUpdateChecker {
         }
 
         // 2. Fetch version.txt dari GitHub
-        guard let url = AppConfig.coreVersionURL else {
-            return .error(CoreUpdateError.invalidURL)
-        }
-
         let remoteVersion: String
         do {
-            let (data, response) = try await URLSession.shared.data(from: url)
-
-            guard let http = response as? HTTPURLResponse,
-                  (200..<300).contains(http.statusCode) else {
-                return .error(CoreUpdateError.networkError)
-            }
-
-            guard let versionString = String(data: data, encoding: .utf8)?
-                .trimmingCharacters(in: .whitespacesAndNewlines),
-                  !versionString.isEmpty else {
-                return .error(CoreUpdateError.invalidResponse)
-            }
-
-            remoteVersion = versionString
+            remoteVersion = try await CoreDatabaseDownloader.fetchLatestCoreVersion()
         } catch {
             return .error(error)
         }

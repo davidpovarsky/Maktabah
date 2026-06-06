@@ -116,6 +116,68 @@ final class CoreDatabaseDownloader: NSObject {
         }
     }
 
+    /// Ambil versi terbaru dari version.txt di GitHub
+    /// - Returns: Tag release terbaru (misalnya "v0.2-core")
+    /// - Throws: CoreDownloadError jika gagal fetch
+    static func fetchLatestCoreVersion() async throws -> String {
+        guard let url = AppConfig.coreVersionURL else {
+            throw CoreDownloadError.invalidBaseURL
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let http = response as? HTTPURLResponse,
+              (200..<300).contains(http.statusCode)
+        else {
+            let code = (response as? HTTPURLResponse)?.statusCode ?? 0
+            throw CoreDownloadError.httpStatus(file: "version.txt", statusCode: code)
+        }
+
+        guard let version = String(data: data, encoding: .utf8)?
+            .trimmingCharacters(in: .whitespacesAndNewlines),
+              !version.isEmpty
+        else {
+            throw CoreDownloadError.downloadFailed(file: "version.txt")
+        }
+
+        return version
+    }
+
+    /// Fetch versi terbaru secara sinkron (untuk dipanggil dari main thread)
+    /// Menyimpan hasil ke UserDefaults jika berhasil
+    func fetchLatestCoreVersionSync() {
+        guard let url = AppConfig.coreVersionURL else { return }
+
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 30
+
+        let sem = DispatchSemaphore(value: 0)
+        var resultVersion: String?
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            defer { sem.signal() }
+
+            guard error == nil,
+                  let http = response as? HTTPURLResponse,
+                  (200..<300).contains(http.statusCode),
+                  let data = data,
+                  let version = String(data: data, encoding: .utf8)?
+                    .trimmingCharacters(in: .whitespacesAndNewlines),
+                  !version.isEmpty
+            else {
+                return
+            }
+
+            resultVersion = version
+        }.resume()
+
+        _ = sem.wait(timeout: .now() + 30)
+
+        if let version = resultVersion {
+            UserDefaults.standard.set(version, forKey: AppConfig.coreReleaseTagKey)
+        }
+    }
+
     /// Ambil total ukuran download core files (HEAD request).
     func fetchTotalDownloadSize(onCompletion: @escaping (Int64) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -540,7 +602,10 @@ final class CoreDatabaseBootstrap {
             return
         }
 
-        // Belum ada → tampilkan modal download (blocking via NSApp.runModal).
+        // Belum ada → fetch versi terbaru dulu secara sinkron, baru download
+        downloader.fetchLatestCoreVersionSync()
+
+        // Tampilkan modal download (blocking via NSApp.runModal).
         // Modal memegang downloader selama proses berlangsung; setelah selesai keduanya dibuang.
         let modal = CoreDownloadModalCenter(downloader: downloader)
         modal.runBlocking()

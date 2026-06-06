@@ -92,7 +92,7 @@ struct AppConfig {
             .trimmingCharacters(in: .whitespacesAndNewlines), !raw.isEmpty {
             return raw
         }
-        return "v0.1-core"
+        return "v1.0-core"
     }
 
     /// Base URL GitHub Releases untuk core database.
