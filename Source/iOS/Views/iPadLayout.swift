@@ -109,51 +109,19 @@ struct iPadLayout: View {
                 }
             }
 
-            if !filteredFavorites.isEmpty {
-                Section(header: Text("Favorites".localized)) {
-                    ForEach(filteredFavorites, id: \.id) { book in
-                        BookRowView(
-                            book: book,
-                            isFavorite: true,
-                            viewModel: historyViewModel
-                        ) {
-                            let lastId = historyViewModel.entriesByBookId[
-                                book.id
-                            ]?.lastContentId
-                            bManager.openBook(book, initialContentId: lastId)
-                        }
-                    }
-                    .onDelete { offsets in
-                        for index in offsets {
-                            let book = filteredFavorites[index]
-                            historyViewModel.toggleFavorite(book.id)
-                        }
-                    }
-                }
+            if !filteredHistory.isEmpty {
+                HistorySection(books: filteredHistory, viewModel: historyViewModel)
             }
 
-            if !filteredHistory.isEmpty {
-                Section(header: Text("History".localized)) {
-                    ForEach(filteredHistory, id: \.id) { book in
-                        BookRowView(
-                            book: book,
-                            isFavorite: historyViewModel.favoriteBookIds
-                                .contains(book.id),
-                            viewModel: historyViewModel
-                        ) {
-                            let lastId = historyViewModel.entriesByBookId[
-                                book.id
-                            ]?.lastContentId
-                            bManager.openBook(book, initialContentId: lastId)
-                        }
+            if !filteredFavorites.isEmpty {
+                FavoritesSection(
+                    books: filteredFavorites,
+                    viewModel: historyViewModel,
+                    onOpen: { book in
+                        let lastId = historyViewModel.entriesByBookId[book.id]?.lastContentId
+                        bManager.openBook(book, initialContentId: lastId)
                     }
-                    .onDelete { offsets in
-                        for index in offsets {
-                            let book = filteredHistory[index]
-                            historyViewModel.removeHistory(for: book.id)
-                        }
-                    }
-                }
+                )
             }
         }
     }

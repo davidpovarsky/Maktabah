@@ -5381,6 +5381,22 @@
         }
       }
     },
+    "Remove from History" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إزالة من السجل"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus dari Riwayat"
+          }
+        }
+      }
+    },
     "Remove Tags" : {
       "localizations" : {
         "ar" : {

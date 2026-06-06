@@ -416,6 +416,8 @@
 		F3C449572F2B12E200DA7032 /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C449542F2B12E200DA7032 /* SearchCellView.swift */; };
 		F3D0815D2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
 		F3D0815E2F9EFE5C00E017C7 /* Tag.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D0815C2F9EFE5C00E017C7 /* Tag.xib */; };
+		F3D38A922FD47C3200387BA4 /* HistoryComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D38A912FD47C3200387BA4 /* HistoryComponents.swift */; };
+		F3D38A942FD4B2F200387BA4 /* HistoryFavoriteSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D38A932FD4B2F200387BA4 /* HistoryFavoriteSections.swift */; };
 		F3D46E9B2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */; };
 		F3D46E9C2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */; };
 		F3D46E9D2FD1D45900079FF9 /* CoreUpdateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */; };
@@ -643,6 +645,8 @@
 		F3C449542F2B12E200DA7032 /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
 		F3C449552F2B12E200DA7032 /* SearchCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCellView.xib; sourceTree = "<group>"; };
 		F3D0815C2F9EFE5C00E017C7 /* Tag.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tag.xib; sourceTree = "<group>"; };
+		F3D38A912FD47C3200387BA4 /* HistoryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryComponents.swift; sourceTree = "<group>"; };
+		F3D38A932FD4B2F200387BA4 /* HistoryFavoriteSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFavoriteSections.swift; sourceTree = "<group>"; };
 		F3D46E9A2FD1D45900079FF9 /* CoreUpdateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUpdateAlert.swift; sourceTree = "<group>"; };
 		F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1116,6 +1120,8 @@
 				F31111952FC00F060024B638 /* Search */,
 				F30577772FA463B1005732C6 /* AnnotationListView.swift */,
 				F30577782FA463B1005732C6 /* AuthorModeView.swift */,
+				F3D38A912FD47C3200387BA4 /* HistoryComponents.swift */,
+				F3D38A932FD4B2F200387BA4 /* HistoryFavoriteSections.swift */,
 				9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */,
 				F30577792FA463B1005732C6 /* iOSLibraryView.swift */,
 				F30577792FA463B1005732C7 /* iOSLibraryViewController.swift */,
@@ -1714,6 +1720,7 @@
 				F305778D2FA463B1005732C8 /* LibraryViewControllerWrapper.swift in Sources */,
 				F321672B2FBAA39F00601DB3 /* BookImportView.swift in Sources */,
 				F363824E2FA6C6150006636C /* SettingsView.swift in Sources */,
+				F3D38A942FD4B2F200387BA4 /* HistoryFavoriteSections.swift in Sources */,
 				F305778E2FA463B1005732C6 /* ViewOptionsView.swift in Sources */,
 				F305778F2FA463B1005732C6 /* iOSIbarotTextView.swift in Sources */,
 				F30577902FA463B1005732C6 /* iOSNavigationManager.swift in Sources */,
@@ -1759,6 +1766,7 @@
 				F30577142FA46222005732C6 /* SearchMode.swift in Sources */,
 				F36382692FA7BFB40006636C /* iOSAnnotationEditorSheet.swift in Sources */,
 				F305771A2FA46222005732C6 /* BookUpdateVM.swift in Sources */,
+				F3D38A922FD47C3200387BA4 /* HistoryComponents.swift in Sources */,
 				F30577202FA46222005732C6 /* Narrathor.swift in Sources */,
 				F3A20B142FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift in Sources */,
 				F30577252FA46222005732C6 /* SearchEngine.swift in Sources */,
