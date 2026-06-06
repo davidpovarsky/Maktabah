@@ -42,7 +42,7 @@ extension String {
         String(unicodeScalars.filter { !$0.isArabicHarakat })
     }
 
-    func cleanedTextWithRanges() -> CleanedTextAndFootnoteRange {
+    func cleanedTextWithRanges(mapping ranges: [NSRange]? = nil) -> (result: CleanedTextResult, footnoteRanges: [NSRange], mappedRanges: [NSRange]?) {
         var finalString = ""
         finalString.reserveCapacity(self.count)
 
@@ -52,78 +52,185 @@ extension String {
         let removableCharacters: Set<Character> = ["¬", "§"]
         var index = startIndex
 
+        struct DeltaEvent {
+            let oldOffset: Int
+            let delta: Int
+        }
+        var events: [DeltaEvent] = []
+        var oldUtf16Offset = 0
+        var currentDelta = 0
+
+
         while index < endIndex {
             let character = self[index]
+            let charLen = String(character).utf16.count
+            var nextDelta = currentDelta
 
             if removableCharacters.contains(character) {
+                nextDelta -= charLen
                 index = self.index(after: index)
-                continue
-            }
-
-            if character == "\\",
+            } else if character == "\\",
                let nextIndex = self.index(index, offsetBy: 1, limitedBy: endIndex),
                nextIndex < endIndex,
                self[nextIndex] == "n" {
                 finalString.append("\n")
+                nextDelta -= 1
+                
+                let nextCharLen = String(self[nextIndex]).utf16.count
+                if nextDelta != currentDelta {
+                    events.append(DeltaEvent(oldOffset: oldUtf16Offset + charLen + nextCharLen, delta: nextDelta))
+                    currentDelta = nextDelta
+                }
+                oldUtf16Offset += charLen + nextCharLen
                 index = self.index(after: nextIndex)
                 continue
+            } else {
+                switch character {
+                case "{":
+                    let symbolStart = finalString.utf16.count
+                    finalString += replacementL
+                    nextDelta += (replacementL.utf16.count - charLen)
+                    coloredRanges.append(NSRange(location: symbolStart, length: replacementL.utf16.count))
+                case "}":
+                    let symbolStart = finalString.utf16.count
+                    finalString += replacementR
+                    nextDelta += (replacementR.utf16.count - charLen)
+                    coloredRanges.append(NSRange(location: symbolStart, length: replacementR.utf16.count))
+                case "(", ")", "[", "]", "«", "»", ".", "،", ",", ":", "!", "/", "؟", "?", "\"", ";", "؛", "|":
+                    // Simbol yang selalu di-highlight di mana saja
+                    let symbolStart = finalString.utf16.count
+                    finalString.append(character)
+                    coloredRanges.append(NSRange(location: symbolStart, length: 1))
+                default:
+                    finalString.append(character)
+                }
+                index = self.index(after: index)
             }
 
-            switch character {
-            case "{":
-                let symbolStart = finalString.utf16.count
-                finalString += replacementL
-                coloredRanges.append(NSRange(location: symbolStart, length: replacementL.utf16.count))
-            case "}":
-                let symbolStart = finalString.utf16.count
-                finalString += replacementR
-                coloredRanges.append(NSRange(location: symbolStart, length: replacementR.utf16.count))
-            case "(", ")", "[", "]", "«", "»", ".", "،", ",", ":", "!", "/", "؟", "?", "\"", ";", "؛", "|":
-                // Simbol yang selalu di-highlight di mana saja
-                let symbolStart = finalString.utf16.count
-                finalString.append(character)
-                coloredRanges.append(NSRange(location: symbolStart, length: 1))
-            default:
-                finalString.append(character)
+            if nextDelta != currentDelta {
+                events.append(DeltaEvent(oldOffset: oldUtf16Offset + charLen, delta: nextDelta))
+                currentDelta = nextDelta
             }
-
-            index = self.index(after: index)
+            oldUtf16Offset += charLen
         }
 
         // Post-process: highlight pola kontekstual (hanya di awal baris)
         let structural = finalString.structuralHighlightRanges()
         coloredRanges += structural.colored
 
-        return CleanedTextAndFootnoteRange(
-            CleanedTextResult(
+        var mapped: [NSRange]? = nil
+        if let ranges = ranges {
+            mapped = ranges.map { range -> NSRange in
+                var locDelta = 0
+                for event in events {
+                    if range.location >= event.oldOffset {
+                        locDelta = event.delta
+                    } else {
+                        break
+                    }
+                }
+                let newLocation = range.location + locDelta
+
+                var endDelta = 0
+                for event in events {
+                    if range.location + range.length >= event.oldOffset {
+                        endDelta = event.delta
+                    } else {
+                        break
+                    }
+                }
+                let newLength = range.length + (endDelta - locDelta)
+
+                return NSRange(location: max(0, newLocation), length: max(0, newLength))
+            }
+        }
+
+        return (
+            result: CleanedTextResult(
                 text: finalString,
                 coloredRanges: coloredRanges
             ),
-            structural.footnote
+            footnoteRanges: structural.footnote,
+            mappedRanges: mapped
         )
     }
 
-    /// Removes `<span data-type="title" ...>text</span>` tags found at the start of paragraphs.
-    /// Returns the cleaned text and the ranges (in display coordinates) where header color should be applied.
-    func stripSpanTags() -> (text: String, headerRanges: [NSRange]) {
-        enum Cached {
-            static let spanTag = try? NSRegularExpression(
-                pattern: #"<span[^>]*data-type=(?:[\'\"]?)title(?:[\'\"]?)[^>]*>(.*?)</span>"#,
-                options: []
-            )
-            static let anchorTag = try? NSRegularExpression(
-                pattern: #"<a\s[^>]*href="inr://[^"]*"[^>]*>(.*?)</a>"#,
-                options: []
-            )
-            static let hadeethTag = try? NSRegularExpression(
-                pattern: #"<hadeeth[^>]*>"#,
-                options: []
-            )
+    private enum Cached {
+        static let spanTag = try? NSRegularExpression(
+            pattern: #"<span[^>]*data-type=(?:[\'\"]?)title(?:[\'\"]?)[^>]*>(.*?)</span>"#,
+            options: [.dotMatchesLineSeparators]
+        )
+        static let anchorTag = try? NSRegularExpression(
+            pattern: #"<a\s[^>]*href="inr://[^"]*"[^>]*>(.*?)</a>"#,
+            options: [.dotMatchesLineSeparators]
+        )
+        static let hadeethTag = try? NSRegularExpression(
+            pattern: #"<hadeeth[^>]*>"#,
+            options: []
+        )
+        static let manTag = try? NSRegularExpression(
+            pattern: #"<man[^>]*>(.*?)</man>"#,
+            options: [.dotMatchesLineSeparators]
+        )
+    }
+
+    /// Versi ringan: hanya mengembalikan string bersih tanpa menghitung ranges.
+    /// Lebih efisien untuk operasi yang tidak memerlukan header ranges.
+    func stripSpanTags() -> String {
+        guard !isEmpty else { return self }
+
+        // Fast path: jika tidak ada tag, return langsung
+        if !contains("<") { return self }
+
+        let nsSelf = self as NSString
+        let fullRange = NSRange(location: 0, length: nsSelf.length)
+
+        var allMatches: [(range: NSRange, replacement: String)] = []
+
+        Cached.spanTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            let inner = nsSelf.substring(with: match.range(at: 1))
+            allMatches.append((match.range, inner))
         }
+
+        Cached.anchorTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            let inner = nsSelf.substring(with: match.range(at: 1))
+            allMatches.append((match.range, inner))
+        }
+
+        Cached.hadeethTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            allMatches.append((match.range, ""))
+        }
+
+        Cached.manTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            let inner = nsSelf.substring(with: match.range(at: 1))
+            allMatches.append((match.range, inner))
+        }
+
+        if allMatches.isEmpty { return self }
+
+        allMatches.sort { $0.range.location > $1.range.location }
+
+        let mutableString = nsSelf.mutableCopy() as! NSMutableString
+        for m in allMatches {
+            mutableString.replaceCharacters(in: m.range, with: m.replacement)
+        }
+
+        return mutableString as String
+    }
+
+    /// Versi lengkap: mengembalikan string bersih DAN ranges untuk header color.
+    /// Digunakan oleh reader untuk menandai header dengan warna.
+    func stripSpanTagsWithRanges() -> (text: String, headerRanges: [NSRange]) {
+        guard !isEmpty else { return (self, []) }
 
         guard let spanRegex = Cached.spanTag,
               let anchorRegex = Cached.anchorTag,
-              let hadeethRegex = Cached.hadeethTag else {
+              let hadeethRegex = Cached.hadeethTag,
+              let manRegex = Cached.manTag else {
             return (self, [])
         }
 
@@ -135,6 +242,7 @@ extension String {
             case header(innerText: String)
             case anchor(innerText: String)
             case hadeeth
+            case man(innerText: String)
         }
 
         var allMatches: [(range: NSRange, type: MatchType)] = []
@@ -155,6 +263,12 @@ extension String {
         hadeethRegex.enumerateMatches(in: self, range: fullRange) { match, _, _ in
             guard let match = match else { return }
             allMatches.append((match.range, .hadeeth))
+        }
+
+        manRegex.enumerateMatches(in: self, range: fullRange) { match, _, _ in
+            guard let match = match else { return }
+            let inner = nsSelf.substring(with: match.range(at: 1))
+            allMatches.append((match.range, .man(innerText: inner)))
         }
 
         // Jika bersih dari tag, langsung return untuk menghemat CPU & Memori
@@ -179,6 +293,8 @@ extension String {
                 replacement = inner
             case .hadeeth:
                 replacement = ""
+            case .man(let inner):
+                replacement = inner
             }
             mutableString.replaceCharacters(in: m.range, with: replacement)
         }
@@ -196,7 +312,7 @@ extension String {
             switch m.type {
             case .header(let inner):
                 let innerLength = (inner as NSString).length
-                newLength = innerLength + 1
+                newLength = innerLength
 
                 let newLocation = m.range.location + deltaOffset
                 headerRanges.append(NSRange(location: newLocation, length: innerLength))
@@ -206,6 +322,9 @@ extension String {
 
             case .hadeeth:
                 newLength = 0
+
+            case .man(let inner):
+                newLength = (inner as NSString).length
             }
 
             // Hitung selisih perubahan karakter untuk match berikutnya

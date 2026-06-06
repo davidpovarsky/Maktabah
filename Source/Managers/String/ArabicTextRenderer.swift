@@ -113,10 +113,13 @@ class ArabicTextRenderer {
 
         // Strip <span data-type="title"> tags for imported books and collect header ranges
         let (cleanedText, importedHeaderRanges) = isImported
-            ? processedText.stripSpanTags()
+            ? processedText.stripSpanTagsWithRanges()
             : (processedText, [NSRange]())
 
-        let (cleanedResult, footnoteRanges) = cleanedText.cleanedTextWithRanges()
+        let cleanedResultAndMappedRanges = cleanedText.cleanedTextWithRanges(mapping: importedHeaderRanges)
+        let cleanedResult = cleanedResultAndMappedRanges.result
+        let footnoteRanges = cleanedResultAndMappedRanges.footnoteRanges
+        let mappedImportedHeaderRanges = cleanedResultAndMappedRanges.mappedRanges ?? []
         let replacementResult = cleanedResult.text.replacingHonorificPhrasesIfSupported()
 
         let remappedColoredRanges = cleanedResult.coloredRanges.map {
@@ -125,7 +128,7 @@ class ArabicTextRenderer {
         let remappedFootnoteRanges = footnoteRanges.map {
             replacementResult.remapDisplayedRange($0)
         }
-        let remappedImportedHeaderRanges = importedHeaderRanges.map {
+        let remappedImportedHeaderRanges = mappedImportedHeaderRanges.map {
             replacementResult.remapDisplayedRange($0)
         }
         let displayResult = CleanedTextResult(

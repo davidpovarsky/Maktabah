@@ -485,11 +485,14 @@ class LibraryDataManager {
                 onResult: { tableName, archive, content in
                     Task { @MainActor in
                         let bookId = Int(tableName.dropFirst()) ?? 0
-                        let (bookTitle, isMultilingual) = self.lock.withLock {
+                        let (bookTitle, isMultilingual, isImported) = self.lock.withLock {
                             let book = self._booksById[bookId]
-                            return (book?.book ?? "", book?.isMultiLanguage ?? false)
+                            return (book?.book ?? "", book?.isMultiLanguage ?? false, book?.isImported ?? false)
                         }
-                        let normalizedNash = content.nash.convertToArabicDigits(isMultilingual: isMultilingual)
+
+                        // Strip tags untuk imported books (lebih efisien dengan versi ringan)
+                        let strippedNash = isImported ? content.nash.stripSpanTags() : content.nash
+                        let normalizedNash = strippedNash.convertToArabicDigits(isMultilingual: isMultilingual)
                         let searchKeywordsConverted = searchKeywords.map { $0.convertToArabicDigits(isMultilingual: isMultilingual) }
                         let snippet = normalizedNash
                             .normalizeArabic()
