@@ -409,6 +409,7 @@ extension SettingsView {
             }
 
             updatesSection
+                .listRowBackground(Color.appCellBackground)
         }
         .formStyle(.grouped)
         .controlSize(.large)
