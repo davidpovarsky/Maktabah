@@ -23,6 +23,8 @@ struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         }
         vc.onDeleteBook = onDeleteSingleBook
         vc.onDownloadBook = onDownloadSingleBook
+        vc.showLoadMore = viewModel.hasMoreAuthors
+        vc.loadMoreCount = viewModel.totalAuthorCount - viewModel.displayedCategories.count
 
         Task {
             await context.coordinator.viewModel.loadLibrary()
@@ -42,6 +44,8 @@ struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         uiViewController.viewModel = context.coordinator.viewModel
         uiViewController.onDeleteBook = onDeleteSingleBook
         uiViewController.onDownloadBook = onDownloadSingleBook
+        uiViewController.showLoadMore = context.coordinator.viewModel.hasMoreAuthors
+        uiViewController.loadMoreCount = context.coordinator.viewModel.totalAuthorCount - context.coordinator.viewModel.displayedCategories.count
 
         guard !context.coordinator.viewModel.isLoading else { return }
 

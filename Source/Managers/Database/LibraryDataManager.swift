@@ -543,11 +543,20 @@ class LibraryDataManager {
         return !trimmed.isEmpty
     }
 
+    /// Filter hierarchy untuk search (category mode)
     func filterCategory(_ category: CategoryData, searchText: String) -> CategoryData? {
         let normalizedSearch = searchText.normalizeArabic(false)
         let categoryMatches = category.name.normalizeArabic(false).localizedStandardContains(normalizedSearch)
 
-        // Filter children (bisa kategori atau buku)
+        // Jika kategori sendiri cocok, tampilkan semua children-nya tanpa filter
+        // (misalnya: author "Imam Nawawi" cocok → semua bukunya ditampilkan)
+        if categoryMatches {
+            let cloned = category.copy() as! CategoryData
+            cloned.children = category.children
+            return cloned
+        }
+
+        // Jika kategori tidak cocok, filter children secara rekursif
         let filteredChildren = category.children.compactMap { child -> Any? in
             if let childCategory = child as? CategoryData {
                 return filterCategory(childCategory, searchText: normalizedSearch)
@@ -559,14 +568,57 @@ class LibraryDataManager {
             return nil
         }
 
-        // Jika kategori match atau ada children yang match, return kategori
-        if categoryMatches || !filteredChildren.isEmpty {
+        // Jika ada children yang cocok, return kategori dengan children yang terfilter
+        if !filteredChildren.isEmpty {
             let cloned = category.copy() as! CategoryData
             cloned.children = filteredChildren
             return cloned
         }
 
         return nil
+    }
+
+    /// Filter author hierarchy untuk search (author mode) - optimized version
+    func filterAuthorHierarchy(_ categories: [CategoryData], searchText: String) -> [CategoryData] {
+        let normalizedSearch = searchText.normalizeArabic(false)
+
+        // First: find exact author name matches (fast path)
+        var matchedAuthors: [CategoryData] = []
+
+        for category in categories {
+            if category.name.normalizeArabic(false).localizedStandardContains(normalizedSearch) {
+                // Author name matches - return ALL books under this author
+                let cloned = category.copy() as! CategoryData
+                cloned.children = category.children
+                matchedAuthors.append(cloned)
+            }
+        }
+
+        // If we found exact matches, return them immediately
+        if !matchedAuthors.isEmpty {
+            return matchedAuthors
+        }
+
+        // Second: no exact match - search in book titles within each author
+        var result: [CategoryData] = []
+        for category in categories {
+            let matchingBooks = category.children.compactMap { child -> Any? in
+                if let book = child as? BooksData {
+                    if book.book.normalizeArabic(false).localizedStandardContains(normalizedSearch) {
+                        return book
+                    }
+                }
+                return nil
+            }
+
+            if !matchingBooks.isEmpty {
+                let cloned = category.copy() as! CategoryData
+                cloned.children = matchingBooks
+                result.append(cloned)
+            }
+        }
+
+        return result
     }
 
     /// Fungsi helper utama untuk memfilter hierarchy berdasarkan kondisi buku dan kategori.
@@ -611,8 +663,129 @@ class LibraryDataManager {
         }
     }
 
-    func filterIntegrated() -> [CategoryData] {
+    /// Bangun hierarchy berdasarkan Author (Muallif)
+    /// Root = Author, Children = BooksData yang ditulis oleh author tersebut
+    func buildAuthorHierarchy() -> [CategoryData] {
+        // Langsung fetch authors dari database, jangan rely pada cache
+        let authors = DatabaseManager.shared.fetchAllAuthors()
+
+        // Handle potential duplicate author IDs by keeping the first occurrence
+        var authorMap: [Int: Muallif] = [:]
+        for author in authors {
+            if authorMap[author.id] == nil {
+                authorMap[author.id] = author.muallif
+            }
+        }
+
+        // Collect ALL books from _booksById (sumber resmi semua buku)
+        let allBooks: [BooksData] = lock.withLock {
+            Array(_booksById.values)
+        }
+
+        // Group books by muallif
+        var booksByAuthor: [Int: [BooksData]] = [:]
+        var booksWithNoAuthor: [BooksData] = []
+
+        for book in allBooks {
+            if book.muallif == 0 {
+                booksWithNoAuthor.append(book)
+            } else {
+                booksByAuthor[book.muallif, default: []].append(book)
+            }
+        }
+
+        // Debug: print author counts
+        #if DEBUG
+            print("=== Author Hierarchy Debug ===")
+            print("Total books in _booksById: \(allBooks.count)")
+            print("Total authors in Auth table: \(authors.count)")
+            print("Author groups (muallif != 0): \(booksByAuthor.count)")
+            print("Books with muallif=0: \(booksWithNoAuthor.count)")
+
+            // Show sample of author IDs that have books but not in Auth table
+            let authorIdsInBooks = Set(booksByAuthor.keys)
+            let authorIdsInAuthTable = Set(authors.map { $0.id })
+            let missingAuthorIds = authorIdsInBooks.subtracting(authorIdsInAuthTable)
+            if !missingAuthorIds.isEmpty {
+                print("Author IDs in books but NOT in Auth table: \(missingAuthorIds.prefix(10))")
+            }
+        #endif
+
+        // Build author categories
+        var authorCategories: [CategoryData] = []
+        var processedAuthorIds: Set<Int> = []
+
+        // First pass: authors that exist in the Auth table
+        for (authorId, muallif) in authors {
+            let books = booksByAuthor[authorId] ?? []
+            guard !books.isEmpty else { continue }
+
+            processedAuthorIds.insert(authorId)
+
+            let authorCategory = CategoryData(
+                id: authorId,
+                name: muallif.nama,
+                level: 0,
+                order: authorId
+            )
+            authorCategory.children = books.sorted { $0.book < $1.book }
+            authorCategories.append(authorCategory)
+        }
+
+        // Second pass: authors not in Auth table but have books
+        let unprocessedBooks = booksByAuthor.filter { !processedAuthorIds.contains($0.key) }
+        for (authorId, books) in unprocessedBooks.sorted(by: { $0.key < $1.key }) {
+            guard !books.isEmpty else { continue }
+
+            let authorName = authorMap[authorId]?.nama ?? "Unknown Author (\(authorId))"
+
+            let authorCategory = CategoryData(
+                id: authorId,
+                name: authorName,
+                level: 0,
+                order: authorId
+            )
+            authorCategory.children = books.sorted { $0.book < $1.book }
+            authorCategories.append(authorCategory)
+        }
+
+        // Third pass: books with muallif = 0
+        if !booksWithNoAuthor.isEmpty {
+            let noAuthorCategory = CategoryData(
+                id: 0,
+                name: "---",
+                level: 0,
+                order: Int.max
+            )
+            noAuthorCategory.children = booksWithNoAuthor.sorted { $0.book < $1.book }
+            authorCategories.append(noAuthorCategory)
+        }
+
+        if let index = authorCategories.firstIndex(where: { $0.id == 0 }), index != authorCategories.count - 1 {
+            let noAuthor = authorCategories.remove(at: index)
+            authorCategories.append(noAuthor)
+        }
+
+        #if DEBUG
+            print("Total author categories created: \(authorCategories.count)")
+            print("Total books in author hierarchy: \(authorCategories.reduce(0) { $0 + $1.children.count })")
+            print("=== End Debug ===")
+        #endif
+
+        return authorCategories
+    }
+
+    func filterByAuthor(_ authorId: Int) -> [CategoryData] {
         let rootCats = lock.withLock { _allRootCategories }
+        return rootCats.compactMap { root in
+            applyHierarchyFilter(to: root) {
+                $0.muallif == authorId
+            }
+        }
+    }
+
+    func filterIntegrated(base: [CategoryData]? = nil) -> [CategoryData] {
+        let rootCats = base ?? lock.withLock { _allRootCategories }
         return rootCats.compactMap { root in
             applyHierarchyFilter(to: root) {
                 BookArchiveIntegrator.shared.isBookIntegrated($0)

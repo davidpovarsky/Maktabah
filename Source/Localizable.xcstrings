@@ -677,6 +677,22 @@
         }
       }
     },
+    "Author" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مؤلف"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penulis"
+          }
+        }
+      }
+    },
     "Author Info" : {
       "localizations" : {
         "ar" : {
@@ -1046,6 +1062,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Batalkan"
+          }
+        }
+      }
+    },
+    "Category" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الفئة"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
           }
         }
       }

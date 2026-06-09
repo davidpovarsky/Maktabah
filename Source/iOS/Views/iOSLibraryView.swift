@@ -160,6 +160,26 @@ struct iOSLibraryView: View {
             }
         } else {
             ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Section("Group By") {
+                        Button { viewModel.viewMode = .category } label: {
+                            Label("Category", systemImage: "folder")
+                        }
+                        Button { viewModel.viewMode = .author } label: {
+                            Label("Author", systemImage: "person")
+                        }
+                    }
+                } label: {
+                    Label(
+                        "Group By",
+                        systemImage: viewModel.viewMode == .category
+                            ? "folder"
+                            : "person"
+                    )
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
                 Toggle(isOn: Binding(
                     get: { viewModel.showOnlyDownloaded },
                     set: { viewModel.showOnlyDownloaded = $0 }
@@ -221,5 +241,3 @@ struct iOSLibraryView: View {
         }
     }
 }
-
-

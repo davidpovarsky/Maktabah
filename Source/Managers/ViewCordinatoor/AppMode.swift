@@ -16,3 +16,8 @@ enum AppMode: Int {
     case history
     #endif
 }
+
+enum LibraryViewMode: Int {
+    case category = 0
+    case author = 1
+}

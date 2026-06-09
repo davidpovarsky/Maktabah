@@ -75,6 +75,18 @@ class DatabaseManager {
             return
         }
 
+        do {
+            let tempWriteDb = try SQLiteDatabase(path: specialPath)
+
+            let sqlIndex = """
+                CREATE INDEX IF NOT EXISTS idx_auth_covering 
+                ON "Auth" ("auth" ASC, "authid", "inf", "Lng");
+                """
+            try tempWriteDb.execute(query: sqlIndex)
+        } catch {
+            print("\(error). Continue to ReadOnly Mode...")
+        }
+
         let flags = SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
 
         do {
@@ -239,7 +251,7 @@ class DatabaseManager {
         defer { lock.unlock() }
 
         guard let dbSpecial = dbSpecial else { return [] }
-        let sql = "SELECT \(colAuthId), \(colAuthName), \(colAuthInf), \(colAuthLng) FROM \(authTableName)"
+        let sql = "SELECT \(colAuthId), \(colAuthName), \(colAuthInf), \(colAuthLng) FROM \(authTableName) ORDER BY \(colAuthName)"
 
         return (try? dbSpecial.fetch(query: sql) { row in
             let id = row.int(at: 0)

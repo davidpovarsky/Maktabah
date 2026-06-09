@@ -5,11 +5,13 @@ import UIKit
 enum LibraryItem: Hashable, @unchecked Sendable {
     case category(CategoryData)
     case book(BooksData)
+    case loadMore
 
     func hash(into hasher: inout Hasher) {
         switch self {
         case let .category(c): hasher.combine("cat"); hasher.combine(c.id)
         case let .book(b): hasher.combine("book"); hasher.combine(b.id)
+        case .loadMore: hasher.combine("loadMore")
         }
     }
 
@@ -17,6 +19,7 @@ enum LibraryItem: Hashable, @unchecked Sendable {
         switch (lhs, rhs) {
         case let (.category(a), .category(b)): a.id == b.id
         case let (.book(a), .book(b)): a.id == b.id
+        case (.loadMore, .loadMore): true
         default: false
         }
     }
@@ -109,6 +112,20 @@ class iOSHierarchicalCollectionViewController: UIViewController {
         fatalError("\(type(of: self)) harus override makeBookCellRegistration()")
     }
 
+    var loadMoreCount: Int = 0
+
+    lazy var loadMoreCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, LibraryItem> = {
+        UICollectionView.CellRegistration { [weak self] cell, _, item in
+            var content = cell.defaultContentConfiguration()
+            content.text = "Load More... (\(self?.loadMoreCount ?? 0) remaining)"
+            content.textProperties.color = .tintColor
+            content.textProperties.alignment = .center
+            cell.contentConfiguration = content
+            cell.accessories = []
+            cell.applyThemeConfigurationUpdateHandler()
+        }
+    }()
+
     // MARK: - Private Setup
 
     private func setupCollectionView() {
@@ -131,6 +148,7 @@ class iOSHierarchicalCollectionViewController: UIViewController {
     private func configureDataSource() {
         let categoryCellReg = makeCategoryCellRegistration()
         let bookCellReg = makeBookCellRegistration()
+        let loadMoreReg = loadMoreCellRegistration
 
         dataSource = UICollectionViewDiffableDataSource<Int, LibraryItem>(
             collectionView: collectionView
@@ -143,6 +161,10 @@ class iOSHierarchicalCollectionViewController: UIViewController {
             case let .book(book):
                 collectionView.dequeueConfiguredReusableCell(
                     using: bookCellReg, for: indexPath, item: book
+                )
+            case .loadMore:
+                collectionView.dequeueConfiguredReusableCell(
+                    using: loadMoreReg, for: indexPath, item: item
                 )
             }
         }
@@ -157,6 +179,9 @@ class iOSHierarchicalCollectionViewController: UIViewController {
 
     // MARK: - Data Loading
 
+    var showLoadMore: Bool = false
+    var onLoadMore: (() -> Void)?
+
     func applyCategories(_ categories: [CategoryData]) {
         guard isViewLoaded else {
             pendingCategories = categories
@@ -169,6 +194,12 @@ class iOSHierarchicalCollectionViewController: UIViewController {
 
         var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<LibraryItem>()
         buildSnapshot(&sectionSnapshot, from: categories, parent: nil)
+
+        // Add Load More if needed
+        if showLoadMore {
+            sectionSnapshot.append([.loadMore])
+        }
+
         dataSource.apply(sectionSnapshot, to: 0, animatingDifferences: false)
     }
 

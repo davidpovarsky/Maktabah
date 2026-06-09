@@ -9,6 +9,23 @@ class iOSLibraryViewModel {
 
     /// We use a backing property so @Observable can track changes and trigger view updates
     var _showOnlyDownloadedTracker: Bool = false
+    var _authorFilterTracker: Int = 0
+    var _viewModeTracker: Int = 0
+
+    var viewMode: LibraryViewMode {
+        didSet {
+            UserDefaults.standard.set(viewMode.rawValue, forKey: "libraryViewMode")
+            _viewModeTracker += 1
+
+            // Lazy load author hierarchy when switching to author mode
+            if viewMode == .author && !_hasBuiltAuthorHierarchy {
+                _authorHierarchy = LibraryDataManager.shared.buildAuthorHierarchy()
+                _hasBuiltAuthorHierarchy = true
+            }
+
+            updateDisplayedCategories()
+        }
+    }
 
     var showOnlyDownloaded: Bool {
         get {
@@ -22,6 +39,20 @@ class iOSLibraryViewModel {
             _showOnlyDownloadedTracker = newValue
             updateDisplayedCategories()
         }
+    }
+
+    var selectedAuthorId: Int? = nil {
+        didSet {
+            _authorFilterTracker += 1
+            updateDisplayedCategories()
+        }
+    }
+
+    var availableAuthors: [(id: Int, muallif: Muallif)] = []
+
+    func loadAuthorsIfNeeded() {
+        guard availableAuthors.isEmpty else { return }
+        availableAuthors = LibraryDataManager.shared.getAllAuthors()
     }
 
     var searchText: String = "" {
@@ -53,23 +84,42 @@ class iOSLibraryViewModel {
 
     private var hasLoadedLibrary = false
     private var _cachedDisplayedCategories: [CategoryData] = []
-    
+    private var _authorHierarchy: [CategoryData] = []
+    private var _hasBuiltAuthorHierarchy = false
+
+    // Pagination for author mode
+    private let authorPageSize = 100
+    private var _displayedAuthorCount: Int = 0
+    private var _allFilteredAuthors: [CategoryData] = []
+    private var _displayedFilteredCount: Int = 0
+
     var updateTrigger: Int = 0
     private let refreshSubject = PassthroughSubject<Void, Never>()
     private let searchSubject = PassthroughSubject<String, Never>()
     private var cancellables = Set<AnyCancellable>()
 
     init() {
+        viewMode = LibraryViewMode(
+            rawValue: UserDefaults.standard.integer(forKey: "libraryViewMode")
+        ) ?? .category
         setupObservers()
     }
 
     private func setupObservers() {
         refreshSubject
             .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
-            .sink { [weak self] in
-                Task { @MainActor in
-                    self?.rootCategories = Array(LibraryDataManager.shared.allRootCategories)
-                    self?.updateDisplayedCategories()
+            .sink {
+                Task { @MainActor [weak self] in
+                    guard let self else { return }
+                    rootCategories = Array(LibraryDataManager.shared.allRootCategories)
+
+                    // Only rebuild author hierarchy when in author mode
+                    if viewMode == .author {
+                        _authorHierarchy = LibraryDataManager.shared.buildAuthorHierarchy()
+                        _hasBuiltAuthorHierarchy = true
+                    }
+
+                    updateDisplayedCategories()
                 }
             }
             .store(in: &cancellables)
@@ -113,28 +163,104 @@ class iOSLibraryViewModel {
     }
 
     var displayedCategories: [CategoryData] {
+        // No search and no filter
         if _cachedDisplayedCategories.isEmpty && !rootCategories.isEmpty && searchText.isEmpty && !showOnlyDownloaded {
+            if viewMode == .author {
+                // Paginated display for author mode (no search)
+                let endIndex = min(_displayedAuthorCount, _authorHierarchy.count)
+                return Array(_authorHierarchy.prefix(endIndex))
+            }
             return rootCategories
         }
+
+        // No search but with showOnlyDownloaded filter - paginated
+        if searchText.isEmpty && showOnlyDownloaded && viewMode == .author {
+            let endIndex = min(_displayedAuthorCount, _cachedDisplayedCategories.count)
+            return Array(_cachedDisplayedCategories.prefix(endIndex))
+        }
+
+        // Search mode - use paginated filtered results
+        if viewMode == .author && !searchText.isEmpty {
+            let endIndex = min(_displayedFilteredCount, _allFilteredAuthors.count)
+            return Array(_allFilteredAuthors.prefix(endIndex))
+        }
+
         return _cachedDisplayedCategories
     }
 
+    var hasMoreAuthors: Bool {
+        let total = showOnlyDownloaded ? _cachedDisplayedCategories.count : (searchText.isEmpty ? _authorHierarchy.count : _allFilteredAuthors.count)
+        let displayed = searchText.isEmpty ? _displayedAuthorCount : _displayedFilteredCount
+        return viewMode == .author && displayed < total
+    }
+
+    var totalAuthorCount: Int {
+        if searchText.isEmpty {
+            return showOnlyDownloaded ? _cachedDisplayedCategories.count : _authorHierarchy.count
+        } else {
+            return _allFilteredAuthors.count
+        }
+    }
+
+    func loadMoreAuthors() {
+        let total = showOnlyDownloaded ? _cachedDisplayedCategories.count : (searchText.isEmpty ? _authorHierarchy.count : _allFilteredAuthors.count)
+        if searchText.isEmpty {
+            if showOnlyDownloaded {
+                _displayedAuthorCount = min(_displayedAuthorCount + authorPageSize, total)
+            } else {
+                _displayedAuthorCount = min(_displayedAuthorCount + authorPageSize, _authorHierarchy.count)
+            }
+        } else {
+            _displayedFilteredCount = min(_displayedFilteredCount + authorPageSize, _allFilteredAuthors.count)
+        }
+        updateTrigger += 1
+    }
+
     private func updateDisplayedCategories() {
-        var base = rootCategories
+        var base: [CategoryData] = []
+        if viewMode == .author {
+            // Lazy build author hierarchy if not yet built
+            if !_hasBuiltAuthorHierarchy {
+                _authorHierarchy = LibraryDataManager.shared.buildAuthorHierarchy()
+                _hasBuiltAuthorHierarchy = true
+            }
+            base = _authorHierarchy
+        } else {
+            base = rootCategories
+        }
+
         if showOnlyDownloaded {
-            base = LibraryDataManager.shared.filterIntegrated()
+            base = LibraryDataManager.shared.filterIntegrated(base: base)
         }
 
         if searchText.isEmpty {
-            _cachedDisplayedCategories = base
+            // No search - use filtered base directly
+            if showOnlyDownloaded {
+                // Filtered by downloaded status
+                _cachedDisplayedCategories = base
+            } else {
+                _cachedDisplayedCategories = []
+            }
+            // Reset pagination for author mode
+            if viewMode == .author {
+                _displayedAuthorCount = authorPageSize
+            }
         } else {
-            var filtered: [CategoryData] = []
-            _ = LibraryDataManager.shared.filterContent(
-                with: searchText,
-                displayedCategories: &filtered,
-                baseCategories: base
-            )
-            _cachedDisplayedCategories = filtered
+            if viewMode == .author {
+                // Use optimized author filter
+                _allFilteredAuthors = LibraryDataManager.shared.filterAuthorHierarchy(base, searchText: searchText)
+                _cachedDisplayedCategories = []
+                _displayedFilteredCount = authorPageSize
+            } else {
+                // Use category filter
+                var filtered: [CategoryData] = []
+                _ = LibraryDataManager.shared.filterContent(
+                    with: searchText,
+                    displayedCategories: &filtered,
+                    baseCategories: base
+                )
+                _cachedDisplayedCategories = filtered
+            }
         }
         updateTrigger += 1
     }
@@ -145,6 +271,7 @@ class iOSLibraryViewModel {
     }
 
     func refreshLibrary() async {
+        hasLoadedLibrary = false
         await load()
     }
 
@@ -152,6 +279,13 @@ class iOSLibraryViewModel {
         isLoading = true
         await LibraryDataManager.shared.loadData()
         rootCategories = LibraryDataManager.shared.allRootCategories
+
+        // Only build author hierarchy when in author mode
+        if viewMode == .author {
+            _authorHierarchy = LibraryDataManager.shared.buildAuthorHierarchy()
+            _hasBuiltAuthorHierarchy = true
+        }
+
         updateDisplayedCategories()
         isLoading = false
         hasLoadedLibrary = LibraryDataManager.shared.isDataLoaded

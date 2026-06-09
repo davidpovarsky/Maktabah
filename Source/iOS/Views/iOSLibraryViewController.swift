@@ -29,7 +29,9 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
             if viewModel?.isSelectionMode == true {
                 content.image = nil
             } else {
-                content.image = UIImage(systemName: "folder.fill")
+                // Change icon based on view mode
+                let isAuthorMode = viewModel?.viewMode == .author
+                content.image = UIImage(systemName: isAuthorMode ? "person.fill" : "folder.fill")
                 content.imageProperties.tintColor = .tintColor
             }
 
@@ -120,14 +122,22 @@ extension iOSLibraryViewController: UICollectionViewDelegate {
                 viewModel?.toggleCategorySelection(category)
             case let .book(book):
                 viewModel?.toggleBookSelection(book)
+            case .loadMore:
+                viewModel?.loadMoreAuthors()
             }
             reloadVisibleItems()
             onSelectionChanged?()
             return
         }
 
-        guard case let .book(book) = item else { return }
-        onBookSelected?(book)
+        switch item {
+        case let .book(book):
+            onBookSelected?(book)
+        case .loadMore:
+            viewModel?.loadMoreAuthors()
+        case .category:
+            break
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
