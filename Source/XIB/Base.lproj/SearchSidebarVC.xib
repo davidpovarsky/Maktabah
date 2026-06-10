@@ -18,23 +18,23 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="J1w-Su-YGs">
-            <rect key="frame" x="0.0" y="0.0" width="178" height="516"/>
+            <rect key="frame" x="0.0" y="0.0" width="204" height="516"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="28" horizontalPageScroll="10" verticalLineScroll="28" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsp-0W-zag">
-                    <rect key="frame" x="0.0" y="0.0" width="178" height="401"/>
+                    <rect key="frame" x="0.0" y="0.0" width="204" height="401"/>
                     <clipView key="contentView" drawsBackground="NO" id="Io9-0a-9n0">
-                        <rect key="frame" x="0.0" y="0.0" width="178" height="401"/>
+                        <rect key="frame" x="0.0" y="0.0" width="204" height="401"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" mirrorLayoutDirectionWhenInternationalizing="never" columnAutoresizingStyle="lastColumnOnly" tableStyle="sourceList" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="26" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" indentationPerLevel="13" outlineTableColumn="vLT-oQ-KAJ" userInterfaceLayoutDirection="rightToLeft" id="kk9-Dg-fOm">
-                                <rect key="frame" x="0.0" y="0.0" width="178" height="401"/>
+                                <rect key="frame" x="0.0" y="0.0" width="204" height="401"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="4" height="2"/>
                                 <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="146" minWidth="16" maxWidth="1000" id="vLT-oQ-KAJ">
+                                    <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="172" minWidth="16" maxWidth="1000" id="vLT-oQ-KAJ">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -47,11 +47,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="HeaderCell" id="xZB-UH-p7J">
-                                                <rect key="frame" x="12" y="1" width="154" height="26"/>
+                                                <rect key="frame" x="12" y="1" width="180" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="pKX-Nb-9D6" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
-                                                        <rect key="frame" x="1" y="0.0" width="133" height="26"/>
+                                                        <rect key="frame" x="1" y="0.0" width="159" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="Pid-GY-B9s">
                                                             <font key="font" metaFont="system" size="16"/>
@@ -60,11 +60,11 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" id="Dij-1N-lee" customClass="BundledArabicButton" customModule="Maktabah" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="154" height="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="right" state="on" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" inset="2" id="j4A-Zh-rzT">
+                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="right" state="on" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" allowsMixedState="YES" inset="2" id="j4A-Zh-rzT">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system" size="13"/>
+                                                            <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                 </subviews>
@@ -73,11 +73,11 @@
                                                 </connections>
                                             </tableCellView>
                                             <tableCellView identifier="DataCell" id="K4Z-LG-dWg">
-                                                <rect key="frame" x="12" y="29" width="154" height="26"/>
+                                                <rect key="frame" x="12" y="29" width="180" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" id="9Mo-VX-QaC" customClass="BundledArabicTextField" customModule="Maktabah" customModuleProvider="target">
-                                                        <rect key="frame" x="1" y="0.0" width="133" height="26"/>
+                                                        <rect key="frame" x="1" y="0.0" width="159" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" alignment="right" id="dTH-Vq-7nB">
                                                             <font key="font" metaFont="system" size="16"/>
@@ -86,11 +86,11 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" id="nzD-VQ-u4b" customClass="BundledArabicButton" customModule="Maktabah" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="154" height="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="right" state="on" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" inset="2" id="NMY-ga-0Cp">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system" size="13"/>
+                                                            <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                 </subviews>
@@ -115,7 +115,7 @@
                     </scroller>
                 </scrollView>
                 <button mirrorLayoutDirectionWhenInternationalizing="never" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTn-NH-Mir" customClass="BundledArabicButton" customModule="Maktabah" customModuleProvider="target">
-                    <rect key="frame" x="20" y="409" width="150" height="23"/>
+                    <rect key="frame" x="20" y="409" width="178" height="23"/>
                     <buttonCell key="cell" type="check" title="اختر كل الكتب الموجودة" bezelStyle="regularSquare" imagePosition="leading" alignment="right" state="on" baseWritingDirection="rightToLeft" userInterfaceLayoutDirection="rightToLeft" inset="2" id="uzy-nO-FzB">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system" size="16"/>
@@ -128,7 +128,7 @@
                     </connections>
                 </button>
                 <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="always" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNf-te-qvs" customClass="DSFSearchField" customModule="Maktabah" customModuleProvider="target">
-                    <rect key="frame" x="4" y="440" width="170" height="22"/>
+                    <rect key="frame" x="4" y="440" width="196" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="sKR-bj-dq2"/>
                     </constraints>

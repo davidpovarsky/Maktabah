@@ -7,6 +7,7 @@ class iOSReaderViewModel {
     private let bookConnection = BookConnection()
     static let kfgqpc = Font.custom(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 16)
     static let kfgqpcTitle = Font.custom(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 18)
+    static let kfgqpcList = Font.custom(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 20)
 
     var contentText: String = ""
     var currentPart: Int?

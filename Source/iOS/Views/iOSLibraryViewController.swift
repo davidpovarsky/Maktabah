@@ -21,44 +21,45 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
     override func makeCategoryCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, CategoryData> {
         UICollectionView.CellRegistration { [weak self] cell, _, category in
             guard let self else { return }
-            var content = cell.defaultContentConfiguration()
-            content.text = category.name
-            content.textProperties.font = font
-            content.textProperties.numberOfLines = 1
 
-            if viewModel?.isSelectionMode == true {
-                content.image = nil
-            } else {
-                // Change icon based on view mode
-                let isAuthorMode = viewModel?.viewMode == .author
-                content.image = UIImage(systemName: isAuthorMode ? "person.fill" : "folder.fill")
-                content.imageProperties.tintColor = .tintColor
-            }
+            let isExpanded = expandedCategories.contains(category.id)
+            let isSelectionMode = viewModel?.isSelectionMode == true
 
-            cell.contentConfiguration = content
-
-            let disclosure = UICellAccessory.outlineDisclosure(options: .init(style: .header))
-            if viewModel?.isSelectionMode == true {
+            let leadingAccessory: LeadingAccessoryType
+            if isSelectionMode {
                 let isSelected = viewModel?.isCategorySelected(category) == true
                 let isPartial = viewModel?.isCategoryPartiallySelected(category) == true
-                let imageName = isSelected
-                    ? "checkmark.circle.fill"
-                    : (isPartial ? "minus.circle.fill" : "circle")
-                let checkbox = UIButton(type: .system)
-                checkbox.setImage(UIImage(systemName: imageName), for: .normal)
-                checkbox.tintColor = isSelected || isPartial ? .tintColor : .secondaryLabel
-                checkbox.addAction(UIAction { [weak self] _ in
-                    self?.viewModel?.toggleCategorySelection(category)
-                    self?.reloadVisibleItems()
-                    self?.onSelectionChanged?()
-                }, for: .touchUpInside)
-
-                let customAccessory = UICellAccessory.customView(
-                    configuration: .init(customView: checkbox, placement: .leading())
-                )
-                cell.accessories = [customAccessory, disclosure]
+                leadingAccessory = .checkbox(isPartial ? .partial : (isSelected ? .checked : .unchecked))
             } else {
-                cell.accessories = [disclosure]
+                let isAuthorMode = viewModel?.viewMode == .author
+                leadingAccessory = .icon(isAuthorMode ? "person.fill" : "folder.fill")
+            }
+
+            let config = ListContentConfiguration(
+                text: category.name,
+                font: font,
+                leadingAccessory: leadingAccessory,
+                isExpanded: isExpanded,
+                root: true,
+                indentationLevel: category.level
+            )
+            cell.contentConfiguration = config
+            cell.accessories = []
+
+            // Wire up checkbox tap handler for selection mode
+            if isSelectionMode, let listContentView = cell.contentView as? ListContentView {
+                listContentView.onCheckboxTap = { [weak self] in
+                    guard let self else { return }
+                    viewModel?.toggleCategorySelection(category)
+                    onSelectionChanged?()
+                    
+                    var items: [LibraryItem] = dataSource.snapshot().itemIdentifiers.filter {
+                        if case .category = $0 { return true }
+                        return false
+                    }
+                    items.append(contentsOf: getAllBooks(in: category).map { .book($0) })
+                    reconfigureItems(items)
+                }
             }
 
             cell.applyThemeConfigurationUpdateHandler()
@@ -68,40 +69,51 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
     override func makeBookCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, BooksData> {
         UICollectionView.CellRegistration { [weak self] cell, _, book in
             guard let self else { return }
-            var content = cell.defaultContentConfiguration()
-            content.text = book.book
-            content.textProperties.font = font
-            content.textProperties.numberOfLines = 1
 
             let isDownloaded = viewModel?.isBookDownloaded(book) == true
-            if viewModel?.isSelectionMode == true {
-                content.image = nil
+            let isSelectionMode = viewModel?.isSelectionMode == true
+
+            let leadingAccessory: LeadingAccessoryType
+            if isSelectionMode {
+                let isSelected = viewModel?.isBookSelected(book) == true
+                leadingAccessory = .checkbox(isSelected ? .checked : .unchecked)
             } else {
-                content.image = UIImage(systemName: isDownloaded ? "book.fill" : "icloud.and.arrow.down")
-                content.imageProperties.tintColor = isDownloaded ? .tintColor : .secondaryLabel
+                leadingAccessory = .icon(isDownloaded ? "book.fill" : "icloud.and.arrow.down")
+            }
+            let isAuthorMode = viewModel?.viewMode == .author
+            let indentationLevel: Int
+            if isAuthorMode {
+                indentationLevel = 1
+            } else {
+                indentationLevel = (LibraryDataManager.shared.categoryLevel(for: book) ?? 0) == 0 ? 1 : 2
             }
 
-            cell.contentConfiguration = content
+            let config = ListContentConfiguration(
+                text: book.book,
+                font: font,
+                isDownloaded: (isDownloaded && isSelectionMode),
+                leadingAccessory: leadingAccessory,
+                isExpanded: false,
+                root: false,
+                indentationLevel: indentationLevel
+            )
+            cell.contentConfiguration = config
+            cell.accessories = []
 
-            if viewModel?.isSelectionMode == true {
-                let isSelected = viewModel?.isBookSelected(book) == true
-                let checkbox = UIButton(type: .system)
-                checkbox.setImage(UIImage(systemName: isSelected ? "checkmark.square.fill" : "square"), for: .normal)
-                checkbox.tintColor = isDownloaded
-                    ? .tertiaryLabel
-                    : (isSelected ? .tintColor : .secondaryLabel)
-                checkbox.isEnabled = !isDownloaded
-                checkbox.addAction(UIAction { [weak self] _ in
-                    self?.viewModel?.toggleBookSelection(book)
-                    self?.onSelectionChanged?()
-                }, for: .touchUpInside)
+            // Wire up checkbox tap handler for selection mode
+            if isSelectionMode, let listContentView = cell.contentView as? ListContentView {
+                listContentView.onCheckboxTap = { [weak self] in
+                    guard let self else { return }
+                    self.viewModel?.toggleBookSelection(book)
+                    self.onSelectionChanged?()
 
-                let customAccessory = UICellAccessory.customView(
-                    configuration: .init(customView: checkbox, placement: .leading())
-                )
-                cell.accessories = [customAccessory]
-            } else {
-                cell.accessories = []
+                    var items: [LibraryItem] = self.dataSource.snapshot().itemIdentifiers.filter {
+                        if case .category = $0 { return true }
+                        return false
+                    }
+                    items.append(.book(book))
+                    self.reconfigureItems(items)
+                }
             }
 
             cell.applyThemeConfigurationUpdateHandler()
@@ -113,31 +125,33 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
 
 extension iOSLibraryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
 
-        if viewModel?.isSelectionMode == true {
-            switch item {
-            case let .category(category):
-                viewModel?.toggleCategorySelection(category)
-            case let .book(book):
-                viewModel?.toggleBookSelection(book)
-            case .loadMore:
-                viewModel?.loadMoreAuthors()
-            }
-            reloadVisibleItems()
-            onSelectionChanged?()
-            return
-        }
-
+        // In selection mode, category row tap should still expand/collapse
+        // Selection is handled via checkbox tap (onCheckboxTap)
         switch item {
+        case let .category(category):
+            toggleCategory(category)
         case let .book(book):
-            onBookSelected?(book)
+            if viewModel?.isSelectionMode == true {
+                viewModel?.toggleBookSelection(book)
+                onSelectionChanged?()
+                var items: [LibraryItem] = dataSource.snapshot().itemIdentifiers.filter {
+                    if case .category = $0 { return true }
+                    return false
+                }
+                items.append(.book(book))
+                reconfigureItems(items)
+            } else {
+                onBookSelected?(book)
+            }
         case .loadMore:
             viewModel?.loadMoreAuthors()
-        case .category:
-            break
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        !isGroup(dataSource.itemIdentifier(for: indexPath))
     }
 
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
@@ -157,7 +171,6 @@ extension iOSLibraryViewController: UICollectionViewDelegate {
                 image: UIImage(systemName: "checkmark.circle")
             ) { _ in
                 viewModel.enterSelectionMode(selecting: book)
-                self?.reloadVisibleItems()
                 self?.onSelectionChanged?()
             }
 

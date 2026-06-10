@@ -4,11 +4,7 @@ import UIKit
 // MARK: - View Controller
 
 class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
-    var selectedBookIds: Set<Int> = [] {
-        didSet {
-            reloadVisibleItems()
-        }
-    }
+    var selectedBookIds: Set<Int> = []
 
     var onSelectionChanged: ((Set<Int>) -> Void)?
 
@@ -32,44 +28,64 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
         UICollectionView.CellRegistration { [weak self] cell, _, category in
             guard let self else { return }
 
-            var content = cell.defaultContentConfiguration()
-            content.text = category.name
-            content.textProperties.font = font
-            content.textProperties.numberOfLines = 1
-            cell.contentConfiguration = content
+            let isExpanded = expandedCategories.contains(category.id)
 
-            // Satu kali lookup, di-cache
+            // Determine leading accessory: checkbox or folder icon
             let books = cachedBooks(for: category)
-            // Cek apakah semua buku dalam kategori ini ada di selectedBookIds
-            let isSelected = !books.isEmpty && books.allSatisfy { self.selectedBookIds.contains($0.id) }
+            let isSelected = !books.isEmpty && books.allSatisfy { [weak self] in
+                guard let self else { return false }
+                return selectedBookIds.contains($0.id)
+            }
+            let isPartial = !books.isEmpty && books.contains { [weak self] in
+                guard let self else { return false }
+                return selectedBookIds.contains($0.id)
+            } && books.contains { [weak self] in
+                guard let self else { return false }
+                return !selectedBookIds.contains($0.id)
+            }
+            let checkboxState: CheckboxState = isPartial ? .partial : (isSelected ? .checked : .unchecked)
+            let leadingAccessory: LeadingAccessoryType = .checkbox(checkboxState)
 
-            var checkboxConfig = UIButton.Configuration.plain()
-            checkboxConfig.image = UIImage(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-            checkboxConfig.baseForegroundColor = isSelected ? .tintColor : .secondaryLabel
+            let config = ListContentConfiguration(
+                text: category.name,
+                font: font,
+                leadingAccessory: leadingAccessory,
+                isExpanded: isExpanded,
+                root: true,
+                indentationLevel: category.level
+            )
+            cell.contentConfiguration = config
+            cell.accessories = []
 
-            let button = UIButton(configuration: checkboxConfig, primaryAction: UIAction { [weak self] _ in
-                guard let self else { return }
-                let currentBooks = cachedBooks(for: category)
-                let allSelected = currentBooks.allSatisfy { self.selectedBookIds.contains($0.id) }
+            // Wire up checkbox tap handler
+            if let listContentView = cell.contentView as? ListContentView {
+                listContentView.onCheckboxTap = { [weak self] in
+                    guard let self else { return }
+                    let currentBooks = cachedBooks(for: category)
+                    let allSelected = currentBooks.allSatisfy { [weak self] in
+                        guard let self else { return false }
+                        return selectedBookIds.contains($0.id)
+                    }
 
-                var newSelection = selectedBookIds
-                if allSelected {
-                    currentBooks.forEach { newSelection.remove($0.id) }
-                } else {
-                    currentBooks.forEach { newSelection.insert($0.id) }
+                    var newSelection = selectedBookIds
+                    if allSelected {
+                        currentBooks.forEach { newSelection.remove($0.id) }
+                    } else {
+                        currentBooks.forEach { newSelection.insert($0.id) }
+                    }
+
+                    selectedBookIds = newSelection
+                    onSelectionChanged?(selectedBookIds)
+
+                    // Reconfigure all categories so parents update their state
+                    var items: [LibraryItem] = dataSource.snapshot().itemIdentifiers.filter {
+                        if case .category = $0 { return true }
+                        return false
+                    }
+                    items.append(contentsOf: currentBooks.map { .book($0) })
+                    reconfigureItems(items)
                 }
-
-                selectedBookIds = newSelection
-                onSelectionChanged?(selectedBookIds)
-            })
-
-            cell.accessories = [
-                .customView(configuration: .init(
-                    customView: button,
-                    placement: .leading(displayed: .always)
-                )),
-                .outlineDisclosure(options: .init(style: .header)),
-            ]
+            }
 
             cell.applyThemeConfigurationUpdateHandler()
         }
@@ -78,15 +94,39 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
     override func makeBookCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, BooksData> {
         UICollectionView.CellRegistration { [weak self] cell, _, book in
             guard let self else { return }
-            var content = cell.defaultContentConfiguration()
-            content.text = book.book
-            content.textProperties.font = font
-            content.textProperties.numberOfLines = 1
             let isSelected = selectedBookIds.contains(book.id)
-            content.image = UIImage(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-            content.imageProperties.tintColor = isSelected ? .tintColor : .secondaryLabel
+            let indentationLevel = LibraryDataManager.shared.categoryLevel(for: book)
+            let config = ListContentConfiguration(
+                text: book.book,
+                font: font,
+                leadingAccessory: .checkbox(isSelected ? .checked : .unchecked),
+                isExpanded: false,
+                root: false,
+                indentationLevel: indentationLevel == 0 ? 1 : 2
+            )
+            cell.contentConfiguration = config
+            cell.accessories = []
 
-            cell.contentConfiguration = content
+            // Wire up checkbox tap handler
+            if let listContentView = cell.contentView as? ListContentView {
+                listContentView.onCheckboxTap = { [weak self] in
+                    guard let self else { return }
+                    if selectedBookIds.contains(book.id) {
+                        selectedBookIds.remove(book.id)
+                    } else {
+                        selectedBookIds.insert(book.id)
+                    }
+                    onSelectionChanged?(selectedBookIds)
+
+                    // Reconfigure all categories to update parent states
+                    var items: [LibraryItem] = dataSource.snapshot().itemIdentifiers.filter {
+                        if case .category = $0 { return true }
+                        return false
+                    }
+                    items.append(.book(book))
+                    reconfigureItems(items)
+                }
+            }
 
             cell.applyThemeConfigurationUpdateHandler()
         }
@@ -104,13 +144,29 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
 
 extension iOSSearchFilterViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        guard let item = dataSource.itemIdentifier(for: indexPath),
-              case let .book(book) = item else { return }
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
 
-        if selectedBookIds.contains(book.id) { selectedBookIds.remove(book.id) }
-        else { selectedBookIds.insert(book.id) }
-        onSelectionChanged?(selectedBookIds)
+        switch item {
+        case let .category(category):
+            toggleCategory(category)
+        case let .book(book):
+            if selectedBookIds.contains(book.id) { selectedBookIds.remove(book.id) }
+            else { selectedBookIds.insert(book.id) }
+            onSelectionChanged?(selectedBookIds)
+            // Reconfigure all categories to update parent states
+            var items: [LibraryItem] = dataSource.snapshot().itemIdentifiers.filter {
+                if case .category = $0 { return true }
+                return false
+            }
+            items.append(.book(book))
+            reconfigureItems(items)
+        case .loadMore:
+            break
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        !isGroup(dataSource.itemIdentifier(for: indexPath))
     }
 }
 

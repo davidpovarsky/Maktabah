@@ -65,7 +65,7 @@ struct iOSBookAnnotationsView: View {
                             Spacer()
 
                             if let pgArb = ann.pageArb {
-                                Text("Vol: \(ann.partArb ?? "") Page: \(pgArb)")
+                                Text(verbatim: "ج \(ann.partArb ?? "") ∙ ص \(pgArb)")
                                     .font(.caption2)
                                     .foregroundColor(.secondary)
                             }

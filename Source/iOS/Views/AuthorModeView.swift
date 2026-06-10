@@ -23,6 +23,9 @@ struct AuthorModeView: View {
                     }
                     .navigationDestination(isPresented: $navigateToReader) {
                         iOSRowiReaderView(viewModel: viewModel)
+                            .onDisappear {
+                                viewModel.selectedRowi = nil
+                            }
                     }
                     .withActiveIntegrationStates()
             }

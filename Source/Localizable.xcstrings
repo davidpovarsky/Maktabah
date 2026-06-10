@@ -7298,28 +7298,6 @@
         }
       }
     },
-    "Vol: %@ Page: %@" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "المجلد: %1$@ الصفحة: %2$@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Vol: %1$@ Page: %2$@"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jilid: %1$@ Hal: %2$@"
-          }
-        }
-      }
-    },
     "Waiting" : {
       "localizations" : {
         "ar" : {

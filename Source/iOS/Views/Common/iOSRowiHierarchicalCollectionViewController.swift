@@ -43,9 +43,8 @@ extension Rowi: Hashable {
     }
 }
 
-class iOSRowiHierarchicalCollectionViewController: UIViewController {
-    private(set) var collectionView: UICollectionView!
-    private(set) var dataSource: UICollectionViewDiffableDataSource<Int, RowiItem>!
+class iOSRowiHierarchicalCollectionViewController: BaseHierarchicalListViewController<RowiItem> {
+
     private(set) var expandedTabaqas: Set<String> = []
     private var pendingGroups: [TabaqaGroup]?
 
@@ -54,8 +53,7 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
-        configureDataSource()
+        collectionView.delegate = self
 
         if let pending = pendingGroups {
             applyGroups(pending)
@@ -63,59 +61,46 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
         }
     }
 
-    func makeListConfiguration() -> UICollectionLayoutListConfiguration {
-        var config = UICollectionLayoutListConfiguration(
-            appearance: .insetGrouped
-        )
-        config.showsSeparators = true
-        config.backgroundColor = .appBackground
-        return config
+    override func trailingOffset(for item: RowiItem) -> CGFloat {
+        let root: Bool
+        let indentationLevel: Int
+
+        switch item {
+        case .tabaqa:
+            root = true
+            indentationLevel = 0
+        case .rowi:
+            root = false
+            indentationLevel = 1
+        case .loadMore:
+            return 16
+        }
+        // Menggunakan fungsi kalkulator dari Base Class
+        return calculateTrailingOffset(isRoot: root, indentationLevel: indentationLevel)
     }
 
-    private func setupCollectionView() {
-        let config = makeListConfiguration()
-        let layout = UICollectionViewCompositionalLayout.list(using: config)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .appBackground
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.contentInsetAdjustmentBehavior = .automatic
-        collectionView.delegate = self
-        view.addSubview(collectionView)
-
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-    }
-
-    private func configureDataSource() {
-        let font = UIFont(name: ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 16) ??
-            .preferredFont(forTextStyle: .body)
-
-        let tabaqaCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, TabaqaGroup> { cell, _, group in
-            var content = cell.defaultContentConfiguration()
-            content.text = group.name
-            content.textProperties.font = font
-            content.textProperties.numberOfLines = 1
-            content.image = UIImage(systemName: "folder.fill")
-            content.imageProperties.tintColor = .tintColor
-            cell.contentConfiguration = content
-            cell.accessories = [.outlineDisclosure(options: .init(style: .header))]
-
+    override func configureDataSource() {
+        let tabaqaCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, TabaqaGroup> { [weak self] cell, _, group in
+            let isExpanded = self?.expandedTabaqas.contains(group.code) ?? false
+            let config = ListContentConfiguration(
+                text: group.name,
+                font: self?.font ?? UIFont(),
+                leadingAccessory: .icon("folder.fill"),
+                isExpanded: isExpanded,
+                root: true
+            )
+            cell.contentConfiguration = config
+            cell.accessories = []
             cell.applyThemeConfigurationUpdateHandler()
         }
 
-        let rowiCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, Rowi> { cell, _, rowi in
-            var content = cell.defaultContentConfiguration()
-            content.text = rowi.isoName
-            content.textProperties.font = font
-            content.textProperties.numberOfLines = 1
-            content.image = UIImage(systemName: "person.text.rectangle.fill")
-            cell.contentConfiguration = content
+        let rowiCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, Rowi> { [weak self] cell, _, rowi in
+            let config = ListContentConfiguration(
+                text: rowi.isoName, font: self?.font ?? UIFont(),
+                leadingAccessory: .icon("person.text.rectangle.fill"), isExpanded: false, root: false, indentationLevel: 1
+            )
+            cell.contentConfiguration = config
             cell.accessories = []
-
             cell.applyThemeConfigurationUpdateHandler()
         }
 
@@ -142,13 +127,8 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
                 collectionView.dequeueConfiguredReusableCell(using: loadMoreCellReg, for: indexPath, item: group)
             }
         }
-
-        dataSource.sectionSnapshotHandlers.willExpandItem = { [weak self] item in
-            if case let .tabaqa(t) = item { self?.expandedTabaqas.insert(t.code) }
-        }
-        dataSource.sectionSnapshotHandlers.willCollapseItem = { [weak self] item in
-            if case let .tabaqa(t) = item { self?.expandedTabaqas.remove(t.code) }
-        }
+        // Note: We handle expand/collapse manually in didSelectItemAt, not via sectionSnapshotHandlers
+        // since we removed the outlineDisclosure accessory.
     }
 
     func applyGroups(_ groups: [TabaqaGroup], isSearching: Bool = false) {
@@ -179,14 +159,13 @@ class iOSRowiHierarchicalCollectionViewController: UIViewController {
             sectionSnapshot.append(childrenItems, to: groupItem)
         }
 
-        // Pass true to let Diffable Data Source animate the inserted items gracefully without losing scroll position
         dataSource.apply(sectionSnapshot, to: 0, animatingDifferences: true)
     }
 }
 
+// MARK: - Delegate
 extension iOSRowiHierarchicalCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
 
         switch item {
@@ -194,8 +173,21 @@ extension iOSRowiHierarchicalCollectionViewController: UICollectionViewDelegate 
             onSelectRowi?(rowi)
         case let .loadMore(group):
             onLoadMore?(group)
-        case .tabaqa:
-            break
+        case let .tabaqa(group):
+            let willBeExpanded = !expandedTabaqas.contains(group.code)
+            if willBeExpanded { expandedTabaqas.insert(group.code) }
+            else { expandedTabaqas.remove(group.code) }
+
+            // Panggil helper dari base class
+            toggleExpansion(for: .tabaqa(group), isExpanding: willBeExpanded)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
+        switch item {
+        case .tabaqa(_): return false
+        default: return true
         }
     }
 }

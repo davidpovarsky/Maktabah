@@ -269,6 +269,11 @@ class LibraryDataManager {
         return books
     }
 
+    func categoryLevel(for book: BooksData) -> Int? {
+        guard let catId = book.catId else { return nil }
+        return lock.withLock { _categoryMap[catId]?.level }
+    }
+
     func buildArchive() async {
         let (built, isLoaded, rootCats) = lock.withLock {
             (_archivesBuiltFromFullData, _isDataLoaded, _allRootCategories)

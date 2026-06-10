@@ -38,71 +38,49 @@ extension CategoryData: Hashable {
 }
 
 extension BooksData: Hashable {
-    public static func == (lhs: BooksData, rhs: BooksData) -> Bool {
-        lhs.id == rhs.id
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
+    public static func == (lhs: BooksData, rhs: BooksData) -> Bool { lhs.id == rhs.id }
+    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
 }
 
-// MARK: - UICollectionViewListCell Helper
-
-extension UICollectionViewListCell {
-    /// Menerapkan warna background tema secara dinamis, dan mereset saat sel difokuskan (isFocused).
-    func applyThemeConfigurationUpdateHandler() {
-        if SettingsViewModel.shared.useDefaultTheme { return }
-        configurationUpdateHandler = { cell, state in
-            if state.isFocused {
-                cell.backgroundConfiguration = UIBackgroundConfiguration.listCell()
-                return
-            }
-
-            var backgroundConfig = UIBackgroundConfiguration.listCell()
-            backgroundConfig.backgroundColor = .appCellBackground
-            cell.backgroundConfiguration = backgroundConfig
-        }
-    }
-}
-
-// MARK: - Base Controller
-
-/// Base class untuk UICollectionView dengan layout hierarkis (outline).
-/// Subclass wajib override `makeCategoryCellRegistration()` dan `makeBookCellRegistration()`.
-class iOSHierarchicalCollectionViewController: UIViewController {
-    private(set) var collectionView: UICollectionView!
-    private(set) var dataSource: UICollectionViewDiffableDataSource<Int, LibraryItem>!
+// MARK: - Controller
+class iOSHierarchicalCollectionViewController: BaseHierarchicalListViewController<LibraryItem> {
 
     private(set) var expandedCategories: Set<Int> = []
+    private var previousExpandedCategories: Set<Int> = []
     private var pendingCategories: [CategoryData]?
 
-    let font = UIFont(name: ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 16) ??
-        .preferredFont(forTextStyle: .body)
+    var loadMoreCount: Int = 0
+    var showLoadMore: Bool = false
+    var onLoadMore: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
-        configureDataSource()
-
         if let pending = pendingCategories {
             applyCategories(pending)
             pendingCategories = nil
         }
     }
 
-    // MARK: - Layout (override untuk kustomisasi appearance)
+    override func trailingOffset(for item: LibraryItem) -> CGFloat {
+        let root: Bool
+        let indentationLevel: Int
 
-    func makeListConfiguration() -> UICollectionLayoutListConfiguration {
-        var config = UICollectionLayoutListConfiguration(
-            appearance: .insetGrouped
-        )
-        config.showsSeparators = true
-        config.backgroundColor = .appBackground
-        return config
+        switch item {
+        case .category(let category):
+            root = true
+            indentationLevel = category.level
+        case .book(let book):
+            root = false
+            let level = LibraryDataManager.shared.categoryLevel(for: book)
+            indentationLevel = level == 0 ? 1 : 2
+        case .loadMore:
+            return 16
+        }
+        // Menggunakan fungsi kalkulator dari Base Class
+        return calculateTrailingOffset(isRoot: root, indentationLevel: indentationLevel)
     }
 
-    // MARK: - Cell Registrations (wajib di-override)
+    // MARK: - Cell Registrations (Wajib di-override subclass seperti iOSSearchFilterViewController)
 
     func makeCategoryCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, CategoryData> {
         fatalError("\(type(of: self)) harus override makeCategoryCellRegistration()")
@@ -111,8 +89,6 @@ class iOSHierarchicalCollectionViewController: UIViewController {
     func makeBookCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, BooksData> {
         fatalError("\(type(of: self)) harus override makeBookCellRegistration()")
     }
-
-    var loadMoreCount: Int = 0
 
     lazy var loadMoreCellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, LibraryItem> = {
         UICollectionView.CellRegistration { [weak self] cell, _, item in
@@ -126,26 +102,9 @@ class iOSHierarchicalCollectionViewController: UIViewController {
         }
     }()
 
-    // MARK: - Private Setup
+    // MARK: - Data Source
 
-    private func setupCollectionView() {
-        let config = makeListConfiguration()
-        let layout = UICollectionViewCompositionalLayout.list(using: config)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = SettingsViewModel.shared.useDefaultTheme ? .systemGroupedBackground : .appBackground
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.contentInsetAdjustmentBehavior = .automatic
-        view.addSubview(collectionView)
-
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-    }
-
-    private func configureDataSource() {
+    override func configureDataSource() {
         let categoryCellReg = makeCategoryCellRegistration()
         let bookCellReg = makeBookCellRegistration()
         let loadMoreReg = loadMoreCellRegistration
@@ -168,19 +127,10 @@ class iOSHierarchicalCollectionViewController: UIViewController {
                 )
             }
         }
-
-        dataSource.sectionSnapshotHandlers.willExpandItem = { [weak self] item in
-            if case let .category(cat) = item { self?.expandedCategories.insert(cat.id) }
-        }
-        dataSource.sectionSnapshotHandlers.willCollapseItem = { [weak self] item in
-            if case let .category(cat) = item { self?.expandedCategories.remove(cat.id) }
-        }
+        // Note: We handle expand/collapse manually since we use custom chevron instead of outlineDisclosure.
     }
 
     // MARK: - Data Loading
-
-    var showLoadMore: Bool = false
-    var onLoadMore: (() -> Void)?
 
     func applyCategories(_ categories: [CategoryData]) {
         guard isViewLoaded else {
@@ -188,9 +138,11 @@ class iOSHierarchicalCollectionViewController: UIViewController {
             return
         }
 
-        var rootSnapshot = NSDiffableDataSourceSnapshot<Int, LibraryItem>()
-        rootSnapshot.appendSections([0])
-        dataSource.apply(rootSnapshot, animatingDifferences: false)
+        if dataSource.snapshot().numberOfSections == 0 {
+            var rootSnapshot = NSDiffableDataSourceSnapshot<Int, LibraryItem>()
+            rootSnapshot.appendSections([0])
+            dataSource.apply(rootSnapshot, animatingDifferences: false)
+        }
 
         var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<LibraryItem>()
         buildSnapshot(&sectionSnapshot, from: categories, parent: nil)
@@ -201,6 +153,20 @@ class iOSHierarchicalCollectionViewController: UIViewController {
         }
 
         dataSource.apply(sectionSnapshot, to: 0, animatingDifferences: false)
+
+        // Sync chevrons and update item UI states for all visible items.
+        // Needed when applyCategories is called after sorting/filter changes or integration state updates.
+        syncVisibleItems()
+    }
+
+    private func syncVisibleItems() {
+        let visibleItems = collectionView.indexPathsForVisibleItems.compactMap {
+            dataSource.itemIdentifier(for: $0)
+        }
+        guard !visibleItems.isEmpty else { return }
+        var snapshot = dataSource.snapshot()
+        snapshot.reconfigureItems(visibleItems)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 
     private func buildSnapshot(
@@ -214,7 +180,10 @@ class iOSHierarchicalCollectionViewController: UIViewController {
             if let parent { snapshot.append([catItem], to: parent) }
             else { snapshot.append([catItem]) }
 
-            if expandedCategories.contains(category.id) { snapshot.expand([catItem]) }
+            if expandedCategories.contains(category.id) {
+                snapshot.expand([catItem])
+                previousExpandedCategories.insert(category.id)
+            }
 
             var subCats: [CategoryData] = []
             var bookItems: [LibraryItem] = []
@@ -229,9 +198,24 @@ class iOSHierarchicalCollectionViewController: UIViewController {
         }
     }
 
-    // MARK: - Helpers
+    // MARK: - Expand/Collapse
+    
+    /// Toggles the expanded state of a CategoryData and animates the chevron.
+    func toggleCategory(_ category: CategoryData) {
+        let willBeExpanded = !expandedCategories.contains(category.id)
 
-    /// Mengambil semua BooksData secara rekursif dari sebuah kategori.
+        if willBeExpanded {
+            expandedCategories.insert(category.id)
+            previousExpandedCategories.insert(category.id)
+        } else {
+            expandedCategories.remove(category.id)
+            previousExpandedCategories.remove(category.id)
+        }
+
+        toggleExpansion(for: .category(category), isExpanding: willBeExpanded)
+    }
+
+    // MARK: - Helpers
     func getAllBooks(in category: CategoryData) -> [BooksData] {
         var books: [BooksData] = []
         for child in category.children {
@@ -241,15 +225,14 @@ class iOSHierarchicalCollectionViewController: UIViewController {
         return books
     }
 
-    /// Reconfigure hanya item yang sedang terlihat tanpa rebuild snapshot penuh.
-    func reloadVisibleItems() {
-        guard isViewLoaded, dataSource != nil else { return }
-        let visible = collectionView.indexPathsForVisibleItems.compactMap {
-            dataSource.itemIdentifier(for: $0)
+    func getAllCategories(in category: CategoryData) -> [CategoryData] {
+        var categories: [CategoryData] = []
+        for child in category.children {
+            if let sub = child as? CategoryData {
+                categories.append(sub)
+                categories.append(contentsOf: getAllCategories(in: sub))
+            }
         }
-        guard !visible.isEmpty else { return }
-        var snapshot = dataSource.snapshot()
-        snapshot.reconfigureItems(visible)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        return categories
     }
 }

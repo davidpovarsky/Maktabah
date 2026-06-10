@@ -7,27 +7,37 @@ struct AnnotationListView: View {
     @AppStorage("hideMissingBookAnnotations") private var hideMissingBookAnnotations: Bool = false
 
     var body: some View {
-        @Bindable var viewModel = navigationManager.annotationViewModel
-        ThemeList(isGrouped: true) {
-            OutlineGroup(viewModel.rootNodes, children: \.children) { node in
-                if node.kind == .annotation {
-                    Button(action: {
-                        handleSelection(node)
-                    }) {
-                        AnnotationNodeRow(node: node, viewModel: viewModel)
-                    }
-                    .buttonStyle(.plain)
-                } else {
-                    AnnotationNodeRow(node: node, viewModel: viewModel)
+        let viewModel = navigationManager.annotationViewModel
+        annotationsVC(viewModel)
+            .overlay {
+                if viewModel.isLoading {
+                    ProgressView()
+                        .controlSize(.large)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            .fill(Color.appBackground)
+                        )
                 }
             }
-        }
-        .refreshable {
-            CloudKitSyncManager.shared.fetchChanges()
-            try? await Task.sleep(nanoseconds: 1_000_000_000)
-        }
-        .onAppear {
-            viewModel.loadAnnotations()
+            .task {
+                await viewModel.loadAnnotations()
+            }
+    }
+
+    @ViewBuilder
+    private func annotationsVC(_ viewModel: iOSAnnotationViewModel) -> some View {
+        @Bindable var viewModel = viewModel
+        AnnotationViewControllerWrapper(
+            navigationManager: navigationManager,
+            viewModel: viewModel
+        )
+        .themeTint()
+        .ignoresSafeArea(edges: .vertical)
+        .onReceive(NotificationCenter.default.publisher(for: .annotationMissingBook)) { notification in
+            if let bookId = notification.object as? Int {
+                missingBookId = bookId
+                showMissingBookAlert = true
+            }
         }
         .onChange(of: hideMissingBookAnnotations) { _, _ in
             viewModel.applyFilter()
@@ -75,122 +85,7 @@ struct AnnotationListView: View {
                 }
             }
         }
-    }
 
-    private func handleSelection(_ node: iOSAnnotationNode) {
-        if node.kind == .annotation, let ann = node.annotation {
-            if let book = LibraryDataManager.shared.getBook([ann.bkId]).first {
-                navigationManager.openBook(book, initialContentId: Int(ann.contentId), targetAnnotation: ann)
-            } else {
-                missingBookId = ann.bkId
-                showMissingBookAlert = true
-            }
-        }
-    }
-}
-
-struct AnnotationNodeRow: View {
-    let node: iOSAnnotationNode
-    var viewModel: iOSAnnotationViewModel
-
-    var body: some View {
-        HStack {
-            if node.kind == .annotation, let ann = node.annotation {
-                // Leaf Node: The actual annotation
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(ann.context)
-                        .font(iOSReaderViewModel.kfgqpc)
-                        .lineLimit(2)
-                        .truncationMode(.tail)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    if let note = ann.note, !note.isEmpty {
-                        Text(note)
-                            .font(.caption)
-                            .lineLimit(4)
-                            .foregroundColor(.secondary)
-                    }
-
-                    HStack {
-                        Circle()
-                            .fill(Color(hex: ann.colorHex) ?? .yellow)
-                            .frame(width: 12, height: 12)
-
-                        Text(ann.type == .highlight ? "Highlight" : "Underline")
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
-
-                        Spacer()
-
-                        // Tampilkan Book Title jika di group by Tag, atau sebaliknya
-                        if viewModel.groupingMode == .tag {
-                            if let book = LibraryDataManager.shared.getBook([ann.bkId]).first {
-                                Text(book.book)
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
-                                    .truncationMode(.middle)
-                                    .frame(maxWidth: 120, alignment: .leading)
-                            } else {
-                                Text(.bookNotFound(bookID: ann.bkId))
-                                    .font(.caption2)
-                                    .foregroundColor(.red)
-                                    .lineLimit(1)
-                                    .truncationMode(.middle)
-                                    .frame(maxWidth: 120, alignment: .leading)
-                            }
-                        } else {
-                            if !ann.tags.isEmpty {
-                                Text(ann.tags.joined(separator: ", "))
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
-                                    .truncationMode(.tail)
-                                    .frame(maxWidth: 120, alignment: .leading)
-                            }
-                        }
-
-                        if let pgArb = ann.pageArb {
-                            Text("Vol: \(ann.partArb ?? "") Page: \(pgArb)")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                                .environment(\.layoutDirection, .leftToRight)
-                        }
-                    }
-                }
-                .environment(\.layoutDirection, .rightToLeft)
-                .padding(.vertical, 4)
-                // Add swipe actions for deletion on iOS 15+
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                    Button(role: .destructive) {
-                        viewModel.deleteAnnotation(node: node)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
-            } else {
-                // Group Node: Book, Tag, etc.
-                Label {
-                    Text(node.title)
-                        .font(iOSReaderViewModel.kfgqpc)
-                        .lineLimit(1)
-                } icon: {
-                    Image(systemName: iconForKind(node.kind))
-                        .foregroundColor(.accentColor)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-        .contentShape(Rectangle())
-    }
-
-    private func iconForKind(_ kind: AnnotationNodeKind) -> String {
-        switch kind {
-        case .book: "book.closed.fill"
-        case .tag: "tag.fill"
-        case .untagged: "tag.slash.fill"
-        default: "folder.fill"
-        }
     }
 }
 

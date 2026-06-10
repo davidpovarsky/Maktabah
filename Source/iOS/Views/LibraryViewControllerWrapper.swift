@@ -31,8 +31,12 @@ struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
             await MainActor.run {
                 context.coordinator.viewModel._showOnlyDownloadedTracker = context.coordinator.viewModel.showOnlyDownloaded
                 let categories = context.coordinator.viewModel.displayedCategories
+                let showLoadMore = context.coordinator.viewModel.hasMoreAuthors
+                vc.showLoadMore = showLoadMore
+                vc.loadMoreCount = context.coordinator.viewModel.totalAuthorCount - categories.count
                 context.coordinator.lastUpdateTrigger = context.coordinator.viewModel.updateTrigger
                 context.coordinator.lastSelectionMode = context.coordinator.viewModel.isSelectionMode
+                context.coordinator.lastShowLoadMore = showLoadMore
                 vc.applyCategories(categories)
             }
         }
@@ -44,8 +48,11 @@ struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         uiViewController.viewModel = context.coordinator.viewModel
         uiViewController.onDeleteBook = onDeleteSingleBook
         uiViewController.onDownloadBook = onDownloadSingleBook
-        uiViewController.showLoadMore = context.coordinator.viewModel.hasMoreAuthors
-        uiViewController.loadMoreCount = context.coordinator.viewModel.totalAuthorCount - context.coordinator.viewModel.displayedCategories.count
+
+        let showLoadMore = context.coordinator.viewModel.hasMoreAuthors
+        let loadMoreCount = context.coordinator.viewModel.totalAuthorCount - context.coordinator.viewModel.displayedCategories.count
+        uiViewController.showLoadMore = showLoadMore
+        uiViewController.loadMoreCount = loadMoreCount
 
         guard !context.coordinator.viewModel.isLoading else { return }
 
@@ -53,9 +60,10 @@ struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         let currentTrigger = context.coordinator.viewModel.updateTrigger
         let currentSelectionMode = context.coordinator.viewModel.isSelectionMode
 
-        if currentTrigger != context.coordinator.lastUpdateTrigger {
+        if currentTrigger != context.coordinator.lastUpdateTrigger || showLoadMore != context.coordinator.lastShowLoadMore {
             context.coordinator.lastUpdateTrigger = currentTrigger
             context.coordinator.lastSelectionMode = currentSelectionMode
+            context.coordinator.lastShowLoadMore = showLoadMore
             uiViewController.applyCategories(categories)
         } else if currentSelectionMode != context.coordinator.lastSelectionMode {
             context.coordinator.lastSelectionMode = currentSelectionMode
@@ -68,6 +76,7 @@ struct LibraryViewControllerWrapper: UIViewControllerRepresentable {
         let viewModel: iOSLibraryViewModel
         var lastUpdateTrigger: Int = -1
         var lastSelectionMode: Bool = false
+        var lastShowLoadMore: Bool = false
 
         init(navigationManager: iOSNavigationManager, viewModel: iOSLibraryViewModel) {
             self.navigationManager = navigationManager

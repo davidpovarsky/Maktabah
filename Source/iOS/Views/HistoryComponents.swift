@@ -231,7 +231,7 @@ struct BookCard: View {
         Button(action: action) {
             HStack(spacing: 8) {
                 Text(book.book)
-                    .font(iOSReaderViewModel.kfgqpc)
+                    .font(iOSReaderViewModel.kfgqpcList)
                     .foregroundColor(.primary)
                     .lineLimit(1)
 
@@ -249,6 +249,7 @@ struct BookCard: View {
                 .help(isFavorite ? String(localized: "Remove Favorite") : String(localized: "Add Favorite"))
                 .buttonStyle(.plain)
             }
+            .environment(\.layoutDirection, .rightToLeft)
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
             .frame(height: cardHeight)
