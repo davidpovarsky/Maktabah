@@ -184,6 +184,7 @@ class OptionSearchVC: NSViewController {
                 integersIn: 0..<tableView.numberOfRows
             )
         )
+        tableView.sortDescriptors.removeAll()
         onCleanUp?()
         if !bkId.isEmpty {
             libraryViewManager = nil
@@ -237,6 +238,7 @@ class OptionSearchVC: NSViewController {
             )
             results.removeAll()
             tableView.reloadData()
+            tableView.sortDescriptors.removeAll()
         }
 
         let tableToScan: Set<String>
@@ -469,6 +471,13 @@ extension OptionSearchVC: NSTableViewDataSource, NSTableViewDelegate {
         }
 
         return nil
+    }
+
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        guard let sd = tableView.sortDescriptors.first, let sdKey = sd.key,
+              let key = SearchSortKey(rawValue: sdKey) else { return }
+        SearchResultsSorter.sort(&results, by: key, ascending: sd.ascending)
+        tableView.reloadData()
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {

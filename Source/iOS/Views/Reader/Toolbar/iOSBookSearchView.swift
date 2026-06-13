@@ -16,62 +16,7 @@ struct iOSBookSearchView: View {
 
     var body: some View {
         NavigationView {
-            ThemeVStack(spacing: 0) {
-                // Search Bar
-                ThemeHStack {
-                    TextField("Search in book...", text: $viewModel.query)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onSubmit {
-                            viewModel.startSearch()
-                        }
-
-                    if viewModel.isSearching {
-                        Button(action: { viewModel.stopSearch() }) {
-                            Image(systemName: "stop.fill")
-                                .foregroundColor(.red)
-                        }
-                        .accessibilityLabel(String(localized: "Stop Search"))
-                        .help(String(localized: "Stop Search"))
-                    } else {
-                        Button(action: { viewModel.startSearch() }) {
-                            Image(systemName: "magnifyingglass")
-                        }
-                        .accessibilityLabel(String(localized: "Start Search"))
-                        .help(String(localized: "Start Search"))
-                    }
-                }
-                .padding()
-
-                // Options
-                HStack {
-                    Picker("Mode", selection: $viewModel.searchMode) {
-                        Text("==").tag(SearchMode.phrase)
-                        Text("&").tag(SearchMode.contains)
-                        Text("/").tag(SearchMode.or)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 8)
-
-                // Progress
-                if viewModel.isSearching {
-                    VStack(alignment: .leading) {
-                        if viewModel.totalRowsInTable > 0 {
-                            ProgressView(
-                                value: Double(viewModel.completedRowsInTable),
-                                total: Double(viewModel.totalRowsInTable)
-                            )
-                            .progressViewStyle(LinearProgressViewStyle())
-                        } else {
-                            ProgressView()
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-
-                Divider()
-
+            ThemeVStack {
                 // Results List
                 SearchResultsListView(
                     results: viewModel.results,
@@ -80,19 +25,39 @@ struct iOSBookSearchView: View {
                     onSelect(item.bookId, viewModel.query)
                 }
             }
-            .navigationTitle("Search in \(book.book)")
+            .navigationTitle(book.book)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Close") {
+                SearchToolbar(
+                    viewModel: viewModel,
+                    onLeadingAction: {
                         presentationMode.wrappedValue.dismiss()
-                    }
-                }
+                    },
+                    conditionalLeadingButton: false
+                )
             }
             .onAppear {
                 viewModel.selectedBookIds = [book.id]
             }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                SearchProgressView(
+                    viewModel: viewModel,
+                    showIntegrationState: false
+                )
+            }
+            .overlay(alignment: .bottom) {
+                SearchHistoryOverlay(
+                    viewModel: viewModel,
+                    isVisible: .constant(nil)
+                )
+            }
         }
+        .searchable(
+            text: $viewModel.query,
+            placement: .toolbar,
+            prompt: .searchInThisBook
+        )
+        .onSubmit(of: .search, viewModel.startSearch)
     }
 }
 

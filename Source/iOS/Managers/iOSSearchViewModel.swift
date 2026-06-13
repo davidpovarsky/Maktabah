@@ -153,16 +153,18 @@ class iOSSearchViewModel {
         updateTrigger += 1
     }
 
+    @MainActor
     func startSearch() {
         if query.isEmpty { return }
+        if searchEngine.currentlyPaused() {
+            searchEngine.resume()
+            isPaused = false
+            return
+        }
+
         if searchEngine.isRunning() {
-            if searchEngine.currentlyPaused() {
-                searchEngine.resume()
-                isPaused = false
-            } else {
-                searchEngine.pause()
-                isPaused = true
-            }
+            searchEngine.pause()
+            isPaused = true
             return
         }
 
@@ -190,27 +192,23 @@ class iOSSearchViewModel {
                 query: query,
                 mode: searchMode,
                 onInitialize: { total in
-                    Task { @MainActor in self.totalTables = total; self.completedTables = 0 }
+                    self.totalTables = total
                 },
                 onTableProgress: { completed in
-                    Task { @MainActor in self.completedTables = completed }
+                    self.completedTables = completed
                 },
                 onRowProgress: { _, tableName, current, total in
-                    Task { @MainActor in
-                        self.currentTable = tableName
-                        self.completedRowsInTable = current
+                    self.currentTable = tableName
+                    self.completedRowsInTable = current
+                    if self.totalRowsInTable != total {
                         self.totalRowsInTable = total
                     }
                 },
                 completion: { item in
-                    Task { @MainActor in self.results.append(item) }
+                    self.results.append(item)
                 },
                 onComplete: {
-                    Task { @MainActor in
-                        self.isSearching = false
-                        self.isPaused = false
-                        self.searchEngine.stop()
-                    }
+                    self.stopSearch()
                 }
             )
         }

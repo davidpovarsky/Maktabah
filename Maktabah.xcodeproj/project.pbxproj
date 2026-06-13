@@ -392,6 +392,7 @@
 		F36D684C2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */; };
 		F36D684D2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */; };
 		F36D684E2FC5C76D0028F298 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */; };
+		F374C00C2FDD69A2009D6807 /* SearchComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F374C00B2FDD69A2009D6807 /* SearchComponents.swift */; };
 		F38FF42E2FA817D9003E7B71 /* iOSBookInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */; };
 		F38FF4302FA82034003E7B71 /* iOSRowiSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */; };
 		F38FF4322FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */; };
@@ -631,6 +632,7 @@
 		F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAnnotationEditorSheet.swift; sourceTree = "<group>"; };
 		F36B95DF2FC8513F002C716F /* iOSTOCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTOCViewModel.swift; sourceTree = "<group>"; };
 		F36D684B2FC5C76D0028F298 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		F374C00B2FDD69A2009D6807 /* SearchComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComponents.swift; sourceTree = "<group>"; };
 		F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoView.swift; sourceTree = "<group>"; };
 		F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiSidebarView.swift; sourceTree = "<group>"; };
 		F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiHierarchicalCollectionViewController.swift; sourceTree = "<group>"; };
@@ -1189,6 +1191,7 @@
 			isa = PBXGroup;
 			children = (
 				F31111942FC00F060024B638 /* Bookmark */,
+				F374C00B2FDD69A2009D6807 /* SearchComponents.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1777,6 +1780,7 @@
 				F34B708C2FC87BFF00BBE904 /* UserFontManager.swift in Sources */,
 				F30577052FA46222005732C6 /* ReaderState.swift in Sources */,
 				F30577062FA46222005732C6 /* UserDefaults.swift in Sources */,
+				F374C00C2FDD69A2009D6807 /* SearchComponents.swift in Sources */,
 				F30577072FA46222005732C6 /* AppMode.swift in Sources */,
 				F30577082FA46222005732C6 /* Protocols.swift in Sources */,
 				F3BEC5682FD97AD600FA0400 /* AnnotationContentView.swift in Sources */,

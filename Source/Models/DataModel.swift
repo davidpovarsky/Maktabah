@@ -210,6 +210,73 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     }
 }
 
+enum SearchSortKey: String, CaseIterable {
+    case bookTitle, page, part, content
+
+    var label: String {
+        switch self {
+        case .bookTitle: return "Kitab"
+        case .page: return "Halaman"
+        case .part: return "Juz"
+        case .content: return "Konten"
+        }
+    }
+}
+
+struct SearchResultsSorter {
+    static func sort(_ results: inout [SearchResultItem], by key: SearchSortKey, ascending asc: Bool) {
+        switch key {
+        case .bookTitle:
+            results.sort {
+                let cmp = $0.bookTitle.localizedStandardCompare($1.bookTitle)
+                if cmp != .orderedSame { return asc ? cmp == .orderedAscending : cmp == .orderedDescending }
+                if $0.part != $1.part { return asc ? $0.part < $1.part : $0.part > $1.part }
+                return asc ? $0.page < $1.page : $0.page > $1.page
+            }
+
+        case .page:
+            results.sort {
+                let cmp = $0.bookTitle.localizedStandardCompare($1.bookTitle)
+                if cmp != .orderedSame { return cmp == .orderedAscending }
+                if $0.part != $1.part { return $0.part < $1.part }
+                return asc ? $0.page < $1.page : $0.page > $1.page
+            }
+
+        case .part:
+            results.sort {
+                let cmp = $0.bookTitle.localizedStandardCompare($1.bookTitle)
+                if cmp != .orderedSame { return cmp == .orderedAscending }
+                if $0.part != $1.part { return asc ? $0.part < $1.part : $0.part > $1.part }
+                return $0.page < $1.page
+            }
+
+        case .content:
+            results.sort {
+                let cmp = $0.attributedText.contentSortKey.localizedStandardCompare($1.attributedText.contentSortKey)
+                return asc ? cmp == .orderedAscending : cmp == .orderedDescending
+            }
+        }
+    }
+}
+
+extension NSAttributedString {
+    var contentSortKey: String {
+        let plain = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        // 2 kalimat = split by ". " atau ".\n", ambil 2 elemen pertama
+        var sentences: [String] = []
+        var current = ""
+        for char in plain {
+            current.append(char)
+            if char == "." || char == "!" || char == "?" {
+                sentences.append(current)
+                current = ""
+                if sentences.count == 2 { break }
+            }
+        }
+        return sentences.joined()
+    }
+}
+
 struct SavedResultsItem {
     let archive: String
     let tableName: String
