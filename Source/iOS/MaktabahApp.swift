@@ -18,14 +18,18 @@ struct MaktabahApp: App {
         TextViewState.shared.isDarkMode
     }
 
+    /*
     @AppStorage("lastVersionPrompted") var lastVersionPrompted = ""
     @State private var showWelcomeScreen = false
+     */
 
     @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false
 
+    /*
     var currentVersion: String {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
     }
+     */
 
     init() {
         AppConfig.initializeMode()
@@ -66,6 +70,7 @@ struct MaktabahApp: App {
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
                 .id(useDefaultTheme)
                 .toggleStyle(SwitchToggleStyle(tint: .green))
+                /*
                 .onAppear {
                     if lastVersionPrompted != currentVersion {
                         showWelcomeScreen = true
@@ -78,6 +83,7 @@ struct MaktabahApp: App {
                     })
                     .interactiveDismissDisabled()
                 }
+                 */
                 .onChange(of: useDefaultTheme) { _, _ in
                     setupGlobalAppearances()
                     // Force navigation bars and tab bars in all windows to redraw their appearances
