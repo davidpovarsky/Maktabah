@@ -180,8 +180,7 @@ class IbarotTextView: NSTextView {
         enclosingScrollView?.hasHorizontalScroller = false
 
         linkTextAttributes = [
-            .cursor: NSCursor.pointingHand,
-            .underlineStyle: 0,
+            .cursor: NSCursor.pointingHand
         ]
     }
 
@@ -251,9 +250,7 @@ class IbarotTextView: NSTextView {
         currentRenderResult = renderResult
         footnoteRanges = renderResult.footnoteRanges
 
-        guard let ts = textStorage, let lm = layoutManager else { return }
-
-        lm.allowsNonContiguousLayout = true
+        guard let ts = textStorage else { return }
 
         ts.beginEditing()
         ts.setAttributedString(renderResult.attributedString)
@@ -272,9 +269,6 @@ class IbarotTextView: NSTextView {
         }
 
         ts.endEditing()
-
-        let fullRange = NSRange(location: 0, length: ts.length)
-        lm.ensureLayout(forCharacterRange: fullRange)
 
         if keepScrollPosition, let scrollView = enclosingScrollView {
             let newTotalHeight = scrollView.documentView?.frame.size.height ?? 0
@@ -658,17 +652,43 @@ class IbarotTextView: NSTextView {
     }
 
     private func characterIndexForPoint(_ point: NSPoint) -> Int? {
-        guard let lm = layoutManager, let tc = textContainer else { return nil }
-        // Convert point ke koordinat textView (sudah dilakukan di caller)
-        // Hit glyph index dari point
+        guard let tlm = textLayoutManager else { return nil }
+
         let containerOrigin = textContainerOrigin
         let pointInTextContainer = NSPoint(
             x: point.x - containerOrigin.x,
             y: point.y - containerOrigin.y
         )
-        let glyphIndex = lm.glyphIndex(for: pointInTextContainer, in: tc)
-        let charIndex = lm.characterIndexForGlyph(at: glyphIndex)
-        return charIndex
+
+        guard let fragment = tlm.textLayoutFragment(for: pointInTextContainer) else { return nil }
+        guard let textElement = fragment.textElement,
+              let elementRange = textElement.elementRange else { return nil }
+
+        let startLocation = tlm.documentRange.location
+        let rangeStartOffset = tlm.offset(from: startLocation, to: elementRange.location)
+
+        let fragmentFrame = fragment.layoutFragmentFrame
+        let pointInFragment = CGPoint(
+            x: pointInTextContainer.x - fragmentFrame.minX,
+            y: pointInTextContainer.y - fragmentFrame.minY
+        )
+
+        for lineFragment in fragment.textLineFragments {
+            let lineFrame = lineFragment.typographicBounds
+
+            if pointInFragment.y >= lineFrame.minY && pointInFragment.y <= lineFrame.maxY {
+
+                let pointInLine = CGPoint(
+                    x: pointInFragment.x - lineFrame.minX,
+                    y: pointInFragment.y - lineFrame.minY
+                )
+
+                let relativeCharIndex = lineFragment.characterIndex(for: pointInLine)
+                return rangeStartOffset + relativeCharIndex
+            }
+        }
+
+        return rangeStartOffset
     }
 
     @objc private func deleteAnnotationMenuItem(_ sender: NSMenuItem) {
@@ -906,30 +926,39 @@ class IbarotTextView: NSTextView {
 
         let pop = NSPopover()
         pop.contentViewController = editor
-        pop.behavior = .transient  // atau .transient sesuai preferensi
+        pop.behavior = .transient
 
-        // Hit lokasi glyph rect untuk charIndex (safety checks)
         let anchorView = enclosingScrollView?.contentView ?? self
-        if let layoutManager = layoutManager,
-            let textContainer = textContainer
-        {
-            let glyphIndex = layoutManager.glyphIndexForCharacter(at: charIndex)
-            let glyphRect = layoutManager.boundingRect(
-                forGlyphRange: NSRange(location: glyphIndex, length: 1),
-                in: textContainer
-            )
+        var glyphRect: NSRect = .zero
+
+        if let tlm = textLayoutManager {
+            let docStart = tlm.documentRange.location
+
+            // Setara dengan TextKit 1 boundingRect(forGlyphRange:in:textContainer)
+            if let location = tlm.location(docStart, offsetBy: charIndex),
+               let endLocation = tlm.location(location, offsetBy: 1),
+               let textRange = NSTextRange(location: location, end: endLocation)
+            {
+                tlm.enumerateTextSegments(
+                    in: textRange,
+                    type: .standard,
+                    options: []
+                ) { _, segmentFrame, _, _ in
+                    glyphRect = segmentFrame
+                    return false
+                }
+            }
+        }
+
+        if glyphRect != .zero {
             let containerOrigin = textContainerOrigin
-            let screenRect = NSRect(
+            let rectInView = NSRect(
                 x: glyphRect.origin.x + containerOrigin.x,
                 y: glyphRect.origin.y + containerOrigin.y,
-                width: glyphRect.width,
-                height: glyphRect.height
+                width: max(glyphRect.width, 1),
+                height: max(glyphRect.height, 1)
             )
-            pop.show(
-                relativeTo: screenRect,
-                of: anchorView,
-                preferredEdge: .maxY
-            )
+            pop.show(relativeTo: rectInView, of: anchorView, preferredEdge: .maxY)
         } else {
             pop.show(relativeTo: bounds, of: anchorView, preferredEdge: .maxY)
         }
