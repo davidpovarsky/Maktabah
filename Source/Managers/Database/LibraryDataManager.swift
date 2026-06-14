@@ -806,16 +806,28 @@ class LibraryDataManager {
         db.fetchBooksInfo(for: book)
     }
 
+    /// Cek apakah Book ID memenuhi syarat untuk dihapus berdasarkan versi core
+    static func shouldRemoveBook(id: Int) -> Bool {
+        let coreVersion = AppConfig.cachedCoreVersionDouble ?? 0.1
+        return coreVersion >= 1.0 ? id > 151203 : id > 32792
+    }
+
+    /// Cek apakah Author ID memenuhi syarat untuk dihapus berdasarkan versi core
+    static func shouldRemoveAuthor(muallifId: Int) -> Bool {
+        let coreVersion = AppConfig.cachedCoreVersionDouble ?? 0.1
+        return coreVersion >= 1.0 ? muallifId > 3169 : muallifId > 2515
+    }
+
     func removeBookFromMemory(id: Int, muallifId: Int) {
         lock.withLock {
-            if id > 32792 {
+            if Self.shouldRemoveBook(id: id) {
                 _booksById.removeValue(forKey: id)
                 for root in _allRootCategories {
                     removeBookFromHierarchy(root, bookId: id)
                 }
             }
 
-            if muallifId > 2515 {
+            if Self.shouldRemoveAuthor(muallifId: muallifId) {
                 if !db.isAuthorUsed(authorId: muallifId) {
                     _authorsCache.removeValue(forKey: muallifId)
                 }

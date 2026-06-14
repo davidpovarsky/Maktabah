@@ -263,6 +263,21 @@ struct AppConfig {
         set { UserDefaults.standard.set(newValue, forKey: cachedCoreVersionKey) }
     }
 
+    /// Versi core dalam bentuk Double (e.g., 1.1) untuk kemudahan komparasi angka
+    static var cachedCoreVersionDouble: Double? {
+        // 1. Pastikan string versi tidak nil
+        guard let versionString = cachedCoreVersion else { return nil }
+
+        // 2. Ambil hanya pola angka dan titik (misal: "1.1" dari "v1.1-core")
+        let regex = /[0-9]+\.[0-9]+/
+        if let match = versionString.firstMatch(of: regex) {
+            return Double(match.output)
+        }
+
+        // Jika format string tidak sesuai pola angka desimal
+        return nil
+    }
+
     /// Tandai telah selesai check versi
     static func markCoreVersionCheckDone(newVersion: String?) {
         if let v = newVersion {

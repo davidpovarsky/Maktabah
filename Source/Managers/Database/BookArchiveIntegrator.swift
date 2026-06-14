@@ -234,8 +234,9 @@ final class BookArchiveIntegrator {
                 fileReplacementFailedError = error
             }
 
-            // Hapus dari main.sqlite jika bkid > 32792
-            if book.id > 32792, let mainDbPath = AppConfig.mainDatabasePath {
+            // Hapus dari main.sqlite jika buku adalah yang telah diimport.
+            if LibraryDataManager.shouldRemoveBook(id: book.id),
+               let mainDbPath = AppConfig.mainDatabasePath {
                 do {
                     let mainDb = try openDatabase(path: mainDbPath)
                     let query = #"DELETE FROM "0bok" WHERE bkid = \#(book.id);"#
@@ -248,8 +249,9 @@ final class BookArchiveIntegrator {
                 }
             }
 
-            // Hapus dari special.sqlite jika authid > 2515
-            if book.muallif > 2515, let specialDbPath = AppConfig.specialDatabasePath {
+            // Hapus dari special.sqlite jika authid dari buku yang telah diimport.
+            if LibraryDataManager.shouldRemoveAuthor(muallifId: book.muallif),
+               let specialDbPath = AppConfig.specialDatabasePath {
                 if !DatabaseManager.shared.isAuthorUsed(authorId: book.muallif) {
                     do {
                         let specialDb = try openDatabase(path: specialDbPath)

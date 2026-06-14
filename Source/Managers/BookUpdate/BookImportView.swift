@@ -282,7 +282,8 @@ struct OfflineImportFormView: View {
             HStack {
                 if isBookIdTaken {
                     if let id = Int(customBookIdText) {
-                        let system = id <= 32792
+                        let coreVersion = AppConfig.cachedCoreVersionDouble ?? 0.1
+                        let system = coreVersion < 1.0 ? id <= 32792 : id <= 151203
                         statusBadge(
                             text: system
                                 ? "ID reserved by system".localized
@@ -600,7 +601,9 @@ struct OfflineImportFormView: View {
             if customBookIdText.isEmpty { return false }
             guard let id = Int(customBookIdText), id > 0 else { return false }
             if isBookIdTaken {
-                if id <= 32792 { return false }
+                let coreVersion = AppConfig.cachedCoreVersionDouble ?? 0.1
+                let system = coreVersion < 1.0 ? id <= 32792 : id <= 151203
+                if system { return false }
             }
         } else {
             if selectedBookId == nil { return false }

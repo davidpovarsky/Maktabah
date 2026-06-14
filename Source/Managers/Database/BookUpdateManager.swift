@@ -905,10 +905,16 @@ final class BookUpdateManager {
         let ftsPath = AppConfig.archiveFtsDatabasePath(archiveId: archiveId)
 
         // Phase 1: Rename tabel archive DULU (sebelum main DB disentuh).
-        // Jika gagal di sini, main DB masih bersih → aman untuk retry.
         if let archivePath {
             let archiveDb = try openDatabase(path: archivePath)
             defer { sqlite3_close(archiveDb) }
+
+            // Tambahan Proteksi: Hapus tabel atau indeks target lama jika sudah ada
+            // untuk menghindari bentrok nama (Error: table or index already exists)
+            _ = sqlite3_exec(archiveDb, "DROP TABLE IF EXISTS \"b\(newId)\";", nil, nil, nil)
+            _ = sqlite3_exec(archiveDb, "DROP INDEX IF EXISTS \"b\(newId)\";", nil, nil, nil)
+            _ = sqlite3_exec(archiveDb, "DROP TABLE IF EXISTS \"t\(newId)\";", nil, nil, nil)
+            _ = sqlite3_exec(archiveDb, "DROP INDEX IF EXISTS \"t\(newId)\";", nil, nil, nil)
 
             let sqlB = "ALTER TABLE \"b\(oldId)\" RENAME TO \"b\(newId)\";"
             guard sqlite3_exec(archiveDb, sqlB, nil, nil, nil) == SQLITE_OK else {
@@ -931,10 +937,12 @@ final class BookUpdateManager {
         }
 
         // Phase 2: Rename tabel FTS.
-        // Jika gagal, rollback Phase 1 agar main DB tetap bisa dijaga bersih.
         if let ftsPath {
             let ftsDb = try openDatabase(path: ftsPath)
             defer { sqlite3_close(ftsDb) }
+
+            // Tambahan Proteksi: Hapus tabel FTS target lama jika ada
+            _ = sqlite3_exec(ftsDb, "DROP TABLE IF EXISTS \"b\(newId)_fts\";", nil, nil, nil)
 
             let sqlFTS = "ALTER TABLE \"b\(oldId)_fts\" RENAME TO \"b\(newId)_fts\";"
             if sqlite3_exec(ftsDb, sqlFTS, nil, nil, nil) != SQLITE_OK {
@@ -948,7 +956,16 @@ final class BookUpdateManager {
         }
 
         // Phase 3: Update main DB TERAKHIR.
-        // Kalau ini gagal, semua rename di atas di-rollback → data tetap konsisten.
+        // Tambahan Proteksi: Hapus baris dengan newId di main DB jika sudah ada.
+        // Ini krusial agar query UPDATE di bawah tidak melanggar constraint PRIMARY KEY atau UNIQUE pada `0bok`.
+        let deleteSql = "DELETE FROM `0bok` WHERE `bkid` = ?;"
+        var deleteStmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, deleteSql, -1, &deleteStmt, nil) == SQLITE_OK {
+            sqlite3_bind_int64(deleteStmt, 1, Int64(newId))
+            sqlite3_step(deleteStmt)
+        }
+        sqlite3_finalize(deleteStmt)
+
         let updateSql = "UPDATE `0bok` SET `bkid` = ? WHERE `bkid` = ?;"
         var updateStmt: OpaquePointer?
         guard sqlite3_prepare_v2(db, updateSql, -1, &updateStmt, nil) == SQLITE_OK else {
