@@ -27,11 +27,15 @@ class BookUpdateViewModel: ObservableObject {
     // MARK: - Computed Properties
 
     var selectedCount: Int {
-        availableUpdates.filter { $0.isSelected }.count
+        availableUpdates.reduce(into: 0) { count, update in
+            if update.isSelected { count += 1 }
+        }
     }
 
     var totalSelectedSize: Int64 {
-        availableUpdates.filter { $0.isSelected }.reduce(0) { $0 + $1.fileSize }
+        availableUpdates.reduce(into: 0 as Int64) { size, update in
+            if update.isSelected { size += update.fileSize }
+        }
     }
 
     var totalSelectedSizeFormatted: String {
@@ -46,7 +50,9 @@ class BookUpdateViewModel: ObservableObject {
     }
 
     var needsUpdateCount: Int {
-        availableUpdates.filter { $0.needsUpdate }.count
+        availableUpdates.reduce(into: 0) { count, update in
+            if update.needsUpdate { count += 1 }
+        }
     }
 
     // MARK: - Load Available Updates

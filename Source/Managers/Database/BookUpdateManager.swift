@@ -128,7 +128,9 @@ final class BookUpdateManager {
         }
 
         #if DEBUG
-            let needsUpdateCount = items.filter { $0.needsUpdate }.count
+            let needsUpdateCount = items.reduce(into: 0) { count, item in
+                if item.needsUpdate { count += 1 }
+            }
             print(
                 "✅ [Fetch Updates] Loaded \(items.count) books, \(needsUpdateCount) need updates"
             )

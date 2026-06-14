@@ -338,11 +338,10 @@ class HistoryViewModel: ObservableObject {
 
             // Deletions
             let bookIdsToDelete = entriesByBookId.values
-                .filter { entry in
-                    guard let ckId = entry.ckRecordId else { return false }
-                    return recordIdsToDelete.contains(ckId)
+                .compactMap { entry -> Int? in
+                    guard let ckId = entry.ckRecordId, recordIdsToDelete.contains(ckId) else { return nil }
+                    return entry.bookId
                 }
-                .map { $0.bookId }
 
             for bookId in bookIdsToDelete {
                 entriesByBookId.removeValue(forKey: bookId)

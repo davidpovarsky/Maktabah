@@ -102,19 +102,18 @@ class BookConnection {
         }
     }
 
-    func applyShortsMapping(to text: String, with map: [String: String])
+    func applyShortsMapping(to text: String, with mapping: ShortsMapping)
         -> String
     {
-        guard !map.isEmpty else { return text }
+        guard !mapping.isEmpty else { return text }
 
         var output = text
 
-        // Urutkan key dari yang TERPANJANG ke TERPENDEK
-        // supaya "An" tidak kalah dengan "A"
-        let sortedKeys = map.keys.sorted { $0.count > $1.count }
-
-        for key in sortedKeys {
-            if let replacement = map[key] {
+        // Menggunakan sortedKeys yang sudah di-cache dari ShortsMapping.
+        // Key sudah diurutkan dari yang TERPANJANG ke TERPENDEK supaya "An" tidak kalah dengan "A".
+        // Ini menghemat O(N log N) sorting pada setiap operasi mapping.
+        for key in mapping.sortedKeys {
+            if let replacement = mapping.map[key] {
                 output = output.replacingOccurrences(
                     of: key,
                     with: "\(replacement)\n"

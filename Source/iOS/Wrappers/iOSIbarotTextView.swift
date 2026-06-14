@@ -98,9 +98,7 @@ class iOSCustomIbarotTextView: UITextView {
 
         let searchTerms = searchText
             .split(separator: ",")
-            .map { $0.trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty }
-            .map { $0.normalizeArabic(true) }
+            .compactMap { let t = $0.trimmingCharacters(in: .whitespaces); return t.isEmpty ? nil : t.normalizeArabic(true) }
 
         guard !searchTerms.isEmpty else { return }
 

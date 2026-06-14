@@ -106,8 +106,7 @@ struct iOSAnnotationEditorSheet: View {
 
         updated.tags = tagsText
             .split(separator: ",")
-            .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
+            .compactMap { let t = String($0).trimmingCharacters(in: .whitespacesAndNewlines); return t.isEmpty ? nil : t }
 
         onSave(updated)
         dismiss()

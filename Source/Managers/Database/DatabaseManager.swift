@@ -13,6 +13,12 @@ import UIKit
 import Foundation
 import SQLite3
 
+struct ShortsMapping {
+    let map: [String: String]
+    let sortedKeys: [String]
+    var isEmpty: Bool { map.isEmpty }
+}
+
 // DatabaseManager.swift
 class DatabaseManager {
     static var shared: DatabaseManager = .init()
@@ -49,7 +55,7 @@ class DatabaseManager {
     private let colAuthInf = "inf"
     private let colAuthLng = "Lng"
 
-    var shortsCache: [String: [String: String]] = [:]
+    var shortsCache: [String: ShortsMapping] = [:]
 
     // MARK: - Archive Availability
 
@@ -327,7 +333,7 @@ class DatabaseManager {
         }
     }
 
-    func loadShortsForBook(_ bkid: String) -> [String: String] {
+    func loadShortsForBook(_ bkid: String) -> ShortsMapping {
         lock.lock()
         defer { lock.unlock() }
 
@@ -336,7 +342,7 @@ class DatabaseManager {
         }
 
         guard let dbSpecial = dbSpecial else {
-            return [:]
+            return ShortsMapping(map: [:], sortedKeys: [])
         }
 
         var dict: [String: String] = [:]
@@ -350,8 +356,10 @@ class DatabaseManager {
             }
         }
 
-        shortsCache[bkid] = dict
-        return dict
+        let sortedKeys = dict.keys.sorted { $0.count > $1.count }
+        let mapping = ShortsMapping(map: dict, sortedKeys: sortedKeys)
+        shortsCache[bkid] = mapping
+        return mapping
     }
 
     func getAuthor(_ id: Int) -> Muallif? {

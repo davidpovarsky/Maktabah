@@ -26,6 +26,7 @@ public final class StringInterner {
     /// - Parameter value: String yang akan diintern.
     /// - Returns: String yang telah diintern.
     public func intern(_ value: String) -> String {
+        guard !value.isEmpty else { return value }
         lock.lock()
         defer { lock.unlock() }
 

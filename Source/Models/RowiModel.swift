@@ -20,16 +20,18 @@ class Rowi: Codable {
     /// Rotbah Ibnu Hajar
     var rotba: String? {
         didSet {
-            rotba = rotba?.convertedTabaqa()
-            rotba = rotba.map { StringInterner.shared.intern($0) }
+            if let rotba {
+                self.rotba = StringInterner.shared.intern(rotba.convertedTabaqa())
+            }
         }
     }
 
     /// Rotbah Dzahabi
     var rZahbi: String? {
         didSet {
-            rZahbi = rZahbi?.convertedTabaqa()
-            rZahbi = rZahbi.map { StringInterner.shared.intern($0) }
+            if let rZahbi {
+                self.rZahbi = StringInterner.shared.intern(rZahbi.convertedTabaqa())
+            }
         }
     }
 
@@ -53,11 +55,11 @@ class Rowi: Codable {
 
     var who: String? {
         didSet {
-            who = who?.replaceKutubCodes(
-                with: TabaqaGroup.mappingRowiKutub,
-                mode: .mulakhos
-            )
-            who = who.map { StringInterner.shared.intern($0) }
+            if let who {
+                self.who = StringInterner.shared.intern(who.replaceKutubCodes(
+                    with: TabaqaGroup.mappingRowiKutub, mode: .mulakhos)
+                )
+            }
         }
     }
 

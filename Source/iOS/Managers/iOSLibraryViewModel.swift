@@ -343,8 +343,9 @@ class iOSLibraryViewModel {
     func isCategoryPartiallySelected(_ category: CategoryData) -> Bool {
         let books = selectableBooks(in: category)
         guard !books.isEmpty else { return false }
-        let selectedCount = books.filter { selectedBookIds.contains($0.id) }.count
-        return selectedCount > 0 && selectedCount < books.count
+        let hasSelected = books.contains { selectedBookIds.contains($0.id) }
+        let hasUnselected = books.contains { !selectedBookIds.contains($0.id) }
+        return hasSelected && hasUnselected
     }
 
     func toggleCategorySelection(_ category: CategoryData) {
