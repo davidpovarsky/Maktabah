@@ -10,8 +10,8 @@ import UIKit
 class iOSAnnotationViewController: UIViewController {
     // MARK: - Public interface
 
-    var onAnnotationSelected: ((iOSAnnotationNode) -> Void)?
-    var onAnnotationDeleted: ((iOSAnnotationNode) -> Void)?
+    var onAnnotationSelected: ((SwiftUIAnnotationNode) -> Void)?
+    var onAnnotationDeleted: ((SwiftUIAnnotationNode) -> Void)?
     var onNeedFullReload: (() -> Void)?
 
     // MARK: - Private
@@ -22,14 +22,12 @@ class iOSAnnotationViewController: UIViewController {
 
     private let font = UIFont.arabicFont(size: 20)
 
-    private var currentNodes: [iOSAnnotationNode] = []
+    private var currentNodes: [SwiftUIAnnotationNode] = []
     private var currentGroupingMode: AnnotationGroupingMode = .book
 
     private let sectionInsets: NSDirectionalEdgeInsets = .init(
         top: 5, leading: ListLayoutMetrics.defaultPadding, bottom: 5, trailing: ListLayoutMetrics.defaultPadding
     )
-
-
 
     // MARK: - Lifecycle
 
@@ -39,11 +37,9 @@ class iOSAnnotationViewController: UIViewController {
         configureDataSource()
     }
 
-
-
     // MARK: - Full Rebuild (nodes passed from ViewModel)
 
-    func handleTreeUpdate(nodes: [iOSAnnotationNode], groupingMode: AnnotationGroupingMode) {
+    func handleTreeUpdate(nodes: [SwiftUIAnnotationNode], groupingMode: AnnotationGroupingMode) {
         currentNodes = nodes
         currentGroupingMode = groupingMode
         rebuildSnapshot(animated: true)
@@ -100,7 +96,7 @@ class iOSAnnotationViewController: UIViewController {
     private func handleTagDiff(_ diff: TagUpdateDiff) {
         // 1. Process Removed
         for entry in diff.removed {
-            let sectionID = iOSAnnotationNode.id(from: entry.tagNode)
+            let sectionID = SwiftUIAnnotationNode.id(from: entry.tagNode)
             var sectionSnap = dataSource.snapshot(for: sectionID)
             let targetAnnotationId = entry.annotationNode.annotation?.id
 
@@ -124,7 +120,7 @@ class iOSAnnotationViewController: UIViewController {
 
         // 2. Process Added
         for entry in diff.added {
-            let sectionID = iOSAnnotationNode.id(from: entry.tagNode)
+            let sectionID = SwiftUIAnnotationNode.id(from: entry.tagNode)
 
             var rootSnap = dataSource.snapshot()
             if !rootSnap.sectionIdentifiers.contains(sectionID) {
@@ -143,7 +139,7 @@ class iOSAnnotationViewController: UIViewController {
             if let existing = existingGroupItem {
                 groupItem = existing
             } else {
-                let groupNode = iOSAnnotationNode(
+                let groupNode = SwiftUIAnnotationNode(
                     id: sectionID,
                     title: entry.tagNode.title,
                     kind: entry.tagNode.kind,
@@ -154,7 +150,7 @@ class iOSAnnotationViewController: UIViewController {
                 sectionSnap.append([groupItem])
             }
 
-            let newNode = iOSAnnotationNode(from: entry.annotationNode, parentId: sectionID)
+            let newNode = SwiftUIAnnotationNode(from: entry.annotationNode, parentId: sectionID)
             let newItem = AnnotationItem.annotation(newNode)
             
             if !sectionSnap.items.contains(where: { $0.node.annotation?.id == newNode.annotation?.id }) {
@@ -222,7 +218,7 @@ class iOSAnnotationViewController: UIViewController {
 
             if !oldItems.isEmpty {
                 for oldItem in oldItems {
-                    let updatedNode = iOSAnnotationNode(
+                    let updatedNode = SwiftUIAnnotationNode(
                         id: oldItem.node.id, // Pertahankan ID unik yang ada (termasuk parent ID)
                         title: updatedAnnotation.note?.isEmpty == false ? updatedAnnotation.note! : updatedAnnotation.context,
                         kind: .annotation,
@@ -323,7 +319,7 @@ class iOSAnnotationViewController: UIViewController {
 
     private func configureDataSource() {
         // Group cell — reuse ListContentView/ListContentConfiguration
-        let groupCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, iOSAnnotationNode> {
+        let groupCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, SwiftUIAnnotationNode> {
             [weak self] cell, _, node in
             guard let self else { return }
 
@@ -344,7 +340,7 @@ class iOSAnnotationViewController: UIViewController {
         }
 
         // Annotation (leaf) cell
-        let annotationCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, iOSAnnotationNode> {
+        let annotationCellReg = UICollectionView.CellRegistration<UICollectionViewListCell, SwiftUIAnnotationNode> {
             cell, _, node in
             let config = AnnotationContentConfiguration(
                 annotation: node.annotation,
@@ -367,7 +363,7 @@ class iOSAnnotationViewController: UIViewController {
 
     // MARK: - Data
 
-    func applyNodes(_ nodes: [iOSAnnotationNode], groupingMode: AnnotationGroupingMode, animated: Bool = false) {
+    func applyNodes(_ nodes: [SwiftUIAnnotationNode], groupingMode: AnnotationGroupingMode, animated: Bool = false) {
         currentNodes = nodes
         currentGroupingMode = groupingMode
 
@@ -429,7 +425,7 @@ class iOSAnnotationViewController: UIViewController {
 
     // MARK: - Expand / Collapse
 
-    private func toggleGroup(_ node: iOSAnnotationNode) {
+    private func toggleGroup(_ node: SwiftUIAnnotationNode) {
         let id = node.id
         let wasExpanded = expandedGroups.contains(id)
         let willExpand = !wasExpanded

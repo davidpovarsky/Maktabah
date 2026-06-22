@@ -16,7 +16,7 @@ class iOSNavigationManager {
         let id: UUID
         let book: BooksData
         var initialContentId: Int?
-        var viewModel: iOSReaderViewModel
+        var viewModel: ReaderViewModel
 
         static func == (lhs: ReaderTab, rhs: ReaderTab) -> Bool {
             lhs.id == rhs.id
@@ -31,10 +31,10 @@ class iOSNavigationManager {
     var activeIntegrationStates: [BundleArchiveDownloadProgressState] = []
     var alertMessage: AlertMessage?
 
-    var libraryViewModel = iOSLibraryViewModel()
-    var searchViewModel = iOSSearchViewModel()
-    var authorViewModel = iOSAuthorViewModel()
-    var annotationViewModel = iOSAnnotationViewModel()
+    var libraryViewModel = LibraryViewModel()
+    var searchViewModel = SearchViewModel()
+    var authorViewModel = NarratorViewModel()
+    var annotationViewModel = AnnotationViewModel()
 
     var openTabs: [ReaderTab] = []
     var activeTabId: UUID?
@@ -320,7 +320,7 @@ class iOSNavigationManager {
                 openTabs[existingTabIndex] = updatedTab
             }
         } else {
-            let viewModel = iOSReaderViewModel(book: book)
+            let viewModel = ReaderViewModel(book: book)
             viewModel.searchText = searchText ?? ""
             viewModel.targetAnnotation = targetAnnotation
             viewModel.loadInitialContent(initialContentId: initialContentId)

@@ -34,8 +34,11 @@ class SplitVC: NSSplitViewController {
     // Mode-specific Results
     private(set) var optionSearchVC: OptionSearchVC?
 
+    lazy var authorViewModel = NarratorViewModel()
+
     lazy var rowiResultsVC: RowiResultsVC = {
         let rowiResultsVC = RowiResultsVC(nibName: "RowiResultsVC", bundle: nil)
+        rowiResultsVC.viewModel = authorViewModel
         return rowiResultsVC
     }()
 
@@ -77,16 +80,13 @@ class SplitVC: NSSplitViewController {
             return [ibarotTextVC]  // Cuma init yang diperlukan
         case .search:
             return [ibarotTextVC, optionSearchVC]
-        case .author:
+        case .narrator:
             return [ibarotTextVC, rowiResultsVC]
         }
     }
 
     func switchToMode(_ mode: AppMode) {
         // Simpan title sebelum switch
-        let savedTitle = view.window?.title ?? ""
-        let savedSubtitle = view.window?.subtitle ?? ""
-
         stateManager.saveState(
             for: currentMode,
             components: components(for: currentMode)
@@ -111,8 +111,6 @@ class SplitVC: NSSplitViewController {
         setAnnotationsPanelDelegate()
 
         currentMode = mode
-
-        ibarotTextVC.restoreWindowTitleAfterModeSwitch(oldTitle: savedTitle, oldSubtitle: savedSubtitle)
     }
 
     func persistCurrentStateToDisk() {
@@ -132,7 +130,7 @@ class SplitVC: NSSplitViewController {
             setupViewerMode()
         case .search:
             setupSearchMode()
-        case .author:
+        case .narrator:
             setupAuthorMode()
         }
 
@@ -222,7 +220,9 @@ class SplitVC: NSSplitViewController {
 
     private func setupAuthorMode() {
         if rowiSidebarVC == nil {
-            rowiSidebarVC = RowiSidebarVC()
+            let vc = RowiSidebarVC()
+            vc.viewModel = authorViewModel
+            rowiSidebarVC = vc
         }
         ensureSidebarContainerIfNeeded(thickness: 180)
         setSidebarChild(rowiSidebarVC!)
@@ -333,7 +333,7 @@ class SplitVC: NSSplitViewController {
         switch currentMode {
         case .viewer: return libraryVC
         case .search: return searchSidebarVC
-        case .author: return rowiSidebarVC
+        case .narrator: return rowiSidebarVC
         }
     }
 
@@ -439,7 +439,7 @@ extension SplitVC {
             if let libraryVC = searchSidebarVC {
                 libraryVC.searchField.becomeFirstResponder()
             }
-        case .author:
+        case .narrator:
             if #available(macOS 26.1, *) {
                 searchFieldIsHidden.toggle()
                 setupSearchFieldTahoe()

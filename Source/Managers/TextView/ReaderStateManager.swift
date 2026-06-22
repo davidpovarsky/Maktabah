@@ -6,18 +6,6 @@
 import Cocoa
 import Foundation
 
-/// Protokol untuk komponen UI yang bisa menyimpan dan memulihkan state ke ReaderState
-protocol ReaderStateComponent: AnyObject {
-    /// Memperbarui nilai pada `ReaderState` berdasarkan kondisi UI komponen ini.
-    /// - Parameter state: Referensi inout ke objek `ReaderState` yang akan diperbarui.
-    func updateState(_ state: inout ReaderState)
-    /// Memulihkan UI komponen ini dari data yang tersimpan pada `ReaderState`.
-    /// - Parameter state: Objek `ReaderState` sumber data untuk pemulihan.
-    func restore(from state: ReaderState)
-    /// Membersihkan state/UI komponen saat reset. Opsional untuk diimplementasikan.
-    func cleanUpState() 
-}
-
 class ReaderStateManager {
 
     // MARK: - State Storage
@@ -44,7 +32,7 @@ class ReaderStateManager {
         switch mode {
         case .viewer: filename = "viewer_state.json"
         case .search: filename = "search_state.json"
-        case .author: filename = "author_state.json"
+        case .narrator: filename = "author_state.json"
         }
         return statesDirectory.appendingPathComponent(filename)
     }
@@ -64,9 +52,9 @@ class ReaderStateManager {
                 searchModeState = loadStateFromFile(for: .search) ?? ReaderState()
             }
             return searchModeState!
-        case .author:
+        case .narrator:
             if authorModeState == nil {
-                authorModeState = loadStateFromFile(for: .author) ?? ReaderState()
+                authorModeState = loadStateFromFile(for: .narrator) ?? ReaderState()
             }
             return authorModeState!
         }
@@ -80,7 +68,7 @@ class ReaderStateManager {
         switch mode {
         case .viewer: viewerModeState = state
         case .search: searchModeState = state
-        case .author: authorModeState = state
+        case .narrator: authorModeState = state
         }
     }
 
@@ -88,7 +76,7 @@ class ReaderStateManager {
     func persistToDisk() {
         if viewerModeState != nil { saveStateToFile(viewerModeState!, for: .viewer) }
         if searchModeState != nil { saveStateToFile(searchModeState!, for: .search) }
-        if authorModeState != nil { saveStateToFile(authorModeState!, for: .author) }
+        if authorModeState != nil { saveStateToFile(authorModeState!, for: .narrator) }
     }
     
     /// Menyimpan state ke disk untuk mode tertentu.

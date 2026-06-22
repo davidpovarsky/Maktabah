@@ -173,7 +173,7 @@ extension iOSSearchFilterViewController: UICollectionViewDelegate {
 // MARK: - SwiftUI Wrapper
 
 struct SearchFilterUIKitView: UIViewControllerRepresentable {
-    @Bindable var viewModel: iOSSearchViewModel
+    @Bindable var viewModel: SearchViewModel
     var displayedCategories: [CategoryData]
     var updateTrigger: Int = 0
     var onTap: () -> Void = {}
@@ -182,7 +182,7 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
         let vc = iOSSearchFilterViewController()
         vc.selectedBookIds = viewModel.selectedBookIds
         vc.onSelectionChanged = { ids in
-            viewModel.selectedBookIds = ids
+            viewModel.setSelectedBooks(ids)
         }
         vc.additionalSafeAreaInsets.bottom = 50
 
