@@ -1,3 +1,4 @@
+
 //
 //  BookConnection.swift
 //  maktab
@@ -19,7 +20,7 @@ class BookConnection {
     private let totalPartsCache = NSCache<NSString, NSNumber>()
 
     init() {
-        totalPartsCache.countLimit = 100 // max 100 books di cache
+        totalPartsCache.countLimit = 100
         totalPartsCache.name = "BookTotalPartsCache"
     }
 
@@ -27,20 +28,21 @@ class BookConnection {
         db = nil
     }
 
-    /// Connect ke archive database dengan availability check
-    /// - Parameter archive: Archive ID (1-20, sesuai kolom Archive di tabel 0bok)
-    /// - Throws: ArchiveError jika archive tidak tersedia
     func connect(archive: Int) throws {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            try OtzariaMaktabahBridge.shared.openIfNeeded()
+            db = nil
+            return
+        }
+
         guard let archivePath = AppConfig.archiveDatabasePath(archiveId: archive) else {
             throw ArchiveError.databasePathNotAvailable
         }
 
-        // Check apakah archive tersedia
         guard DatabaseManager.shared.checkArchiveAvailability(archiveId: archive) else {
             throw ArchiveError.archiveNotAvailable(archiveId: archive)
         }
 
-        // Tutup koneksi lama jika ada
         db = nil
 
         let flags = SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
@@ -48,9 +50,17 @@ class BookConnection {
         do {
             db = try SQLiteDatabase(path: archivePath, flags: flags)
         } catch let SQLiteError.connectionFailed(msg) {
-            throw NSError(domain: "BookConnection", code: 1, userInfo: [NSLocalizedDescriptionKey: msg])
+            throw NSError(
+                domain: "BookConnection",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: msg]
+            )
         } catch {
-            throw NSError(domain: "BookConnection", code: 1, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])
+            throw NSError(
+                domain: "BookConnection",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+            )
         }
     }
 
@@ -60,7 +70,10 @@ class BookConnection {
         for aya: Int,
         in surah: Int
     ) -> BookContent? {
-        // pastikan koneksi
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return nil
+        }
+
         if db == nil {
             try? connect(archive: archive)
         }
@@ -92,26 +105,25 @@ class BookConnection {
                         part: Int(part)
                     )
                 }
+
                 return nil
             }.compactMap { $0 }.first
         } catch {
             #if DEBUG
-            	print("fetchTafseer error:", error)
+            print("fetchTafseer error:", error)
             #endif
             return nil
         }
     }
 
-    func applyShortsMapping(to text: String, with mapping: ShortsMapping)
-        -> String
-    {
+    func applyShortsMapping(
+        to text: String,
+        with mapping: ShortsMapping
+    ) -> String {
         guard !mapping.isEmpty else { return text }
 
         var output = text
 
-        // Menggunakan sortedKeys yang sudah di-cache dari ShortsMapping.
-        // Key sudah diurutkan dari yang TERPANJANG ke TERPENDEK supaya "An" tidak kalah dengan "A".
-        // Ini menghemat O(N log N) sorting pada setiap operasi mapping.
         for key in mapping.sortedKeys {
             if let replacement = mapping.map[key] {
                 output = output.replacingOccurrences(
@@ -125,6 +137,10 @@ class BookConnection {
     }
 
     func getCached(bkId: String, idContent: Int) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return nil
+        }
+
         if let bkIdInt = Int(bkId),
            let cached = BookPageCache.shared.get(
                bookId: bkIdInt,
@@ -138,6 +154,10 @@ class BookConnection {
     }
 
     private func setCache(bkId: String, content: BookContent) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return
+        }
+
         if let bookId = Int(bkId) {
             BookPageCache.shared.set(bookId: bookId, content: content)
         }
@@ -147,6 +167,7 @@ class BookConnection {
 extension BookConnection {
     private func parsePartValue(row: SQLiteRow, column: Int32) -> Int {
         let type = row.type(at: column)
+
         if type == SQLITE_INTEGER {
             return Int(row.int64(at: column))
         } else if type == SQLITE_TEXT {
@@ -154,29 +175,39 @@ extension BookConnection {
                 if let dashIndex = strValue.firstIndex(of: "-") {
                     return Int(strValue[..<dashIndex]) ?? 1
                 }
+
                 return Int(strValue) ?? 1
             }
         }
+
         return 1
     }
 
-    /// UPDATED: getContent dengan decompress otomatis
-    func getContent(bkid: String, contentId: Int, quran: Bool = false)
-        -> BookContent?
-    {
+    func getContent(
+        bkid: String,
+        contentId: Int,
+        quran: Bool = false
+    ) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getContent(
+                bookId: bookId,
+                contentId: contentId
+            )
+        }
+
         guard let db else { return nil }
 
         if let cached = getCached(bkId: bkid, idContent: contentId) {
-            #if DEBUG
-                print("return cached")
-            #endif
             return cached
         }
 
         let querySQL = quran ? quranContentQuery(forBook: bkid) : contentQuery(forBook: bkid)
 
         do {
-            let contents = try db.fetch(query: querySQL, parameters: [String(contentId)]) { row -> BookContent? in
+            let contents = try db.fetch(
+                query: querySQL,
+                parameters: [String(contentId)]
+            ) { row -> BookContent? in
                 if let nassBlob = row.blob(at: 0) {
                     let decompressedNass = ReusableFunc.decompressData(nassBlob)
 
@@ -185,7 +216,9 @@ extension BookConnection {
                     let part = self.parsePartValue(row: row, column: 3)
 
                     let shortsMap = DatabaseManager.shared.loadShortsForBook(bkid)
-                    let finalNass = shortsMap.isEmpty ? decompressedNass : self.applyShortsMapping(to: decompressedNass, with: shortsMap)
+                    let finalNass = shortsMap.isEmpty
+                        ? decompressedNass
+                        : self.applyShortsMapping(to: decompressedNass, with: shortsMap)
 
                     let newContent = BookContent(
                         id: Int(id),
@@ -198,8 +231,10 @@ extension BookConnection {
                         newContent.surah = Int(row.int64(at: 4))
                         newContent.aya = Int(row.int64(at: 5))
                     }
+
                     return newContent
                 }
+
                 return nil
             }.compactMap { $0 }
 
@@ -215,6 +250,10 @@ extension BookConnection {
     }
 
     func getFirstContent(bkid: String) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookId)
+        }
+
         guard let db else { return nil }
 
         let querySQL = """
@@ -234,7 +273,9 @@ extension BookConnection {
                     let part = self.parsePartValue(row: row, column: 3)
 
                     let shortsMap = DatabaseManager.shared.loadShortsForBook(bkid)
-                    let finalNass = shortsMap.isEmpty ? decompressedNass : self.applyShortsMapping(to: decompressedNass, with: shortsMap)
+                    let finalNass = shortsMap.isEmpty
+                        ? decompressedNass
+                        : self.applyShortsMapping(to: decompressedNass, with: shortsMap)
 
                     return BookContent(
                         id: Int(id),
@@ -243,6 +284,7 @@ extension BookConnection {
                         part: part
                     )
                 }
+
                 return nil
             }.compactMap { $0 }
 
@@ -257,8 +299,18 @@ extension BookConnection {
         return nil
     }
 
-    /// UPDATED: getContent by part and page
-    func getContent(bkid: String, part: Int, page: Int) -> BookContent? {
+    func getContent(
+        bkid: String,
+        part: Int,
+        page: Int
+    ) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getContent(
+                bookId: bookId,
+                contentId: max(page - 1, 0)
+            )
+        }
+
         guard let db else { return nil }
 
         let querySQL = """
@@ -269,7 +321,10 @@ extension BookConnection {
         """
 
         do {
-            let contents = try db.fetch(query: querySQL, parameters: [String(part), String(page)]) { row -> BookContent? in
+            let contents = try db.fetch(
+                query: querySQL,
+                parameters: [String(part), String(page)]
+            ) { row -> BookContent? in
                 if let nassBlob = row.blob(at: 0) {
                     let decompressedNass = ReusableFunc.decompressData(nassBlob)
 
@@ -286,6 +341,7 @@ extension BookConnection {
                         part: partValue
                     )
                 }
+
                 return nil
             }.compactMap { $0 }
 
@@ -305,6 +361,13 @@ extension BookConnection {
         contentId: Int,
         quran: Bool = false
     ) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return OtzariaMaktabahBridge.shared.getNextContent(
+                bookId: currentBook.id,
+                after: contentId
+            )
+        }
+
         guard
             let content = getContent(
                 bkid: "\(currentBook.id)",
@@ -331,6 +394,13 @@ extension BookConnection {
         contentId: Int,
         quran: Bool = false
     ) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return OtzariaMaktabahBridge.shared.getPreviousContent(
+                bookId: currentBook.id,
+                before: contentId
+            )
+        }
+
         guard
             let content = getContent(
                 bkid: "\(currentBook.id)",
@@ -368,18 +438,18 @@ extension BookConnection {
         """
     }
 
-    /// Mendapatkan total jumlah juz/part dalam buku
     func getTotalParts(bkid: String) -> Int {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getTotalParts(bookId: bookId)
+        }
+
         let key = bkid as NSString
 
-        // Cek cache dulu
         if let cached = totalPartsCache.object(forKey: key) {
             return cached.intValue
         }
 
         let total = calculateTotalParts(bkid: bkid)
-
-        // Simpan ke cache
         totalPartsCache.setObject(NSNumber(value: total), forKey: key)
 
         return total
@@ -406,8 +476,11 @@ extension BookConnection {
         }.first) ?? 0
     }
 
-    /// Mendapatkan jumlah halaman dalam juz/part tertentu
     func getPagesInPart(bkid: String, part: Int) -> Int {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getMaxPage(bookId: bookId)
+        }
+
         guard let db else { return 0 }
 
         let querySQL = """
@@ -422,6 +495,10 @@ extension BookConnection {
     }
 
     func getMinPagesInPart(bkid: String, part: Int) -> Int {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getMinPage(bookId: bookId)
+        }
+
         guard let db else { return 0 }
 
         let querySQL = """
@@ -435,9 +512,13 @@ extension BookConnection {
         }.first) ?? 0
     }
 
-    /// Mengambil semua entri TOC dari database.
     func getTOCEntries(_ book: BooksData) async -> [TOC] {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return OtzariaMaktabahBridge.shared.getTOCEntries(for: book)
+        }
+
         try? connect(archive: book.archive)
+
         guard let db else { return [] }
 
         let query = """
@@ -449,6 +530,7 @@ extension BookConnection {
         do {
             return try db.fetch(query: query) { row -> TOC? in
                 if Task.isCancelled { return nil }
+
                 let id = row.int64(at: 0)
                 let tit = row.string(at: 1) ?? ""
                 let lvl = row.int64(at: 2)
@@ -471,44 +553,52 @@ extension BookConnection {
         guard !flatTOCs.isEmpty else { return [] }
 
         let key = NSNumber(value: bookId)
+
         if let cached = Self.tocTreeCache.object(forKey: key) as? [TOCNode] {
             return cached
         }
 
-        // Pass 1: Buat semua node dulu, simpan dalam dictionary
         var allNodes: [TOCNode] = []
-        var levelStacks: [Int: [TOCNode]] = [:] // key = level, value = array of nodes di level itu
+        var levelStacks: [Int: [TOCNode]] = [:]
 
         for toc in flatTOCs {
             if Task.isCancelled { return [] }
+
             let node = TOCNode(from: toc)
             allNodes.append(node)
 
             if levelStacks[node.level] == nil {
                 levelStacks[node.level] = []
             }
+
             levelStacks[node.level]?.append(node)
         }
 
-        // Pass 2: Identifikasi root nodes (level 1, sub 0)
         var rootNodes: [TOCNode] = []
+
         if let level1Nodes = levelStacks[1] {
             rootNodes = level1Nodes.filter { $0.sub == 0 }
         }
 
-        // Pass 3: Hubungkan children ke parent
+        if rootNodes.isEmpty {
+            rootNodes = allNodes.filter { $0.level <= 1 }
+        }
+
         let sortedLevels = levelStacks.keys.sorted()
 
         for currentLevel in sortedLevels where currentLevel > 1 {
             if Task.isCancelled { return [] }
+
             guard let nodesAtCurrentLevel = levelStacks[currentLevel] else { continue }
 
             for node in nodesAtCurrentLevel {
                 if Task.isCancelled { return [] }
+
                 var foundParent = false
 
                 for parentLevel in stride(from: currentLevel - 1, through: 1, by: -1) {
                     if Task.isCancelled { return [] }
+
                     guard let candidateParents = levelStacks[parentLevel] else { continue }
 
                     if let parent = candidateParents.last(where: { $0.id <= node.id }) {
@@ -525,7 +615,6 @@ extension BookConnection {
         }
 
         #if os(iOS)
-        // Pass 4: Hitung endID berdasarkan urutan flat list
         for (i, node) in allNodes.enumerated() {
             if i < allNodes.count - 1 {
                 node.endID = allNodes[i + 1].id - 1
@@ -539,3 +628,4 @@ extension BookConnection {
         return rootNodes
     }
 }
+
