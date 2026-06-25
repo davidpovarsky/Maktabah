@@ -149,6 +149,11 @@ extension View {
 
 // MARK: - Color Theme Extensions
 
+extension Color {
+    static let appBackground = Color(UIColor.appBackground)
+    static let appCellBackground = Color(UIColor.appCellBackground)
+}
+
 extension UIColor {
     static let appBackground = UIColor { traitCollection in
         if UserDefaults.standard.bool(forKey: "useDefaultTheme") {
