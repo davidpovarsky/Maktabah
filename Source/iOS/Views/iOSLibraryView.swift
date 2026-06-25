@@ -1,10 +1,13 @@
 import SwiftUI
 import UIKit
+import UniformTypeIdentifiers
 
 // MARK: - SwiftUI View
 
 struct iOSLibraryView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
+    @State private var showingOtzariaImporter = false
+    @State private var otzariaImportError: String?
 
     var body: some View {
         @Bindable var viewModel = navigationManager.libraryViewModel
@@ -19,6 +22,11 @@ struct iOSLibraryView: View {
             set: { if !$0 { viewModel.singleBookToDelete = nil } }
         )
 
+        let otzariaErrorBinding = Binding<Bool>(
+            get: { otzariaImportError != nil },
+            set: { if !$0 { otzariaImportError = nil } }
+        )
+
         mainZStack(viewModel: viewModel)
             .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: navigationManager.activeIntegrationStates.count)
             .onChange(of: viewModel.selectedBookIds) { _, _ in
@@ -26,6 +34,13 @@ struct iOSLibraryView: View {
             }
             .toolbar {
                 toolbarContent(viewModel: viewModel)
+            }
+            .fileImporter(
+                isPresented: $showingOtzariaImporter,
+                allowedContentTypes: [.database, .data, .item],
+                allowsMultipleSelection: false
+            ) { result in
+                handleOtzariaImport(result, viewModel: viewModel)
             }
             .sheet(isPresented: $viewModel.showingImportSheet) {
                 NavigationView {
@@ -43,6 +58,11 @@ struct iOSLibraryView: View {
                 Button("OK", role: .cancel) {}
             } message: {
                 Text(viewModel.importErrorMessage ?? "")
+            }
+            .alert("Otzaria Database Error", isPresented: otzariaErrorBinding) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(otzariaImportError ?? "")
             }
             .alert("Delete Download", isPresented: $viewModel.showingDeleteConfirmation) {
                 Button("Delete", role: .destructive) {
@@ -81,10 +101,14 @@ struct iOSLibraryView: View {
                     viewModel.singleBookToDelete = book
                 },
                 onDownloadSingleBook: { book in
-                    navigationManager.showBookIntegrationConfirmation(
-                        for: book,
-                        initialContentId: nil
-                    )
+                    if OtzariaMaktabahBridge.shared.isEnabled {
+                        viewModel.selectBook(book, using: navigationManager)
+                    } else {
+                        navigationManager.showBookIntegrationConfirmation(
+                            for: book,
+                            initialContentId: nil
+                        )
+                    }
                 }
             )
             .themeTint()
@@ -108,6 +132,7 @@ struct iOSLibraryView: View {
     }
 
     private func handleSelectionChange(viewModel: LibraryViewModel) {
+        guard !OtzariaMaktabahBridge.shared.isEnabled else { return }
         guard !viewModel.isBulkDownloading else { return }
 
         let downloadBooks = viewModel.selectedDownloadBooks
@@ -150,10 +175,7 @@ struct iOSLibraryView: View {
                 Button {
                     viewModel.showingDeleteConfirmation = true
                 } label: {
-                    Label(
-                        "Delete",
-                        systemImage: "trash"
-                    )
+                    Label("Delete", systemImage: "trash")
                 }
                 .disabled(viewModel.selectedDeleteCount == 0 || viewModel.isBulkDownloading)
                 .tint(.red)
@@ -172,22 +194,22 @@ struct iOSLibraryView: View {
                 } label: {
                     Label(
                         "Group By",
-                        systemImage: viewModel.viewMode == .category
-                            ? "folder"
-                            : "person"
+                        systemImage: viewModel.viewMode == .category ? "folder" : "person"
                     )
                 }
             }
 
-            ToolbarItem(placement: .topBarTrailing) {
-                Toggle(isOn: Binding(
-                    get: { viewModel.showOnlyDownloaded },
-                    set: { viewModel.showOnlyDownloaded = $0 }
-                )) {
-                    Label("Downloaded", systemImage: "line.3.horizontal.decrease")
+            if !OtzariaMaktabahBridge.shared.isEnabled {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Toggle(isOn: Binding(
+                        get: { viewModel.showOnlyDownloaded },
+                        set: { viewModel.showOnlyDownloaded = $0 }
+                    )) {
+                        Label("Downloaded", systemImage: "line.3.horizontal.decrease")
+                    }
+                    .labelStyle(.iconOnly)
+                    .toggleStyle(.button)
                 }
-                .labelStyle(.iconOnly)
-                .toggleStyle(.button)
             }
 
             CustomToolbarSpacer(placement: .topBarTrailing)
@@ -195,16 +217,36 @@ struct iOSLibraryView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Button {
+                        showingOtzariaImporter = true
+                    } label: {
+                        Label("בחר מסד אוצריא", systemImage: "externaldrive")
+                    }
+
+                    if OtzariaMaktabahBridge.shared.isEnabled {
+                        Button(role: .destructive) {
+                            OtzariaMaktabahBridge.shared.forgetDatabase()
+                            DatabaseManager.shared.reloadConnectionAndLibrary()
+                            Task { await viewModel.refreshLibrary() }
+                        } label: {
+                            Label("נתק מסד אוצריא", systemImage: "xmark.circle")
+                        }
+                    }
+
+                    Divider()
+
+                    Button {
                         viewModel.enterSelectionMode()
                     } label: {
                         Label("Select".localized + "...", systemImage: "checkmark.circle")
                     }
+                    .disabled(OtzariaMaktabahBridge.shared.isEnabled)
 
                     Button {
                         viewModel.showingImportSheet = true
                     } label: {
                         Label("Import Book", systemImage: "plus.viewfinder")
                     }
+                    .disabled(OtzariaMaktabahBridge.shared.isEnabled)
                 } label: {
                     Image(systemName: "ellipsis")
                 }
@@ -214,12 +256,20 @@ struct iOSLibraryView: View {
         }
     }
 
+    private func handleOtzariaImport(_ result: Result<[URL], Error>, viewModel: LibraryViewModel) {
+        do {
+            guard let url = try result.get().first else { return }
+            try OtzariaMaktabahBridge.shared.installDatabase(from: url)
+            DatabaseManager.shared.reloadConnectionAndLibrary()
+            Task { await viewModel.refreshLibrary() }
+        } catch {
+            otzariaImportError = error.localizedDescription
+        }
+    }
+
     private func startSelectedDownloads(using viewModel: LibraryViewModel) {
         let state = BundleArchiveDownloadProgressState(
-            title: NSLocalizedString(
-                "Download Book",
-                comment: "Bulk download window title"
-            ),
+            title: NSLocalizedString("Download Book", comment: "Bulk download window title"),
             message: String(localized: "Begin downloading..."),
             mode: .downloading
         )
@@ -231,10 +281,7 @@ struct iOSLibraryView: View {
 
             if let message {
                 navigationManager.alertMessage = iOSNavigationManager.AlertMessage(
-                    title: NSLocalizedString(
-                        "Download Book",
-                        comment: "Bulk download window title"
-                    ),
+                    title: NSLocalizedString("Download Book", comment: "Bulk download window title"),
                     message: message
                 )
             }
