@@ -90,7 +90,7 @@ struct iPadLayout: View {
                     }
             }
         } detail: {
-            OtzariaIntegratedReaderDetailView()
+            iOSReaderTabView()
         }
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
@@ -128,6 +128,7 @@ struct iPadLayout: View {
 
     @ViewBuilder
     private func destinationView(for tab: iOSTab) -> some View {
+        @Bindable var libraryVM = bManager.libraryViewModel
         @Bindable var searchVM = bManager.searchViewModel
         @Bindable var authorVM = bManager.authorViewModel
         @Bindable var annotationVM = bManager.annotationViewModel
@@ -135,7 +136,12 @@ struct iPadLayout: View {
         Group {
             switch tab {
             case .viewer:
-                OtzariaIntegratedLibraryView(pushReaderOnSelection: false)
+                iOSLibraryView()
+                    .searchable(
+                        text: $libraryVM.searchQuery,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: searchPrompt(for: tab).localized
+                    )
             case .search:
                 SearchModeView()
                     .searchable(
