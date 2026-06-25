@@ -149,11 +149,6 @@ extension View {
 
 // MARK: - Color Theme Extensions
 
-extension Color {
-    static let appBackground = Color(UIColor.appBackground)
-    static let appCellBackground = Color(UIColor.appCellBackground)
-}
-
 extension UIColor {
     static let appBackground = UIColor { traitCollection in
         if UserDefaults.standard.bool(forKey: "useDefaultTheme") {
@@ -173,9 +168,9 @@ extension UIColor {
         }
         switch traitCollection.userInterfaceStyle {
         case .dark:
-            return UIColor.bgSepiaDark.adjustBrightness(to: 0.66)
+            return UIColor.bgSepiaDark.adjustBrightness(to: 0.80)
         default:
-            return UIColor(red: 245/255, green: 229/255, blue: 199/255, alpha: 1.0)
+            return UIColor.bgSepia
         }
     }
 
@@ -185,27 +180,29 @@ extension UIColor {
         }
         switch traitCollection.userInterfaceStyle {
         case .dark:
-            return UIColor.bgSepiaDark.adjustBrightness(to: 0.55)
+            return UIColor.bgSepiaDark.adjustBrightness(to: 0.85)
         default:
-            return UIColor(red: 230/255, green: 206/255, blue: 169/255, alpha: 1.0)
+            // Mid-tone light sepia for toolbars / headers
+            return UIColor(red: 229/255, green: 217/255, blue: 194/255, alpha: 1.0)
         }
     }
 
-    func adjustBrightness(to targetBrightness: CGFloat) -> UIColor {
-        var hue: CGFloat = 0
-        var saturation: CGFloat = 0
-        var brightness: CGFloat = 0
-        var alpha: CGFloat = 0
-
-        guard getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) else {
-            return self
+    /// Menyesuaikan brightness warna dengan rasio (0.0 - 1.0)
+    func adjustBrightness(to ratio: CGFloat) -> UIColor {
+        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        if self.getHue(&h, saturation: &s, brightness: &b, alpha: &a) {
+            return UIColor(hue: h, saturation: s, brightness: b * ratio, alpha: a)
         }
-
-        return UIColor(
-            hue: hue,
-            saturation: saturation,
-            brightness: min(max(targetBrightness, 0), 1),
-            alpha: alpha
-        )
+        var white: CGFloat = 0
+        if self.getWhite(&white, alpha: &a) {
+            return UIColor(white: white * ratio, alpha: a)
+        }
+        return self
     }
+}
+
+extension Color {
+    static let appBackground = Color(uiColor: .appBackground)
+    static let appCellBackground = Color(uiColor: .appCellBackground)
+    static let appSecondaryBackground = Color(uiColor: .appSecondaryBackground)
 }
