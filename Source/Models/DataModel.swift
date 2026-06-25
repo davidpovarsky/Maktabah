@@ -81,7 +81,7 @@ class CategoryData: NSCopying {
     let order: Int
     let parentId: Int?
     var isChecked: Bool = true
-    var children: [Any] = [] // Bisa berisi CategoryData atau BooksData
+    var children: [Any] = [] // Bisa berisi CategoryData או BooksData
 
     init(id: Int, name: String, level: Int, order: Int, parentId: Int? = nil) {
         self.id = id
@@ -264,6 +264,89 @@ struct SearchResultsSorter {
 
 extension NSAttributedString {
     var contentSortKey: String {
-        string
+        let plain = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        // 2 kalimat = split by ". " atau ".\n", ambil 2 elemen pertama
+        var sentences: [String] = []
+        var current = ""
+        for char in plain {
+            current.append(char)
+            if char == "." || char == "!" || char == "?" {
+                sentences.append(current)
+                current = ""
+                if sentences.count == 2 { break }
+            }
+        }
+        return sentences.joined()
     }
+}
+
+struct SavedResultsItem {
+    let archive: String
+    let tableName: String
+    let query: String
+    let bookId: Int
+    let bookTitle: String
+}
+
+struct Muallif: Decodable {
+
+    /// Nama pengarang (auth)
+    let nama: String
+
+    /// Informasi tambahan/biografi singkat pengarang (inf)
+    let info: String // Opsional, mungkin kosong di DB
+
+    /// Bahasa pengarang atau informasi bahasa (Lng)
+    let namaLengkap: String // Opsional, tergantung penggunaannya
+
+    // Properti tambahan yang sering ada di Syamilah (tapi tidak di kueri Anda)
+    // let tahunWafatHijriah: Int? // (higriAD)
+    // let tahunWafatMasehi: Int? // (AD)
+
+    // MARK: - CodingKeys (Jika nama properti Swift berbeda dari nama Kolom SQL)
+    private enum CodingKeys: String, CodingKey {
+        case nama = "auth"
+        case info = "inf"
+        case namaLengkap = "Lng"
+    }
+
+    init(nama: String, info: String, namaLengkap: String) {
+        self.nama = nama
+        self.info = info
+            .replacingOccurrences(of: "\\n", with: "\n")
+            .convertToArabicDigits()
+        self.namaLengkap = namaLengkap.convertToArabicDigits()
+    }
+}
+
+// MARK: - 3. FUNGSI PENGAMBILAN DATA
+
+extension BookConnection {
+
+    /*
+    // Fungsi helper untuk debugging tree structure dengan depth counter
+    func printTree(_ nodes: [TOCNode], indent: String = "", level: Int = 0) {
+        for node in nodes {
+            print("\(indent)[\(node.id)] L\(node.level)-S\(node.sub): \(node.bab)")
+            if !node.children.isEmpty {
+                print("\(indent)  ↓ (\(node.children.count) children)")
+                printTree(node.children, indent: indent + "  ", level: level + 1)
+            }
+        }
+    }
+
+    // Fungsi untuk validasi tree
+    func validateTree(_ nodes: [TOCNode], parentLevel: Int = 0) -> Bool {
+        for node in nodes {
+            if parentLevel > 0 && node.level <= parentLevel {
+                print("⚠️ ERROR: Child level (\(node.level)) <= parent level (\(parentLevel))")
+                return false
+            }
+            if !validateTree(node.children, parentLevel: node.level) {
+                return false
+            }
+        }
+        return true
+    }
+     */
 }
