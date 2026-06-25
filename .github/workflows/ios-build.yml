@@ -1,0 +1,211 @@
+name: iOS Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Source/**'
+      - 'Maktabah.xcodeproj/**'
+      - '.github/workflows/ios-build.yml'
+      - 'Package.resolved'
+
+permissions:
+  contents: read
+
+env:
+  PROJECT_PATH: Maktabah.xcodeproj
+  SCHEME: Maktabah-iOS
+  CONFIGURATION: Release
+  PRODUCT_NAME: Maktabah
+  BUNDLE_ID: com.Drn.maktabah
+
+jobs:
+  build-ios:
+    name: Build iOS artifacts
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: |
+          xcodebuild -version
+          xcodebuild -showsdks
+
+      - name: List schemes
+        run: |
+          xcodebuild -list -project "$PROJECT_PATH"
+
+      - name: Resolve packages
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME"
+
+      - name: Build simulator app without signing
+        run: |
+          set -euo pipefail
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+          APP_PATH="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          test -d "$APP_PATH"
+          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "${PRODUCT_NAME}-simulator-app.zip"
+
+      - name: Upload simulator app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Maktabah-iOS-simulator-app
+          path: Maktabah-simulator-app.zip
+          if-no-files-found: error
+
+      - name: Build unsigned device IPA for inspection
+        run: |
+          set -euo pipefail
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration "$CONFIGURATION" \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/DerivedData-iphoneos \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+          APP_PATH="build/DerivedData-iphoneos/Build/Products/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.app"
+          test -d "$APP_PATH"
+          rm -rf Payload "${PRODUCT_NAME}-unsigned.ipa"
+          mkdir -p Payload
+          cp -R "$APP_PATH" Payload/
+          /usr/bin/zip -qry "${PRODUCT_NAME}-unsigned.ipa" Payload
+
+      - name: Upload unsigned IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Maktabah-iOS-unsigned-ipa-not-installable
+          path: Maktabah-unsigned.ipa
+          if-no-files-found: error
+
+      - name: Check signing secrets
+        id: signing
+        env:
+          IOS_CERTIFICATE_P12_BASE64: ${{ secrets.IOS_CERTIFICATE_P12_BASE64 }}
+          IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+          IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          if [ -n "$IOS_CERTIFICATE_P12_BASE64" ] && [ -n "$IOS_CERTIFICATE_PASSWORD" ] && [ -n "$IOS_PROVISIONING_PROFILE_BASE64" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "Signing secrets are missing. Skipping signed IPA export."
+          fi
+
+      - name: Import Apple signing assets
+        if: steps.signing.outputs.enabled == 'true'
+        env:
+          IOS_CERTIFICATE_P12_BASE64: ${{ secrets.IOS_CERTIFICATE_P12_BASE64 }}
+          IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+          IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          set -euo pipefail
+          KEYCHAIN_PASSWORD_VALUE="${KEYCHAIN_PASSWORD:-temporary-keychain-password}"
+          CERT_PATH="$RUNNER_TEMP/ios_certificate.p12"
+          PROFILE_PATH="$RUNNER_TEMP/profile.mobileprovision"
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
+
+          echo -n "$IOS_CERTIFICATE_P12_BASE64" | base64 --decode > "$CERT_PATH"
+          echo -n "$IOS_PROVISIONING_PROFILE_BASE64" | base64 --decode > "$PROFILE_PATH"
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD_VALUE" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD_VALUE" "$KEYCHAIN_PATH"
+          security import "$CERT_PATH" -P "$IOS_CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+          security default-keychain -s "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD_VALUE" "$KEYCHAIN_PATH"
+
+          security cms -D -i "$PROFILE_PATH" > "$RUNNER_TEMP/profile.plist"
+          PROFILE_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' "$RUNNER_TEMP/profile.plist")
+          PROFILE_NAME=$(/usr/libexec/PlistBuddy -c 'Print Name' "$RUNNER_TEMP/profile.plist")
+          PROFILE_TEAM_ID=$(/usr/libexec/PlistBuddy -c 'Print TeamIdentifier:0' "$RUNNER_TEMP/profile.plist")
+
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+          cp "$PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_UUID.mobileprovision"
+
+          echo "PROFILE_UUID=$PROFILE_UUID" >> "$GITHUB_ENV"
+          echo "PROFILE_NAME=$PROFILE_NAME" >> "$GITHUB_ENV"
+          echo "PROFILE_TEAM_ID=$PROFILE_TEAM_ID" >> "$GITHUB_ENV"
+
+      - name: Archive signed iOS app
+        if: steps.signing.outputs.enabled == 'true'
+        env:
+          IOS_CODE_SIGN_IDENTITY: ${{ secrets.IOS_CODE_SIGN_IDENTITY }}
+        run: |
+          set -euo pipefail
+          CODE_SIGN_IDENTITY_VALUE="${IOS_CODE_SIGN_IDENTITY:-Apple Development}"
+          xcodebuild archive \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration "$CONFIGURATION" \
+            -destination 'generic/platform=iOS' \
+            -archivePath "build/${PRODUCT_NAME}.xcarchive" \
+            DEVELOPMENT_TEAM="$PROFILE_TEAM_ID" \
+            CODE_SIGN_STYLE=Manual \
+            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_UUID" \
+            CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY_VALUE"
+
+      - name: Export signed IPA
+        if: steps.signing.outputs.enabled == 'true'
+        env:
+          IOS_EXPORT_METHOD: ${{ secrets.IOS_EXPORT_METHOD }}
+        run: |
+          set -euo pipefail
+          EXPORT_METHOD_VALUE="${IOS_EXPORT_METHOD:-development}"
+          cat > "$RUNNER_TEMP/ExportOptions.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>$EXPORT_METHOD_VALUE</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>teamID</key>
+            <string>$PROFILE_TEAM_ID</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>$BUNDLE_ID</key>
+              <string>$PROFILE_UUID</string>
+            </dict>
+          </dict>
+          </plist>
+          PLIST
+
+          xcodebuild -exportArchive \
+            -archivePath "build/${PRODUCT_NAME}.xcarchive" \
+            -exportPath "build/export" \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
+
+          test -f "build/export/${PRODUCT_NAME}.ipa"
+
+      - name: Upload signed IPA artifact
+        if: steps.signing.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Maktabah-iOS-signed-ipa
+          path: build/export/Maktabah.ipa
+          if-no-files-found: error
