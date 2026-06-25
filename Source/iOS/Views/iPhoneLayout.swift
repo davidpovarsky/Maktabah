@@ -56,19 +56,10 @@ struct iPhoneLayout: View {
     @ViewBuilder
     private var viewerTabContent: some View {
         NavigationStack {
-            iOSLibraryView()
+            OtzariaIntegratedLibraryView(pushReaderOnSelection: true)
                 .navigationTitle(iOSTab.viewer.title)
-                .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
-                    manager: bManager
-                )
                 .toolbarGeneral(showSettings: $showSettings)
         }
-        .searchable(
-            text: Bindable(bManager.libraryViewModel).searchQuery,
-            placement: .toolbar,
-            prompt: String(localized: "Search Library")
-        )
     }
 
     @ViewBuilder
