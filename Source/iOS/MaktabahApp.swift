@@ -161,4 +161,22 @@ extension UIColor {
             return UIColor(red: 237/255, green: 217/255, blue: 184/255, alpha: 1.0)
         }
     }
+
+    func adjustBrightness(to targetBrightness: CGFloat) -> UIColor {
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        guard getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) else {
+            return self
+        }
+
+        return UIColor(
+            hue: hue,
+            saturation: saturation,
+            brightness: min(max(targetBrightness, 0), 1),
+            alpha: alpha
+        )
+    }
 }
