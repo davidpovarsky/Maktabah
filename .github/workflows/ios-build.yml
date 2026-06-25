@@ -19,7 +19,6 @@ env:
   SCHEME: Maktabah-iOS
   CONFIGURATION: Release
   PRODUCT_NAME: Maktabah
-  BUNDLE_ID: com.Drn.maktabah
 
 jobs:
   build-ios:
@@ -74,7 +73,6 @@ jobs:
               r"requires a provisioning profile|Provisioning profile|CodeSign|SwiftCompile|CompileSwift)",
               re.IGNORECASE,
           )
-
           hits = [index for index, line in enumerate(lines) if pattern.search(line)]
 
           if not hits:
@@ -85,8 +83,6 @@ jobs:
               raise SystemExit(0)
 
           print(f"Detected {len(hits)} suspicious/error lines in {log_path}.\n")
-
-          # GitHub annotations, limited so the Actions UI remains usable.
           for index in hits[:40]:
               clean = lines[index].replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")[:900]
               print(f"::error title=Build log line {index + 1}::{clean}")
@@ -122,7 +118,7 @@ jobs:
           BASH
           chmod +x scripts/ci/run-xcodebuild.sh
 
-      - name: Wire Otzaria POC into iOS target
+      - name: Add Otzaria sources to iOS target
         run: |
           set -euo pipefail
 
@@ -153,27 +149,6 @@ jobs:
 
           project.save
           RUBY
-
-          python3 <<'PY'
-          from pathlib import Path
-
-          path = Path('Source/iOS/MaktabahApp.swift')
-          text = path.read_text()
-
-          marker = '    @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false'
-          state_line = '    @StateObject private var otzariaApp = OtzariaAppContainer()'
-          if state_line not in text:
-              text = text.replace(marker, marker + '\n' + state_line)
-
-          old = '            iOSBootstrapView()\n'
-          new = '            OtzariaRootSplitView()\n                .environmentObject(otzariaApp)\n'
-          if old in text:
-              text = text.replace(old, new, 1)
-          elif 'OtzariaRootSplitView()' not in text:
-              raise SystemExit('Could not find iOSBootstrapView() to replace')
-
-          path.write_text(text)
-          PY
 
       - name: Show Xcode version
         run: |
@@ -244,119 +219,6 @@ jobs:
         with:
           name: Maktabah-iOS-unsigned-ipa-not-installable
           path: Maktabah-unsigned.ipa
-          if-no-files-found: error
-
-      - name: Check signing secrets
-        id: signing
-        env:
-          IOS_CERTIFICATE_P12_BASE64: ${{ secrets.IOS_CERTIFICATE_P12_BASE64 }}
-          IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
-          IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
-        run: |
-          if [ -n "$IOS_CERTIFICATE_P12_BASE64" ] && [ -n "$IOS_CERTIFICATE_PASSWORD" ] && [ -n "$IOS_PROVISIONING_PROFILE_BASE64" ]; then
-            echo "enabled=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "Signing secrets are missing. Skipping signed IPA export."
-          fi
-
-      - name: Import Apple signing assets
-        if: steps.signing.outputs.enabled == 'true'
-        env:
-          IOS_CERTIFICATE_P12_BASE64: ${{ secrets.IOS_CERTIFICATE_P12_BASE64 }}
-          IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
-          IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-        run: |
-          set -euo pipefail
-          KEYCHAIN_PASSWORD_VALUE="${KEYCHAIN_PASSWORD:-temporary-keychain-password}"
-          CERT_PATH="$RUNNER_TEMP/ios_certificate.p12"
-          PROFILE_PATH="$RUNNER_TEMP/profile.mobileprovision"
-          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
-
-          echo -n "$IOS_CERTIFICATE_P12_BASE64" | base64 --decode > "$CERT_PATH"
-          echo -n "$IOS_PROVISIONING_PROFILE_BASE64" | base64 --decode > "$PROFILE_PATH"
-
-          security create-keychain -p "$KEYCHAIN_PASSWORD_VALUE" "$KEYCHAIN_PATH"
-          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD_VALUE" "$KEYCHAIN_PATH"
-          security import "$CERT_PATH" -P "$IOS_CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
-          security list-keychain -d user -s "$KEYCHAIN_PATH"
-          security default-keychain -s "$KEYCHAIN_PATH"
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD_VALUE" "$KEYCHAIN_PATH"
-
-          security cms -D -i "$PROFILE_PATH" > "$RUNNER_TEMP/profile.plist"
-          PROFILE_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' "$RUNNER_TEMP/profile.plist")
-          PROFILE_NAME=$(/usr/libexec/PlistBuddy -c 'Print Name' "$RUNNER_TEMP/profile.plist")
-          PROFILE_TEAM_ID=$(/usr/libexec/PlistBuddy -c 'Print TeamIdentifier:0' "$RUNNER_TEMP/profile.plist")
-
-          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
-          cp "$PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_UUID.mobileprovision"
-
-          echo "PROFILE_UUID=$PROFILE_UUID" >> "$GITHUB_ENV"
-          echo "PROFILE_NAME=$PROFILE_NAME" >> "$GITHUB_ENV"
-          echo "PROFILE_TEAM_ID=$PROFILE_TEAM_ID" >> "$GITHUB_ENV"
-
-      - name: Archive signed iOS app
-        if: steps.signing.outputs.enabled == 'true'
-        env:
-          IOS_CODE_SIGN_IDENTITY: ${{ secrets.IOS_CODE_SIGN_IDENTITY }}
-        run: |
-          set -euo pipefail
-          CODE_SIGN_IDENTITY_VALUE="${IOS_CODE_SIGN_IDENTITY:-Apple Development}"
-          scripts/ci/run-xcodebuild.sh archive-signed-device \
-            xcodebuild archive \
-              -project "$PROJECT_PATH" \
-              -scheme "$SCHEME" \
-              -configuration "$CONFIGURATION" \
-              -destination 'generic/platform=iOS' \
-              -archivePath "build/${PRODUCT_NAME}.xcarchive" \
-              DEVELOPMENT_TEAM="$PROFILE_TEAM_ID" \
-              CODE_SIGN_STYLE=Manual \
-              PROVISIONING_PROFILE_SPECIFIER="$PROFILE_UUID" \
-              CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY_VALUE"
-
-      - name: Export signed IPA
-        if: steps.signing.outputs.enabled == 'true'
-        env:
-          IOS_EXPORT_METHOD: ${{ secrets.IOS_EXPORT_METHOD }}
-        run: |
-          set -euo pipefail
-          EXPORT_METHOD_VALUE="${IOS_EXPORT_METHOD:-development}"
-          cat > "$RUNNER_TEMP/ExportOptions.plist" <<PLIST
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>$EXPORT_METHOD_VALUE</string>
-            <key>signingStyle</key>
-            <string>manual</string>
-            <key>teamID</key>
-            <string>$PROFILE_TEAM_ID</string>
-            <key>provisioningProfiles</key>
-            <dict>
-              <key>$BUNDLE_ID</key>
-              <string>$PROFILE_UUID</string>
-            </dict>
-          </dict>
-          </plist>
-          PLIST
-
-          scripts/ci/run-xcodebuild.sh export-signed-ipa \
-            xcodebuild -exportArchive \
-              -archivePath "build/${PRODUCT_NAME}.xcarchive" \
-              -exportPath "build/export" \
-              -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
-
-          test -f "build/export/${PRODUCT_NAME}.ipa"
-
-      - name: Upload signed IPA artifact
-        if: steps.signing.outputs.enabled == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: Maktabah-iOS-signed-ipa
-          path: build/export/Maktabah.ipa
           if-no-files-found: error
 
       - name: Upload build logs
