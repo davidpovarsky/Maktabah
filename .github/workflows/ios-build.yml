@@ -31,6 +31,59 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Wire Otzaria POC into iOS target
+        run: |
+          set -euo pipefail
+
+          if [ ! -d Source/Otzaria ]; then
+            echo "Source/Otzaria was not found; building the original iOS target."
+            exit 0
+          fi
+
+          gem install xcodeproj --no-document
+
+          ruby <<'RUBY'
+          require 'xcodeproj'
+
+          project = Xcodeproj::Project.open('Maktabah.xcodeproj')
+          target = project.targets.find { |item| item.name == 'Maktabah-iOS' }
+          abort('Maktabah-iOS target was not found') unless target
+
+          existing_refs = target.source_build_phase.files_references.compact
+          Dir.glob('Source/Otzaria/**/*.swift').sort.each do |path|
+            file_ref = project.files.find { |ref| ref.path == path }
+            file_ref ||= project.main_group.new_file(path)
+            unless existing_refs.include?(file_ref)
+              target.add_file_references([file_ref])
+              existing_refs << file_ref
+              puts "Added #{path} to #{target.name}"
+            end
+          end
+
+          project.save
+          RUBY
+
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('Source/iOS/MaktabahApp.swift')
+          text = path.read_text()
+
+          marker = '    @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false'
+          state_line = '    @StateObject private var otzariaApp = OtzariaAppContainer()'
+          if state_line not in text:
+              text = text.replace(marker, marker + '\n' + state_line)
+
+          old = '            iOSBootstrapView()\n'
+          new = '            OtzariaRootSplitView()\n                .environmentObject(otzariaApp)\n'
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif 'OtzariaRootSplitView()' not in text:
+              raise SystemExit('Could not find iOSBootstrapView() to replace')
+
+          path.write_text(text)
+          PY
+
       - name: Show Xcode version
         run: |
           xcodebuild -version
