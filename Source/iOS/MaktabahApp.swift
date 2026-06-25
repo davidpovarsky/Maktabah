@@ -71,7 +71,7 @@ struct MaktabahApp: App {
 
     var body: some Scene {
         WindowGroup {
-            iOSMainView()
+            iOSBootstrapView()
                 .environmentObject(otzariaApp)
                 .environmentObject(otzariaNavigation)
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
