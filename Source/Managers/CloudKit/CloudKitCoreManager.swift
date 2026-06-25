@@ -5,13 +5,14 @@
 
 import CloudKit
 import Foundation
+import Security
 
 final class CloudKitCoreManager {
     static let shared = CloudKitCoreManager()
 
-    let container: CKContainer
-    let privateDatabase: CKDatabase
-    let zoneId: CKRecordZone.ID
+    let container: CKContainer?
+    let privateDatabase: CKDatabase?
+    let zoneId: CKRecordZone.ID?
 
     let changeTokenKey = "CKServerChangeToken_AnnotationsZone"
     private(set) var isSyncing = false
@@ -21,14 +22,50 @@ final class CloudKitCoreManager {
     private let operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.name = "com.maktabah.cloudkitcore.operation"
-        queue.maxConcurrentOperationCount = 2 // Prevent rate limiting
+        queue.maxConcurrentOperationCount = 2
         return queue
     }()
 
     private init() {
-        container = CKContainer(identifier: "iCloud.Maktabah")
-        privateDatabase = container.privateCloudDatabase
+        let containerIdentifier = "iCloud.Maktabah"
+
+        guard Self.hasICloudContainerEntitlement(containerIdentifier) else {
+            container = nil
+            privateDatabase = nil
+            zoneId = nil
+            print("CloudKit disabled: missing entitlement for \(containerIdentifier)")
+            return
+        }
+
+        let resolvedContainer = CKContainer(identifier: containerIdentifier)
+        container = resolvedContainer
+        privateDatabase = resolvedContainer.privateCloudDatabase
         zoneId = CKRecordZone.ID(zoneName: "AnnotationsZone", ownerName: CKCurrentUserDefaultName)
+    }
+
+    private static func hasICloudContainerEntitlement(_ identifier: String) -> Bool {
+        guard let task = SecTaskCreateFromSelf(nil) else { return false }
+        guard let value = SecTaskCopyValueForEntitlement(
+            task,
+            "com.apple.developer.icloud-container-identifiers" as CFString,
+            nil
+        ) else {
+            return false
+        }
+
+        if let containers = value as? [String] {
+            return containers.contains(identifier)
+        }
+
+        if let container = value as? String {
+            return container == identifier
+        }
+
+        return false
+    }
+
+    var isAvailable: Bool {
+        privateDatabase != nil && zoneId != nil
     }
 
     func setSyncing(_ syncing: Bool, completion: (() -> Void)? = nil) {
@@ -41,6 +78,7 @@ final class CloudKitCoreManager {
     // MARK: - Save Token
 
     func saveToken(_ token: CKServerChangeToken?) {
+        guard isAvailable else { return }
         guard let token = token else { return }
         if let data = try? NSKeyedArchiver.archivedData(withRootObject: token, requiringSecureCoding: true) {
             UserDefaults.standard.set(data, forKey: changeTokenKey)
@@ -48,6 +86,7 @@ final class CloudKitCoreManager {
     }
 
     func loadToken() -> CKServerChangeToken? {
+        guard isAvailable else { return nil }
         guard let data = UserDefaults.standard.data(forKey: changeTokenKey) else { return nil }
         return try? NSKeyedUnarchiver.unarchivedObject(ofClass: CKServerChangeToken.self, from: data)
     }
@@ -61,6 +100,11 @@ final class CloudKitCoreManager {
     // MARK: - Core Operations
 
     func upload(records: [CKRecord], completion: ((Result<Void, Error>) -> Void)? = nil) {
+        guard isAvailable, let privateDatabase else {
+            completion?(.success(()))
+            return
+        }
+
         guard !records.isEmpty else {
             completion?(.success(()))
             return
@@ -79,6 +123,11 @@ final class CloudKitCoreManager {
     }
 
     func delete(recordIds: [CKRecord.ID], completion: ((Result<Void, Error>) -> Void)? = nil) {
+        guard isAvailable, let privateDatabase else {
+            completion?(.success(()))
+            return
+        }
+
         guard !recordIds.isEmpty else {
             completion?(.success(()))
             return
@@ -100,10 +149,18 @@ final class CloudKitCoreManager {
         recordDeleted: @escaping (CKRecord.ID) -> Void,
         completion: @escaping (Result<(CKServerChangeToken?, Bool), Error>) -> Void
     ) {
+        guard isAvailable, let privateDatabase, let zoneId else {
+            completion(.success((previousToken, false)))
+            return
+        }
+
         let options = CKFetchRecordZoneChangesOperation.ZoneConfiguration()
         options.previousServerChangeToken = previousToken
 
-        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneId], configurationsByRecordZoneID: [zoneId: options])
+        let operation = CKFetchRecordZoneChangesOperation(
+            recordZoneIDs: [zoneId],
+            configurationsByRecordZoneID: [zoneId: options]
+        )
 
         var finalToken: CKServerChangeToken?
         var moreComing = false
@@ -124,7 +181,7 @@ final class CloudKitCoreManager {
                 finalToken = successData.serverChangeToken
                 moreComing = successData.moreComing
             case .failure:
-                break // Handled in overall fetch block
+                break
             }
         }
 
