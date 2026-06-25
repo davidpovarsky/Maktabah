@@ -24,6 +24,8 @@ struct MaktabahApp: App {
      */
 
     @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false
+    @StateObject private var otzariaApp = OtzariaAppContainer()
+    @StateObject private var otzariaNavigation = OtzariaIntegratedNavigationState()
 
     /*
     var currentVersion: String {
@@ -69,7 +71,9 @@ struct MaktabahApp: App {
 
     var body: some Scene {
         WindowGroup {
-            iOSBootstrapView()
+            iOSMainView()
+                .environmentObject(otzariaApp)
+                .environmentObject(otzariaNavigation)
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
                 .id(useDefaultTheme)
                 .toggleStyle(SwitchToggleStyle(tint: .green))
@@ -157,48 +161,3 @@ extension UIColor {
             return UIColor(red: 237/255, green: 217/255, blue: 184/255, alpha: 1.0)
         }
     }
-
-    static let appCellBackground = UIColor { traitCollection in
-        if UserDefaults.standard.bool(forKey: "useDefaultTheme") {
-            return .secondarySystemGroupedBackground
-        }
-        switch traitCollection.userInterfaceStyle {
-        case .dark:
-            return UIColor.bgSepiaDark.adjustBrightness(to: 0.80)
-        default:
-            return UIColor.bgSepia
-        }
-    }
-
-    static let appSecondaryBackground = UIColor { traitCollection in
-        if UserDefaults.standard.bool(forKey: "useDefaultTheme") {
-            return .secondarySystemBackground
-        }
-        switch traitCollection.userInterfaceStyle {
-        case .dark:
-            return UIColor.bgSepiaDark.adjustBrightness(to: 0.85)
-        default:
-            // Mid-tone light sepia for toolbars / headers
-            return UIColor(red: 229/255, green: 217/255, blue: 194/255, alpha: 1.0)
-        }
-    }
-
-    /// Menyesuaikan brightness warna dengan rasio (0.0 - 1.0)
-    func adjustBrightness(to ratio: CGFloat) -> UIColor {
-        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        if self.getHue(&h, saturation: &s, brightness: &b, alpha: &a) {
-            return UIColor(hue: h, saturation: s, brightness: b * ratio, alpha: a)
-        }
-        var white: CGFloat = 0
-        if self.getWhite(&white, alpha: &a) {
-            return UIColor(white: white * ratio, alpha: a)
-        }
-        return self
-    }
-}
-
-extension Color {
-    static let appBackground = Color(uiColor: .appBackground)
-    static let appCellBackground = Color(uiColor: .appCellBackground)
-    static let appSecondaryBackground = Color(uiColor: .appSecondaryBackground)
-}
