@@ -31,6 +31,97 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare xcodebuild log helper
+        run: |
+          set -euo pipefail
+          mkdir -p scripts/ci build/logs
+          cat > scripts/ci/run-xcodebuild.sh <<'BASH'
+          #!/usr/bin/env bash
+          set -uo pipefail
+
+          if [ "$#" -lt 2 ]; then
+            echo "Usage: run-xcodebuild.sh <log-name> <command...>" >&2
+            exit 64
+          fi
+
+          name="$1"
+          shift
+          mkdir -p build/logs
+          log="build/logs/${name}.log"
+
+          echo "::group::${name}"
+          echo "Running ${name}. Full log: ${log}"
+          set +e
+          "$@" 2>&1 | tee "$log"
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "::endgroup::"
+
+          if [ "$status" -ne 0 ]; then
+            echo "::error title=${name} failed::xcodebuild exited with code ${status}. Copy the summary below or download the build-logs artifact."
+            echo ""
+            echo "========== COPY FROM HERE: ${name} ERROR SUMMARY =========="
+            python3 - "$log" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          log_path = Path(sys.argv[1])
+          lines = log_path.read_text(errors="replace").splitlines()
+          pattern = re.compile(
+              r"(error:|fatal error:|\\bfailed\\b|BUILD FAILED|The following build commands failed|"
+              r"No such module|Cannot find|cannot find|Undefined symbols|No profiles for|"
+              r"requires a provisioning profile|Provisioning profile|CodeSign|SwiftCompile|CompileSwift)",
+              re.IGNORECASE,
+          )
+
+          hits = [index for index, line in enumerate(lines) if pattern.search(line)]
+
+          if not hits:
+              print("No obvious error lines were detected. Showing the last 220 log lines instead.\n")
+              start = max(0, len(lines) - 220)
+              for number, line in enumerate(lines[start:], start + 1):
+                  print(f"{number:6}: {line}")
+              raise SystemExit(0)
+
+          print(f"Detected {len(hits)} suspicious/error lines in {log_path}.\n")
+
+          # GitHub annotations, limited so the Actions UI remains usable.
+          for index in hits[:40]:
+              clean = lines[index].replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")[:900]
+              print(f"::error title=Build log line {index + 1}::{clean}")
+
+          spans = []
+          for hit in hits:
+              start = max(0, hit - 7)
+              end = min(len(lines), hit + 12)
+              if spans and start <= spans[-1][1] + 3:
+                  spans[-1] = (spans[-1][0], max(spans[-1][1], end))
+              else:
+                  spans.append((start, end))
+
+          printed = 0
+          max_lines = 700
+          for start, end in spans:
+              if printed >= max_lines:
+                  print("\n... summary truncated; download build-logs artifact for the full xcodebuild log ...")
+                  break
+              print(f"\n--- context lines {start + 1}-{end} ---")
+              for number in range(start, end):
+                  if printed >= max_lines:
+                      break
+                  marker = ">>>" if number in hits else "   "
+                  print(f"{marker} {number + 1:6}: {lines[number]}")
+                  printed += 1
+          PY
+            echo "========== COPY UNTIL HERE: ${name} ERROR SUMMARY =========="
+            echo "Full log saved at: ${log}"
+            echo "Download the artifact named build-logs for the complete logs."
+            exit "$status"
+          fi
+          BASH
+          chmod +x scripts/ci/run-xcodebuild.sh
+
       - name: Wire Otzaria POC into iOS target
         run: |
           set -euo pipefail
@@ -95,23 +186,25 @@ jobs:
 
       - name: Resolve packages
         run: |
-          xcodebuild -resolvePackageDependencies \
-            -project "$PROJECT_PATH" \
-            -scheme "$SCHEME"
+          scripts/ci/run-xcodebuild.sh resolve-packages \
+            xcodebuild -resolvePackageDependencies \
+              -project "$PROJECT_PATH" \
+              -scheme "$SCHEME"
 
       - name: Build simulator app without signing
         run: |
           set -euo pipefail
-          xcodebuild build \
-            -project "$PROJECT_PATH" \
-            -scheme "$SCHEME" \
-            -configuration Debug \
-            -sdk iphonesimulator \
-            -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath build/DerivedData \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY=""
+          scripts/ci/run-xcodebuild.sh build-simulator \
+            xcodebuild build \
+              -project "$PROJECT_PATH" \
+              -scheme "$SCHEME" \
+              -configuration Debug \
+              -sdk iphonesimulator \
+              -destination 'generic/platform=iOS Simulator' \
+              -derivedDataPath build/DerivedData \
+              CODE_SIGNING_ALLOWED=NO \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGN_IDENTITY=""
 
           APP_PATH="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
           test -d "$APP_PATH"
@@ -127,16 +220,17 @@ jobs:
       - name: Build unsigned device IPA for inspection
         run: |
           set -euo pipefail
-          xcodebuild build \
-            -project "$PROJECT_PATH" \
-            -scheme "$SCHEME" \
-            -configuration "$CONFIGURATION" \
-            -sdk iphoneos \
-            -destination 'generic/platform=iOS' \
-            -derivedDataPath build/DerivedData-iphoneos \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY=""
+          scripts/ci/run-xcodebuild.sh build-unsigned-device \
+            xcodebuild build \
+              -project "$PROJECT_PATH" \
+              -scheme "$SCHEME" \
+              -configuration "$CONFIGURATION" \
+              -sdk iphoneos \
+              -destination 'generic/platform=iOS' \
+              -derivedDataPath build/DerivedData-iphoneos \
+              CODE_SIGNING_ALLOWED=NO \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGN_IDENTITY=""
 
           APP_PATH="build/DerivedData-iphoneos/Build/Products/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.app"
           test -d "$APP_PATH"
@@ -210,16 +304,17 @@ jobs:
         run: |
           set -euo pipefail
           CODE_SIGN_IDENTITY_VALUE="${IOS_CODE_SIGN_IDENTITY:-Apple Development}"
-          xcodebuild archive \
-            -project "$PROJECT_PATH" \
-            -scheme "$SCHEME" \
-            -configuration "$CONFIGURATION" \
-            -destination 'generic/platform=iOS' \
-            -archivePath "build/${PRODUCT_NAME}.xcarchive" \
-            DEVELOPMENT_TEAM="$PROFILE_TEAM_ID" \
-            CODE_SIGN_STYLE=Manual \
-            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_UUID" \
-            CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY_VALUE"
+          scripts/ci/run-xcodebuild.sh archive-signed-device \
+            xcodebuild archive \
+              -project "$PROJECT_PATH" \
+              -scheme "$SCHEME" \
+              -configuration "$CONFIGURATION" \
+              -destination 'generic/platform=iOS' \
+              -archivePath "build/${PRODUCT_NAME}.xcarchive" \
+              DEVELOPMENT_TEAM="$PROFILE_TEAM_ID" \
+              CODE_SIGN_STYLE=Manual \
+              PROVISIONING_PROFILE_SPECIFIER="$PROFILE_UUID" \
+              CODE_SIGN_IDENTITY="$CODE_SIGN_IDENTITY_VALUE"
 
       - name: Export signed IPA
         if: steps.signing.outputs.enabled == 'true'
@@ -248,10 +343,11 @@ jobs:
           </plist>
           PLIST
 
-          xcodebuild -exportArchive \
-            -archivePath "build/${PRODUCT_NAME}.xcarchive" \
-            -exportPath "build/export" \
-            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
+          scripts/ci/run-xcodebuild.sh export-signed-ipa \
+            xcodebuild -exportArchive \
+              -archivePath "build/${PRODUCT_NAME}.xcarchive" \
+              -exportPath "build/export" \
+              -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
 
           test -f "build/export/${PRODUCT_NAME}.ipa"
 
@@ -262,3 +358,11 @@ jobs:
           name: Maktabah-iOS-signed-ipa
           path: build/export/Maktabah.ipa
           if-no-files-found: error
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: build/logs
+          if-no-files-found: warn
