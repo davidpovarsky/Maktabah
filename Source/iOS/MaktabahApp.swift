@@ -179,6 +179,18 @@ extension UIColor {
         }
     }
 
+    static let appSecondaryBackground = UIColor { traitCollection in
+        if UserDefaults.standard.bool(forKey: "useDefaultTheme") {
+            return .secondarySystemBackground
+        }
+        switch traitCollection.userInterfaceStyle {
+        case .dark:
+            return UIColor.bgSepiaDark.adjustBrightness(to: 0.55)
+        default:
+            return UIColor(red: 230/255, green: 206/255, blue: 169/255, alpha: 1.0)
+        }
+    }
+
     func adjustBrightness(to targetBrightness: CGFloat) -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
