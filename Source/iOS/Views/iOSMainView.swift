@@ -94,11 +94,6 @@ struct iOSMainView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-        .onChange(of: scenePhase) { oldPhase, newPhase in
-            if newPhase == .active {
-                CloudKitSyncManager.shared.fetchChanges()
-            }
-        }
     }
 }
 
@@ -141,7 +136,6 @@ struct CustomToolbarSpacer: ToolbarContent {
 
     var body: some ToolbarContent {
         if #available(iOS 26.0, *) {
-            // swiftlint:disable:next unavailable_function
             ToolbarSpacer(placement: placement)
         }
     }
