@@ -38,12 +38,12 @@ struct MaktabahApp: App {
         ArabicFont.registerCustomFonts()
         UserFontManager.shared.registerUserFonts()
         AppConfig.setupAnnotationsAndResults()
+        UserDefaults.standard.set(false, forKey: AppConfig.useICloudKey)
         // CloudKitSyncManager.shared.initializeOnLaunch()
-        // Disabled for re-signed / side-loaded builds that do not carry the original iCloud.Maktabah entitlement.
         // CoreDatabaseBootstrap.run()
         setupGlobalAppearances()
         if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
-            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: true])
+            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: false])
         }
     }
 
@@ -112,14 +112,11 @@ struct MaktabahApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
-        // Remote notifications require the original iCloud/APS entitlements.
-        // Keep disabled for unsigned/re-signed artifacts.
         // application.registerForRemoteNotifications()
     }
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // CloudKitSyncManager.shared.fetchChanges()
         completionHandler(.noData)
     }
 }
