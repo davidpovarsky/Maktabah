@@ -316,17 +316,26 @@ final class OtzariaMaktabahBridge {
             WHERE b.id = ?
             LIMIT 1
         """, parameters: [book.id], mapping: { row -> (String, String) in
-            let parts = [
-                row.string(at: 0) ?? "",
-                row.string(at: 7).map { $0.isEmpty ? "" : "Authors: \($0)" } ?? "",
-                row.string(at: 2).map { $0.isEmpty ? "" : "Source: \($0)" } ?? "",
-                row.string(at: 3).map { $0.isEmpty ? "" : "Type: \($0)" } ?? "",
-                row.string(at: 4).map { $0.isEmpty ? "" : "Volume: \($0)" } ?? "",
-                row.string(at: 5).map { $0.isEmpty ? "" : "Pages: \($0)" } ?? "",
-                row.int(at: 6) > 0 ? "Lines: \(row.int(at: 6))" : "",
-                row.string(at: 1).map { $0.isEmpty ? "" : "Path: \($0)" } ?? ""
-            ].filter { !$0.isEmpty }
-            return (row.string(at: 0) ?? "", parts.joined(separator: "\n"))
+            let shortDescription = row.string(at: 0) ?? ""
+            let filePath = row.string(at: 1) ?? ""
+            let sourceName = row.string(at: 2) ?? ""
+            let fileType = row.string(at: 3) ?? ""
+            let volume = row.string(at: 4) ?? ""
+            let pages = row.string(at: 5) ?? ""
+            let totalLines = row.int(at: 6)
+            let authors = row.string(at: 7) ?? ""
+
+            var parts: [String] = []
+            if !shortDescription.isEmpty { parts.append(shortDescription) }
+            if !authors.isEmpty { parts.append("Authors: \(authors)") }
+            if !sourceName.isEmpty { parts.append("Source: \(sourceName)") }
+            if !fileType.isEmpty { parts.append("Type: \(fileType)") }
+            if !volume.isEmpty { parts.append("Volume: \(volume)") }
+            if !pages.isEmpty { parts.append("Pages: \(pages)") }
+            if totalLines > 0 { parts.append("Lines: \(totalLines)") }
+            if !filePath.isEmpty { parts.append("Path: \(filePath)") }
+
+            return (shortDescription, parts.joined(separator: "\n"))
         }).first {
             book.bithoqoh = info.0
             book.info = info.1
