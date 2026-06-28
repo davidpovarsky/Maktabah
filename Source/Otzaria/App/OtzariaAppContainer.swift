@@ -93,8 +93,10 @@ final class OtzariaMaktabahBridge {
     static let shared = OtzariaMaktabahBridge()
 
     private let databasePathKey = "otzaria_seforim_database_path"
+    private let unitModeKey = "otzaria_reader_unit_mode"
     private let lock = NSRecursiveLock()
     private var database: SQLiteDatabase?
+    private var readingUnitService: OtzariaReadingUnitService?
 
     private init() {}
 
@@ -156,6 +158,7 @@ final class OtzariaMaktabahBridge {
     func resetConnection() {
         lock.lock()
         database = nil
+        readingUnitService = nil
         lock.unlock()
     }
 
@@ -167,6 +170,7 @@ final class OtzariaMaktabahBridge {
         guard let path = selectedDatabasePath else { return false }
         if database != nil { return true }
         database = try SQLiteDatabase(path: path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+        readingUnitService = nil
         return true
     }
 
@@ -176,6 +180,29 @@ final class OtzariaMaktabahBridge {
             throw NSError(domain: "Otzaria", code: 2, userInfo: [NSLocalizedDescriptionKey: "Otzaria database is not selected"])
         }
         return database
+    }
+
+    var currentReadingUnitMode: OtzariaUnitMode {
+        get {
+            OtzariaUnitMode(
+                storageValue: UserDefaults.standard.string(forKey: unitModeKey) ?? OtzariaUnitMode.automatic.storageValue
+            )
+        }
+        set {
+            UserDefaults.standard.set(newValue.storageValue, forKey: unitModeKey)
+        }
+    }
+
+    func withReadingUnitService<T>(_ work: (OtzariaReadingUnitService) -> T) -> T? {
+        lock.lock()
+        defer { lock.unlock() }
+
+        guard let db = try? requireDatabase() else { return nil }
+        if readingUnitService == nil {
+            readingUnitService = OtzariaReadingUnitService(database: db)
+        }
+        guard let readingUnitService else { return nil }
+        return work(readingUnitService)
     }
 
     func fetchCategories() throws -> [CategoryData] {
@@ -343,19 +370,23 @@ final class OtzariaMaktabahBridge {
     }
 
     func getContent(bookId: Int, contentId: Int) -> BookContent? {
-        lineContent(bookId: bookId, whereClause: "lineIndex = ?", parameters: [contentId])
+        getReadingUnit(
+            bookId: bookId,
+            containingLineIndex: contentId,
+            mode: currentReadingUnitMode
+        ).map { makeBookContent(from: $0) }
     }
 
     func getFirstContent(bookId: Int) -> BookContent? {
-        lineContent(bookId: bookId, whereClause: "1 = 1", parameters: [], orderClause: "ORDER BY lineIndex ASC")
+        getFirstReadingUnit(bookId: bookId, mode: currentReadingUnitMode).map { makeBookContent(from: $0) }
     }
 
     func getNextContent(bookId: Int, after contentId: Int) -> BookContent? {
-        lineContent(bookId: bookId, whereClause: "lineIndex > ?", parameters: [contentId], orderClause: "ORDER BY lineIndex ASC")
+        getNextReadingUnit(bookId: bookId, afterLineIndex: contentId, mode: currentReadingUnitMode).map { makeBookContent(from: $0) }
     }
 
     func getPreviousContent(bookId: Int, before contentId: Int) -> BookContent? {
-        lineContent(bookId: bookId, whereClause: "lineIndex < ?", parameters: [contentId], orderClause: "ORDER BY lineIndex DESC")
+        getPreviousReadingUnit(bookId: bookId, beforeLineIndex: contentId, mode: currentReadingUnitMode).map { makeBookContent(from: $0) }
     }
 
     private func lineContent(bookId: Int, whereClause: String, parameters: [Any], orderClause: String = "") -> BookContent? {

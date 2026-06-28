@@ -453,6 +453,35 @@
 		F3FF136C2FE757B500E74201 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF13692FE757B500E74201 /* TextStorage.swift */; };
 		FB254BD29A50C530E907662A /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373C7B02164CDBB77BFFF48 /* CloudKitSyncManager.swift */; };
 		FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */; };
+		0B7A00000000000000000001 /* OtzariaAppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000001 /* OtzariaAppContainer.swift */; };
+		0B7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift */; };
+		0B7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift */; };
+		0B7A00000000000000000004 /* OtzariaIntegratedReaderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000004 /* OtzariaIntegratedReaderDetailView.swift */; };
+		0B7A00000000000000000005 /* OtzariaRootSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000005 /* OtzariaRootSplitView.swift */; };
+		0B7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift */; };
+		0B7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift */; };
+		0B7A00000000000000000008 /* OtzariaSQLiteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000008 /* OtzariaSQLiteConnection.swift */; };
+		0B7A00000000000000000009 /* OtzariaSQLiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000009 /* OtzariaSQLiteError.swift */; };
+		0B7A0000000000000000000A /* OtzariaSQLiteStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000000A /* OtzariaSQLiteStatement.swift */; };
+		0B7A0000000000000000000B /* String+OtzariaText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000000B /* String+OtzariaText.swift */; };
+		0B7A0000000000000000000C /* OtzariaSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000000C /* OtzariaSchema.swift */; };
+		0B7A0000000000000000000D /* OtzariaSQLiteBookTextRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000000D /* OtzariaSQLiteBookTextRepository.swift */; };
+		0B7A0000000000000000000E /* OtzariaSQLiteLibraryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000000E /* OtzariaSQLiteLibraryRepository.swift */; };
+		0B7A0000000000000000000F /* OtzariaSQLiteSourceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000000F /* OtzariaSQLiteSourceRepository.swift */; };
+		0B7A00000000000000000010 /* OtzariaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000010 /* OtzariaModels.swift */; };
+		0B7A00000000000000000011 /* OtzariaRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000011 /* OtzariaRepositories.swift */; };
+		0B7A00000000000000000012 /* OtzariaLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000012 /* OtzariaLibraryView.swift */; };
+		0B7A00000000000000000013 /* OtzariaLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000013 /* OtzariaLibraryViewModel.swift */; };
+		0B7A00000000000000000014 /* OtzariaReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000014 /* OtzariaReaderView.swift */; };
+		0B7A00000000000000000015 /* OtzariaReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000015 /* OtzariaReaderViewModel.swift */; };
+		0B7A00000000000000000016 /* OtzariaReaderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000016 /* OtzariaReaderSettingsView.swift */; };
+		0B7A00000000000000000017 /* OtzariaSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000017 /* OtzariaSourcesView.swift */; };
+		0B7A00000000000000000018 /* OtzariaSourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000018 /* OtzariaSourcesViewModel.swift */; };
+		0B7A00000000000000000019 /* OtzariaContinuousReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000019 /* OtzariaContinuousReaderView.swift */; };
+		0B7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift */; };
+		0B7A0000000000000000001B /* OtzariaReadingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001B /* OtzariaReadingUnit.swift */; };
+		0B7A0000000000000000001C /* OtzariaReadingUnitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001C /* OtzariaReadingUnitService.swift */; };
+		0B7A0000000000000000001D /* OtzariaStateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001D /* OtzariaStateViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -685,6 +714,35 @@
 		F3EB89682FAF72AE00ED75F0 /* SearchResultsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsListView.swift; sourceTree = "<group>"; };
 		F3F2D58F2FE6B2DE006943DC /* AnnotationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationViewModel.swift; sourceTree = "<group>"; };
 		F3FF13692FE757B500E74201 /* TextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000001 /* OtzariaAppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/OtzariaAppContainer.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/OtzariaIntegratedLibraryView.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/OtzariaIntegratedNavigationState.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000004 /* OtzariaIntegratedReaderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/OtzariaIntegratedReaderDetailView.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000005 /* OtzariaRootSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/OtzariaRootSplitView.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSecurityScopedAccess.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSecurityScopedBookmarkStore.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000008 /* OtzariaSQLiteConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSQLiteConnection.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000009 /* OtzariaSQLiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSQLiteError.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000000A /* OtzariaSQLiteStatement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSQLiteStatement.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000000B /* String+OtzariaText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/String+OtzariaText.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000000C /* OtzariaSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaSchema.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000000D /* OtzariaSQLiteBookTextRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaSQLiteBookTextRepository.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000000E /* OtzariaSQLiteLibraryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaSQLiteLibraryRepository.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000000F /* OtzariaSQLiteSourceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaSQLiteSourceRepository.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000010 /* OtzariaModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/OtzariaModels.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000011 /* OtzariaRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/OtzariaRepositories.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000012 /* OtzariaLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Library/OtzariaLibraryView.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000013 /* OtzariaLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Library/OtzariaLibraryViewModel.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000014 /* OtzariaReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Reader/OtzariaReaderView.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000015 /* OtzariaReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Reader/OtzariaReaderViewModel.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000016 /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000017 /* OtzariaSourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Sources/OtzariaSourcesView.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000018 /* OtzariaSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Sources/OtzariaSourcesViewModel.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000019 /* OtzariaContinuousReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaContinuousReaderView.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaMaktabahBridge+ReadingUnits.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000001B /* OtzariaReadingUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaReadingUnit.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000001C /* OtzariaReadingUnitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaReadingUnitService.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000001D /* OtzariaStateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUI/OtzariaStateViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -766,7 +824,8 @@
 		4B32022A2EDAFE85003B95D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				4B0139E52EEB3C9900424CFA /* Add-On View */,
+								0A7AF0000000000000000000 /* Otzaria */,
+4B0139E52EEB3C9900424CFA /* Add-On View */,
 				4B6100DB2EFA720F00CCBED6 /* Al-Qur'an */,
 				4B65CCB02EE058570085CEB4 /* BooksLibrary */,
 				F30577832FA463B1005732C6 /* iOS */,
@@ -1312,6 +1371,42 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		0A7AF0000000000000000000 /* Otzaria */ = {
+			isa = PBXGroup;
+			children = (
+				0A7A00000000000000000001 /* OtzariaAppContainer.swift */,
+				0A7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift */,
+				0A7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift */,
+				0A7A00000000000000000004 /* OtzariaIntegratedReaderDetailView.swift */,
+				0A7A00000000000000000005 /* OtzariaRootSplitView.swift */,
+				0A7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift */,
+				0A7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift */,
+				0A7A00000000000000000008 /* OtzariaSQLiteConnection.swift */,
+				0A7A00000000000000000009 /* OtzariaSQLiteError.swift */,
+				0A7A0000000000000000000A /* OtzariaSQLiteStatement.swift */,
+				0A7A0000000000000000000B /* String+OtzariaText.swift */,
+				0A7A0000000000000000000C /* OtzariaSchema.swift */,
+				0A7A0000000000000000000D /* OtzariaSQLiteBookTextRepository.swift */,
+				0A7A0000000000000000000E /* OtzariaSQLiteLibraryRepository.swift */,
+				0A7A0000000000000000000F /* OtzariaSQLiteSourceRepository.swift */,
+				0A7A00000000000000000010 /* OtzariaModels.swift */,
+				0A7A00000000000000000011 /* OtzariaRepositories.swift */,
+				0A7A00000000000000000012 /* OtzariaLibraryView.swift */,
+				0A7A00000000000000000013 /* OtzariaLibraryViewModel.swift */,
+				0A7A00000000000000000014 /* OtzariaReaderView.swift */,
+				0A7A00000000000000000015 /* OtzariaReaderViewModel.swift */,
+				0A7A00000000000000000016 /* OtzariaReaderSettingsView.swift */,
+				0A7A00000000000000000017 /* OtzariaSourcesView.swift */,
+				0A7A00000000000000000018 /* OtzariaSourcesViewModel.swift */,
+				0A7A00000000000000000019 /* OtzariaContinuousReaderView.swift */,
+				0A7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift */,
+				0A7A0000000000000000001B /* OtzariaReadingUnit.swift */,
+				0A7A0000000000000000001C /* OtzariaReadingUnitService.swift */,
+				0A7A0000000000000000001D /* OtzariaStateViews.swift */,
+			);
+			path = Otzaria;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1779,6 +1874,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B7A00000000000000000001 /* OtzariaAppContainer.swift in Sources */,
+				0B7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift in Sources */,
+				0B7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift in Sources */,
+				0B7A00000000000000000004 /* OtzariaIntegratedReaderDetailView.swift in Sources */,
+				0B7A00000000000000000005 /* OtzariaRootSplitView.swift in Sources */,
+				0B7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift in Sources */,
+				0B7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift in Sources */,
+				0B7A00000000000000000008 /* OtzariaSQLiteConnection.swift in Sources */,
+				0B7A00000000000000000009 /* OtzariaSQLiteError.swift in Sources */,
+				0B7A0000000000000000000A /* OtzariaSQLiteStatement.swift in Sources */,
+				0B7A0000000000000000000B /* String+OtzariaText.swift in Sources */,
+				0B7A0000000000000000000C /* OtzariaSchema.swift in Sources */,
+				0B7A0000000000000000000D /* OtzariaSQLiteBookTextRepository.swift in Sources */,
+				0B7A0000000000000000000E /* OtzariaSQLiteLibraryRepository.swift in Sources */,
+				0B7A0000000000000000000F /* OtzariaSQLiteSourceRepository.swift in Sources */,
+				0B7A00000000000000000010 /* OtzariaModels.swift in Sources */,
+				0B7A00000000000000000011 /* OtzariaRepositories.swift in Sources */,
+				0B7A00000000000000000012 /* OtzariaLibraryView.swift in Sources */,
+				0B7A00000000000000000013 /* OtzariaLibraryViewModel.swift in Sources */,
+				0B7A00000000000000000014 /* OtzariaReaderView.swift in Sources */,
+				0B7A00000000000000000015 /* OtzariaReaderViewModel.swift in Sources */,
+				0B7A00000000000000000016 /* OtzariaReaderSettingsView.swift in Sources */,
+				0B7A00000000000000000017 /* OtzariaSourcesView.swift in Sources */,
+				0B7A00000000000000000018 /* OtzariaSourcesViewModel.swift in Sources */,
+				0B7A00000000000000000019 /* OtzariaContinuousReaderView.swift in Sources */,
+				0B7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift in Sources */,
+				0B7A0000000000000000001B /* OtzariaReadingUnit.swift in Sources */,
+				0B7A0000000000000000001C /* OtzariaReadingUnitService.swift in Sources */,
+				0B7A0000000000000000001D /* OtzariaStateViews.swift in Sources */,
 				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,
 				F3B60E2C2FC7FFA500A9EF58 /* iOSTOCView.swift in Sources */,
 				F31111912FC008F30024B638 /* ActiveIntegrationStatesView.swift in Sources */,

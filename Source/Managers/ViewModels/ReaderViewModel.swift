@@ -81,6 +81,15 @@ class ReaderViewModel: ViewModelBase {
     var fetchScrollPosition: (() -> CGPoint?)?
     var fetchSelectedRange: (() -> NSRange?)?
     var currentAnnotations: [Annotation] = []
+    var otzariaUnitMode: OtzariaUnitMode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
+    var otzariaAvailableUnitModes: [OtzariaUnitLevelOption] = []
+    var otzariaReaderMode: OtzariaReaderMode = OtzariaReaderMode(
+        rawValue: UserDefaults.standard.string(forKey: "otzaria_reader_mode") ?? ""
+    ) ?? .paged
+    var otzariaVisibleUnits: [OtzariaReadingUnit] = []
+    var otzariaSelectedUnitForLinks: OtzariaReadingUnit?
+    var otzariaLinkedSources: [OtzariaLinkedSource] = []
+    var otzariaLinksPanelVisible: Bool = false
     #endif
 
     // MARK: - Computed Properties
@@ -205,6 +214,7 @@ class ReaderViewModel: ViewModelBase {
 
         // Start loading TOC immediately for both platforms
         tocViewModel.loadTOC(book: book)
+        loadOtzariaReaderOptionsIfNeeded(for: book)
 
         guard let initialContentId else {
             loadFromHistory(for: book)
@@ -440,6 +450,7 @@ class ReaderViewModel: ViewModelBase {
         // Clear saved scroll/selection so it scrolls to top on page change
         readerState.scrollPosition = nil
         readerState.selectedRange = nil
+        refreshOtzariaContinuousWindowIfNeeded()
         updateNavigationLimits()
         #endif
     }
@@ -634,6 +645,86 @@ class ReaderViewModel: ViewModelBase {
         try annotationManager.updateAnnotation(annotation)
         loadAnnotations()
     }
+}
+
+// MARK: - Otzaria Reading Units
+
+extension ReaderViewModel {
+    func loadOtzariaReaderOptionsIfNeeded(for book: BooksData) {
+        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
+        #if os(iOS)
+        otzariaAvailableUnitModes = OtzariaMaktabahBridge.shared.getAvailableReadingUnitModes(bookId: book.id)
+        otzariaUnitMode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
+        refreshOtzariaContinuousWindowIfNeeded()
+        #endif
+    }
+
+    #if os(iOS)
+    func setOtzariaUnitMode(_ mode: OtzariaUnitMode) {
+        guard OtzariaMaktabahBridge.shared.isEnabled, let currentBook else { return }
+        let anchorLineIndex = currentContentId
+        otzariaUnitMode = mode
+        OtzariaMaktabahBridge.shared.currentReadingUnitMode = mode
+
+        guard let content = bookConnection.getContent(
+            bkid: String(currentBook.id),
+            contentId: anchorLineIndex
+        ) else {
+            return
+        }
+        updateContentState(with: content)
+    }
+
+    func setOtzariaReaderMode(_ mode: OtzariaReaderMode) {
+        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
+        otzariaReaderMode = mode
+        UserDefaults.standard.set(mode.rawValue, forKey: "otzaria_reader_mode")
+        refreshOtzariaContinuousWindowIfNeeded()
+    }
+
+    func refreshOtzariaContinuousWindowIfNeeded() {
+        guard OtzariaMaktabahBridge.shared.isEnabled,
+              otzariaReaderMode == .continuous,
+              let currentBook else {
+            return
+        }
+
+        otzariaVisibleUnits = OtzariaMaktabahBridge.shared.getReadingUnitsWindow(
+            bookId: currentBook.id,
+            aroundLineIndex: currentContentId,
+            mode: otzariaUnitMode,
+            before: 20,
+            after: 40
+        )
+    }
+
+    func selectOtzariaUnitForLinks(_ unit: OtzariaReadingUnit) {
+        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
+        otzariaSelectedUnitForLinks = unit
+        otzariaLinkedSources = OtzariaMaktabahBridge.shared.getLinksForReadingUnit(bookId: unit.bookId, unit: unit)
+        otzariaLinksPanelVisible = true
+    }
+
+    func updateOtzariaAnchor(to unit: OtzariaReadingUnit) {
+        guard OtzariaMaktabahBridge.shared.isEnabled, let currentBook else { return }
+        currentContentId = unit.startLineIndex
+        currentID = unit.startLineIndex
+        currentPage = unit.startLineIndex
+        currentPart = 1
+        currentHeRef = unit.heRef ?? unit.title
+        historyVM.updateLastContentId(unit.startLineIndex, for: currentBook.id)
+    }
+
+    func otzariaContinuousUnitDidAppear(_ unit: OtzariaReadingUnit) {
+        updateOtzariaAnchor(to: unit)
+        guard otzariaReaderMode == .continuous,
+              let index = otzariaVisibleUnits.firstIndex(of: unit),
+              index <= 4 || index >= otzariaVisibleUnits.count - 5 else {
+            return
+        }
+        refreshOtzariaContinuousWindowIfNeeded()
+    }
+    #endif
 }
 
 // MARK: - Notification Observers
