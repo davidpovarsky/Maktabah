@@ -58,17 +58,15 @@ struct OtzariaSourcesPanelView: View {
                     } else {
                         List(sources) { source in
                             VStack(alignment: .leading, spacing: 6) {
-                                Text(source.title)
+                                Text(source.bookTitle)
                                     .font(.headline)
-                                if let reference = source.reference {
-                                    Text(reference)
+                                if let heRef = source.heRef {
+                                    Text(heRef)
                                         .font(.subheadline)
                                         .foregroundStyle(.secondary)
                                 }
-                                if let snippet = source.snippet {
-                                    Text(snippet)
-                                        .font(.body)
-                                }
+                                Text(source.text)
+                                    .font(.body)
                             }
                         }
                     }

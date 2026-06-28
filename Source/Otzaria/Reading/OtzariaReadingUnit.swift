@@ -54,10 +54,3 @@ enum OtzariaReaderMode: String, Codable {
     case paged
     case continuous
 }
-
-struct OtzariaLinkedSource: Identifiable, Equatable {
-    let id: String
-    let title: String
-    let reference: String?
-    let snippet: String?
-}
