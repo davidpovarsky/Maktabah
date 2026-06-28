@@ -7,7 +7,7 @@ struct SearchResultsListView: View {
 
     var body: some View {
         ThemeList(isGrouped: false) {
-            ForEach(results, id: \.bookId) { item in
+            ForEach(Array(results.enumerated()), id: \.offset) { _, item in
                 Button(action: { onSelect(item) }) {
                     SearchResultRow(item: item, showsBookTitle: showsBookTitle)
                 }

@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct iOSBootstrapView: View {
     @State private var bootstrapManager = iOSBootstrapManager()
+    @State private var showingOtzariaImporter = false
 
     var body: some View {
         Group {
@@ -24,7 +26,8 @@ struct iOSBootstrapView: View {
                     } else {
                         iOSCoreDownloadGateView(
                             state: bootstrapManager.coreDownloadState,
-                            onDownload: { bootstrapManager.startDownload() }
+                            onDownload: { bootstrapManager.startDownload() },
+                            onChooseOtzaria: { showingOtzariaImporter = true }
                         )
                         .padding()
                     }
@@ -33,6 +36,17 @@ struct iOSBootstrapView: View {
         }
         .task {
             bootstrapManager.prepareIfNeeded()
+        }
+        .fileImporter(
+            isPresented: $showingOtzariaImporter,
+            allowedContentTypes: [.database, .data, .item],
+            allowsMultipleSelection: false
+        ) { result in
+            if case let .success(urls) = result, let url = urls.first {
+                bootstrapManager.installOtzariaDatabase(from: url)
+            } else if case let .failure(error) = result {
+                bootstrapManager.coreDownloadState.phase = .error(error.localizedDescription)
+            }
         }
         .overlay {
             if bootstrapManager.showCoreUpdateAlert {

@@ -10,6 +10,7 @@ import SwiftUI
 struct iOSCoreDownloadGateView: View {
     var state: CoreDownloadProgressState
     let onDownload: () -> Void
+    let onChooseOtzaria: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -52,9 +53,13 @@ struct iOSCoreDownloadGateView: View {
 
             switch state.phase {
             case .confirmation:
-                Button(String(localized: "Download"), action: onDownload)
-                    .buttonStyle(.borderedProminent)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                HStack {
+                    Button("Choose Otzaria Database", action: onChooseOtzaria)
+                        .buttonStyle(.bordered)
+                    Spacer()
+                    Button(String(localized: "Download"), action: onDownload)
+                        .buttonStyle(.borderedProminent)
+                }
 
             case .downloading:
                 VStack(alignment: .leading, spacing: 8) {
@@ -75,9 +80,13 @@ struct iOSCoreDownloadGateView: View {
                 }
 
             case .error:
-                Button(String(localized: "Try Again"), action: onDownload)
-                    .buttonStyle(.borderedProminent)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                HStack {
+                    Button("Choose Otzaria Database", action: onChooseOtzaria)
+                        .buttonStyle(.bordered)
+                    Spacer()
+                    Button(String(localized: "Try Again"), action: onDownload)
+                        .buttonStyle(.borderedProminent)
+                }
             }
         }
         .padding(20)

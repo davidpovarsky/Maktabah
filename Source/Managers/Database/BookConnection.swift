@@ -307,7 +307,7 @@ extension BookConnection {
         if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
             return OtzariaMaktabahBridge.shared.getContent(
                 bookId: bookId,
-                contentId: max(page - 1, 0)
+                contentId: page
             )
         }
 
@@ -560,12 +560,16 @@ extension BookConnection {
 
         var allNodes: [TOCNode] = []
         var levelStacks: [Int: [TOCNode]] = [:]
+        var nodesByEntryId: [Int: TOCNode] = [:]
+        var hasParentLinks = false
 
         for toc in flatTOCs {
             if Task.isCancelled { return [] }
 
             let node = TOCNode(from: toc)
             allNodes.append(node)
+            nodesByEntryId[toc.entryId] = node
+            if toc.parentId != nil { hasParentLinks = true }
 
             if levelStacks[node.level] == nil {
                 levelStacks[node.level] = []
@@ -576,40 +580,53 @@ extension BookConnection {
 
         var rootNodes: [TOCNode] = []
 
-        if let level1Nodes = levelStacks[1] {
-            rootNodes = level1Nodes.filter { $0.sub == 0 }
-        }
+        if hasParentLinks {
+            for toc in flatTOCs {
+                if Task.isCancelled { return [] }
+                let node = nodesByEntryId[toc.entryId]
+                guard let node else { continue }
+                if let parentId = toc.parentId, let parent = nodesByEntryId[parentId] {
+                    parent.children.append(node)
+                } else {
+                    rootNodes.append(node)
+                }
+            }
+        } else {
+            if let level1Nodes = levelStacks[1] {
+                rootNodes = level1Nodes.filter { $0.sub == 0 }
+            }
 
-        if rootNodes.isEmpty {
-            rootNodes = allNodes.filter { $0.level <= 1 }
-        }
+            if rootNodes.isEmpty {
+                rootNodes = allNodes.filter { $0.level <= 1 }
+            }
 
-        let sortedLevels = levelStacks.keys.sorted()
+            let sortedLevels = levelStacks.keys.sorted()
 
-        for currentLevel in sortedLevels where currentLevel > 1 {
-            if Task.isCancelled { return [] }
-
-            guard let nodesAtCurrentLevel = levelStacks[currentLevel] else { continue }
-
-            for node in nodesAtCurrentLevel {
+            for currentLevel in sortedLevels where currentLevel > 1 {
                 if Task.isCancelled { return [] }
 
-                var foundParent = false
+                guard let nodesAtCurrentLevel = levelStacks[currentLevel] else { continue }
 
-                for parentLevel in stride(from: currentLevel - 1, through: 1, by: -1) {
+                for node in nodesAtCurrentLevel {
                     if Task.isCancelled { return [] }
 
-                    guard let candidateParents = levelStacks[parentLevel] else { continue }
+                    var foundParent = false
 
-                    if let parent = candidateParents.last(where: { $0.id <= node.id }) {
-                        parent.children.append(node)
-                        foundParent = true
-                        break
+                    for parentLevel in stride(from: currentLevel - 1, through: 1, by: -1) {
+                        if Task.isCancelled { return [] }
+
+                        guard let candidateParents = levelStacks[parentLevel] else { continue }
+
+                        if let parent = candidateParents.last(where: { $0.id <= node.id }) {
+                            parent.children.append(node)
+                            foundParent = true
+                            break
+                        }
                     }
-                }
 
-                if !foundParent {
-                    rootNodes.append(node)
+                    if !foundParent {
+                        rootNodes.append(node)
+                    }
                 }
             }
         }

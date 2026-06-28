@@ -12,6 +12,21 @@ struct AuthorModeView: View {
                 ProgressView("Loading Narrators...")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .themeBackground()
+            } else if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
+                VStack(spacing: 12) {
+                    Image(systemName: "person.text.rectangle")
+                        .font(.largeTitle)
+                        .foregroundStyle(.secondary)
+                    Text("Narrators unavailable")
+                        .font(.headline)
+                    Text("This screen requires the original Maktabah narrator database.")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .themeBackground()
             } else {
                 iOSRowiSidebarView(viewModel: viewModel, searchQuery: viewModel.lastSearchQuery)
                     .themeTint()

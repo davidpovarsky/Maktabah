@@ -164,7 +164,9 @@ class DatabaseManager {
     }
 
     func fetchAllAuthors() -> [(id: Int, muallif: Muallif)] {
-        if OtzariaMaktabahBridge.shared.isEnabled { return [] }
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return (try? OtzariaMaktabahBridge.shared.fetchAuthors()) ?? []
+        }
         lock.lock(); defer { lock.unlock() }
         guard let dbSpecial else { return [] }
         let sql = "SELECT \(colAuthId), \(colAuthName), \(colAuthInf), \(colAuthLng) FROM \(authTableName) ORDER BY \(colAuthName)"

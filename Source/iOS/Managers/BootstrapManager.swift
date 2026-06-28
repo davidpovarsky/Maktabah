@@ -28,7 +28,7 @@ final class iOSBootstrapManager {
         guard !didPrepare else { return }
         didPrepare = true
 
-        if downloader.areCoreFilesReady() || AppConfig.hasCustomDatabaseFolder() {
+        if OtzariaMaktabahBridge.shared.isEnabled || downloader.areCoreFilesReady() || AppConfig.hasCustomDatabaseFolder() {
             finishSetup()
             return
         }
@@ -42,6 +42,16 @@ final class iOSBootstrapManager {
                 self?.isChecking = false
                 self?.coreDownloadState.phase = .confirmation
             }
+        }
+    }
+
+    func installOtzariaDatabase(from url: URL) {
+        do {
+            try OtzariaMaktabahBridge.shared.installDatabase(from: url)
+            finishSetup()
+        } catch {
+            coreDownloadState.phase = .error(error.localizedDescription)
+            isChecking = false
         }
     }
 
@@ -70,12 +80,16 @@ final class iOSBootstrapManager {
 
     private func finishSetup() {
         DatabaseManager.shared.setupFolders()
-        TarjamahGlobalManager.shared.setupConnection()
+        if !OtzariaMaktabahBridge.shared.isEnabled {
+            TarjamahGlobalManager.shared.setupConnection()
+        }
         isChecking = false
         isReady = true
 
         // Check for core database updates (non-blocking, throttled 6 months)
-        checkCoreDatabaseUpdate()
+        if !OtzariaMaktabahBridge.shared.isEnabled {
+            checkCoreDatabaseUpdate()
+        }
     }
 
     private func checkCoreDatabaseUpdate() {

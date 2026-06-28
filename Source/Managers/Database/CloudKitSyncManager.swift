@@ -627,6 +627,7 @@ final class CloudKitSyncManager {
 
     // MARK: - Account Utilities
     func resetSyncingKey(syncing: Bool, completion: (() -> Void)? = nil) {
+        guard AppConfig.useICloud else { completion?(); return }
         core.setSyncing(syncing, completion: completion)
     }
 
@@ -654,6 +655,7 @@ final class CloudKitSyncManager {
     }
 
     func resetChangeToken() {
+        guard AppConfig.useICloud else { return }
         AnnotationManager.shared.db?.checkpoint()
         ResultsHandler.shared.db?.checkpoint()
         core.resetToken()

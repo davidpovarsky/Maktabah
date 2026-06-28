@@ -125,12 +125,24 @@ struct SearchModeView: View {
 
     private func handleSelection(_ item: SearchResultItem) {
         Task {
-            let table = item.tableName.hasPrefix("b") ? String(item.tableName.dropFirst()) : item.tableName
+            let table: String
+            let contentId: Int
+            if item.tableName.hasPrefix("otzaria:") {
+                table = String(item.tableName.dropFirst("otzaria:".count))
+                contentId = item.page
+            } else if item.tableName.hasPrefix("b") {
+                table = String(item.tableName.dropFirst())
+                contentId = item.bookId
+            } else {
+                table = item.tableName
+                contentId = item.bookId
+            }
+
             if let tableInt = Int(table), let bookData = LibraryDataManager.shared.getBook([tableInt]).first {
                 await MainActor.run {
                     navigationManager.openBook(
                         bookData,
-                        initialContentId: item.bookId,
+                        initialContentId: contentId,
                         searchText: navigationManager.searchViewModel.query
                     )
                 }

@@ -101,9 +101,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
 
         AppConfig.setupAnnotationsAndResults()
-        CloudKitSyncManager.shared.initializeOnLaunch()
-        // Register for CloudKit remote notifications
-        NSApplication.shared.registerForRemoteNotifications()
+        if AppConfig.useICloud {
+            CloudKitSyncManager.shared.initializeOnLaunch()
+            // Register for CloudKit remote notifications
+            NSApplication.shared.registerForRemoteNotifications()
+        }
 
         /*
         showWelcomeScreenIfNeeded()
@@ -114,6 +116,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
+        guard AppConfig.useICloud else { return }
         Task {
             try await Task.sleep(for: .seconds(5))
             CloudKitSyncManager.shared.fetchChanges()
@@ -121,6 +124,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
+        guard AppConfig.useICloud else { return }
         CloudKitSyncManager.shared.fetchChanges()
     }
 

@@ -138,6 +138,10 @@ final class NarratorViewModel: ViewModelBase {
     func loadData() async {
         defer { state = .loaded }
         guard tabaqaGroups.isEmpty else { return }
+        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
+            tabaqaGroups = []
+            return
+        }
         async let booksData: () = LibraryDataManager.shared.loadData()
         async let rowiData: () = dataManager.loadData()
         _ = await (rowiData, booksData)
@@ -145,11 +149,19 @@ final class NarratorViewModel: ViewModelBase {
     }
 
     func searchRowis(query: String) {
+        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
+            tabaqaGroups = []
+            return
+        }
         dataManager.searchRowis(query: query)
         tabaqaGroups = dataManager.tabaqaGroups
     }
 
     func loadMore(group: TabaqaGroup, completion: @escaping (Int?) -> Void) {
+        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
+            completion(nil)
+            return
+        }
         dataManager.loadMore(group, completion: completion)
     }
 
@@ -219,6 +231,7 @@ final class NarratorViewModel: ViewModelBase {
 
     func startSearch(query: String) {
         guard !query.isEmpty else { return }
+        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil { return }
         isSearching = true
         isPaused = false
         isStopped = false

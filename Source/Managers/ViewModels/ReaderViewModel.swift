@@ -24,6 +24,7 @@ class ReaderViewModel: ViewModelBase {
     var currentBook: BooksData?
     var currentPage: Int?
     var currentPart: Int?
+    var currentHeRef: String?
     var currentContentId: Int = 0
 
     #if os(macOS)
@@ -101,6 +102,9 @@ class ReaderViewModel: ViewModelBase {
 
     /// Cross-platform subtitle string (page/part info)
     var statusSubtitle: String {
+        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
+            return currentHeRef
+        }
         if let currentPage {
             let pageArb = String(currentPage).convertToArabicDigits()
             if let currentPart, currentPart != -1 {
@@ -126,12 +130,16 @@ class ReaderViewModel: ViewModelBase {
         let bookName = currentBook?.book ?? ""
         var referencePage: [String] = []
 
-        if let part = currentPart, part != -1 {
-            referencePage.append("ج: \(part)".convertToArabicDigits())
-        }
+        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
+            referencePage.append(currentHeRef)
+        } else {
+            if let part = currentPart, part != -1 {
+                referencePage.append("ج: \(part)".convertToArabicDigits())
+            }
 
-        if let page = currentPage {
-            referencePage.append("ص: \(page)".convertToArabicDigits())
+            if let page = currentPage {
+                referencePage.append("ص: \(page)".convertToArabicDigits())
+            }
         }
 
         let referenceLines = "~ \(bookName) - \(referencePage.joined(separator: " • "))"
@@ -143,12 +151,16 @@ class ReaderViewModel: ViewModelBase {
         let bookName = currentBook?.book ?? ""
         var referencePage: [String] = []
 
-        if let part = currentPart, part != -1 {
-            referencePage.append("ج: \(part)".convertToArabicDigits())
-        }
+        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
+            referencePage.append(currentHeRef)
+        } else {
+            if let part = currentPart, part != -1 {
+                referencePage.append("ج: \(part)".convertToArabicDigits())
+            }
 
-        if let page = currentPage {
-            referencePage.append("ص: \(page)".convertToArabicDigits())
+            if let page = currentPage {
+                referencePage.append("ص: \(page)".convertToArabicDigits())
+            }
         }
 
         let referenceLines = "~ \(bookName) - \(referencePage.joined(separator: " • "))"
@@ -357,7 +369,8 @@ class ReaderViewModel: ViewModelBase {
 
         do {
             try bookConnection.connect(archive: book.archive)
-            if AppConfig.isUsingBundleMode,
+            if !OtzariaMaktabahBridge.shared.isEnabled,
+               AppConfig.isUsingBundleMode,
                !BookArchiveIntegrator.shared.isBookIntegrated(book)
             {
                 currentBook = nil
@@ -386,6 +399,7 @@ class ReaderViewModel: ViewModelBase {
         currentBook = nil
         currentPage = nil
         currentPart = nil
+        currentHeRef = nil
         currentID = nil
         currentContentId = 0
         windowTitle = ""
@@ -400,6 +414,7 @@ class ReaderViewModel: ViewModelBase {
         contentText = content.nash
         currentPart = content.part
         currentPage = content.page
+        currentHeRef = content.heRef
         currentID = content.id
         currentContentId = content.id
 
@@ -455,7 +470,11 @@ class ReaderViewModel: ViewModelBase {
         let title = book.book
         let muallif = DatabaseManager.shared.getAuthor(book.muallif)
 
-        if let page {
+        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
+            windowTitle = title
+            windowSubtitle = currentHeRef
+            onWindowTitleChanged?(title, currentHeRef)
+        } else if let page {
             let pageArb = String(page).convertToArabicDigits()
             if let part {
                 let partArb = String(part).convertToArabicDigits()
@@ -661,7 +680,8 @@ extension ReaderViewModel {
     }
 
     func handleBookIntegrated(_ notification: Notification) {
-        guard let bookId = notification.object as? Int,
+        guard !OtzariaMaktabahBridge.shared.isEnabled,
+              let bookId = notification.object as? Int,
               let currentBook,
               currentBook.id == bookId,
               !BookArchiveIntegrator.shared.isBookIntegrated(currentBook)

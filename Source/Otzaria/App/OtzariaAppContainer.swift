@@ -98,8 +98,12 @@ final class OtzariaMaktabahBridge {
 
     private init() {}
 
-    var isEnabled: Bool {
-        selectedDatabasePath != nil
+    var isEnabled: Bool { selectedDatabasePath != nil }
+
+    var databasePath: String? { selectedDatabasePath }
+
+    var databaseURL: URL? {
+        selectedDatabasePath.map { URL(fileURLWithPath: $0) }
     }
 
     var selectedDatabasePath: String? {
@@ -145,6 +149,10 @@ final class OtzariaMaktabahBridge {
         UserDefaults.standard.removeObject(forKey: databasePathKey)
     }
 
+    func close() {
+        resetConnection()
+    }
+
     func resetConnection() {
         lock.lock()
         database = nil
@@ -178,50 +186,85 @@ final class OtzariaMaktabahBridge {
         return try db.fetch(query: """
             SELECT id, parentId, title, level, orderIndex
             FROM category
-            ORDER BY level, orderIndex, title
+            ORDER BY COALESCE(parentId, id), orderIndex, title
         """) { row in
-            let parentId = row.isNull(at: 1) ? nil : row.int(at: 1)
-            return CategoryData(
+            CategoryData(
                 id: row.int(at: 0),
-                name: row.string(at: 2) ?? "ללא שם",
+                name: row.string(at: 2) ?? "Untitled",
                 level: row.int(at: 3),
                 order: row.int(at: 4),
-                parentId: parentId
+                parentId: row.isNull(at: 1) ? nil : row.int(at: 1)
             )
         }
     }
 
-    func fetchBooksGroupedByCategory() throws -> [Int: [BooksData]] {
+    func fetchAllBooks() throws -> [BooksData] {
         lock.lock()
         defer { lock.unlock() }
         let db = try requireDatabase()
 
-        let books = try db.fetch(query: """
-            SELECT id, title, categoryId, orderIndex, totalLines, heShortDesc, fileType
-            FROM book
-            WHERE COALESCE(fileType, '') NOT IN ('link', 'url')
-            ORDER BY orderIndex, title
+        return try db.fetch(query: """
+            SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc, b.filePath, b.fileType,
+                   COALESCE((SELECT ba.authorId FROM book_author ba WHERE ba.bookId = b.id ORDER BY ba.authorId LIMIT 1), 0) AS firstAuthorId
+            FROM book b
+            WHERE COALESCE(b.fileType, '') NOT IN ('link', 'url')
+            ORDER BY b.categoryId, b.orderIndex, b.title
         """) { row -> BooksData in
+            let shortDescription = row.string(at: 5) ?? ""
+            let filePath = row.string(at: 6) ?? ""
             let book = BooksData(
                 id: row.int(at: 0),
-                book: row.string(at: 1) ?? "ללא שם",
+                book: row.string(at: 1) ?? "Untitled",
                 archive: 0,
-                muallif: 0,
-                bithoqoh: row.string(at: 5) ?? "",
-                info: row.string(at: 5) ?? ""
+                muallif: row.int(at: 8),
+                bithoqoh: shortDescription,
+                info: shortDescription.isEmpty ? filePath : shortDescription
             )
             book.catId = row.int(at: 2)
+            book.orderIndex = row.isNull(at: 3) ? nil : row.int(at: 3)
+            book.totalLines = row.isNull(at: 4) ? nil : row.int(at: 4)
             book.pdfCs = 4
             return book
         }
+    }
 
-        var grouped: [Int: [BooksData]] = [:]
-        for book in books {
-            if let catId = book.catId {
-                grouped[catId, default: []].append(book)
-            }
+    func fetchBooksGroupedByCategory() throws -> [Int: [BooksData]] {
+        Dictionary(grouping: try fetchAllBooks()) { $0.catId ?? 0 }
+    }
+
+    func fetchAuthors() throws -> [(id: Int, muallif: Muallif)] {
+        lock.lock()
+        defer { lock.unlock() }
+        let db = try requireDatabase()
+
+        return try db.fetch(query: """
+            SELECT id, name
+            FROM author
+            ORDER BY name
+        """) { row in
+            (id: row.int(at: 0), muallif: Muallif(nama: row.string(at: 1) ?? "", info: "", namaLengkap: ""))
         }
-        return grouped
+    }
+
+    func fetchAuthorMapForBooks() throws -> [Int: [Muallif]] {
+        lock.lock()
+        defer { lock.unlock() }
+        let db = try requireDatabase()
+
+        let rows = try db.fetch(query: """
+            SELECT ba.bookId, a.name
+            FROM book_author ba
+            JOIN author a ON a.id = ba.authorId
+            ORDER BY ba.bookId, a.name
+        """) { row in
+            (bookId: row.int(at: 0), author: Muallif(nama: row.string(at: 1) ?? "", info: "", namaLengkap: ""))
+        }
+
+        var result: [Int: [Muallif]] = [:]
+        for row in rows {
+            result[row.bookId, default: []].append(row.author)
+        }
+        return result
     }
 
     func fetchBook(byId bookId: Int) throws -> BooksData? {
@@ -230,20 +273,25 @@ final class OtzariaMaktabahBridge {
         let db = try requireDatabase()
 
         return try db.fetch(query: """
-            SELECT id, title, categoryId, heShortDesc
-            FROM book
-            WHERE id = ?
+            SELECT b.id, b.title, b.categoryId, b.heShortDesc, b.orderIndex, b.totalLines, b.filePath,
+                   COALESCE((SELECT ba.authorId FROM book_author ba WHERE ba.bookId = b.id ORDER BY ba.authorId LIMIT 1), 0) AS firstAuthorId
+            FROM book b
+            WHERE b.id = ?
             LIMIT 1
         """, parameters: [bookId]) { row -> BooksData in
+            let shortDescription = row.string(at: 3) ?? ""
+            let filePath = row.string(at: 6) ?? ""
             let book = BooksData(
                 id: row.int(at: 0),
-                book: row.string(at: 1) ?? "ללא שם",
+                book: row.string(at: 1) ?? "Untitled",
                 archive: 0,
-                muallif: 0,
-                bithoqoh: row.string(at: 3) ?? "",
-                info: row.string(at: 3) ?? ""
+                muallif: row.int(at: 7),
+                bithoqoh: shortDescription,
+                info: shortDescription.isEmpty ? filePath : shortDescription
             )
             book.catId = row.int(at: 2)
+            book.orderIndex = row.isNull(at: 4) ? nil : row.int(at: 4)
+            book.totalLines = row.isNull(at: 5) ? nil : row.int(at: 5)
             book.pdfCs = 4
             return book
         }.first
@@ -255,15 +303,33 @@ final class OtzariaMaktabahBridge {
         guard let db = try? requireDatabase() else { return }
 
         if let info = try? db.fetch(query: """
-            SELECT COALESCE(heShortDesc, ''), COALESCE(filePath, '')
-            FROM book
-            WHERE id = ?
+            SELECT COALESCE(b.heShortDesc, ''), COALESCE(b.filePath, ''), COALESCE(s.name, ''),
+                   COALESCE(b.fileType, ''), COALESCE(b.volume, ''), COALESCE(b.pages, ''), COALESCE(b.totalLines, 0),
+                   COALESCE((
+                       SELECT group_concat(a.name, ', ')
+                       FROM book_author ba
+                       JOIN author a ON a.id = ba.authorId
+                       WHERE ba.bookId = b.id
+                   ), '')
+            FROM book b
+            LEFT JOIN source s ON s.id = b.sourceId
+            WHERE b.id = ?
             LIMIT 1
         """, parameters: [book.id], mapping: { row -> (String, String) in
-            (row.string(at: 0) ?? "", row.string(at: 1) ?? "")
+            let parts = [
+                row.string(at: 0) ?? "",
+                row.string(at: 7).map { $0.isEmpty ? "" : "Authors: \($0)" } ?? "",
+                row.string(at: 2).map { $0.isEmpty ? "" : "Source: \($0)" } ?? "",
+                row.string(at: 3).map { $0.isEmpty ? "" : "Type: \($0)" } ?? "",
+                row.string(at: 4).map { $0.isEmpty ? "" : "Volume: \($0)" } ?? "",
+                row.string(at: 5).map { $0.isEmpty ? "" : "Pages: \($0)" } ?? "",
+                row.int(at: 6) > 0 ? "Lines: \(row.int(at: 6))" : "",
+                row.string(at: 1).map { $0.isEmpty ? "" : "Path: \($0)" } ?? ""
+            ].filter { !$0.isEmpty }
+            return (row.string(at: 0) ?? "", parts.joined(separator: "\n"))
         }).first {
             book.bithoqoh = info.0
-            book.info = info.0.isEmpty ? info.1 : info.0
+            book.info = info.1
         }
     }
 
@@ -289,7 +355,7 @@ final class OtzariaMaktabahBridge {
         guard let db = try? requireDatabase() else { return nil }
 
         let sql = """
-            SELECT lineIndex, content, heRef
+            SELECT id, lineIndex, content, heRef
             FROM line
             WHERE bookId = ? AND \(whereClause)
             \(orderClause)
@@ -300,11 +366,10 @@ final class OtzariaMaktabahBridge {
         allParameters.append(contentsOf: parameters)
 
         return try? db.fetch(query: sql, parameters: allParameters) { row -> BookContent in
-            let lineIndex = row.int(at: 0)
-            let content = (row.string(at: 1) ?? "").otsariaPlainText
-            let ref = row.string(at: 2) ?? ""
-            let text = ref.isEmpty ? content : "\(ref)\n\n\(content)"
-            return BookContent(id: lineIndex, nash: text, page: lineIndex + 1, part: 1)
+            let lineIndex = row.int(at: 1)
+            let content = (row.string(at: 2) ?? "").otsariaPlainText
+            let ref = row.string(at: 3) ?? ""
+            return BookContent(id: lineIndex, nash: content, page: lineIndex, part: 1, heRef: ref.isEmpty ? nil : ref)
         }.first
     }
 
@@ -314,32 +379,126 @@ final class OtzariaMaktabahBridge {
         guard let db = try? requireDatabase() else { return [] }
 
         return (try? db.fetch(query: """
-            SELECT tt.text, te.level, COALESCE(te.lineIndex, ln.lineIndex) AS resolvedLineIndex
+            SELECT te.id, te.parentId, te.level, COALESCE(te.lineIndex, ln.lineIndex, 0) AS resolvedLineIndex, tt.text
             FROM tocEntry te
             JOIN tocText tt ON tt.id = te.textId
             LEFT JOIN line ln ON ln.id = te.lineId
             WHERE te.bookId = ?
-              AND resolvedLineIndex IS NOT NULL
-            ORDER BY resolvedLineIndex, te.level, te.id
+            ORDER BY resolvedLineIndex, te.id
         """, parameters: [book.id]) { row -> TOC in
             TOC(
-                bab: (row.string(at: 0) ?? "").otsariaPlainText,
-                level: max(row.int(at: 1), 1),
+                bab: (row.string(at: 4) ?? "").otsariaPlainText,
+                level: max(row.int(at: 2), 1),
                 sub: 0,
-                id: row.int(at: 2)
+                id: row.int(at: 3),
+                parentId: row.isNull(at: 1) ? nil : row.int(at: 1),
+                entryId: row.int(at: 0)
             )
         }) ?? []
     }
 
+    func search(query: String, selectedBookIds: Set<Int>? = nil, limit: Int? = 200, mode: SearchMode = .phrase) -> [SearchResultItem] {
+        lock.lock()
+        defer { lock.unlock() }
+        guard let db = try? requireDatabase() else { return [] }
+
+        let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !normalizedQuery.isEmpty else { return [] }
+
+        let terms: [String]
+        switch mode {
+        case .phrase:
+            terms = [normalizedQuery]
+        case .contains, .or:
+            terms = normalizedQuery.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
+        }
+        guard !terms.isEmpty else { return [] }
+
+        let matchQuery = mode == .or ? terms.joined(separator: " OR ") : terms.joined(separator: " ")
+        let maxResults = limit ?? 200
+
+        func bookFilterSQL(parameters: inout [Any]) -> String {
+            guard let selectedBookIds, !selectedBookIds.isEmpty else { return "" }
+            let ids = selectedBookIds.sorted()
+            parameters.append(contentsOf: ids)
+            return " AND l.bookId IN (" + Array(repeating: "?", count: ids.count).joined(separator: ",") + ")"
+        }
+
+        func mapRows(_ rows: [(Int, Int, Int, String, String, String)]) -> [SearchResultItem] {
+            rows.map { row in
+                let cleaned = row.4.otsariaPlainText
+                let snippet = cleaned.snippetAround(keywords: terms, contextLength: 60)
+                let highlighted = snippet.highlightedAttributedText(keywords: terms)
+                return SearchResultItem(
+                    archive: "Otzaria",
+                    tableName: "otzaria:\(row.1)",
+                    bookId: row.1,
+                    bookTitle: row.5,
+                    page: row.2,
+                    part: 1,
+                    attributedText: highlighted
+                )
+            }
+        }
+
+        var ftsParameters: [Any] = [matchQuery]
+        let ftsBookFilter = bookFilterSQL(parameters: &ftsParameters)
+        ftsParameters.append(maxResults)
+        let ftsSQL = """
+            SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), l.content, b.title
+            FROM line_fts_with_nikud f
+            JOIN line l ON l.id = f.rowid
+            JOIN book b ON b.id = l.bookId
+            WHERE line_fts_with_nikud MATCH ?\(ftsBookFilter)
+            ORDER BY rank
+            LIMIT ?
+        """
+
+        if let rows = try? db.fetch(query: ftsSQL, parameters: ftsParameters, mapping: { row in
+            (row.int(at: 0), row.int(at: 1), row.int(at: 2), row.string(at: 3) ?? "", row.string(at: 4) ?? "", row.string(at: 5) ?? "")
+        }), !rows.isEmpty {
+            return mapRows(rows)
+        }
+
+        var likeParameters: [Any] = []
+        let likeClauses = terms.map { term -> String in
+            likeParameters.append("%\(term)%")
+            return "l.content LIKE ?"
+        }
+        let joiner = mode == .or ? " OR " : " AND "
+        let likeCondition = likeClauses.joined(separator: joiner)
+        let likeBookFilter = bookFilterSQL(parameters: &likeParameters)
+        likeParameters.append(maxResults)
+        let likeSQL = """
+            SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), l.content, b.title
+            FROM line l
+            JOIN book b ON b.id = l.bookId
+            WHERE (\(likeCondition))\(likeBookFilter)
+            ORDER BY l.bookId, l.lineIndex
+            LIMIT ?
+        """
+
+        let rows = (try? db.fetch(query: likeSQL, parameters: likeParameters, mapping: { row in
+            (row.int(at: 0), row.int(at: 1), row.int(at: 2), row.string(at: 3) ?? "", row.string(at: 4) ?? "", row.string(at: 5) ?? "")
+        })) ?? []
+        return mapRows(rows)
+    }
+
     func getTotalParts(bookId: Int) -> Int { 1 }
 
-    func getMinPage(bookId: Int) -> Int { 1 }
+    func getMinPage(bookId: Int) -> Int { 0 }
 
     func getMaxPage(bookId: Int) -> Int {
         lock.lock()
         defer { lock.unlock() }
         guard let db = try? requireDatabase() else { return 0 }
-        return (try? db.fetch(query: "SELECT COALESCE(MAX(lineIndex), 0) + 1 FROM line WHERE bookId = ?", parameters: [bookId]) { row in
+        return (try? db.fetch(query: """
+            SELECT COALESCE(
+                (SELECT totalLines FROM book WHERE id = ?),
+                (SELECT MAX(lineIndex) + 1 FROM line WHERE bookId = ?),
+                0
+            )
+        """, parameters: [bookId, bookId]) { row in
             row.int(at: 0)
         }.first) ?? 0
     }

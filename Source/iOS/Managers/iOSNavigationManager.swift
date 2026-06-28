@@ -57,6 +57,7 @@ class iOSNavigationManager {
     }
 
     private func handleBookIntegrationChanged(bookId: Int) {
+        if OtzariaMaktabahBridge.shared.isEnabled { return }
         // If a book is no longer integrated, close its tab
         let tabsToClose = openTabs.filter { tab in
             tab.book.id == bookId && !BookArchiveIntegrator.shared.isBookIntegrated(tab.book)
@@ -110,6 +111,13 @@ class iOSNavigationManager {
     }
 
     func confirmPendingBookIntegration(state: BundleArchiveDownloadProgressState) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            if case .single(let book, let initialContentId) = state.pendingData {
+                presentReader(book, initialContentId: initialContentId)
+            }
+            activeIntegrationStates.removeAll { $0.id == state.id }
+            return
+        }
         guard let pendingData = state.pendingData else { return }
 
         switch pendingData {
@@ -183,6 +191,15 @@ class iOSNavigationManager {
     }
 
     private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) async {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            HistoryViewModel.shared.addBookToHistory(book.id)
+            if let initialContentId {
+                HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+            }
+            presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
+            return
+        }
+
         if !CoreDatabaseDownloader().areCoreFilesReady() {
             alertMessage = AlertMessage(
                 title: NSLocalizedString("Database File Needed", comment: "Missing core files alert title"),
@@ -215,6 +232,10 @@ class iOSNavigationManager {
         for book: BooksData,
         initialContentId: Int?
     ) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            presentReader(book, initialContentId: initialContentId)
+            return
+        }
         // Prevent duplicate confirmation for the same book
         if activeIntegrationStates.contains(where: {
             if case .single(let b, _) = $0.pendingData { return b.id == book.id }
@@ -246,6 +267,13 @@ class iOSNavigationManager {
     }
 
     func showBulkDownloadConfirmation(books: [BooksData]) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            alertMessage = AlertMessage(
+                title: NSLocalizedString("Download Book", comment: "Bulk download window title"),
+                message: NSLocalizedString("Books are already available from the selected Otzaria database.", comment: "Otzaria bulk download not needed")
+            )
+            return
+        }
         // Prevent multiple bulk confirmations
         if activeIntegrationStates.contains(where: {
             if case .bulk = $0.pendingData { return true }
