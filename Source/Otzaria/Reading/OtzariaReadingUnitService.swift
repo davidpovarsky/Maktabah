@@ -172,7 +172,7 @@ final class OtzariaReadingUnitService {
             log("paragraph fallback no line_toc mappings bookId=\(bookId)")
             return try lineSummaries(bookId: bookId)
         }
-        return tocSummaries(bookId: bookId, includeDescendants: false, entryIdForLeaf: { leafId in leafId })
+        return try tocSummaries(bookId: bookId, includeDescendants: false, entryIdForLeaf: { leafId in leafId })
     }
 
     private func chapterSummaries(bookId: Int) throws -> [UnitSummary] {
