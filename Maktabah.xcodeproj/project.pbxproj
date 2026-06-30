@@ -477,11 +477,11 @@
 		0B7A00000000000000000016 /* OtzariaReaderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000016 /* OtzariaReaderSettingsView.swift */; };
 		0B7A00000000000000000017 /* OtzariaSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000017 /* OtzariaSourcesView.swift */; };
 		0B7A00000000000000000018 /* OtzariaSourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000018 /* OtzariaSourcesViewModel.swift */; };
-		0B7A00000000000000000019 /* OtzariaContinuousReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000019 /* OtzariaContinuousReaderView.swift */; };
 		0B7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift */; };
 		0B7A0000000000000000001B /* OtzariaReadingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001B /* OtzariaReadingUnit.swift */; };
 		0B7A0000000000000000001C /* OtzariaReadingUnitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001C /* OtzariaReadingUnitService.swift */; };
 		0B7A0000000000000000001D /* OtzariaStateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001D /* OtzariaStateViews.swift */; };
+		0B7A0000000000000000001E /* OtzariaFileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001E /* OtzariaFileLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -738,11 +738,11 @@
 		0A7A00000000000000000016 /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000017 /* OtzariaSourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Sources/OtzariaSourcesView.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000018 /* OtzariaSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Sources/OtzariaSourcesViewModel.swift; sourceTree = "<group>"; };
-		0A7A00000000000000000019 /* OtzariaContinuousReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaContinuousReaderView.swift; sourceTree = "<group>"; };
 		0A7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reading/OtzariaMaktabahBridge+ReadingUnits.swift"; sourceTree = "<group>"; };
 		0A7A0000000000000000001B /* OtzariaReadingUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaReadingUnit.swift; sourceTree = "<group>"; };
 		0A7A0000000000000000001C /* OtzariaReadingUnitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaReadingUnitService.swift; sourceTree = "<group>"; };
 		0A7A0000000000000000001D /* OtzariaStateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUI/OtzariaStateViews.swift; sourceTree = "<group>"; };
+		0A7A0000000000000000001E /* OtzariaFileLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug/OtzariaFileLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1398,11 +1398,11 @@
 				0A7A00000000000000000016 /* OtzariaReaderSettingsView.swift */,
 				0A7A00000000000000000017 /* OtzariaSourcesView.swift */,
 				0A7A00000000000000000018 /* OtzariaSourcesViewModel.swift */,
-				0A7A00000000000000000019 /* OtzariaContinuousReaderView.swift */,
 				0A7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift */,
 				0A7A0000000000000000001B /* OtzariaReadingUnit.swift */,
 				0A7A0000000000000000001C /* OtzariaReadingUnitService.swift */,
 				0A7A0000000000000000001D /* OtzariaStateViews.swift */,
+				0A7A0000000000000000001E /* OtzariaFileLogger.swift */,
 			);
 			path = Otzaria;
 			sourceTree = "<group>";
@@ -1898,11 +1898,11 @@
 				0B7A00000000000000000016 /* OtzariaReaderSettingsView.swift in Sources */,
 				0B7A00000000000000000017 /* OtzariaSourcesView.swift in Sources */,
 				0B7A00000000000000000018 /* OtzariaSourcesViewModel.swift in Sources */,
-				0B7A00000000000000000019 /* OtzariaContinuousReaderView.swift in Sources */,
 				0B7A0000000000000000001A /* OtzariaMaktabahBridge+ReadingUnits.swift in Sources */,
 				0B7A0000000000000000001B /* OtzariaReadingUnit.swift in Sources */,
 				0B7A0000000000000000001C /* OtzariaReadingUnitService.swift in Sources */,
 				0B7A0000000000000000001D /* OtzariaStateViews.swift in Sources */,
+				0B7A0000000000000000001E /* OtzariaFileLogger.swift in Sources */,
 				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,
 				F3B60E2C2FC7FFA500A9EF58 /* iOSTOCView.swift in Sources */,
 				F31111912FC008F30024B638 /* ActiveIntegrationStatesView.swift in Sources */,

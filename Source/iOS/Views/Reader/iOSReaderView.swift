@@ -55,35 +55,29 @@ struct iOSReaderView: View {
 
     var body: some View {
         @Bindable var viewModel = viewModel
-        Group {
-            if OtzariaMaktabahBridge.shared.isEnabled && viewModel.otzariaReaderMode == .continuous {
-                OtzariaContinuousReaderView(viewModel: viewModel)
-            } else {
-                iOSIbarotTextView(
-                    text: $viewModel.contentText,
-                    annotations: viewModel.currentAnnotations,
-                    searchText: $viewModel.searchText,
-                    targetAnnotation: viewModel.targetAnnotation,
-                    isMultiLanguage: book.isMultiLanguage,
-                    isImported: book.isImported,
-                    viewModel: viewModel,
-                    onAddAnnotation: { range, mode, sourceText, color in
-                        do {
-                            try viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
-                            UINotificationFeedbackGenerator().notificationOccurred(.success)
-                        } catch {
-                            UINotificationFeedbackGenerator().notificationOccurred(.error)
-                        }
-                    },
-                    onTapAnnotation: { annId in
-                        tappedAnnotationId = annId
-                        showingAnnotationActionSheet = true
-                    },
-                    onNavigateNext: { viewModel.goToNextPage() },
-                    onNavigatePrev: { viewModel.goToPrevPage() }
-                )
-            }
-        }
+        iOSIbarotTextView(
+            text: $viewModel.contentText,
+            annotations: viewModel.currentAnnotations,
+            searchText: $viewModel.searchText,
+            targetAnnotation: viewModel.targetAnnotation,
+            isMultiLanguage: book.isMultiLanguage,
+            isImported: book.isImported,
+            viewModel: viewModel,
+            onAddAnnotation: { range, mode, sourceText, color in
+                do {
+                    try viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                } catch {
+                    UINotificationFeedbackGenerator().notificationOccurred(.error)
+                }
+            },
+            onTapAnnotation: { annId in
+                tappedAnnotationId = annId
+                showingAnnotationActionSheet = true
+            },
+            onNavigateNext: { viewModel.goToNextPage() },
+            onNavigatePrev: { viewModel.goToPrevPage() }
+        )
         .background(backgroundColor)
         .ignoresSafeArea(edges: .vertical)
         .legacyVisibleToolbarBackgrounds()
@@ -178,12 +172,6 @@ struct iOSReaderView: View {
                     viewModel.didSelectAnnotation(ann)
                     showingAnnotationsList = false
                 }
-            )
-        }
-        .sheet(isPresented: $viewModel.otzariaLinksPanelVisible) {
-            OtzariaSourcesPanelView(
-                unit: viewModel.otzariaSelectedUnitForLinks,
-                sources: viewModel.otzariaLinkedSources
             )
         }
         .sheet(isPresented: Binding(

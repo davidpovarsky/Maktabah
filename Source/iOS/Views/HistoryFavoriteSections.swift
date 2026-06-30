@@ -10,20 +10,30 @@ import SwiftUI
 
 // MARK: - HistorySection
 
-/// Section "History" dengan horizontal grid.
+/// Section "History" dengan tap-to-open.
 /// Tambahkan ke dalam `List` / `ThemeList` yang sudah ada.
 struct HistorySection: View {
     let books: [BooksData]
     @ObservedObject var viewModel: HistoryViewModel
+    let onOpen: (BooksData) -> Void
 
     var body: some View {
         Section(header: Text("History")) {
-            HistoryHorizontalGrid(books: books, viewModel: viewModel)
-                .padding(.top, 12)
+            ForEach(books, id: \.id) { book in
+                BookCard(
+                    book: book,
+                    cardHeight: 50,
+                    isFavorite: viewModel.isFavorite(book.id),
+                    viewModel: viewModel,
+                    historySection: true
+                ) {
+                    onOpen(book)
+                }
+                .listRowInsets(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+            }
         }
-        .listRowSeparator(.hidden)
-        .listRowBackground(Color.clear)
-        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
     }
 }
 

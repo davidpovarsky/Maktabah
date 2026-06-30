@@ -11,8 +11,8 @@ extension OtzariaMaktabahBridge {
             } catch {
                 otzariaLog("getAvailableReadingUnitModes error bookId=\(bookId) error=\(error.localizedDescription)")
                 return [
-                    OtzariaUnitLevelOption(id: OtzariaUnitMode.automatic.storageValue, title: "Automatic", level: nil, mode: .automatic),
-                    OtzariaUnitLevelOption(id: OtzariaUnitMode.sourceLine.storageValue, title: "Source line", level: nil, mode: .sourceLine)
+                    OtzariaUnitLevelOption(id: OtzariaUnitMode.paragraph.storageValue, title: "Paragraph", level: nil, mode: .paragraph),
+                    OtzariaUnitLevelOption(id: OtzariaUnitMode.line.storageValue, title: "Line", level: nil, mode: .line)
                 ]
             }
         } ?? []
@@ -89,23 +89,6 @@ extension OtzariaMaktabahBridge {
         return unit
     }
 
-    func getReadingUnitsWindow(bookId: Int, aroundLineIndex lineIndex: Int, mode: OtzariaUnitMode, before: Int, after: Int) -> [OtzariaReadingUnit] {
-        let start = Date()
-        otzariaLog("getReadingUnitsWindow start bookId=\(bookId) aroundLineIndex=\(lineIndex) mode=\(mode.storageValue) before=\(before) after=\(after)")
-
-        let units = withReadingUnitService { service -> [OtzariaReadingUnit] in
-            do {
-                return try service.readingUnitsWindow(bookId: bookId, aroundLineIndex: lineIndex, mode: mode, before: before, after: after)
-            } catch {
-                otzariaLog("getReadingUnitsWindow error bookId=\(bookId) aroundLineIndex=\(lineIndex) mode=\(mode.storageValue) error=\(error.localizedDescription)")
-                return []
-            }
-        } ?? []
-
-        otzariaLog("getReadingUnitsWindow done bookId=\(bookId) aroundLineIndex=\(lineIndex) count=\(units.count) durationMs=\(otzariaElapsedMs(start))")
-        return units
-    }
-
     func makeBookContent(from unit: OtzariaReadingUnit) -> BookContent {
         otzariaLog("makeBookContent \(otzariaUnitSummary(unit)) plainChars=\(unit.plainText.count) htmlChars=\(unit.html.count)")
 
@@ -118,13 +101,8 @@ extension OtzariaMaktabahBridge {
         )
     }
 
-    func getLinksForReadingUnit(bookId: Int, unit: OtzariaReadingUnit) -> [OtzariaLinkedSource] {
-        otzariaLog("getLinksForReadingUnit placeholder bookId=\(bookId) \(otzariaUnitSummary(unit))")
-        // TODO: Wire this to Otzaria's link/source tables once the schema is confirmed.
-        return []
-    }
-
     private func otzariaLog(_ message: String) {
+        OtzariaFileLogger.shared.log("[OtzariaMaktabahBridge] \(message)")
         NSLog("%@", "[Otzaria] \(message)")
     }
 

@@ -6,7 +6,6 @@ final class OtzariaReadingUnitService {
         let parentId: Int?
         let text: String
         let level: Int
-        let lineIndex: Int?
     }
 
     private struct SourceLine {
@@ -25,13 +24,13 @@ final class OtzariaReadingUnitService {
         let startLineIndex: Int
         let endLineIndex: Int
         let sourceLineIndices: [Int]
+        let includeDescendants: Bool
     }
 
     private struct BookIndex {
         let entriesById: [Int: TocEntry]
         let childrenByParentId: [Int: [Int]]
         let leafEntryByLineIndex: [Int: Int]
-        let levelTitles: [Int: String]
     }
 
     private let db: SQLiteDatabase
@@ -43,31 +42,66 @@ final class OtzariaReadingUnitService {
     }
 
     func availableModes(bookId: Int) throws -> [OtzariaUnitLevelOption] {
-        let index = try bookIndex(bookId: bookId)
-        var options = [
-            OtzariaUnitLevelOption(id: OtzariaUnitMode.automatic.storageValue, title: "Automatic", level: nil, mode: .automatic)
+        [
+            OtzariaUnitLevelOption(id: OtzariaUnitMode.line.storageValue, title: "Line", level: nil, mode: .line),
+            OtzariaUnitLevelOption(id: OtzariaUnitMode.paragraph.storageValue, title: "Paragraph", level: nil, mode: .paragraph),
+            OtzariaUnitLevelOption(id: OtzariaUnitMode.chapter.storageValue, title: "Chapter", level: nil, mode: .chapter)
         ]
-
-        for level in index.levelTitles.keys.sorted() {
-            options.append(
-                OtzariaUnitLevelOption(
-                    id: OtzariaUnitMode.tocLevel(level).storageValue,
-                    title: index.levelTitles[level] ?? "Level \(level)",
-                    level: level,
-                    mode: .tocLevel(level)
-                )
-            )
-        }
-
-        if !index.entriesById.isEmpty {
-            options.append(OtzariaUnitLevelOption(id: OtzariaUnitMode.leaf.storageValue, title: "Leaf / Most specific", level: nil, mode: .leaf))
-        }
-        options.append(OtzariaUnitLevelOption(id: OtzariaUnitMode.sourceLine.storageValue, title: "Source line", level: nil, mode: .sourceLine))
-        return options
     }
 
     func readingUnit(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
-        let summaries = try unitSummaries(bookId: bookId, mode: resolvedMode(bookId: bookId, mode: mode))
+        let start = Date()
+        let unit = try readingUnitWithoutFallback(bookId: bookId, containingLineIndex: lineIndex, mode: mode)
+            ?? fallbackUnit(bookId: bookId, lineIndex: lineIndex, failedMode: mode)
+        log("readingUnit bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(unitSummary(unit)) durationMs=\(elapsedMs(start))")
+        return unit
+    }
+
+    func firstReadingUnit(bookId: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
+        let start = Date()
+        let summary = try unitSummaries(bookId: bookId, mode: mode).first
+            ?? (mode == .line ? nil : try unitSummaries(bookId: bookId, mode: .line).first)
+        var unit = try summary.flatMap(buildUnit(from:))
+        if unit == nil, mode != .line {
+            log("fallback \(mode.storageValue)->line firstReadingUnit bookId=\(bookId)")
+            unit = try unitSummaries(bookId: bookId, mode: .line).first.flatMap(buildUnit(from:))
+        }
+        log("firstReadingUnit bookId=\(bookId) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(unitSummary(unit)) durationMs=\(elapsedMs(start))")
+        return unit
+    }
+
+    func nextReadingUnit(bookId: Int, afterLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
+        let start = Date()
+        let summaries = try unitSummaries(bookId: bookId, mode: mode)
+        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
+        let threshold = current?.endLineIndex ?? lineIndex
+        var unit = try summaries.first(where: { $0.startLineIndex > threshold }).flatMap(buildUnit(from:))
+        if unit == nil, mode != .line {
+            log("fallback \(mode.storageValue)->line nextReadingUnit bookId=\(bookId) lineIndex=\(lineIndex)")
+            let lineSummaries = try unitSummaries(bookId: bookId, mode: .line)
+            unit = try lineSummaries.first(where: { $0.startLineIndex > lineIndex }).flatMap(buildUnit(from:))
+        }
+        log("nextReadingUnit bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(unitSummary(unit)) durationMs=\(elapsedMs(start))")
+        return unit
+    }
+
+    func previousReadingUnit(bookId: Int, beforeLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
+        let start = Date()
+        let summaries = try unitSummaries(bookId: bookId, mode: mode)
+        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
+        let threshold = current?.startLineIndex ?? lineIndex
+        var unit = try summaries.last(where: { $0.endLineIndex < threshold }).flatMap(buildUnit(from:))
+        if unit == nil, mode != .line {
+            log("fallback \(mode.storageValue)->line previousReadingUnit bookId=\(bookId) lineIndex=\(lineIndex)")
+            let lineSummaries = try unitSummaries(bookId: bookId, mode: .line)
+            unit = try lineSummaries.last(where: { $0.endLineIndex < lineIndex }).flatMap(buildUnit(from:))
+        }
+        log("previousReadingUnit bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(unitSummary(unit)) durationMs=\(elapsedMs(start))")
+        return unit
+    }
+
+    private func readingUnitWithoutFallback(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
+        let summaries = try unitSummaries(bookId: bookId, mode: mode)
         guard let summary = summaries.first(where: { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex })
                 ?? summaries.last(where: { $0.startLineIndex <= lineIndex })
                 ?? summaries.first(where: { $0.startLineIndex > lineIndex }) else {
@@ -76,70 +110,41 @@ final class OtzariaReadingUnitService {
         return try buildUnit(from: summary)
     }
 
-    func firstReadingUnit(bookId: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
-        guard let first = try unitSummaries(bookId: bookId, mode: resolvedMode(bookId: bookId, mode: mode)).first else { return nil }
-        return try buildUnit(from: first)
-    }
-
-    func nextReadingUnit(bookId: Int, afterLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
-        let summaries = try unitSummaries(bookId: bookId, mode: resolvedMode(bookId: bookId, mode: mode))
-        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
-        let threshold = current?.endLineIndex ?? lineIndex
-        guard let next = summaries.first(where: { $0.startLineIndex > threshold }) else { return nil }
-        return try buildUnit(from: next)
-    }
-
-    func previousReadingUnit(bookId: Int, beforeLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
-        let summaries = try unitSummaries(bookId: bookId, mode: resolvedMode(bookId: bookId, mode: mode))
-        let current = summaries.first { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
-        let threshold = current?.startLineIndex ?? lineIndex
-        guard let previous = summaries.last(where: { $0.endLineIndex < threshold }) else { return nil }
-        return try buildUnit(from: previous)
-    }
-
-    func readingUnitsWindow(bookId: Int, aroundLineIndex lineIndex: Int, mode: OtzariaUnitMode, before: Int, after: Int) throws -> [OtzariaReadingUnit] {
-        let summaries = try unitSummaries(bookId: bookId, mode: resolvedMode(bookId: bookId, mode: mode))
-        guard !summaries.isEmpty else { return [] }
-        let center = summaries.firstIndex { $0.startLineIndex <= lineIndex && lineIndex <= $0.endLineIndex }
-            ?? summaries.lastIndex(where: { $0.startLineIndex <= lineIndex })
-            ?? 0
-        let lower = max(0, center - before)
-        let upper = min(summaries.count - 1, center + after)
-        return try summaries[lower...upper].compactMap { try buildUnit(from: $0) }
-    }
-
-    private func resolvedMode(bookId: Int, mode: OtzariaUnitMode) throws -> OtzariaUnitMode {
-        guard mode == .automatic else { return mode }
-        let levels = try bookIndex(bookId: bookId).levelTitles.keys.sorted()
-        guard !levels.isEmpty else { return .sourceLine }
-        guard levels.count > 1 else { return .tocLevel(levels[0]) }
-        if let first = levels.first, let last = levels.last, last - first <= 1 {
-            return .tocLevel(last)
+    private func fallbackUnit(bookId: Int, lineIndex: Int, failedMode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
+        switch failedMode {
+        case .line:
+            return nil
+        case .paragraph:
+            log("fallback paragraph->line bookId=\(bookId) lineIndex=\(lineIndex)")
+            return try readingUnitWithoutFallback(bookId: bookId, containingLineIndex: lineIndex, mode: .line)
+        case .chapter:
+            log("fallback chapter->paragraph bookId=\(bookId) lineIndex=\(lineIndex)")
+            return try readingUnitWithoutFallback(bookId: bookId, containingLineIndex: lineIndex, mode: .paragraph)
+                ?? fallbackUnit(bookId: bookId, lineIndex: lineIndex, failedMode: .paragraph)
         }
-        return .leaf
     }
 
     private func unitSummaries(bookId: Int, mode: OtzariaUnitMode) throws -> [UnitSummary] {
+        let start = Date()
         let cacheKey = "\(bookId):\(mode.storageValue)"
         if let cached = summariesCache[cacheKey] { return cached }
 
         let summaries: [UnitSummary]
         switch mode {
-        case .automatic:
-            summaries = try unitSummaries(bookId: bookId, mode: resolvedMode(bookId: bookId, mode: mode))
-        case .sourceLine:
-            summaries = try sourceLineSummaries(bookId: bookId)
-        case .leaf:
-            summaries = try tocSummaries(bookId: bookId, level: nil)
-        case .tocLevel(let level):
-            summaries = try tocSummaries(bookId: bookId, level: level)
+        case .line:
+            summaries = try lineSummaries(bookId: bookId)
+        case .paragraph:
+            summaries = try paragraphSummaries(bookId: bookId)
+        case .chapter:
+            summaries = try chapterSummaries(bookId: bookId)
         }
 
         summariesCache[cacheKey] = summaries
+        log("unitSummaries bookId=\(bookId) mode=\(mode.storageValue) count=\(summaries.count) durationMs=\(elapsedMs(start))")
         return summaries
     }
 
-    private func sourceLineSummaries(bookId: Int) throws -> [UnitSummary] {
+    private func lineSummaries(bookId: Int) throws -> [UnitSummary] {
         try db.fetch(query: """
             SELECT lineIndex
             FROM line
@@ -155,22 +160,45 @@ final class OtzariaReadingUnitService {
                 level: nil,
                 startLineIndex: lineIndex,
                 endLineIndex: lineIndex,
-                sourceLineIndices: [lineIndex]
+                sourceLineIndices: [lineIndex],
+                includeDescendants: false
             )
         }
     }
 
-    private func tocSummaries(bookId: Int, level: Int?) throws -> [UnitSummary] {
+    private func paragraphSummaries(bookId: Int) throws -> [UnitSummary] {
         let index = try bookIndex(bookId: bookId)
         guard !index.leafEntryByLineIndex.isEmpty else {
-            return try sourceLineSummaries(bookId: bookId)
+            log("paragraph fallback no line_toc mappings bookId=\(bookId)")
+            return try lineSummaries(bookId: bookId)
+        }
+        return tocSummaries(bookId: bookId, includeDescendants: false, entryIdForLeaf: { leafId in leafId })
+    }
+
+    private func chapterSummaries(bookId: Int) throws -> [UnitSummary] {
+        let index = try bookIndex(bookId: bookId)
+        guard !index.leafEntryByLineIndex.isEmpty else {
+            log("chapter fallback no line_toc mappings bookId=\(bookId)")
+            return try paragraphSummaries(bookId: bookId)
         }
 
+        let summaries = try tocSummaries(bookId: bookId, includeDescendants: true) { leafId in
+            chapterEntryId(forLeaf: leafId, index: index)
+        }
+        guard !summaries.isEmpty else {
+            log("chapter fallback empty summaries bookId=\(bookId)")
+            return try paragraphSummaries(bookId: bookId)
+        }
+        return summaries
+    }
+
+    private func tocSummaries(bookId: Int, includeDescendants: Bool, entryIdForLeaf: (Int) -> Int) throws -> [UnitSummary] {
+        let index = try bookIndex(bookId: bookId)
         var orderedEntryIds: [Int] = []
         var lineIndicesByUnitId: [Int: [Int]] = [:]
 
         for (lineIndex, leafId) in index.leafEntryByLineIndex.sorted(by: { $0.key < $1.key }) {
-            let unitId = unitEntryId(forLeaf: leafId, requestedLevel: level, index: index)
+            let unitId = entryIdForLeaf(leafId)
             if lineIndicesByUnitId[unitId] == nil {
                 orderedEntryIds.append(unitId)
             }
@@ -193,34 +221,48 @@ final class OtzariaReadingUnitService {
                 level: entry.level,
                 startLineIndex: start,
                 endLineIndex: end,
-                sourceLineIndices: sourceLineIndices.sorted()
+                sourceLineIndices: sourceLineIndices.sorted(),
+                includeDescendants: includeDescendants
             )
         }.sorted { $0.startLineIndex < $1.startLineIndex }
     }
 
-    private func unitEntryId(forLeaf leafId: Int, requestedLevel: Int?, index: BookIndex) -> Int {
-        guard let requestedLevel else { return leafId }
+    private func chapterEntryId(forLeaf leafId: Int, index: BookIndex) -> Int {
         var currentId = leafId
         var bestId = leafId
+        var visited = Set<Int>()
+
         while let entry = index.entriesById[currentId] {
-            if entry.level <= requestedLevel {
-                bestId = currentId
-                break
+            guard visited.insert(currentId).inserted else {
+                log("cycle detected ascending tocEntryId=\(currentId)")
+                return bestId
             }
-            guard let parentId = entry.parentId else { break }
-            bestId = parentId
-            currentId = parentId
+            guard let parentId = entry.parentId, let parent = index.entriesById[parentId] else {
+                return bestId
+            }
+            if parent.parentId != nil {
+                bestId = parent.id
+            }
+            currentId = parent.id
         }
+
         return bestId
     }
 
     private func descendantEntryIds(including rootId: Int, index: BookIndex) -> [Int] {
         var result: [Int] = []
         var stack = [rootId]
+        var visited = Set<Int>()
+
         while let current = stack.popLast() {
+            guard visited.insert(current).inserted else {
+                log("cycle detected descending tocEntryId=\(current)")
+                continue
+            }
             result.append(current)
             stack.append(contentsOf: index.childrenByParentId[current] ?? [])
         }
+
         return result
     }
 
@@ -246,14 +288,42 @@ final class OtzariaReadingUnitService {
     }
 
     private func sourceLines(for summary: UnitSummary) throws -> [SourceLine] {
-        if let tocEntryId = summary.tocEntryId {
-            let index = try bookIndex(bookId: summary.bookId)
-            let entryIds = descendantEntryIds(including: tocEntryId, index: index)
-            let placeholders = Array(repeating: "?", count: entryIds.count).joined(separator: ",")
-            var parameters: [Any] = [summary.bookId]
-            parameters.append(contentsOf: entryIds)
+        let start = Date()
+        let lines: [SourceLine]
 
-            return try db.fetch(query: """
+        if let tocEntryId = summary.tocEntryId {
+            let entryIds: [Int]
+            if summary.includeDescendants {
+                let index = try bookIndex(bookId: summary.bookId)
+                entryIds = descendantEntryIds(including: tocEntryId, index: index)
+            } else {
+                entryIds = [tocEntryId]
+            }
+            lines = try sourceLines(bookId: summary.bookId, tocEntryIds: entryIds)
+        } else {
+            lines = try db.fetch(query: """
+                SELECT id, lineIndex, content, heRef
+                FROM line
+                WHERE bookId = ? AND lineIndex = ?
+                LIMIT 1
+            """, parameters: [summary.bookId, summary.startLineIndex], mapping: mapSourceLine)
+        }
+
+        log("sourceLines bookId=\(summary.bookId) tocEntryId=\(summary.tocEntryId.map(String.init) ?? "nil") start=\(summary.startLineIndex) count=\(lines.count) durationMs=\(elapsedMs(start))")
+        return lines
+    }
+
+    private func sourceLines(bookId: Int, tocEntryIds: [Int]) throws -> [SourceLine] {
+        guard !tocEntryIds.isEmpty else { return [] }
+        var allLines: [SourceLine] = []
+
+        for chunkStart in stride(from: 0, to: tocEntryIds.count, by: 900) {
+            let chunk = Array(tocEntryIds[chunkStart..<min(chunkStart + 900, tocEntryIds.count)])
+            let placeholders = Array(repeating: "?", count: chunk.count).joined(separator: ",")
+            var parameters: [Any] = [bookId]
+            parameters.append(contentsOf: chunk)
+
+            let lines = try db.fetch(query: """
                 SELECT DISTINCT l.id, l.lineIndex, l.content, l.heRef
                 FROM line_toc lt
                 JOIN line l ON l.id = lt.lineId
@@ -261,14 +331,12 @@ final class OtzariaReadingUnitService {
                 AND lt.tocEntryId IN (\(placeholders))
                 ORDER BY l.lineIndex
             """, parameters: parameters, mapping: mapSourceLine)
+            allLines.append(contentsOf: lines)
         }
 
-        return try db.fetch(query: """
-            SELECT id, lineIndex, content, heRef
-            FROM line
-            WHERE bookId = ? AND lineIndex = ?
-            ORDER BY lineIndex
-        """, parameters: [summary.bookId, summary.startLineIndex], mapping: mapSourceLine)
+        return Dictionary(grouping: allLines, by: \.id)
+            .compactMap { $0.value.first }
+            .sorted { $0.lineIndex < $1.lineIndex }
     }
 
     private func mapSourceLine(_ row: SQLiteRow) -> SourceLine {
@@ -277,6 +345,7 @@ final class OtzariaReadingUnitService {
 
     private func bookIndex(bookId: Int) throws -> BookIndex {
         if let cached = indexCache[bookId] { return cached }
+        let start = Date()
 
         let entries = try db.fetch(query: """
             SELECT te.id, te.parentId, COALESCE(tt.text, ''), COALESCE(te.level, 0)
@@ -289,23 +358,17 @@ final class OtzariaReadingUnitService {
                 id: row.int(at: 0),
                 parentId: row.isNull(at: 1) ? nil : row.int(at: 1),
                 text: row.string(at: 2) ?? "",
-                level: row.int(at: 3),
-                lineIndex: nil
+                level: row.int(at: 3)
             )
         }
 
         var entriesById: [Int: TocEntry] = [:]
         var childrenByParentId: [Int: [Int]] = [:]
-        var levelTitles: [Int: String] = [:]
 
         for entry in entries {
             entriesById[entry.id] = entry
             if let parentId = entry.parentId {
                 childrenByParentId[parentId, default: []].append(entry.id)
-            }
-            if entry.level > 0, levelTitles[entry.level] == nil {
-                let title = entry.text.otsariaPlainText
-                levelTitles[entry.level] = title.isEmpty ? "Level \(entry.level)" : title
             }
         }
 
@@ -327,10 +390,23 @@ final class OtzariaReadingUnitService {
         let index = BookIndex(
             entriesById: entriesById,
             childrenByParentId: childrenByParentId,
-            leafEntryByLineIndex: leafEntryByLineIndex,
-            levelTitles: levelTitles
+            leafEntryByLineIndex: leafEntryByLineIndex
         )
         indexCache[bookId] = index
+        log("bookIndex bookId=\(bookId) tocEntries=\(entries.count) lineTocMappings=\(mappings.count) durationMs=\(elapsedMs(start))")
         return index
+    }
+
+    private func unitSummary(_ unit: OtzariaReadingUnit?) -> String {
+        guard let unit else { return "unit=nil" }
+        return "modeUnitId=\(unit.id) tocEntryId=\(unit.tocEntryId.map(String.init) ?? "nil") startLineIndex=\(unit.startLineIndex) endLineIndex=\(unit.endLineIndex) sourceLineCount=\(unit.sourceLineIndices.count) plainTextCount=\(unit.plainText.count) htmlCount=\(unit.html.count) heRef=\(unit.heRef ?? "")"
+    }
+
+    private func log(_ message: String) {
+        OtzariaFileLogger.shared.log("[OtzariaReadingUnitService] \(message)")
+    }
+
+    private func elapsedMs(_ start: Date) -> Int {
+        Int(Date().timeIntervalSince(start) * 1000)
     }
 }

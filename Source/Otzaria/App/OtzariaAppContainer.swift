@@ -185,7 +185,7 @@ final class OtzariaMaktabahBridge {
     var currentReadingUnitMode: OtzariaUnitMode {
         get {
             OtzariaUnitMode(
-                storageValue: UserDefaults.standard.string(forKey: unitModeKey) ?? OtzariaUnitMode.automatic.storageValue
+                storageValue: UserDefaults.standard.string(forKey: unitModeKey) ?? OtzariaUnitMode.paragraph.storageValue
             )
         }
         set {

@@ -29,9 +29,12 @@ class BookConnection {
     }
 
     func connect(archive: Int) throws {
+        let start = Date()
+        otzariaConnectionLog("connect start enabled=\(OtzariaMaktabahBridge.shared.isEnabled) archive=\(archive)")
         if OtzariaMaktabahBridge.shared.isEnabled {
             try OtzariaMaktabahBridge.shared.openIfNeeded()
             db = nil
+            otzariaConnectionLog("connect done enabled=true archive=\(archive) durationMs=\(otzariaConnectionElapsedMs(start))")
             return
         }
 
@@ -49,13 +52,16 @@ class BookConnection {
 
         do {
             db = try SQLiteDatabase(path: archivePath, flags: flags)
+            otzariaConnectionLog("connect done enabled=false archive=\(archive) durationMs=\(otzariaConnectionElapsedMs(start))")
         } catch let SQLiteError.connectionFailed(msg) {
+            otzariaConnectionLog("connect error enabled=false archive=\(archive) error=\(msg) durationMs=\(otzariaConnectionElapsedMs(start))")
             throw NSError(
                 domain: "BookConnection",
                 code: 1,
                 userInfo: [NSLocalizedDescriptionKey: msg]
             )
         } catch {
+            otzariaConnectionLog("connect error enabled=false archive=\(archive) error=\(error.localizedDescription) durationMs=\(otzariaConnectionElapsedMs(start))")
             throw NSError(
                 domain: "BookConnection",
                 code: 1,
@@ -165,6 +171,14 @@ class BookConnection {
 }
 
 extension BookConnection {
+    fileprivate func otzariaConnectionLog(_ message: String) {
+        OtzariaFileLogger.shared.log("[BookConnection] \(message)")
+    }
+
+    fileprivate func otzariaConnectionElapsedMs(_ start: Date) -> Int {
+        Int(Date().timeIntervalSince(start) * 1000)
+    }
+
     private func parsePartValue(row: SQLiteRow, column: Int32) -> Int {
         let type = row.type(at: column)
 
@@ -188,11 +202,14 @@ extension BookConnection {
         contentId: Int,
         quran: Bool = false
     ) -> BookContent? {
+        let start = Date()
         if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
-            return OtzariaMaktabahBridge.shared.getContent(
+            let content = OtzariaMaktabahBridge.shared.getContent(
                 bookId: bookId,
                 contentId: contentId
             )
+            otzariaConnectionLog("getContent enabled=true bookId=\(bookId) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") durationMs=\(otzariaConnectionElapsedMs(start))")
+            return content
         }
 
         guard let db else { return nil }
@@ -240,18 +257,24 @@ extension BookConnection {
 
             if let content = contents.first {
                 setCache(bkId: bkid, content: content)
+                otzariaConnectionLog("getContent enabled=false bookId=\(bkid) contentId=\(contentId) result=ok durationMs=\(otzariaConnectionElapsedMs(start))")
                 return content
             }
         } catch {
             print("getContent error:", error)
+            otzariaConnectionLog("getContent enabled=false bookId=\(bkid) contentId=\(contentId) result=error error=\(error.localizedDescription) durationMs=\(otzariaConnectionElapsedMs(start))")
         }
 
+        otzariaConnectionLog("getContent enabled=false bookId=\(bkid) contentId=\(contentId) result=nil durationMs=\(otzariaConnectionElapsedMs(start))")
         return nil
     }
 
     func getFirstContent(bkid: String) -> BookContent? {
+        let start = Date()
         if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
-            return OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookId)
+            let content = OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookId)
+            otzariaConnectionLog("getFirstContent enabled=true bookId=\(bookId) result=\(content == nil ? "nil" : "ok") durationMs=\(otzariaConnectionElapsedMs(start))")
+            return content
         }
 
         guard let db else { return nil }
@@ -290,12 +313,15 @@ extension BookConnection {
 
             if let content = contents.first {
                 setCache(bkId: bkid, content: content)
+                otzariaConnectionLog("getFirstContent enabled=false bookId=\(bkid) result=ok durationMs=\(otzariaConnectionElapsedMs(start))")
                 return content
             }
         } catch {
             print("getFirstContent error:", error)
+            otzariaConnectionLog("getFirstContent enabled=false bookId=\(bkid) result=error error=\(error.localizedDescription) durationMs=\(otzariaConnectionElapsedMs(start))")
         }
 
+        otzariaConnectionLog("getFirstContent enabled=false bookId=\(bkid) result=nil durationMs=\(otzariaConnectionElapsedMs(start))")
         return nil
     }
 
@@ -361,11 +387,14 @@ extension BookConnection {
         contentId: Int,
         quran: Bool = false
     ) -> BookContent? {
+        let start = Date()
         if OtzariaMaktabahBridge.shared.isEnabled {
-            return OtzariaMaktabahBridge.shared.getNextContent(
+            let content = OtzariaMaktabahBridge.shared.getNextContent(
                 bookId: currentBook.id,
                 after: contentId
             )
+            otzariaConnectionLog("getNextPage enabled=true bookId=\(currentBook.id) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") durationMs=\(otzariaConnectionElapsedMs(start))")
+            return content
         }
 
         guard
@@ -394,11 +423,14 @@ extension BookConnection {
         contentId: Int,
         quran: Bool = false
     ) -> BookContent? {
+        let start = Date()
         if OtzariaMaktabahBridge.shared.isEnabled {
-            return OtzariaMaktabahBridge.shared.getPreviousContent(
+            let content = OtzariaMaktabahBridge.shared.getPreviousContent(
                 bookId: currentBook.id,
                 before: contentId
             )
+            otzariaConnectionLog("getPrevPage enabled=true bookId=\(currentBook.id) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") durationMs=\(otzariaConnectionElapsedMs(start))")
+            return content
         }
 
         guard
@@ -513,8 +545,11 @@ extension BookConnection {
     }
 
     func getTOCEntries(_ book: BooksData) async -> [TOC] {
+        let start = Date()
         if OtzariaMaktabahBridge.shared.isEnabled {
-            return OtzariaMaktabahBridge.shared.getTOCEntries(for: book)
+            let entries = OtzariaMaktabahBridge.shared.getTOCEntries(for: book)
+            otzariaConnectionLog("getTOCEntries enabled=true bookId=\(book.id) count=\(entries.count) durationMs=\(otzariaConnectionElapsedMs(start))")
+            return entries
         }
 
         try? connect(archive: book.archive)

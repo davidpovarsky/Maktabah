@@ -81,15 +81,6 @@ class ReaderViewModel: ViewModelBase {
     var fetchScrollPosition: (() -> CGPoint?)?
     var fetchSelectedRange: (() -> NSRange?)?
     var currentAnnotations: [Annotation] = []
-    var otzariaUnitMode: OtzariaUnitMode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
-    var otzariaAvailableUnitModes: [OtzariaUnitLevelOption] = []
-    var otzariaReaderMode: OtzariaReaderMode = OtzariaReaderMode(
-        rawValue: UserDefaults.standard.string(forKey: "otzaria_reader_mode") ?? ""
-    ) ?? .paged
-    var otzariaVisibleUnits: [OtzariaReadingUnit] = []
-    var otzariaSelectedUnitForLinks: OtzariaReadingUnit?
-    var otzariaLinkedSources: [OtzariaLinkedSource] = []
-    var otzariaLinksPanelVisible: Bool = false
     #endif
 
     // MARK: - Computed Properties
@@ -205,16 +196,18 @@ class ReaderViewModel: ViewModelBase {
     /// Loads initial content, optionally restoring a specific contentId
     func loadInitialContent(initialContentId: Int? = nil) {
         guard let book = currentBook else { return }
+        let start = Date()
+        otzariaReaderLog("loadInitialContent start bookId=\(book.id) title=\(book.book) initialContentId=\(initialContentId.map(String.init) ?? "nil")")
 
         do {
             try bookConnection.connect(archive: book.archive)
         } catch {
             contentText = DatabaseError.bookNotFound(book.archive).localizedDescription
+            otzariaReaderLog("loadInitialContent connectError bookId=\(book.id) error=\(error.localizedDescription) durationMs=\(otzariaReaderElapsedMs(start))")
         }
 
         // Start loading TOC immediately for both platforms
         tocViewModel.loadTOC(book: book)
-        loadOtzariaReaderOptionsIfNeeded(for: book)
 
         guard let initialContentId else {
             loadFromHistory(for: book)
@@ -226,32 +219,45 @@ class ReaderViewModel: ViewModelBase {
             contentId: initialContentId
         ) {
             updateContentState(with: content)
+            otzariaReaderLog("loadInitialContent done bookId=\(book.id) contentId=\(content.id) nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
         } else {
             contentText = "Content ID not found."
+            otzariaReaderLog("loadInitialContent nilContent bookId=\(book.id) requestedContentId=\(initialContentId) durationMs=\(otzariaReaderElapsedMs(start))")
         }
     }
 
     func getContent(bkId: Int, contentId: Int) -> BookContent? {
-        bookConnection.getContent(bkid: String(bkId), contentId: contentId)
+        let start = Date()
+        let content = bookConnection.getContent(bkid: String(bkId), contentId: contentId)
+        otzariaReaderLog("getContent bookId=\(bkId) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") nashCount=\(content?.nash.count ?? 0) durationMs=\(otzariaReaderElapsedMs(start))")
+        return content
     }
 
     func loadFromHistory(for book: BooksData) {
+        let start = Date()
+        otzariaReaderLog("loadFromHistory start bookId=\(book.id) title=\(book.book)")
         // Try to restore from history first
         guard let lastContentId = historyVM.entriesByBookId[book.id]?.lastContentId,
               let content = bookConnection.getContent(bkid: String(book.id), contentId: lastContentId)
         else {
+            otzariaReaderLog("loadFromHistory fallbackFirst bookId=\(book.id) durationMs=\(otzariaReaderElapsedMs(start))")
             getFirstBookContent(for: book)
             return
         }
 
         updateContentState(with: content)
+        otzariaReaderLog("loadFromHistory done bookId=\(book.id) contentId=\(content.id) heRef=\(content.heRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
     }
 
     func getFirstBookContent(for book: BooksData) {
+        let start = Date()
+        otzariaReaderLog("getFirstBookContent start bookId=\(book.id) title=\(book.book)")
         if let content = bookConnection.getFirstContent(bkid: String(book.id)) {
             updateContentState(with: content)
+            otzariaReaderLog("getFirstBookContent done bookId=\(book.id) contentId=\(content.id) heRef=\(content.heRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
         } else {
             contentText = "No content found for this book."
+            otzariaReaderLog("getFirstBookContent nil bookId=\(book.id) durationMs=\(otzariaReaderElapsedMs(start))")
         }
     }
 
@@ -330,13 +336,19 @@ class ReaderViewModel: ViewModelBase {
     }
 
     func goToNextPage() {
+        let start = Date()
+        otzariaReaderLog("goToNextPage start bookId=\(currentBook?.id ?? -1) contentId=\(currentContentId)")
         guard let content = navigateToPage(direction: .next) else { return }
         updateContentState(with: content)
+        otzariaReaderLog("goToNextPage done bookId=\(currentBook?.id ?? -1) contentId=\(content.id) heRef=\(content.heRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
     }
 
     func goToPrevPage() {
+        let start = Date()
+        otzariaReaderLog("goToPrevPage start bookId=\(currentBook?.id ?? -1) contentId=\(currentContentId)")
         guard let content = navigateToPage(direction: .prev) else { return }
         updateContentState(with: content)
+        otzariaReaderLog("goToPrevPage done bookId=\(currentBook?.id ?? -1) contentId=\(content.id) heRef=\(content.heRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
     }
 
     func fetchContentById(_ contentId: Int) {
@@ -421,6 +433,7 @@ class ReaderViewModel: ViewModelBase {
     // MARK: - Private: Core Update
 
     func updateContentState(with content: BookContent) {
+        let start = Date()
         contentText = content.nash
         currentPart = content.part
         currentPage = content.page
@@ -450,9 +463,9 @@ class ReaderViewModel: ViewModelBase {
         // Clear saved scroll/selection so it scrolls to top on page change
         readerState.scrollPosition = nil
         readerState.selectedRange = nil
-        refreshOtzariaContinuousWindowIfNeeded()
         updateNavigationLimits()
         #endif
+        otzariaReaderLog("updateContentState bookId=\(currentBook?.id ?? -1) title=\(currentBook?.book ?? "") contentId=\(content.id) currentHeRef=\(currentHeRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
     }
 
     #if os(macOS)
@@ -650,81 +663,15 @@ class ReaderViewModel: ViewModelBase {
 // MARK: - Otzaria Reading Units
 
 extension ReaderViewModel {
-    func loadOtzariaReaderOptionsIfNeeded(for book: BooksData) {
+    fileprivate func otzariaReaderLog(_ message: String) {
         guard OtzariaMaktabahBridge.shared.isEnabled else { return }
-        #if os(iOS)
-        otzariaAvailableUnitModes = OtzariaMaktabahBridge.shared.getAvailableReadingUnitModes(bookId: book.id)
-        otzariaUnitMode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
-        refreshOtzariaContinuousWindowIfNeeded()
-        #endif
+        OtzariaFileLogger.shared.log("[ReaderViewModel] \(message)")
     }
 
-    #if os(iOS)
-    func setOtzariaUnitMode(_ mode: OtzariaUnitMode) {
-        guard OtzariaMaktabahBridge.shared.isEnabled, let currentBook else { return }
-        let anchorLineIndex = currentContentId
-        otzariaUnitMode = mode
-        OtzariaMaktabahBridge.shared.currentReadingUnitMode = mode
-
-        guard let content = bookConnection.getContent(
-            bkid: String(currentBook.id),
-            contentId: anchorLineIndex
-        ) else {
-            return
-        }
-        updateContentState(with: content)
+    fileprivate func otzariaReaderElapsedMs(_ start: Date) -> Int {
+        Int(Date().timeIntervalSince(start) * 1000)
     }
 
-    func setOtzariaReaderMode(_ mode: OtzariaReaderMode) {
-        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
-        otzariaReaderMode = mode
-        UserDefaults.standard.set(mode.rawValue, forKey: "otzaria_reader_mode")
-        refreshOtzariaContinuousWindowIfNeeded()
-    }
-
-    func refreshOtzariaContinuousWindowIfNeeded() {
-        guard OtzariaMaktabahBridge.shared.isEnabled,
-              otzariaReaderMode == .continuous,
-              let currentBook else {
-            return
-        }
-
-        otzariaVisibleUnits = OtzariaMaktabahBridge.shared.getReadingUnitsWindow(
-            bookId: currentBook.id,
-            aroundLineIndex: currentContentId,
-            mode: otzariaUnitMode,
-            before: 20,
-            after: 40
-        )
-    }
-
-    func selectOtzariaUnitForLinks(_ unit: OtzariaReadingUnit) {
-        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
-        otzariaSelectedUnitForLinks = unit
-        otzariaLinkedSources = OtzariaMaktabahBridge.shared.getLinksForReadingUnit(bookId: unit.bookId, unit: unit)
-        otzariaLinksPanelVisible = true
-    }
-
-    func updateOtzariaAnchor(to unit: OtzariaReadingUnit) {
-        guard OtzariaMaktabahBridge.shared.isEnabled, let currentBook else { return }
-        currentContentId = unit.startLineIndex
-        currentID = unit.startLineIndex
-        currentPage = unit.startLineIndex
-        currentPart = 1
-        currentHeRef = unit.heRef ?? unit.title
-        historyVM.updateLastContentId(unit.startLineIndex, for: currentBook.id)
-    }
-
-    func otzariaContinuousUnitDidAppear(_ unit: OtzariaReadingUnit) {
-        updateOtzariaAnchor(to: unit)
-        guard otzariaReaderMode == .continuous,
-              let index = otzariaVisibleUnits.firstIndex(of: unit),
-              index <= 4 || index >= otzariaVisibleUnits.count - 5 else {
-            return
-        }
-        refreshOtzariaContinuousWindowIfNeeded()
-    }
-    #endif
 }
 
 // MARK: - Notification Observers

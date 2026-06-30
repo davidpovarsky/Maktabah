@@ -15,7 +15,14 @@ struct iOSHistoryView: View {
 
         ThemeList {
             if !filteredHistory.isEmpty {
-                HistorySection(books: filteredHistory,viewModel: viewModel)
+                HistorySection(
+                    books: filteredHistory,
+                    viewModel: viewModel,
+                    onOpen: { book in
+                        let lastId = viewModel.entriesByBookId[book.id]?.lastContentId
+                        navigationManager.openBook(book, initialContentId: lastId)
+                    }
+                )
             }
 
             if !filteredFavorites.isEmpty {
@@ -27,7 +34,7 @@ struct iOSHistoryView: View {
                         navigationManager.openBook(book, initialContentId: lastId)
                     }
                 )
-            } else if filteredFavorites.isEmpty {
+            } else if filteredHistory.isEmpty && filteredFavorites.isEmpty {
                 HistoryEmptyState(searchText: viewModel.searchText)
             }
         }

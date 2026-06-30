@@ -110,7 +110,14 @@ struct iPadLayout: View {
             }
 
             if !filteredHistory.isEmpty {
-                HistorySection(books: filteredHistory, viewModel: historyViewModel)
+                HistorySection(
+                    books: filteredHistory,
+                    viewModel: historyViewModel,
+                    onOpen: { book in
+                        let lastId = historyViewModel.entriesByBookId[book.id]?.lastContentId
+                        bManager.openBook(book, initialContentId: lastId)
+                    }
+                )
             }
 
             if !filteredFavorites.isEmpty {

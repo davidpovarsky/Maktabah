@@ -22,35 +22,32 @@ struct OtzariaUnitLevelOption: Identifiable, Equatable {
 }
 
 enum OtzariaUnitMode: Equatable, Codable {
-    case automatic
-    case tocLevel(Int)
-    case leaf
-    case sourceLine
+    case line
+    case paragraph
+    case chapter
 
     var storageValue: String {
         switch self {
-        case .automatic: return "automatic"
-        case .tocLevel(let level): return "tocLevel:\(level)"
-        case .leaf: return "leaf"
-        case .sourceLine: return "sourceLine"
+        case .line: return "line"
+        case .paragraph: return "paragraph"
+        case .chapter: return "chapter"
         }
     }
 
     init(storageValue: String) {
-        if storageValue == "leaf" {
-            self = .leaf
-        } else if storageValue == "sourceLine" {
-            self = .sourceLine
-        } else if storageValue.hasPrefix("tocLevel:"),
-                  let level = Int(storageValue.dropFirst("tocLevel:".count)) {
-            self = .tocLevel(level)
-        } else {
-            self = .automatic
+        switch storageValue {
+        case "line", "sourceLine":
+            self = .line
+        case "chapter":
+            self = .chapter
+        case "paragraph", "leaf", "automatic":
+            self = .paragraph
+        default:
+            if storageValue.hasPrefix("tocLevel:") {
+                self = .chapter
+            } else {
+                self = .paragraph
+            }
         }
     }
-}
-
-enum OtzariaReaderMode: String, Codable {
-    case paged
-    case continuous
 }
