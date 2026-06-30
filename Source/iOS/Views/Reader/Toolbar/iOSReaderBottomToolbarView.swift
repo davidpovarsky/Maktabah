@@ -80,6 +80,25 @@ struct iOSReaderBottomToolbarView: View {
             .accessibilityLabel(String(localized: "Annotations"))
             .help(String(localized: "Annotations"))
 
+            if OtzariaMaktabahBridge.shared.isEnabled {
+                Divider()
+
+                Menu {
+                    ForEach(viewModel.otzariaAvailableUnitModes) { option in
+                        Button {
+                            viewModel.setOtzariaUnitMode(option.mode)
+                        } label: {
+                            if option.mode == viewModel.otzariaUnitMode {
+                                Label(option.title, systemImage: "checkmark")
+                            } else {
+                                Text(option.title)
+                            }
+                        }
+                    }
+                } label: {
+                    Label("Display by", systemImage: "text.badge.checkmark")
+                }
+            }
         } label: {
             Image(systemName: "ellipsis")
         }
