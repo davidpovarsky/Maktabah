@@ -120,7 +120,7 @@ enum OtzariaLinkedSourceGrouping {
             guard let firstSource = sources.first else { return nil }
             let descriptor = indexGroupDescriptor(for: firstSource)
 
-            OtzariaSourceIndexGroup(
+            return OtzariaSourceIndexGroup(
                 id: groupId,
                 title: descriptor.title,
                 systemImage: systemImage(for: descriptor.title),
