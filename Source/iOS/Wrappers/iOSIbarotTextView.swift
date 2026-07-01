@@ -524,8 +524,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
             guard textView.selectedRange.length == 0 else { return }
             guard !textView.isDragging,
-                  !textView.isDecelerating,
-                  !textView.isTracking else { return }
+                  !textView.isDecelerating else { return }
 
             let point = recognizer.location(in: textView)
             DispatchQueue.main.async { [weak self, weak textView] in
@@ -556,7 +555,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 return false
             }
 
-            if textView.isDragging || textView.isDecelerating || textView.isTracking {
+            if textView.isDragging || textView.isDecelerating {
                 return false
             }
 

@@ -6,6 +6,7 @@ struct OtzariaLineSourcesInspectorView: View {
     let sources: [OtzariaLinkedSource]
     let isLoading: Bool
     let error: String?
+    let isPresented: Bool
     let onClose: () -> Void
     let onOpenSource: (OtzariaLinkedSource) -> Void
 
@@ -19,28 +20,32 @@ struct OtzariaLineSourcesInspectorView: View {
                 .navigationTitle(panelTitle)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button {
-                            onClose()
-                        } label: {
-                            Label("סגור", systemImage: "xmark")
+                        if isPresented {
+                            Button {
+                                onClose()
+                            } label: {
+                                Label("סגור", systemImage: "xmark")
+                            }
                         }
                     }
 
                     ToolbarItem(placement: .topBarLeading) {
-                        if selectedBookID != nil {
-                            Button {
-                                selectedBookID = nil
-                                expandedSourceIDs.removeAll()
-                            } label: {
-                                Label("חזרה", systemImage: "chevron.right")
-                            }
-                        } else if selectedGroupID != nil {
-                            Button {
-                                selectedGroupID = nil
-                                selectedBookID = nil
-                                expandedSourceIDs.removeAll()
-                            } label: {
-                                Label("חזרה", systemImage: "chevron.right")
+                        if isPresented {
+                            if selectedBookID != nil {
+                                Button {
+                                    selectedBookID = nil
+                                    expandedSourceIDs.removeAll()
+                                } label: {
+                                    Label("חזרה", systemImage: "chevron.right")
+                                }
+                            } else if selectedGroupID != nil {
+                                Button {
+                                    selectedGroupID = nil
+                                    selectedBookID = nil
+                                    expandedSourceIDs.removeAll()
+                                } label: {
+                                    Label("חזרה", systemImage: "chevron.right")
+                                }
                             }
                         }
                     }

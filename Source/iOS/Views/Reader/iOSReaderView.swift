@@ -209,20 +209,31 @@ struct iOSReaderView: View {
         }
         .inspector(isPresented: Binding(
             get: { viewModel.otzariaSourcesInspectorVisible },
-            set: { viewModel.otzariaSourcesInspectorVisible = $0 }
-        )) {
-            OtzariaLineSourcesInspectorView(
-                selectedLine: viewModel.otzariaSelectedLineAnchor,
-                sources: viewModel.otzariaLinkedSources,
-                isLoading: viewModel.otzariaSourcesIsLoading,
-                error: viewModel.otzariaSourcesError,
-                onClose: {
+            set: { newValue in
+                if newValue {
+                    viewModel.otzariaSourcesInspectorVisible = true
+                } else {
                     viewModel.closeOtzariaSourcesInspector()
-                },
-                onOpenSource: { source in
-                    bManager.openOtzariaLinkedSourceInNewTab(source)
                 }
-            )
+            }
+        )) {
+            if viewModel.otzariaSourcesInspectorVisible {
+                OtzariaLineSourcesInspectorView(
+                    selectedLine: viewModel.otzariaSelectedLineAnchor,
+                    sources: viewModel.otzariaLinkedSources,
+                    isLoading: viewModel.otzariaSourcesIsLoading,
+                    error: viewModel.otzariaSourcesError,
+                    isPresented: viewModel.otzariaSourcesInspectorVisible,
+                    onClose: {
+                        viewModel.closeOtzariaSourcesInspector()
+                    },
+                    onOpenSource: { source in
+                        bManager.openOtzariaLinkedSourceInNewTab(source)
+                    }
+                )
+            } else {
+                EmptyView()
+            }
         }
     }
 }
