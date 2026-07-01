@@ -48,7 +48,7 @@ extension OtzariaMaktabahBridge {
                 """, parameters: [line.id, line.id, line.id, line.id]) { row in
                     let linkedCategoryId = row.isNull(at: 7) ? nil : row.int(at: 7)
 
-                    OtzariaLinkedSource(
+                    return OtzariaLinkedSource(
                         id: row.int(at: 0),
                         connectionType: row.string(at: 1) ?? "OTHER",
                         linkedLineId: row.int(at: 2),
