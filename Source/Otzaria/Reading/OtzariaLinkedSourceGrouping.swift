@@ -18,6 +18,12 @@ struct OtzariaLinkedSourceBookGroup: Identifiable {
     let sources: [OtzariaLinkedSource]
 }
 
+struct OtzariaLinkedSourceDisplaySection: Identifiable {
+    let id: String
+    let title: String
+    let sources: [OtzariaLinkedSource]
+}
+
 enum OtzariaLinkedSourceGrouping {
     static func groups(from sources: [OtzariaLinkedSource]) -> [OtzariaLinkedSourceConnectionGroup] {
         let groupedByConnection = Dictionary(grouping: sources, by: \.connectionType)
@@ -66,6 +72,28 @@ enum OtzariaLinkedSourceGrouping {
                 categoryGroups: categoryGroups
             )
         }
+    }
+
+    static func displaySections(from sources: [OtzariaLinkedSource]) -> [OtzariaLinkedSourceDisplaySection] {
+        groups(from: sources).flatMap { connectionGroup in
+            connectionGroup.categoryGroups.map { categoryGroup in
+                let sectionTitle: String
+                if connectionGroup.title == categoryGroup.title {
+                    sectionTitle = connectionGroup.title
+                } else {
+                    sectionTitle = "\(connectionGroup.title) · \(categoryGroup.title)"
+                }
+
+                let flattenedSources = categoryGroup.bookGroups.flatMap { $0.sources }
+
+                return OtzariaLinkedSourceDisplaySection(
+                    id: "\(connectionGroup.id)-\(categoryGroup.id)",
+                    title: sectionTitle,
+                    sources: flattenedSources
+                )
+            }
+        }
+        .filter { !$0.sources.isEmpty }
     }
 
     private static func compareConnectionTypes(_ lhs: String, _ rhs: String) -> Bool {

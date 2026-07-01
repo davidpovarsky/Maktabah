@@ -9,6 +9,8 @@ struct OtzariaLineSourcesInspectorView: View {
     let onClose: () -> Void
     let onOpenSource: (OtzariaLinkedSource) -> Void
 
+    @State private var expandedSourceIDs = Set<Int>()
+
     var body: some View {
         NavigationStack {
             content
@@ -54,21 +56,21 @@ struct OtzariaLineSourcesInspectorView: View {
                     }
                 }
 
-                ForEach(groupedSources) { connectionGroup in
-                    Section(connectionGroup.title) {
-                        ForEach(connectionGroup.categoryGroups) { categoryGroup in
-                            DisclosureGroup(categoryGroup.title) {
-                                ForEach(categoryGroup.bookGroups) { bookGroup in
-                                    DisclosureGroup(bookGroup.title) {
-                                        ForEach(bookGroup.sources) { source in
-                                            OtzariaExpandableLinkedSourceRow(
-                                                source: source,
-                                                onOpenSource: onOpenSource
-                                            )
-                                        }
+                ForEach(displaySections) { section in
+                    Section(section.title) {
+                        ForEach(section.sources) { source in
+                            OtzariaExpandableLinkedSourceRow(
+                                source: source,
+                                isExpanded: expandedSourceIDs.contains(source.id),
+                                onToggleExpanded: {
+                                    if expandedSourceIDs.contains(source.id) {
+                                        expandedSourceIDs.remove(source.id)
+                                    } else {
+                                        expandedSourceIDs.insert(source.id)
                                     }
-                                }
-                            }
+                                },
+                                onOpenSource: onOpenSource
+                            )
                         }
                     }
                 }
@@ -76,27 +78,34 @@ struct OtzariaLineSourcesInspectorView: View {
         }
     }
 
-    private var groupedSources: [OtzariaLinkedSourceConnectionGroup] {
-        OtzariaLinkedSourceGrouping.groups(from: sources)
+    private var displaySections: [OtzariaLinkedSourceDisplaySection] {
+        OtzariaLinkedSourceGrouping.displaySections(from: sources)
     }
 }
 
 private struct OtzariaExpandableLinkedSourceRow: View {
     let source: OtzariaLinkedSource
+    let isExpanded: Bool
+    let onToggleExpanded: () -> Void
     let onOpenSource: (OtzariaLinkedSource) -> Void
 
     var body: some View {
-        DisclosureGroup {
+        Group {
             LabeledContent {
-                Text(source.text)
+                Text(isExpanded ? source.text : source.previewText)
                     .font(.body)
+                    .lineLimit(isExpanded ? nil : 3)
                     .multilineTextAlignment(.trailing)
                     .textSelection(.enabled)
             } label: {
-                if let heRef = source.heRef, !heRef.isEmpty {
-                    Text(heRef)
-                } else {
-                    Text("מקור")
+                sourceLabel
+            }
+
+            if source.hasLongText {
+                Button {
+                    onToggleExpanded()
+                } label: {
+                    Label(isExpanded ? "הצג פחות" : "הצג עוד", systemImage: isExpanded ? "chevron.up" : "chevron.down")
                 }
             }
 
@@ -105,19 +114,15 @@ private struct OtzariaExpandableLinkedSourceRow: View {
             } label: {
                 Label("פתח בטאב חדש", systemImage: "plus.square.on.square")
             }
-        } label: {
-            LabeledContent {
-                Text(source.previewText)
-                    .font(.body)
-                    .lineLimit(3)
-                    .multilineTextAlignment(.trailing)
-            } label: {
-                if let heRef = source.heRef, !heRef.isEmpty {
-                    Text(heRef)
-                } else {
-                    Text("מקור")
-                }
-            }
+        }
+    }
+
+    @ViewBuilder
+    private var sourceLabel: some View {
+        if let heRef = source.heRef, !heRef.isEmpty {
+            Text("\(source.bookTitle) · \(heRef)")
+        } else {
+            Text(source.bookTitle)
         }
     }
 }
