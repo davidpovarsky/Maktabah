@@ -9,6 +9,7 @@ struct OtzariaReadingUnit: Identifiable, Equatable {
     let startLineIndex: Int
     let endLineIndex: Int
     let sourceLineIndices: [Int]
+    let lineAnchors: [OtzariaLineAnchor]
     let html: String
     let plainText: String
     let heRef: String?

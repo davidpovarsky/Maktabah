@@ -91,6 +91,7 @@ extension OtzariaMaktabahBridge {
 
     func makeBookContent(from unit: OtzariaReadingUnit) -> BookContent {
         otzariaLog("makeBookContent \(otzariaUnitSummary(unit)) plainChars=\(unit.plainText.count) htmlChars=\(unit.html.count)")
+        cacheReadingUnit(unit)
 
         return BookContent(
             id: unit.startLineIndex,

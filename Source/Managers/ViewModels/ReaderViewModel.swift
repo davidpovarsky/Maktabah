@@ -81,6 +81,11 @@ class ReaderViewModel: ViewModelBase {
     var fetchScrollPosition: (() -> CGPoint?)?
     var fetchSelectedRange: (() -> NSRange?)?
     var currentAnnotations: [Annotation] = []
+    var otzariaSelectedLineAnchor: OtzariaLineAnchor?
+    var otzariaLinkedSources: [OtzariaLinkedSource] = []
+    var otzariaSourcesInspectorVisible: Bool = false
+    var otzariaSourcesIsLoading: Bool = false
+    var otzariaSourcesError: String?
     #endif
 
     // MARK: - Computed Properties
@@ -619,6 +624,7 @@ class ReaderViewModel: ViewModelBase {
 
     func findBestAnnotation(for range: NSRange) -> Annotation? {
         guard let book = currentBook else { return nil }
+        // TODO: Otzaria annotations are currently unit-based. They need line-aware mapping using OtzariaLineAnchor ranges before changing storage/loading behavior.
         return annotationCoordinator.findBestAnnotation(
             overlapping: range,
             bkId: book.id,

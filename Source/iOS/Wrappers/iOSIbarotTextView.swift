@@ -289,6 +289,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     // Callbacks for the ViewModel to handle menu actions
     var onAddAnnotation: ((NSRange, AnnotationMode, String, UIColor) -> Void)?
     var onTapAnnotation: ((Int64) -> Void)?
+    var onTapTextCharacterIndex: ((Int) -> Void)?
 
     // Pull-to-navigate callbacks
     var onNavigateNext: (() -> Void)?
@@ -308,6 +309,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = context.coordinator
         textView.alwaysBounceVertical = true
+        let tapRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTextTap(_:)))
+        tapRecognizer.cancelsTouchesInView = false
+        tapRecognizer.delegate = context.coordinator
+        textView.addGestureRecognizer(tapRecognizer)
 
         textView.onHighlight = { sourceRange, sourceText in
             let color = UserDefaults.standard.recentHighlightColors.first ?? .yellow
@@ -469,7 +474,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
     }
 
-    class Coordinator: NSObject, UITextViewDelegate {
+    class Coordinator: NSObject, UITextViewDelegate, UIGestureRecognizerDelegate {
         var parent: iOSIbarotTextView
         var currentRenderResult: ArabicRenderResult?
         var restoredContentId: Int?
@@ -487,6 +492,69 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         init(_ parent: iOSIbarotTextView) {
             self.parent = parent
+        }
+
+        @objc func handleTextTap(_ recognizer: UITapGestureRecognizer) {
+            guard recognizer.state == .ended,
+                  let textView = recognizer.view as? UITextView else { return }
+
+            let point = recognizer.location(in: textView)
+            guard let characterIndex = characterIndex(in: textView, at: point) else { return }
+
+            if characterIndex < textView.textStorage.length,
+               textView.textStorage.attribute(.link, at: characterIndex, effectiveRange: nil) != nil {
+                return
+            }
+
+            let sourceIndex = currentRenderResult?
+                .remapSourceRange(NSRange(location: characterIndex, length: 0))
+                .location ?? characterIndex
+            parent.onTapTextCharacterIndex?(sourceCharacterIndex(forDisplayedIndex: sourceIndex))
+        }
+
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            true
+        }
+
+        private func characterIndex(in textView: UITextView, at point: CGPoint) -> Int? {
+            guard textView.bounds.contains(point) else { return nil }
+
+            let layoutManager = textView.layoutManager
+            let textContainer = textView.textContainer
+            var location = point
+            location.x -= textView.textContainerInset.left
+            location.y -= textView.textContainerInset.top
+
+            let glyphIndex = layoutManager.glyphIndex(for: location, in: textContainer)
+            guard glyphIndex < layoutManager.numberOfGlyphs else { return nil }
+
+            let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
+            guard characterIndex >= 0, characterIndex <= textView.textStorage.length else { return nil }
+            return characterIndex
+        }
+
+        private func sourceCharacterIndex(forDisplayedIndex displayedIndex: Int) -> Int {
+            guard !TextViewState.shared.showHarakat else { return displayedIndex }
+
+            var displayedOffset = 0
+            var sourceOffset = 0
+
+            for scalar in parent.text.unicodeScalars {
+                let scalarLength = String(scalar).utf16.count
+                if scalar.isArabicHarakat {
+                    sourceOffset += scalarLength
+                    continue
+                }
+
+                if displayedOffset >= displayedIndex {
+                    return sourceOffset
+                }
+
+                displayedOffset += scalarLength
+                sourceOffset += scalarLength
+            }
+
+            return sourceOffset
         }
 
         // MARK: - Pull-to-Navigate Scroll Detection

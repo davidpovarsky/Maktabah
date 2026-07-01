@@ -270,6 +270,27 @@ final class OtzariaReadingUnitService {
         let lines = try sourceLines(for: summary)
         guard !lines.isEmpty else { return nil }
         let html = lines.map(\.html).joined(separator: "\n")
+        var plainSegments: [String] = []
+        var lineAnchors: [OtzariaLineAnchor] = []
+        var currentOffset = 0
+
+        for line in lines {
+            let plain = line.html.otsariaPlainText
+            plainSegments.append(plain)
+            lineAnchors.append(
+                OtzariaLineAnchor(
+                    id: line.id,
+                    bookId: summary.bookId,
+                    lineIndex: line.lineIndex,
+                    heRef: line.heRef,
+                    text: plain,
+                    range: NSRange(location: currentOffset, length: (plain as NSString).length)
+                )
+            )
+            currentOffset += (plain as NSString).length + 1
+        }
+
+        let plainText = plainSegments.joined(separator: "\n")
         let firstRef = lines.first(where: { ($0.heRef ?? "").isEmpty == false })?.heRef
 
         return OtzariaReadingUnit(
@@ -281,8 +302,9 @@ final class OtzariaReadingUnitService {
             startLineIndex: lines.first?.lineIndex ?? summary.startLineIndex,
             endLineIndex: lines.last?.lineIndex ?? summary.endLineIndex,
             sourceLineIndices: lines.map(\.lineIndex),
+            lineAnchors: lineAnchors,
             html: html,
-            plainText: html.otsariaPlainText,
+            plainText: plainText,
             heRef: firstRef
         )
     }

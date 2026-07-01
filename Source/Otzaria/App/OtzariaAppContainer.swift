@@ -205,6 +205,12 @@ final class OtzariaMaktabahBridge {
         return work(readingUnitService)
     }
 
+    func withDatabase<T>(_ work: (SQLiteDatabase) throws -> T) throws -> T {
+        lock.lock()
+        defer { lock.unlock() }
+        return try work(requireDatabase())
+    }
+
     func fetchCategories() throws -> [CategoryData] {
         lock.lock()
         defer { lock.unlock() }

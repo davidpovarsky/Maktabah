@@ -75,6 +75,9 @@ struct iOSReaderView: View {
                 tappedAnnotationId = annId
                 showingAnnotationActionSheet = true
             },
+            onTapTextCharacterIndex: { index in
+                viewModel.didTapOtzariaText(at: index)
+            },
             onNavigateNext: { viewModel.goToNextPage() },
             onNavigatePrev: { viewModel.goToPrevPage() }
         )
@@ -200,6 +203,23 @@ struct iOSReaderView: View {
                 )
                 .presentationDetents([.medium, .large])
             }
+        }
+        .inspector(isPresented: Binding(
+            get: { viewModel.otzariaSourcesInspectorVisible },
+            set: { viewModel.otzariaSourcesInspectorVisible = $0 }
+        )) {
+            OtzariaLineSourcesInspectorView(
+                selectedLine: viewModel.otzariaSelectedLineAnchor,
+                sources: viewModel.otzariaLinkedSources,
+                isLoading: viewModel.otzariaSourcesIsLoading,
+                error: viewModel.otzariaSourcesError,
+                onClose: {
+                    viewModel.closeOtzariaSourcesInspector()
+                },
+                onOpenSource: { source in
+                    bManager.openOtzariaLinkedSourceInNewTab(source)
+                }
+            )
         }
     }
 }
