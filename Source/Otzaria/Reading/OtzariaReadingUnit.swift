@@ -51,3 +51,46 @@ enum OtzariaUnitMode: Equatable, Codable {
         }
     }
 }
+
+#if os(iOS)
+extension ReaderViewModel {
+    var otzariaAvailableUnitModes: [OtzariaUnitLevelOption] {
+        guard OtzariaMaktabahBridge.shared.isEnabled,
+              let currentBook else {
+            return []
+        }
+        return OtzariaMaktabahBridge.shared.getAvailableReadingUnitModes(bookId: currentBook.id)
+    }
+
+    var otzariaUnitMode: OtzariaUnitMode {
+        get { OtzariaMaktabahBridge.shared.currentReadingUnitMode }
+        set { OtzariaMaktabahBridge.shared.currentReadingUnitMode = newValue }
+    }
+
+    func setOtzariaUnitMode(_ mode: OtzariaUnitMode) {
+        guard OtzariaMaktabahBridge.shared.isEnabled,
+              let currentBook else {
+            return
+        }
+
+        let anchorLineIndex = currentContentId
+        otzariaUnitMode = mode
+
+        OtzariaFileLogger.shared.log(
+            "[ReaderViewModel] set unit mode bookId=\(currentBook.id) mode=\(mode.storageValue) anchorLineIndex=\(anchorLineIndex)"
+        )
+
+        guard let content = bookConnection.getContent(
+            bkid: String(currentBook.id),
+            contentId: anchorLineIndex
+        ) else {
+            OtzariaFileLogger.shared.log(
+                "[ReaderViewModel] set unit mode reload failed bookId=\(currentBook.id) mode=\(mode.storageValue) anchorLineIndex=\(anchorLineIndex)"
+            )
+            return
+        }
+
+        updateContentState(with: content)
+    }
+}
+#endif
