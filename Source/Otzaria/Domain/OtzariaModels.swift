@@ -67,6 +67,9 @@ struct OtzariaLinkedSource: Identifiable, Hashable {
     let linkedLineIndex: Int
     let bookTitle: String
     let bookPath: String?
+    let linkedCategoryId: Int?
+    let linkedCategoryPath: [String]
+    let linkedBookOrderIndex: Int?
     let heRef: String?
     let content: String
 

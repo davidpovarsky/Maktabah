@@ -4,7 +4,10 @@ extension OtzariaMaktabahBridge {
     func getLinksForLine(_ line: OtzariaLineAnchor) -> [OtzariaLinkedSource] {
         do {
             return try withDatabase { db in
-                try db.fetch(query: """
+                let categories = try categoryMap(in: db)
+                let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
+
+                return try db.fetch(query: """
                     WITH resolved AS (
                         SELECT
                             l.id AS linkId,
@@ -23,6 +26,8 @@ extension OtzariaMaktabahBridge {
                         ln.lineIndex,
                         b.title AS bookTitle,
                         b.filePath AS bookPath,
+                        b.categoryId AS linkedCategoryId,
+                        b.orderIndex AS linkedBookOrderIndex,
                         ln.heRef,
                         ln.content
                     FROM resolved r
@@ -41,6 +46,8 @@ extension OtzariaMaktabahBridge {
                         ln.lineIndex
                     LIMIT 500
                 """, parameters: [line.id, line.id, line.id, line.id]) { row in
+                    let linkedCategoryId = row.isNull(at: 7) ? nil : row.int(at: 7)
+
                     OtzariaLinkedSource(
                         id: row.int(at: 0),
                         connectionType: row.string(at: 1) ?? "OTHER",
@@ -49,8 +56,11 @@ extension OtzariaMaktabahBridge {
                         linkedLineIndex: row.int(at: 4),
                         bookTitle: row.string(at: 5) ?? "ללא שם",
                         bookPath: row.string(at: 6),
-                        heRef: row.string(at: 7),
-                        content: row.string(at: 8) ?? ""
+                        linkedCategoryId: linkedCategoryId,
+                        linkedCategoryPath: resolver.path(for: linkedCategoryId),
+                        linkedBookOrderIndex: row.isNull(at: 8) ? nil : row.int(at: 8),
+                        heRef: row.string(at: 9),
+                        content: row.string(at: 10) ?? ""
                     )
                 }
             }
@@ -58,5 +68,26 @@ extension OtzariaMaktabahBridge {
             OtzariaFileLogger.shared.log("[OtzariaMaktabahBridge] getLinksForLine error lineId=\(line.id) error=\(error.localizedDescription)")
             return []
         }
+    }
+
+    private func categoryMap(in db: SQLiteDatabase) throws -> [Int: CategoryData] {
+        let categories = try db.fetch(query: """
+            SELECT id, parentId, title, level, orderIndex
+            FROM category
+        """) { row in
+            CategoryData(
+                id: row.int(at: 0),
+                name: row.string(at: 2) ?? "Untitled",
+                level: row.int(at: 3),
+                order: row.int(at: 4),
+                parentId: row.isNull(at: 1) ? nil : row.int(at: 1)
+            )
+        }
+
+        var result: [Int: CategoryData] = [:]
+        for category in categories {
+            result[category.id] = category
+        }
+        return result
     }
 }

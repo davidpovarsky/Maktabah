@@ -39,85 +39,86 @@ struct OtzariaLineSourcesInspectorView: View {
             List {
                 if let selectedLine {
                     Section("השורה שנבחרה") {
-                        VStack(alignment: .trailing, spacing: 6) {
-                            if let heRef = selectedLine.heRef, !heRef.isEmpty {
-                                Text(heRef)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
+                        LabeledContent {
                             Text(selectedLine.text)
                                 .font(.callout)
                                 .multilineTextAlignment(.trailing)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
                                 .textSelection(.enabled)
+                        } label: {
+                            if let heRef = selectedLine.heRef, !heRef.isEmpty {
+                                Text(heRef)
+                            } else {
+                                Text("שורה")
+                            }
                         }
                     }
                 }
 
-                ForEach(sourceSections) { section in
-                    Section(section.title) {
-                        ForEach(section.items) { source in
-                            Button {
-                                onOpenSource(source)
-                            } label: {
-                                OtzariaLineSourceRow(source: source)
+                ForEach(groupedSources) { connectionGroup in
+                    Section(connectionGroup.title) {
+                        ForEach(connectionGroup.categoryGroups) { categoryGroup in
+                            DisclosureGroup(categoryGroup.title) {
+                                ForEach(categoryGroup.bookGroups) { bookGroup in
+                                    DisclosureGroup(bookGroup.title) {
+                                        ForEach(bookGroup.sources) { source in
+                                            OtzariaExpandableLinkedSourceRow(
+                                                source: source,
+                                                onOpenSource: onOpenSource
+                                            )
+                                        }
+                                    }
+                                }
                             }
-                            .buttonStyle(.plain)
                         }
                     }
                 }
             }
-            .listStyle(.insetGrouped)
         }
     }
 
-    private var sourceSections: [OtzariaSourceSection] {
-        let grouped = Dictionary(grouping: sources, by: \.connectionType)
-        let order = ["COMMENTARY", "TARGUM", "REFERENCE", "SOURCE", "OTHER"]
-        var sections: [OtzariaSourceSection] = []
-
-        for key in order {
-            if let items = grouped[key], !items.isEmpty {
-                sections.append(OtzariaSourceSection(id: key, title: items[0].localizedConnectionType, items: items))
-            }
-        }
-
-        let known = Set(order)
-        for key in grouped.keys.filter({ !known.contains($0) }).sorted() {
-            if let items = grouped[key], !items.isEmpty {
-                sections.append(OtzariaSourceSection(id: key, title: key, items: items))
-            }
-        }
-
-        return sections
+    private var groupedSources: [OtzariaLinkedSourceConnectionGroup] {
+        OtzariaLinkedSourceGrouping.groups(from: sources)
     }
 }
 
-private struct OtzariaLineSourceRow: View {
+private struct OtzariaExpandableLinkedSourceRow: View {
     let source: OtzariaLinkedSource
+    let onOpenSource: (OtzariaLinkedSource) -> Void
 
     var body: some View {
-        VStack(alignment: .trailing, spacing: 6) {
-            HStack {
-                Image(systemName: source.systemImage)
-                Text(source.bookTitle)
-                    .font(.headline)
-                Spacer()
+        DisclosureGroup {
+            LabeledContent {
+                Text(source.text)
+                    .font(.body)
+                    .multilineTextAlignment(.trailing)
+                    .textSelection(.enabled)
+            } label: {
                 if let heRef = source.heRef, !heRef.isEmpty {
                     Text(heRef)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                } else {
+                    Text("מקור")
                 }
             }
 
-            Text(source.text)
-                .font(.body)
-                .multilineTextAlignment(.trailing)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .lineLimit(8)
-                .textSelection(.enabled)
+            Button {
+                onOpenSource(source)
+            } label: {
+                Label("פתח בטאב חדש", systemImage: "plus.square.on.square")
+            }
+        } label: {
+            LabeledContent {
+                Text(source.previewText)
+                    .font(.body)
+                    .lineLimit(3)
+                    .multilineTextAlignment(.trailing)
+            } label: {
+                if let heRef = source.heRef, !heRef.isEmpty {
+                    Text(heRef)
+                } else {
+                    Text("מקור")
+                }
+            }
         }
-        .padding(.vertical, 4)
     }
 }
 #endif

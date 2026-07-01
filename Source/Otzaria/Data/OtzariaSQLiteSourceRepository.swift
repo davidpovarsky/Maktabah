@@ -1,4 +1,5 @@
 import Foundation
+import SQLite3
 
 final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
     private let database: OtzariaSQLiteConnection
@@ -9,6 +10,8 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
 
     func sources(for line: OtzariaBookLine) async throws -> [OtzariaLinkedSource] {
         try await database.read { db in
+            let categories = try Self.categoryMap(in: db)
+            let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
             let statement = try OtzariaSQLiteStatement(database: db, sql: """
                 WITH resolved AS (
                     SELECT
@@ -28,6 +31,8 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
                     ln.lineIndex,
                     b.title AS bookTitle,
                     b.filePath AS bookPath,
+                    b.categoryId AS linkedCategoryId,
+                    b.orderIndex AS linkedBookOrderIndex,
                     ln.heRef,
                     ln.content
                 FROM resolved r
@@ -54,6 +59,8 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
 
             var sources: [OtzariaLinkedSource] = []
             while try statement.step() {
+                let linkedCategoryId = statement.columnType(7) == SQLITE_NULL ? nil : statement.columnInt(7)
+
                 sources.append(
                     OtzariaLinkedSource(
                         id: statement.columnInt(0),
@@ -63,12 +70,35 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
                         linkedLineIndex: statement.columnInt(4),
                         bookTitle: statement.columnString(5) ?? "ללא שם",
                         bookPath: statement.columnString(6),
-                        heRef: statement.columnString(7),
-                        content: statement.columnString(8) ?? ""
+                        linkedCategoryId: linkedCategoryId,
+                        linkedCategoryPath: resolver.path(for: linkedCategoryId),
+                        linkedBookOrderIndex: statement.columnType(8) == SQLITE_NULL ? nil : statement.columnInt(8),
+                        heRef: statement.columnString(9),
+                        content: statement.columnString(10) ?? ""
                     )
                 )
             }
             return sources
         }
+    }
+
+    private static func categoryMap(in db: OpaquePointer) throws -> [Int: CategoryData] {
+        let statement = try OtzariaSQLiteStatement(database: db, sql: """
+            SELECT id, parentId, title, level, orderIndex
+            FROM category
+        """)
+
+        var categories: [Int: CategoryData] = [:]
+        while try statement.step() {
+            let category = CategoryData(
+                id: statement.columnInt(0),
+                name: statement.columnString(2) ?? "Untitled",
+                level: statement.columnInt(3),
+                order: statement.columnInt(4),
+                parentId: statement.columnType(1) == SQLITE_NULL ? nil : statement.columnInt(1)
+            )
+            categories[category.id] = category
+        }
+        return categories
     }
 }
