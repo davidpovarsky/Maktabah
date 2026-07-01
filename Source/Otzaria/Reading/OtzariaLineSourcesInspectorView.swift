@@ -9,39 +9,52 @@ struct OtzariaLineSourcesInspectorView: View {
     let onClose: () -> Void
     let onOpenSource: (OtzariaLinkedSource) -> Void
 
-    @State private var path: [OtzariaSourcesRoute] = []
+    @State private var selectedGroupID: String?
+    @State private var selectedBookID: String?
     @State private var expandedSourceIDs = Set<Int>()
 
     var body: some View {
-        NavigationStack(path: $path) {
-            rootContent
-                .navigationTitle("מקורות")
-                .navigationDestination(for: OtzariaSourcesRoute.self) { route in
-                    switch route {
-                    case .group(let groupId):
-                        groupContent(groupId: groupId)
-                    case .book(let groupId, let bookId):
-                        bookContent(groupId: groupId, bookId: bookId)
+        NavigationStack {
+            panelContent
+                .navigationTitle(panelTitle)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button {
+                            onClose()
+                        } label: {
+                            Label("סגור", systemImage: "xmark")
+                        }
+                    }
+
+                    ToolbarItem(placement: .topBarLeading) {
+                        if selectedBookID != nil {
+                            Button {
+                                selectedBookID = nil
+                                expandedSourceIDs.removeAll()
+                            } label: {
+                                Label("חזרה", systemImage: "chevron.right")
+                            }
+                        } else if selectedGroupID != nil {
+                            Button {
+                                selectedGroupID = nil
+                                selectedBookID = nil
+                                expandedSourceIDs.removeAll()
+                            } label: {
+                                Label("חזרה", systemImage: "chevron.right")
+                            }
+                        }
                     }
                 }
         }
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button {
-                    onClose()
-                } label: {
-                    Label("סגור", systemImage: "xmark")
-                }
-            }
-        }
         .onChange(of: sourceIDs) { _ in
-            path.removeAll()
+            selectedGroupID = nil
+            selectedBookID = nil
             expandedSourceIDs.removeAll()
         }
     }
 
     @ViewBuilder
-    private var rootContent: some View {
+    private var panelContent: some View {
         if selectedLine == nil {
             ContentUnavailableView("בחר שורה", systemImage: "link")
         } else if isLoading {
@@ -50,30 +63,43 @@ struct OtzariaLineSourcesInspectorView: View {
             Text(error)
         } else if sources.isEmpty {
             ContentUnavailableView("לא נמצאו קישורים", systemImage: "link.badge.plus")
+        } else if let selectedBookGroup {
+            bookSourcesContent(bookGroup: selectedBookGroup)
+        } else if let selectedGroup {
+            groupBooksContent(group: selectedGroup)
         } else {
-            List {
-                if let selectedLine {
-                    Section("השורה שנבחרה") {
-                        LabeledContent {
-                            Text(selectedLine.text)
-                                .font(.callout)
-                                .multilineTextAlignment(.trailing)
-                                .textSelection(.enabled)
-                        } label: {
-                            if let heRef = selectedLine.heRef, !heRef.isEmpty {
-                                Text(heRef)
-                            } else {
-                                Text("שורה")
-                            }
+            rootIndexContent
+        }
+    }
+
+    @ViewBuilder
+    private var rootIndexContent: some View {
+        List {
+            if let selectedLine {
+                Section("השורה שנבחרה") {
+                    LabeledContent {
+                        Text(selectedLine.text)
+                            .font(.callout)
+                            .multilineTextAlignment(.trailing)
+                            .textSelection(.enabled)
+                    } label: {
+                        if let heRef = selectedLine.heRef, !heRef.isEmpty {
+                            Text(heRef)
+                        } else {
+                            Text("שורה")
                         }
                     }
                 }
+            }
 
-                Section("מקורות") {
-                    ForEach(indexGroups) { group in
-                        NavigationLink(value: OtzariaSourcesRoute.group(group.id)) {
-                            Label("\(group.title) (\(group.count))", systemImage: group.systemImage)
-                        }
+            Section("מקורות") {
+                ForEach(indexGroups) { group in
+                    Button {
+                        selectedGroupID = group.id
+                        selectedBookID = nil
+                        expandedSourceIDs.removeAll()
+                    } label: {
+                        Label("\(group.title) (\(group.count))", systemImage: group.systemImage)
                     }
                 }
             }
@@ -81,51 +107,61 @@ struct OtzariaLineSourcesInspectorView: View {
     }
 
     @ViewBuilder
-    private func groupContent(groupId: String) -> some View {
-        if let group = indexGroups.first(where: { $0.id == groupId }) {
-            List {
-                Section(group.title) {
-                    ForEach(OtzariaLinkedSourceGrouping.bookGroups(from: group.sources)) { bookGroup in
-                        NavigationLink(value: OtzariaSourcesRoute.book(groupId: group.id, bookId: bookGroup.id)) {
-                            Text("\(bookGroup.title) (\(bookGroup.count))")
-                        }
+    private func groupBooksContent(group: OtzariaSourceIndexGroup) -> some View {
+        List {
+            Section(group.title) {
+                ForEach(OtzariaLinkedSourceGrouping.bookGroups(from: group.sources)) { bookGroup in
+                    Button {
+                        selectedBookID = bookGroup.id
+                        expandedSourceIDs.removeAll()
+                    } label: {
+                        Text("\(bookGroup.title) (\(bookGroup.count))")
                     }
                 }
             }
-            .navigationTitle(group.title)
-        } else {
-            ContentUnavailableView("לא נמצאה קבוצה", systemImage: "exclamationmark.triangle")
-                .navigationTitle("מקורות")
         }
     }
 
     @ViewBuilder
-    private func bookContent(groupId: String, bookId: String) -> some View {
-        if let group = indexGroups.first(where: { $0.id == groupId }),
-           let bookGroup = OtzariaLinkedSourceGrouping.bookGroups(from: group.sources).first(where: { $0.id == bookId }) {
-            List {
-                Section(bookGroup.title) {
-                    ForEach(bookGroup.sources) { source in
-                        OtzariaLinkedSourceSnippetRow(
-                            source: source,
-                            isExpanded: expandedSourceIDs.contains(source.id),
-                            onToggleExpanded: {
-                                if expandedSourceIDs.contains(source.id) {
-                                    expandedSourceIDs.remove(source.id)
-                                } else {
-                                    expandedSourceIDs.insert(source.id)
-                                }
-                            },
-                            onOpenSource: onOpenSource
-                        )
-                    }
-                }
+    private func bookSourcesContent(bookGroup: OtzariaSourceBookGroup) -> some View {
+        List {
+            ForEach(bookGroup.sources) { source in
+                OtzariaLinkedSourceSnippetSection(
+                    source: source,
+                    isExpanded: expandedSourceIDs.contains(source.id),
+                    onToggleExpanded: {
+                        if expandedSourceIDs.contains(source.id) {
+                            expandedSourceIDs.remove(source.id)
+                        } else {
+                            expandedSourceIDs.insert(source.id)
+                        }
+                    },
+                    onOpenSource: onOpenSource
+                )
             }
-            .navigationTitle(bookGroup.title)
-        } else {
-            ContentUnavailableView("לא נמצא ספר", systemImage: "exclamationmark.triangle")
-                .navigationTitle("מקורות")
         }
+    }
+
+    private var selectedGroup: OtzariaSourceIndexGroup? {
+        guard let selectedGroupID else { return nil }
+        return indexGroups.first { $0.id == selectedGroupID }
+    }
+
+    private var selectedBookGroup: OtzariaSourceBookGroup? {
+        guard let selectedGroup, let selectedBookID else { return nil }
+        return OtzariaLinkedSourceGrouping
+            .bookGroups(from: selectedGroup.sources)
+            .first { $0.id == selectedBookID }
+    }
+
+    private var panelTitle: String {
+        if let selectedBookGroup {
+            return selectedBookGroup.title
+        }
+        if let selectedGroup {
+            return selectedGroup.title
+        }
+        return "מקורות"
     }
 
     private var indexGroups: [OtzariaSourceIndexGroup] {
@@ -137,47 +173,52 @@ struct OtzariaLineSourcesInspectorView: View {
     }
 }
 
-private enum OtzariaSourcesRoute: Hashable {
-    case group(String)
-    case book(groupId: String, bookId: String)
-}
-
-private struct OtzariaLinkedSourceSnippetRow: View {
+private struct OtzariaLinkedSourceSnippetSection: View {
     let source: OtzariaLinkedSource
     let isExpanded: Bool
     let onToggleExpanded: () -> Void
     let onOpenSource: (OtzariaLinkedSource) -> Void
 
     var body: some View {
-        Group {
-            LabeledContent {
-                Text(isExpanded ? source.text : source.previewText)
-                    .font(.body)
-                    .lineLimit(isExpanded ? nil : 4)
-                    .multilineTextAlignment(.trailing)
-                    .textSelection(.enabled)
-            } label: {
-                if let heRef = source.heRef, !heRef.isEmpty {
-                    Text(heRef)
-                } else {
-                    Text(source.bookTitle)
-                }
-            }
-
-            if source.hasLongText {
-                Button {
+        Section {
+            Text(isExpanded ? source.text : source.previewText)
+                .font(.body)
+                .lineLimit(isExpanded ? nil : 4)
+                .multilineTextAlignment(.trailing)
+                .textSelection(.enabled)
+                .onTapGesture {
                     onToggleExpanded()
-                } label: {
-                    Label(isExpanded ? "הצג פחות" : "הצג עוד", systemImage: isExpanded ? "chevron.up" : "chevron.down")
                 }
-            }
-
-            Button {
-                onOpenSource(source)
+                .contextMenu {
+                    Button {
+                        onOpenSource(source)
+                    } label: {
+                        Label("פתח בטאב חדש", systemImage: "plus.square.on.square")
+                    }
+                }
+        } header: {
+            LabeledContent {
+                Button {
+                    onOpenSource(source)
+                } label: {
+                    Label("פתח בטאב חדש", systemImage: "plus.square.on.square")
+                        .labelStyle(.iconOnly)
+                }
+                .accessibilityLabel("פתח בטאב חדש")
             } label: {
-                Label("פתח בטאב חדש", systemImage: "plus.square.on.square")
+                Label(sourceTitle, systemImage: isExpanded ? "chevron.down" : "chevron.left")
+                    .onTapGesture(count: 2) {
+                        onOpenSource(source)
+                    }
             }
         }
+    }
+
+    private var sourceTitle: String {
+        if let heRef = source.heRef, !heRef.isEmpty {
+            return heRef
+        }
+        return source.bookTitle
     }
 }
 #endif

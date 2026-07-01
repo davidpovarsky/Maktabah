@@ -281,6 +281,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     var annotations: [Annotation] = []
     @Binding var searchText: String
     var targetAnnotation: Annotation? = nil
+    var otzariaSelectedLineRange: NSRange?
     var isMultiLanguage: Bool = false
     var isImported: Bool = false
     
@@ -311,8 +312,16 @@ struct iOSIbarotTextView: UIViewRepresentable {
         textView.alwaysBounceVertical = true
         let tapRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTextTap(_:)))
         tapRecognizer.cancelsTouchesInView = false
+        tapRecognizer.delaysTouchesBegan = false
+        tapRecognizer.delaysTouchesEnded = false
         tapRecognizer.delegate = context.coordinator
         textView.addGestureRecognizer(tapRecognizer)
+        for recognizer in textView.gestureRecognizers ?? [] {
+            guard recognizer !== tapRecognizer else { continue }
+            if recognizer is UILongPressGestureRecognizer {
+                tapRecognizer.require(toFail: recognizer)
+            }
+        }
 
         textView.onHighlight = { sourceRange, sourceText in
             let color = UserDefaults.standard.recentHighlightColors.first ?? .yellow
@@ -403,6 +412,19 @@ struct iOSIbarotTextView: UIViewRepresentable {
             replacementEvents: renderResult.replacementEvents
         )
 
+        if let selectedRange = otzariaSelectedLineRange {
+            let displayedRange = renderResult.remapDisplayedRange(selectedRange)
+            if displayedRange.location >= 0,
+               displayedRange.length > 0,
+               NSMaxRange(displayedRange) <= attributedString.length {
+                attributedString.addAttribute(
+                    .backgroundColor,
+                    value: UIColor.systemBlue.withAlphaComponent(0.14),
+                    range: displayedRange
+                )
+            }
+        }
+
         // Apply clickable links berdasarkan setting
         if state.clickableAnnotation {
             attributedString.enumerateAttribute(
@@ -481,6 +503,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         var lastHighlightedContentId: Int?
         var processedSearchText: String?
         var processedAnnotationId: Int64?
+        private var lastSelectionChangeDate: Date?
 
         // Pull-to-navigate state
         weak var topIndicator: PullNavigationIndicatorView?
@@ -496,24 +519,59 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         @objc func handleTextTap(_ recognizer: UITapGestureRecognizer) {
             guard recognizer.state == .ended,
+                  recognizer.numberOfTouches == 1,
                   let textView = recognizer.view as? UITextView else { return }
 
+            guard textView.selectedRange.length == 0 else { return }
+            guard !textView.isDragging,
+                  !textView.isDecelerating,
+                  !textView.isTracking else { return }
+
             let point = recognizer.location(in: textView)
-            guard let characterIndex = characterIndex(in: textView, at: point) else { return }
+            DispatchQueue.main.async { [weak self, weak textView] in
+                guard let self, let textView else { return }
+                guard textView.selectedRange.length == 0 else { return }
+                guard let characterIndex = self.characterIndex(in: textView, at: point) else { return }
 
-            if characterIndex < textView.textStorage.length,
-               textView.textStorage.attribute(.link, at: characterIndex, effectiveRange: nil) != nil {
-                return
+                if characterIndex < textView.textStorage.length,
+                   textView.textStorage.attribute(.link, at: characterIndex, effectiveRange: nil) != nil {
+                    return
+                }
+
+                let sourceIndex = self.currentRenderResult?
+                    .remapSourceRange(NSRange(location: characterIndex, length: 0))
+                    .location ?? characterIndex
+                self.parent.onTapTextCharacterIndex?(self.sourceCharacterIndex(forDisplayedIndex: sourceIndex))
             }
-
-            let sourceIndex = currentRenderResult?
-                .remapSourceRange(NSRange(location: characterIndex, length: 0))
-                .location ?? characterIndex
-            parent.onTapTextCharacterIndex?(sourceCharacterIndex(forDisplayedIndex: sourceIndex))
         }
 
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
             true
+        }
+
+        func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            guard let textView = gestureRecognizer.view as? UITextView else { return true }
+
+            if textView.selectedRange.length > 0 {
+                return false
+            }
+
+            if textView.isDragging || textView.isDecelerating || textView.isTracking {
+                return false
+            }
+
+            if let lastSelectionChangeDate,
+               Date().timeIntervalSince(lastSelectionChangeDate) < 0.35 {
+                return false
+            }
+
+            return true
+        }
+
+        func textViewDidChangeSelection(_ textView: UITextView) {
+            if textView.selectedRange.length > 0 {
+                lastSelectionChangeDate = Date()
+            }
         }
 
         private func characterIndex(in textView: UITextView, at point: CGPoint) -> Int? {

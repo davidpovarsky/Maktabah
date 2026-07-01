@@ -36,6 +36,10 @@ extension ReaderViewModel {
 
     func closeOtzariaSourcesInspector() {
         otzariaSourcesInspectorVisible = false
+        otzariaSelectedLineAnchor = nil
+        otzariaLinkedSources = []
+        otzariaSourcesIsLoading = false
+        otzariaSourcesError = nil
     }
 
     func resolveOtzariaLineAnchor(for selectedRange: NSRange) -> OtzariaLineAnchor? {

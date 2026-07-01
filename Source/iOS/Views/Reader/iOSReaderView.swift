@@ -60,6 +60,9 @@ struct iOSReaderView: View {
             annotations: viewModel.currentAnnotations,
             searchText: $viewModel.searchText,
             targetAnnotation: viewModel.targetAnnotation,
+            otzariaSelectedLineRange: viewModel.otzariaSourcesInspectorVisible
+                ? viewModel.otzariaSelectedLineAnchor?.range
+                : nil,
             isMultiLanguage: book.isMultiLanguage,
             isImported: book.isImported,
             viewModel: viewModel,
