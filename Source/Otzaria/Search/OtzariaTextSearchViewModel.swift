@@ -19,6 +19,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     func refreshStatus() {
         OtzariaIndexFileLogger.log("viewModel refreshStatus start")
+        if isIndexing {
+            OtzariaIndexFileLogger.log("viewModel refreshStatus skipped because indexing active")
+            return
+        }
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
             OtzariaIndexFileLogger.log("viewModel refreshStatus databasePath missing")
             status = .unavailable
@@ -129,6 +133,11 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     func search() {
         OtzariaIndexFileLogger.log("viewModel search called")
+        if isIndexing {
+            OtzariaIndexFileLogger.log("viewModel search blocked because indexing active")
+            errorMessage = "האינדוקס פעיל — המתן לסיום או בטל אותו לפני חיפוש."
+            return
+        }
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {
             results = []
@@ -195,13 +204,13 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     func indexLogCopyText() -> String {
         let databasePath = OtzariaMaktabahBridge.shared.databasePath
         let indexURL = databasePath.map { OtzariaSearchIndexManager.shared.indexURL(for: $0) }
-        let documentCount = databasePath.map { partialDocumentCount(databasePath: $0) }
+        let documentCount = isIndexing ? nil : databasePath.map { partialDocumentCount(databasePath: $0) }
         let logPath = OtzariaIndexFileLogger.logFileURL()?.path ?? "unavailable"
         return """
         Log file: \(logPath)
         Database path: \(databasePath ?? "unavailable")
         Index path: \(indexURL?.path ?? "unavailable")
-        Document count: \(documentCount.map { String($0) } ?? "unavailable")
+        Document count: \(isIndexing ? "indexing" : (documentCount.map { String($0) } ?? "unavailable"))
 
         \(OtzariaIndexFileLogger.readLogText())
         """

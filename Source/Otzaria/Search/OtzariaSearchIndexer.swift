@@ -41,16 +41,21 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
     private let commitEveryBooks = 1
     private let consecutiveBookFailureLimit = 10
     private let summaryEveryBooks = 25
+    private let maxNewBooksPerEngineSession = 200
+    private let maxLockBusySessionRetries = 2
 
     func rebuildIndex(
         databasePath: String,
         progress: @escaping @Sendable (OtzariaSearchIndexProgress) -> Void
     ) async throws -> UInt64 {
         let manager = OtzariaSearchIndexManager.shared
+        let repository = OtzariaTantivySearchRepository.shared
         let indexURL = manager.indexURL(for: databasePath)
 
-        otzariaIndexLog("index start databasePath=\(databasePath)")
+        otzariaIndexLog("automatic indexing start databasePath=\(databasePath)")
         otzariaIndexLog("final index path=\(indexURL.path)")
+        repository.beginExclusiveIndexing(databasePath: databasePath)
+        defer { repository.endExclusiveIndexing(databasePath: databasePath) }
 
         do {
             try Task.checkCancellation()
@@ -59,107 +64,204 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
             let books = try loadBooks(db: db)
             let categories = try loadCategories(db: db)
             let categoryPaths = buildCategoryPaths(categories)
+            let allBookIds = Set(books.map(\.id))
             otzariaIndexLog("total books=\(books.count)")
 
-            var processedBooks = 0
             var processedLines = 0
             var skippedBooks = 0
             var indexedBooks = 0
             var failedBooks = 0
+            var failedBookIds = Set<Int>()
             var consecutiveFailures = 0
+            var totalIndexedThisRun = 0
+            var sessionNumber = 0
 
-            var engine: OtzariaSearchEngineBridge? = try OtzariaSearchEngineBridge(indexURL: indexURL)
-            guard let initialEngine = engine else { throw OtzariaSearchError.engineNotAvailable }
-            let documentCountBefore = try initialEngine.documentCount()
-            let indexedFilePaths = try initialEngine.indexedFilePaths()
-            var indexedBookIds = Set(indexedFilePaths.compactMap(Self.bookId(from:)))
-
-            otzariaIndexLog("documentCount before indexing=\(documentCountBefore)")
-            otzariaIndexLog("indexedFilePaths count before indexing=\(indexedFilePaths.count)")
-            otzariaIndexLog("indexedBookIds count before indexing=\(indexedBookIds.count)")
-
-            for (catalogueOrder, book) in books.enumerated() {
+            while true {
                 try Task.checkCancellation()
-                let indexedFilePath = Self.filePath(forBookId: book.id)
-                otzariaIndexLog("book start catalogueOrder=\(catalogueOrder) bookId=\(book.id) title=\(book.title) totalLines=\(book.totalLines) categoryId=\(book.categoryId) fileType=\(book.fileType)")
+                sessionNumber += 1
+                var sessionRetry = 0
 
-                if indexedBookIds.contains(book.id) {
-                    skippedBooks += 1
-                    processedBooks += 1
-                    otzariaIndexLog("book skipped bookId=\(book.id) title=\(book.title) reason=indexedFilePaths indexedFilePath=\(indexedFilePath)")
-                    progress(OtzariaSearchIndexProgress(processedBooks: processedBooks, totalBooks: books.count, processedLines: processedLines))
-                    if processedBooks % summaryEveryBooks == 0 {
-                        otzariaIndexLog("summary processedBooks=\(processedBooks) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
-                    }
-                    continue
-                }
+                while true {
+                    var engine: OtzariaSearchEngineBridge?
 
-                do {
-                    guard let liveEngine = engine else { throw OtzariaSearchError.engineNotAvailable }
-                    let facet = categoryPaths[book.categoryId] ?? "/"
-                    let lineCount = try indexBook(
-                        book,
-                        catalogueOrder: catalogueOrder,
-                        facet: facet,
-                        db: db,
-                        engine: liveEngine
-                    )
+                    do {
+                        repository.closeEngine(databasePath: databasePath)
+                        repository.invalidate(databasePath: databasePath)
+                        otzariaIndexLog("session start sessionNumber=\(sessionNumber) maxNewBooks=\(maxNewBooksPerEngineSession)")
+                        engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
+                        guard let liveEngine = engine else { throw OtzariaSearchError.engineNotAvailable }
 
-                    try Task.checkCancellation()
-                    if (processedBooks + 1) % commitEveryBooks == 0 {
-                        otzariaIndexLog("commit start bookId=\(book.id)")
+                        let documentCountBefore = try liveEngine.documentCount()
+                        let indexedFilePaths = try liveEngine.indexedFilePaths()
+                        var indexedBookIds = Set(indexedFilePaths.compactMap(Self.bookId(from:)))
+                        var newlyIndexedThisSession = 0
+
+                        otzariaIndexLog("session documentCount before=\(documentCountBefore)")
+                        otzariaIndexLog("session indexedFilePaths count=\(indexedFilePaths.count)")
+                        otzariaIndexLog("session indexedBookIds count=\(indexedBookIds.count)")
+                        progress(OtzariaSearchIndexProgress(
+                            processedBooks: min(indexedBookIds.count + failedBookIds.count, books.count),
+                            totalBooks: books.count,
+                            processedLines: processedLines
+                        ))
+
+                        if allBookIds.isSubset(of: indexedBookIds) {
+                            otzariaIndexLog("all books already indexed sessionNumber=\(sessionNumber)")
+                            let documentCount = try completeIndex(
+                                engine: liveEngine,
+                                manager: manager,
+                                databasePath: databasePath,
+                                indexURL: indexURL,
+                                processedBooks: indexedBookIds.count,
+                                totalBooks: books.count,
+                                skippedBooks: skippedBooks,
+                                indexedBooks: indexedBooks,
+                                failedBooks: failedBooks,
+                                processedLines: processedLines
+                            )
+                            engine?.close()
+                            engine = nil
+                            repository.invalidate(databasePath: databasePath)
+                            return documentCount
+                        }
+
+                        for (catalogueOrder, book) in books.enumerated() {
+                            try Task.checkCancellation()
+                            let indexedFilePath = Self.filePath(forBookId: book.id)
+                            otzariaIndexLog("book start sessionNumber=\(sessionNumber) catalogueOrder=\(catalogueOrder) bookId=\(book.id) title=\(book.title) totalLines=\(book.totalLines) categoryId=\(book.categoryId) fileType=\(book.fileType)")
+
+                            if indexedBookIds.contains(book.id) {
+                                skippedBooks += 1
+                                otzariaIndexLog("book skipped bookId=\(book.id) title=\(book.title) reason=indexedFilePaths indexedFilePath=\(indexedFilePath)")
+                                if skippedBooks % summaryEveryBooks == 0 {
+                                    otzariaIndexLog("summary processedBooks=\(min(indexedBookIds.count + failedBookIds.count, books.count)) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
+                                }
+                                continue
+                            }
+
+                            do {
+                                let facet = categoryPaths[book.categoryId] ?? "/"
+                                let lineCount = try indexBook(
+                                    book,
+                                    catalogueOrder: catalogueOrder,
+                                    facet: facet,
+                                    db: db,
+                                    engine: liveEngine
+                                )
+
+                                try Task.checkCancellation()
+                                if newlyIndexedThisSession % commitEveryBooks == 0 {
+                                    otzariaIndexLog("commit start bookId=\(book.id)")
+                                    try liveEngine.commit()
+                                    try Task.checkCancellation()
+                                    otzariaIndexLog("commit done bookId=\(book.id)")
+                                }
+
+                                processedLines += lineCount
+                                indexedBooks += 1
+                                totalIndexedThisRun += 1
+                                newlyIndexedThisSession += 1
+                                consecutiveFailures = 0
+                                failedBookIds.remove(book.id)
+                                indexedBookIds.insert(book.id)
+                                otzariaIndexLog("book indexed and committed bookId=\(book.id) indexedFilePath=\(indexedFilePath) indexedLines=\(lineCount) sessionNewBooks=\(newlyIndexedThisSession) totalIndexedThisRun=\(totalIndexedThisRun)")
+                                progress(OtzariaSearchIndexProgress(
+                                    processedBooks: min(indexedBookIds.count + failedBookIds.count, books.count),
+                                    totalBooks: books.count,
+                                    processedLines: processedLines
+                                ))
+
+                                if indexedBooks % summaryEveryBooks == 0 {
+                                    otzariaIndexLog("summary processedBooks=\(min(indexedBookIds.count + failedBookIds.count, books.count)) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
+                                }
+
+                                if newlyIndexedThisSession >= maxNewBooksPerEngineSession {
+                                    otzariaIndexLog("session limit reached sessionNumber=\(sessionNumber) newlyIndexedThisSession=\(newlyIndexedThisSession)")
+                                    break
+                                }
+                            } catch is CancellationError {
+                                otzariaIndexLog("book catch cancellation bookId=\(book.id)")
+                                throw OtzariaSearchError.indexingCancelled
+                            } catch {
+                                if isLockBusyError(error) {
+                                    throw error
+                                }
+                                failedBooks += 1
+                                consecutiveFailures += 1
+                                failedBookIds.insert(book.id)
+                                OtzariaIndexFileLogger.logError("book failed bookId=\(book.id) title=\(book.title)", error: error)
+                                progress(OtzariaSearchIndexProgress(
+                                    processedBooks: min(indexedBookIds.count + failedBookIds.count, books.count),
+                                    totalBooks: books.count,
+                                    processedLines: processedLines
+                                ))
+
+                                if consecutiveFailures >= consecutiveBookFailureLimit {
+                                    throw OtzariaSearchError.invalidEngineResponse("Too many consecutive Otzaria indexing failures (\(consecutiveFailures)). Last error: \(error.localizedDescription)")
+                                }
+                            }
+                        }
+
+                        try Task.checkCancellation()
+                        otzariaIndexLog("session commit start sessionNumber=\(sessionNumber)")
                         try liveEngine.commit()
                         try Task.checkCancellation()
-                        otzariaIndexLog("commit done bookId=\(book.id)")
-                    }
+                        otzariaIndexLog("session commit done sessionNumber=\(sessionNumber)")
 
-                    processedLines += lineCount
-                    processedBooks += 1
-                    indexedBooks += 1
-                    consecutiveFailures = 0
-                    indexedBookIds.insert(book.id)
-                    otzariaIndexLog("book committed and resumable bookId=\(book.id) indexedFilePath=\(indexedFilePath) indexedLines=\(lineCount)")
-                    progress(OtzariaSearchIndexProgress(processedBooks: processedBooks, totalBooks: books.count, processedLines: processedLines))
+                        let documentCount = try liveEngine.documentCount()
+                        otzariaIndexLog("session summary sessionNumber=\(sessionNumber) documentCount=\(documentCount) newlyIndexedThisSession=\(newlyIndexedThisSession) totalIndexedThisRun=\(totalIndexedThisRun) skipped=\(skippedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
 
-                    if processedBooks % summaryEveryBooks == 0 {
-                        otzariaIndexLog("summary processedBooks=\(processedBooks) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
-                    }
-                } catch is CancellationError {
-                    otzariaIndexLog("book catch cancellation bookId=\(book.id)")
-                    throw OtzariaSearchError.indexingCancelled
-                } catch {
-                    failedBooks += 1
-                    consecutiveFailures += 1
-                    processedBooks += 1
-                    OtzariaIndexFileLogger.logError("book failed bookId=\(book.id) title=\(book.title)", error: error)
-                    progress(OtzariaSearchIndexProgress(processedBooks: processedBooks, totalBooks: books.count, processedLines: processedLines))
+                        if allBookIds.isSubset(of: indexedBookIds) {
+                            let finalCount = try completeIndex(
+                                engine: liveEngine,
+                                manager: manager,
+                                databasePath: databasePath,
+                                indexURL: indexURL,
+                                processedBooks: indexedBookIds.count,
+                                totalBooks: books.count,
+                                skippedBooks: skippedBooks,
+                                indexedBooks: indexedBooks,
+                                failedBooks: failedBooks,
+                                processedLines: processedLines
+                            )
+                            engine?.close()
+                            engine = nil
+                            repository.invalidate(databasePath: databasePath)
+                            return finalCount
+                        }
 
-                    if consecutiveFailures >= consecutiveBookFailureLimit {
-                        throw OtzariaSearchError.invalidEngineResponse("Too many consecutive Otzaria indexing failures (\(consecutiveFailures)). Last error: \(error.localizedDescription)")
+                        if newlyIndexedThisSession == 0 {
+                            throw OtzariaSearchError.invalidEngineResponse("Otzaria indexing made no progress in session \(sessionNumber). Existing partial index was not deleted.")
+                        }
+
+                        engine?.close()
+                        engine = nil
+                        repository.invalidate(databasePath: databasePath)
+                        otzariaIndexLog("sleep before next session sessionNumber=\(sessionNumber)")
+                        try await Task.sleep(nanoseconds: 1_500_000_000)
+                        break
+                    } catch is CancellationError {
+                        engine?.close()
+                        engine = nil
+                        repository.invalidate(databasePath: databasePath)
+                        throw OtzariaSearchError.indexingCancelled
+                    } catch {
+                        engine?.close()
+                        engine = nil
+                        repository.invalidate(databasePath: databasePath)
+                        if isLockBusyError(error) {
+                            if sessionRetry < maxLockBusySessionRetries {
+                                sessionRetry += 1
+                                OtzariaIndexFileLogger.logError("session retry because LockBusy sessionNumber=\(sessionNumber) retry=\(sessionRetry)", error: error)
+                                try await Task.sleep(nanoseconds: 3_000_000_000)
+                                continue
+                            }
+                            throw OtzariaSearchError.invalidEngineResponse("Tantivy index writer lock is busy after retry. Close/reopen the app and resume indexing. Existing partial index was not deleted.")
+                        }
+                        throw error
                     }
                 }
             }
-
-            try Task.checkCancellation()
-            guard let finalEngine = engine else { throw OtzariaSearchError.engineNotAvailable }
-
-            otzariaIndexLog("final commit start")
-            try finalEngine.commit()
-            try Task.checkCancellation()
-            otzariaIndexLog("final commit done")
-
-            let documentCount = try finalEngine.documentCount()
-            otzariaIndexLog("final summary documentCount=\(documentCount) processedBooks=\(processedBooks) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
-
-            if documentCount == 0 && (!books.isEmpty || processedLines > 0) {
-                throw OtzariaSearchError.invalidEngineResponse("Otzaria Tantivy index completed with zero documents.")
-            }
-
-            let fingerprint = try manager.currentFingerprint(databasePath: databasePath)
-            try manager.writeFingerprint(fingerprint, indexURL: indexURL)
-            OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
-            otzariaIndexLog("index complete documentCount=\(documentCount)")
-            return documentCount
         } catch is CancellationError {
             otzariaIndexLog("index catch cancellationError")
             throw OtzariaSearchError.indexingCancelled
@@ -170,6 +272,43 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
             OtzariaIndexFileLogger.logError("index catch failed", error: error)
             throw error
         }
+    }
+
+    private func completeIndex(
+        engine: OtzariaSearchEngineBridge,
+        manager: OtzariaSearchIndexManager,
+        databasePath: String,
+        indexURL: URL,
+        processedBooks: Int,
+        totalBooks: Int,
+        skippedBooks: Int,
+        indexedBooks: Int,
+        failedBooks: Int,
+        processedLines: Int
+    ) throws -> UInt64 {
+        otzariaIndexLog("final commit start")
+        try engine.commit()
+        otzariaIndexLog("final commit done")
+
+        let documentCount = try engine.documentCount()
+        otzariaIndexLog("final summary documentCount=\(documentCount) processedBooks=\(processedBooks) totalBooks=\(totalBooks) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
+
+        if documentCount == 0 && totalBooks > 0 {
+            throw OtzariaSearchError.invalidEngineResponse("Otzaria Tantivy index completed with zero documents.")
+        }
+
+        let fingerprint = try manager.currentFingerprint(databasePath: databasePath)
+        try manager.writeFingerprint(fingerprint, indexURL: indexURL)
+        otzariaIndexLog("final complete documentCount=\(documentCount)")
+        return documentCount
+    }
+
+    private func isLockBusyError(_ error: Error) -> Bool {
+        let text = "\(error.localizedDescription) \(String(describing: error))"
+        return text.range(of: "LockBusy", options: .caseInsensitive) != nil ||
+            text.range(of: "Failed to acquire Lockfile", options: .caseInsensitive) != nil ||
+            text.range(of: "already an `IndexWriter` working", options: .caseInsensitive) != nil ||
+            text.range(of: "IndexWriter", options: .caseInsensitive) != nil
     }
 
     private func loadBooks(db: SQLiteDatabase) throws -> [BookRow] {

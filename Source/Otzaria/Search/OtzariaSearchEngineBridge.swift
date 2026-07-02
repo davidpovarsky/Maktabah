@@ -49,7 +49,17 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
     }
 
     deinit {
-        c_otzaria_search_engine_free(handle)
+        close()
+    }
+
+    func close() {
+        OtzariaIndexFileLogger.log("bridge close start")
+        queue.sync {
+            guard let liveHandle = handle else { return }
+            c_otzaria_search_engine_free(liveHandle)
+            handle = nil
+        }
+        OtzariaIndexFileLogger.log("bridge close done")
     }
 
     func addDocuments(_ documents: [OtzariaSearchDocument]) throws {

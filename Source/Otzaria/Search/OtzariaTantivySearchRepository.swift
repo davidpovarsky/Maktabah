@@ -10,6 +10,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
 
     private let manager = OtzariaSearchIndexManager.shared
     private var engineCache: [String: OtzariaSearchEngineBridge] = [:]
+    private var indexingDatabasePaths: Set<String> = []
     private let lock = NSRecursiveLock()
 
     private init() {}
@@ -17,6 +18,9 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func engine(databasePath: String) throws -> OtzariaSearchEngineBridge {
         lock.lock()
         defer { lock.unlock() }
+        if indexingDatabasePaths.contains(databasePath) {
+            throw OtzariaSearchError.invalidEngineResponse("Otzaria Tantivy indexing is in progress for this database.")
+        }
         if let cached = engineCache[databasePath] {
             return cached
         }
@@ -33,7 +37,47 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func invalidate(databasePath: String) {
         lock.lock()
         defer { lock.unlock() }
-        engineCache[databasePath] = nil
+        if let engine = engineCache[databasePath] {
+            engine.close()
+            engineCache[databasePath] = nil
+        }
+        OtzariaIndexFileLogger.log("repository cache invalidated databasePath=\(databasePath)")
+    }
+
+    func closeEngine(databasePath: String) {
+        invalidate(databasePath: databasePath)
+    }
+
+    func closeAllEngines() {
+        lock.lock()
+        defer { lock.unlock() }
+        for engine in engineCache.values {
+            engine.close()
+        }
+        engineCache.removeAll()
+        OtzariaIndexFileLogger.log("repository closeAllEngines done")
+    }
+
+    func beginExclusiveIndexing(databasePath: String) {
+        lock.lock()
+        defer { lock.unlock() }
+        if let engine = engineCache[databasePath] {
+            engine.close()
+            engineCache[databasePath] = nil
+        }
+        indexingDatabasePaths.insert(databasePath)
+        OtzariaIndexFileLogger.log("exclusive indexing begin databasePath=\(databasePath)")
+    }
+
+    func endExclusiveIndexing(databasePath: String) {
+        lock.lock()
+        defer { lock.unlock() }
+        if let engine = engineCache[databasePath] {
+            engine.close()
+            engineCache[databasePath] = nil
+        }
+        indexingDatabasePaths.remove(databasePath)
+        OtzariaIndexFileLogger.log("exclusive indexing end databasePath=\(databasePath)")
     }
 
     func search(databasePath: String, request: OtzariaSearchRequest) throws -> [SearchResultItem] {
