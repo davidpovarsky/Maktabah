@@ -1,8 +1,12 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct OtzariaTextSearchView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     @StateObject private var viewModel = OtzariaTextSearchViewModel()
+    @State private var didCopyIndexLog = false
     @FocusState private var searchFocused: Bool
 
     var body: some View {
@@ -31,6 +35,12 @@ struct OtzariaTextSearchView: View {
                     Label("בנה/רענן אינדקס", systemImage: "arrow.triangle.2.circlepath")
                 }
                 .disabled(viewModel.isIndexing || viewModel.isSearching)
+
+                Button {
+                    copyIndexLog()
+                } label: {
+                    Label("העתק לוג אינדוקס", systemImage: "doc.on.doc")
+                }
             }
         }
     }
@@ -84,6 +94,19 @@ struct OtzariaTextSearchView: View {
                     .font(.footnote)
                     .foregroundStyle(.red)
             }
+
+            if didCopyIndexLog {
+                Text("Index log copied.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
+            if let logURL = OtzariaIndexFileLogger.logFileURL() {
+                Text("Log: \(logURL.path)")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+            }
         }
         .padding()
     }
@@ -126,5 +149,13 @@ struct OtzariaTextSearchView: View {
                 )
             }
         }
+    }
+
+    private func copyIndexLog() {
+        let text = OtzariaIndexFileLogger.readLogText()
+        #if canImport(UIKit)
+        UIPasteboard.general.string = text.isEmpty ? "Otzaria index log is empty." : text
+        #endif
+        didCopyIndexLog = true
     }
 }
