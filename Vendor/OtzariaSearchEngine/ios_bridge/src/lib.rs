@@ -245,6 +245,17 @@ pub extern "C" fn otzaria_search_engine_document_count(handle: *mut EngineHandle
 }
 
 #[no_mangle]
+pub extern "C" fn otzaria_search_engine_indexed_file_paths(handle: *mut EngineHandle) -> *mut c_char {
+    if handle.is_null() { return err("engine handle is null"); }
+    let handle_ref = unsafe { &*handle };
+    let engine = match handle_ref.engine.lock() { Ok(engine) => engine, Err(_) => return err("engine mutex poisoned") };
+    match engine.get_indexed_file_paths() {
+        Ok(paths) => ok(paths),
+        Err(e) => err(format!("{e:#}")),
+    }
+}
+
+#[no_mangle]
 pub extern "C" fn otzaria_search_engine_free_string(value: *mut c_char) {
     if value.is_null() { return; }
     unsafe { drop(CString::from_raw(value)); }

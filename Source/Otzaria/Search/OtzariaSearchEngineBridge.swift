@@ -24,6 +24,9 @@ private func c_otzaria_search_engine_optimize(_ handle: UnsafeMutableRawPointer?
 @_silgen_name("otzaria_search_engine_document_count")
 private func c_otzaria_search_engine_document_count(_ handle: UnsafeMutableRawPointer?) -> UnsafeMutablePointer<CChar>?
 
+@_silgen_name("otzaria_search_engine_indexed_file_paths")
+private func c_otzaria_search_engine_indexed_file_paths(_ handle: UnsafeMutableRawPointer?) -> UnsafeMutablePointer<CChar>?
+
 @_silgen_name("otzaria_search_engine_free_string")
 private func c_otzaria_search_engine_free_string(_ value: UnsafeMutablePointer<CChar>?)
 
@@ -46,54 +49,39 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
     }
 
     deinit {
-        OtzariaIndexFileLogger.log("bridge deinit start hasHandle=\(handle != nil)")
         c_otzaria_search_engine_free(handle)
-        OtzariaIndexFileLogger.log("bridge deinit end")
     }
 
     func addDocuments(_ documents: [OtzariaSearchDocument]) throws {
-        OtzariaIndexFileLogger.log("bridge addDocuments start count=\(documents.count)")
         let data = try encoder.encode(documents)
-        OtzariaIndexFileLogger.log("bridge addDocuments encoded bytes=\(data.count)")
         guard let json = String(data: data, encoding: .utf8) else {
-            OtzariaIndexFileLogger.log("bridge addDocuments failed UTF8 conversion")
             throw OtzariaSearchError.invalidEngineResponse("Failed to encode documents JSON")
         }
         try runBooleanJSON(operation: "addDocuments") { handle in
-            OtzariaIndexFileLogger.log("bridge addDocuments FFI start count=\(documents.count) jsonBytes=\(data.count)")
-            return json.withCString { c_otzaria_search_engine_add_documents_json(handle, $0) }
+            json.withCString { c_otzaria_search_engine_add_documents_json(handle, $0) }
         }
-        OtzariaIndexFileLogger.log("bridge addDocuments end count=\(documents.count)")
     }
 
     func search(_ request: OtzariaSearchRequest) throws -> [OtzariaEngineSearchResult] {
-        OtzariaIndexFileLogger.log("bridge search start mode=\(request.mode.rawValue) limit=\(request.limit) offset=\(request.offset)")
         let data = try encoder.encode(request)
         guard let json = String(data: data, encoding: .utf8) else {
-            OtzariaIndexFileLogger.log("bridge search failed UTF8 conversion bytes=\(data.count)")
             throw OtzariaSearchError.invalidEngineResponse("Failed to encode search JSON")
         }
         return try queue.sync {
             do {
                 guard let handle else { throw OtzariaSearchError.engineNotAvailable }
                 let responseString = try json.withCString { ptr -> String in
-                    OtzariaIndexFileLogger.log("bridge search FFI start jsonBytes=\(data.count)")
                     guard let raw = c_otzaria_search_engine_search_json(handle, ptr) else {
                         throw OtzariaSearchError.invalidEngineResponse("Rust search returned null")
                     }
                     defer { c_otzaria_search_engine_free_string(raw) }
-                    let value = String(cString: raw)
-                    OtzariaIndexFileLogger.log("bridge search FFI returned rawLength=\(value.utf8.count)")
-                    return value
+                    return String(cString: raw)
                 }
                 let response = try decoder.decode(OtzariaEngineResponse<[OtzariaEngineSearchResult]>.self, from: Data(responseString.utf8))
-                OtzariaIndexFileLogger.log("bridge search decoded ok=\(response.ok) error=\(response.error ?? "")")
                 guard response.ok else {
                     throw OtzariaSearchError.invalidEngineResponse(response.error ?? "Unknown Rust search error")
                 }
-                let results = response.value ?? []
-                OtzariaIndexFileLogger.log("bridge search end resultCount=\(results.count)")
-                return results
+                return response.value ?? []
             } catch {
                 OtzariaIndexFileLogger.logError("bridge search threw", error: error)
                 throw error
@@ -114,9 +102,7 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
     }
 
     func optimize() throws {
-        OtzariaIndexFileLogger.log("bridge optimize start")
         try runBooleanJSON(operation: "optimize") { c_otzaria_search_engine_optimize($0) }
-        OtzariaIndexFileLogger.log("bridge optimize end")
     }
 
     func documentCount() throws -> UInt64 {
@@ -130,9 +116,7 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
                 }
                 defer { c_otzaria_search_engine_free_string(raw) }
                 let responseString = String(cString: raw)
-                OtzariaIndexFileLogger.log("bridge documentCount FFI returned rawLength=\(responseString.utf8.count)")
                 let response = try decoder.decode(OtzariaEngineResponse<UInt64>.self, from: Data(responseString.utf8))
-                OtzariaIndexFileLogger.log("bridge documentCount decoded ok=\(response.ok) error=\(response.error ?? "")")
                 guard response.ok else {
                     throw OtzariaSearchError.invalidEngineResponse(response.error ?? "Unknown Rust documentCount error")
                 }
@@ -141,6 +125,31 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
                 return value
             } catch {
                 OtzariaIndexFileLogger.logError("bridge documentCount threw", error: error)
+                throw error
+            }
+        }
+    }
+
+    func indexedFilePaths() throws -> [String] {
+        OtzariaIndexFileLogger.log("bridge indexedFilePaths start")
+        return try queue.sync {
+            do {
+                guard let handle else { throw OtzariaSearchError.engineNotAvailable }
+                OtzariaIndexFileLogger.log("bridge indexedFilePaths FFI start")
+                guard let raw = c_otzaria_search_engine_indexed_file_paths(handle) else {
+                    throw OtzariaSearchError.invalidEngineResponse("Rust indexedFilePaths returned null")
+                }
+                defer { c_otzaria_search_engine_free_string(raw) }
+                let responseString = String(cString: raw)
+                let response = try decoder.decode(OtzariaEngineResponse<[String]>.self, from: Data(responseString.utf8))
+                guard response.ok else {
+                    throw OtzariaSearchError.invalidEngineResponse(response.error ?? "Unknown Rust indexedFilePaths error")
+                }
+                let value = response.value ?? []
+                OtzariaIndexFileLogger.log("bridge indexedFilePaths end count=\(value.count)")
+                return value
+            } catch {
+                OtzariaIndexFileLogger.logError("bridge indexedFilePaths threw", error: error)
                 throw error
             }
         }
@@ -158,9 +167,7 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
                 }
                 defer { c_otzaria_search_engine_free_string(raw) }
                 let responseString = String(cString: raw)
-                OtzariaIndexFileLogger.log("bridge \(operation) FFI returned rawLength=\(responseString.utf8.count)")
                 let response = try decoder.decode(OtzariaEngineResponse<Bool>.self, from: Data(responseString.utf8))
-                OtzariaIndexFileLogger.log("bridge \(operation) decoded ok=\(response.ok) error=\(response.error ?? "")")
                 guard response.ok else {
                     throw OtzariaSearchError.invalidEngineResponse(response.error ?? "Unknown Rust command error")
                 }

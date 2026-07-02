@@ -11,6 +11,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     @Published var isIndexing = false
     @Published var status: OtzariaSearchIndexStatus = .unavailable
     @Published var errorMessage: String?
+    @Published var indexStatusDetail: String?
 
     private let repository = OtzariaTantivySearchRepository.shared
     private let indexingService = OtzariaSearchIndexingService.shared
@@ -21,9 +22,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
             OtzariaIndexFileLogger.log("viewModel refreshStatus databasePath missing")
             status = .unavailable
+            indexStatusDetail = nil
             return
         }
-        OtzariaIndexFileLogger.log("viewModel refreshStatus databasePath exists path=\(path)")
+
         do {
             let isCurrent = OtzariaSearchIndexManager.shared.isIndexCurrent(databasePath: path)
             OtzariaIndexFileLogger.log("viewModel refreshStatus isIndexCurrent=\(isCurrent)")
@@ -31,36 +33,43 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 let count = try repository.documentCount(databasePath: path)
                 OtzariaIndexFileLogger.log("viewModel refreshStatus documentCount=\(count)")
                 status = .ready(documentCount: count)
+                indexStatusDetail = nil
             } else {
+                let count = partialDocumentCount(databasePath: path)
+                OtzariaIndexFileLogger.log("viewModel refreshStatus partialDocumentCount=\(count)")
                 status = .missing
+                indexStatusDetail = count > 0 ? "אינדקס חלקי קיים — ניתן להמשיך אינדוקס" : nil
             }
         } catch {
             OtzariaIndexFileLogger.logError("viewModel refreshStatus failed", error: error)
             status = .failed(error.localizedDescription)
+            indexStatusDetail = nil
         }
     }
 
     func rebuildIndex() {
         OtzariaIndexFileLogger.clearLog()
         OtzariaIndexFileLogger.log("manual rebuildIndex requested")
-        OtzariaIndexFileLogger.log("viewModel rebuildIndex called")
         currentTask?.cancel()
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
             OtzariaIndexFileLogger.log("viewModel rebuildIndex databasePath missing")
             status = .unavailable
+            indexStatusDetail = nil
             return
         }
-        OtzariaIndexFileLogger.log("viewModel rebuildIndex databasePath=\(path)")
 
         isIndexing = true
         status = .indexing(processedBooks: 0, totalBooks: 0, processedLines: 0)
         errorMessage = nil
+        indexStatusDetail = nil
 
         currentTask = Task.detached(priority: .utility) { [indexingService] in
             OtzariaIndexFileLogger.log("viewModel indexing task started")
             do {
                 let count = try await indexingService.rebuildIndex(databasePath: path) { progress in
-                    OtzariaIndexFileLogger.log("viewModel progress update processedBooks=\(progress.processedBooks) totalBooks=\(progress.totalBooks) processedLines=\(progress.processedLines)")
+                    if progress.processedBooks % 25 == 0 || progress.processedBooks == progress.totalBooks {
+                        OtzariaIndexFileLogger.log("viewModel progress update processedBooks=\(progress.processedBooks) totalBooks=\(progress.totalBooks) processedLines=\(progress.processedLines)")
+                    }
                     Task { @MainActor in
                         guard self.currentTask?.isCancelled == false else { return }
                         self.status = .indexing(
@@ -74,6 +83,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 await MainActor.run {
                     OtzariaIndexFileLogger.log("viewModel indexing success count=\(count)")
                     self.status = .ready(documentCount: count)
+                    self.indexStatusDetail = nil
                     self.isIndexing = false
                     self.currentTask = nil
                 }
@@ -82,6 +92,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     OtzariaIndexFileLogger.log("viewModel indexing cancelled CancellationError")
                     self.errorMessage = OtzariaSearchError.indexingCancelled.localizedDescription
                     self.status = .cancelled
+                    self.indexStatusDetail = nil
                     self.isIndexing = false
                     self.currentTask = nil
                 }
@@ -90,6 +101,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     OtzariaIndexFileLogger.log("viewModel indexing cancelled OtzariaSearchError.indexingCancelled")
                     self.errorMessage = OtzariaSearchError.indexingCancelled.localizedDescription
                     self.status = .cancelled
+                    self.indexStatusDetail = nil
                     self.isIndexing = false
                     self.currentTask = nil
                 }
@@ -98,6 +110,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     OtzariaIndexFileLogger.logError("viewModel indexing failed", error: error)
                     self.errorMessage = error.localizedDescription
                     self.status = .failed(error.localizedDescription)
+                    self.indexStatusDetail = nil
                     self.isIndexing = false
                     self.currentTask = nil
                 }
@@ -110,6 +123,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         currentTask?.cancel()
         errorMessage = OtzariaSearchError.indexingCancelled.localizedDescription
         status = .cancelled
+        indexStatusDetail = nil
         isIndexing = false
     }
 
@@ -117,26 +131,32 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         OtzariaIndexFileLogger.log("viewModel search called")
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {
-            OtzariaIndexFileLogger.log("viewModel search ignored empty query")
             results = []
             return
         }
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
-            OtzariaIndexFileLogger.log("viewModel search blocked databasePath missing")
             errorMessage = OtzariaSearchError.databaseNotSelected.localizedDescription
             status = .unavailable
+            indexStatusDetail = nil
             return
         }
+
         if !OtzariaSearchIndexManager.shared.isIndexCurrent(databasePath: path) {
-            OtzariaIndexFileLogger.log("viewModel search blocked because index missing path=\(path)")
+            let count = partialDocumentCount(databasePath: path)
+            if count == 0 {
+                OtzariaIndexFileLogger.log("viewModel search blocked because index missing path=\(path)")
+                status = .missing
+                indexStatusDetail = nil
+                errorMessage = "Index is not ready. Build or resume the Otzaria index before searching."
+                return
+            }
             status = .missing
-            errorMessage = "האינדקס לא מוכן. לחץ 'בנה/רענן אינדקס' לפני החיפוש."
-            return
+            indexStatusDetail = "אינדקס חלקי קיים — ניתן להמשיך אינדוקס"
+            OtzariaIndexFileLogger.log("viewModel search allowed partial index documentCount=\(count)")
         }
 
         isSearching = true
         errorMessage = nil
-        OtzariaIndexFileLogger.log("viewModel search started path=\(path) mode=\(mode.rawValue) order=\(order.rawValue)")
         let request = OtzariaSearchRequest(
             query: OtzariaSearchTextNormalizer.removeHebrewNikud(trimmed),
             mode: mode,
@@ -170,5 +190,26 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         query = ""
         results = []
         errorMessage = nil
+    }
+
+    func indexLogCopyText() -> String {
+        let databasePath = OtzariaMaktabahBridge.shared.databasePath
+        let indexURL = databasePath.map { OtzariaSearchIndexManager.shared.indexURL(for: $0) }
+        let documentCount = databasePath.map { partialDocumentCount(databasePath: $0) }
+        let logPath = OtzariaIndexFileLogger.logFileURL()?.path ?? "unavailable"
+        return """
+        Log file: \(logPath)
+        Database path: \(databasePath ?? "unavailable")
+        Index path: \(indexURL?.path ?? "unavailable")
+        Document count: \(documentCount.map { String($0) } ?? "unavailable")
+
+        \(OtzariaIndexFileLogger.readLogText())
+        """
+    }
+
+    private func partialDocumentCount(databasePath: String) -> UInt64 {
+        let indexURL = OtzariaSearchIndexManager.shared.indexURL(for: databasePath)
+        guard FileManager.default.fileExists(atPath: indexURL.path) else { return 0 }
+        return (try? repository.documentCount(databasePath: databasePath)) ?? 0
     }
 }

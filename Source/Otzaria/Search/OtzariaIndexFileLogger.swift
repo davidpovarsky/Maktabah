@@ -18,12 +18,11 @@ enum OtzariaIndexFileLogger {
     }
 
     static func logFileURL() -> URL? {
-        guard let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+        guard let base = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
         return base
-            .appendingPathComponent("Otzaria", isDirectory: true)
-            .appendingPathComponent("Logs", isDirectory: true)
+            .appendingPathComponent("OtzariaLogs", isDirectory: true)
             .appendingPathComponent("otzaria-index.log")
     }
 

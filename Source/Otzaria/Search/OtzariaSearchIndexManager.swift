@@ -73,11 +73,16 @@ final class OtzariaSearchIndexManager {
 
     func isIndexCurrent(databasePath: String) -> Bool {
         do {
-            try recoverInterruptedBuild(databasePath: databasePath)
             let indexURL = indexURL(for: databasePath)
+            guard FileManager.default.fileExists(atPath: indexURL.path) else { return false }
             let current = try currentFingerprint(databasePath: databasePath)
-            return storedFingerprint(indexURL: indexURL) == current &&
-                UserDefaults.standard.string(forKey: userDefaultsKey) == currentIndexVersion
+            guard storedFingerprint(indexURL: indexURL) == current,
+                  UserDefaults.standard.string(forKey: userDefaultsKey) == currentIndexVersion else {
+                return false
+            }
+            let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
+            let count = try engine.documentCount()
+            return count > 0
         } catch {
             return false
         }

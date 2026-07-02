@@ -95,6 +95,12 @@ struct OtzariaTextSearchView: View {
                     .foregroundStyle(.red)
             }
 
+            if let detail = viewModel.indexStatusDetail {
+                Text(detail)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
             if didCopyIndexLog {
                 Text("Index log copied.")
                     .font(.footnote)
@@ -152,7 +158,7 @@ struct OtzariaTextSearchView: View {
     }
 
     private func copyIndexLog() {
-        let text = OtzariaIndexFileLogger.readLogText()
+        let text = viewModel.indexLogCopyText()
         #if canImport(UIKit)
         UIPasteboard.general.string = text.isEmpty ? "Otzaria index log is empty." : text
         #endif

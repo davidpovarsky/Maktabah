@@ -19,6 +19,7 @@ char *otzaria_search_engine_clear(OtzariaSearchEngineHandle handle);
 char *otzaria_search_engine_commit(OtzariaSearchEngineHandle handle);
 char *otzaria_search_engine_optimize(OtzariaSearchEngineHandle handle);
 char *otzaria_search_engine_document_count(OtzariaSearchEngineHandle handle);
+char *otzaria_search_engine_indexed_file_paths(OtzariaSearchEngineHandle handle);
 
 void otzaria_search_engine_free_string(char *value);
 

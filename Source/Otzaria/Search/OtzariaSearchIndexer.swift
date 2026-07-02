@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 import SQLite3
 
 struct OtzariaSearchIndexProgress: Equatable, Sendable {
@@ -40,106 +40,90 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
     private let batchSize = 100
     private let commitEveryBooks = 1
     private let consecutiveBookFailureLimit = 10
+    private let summaryEveryBooks = 25
 
     func rebuildIndex(
         databasePath: String,
         progress: @escaping @Sendable (OtzariaSearchIndexProgress) -> Void
     ) async throws -> UInt64 {
         let manager = OtzariaSearchIndexManager.shared
-        let finalIndexURL = manager.indexURL(for: databasePath)
-        let buildingURL = try manager.prepareBuildingIndex(databasePath: databasePath)
+        let indexURL = manager.indexURL(for: databasePath)
 
-        otzariaIndexLog("index start databasePath=\(databasePath) indexURL=\(finalIndexURL.path) tempURL=\(buildingURL.path)")
-        otzariaIndexLog("prepareBuildingIndex returned finalIndexURL=\(finalIndexURL.path) buildingURL=\(buildingURL.path)")
+        otzariaIndexLog("index start databasePath=\(databasePath)")
+        otzariaIndexLog("final index path=\(indexURL.path)")
 
         do {
             try Task.checkCancellation()
 
-            otzariaIndexLog("SQLite open start databasePath=\(databasePath)")
             let db = try SQLiteDatabase(path: databasePath, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
-            otzariaIndexLog("SQLite open done databasePath=\(databasePath)")
-            otzariaIndexLog("loadBooks start")
             let books = try loadBooks(db: db)
-            otzariaIndexLog("loadBooks done count=\(books.count)")
-            otzariaIndexLog("loadCategories start")
             let categories = try loadCategories(db: db)
-            otzariaIndexLog("loadCategories done count=\(categories.count)")
             let categoryPaths = buildCategoryPaths(categories)
             otzariaIndexLog("total books=\(books.count)")
 
-            var manifest = manager.storedManifest(indexURL: buildingURL) ?? OtzariaIndexedBooksManifest(
-                databasePath: databasePath,
-                indexVersion: manager.currentIndexVersion,
-                books: []
-            )
-            otzariaIndexLog("manifest loaded bookCount=\(manifest.books.count) currentIndexVersion=\(manager.currentIndexVersion) databasePathMatches=\(manifest.databasePath == databasePath) versionMatches=\(manifest.indexVersion == manager.currentIndexVersion)")
-            if manifest.databasePath != databasePath || manifest.indexVersion != manager.currentIndexVersion {
-                manifest = OtzariaIndexedBooksManifest(
-                    databasePath: databasePath,
-                    indexVersion: manager.currentIndexVersion,
-                    books: []
-                )
-                otzariaIndexLog("manifest reset due to databasePath/version mismatch")
-            }
-            var indexedBookIds = Set(manifest.books.map(\.bookId))
-            otzariaIndexLog("indexedBookIds built count=\(indexedBookIds.count)")
             var processedBooks = 0
             var processedLines = 0
+            var skippedBooks = 0
+            var indexedBooks = 0
             var failedBooks = 0
             var consecutiveFailures = 0
-            otzariaIndexLog("engine create start indexURL=\(buildingURL.path)")
-            var engine: OtzariaSearchEngineBridge? = try OtzariaSearchEngineBridge(indexURL: buildingURL)
-            otzariaIndexLog("engine create done")
+
+            var engine: OtzariaSearchEngineBridge? = try OtzariaSearchEngineBridge(indexURL: indexURL)
+            guard let initialEngine = engine else { throw OtzariaSearchError.engineNotAvailable }
+            let documentCountBefore = try initialEngine.documentCount()
+            let indexedFilePaths = try initialEngine.indexedFilePaths()
+            var indexedBookIds = Set(indexedFilePaths.compactMap(Self.bookId(from:)))
+
+            otzariaIndexLog("documentCount before indexing=\(documentCountBefore)")
+            otzariaIndexLog("indexedFilePaths count before indexing=\(indexedFilePaths.count)")
+            otzariaIndexLog("indexedBookIds count before indexing=\(indexedBookIds.count)")
 
             for (catalogueOrder, book) in books.enumerated() {
                 try Task.checkCancellation()
-                otzariaIndexLog("book loop start catalogueOrder=\(catalogueOrder) bookId=\(book.id) title=\(book.title) totalLines=\(book.totalLines) categoryId=\(book.categoryId) fileType=\(book.fileType)")
+                let indexedFilePath = Self.filePath(forBookId: book.id)
+                otzariaIndexLog("book start catalogueOrder=\(catalogueOrder) bookId=\(book.id) title=\(book.title) totalLines=\(book.totalLines) categoryId=\(book.categoryId) fileType=\(book.fileType)")
 
                 if indexedBookIds.contains(book.id) {
-                    otzariaIndexLog("book skipped bookId=\(book.id) title=\(book.title) reason=manifestAlreadyIndexed manifestCount=\(manifest.books.count)")
+                    skippedBooks += 1
                     processedBooks += 1
+                    otzariaIndexLog("book skipped bookId=\(book.id) title=\(book.title) reason=indexedFilePaths indexedFilePath=\(indexedFilePath)")
                     progress(OtzariaSearchIndexProgress(processedBooks: processedBooks, totalBooks: books.count, processedLines: processedLines))
+                    if processedBooks % summaryEveryBooks == 0 {
+                        otzariaIndexLog("summary processedBooks=\(processedBooks) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
+                    }
                     continue
                 }
 
-                otzariaIndexLog("book start bookId=\(book.id) title=\(book.title) totalLines=\(book.totalLines)")
-
                 do {
-                    guard let engine else { throw OtzariaSearchError.engineNotAvailable }
+                    guard let liveEngine = engine else { throw OtzariaSearchError.engineNotAvailable }
                     let facet = categoryPaths[book.categoryId] ?? "/"
-                    otzariaIndexLog("indexBook call start bookId=\(book.id) catalogueOrder=\(catalogueOrder)")
                     let lineCount = try indexBook(
                         book,
                         catalogueOrder: catalogueOrder,
                         facet: facet,
                         db: db,
-                        engine: engine
+                        engine: liveEngine
                     )
-                    otzariaIndexLog("indexBook call done bookId=\(book.id) lineCount=\(lineCount)")
 
                     try Task.checkCancellation()
                     if (processedBooks + 1) % commitEveryBooks == 0 {
                         otzariaIndexLog("commit start bookId=\(book.id)")
-                        try engine.commit()
+                        try liveEngine.commit()
                         try Task.checkCancellation()
                         otzariaIndexLog("commit done bookId=\(book.id)")
                     }
 
                     processedLines += lineCount
                     processedBooks += 1
+                    indexedBooks += 1
                     consecutiveFailures = 0
                     indexedBookIds.insert(book.id)
-                    manifest.books.append(OtzariaIndexedBookRecord(
-                        bookId: book.id,
-                        title: book.title,
-                        totalLines: book.totalLines,
-                        indexedLines: lineCount
-                    ))
-                    otzariaIndexLog("writeManifest start bookId=\(book.id) manifestCount=\(manifest.books.count)")
-                    try manager.writeManifest(manifest, indexURL: buildingURL)
-                    otzariaIndexLog("writeManifest done bookId=\(book.id) manifestCount=\(manifest.books.count)")
-                    otzariaIndexLog("book done bookId=\(book.id) indexedLines=\(lineCount)")
+                    otzariaIndexLog("book committed and resumable bookId=\(book.id) indexedFilePath=\(indexedFilePath) indexedLines=\(lineCount)")
                     progress(OtzariaSearchIndexProgress(processedBooks: processedBooks, totalBooks: books.count, processedLines: processedLines))
+
+                    if processedBooks % summaryEveryBooks == 0 {
+                        otzariaIndexLog("summary processedBooks=\(processedBooks) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
+                    }
                 } catch is CancellationError {
                     otzariaIndexLog("book catch cancellation bookId=\(book.id)")
                     throw OtzariaSearchError.indexingCancelled
@@ -147,7 +131,7 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                     failedBooks += 1
                     consecutiveFailures += 1
                     processedBooks += 1
-                    OtzariaIndexFileLogger.logError("book failed bookId=\(book.id) title=\(book.title) catchKind=perBook", error: error)
+                    OtzariaIndexFileLogger.logError("book failed bookId=\(book.id) title=\(book.title)", error: error)
                     progress(OtzariaSearchIndexProgress(processedBooks: processedBooks, totalBooks: books.count, processedLines: processedLines))
 
                     if consecutiveFailures >= consecutiveBookFailureLimit {
@@ -164,44 +148,25 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
             try Task.checkCancellation()
             otzariaIndexLog("final commit done")
 
-            otzariaIndexLog("final documentCount start")
             let documentCount = try finalEngine.documentCount()
-            otzariaIndexLog("final documentCount done count=\(documentCount)")
-            otzariaIndexLog("document count=\(documentCount) processedLines=\(processedLines) failedBooks=\(failedBooks)")
+            otzariaIndexLog("final summary documentCount=\(documentCount) processedBooks=\(processedBooks) totalBooks=\(books.count) skipped=\(skippedBooks) indexed=\(indexedBooks) failed=\(failedBooks) processedLines=\(processedLines)")
 
             if documentCount == 0 && (!books.isEmpty || processedLines > 0) {
                 throw OtzariaSearchError.invalidEngineResponse("Otzaria Tantivy index completed with zero documents.")
             }
 
             let fingerprint = try manager.currentFingerprint(databasePath: databasePath)
-            otzariaIndexLog("writeFingerprint start")
-            try manager.writeFingerprint(fingerprint, indexURL: buildingURL)
-            otzariaIndexLog("writeFingerprint done")
-            otzariaIndexLog("final writeManifest start manifestCount=\(manifest.books.count)")
-            try manager.writeManifest(manifest, indexURL: buildingURL)
-            otzariaIndexLog("final writeManifest done manifestCount=\(manifest.books.count)")
-
-            otzariaIndexLog("engine nil start")
-            engine = nil
-            otzariaIndexLog("engine nil done")
-            otzariaIndexLog("promoteBuildingIndex start")
-            try manager.promoteBuildingIndex(databasePath: databasePath)
-            otzariaIndexLog("promoteBuildingIndex done")
-            otzariaIndexLog("repository invalidate start")
+            try manager.writeFingerprint(fingerprint, indexURL: indexURL)
             OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
-            otzariaIndexLog("repository invalidate done")
             otzariaIndexLog("index complete documentCount=\(documentCount)")
             return documentCount
         } catch is CancellationError {
-            manager.cancelBuildingIndex(databasePath: databasePath)
             otzariaIndexLog("index catch cancellationError")
             throw OtzariaSearchError.indexingCancelled
         } catch OtzariaSearchError.indexingCancelled {
-            manager.cancelBuildingIndex(databasePath: databasePath)
             otzariaIndexLog("index catch OtzariaSearchError.indexingCancelled")
             throw OtzariaSearchError.indexingCancelled
         } catch {
-            manager.cancelBuildingIndex(databasePath: databasePath)
             OtzariaIndexFileLogger.logError("index catch failed", error: error)
             throw error
         }
@@ -276,11 +241,11 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
     ) throws -> Int {
         var offset = 0
         var processed = 0
+        var batchCount = 0
         otzariaIndexLog("indexBook enter bookId=\(book.id) title=\(book.title) catalogueOrder=\(catalogueOrder) facet=\(facet)")
 
         while true {
             try Task.checkCancellation()
-            otzariaIndexLog("batch fetch start bookId=\(book.id) offset=\(offset) batchSize=\(batchSize)")
             let rows = try db.fetch(query: """
                 SELECT id, lineIndex, COALESCE(content, ''), COALESCE(heRef, '')
                 FROM line
@@ -295,15 +260,9 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                     heRef: row.string(at: 3) ?? ""
                 )
             }
-            otzariaIndexLog("batch fetch done bookId=\(book.id) offset=\(offset) rowCount=\(rows.count) firstLineIndex=\(rows.first?.lineIndex ?? -1) lastLineIndex=\(rows.last?.lineIndex ?? -1)")
 
-            if rows.isEmpty {
-                otzariaIndexLog("batch empty break bookId=\(book.id) offset=\(offset) processed=\(processed)")
-                break
-            }
-            otzariaIndexLog("batch start bookId=\(book.id) offset=\(offset) rowCount=\(rows.count)")
+            if rows.isEmpty { break }
 
-            otzariaIndexLog("documents map start bookId=\(book.id) rowCount=\(rows.count)")
             let documents = rows.map { row in
                 OtzariaSearchDocument(
                     id: buildDocumentId(catalogueOrder: catalogueOrder, ordinal: row.lineIndex),
@@ -313,25 +272,23 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                     text: OtzariaSearchTextNormalizer.normalizeForIndexing(row.content),
                     segment: UInt64(max(row.lineIndex, 0)),
                     isPdf: false,
-                    filePath: "otzaria-book:\(book.id)"
+                    filePath: Self.filePath(forBookId: book.id)
                 )
             }
-            otzariaIndexLog("documents map done bookId=\(book.id) docsCount=\(documents.count)")
 
-            otzariaIndexLog("engine.addDocuments start bookId=\(book.id) docsCount=\(documents.count)")
             try engine.addDocuments(documents)
-            otzariaIndexLog("engine.addDocuments done bookId=\(book.id) docsCount=\(documents.count)")
             try Task.checkCancellation()
-            otzariaIndexLog("cancellation check done after addDocuments bookId=\(book.id)")
-            otzariaIndexLog("batch added bookId=\(book.id) offset=\(offset) rowCount=\(rows.count)")
             processed += rows.count
+            batchCount += 1
             offset = (rows.last?.lineIndex ?? offset) + 1
-            otzariaIndexLog("batch progress updated bookId=\(book.id) processed=\(processed) nextOffset=\(offset)")
+
+            if batchCount % 25 == 0 {
+                otzariaIndexLog("indexBook batch summary bookId=\(book.id) batches=\(batchCount) processed=\(processed) nextOffset=\(offset)")
+            }
         }
 
         if processed == 0 {
             try Task.checkCancellation()
-            otzariaIndexLog("empty marker add start bookId=\(book.id)")
             try engine.addDocuments([
                 OtzariaSearchDocument(
                     id: buildDocumentId(catalogueOrder: catalogueOrder, ordinal: 0),
@@ -341,15 +298,23 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                     text: "",
                     segment: 0,
                     isPdf: false,
-                    filePath: "otzaria-book:\(book.id)"
+                    filePath: Self.filePath(forBookId: book.id)
                 )
             ])
             try Task.checkCancellation()
-            otzariaIndexLog("empty marker added bookId=\(book.id)")
         }
 
-        otzariaIndexLog("indexBook exit bookId=\(book.id) processed=\(processed)")
+        otzariaIndexLog("indexBook exit bookId=\(book.id) processed=\(processed) batches=\(batchCount)")
         return processed
+    }
+
+    private static func filePath(forBookId bookId: Int) -> String {
+        "otzaria-book:\(bookId)"
+    }
+
+    private static func bookId(from filePath: String) -> Int? {
+        guard filePath.hasPrefix("otzaria-book:") else { return nil }
+        return Int(filePath.dropFirst("otzaria-book:".count))
     }
 
     private func buildDocumentId(catalogueOrder: Int, ordinal: Int) -> UInt64 {
@@ -362,5 +327,3 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
 private func otzariaIndexLog(_ message: String) {
     OtzariaIndexFileLogger.log(message)
 }
-
-
