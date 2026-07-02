@@ -61,7 +61,7 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
         }
         try runBooleanJSON(operation: "addDocuments") { handle in
             OtzariaIndexFileLogger.log("bridge addDocuments FFI start count=\(documents.count) jsonBytes=\(data.count)")
-            json.withCString { c_otzaria_search_engine_add_documents_json(handle, $0) }
+            return json.withCString { c_otzaria_search_engine_add_documents_json(handle, $0) }
         }
         OtzariaIndexFileLogger.log("bridge addDocuments end count=\(documents.count)")
     }
@@ -121,7 +121,7 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
 
     func documentCount() throws -> UInt64 {
         OtzariaIndexFileLogger.log("bridge documentCount start")
-        try queue.sync {
+        return try queue.sync {
             do {
                 guard let handle else { throw OtzariaSearchError.engineNotAvailable }
                 OtzariaIndexFileLogger.log("bridge documentCount FFI start")
