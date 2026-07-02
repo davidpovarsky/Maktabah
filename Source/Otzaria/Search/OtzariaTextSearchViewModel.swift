@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 @MainActor
-final class OtzariaTextSearchViewModel: ObservableObject {
+final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     @Published var query: String = ""
     @Published var results: [SearchResultItem] = []
     @Published var mode: OtzariaSearchMode = .advanced
@@ -13,7 +13,7 @@ final class OtzariaTextSearchViewModel: ObservableObject {
     @Published var errorMessage: String?
 
     private let repository = OtzariaTantivySearchRepository.shared
-    private let indexer = OtzariaSearchIndexer()
+    private let indexingService = OtzariaSearchIndexingService.shared
     private var currentTask: Task<Void, Never>?
 
     func refreshStatus() {
@@ -35,30 +35,63 @@ final class OtzariaTextSearchViewModel: ObservableObject {
 
     func rebuildIndex() {
         currentTask?.cancel()
-        currentTask = Task {
-            guard let path = OtzariaMaktabahBridge.shared.databasePath else {
-                status = .unavailable
-                return
-            }
-            isIndexing = true
-            errorMessage = nil
+        guard let path = OtzariaMaktabahBridge.shared.databasePath else {
+            status = .unavailable
+            return
+        }
+
+        isIndexing = true
+        status = .indexing(processedBooks: 0, totalBooks: 0, processedLines: 0)
+        errorMessage = nil
+
+        currentTask = Task.detached(priority: .utility) { [indexingService] in
             do {
-                let count = try await indexer.rebuildIndex(databasePath: path) { [weak self] progress in
+                let count = try await indexingService.rebuildIndex(databasePath: path) { progress in
                     Task { @MainActor in
-                        self?.status = .indexing(
+                        guard self.currentTask?.isCancelled == false else { return }
+                        self.status = .indexing(
                             processedBooks: progress.processedBooks,
                             totalBooks: progress.totalBooks,
                             processedLines: progress.processedLines
                         )
                     }
                 }
-                status = .ready(documentCount: count)
+                try Task.checkCancellation()
+                await MainActor.run {
+                    self.status = .ready(documentCount: count)
+                    self.isIndexing = false
+                    self.currentTask = nil
+                }
+            } catch is CancellationError {
+                await MainActor.run {
+                    self.errorMessage = OtzariaSearchError.indexingCancelled.localizedDescription
+                    self.status = .cancelled
+                    self.isIndexing = false
+                    self.currentTask = nil
+                }
+            } catch OtzariaSearchError.indexingCancelled {
+                await MainActor.run {
+                    self.errorMessage = OtzariaSearchError.indexingCancelled.localizedDescription
+                    self.status = .cancelled
+                    self.isIndexing = false
+                    self.currentTask = nil
+                }
             } catch {
-                errorMessage = error.localizedDescription
-                status = .failed(error.localizedDescription)
+                await MainActor.run {
+                    self.errorMessage = error.localizedDescription
+                    self.status = .failed(error.localizedDescription)
+                    self.isIndexing = false
+                    self.currentTask = nil
+                }
             }
-            isIndexing = false
         }
+    }
+
+    func cancelIndexing() {
+        currentTask?.cancel()
+        errorMessage = OtzariaSearchError.indexingCancelled.localizedDescription
+        status = .cancelled
+        isIndexing = false
     }
 
     func search() {

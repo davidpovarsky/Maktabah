@@ -30,6 +30,12 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         try engine(databasePath: databasePath).documentCount()
     }
 
+    func invalidate(databasePath: String) {
+        lock.lock()
+        defer { lock.unlock() }
+        engineCache[databasePath] = nil
+    }
+
     func search(databasePath: String, request: OtzariaSearchRequest) throws -> [SearchResultItem] {
         let engine = try engine(databasePath: databasePath)
         let results = try engine.search(request)

@@ -17,6 +17,14 @@ struct OtzariaTextSearchView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
+                if viewModel.isIndexing {
+                    Button(role: .cancel) {
+                        viewModel.cancelIndexing()
+                    } label: {
+                        Label("Cancel", systemImage: "xmark.circle")
+                    }
+                }
+
                 Button {
                     viewModel.rebuildIndex()
                 } label: {

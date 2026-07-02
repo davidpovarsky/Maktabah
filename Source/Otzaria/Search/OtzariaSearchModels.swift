@@ -94,11 +94,25 @@ struct OtzariaIndexFingerprint: Codable, Equatable, Sendable {
     let modificationTime: TimeInterval
 }
 
-enum OtzariaSearchIndexStatus: Equatable {
+struct OtzariaIndexedBookRecord: Codable, Equatable, Sendable {
+    let bookId: Int
+    let title: String
+    let totalLines: Int
+    let indexedLines: Int
+}
+
+struct OtzariaIndexedBooksManifest: Codable, Equatable, Sendable {
+    var databasePath: String
+    var indexVersion: String
+    var books: [OtzariaIndexedBookRecord]
+}
+
+enum OtzariaSearchIndexStatus: Equatable, Sendable {
     case unavailable
     case missing
     case ready(documentCount: UInt64)
     case indexing(processedBooks: Int, totalBooks: Int, processedLines: Int)
+    case cancelled
     case failed(String)
 
     var label: String {
@@ -111,6 +125,8 @@ enum OtzariaSearchIndexStatus: Equatable {
             return "האינדקס מוכן (\(count) מסמכים)"
         case .indexing(let processedBooks, let totalBooks, let processedLines):
             return "מאנדקס \(processedBooks)/\(totalBooks) ספרים · \(processedLines) שורות"
+        case .cancelled:
+            return "Indexing cancelled."
         case .failed(let message):
             return "שגיאת אינדוקס: \(message)"
         }
