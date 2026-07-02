@@ -2,6 +2,7 @@ import SwiftUI
 
 enum iOSTab: Int, CaseIterable, Identifiable {
     case viewer
+    case otzariaTextSearch
     case search
     case author
     case annotations
@@ -14,6 +15,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .viewer: "Library".localized
+        case .otzariaTextSearch: "חיפוש טקסטים"
         case .search: "Search".localized
         case .author: "Narrators".localized
         case .annotations: "Annotations".localized
@@ -24,6 +26,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
     var icon: String {
         switch self {
         case .viewer: "books.vertical.fill"
+        case .otzariaTextSearch: "text.magnifyingglass"
         case .search: "magnifyingglass"
         case .author: "person.text.rectangle.fill"
         case .annotations: "quote.closing"
@@ -34,6 +37,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
     var appMode: AppMode {
         switch self {
         case .viewer: .viewer
+        case .otzariaTextSearch: .search
         case .search: .search
         case .author: .narrator
         case .annotations: .annotations

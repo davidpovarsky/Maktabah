@@ -16,7 +16,7 @@ jobs:
   build-ios:
     name: Build iOS artifacts
     runs-on: macos-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
 
     steps:
       - name: Checkout
@@ -38,6 +38,16 @@ jobs:
           sudo xcode-select -s "$XCODE_PATH/Contents/Developer"
           xcodebuild -version
           xcodebuild -showsdks
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Otzaria Tantivy search engine
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          chmod +x Vendor/OtzariaSearchEngine/build_xcframework.sh
+          Vendor/OtzariaSearchEngine/build_xcframework.sh 2>&1 | tee build/logs/build-otzaria-search-engine.log
 
       - name: Add Otzaria sources to iOS target
         run: |
@@ -67,6 +77,19 @@ jobs:
               existing_refs << file_ref
               puts "Added #{path} to #{target.name}"
             end
+          end
+
+          framework_path = 'Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework'
+          if File.exist?(framework_path)
+            framework_ref = project.files.find { |ref| ref.path == framework_path }
+            framework_ref ||= project.main_group.new_file(framework_path)
+            linked_refs = target.frameworks_build_phase.files_references.compact
+            unless linked_refs.include?(framework_ref)
+              target.frameworks_build_phase.add_file_reference(framework_ref)
+              puts "Linked #{framework_path} to #{target.name}"
+            end
+          else
+            abort("#{framework_path} was not found. Build the Otzaria search engine before xcodebuild.")
           end
 
           project.save

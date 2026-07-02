@@ -21,6 +21,10 @@ struct iPhoneLayout: View {
             Tab(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon, value: .viewer) {
                 viewerTabContent
             }
+            Tab(iOSTab.otzariaTextSearch.title, systemImage: iOSTab.otzariaTextSearch.icon, value: .otzariaTextSearch) {
+                otzariaTextSearchTabContent
+            }
+
 
             Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search, role: .search) {
                 searchTabContent
@@ -69,6 +73,19 @@ struct iPhoneLayout: View {
             placement: .toolbar,
             prompt: String(localized: "Search Library")
         )
+    }
+
+    @ViewBuilder
+    private var otzariaTextSearchTabContent: some View {
+        NavigationStack {
+            OtzariaTextSearchView()
+                .navigationTitle(iOSTab.otzariaTextSearch.title)
+                .adaptiveReaderPush(
+                    item: $bManager.selectedBook,
+                    manager: bManager
+                )
+                .toolbarGeneral(showSettings: $showSettings)
+        }
     }
 
     @ViewBuilder

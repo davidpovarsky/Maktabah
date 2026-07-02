@@ -1,0 +1,4 @@
+module OtzariaSearchEngine [system] {
+  header "include/otzaria_search_engine.h"
+  export *
+}
