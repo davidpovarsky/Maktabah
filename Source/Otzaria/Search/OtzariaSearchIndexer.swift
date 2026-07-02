@@ -1,4 +1,4 @@
-import Foundation
+﻿import Foundation
 import SQLite3
 
 struct OtzariaSearchIndexProgress: Equatable, Sendable {
@@ -139,14 +139,14 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
             }
 
             try Task.checkCancellation()
-            guard let engine else { throw OtzariaSearchError.engineNotAvailable }
+            guard let finalEngine = engine else { throw OtzariaSearchError.engineNotAvailable }
 
             otzariaIndexLog("final commit start")
-            try engine.commit()
+            try finalEngine.commit()
             try Task.checkCancellation()
             otzariaIndexLog("final commit done")
 
-            let documentCount = try engine.documentCount()
+            let documentCount = try finalEngine.documentCount()
             otzariaIndexLog("document count=\(documentCount) processedLines=\(processedLines) failedBooks=\(failedBooks)")
 
             if documentCount == 0 && (!books.isEmpty || processedLines > 0) {
@@ -318,3 +318,5 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
 private func otzariaIndexLog(_ message: String) {
     NSLog("%@", "[OtzariaIndex] \(message)")
 }
+
+
