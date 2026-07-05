@@ -5,28 +5,20 @@ struct AuthorModeView: View {
     @State private var navigateToReader = false
 
     var body: some View {
-        let viewModel = navigationManager.authorViewModel
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            OtzariaAuthorsModeView()
+        } else {
+            maktabahNarratorsView(viewModel: navigationManager.authorViewModel)
+        }
+    }
 
+    @ViewBuilder
+    private func maktabahNarratorsView(viewModel: NarratorViewModel) -> some View {
         Group {
             if viewModel.state == .loading {
                 ProgressView("Loading Narrators...")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .themeBackground()
-            } else if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
-                VStack(spacing: 12) {
-                    Image(systemName: "person.text.rectangle")
-                        .font(.largeTitle)
-                        .foregroundStyle(.secondary)
-                    Text("Narrators unavailable")
-                        .font(.headline)
-                    Text("This screen requires the original Maktabah narrator database.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                }
-                .padding()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .themeBackground()
             } else {
                 iOSRowiSidebarView(viewModel: viewModel, searchQuery: viewModel.lastSearchQuery)
                     .themeTint()

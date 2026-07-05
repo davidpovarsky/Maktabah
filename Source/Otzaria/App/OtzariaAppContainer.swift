@@ -279,6 +279,61 @@ final class OtzariaMaktabahBridge {
         }
     }
 
+    func fetchOtzariaAuthorsWithBookCounts() throws -> [OtzariaAuthor] {
+        lock.lock()
+        defer { lock.unlock() }
+        let db = try requireDatabase()
+
+        return try db.fetch(query: """
+            SELECT a.id, a.name, COUNT(DISTINCT b.id) AS bookCount
+            FROM author a
+            JOIN book_author ba ON ba.authorId = a.id
+            JOIN book b ON b.id = ba.bookId
+            WHERE COALESCE(b.fileType, '') NOT IN ('link', 'url')
+            GROUP BY a.id, a.name
+            HAVING COUNT(DISTINCT b.id) > 0
+            ORDER BY a.name, a.id
+        """) { row in
+            OtzariaAuthor(
+                id: row.int(at: 0),
+                name: row.string(at: 1) ?? "",
+                bookCount: row.int(at: 2)
+            )
+        }
+    }
+
+    func fetchBooksForOtzariaAuthor(authorId: Int) throws -> [BooksData] {
+        lock.lock()
+        defer { lock.unlock() }
+        let db = try requireDatabase()
+
+        return try db.fetch(query: """
+            SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc, b.filePath, b.fileType,
+                   COALESCE((SELECT ba2.authorId FROM book_author ba2 WHERE ba2.bookId = b.id ORDER BY ba2.authorId LIMIT 1), 0) AS firstAuthorId
+            FROM book_author ba
+            JOIN book b ON b.id = ba.bookId
+            WHERE ba.authorId = ?
+              AND COALESCE(b.fileType, '') NOT IN ('link', 'url')
+            ORDER BY b.orderIndex, b.title
+        """, parameters: [authorId]) { row -> BooksData in
+            let shortDescription = row.string(at: 5) ?? ""
+            let filePath = row.string(at: 6) ?? ""
+            let book = BooksData(
+                id: row.int(at: 0),
+                book: row.string(at: 1) ?? "Untitled",
+                archive: 0,
+                muallif: row.int(at: 8),
+                bithoqoh: shortDescription,
+                info: shortDescription.isEmpty ? filePath : shortDescription
+            )
+            book.catId = row.int(at: 2)
+            book.orderIndex = row.isNull(at: 3) ? nil : row.int(at: 3)
+            book.totalLines = row.isNull(at: 4) ? nil : row.int(at: 4)
+            book.pdfCs = 4
+            return book
+        }
+    }
+
     func fetchAuthorMapForBooks() throws -> [Int: [Muallif]] {
         lock.lock()
         defer { lock.unlock() }

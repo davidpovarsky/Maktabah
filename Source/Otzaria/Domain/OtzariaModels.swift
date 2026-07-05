@@ -33,6 +33,12 @@ struct OtzariaBook: Identifiable, Hashable {
     }
 }
 
+struct OtzariaAuthor: Identifiable, Hashable {
+    let id: Int
+    let name: String
+    let bookCount: Int
+}
+
 struct OtzariaBookLine: Identifiable, Hashable {
     let id: Int
     let bookId: Int

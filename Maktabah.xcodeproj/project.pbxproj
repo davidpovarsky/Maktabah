@@ -487,6 +487,8 @@
 		0B7A00000000000000000025 /* OtzariaCategoryPathResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000025 /* OtzariaCategoryPathResolver.swift */; };
 		0B7A00000000000000000026 /* OtzariaLinkedSourceGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000026 /* OtzariaLinkedSourceGrouping.swift */; };
 		0B7A00000000000000000027 /* OtzariaLinkedSourcePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000027 /* OtzariaLinkedSourcePreview.swift */; };
+		0B7A00000000000000000028 /* OtzariaAuthorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000028 /* OtzariaAuthorsViewModel.swift */; };
+		0B7A00000000000000000029 /* OtzariaAuthorsModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000029 /* OtzariaAuthorsModeView.swift */; };
 		0B7A0000000000000000001D /* OtzariaStateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001D /* OtzariaStateViews.swift */; };
 		0B7A0000000000000000001E /* OtzariaFileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000001E /* OtzariaFileLogger.swift */; };
 /* End PBXBuildFile section */
@@ -758,6 +760,8 @@
 		0A7A00000000000000000025 /* OtzariaCategoryPathResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaCategoryPathResolver.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000026 /* OtzariaLinkedSourceGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaLinkedSourceGrouping.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000027 /* OtzariaLinkedSourcePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaLinkedSourcePreview.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000028 /* OtzariaAuthorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Authors/OtzariaAuthorsViewModel.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000029 /* OtzariaAuthorsModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Authors/OtzariaAuthorsModeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1423,6 +1427,8 @@
 				0A7A00000000000000000025 /* OtzariaCategoryPathResolver.swift */,
 				0A7A00000000000000000026 /* OtzariaLinkedSourceGrouping.swift */,
 				0A7A00000000000000000027 /* OtzariaLinkedSourcePreview.swift */,
+				0A7A00000000000000000028 /* OtzariaAuthorsViewModel.swift */,
+				0A7A00000000000000000029 /* OtzariaAuthorsModeView.swift */,
 				0A7A0000000000000000001D /* OtzariaStateViews.swift */,
 				0A7A0000000000000000001E /* OtzariaFileLogger.swift */,
 			);
@@ -1933,6 +1939,8 @@
 				0B7A00000000000000000025 /* OtzariaCategoryPathResolver.swift in Sources */,
 				0B7A00000000000000000026 /* OtzariaLinkedSourceGrouping.swift in Sources */,
 				0B7A00000000000000000027 /* OtzariaLinkedSourcePreview.swift in Sources */,
+				0B7A00000000000000000028 /* OtzariaAuthorsViewModel.swift in Sources */,
+				0B7A00000000000000000029 /* OtzariaAuthorsModeView.swift in Sources */,
 				0B7A0000000000000000001D /* OtzariaStateViews.swift in Sources */,
 				0B7A0000000000000000001E /* OtzariaFileLogger.swift in Sources */,
 				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,

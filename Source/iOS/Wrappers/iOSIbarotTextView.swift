@@ -441,15 +441,35 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
 
         textView.attributedText = attributedString
-        
-        // Restore Scroll & Selection exactly once per content ID
-        if context.coordinator.restoredContentId != viewModel.currentContentId ||
+        textView.layoutIfNeeded()
+
+        let contentIdChanged = context.coordinator.lastHighlightedContentId != viewModel.currentContentId
+        if contentIdChanged {
+            textView.selectedRange = NSRange(location: 0, length: 0)
+        }
+
+        if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
+            switch pendingTarget {
+            case .top:
+                scrollTextViewToTop(textView)
+            case .bottom:
+                scrollTextViewToBottom(textView)
+                let expectedContentId = viewModel.currentContentId
+                DispatchQueue.main.async { [weak textView, weak viewModel] in
+                    guard let textView, let viewModel, viewModel.currentContentId == expectedContentId else { return }
+                    self.scrollTextViewToBottom(textView)
+                }
+            }
+
+            viewModel.needsScrollRestore = false
+            context.coordinator.restoredContentId = viewModel.currentContentId
+        } else if context.coordinator.restoredContentId != viewModel.currentContentId ||
             viewModel.needsScrollRestore
         {
             if let scroll = viewModel.readerState.scrollPosition {
                 textView.setContentOffset(scroll, animated: false)
             } else {
-                textView.setContentOffset(CGPoint(x: 0, y: -textView.adjustedContentInset.top), animated: false)
+                scrollTextViewToTop(textView)
             }
             if let range = viewModel.readerState.selectedRange {
                 textView.selectedRange = range
@@ -458,7 +478,6 @@ struct iOSIbarotTextView: UIViewRepresentable {
             context.coordinator.restoredContentId = viewModel.currentContentId
         }
 
-        let contentIdChanged = context.coordinator.lastHighlightedContentId != viewModel.currentContentId
         if contentIdChanged {
             context.coordinator.lastHighlightedContentId = viewModel.currentContentId
             context.coordinator.processedSearchText = nil
@@ -494,6 +513,21 @@ struct iOSIbarotTextView: UIViewRepresentable {
         } else {
             context.coordinator.processedSearchText = nil
         }
+    }
+
+    private func scrollTextViewToTop(_ textView: UITextView) {
+        let topY = -textView.adjustedContentInset.top
+        textView.setContentOffset(CGPoint(x: 0, y: topY), animated: false)
+    }
+
+    private func scrollTextViewToBottom(_ textView: UITextView) {
+        textView.layoutIfNeeded()
+        let minY = -textView.adjustedContentInset.top
+        let maxY = max(
+            minY,
+            textView.contentSize.height - textView.bounds.height + textView.adjustedContentInset.bottom
+        )
+        textView.setContentOffset(CGPoint(x: 0, y: maxY), animated: false)
     }
 
     class Coordinator: NSObject, UITextViewDelegate, UIGestureRecognizerDelegate {

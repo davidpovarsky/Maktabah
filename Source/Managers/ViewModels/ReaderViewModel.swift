@@ -73,11 +73,17 @@ class ReaderViewModel: ViewModelBase {
     static let kfgqpcTitle = Font.custom(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 18)
     static let kfgqpcList = Font.custom(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 20)
 
+    enum PendingReaderScrollTarget {
+        case top
+        case bottom
+    }
+
     var searchText: String = ""
     var targetAnnotation: Annotation?
     var searchViewModel = SearchViewModel()
     var readerState: ReaderState = .init()
     var needsScrollRestore: Bool = false
+    var pendingReaderScrollTarget: PendingReaderScrollTarget?
     var fetchScrollPosition: (() -> CGPoint?)?
     var fetchSelectedRange: (() -> NSRange?)?
     var currentAnnotations: [Annotation] = []
@@ -86,6 +92,20 @@ class ReaderViewModel: ViewModelBase {
     var otzariaSourcesInspectorVisible: Bool = false
     var otzariaSourcesIsLoading: Bool = false
     var otzariaSourcesError: String?
+
+    func consumePendingReaderScrollTarget() -> PendingReaderScrollTarget? {
+        let target = pendingReaderScrollTarget
+        pendingReaderScrollTarget = nil
+        return target
+    }
+
+    func clearOtzariaLineSelectionForContentChange() {
+        otzariaSelectedLineAnchor = nil
+        otzariaLinkedSources = []
+        otzariaSourcesError = nil
+        otzariaSourcesIsLoading = false
+        readerState.selectedRange = nil
+    }
     #endif
 
     // MARK: - Computed Properties
@@ -344,6 +364,9 @@ class ReaderViewModel: ViewModelBase {
         let start = Date()
         otzariaReaderLog("goToNextPage start bookId=\(currentBook?.id ?? -1) contentId=\(currentContentId)")
         guard let content = navigateToPage(direction: .next) else { return }
+        #if os(iOS)
+        pendingReaderScrollTarget = .top
+        #endif
         updateContentState(with: content)
         otzariaReaderLog("goToNextPage done bookId=\(currentBook?.id ?? -1) contentId=\(content.id) heRef=\(content.heRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
     }
@@ -352,6 +375,9 @@ class ReaderViewModel: ViewModelBase {
         let start = Date()
         otzariaReaderLog("goToPrevPage start bookId=\(currentBook?.id ?? -1) contentId=\(currentContentId)")
         guard let content = navigateToPage(direction: .prev) else { return }
+        #if os(iOS)
+        pendingReaderScrollTarget = .bottom
+        #endif
         updateContentState(with: content)
         otzariaReaderLog("goToPrevPage done bookId=\(currentBook?.id ?? -1) contentId=\(content.id) heRef=\(content.heRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
     }
@@ -439,6 +465,7 @@ class ReaderViewModel: ViewModelBase {
 
     func updateContentState(with content: BookContent) {
         let start = Date()
+        let previousContentId = currentContentId
         contentText = content.nash
         currentPart = content.part
         currentPage = content.page
@@ -468,6 +495,9 @@ class ReaderViewModel: ViewModelBase {
         // Clear saved scroll/selection so it scrolls to top on page change
         readerState.scrollPosition = nil
         readerState.selectedRange = nil
+        if previousContentId != content.id {
+            clearOtzariaLineSelectionForContentChange()
+        }
         updateNavigationLimits()
         #endif
         otzariaReaderLog("updateContentState bookId=\(currentBook?.id ?? -1) title=\(currentBook?.book ?? "") contentId=\(content.id) currentHeRef=\(currentHeRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
