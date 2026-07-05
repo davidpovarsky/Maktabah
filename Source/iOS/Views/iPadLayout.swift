@@ -185,7 +185,11 @@ struct iPadLayout: View {
                         prompt: searchPrompt(for: tab).localized
                     )
             case .author:
-                AuthorModeView()
+                AuthorModeView(onOpenBook: { book in
+                    bManager.openBook(book)
+                    selectedTab = .viewer
+                    path.removeAll()
+                })
                     .searchable(
                         text: $authorVM.searchText,
                         placement: .navigationBarDrawer(displayMode: .always),

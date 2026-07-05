@@ -10,13 +10,14 @@ struct OtzariaLineSourcesInspectorView: View {
     let onClose: () -> Void
     let onOpenSource: (OtzariaLinkedSource) -> Void
 
-    @State private var path = NavigationPath()
+    @State private var selectedGroupID: String?
+    @State private var selectedBookID: String?
     @State private var expandedSourceIDs = Set<Int>()
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack {
             panelContent
-                .navigationTitle("מקורות")
+                .navigationTitle(panelTitle)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -29,9 +30,25 @@ struct OtzariaLineSourcesInspectorView: View {
                             .accessibilityLabel(Text("סגור"))
                         }
                     }
-                }
-                .navigationDestination(for: OtzariaSourcesRoute.self) { route in
-                    destinationView(for: route)
+
+                    ToolbarItem(placement: .topBarLeading) {
+                        if selectedBookID != nil {
+                            Button {
+                                selectedBookID = nil
+                                expandedSourceIDs.removeAll()
+                            } label: {
+                                Label("חזרה", systemImage: "chevron.right")
+                            }
+                        } else if selectedGroupID != nil {
+                            Button {
+                                selectedGroupID = nil
+                                selectedBookID = nil
+                                expandedSourceIDs.removeAll()
+                            } label: {
+                                Label("חזרה", systemImage: "chevron.right")
+                            }
+                        }
+                    }
                 }
         }
     }
@@ -46,6 +63,14 @@ struct OtzariaLineSourcesInspectorView: View {
             Text(error)
         } else if sources.isEmpty {
             ContentUnavailableView("לא נמצאו קישורים", systemImage: "link.badge.plus")
+        } else if selectedBookID != nil, selectedBookGroup == nil {
+            ContentUnavailableView("אין מקור מתאים לשורה זו", systemImage: "link")
+        } else if selectedGroupID != nil, selectedGroup == nil {
+            ContentUnavailableView("אין מקורות מתאימים לשורה זו", systemImage: "link")
+        } else if let selectedBookGroup {
+            bookSourcesContent(bookGroup: selectedBookGroup)
+        } else if let selectedGroup {
+            groupBooksContent(group: selectedGroup)
         } else {
             rootIndexContent
         }
@@ -73,12 +98,19 @@ struct OtzariaLineSourcesInspectorView: View {
 
             Section("מקורות") {
                 ForEach(indexGroups) { group in
-                    NavigationLink(value: OtzariaSourcesRoute.group(group.id)) {
+                    Button {
+                        selectedGroupID = group.id
+                        selectedBookID = nil
+                        expandedSourceIDs.removeAll()
+                    } label: {
                         Label("\(group.title) (\(group.count))", systemImage: group.systemImage)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }
+        .environment(\.layoutDirection, .rightToLeft)
     }
 
     @ViewBuilder
@@ -86,12 +118,19 @@ struct OtzariaLineSourcesInspectorView: View {
         List {
             Section(group.title) {
                 ForEach(OtzariaLinkedSourceGrouping.bookGroups(from: group.sources)) { bookGroup in
-                    NavigationLink(value: OtzariaSourcesRoute.source(bookGroup.focus)) {
+                    Button {
+                        selectedBookID = bookGroup.id
+                        expandedSourceIDs.removeAll()
+                    } label: {
                         Text("\(bookGroup.title) (\(bookGroup.count))")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .multilineTextAlignment(.trailing)
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }
+        .environment(\.layoutDirection, .rightToLeft)
     }
 
     @ViewBuilder
@@ -112,76 +151,33 @@ struct OtzariaLineSourcesInspectorView: View {
                 )
             }
         }
+        .environment(\.layoutDirection, .rightToLeft)
     }
 
-    @ViewBuilder
-    private func destinationView(for route: OtzariaSourcesRoute) -> some View {
-        switch route {
-        case .group(let groupID):
-            if let group = indexGroups.first(where: { $0.id == groupID }) {
-                groupBooksContent(group: group)
-                    .navigationTitle(group.title)
-                    .navigationBarTitleDisplayMode(.inline)
-            } else {
-                ContentUnavailableView("אין מקורות מתאימים לשורה זו", systemImage: "link")
-                    .navigationTitle("מקורות")
-                    .navigationBarTitleDisplayMode(.inline)
-            }
-        case .source(let focus):
-            sourceDetailView(for: focus)
-                .navigationTitle(titleForFocus(focus))
-                .navigationBarTitleDisplayMode(.inline)
+    private var selectedGroup: OtzariaSourceIndexGroup? {
+        guard let selectedGroupID else { return nil }
+        return indexGroups.first { $0.id == selectedGroupID }
+    }
+
+    private var selectedBookGroup: OtzariaSourceBookGroup? {
+        guard let selectedGroup, let selectedBookID else { return nil }
+        return OtzariaLinkedSourceGrouping
+            .bookGroups(from: selectedGroup.sources)
+            .first { $0.id == selectedBookID }
+    }
+
+    private var panelTitle: String {
+        if let selectedBookGroup {
+            return selectedBookGroup.title
         }
-    }
-
-    @ViewBuilder
-    private func sourceDetailView(for focus: OtzariaSourceFocus) -> some View {
-        if isLoading {
-            ProgressView()
-        } else if let bookGroup = bookGroup(for: focus) {
-            bookSourcesContent(bookGroup: bookGroup)
-        } else {
-            ContentUnavailableView("אין מקור מתאים לשורה זו", systemImage: "link")
+        if let selectedGroup {
+            return selectedGroup.title
         }
-    }
-
-    private func titleForFocus(_ focus: OtzariaSourceFocus) -> String {
-        bookGroup(for: focus)?.title ?? focus.connectionType
-    }
-
-    private func bookGroup(for focus: OtzariaSourceFocus) -> OtzariaSourceBookGroup? {
-        OtzariaLinkedSourceGrouping
-            .bookGroups(from: sources.filter {
-                $0.connectionType == focus.connectionType &&
-                    $0.linkedBookId == focus.linkedBookId
-            })
-            .first
+        return "מקורות"
     }
 
     private var indexGroups: [OtzariaSourceIndexGroup] {
         OtzariaLinkedSourceGrouping.indexGroups(from: sources)
-    }
-}
-
-struct OtzariaSourceFocus: Hashable {
-    let connectionType: String
-    let linkedBookId: Int
-}
-
-private enum OtzariaSourcesRoute: Hashable {
-    case group(String)
-    case source(OtzariaSourceFocus)
-}
-
-private extension OtzariaSourceBookGroup {
-    var focus: OtzariaSourceFocus {
-        guard let source = sources.first else {
-            return OtzariaSourceFocus(connectionType: "", linkedBookId: Int(id) ?? 0)
-        }
-        return OtzariaSourceFocus(
-            connectionType: source.connectionType,
-            linkedBookId: source.linkedBookId
-        )
     }
 }
 

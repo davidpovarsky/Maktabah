@@ -4,9 +4,15 @@ struct AuthorModeView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     @State private var navigateToReader = false
 
+    let onOpenBook: ((BooksData) -> Void)?
+
+    init(onOpenBook: ((BooksData) -> Void)? = nil) {
+        self.onOpenBook = onOpenBook
+    }
+
     var body: some View {
         if OtzariaMaktabahBridge.shared.isEnabled {
-            OtzariaAuthorsModeView()
+            OtzariaAuthorsModeView(onOpenBook: onOpenBook)
         } else {
             maktabahNarratorsView(viewModel: navigationManager.authorViewModel)
         }
