@@ -92,6 +92,30 @@ class ReaderViewModel: ViewModelBase {
     var otzariaSourcesInspectorVisible: Bool = false
     var otzariaSourcesIsLoading: Bool = false
     var otzariaSourcesError: String?
+    var otzariaSourcesSelectedGroupID: String?
+    var otzariaSourcesSelectedBookID: String?
+    var otzariaSourcesExpandedSourceIDs: Set<Int> = []
+
+    var canGoBackInOtzariaSourcesPanel: Bool {
+        otzariaSourcesSelectedBookID != nil || otzariaSourcesSelectedGroupID != nil
+    }
+
+    func goBackInOtzariaSourcesPanel() {
+        if otzariaSourcesSelectedBookID != nil {
+            otzariaSourcesSelectedBookID = nil
+            otzariaSourcesExpandedSourceIDs.removeAll()
+        } else if otzariaSourcesSelectedGroupID != nil {
+            otzariaSourcesSelectedGroupID = nil
+            otzariaSourcesSelectedBookID = nil
+            otzariaSourcesExpandedSourceIDs.removeAll()
+        }
+    }
+
+    func resetOtzariaSourcesPanelNavigation() {
+        otzariaSourcesSelectedGroupID = nil
+        otzariaSourcesSelectedBookID = nil
+        otzariaSourcesExpandedSourceIDs.removeAll()
+    }
 
     func consumePendingReaderScrollTarget() -> PendingReaderScrollTarget? {
         let target = pendingReaderScrollTarget

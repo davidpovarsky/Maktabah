@@ -76,7 +76,6 @@ private struct OtzariaAuthorBooksView: View {
     @ObservedObject var viewModel: OtzariaAuthorsViewModel
     let onOpenBook: ((BooksData) -> Void)?
     @Environment(iOSNavigationManager.self) private var navigationManager
-    @Environment(\.dismiss) private var dismiss
     @State private var books: [BooksData] = []
     @State private var isLoading = true
 
@@ -97,7 +96,6 @@ private struct OtzariaAuthorBooksView: View {
                         } else {
                             navigationManager.openBook(book)
                         }
-                        dismiss()
                     } label: {
                         VStack(alignment: .trailing, spacing: 4) {
                             Text(book.book)

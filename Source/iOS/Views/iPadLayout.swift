@@ -187,8 +187,6 @@ struct iPadLayout: View {
             case .author:
                 AuthorModeView(onOpenBook: { book in
                     bManager.openBook(book)
-                    selectedTab = .viewer
-                    path.removeAll()
                 })
                     .searchable(
                         text: $authorVM.searchText,

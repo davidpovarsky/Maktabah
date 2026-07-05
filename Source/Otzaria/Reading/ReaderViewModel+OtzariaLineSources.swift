@@ -40,6 +40,7 @@ extension ReaderViewModel {
         otzariaLinkedSources = []
         otzariaSourcesIsLoading = false
         otzariaSourcesError = nil
+        resetOtzariaSourcesPanelNavigation()
     }
 
     func resolveOtzariaLineAnchor(for selectedRange: NSRange) -> OtzariaLineAnchor? {

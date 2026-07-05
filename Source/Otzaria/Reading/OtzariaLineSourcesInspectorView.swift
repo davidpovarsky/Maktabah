@@ -7,20 +7,32 @@ struct OtzariaLineSourcesInspectorView: View {
     let isLoading: Bool
     let error: String?
     let isPresented: Bool
+    @Binding var selectedGroupID: String?
+    @Binding var selectedBookID: String?
+    @Binding var expandedSourceIDs: Set<Int>
     let onClose: () -> Void
     let onOpenSource: (OtzariaLinkedSource) -> Void
 
-    @State private var selectedGroupID: String?
-    @State private var selectedBookID: String?
-    @State private var expandedSourceIDs = Set<Int>()
+    @Environment(\.layoutDirection) private var layoutDirection
 
     var body: some View {
         NavigationStack {
             panelContent
+                .contentShape(Rectangle())
+                .simultaneousGesture(panelBackGesture)
                 .navigationTitle(panelTitle)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
+                    ToolbarItemGroup(placement: .topBarTrailing) {
+                        if canGoBack {
+                            Button {
+                                goBack()
+                            } label: {
+                                Label("חזרה", systemImage: "chevron.right")
+                            }
+                            .accessibilityLabel(Text("חזרה"))
+                        }
+
                         if isPresented {
                             Button {
                                 onClose()
@@ -28,25 +40,6 @@ struct OtzariaLineSourcesInspectorView: View {
                                 Image(systemName: "xmark")
                             }
                             .accessibilityLabel(Text("סגור"))
-                        }
-                    }
-
-                    ToolbarItem(placement: .topBarLeading) {
-                        if selectedBookID != nil {
-                            Button {
-                                selectedBookID = nil
-                                expandedSourceIDs.removeAll()
-                            } label: {
-                                Label("חזרה", systemImage: "chevron.right")
-                            }
-                        } else if selectedGroupID != nil {
-                            Button {
-                                selectedGroupID = nil
-                                selectedBookID = nil
-                                expandedSourceIDs.removeAll()
-                            } label: {
-                                Label("חזרה", systemImage: "chevron.right")
-                            }
                         }
                     }
                 }
@@ -178,6 +171,44 @@ struct OtzariaLineSourcesInspectorView: View {
 
     private var indexGroups: [OtzariaSourceIndexGroup] {
         OtzariaLinkedSourceGrouping.indexGroups(from: sources)
+    }
+
+    private var canGoBack: Bool {
+        selectedBookID != nil || selectedGroupID != nil
+    }
+
+    private func goBack() {
+        if selectedBookID != nil {
+            selectedBookID = nil
+            expandedSourceIDs.removeAll()
+        } else if selectedGroupID != nil {
+            selectedGroupID = nil
+            selectedBookID = nil
+            expandedSourceIDs.removeAll()
+        }
+    }
+
+    private var panelBackGesture: some Gesture {
+        DragGesture(minimumDistance: 40, coordinateSpace: .local)
+            .onEnded { value in
+                guard canGoBack else { return }
+
+                let horizontal = value.translation.width
+                let vertical = value.translation.height
+                guard abs(horizontal) > 70 else { return }
+                guard abs(horizontal) > abs(vertical) * 1.4 else { return }
+
+                let isBackSwipe: Bool
+                if layoutDirection == .rightToLeft {
+                    isBackSwipe = horizontal < 0
+                } else {
+                    isBackSwipe = horizontal > 0
+                }
+
+                if isBackSwipe {
+                    goBack()
+                }
+            }
     }
 }
 

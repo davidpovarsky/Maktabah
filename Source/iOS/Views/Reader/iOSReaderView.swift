@@ -224,6 +224,9 @@ struct iOSReaderView: View {
                     isLoading: viewModel.otzariaSourcesIsLoading,
                     error: viewModel.otzariaSourcesError,
                     isPresented: viewModel.otzariaSourcesInspectorVisible,
+                    selectedGroupID: $viewModel.otzariaSourcesSelectedGroupID,
+                    selectedBookID: $viewModel.otzariaSourcesSelectedBookID,
+                    expandedSourceIDs: $viewModel.otzariaSourcesExpandedSourceIDs,
                     onClose: {
                         viewModel.closeOtzariaSourcesInspector()
                     },
