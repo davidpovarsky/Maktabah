@@ -22,7 +22,7 @@ struct iOSBootstrapView: View {
                         .ignoresSafeArea()
 
                     if bootstrapManager.isChecking {
-                        ProgressView("Preparing Library...")
+                        ProgressView(String(localized: "Preparing Library..."))
                     } else {
                         iOSCoreDownloadGateView(
                             state: bootstrapManager.coreDownloadState,

@@ -24,6 +24,12 @@
             "state" : "translated",
             "value" : "Filter berdasarkan Kitab…"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by Books…"
+          }
         }
       }
     },
@@ -47,6 +53,12 @@
             "state" : "translated",
             "value" : "Lainnya"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More Options"
+          }
         }
       }
     },
@@ -69,6 +81,12 @@
             "state" : "translated",
             "value" : "'%1$@' sudah ada. Semua anotasi dari '%2$@' akan digabungkan ke dalam '%3$@'."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%1$@' already exists. All annotations from '%2$@' will be merged into '%3$@'."
+          }
         }
       }
     },
@@ -84,6 +102,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "\"%@\" dan semua isinya akan dihapus secara permanen."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" and all its contents will be permanently deleted."
           }
         }
       }
@@ -138,6 +162,12 @@
             "state" : "translated",
             "value" : "%lld Anotasi Ditemukan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Annotations Exist"
+          }
         }
       }
     },
@@ -153,6 +183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld kitab terpilih"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld book selected"
           }
         }
       }
@@ -170,6 +206,12 @@
             "state" : "translated",
             "value" : "%lld kitab perlu diperbarui"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld books needs updates"
+          }
         }
       }
     },
@@ -185,6 +227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld kitab untuk diunduh."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld books to download."
           }
         }
       }
@@ -208,6 +256,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld berhasil, %2$lld gagal."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld completed, %2$lld failed."
           }
         }
       }
@@ -237,6 +291,12 @@
             "state" : "translated",
             "value" : "A"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A"
+          }
         }
       }
     },
@@ -260,6 +320,12 @@
             "state" : "translated",
             "value" : "Akses Diperlukan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????"
+          }
         }
       }
     },
@@ -282,6 +348,12 @@
             "state" : "translated",
             "value" : "Tambah Favorit"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????????"
+          }
         }
       }
     },
@@ -298,6 +370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tambahkan Catatan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????"
           }
         }
       }
@@ -321,6 +399,12 @@
             "state" : "translated",
             "value" : "Tambahkan Tag"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????"
+          }
         }
       }
     },
@@ -336,6 +420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semua"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -353,6 +443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semua %lld kitab berhasil diproses."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All %lld books processed successfully."
           }
         }
       }
@@ -376,6 +472,12 @@
             "state" : "translated",
             "value" : "Semua Anotasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ??????"
+          }
         }
       }
     },
@@ -391,6 +493,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semua kitab sudah terbaru"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All books are up to date"
           }
         }
       }
@@ -408,6 +516,12 @@
             "state" : "translated",
             "value" : "Sudah terbaru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already updated"
+          }
         }
       }
     },
@@ -424,6 +538,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anotasi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "annotation"
           }
         }
       }
@@ -448,6 +568,12 @@
             "state" : "translated",
             "value" : "Anotasi Yang Ada Ditemukan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Existing Annotations Found"
+          }
         }
       }
     },
@@ -471,6 +597,12 @@
             "state" : "translated",
             "value" : "Anotasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -486,6 +618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anotasi & Hasil Pencarian"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annotations & Search Results"
           }
         }
       }
@@ -510,6 +648,12 @@
             "state" : "translated",
             "value" : "Anotasi sudah ada di folder tujuan. Apakah Anda ingin menggunakan anotasi di folder tujuan (dan menghapus yang lama) atau menimpa anotasi di folder tujuan dengan yang lama?"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annotations already exist in the destination folder. Would you like to keep them (and delete the old ones) or overwrite them with the old ones?"
+          }
         }
       }
     },
@@ -531,6 +675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mencari data yang mengandung setidaknya satu kata atau frasa yang dipisahkan dengan koma (,). Data yang cocok dengan salah satu entri akan ditampilkan dalam hasil pencarian.\n(contoh: زكاة ,الزكاة)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Searches for records containing at least one of the words or phrases separated by a comma (,). Records matching any of the entries will be included in the results.\n(e.g., زكاة ,الزكاة)"
           }
         }
       }
@@ -554,6 +704,12 @@
             "state" : "translated",
             "value" : "3. Cocokkan Kata Apa pun"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Match Any Word"
+          }
         }
       }
     },
@@ -575,6 +731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tampilan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -598,6 +760,12 @@
             "state" : "translated",
             "value" : "Pembaruan Aplikasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????????"
+          }
         }
       }
     },
@@ -619,6 +787,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aplikasi memerlukan akses ke folder Database SQLite untuk melanjutkan."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The application requires access to the SQLite Database folder to proceed."
           }
         }
       }
@@ -642,6 +816,12 @@
             "state" : "translated",
             "value" : "ID Arsip"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??????"
+          }
         }
       }
     },
@@ -658,6 +838,12 @@
             "state" : "translated",
             "value" : "Apakah Anda yakin ingin menghapus konten yang diunduh untuk \"%@\"?"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????? ?? ????? ????? ???? \"%@\"?"
+          }
         }
       }
     },
@@ -673,6 +859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apakah Anda yakin ingin menghapus konten yang diunduh untuk %lld kitab?"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????? ?? ????? ????? ???? %lld ??????"
           }
         }
       }
@@ -691,6 +883,12 @@
             "state" : "translated",
             "value" : "Naik"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ascending"
+          }
         }
       }
     },
@@ -706,6 +904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Penulis"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -723,6 +927,12 @@
             "state" : "translated",
             "value" : "Info Penulis"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????"
+          }
         }
       }
     },
@@ -738,6 +948,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Informasi Penulis"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?? ?????"
           }
         }
       }
@@ -755,6 +971,12 @@
             "state" : "translated",
             "value" : "Nama Penulis"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ?????"
+          }
         }
       }
     },
@@ -770,6 +992,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipe Penulis"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
           }
         }
       }
@@ -793,6 +1021,12 @@
             "state" : "translated",
             "value" : "Latar Belakang"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
+          }
         }
       }
     },
@@ -808,6 +1042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mulai mengunduh..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??????..."
           }
         }
       }
@@ -825,6 +1065,12 @@
             "state" : "translated",
             "value" : "Pemeriksaan rutin setengah tahunan hingga tombol dinonaktifkan dan dinyalakan ulang."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bi-Annual Routine Check until toggled off and on again."
+          }
         }
       }
     },
@@ -841,6 +1087,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Biru"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blue"
           }
         }
       }
@@ -864,6 +1116,12 @@
             "state" : "translated",
             "value" : "Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
+          }
         }
       }
     },
@@ -885,6 +1143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Info Kitab"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???"
           }
         }
       }
@@ -908,6 +1172,12 @@
             "state" : "translated",
             "value" : "Informasi Buku"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?? ????"
+          }
         }
       }
     },
@@ -924,6 +1194,12 @@
             "state" : "translated",
             "value" : "Nama Kitab (bk)"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book Name (bk)"
+          }
         }
       }
     },
@@ -939,6 +1215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipe Kitab"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???"
           }
         }
       }
@@ -961,6 +1243,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Informasi Kitab"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???"
           }
         }
       }
@@ -985,6 +1273,12 @@
             "state" : "translated",
             "value" : "Kitab untuk anotasi ini tidak ditemukan. Jika ini adalah kitab hasil import offline, pastikan Anda juga meng-import kitab tersebut di perangkat ini dengan id yang sama di perangkat lain, atau sembunyikan dari Pengaturan."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The book for this annotation was not found. If this is an offline imported book, ensure you have also imported it on this device using the same ID as on your other device, or hide it via Settings."
+          }
         }
       }
     },
@@ -1008,6 +1302,12 @@
             "state" : "translated",
             "value" : "Buku dengan ID %1$(bookID)lld tidak ditemukan."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book with ID %1$(bookID)lld not found."
+          }
         }
       }
     },
@@ -1023,6 +1323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pembaruan Kitab"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ?????"
           }
         }
       }
@@ -1047,6 +1353,12 @@
             "state" : "translated",
             "value" : "Apakah Anda yakin ingin mengunduh %1$(totalBook)lld buku?"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to download %1$(totalBook)lld books?"
+          }
         }
       }
     },
@@ -1062,6 +1374,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mode Bundel"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????"
           }
         }
       }
@@ -1080,6 +1398,12 @@
             "state" : "translated",
             "value" : "Batalkan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -1096,6 +1420,12 @@
             "state" : "translated",
             "value" : "Kategori"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????"
+          }
         }
       }
     },
@@ -1111,6 +1441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kategori (cat)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category (cat)"
           }
         }
       }
@@ -1134,6 +1470,12 @@
             "state" : "translated",
             "value" : "Ubah ID Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???? ???"
+          }
         }
       }
     },
@@ -1149,6 +1491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Periksa Lagi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???"
           }
         }
       }
@@ -1172,6 +1520,12 @@
             "state" : "translated",
             "value" : "Cek Pembaruan saat Aplikasi Dibuka"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??????? ?????? ?????????"
+          }
         }
       }
     },
@@ -1187,6 +1541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memeriksa…"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????..."
           }
         }
       }
@@ -1204,6 +1564,12 @@
             "state" : "translated",
             "value" : "Pilih Folder Anotasi..."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Annotations Folder…"
+          }
         }
       }
     },
@@ -1219,6 +1585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Folder"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??????"
           }
         }
       }
@@ -1236,6 +1608,12 @@
             "state" : "translated",
             "value" : "Pilih Folder Perpustakaan..."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Library Folder…"
+          }
         }
       }
     },
@@ -1251,6 +1629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bersihkan Data yang Diunduh (Mode Bundel)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cleanup Downloaded Data (Bundle Mode)"
           }
         }
       }
@@ -1274,6 +1658,12 @@
             "state" : "translated",
             "value" : "Hapus Semua"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
+          }
         }
       }
     },
@@ -1296,6 +1686,12 @@
             "state" : "translated",
             "value" : "Hapus Pilihan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??????"
+          }
         }
       }
     },
@@ -1311,6 +1707,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Klik untuk memilih..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click to select..."
           }
         }
       }
@@ -1333,6 +1735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anotasi yang Dapat Diklik"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clickable Annotations"
           }
         }
       }
@@ -1357,6 +1765,12 @@
             "state" : "translated",
             "value" : "Tutup"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -1379,6 +1793,12 @@
             "state" : "translated",
             "value" : "Tutup Tab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????????"
+          }
         }
       }
     },
@@ -1394,6 +1814,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Token CloudKit telah diatur ulang. Sinkronisasi penuh akan dimulai."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CloudKit token has been reset. Full sync will start."
           }
         }
       }
@@ -1417,6 +1843,12 @@
             "state" : "translated",
             "value" : "Selesai! %1$lld/%2$lld kitab berhasil diperbarui."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed! %1$lld/%2$lld books successfully updated."
+          }
         }
       }
     },
@@ -1439,6 +1871,12 @@
             "state" : "translated",
             "value" : "Silakan unduh untuk mengakses kitab."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ?????? ??? ???? ????."
+          }
         }
       }
     },
@@ -1454,6 +1892,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koneksi Error"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????"
           }
         }
       }
@@ -1477,6 +1921,12 @@
             "state" : "translated",
             "value" : "Daftar Isi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -1494,6 +1944,12 @@
             "state" : "translated",
             "value" : "Konteks"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -1509,6 +1965,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alat Konverter & Bantuan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converter Tool & Help"
           }
         }
       }
@@ -1533,6 +1995,12 @@
             "state" : "translated",
             "value" : "Jika basis data SQLite Anda tidak sesuai dengan format yang kami butuhkan, gunakan alat Konverter Web kami untuk mengubah file Anda. Saat ini hanya file .docx dan .epub yang didukung."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your SQLite database doesn't match our required format, use our Web Converter tool to transform your files. Currently only .docx and .epub files are supported."
+          }
         }
       }
     },
@@ -1556,6 +2024,12 @@
             "state" : "translated",
             "value" : "Butuh Bantuan?"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Need Help?"
+          }
         }
       }
     },
@@ -1578,6 +2052,12 @@
             "state" : "translated",
             "value" : "Salin"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -1594,6 +2074,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menyalin tabel dan membangun kembali indeks FTS..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????? ????? ???? ?? ?????? FTS..."
           }
         }
       }
@@ -1618,6 +2104,12 @@
             "state" : "translated",
             "value" : "Salin dengan Referensi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy with Reference"
+          }
         }
       }
     },
@@ -1639,6 +2131,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unduhan dibatalkan."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ?????."
           }
         }
       }
@@ -1663,6 +2161,12 @@
             "state" : "translated",
             "value" : "Gagal dekompresi file “%1$@”: %2$@."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????? ?%1$@?: %2$@."
+          }
         }
       }
     },
@@ -1685,6 +2189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Folder tujuan tidak dapat dibuat."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ???? ????? ?? ?????? ????."
           }
         }
       }
@@ -1709,6 +2219,12 @@
             "state" : "translated",
             "value" : "File “%@“ tidak lengkap setelah diunduh."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?%@? ???? ??? ???? ??????."
+          }
         }
       }
     },
@@ -1731,6 +2247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gagal mengunduh “%1$@” (HTTP %2$lld)."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????? ?%1$@? (HTTP %2$lld)."
           }
         }
       }
@@ -1755,6 +2277,12 @@
             "state" : "translated",
             "value" : "URL unduhan tidak valid. Silakan periksa konfigurasi Anda."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????? ???? ?????. ???? ?? ???????."
+          }
         }
       }
     },
@@ -1778,6 +2306,12 @@
             "state" : "translated",
             "value" : "Respons server tidak valid."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??? ?? ?????."
+          }
         }
       }
     },
@@ -1800,6 +2334,12 @@
             "state" : "translated",
             "value" : "Mengunduh basis data. Mohon tunggu..."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??? ??????. ?? ??????..."
+          }
         }
       }
     },
@@ -1821,6 +2361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maktabah memerlukan file database utama (~17,96 MB) yang diunduh sekali saat pertama kali dibuka. File akan disimpan di folder Application Support."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????????? ????? ?? ???? ??? ??????? ????? (~17.96 MB), ????? ??? ??? ?????? ???????. ????? ????? ??????? ?????? ?? ?????????."
           }
         }
       }
@@ -1845,6 +2391,12 @@
             "state" : "translated",
             "value" : "Aplikasi ini membutuhkan file basis data inti (%@) sebelum perpustakaan dapat digunakan."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????????? ????? ????? ??? ??????? ???????? (%@) ???? ????? ?????? ???????."
+          }
         }
       }
     },
@@ -1868,6 +2420,12 @@
             "state" : "translated",
             "value" : "Folder yang dipilih tidak berisi \"Files/main.sqlite\" dan \"Files/special.sqlite\". Pilih folder lain atau unduh basis data inti."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????? ?????? ???? ????? ?? ?Files/main.sqlite? ??? ?Files/special.sqlite?. ??? ?????? ???? ?? ???? ?? ??? ??????? ??????."
+          }
         }
       }
     },
@@ -1890,6 +2448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "File basis data tidak ditemukan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??? ??????? ?? ?????"
           }
         }
       }
@@ -1915,6 +2479,12 @@
             "state" : "translated",
             "value" : "Database Diperlukan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???? ??? ??????"
+          }
         }
       }
     },
@@ -1930,6 +2500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buat"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
           }
         }
       }
@@ -1947,6 +2523,12 @@
             "state" : "translated",
             "value" : "Buat Folder"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??????"
+          }
         }
       }
     },
@@ -1962,6 +2544,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buat Folder Baru"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????? ????"
           }
         }
       }
@@ -1979,6 +2567,12 @@
             "state" : "translated",
             "value" : "Saat ini"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -1994,6 +2588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koneksi Database tidak tersedia."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??? ??????? ???? ????."
           }
         }
       }
@@ -2018,6 +2618,12 @@
             "state" : "translated",
             "value" : "File Database Diperlukan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???? ??? ??????"
+          }
         }
       }
     },
@@ -2033,6 +2639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mode Basis Data"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??? ??????"
           }
         }
       }
@@ -2051,6 +2663,12 @@
             "state" : "translated",
             "value" : "Tgl. Dibuat"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????"
+          }
         }
       }
     },
@@ -2066,6 +2684,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tahun Wafat"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????"
           }
         }
       }
@@ -2083,6 +2707,12 @@
             "state" : "translated",
             "value" : "Hapus"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
+          }
         }
       }
     },
@@ -2098,6 +2728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus %@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete %@"
           }
         }
       }
@@ -2122,6 +2758,12 @@
             "state" : "translated",
             "value" : "Hapus Anotasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
+          }
         }
       }
     },
@@ -2137,6 +2779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Unduhan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????"
           }
         }
       }
@@ -2154,6 +2802,12 @@
             "state" : "translated",
             "value" : "Hapus Folder"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??????"
+          }
         }
       }
     },
@@ -2169,6 +2823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Font"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
           }
         }
       }
@@ -2187,6 +2847,12 @@
             "state" : "translated",
             "value" : "Hapus Sorotan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????"
+          }
         }
       }
     },
@@ -2203,6 +2869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Sorotan & Catatan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????? ?????"
           }
         }
       }
@@ -2227,6 +2899,12 @@
             "state" : "translated",
             "value" : "Hapus Tag"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
+          }
         }
       }
     },
@@ -2250,6 +2928,12 @@
             "state" : "translated",
             "value" : "Hapus Tag & Anotasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???? ?????"
+          }
         }
       }
     },
@@ -2266,6 +2950,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Turun"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -2289,6 +2979,12 @@
             "state" : "translated",
             "value" : "Tampilan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -2304,6 +3000,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selesai"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -2322,6 +3024,12 @@
             "state" : "translated",
             "value" : "Unduh"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -2339,6 +3047,12 @@
             "state" : "translated",
             "value" : "Unduh Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???"
+          }
         }
       }
     },
@@ -2354,6 +3068,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unduh Selesai. Mulai mengintegrasikan..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ??????. ????? ????..."
           }
         }
       }
@@ -2372,6 +3092,12 @@
             "state" : "translated",
             "value" : "Unduhan Gagal"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ?????"
+          }
         }
       }
     },
@@ -2387,6 +3113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unduh Perpustakaan Lengkap (Google Drive)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Full Library (Google Drive)"
           }
         }
       }
@@ -2410,6 +3142,12 @@
             "state" : "translated",
             "value" : "Fase unduhan selesai (%1$lld/%2$lld). Memulai proses…"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download phase completed (%1$lld/%2$lld). Starting processing..."
+          }
         }
       }
     },
@@ -2425,6 +3163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unduh Perpustakaan Selektif..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Selective Library…"
           }
         }
       }
@@ -2442,6 +3186,12 @@
             "state" : "translated",
             "value" : "Diunduh"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -2458,6 +3208,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mengunduh"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
           }
         }
       }
@@ -2481,6 +3237,12 @@
             "state" : "translated",
             "value" : "Mengunduh %1$lld dari %2$lld kitab…"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? %1$lld ???? %2$lld ?????..."
+          }
         }
       }
     },
@@ -2497,6 +3259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mengunduh file kitab dari server..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???? ??? ?????..."
           }
         }
       }
@@ -2520,6 +3288,12 @@
             "state" : "translated",
             "value" : "Mengunduh kitab… (%1$lld/%2$lld)"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????... (%1$lld/%2$lld)"
+          }
         }
       }
     },
@@ -2536,6 +3310,12 @@
             "state" : "translated",
             "value" : "Mengunduh..."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????..."
+          }
         }
       }
     },
@@ -2551,6 +3331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unduhan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????"
           }
         }
       }
@@ -2574,6 +3360,12 @@
             "state" : "translated",
             "value" : "contoh, %lld"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., %lld"
+          }
         }
       }
     },
@@ -2589,6 +3381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "misal: 256 H"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., 256 AH"
           }
         }
       }
@@ -2612,6 +3410,12 @@
             "state" : "translated",
             "value" : "contoh, 32793"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., 32793"
+          }
         }
       }
     },
@@ -2628,6 +3432,12 @@
             "state" : "translated",
             "value" : "misal: Al-Bukhari"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., Al-Bukhari"
+          }
         }
       }
     },
@@ -2643,6 +3453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "misal: Sahih Bukhari"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g., Sahih Bukhari"
           }
         }
       }
@@ -2666,6 +3482,12 @@
             "state" : "translated",
             "value" : "Edit Anotasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????"
+          }
         }
       }
     },
@@ -2683,6 +3505,12 @@
             "state" : "translated",
             "value" : "Edit Catatan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????"
+          }
         }
       }
     },
@@ -2698,6 +3526,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edisi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????"
           }
         }
       }
@@ -2751,6 +3585,12 @@
             "state" : "translated",
             "value" : "Nama folder sudah ada."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder name already exist."
+          }
         }
       }
     },
@@ -2773,6 +3613,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error ketika mencoba membuat folder."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error when trying to create folder."
           }
         }
       }
@@ -2797,6 +3643,12 @@
             "state" : "translated",
             "value" : "Nama folder sudah ada di folder yang terpilih."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder name already exist in selected folder."
+          }
         }
       }
     },
@@ -2818,6 +3670,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Folder Anotasi Tidak Ditemukan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annotations Folder Not Found"
           }
         }
       }
@@ -2841,6 +3699,12 @@
             "state" : "translated",
             "value" : "Folder Hasil Pencarian Tidak Ditemukan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Results Folder Not Found"
+          }
         }
       }
     },
@@ -2862,6 +3726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terjadi kesalahan saat mencoba mengunduh file di iCloud Drive"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred when trying to download a file in iCloud Drive"
           }
         }
       }
@@ -2886,6 +3756,12 @@
             "state" : "translated",
             "value" : "Nama folder sudah ada di folder tujuan."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder name already exist in folder destination."
+          }
         }
       }
     },
@@ -2908,6 +3784,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error ketika mencoba memindahkan folder."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error when trying to move folder."
           }
         }
       }
@@ -2932,6 +3814,12 @@
             "state" : "translated",
             "value" : "Nama hasil pencarian sudah ada di folder tujuan."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Result name already exist in folder destination."
+          }
         }
       }
     },
@@ -2954,6 +3842,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error ketika mencoba memindahkan hasil pencarian."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error when trying to move results."
           }
         }
       }
@@ -2978,6 +3872,12 @@
             "state" : "translated",
             "value" : "Nama folder sudah ada di folder saat ini."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Result name already exist in currrent folder."
+          }
         }
       }
     },
@@ -2999,6 +3899,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nama folder sudah ada di folder saat ini."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Result name already exist in currrent folder."
           }
         }
       }
@@ -3023,6 +3929,12 @@
             "state" : "translated",
             "value" : "Error ketika mencoba menyimpan hasil pencarian."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error when trying to save results."
+          }
         }
       }
     },
@@ -3045,6 +3957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nama baru sudah ada."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New name already exist."
           }
         }
       }
@@ -3069,6 +3987,12 @@
             "state" : "translated",
             "value" : "Tidak dapat mengubah nama folder."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to rename folder."
+          }
         }
       }
     },
@@ -3091,6 +4015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak dapat mengubah nama hasil pencarian."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to rename result."
           }
         }
       }
@@ -3115,6 +4045,12 @@
             "state" : "translated",
             "value" : "Fitur ini memastikan semua kata yang diketik ditemukan secara berurutan dan sesuai urutan aslinya di dalam data (contoh: عقيدة الإمام الشافعي)."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ensures all typed words are found adjacently and in the exact order in the data. (e.g., عقيدة الإمام الشافعي)"
+          }
         }
       }
     },
@@ -3138,6 +4074,12 @@
             "state" : "translated",
             "value" : "1. Pencarian Frasa Persis"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Exact Match Search"
+          }
         }
       }
     },
@@ -3153,6 +4095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Penulis Sudah Ada"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Existing Author"
           }
         }
       }
@@ -3170,6 +4118,12 @@
             "state" : "translated",
             "value" : "Pengaturan Awal"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Factory Setting"
+          }
         }
       }
     },
@@ -3185,6 +4139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gagal: %@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed: %@"
           }
         }
       }
@@ -3208,6 +4168,12 @@
             "state" : "translated",
             "value" : "Favorit"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????"
+          }
         }
       }
     },
@@ -3220,6 +4186,12 @@
           }
         },
         "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File: %@"
+          }
+        },
+        "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "File: %@"
@@ -3246,6 +4218,12 @@
             "state" : "translated",
             "value" : "Saring Kitab untuk Dicari"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????? ??????"
+          }
         }
       }
     },
@@ -3268,6 +4246,12 @@
             "state" : "translated",
             "value" : "Pencarian Ibarot"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????"
+          }
         }
       }
     },
@@ -3284,6 +4268,12 @@
             "state" : "translated",
             "value" : "Nama Folder"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ??????"
+          }
         }
       }
     },
@@ -3299,6 +4289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Folder tidak ditemukan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder Not Found"
           }
         }
       }
@@ -3323,6 +4319,12 @@
             "state" : "translated",
             "value" : "Aplikasi tidak dapat berjalan tanpa folder database. Aplikasi akan ditutup."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application Will Terminate because Folder Location Not Found on (base)."
+          }
         }
       }
     },
@@ -3338,6 +4340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Folder"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????"
           }
         }
       }
@@ -3361,6 +4369,12 @@
             "state" : "translated",
             "value" : "Font"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -3383,6 +4397,12 @@
             "state" : "translated",
             "value" : "Ukuran Font: %lld"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????: %lld"
+          }
         }
       }
     },
@@ -3398,6 +4418,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ditemukan %lld yang perlu diperbarui"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Found %lld books that need to be updated"
           }
         }
       }
@@ -3415,6 +4441,12 @@
             "state" : "translated",
             "value" : "Perpustakaan Lengkap akan membuka tautan unduhan di peramban Anda."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full Library will open the download link in your browser."
+          }
         }
       }
     },
@@ -3430,6 +4462,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nama Lengkap (Lng)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full Name (Lng)"
           }
         }
       }
@@ -3447,6 +4485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hijau"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -3470,6 +4514,12 @@
             "state" : "translated",
             "value" : "Kelompokkan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???"
+          }
         }
       }
     },
@@ -3486,6 +4536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grup Buku"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by Book"
           }
         }
       }
@@ -3504,6 +4560,12 @@
             "state" : "translated",
             "value" : "Grup Tag"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by Tag"
+          }
         }
       }
     },
@@ -3519,6 +4581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bantuan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -3536,6 +4604,12 @@
             "state" : "translated",
             "value" : "Sembunyikan anotasi jika kitab yang bersangkutan tidak ditemukan di perpustakaan lokal."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide annotations if the corresponding book is not found in the local library."
+          }
         }
       }
     },
@@ -3551,6 +4625,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sembunyikan Anotasi Kitab yang Hilang"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Missing Book Annotations"
           }
         }
       }
@@ -3574,6 +4654,12 @@
             "state" : "translated",
             "value" : "Sorotan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -3595,6 +4681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Riwayat"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????????"
           }
         }
       }
@@ -3618,6 +4710,12 @@
             "state" : "translated",
             "value" : "Riwayat & Favorit"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????? ????????"
+          }
         }
       }
     },
@@ -3633,6 +4731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beranda"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
           }
         }
       }
@@ -3656,6 +4760,12 @@
             "state" : "translated",
             "value" : "ID %1$@ sudah memiliki %2$lld anotasi lokal, kemungkinan dari sinkronisasi CloudKit dengan perangkat lain untuk kitab yang berbeda. Lanjutkan hanya jika Anda yakin anotasi ini milik kitab ini."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID %1$@ already has %2$lld local annotations, possibly from CloudKit synchronization with another device for a different book. Proceed only if you are sure these annotations belong to this book."
+          }
         }
       }
     },
@@ -3677,6 +4787,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ID sudah terpakai"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID already taken"
           }
         }
       }
@@ -3700,6 +4816,12 @@
             "state" : "translated",
             "value" : "ID dicadangkan oleh sistem"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID reserved by system"
+          }
         }
       }
     },
@@ -3719,6 +4841,12 @@
             "state" : "translated",
             "value" : "Impor Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???"
+          }
         }
       }
     },
@@ -3734,6 +4862,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impor Gagal"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????"
           }
         }
       }
@@ -3751,6 +4885,12 @@
             "state" : "translated",
             "value" : "Impor Font..."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????..."
+          }
         }
       }
     },
@@ -3766,6 +4906,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impor Sekarang"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????"
           }
         }
       }
@@ -3783,6 +4929,12 @@
             "state" : "translated",
             "value" : "Impor Berhasil"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ?????"
+          }
         }
       }
     },
@@ -3798,6 +4950,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mengimpor Buku..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???..."
           }
         }
       }
@@ -3822,6 +4980,12 @@
             "state" : "translated",
             "value" : "Kitab telah berhasil diimpor."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???? ??????."
+          }
         }
       }
     },
@@ -3845,6 +5009,12 @@
             "state" : "translated",
             "value" : "Impor Berhasil"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ?????"
+          }
         }
       }
     },
@@ -3860,6 +5030,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Informasi (inf)"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information (inf)"
           }
         }
       }
@@ -3878,6 +5054,12 @@
             "state" : "translated",
             "value" : "Integrasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -3894,6 +5076,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mengintegrasikan Kitab"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???"
           }
         }
       }
@@ -3918,6 +5106,12 @@
             "state" : "translated",
             "value" : "Pertahankan yang Sudah Ada (Hapus yang Lama)"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep Existing (Delete Old)"
+          }
         }
       }
     },
@@ -3933,6 +5127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nanti"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????"
           }
         }
       }
@@ -3956,6 +5156,12 @@
             "state" : "translated",
             "value" : "Bersihkan terbaru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Recents"
+          }
         }
       }
     },
@@ -3977,6 +5183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak ada terbaru"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Recents"
           }
         }
       }
@@ -4000,6 +5212,12 @@
             "state" : "translated",
             "value" : "Terbaru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recents"
+          }
         }
       }
     },
@@ -4021,6 +5239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maktabah"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????"
           }
         }
       }
@@ -4044,6 +5268,12 @@
             "state" : "translated",
             "value" : "Pilihan Pustaka"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????? ??????"
+          }
         }
       }
     },
@@ -4059,6 +5289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Penyimpanan Perpustakaan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Library Storage"
           }
         }
       }
@@ -4076,6 +5312,12 @@
             "state" : "translated",
             "value" : "Pembaruan Perpustakaan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Library Update"
+          }
         }
       }
     },
@@ -4091,6 +5333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terdapat Pembaruan Perpustakaan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Library Update Available"
           }
         }
       }
@@ -4114,6 +5362,12 @@
             "state" : "translated",
             "value" : "Tinggi Baris"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????"
+          }
         }
       }
     },
@@ -4136,6 +5390,12 @@
             "state" : "translated",
             "value" : "Memuat Perpustakaan..."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?? ???????..."
+          }
         }
       }
     },
@@ -4152,6 +5412,12 @@
             "state" : "translated",
             "value" : "Memuat Rowi…"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??????..."
+          }
         }
       }
     },
@@ -4167,6 +5433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memuat daftar pembaruan…"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????? ?????..."
           }
         }
       }
@@ -4189,6 +5461,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maktabah"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
           }
         }
       }
@@ -4213,6 +5491,12 @@
             "state" : "translated",
             "value" : "Folder Master Dipilih"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Master Folder Selected"
+          }
         }
       }
     },
@@ -4235,6 +5519,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Luncurkan Ulang Aplikasi untuk Memulai dengan Basis Folder yang Baru."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Application Again to Start with New Base Folder."
           }
         }
       }
@@ -4259,6 +5549,12 @@
             "state" : "translated",
             "value" : "Gabungkan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
+          }
         }
       }
     },
@@ -4282,6 +5578,12 @@
             "state" : "translated",
             "value" : "Gabungkan Tag?"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??????"
+          }
         }
       }
     },
@@ -4303,6 +5605,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gagal migrasi ke folder kustom."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to migrate to custom folder."
           }
         }
       }
@@ -4326,6 +5634,12 @@
             "state" : "translated",
             "value" : "Mohon periksa kelengkapan database."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check the completeness of the database."
+          }
         }
       }
     },
@@ -4348,6 +5662,12 @@
             "state" : "translated",
             "value" : "Mode"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
+          }
         }
       }
     },
@@ -4363,6 +5683,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pindahkan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -4380,6 +5706,12 @@
             "state" : "translated",
             "value" : "Pindahkan ke"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??"
+          }
         }
       }
     },
@@ -4396,6 +5728,12 @@
             "state" : "translated",
             "value" : "Multibahasa"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Multi-Language"
+          }
         }
       }
     },
@@ -4411,6 +5749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nama"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??"
           }
         }
       }
@@ -4435,6 +5779,12 @@
             "state" : "translated",
             "value" : "Rowi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????"
+          }
         }
       }
     },
@@ -4456,6 +5806,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Navigasi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
           }
         }
       }
@@ -4479,6 +5835,12 @@
             "state" : "translated",
             "value" : "Halaman Navigasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????"
+          }
         }
       }
     },
@@ -4494,6 +5856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perlu pembaruan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs update"
           }
         }
       }
@@ -4518,6 +5886,12 @@
             "state" : "translated",
             "value" : "Baru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
+          }
         }
       }
     },
@@ -4533,6 +5907,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Baru"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
           }
         }
       }
@@ -4550,6 +5930,12 @@
             "state" : "translated",
             "value" : "Penulis Baru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???"
+          }
         }
       }
     },
@@ -4565,6 +5951,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ID Penulis Baru"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Author ID"
           }
         }
       }
@@ -4582,6 +5974,12 @@
             "state" : "translated",
             "value" : "Kitab Baru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???"
+          }
         }
       }
     },
@@ -4598,6 +5996,12 @@
             "state" : "translated",
             "value" : "ID Kitab Baru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Book ID"
+          }
         }
       }
     },
@@ -4613,6 +6017,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Folder Baru"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ????"
           }
         }
       }
@@ -4636,6 +6046,12 @@
             "state" : "translated",
             "value" : "Halaman Berikutnya"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???"
+          }
         }
       }
     },
@@ -4651,6 +6067,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak ada kitab terpilih"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ????? ?????"
           }
         }
       }
@@ -4669,6 +6091,12 @@
             "state" : "translated",
             "value" : "Tidak ada buku yang berhasil diunduh."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ????? ????? ??????."
+          }
         }
       }
     },
@@ -4684,6 +6112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak ada koneksi internet. Melewati unduhan."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????? ????????. ???? ?? ??????."
           }
         }
       }
@@ -4707,6 +6141,12 @@
             "state" : "translated",
             "value" : "Tidak ada riwayat terbaru"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???????? ??????"
+          }
         }
       }
     },
@@ -4723,6 +6163,12 @@
             "state" : "translated",
             "value" : "Tidak ada hasil yang ditemukan untuk \"%@\""
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ????? ?????? ???? \"%@\""
+          }
         }
       }
     },
@@ -4738,6 +6184,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak Ada Hasil Tersimpan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????? ??????"
           }
         }
       }
@@ -4762,6 +6214,12 @@
             "state" : "translated",
             "value" : "Tidak ada buku yang tersedia untuk proses pencarian."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no currently opened books available for the search process."
+          }
         }
       }
     },
@@ -4785,6 +6243,12 @@
             "state" : "translated",
             "value" : "Tidak tersedia"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ????"
+          }
         }
       }
     },
@@ -4806,6 +6270,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tidak ada seleksi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????"
           }
         }
       }
@@ -4829,6 +6299,12 @@
             "state" : "translated",
             "value" : "Catatan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -4844,6 +6320,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impor Kitab Offline"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??? ?? ?????"
           }
         }
       }
@@ -4867,6 +6349,12 @@
             "state" : "translated",
             "value" : "OK"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -4883,6 +6371,12 @@
             "state" : "translated",
             "value" : "Buka Konversi Web"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???? ???????"
+          }
         }
       }
     },
@@ -4898,6 +6392,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kitab yang Terbuka"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??????"
           }
         }
       }
@@ -4922,6 +6422,12 @@
             "state" : "translated",
             "value" : "Optimasi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????????"
+          }
         }
       }
     },
@@ -4944,6 +6450,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Optimasi diperlukan untuk memulihkan ruang disk setelah menghapus kitab."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optimization is needed to reclaim disk space after deleting books."
           }
         }
       }
@@ -4968,6 +6480,12 @@
             "state" : "translated",
             "value" : "Optimasi Database"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??? ??????"
+          }
         }
       }
     },
@@ -4983,6 +6501,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opsional"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????????"
           }
         }
       }
@@ -5005,6 +6529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Urutan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
           }
         }
       }
@@ -5029,6 +6559,12 @@
             "state" : "translated",
             "value" : "Timpa Yang Ada"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overwrite Existing"
+          }
         }
       }
     },
@@ -5046,6 +6582,12 @@
             "state" : "translated",
             "value" : "Halaman"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -5061,6 +6603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Slider Halaman"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PageSlider"
           }
         }
       }
@@ -5078,6 +6626,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Juz"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
           }
         }
       }
@@ -5102,6 +6656,12 @@
             "state" : "translated",
             "value" : "Pilih folder untuk menyimpan anotasi dan hasil pencarian."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select folder to save annotations and save results."
+          }
         }
       }
     },
@@ -5115,6 +6675,12 @@
           }
         },
         "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pink"
+          }
+        },
+        "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pink"
@@ -5136,6 +6702,12 @@
             "state" : "translated",
             "value" : "Mohon periksa koneksi internet Anda"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?? ????? ???????? ???"
+          }
         }
       }
     },
@@ -5152,6 +6724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mohon tunggu, proses ini tidak dapat dibatalkan."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please wait, this process cannot be cancelled."
           }
         }
       }
@@ -5175,6 +6753,12 @@
             "state" : "translated",
             "value" : "Mohon pilih baris"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please select a row"
+          }
         }
       }
     },
@@ -5196,6 +6780,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menyiapkan Perpustakaan..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?? ???????..."
           }
         }
       }
@@ -5219,6 +6809,12 @@
             "state" : "translated",
             "value" : "Halaman Sebelumnya"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????"
+          }
         }
       }
     },
@@ -5241,6 +6837,12 @@
             "state" : "translated",
             "value" : "Memproses: %1$@ (%2$lld/%3$lld)"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processing: %1$@ (%2$lld/%3$lld)"
+          }
         }
       }
     },
@@ -5256,6 +6858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memproses…"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????..."
           }
         }
       }
@@ -5274,6 +6882,12 @@
             "state" : "translated",
             "value" : "Ungu"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purple"
+          }
         }
       }
     },
@@ -5290,6 +6904,12 @@
             "state" : "translated",
             "value" : "Kueri: %@"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Query: %@"
+          }
         }
       }
     },
@@ -5305,6 +6925,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keluar"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??"
           }
         }
       }
@@ -5328,6 +6954,12 @@
             "state" : "translated",
             "value" : "Al-Qur'an Al-Karim"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al-Qur'an Al-Karim"
+          }
         }
       }
     },
@@ -5343,6 +6975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sinkronkan Ulang Semua Data"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Re-Synchronise All Data"
           }
         }
       }
@@ -5366,6 +7004,12 @@
             "state" : "translated",
             "value" : "Pembaca Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????"
+          }
         }
       }
     },
@@ -5382,6 +7026,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siap diunduh"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??????"
           }
         }
       }
@@ -5405,6 +7055,12 @@
             "state" : "translated",
             "value" : "Hapus Favorit"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????????"
+          }
         }
       }
     },
@@ -5420,6 +7076,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus dari Riwayat"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??????????"
           }
         }
       }
@@ -5442,6 +7104,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bersihkan Tag"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????"
           }
         }
       }
@@ -5466,6 +7134,12 @@
             "state" : "translated",
             "value" : "Ubah Nama"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??"
+          }
         }
       }
     },
@@ -5487,6 +7161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ubah ID kitab secara langsung dan migrasikan anotasi lokal."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename book ID in-place and migrate local annotations."
           }
         }
       }
@@ -5511,6 +7191,12 @@
             "state" : "translated",
             "value" : "Gagal Mengubah Nama"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??? ????"
+          }
         }
       }
     },
@@ -5527,6 +7213,12 @@
             "state" : "translated",
             "value" : "Ubah Nama Folder"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?? ??????"
+          }
         }
       }
     },
@@ -5542,6 +7234,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ubah Nama Hasil"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?? ?????"
           }
         }
       }
@@ -5566,6 +7264,12 @@
             "state" : "translated",
             "value" : "Ubah Nama Tag"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?? ????"
+          }
         }
       }
     },
@@ -5581,6 +7285,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ganti Kitab yang Ada"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace Existing Book"
           }
         }
       }
@@ -5604,6 +7314,12 @@
             "state" : "translated",
             "value" : "Ganti tema sepia bawaan dengan tampilan sistem iOS standar."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace the default sepia theme with standard iOS system appearance."
+          }
         }
       }
     },
@@ -5626,6 +7342,12 @@
             "state" : "translated",
             "value" : "Reset Tampilan Saat Ini"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Current View"
+          }
         }
       }
     },
@@ -5642,6 +7364,12 @@
             "state" : "translated",
             "value" : "Hasil"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????"
+          }
         }
       }
     },
@@ -5657,6 +7385,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dasar"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -5680,6 +7414,12 @@
             "state" : "translated",
             "value" : "Biografi Rowi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Narrator Biography"
+          }
         }
       }
     },
@@ -5695,6 +7435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Simpan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -5718,6 +7464,12 @@
             "state" : "translated",
             "value" : "Simpan Hasil"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ??????"
+          }
         }
       }
     },
@@ -5733,6 +7485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Simpan Hasil Pencarian"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????? ?????"
           }
         }
       }
@@ -5750,6 +7508,12 @@
             "state" : "translated",
             "value" : "Simpan hasil pencarian untuk diakses nanti."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save search results to access them later."
+          }
         }
       }
     },
@@ -5765,6 +7529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hasil Tersimpan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????? ??????"
           }
         }
       }
@@ -5788,6 +7558,12 @@
             "state" : "translated",
             "value" : "Cari"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -5809,6 +7585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Anotasi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??????"
           }
         }
       }
@@ -5832,6 +7614,12 @@
             "state" : "translated",
             "value" : "Cari Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????"
+          }
         }
       }
     },
@@ -5848,6 +7636,12 @@
             "state" : "translated",
             "value" : "Cari Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????"
+          }
         }
       }
     },
@@ -5863,6 +7657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari kitab..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????..."
           }
         }
       }
@@ -5886,6 +7686,12 @@
             "state" : "translated",
             "value" : "Cari Daftar Isi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????"
+          }
         }
       }
     },
@@ -5902,6 +7708,12 @@
             "state" : "translated",
             "value" : "Cari Favorit & Riwayat"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???????? ??????????"
+          }
         }
       }
     },
@@ -5917,6 +7729,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Apapun"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search globally"
           }
         }
       }
@@ -5940,6 +7758,12 @@
             "state" : "translated",
             "value" : "Cari Riwayat & Favorit"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????????? ?????????"
+          }
         }
       }
     },
@@ -5962,6 +7786,12 @@
             "state" : "translated",
             "value" : "Cari di Kitab"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????"
+          }
         }
       }
     },
@@ -5978,6 +7808,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari di Kitab yang terpilih"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?????? ??????"
           }
         }
       }
@@ -6001,6 +7837,12 @@
             "state" : "translated",
             "value" : "Cari Perpustakaan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???????"
+          }
         }
       }
     },
@@ -6016,6 +7858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Rowi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??????"
           }
         }
       }
@@ -6039,6 +7887,12 @@
             "state" : "translated",
             "value" : "Pilihan Pencarian"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????? ?????"
+          }
         }
       }
     },
@@ -6060,6 +7914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????..."
           }
         }
       }
@@ -6084,6 +7944,12 @@
             "state" : "translated",
             "value" : "Cari di kitab ini"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ???? ??"
+          }
         }
       }
     },
@@ -6107,6 +7973,12 @@
             "state" : "translated",
             "value" : "Bantuan Pilihan Pencarian"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ????????? ?????"
+          }
         }
       }
     },
@@ -6122,6 +7994,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???"
           }
         }
       }
@@ -6145,6 +8023,12 @@
             "state" : "translated",
             "value" : "Pilih kitab untuk dibaca"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??? ??????"
+          }
         }
       }
     },
@@ -6160,6 +8044,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Semua"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
           }
         }
       }
@@ -6177,6 +8067,12 @@
             "state" : "translated",
             "value" : "Pilih Penulis"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
+          }
         }
       }
     },
@@ -6192,6 +8088,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Kitab"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???"
           }
         }
       }
@@ -6209,6 +8111,12 @@
             "state" : "translated",
             "value" : "Pilih kitab untuk diunduh."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select book to download."
+          }
         }
       }
     },
@@ -6225,6 +8133,12 @@
             "state" : "translated",
             "value" : "Pilih Kitab untuk Diganti"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??? ??????"
+          }
         }
       }
     },
@@ -6240,6 +8154,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Kategori..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???????..."
           }
         }
       }
@@ -6263,6 +8183,12 @@
             "state" : "translated",
             "value" : "Pilih Favorit"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???????"
+          }
         }
       }
     },
@@ -6278,6 +8204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Berkas"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
           }
         }
       }
@@ -6295,6 +8227,12 @@
             "state" : "translated",
             "value" : "Pilih Folder"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??????"
+          }
         }
       }
     },
@@ -6310,6 +8248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilih Font..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????..."
           }
         }
       }
@@ -6327,6 +8271,12 @@
             "state" : "translated",
             "value" : "Pilih Penulis Terdaftar"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Registered Author"
+          }
         }
       }
     },
@@ -6342,6 +8292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pengecekan Setengah Tahunan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semi-Annual Check"
           }
         }
       }
@@ -6366,6 +8322,12 @@
             "state" : "translated",
             "value" : "Mencari kata-kata yang dipisahkan oleh sebuah koma (,). Kata-kata tersebut tidak perlu berdampingan atau dalam urutan yang ditentukan. (contoh: صلاة الجماعة, المأموم المسبوق)"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Searches for words separated by a comma (,). The words do not need to be adjacent or in the order specified.\n(e.g., صلاة الجماعة, المأموم المسبوق)"
+          }
         }
       }
     },
@@ -6389,6 +8351,12 @@
             "state" : "translated",
             "value" : "2. Pencarian Kalimat Tersebar"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Separated Words Search"
+          }
         }
       }
     },
@@ -6404,6 +8372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pengaturan"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??????"
           }
         }
       }
@@ -6427,6 +8401,12 @@
             "state" : "translated",
             "value" : "Bagikan dengan Referensi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?? ????"
+          }
         }
       }
     },
@@ -6449,6 +8429,12 @@
             "state" : "translated",
             "value" : "Tampilkan Harakat"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ?????"
+          }
         }
       }
     },
@@ -6464,6 +8450,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dilewati"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -6487,6 +8479,12 @@
             "state" : "translated",
             "value" : "Urutkan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???"
+          }
         }
       }
     },
@@ -6509,6 +8507,12 @@
             "state" : "translated",
             "value" : "Mulai Pencarian"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????"
+          }
         }
       }
     },
@@ -6524,6 +8528,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memulai pembaruan %lld kitab…"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starting %lld books update..."
           }
         }
       }
@@ -6541,6 +8551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stop"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -6564,6 +8580,12 @@
             "state" : "translated",
             "value" : "Hentikan Pencarian"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????"
+          }
         }
       }
     },
@@ -6580,6 +8602,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unduhan dihentikan. %lld kitab selesai."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopped downloads. %lld books completed."
           }
         }
       }
@@ -6598,6 +8626,12 @@
             "state" : "translated",
             "value" : "Dihentikan. %lld kitab selesai."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopped. %lld books completed."
+          }
         }
       }
     },
@@ -6614,6 +8648,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menghentikan unduhan. Mengintegrasikan kitab yang selesai..."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopping downloads. Integrating completed books..."
           }
         }
       }
@@ -6637,6 +8677,12 @@
             "state" : "translated",
             "value" : "Gaya"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
+          }
         }
       }
     },
@@ -6658,6 +8704,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Berhasil"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
           }
         }
       }
@@ -6681,6 +8733,12 @@
             "state" : "translated",
             "value" : "Ganti Mode"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???"
+          }
         }
       }
     },
@@ -6697,6 +8755,12 @@
             "state" : "translated",
             "value" : "Beralih ke Mode Bundel"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switch to Bundle Mode"
+          }
         }
       }
     },
@@ -6712,6 +8776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selaraskan anotasi dan hasil pencarian di seluruh perangkat dengan CloudKit."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync annotations and search results across devices with CloudKit."
           }
         }
       }
@@ -6735,6 +8805,12 @@
             "state" : "translated",
             "value" : "Sinkronisasi Data"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??????"
+          }
         }
       }
     },
@@ -6757,6 +8833,12 @@
             "state" : "translated",
             "value" : "Daftar Isi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ???????"
+          }
         }
       }
     },
@@ -6772,6 +8854,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nama Tafsir"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tafseer Name"
           }
         }
       }
@@ -6795,6 +8883,12 @@
             "state" : "translated",
             "value" : "Tag"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -6813,6 +8907,12 @@
           }
         },
         "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tag1, tag2..."
+          }
+        },
+        "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "tag1, tag2..."
@@ -6839,6 +8939,12 @@
             "state" : "translated",
             "value" : "Tag (pisahkan dengan koma)"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? (??????? ???????)"
+          }
         }
       }
     },
@@ -6860,6 +8966,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pilihan Teks"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????? ????"
           }
         }
       }
@@ -6884,6 +8996,12 @@
             "state" : "translated",
             "value" : "File database inti belum siap. Selesaikan unduhan awal terlebih dahulu."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The core database files are not ready yet. Finish the initial download first."
+          }
         }
       }
     },
@@ -6900,6 +9018,12 @@
             "state" : "translated",
             "value" : "Tidak Ada Buku untuk Diunduh."
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There's Nothing Books to Download."
+          }
         }
       }
     },
@@ -6915,6 +9039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ini akan menghapus semua file SQLite yang diunduh, indeks, dan cache dari penyimpanan mode bundel."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This will delete all downloaded SQLite files, index, and cache from the bundle mode storage."
           }
         }
       }
@@ -6939,6 +9069,12 @@
             "state" : "translated",
             "value" : "Daftar Isi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Table Of Contents"
+          }
         }
       }
     },
@@ -6954,6 +9090,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Coba Lagi"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ???"
           }
         }
       }
@@ -6977,6 +9119,12 @@
             "state" : "translated",
             "value" : "Tipografi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????????"
+          }
         }
       }
     },
@@ -6993,6 +9141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Garis Bawah"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?? ?????"
           }
         }
       }
@@ -7017,6 +9171,12 @@
             "state" : "translated",
             "value" : "Tidak ditandai"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ????"
+          }
         }
       }
     },
@@ -7032,6 +9192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perbarui Sekarang"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???? ?????"
           }
         }
       }
@@ -7049,6 +9215,12 @@
             "state" : "translated",
             "value" : "Hanya Pembaruan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Only"
+          }
         }
       }
     },
@@ -7061,6 +9233,12 @@
           }
         },
         "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update selected (%lld)"
+          }
+        },
+        "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Update selected (%lld)"
@@ -7081,6 +9259,12 @@
             "state" : "translated",
             "value" : "Pembaruan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????"
+          }
         }
       }
     },
@@ -7097,6 +9281,12 @@
             "state" : "translated",
             "value" : "Memperbarui Perpustakaan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??????"
+          }
         }
       }
     },
@@ -7112,6 +9302,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gunakan CloudKit"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ?-CloudKit"
           }
         }
       }
@@ -7135,6 +9331,12 @@
             "state" : "translated",
             "value" : "Gunakan Tema Sistem"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ????? ??????"
+          }
         }
       }
     },
@@ -7150,6 +9352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gunakan basis data bawaan aplikasi (hanya baca). Untuk Perpustakaan Lengkap, nonaktifkan ini dan pilih folder khusus."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder."
           }
         }
       }
@@ -7181,6 +9389,12 @@
             "state" : "translated",
             "value" : "Versi"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
+          }
         }
       }
     },
@@ -7196,6 +9410,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versi %@ tersedia. Basis data inti berisi metadata dan kategori buku."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@ is available. The core database contains books metadata and categories."
           }
         }
       }
@@ -7219,6 +9439,12 @@
             "state" : "translated",
             "value" : "Opsi Tampilan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????? ?????"
+          }
         }
       }
     },
@@ -7241,6 +9467,12 @@
             "state" : "translated",
             "value" : "Opsi Tampilan"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "???????? ?????"
+          }
         }
       }
     },
@@ -7256,6 +9488,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menunggu"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "?????"
           }
         }
       }
@@ -7279,6 +9517,12 @@
             "state" : "translated",
             "value" : "Akan menimpa yang sudah ada"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Will overwrite existing"
+          }
         }
       }
     },
@@ -7295,6 +9539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kuning"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????"
           }
         }
       }
@@ -7317,6 +9567,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cari Rowi Hadits"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search in Narrators"
           }
         }
       }
@@ -7346,6 +9602,12 @@
             "state" : "translated",
             "value" : "Kartu Kitab:"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Book Card:"
+          }
         }
       }
     },
@@ -7367,6 +9629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Juz: %lld"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vol: %lld"
           }
         }
       }
@@ -7393,6 +9661,12 @@
             "state" : "translated",
             "value" : "Hal: %lld"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P: %lld"
+          }
         }
       }
     },
@@ -7415,6 +9689,12 @@
             "state" : "translated",
             "value" : "Tentang Kitab:"
           }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About the Book:"
+          }
         }
       }
     },
@@ -7436,6 +9716,63 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentang Penulis:"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About the Author:"
+          }
+        }
+      }
+    },
+    "Choose Otzaria Database" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Otzaria Database"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??? ??????"
+          }
+        }
+      }
+    },
+    "Disconnect Otzaria Database" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnect Otzaria Database"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "??? ??? ??????"
+          }
+        }
+      }
+    },
+    "Otzaria Database Error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otzaria Database Error"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "????? ??? ??????"
           }
         }
       }

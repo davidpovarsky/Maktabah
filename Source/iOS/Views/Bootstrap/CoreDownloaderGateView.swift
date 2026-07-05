@@ -33,7 +33,7 @@ struct iOSCoreDownloadGateView: View {
                 .frame(width: 36, height: 36)
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Database File Needed")
+                    Text(String(localized: "Database File Needed"))
                         .font(.headline)
 
                     Text(badgeText)
@@ -54,7 +54,7 @@ struct iOSCoreDownloadGateView: View {
             switch state.phase {
             case .confirmation:
                 HStack {
-                    Button("Choose Otzaria Database", action: onChooseOtzaria)
+                    Button(String(localized: "Choose Otzaria Database"), action: onChooseOtzaria)
                         .buttonStyle(.bordered)
                     Spacer()
                     Button(String(localized: "Download"), action: onDownload)
@@ -81,7 +81,7 @@ struct iOSCoreDownloadGateView: View {
 
             case .error:
                 HStack {
-                    Button("Choose Otzaria Database", action: onChooseOtzaria)
+                    Button(String(localized: "Choose Otzaria Database"), action: onChooseOtzaria)
                         .buttonStyle(.bordered)
                     Spacer()
                     Button(String(localized: "Try Again"), action: onDownload)
@@ -105,7 +105,7 @@ struct iOSCoreDownloadGateView: View {
         switch state.phase {
         case .confirmation: String(localized: "Ready to Download")
         case .downloading: String(localized: "Downloading")
-        case .error: "Error"
+        case .error: String(localized: "Error")
         }
     }
 

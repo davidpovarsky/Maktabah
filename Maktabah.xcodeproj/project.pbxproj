@@ -669,6 +669,7 @@
 		F323BCA12F2EE70200EFD4F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA32F2EE71800EFD4F4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F323BCA42F2EE71A00EFD4F4 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F323BCA52F2EE71B00EFD4F4 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F33214392FC2750E006EC214 /* ThemeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeComponents.swift; sourceTree = "<group>"; };
 		F349073E2F3064A10036CDAF /* IconMaktabah.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = IconMaktabah.icon; sourceTree = "<group>"; };
 		F34B708B2FC87BFF00BBE904 /* UserFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFontManager.swift; sourceTree = "<group>"; };
@@ -1516,6 +1517,7 @@
 				ar,
 				Base,
 				id,
+				he,
 			);
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
@@ -2183,6 +2185,7 @@
 				F323BCA12F2EE70200EFD4F4 /* en */,
 				F323BCA32F2EE71800EFD4F4 /* ar */,
 				F323BCA42F2EE71A00EFD4F4 /* id */,
+				F323BCA52F2EE71B00EFD4F4 /* he */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

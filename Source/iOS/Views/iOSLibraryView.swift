@@ -49,31 +49,31 @@ struct iOSLibraryView: View {
                     }
                 }
             }
-            .alert("Import Success", isPresented: $viewModel.showImportSuccessAlert) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "Import Success"), isPresented: $viewModel.showImportSuccessAlert) {
+                Button(String(localized: "OK"), role: .cancel) {}
             } message: {
                 Text(String(localized: .importSuccessDesc))
             }
-            .alert("Import Error", isPresented: importErrorBinding) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "Import Error"), isPresented: importErrorBinding) {
+                Button(String(localized: "OK"), role: .cancel) {}
             } message: {
                 Text(viewModel.importErrorMessage ?? "")
             }
-            .alert("Otzaria Database Error", isPresented: otzariaErrorBinding) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "Otzaria Database Error"), isPresented: otzariaErrorBinding) {
+                Button(String(localized: "OK"), role: .cancel) {}
             } message: {
                 Text(otzariaImportError ?? "")
             }
-            .alert("Delete Download", isPresented: $viewModel.showingDeleteConfirmation) {
-                Button("Delete", role: .destructive) {
+            .alert(String(localized: "Delete Download"), isPresented: $viewModel.showingDeleteConfirmation) {
+                Button(String(localized: "Delete"), role: .destructive) {
                     viewModel.startBulkDeletion {}
                 }
-                Button("Cancel", role: .cancel) {}
+                Button(String(localized: "Cancel"), role: .cancel) {}
             } message: {
-                Text("Are you sure you want to delete the downloaded content for \(viewModel.selectedDeleteCount) books?")
+                Text(String(format: String(localized: "Are you sure you want to delete the downloaded content for %lld books?"), Int64(viewModel.selectedDeleteCount)))
             }
-            .alert("Delete Download", isPresented: singleDeleteBinding) {
-                Button("Delete", role: .destructive) {
+            .alert(String(localized: "Delete Download"), isPresented: singleDeleteBinding) {
+                Button(String(localized: "Delete"), role: .destructive) {
                     if let book = viewModel.singleBookToDelete {
                         Task {
                             await viewModel.deleteSingleBook(book)
@@ -81,9 +81,9 @@ struct iOSLibraryView: View {
                         }
                     }
                 }
-                Button("Cancel", role: .cancel) {}
+                Button(String(localized: "Cancel"), role: .cancel) {}
             } message: {
-                Text("Are you sure you want to delete the downloaded content for \"\(viewModel.singleBookToDelete?.book ?? "")\"?")
+                Text(String(format: String(localized: "Are you sure you want to delete the downloaded content for \"%@\"?"), viewModel.singleBookToDelete?.book ?? ""))
             }
     }
 
@@ -115,7 +115,7 @@ struct iOSLibraryView: View {
             .ignoresSafeArea(edges: [.vertical])
 
             if viewModel.state == .loading {
-                ProgressView("Loading Library...")
+                ProgressView(String(localized: "Loading Library..."))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .themeBackground()
             }
@@ -165,7 +165,7 @@ struct iOSLibraryView: View {
     private func toolbarContent(viewModel: LibraryViewModel) -> some ToolbarContent {
         if viewModel.isSelectionMode {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Done") {
+                Button(String(localized: "Done")) {
                     viewModel.exitSelectionMode()
                 }
                 .disabled(viewModel.isBulkDownloading)
@@ -175,7 +175,7 @@ struct iOSLibraryView: View {
                 Button {
                     viewModel.showingDeleteConfirmation = true
                 } label: {
-                    Label("Delete", systemImage: "trash")
+                    Label(String(localized: "Delete"), systemImage: "trash")
                 }
                 .disabled(viewModel.selectedDeleteCount == 0 || viewModel.isBulkDownloading)
                 .tint(.red)
@@ -183,17 +183,17 @@ struct iOSLibraryView: View {
         } else {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
-                    Section("Group By") {
+                    Section(String(localized: "Group By")) {
                         Button { viewModel.viewMode = .category } label: {
-                            Label("Category", systemImage: "folder")
+                            Label(String(localized: "Category"), systemImage: "folder")
                         }
                         Button { viewModel.viewMode = .author } label: {
-                            Label("Author", systemImage: "person")
+                            Label(String(localized: "Author"), systemImage: "person")
                         }
                     }
                 } label: {
                     Label(
-                        "Group By",
+                        String(localized: "Group By"),
                         systemImage: viewModel.viewMode == .category ? "folder" : "person"
                     )
                 }
@@ -205,7 +205,7 @@ struct iOSLibraryView: View {
                         get: { viewModel.showOnlyDownloaded },
                         set: { viewModel.showOnlyDownloaded = $0 }
                     )) {
-                        Label("Downloaded", systemImage: "line.3.horizontal.decrease")
+                        Label(String(localized: "Downloaded"), systemImage: "line.3.horizontal.decrease")
                     }
                     .labelStyle(.iconOnly)
                     .toggleStyle(.button)
@@ -219,7 +219,7 @@ struct iOSLibraryView: View {
                     Button {
                         showingOtzariaImporter = true
                     } label: {
-                        Label("בחר מסד אוצריא", systemImage: "externaldrive")
+                        Label(String(localized: "Choose Otzaria Database"), systemImage: "externaldrive")
                     }
 
                     if OtzariaMaktabahBridge.shared.isEnabled {
@@ -228,7 +228,7 @@ struct iOSLibraryView: View {
                             DatabaseManager.shared.reloadConnectionAndLibrary()
                             Task { await viewModel.refreshLibrary() }
                         } label: {
-                            Label("נתק מסד אוצריא", systemImage: "xmark.circle")
+                            Label(String(localized: "Disconnect Otzaria Database"), systemImage: "xmark.circle")
                         }
                     }
 
@@ -237,14 +237,14 @@ struct iOSLibraryView: View {
                     Button {
                         viewModel.enterSelectionMode()
                     } label: {
-                        Label("Select".localized + "...", systemImage: "checkmark.circle")
+                        Label(String(localized: "Select") + "...", systemImage: "checkmark.circle")
                     }
                     .disabled(OtzariaMaktabahBridge.shared.isEnabled)
 
                     Button {
                         viewModel.showingImportSheet = true
                     } label: {
-                        Label("Import Book", systemImage: "plus.viewfinder")
+                        Label(String(localized: "Import Book"), systemImage: "plus.viewfinder")
                     }
                     .disabled(OtzariaMaktabahBridge.shared.isEnabled)
                 } label: {

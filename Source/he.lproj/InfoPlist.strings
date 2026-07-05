@@ -1,0 +1,7 @@
+/*
+  InfoPlist.strings
+  Maktabah
+*/
+
+CFBundleDisplayName = "אוצריא";
+CFBundleName = "אוצריא";
