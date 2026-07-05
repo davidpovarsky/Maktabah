@@ -28,7 +28,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Filter by Books…"
+            "value" : "\u05e1\u05d9\u05e0\u05d5\u05df \u05dc\u05e4\u05d9 \u05e1\u05e4\u05e8\u05d9\u05dd\u2026"
           }
         }
       }
@@ -57,7 +57,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "More Options"
+            "value" : "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05e0\u05d5\u05e1\u05e4\u05d5\u05ea"
           }
         }
       }
@@ -85,7 +85,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'%1$@' already exists. All annotations from '%2$@' will be merged into '%3$@'."
+            "value" : "'%1$@' \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd. \u05db\u05dc \u05d4\u05d4\u05e2\u05e8\u05d5\u05ea \u05de\u05be'%2$@' \u05d9\u05de\u05d5\u05d6\u05d2\u05d5 \u05dc\u05ea\u05d5\u05da '%3$@'."
           }
         }
       }
@@ -107,7 +107,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\"%@\" and all its contents will be permanently deleted."
+            "value" : "\"%@\" \u05d5\u05db\u05dc \u05d4\u05ea\u05d5\u05db\u05df \u05e9\u05dc\u05d5 \u05d9\u05d9\u05de\u05d7\u05e7\u05d5 \u05dc\u05e6\u05de\u05d9\u05ea\u05d5\u05ea."
           }
         }
       }
@@ -166,7 +166,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Annotations Exist"
+            "value" : "\u05e7\u05d9\u05d9\u05de\u05d5\u05ea %lld \u05d4\u05e2\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -188,7 +188,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld book selected"
+            "value" : "\u05e0\u05d1\u05d7\u05e8\u05d5 %lld \u05e1\u05e4\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -210,7 +210,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld books needs updates"
+            "value" : "%lld \u05e1\u05e4\u05e8\u05d9\u05dd \u05d6\u05e7\u05d5\u05e7\u05d9\u05dd \u05dc\u05e2\u05d3\u05db\u05d5\u05df"
           }
         }
       }
@@ -232,7 +232,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld books to download."
+            "value" : "%lld \u05e1\u05e4\u05e8\u05d9\u05dd \u05dc\u05d4\u05d5\u05e8\u05d3\u05d4."
           }
         }
       }
@@ -261,7 +261,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld completed, %2$lld failed."
+            "value" : "%1$lld \u05d4\u05d5\u05e9\u05dc\u05de\u05d5, %2$lld \u05e0\u05db\u05e9\u05dc\u05d5."
           }
         }
       }
@@ -324,7 +324,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????"
+            "value" : "\u05e0\u05d3\u05e8\u05e9\u05ea \u05d2\u05d9\u05e9\u05d4"
           }
         }
       }
@@ -352,7 +352,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????????"
+            "value" : "\u05d4\u05d5\u05e1\u05e3 \u05dc\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd"
           }
         }
       }
@@ -375,7 +375,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????"
+            "value" : "\u05d4\u05d5\u05e1\u05e3 \u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -403,7 +403,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????"
+            "value" : "\u05d4\u05d5\u05e1\u05e3 \u05ea\u05d2\u05d9\u05d5\u05ea"
           }
         }
       }
@@ -425,7 +425,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d4\u05db\u05dc"
           }
         }
       }
@@ -448,7 +448,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All %lld books processed successfully."
+            "value" : "\u05db\u05dc %lld \u05d4\u05e1\u05e4\u05e8\u05d9\u05dd \u05e2\u05d5\u05d1\u05d3\u05d5 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4."
           }
         }
       }
@@ -476,7 +476,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ??????"
+            "value" : "\u05db\u05dc \u05d4\u05d4\u05e2\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -498,7 +498,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All books are up to date"
+            "value" : "\u05db\u05dc \u05d4\u05e1\u05e4\u05e8\u05d9\u05dd \u05de\u05e2\u05d5\u05d3\u05db\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -520,7 +520,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Already updated"
+            "value" : "\u05db\u05d1\u05e8 \u05de\u05e2\u05d5\u05d3\u05db\u05df"
           }
         }
       }
@@ -543,7 +543,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "annotation"
+            "value" : "\u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -572,7 +572,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Existing Annotations Found"
+            "value" : "\u05e0\u05de\u05e6\u05d0\u05d5 \u05d4\u05e2\u05e8\u05d5\u05ea \u05e7\u05d9\u05d9\u05de\u05d5\u05ea"
           }
         }
       }
@@ -601,7 +601,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d4\u05e2\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -623,7 +623,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annotations & Search Results"
+            "value" : "\u05d4\u05e2\u05e8\u05d5\u05ea \u05d5\u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -652,7 +652,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annotations already exist in the destination folder. Would you like to keep them (and delete the old ones) or overwrite them with the old ones?"
+            "value" : "\u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05de\u05d5\u05ea \u05d4\u05e2\u05e8\u05d5\u05ea \u05d1\u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05d9\u05e2\u05d3. \u05d4\u05d0\u05dd \u05dc\u05e9\u05de\u05d5\u05e8 \u05d0\u05d5\u05ea\u05df (\u05d5\u05dc\u05de\u05d7\u05d5\u05e7 \u05d0\u05ea \u05d4\u05d9\u05e9\u05e0\u05d5\u05ea) \u05d0\u05d5 \u05dc\u05d4\u05d7\u05dc\u05d9\u05e3 \u05d0\u05d5\u05ea\u05df \u05d1\u05d9\u05e9\u05e0\u05d5\u05ea?"
           }
         }
       }
@@ -680,7 +680,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Searches for records containing at least one of the words or phrases separated by a comma (,). Records matching any of the entries will be included in the results.\n(e.g., زكاة ,الزكاة)"
+            "value" : "\u05de\u05d7\u05e4\u05e9 \u05e8\u05e9\u05d5\u05de\u05d5\u05ea \u05e9\u05de\u05db\u05d9\u05dc\u05d5\u05ea \u05dc\u05e4\u05d7\u05d5\u05ea \u05d0\u05d7\u05ea \u05de\u05d4\u05de\u05d9\u05dc\u05d9\u05dd \u05d0\u05d5 \u05d4\u05d1\u05d9\u05d8\u05d5\u05d9\u05d9\u05dd \u05d4\u05de\u05d5\u05e4\u05e8\u05d3\u05d9\u05dd \u05d1\u05e4\u05e1\u05d9\u05e7 (,). \u05e8\u05e9\u05d5\u05de\u05d5\u05ea \u05e9\u05de\u05ea\u05d0\u05d9\u05de\u05d5\u05ea \u05dc\u05d0\u05d7\u05d3 \u05d4\u05e2\u05e8\u05db\u05d9\u05dd \u05d9\u05d9\u05db\u05dc\u05dc\u05d5 \u05d1\u05ea\u05d5\u05e6\u05d0\u05d5\u05ea.\n(\u05dc\u05d3\u05d5\u05d2\u05de\u05d4: \u0632\u0643\u0627\u0629 ,\u0627\u0644\u0632\u0643\u0627\u0629)"
           }
         }
       }
@@ -708,7 +708,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "3. Match Any Word"
+            "value" : "3. \u05d4\u05ea\u05d0\u05de\u05d4 \u05dc\u05db\u05dc \u05de\u05d9\u05dc\u05d4"
           }
         }
       }
@@ -736,7 +736,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05de\u05e8\u05d0\u05d4"
           }
         }
       }
@@ -764,7 +764,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????????"
+            "value" : "\u05e2\u05d3\u05db\u05d5\u05df \u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4"
           }
         }
       }
@@ -792,7 +792,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The application requires access to the SQLite Database folder to proceed."
+            "value" : "\u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05d3\u05d5\u05e8\u05e9\u05ea \u05d2\u05d9\u05e9\u05d4 \u05dc\u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd SQLite \u05db\u05d3\u05d9 \u05dc\u05d4\u05de\u05e9\u05d9\u05da."
           }
         }
       }
@@ -820,7 +820,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??????"
+            "value" : "\u05de\u05d6\u05d4\u05d4 \u05d0\u05e8\u05db\u05d9\u05d5\u05df"
           }
         }
       }
@@ -842,7 +842,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????? ?? ????? ????? ???? \"%@\"?"
+            "value" : "\u05d4\u05d0\u05dd \u05dc\u05de\u05d7\u05d5\u05e7 \u05d0\u05ea \u05d4\u05ea\u05d5\u05db\u05df \u05e9\u05d4\u05d5\u05e8\u05d3 \u05e2\u05d1\u05d5\u05e8 \"%@\"?"
           }
         }
       }
@@ -864,7 +864,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????? ?? ????? ????? ???? %lld ??????"
+            "value" : "\u05d4\u05d0\u05dd \u05dc\u05de\u05d7\u05d5\u05e7 \u05d0\u05ea \u05d4\u05ea\u05d5\u05db\u05df \u05e9\u05d4\u05d5\u05e8\u05d3 \u05e2\u05d1\u05d5\u05e8 %lld \u05e1\u05e4\u05e8\u05d9\u05dd?"
           }
         }
       }
@@ -887,7 +887,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ascending"
+            "value" : "\u05e2\u05d5\u05dc\u05d4"
           }
         }
       }
@@ -909,7 +909,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05de\u05d7\u05d1\u05e8"
           }
         }
       }
@@ -931,7 +931,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????"
+            "value" : "\u05e4\u05e8\u05d8\u05d9 \u05de\u05d7\u05d1\u05e8"
           }
         }
       }
@@ -953,7 +953,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?? ?????"
+            "value" : "\u05de\u05d9\u05d3\u05e2 \u05e2\u05dc \u05d4\u05de\u05d7\u05d1\u05e8"
           }
         }
       }
@@ -975,7 +975,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ?????"
+            "value" : "\u05e9\u05dd \u05d4\u05de\u05d7\u05d1\u05e8"
           }
         }
       }
@@ -997,7 +997,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05e1\u05d5\u05d2 \u05de\u05d7\u05d1\u05e8"
           }
         }
       }
@@ -1025,7 +1025,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05e8\u05e7\u05e2"
           }
         }
       }
@@ -1047,7 +1047,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??????..."
+            "value" : "\u05de\u05ea\u05d7\u05d9\u05dc \u05dc\u05d4\u05d5\u05e8\u05d9\u05d3..."
           }
         }
       }
@@ -1069,7 +1069,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bi-Annual Routine Check until toggled off and on again."
+            "value" : "\u05d1\u05d3\u05d9\u05e7\u05d4 \u05d3\u05d5-\u05e9\u05e0\u05ea\u05d9\u05ea \u05e2\u05d3 \u05db\u05d9\u05d1\u05d5\u05d9 \u05d5\u05d4\u05e4\u05e2\u05dc\u05d4 \u05de\u05d7\u05d3\u05e9."
           }
         }
       }
@@ -1092,7 +1092,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Blue"
+            "value" : "\u05db\u05d7\u05d5\u05dc"
           }
         }
       }
@@ -1120,7 +1120,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05e1\u05e4\u05e8"
           }
         }
       }
@@ -1148,7 +1148,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???"
+            "value" : "\u05e4\u05e8\u05d8\u05d9 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -1176,7 +1176,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?? ????"
+            "value" : "\u05de\u05d9\u05d3\u05e2 \u05e2\u05dc \u05d4\u05e1\u05e4\u05e8"
           }
         }
       }
@@ -1198,7 +1198,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Book Name (bk)"
+            "value" : "\u05e9\u05dd \u05e1\u05e4\u05e8 (bk)"
           }
         }
       }
@@ -1220,7 +1220,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???"
+            "value" : "\u05e1\u05d5\u05d2 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -1248,7 +1248,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???"
+            "value" : "\u05e4\u05e8\u05d8\u05d9 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -1277,7 +1277,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The book for this annotation was not found. If this is an offline imported book, ensure you have also imported it on this device using the same ID as on your other device, or hide it via Settings."
+            "value" : "\u05d4\u05e1\u05e4\u05e8 \u05e9\u05dc \u05d4\u05e2\u05e8\u05d4 \u05d6\u05d5 \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0. \u05d0\u05dd \u05d6\u05d4\u05d5 \u05e1\u05e4\u05e8 \u05e9\u05d9\u05d5\u05d1\u05d0 \u05dc\u05d0 \u05de\u05e7\u05d5\u05d5\u05df, \u05d5\u05d3\u05d0 \u05e9\u05d9\u05d9\u05d1\u05d0\u05ea \u05d0\u05d5\u05ea\u05d5 \u05d2\u05dd \u05d1\u05de\u05db\u05e9\u05d9\u05e8 \u05d4\u05d6\u05d4 \u05e2\u05dd \u05d0\u05d5\u05ea\u05d5 \u05de\u05d6\u05d4\u05d4 \u05db\u05de\u05d5 \u05d1\u05de\u05db\u05e9\u05d9\u05e8 \u05d4\u05d0\u05d7\u05e8, \u05d0\u05d5 \u05d4\u05e1\u05ea\u05e8 \u05d0\u05d5\u05ea\u05d5 \u05d3\u05e8\u05da \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea."
           }
         }
       }
@@ -1306,7 +1306,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Book with ID %1$(bookID)lld not found."
+            "value" : "\u05e1\u05e4\u05e8 \u05e2\u05dd \u05de\u05d6\u05d4\u05d4 %1$(bookID)lld \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0."
           }
         }
       }
@@ -1328,7 +1328,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ?????"
+            "value" : "\u05e2\u05d3\u05db\u05d5\u05e0\u05d9 \u05e1\u05e4\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -1357,7 +1357,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Are you sure you want to download %1$(totalBook)lld books?"
+            "value" : "\u05d4\u05d0\u05dd \u05dc\u05d4\u05d5\u05e8\u05d9\u05d3 %1$(totalBook)lld \u05e1\u05e4\u05e8\u05d9\u05dd?"
           }
         }
       }
@@ -1379,7 +1379,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????"
+            "value" : "\u05de\u05e6\u05d1 \u05d7\u05d1\u05d9\u05dc\u05d4"
           }
         }
       }
@@ -1402,7 +1402,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d1\u05d9\u05d8\u05d5\u05dc"
           }
         }
       }
@@ -1424,7 +1424,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????"
+            "value" : "\u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4"
           }
         }
       }
@@ -1446,7 +1446,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Category (cat)"
+            "value" : "\u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4 (cat)"
           }
         }
       }
@@ -1474,7 +1474,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???? ???"
+            "value" : "\u05e9\u05e0\u05d4 \u05de\u05d6\u05d4\u05d4 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -1496,7 +1496,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???"
+            "value" : "\u05d1\u05d3\u05d5\u05e7 \u05e9\u05d5\u05d1"
           }
         }
       }
@@ -1524,7 +1524,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??????? ?????? ?????????"
+            "value" : "\u05d1\u05d3\u05d5\u05e7 \u05e2\u05d3\u05db\u05d5\u05e0\u05d9\u05dd \u05d1\u05e4\u05ea\u05d9\u05d7\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4"
           }
         }
       }
@@ -1546,7 +1546,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????..."
+            "value" : "\u05d1\u05d5\u05d3\u05e7..."
           }
         }
       }
@@ -1568,7 +1568,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choose Annotations Folder…"
+            "value" : "\u05d1\u05d7\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05e2\u05e8\u05d5\u05ea\u2026"
           }
         }
       }
@@ -1590,7 +1590,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??????"
+            "value" : "\u05d1\u05d7\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -1612,7 +1612,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choose Library Folder…"
+            "value" : "\u05d1\u05d7\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4\u2026"
           }
         }
       }
@@ -1634,7 +1634,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cleanup Downloaded Data (Bundle Mode)"
+            "value" : "\u05e0\u05d9\u05e7\u05d5\u05d9 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05e9\u05d4\u05d5\u05e8\u05d3\u05d5 (\u05de\u05e6\u05d1 \u05d7\u05d1\u05d9\u05dc\u05d4)"
           }
         }
       }
@@ -1662,7 +1662,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05e0\u05e7\u05d4 \u05d4\u05db\u05dc"
           }
         }
       }
@@ -1690,7 +1690,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??????"
+            "value" : "\u05e0\u05e7\u05d4 \u05d1\u05d7\u05d9\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -1712,7 +1712,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Click to select..."
+            "value" : "\u05dc\u05d7\u05e5 \u05db\u05d3\u05d9 \u05dc\u05d1\u05d7\u05d5\u05e8..."
           }
         }
       }
@@ -1740,7 +1740,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clickable Annotations"
+            "value" : "\u05d4\u05e2\u05e8\u05d5\u05ea \u05dc\u05d7\u05d9\u05e6\u05d5\u05ea"
           }
         }
       }
@@ -1769,7 +1769,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e1\u05d2\u05d5\u05e8"
           }
         }
       }
@@ -1797,7 +1797,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????????"
+            "value" : "\u05e1\u05d2\u05d5\u05e8 \u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -1819,7 +1819,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CloudKit token has been reset. Full sync will start."
+            "value" : "\u05d0\u05e1\u05d9\u05de\u05d5\u05df CloudKit \u05d0\u05d5\u05e4\u05e1. \u05e1\u05e0\u05db\u05e8\u05d5\u05df \u05de\u05dc\u05d0 \u05d9\u05ea\u05d7\u05d9\u05dc."
           }
         }
       }
@@ -1847,7 +1847,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Completed! %1$lld/%2$lld books successfully updated."
+            "value" : "\u05d4\u05d5\u05e9\u05dc\u05dd! %1$lld/%2$lld \u05e1\u05e4\u05e8\u05d9\u05dd \u05e2\u05d5\u05d3\u05db\u05e0\u05d5 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4."
           }
         }
       }
@@ -1875,7 +1875,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ?????? ??? ???? ????."
+            "value" : "\u05d9\u05e9 \u05dc\u05d4\u05d5\u05e8\u05d9\u05d3 \u05db\u05d3\u05d9 \u05dc\u05d2\u05e9\u05ea \u05dc\u05e1\u05e4\u05e8."
           }
         }
       }
@@ -1897,7 +1897,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????"
+            "value" : "\u05e9\u05d2\u05d9\u05d0\u05ea \u05d7\u05d9\u05d1\u05d5\u05e8"
           }
         }
       }
@@ -1925,7 +1925,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05ea\u05d5\u05db\u05df"
           }
         }
       }
@@ -1948,7 +1948,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d4\u05e7\u05e9\u05e8"
           }
         }
       }
@@ -1970,7 +1970,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Converter Tool & Help"
+            "value" : "\u05db\u05dc\u05d9 \u05d4\u05de\u05e8\u05d4 \u05d5\u05e2\u05d6\u05e8\u05d4"
           }
         }
       }
@@ -1999,7 +1999,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "If your SQLite database doesn't match our required format, use our Web Converter tool to transform your files. Currently only .docx and .epub files are supported."
+            "value" : "\u05d0\u05dd \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd SQLite \u05e9\u05dc\u05da \u05d0\u05d9\u05e0\u05d5 \u05ea\u05d5\u05d0\u05dd \u05dc\u05de\u05d1\u05e0\u05d4 \u05d4\u05e0\u05d3\u05e8\u05e9, \u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05db\u05dc\u05d9 \u05d4\u05d4\u05de\u05e8\u05d4 \u05d1\u05d0\u05d9\u05e0\u05d8\u05e8\u05e0\u05d8 \u05db\u05d3\u05d9 \u05dc\u05d4\u05de\u05d9\u05e8 \u05d0\u05ea \u05d4\u05e7\u05d1\u05e6\u05d9\u05dd. \u05db\u05e8\u05d2\u05e2 \u05e0\u05ea\u05de\u05db\u05d9\u05dd \u05e8\u05e7 \u05e7\u05d5\u05d1\u05e6\u05d9 .docx \u05d5-.epub."
           }
         }
       }
@@ -2028,7 +2028,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Need Help?"
+            "value" : "\u05e6\u05e8\u05d9\u05da \u05e2\u05d6\u05e8\u05d4?"
           }
         }
       }
@@ -2056,7 +2056,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d4\u05e2\u05ea\u05e7"
           }
         }
       }
@@ -2079,7 +2079,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????? ????? ???? ?? ?????? FTS..."
+            "value" : "\u05de\u05e2\u05ea\u05d9\u05e7 \u05d8\u05d1\u05dc\u05d0\u05d5\u05ea \u05d5\u05d1\u05d5\u05e0\u05d4 \u05de\u05d7\u05d3\u05e9 \u05d0\u05ea \u05d0\u05d9\u05e0\u05d3\u05e7\u05e1 FTS..."
           }
         }
       }
@@ -2108,7 +2108,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copy with Reference"
+            "value" : "\u05d4\u05e2\u05ea\u05e7 \u05e2\u05dd \u05de\u05e7\u05d5\u05e8"
           }
         }
       }
@@ -2136,7 +2136,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ?????."
+            "value" : "\u05d4\u05d4\u05d5\u05e8\u05d3\u05d4 \u05d1\u05d5\u05d8\u05dc\u05d4."
           }
         }
       }
@@ -2165,7 +2165,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????? ?%1$@?: %2$@."
+            "value" : "\u05e0\u05db\u05e9\u05dc \u05d7\u05d9\u05dc\u05d5\u05e5 \u201c%1$@\u201d: %2$@."
           }
         }
       }
@@ -2194,7 +2194,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ???? ????? ?? ?????? ????."
+            "value" : "\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05d9\u05e6\u05d5\u05e8 \u05d0\u05ea \u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05d9\u05e2\u05d3."
           }
         }
       }
@@ -2223,7 +2223,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?%@? ???? ??? ???? ??????."
+            "value" : "\u05d4\u05e7\u05d5\u05d1\u05e5 \u201c%@\u201d \u05d0\u05d9\u05e0\u05d5 \u05e9\u05dc\u05dd \u05dc\u05d0\u05d7\u05e8 \u05d4\u05d4\u05d5\u05e8\u05d3\u05d4."
           }
         }
       }
@@ -2252,7 +2252,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????? ?%1$@? (HTTP %2$lld)."
+            "value" : "\u05e0\u05db\u05e9\u05dc\u05d4 \u05d4\u05d5\u05e8\u05d3\u05ea \u201c%1$@\u201d (HTTP %2$lld)."
           }
         }
       }
@@ -2281,7 +2281,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????? ???? ?????. ???? ?? ???????."
+            "value" : "\u05db\u05ea\u05d5\u05d1\u05ea \u05d4\u05d4\u05d5\u05e8\u05d3\u05d4 \u05d0\u05d9\u05e0\u05d4 \u05ea\u05e7\u05d9\u05e0\u05d4. \u05d1\u05d3\u05d5\u05e7 \u05d0\u05ea \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea."
           }
         }
       }
@@ -2310,7 +2310,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??? ?? ?????."
+            "value" : "\u05ea\u05d2\u05d5\u05d1\u05ea \u05e9\u05e8\u05ea \u05dc\u05d0 \u05ea\u05e7\u05d9\u05e0\u05d4."
           }
         }
       }
@@ -2338,7 +2338,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??? ??????. ?? ??????..."
+            "value" : "\u05de\u05d5\u05e8\u05d9\u05d3 \u05de\u05e1\u05d3 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd. \u05e0\u05d0 \u05dc\u05d4\u05de\u05ea\u05d9\u05df..."
           }
         }
       }
@@ -2366,7 +2366,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????????? ????? ?? ???? ??? ??????? ????? (~17.96 MB), ????? ??? ??? ?????? ???????. ????? ????? ??????? ?????? ?? ?????????."
+            "value" : "\u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05d3\u05d5\u05e8\u05e9\u05ea \u05d0\u05ea \u05e7\u05d5\u05d1\u05e5 \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d4\u05e8\u05d0\u05e9\u05d9 (~17.96 MB), \u05e9\u05d9\u05d5\u05e8\u05d3 \u05e4\u05e2\u05dd \u05d0\u05d7\u05ea \u05d1\u05e4\u05ea\u05d9\u05d7\u05d4 \u05d4\u05e8\u05d0\u05e9\u05d5\u05e0\u05d4. \u05d4\u05e7\u05d5\u05d1\u05e5 \u05d9\u05d9\u05e9\u05de\u05e8 \u05d1\u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05ea\u05de\u05d9\u05db\u05d4 \u05e9\u05dc \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4."
           }
         }
       }
@@ -2395,7 +2395,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????????? ????? ????? ??? ??????? ???????? (%@) ???? ????? ?????? ???????."
+            "value" : "\u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05d6\u05e7\u05d5\u05e7\u05d4 \u05dc\u05e7\u05d1\u05e6\u05d9 \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d4\u05d1\u05e1\u05d9\u05e1\u05d9\u05d9\u05dd (%@) \u05dc\u05e4\u05e0\u05d9 \u05e9\u05e0\u05d9\u05ea\u05df \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4."
           }
         }
       }
@@ -2424,7 +2424,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????? ?????? ???? ????? ?? ?Files/main.sqlite? ??? ?Files/special.sqlite?. ??? ?????? ???? ?? ???? ?? ??? ??????? ??????."
+            "value" : "\u05d4\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05e9\u05e0\u05d1\u05d7\u05e8\u05d4 \u05d0\u05d9\u05e0\u05d4 \u05de\u05db\u05d9\u05dc\u05d4 \u05d0\u05ea \u201cFiles/main.sqlite\u201d \u05d5\u05d0\u05ea \u201cFiles/special.sqlite\u201d. \u05d1\u05d7\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05d0\u05d7\u05e8\u05ea \u05d0\u05d5 \u05d4\u05d5\u05e8\u05d3 \u05d0\u05ea \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d4\u05d1\u05e1\u05d9\u05e1\u05d9."
           }
         }
       }
@@ -2453,7 +2453,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??? ??????? ?? ?????"
+            "value" : "\u05e7\u05d1\u05e6\u05d9 \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d5"
           }
         }
       }
@@ -2483,7 +2483,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???? ??? ??????"
+            "value" : "\u05e0\u05d3\u05e8\u05e9 \u05e7\u05d5\u05d1\u05e5 \u05de\u05e1\u05d3 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -2505,7 +2505,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05e6\u05d5\u05e8"
           }
         }
       }
@@ -2527,7 +2527,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??????"
+            "value" : "\u05e6\u05d5\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -2549,7 +2549,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????? ????"
+            "value" : "\u05e6\u05d5\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05d7\u05d3\u05e9\u05d4"
           }
         }
       }
@@ -2571,7 +2571,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05e0\u05d5\u05db\u05d7\u05d9"
           }
         }
       }
@@ -2593,7 +2593,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??? ??????? ???? ????."
+            "value" : "\u05d7\u05d9\u05d1\u05d5\u05e8 \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d0\u05d9\u05e0\u05d5 \u05d6\u05de\u05d9\u05df."
           }
         }
       }
@@ -2622,7 +2622,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???? ??? ??????"
+            "value" : "\u05e0\u05d3\u05e8\u05e9 \u05e7\u05d5\u05d1\u05e5 \u05de\u05e1\u05d3 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -2644,7 +2644,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??? ??????"
+            "value" : "\u05de\u05e6\u05d1 \u05de\u05e1\u05d3 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -2667,7 +2667,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????"
+            "value" : "\u05ea\u05d0\u05e8\u05d9\u05da \u05d9\u05e6\u05d9\u05e8\u05d4"
           }
         }
       }
@@ -2689,7 +2689,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????"
+            "value" : "\u05e9\u05e0\u05ea \u05e4\u05d8\u05d9\u05e8\u05d4"
           }
         }
       }
@@ -2711,7 +2711,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05de\u05d7\u05e7"
           }
         }
       }
@@ -2733,7 +2733,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Delete %@"
+            "value" : "\u05de\u05d7\u05e7 %@"
           }
         }
       }
@@ -2762,7 +2762,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05de\u05d7\u05e7 \u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -2784,7 +2784,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????"
+            "value" : "\u05de\u05d7\u05d9\u05e7\u05ea \u05d4\u05d5\u05e8\u05d3\u05d4"
           }
         }
       }
@@ -2806,7 +2806,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??????"
+            "value" : "\u05de\u05d7\u05e7 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -2828,7 +2828,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05de\u05d7\u05e7 \u05d2\u05d5\u05e4\u05df"
           }
         }
       }
@@ -2851,7 +2851,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????"
+            "value" : "\u05de\u05d7\u05e7 \u05d4\u05d3\u05d2\u05e9\u05d4"
           }
         }
       }
@@ -2874,7 +2874,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????? ?????"
+            "value" : "\u05de\u05d7\u05e7 \u05d4\u05d3\u05d2\u05e9\u05d4 \u05d5\u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -2903,7 +2903,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05de\u05d7\u05e7 \u05ea\u05d2\u05d9\u05ea"
           }
         }
       }
@@ -2932,7 +2932,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???? ?????"
+            "value" : "\u05de\u05d7\u05e7 \u05ea\u05d2\u05d9\u05ea \u05d5\u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -2955,7 +2955,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d9\u05d5\u05e8\u05d3"
           }
         }
       }
@@ -2983,7 +2983,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05ea\u05e6\u05d5\u05d2\u05d4"
           }
         }
       }
@@ -3005,7 +3005,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e1\u05d9\u05d5\u05dd"
           }
         }
       }
@@ -3028,7 +3028,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d4\u05d5\u05e8\u05d3\u05d4"
           }
         }
       }
@@ -3051,7 +3051,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???"
+            "value" : "\u05d4\u05d5\u05e8\u05d3\u05ea \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -3073,7 +3073,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ??????. ????? ????..."
+            "value" : "\u05d4\u05d4\u05d5\u05e8\u05d3\u05d4 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4. \u05de\u05ea\u05d7\u05d9\u05dc \u05dc\u05e9\u05dc\u05d1..."
           }
         }
       }
@@ -3096,7 +3096,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ?????"
+            "value" : "\u05d4\u05d4\u05d5\u05e8\u05d3\u05d4 \u05e0\u05db\u05e9\u05dc\u05d4"
           }
         }
       }
@@ -3118,7 +3118,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Download Full Library (Google Drive)"
+            "value" : "\u05d4\u05d5\u05e8\u05d3 \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4 \u05de\u05dc\u05d0\u05d4 (Google Drive)"
           }
         }
       }
@@ -3146,7 +3146,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Download phase completed (%1$lld/%2$lld). Starting processing..."
+            "value" : "\u05e9\u05dc\u05d1 \u05d4\u05d4\u05d5\u05e8\u05d3\u05d4 \u05d4\u05d5\u05e9\u05dc\u05dd (%1$lld/%2$lld). \u05de\u05ea\u05d7\u05d9\u05dc \u05dc\u05e2\u05d1\u05d3..."
           }
         }
       }
@@ -3168,7 +3168,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Download Selective Library…"
+            "value" : "\u05d4\u05d5\u05e8\u05d3 \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4 \u05e0\u05d1\u05d7\u05e8\u05ea\u2026"
           }
         }
       }
@@ -3190,7 +3190,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d4\u05d5\u05e8\u05d3\u05d5"
           }
         }
       }
@@ -3213,7 +3213,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05de\u05d5\u05e8\u05d9\u05d3"
           }
         }
       }
@@ -3241,7 +3241,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? %1$lld ???? %2$lld ?????..."
+            "value" : "\u05de\u05d5\u05e8\u05d9\u05d3 %1$lld \u05de\u05ea\u05d5\u05da %2$lld \u05e1\u05e4\u05e8\u05d9\u05dd..."
           }
         }
       }
@@ -3264,7 +3264,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???? ??? ?????..."
+            "value" : "\u05de\u05d5\u05e8\u05d9\u05d3 \u05e7\u05d5\u05d1\u05e5 \u05e1\u05e4\u05e8 \u05de\u05d4\u05e9\u05e8\u05ea..."
           }
         }
       }
@@ -3292,7 +3292,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????... (%1$lld/%2$lld)"
+            "value" : "\u05de\u05d5\u05e8\u05d9\u05d3 \u05e1\u05e4\u05e8\u05d9\u05dd... (%1$lld/%2$lld)"
           }
         }
       }
@@ -3314,7 +3314,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????..."
+            "value" : "\u05de\u05d5\u05e8\u05d9\u05d3..."
           }
         }
       }
@@ -3336,7 +3336,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????"
+            "value" : "\u05d4\u05d5\u05e8\u05d3\u05d5\u05ea"
           }
         }
       }
@@ -3364,7 +3364,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "e.g., %lld"
+            "value" : "\u05dc\u05d3\u05d5\u05d2\u05de\u05d4, %lld"
           }
         }
       }
@@ -3486,7 +3486,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????"
+            "value" : "\u05e2\u05e8\u05d5\u05da \u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -3509,7 +3509,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????"
+            "value" : "\u05e2\u05e8\u05d5\u05da \u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -3531,7 +3531,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????"
+            "value" : "\u05de\u05d4\u05d3\u05d5\u05e8\u05d4"
           }
         }
       }
@@ -3589,7 +3589,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folder name already exist."
+            "value" : "\u05e9\u05dd \u05d4\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd."
           }
         }
       }
@@ -3618,7 +3618,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error when trying to create folder."
+            "value" : "\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e2\u05ea \u05e0\u05d9\u05e1\u05d9\u05d5\u05df \u05dc\u05d9\u05e6\u05d5\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4."
           }
         }
       }
@@ -3647,7 +3647,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folder name already exist in selected folder."
+            "value" : "\u05e9\u05dd \u05d4\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd \u05d1\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05e9\u05e0\u05d1\u05d7\u05e8\u05d4."
           }
         }
       }
@@ -3675,7 +3675,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annotations Folder Not Found"
+            "value" : "\u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05d4\u05e2\u05e8\u05d5\u05ea \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d4"
           }
         }
       }
@@ -3703,7 +3703,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search Results Folder Not Found"
+            "value" : "\u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05d4\u05d7\u05d9\u05e4\u05d5\u05e9 \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d4"
           }
         }
       }
@@ -3731,7 +3731,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An error occurred when trying to download a file in iCloud Drive"
+            "value" : "\u05d0\u05d9\u05e8\u05e2\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e2\u05ea \u05e0\u05d9\u05e1\u05d9\u05d5\u05df \u05dc\u05d4\u05d5\u05e8\u05d9\u05d3 \u05e7\u05d5\u05d1\u05e5 \u05de-iCloud Drive"
           }
         }
       }
@@ -3760,7 +3760,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folder name already exist in folder destination."
+            "value" : "\u05e9\u05dd \u05d4\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd \u05d1\u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05d9\u05e2\u05d3."
           }
         }
       }
@@ -3789,7 +3789,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error when trying to move folder."
+            "value" : "\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e2\u05ea \u05e0\u05d9\u05e1\u05d9\u05d5\u05df \u05dc\u05d4\u05e2\u05d1\u05d9\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4."
           }
         }
       }
@@ -3818,7 +3818,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Result name already exist in folder destination."
+            "value" : "\u05e9\u05dd \u05d4\u05ea\u05d5\u05e6\u05d0\u05d4 \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd \u05d1\u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05d9\u05e2\u05d3."
           }
         }
       }
@@ -3847,7 +3847,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error when trying to move results."
+            "value" : "\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e2\u05ea \u05e0\u05d9\u05e1\u05d9\u05d5\u05df \u05dc\u05d4\u05e2\u05d1\u05d9\u05e8 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea."
           }
         }
       }
@@ -3876,7 +3876,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Result name already exist in currrent folder."
+            "value" : "\u05e9\u05dd \u05d4\u05ea\u05d5\u05e6\u05d0\u05d4 \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd \u05d1\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea."
           }
         }
       }
@@ -3904,7 +3904,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Result name already exist in currrent folder."
+            "value" : "\u05e9\u05dd \u05d4\u05ea\u05d5\u05e6\u05d0\u05d4 \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd \u05d1\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea."
           }
         }
       }
@@ -3933,7 +3933,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error when trying to save results."
+            "value" : "\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e2\u05ea \u05e0\u05d9\u05e1\u05d9\u05d5\u05df \u05dc\u05e9\u05de\u05d5\u05e8 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea."
           }
         }
       }
@@ -3962,7 +3962,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New name already exist."
+            "value" : "\u05d4\u05e9\u05dd \u05d4\u05d7\u05d3\u05e9 \u05db\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd."
           }
         }
       }
@@ -3991,7 +3991,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unable to rename folder."
+            "value" : "\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05e9\u05e0\u05d5\u05ea \u05d0\u05ea \u05e9\u05dd \u05d4\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4."
           }
         }
       }
@@ -4020,7 +4020,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unable to rename result."
+            "value" : "\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05e9\u05e0\u05d5\u05ea \u05d0\u05ea \u05e9\u05dd \u05d4\u05ea\u05d5\u05e6\u05d0\u05d4."
           }
         }
       }
@@ -4049,7 +4049,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ensures all typed words are found adjacently and in the exact order in the data. (e.g., عقيدة الإمام الشافعي)"
+            "value" : "\u05de\u05d5\u05d5\u05d3\u05d0 \u05e9\u05db\u05dc \u05d4\u05de\u05d9\u05dc\u05d9\u05dd \u05e9\u05d4\u05d5\u05e7\u05dc\u05d3\u05d5 \u05e0\u05de\u05e6\u05d0\u05d5\u05ea \u05d1\u05e6\u05de\u05d9\u05d3\u05d5\u05ea \u05d5\u05d1\u05d0\u05d5\u05ea\u05d5 \u05e1\u05d3\u05e8 \u05d1\u05d3\u05d9\u05d5\u05e7 \u05d1\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd. (\u05dc\u05d3\u05d5\u05d2\u05de\u05d4: \u0639\u0642\u064a\u062f\u0629 \u0627\u0644\u0625\u0645\u0627\u0645 \u0627\u0644\u0634\u0627\u0641\u0639\u064a)"
           }
         }
       }
@@ -4078,7 +4078,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "1. Exact Match Search"
+            "value" : "1. \u05d7\u05d9\u05e4\u05d5\u05e9 \u05d4\u05ea\u05d0\u05de\u05d4 \u05de\u05d3\u05d5\u05d9\u05e7\u05ea"
           }
         }
       }
@@ -4100,7 +4100,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Existing Author"
+            "value" : "\u05de\u05d7\u05d1\u05e8 \u05e7\u05d9\u05d9\u05dd"
           }
         }
       }
@@ -4122,7 +4122,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Factory Setting"
+            "value" : "\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea \u05d9\u05e6\u05e8\u05df"
           }
         }
       }
@@ -4144,7 +4144,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed: %@"
+            "value" : "\u05e0\u05db\u05e9\u05dc: %@"
           }
         }
       }
@@ -4172,7 +4172,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????"
+            "value" : "\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd"
           }
         }
       }
@@ -4194,7 +4194,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "File: %@"
+            "value" : "\u05e7\u05d5\u05d1\u05e5: %@"
           }
         }
       }
@@ -4222,7 +4222,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????? ??????"
+            "value" : "\u05e1\u05e0\u05df \u05e1\u05e4\u05e8\u05d9\u05dd \u05dc\u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -4250,7 +4250,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d8\u05e7\u05e1\u05d8"
           }
         }
       }
@@ -4272,7 +4272,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ??????"
+            "value" : "\u05e9\u05dd \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -4294,7 +4294,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folder Not Found"
+            "value" : "\u05d4\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d4"
           }
         }
       }
@@ -4323,7 +4323,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Application Will Terminate because Folder Location Not Found on (base)."
+            "value" : "\u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05ea\u05d9\u05e1\u05d2\u05e8 \u05db\u05d9 \u05de\u05d9\u05e7\u05d5\u05dd \u05d4\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0 \u05d1-(base)."
           }
         }
       }
@@ -4345,7 +4345,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????"
+            "value" : "\u05ea\u05d9\u05e7\u05d9\u05d5\u05ea"
           }
         }
       }
@@ -4373,7 +4373,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d2\u05d5\u05e4\u05df"
           }
         }
       }
@@ -4401,7 +4401,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????: %lld"
+            "value" : "\u05d2\u05d5\u05d3\u05dc \u05d2\u05d5\u05e4\u05df: %lld"
           }
         }
       }
@@ -4423,7 +4423,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Found %lld books that need to be updated"
+            "value" : "\u05e0\u05de\u05e6\u05d0\u05d5 %lld \u05e1\u05e4\u05e8\u05d9\u05dd \u05e9\u05d6\u05e7\u05d5\u05e7\u05d9\u05dd \u05dc\u05e2\u05d3\u05db\u05d5\u05df"
           }
         }
       }
@@ -4445,7 +4445,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full Library will open the download link in your browser."
+            "value" : "\u05d4\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4 \u05d4\u05de\u05dc\u05d0\u05d4 \u05ea\u05e4\u05ea\u05d7 \u05d0\u05ea \u05e7\u05d9\u05e9\u05d5\u05e8 \u05d4\u05d4\u05d5\u05e8\u05d3\u05d4 \u05d1\u05d3\u05e4\u05d3\u05e4\u05df."
           }
         }
       }
@@ -4467,7 +4467,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full Name (Lng)"
+            "value" : "\u05e9\u05dd \u05de\u05dc\u05d0 (Lng)"
           }
         }
       }
@@ -4490,7 +4490,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d9\u05e8\u05d5\u05e7"
           }
         }
       }
@@ -4518,7 +4518,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???"
+            "value" : "\u05e7\u05d9\u05d1\u05d5\u05e5 \u05dc\u05e4\u05d9"
           }
         }
       }
@@ -4541,7 +4541,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Group by Book"
+            "value" : "\u05e7\u05d1\u05e5 \u05dc\u05e4\u05d9 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -4564,7 +4564,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Group by Tag"
+            "value" : "\u05e7\u05d1\u05e5 \u05dc\u05e4\u05d9 \u05ea\u05d2\u05d9\u05ea"
           }
         }
       }
@@ -4586,7 +4586,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e2\u05d6\u05e8\u05d4"
           }
         }
       }
@@ -4608,7 +4608,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hide annotations if the corresponding book is not found in the local library."
+            "value" : "\u05d4\u05e1\u05ea\u05e8 \u05d4\u05e2\u05e8\u05d5\u05ea \u05d0\u05dd \u05d4\u05e1\u05e4\u05e8 \u05d4\u05de\u05ea\u05d0\u05d9\u05dd \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0 \u05d1\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4 \u05d4\u05de\u05e7\u05d5\u05de\u05d9\u05ea."
           }
         }
       }
@@ -4630,7 +4630,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hide Missing Book Annotations"
+            "value" : "\u05d4\u05e1\u05ea\u05e8 \u05d4\u05e2\u05e8\u05d5\u05ea \u05e9\u05dc \u05e1\u05e4\u05e8\u05d9\u05dd \u05d7\u05e1\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -4658,7 +4658,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d4\u05d3\u05d2\u05e9\u05d4"
           }
         }
       }
@@ -4686,7 +4686,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????????"
+            "value" : "\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4"
           }
         }
       }
@@ -4714,7 +4714,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????? ????????"
+            "value" : "\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4 \u05d5\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd"
           }
         }
       }
@@ -4736,7 +4736,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05d1\u05d9\u05ea"
           }
         }
       }
@@ -4764,7 +4764,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID %1$@ already has %2$lld local annotations, possibly from CloudKit synchronization with another device for a different book. Proceed only if you are sure these annotations belong to this book."
+            "value" : "\u05dc\u05de\u05d6\u05d4\u05d4 %1$@ \u05db\u05d1\u05e8 \u05d9\u05e9 %2$lld \u05d4\u05e2\u05e8\u05d5\u05ea \u05de\u05e7\u05d5\u05de\u05d9\u05d5\u05ea, \u05d9\u05d9\u05ea\u05db\u05df \u05de\u05e1\u05e0\u05db\u05e8\u05d5\u05df CloudKit \u05e2\u05dd \u05de\u05db\u05e9\u05d9\u05e8 \u05d0\u05d7\u05e8 \u05e2\u05d1\u05d5\u05e8 \u05e1\u05e4\u05e8 \u05d0\u05d7\u05e8. \u05d4\u05de\u05e9\u05da \u05e8\u05e7 \u05d0\u05dd \u05d0\u05ea\u05d4 \u05d1\u05d8\u05d5\u05d7 \u05e9\u05d4\u05d4\u05e2\u05e8\u05d5\u05ea \u05e9\u05d9\u05d9\u05db\u05d5\u05ea \u05dc\u05e1\u05e4\u05e8 \u05d4\u05d6\u05d4."
           }
         }
       }
@@ -4792,7 +4792,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID already taken"
+            "value" : "\u05d4\u05de\u05d6\u05d4\u05d4 \u05db\u05d1\u05e8 \u05ea\u05e4\u05d5\u05e1"
           }
         }
       }
@@ -4820,7 +4820,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID reserved by system"
+            "value" : "\u05d4\u05de\u05d6\u05d4\u05d4 \u05e9\u05de\u05d5\u05e8 \u05dc\u05de\u05e2\u05e8\u05db\u05ea"
           }
         }
       }
@@ -4845,7 +4845,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???"
+            "value" : "\u05d9\u05d9\u05d1\u05d5\u05d0 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -4867,7 +4867,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????"
+            "value" : "\u05e9\u05d2\u05d9\u05d0\u05ea \u05d9\u05d9\u05d1\u05d5\u05d0"
           }
         }
       }
@@ -4889,7 +4889,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????..."
+            "value" : "\u05d9\u05d9\u05d1\u05d5\u05d0 \u05d2\u05d5\u05e4\u05df..."
           }
         }
       }
@@ -4911,7 +4911,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????"
+            "value" : "\u05d9\u05d9\u05d1\u05d0 \u05e2\u05db\u05e9\u05d9\u05d5"
           }
         }
       }
@@ -4933,7 +4933,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ?????"
+            "value" : "\u05d4\u05d9\u05d9\u05d1\u05d5\u05d0 \u05d4\u05e6\u05dc\u05d9\u05d7"
           }
         }
       }
@@ -4955,7 +4955,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???..."
+            "value" : "\u05de\u05d9\u05d9\u05d1\u05d0 \u05e1\u05e4\u05e8..."
           }
         }
       }
@@ -4984,7 +4984,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???? ??????."
+            "value" : "\u05d4\u05e1\u05e4\u05e8 \u05d9\u05d5\u05d1\u05d0 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4."
           }
         }
       }
@@ -5013,7 +5013,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ?????"
+            "value" : "\u05d4\u05d9\u05d9\u05d1\u05d5\u05d0 \u05d4\u05e6\u05dc\u05d9\u05d7"
           }
         }
       }
@@ -5035,7 +5035,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Information (inf)"
+            "value" : "\u05de\u05d9\u05d3\u05e2 (inf)"
           }
         }
       }
@@ -5058,7 +5058,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05de\u05e9\u05dc\u05d1"
           }
         }
       }
@@ -5081,7 +5081,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???"
+            "value" : "\u05de\u05e9\u05dc\u05d1 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -5110,7 +5110,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keep Existing (Delete Old)"
+            "value" : "\u05e9\u05de\u05d5\u05e8 \u05d0\u05ea \u05d4\u05e7\u05d9\u05d9\u05dd (\u05de\u05d7\u05e7 \u05d0\u05ea \u05d4\u05d9\u05e9\u05df)"
           }
         }
       }
@@ -5132,7 +5132,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????"
+            "value" : "\u05de\u05d0\u05d5\u05d7\u05e8 \u05d9\u05d5\u05ea\u05e8"
           }
         }
       }
@@ -5160,7 +5160,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clear Recents"
+            "value" : "\u05e0\u05e7\u05d4 \u05d0\u05d7\u05e8\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -5188,7 +5188,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Recents"
+            "value" : "\u05d0\u05d9\u05df \u05d0\u05d7\u05e8\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -5216,7 +5216,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recents"
+            "value" : "\u05d0\u05d7\u05e8\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -5244,7 +5244,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????"
+            "value" : "\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -5272,7 +5272,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????? ??????"
+            "value" : "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -5294,7 +5294,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Library Storage"
+            "value" : "\u05d0\u05d7\u05e1\u05d5\u05df \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -5316,7 +5316,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Library Update"
+            "value" : "\u05e2\u05d3\u05db\u05d5\u05df \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -5338,7 +5338,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Library Update Available"
+            "value" : "\u05e2\u05d3\u05db\u05d5\u05df \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4 \u05d6\u05de\u05d9\u05df"
           }
         }
       }
@@ -5366,7 +5366,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????"
+            "value" : "\u05d2\u05d5\u05d1\u05d4 \u05e9\u05d5\u05e8\u05d4"
           }
         }
       }
@@ -5394,7 +5394,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?? ???????..."
+            "value" : "\u05d8\u05d5\u05e2\u05df \u05d0\u05ea \u05d4\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4..."
           }
         }
       }
@@ -5416,7 +5416,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??????..."
+            "value" : "\u05d8\u05d5\u05e2\u05df \u05de\u05d5\u05e1\u05e8\u05d9\u05dd..."
           }
         }
       }
@@ -5438,7 +5438,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????? ?????..."
+            "value" : "\u05d8\u05d5\u05e2\u05df \u05e8\u05e9\u05d9\u05de\u05d5\u05ea \u05e2\u05d3\u05db\u05d5\u05df..."
           }
         }
       }
@@ -5466,7 +5466,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05de\u05e7\u05d8\u05d1\u05d4"
           }
         }
       }
@@ -5495,7 +5495,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Master Folder Selected"
+            "value" : "\u05e0\u05d1\u05d7\u05e8\u05d4 \u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d0\u05d1"
           }
         }
       }
@@ -5524,7 +5524,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Application Again to Start with New Base Folder."
+            "value" : "\u05e4\u05ea\u05d7 \u05d0\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05e9\u05d5\u05d1 \u05db\u05d3\u05d9 \u05dc\u05d4\u05ea\u05d7\u05d9\u05dc \u05e2\u05dd \u05ea\u05d9\u05e7\u05d9\u05d9\u05ea \u05d4\u05d1\u05e1\u05d9\u05e1 \u05d4\u05d7\u05d3\u05e9\u05d4."
           }
         }
       }
@@ -5553,7 +5553,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05de\u05d6\u05d2"
           }
         }
       }
@@ -5582,7 +5582,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??????"
+            "value" : "\u05dc\u05de\u05d6\u05d2 \u05ea\u05d2\u05d9\u05d5\u05ea?"
           }
         }
       }
@@ -5610,7 +5610,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to migrate to custom folder."
+            "value" : "\u05d4\u05de\u05e2\u05d1\u05e8 \u05dc\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05de\u05d5\u05ea\u05d0\u05de\u05ea \u05e0\u05db\u05e9\u05dc."
           }
         }
       }
@@ -5638,7 +5638,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please check the completeness of the database."
+            "value" : "\u05d1\u05d3\u05d5\u05e7 \u05d0\u05ea \u05e9\u05dc\u05de\u05d5\u05ea \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd."
           }
         }
       }
@@ -5666,7 +5666,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05de\u05e6\u05d1"
           }
         }
       }
@@ -5688,7 +5688,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d4\u05e2\u05d1\u05e8"
           }
         }
       }
@@ -5710,7 +5710,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??"
+            "value" : "\u05d4\u05e2\u05d1\u05e8 \u05d0\u05dc"
           }
         }
       }
@@ -5732,7 +5732,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Multi-Language"
+            "value" : "\u05e8\u05d1-\u05dc\u05e9\u05d5\u05e0\u05d9"
           }
         }
       }
@@ -5754,7 +5754,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??"
+            "value" : "\u05e9\u05dd"
           }
         }
       }
@@ -5783,7 +5783,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????"
+            "value" : "\u05de\u05d5\u05e1\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -5811,7 +5811,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05e0\u05d9\u05d5\u05d5\u05d8"
           }
         }
       }
@@ -5839,7 +5839,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????"
+            "value" : "\u05e2\u05de\u05d5\u05d3 \u05e0\u05d9\u05d5\u05d5\u05d8"
           }
         }
       }
@@ -5861,7 +5861,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Needs update"
+            "value" : "\u05d3\u05d5\u05e8\u05e9 \u05e2\u05d3\u05db\u05d5\u05df"
           }
         }
       }
@@ -5890,7 +5890,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05d7\u05d3\u05e9"
           }
         }
       }
@@ -5912,7 +5912,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05d7\u05d3\u05e9"
           }
         }
       }
@@ -5934,7 +5934,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???"
+            "value" : "\u05de\u05d7\u05d1\u05e8 \u05d7\u05d3\u05e9"
           }
         }
       }
@@ -5956,7 +5956,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New Author ID"
+            "value" : "\u05de\u05d6\u05d4\u05d4 \u05de\u05d7\u05d1\u05e8 \u05d7\u05d3\u05e9"
           }
         }
       }
@@ -5978,7 +5978,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???"
+            "value" : "\u05e1\u05e4\u05e8 \u05d7\u05d3\u05e9"
           }
         }
       }
@@ -6000,7 +6000,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New Book ID"
+            "value" : "\u05de\u05d6\u05d4\u05d4 \u05e1\u05e4\u05e8 \u05d7\u05d3\u05e9"
           }
         }
       }
@@ -6022,7 +6022,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ????"
+            "value" : "\u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05d7\u05d3\u05e9\u05d4"
           }
         }
       }
@@ -6050,7 +6050,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???"
+            "value" : "\u05d4\u05e2\u05de\u05d5\u05d3 \u05d4\u05d1\u05d0"
           }
         }
       }
@@ -6072,7 +6072,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ????? ?????"
+            "value" : "\u05dc\u05d0 \u05e0\u05d1\u05d7\u05e8\u05d5 \u05e1\u05e4\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -6095,7 +6095,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ????? ????? ??????."
+            "value" : "\u05dc\u05d0 \u05d4\u05d5\u05e8\u05d3\u05d5 \u05e1\u05e4\u05e8\u05d9\u05dd \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4."
           }
         }
       }
@@ -6117,7 +6117,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????? ????????. ???? ?? ??????."
+            "value" : "\u05d0\u05d9\u05df \u05d7\u05d9\u05d1\u05d5\u05e8 \u05dc\u05d0\u05d9\u05e0\u05d8\u05e8\u05e0\u05d8. \u05de\u05d3\u05dc\u05d2 \u05e2\u05dc \u05d4\u05d5\u05e8\u05d3\u05d5\u05ea."
           }
         }
       }
@@ -6145,7 +6145,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???????? ??????"
+            "value" : "\u05d0\u05d9\u05df \u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4 \u05d0\u05d7\u05e8\u05d5\u05e0\u05d4"
           }
         }
       }
@@ -6167,7 +6167,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ????? ?????? ???? \"%@\""
+            "value" : "\u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d5 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8 \"%@\""
           }
         }
       }
@@ -6189,7 +6189,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????? ??????"
+            "value" : "\u05d0\u05d9\u05df \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05e9\u05de\u05d5\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -6218,7 +6218,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There are no currently opened books available for the search process."
+            "value" : "\u05d0\u05d9\u05df \u05db\u05e8\u05d2\u05e2 \u05e1\u05e4\u05e8\u05d9\u05dd \u05e4\u05ea\u05d5\u05d7\u05d9\u05dd \u05d4\u05d6\u05de\u05d9\u05e0\u05d9\u05dd \u05dc\u05ea\u05d4\u05dc\u05d9\u05da \u05d4\u05d7\u05d9\u05e4\u05d5\u05e9."
           }
         }
       }
@@ -6247,7 +6247,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ????"
+            "value" : "\u05dc\u05d0 \u05d6\u05de\u05d9\u05df"
           }
         }
       }
@@ -6275,7 +6275,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????"
+            "value" : "\u05d0\u05d9\u05df \u05d1\u05d7\u05d9\u05e8\u05d4"
           }
         }
       }
@@ -6303,7 +6303,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d4\u05e2\u05e8\u05d4"
           }
         }
       }
@@ -6325,7 +6325,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??? ?? ?????"
+            "value" : "\u05d9\u05d9\u05d1\u05d5\u05d0 \u05e1\u05e4\u05e8 \u05dc\u05d0 \u05de\u05e7\u05d5\u05d5\u05df"
           }
         }
       }
@@ -6353,7 +6353,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d0\u05d9\u05e9\u05d5\u05e8"
           }
         }
       }
@@ -6375,7 +6375,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???? ???????"
+            "value" : "\u05e4\u05ea\u05d7 \u05de\u05de\u05d9\u05e8 \u05d0\u05d9\u05e0\u05d8\u05e8\u05e0\u05d8"
           }
         }
       }
@@ -6397,7 +6397,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??????"
+            "value" : "\u05e1\u05e4\u05e8\u05d9\u05dd \u05e4\u05ea\u05d5\u05d7\u05d9\u05dd"
           }
         }
       }
@@ -6426,7 +6426,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????????"
+            "value" : "\u05d0\u05d5\u05e4\u05d8\u05d9\u05de\u05d9\u05d6\u05e6\u05d9\u05d4"
           }
         }
       }
@@ -6455,7 +6455,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Optimization is needed to reclaim disk space after deleting books."
+            "value" : "\u05e0\u05d3\u05e8\u05e9\u05ea \u05d0\u05d5\u05e4\u05d8\u05d9\u05de\u05d9\u05d6\u05e6\u05d9\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e4\u05e0\u05d5\u05ea \u05e9\u05d8\u05d7 \u05d3\u05d9\u05e1\u05e7 \u05dc\u05d0\u05d7\u05e8 \u05de\u05d7\u05d9\u05e7\u05ea \u05e1\u05e4\u05e8\u05d9\u05dd."
           }
         }
       }
@@ -6484,7 +6484,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??? ??????"
+            "value" : "\u05de\u05d8\u05d1 \u05de\u05e1\u05d3 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -6506,7 +6506,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????????"
+            "value" : "\u05d0\u05d5\u05e4\u05e6\u05d9\u05d5\u05e0\u05dc\u05d9"
           }
         }
       }
@@ -6534,7 +6534,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05e1\u05d3\u05e8"
           }
         }
       }
@@ -6563,7 +6563,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Overwrite Existing"
+            "value" : "\u05d4\u05d7\u05dc\u05e3 \u05d0\u05ea \u05d4\u05e7\u05d9\u05d9\u05dd"
           }
         }
       }
@@ -6586,7 +6586,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e2\u05de\u05d5\u05d3"
           }
         }
       }
@@ -6608,7 +6608,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PageSlider"
+            "value" : "\u05de\u05d7\u05d5\u05d5\u05df \u05e2\u05de\u05d5\u05d3\u05d9\u05dd"
           }
         }
       }
@@ -6631,7 +6631,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05d7\u05dc\u05e7"
           }
         }
       }
@@ -6660,7 +6660,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select folder to save annotations and save results."
+            "value" : "\u05d1\u05d7\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05dc\u05e9\u05de\u05d9\u05e8\u05ea \u05d4\u05e2\u05e8\u05d5\u05ea \u05d5\u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05d7\u05d9\u05e4\u05d5\u05e9."
           }
         }
       }
@@ -6683,7 +6683,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pink"
+            "value" : "\u05d5\u05e8\u05d5\u05d3"
           }
         }
       }
@@ -6706,7 +6706,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?? ????? ???????? ???"
+            "value" : "\u05d1\u05d3\u05d5\u05e7 \u05d0\u05ea \u05d7\u05d9\u05d1\u05d5\u05e8 \u05d4\u05d0\u05d9\u05e0\u05d8\u05e8\u05e0\u05d8 \u05e9\u05dc\u05da"
           }
         }
       }
@@ -6729,7 +6729,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please wait, this process cannot be cancelled."
+            "value" : "\u05e0\u05d0 \u05dc\u05d4\u05de\u05ea\u05d9\u05df, \u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05d1\u05d8\u05dc \u05d0\u05ea \u05d4\u05ea\u05d4\u05dc\u05d9\u05da."
           }
         }
       }
@@ -6757,7 +6757,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please select a row"
+            "value" : "\u05d1\u05d7\u05e8 \u05e9\u05d5\u05e8\u05d4"
           }
         }
       }
@@ -6785,7 +6785,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?? ???????..."
+            "value" : "\u05de\u05db\u05d9\u05df \u05d0\u05ea \u05d4\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4..."
           }
         }
       }
@@ -6813,7 +6813,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????"
+            "value" : "\u05d4\u05e2\u05de\u05d5\u05d3 \u05d4\u05e7\u05d5\u05d3\u05dd"
           }
         }
       }
@@ -6841,7 +6841,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Processing: %1$@ (%2$lld/%3$lld)"
+            "value" : "\u05de\u05e2\u05d1\u05d3: %1$@ (%2$lld/%3$lld)"
           }
         }
       }
@@ -6863,7 +6863,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????..."
+            "value" : "\u05de\u05e2\u05d1\u05d3..."
           }
         }
       }
@@ -6886,7 +6886,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Purple"
+            "value" : "\u05e1\u05d2\u05d5\u05dc"
           }
         }
       }
@@ -6908,7 +6908,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Query: %@"
+            "value" : "\u05e9\u05d0\u05d9\u05dc\u05ea\u05d4: %@"
           }
         }
       }
@@ -6930,7 +6930,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??"
+            "value" : "\u05e6\u05d0"
           }
         }
       }
@@ -7008,7 +7008,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????"
+            "value" : "\u05e7\u05d5\u05e8\u05d0 \u05e1\u05e4\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -7031,7 +7031,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??????"
+            "value" : "\u05de\u05d5\u05db\u05df \u05dc\u05d4\u05d5\u05e8\u05d3\u05d4"
           }
         }
       }
@@ -7059,7 +7059,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????????"
+            "value" : "\u05d4\u05e1\u05e8 \u05de\u05d4\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd"
           }
         }
       }
@@ -7081,7 +7081,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??????????"
+            "value" : "\u05d4\u05e1\u05e8 \u05de\u05d4\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4"
           }
         }
       }
@@ -7109,7 +7109,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????"
+            "value" : "\u05d4\u05e1\u05e8 \u05ea\u05d2\u05d9\u05d5\u05ea"
           }
         }
       }
@@ -7138,7 +7138,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??"
+            "value" : "\u05e9\u05e0\u05d4 \u05e9\u05dd"
           }
         }
       }
@@ -7166,7 +7166,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rename book ID in-place and migrate local annotations."
+            "value" : "\u05e9\u05e0\u05d4 \u05d0\u05ea \u05de\u05d6\u05d4\u05d4 \u05d4\u05e1\u05e4\u05e8 \u05d1\u05de\u05e7\u05d5\u05dd \u05d5\u05d4\u05e2\u05d1\u05e8 \u05d4\u05e2\u05e8\u05d5\u05ea \u05de\u05e7\u05d5\u05de\u05d9\u05d5\u05ea."
           }
         }
       }
@@ -7195,7 +7195,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??? ????"
+            "value" : "\u05e9\u05d9\u05e0\u05d5\u05d9 \u05d4\u05e9\u05dd \u05e0\u05db\u05e9\u05dc"
           }
         }
       }
@@ -7217,7 +7217,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?? ??????"
+            "value" : "\u05e9\u05e0\u05d4 \u05e9\u05dd \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -7239,7 +7239,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?? ?????"
+            "value" : "\u05e9\u05e0\u05d4 \u05e9\u05dd \u05ea\u05d5\u05e6\u05d0\u05d4"
           }
         }
       }
@@ -7268,7 +7268,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?? ????"
+            "value" : "\u05e9\u05e0\u05d4 \u05e9\u05dd \u05ea\u05d2\u05d9\u05ea"
           }
         }
       }
@@ -7290,7 +7290,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Replace Existing Book"
+            "value" : "\u05d4\u05d7\u05dc\u05e3 \u05e1\u05e4\u05e8 \u05e7\u05d9\u05d9\u05dd"
           }
         }
       }
@@ -7318,7 +7318,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Replace the default sepia theme with standard iOS system appearance."
+            "value" : "\u05d4\u05d7\u05dc\u05e3 \u05d0\u05ea \u05e2\u05e8\u05db\u05ea \u05d4\u05e1\u05e4\u05d9\u05d4 \u05d4\u05de\u05d5\u05d2\u05d3\u05e8\u05ea \u05db\u05d1\u05e8\u05d9\u05e8\u05ea \u05de\u05d7\u05d3\u05dc \u05d1\u05de\u05e8\u05d0\u05d4 \u05d4\u05de\u05e2\u05e8\u05db\u05ea \u05d4\u05e8\u05d2\u05d9\u05dc \u05e9\u05dc iOS."
           }
         }
       }
@@ -7346,7 +7346,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reset Current View"
+            "value" : "\u05d0\u05e4\u05e1 \u05ea\u05e6\u05d5\u05d2\u05d4 \u05e0\u05d5\u05db\u05d7\u05d9\u05ea"
           }
         }
       }
@@ -7368,7 +7368,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????"
+            "value" : "\u05ea\u05d5\u05e6\u05d0\u05d5\u05ea"
           }
         }
       }
@@ -7390,7 +7390,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e9\u05d5\u05e8\u05e9"
           }
         }
       }
@@ -7418,7 +7418,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Narrator Biography"
+            "value" : "\u05d1\u05d9\u05d5\u05d2\u05e8\u05e4\u05d9\u05d9\u05ea \u05de\u05d5\u05e1\u05e8"
           }
         }
       }
@@ -7440,7 +7440,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e9\u05de\u05d5\u05e8"
           }
         }
       }
@@ -7468,7 +7468,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ??????"
+            "value" : "\u05e9\u05de\u05d5\u05e8 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea"
           }
         }
       }
@@ -7490,7 +7490,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????? ?????"
+            "value" : "\u05e9\u05de\u05d5\u05e8 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -7512,7 +7512,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Save search results to access them later."
+            "value" : "\u05e9\u05de\u05d5\u05e8 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05d7\u05d9\u05e4\u05d5\u05e9 \u05db\u05d3\u05d9 \u05dc\u05d2\u05e9\u05ea \u05d0\u05dc\u05d9\u05d4\u05df \u05de\u05d0\u05d5\u05d7\u05e8 \u05d9\u05d5\u05ea\u05e8."
           }
         }
       }
@@ -7534,7 +7534,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????? ??????"
+            "value" : "\u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05e9\u05de\u05d5\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -7562,7 +7562,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -7590,7 +7590,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05d4\u05e2\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -7618,7 +7618,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05e1\u05e4\u05e8"
           }
         }
       }
@@ -7640,7 +7640,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05e1\u05e4\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -7662,7 +7662,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????..."
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05e1\u05e4\u05e8\u05d9\u05dd..."
           }
         }
       }
@@ -7690,7 +7690,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05ea\u05d5\u05db\u05df"
           }
         }
       }
@@ -7712,7 +7712,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???????? ??????????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd \u05d5\u05d1\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4"
           }
         }
       }
@@ -7734,7 +7734,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search globally"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d2\u05dc\u05d5\u05d1\u05dc\u05d9"
           }
         }
       }
@@ -7762,7 +7762,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????????? ?????????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4 \u05d5\u05d1\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd"
           }
         }
       }
@@ -7790,7 +7790,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05e1\u05e4\u05e8"
           }
         }
       }
@@ -7813,7 +7813,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?????? ??????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05e1\u05e4\u05e8\u05d9\u05dd \u05e9\u05e0\u05d1\u05d7\u05e8\u05d5"
           }
         }
       }
@@ -7841,7 +7841,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -7863,7 +7863,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??????"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05de\u05d5\u05e1\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -7891,7 +7891,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????? ?????"
+            "value" : "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -7919,7 +7919,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????..."
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9..."
           }
         }
       }
@@ -7948,7 +7948,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ???? ??"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05e1\u05e4\u05e8 \u05d6\u05d4"
           }
         }
       }
@@ -7977,7 +7977,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ????????? ?????"
+            "value" : "\u05e2\u05d6\u05e8\u05d4 \u05d1\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -7999,7 +7999,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???"
+            "value" : "\u05d1\u05d7\u05e8"
           }
         }
       }
@@ -8027,7 +8027,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??? ??????"
+            "value" : "\u05d1\u05d7\u05e8 \u05e1\u05e4\u05e8 \u05dc\u05e7\u05e8\u05d9\u05d0\u05d4"
           }
         }
       }
@@ -8049,7 +8049,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05d1\u05d7\u05e8 \u05d4\u05db\u05dc"
           }
         }
       }
@@ -8071,7 +8071,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05d1\u05d7\u05e8 \u05de\u05d7\u05d1\u05e8"
           }
         }
       }
@@ -8093,7 +8093,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???"
+            "value" : "\u05d1\u05d7\u05e8 \u05e1\u05e4\u05e8"
           }
         }
       }
@@ -8115,7 +8115,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select book to download."
+            "value" : "\u05d1\u05d7\u05e8 \u05e1\u05e4\u05e8 \u05dc\u05d4\u05d5\u05e8\u05d3\u05d4."
           }
         }
       }
@@ -8137,7 +8137,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??? ??????"
+            "value" : "\u05d1\u05d7\u05e8 \u05e1\u05e4\u05e8 \u05dc\u05d4\u05d7\u05dc\u05e4\u05d4"
           }
         }
       }
@@ -8159,7 +8159,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???????..."
+            "value" : "\u05d1\u05d7\u05e8 \u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d4..."
           }
         }
       }
@@ -8187,7 +8187,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???????"
+            "value" : "\u05d1\u05d7\u05e8 \u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd"
           }
         }
       }
@@ -8209,7 +8209,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05d1\u05d7\u05e8 \u05e7\u05d5\u05d1\u05e5"
           }
         }
       }
@@ -8231,7 +8231,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??????"
+            "value" : "\u05d1\u05d7\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -8253,7 +8253,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????..."
+            "value" : "\u05d1\u05d7\u05e8 \u05d2\u05d5\u05e4\u05df..."
           }
         }
       }
@@ -8275,7 +8275,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select Registered Author"
+            "value" : "\u05d1\u05d7\u05e8 \u05de\u05d7\u05d1\u05e8 \u05e8\u05e9\u05d5\u05dd"
           }
         }
       }
@@ -8297,7 +8297,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Semi-Annual Check"
+            "value" : "\u05d1\u05d3\u05d9\u05e7\u05d4 \u05d7\u05e6\u05d9-\u05e9\u05e0\u05ea\u05d9\u05ea"
           }
         }
       }
@@ -8326,7 +8326,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Searches for words separated by a comma (,). The words do not need to be adjacent or in the order specified.\n(e.g., صلاة الجماعة, المأموم المسبوق)"
+            "value" : "\u05de\u05d7\u05e4\u05e9 \u05de\u05d9\u05dc\u05d9\u05dd \u05d4\u05de\u05d5\u05e4\u05e8\u05d3\u05d5\u05ea \u05d1\u05e4\u05e1\u05d9\u05e7 (,). \u05d4\u05de\u05d9\u05dc\u05d9\u05dd \u05d0\u05d9\u05e0\u05df \u05d7\u05d9\u05d9\u05d1\u05d5\u05ea \u05dc\u05d4\u05d9\u05d5\u05ea \u05e1\u05de\u05d5\u05db\u05d5\u05ea \u05d0\u05d5 \u05d1\u05e1\u05d3\u05e8 \u05e9\u05e6\u05d5\u05d9\u05df.\n(\u05dc\u05d3\u05d5\u05d2\u05de\u05d4: \u0635\u0644\u0627\u0629 \u0627\u0644\u062c\u0645\u0627\u0639\u0629, \u0627\u0644\u0645\u0623\u0645\u0648\u0645 \u0627\u0644\u0645\u0633\u0628\u0648\u0642)"
           }
         }
       }
@@ -8355,7 +8355,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2. Separated Words Search"
+            "value" : "2. \u05d7\u05d9\u05e4\u05d5\u05e9 \u05de\u05d9\u05dc\u05d9\u05dd \u05e0\u05e4\u05e8\u05d3\u05d5\u05ea"
           }
         }
       }
@@ -8377,7 +8377,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??????"
+            "value" : "\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea"
           }
         }
       }
@@ -8405,7 +8405,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?? ????"
+            "value" : "\u05e9\u05ea\u05e3 \u05e2\u05dd \u05de\u05e7\u05d5\u05e8"
           }
         }
       }
@@ -8433,7 +8433,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ?????"
+            "value" : "\u05d4\u05e6\u05d2 \u05e0\u05d9\u05e7\u05d5\u05d3"
           }
         }
       }
@@ -8455,7 +8455,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d3\u05d5\u05dc\u05d2"
           }
         }
       }
@@ -8483,7 +8483,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???"
+            "value" : "\u05de\u05d9\u05d9\u05df \u05dc\u05e4\u05d9"
           }
         }
       }
@@ -8511,7 +8511,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????"
+            "value" : "\u05d4\u05ea\u05d7\u05dc \u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -8533,7 +8533,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Starting %lld books update..."
+            "value" : "\u05de\u05ea\u05d7\u05d9\u05dc \u05e2\u05d3\u05db\u05d5\u05df \u05e9\u05dc %lld \u05e1\u05e4\u05e8\u05d9\u05dd..."
           }
         }
       }
@@ -8556,7 +8556,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e2\u05e6\u05d5\u05e8"
           }
         }
       }
@@ -8584,7 +8584,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????"
+            "value" : "\u05e2\u05e6\u05d5\u05e8 \u05d7\u05d9\u05e4\u05d5\u05e9"
           }
         }
       }
@@ -8607,7 +8607,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stopped downloads. %lld books completed."
+            "value" : "\u05d4\u05d4\u05d5\u05e8\u05d3\u05d5\u05ea \u05d4\u05d5\u05e4\u05e1\u05e7\u05d5. %lld \u05e1\u05e4\u05e8\u05d9\u05dd \u05d4\u05d5\u05e9\u05dc\u05de\u05d5."
           }
         }
       }
@@ -8630,7 +8630,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stopped. %lld books completed."
+            "value" : "\u05d4\u05d5\u05e4\u05e1\u05e7. %lld \u05e1\u05e4\u05e8\u05d9\u05dd \u05d4\u05d5\u05e9\u05dc\u05de\u05d5."
           }
         }
       }
@@ -8653,7 +8653,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stopping downloads. Integrating completed books..."
+            "value" : "\u05e2\u05d5\u05e6\u05e8 \u05d4\u05d5\u05e8\u05d3\u05d5\u05ea. \u05de\u05e9\u05dc\u05d1 \u05e1\u05e4\u05e8\u05d9\u05dd \u05e9\u05d4\u05d5\u05e9\u05dc\u05de\u05d5..."
           }
         }
       }
@@ -8681,7 +8681,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05e1\u05d2\u05e0\u05d5\u05df"
           }
         }
       }
@@ -8709,7 +8709,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05d4\u05e6\u05dc\u05d7\u05d4"
           }
         }
       }
@@ -8737,7 +8737,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???"
+            "value" : "\u05d4\u05d7\u05dc\u05e3 \u05de\u05e6\u05d1"
           }
         }
       }
@@ -8759,7 +8759,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Switch to Bundle Mode"
+            "value" : "\u05e2\u05d1\u05d5\u05e8 \u05dc\u05de\u05e6\u05d1 \u05d7\u05d1\u05d9\u05dc\u05d4"
           }
         }
       }
@@ -8781,7 +8781,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sync annotations and search results across devices with CloudKit."
+            "value" : "\u05e1\u05e0\u05db\u05e8\u05df \u05d4\u05e2\u05e8\u05d5\u05ea \u05d5\u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05d9\u05df \u05de\u05db\u05e9\u05d9\u05e8\u05d9\u05dd \u05d1\u05d0\u05de\u05e6\u05e2\u05d5\u05ea CloudKit."
           }
         }
       }
@@ -8809,7 +8809,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??????"
+            "value" : "\u05e1\u05e0\u05db\u05e8\u05df \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -8837,7 +8837,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ???????"
+            "value" : "\u05ea\u05d5\u05db\u05df \u05e2\u05e0\u05d9\u05d9\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -8859,7 +8859,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tafseer Name"
+            "value" : "\u05e9\u05dd \u05e4\u05d9\u05e8\u05d5\u05e9"
           }
         }
       }
@@ -8887,7 +8887,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05ea\u05d2\u05d9\u05ea"
           }
         }
       }
@@ -8943,7 +8943,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? (??????? ???????)"
+            "value" : "\u05ea\u05d2\u05d9\u05d5\u05ea (\u05de\u05d5\u05e4\u05e8\u05d3\u05d5\u05ea \u05d1\u05e4\u05e1\u05d9\u05e7\u05d9\u05dd)"
           }
         }
       }
@@ -8971,7 +8971,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????? ????"
+            "value" : "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05d8\u05e7\u05e1\u05d8"
           }
         }
       }
@@ -9000,7 +9000,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The core database files are not ready yet. Finish the initial download first."
+            "value" : "\u05e7\u05d1\u05e6\u05d9 \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d4\u05d1\u05e1\u05d9\u05e1\u05d9\u05d9\u05dd \u05e2\u05d3\u05d9\u05d9\u05df \u05d0\u05d9\u05e0\u05dd \u05de\u05d5\u05db\u05e0\u05d9\u05dd. \u05e1\u05d9\u05d9\u05dd \u05e7\u05d5\u05d3\u05dd \u05d0\u05ea \u05d4\u05d4\u05d5\u05e8\u05d3\u05d4 \u05d4\u05e8\u05d0\u05e9\u05d5\u05e0\u05d9\u05ea."
           }
         }
       }
@@ -9022,7 +9022,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There's Nothing Books to Download."
+            "value" : "\u05d0\u05d9\u05df \u05e1\u05e4\u05e8\u05d9\u05dd \u05dc\u05d4\u05d5\u05e8\u05d3\u05d4."
           }
         }
       }
@@ -9044,7 +9044,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This will delete all downloaded SQLite files, index, and cache from the bundle mode storage."
+            "value" : "\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d6\u05d5 \u05ea\u05de\u05d7\u05e7 \u05d0\u05ea \u05db\u05dc \u05e7\u05d1\u05e6\u05d9 SQLite, \u05d4\u05d0\u05d9\u05e0\u05d3\u05e7\u05e1 \u05d5\u05d4\u05de\u05d8\u05de\u05d5\u05df \u05e9\u05d4\u05d5\u05e8\u05d3\u05d5 \u05de\u05d0\u05d7\u05e1\u05d5\u05df \u05de\u05e6\u05d1 \u05d4\u05d7\u05d1\u05d9\u05dc\u05d4."
           }
         }
       }
@@ -9073,7 +9073,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Table Of Contents"
+            "value" : "\u05ea\u05d5\u05db\u05df \u05e2\u05e0\u05d9\u05d9\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -9095,7 +9095,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ???"
+            "value" : "\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1"
           }
         }
       }
@@ -9123,7 +9123,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????????"
+            "value" : "\u05d8\u05d9\u05e4\u05d5\u05d2\u05e8\u05e4\u05d9\u05d4"
           }
         }
       }
@@ -9146,7 +9146,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?? ?????"
+            "value" : "\u05e7\u05d5 \u05ea\u05d7\u05ea\u05d5\u05df"
           }
         }
       }
@@ -9175,7 +9175,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ????"
+            "value" : "\u05dc\u05dc\u05d0 \u05ea\u05d2\u05d9\u05ea"
           }
         }
       }
@@ -9197,7 +9197,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???? ?????"
+            "value" : "\u05e2\u05d3\u05db\u05df \u05e2\u05db\u05e9\u05d9\u05d5"
           }
         }
       }
@@ -9219,7 +9219,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Update Only"
+            "value" : "\u05e2\u05d3\u05db\u05df \u05d1\u05dc\u05d1\u05d3"
           }
         }
       }
@@ -9241,7 +9241,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Update selected (%lld)"
+            "value" : "\u05e2\u05d3\u05db\u05df \u05e0\u05d1\u05d7\u05e8\u05d9\u05dd (%lld)"
           }
         }
       }
@@ -9263,7 +9263,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????"
+            "value" : "\u05e2\u05d3\u05db\u05d5\u05e0\u05d9\u05dd"
           }
         }
       }
@@ -9285,7 +9285,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??????"
+            "value" : "\u05de\u05e2\u05d3\u05db\u05df \u05e1\u05e4\u05e8\u05d9\u05d9\u05d4"
           }
         }
       }
@@ -9307,7 +9307,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ?-CloudKit"
+            "value" : "\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1-CloudKit"
           }
         }
       }
@@ -9335,7 +9335,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ????? ??????"
+            "value" : "\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e2\u05e8\u05db\u05ea \u05d4\u05de\u05e2\u05e8\u05db\u05ea"
           }
         }
       }
@@ -9357,7 +9357,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use the app's built-in database (read-only). For the Full Library, disable this and choose a custom folder."
+            "value" : "\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d4\u05de\u05d5\u05d1\u05e0\u05d4 \u05e9\u05dc \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 (\u05e7\u05e8\u05d9\u05d0\u05d4 \u05d1\u05dc\u05d1\u05d3). \u05e2\u05d1\u05d5\u05e8 \u05d4\u05e1\u05e4\u05e8\u05d9\u05d9\u05d4 \u05d4\u05de\u05dc\u05d0\u05d4, \u05db\u05d1\u05d4 \u05d6\u05d0\u05ea \u05d5\u05d1\u05d7\u05e8 \u05ea\u05d9\u05e7\u05d9\u05d9\u05d4 \u05de\u05d5\u05ea\u05d0\u05de\u05ea."
           }
         }
       }
@@ -9393,7 +9393,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05d2\u05e8\u05e1\u05d4"
           }
         }
       }
@@ -9415,7 +9415,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Version %@ is available. The core database contains books metadata and categories."
+            "value" : "\u05d2\u05e8\u05e1\u05d4 %@ \u05d6\u05de\u05d9\u05e0\u05d4. \u05de\u05e1\u05d3 \u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d4\u05d1\u05e1\u05d9\u05e1\u05d9 \u05de\u05db\u05d9\u05dc \u05de\u05d8\u05d0-\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d5\u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d5\u05ea \u05e9\u05dc \u05e1\u05e4\u05e8\u05d9\u05dd."
           }
         }
       }
@@ -9443,7 +9443,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????? ?????"
+            "value" : "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05ea\u05e6\u05d5\u05d2\u05d4"
           }
         }
       }
@@ -9471,7 +9471,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "???????? ?????"
+            "value" : "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05ea\u05e6\u05d5\u05d2\u05d4"
           }
         }
       }
@@ -9493,7 +9493,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "?????"
+            "value" : "\u05de\u05de\u05ea\u05d9\u05df"
           }
         }
       }
@@ -9521,7 +9521,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Will overwrite existing"
+            "value" : "\u05d9\u05d7\u05dc\u05d9\u05e3 \u05d0\u05ea \u05d4\u05e7\u05d9\u05d9\u05dd"
           }
         }
       }
@@ -9544,7 +9544,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????"
+            "value" : "\u05e6\u05d4\u05d5\u05d1"
           }
         }
       }
@@ -9572,7 +9572,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search in Narrators"
+            "value" : "\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d1\u05de\u05d5\u05e1\u05e8\u05d9\u05dd"
           }
         }
       }
@@ -9606,7 +9606,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Book Card:"
+            "value" : "\u05db\u05e8\u05d8\u05d9\u05e1 \u05e1\u05e4\u05e8:"
           }
         }
       }
@@ -9634,7 +9634,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vol: %lld"
+            "value" : "\u05db\u05e8\u05da: %lld"
           }
         }
       }
@@ -9665,7 +9665,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "P: %lld"
+            "value" : "\u05e2\u05de\u05f3: %lld"
           }
         }
       }
@@ -9693,7 +9693,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "About the Book:"
+            "value" : "\u05e2\u05dc \u05d4\u05e1\u05e4\u05e8:"
           }
         }
       }
@@ -9721,7 +9721,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "About the Author:"
+            "value" : "\u05e2\u05dc \u05d4\u05de\u05d7\u05d1\u05e8:"
           }
         }
       }
@@ -9738,7 +9738,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??? ??????"
+            "value" : "\u05d1\u05d7\u05e8 \u05de\u05e1\u05d3 \u05d0\u05d5\u05e6\u05e8\u05d9\u05d0"
           }
         }
       }
@@ -9755,7 +9755,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "??? ??? ??????"
+            "value" : "\u05e0\u05ea\u05e7 \u05de\u05e1\u05d3 \u05d0\u05d5\u05e6\u05e8\u05d9\u05d0"
           }
         }
       }
@@ -9772,7 +9772,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "????? ??? ??????"
+            "value" : "\u05e9\u05d2\u05d9\u05d0\u05ea \u05de\u05e1\u05d3 \u05d0\u05d5\u05e6\u05e8\u05d9\u05d0"
           }
         }
       }
