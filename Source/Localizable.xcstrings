@@ -2554,6 +2554,22 @@
         }
       }
     },
+    "Cross-Platform Sync" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المزامنة عبر الأنظمة الأساسية"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinkronisasi Lintas-Platform"
+          }
+        }
+      }
+    },
     "Current" : {
       "localizations" : {
         "ar" : {
@@ -2693,6 +2709,9 @@
           }
         }
       }
+    },
+    "Debug Worker URL" : {
+      "shouldTranslate" : false
     },
     "Delete" : {
       "localizations" : {
@@ -6304,6 +6323,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "\u05d4\u05e2\u05e8\u05d4"
+          }
+        }
+      }
+    },
+    "Notify other platforms to sync when changes are made." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قم بإخطار الأنظمة الأساسية الأخرى بالمزامنة عند إجراء التغييرات."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beri tahu platform lain untuk melakukan sinkronisasi saat terdapat perubahan."
           }
         }
       }

@@ -24,11 +24,23 @@ struct iOSBootstrapView: View {
                     if bootstrapManager.isChecking {
                         ProgressView(String(localized: "Preparing Library..."))
                     } else {
-                        iOSCoreDownloadGateView(
-                            state: bootstrapManager.coreDownloadState,
-                            onDownload: { bootstrapManager.startDownload() },
-                            onChooseOtzaria: { showingOtzariaImporter = true }
-                        )
+                        VStack(spacing: 12) {
+                            CoreDownloadProgressView(
+                                state: bootstrapManager.coreDownloadState,
+                                onDownload: { bootstrapManager.startDownload() },
+                                onChooseFolder: { bootstrapManager.chooseLibraryFolder() },
+                                onQuit: { cancellation() }
+                            )
+
+                            if bootstrapManager.coreDownloadState.phase != .downloading {
+                                Button {
+                                    showingOtzariaImporter = true
+                                } label: {
+                                    Label(String(localized: "Choose Otzaria Database"), systemImage: "externaldrive")
+                                }
+                                .buttonStyle(.bordered)
+                            }
+                        }
                         .padding()
                     }
                 }
@@ -36,6 +48,10 @@ struct iOSBootstrapView: View {
         }
         .task {
             bootstrapManager.prepareIfNeeded()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .requireCoreDownload)) { notification in
+            let isCancellable = notification.userInfo?["isCancellable"] as? Bool ?? false
+            bootstrapManager.reloadLibrary(isCancellable: isCancellable)
         }
         .fileImporter(
             isPresented: $showingOtzariaImporter,
@@ -71,6 +87,17 @@ struct iOSBootstrapView: View {
                     state: bootstrapManager.coreDownloadState
                 )
             }
+        }
+    }
+
+    private func cancellation() {
+        if bootstrapManager.isCancellable {
+            bootstrapManager.cancelDownload()
+        } else {
+            ReusableFunc.showAlert(
+                title: "core.modal.missingFiles.title".localized,
+                message: "Database File Needed".localized
+            )
         }
     }
 }

@@ -156,6 +156,7 @@ enum SettingsActions {
         let migrateSuccess = AppConfig.migrateToCustomMode(folderUrl: url)
 
         if !migrateSuccess {
+            AppConfig.resetCustomModeKey()
             ReusableFunc.showAlert(
                 title: String(localized: "migrationFailed"),
                 message: String(localized: "migrationFailedInfo")
@@ -191,7 +192,14 @@ enum SettingsActions {
         )
     }
     
-    #if os(macOS)
+    static var pendingRestoreAction: (() -> Void)?
+
+    static func cancelBundleModeSwitch() {
+        pendingRestoreAction?()
+        pendingRestoreAction = nil
+        SettingsViewModel.shared.refreshPaths()
+    }
+
     static func switchToBundleMode(onCompletion: (() -> Void)? = nil) {
         let wasBundleMode = AppConfig.isUsingBundleMode
         let previousCustomBookmark = UserDefaults.standard.data(
@@ -218,6 +226,7 @@ enum SettingsActions {
 
         let downloader = CoreDatabaseDownloader()
         if !downloader.areBundleCoreFilesReady() {
+            #if os(macOS)
             let modal = CoreDownloadModalCenter(downloader: downloader)
             coreDownloadModal = modal
             modal.runNonBlocking { result in
@@ -232,12 +241,21 @@ enum SettingsActions {
                 onCompletion?()
                 coreDownloadModal = nil
             }
+            #else
+            pendingRestoreAction = restorePreviousMode
+            NotificationCenter.default.post(
+                name: .requireCoreDownload, object: nil,
+                userInfo: ["isCancellable": true]
+            )
+            onCompletion?()
+            #endif
         } else {
             finishSetup()
             onCompletion?()
         }
     }
 
+    #if os(macOS)
     static func downloadSelectiveLibrary() {
         BulkDownloadModalCenter.shared.presentModal()
     }
@@ -370,6 +388,13 @@ enum SettingsActions {
 
         try AnnotationManager.shared.setupAnnotations(at: newURL)
         try ResultsHandler.shared.setupResultDatabase(at: newURL)
+    }
+
+    static func setUseCrossPlatformSync(_ use: Bool) {
+        AppConfig.useCrossPlatformSync = use
+        if use {
+            CloudKitCoreManager.shared.notifyWorkerToSync()
+        }
     }
 }
 

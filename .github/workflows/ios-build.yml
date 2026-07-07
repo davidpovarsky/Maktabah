@@ -40,9 +40,11 @@ jobs:
           xcodebuild -showsdks
 
       - name: Install Rust toolchain
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
         uses: dtolnay/rust-toolchain@stable
 
       - name: Build Otzaria Tantivy search engine
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
         run: |
           set -euo pipefail
           mkdir -p build/logs
@@ -69,7 +71,9 @@ jobs:
           abort('Maktabah-iOS target was not found') unless target
 
           existing_refs = target.source_build_phase.files_references.compact
-          Dir.glob('Source/Otzaria/**/*.swift').sort.each do |path|
+          Dir.glob('Source/Otzaria/**/*.swift').sort.reject { |path|
+            path.start_with?('Source/Otzaria/Experimental/')
+          }.each do |path|
             file_ref = project.files.find { |ref| ref.path == path }
             file_ref ||= project.main_group.new_file(path)
             unless existing_refs.include?(file_ref)

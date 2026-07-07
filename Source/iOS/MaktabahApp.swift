@@ -119,6 +119,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         completionHandler(.noData)
     }
+    func applicationWillTerminate(_ application: UIApplication) {
+        CloudKitCoreManager.shared.syncWorker()
+    }
 }
 
 extension View {

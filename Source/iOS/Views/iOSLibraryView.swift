@@ -169,7 +169,7 @@ struct iOSLibraryView: View {
                 }
             }
 
-            if !OtzariaLibraryImportActions.isEnabled {
+            if !OtzariaLibraryImportActions.isEnabled && AppConfig.isUsingBundleMode {
                 ToolbarItem(placement: .topBarTrailing) {
                     Toggle(isOn: Binding(
                         get: { viewModel.showOnlyDownloaded },

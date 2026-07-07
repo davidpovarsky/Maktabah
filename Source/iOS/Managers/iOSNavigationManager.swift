@@ -54,6 +54,16 @@ class iOSNavigationManager {
                 self.handleBookIntegrationChanged(bookId: bookId)
             }
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .libraryFolderChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.clearAllTabs()
+            }
+        }
     }
 
     private func handleBookIntegrationChanged(bookId: Int) {
@@ -97,6 +107,18 @@ class iOSNavigationManager {
                 selectedBook = nil
             }
         }
+    }
+
+    func clearAllTabs() {
+        for tab in openTabs {
+            if activeTabId == tab.id {
+                tab.viewModel.saveCurrentState()
+            }
+        }
+        openTabs.removeAll()
+        activeTabId = nil
+        selectedBook = nil
+        selectedContentId = nil
     }
 
     func selectTab(id: UUID) {
@@ -212,7 +234,7 @@ class iOSNavigationManager {
             return
         }
 
-        if !CoreDatabaseDownloader().areCoreFilesReady() {
+        if AppConfig.isUsingBundleMode, !CoreDatabaseDownloader().areCoreFilesReady() {
             alertMessage = AlertMessage(
                 title: NSLocalizedString("Database File Needed", comment: "Missing core files alert title"),
                 message: NSLocalizedString(
@@ -230,14 +252,14 @@ class iOSNavigationManager {
             return
         }
 
-        await MainActor.run {
-            HistoryViewModel.shared.addBookToHistory(book.id)
-            if let initialContentId = initialContentId {
-                HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
-            }
-        }
-
         presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
+
+        await Task.yield()
+
+        HistoryViewModel.shared.addBookToHistory(book.id)
+        if let initialContentId = initialContentId {
+            HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+        }
     }
 
     func showBookIntegrationConfirmation(

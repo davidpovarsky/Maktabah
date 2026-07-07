@@ -83,9 +83,16 @@ class DatabaseManager {
         let flags = SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
         do {
             db = try SQLiteDatabase(path: mainPath, flags: flags)
+        } catch {
+            handleSetupError()
+            return
+        }
+
+        do {
             dbSpecial = try SQLiteDatabase(path: specialPath, flags: flags)
         } catch {
-            print("Database setup error: \(error)")
+            handleSetupError()
+            return
         }
     }
 
@@ -103,9 +110,50 @@ class DatabaseManager {
         if let version = OtzariaDatabaseManagerAdapter.localVersionDisplay { return version }
         let checkQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='v'"
         var tableExists = false
-        do { try db?.fetch(query: checkQuery) { _ in tableExists = true } } catch { return nil }
-        guard tableExists else { return nil }
-        return try? db?.fetch(query: "SELECT version FROM v LIMIT 1") { row in row.string(at: 0) }.first ?? nil
+        do {
+            try db?.fetch(query: checkQuery) { _ in
+                tableExists = true
+            }
+        } catch {
+            return nil
+        }
+
+        guard tableExists else {
+            return nil // Table 'v' doesn't exist
+        }
+
+        // Get version from table 'v'
+        let query = "SELECT version FROM v LIMIT 1"
+
+        var version: String?
+        do {
+            try db?.fetch(query: query) { row in
+                version = row.string(at: 0)
+            }
+        } catch {
+            return nil
+        }
+
+        return version
+    }
+
+    private func handleSetupError() {
+        AppConfig.resetCustomModeKey()
+        ReusableFunc.showAlert(
+            title: NSLocalizedString("Folder Not Found", comment: ""),
+            message: NSLocalizedString(
+                "Application Will Terminate because Folder Location Not Found on \(AppConfig.databaseFilesPath ?? "N/A")",
+                comment: ""
+            )
+        )
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            return
+        }
+        #if os(macOS)
+        NSApp.terminate(nil)
+        #else
+        fatalError("Application Terminated: Folder Location Not Found")
+        #endif
     }
 
     func fetchAllCategories() throws -> [CategoryData] {
