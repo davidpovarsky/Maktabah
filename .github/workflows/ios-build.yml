@@ -39,17 +39,34 @@ jobs:
           xcodebuild -version
           xcodebuild -showsdks
 
-      - name: Install Rust toolchain
+      - name: Cache Otzaria search engine
+        id: cache-otzaria-search-engine
         if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+            Vendor/OtzariaSearchEngine/upstream/otzaria_search_engine
+          key: ${{ runner.os }}-otzaria-search-${{ hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs', 'Vendor/OtzariaSearchEngine/include/otzaria_search_engine.h', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+
+      - name: Install Rust toolchain
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != '' && steps.cache-otzaria-search-engine.outputs.cache-hit != 'true'
         uses: dtolnay/rust-toolchain@stable
 
       - name: Build Otzaria Tantivy search engine
-        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != '' && steps.cache-otzaria-search-engine.outputs.cache-hit != 'true'
         run: |
           set -euo pipefail
           mkdir -p build/logs
           chmod +x Vendor/OtzariaSearchEngine/build_xcframework.sh
           Vendor/OtzariaSearchEngine/build_xcframework.sh 2>&1 | tee build/logs/build-otzaria-search-engine.log
+
+      - name: Verify Otzaria search engine framework
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
+        run: |
+          set -euo pipefail
+          test -d Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
 
       - name: Add Otzaria sources to iOS target
         run: |
