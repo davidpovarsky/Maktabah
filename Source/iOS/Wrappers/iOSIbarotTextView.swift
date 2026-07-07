@@ -574,7 +574,13 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 let sourceIndex = self.currentRenderResult?
                     .remapSourceRange(NSRange(location: characterIndex, length: 0))
                     .location ?? characterIndex
-                self.parent.onTapTextCharacterIndex?(self.sourceCharacterIndex(forDisplayedIndex: sourceIndex))
+                self.parent.onTapTextCharacterIndex?(
+                    OtzariaTextViewLineSelectionAdapter.sourceCharacterIndex(
+                        forDisplayedIndex: sourceIndex,
+                        sourceText: self.parent.text,
+                        showHarakat: TextViewState.shared.showHarakat
+                    )
+                )
             }
         }
 
@@ -622,30 +628,6 @@ struct iOSIbarotTextView: UIViewRepresentable {
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             guard characterIndex >= 0, characterIndex <= textView.textStorage.length else { return nil }
             return characterIndex
-        }
-
-        private func sourceCharacterIndex(forDisplayedIndex displayedIndex: Int) -> Int {
-            guard !TextViewState.shared.showHarakat else { return displayedIndex }
-
-            var displayedOffset = 0
-            var sourceOffset = 0
-
-            for scalar in parent.text.unicodeScalars {
-                let scalarLength = String(scalar).utf16.count
-                if scalar.isArabicHarakat {
-                    sourceOffset += scalarLength
-                    continue
-                }
-
-                if displayedOffset >= displayedIndex {
-                    return sourceOffset
-                }
-
-                displayedOffset += scalarLength
-                sourceOffset += scalarLength
-            }
-
-            return sourceOffset
         }
 
         // MARK: - Pull-to-Navigate Scroll Detection

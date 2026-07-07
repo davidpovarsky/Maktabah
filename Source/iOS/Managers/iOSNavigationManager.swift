@@ -57,7 +57,7 @@ class iOSNavigationManager {
     }
 
     private func handleBookIntegrationChanged(bookId: Int) {
-        if OtzariaMaktabahBridge.shared.isEnabled { return }
+        if OtzariaNavigationAdapter.shouldIgnoreBookIntegrationChange() { return }
         // If a book is no longer integrated, close its tab
         let tabsToClose = openTabs.filter { tab in
             tab.book.id == bookId && !BookArchiveIntegrator.shared.isBookIntegrated(tab.book)
@@ -111,11 +111,15 @@ class iOSNavigationManager {
     }
 
     func confirmPendingBookIntegration(state: BundleArchiveDownloadProgressState) {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            if case .single(let book, let initialContentId) = state.pendingData {
-                presentReader(book, initialContentId: initialContentId)
+        if OtzariaNavigationAdapter.confirmPendingBookIntegrationIfEnabled(
+            state: state,
+            presentReader: { [weak self] book, initialContentId in
+                self?.presentReader(book, initialContentId: initialContentId)
+            },
+            removeState: { [weak self] stateId in
+                self?.activeIntegrationStates.removeAll { $0.id == stateId }
             }
-            activeIntegrationStates.removeAll { $0.id == state.id }
+        ) {
             return
         }
         guard let pendingData = state.pendingData else { return }
@@ -191,12 +195,20 @@ class iOSNavigationManager {
     }
 
     private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) async {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            HistoryViewModel.shared.addBookToHistory(book.id)
-            if let initialContentId {
-                HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+        if OtzariaNavigationAdapter.openBookIfEnabled(
+            book,
+            initialContentId: initialContentId,
+            searchText: searchText,
+            targetAnnotation: targetAnnotation,
+            presentReader: { [weak self] book, initialContentId, searchText, targetAnnotation in
+                self?.presentReader(
+                    book,
+                    initialContentId: initialContentId,
+                    searchText: searchText,
+                    targetAnnotation: targetAnnotation
+                )
             }
-            presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
+        ) {
             return
         }
 
@@ -232,8 +244,13 @@ class iOSNavigationManager {
         for book: BooksData,
         initialContentId: Int?
     ) {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            presentReader(book, initialContentId: initialContentId)
+        if OtzariaNavigationAdapter.presentReaderForIntegrationIfEnabled(
+            book,
+            initialContentId: initialContentId,
+            presentReader: { [weak self] book, initialContentId in
+                self?.presentReader(book, initialContentId: initialContentId)
+            }
+        ) {
             return
         }
         // Prevent duplicate confirmation for the same book
@@ -267,11 +284,8 @@ class iOSNavigationManager {
     }
 
     func showBulkDownloadConfirmation(books: [BooksData]) {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            alertMessage = AlertMessage(
-                title: NSLocalizedString("Download Book", comment: "Bulk download window title"),
-                message: NSLocalizedString("Books are already available from the selected Otzaria database.", comment: "Otzaria bulk download not needed")
-            )
+        if let message = OtzariaNavigationAdapter.bulkDownloadMessageIfEnabled() {
+            alertMessage = message
             return
         }
         // Prevent multiple bulk confirmations

@@ -2,6 +2,35 @@ import Foundation
 
 #if os(iOS)
 extension ReaderViewModel {
+    var canGoBackInOtzariaSourcesPanel: Bool {
+        otzariaSourcesSelectedBookID != nil || otzariaSourcesSelectedGroupID != nil
+    }
+
+    func goBackInOtzariaSourcesPanel() {
+        if otzariaSourcesSelectedBookID != nil {
+            otzariaSourcesSelectedBookID = nil
+            otzariaSourcesExpandedSourceIDs.removeAll()
+        } else if otzariaSourcesSelectedGroupID != nil {
+            otzariaSourcesSelectedGroupID = nil
+            otzariaSourcesSelectedBookID = nil
+            otzariaSourcesExpandedSourceIDs.removeAll()
+        }
+    }
+
+    func resetOtzariaSourcesPanelNavigation() {
+        otzariaSourcesSelectedGroupID = nil
+        otzariaSourcesSelectedBookID = nil
+        otzariaSourcesExpandedSourceIDs.removeAll()
+    }
+
+    func clearOtzariaLineSelectionForContentChange() {
+        otzariaSelectedLineAnchor = nil
+        otzariaLinkedSources = []
+        otzariaSourcesError = nil
+        otzariaSourcesIsLoading = false
+        readerState.selectedRange = nil
+    }
+
     func didTapOtzariaText(at characterIndex: Int) {
         guard OtzariaMaktabahBridge.shared.isEnabled else { return }
         guard let currentBook else {
@@ -53,3 +82,23 @@ extension ReaderViewModel {
     }
 }
 #endif
+
+extension ReaderViewModel {
+    var isOtzariaReaderEnabled: Bool {
+        OtzariaMaktabahBridge.shared.isEnabled
+    }
+
+    func otzariaCurrentReferencePage() -> String? {
+        guard isOtzariaReaderEnabled, let currentHeRef, !currentHeRef.isEmpty else { return nil }
+        return currentHeRef
+    }
+
+    func otzariaReaderLog(_ message: String) {
+        guard isOtzariaReaderEnabled else { return }
+        OtzariaFileLogger.shared.log("[ReaderViewModel] \(message)")
+    }
+
+    func otzariaReaderElapsedMs(_ start: Date) -> Int {
+        Int(Date().timeIntervalSince(start) * 1000)
+    }
+}

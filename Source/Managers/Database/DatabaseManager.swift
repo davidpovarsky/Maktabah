@@ -59,12 +59,7 @@ class DatabaseManager {
         shortsCache.removeAll()
         archiveAvailabilityCache.removeAll()
 
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            do {
-                try OtzariaMaktabahBridge.shared.openIfNeeded()
-            } catch {
-                print("Otzaria database could not be opened: \(error)")
-            }
+        if OtzariaDatabaseManagerAdapter.setupFoldersIfEnabled() {
             return
         }
 
@@ -97,7 +92,7 @@ class DatabaseManager {
     func reloadConnectionAndLibrary() {
         LibraryDataManager.shared.resetState()
         setupFolders()
-        if !OtzariaMaktabahBridge.shared.isEnabled {
+        if OtzariaDatabaseManagerAdapter.shouldSetupTarjamahConnection {
             TarjamahGlobalManager.shared.setupConnection()
         }
         BookPageCache.shared.removeAll()
@@ -105,7 +100,7 @@ class DatabaseManager {
     }
 
     func getLocalVersionDisplay() -> String? {
-        if OtzariaMaktabahBridge.shared.isEnabled { return "Otzaria" }
+        if let version = OtzariaDatabaseManagerAdapter.localVersionDisplay { return version }
         let checkQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='v'"
         var tableExists = false
         do { try db?.fetch(query: checkQuery) { _ in tableExists = true } } catch { return nil }
@@ -114,8 +109,8 @@ class DatabaseManager {
     }
 
     func fetchAllCategories() throws -> [CategoryData] {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            return try OtzariaMaktabahBridge.shared.fetchCategories()
+        if let categories = try OtzariaDatabaseManagerAdapter.fetchAllCategories() {
+            return categories
         }
         lock.lock()
         defer { lock.unlock() }
@@ -127,8 +122,8 @@ class DatabaseManager {
     }
 
     func fetchAllBooksGroupedByCategory() throws -> [Int: [BooksData]] {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            return try OtzariaMaktabahBridge.shared.fetchBooksGroupedByCategory()
+        if let groupedBooks = try OtzariaDatabaseManagerAdapter.fetchAllBooksGroupedByCategory() {
+            return groupedBooks
         }
         lock.lock()
         defer { lock.unlock() }
@@ -150,22 +145,22 @@ class DatabaseManager {
     }
 
     func getMaxBookId() -> Int {
-        if OtzariaMaktabahBridge.shared.isEnabled { return 0 }
+        if let maxBookId = OtzariaDatabaseManagerAdapter.getMaxBookId() { return maxBookId }
         lock.lock(); defer { lock.unlock() }
         guard let db else { return 0 }
         return (try? db.fetch(query: "SELECT MAX(\(colBokId)) FROM \(booksTableName)") { row in row.int(at: 0) }.first) ?? 0
     }
 
     func getMaxAuthId() -> Int {
-        if OtzariaMaktabahBridge.shared.isEnabled { return 0 }
+        if let maxAuthId = OtzariaDatabaseManagerAdapter.getMaxAuthId() { return maxAuthId }
         lock.lock(); defer { lock.unlock() }
         guard let dbSpecial else { return 0 }
         return (try? dbSpecial.fetch(query: "SELECT MAX(\(colAuthId)) FROM \(authTableName)") { row in row.int(at: 0) }.first) ?? 0
     }
 
     func fetchAllAuthors() -> [(id: Int, muallif: Muallif)] {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            return (try? OtzariaMaktabahBridge.shared.fetchAuthors()) ?? []
+        if let authors = OtzariaDatabaseManagerAdapter.fetchAllAuthors() {
+            return authors
         }
         lock.lock(); defer { lock.unlock() }
         guard let dbSpecial else { return [] }
@@ -176,8 +171,8 @@ class DatabaseManager {
     }
 
     func fetchBook(byId bookId: Int) throws -> BooksData? {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            return try OtzariaMaktabahBridge.shared.fetchBook(byId: bookId)
+        if OtzariaDatabaseManagerAdapter.isEnabled {
+            return try OtzariaDatabaseManagerAdapter.fetchBook(byId: bookId)
         }
         lock.lock(); defer { lock.unlock() }
         guard let db else { throw NSError(domain: "No database connection", code: 1) }
@@ -193,22 +188,21 @@ class DatabaseManager {
     }
 
     func bookExists(id: Int) -> Bool {
-        if OtzariaMaktabahBridge.shared.isEnabled { return (try? OtzariaMaktabahBridge.shared.fetchBook(byId: id)) != nil }
+        if let exists = OtzariaDatabaseManagerAdapter.bookExists(id: id) { return exists }
         lock.lock(); defer { lock.unlock() }
         guard let db else { return false }
         return (try? db.fetch(query: "SELECT 1 FROM `0bok` WHERE `bkid` = ? LIMIT 1;", parameters: [id]) { _ in true }.first) ?? false
     }
 
     func isAuthorUsed(authorId: Int) -> Bool {
-        if OtzariaMaktabahBridge.shared.isEnabled { return false }
+        if let isUsed = OtzariaDatabaseManagerAdapter.isAuthorUsed(authorId: authorId) { return isUsed }
         lock.lock(); defer { lock.unlock() }
         guard let db else { return false }
         return (try? db.fetch(query: "SELECT 1 FROM \(booksTableName) WHERE \(colBokMuallif) = ? LIMIT 1;", parameters: [authorId]) { _ in true }.first) ?? false
     }
 
     func fetchBooksInfo(for bookData: BooksData) {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            OtzariaMaktabahBridge.shared.fetchBookInfo(for: bookData)
+        if OtzariaDatabaseManagerAdapter.fetchBooksInfo(for: bookData) {
             return
         }
         lock.lock(); defer { lock.unlock() }
@@ -223,7 +217,7 @@ class DatabaseManager {
     }
 
     func loadShortsForBook(_ bkid: String) -> ShortsMapping {
-        if OtzariaMaktabahBridge.shared.isEnabled { return ShortsMapping(map: [:], sortedKeys: []) }
+        if let mapping = OtzariaDatabaseManagerAdapter.loadShortsForBook(bkid) { return mapping }
         lock.lock(); defer { lock.unlock() }
         if let cached = shortsCache[bkid] { return cached }
         guard let dbSpecial else { return ShortsMapping(map: [:], sortedKeys: []) }
@@ -239,7 +233,7 @@ class DatabaseManager {
     }
 
     func getAuthor(_ id: Int) -> Muallif? {
-        if OtzariaMaktabahBridge.shared.isEnabled { return nil }
+        if OtzariaDatabaseManagerAdapter.isEnabled { return OtzariaDatabaseManagerAdapter.getAuthor(id) }
         if let cached = LibraryDataManager.shared.getAuthorFromCache(id: id) { return cached }
         lock.lock(); defer { lock.unlock() }
         guard let dbSpecial else { return nil }
@@ -254,7 +248,7 @@ class DatabaseManager {
     }
 
     func checkArchiveAvailability(archiveId: Int) -> Bool {
-        if OtzariaMaktabahBridge.shared.isEnabled { return true }
+        if let isAvailable = OtzariaDatabaseManagerAdapter.checkArchiveAvailability(archiveId: archiveId) { return isAvailable }
         lock.lock()
         if let cached = archiveAvailabilityCache[archiveId] {
             lock.unlock()

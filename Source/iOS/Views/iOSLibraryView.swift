@@ -30,7 +30,10 @@ struct iOSLibraryView: View {
         mainZStack(viewModel: viewModel)
             .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: navigationManager.activeIntegrationStates.count)
             .onChange(of: viewModel.selectedBookIds) { _, _ in
-                handleSelectionChange(viewModel: viewModel)
+                OtzariaLibraryImportActions.handleSelectionChange(
+                    viewModel: viewModel,
+                    navigationManager: navigationManager
+                )
             }
             .toolbar {
                 toolbarContent(viewModel: viewModel)
@@ -101,14 +104,11 @@ struct iOSLibraryView: View {
                     viewModel.singleBookToDelete = book
                 },
                 onDownloadSingleBook: { book in
-                    if OtzariaMaktabahBridge.shared.isEnabled {
-                        viewModel.selectBook(book, using: navigationManager)
-                    } else {
-                        navigationManager.showBookIntegrationConfirmation(
-                            for: book,
-                            initialContentId: nil
-                        )
-                    }
+                    OtzariaLibraryImportActions.handleDownloadSingleBook(
+                        book,
+                        viewModel: viewModel,
+                        navigationManager: navigationManager
+                    )
                 }
             )
             .themeTint()
@@ -127,36 +127,6 @@ struct iOSLibraryView: View {
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .zIndex(10)
-            }
-        }
-    }
-
-    private func handleSelectionChange(viewModel: LibraryViewModel) {
-        guard !OtzariaMaktabahBridge.shared.isEnabled else { return }
-        guard !viewModel.isBulkDownloading else { return }
-
-        let downloadBooks = viewModel.selectedDownloadBooks
-        if !downloadBooks.isEmpty {
-            let hasBulkConfirmation = navigationManager.activeIntegrationStates.contains { state in
-                if case .bulk = state.pendingData, state.mode == .confirmation { return true }
-                return false
-            }
-
-            if !hasBulkConfirmation {
-                navigationManager.showBulkDownloadConfirmation(books: downloadBooks)
-            } else {
-                if let bulkState = navigationManager.activeIntegrationStates.first(where: {
-                    if case .bulk = $0.pendingData, $0.mode == .confirmation { return true }
-                    return false
-                }) {
-                    navigationManager.activeIntegrationStates.removeAll { $0.id == bulkState.id }
-                    navigationManager.showBulkDownloadConfirmation(books: downloadBooks)
-                }
-            }
-        } else {
-            navigationManager.activeIntegrationStates.removeAll { state in
-                if case .bulk = state.pendingData, state.mode == .confirmation { return true }
-                return false
             }
         }
     }
@@ -199,7 +169,7 @@ struct iOSLibraryView: View {
                 }
             }
 
-            if !OtzariaMaktabahBridge.shared.isEnabled {
+            if !OtzariaLibraryImportActions.isEnabled {
                 ToolbarItem(placement: .topBarTrailing) {
                     Toggle(isOn: Binding(
                         get: { viewModel.showOnlyDownloaded },
@@ -222,11 +192,9 @@ struct iOSLibraryView: View {
                         Label(String(localized: "Choose Otzaria Database"), systemImage: "externaldrive")
                     }
 
-                    if OtzariaMaktabahBridge.shared.isEnabled {
+                    if OtzariaLibraryImportActions.isEnabled {
                         Button(role: .destructive) {
-                            OtzariaMaktabahBridge.shared.forgetDatabase()
-                            DatabaseManager.shared.reloadConnectionAndLibrary()
-                            Task { await viewModel.refreshLibrary() }
+                            OtzariaLibraryImportActions.disconnectDatabase(viewModel: viewModel)
                         } label: {
                             Label(String(localized: "Disconnect Otzaria Database"), systemImage: "xmark.circle")
                         }
@@ -239,14 +207,14 @@ struct iOSLibraryView: View {
                     } label: {
                         Label(String(localized: "Select") + "...", systemImage: "checkmark.circle")
                     }
-                    .disabled(OtzariaMaktabahBridge.shared.isEnabled)
+                    .disabled(OtzariaLibraryImportActions.isEnabled)
 
                     Button {
                         viewModel.showingImportSheet = true
                     } label: {
                         Label(String(localized: "Import Book"), systemImage: "plus.viewfinder")
                     }
-                    .disabled(OtzariaMaktabahBridge.shared.isEnabled)
+                    .disabled(OtzariaLibraryImportActions.isEnabled)
                 } label: {
                     Image(systemName: "ellipsis")
                 }
@@ -258,10 +226,10 @@ struct iOSLibraryView: View {
 
     private func handleOtzariaImport(_ result: Result<[URL], Error>, viewModel: LibraryViewModel) {
         do {
-            guard let url = try result.get().first else { return }
-            try OtzariaMaktabahBridge.shared.installDatabase(from: url)
-            DatabaseManager.shared.reloadConnectionAndLibrary()
-            Task { await viewModel.refreshLibrary() }
+            try OtzariaLibraryImportActions.installDatabase(
+                from: result,
+                viewModel: viewModel
+            )
         } catch {
             otzariaImportError = error.localizedDescription
         }

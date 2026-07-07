@@ -96,39 +96,10 @@ class ReaderViewModel: ViewModelBase {
     var otzariaSourcesSelectedBookID: String?
     var otzariaSourcesExpandedSourceIDs: Set<Int> = []
 
-    var canGoBackInOtzariaSourcesPanel: Bool {
-        otzariaSourcesSelectedBookID != nil || otzariaSourcesSelectedGroupID != nil
-    }
-
-    func goBackInOtzariaSourcesPanel() {
-        if otzariaSourcesSelectedBookID != nil {
-            otzariaSourcesSelectedBookID = nil
-            otzariaSourcesExpandedSourceIDs.removeAll()
-        } else if otzariaSourcesSelectedGroupID != nil {
-            otzariaSourcesSelectedGroupID = nil
-            otzariaSourcesSelectedBookID = nil
-            otzariaSourcesExpandedSourceIDs.removeAll()
-        }
-    }
-
-    func resetOtzariaSourcesPanelNavigation() {
-        otzariaSourcesSelectedGroupID = nil
-        otzariaSourcesSelectedBookID = nil
-        otzariaSourcesExpandedSourceIDs.removeAll()
-    }
-
     func consumePendingReaderScrollTarget() -> PendingReaderScrollTarget? {
         let target = pendingReaderScrollTarget
         pendingReaderScrollTarget = nil
         return target
-    }
-
-    func clearOtzariaLineSelectionForContentChange() {
-        otzariaSelectedLineAnchor = nil
-        otzariaLinkedSources = []
-        otzariaSourcesError = nil
-        otzariaSourcesIsLoading = false
-        readerState.selectedRange = nil
     }
     #endif
 
@@ -151,8 +122,8 @@ class ReaderViewModel: ViewModelBase {
 
     /// Cross-platform subtitle string (page/part info)
     var statusSubtitle: String {
-        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
-            return currentHeRef
+        if let otzariaReference = otzariaCurrentReferencePage() {
+            return otzariaReference
         }
         if let currentPage {
             let pageArb = String(currentPage).convertToArabicDigits()
@@ -179,8 +150,8 @@ class ReaderViewModel: ViewModelBase {
         let bookName = currentBook?.book ?? ""
         var referencePage: [String] = []
 
-        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
-            referencePage.append(currentHeRef)
+        if let otzariaReference = otzariaCurrentReferencePage() {
+            referencePage.append(otzariaReference)
         } else {
             if let part = currentPart, part != -1 {
                 referencePage.append("ج: \(part)".convertToArabicDigits())
@@ -200,8 +171,8 @@ class ReaderViewModel: ViewModelBase {
         let bookName = currentBook?.book ?? ""
         var referencePage: [String] = []
 
-        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
-            referencePage.append(currentHeRef)
+        if let otzariaReference = otzariaCurrentReferencePage() {
+            referencePage.append(otzariaReference)
         } else {
             if let part = currentPart, part != -1 {
                 referencePage.append("ج: \(part)".convertToArabicDigits())
@@ -446,7 +417,7 @@ class ReaderViewModel: ViewModelBase {
 
         do {
             try bookConnection.connect(archive: book.archive)
-            if !OtzariaMaktabahBridge.shared.isEnabled,
+            if !isOtzariaReaderEnabled,
                AppConfig.isUsingBundleMode,
                !BookArchiveIntegrator.shared.isBookIntegrated(book)
             {
@@ -553,10 +524,10 @@ class ReaderViewModel: ViewModelBase {
         let title = book.book
         let muallif = DatabaseManager.shared.getAuthor(book.muallif)
 
-        if OtzariaMaktabahBridge.shared.isEnabled, let currentHeRef, !currentHeRef.isEmpty {
+        if let otzariaReference = otzariaCurrentReferencePage() {
             windowTitle = title
-            windowSubtitle = currentHeRef
-            onWindowTitleChanged?(title, currentHeRef)
+            windowSubtitle = otzariaReference
+            onWindowTitleChanged?(title, otzariaReference)
         } else if let page {
             let pageArb = String(page).convertToArabicDigits()
             if let part {
@@ -720,20 +691,6 @@ class ReaderViewModel: ViewModelBase {
     }
 }
 
-// MARK: - Otzaria Reading Units
-
-extension ReaderViewModel {
-    fileprivate func otzariaReaderLog(_ message: String) {
-        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
-        OtzariaFileLogger.shared.log("[ReaderViewModel] \(message)")
-    }
-
-    fileprivate func otzariaReaderElapsedMs(_ start: Date) -> Int {
-        Int(Date().timeIntervalSince(start) * 1000)
-    }
-
-}
-
 // MARK: - Notification Observers
 
 extension ReaderViewModel {
@@ -778,7 +735,7 @@ extension ReaderViewModel {
     }
 
     func handleBookIntegrated(_ notification: Notification) {
-        guard !OtzariaMaktabahBridge.shared.isEnabled,
+        guard !isOtzariaReaderEnabled,
               let bookId = notification.object as? Int,
               let currentBook,
               currentBook.id == bookId,

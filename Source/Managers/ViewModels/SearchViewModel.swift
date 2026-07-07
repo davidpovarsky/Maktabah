@@ -262,16 +262,10 @@ final class SearchViewModel: ViewModelBase {
 
     /// Resolve `BooksData` dari `SearchResultItem`. Returns nil jika tidak ditemukan.
     func resolveBook(from result: SearchResultItem) -> BooksData? {
-        let table: String
-        if result.tableName.hasPrefix("otzaria:") {
-            table = String(result.tableName.dropFirst("otzaria:".count))
-        } else if result.tableName.hasPrefix("b") {
-            table = String(result.tableName.dropFirst())
-        } else {
-            table = result.tableName
-        }
-        guard let tableInt = Int(table) else { return nil }
-        return ldm.getBook([tableInt]).first
+        OtzariaSearchResultResolver.resolveBook(
+            from: result,
+            libraryDataManager: ldm
+        )
     }
 
     /// Load data library lalu isi `libraryViewManager` dengan kategori.
@@ -457,7 +451,7 @@ final class SearchViewModel: ViewModelBase {
         }
         #endif
 
-        if tablesToScan.isEmpty && !OtzariaMaktabahBridge.shared.isEnabled { stopSearch(); return }
+        if tablesToScan.isEmpty && !OtzariaSearchResultResolver.allowsSearchWithoutSelectedTables { stopSearch(); return }
 
         searchWork = Task.detached(priority: .userInitiated) { [weak self] in
             guard let self else { return }

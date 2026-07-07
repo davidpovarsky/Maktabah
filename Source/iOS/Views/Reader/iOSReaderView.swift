@@ -217,26 +217,10 @@ struct iOSReaderView: View {
                 }
             }
         )) {
-            if viewModel.otzariaSourcesInspectorVisible {
-                OtzariaLineSourcesInspectorView(
-                    selectedLine: viewModel.otzariaSelectedLineAnchor,
-                    sources: viewModel.otzariaLinkedSources,
-                    isLoading: viewModel.otzariaSourcesIsLoading,
-                    error: viewModel.otzariaSourcesError,
-                    isPresented: viewModel.otzariaSourcesInspectorVisible,
-                    selectedGroupID: $viewModel.otzariaSourcesSelectedGroupID,
-                    selectedBookID: $viewModel.otzariaSourcesSelectedBookID,
-                    expandedSourceIDs: $viewModel.otzariaSourcesExpandedSourceIDs,
-                    onClose: {
-                        viewModel.closeOtzariaSourcesInspector()
-                    },
-                    onOpenSource: { source in
-                        bManager.openOtzariaLinkedSourceInNewTab(source)
-                    }
-                )
-            } else {
-                EmptyView()
-            }
+            OtzariaReaderSourcesInspectorHost(
+                viewModel: viewModel,
+                navigationManager: bManager
+            )
         }
     }
 }

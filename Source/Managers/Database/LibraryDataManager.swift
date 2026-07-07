@@ -116,29 +116,7 @@ class LibraryDataManager {
     private func buildCategoryHierarchy(from allCategories: [CategoryData]) -> (
         rootCats: [CategoryData], categoryMap: [Int: CategoryData]
     ) {
-        var localCategoryMap: [Int: CategoryData] = [:]
-        var localRootCats: [CategoryData] = []
-        let sortedCategories = allCategories.sorted {
-            if $0.order != $1.order { return $0.order < $1.order }
-            return $0.name.localizedStandardCompare($1.name) == .orderedAscending
-        }
-
-        for category in sortedCategories {
-            category.children.removeAll()
-            localCategoryMap[category.id] = category
-        }
-
-        for category in sortedCategories {
-            if let parentId = category.parentId,
-               let parent = localCategoryMap[parentId],
-               parent.id != category.id {
-                parent.children.append(category)
-            } else {
-                localRootCats.append(category)
-            }
-        }
-
-        return (localRootCats, localCategoryMap)
+        OtzariaLibraryDataAdapter.buildCategoryHierarchy(from: allCategories)
     }
 
     private func loadBooksAndIndex(for allCategories: [CategoryData]) throws
@@ -152,18 +130,9 @@ class LibraryDataManager {
         // Assign books to their real leaf category. Otzaria uses parentId for category depth,
         // so this works for two-level Maktabah data and deeper Otzaria trees alike.
         for cat in allCategories {
-            let books = (allBooksGrouped[cat.id] ?? []).sorted {
-                switch ($0.orderIndex, $1.orderIndex) {
-                case let (lhs?, rhs?) where lhs != rhs:
-                    return lhs < rhs
-                case (_?, nil):
-                    return true
-                case (nil, _?):
-                    return false
-                default:
-                    return $0.book.localizedStandardCompare($1.book) == .orderedAscending
-                }
-            }
+            let books = OtzariaLibraryDataAdapter.sortedBooksForCategory(
+                allBooksGrouped[cat.id] ?? []
+            )
             cat.children.append(contentsOf: books)
             for book in books where localBooksById[book.id] == nil {
                 localBooksById[book.id] = book
@@ -294,10 +263,10 @@ class LibraryDataManager {
         let (built, isLoaded, rootCats) = lock.withLock {
             (_archivesBuiltFromFullData, _isDataLoaded, _allRootCategories)
         }
-        if OtzariaMaktabahBridge.shared.isEnabled {
+        if let state = OtzariaLibraryDataAdapter.emptyArchiveStateIfEnabled() {
             lock.withLock {
-                _archives.removeAll()
-                _archivesBuiltFromFullData = true
+                _archives = state.archives
+                _archivesBuiltFromFullData = state.builtFromFullData
             }
             return
         }
@@ -412,33 +381,16 @@ class LibraryDataManager {
     ) async {
         let allowed = tableToScan
 
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            let selectedIds: Set<Int>? = allowed.isEmpty
-                ? nil
-                : Set(allowed.compactMap { tableName in
-                    if tableName.hasPrefix("otzaria:") {
-                        return Int(tableName.dropFirst("otzaria:".count))
-                    }
-                    if tableName.hasPrefix("b") {
-                        return Int(tableName.dropFirst())
-                    }
-                    return Int(tableName)
-                })
-            let results = OtzariaMaktabahBridge.shared.search(
-                query: query,
-                selectedBookIds: selectedIds,
-                limit: nil,
-                mode: mode
-            )
-            await MainActor.run {
-                onInitialize(max(results.count, 1))
-                for (index, item) in results.enumerated() {
-                    onTableProgress(index + 1)
-                    onRowProgress("Otzaria", item.tableName, index + 1, results.count)
-                    completion(item)
-                }
-                onComplete()
-            }
+        if await OtzariaLibraryDataAdapter.performSearchIfEnabled(
+            tableToScan: allowed,
+            query: query,
+            mode: mode,
+            onInitialize: onInitialize,
+            onTableProgress: onTableProgress,
+            onRowProgress: onRowProgress,
+            completion: completion,
+            onComplete: onComplete
+        ) {
             return
         }
 
@@ -715,7 +667,7 @@ class LibraryDataManager {
 
     /// Kembalikan salinan hierarchy yang hanya berisi kitab yang belum terintegrasi.
     func filterNotIntegrated() -> [CategoryData] {
-        if OtzariaMaktabahBridge.shared.isEnabled { return [] }
+        if let filtered = OtzariaLibraryDataAdapter.filterNotIntegratedIfEnabled() { return filtered }
         let rootCats = lock.withLock { _allRootCategories }
         return rootCats.compactMap { root in
             applyHierarchyFilter(to: root) {
@@ -727,41 +679,19 @@ class LibraryDataManager {
     /// Bangun hierarchy berdasarkan Author (Muallif)
     /// Root = Author, Children = BooksData yang ditulis oleh author tersebut
     func buildAuthorHierarchy() -> [CategoryData] {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            let authors = DatabaseManager.shared.fetchAllAuthors()
-            let allBooks: [BooksData] = lock.withLock { Array(_booksById.values) }
-            var booksByAuthor: [Int: [BooksData]] = [:]
-            var booksWithNoAuthor: [BooksData] = []
-
-            for book in allBooks {
-                if book.muallif == 0 {
-                    booksWithNoAuthor.append(book)
-                } else {
-                    booksByAuthor[book.muallif, default: []].append(book)
-                }
-            }
-
-            var authorCategories: [CategoryData] = authors.compactMap { author in
-                guard let books = booksByAuthor[author.id], !books.isEmpty else { return nil }
-                let category = CategoryData(id: author.id, name: author.muallif.nama, level: 0, order: author.id)
-                category.children = books.sorted { $0.book.localizedStandardCompare($1.book) == .orderedAscending }
-                return category
-            }
-
-            if !booksWithNoAuthor.isEmpty {
-                let noAuthorCategory = CategoryData(id: 0, name: "---", level: 0, order: Int.max)
-                noAuthorCategory.children = booksWithNoAuthor.sorted { $0.book.localizedStandardCompare($1.book) == .orderedAscending }
-                authorCategories.append(noAuthorCategory)
-            }
-
-            return authorCategories.sorted {
-                if $0.order != $1.order { return $0.order < $1.order }
-                return $0.name.localizedStandardCompare($1.name) == .orderedAscending
-            }
-        }
-
         // Langsung fetch authors dari database, jangan rely pada cache
         let authors = DatabaseManager.shared.fetchAllAuthors()
+
+        let allBooks: [BooksData] = lock.withLock {
+            Array(_booksById.values)
+        }
+
+        if let hierarchy = OtzariaLibraryDataAdapter.buildAuthorHierarchyIfEnabled(
+            authors: authors,
+            allBooks: allBooks
+        ) {
+            return hierarchy
+        }
 
         // Handle potential duplicate author IDs by keeping the first occurrence
         var authorMap: [Int: Muallif] = [:]
@@ -769,11 +699,6 @@ class LibraryDataManager {
             if authorMap[author.id] == nil {
                 authorMap[author.id] = author.muallif
             }
-        }
-
-        // Collect ALL books from _booksById (sumber resmi semua buku)
-        let allBooks: [BooksData] = lock.withLock {
-            Array(_booksById.values)
         }
 
         // Group books by muallif
@@ -880,7 +805,7 @@ class LibraryDataManager {
 
     func filterIntegrated(base: [CategoryData]? = nil) -> [CategoryData] {
         let rootCats = base ?? lock.withLock { _allRootCategories }
-        if OtzariaMaktabahBridge.shared.isEnabled { return rootCats }
+        if let filtered = OtzariaLibraryDataAdapter.filterIntegratedIfEnabled(base: rootCats) { return filtered }
         return rootCats.compactMap { root in
             applyHierarchyFilter(to: root) {
                 BookArchiveIntegrator.shared.isBookIntegrated($0)

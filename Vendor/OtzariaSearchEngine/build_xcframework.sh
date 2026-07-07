@@ -9,6 +9,8 @@ BUILD_DIR="$ROOT/build"
 OUT="$ROOT/OtzariaSearchEngine.xcframework"
 HEADER_DIR="$ROOT/include"
 LIB_NAME="libotzaria_search_engine_ios.a"
+OTZARIA_SEARCH_ENGINE_REPO="https://github.com/Otzaria/otzaria_search_engine.git"
+OTZARIA_SEARCH_ENGINE_COMMIT="a593564bfb86785e16196f3ae207a6be059885f1"
 
 if ! command -v cargo >/dev/null 2>&1; then
   echo "Rust/cargo is required. Install rustup first." >&2
@@ -17,11 +19,18 @@ fi
 
 if [ ! -d "$UPSTREAM_DIR/.git" ]; then
   mkdir -p "$ROOT/upstream"
-  git clone --depth 1 --branch refactor https://github.com/Otzaria/otzaria_search_engine.git "$UPSTREAM_DIR"
+  git clone "$OTZARIA_SEARCH_ENGINE_REPO" "$UPSTREAM_DIR"
 else
-  git -C "$UPSTREAM_DIR" fetch --depth 1 origin refactor
-  git -C "$UPSTREAM_DIR" checkout refactor
-  git -C "$UPSTREAM_DIR" pull --ff-only origin refactor
+  git -C "$UPSTREAM_DIR" fetch origin
+fi
+
+git -C "$UPSTREAM_DIR" fetch origin "$OTZARIA_SEARCH_ENGINE_COMMIT"
+git -C "$UPSTREAM_DIR" checkout --detach "$OTZARIA_SEARCH_ENGINE_COMMIT"
+
+ACTUAL_COMMIT="$(git -C "$UPSTREAM_DIR" rev-parse HEAD)"
+if [ "$ACTUAL_COMMIT" != "$OTZARIA_SEARCH_ENGINE_COMMIT" ]; then
+  echo "Expected $OTZARIA_SEARCH_ENGINE_COMMIT but got $ACTUAL_COMMIT" >&2
+  exit 1
 fi
 
 if [ ! -f "$UPSTREAM_CARGO_TOML" ]; then

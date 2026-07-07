@@ -139,7 +139,7 @@ final class LibraryViewModel: ViewModelBase {
     // MARK: - Shared Helpers
 
     func isBookDownloaded(_ book: BooksData) -> Bool {
-        if OtzariaMaktabahBridge.shared.isEnabled { return true }
+        if let isDownloaded = OtzariaLibraryPolicy.isBookDownloaded(book) { return isDownloaded }
         return BookArchiveIntegrator.shared.isBookIntegrated(book)
     }
 
@@ -425,9 +425,10 @@ final class LibraryViewModel: ViewModelBase {
     }
 
     func startBulkDeletion(onFinished: @escaping () -> Void) {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            exitSelectionMode()
-            onFinished()
+        if OtzariaLibraryPolicy.finishBulkDeletionIfEnabled(
+            exitSelectionMode: exitSelectionMode,
+            onFinished: onFinished
+        ) {
             return
         }
         let books = selectedDeleteBooks
@@ -454,7 +455,7 @@ final class LibraryViewModel: ViewModelBase {
     #endif
 
     func deleteSingleBook(_ book: BooksData) async {
-        if OtzariaMaktabahBridge.shared.isEnabled { return }
+        if OtzariaLibraryPolicy.shouldSkipSingleBookDeletion() { return }
         try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
     }
 
@@ -493,8 +494,7 @@ final class LibraryViewModel: ViewModelBase {
         progressState: BundleArchiveDownloadProgressState,
         onFinished: @escaping (String?) -> Void
     ) {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            onFinished(nil)
+        if OtzariaLibraryPolicy.finishBulkDownloadIfEnabled(onFinished: onFinished) {
             return
         }
         let books = selectedDownloadBooks
