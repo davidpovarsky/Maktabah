@@ -147,6 +147,7 @@ pub extern "C" fn otzaria_search_engine_add_documents_json(handle: *mut EngineHa
         segment: d.segment,
         is_pdf: d.is_pdf,
         file_path: d.file_path,
+        content_hash: None,
     }).collect();
     let handle_ref = unsafe { &*handle };
     let mut engine = match handle_ref.engine.lock() {
