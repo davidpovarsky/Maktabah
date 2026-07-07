@@ -207,21 +207,6 @@ struct iOSReaderView: View {
                 .presentationDetents([.medium, .large])
             }
         }
-        .inspector(isPresented: Binding(
-            get: { viewModel.otzariaSourcesInspectorVisible },
-            set: { newValue in
-                if newValue {
-                    viewModel.otzariaSourcesInspectorVisible = true
-                } else {
-                    viewModel.closeOtzariaSourcesInspector()
-                }
-            }
-        )) {
-            OtzariaReaderSourcesInspectorHost(
-                viewModel: viewModel,
-                navigationManager: bManager
-            )
-        }
     }
 }
 

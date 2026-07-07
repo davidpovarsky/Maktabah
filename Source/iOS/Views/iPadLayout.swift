@@ -90,8 +90,10 @@ struct iPadLayout: View {
                         destinationView(for: tab)
                     }
             }
-        } detail: {
+        } content: {
             iOSReaderTabView()
+        } detail: {
+            OtzariaSourcesSplitColumn()
         }
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)

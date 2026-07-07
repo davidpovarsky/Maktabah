@@ -501,6 +501,7 @@
 		0B7A00000000000000000031 /* OtzariaNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000031 /* OtzariaNavigationAdapter.swift */; };
 		0B7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift */; };
 		0B7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift */; };
+		0B7A00000000000000000034 /* OtzariaSourcesSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000034 /* OtzariaSourcesSplitColumn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -782,6 +783,7 @@
 		0A7A00000000000000000031 /* OtzariaNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaNavigationAdapter.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaTextViewLineSelectionAdapter.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaReaderSourcesInspectorHost.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000034 /* OtzariaSourcesSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaSourcesSplitColumn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1459,6 +1461,7 @@
 				0A7A00000000000000000031 /* OtzariaNavigationAdapter.swift */,
 				0A7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift */,
 				0A7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift */,
+				0A7A00000000000000000034 /* OtzariaSourcesSplitColumn.swift */,
 				0A7A0000000000000000001D /* OtzariaStateViews.swift */,
 				0A7A0000000000000000001E /* OtzariaFileLogger.swift */,
 			);
@@ -1983,6 +1986,7 @@
 				0B7A00000000000000000031 /* OtzariaNavigationAdapter.swift in Sources */,
 				0B7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift in Sources */,
 				0B7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift in Sources */,
+				0B7A00000000000000000034 /* OtzariaSourcesSplitColumn.swift in Sources */,
 				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,
 				F3B60E2C2FC7FFA500A9EF58 /* iOSTOCView.swift in Sources */,
 				F31111912FC008F30024B638 /* ActiveIntegrationStatesView.swift in Sources */,
