@@ -53,6 +53,14 @@ struct iPadLayout: View {
         }
     }
 
+    private var activeReaderViewModel: ReaderViewModel? {
+        if let activeTabId = bManager.activeTabId {
+            return bManager.openTabs.first(where: { $0.id == activeTabId })?.viewModel
+                ?? bManager.openTabs.first?.viewModel
+        }
+        return bManager.openTabs.first?.viewModel
+    }
+
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             NavigationStack(path: $path) {
@@ -92,6 +100,26 @@ struct iPadLayout: View {
             }
         } detail: {
             iOSReaderTabView()
+                .inspector(isPresented: Binding(
+                    get: {
+                        activeReaderViewModel?.otzariaSourcesInspectorVisible ?? false
+                    },
+                    set: { newValue in
+                        guard let viewModel = activeReaderViewModel else { return }
+                        if newValue {
+                            viewModel.otzariaSourcesInspectorVisible = true
+                        } else {
+                            viewModel.closeOtzariaSourcesInspector()
+                        }
+                    }
+                )) {
+                    if let viewModel = activeReaderViewModel {
+                        OtzariaReaderSourcesInspectorHost(
+                            viewModel: viewModel,
+                            navigationManager: bManager
+                        )
+                    }
+                }
         }
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
