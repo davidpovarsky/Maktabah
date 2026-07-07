@@ -17,6 +17,8 @@ class TOCNode: Identifiable {
     let level: Int
     let sub: Int
     let id: Int
+    let entryId: Int
+    let parentId: Int?
     var children: [TOCNode] = []
 
     var endID: Int = .max
@@ -26,6 +28,8 @@ class TOCNode: Identifiable {
         self.level = toc.level
         self.sub = toc.sub
         self.id = toc.id
+        self.entryId = toc.entryId
+        self.parentId = toc.parentId
     }
 }
 
@@ -34,6 +38,17 @@ struct TOC {
     let level: Int    // Memetakan ke kolom 'lvl'
     let sub: Int
     let id: Int
+    let entryId: Int
+    let parentId: Int?
+
+    init(bab: String, level: Int, sub: Int, id: Int, parentId: Int? = nil, entryId: Int? = nil) {
+        self.bab = bab
+        self.level = level
+        self.sub = sub
+        self.id = id
+        self.entryId = entryId ?? id
+        self.parentId = parentId
+    }
 }
 
 class BooksData: Codable, Identifiable {
@@ -46,6 +61,8 @@ class BooksData: Codable, Identifiable {
     var compressedDownloadSize: Int64?
     var tafseerNam: String?
     var pdfCs: Int?
+    var orderIndex: Int?
+    var totalLines: Int?
     var isMultiLanguage: Bool {
         return pdfCs == 3
     }
@@ -79,14 +96,16 @@ class CategoryData: NSCopying {
     let name: String
     let level: Int
     let order: Int
+    let parentId: Int?
     var isChecked: Bool = true
     var children: [Any] = [] // Bisa berisi CategoryData atau BooksData
 
-    init(id: Int, name: String, level: Int, order: Int) {
+    init(id: Int, name: String, level: Int, order: Int, parentId: Int? = nil) {
         self.id = id
         self.name = StringInterner.shared.intern(name)
         self.level = level
         self.order = order
+        self.parentId = parentId
     }
 
     func copy(with zone: NSZone? = nil) -> Any {
@@ -94,7 +113,8 @@ class CategoryData: NSCopying {
             id: self.id,
             name: StringInterner.shared.intern(name),
             level: self.level,
-            order: self.order
+            order: self.order,
+            parentId: self.parentId
         )
     }
 }
@@ -104,15 +124,17 @@ class BookContent {
     let nash: String
     let page: Int
     let part: Int
+    let heRef: String?
 
     var surah: Int?
     var aya: Int?
 
-    init(id: Int, nash: String, page: Int = 1, part: Int = 1) {
+    init(id: Int, nash: String, page: Int = 1, part: Int = 1, heRef: String? = nil) {
         self.id = id
         self.nash = nash
         self.page = page
         self.part = part
+        self.heRef = heRef
     }
 }
 

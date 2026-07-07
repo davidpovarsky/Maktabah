@@ -31,6 +31,12 @@ class BookConnection {
     /// - Parameter archive: Archive ID (1-20, sesuai kolom Archive di tabel 0bok)
     /// - Throws: ArchiveError jika archive tidak tersedia
     func connect(archive: Int) throws {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            try OtzariaMaktabahBridge.shared.openIfNeeded()
+            db = nil
+            return
+        }
+
         guard let archivePath = AppConfig.archiveDatabasePath(archiveId: archive) else {
             throw ArchiveError.databasePathNotAvailable
         }
@@ -60,6 +66,10 @@ class BookConnection {
         for aya: Int,
         in surah: Int
     ) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return nil
+        }
+
         // pastikan koneksi
         if db == nil {
             try? connect(archive: archive)
@@ -125,6 +135,10 @@ class BookConnection {
     }
 
     func getCached(bkId: String, idContent: Int) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return nil
+        }
+
         if let bkIdInt = Int(bkId),
            let cached = BookPageCache.shared.get(
                bookId: bkIdInt,
@@ -138,6 +152,10 @@ class BookConnection {
     }
 
     private func setCache(bkId: String, content: BookContent) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return
+        }
+
         if let bookId = Int(bkId) {
             BookPageCache.shared.set(bookId: bookId, content: content)
         }
@@ -164,6 +182,10 @@ extension BookConnection {
     func getContent(bkid: String, contentId: Int, quran: Bool = false)
         -> BookContent?
     {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getContent(bookId: bookId, contentId: contentId)
+        }
+
         guard let db else { return nil }
 
         if let cached = getCached(bkId: bkid, idContent: contentId) {
@@ -215,6 +237,10 @@ extension BookConnection {
     }
 
     func getFirstContent(bkid: String) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookId)
+        }
+
         guard let db else { return nil }
 
         let querySQL = """
@@ -259,6 +285,10 @@ extension BookConnection {
 
     /// UPDATED: getContent by part and page
     func getContent(bkid: String, part: Int, page: Int) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getContent(bookId: bookId, contentId: page)
+        }
+
         guard let db else { return nil }
 
         let querySQL = """
@@ -305,6 +335,10 @@ extension BookConnection {
         contentId: Int,
         quran: Bool = false
     ) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return OtzariaMaktabahBridge.shared.getNextContent(bookId: currentBook.id, after: contentId)
+        }
+
         guard
             let content = getContent(
                 bkid: "\(currentBook.id)",
@@ -331,6 +365,10 @@ extension BookConnection {
         contentId: Int,
         quran: Bool = false
     ) -> BookContent? {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return OtzariaMaktabahBridge.shared.getPreviousContent(bookId: currentBook.id, before: contentId)
+        }
+
         guard
             let content = getContent(
                 bkid: "\(currentBook.id)",
@@ -370,6 +408,10 @@ extension BookConnection {
 
     /// Mendapatkan total jumlah juz/part dalam buku
     func getTotalParts(bkid: String) -> Int {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getTotalParts(bookId: bookId)
+        }
+
         let key = bkid as NSString
 
         // Cek cache dulu
@@ -408,6 +450,10 @@ extension BookConnection {
 
     /// Mendapatkan jumlah halaman dalam juz/part tertentu
     func getPagesInPart(bkid: String, part: Int) -> Int {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getMaxPage(bookId: bookId)
+        }
+
         guard let db else { return 0 }
 
         let querySQL = """
@@ -422,6 +468,10 @@ extension BookConnection {
     }
 
     func getMinPagesInPart(bkid: String, part: Int) -> Int {
+        if OtzariaMaktabahBridge.shared.isEnabled, let bookId = Int(bkid) {
+            return OtzariaMaktabahBridge.shared.getMinPage(bookId: bookId)
+        }
+
         guard let db else { return 0 }
 
         let querySQL = """
@@ -437,6 +487,10 @@ extension BookConnection {
 
     /// Mengambil semua entri TOC dari database.
     func getTOCEntries(_ book: BooksData) async -> [TOC] {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            return OtzariaMaktabahBridge.shared.getTOCEntries(for: book)
+        }
+
         try? connect(archive: book.archive)
         guard let db else { return [] }
 
@@ -475,8 +529,41 @@ extension BookConnection {
             return cached
         }
 
-        // Pass 1: Buat semua node dulu, simpan dalam dictionary
         var allNodes: [TOCNode] = []
+
+        if flatTOCs.contains(where: { $0.parentId != nil }) {
+            var nodesByEntryId: [Int: TOCNode] = [:]
+            var rootNodes: [TOCNode] = []
+
+            for toc in flatTOCs {
+                if Task.isCancelled { return [] }
+                let node = TOCNode(from: toc)
+                allNodes.append(node)
+                nodesByEntryId[toc.entryId] = node
+            }
+
+            for node in allNodes {
+                if Task.isCancelled { return [] }
+                if let parentId = node.parentId,
+                   parentId != node.entryId,
+                   let parent = nodesByEntryId[parentId] {
+                    parent.children.append(node)
+                } else {
+                    rootNodes.append(node)
+                }
+            }
+
+            #if os(iOS)
+            for (i, node) in allNodes.enumerated() {
+                node.endID = i < allNodes.count - 1 ? allNodes[i + 1].id - 1 : Int.max
+            }
+            #endif
+
+            Self.tocTreeCache.setObject(rootNodes as NSArray, forKey: key)
+            return rootNodes
+        }
+
+        // Pass 1: Buat semua node dulu, simpan dalam dictionary
         var levelStacks: [Int: [TOCNode]] = [:] // key = level, value = array of nodes di level itu
 
         for toc in flatTOCs {

@@ -140,6 +140,7 @@ final class LibraryViewModel: ViewModelBase {
     // MARK: - Shared Helpers
 
     func isBookDownloaded(_ book: BooksData) -> Bool {
+        if OtzariaMaktabahBridge.shared.isEnabled { return true }
         BookArchiveIntegrator.shared.isBookIntegrated(book)
     }
 
@@ -425,6 +426,12 @@ final class LibraryViewModel: ViewModelBase {
     }
 
     func startBulkDeletion(onFinished: @escaping () -> Void) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            exitSelectionMode()
+            onFinished()
+            return
+        }
+
         let books = selectedDeleteBooks
         guard !books.isEmpty else { return }
         Task { [weak self] in
@@ -449,6 +456,7 @@ final class LibraryViewModel: ViewModelBase {
     #endif
 
     func deleteSingleBook(_ book: BooksData) async {
+        if OtzariaMaktabahBridge.shared.isEnabled { return }
         try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
     }
 
@@ -487,6 +495,11 @@ final class LibraryViewModel: ViewModelBase {
         progressState: BundleArchiveDownloadProgressState,
         onFinished: @escaping (String?) -> Void
     ) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            onFinished(nil)
+            return
+        }
+
         let books = selectedDownloadBooks
         guard !books.isEmpty else { return }
         isBulkDownloading = true

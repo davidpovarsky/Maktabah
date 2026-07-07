@@ -118,6 +118,30 @@ class LibraryDataManager {
     ) {
         var localCategoryMap: [Int: CategoryData] = [:]
         var localRootCats: [CategoryData] = []
+        if allCategories.contains(where: { $0.parentId != nil }) {
+            let sortedCategories = allCategories.sorted {
+                if $0.order != $1.order { return $0.order < $1.order }
+                return $0.name.localizedStandardCompare($1.name) == .orderedAscending
+            }
+
+            for category in sortedCategories {
+                category.children.removeAll()
+                localCategoryMap[category.id] = category
+            }
+
+            for category in sortedCategories {
+                if let parentId = category.parentId,
+                   parentId != category.id,
+                   let parent = localCategoryMap[parentId] {
+                    parent.children.append(category)
+                } else {
+                    localRootCats.append(category)
+                }
+            }
+
+            return (localRootCats, localCategoryMap)
+        }
+
         var currentRoot: CategoryData?
 
         // Build hierarki berdasarkan level dan urutan
@@ -145,7 +169,18 @@ class LibraryDataManager {
 
         // Assign buku untuk setiap kategori
         for cat in allCategories {
-            let books = allBooksGrouped[cat.id] ?? []
+            let books = (allBooksGrouped[cat.id] ?? []).sorted {
+                switch ($0.orderIndex, $1.orderIndex) {
+                case let (lhs?, rhs?) where lhs != rhs:
+                    return lhs < rhs
+                case (_?, nil):
+                    return true
+                case (nil, _?):
+                    return false
+                default:
+                    return $0.book.localizedStandardCompare($1.book) == .orderedAscending
+                }
+            }
             cat.children.append(contentsOf: books)
             for book in books {
                 if localBooksById[book.id] == nil {
@@ -158,6 +193,7 @@ class LibraryDataManager {
     }
 
     private func applyBundleDownloadMetadataIfNeeded() async {
+        guard !OtzariaMaktabahBridge.shared.isEnabled else { return }
         guard AppConfig.isUsingBundleMode,
               let indexURL = AppConfig.bookIndexURL else { return }
 
@@ -278,6 +314,13 @@ class LibraryDataManager {
         let (built, isLoaded, rootCats) = lock.withLock {
             (_archivesBuiltFromFullData, _isDataLoaded, _allRootCategories)
         }
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            lock.withLock {
+                _archives.removeAll()
+                _archivesBuiltFromFullData = true
+            }
+            return
+        }
         if built || !isLoaded { return }
 
         // gunakan var lokal agar thread-safe selama build
@@ -388,6 +431,36 @@ class LibraryDataManager {
         onComplete: @escaping @MainActor () -> Void
     ) async {
         let allowed = tableToScan
+
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            let selectedBookIds: Set<Int>? = allowed.isEmpty
+                ? nil
+                : Set(allowed.compactMap { tableName in
+                    if tableName.hasPrefix("otzaria:") {
+                        return Int(tableName.dropFirst("otzaria:".count))
+                    }
+                    if tableName.hasPrefix("b") {
+                        return Int(tableName.dropFirst())
+                    }
+                    return Int(tableName)
+                })
+            let results = OtzariaMaktabahBridge.shared.search(
+                query: query,
+                selectedBookIds: selectedBookIds,
+                limit: nil,
+                mode: mode
+            )
+            await MainActor.run {
+                onInitialize(max(results.count, 1))
+                for (index, item) in results.enumerated() {
+                    onTableProgress(index + 1)
+                    onRowProgress("Otzaria", item.tableName, index + 1, results.count)
+                    completion(item)
+                }
+                onComplete()
+            }
+            return
+        }
 
         let searchKeywords: [String]
         switch mode {
@@ -665,6 +738,7 @@ class LibraryDataManager {
 
     /// Kembalikan salinan hierarchy yang hanya berisi kitab yang belum terintegrasi.
     func filterNotIntegrated() -> [CategoryData] {
+        if OtzariaMaktabahBridge.shared.isEnabled { return [] }
         let rootCats = lock.withLock { _allRootCategories }
         return rootCats.compactMap { root in
             applyHierarchyFilter(to: root) {
@@ -796,6 +870,7 @@ class LibraryDataManager {
 
     func filterIntegrated(base: [CategoryData]? = nil) -> [CategoryData] {
         let rootCats = base ?? lock.withLock { _allRootCategories }
+        if OtzariaMaktabahBridge.shared.isEnabled { return rootCats }
         return rootCats.compactMap { root in
             applyHierarchyFilter(to: root) {
                 BookArchiveIntegrator.shared.isBookIntegrated($0)

@@ -29,6 +29,11 @@ final class iOSBootstrapManager {
         guard !didPrepare else { return }
         didPrepare = true
 
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            finishSetup()
+            return
+        }
+
         if AppConfig.hasCustomDatabaseFolder() {
             if let mainPath = AppConfig.mainDatabasePath, FileManager.default.fileExists(atPath: mainPath) {
                 finishSetup()
@@ -79,12 +84,20 @@ final class iOSBootstrapManager {
     }
 
     private func finishSetup() {
-        DatabaseManager.shared.reloadConnectionAndLibrary()
+        DatabaseManager.shared.setupFolders()
+        if !OtzariaMaktabahBridge.shared.isEnabled {
+            TarjamahGlobalManager.shared.setupConnection()
+        }
+        BookPageCache.shared.removeAll()
+        BookConnection.tocTreeCache.removeAllObjects()
+        NotificationCenter.default.post(name: .libraryFolderChanged, object: nil)
         isChecking = false
         isReady = true
 
         // Check for core database updates (non-blocking, throttled 6 months)
-        checkCoreDatabaseUpdate()
+        if !OtzariaMaktabahBridge.shared.isEnabled {
+            checkCoreDatabaseUpdate()
+        }
     }
 
     private func checkCoreDatabaseUpdate() {

@@ -67,6 +67,8 @@ class iOSNavigationManager {
     }
 
     private func handleBookIntegrationChanged(bookId: Int) {
+        if OtzariaMaktabahBridge.shared.isEnabled { return }
+
         // If a book is no longer integrated, close its tab
         let tabsToClose = openTabs.filter { tab in
             tab.book.id == bookId && !BookArchiveIntegrator.shared.isBookIntegrated(tab.book)
@@ -205,6 +207,17 @@ class iOSNavigationManager {
     }
 
     private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) async {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            await MainActor.run {
+                HistoryViewModel.shared.addBookToHistory(book.id)
+                if let initialContentId {
+                    HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+                }
+            }
+            presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
+            return
+        }
+
         if AppConfig.isUsingBundleMode,
            !BookArchiveIntegrator.shared.isBookIntegrated(book)
         {
@@ -226,6 +239,11 @@ class iOSNavigationManager {
         for book: BooksData,
         initialContentId: Int?
     ) {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            presentReader(book, initialContentId: initialContentId)
+            return
+        }
+
         // Prevent duplicate confirmation for the same book
         if activeIntegrationStates.contains(where: {
             if case .single(let b, _) = $0.pendingData { return b.id == book.id }
