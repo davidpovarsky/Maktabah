@@ -207,21 +207,25 @@ struct iOSReaderView: View {
                 .presentationDetents([.medium, .large])
             }
         }
-        .inspector(isPresented: Binding(
-            get: { viewModel.otzariaSourcesInspectorVisible },
-            set: { newValue in
-                if newValue {
-                    viewModel.otzariaSourcesInspectorVisible = true
-                } else {
-                    viewModel.closeOtzariaSourcesInspector()
-                }
-            }
-        )) {
-            OtzariaReaderSourcesInspectorHost(
-                viewModel: viewModel,
-                navigationManager: bManager
-            )
-        }
+        // DIAGNOSTIC ONLY:
+        // Temporarily disabled to verify whether SwiftUI .inspector is causing
+        // the automatic NavigationSplitView sidebar toggle to disappear on iPad.
+        // Restore this block after the diagnostic test.
+        // .inspector(isPresented: Binding(
+        //     get: { viewModel.otzariaSourcesInspectorVisible },
+        //     set: { newValue in
+        //         if newValue {
+        //             viewModel.otzariaSourcesInspectorVisible = true
+        //         } else {
+        //             viewModel.closeOtzariaSourcesInspector()
+        //         }
+        //     }
+        // )) {
+        //     OtzariaReaderSourcesInspectorHost(
+        //         viewModel: viewModel,
+        //         navigationManager: bManager
+        //     )
+        // }
     }
 }
 
