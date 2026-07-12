@@ -3,8 +3,13 @@ import Combine
 
 struct iOSReaderTabView: View {
     @Environment(iOSNavigationManager.self) var bManager
+    @Binding var columnVisibility: NavigationSplitViewVisibility
     @State private var showingBookInfo = false
     @State private var textViewState = TextViewState.shared
+
+    init(columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all)) {
+        self._columnVisibility = columnVisibility
+    }
 
     var backgroundColor: Color {
         let colors: [Color] = [
@@ -34,7 +39,8 @@ struct iOSReaderTabView: View {
             iOSReaderView(
                 book: activeTab.book,
                 viewModel: activeTab.viewModel,
-                initialContentId: activeTab.initialContentId
+                initialContentId: activeTab.initialContentId,
+                columnVisibility: $columnVisibility
             )
             .id(activeTab.id)
             .toolbar {

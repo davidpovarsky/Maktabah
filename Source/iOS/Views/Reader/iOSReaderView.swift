@@ -3,6 +3,7 @@ import SwiftUI
 struct iOSReaderView: View {
     let book: BooksData
     let initialContentId: Int?
+    private let columnVisibility: Binding<NavigationSplitViewVisibility>?
     var ipad: Bool {
         MaktabahApp.isIpad
     }
@@ -26,11 +27,23 @@ struct iOSReaderView: View {
 
     init(book: BooksData,
          viewModel: ReaderViewModel? = nil,
-         initialContentId: Int? = nil)
+         initialContentId: Int? = nil,
+         columnVisibility: Binding<NavigationSplitViewVisibility>? = nil)
     {
         self.book = book
         self.initialContentId = initialContentId
+        self.columnVisibility = columnVisibility
         self.viewModel = viewModel ?? ReaderViewModel(book: book)
+    }
+
+    private var shouldShowPrimarySidebarButton: Bool {
+        guard MaktabahApp.isIpad else { return false }
+        guard let columnVisibility else { return false }
+        return columnVisibility.wrappedValue == .detailOnly
+    }
+
+    private func showPrimarySidebar() {
+        columnVisibility?.wrappedValue = .all
     }
 
     var backgroundColor: Color {
@@ -104,6 +117,20 @@ struct iOSReaderView: View {
             }
         }
         .toolbar {
+            if shouldShowPrimarySidebarButton {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        withAnimation {
+                            showPrimarySidebar()
+                        }
+                    } label: {
+                        Image(systemName: "sidebar.left")
+                    }
+                    .accessibilityLabel(String(localized: "Show Sidebar"))
+                    .help(String(localized: "Show Sidebar"))
+                }
+            }
+
             ToolbarItemGroup(placement: .topBarTrailing) {
                 if !ipad, bManager.openTabs.count > 1 {
                     Button {

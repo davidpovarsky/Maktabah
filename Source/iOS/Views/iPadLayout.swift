@@ -91,7 +91,7 @@ struct iPadLayout: View {
                     }
             }
         } detail: {
-            iOSReaderTabView()
+            iOSReaderTabView(columnVisibility: $columnVisibility)
         }
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
