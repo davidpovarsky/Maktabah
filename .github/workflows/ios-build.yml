@@ -15,7 +15,7 @@ env:
 jobs:
   build-ios:
     name: Build iOS artifacts
-    runs-on: macos-latest
+    runs-on: macos-26
     timeout-minutes: 90
 
     steps:
@@ -70,6 +70,35 @@ jobs:
           set -euo pipefail
           test -d Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
 
+      - name: Install Rust toolchain for Zayit Search
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Zayit Search engine
+        id: cache-zayit-search-engine
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-zayit-search-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
+
+      - name: Build Zayit Search XCFramework
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != '' && steps.cache-zayit-search-engine.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh 2>&1 | tee build/logs/build-zayit-search-engine.log
+
+      - name: Verify Zayit Search XCFramework
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
+        run: |
+          set -euo pipefail
+          test -d Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+
       - name: Cache Swift package dependencies
         uses: actions/cache@v4
         with:
@@ -86,7 +115,7 @@ jobs:
           path: vendor/bundle
           key: ${{ runner.os }}-ruby-gems-xcodeproj-v1
 
-      - name: Add Otzaria sources to iOS target
+      - name: Add isolated search sources to iOS target
         run: |
           set -euo pipefail
           mkdir -p build/logs
@@ -136,6 +165,8 @@ jobs:
 
           project.save
           RUBY
+
+          ruby Vendor/ZayitSearchPort/Scripts/configure-xcode.rb
 
       - name: List schemes
         run: |
@@ -193,6 +224,18 @@ jobs:
           mkdir -p Payload
           cp -R "$APP_PATH" Payload/
           /usr/bin/zip -qry "${PRODUCT_NAME}-unsigned.ipa" Payload
+
+          if unzip -l "${PRODUCT_NAME}-unsigned.ipa" | grep -E '(^|/)(seforim\.db|lexical\.db)( |$)|zayit-search-index'; then
+            echo "::error::Unsigned IPA contains external Zayit Search data."
+            exit 1
+          fi
+
+      - name: Upload generated Xcode project for verification
+        uses: actions/upload-artifact@v4
+        with:
+          name: zayit-configured-xcode-project
+          path: Maktabah.xcodeproj/project.pbxproj
+          if-no-files-found: error
 
       - name: Upload unsigned IPA artifact
         uses: actions/upload-artifact@v4

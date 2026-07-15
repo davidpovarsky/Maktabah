@@ -25,6 +25,9 @@ struct iPhoneLayout: View {
                 otzariaTextSearchTabContent
             }
 
+            Tab(iOSTab.zayitSearch.title, systemImage: iOSTab.zayitSearch.icon, value: .zayitSearch) {
+                zayitSearchTabContent
+            }
 
             Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search, role: .search) {
                 searchTabContent
@@ -85,6 +88,25 @@ struct iPhoneLayout: View {
                     manager: bManager
                 )
                 .toolbarGeneral(showSettings: $showSettings)
+        }
+    }
+
+    @ViewBuilder
+    private var zayitSearchTabContent: some View {
+        NavigationStack {
+            ZayitSearchView(
+                existingSeforimDB: {
+                    ZayitSearchExistingDatabaseProvider.currentURL
+                },
+                openResult: { hit in
+                    ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
+                }
+            )
+            .adaptiveReaderPush(
+                item: $bManager.selectedBook,
+                manager: bManager
+            )
+            .toolbarGeneral(showSettings: $showSettings)
         }
     }
 

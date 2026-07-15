@@ -337,6 +337,8 @@ extension SettingsView {
                 .listRowBackground(Color.appCellBackground)
             appearanceSection
                 .listRowBackground(Color.appCellBackground)
+            zayitCreditsSection
+                .listRowBackground(Color.appCellBackground)
 
             if AppConfig.isUsingBundleMode,
                viewModel.hasPendingVacuum || viewModel.isVacuuming {
@@ -376,6 +378,14 @@ extension SettingsView {
             .controlSize(.regular)
         } header: {
             Text("Appearance")
+        }
+    }
+
+    private var zayitCreditsSection: some View {
+        Section("About") {
+            NavigationLink("Zayit Search Credits") {
+                ZayitSearchAttributionView()
+            }
         }
     }
 

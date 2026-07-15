@@ -46,6 +46,7 @@ struct iPadLayout: View {
         switch tab {
         case .viewer: String(localized: "Search Library")
         case .otzariaTextSearch: String(localized: "Search Otzaria Texts")
+        case .zayitSearch: String(localized: "Search Zayit Index")
         case .search: String(localized: "Filter Books to Search")
         case .author: String(localized: "Search Narrators")
         case .annotations: String(localized: "Search Annotations")
@@ -177,6 +178,15 @@ struct iPadLayout: View {
                     )
             case .otzariaTextSearch:
                 OtzariaTextSearchView()
+            case .zayitSearch:
+                ZayitSearchView(
+                    existingSeforimDB: {
+                        ZayitSearchExistingDatabaseProvider.currentURL
+                    },
+                    openResult: { hit in
+                        ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
+                    }
+                )
             case .search:
                 SearchModeView()
                     .searchable(

@@ -10,44 +10,42 @@ struct ZayitSearchView: View {
     let openResult: (ZayitSearchHit) -> Void
 
     var body: some View {
-        NavigationStack {
-            Group {
-                if model.configured { searchUI } else { setupUI }
-            }
-            .navigationTitle("Zayit Search")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Button("Choose Different Folder") { picker = true }
-                        Button("Forget Folder", role: .destructive) {
-                            access.clear()
-                            model.reset()
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
+        Group {
+            if model.configured { searchUI } else { setupUI }
+        }
+        .navigationTitle("Zayit Search")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button("Choose Different Folder") { picker = true }
+                    Button("Forget Folder", role: .destructive) {
+                        access.clear()
+                        model.reset()
                     }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
                 }
             }
-            .fileImporter(isPresented: $picker, allowedContentTypes: [.folder]) { result in
-                do {
-                    let url = try result.get()
-                    try access.save(url)
-                    try configure()
-                } catch {
-                    model.errorMessage = error.localizedDescription
-                }
+        }
+        .fileImporter(isPresented: $picker, allowedContentTypes: [.folder]) { result in
+            do {
+                let url = try result.get()
+                try access.save(url)
+                try configure()
+            } catch {
+                model.errorMessage = error.localizedDescription
             }
-            .alert(
-                "Zayit Search",
-                isPresented: Binding(
-                    get: { model.errorMessage != nil },
-                    set: { if !$0 { model.errorMessage = nil } }
-                )
-            ) {
-                Button("OK", role: .cancel) {}
-            } message: {
-                Text(model.errorMessage ?? "")
-            }
+        }
+        .alert(
+            "Zayit Search",
+            isPresented: Binding(
+                get: { model.errorMessage != nil },
+                set: { if !$0 { model.errorMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(model.errorMessage ?? "")
         }
         .task {
             do {
