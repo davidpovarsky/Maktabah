@@ -36,7 +36,7 @@ final class ZayitSearchEngineBridge: @unchecked Sendable {
         guard id != 0 else { throw BridgeError.notOpen }
         let data = try JSONEncoder().encode(request)
         let json = String(decoding: data, as: UTF8.self)
-        let result = try call { pointer in c_mzayit_engine_search(id, pointer) }(json)
+        let result = try call { pointer in c_mzayit_engine_search(self.id, pointer) }(json)
         if let object = try JSONSerialization.jsonObject(with: Data(result.utf8)) as? [String: Any],
            let message = Self.errorMessage(in: object) {
             throw BridgeError.engine(message)

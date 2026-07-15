@@ -14,9 +14,14 @@ final class ZayitSearchFolderAccess: ObservableObject {
     func restore() throws {
         guard let data = UserDefaults.standard.data(forKey: key) else { return }
         var stale = false
+#if os(macOS)
+        let options: URL.BookmarkResolutionOptions = [.withSecurityScope]
+#else
+        let options: URL.BookmarkResolutionOptions = []
+#endif
         let url = try URL(
             resolvingBookmarkData: data,
-            options: [.withSecurityScope],
+            options: options,
             relativeTo: nil,
             bookmarkDataIsStale: &stale
         )
@@ -26,8 +31,13 @@ final class ZayitSearchFolderAccess: ObservableObject {
 
     func save(_ url: URL) throws {
         deactivate()
+#if os(macOS)
+        let options: URL.BookmarkCreationOptions = [.withSecurityScope]
+#else
+        let options: URL.BookmarkCreationOptions = []
+#endif
         let data = try url.bookmarkData(
-            options: [.withSecurityScope],
+            options: options,
             includingResourceValuesForKeys: nil,
             relativeTo: nil
         )
