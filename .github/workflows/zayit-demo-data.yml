@@ -1,0 +1,117 @@
+name: Build Zayit Demo Data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-demo-data:
+    name: Build small ZayitSearchData demo bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout selected branch
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: Vendor/ZayitSearchPort/Rust
+
+      - name: Create small SQLite fixtures
+        run: |
+          set -euo pipefail
+          rm -rf build/zayit-demo
+          mkdir -p build/zayit-demo/ZayitSearchData
+
+          python3 <<'PY'
+          import sqlite3
+          from pathlib import Path
+
+          root = Path('build/zayit-demo/ZayitSearchData')
+
+          seforim = sqlite3.connect(root / 'seforim.db')
+          seforim.executescript('''
+          CREATE TABLE category(id INTEGER PRIMARY KEY, parentId INTEGER);
+          CREATE TABLE book(
+              id INTEGER PRIMARY KEY,
+              categoryId INTEGER NOT NULL,
+              title TEXT NOT NULL,
+              orderIndex INTEGER,
+              isBaseBook INTEGER
+          );
+          CREATE TABLE line(
+              id INTEGER PRIMARY KEY,
+              bookId INTEGER NOT NULL,
+              lineIndex INTEGER NOT NULL,
+              content TEXT NOT NULL
+          );
+          INSERT INTO category VALUES (1, NULL);
+          INSERT INTO category VALUES (2, 1);
+          INSERT INTO category VALUES (3, 1);
+          INSERT INTO book VALUES (10, 2, 'ספר יסוד לדוגמה', 100, 1);
+          INSERT INTO book VALUES (20, 3, 'ספר נוסף לדוגמה', 100, 0);
+          INSERT INTO line VALUES (101, 10, 0, '<p>שָׁלוֹם בַּיִת מיוחד ואור גדול</p>');
+          INSERT INTO line VALUES (102, 10, 1, '<p>אהבה אחוה שלום ורעות</p>');
+          INSERT INTO line VALUES (201, 20, 0, 'שלום בית ואור גדול');
+          INSERT INTO line VALUES (202, 20, 1, 'חכמה בינה ודעת');
+          ''')
+          seforim.commit()
+          seforim.close()
+
+          lexical = sqlite3.connect(root / 'lexical.db')
+          lexical.executescript('''
+          CREATE TABLE base(id INTEGER PRIMARY KEY, value TEXT NOT NULL);
+          CREATE TABLE surface(id INTEGER PRIMARY KEY, base_id INTEGER NOT NULL, value TEXT NOT NULL);
+          CREATE TABLE variant(id INTEGER PRIMARY KEY, value TEXT NOT NULL);
+          CREATE TABLE surface_variant(surface_id INTEGER NOT NULL, variant_id INTEGER NOT NULL);
+          INSERT INTO base VALUES (1, 'שלום');
+          INSERT INTO surface VALUES (1, 1, 'שלום');
+          INSERT INTO variant VALUES (1, 'שלוה');
+          INSERT INTO surface_variant VALUES (1, 1);
+          ''')
+          lexical.commit()
+          lexical.close()
+          PY
+
+      - name: Build demo search index
+        run: |
+          set -euo pipefail
+          cargo run --release \
+            --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml \
+            --bin zayit-index-builder -- \
+            "$PWD/build/zayit-demo/ZayitSearchData/seforim.db" \
+            "$PWD/build/zayit-demo/ZayitSearchData/zayit-search-index"
+
+      - name: Verify demo bundle and search smoke test
+        run: |
+          set -euo pipefail
+          test -f build/zayit-demo/ZayitSearchData/seforim.db
+          test -f build/zayit-demo/ZayitSearchData/lexical.db
+          test -f build/zayit-demo/ZayitSearchData/zayit-search-index/meta.json
+          test -f build/zayit-demo/ZayitSearchData/zayit-search-index/zayit-index-metadata.json
+          cargo test \
+            --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml \
+            --test fixture_index_search
+
+      - name: Create download ZIP
+        run: |
+          set -euo pipefail
+          cd build/zayit-demo
+          zip -r ZayitSearchData-Demo.zip ZayitSearchData
+          test -s ZayitSearchData-Demo.zip
+
+      - name: Upload demo data artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZayitSearchData-Demo
+          path: build/zayit-demo/ZayitSearchData-Demo.zip
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
