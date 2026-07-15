@@ -1,0 +1,59 @@
+name: Zayit Search Gates
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "Vendor/ZayitSearchPort/**"
+      - ".github/workflows/zayit-search-gates.yml"
+  push:
+    paths:
+      - "Vendor/ZayitSearchPort/**"
+      - ".github/workflows/zayit-search-gates.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  rust:
+    name: Rust format, tests, and index builder
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: Vendor/ZayitSearchPort/Rust
+      - name: Check formatting
+        run: cargo fmt --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml -- --check
+      - name: Run unit and fixture smoke tests
+        run: cargo test --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml
+      - name: Build release index builder
+        run: cargo build --release --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml --bin zayit-index-builder
+
+  xcframework:
+    name: Build independent iOS XCFramework
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: Vendor/ZayitSearchPort/Rust
+      - name: Build XCFramework for device and simulator
+        run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+      - name: Verify XCFramework slices
+        run: |
+          set -euo pipefail
+          test -d Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+          xcodebuild -showdestinations >/dev/null 2>&1 || true
+          find Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework -maxdepth 3 -type f -print
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MaktabahZayitSearch-xcframework
+          path: Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+          if-no-files-found: error

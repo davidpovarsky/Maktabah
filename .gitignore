@@ -33,6 +33,14 @@ Package.pins
 
 .build/
 
+# Zayit search port generated artifacts and external data
+Vendor/ZayitSearchPort/Rust/target/
+Vendor/ZayitSearchPort/build/
+*.xcframework/
+zayit-search-index/
+seforim.db
+lexical.db
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However

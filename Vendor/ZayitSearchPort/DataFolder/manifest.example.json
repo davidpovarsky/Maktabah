@@ -1,0 +1,10 @@
+{
+  "format": "maktabah-zayit-search-data",
+  "version": 1,
+  "upstream_commit": "c53ea7b1a034c206f6c96c86188941c64b69ad2a",
+  "files": {
+    "seforim_db": "seforim.db",
+    "lexical_db": "lexical.db",
+    "index": "zayit-search-index"
+  }
+}

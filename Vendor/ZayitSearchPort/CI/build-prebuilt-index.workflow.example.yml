@@ -1,0 +1,35 @@
+name: Build prebuilt Zayit search index
+
+on:
+  workflow_dispatch:
+    inputs:
+      database_artifact_name:
+        description: Artifact containing seforim.db
+        required: true
+        default: seforim-database
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.database_artifact_name }}
+          path: input
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: Vendor/ZayitSearchPort/Rust
+      - name: Build prebuilt index
+        run: |
+          bash Vendor/ZayitSearchPort/Scripts/build-prebuilt-index.sh \
+            "$GITHUB_WORKSPACE/input/seforim.db" \
+            "$GITHUB_WORKSPACE/output/zayit-search-index"
+      - name: Package index
+        run: tar -C output -caf zayit-search-index.tar.zst zayit-search-index
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zayit-search-index
+          path: zayit-search-index.tar.zst
+          compression-level: 0

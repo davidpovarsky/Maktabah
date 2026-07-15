@@ -1,0 +1,44 @@
+{
+  "repository": "kdroidFilter/SeforimLibrary",
+  "commit": "c53ea7b1a034c206f6c96c86188941c64b69ad2a",
+  "files": [
+    {
+      "upstream": "search/src/jvmMain/kotlin/io/github/kdroidfilter/seforimlibrary/search/LuceneSearchEngine.kt",
+      "ports": [
+        "Rust/src/engine.rs",
+        "Rust/src/query_builder.rs",
+        "Rust/src/snippet_builder.rs"
+      ]
+    },
+    {
+      "upstream": "search/src/jvmMain/kotlin/io/github/kdroidfilter/seforimlibrary/search/MagicDictionaryIndex.kt",
+      "ports": [
+        "Rust/src/magic_dictionary_index.rs"
+      ]
+    },
+    {
+      "upstream": "search/src/commonMain/kotlin/io/github/kdroidfilter/seforimlibrary/search/HebrewTextUtils.kt",
+      "ports": [
+        "Rust/src/hebrew_text_utils.rs"
+      ]
+    },
+    {
+      "upstream": "search/src/commonMain/kotlin/io/github/kdroidfilter/seforimlibrary/search/SearchQueryParser.kt",
+      "ports": [
+        "Rust/src/search_query_parser.rs"
+      ]
+    },
+    {
+      "upstream": "generator/searchindex/src/jvmMain/kotlin/io/github/kdroidfilter/seforimlibrary/searchindex/lucene/LuceneTextIndexWriter.kt",
+      "ports": [
+        "Rust/src/index_schema.rs"
+      ]
+    },
+    {
+      "upstream": "generator/searchindex/src/jvmMain/kotlin/io/github/kdroidfilter/seforimlibrary/searchindex/BuildLuceneIndex.kt",
+      "ports": [
+        "Tools/index-builder/README.md"
+      ]
+    }
+  ]
+}
