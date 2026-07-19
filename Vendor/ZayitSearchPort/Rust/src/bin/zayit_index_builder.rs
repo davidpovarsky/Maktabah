@@ -13,6 +13,9 @@ use std::{
 };
 use tantivy::{doc, Index};
 
+const MAX_PLAIN_TEXT_CHUNK_CHARS: usize = 50_000;
+const INDEX_DOCUMENTS_PER_COMMIT: u64 = 20_000;
+
 #[derive(Debug, Serialize)]
 struct IndexMetadata {
     format: &'static str,
@@ -23,6 +26,9 @@ struct IndexMetadata {
     source_db_modified_unix_seconds: u64,
     books_indexed: u64,
     lines_indexed: u64,
+    index_documents: u64,
+    oversized_lines_split: u64,
+    chunks_created: u64,
     title_documents: u64,
     builder_version: &'static str,
 }
@@ -63,7 +69,7 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
     let category_parents = load_category_parents(&conn)?;
     let schema = expected_schema();
     let index = Index::create_in_dir(output_dir, schema.clone())?;
-    let mut writer = index.writer(256_000_000)?;
+    let mut writer = index.writer(128_000_000)?;
 
     let f_type = schema.get_field(FIELD_TYPE)?;
     let f_book_id = schema.get_field(FIELD_BOOK_ID)?;
@@ -80,6 +86,9 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
 
     let books = load_books(&conn)?;
     let mut lines_indexed = 0u64;
+    let mut index_documents = 0u64;
+    let mut oversized_lines_split = 0u64;
+    let mut chunks_created = 0u64;
     let mut title_documents = 0u64;
     let html = Regex::new(r"(?is)<[^>]+>")?;
     let whitespace = Regex::new(r"\s+")?;
@@ -92,16 +101,28 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
         };
         let title_terms = load_title_terms(&conn, book.id, &book.title)?;
         for term in title_terms {
-            writer.add_document(doc!(
-                f_type => TYPE_BOOK_TITLE,
-                f_book_id => book.id,
-                f_category_id => book.category_id,
-                f_book_title => book.title.clone(),
-                f_title => normalize_hebrew(&term),
-                f_order => effective_order,
-                f_is_base => if book.is_base_book { 1i64 } else { 0i64 },
-            ))?;
+            writer
+                .add_document(doc!(
+                    f_type => TYPE_BOOK_TITLE,
+                    f_book_id => book.id,
+                    f_category_id => book.category_id,
+                    f_book_title => book.title.clone(),
+                    f_title => normalize_hebrew(&term),
+                    f_order => effective_order,
+                    f_is_base => if book.is_base_book { 1i64 } else { 0i64 },
+                ))
+                .with_context(|| {
+                    format!(
+                        "add Tantivy title document: book_id={}, term={term:?}",
+                        book.id
+                    )
+                })?;
             title_documents += 1;
+            index_documents += 1;
+            if index_documents % INDEX_DOCUMENTS_PER_COMMIT == 0 {
+                eprintln!("Indexed {index_documents} documents...");
+                writer.commit()?;
+            }
         }
 
         let ancestors = category_ancestors(book.category_id, &category_parents);
@@ -118,36 +139,62 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
         for row in rows {
             let (line_id, line_index, raw_html) = row?;
             let plain = clean_html(&raw_html, &html, &whitespace);
-            let normalized = normalize_hebrew(&plain);
-            if normalized.is_empty() {
+            let chunks = split_plain_text_chunks(&plain);
+            if chunks.is_empty() {
                 continue;
             }
-            let grams = normalized
-                .split_whitespace()
-                .flat_map(ngrams4)
-                .collect::<Vec<_>>()
-                .join(" ");
-            let mut document = doc!(
-                f_type => TYPE_LINE,
-                f_book_id => book.id,
-                f_category_id => book.category_id,
-                f_book_title => book.title.clone(),
-                f_line_id => line_id,
-                f_line_index => line_index,
-                f_text => normalized,
-                f_text_ng4 => grams,
-                f_order => effective_order,
-                f_is_base => if book.is_base_book { 1i64 } else { 0i64 },
-            );
-            for ancestor in &ancestors {
-                document.add_i64(f_ancestor_ids, *ancestor);
+            if chunks.len() > 1 {
+                oversized_lines_split += 1;
+                eprintln!(
+                    "Split oversized line: book_id={}, line_id={}, line_index={}, chars={}, chunks={}",
+                    book.id,
+                    line_id,
+                    line_index,
+                    plain.chars().count(),
+                    chunks.len()
+                );
             }
-            writer.add_document(document)?;
+
+            for (chunk_index, chunk) in chunks.iter().enumerate() {
+                let normalized = normalize_hebrew(chunk);
+                let grams = normalized
+                    .split_whitespace()
+                    .flat_map(ngrams4)
+                    .collect::<Vec<_>>()
+                    .join(" ");
+                let mut document = doc!(
+                    f_type => TYPE_LINE,
+                    f_book_id => book.id,
+                    f_category_id => book.category_id,
+                    f_book_title => book.title.clone(),
+                    f_line_id => line_id,
+                    f_line_index => line_index,
+                    f_text => normalized,
+                    f_text_ng4 => grams,
+                    f_order => effective_order,
+                    f_is_base => if book.is_base_book { 1i64 } else { 0i64 },
+                );
+                for ancestor in &ancestors {
+                    document.add_i64(f_ancestor_ids, *ancestor);
+                }
+                writer.add_document(document).with_context(|| {
+                    format!(
+                        "add Tantivy line document: book_id={}, line_id={}, line_index={}, chunk={}/{}",
+                        book.id,
+                        line_id,
+                        line_index,
+                        chunk_index + 1,
+                        chunks.len()
+                    )
+                })?;
+                chunks_created += 1;
+                index_documents += 1;
+                if index_documents % INDEX_DOCUMENTS_PER_COMMIT == 0 {
+                    eprintln!("Indexed {index_documents} documents...");
+                    writer.commit()?;
+                }
+            }
             lines_indexed += 1;
-            if lines_indexed % 100_000 == 0 {
-                eprintln!("Indexed {lines_indexed} lines...");
-                writer.commit()?;
-            }
         }
         eprintln!(
             "[{}/{}] {} (book id {})",
@@ -178,6 +225,9 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
         source_db_modified_unix_seconds: modified,
         books_indexed: books.len() as u64,
         lines_indexed,
+        index_documents,
+        oversized_lines_split,
+        chunks_created,
         title_documents,
         builder_version: env!("CARGO_PKG_VERSION"),
     };
@@ -185,7 +235,12 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
         output_dir.join("zayit-index-metadata.json"),
         serde_json::to_vec_pretty(&metadata)?,
     )?;
-    eprintln!("Completed: {} lines, {} books", lines_indexed, books.len());
+    eprintln!(
+        "Completed: {} lines, {} documents, {} books",
+        lines_indexed,
+        index_documents,
+        books.len()
+    );
     Ok(())
 }
 
@@ -301,4 +356,92 @@ fn clean_html(input: &str, html: &Regex, whitespace: &Regex) -> String {
         .replace("&gt;", ">")
         .replace("&amp;", "&");
     whitespace.replace_all(decoded.trim(), " ").into_owned()
+}
+
+fn split_plain_text_chunks(input: &str) -> Vec<&str> {
+    let mut chunks = Vec::new();
+    let mut remaining = input;
+
+    while !remaining.is_empty() {
+        let mut hard_split = None;
+        let mut whitespace_split = None;
+
+        for (char_index, (byte_index, character)) in remaining.char_indices().enumerate() {
+            if char_index == MAX_PLAIN_TEXT_CHUNK_CHARS {
+                hard_split = Some(byte_index);
+                break;
+            }
+            if char_index > 0 && character.is_whitespace() {
+                whitespace_split = Some(byte_index + character.len_utf8());
+            }
+        }
+
+        let Some(hard_split) = hard_split else {
+            chunks.push(remaining);
+            break;
+        };
+        let split_at = whitespace_split.unwrap_or(hard_split);
+        let (chunk, rest) = remaining.split_at(split_at);
+        if !chunk.is_empty() {
+            chunks.push(chunk);
+        }
+        remaining = rest;
+    }
+
+    chunks
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn small_text_stays_in_one_chunk() {
+        let input = "short plain text";
+        assert_eq!(split_plain_text_chunks(input), vec![input]);
+    }
+
+    #[test]
+    fn large_text_is_split() {
+        let input = "word ".repeat(20_001);
+        let chunks = split_plain_text_chunks(&input);
+        assert!(chunks.len() > 1);
+        assert!(chunks
+            .iter()
+            .all(|chunk| chunk.chars().count() <= MAX_PLAIN_TEXT_CHUNK_CHARS));
+    }
+
+    #[test]
+    fn chunks_preserve_all_content_in_order() {
+        let input = format!("{} {}", "a".repeat(49_999), "b".repeat(50_001));
+        let chunks = split_plain_text_chunks(&input);
+        assert_eq!(chunks.concat(), input);
+    }
+
+    #[test]
+    fn hebrew_and_utf8_remain_valid() {
+        let input = "שלום 😀 עולם ".repeat(10_000);
+        let chunks = split_plain_text_chunks(&input);
+        assert!(chunks.len() > 1);
+        assert_eq!(chunks.concat(), input);
+        assert!(chunks
+            .iter()
+            .all(|chunk| std::str::from_utf8(chunk.as_bytes()).is_ok()));
+    }
+
+    #[test]
+    fn chunks_are_never_empty() {
+        let inputs = [
+            "",
+            " ",
+            &"x".repeat(MAX_PLAIN_TEXT_CHUNK_CHARS * 2 + 1),
+            &format!("{} {}", "x".repeat(MAX_PLAIN_TEXT_CHUNK_CHARS), "y"),
+        ];
+
+        for input in inputs {
+            assert!(split_plain_text_chunks(input)
+                .iter()
+                .all(|chunk| !chunk.is_empty()));
+        }
+    }
 }
