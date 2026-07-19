@@ -7,14 +7,27 @@ use rusqlite::{Connection, OpenFlags};
 use serde::Serialize;
 use std::{
     collections::HashMap,
-    env, fs,
+    env, fs, io,
     path::Path,
-    time::{SystemTime, UNIX_EPOCH},
+    sync::Arc,
+    thread,
+    time::{Duration, SystemTime, UNIX_EPOCH},
 };
-use tantivy::{doc, Index};
+use tantivy::{
+    directory::{
+        error::{DeleteError, LockError, OpenReadError, OpenWriteError},
+        Directory, DirectoryLock, FileHandle, Lock, MmapDirectory, WatchCallback, WatchHandle,
+        WritePtr,
+    },
+    doc, Index, IndexSettings,
+};
 
 const MAX_PLAIN_TEXT_CHUNK_CHARS: usize = 50_000;
 const INDEX_DOCUMENTS_PER_COMMIT: u64 = 20_000;
+const INDEX_WRITER_THREADS: usize = 1;
+const INDEX_WRITER_MEMORY_BUDGET: usize = 256_000_000;
+const WINDOWS_WRITE_RETRY_ATTEMPTS: usize = 50;
+const WINDOWS_WRITE_RETRY_DELAY: Duration = Duration::from_millis(100);
 
 #[derive(Debug, Serialize)]
 struct IndexMetadata {
@@ -40,6 +53,89 @@ struct BookRow {
     title: String,
     order_index: i64,
     is_base_book: bool,
+}
+
+#[derive(Clone, Debug)]
+struct RetryingDirectory {
+    inner: MmapDirectory,
+}
+
+impl RetryingDirectory {
+    fn open(path: &Path) -> Result<Self> {
+        Ok(Self {
+            inner: MmapDirectory::open(path)?,
+        })
+    }
+}
+
+impl Directory for RetryingDirectory {
+    fn get_file_handle(&self, path: &Path) -> Result<Arc<dyn FileHandle>, OpenReadError> {
+        self.inner.get_file_handle(path)
+    }
+
+    fn delete(&self, path: &Path) -> Result<(), DeleteError> {
+        self.inner.delete(path)
+    }
+
+    fn exists(&self, path: &Path) -> Result<bool, OpenReadError> {
+        self.inner.exists(path)
+    }
+
+    fn open_write(&self, path: &Path) -> Result<WritePtr, OpenWriteError> {
+        for attempt in 1..=WINDOWS_WRITE_RETRY_ATTEMPTS {
+            match self.inner.open_write(path) {
+                Err(OpenWriteError::IoError { ref io_error, .. })
+                    if io_error.kind() == io::ErrorKind::PermissionDenied
+                        && attempt < WINDOWS_WRITE_RETRY_ATTEMPTS =>
+                {
+                    eprintln!(
+                        "Transient access denied opening {} for write; retry {attempt}/{}",
+                        path.display(),
+                        WINDOWS_WRITE_RETRY_ATTEMPTS
+                    );
+                    thread::sleep(WINDOWS_WRITE_RETRY_DELAY);
+                }
+                result => return result,
+            }
+        }
+        unreachable!("the final open_write attempt always returns")
+    }
+
+    fn atomic_read(&self, path: &Path) -> Result<Vec<u8>, OpenReadError> {
+        self.inner.atomic_read(path)
+    }
+
+    fn atomic_write(&self, path: &Path, data: &[u8]) -> io::Result<()> {
+        for attempt in 1..=WINDOWS_WRITE_RETRY_ATTEMPTS {
+            match self.inner.atomic_write(path, data) {
+                Err(error)
+                    if error.kind() == io::ErrorKind::PermissionDenied
+                        && attempt < WINDOWS_WRITE_RETRY_ATTEMPTS =>
+                {
+                    eprintln!(
+                        "Transient access denied atomically writing {}; retry {attempt}/{}",
+                        path.display(),
+                        WINDOWS_WRITE_RETRY_ATTEMPTS
+                    );
+                    thread::sleep(WINDOWS_WRITE_RETRY_DELAY);
+                }
+                result => return result,
+            }
+        }
+        unreachable!("the final atomic_write attempt always returns")
+    }
+
+    fn sync_directory(&self) -> io::Result<()> {
+        self.inner.sync_directory()
+    }
+
+    fn acquire_lock(&self, lock: &Lock) -> Result<DirectoryLock, LockError> {
+        self.inner.acquire_lock(lock)
+    }
+
+    fn watch(&self, watch_callback: WatchCallback) -> tantivy::Result<WatchHandle> {
+        self.inner.watch(watch_callback)
+    }
 }
 
 fn main() -> Result<()> {
@@ -68,8 +164,13 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
 
     let category_parents = load_category_parents(&conn)?;
     let schema = expected_schema();
-    let index = Index::create_in_dir(output_dir, schema.clone())?;
-    let mut writer = index.writer(128_000_000)?;
+    let directory = RetryingDirectory::open(output_dir)?;
+    let index = Index::create(directory, schema.clone(), IndexSettings::default())?;
+    eprintln!(
+        "Index writer configuration: threads={INDEX_WRITER_THREADS}, memory_budget_bytes={INDEX_WRITER_MEMORY_BUDGET}"
+    );
+    let mut writer =
+        index.writer_with_num_threads(INDEX_WRITER_THREADS, INDEX_WRITER_MEMORY_BUDGET)?;
 
     let f_type = schema.get_field(FIELD_TYPE)?;
     let f_book_id = schema.get_field(FIELD_BOOK_ID)?;
@@ -84,7 +185,15 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
     let f_order = schema.get_field(FIELD_ORDER_INDEX)?;
     let f_is_base = schema.get_field(FIELD_IS_BASE_BOOK)?;
 
-    let books = load_books(&conn)?;
+    let mut books = load_books(&conn)?;
+    if let Some(max_books) = env::var_os("ZAYIT_INDEX_MAX_BOOKS") {
+        let max_books = max_books
+            .to_string_lossy()
+            .parse::<usize>()
+            .context("ZAYIT_INDEX_MAX_BOOKS must be a non-negative integer")?;
+        books.truncate(max_books);
+        eprintln!("Smoke limit enabled: indexing at most {max_books} books");
+    }
     let mut lines_indexed = 0u64;
     let mut index_documents = 0u64;
     let mut oversized_lines_split = 0u64;
@@ -121,7 +230,12 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
             index_documents += 1;
             if index_documents % INDEX_DOCUMENTS_PER_COMMIT == 0 {
                 eprintln!("Indexed {index_documents} documents...");
-                writer.commit()?;
+                writer.commit().with_context(|| {
+                    format!(
+                        "commit after {index_documents} documents: book_id={}, title term={term:?}",
+                        book.id
+                    )
+                })?;
             }
         }
 
@@ -191,7 +305,16 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
                 index_documents += 1;
                 if index_documents % INDEX_DOCUMENTS_PER_COMMIT == 0 {
                     eprintln!("Indexed {index_documents} documents...");
-                    writer.commit()?;
+                    writer.commit().with_context(|| {
+                        format!(
+                            "commit after {index_documents} documents: book_id={}, line_id={}, line_index={}, chunk={}/{}",
+                            book.id,
+                            line_id,
+                            line_index,
+                            chunk_index + 1,
+                            chunks.len()
+                        )
+                    })?;
                 }
             }
             lines_indexed += 1;
