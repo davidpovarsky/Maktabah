@@ -9,13 +9,29 @@ struct OtzariaSecurityScopedBookmarkStore {
     private let key = "goldcreative.otzaria.databaseBookmark.v2"
     private let legacyKey = "goldcreative.otsaria.databaseBookmark"
 
+    private var bookmarkResolutionOptions: URL.BookmarkResolutionOptions {
+        #if os(macOS)
+        [.withSecurityScope]
+        #else
+        []
+        #endif
+    }
+
+    private var bookmarkCreationOptions: URL.BookmarkCreationOptions {
+        #if os(macOS)
+        [.withSecurityScope]
+        #else
+        []
+        #endif
+    }
+
     var hasBookmark: Bool {
         UserDefaults.standard.data(forKey: key) != nil
     }
 
     func save(url: URL) throws {
         let data = try url.bookmarkData(
-            options: [.withSecurityScope],
+            options: bookmarkCreationOptions,
             includingResourceValuesForKeys: nil,
             relativeTo: nil
         )
@@ -27,7 +43,7 @@ struct OtzariaSecurityScopedBookmarkStore {
         var stale = false
         let url = try URL(
             resolvingBookmarkData: data,
-            options: [.withSecurityScope],
+            options: bookmarkResolutionOptions,
             relativeTo: nil,
             bookmarkDataIsStale: &stale
         )
