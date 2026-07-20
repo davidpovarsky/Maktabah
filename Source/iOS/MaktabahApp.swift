@@ -26,6 +26,7 @@ struct MaktabahApp: App {
     @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false
     @StateObject private var otzariaApp = OtzariaAppContainer()
     @StateObject private var otzariaNavigation = OtzariaIntegratedNavigationState()
+    @StateObject private var zayitSearchSession = ZayitSearchSessionController()
 
     /*
     var currentVersion: String {
@@ -75,6 +76,7 @@ struct MaktabahApp: App {
             iOSBootstrapView()
                 .environmentObject(otzariaApp)
                 .environmentObject(otzariaNavigation)
+                .environmentObject(zayitSearchSession)
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
                 .id(useDefaultTheme)
                 .toggleStyle(SwitchToggleStyle(tint: .green))

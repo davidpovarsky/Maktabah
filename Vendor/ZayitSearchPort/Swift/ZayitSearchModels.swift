@@ -1,5 +1,21 @@
 import Foundation
 
+enum ZayitSearchMatchMode: String, CaseIterable, Identifiable {
+    case exact
+    case flexible
+
+    var id: Self { self }
+
+    var nearValue: UInt32 {
+        switch self {
+        case .exact:
+            return 0
+        case .flexible:
+            return 5
+        }
+    }
+}
+
 struct ZayitSearchDataPaths: Codable, Sendable {
     let seforimDb: String
     let lexicalDb: String

@@ -2,8 +2,8 @@ import Foundation
 
 @MainActor
 enum OtzariaBootstrapAdapter {
-    static var isReadyForAppLaunch: Bool {
-        OtzariaMaktabahBridge.shared.isEnabled
+    static func restoreForAppLaunch() throws -> Bool {
+        try OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()
     }
 
     static var shouldSetupTarjamahConnection: Bool {

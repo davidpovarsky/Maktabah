@@ -6,6 +6,11 @@
 import SwiftUI
 
 struct iPadLayout: View {
+    private enum DetailMode {
+        case reader
+        case zayitSearch
+    }
+
     @Bindable var bManager: iOSNavigationManager
     @Binding var selectedTab: iOSTab
     @Binding var columnVisibility: NavigationSplitViewVisibility
@@ -14,6 +19,8 @@ struct iPadLayout: View {
     @State private var showingSearchHelp = false
     @State private var showingAddFavorites = false
     @State private var path: [iOSTab] = []
+    @State private var detailMode: DetailMode = .reader
+    @State private var showingZayitReader = false
 
     @StateObject private var historyViewModel = HistoryViewModel.shared
 
@@ -92,7 +99,7 @@ struct iPadLayout: View {
                     }
             }
         } detail: {
-            iOSReaderTabView(columnVisibility: $columnVisibility)
+            detailContent
         }
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
@@ -104,10 +111,27 @@ struct iPadLayout: View {
         ThemeList(isGrouped: true) {
             Section {
                 ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
-                    NavigationLink(value: tab) {
-                        Label(tab.title, systemImage: tab.icon)
+                    if tab == .zayitSearch {
+                        Button {
+                            path.removeAll()
+                            selectedTab = .zayitSearch
+                            bManager.switchToMode(.search)
+                            showingZayitReader = false
+                            detailMode = .zayitSearch
+                        } label: {
+                            Label(tab.title, systemImage: tab.icon)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .foregroundStyle(.primary)
+                        .accessibilityLabel(Text(tab.title))
+                    } else {
+                        NavigationLink(value: tab) {
+                            Label(tab.title, systemImage: tab.icon)
+                        }
+                        .foregroundStyle(.primary)
                     }
-                    .foregroundStyle(.primary)
                 }
             }
 
@@ -122,6 +146,8 @@ struct iPadLayout: View {
                             let lastId = historyViewModel.entriesByBookId[
                                 book.id
                             ]?.lastContentId
+                            detailMode = .reader
+                            showingZayitReader = false
                             bManager.openBook(book, initialContentId: lastId)
                         }
                     }
@@ -146,6 +172,8 @@ struct iPadLayout: View {
                             let lastId = historyViewModel.entriesByBookId[
                                 book.id
                             ]?.lastContentId
+                            detailMode = .reader
+                            showingZayitReader = false
                             bManager.openBook(book, initialContentId: lastId)
                         }
                     }
@@ -155,6 +183,33 @@ struct iPadLayout: View {
                             historyViewModel.removeHistory(for: book.id)
                         }
                     }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var detailContent: some View {
+        switch detailMode {
+        case .reader:
+            iOSReaderTabView(columnVisibility: $columnVisibility)
+        case .zayitSearch:
+            NavigationStack {
+                ZayitSearchView(
+                    existingSeforimDB: {
+                        ZayitSearchExistingDatabaseProvider.currentURL
+                    },
+                    openResult: { hit in
+                        if ZayitSearchReaderNavigationAdapter.open(
+                            hit,
+                            using: bManager
+                        ) {
+                            showingZayitReader = true
+                        }
+                    }
+                )
+                .navigationDestination(isPresented: $showingZayitReader) {
+                    iOSReaderTabView(columnVisibility: $columnVisibility)
                 }
             }
         }
@@ -179,14 +234,8 @@ struct iPadLayout: View {
             case .otzariaTextSearch:
                 OtzariaTextSearchView()
             case .zayitSearch:
-                ZayitSearchView(
-                    existingSeforimDB: {
-                        ZayitSearchExistingDatabaseProvider.currentURL
-                    },
-                    openResult: { hit in
-                        ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
-                    }
-                )
+                // Zayit Search is presented in the split view's detail column.
+                EmptyView()
             case .search:
                 SearchModeView()
                     .searchable(
@@ -222,6 +271,10 @@ struct iPadLayout: View {
         .navigationTitle(tab.title)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
+            if tab != .zayitSearch {
+                detailMode = .reader
+                showingZayitReader = false
+            }
             if selectedTab != tab {
                 selectedTab = tab
                 bManager.switchToMode(tab.appMode)

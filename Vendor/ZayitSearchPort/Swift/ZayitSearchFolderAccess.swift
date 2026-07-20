@@ -4,59 +4,86 @@ import UniformTypeIdentifiers
 @MainActor
 final class ZayitSearchFolderAccess: ObservableObject {
     @Published private(set) var folderURL: URL?
-    private let key = "zayit-search-folder-bookmark-v1"
+    private let key = "zayit-search-folder-bookmark-v2"
+    private let legacyKey = "zayit-search-folder-bookmark-v1"
     private var activeURL: URL?
+
+    var hasBookmark: Bool {
+        UserDefaults.standard.data(forKey: key) != nil ||
+            UserDefaults.standard.data(forKey: legacyKey) != nil
+    }
 
     deinit {
         activeURL?.stopAccessingSecurityScopedResource()
     }
 
-    func restore() throws {
-        guard let data = UserDefaults.standard.data(forKey: key) else { return }
-        var stale = false
-#if os(macOS)
-        let options: URL.BookmarkResolutionOptions = [.withSecurityScope]
-#else
-        let options: URL.BookmarkResolutionOptions = []
-#endif
-        let url = try URL(
-            resolvingBookmarkData: data,
-            options: options,
-            relativeTo: nil,
-            bookmarkDataIsStale: &stale
-        )
-        if stale { try save(url) }
-        folderURL = url
-    }
-
-    func save(_ url: URL) throws {
-        deactivate()
-#if os(macOS)
-        let options: URL.BookmarkCreationOptions = [.withSecurityScope]
-#else
-        let options: URL.BookmarkCreationOptions = []
-#endif
-        let data = try url.bookmarkData(
-            options: options,
-            includingResourceValuesForKeys: nil,
-            relativeTo: nil
-        )
-        UserDefaults.standard.set(data, forKey: key)
-        folderURL = url
-    }
-
-    /// Keeps the security scope open for the whole lifetime of the search engine.
-    /// The Rust engine opens SQLite and Tantivy files lazily during searches, so
-    /// access must not be stopped immediately after validation.
-    func activate() throws -> URL {
-        guard let url = folderURL else { throw AccessError.notConfigured }
-        if activeURL == url { return url }
+    func selectAndActivate(_ url: URL) throws -> URL {
         deactivate()
         guard url.startAccessingSecurityScopedResource() else {
             throw AccessError.permissionDenied
         }
-        activeURL = url
-        return url
+
+        do {
+            try saveBookmark(for: url)
+            UserDefaults.standard.removeObject(forKey: legacyKey)
+            activeURL = url
+            folderURL = url
+            return url
+        } catch {
+            url.stopAccessingSecurityScopedResource()
+            throw error
+        }
+    }
+
+    func restoreAndActivate() throws -> URL? {
+        if let activeURL { return activeURL }
+
+        let defaults = UserDefaults.standard
+        let currentData = defaults.data(forKey: key)
+        let isLegacy = currentData == nil
+        guard let data = currentData ?? defaults.data(forKey: legacyKey) else { return nil }
+
+        var stale = false
+        let url: URL
+        do {
+            url = try URL(
+                resolvingBookmarkData: data,
+                options: [.withSecurityScope],
+                relativeTo: nil,
+                bookmarkDataIsStale: &stale
+            )
+        } catch {
+            if isLegacy {
+                defaults.removeObject(forKey: legacyKey)
+                throw AccessError.legacyBookmarkRequiresReselection
+            }
+            throw error
+        }
+
+        guard url.startAccessingSecurityScopedResource() else {
+            if isLegacy {
+                defaults.removeObject(forKey: legacyKey)
+                throw AccessError.legacyBookmarkRequiresReselection
+            }
+            throw AccessError.permissionDenied
+        }
+
+        do {
+            if stale || isLegacy {
+                try saveBookmark(for: url)
+            }
+            defaults.removeObject(forKey: legacyKey)
+            activeURL = url
+            folderURL = url
+            return url
+        } catch {
+            url.stopAccessingSecurityScopedResource()
+            if isLegacy {
+                defaults.removeObject(forKey: legacyKey)
+                throw AccessError.legacyBookmarkRequiresReselection
+            }
+            throw error
+        }
     }
 
     func deactivate() {
@@ -67,12 +94,23 @@ final class ZayitSearchFolderAccess: ObservableObject {
     func clear() {
         deactivate()
         UserDefaults.standard.removeObject(forKey: key)
+        UserDefaults.standard.removeObject(forKey: legacyKey)
         folderURL = nil
+    }
+
+    private func saveBookmark(for url: URL) throws {
+        let data = try url.bookmarkData(
+            options: [.withSecurityScope],
+            includingResourceValuesForKeys: nil,
+            relativeTo: nil
+        )
+        UserDefaults.standard.set(data, forKey: key)
     }
 
     enum AccessError: LocalizedError {
         case notConfigured
         case permissionDenied
+        case legacyBookmarkRequiresReselection
 
         var errorDescription: String? {
             switch self {
@@ -80,6 +118,8 @@ final class ZayitSearchFolderAccess: ObservableObject {
                 return "No Zayit Search data folder is configured."
             case .permissionDenied:
                 return "The selected folder is no longer accessible. Choose it again."
+            case .legacyBookmarkRequiresReselection:
+                return "Choose the Zayit Search data folder again to renew access."
             }
         }
     }

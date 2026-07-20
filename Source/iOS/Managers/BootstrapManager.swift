@@ -29,8 +29,17 @@ final class iOSBootstrapManager {
         guard !didPrepare else { return }
         didPrepare = true
 
-        if OtzariaBootstrapAdapter.isReadyForAppLaunch {
-            finishSetup()
+        do {
+            if try OtzariaBootstrapAdapter.restoreForAppLaunch() {
+                finishSetup()
+                return
+            }
+        } catch {
+            isChecking = false
+            coreDownloadState.phase = .error(
+                "The saved Otzaria database could not be reopened. " +
+                "Choose the database again.\n\n\(error.localizedDescription)"
+            )
             return
         }
 

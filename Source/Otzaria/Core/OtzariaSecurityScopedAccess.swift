@@ -1,6 +1,17 @@
 import Foundation
 
 final class OtzariaSecurityScopedAccess {
+    enum AccessError: LocalizedError {
+        case permissionDenied
+
+        var errorDescription: String? {
+            switch self {
+            case .permissionDenied:
+                return "The selected Otzaria database is no longer accessible. Choose it again."
+            }
+        }
+    }
+
     let url: URL
     private var isActive: Bool
 
@@ -14,8 +25,10 @@ final class OtzariaSecurityScopedAccess {
     }
 
     static func start(for url: URL) throws -> OtzariaSecurityScopedAccess {
-        let didStart = url.startAccessingSecurityScopedResource()
-        return OtzariaSecurityScopedAccess(url: url, isActive: didStart)
+        guard url.startAccessingSecurityScopedResource() else {
+            throw AccessError.permissionDenied
+        }
+        return OtzariaSecurityScopedAccess(url: url, isActive: true)
     }
 
     func stop() {

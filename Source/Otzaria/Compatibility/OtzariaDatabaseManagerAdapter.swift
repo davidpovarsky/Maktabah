@@ -10,11 +10,11 @@ enum OtzariaDatabaseManagerAdapter {
         guard isEnabled else { return false }
 
         do {
-            try OtzariaMaktabahBridge.shared.openIfNeeded()
+            return try OtzariaMaktabahBridge.shared.openIfNeeded()
         } catch {
             print("Otzaria database could not be opened: \(error)")
+            return false
         }
-        return true
     }
 
     static var shouldSetupTarjamahConnection: Bool {

@@ -38,6 +38,13 @@ struct iOSReaderView: View {
 
     private var shouldShowPrimarySidebarButton: Bool {
         guard MaktabahApp.isIpad else { return false }
+
+        // iPadOS 27 restores the native NavigationSplitView sidebar toggle.
+        // Keep the manual fallback only for iPadOS 26 and earlier.
+        if #available(iOS 27.0, *) {
+            return false
+        }
+
         guard let columnVisibility else { return false }
         return columnVisibility.wrappedValue == .detailOnly
     }

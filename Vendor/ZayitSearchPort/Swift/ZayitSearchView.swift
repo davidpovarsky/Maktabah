@@ -2,8 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ZayitSearchView: View {
-    @StateObject private var access = ZayitSearchFolderAccess()
-    @StateObject private var model = ZayitSearchViewModel(repository: ZayitSearchRepository())
+    @EnvironmentObject private var session: ZayitSearchSessionController
     @State private var picker = false
 
     let existingSeforimDB: (() -> URL?)?
@@ -11,7 +10,16 @@ struct ZayitSearchView: View {
 
     var body: some View {
         Group {
-            if model.configured { searchUI } else { setupUI }
+            switch session.state {
+            case .restoring:
+                ProgressView("Restoring search data…")
+            case .notConfigured:
+                setupUI
+            case .ready:
+                searchUI
+            case .failed(let message):
+                errorUI(message)
+            }
         }
         .navigationTitle("Zayit Search")
         .toolbar {
@@ -19,8 +27,7 @@ struct ZayitSearchView: View {
                 Menu {
                     Button("Choose Different Folder") { picker = true }
                     Button("Forget Folder", role: .destructive) {
-                        access.clear()
-                        model.reset()
+                        Task { await session.forget() }
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")
@@ -28,32 +35,33 @@ struct ZayitSearchView: View {
             }
         }
         .fileImporter(isPresented: $picker, allowedContentTypes: [.folder]) { result in
-            do {
-                let url = try result.get()
-                try access.save(url)
-                try configure()
-            } catch {
-                model.errorMessage = error.localizedDescription
+            switch result {
+            case .success(let url):
+                Task {
+                    await session.chooseFolder(
+                        url,
+                        existingSeforimDB: existingSeforimDB?()
+                    )
+                }
+            case .failure(let error):
+                session.model.errorMessage = error.localizedDescription
             }
         }
         .alert(
             "Zayit Search",
             isPresented: Binding(
-                get: { model.errorMessage != nil },
-                set: { if !$0 { model.errorMessage = nil } }
+                get: { session.model.errorMessage != nil },
+                set: { if !$0 { session.model.errorMessage = nil } }
             )
         ) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text(model.errorMessage ?? "")
+            Text(session.model.errorMessage ?? "")
         }
         .task {
-            do {
-                try access.restore()
-                if access.folderURL != nil { try configure() }
-            } catch {
-                model.errorMessage = error.localizedDescription
-            }
+            await session.restoreIfNeeded(
+                existingSeforimDB: existingSeforimDB?()
+            )
         }
     }
 
@@ -71,29 +79,35 @@ struct ZayitSearchView: View {
     private var searchUI: some View {
         VStack {
             HStack {
-                TextField("Search", text: $model.query)
+                TextField(
+                    "Search",
+                    text: Binding(
+                        get: { session.model.query },
+                        set: { session.model.query = $0 }
+                    )
+                )
                     .textFieldStyle(.roundedBorder)
-                    .onSubmit { model.runSearch() }
-                Button("Search") { model.runSearch() }
+                    .onSubmit { session.model.runSearch() }
+                Button("Search") { session.model.runSearch() }
             }
             .padding()
 
-            HStack {
-                Text("Near: \(model.near)")
-                Slider(
-                    value: Binding(
-                        get: { Double(model.near) },
-                        set: { model.near = UInt32($0) }
-                    ),
-                    in: 0...12,
-                    step: 1
+            Picker(
+                "Search Mode",
+                selection: Binding(
+                    get: { session.model.matchMode },
+                    set: { session.model.matchMode = $0 }
                 )
+            ) {
+                Text("Exact").tag(ZayitSearchMatchMode.exact)
+                Text("Flexible").tag(ZayitSearchMatchMode.flexible)
             }
+            .pickerStyle(.segmented)
             .padding(.horizontal)
 
-            if model.isLoading { ProgressView() }
+            if session.model.isLoading { ProgressView() }
 
-            List(model.hits) { hit in
+            List(session.model.hits) { hit in
                 Button { openResult(hit) } label: {
                     VStack(alignment: .leading) {
                         Text(hit.bookTitle).font(.headline)
@@ -107,12 +121,14 @@ struct ZayitSearchView: View {
         }
     }
 
-    private func configure() throws {
-        let folder = try access.activate()
-        let paths = try ZayitSearchDataValidator.paths(
-            in: folder,
-            existingSeforimDB: existingSeforimDB?()
-        )
-        model.configure(paths: paths)
+    private func errorUI(_ message: String) -> some View {
+        ContentUnavailableView {
+            Label("Search data unavailable", systemImage: "exclamationmark.triangle")
+        } description: {
+            Text(message)
+        } actions: {
+            Button("Choose Folder Again") { picker = true }
+                .buttonStyle(.borderedProminent)
+        }
     }
 }

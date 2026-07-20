@@ -9,77 +9,93 @@ final class OtzariaAppContainer: ObservableObject {
     @Published var databaseError: String?
     @Published var isOpeningDatabase = false
 
-    private let bookmarkStore = OtzariaSecurityScopedBookmarkStore()
+    private let accessController = OtzariaDatabaseAccessController.shared
     private var connection: OtzariaSQLiteConnection?
-    private var scopedAccess: OtzariaSecurityScopedAccess?
 
     deinit {
         connection?.close()
-        scopedAccess?.stop()
     }
 
     func restoreDatabaseIfPossible() async {
-        guard repositories == nil else { return }
         do {
-            guard let restored = try bookmarkStore.restore() else { return }
-            await openDatabase(at: restored.url, shouldSaveBookmark: false, scopedAccess: restored.access)
+            guard let url = try accessController.restoreIfNeeded() else {
+                if repositories != nil || databaseURL != nil {
+                    resetConnection()
+                    repositories = nil
+                    databaseURL = nil
+                    databaseToken = UUID()
+                }
+                return
+            }
+            guard repositories == nil || databaseURL != url else { return }
+            await openDatabase(at: url)
         } catch {
             databaseError = error.localizedDescription
         }
     }
 
     func openPickedDatabase(at url: URL) async {
-        await openDatabase(at: url, shouldSaveBookmark: true, scopedAccess: nil)
-    }
-
-    func forgetDatabase() {
-        connection?.close()
-        connection = nil
-        scopedAccess?.stop()
-        scopedAccess = nil
-        repositories = nil
-        databaseURL = nil
-        databaseError = nil
-        bookmarkStore.forget()
-        databaseToken = UUID()
-    }
-
-    private func openDatabase(at url: URL, shouldSaveBookmark: Bool, scopedAccess existingAccess: OtzariaSecurityScopedAccess?) async {
         isOpeningDatabase = true
         databaseError = nil
         defer { isOpeningDatabase = false }
 
-        connection?.close()
-        connection = nil
-        scopedAccess?.stop()
-        scopedAccess = nil
+        resetConnection()
+        OtzariaMaktabahBridge.shared.resetConnection()
         repositories = nil
+        databaseURL = nil
 
         do {
-            let access = try existingAccess ?? OtzariaSecurityScopedAccess.start(for: url)
-            if shouldSaveBookmark {
-                try bookmarkStore.save(url: url)
-            }
-
-            let newConnection = try OtzariaSQLiteConnection.openReadOnly(url: url)
-            try await newConnection.read { db in
-                try OtzariaSchemaValidator.validate(db)
-            }
-
-            let newRepositories = OtzariaAppRepositories(
-                library: OtzariaSQLiteLibraryRepository(database: newConnection),
-                bookText: OtzariaSQLiteBookTextRepository(database: newConnection),
-                sources: OtzariaSQLiteSourceRepository(database: newConnection)
-            )
-
-            scopedAccess = access
-            connection = newConnection
-            repositories = newRepositories
-            databaseURL = url
-            databaseToken = UUID()
+            let selectedURL = try accessController.selectExternalDatabase(url)
+            try await establishConnection(at: selectedURL)
         } catch {
             databaseError = error.localizedDescription
         }
+    }
+
+    func forgetDatabase() {
+        resetConnection()
+        OtzariaMaktabahBridge.shared.resetConnection()
+        accessController.clearSelection()
+        repositories = nil
+        databaseURL = nil
+        databaseError = nil
+        databaseToken = UUID()
+    }
+
+    private func openDatabase(at url: URL) async {
+        isOpeningDatabase = true
+        databaseError = nil
+        defer { isOpeningDatabase = false }
+
+        resetConnection()
+        repositories = nil
+
+        do {
+            try await establishConnection(at: url)
+        } catch {
+            databaseError = error.localizedDescription
+        }
+    }
+
+    private func establishConnection(at url: URL) async throws {
+        let newConnection = try OtzariaSQLiteConnection.openReadOnly(url: url)
+        try await newConnection.read { db in
+            try OtzariaSchemaValidator.validate(db)
+        }
+
+        connection = newConnection
+        repositories = OtzariaAppRepositories(
+            library: OtzariaSQLiteLibraryRepository(database: newConnection),
+            bookText: OtzariaSQLiteBookTextRepository(database: newConnection),
+            sources: OtzariaSQLiteSourceRepository(database: newConnection)
+        )
+        databaseURL = url
+        databaseToken = UUID()
+    }
+
+    private func resetConnection() {
+        connection?.close()
+        connection = nil
     }
 }
 
@@ -92,63 +108,36 @@ struct OtzariaAppRepositories {
 final class OtzariaMaktabahBridge {
     static let shared = OtzariaMaktabahBridge()
 
-    private let databasePathKey = "otzaria_seforim_database_path"
+    private let accessController = OtzariaDatabaseAccessController.shared
     private let unitModeKey = "otzaria_reader_unit_mode"
     private let lock = NSRecursiveLock()
     private var database: SQLiteDatabase?
+    private var openedDatabaseURL: URL?
     private var readingUnitService: OtzariaReadingUnitService?
 
     private init() {}
 
-    var isEnabled: Bool { selectedDatabasePath != nil }
+    var isEnabled: Bool { accessController.currentURL != nil }
 
-    var databasePath: String? { selectedDatabasePath }
+    var databasePath: String? { accessController.currentURL?.path }
 
-    var databaseURL: URL? {
-        selectedDatabasePath.map { URL(fileURLWithPath: $0) }
-    }
-
-    var selectedDatabasePath: String? {
-        guard let raw = UserDefaults.standard.string(forKey: databasePathKey), !raw.isEmpty else {
-            return nil
-        }
-        return raw
-    }
+    var databaseURL: URL? { accessController.currentURL }
 
     func installDatabase(from sourceURL: URL) throws {
-        let didStart = sourceURL.startAccessingSecurityScopedResource()
-        defer {
-            if didStart { sourceURL.stopAccessingSecurityScopedResource() }
-        }
-
-        guard let appSupport = AppConfig.appSupportDir else {
-            throw NSError(domain: "Otzaria", code: 1, userInfo: [NSLocalizedDescriptionKey: "Application Support folder is not available"])
-        }
-
-        let fm = FileManager.default
-        let otzariaFolder = appSupport.appendingPathComponent("Otzaria", isDirectory: true)
-        if !fm.fileExists(atPath: otzariaFolder.path) {
-            try fm.createDirectory(at: otzariaFolder, withIntermediateDirectories: true)
-        }
-
-        let destination = otzariaFolder.appendingPathComponent("seforim.db")
-        if fm.fileExists(atPath: destination.path) {
-            try fm.removeItem(at: destination)
-        }
-        try fm.copyItem(at: sourceURL, to: destination)
-
-        UserDefaults.standard.set(destination.path, forKey: databasePathKey)
         resetConnection()
+        _ = try accessController.selectExternalDatabase(sourceURL)
+        _ = try openIfNeeded()
+    }
+
+    @discardableResult
+    func restoreDatabaseIfPossible() throws -> Bool {
+        guard try accessController.restoreIfNeeded() != nil else { return false }
+        return try openIfNeeded()
     }
 
     func forgetDatabase() {
-        lock.lock()
-        defer { lock.unlock() }
-        database = nil
-        if let path = selectedDatabasePath {
-            try? FileManager.default.removeItem(atPath: path)
-        }
-        UserDefaults.standard.removeObject(forKey: databasePathKey)
+        resetConnection()
+        accessController.clearSelection()
     }
 
     func close() {
@@ -158,6 +147,7 @@ final class OtzariaMaktabahBridge {
     func resetConnection() {
         lock.lock()
         database = nil
+        openedDatabaseURL = nil
         readingUnitService = nil
         lock.unlock()
     }
@@ -167,9 +157,12 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
 
-        guard let path = selectedDatabasePath else { return false }
-        if database != nil { return true }
-        database = try SQLiteDatabase(path: path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+        guard let url = try accessController.restoreIfNeeded() else { return false }
+        if database != nil, openedDatabaseURL == url { return true }
+        database = nil
+        openedDatabaseURL = nil
+        database = try SQLiteDatabase(path: url.path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+        openedDatabaseURL = url
         readingUnitService = nil
         return true
     }
