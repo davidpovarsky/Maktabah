@@ -219,4 +219,3 @@ enum PrototypeFixtures {
         )
     ]
 }
-

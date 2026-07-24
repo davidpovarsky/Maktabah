@@ -85,4 +85,3 @@ Not produced in the Windows editing environment. Simulator screenshots should be
 ## Build results
 
 Pending GitHub Actions verification with the repository’s `Maktabah-iOS` scheme and configured stable Xcode runner.
-

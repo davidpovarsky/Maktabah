@@ -39,4 +39,3 @@ struct EmbeddedAICitationView: View {
         .background(.thinMaterial, in: .rect(cornerRadius: 12))
     }
 }
-

@@ -42,7 +42,6 @@ struct SocialRoomView: View {
         )
     }
 }
-
 #Preview("Group room with Torah resource") {
     NavigationStack {
         SocialRoomView(
@@ -51,4 +50,3 @@ struct SocialRoomView: View {
         )
     }
 }
-

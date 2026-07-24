@@ -23,4 +23,3 @@ struct EmbeddedAIReasoningView: View {
         .background(.quaternary.opacity(0.35), in: .rect(cornerRadius: 12))
     }
 }
-

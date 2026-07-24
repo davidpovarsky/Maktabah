@@ -32,4 +32,3 @@ struct EmbeddedAIContextHeader: View {
         .accessibilityLabel(context.accessibilitySummary)
     }
 }
-

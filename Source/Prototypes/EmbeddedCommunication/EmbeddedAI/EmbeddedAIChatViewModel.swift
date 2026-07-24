@@ -114,4 +114,3 @@ final class EmbeddedAIChatViewModel {
         isStreaming = false
     }
 }
-

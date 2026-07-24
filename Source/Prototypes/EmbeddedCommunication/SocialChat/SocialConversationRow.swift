@@ -78,4 +78,3 @@ struct SocialConversationRow: View {
         .contentShape(.rect)
     }
 }
-

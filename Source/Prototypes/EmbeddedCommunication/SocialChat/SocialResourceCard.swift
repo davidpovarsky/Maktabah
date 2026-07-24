@@ -85,4 +85,3 @@ struct SocialResourceCard: View {
         .accessibilityLabel("Mock image from the study table")
     }
 }
-

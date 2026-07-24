@@ -30,7 +30,6 @@ struct SocialConversationListView: View {
         .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
-
 #Preview("Conversation list") {
     SocialConversationListView(
         backgroundColor: Color(uiColor: .systemBackground),
@@ -38,4 +37,3 @@ struct SocialConversationListView: View {
         onClose: {}
     )
 }
-

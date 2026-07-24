@@ -9,4 +9,3 @@ The embedded AI assistant prototype was visually and behaviorally informed by:
 - License declared by the source repository: MIT
 
 Only presentation and interaction patterns were adapted. The SwiftChat app entry point, persistence, API-key handling, network layer, OpenAI Responses API integration, bundle configuration, and unrelated assets were not copied or integrated.
-

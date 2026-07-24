@@ -71,4 +71,3 @@ struct EmbeddedAIComposer: View {
         .background(.bar)
     }
 }
-

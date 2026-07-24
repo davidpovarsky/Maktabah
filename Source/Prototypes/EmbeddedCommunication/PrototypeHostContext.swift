@@ -22,4 +22,3 @@ struct PrototypeHostContext: Equatable, Sendable {
         .joined(separator: ", ")
     }
 }
-

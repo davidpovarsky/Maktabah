@@ -20,4 +20,3 @@ struct EmbeddedAIToolCard: View {
         .background(.thinMaterial, in: .rect(cornerRadius: 12))
     }
 }
-
