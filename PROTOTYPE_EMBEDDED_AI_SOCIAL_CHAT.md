@@ -28,6 +28,7 @@ The SwiftChat entry point, storage, API-key handling, network layer, OpenAI inte
 - `Source/Prototypes/EmbeddedCommunication/PrototypeCommunicationModels.swift`
 - `Source/Prototypes/EmbeddedCommunication/PrototypeFixtures.swift`
 - `Source/Prototypes/EmbeddedCommunication/PrototypeHostContext.swift`
+- `Source/Prototypes/EmbeddedCommunication/MaktabahCommunicationInspectorView.swift`
 - `Source/Prototypes/EmbeddedCommunication/SwiftChat-ATTRIBUTION.md`
 - `Source/Prototypes/EmbeddedCommunication/EmbeddedAI/EmbeddedAIChatView.swift`
 - `Source/Prototypes/EmbeddedCommunication/EmbeddedAI/EmbeddedAIChatViewModel.swift`
@@ -42,21 +43,59 @@ The SwiftChat entry point, storage, API-key handling, network layer, OpenAI inte
 - `Source/Prototypes/EmbeddedCommunication/SocialChat/SocialRoomView.swift`
 - `Source/Prototypes/EmbeddedCommunication/SocialChat/SocialResourceCard.swift`
 - `Source/Prototypes/EmbeddedCommunication/SocialChat/SocialChatViewModel.swift`
+- `Scripts/verify-embedded-frameworks.sh`
 
 ## Existing files changed
 
-- `Source/iOS/Views/Reader/iOSReaderView.swift` — adds two toolbar buttons, local sheet state, and the narrow host-context bridge.
-- `Maktabah.xcodeproj/project.pbxproj` — adds only the isolated prototype files and the exact Exyte Chat package/product to the iOS target.
+- `Source/iOS/Views/Reader/iOSReaderView.swift` — replaces the two communication sheets and the sources-only inspector with one reader inspector.
+- `Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift` — allows the unified host to own the close action.
+- `EmbeddedAIChatView.swift`, `SocialConversationListView.swift`, and `SocialRoomView.swift` — add an embedded inspector presentation while retaining modal previews.
+- `Maktabah.xcodeproj/project.pbxproj` — adds the exact Giphy package/product to the iOS target and corrects the iOS runpath.
+- `.github/workflows/ios-build.yml` — verifies all embedded `@rpath` dependencies for simulator and device products, launches the simulator app, and captures runtime evidence.
 
-The existing Otzaria sources inspector visibility, presentation, selection adapter, cache, and close behavior were not changed.
+The Otzaria selection adapter and source lookup path are unchanged. Switching from Sources to AI or Chats does not call `closeOtzariaSourcesInspector()`, so cached results, the line anchor, and source navigation remain intact. The existing full-close behavior is used only when the entire inspector closes.
+
+## Launch crash and packaging fix
+
+The original app terminated before SwiftUI startup with `DYLD Library missing` because the Maktabah executable referenced `@rpath/GiphyUISDK.framework/GiphyUISDK`, but the framework was absent from `Maktabah.app/Frameworks`. Exyte Chat was linked, but its dynamic Giphy dependency was only transitive, so Xcode did not copy that product into this target. The iOS configurations also used the macOS-style `@executable_path/../Frameworks` runpath.
+
+The standard SPM fix is:
+
+- retain Exyte Chat at revision `554a0798e424ff15440d5af3b675cc9a5e65b759`;
+- add one direct `https://github.com/Giphy/giphy-ios-sdk` package reference at exact version `2.2.16`;
+- add `GiphyUISDK` to the `Maktabah-iOS` target's package products and Frameworks build phase;
+- use `$(inherited)` and `@executable_path/Frameworks` for iOS Debug and Release;
+- let Xcode's standard Swift-package embedding copy the binary—there is no DerivedData copy script and no checked-in binary.
+
+The final device `otool -L` evidence includes:
+
+```text
+Maktabah.app/Maktabah:
+    @rpath/GiphyUISDK.framework/GiphyUISDK (compatibility version 1.0.0, current version 1.0.0)
+```
+
+The generic verifier inspected both the main executable and the embedded Giphy executable and reported:
+
+```text
+Verified 2 Mach-O binary/binaries: every @rpath framework dependency is embedded.
+```
+
+Both the device app and the unsigned IPA contain:
+
+```text
+Payload/Maktabah.app/Frameworks/GiphyUISDK.framework/GiphyUISDK
+Payload/Maktabah.app/Frameworks/GiphyUISDK.framework/Info.plist
+```
 
 ## How to open the prototype
 
-1. Launch the iOS app and open a book in the reader.
-2. In the reader’s top trailing toolbar:
-   - tap `sparkles` to open **AI Assistant**;
-   - tap `bubble.left.and.bubble.right` to open **Social Chat**.
-3. In Social Chat, select **Daf Yomi Study Group** to see the Exyte Chat room and Torah resource card.
+1. Launch the iOS app, configure the library database, and open a book in the reader.
+2. Tap linked text to open **Sources** in the unified reader inspector.
+3. In the reader’s top trailing toolbar:
+   - tap `sparkles` to open the same inspector on **AI**;
+   - tap `bubble.left.and.bubble.right` to open it on **Chats**.
+4. Use the **Sources / AI / Chats** segmented control to switch without closing the inspector. Tapping the toolbar button for the already-selected section closes it.
+5. In Chats, select **Daf Yomi Study Group** to see the Exyte Chat room and Torah resource card.
 
 ## Mock-only behavior
 
@@ -74,20 +113,21 @@ The existing Otzaria sources inspector visibility, presentation, selection adapt
 ## Removal
 
 1. Remove `Source/Prototypes/EmbeddedCommunication/`.
-2. Revert the prototype-only additions in `Source/iOS/Views/Reader/iOSReaderView.swift`.
-3. Remove the `D0EC…` prototype objects and Exyte Chat package/product entries from `Maktabah.xcodeproj/project.pbxproj`.
+2. Revert the prototype-only additions in `Source/iOS/Views/Reader/iOSReaderView.swift` and `Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift`.
+3. Remove the `D0EC…` prototype objects and Exyte Chat/Giphy package-product entries from `Maktabah.xcodeproj/project.pbxproj`.
 4. Delete this document.
 
 ## Screenshots
 
-Not produced in the Windows editing environment. Simulator screenshots should be captured from the verified Xcode build if a macOS runner or local Mac simulator is available.
+The final CI diagnostics contain `launch-simulator.png`, which shows Maktabah running at its clean-install database setup screen. Inspector-state screenshots were not captured because the clean ephemeral runner has no configured Maktabah database/book fixture and the app has no UI-test path that can seed one.
 
 ## Build results
 
-- Final verification: [iOS Build run 30057422454](https://github.com/davidpovarsky/Maktabah/actions/runs/30057422454) succeeded for commit `0d453cb10ea948fb17692372ca2c250eb82aa6e6`.
-- Environment: `macos-26`, Xcode 26.6 (build 17F113), `Maktabah.xcodeproj`, `Maktabah-iOS` scheme.
-- Both existing search-engine XCFramework build workflows and package resolution succeeded.
-- The requested unsigned Debug simulator build succeeded and uploaded `Maktabah-iOS-simulator-app`.
-- The workflow’s additional unsigned Release device build succeeded and uploaded `Maktabah-iOS-unsigned-ipa-not-installable` plus the generated Xcode project and build logs.
-- The initial run `30056506995` exposed the same conditional `ShapeStyle` inference error and unavailable Exyte modifier found by HelloNotes. Both were fixed before the successful run; the prototype fixture-default actor-isolation warnings were also removed.
-- The successful logs contain no warnings from `Source/Prototypes/EmbeddedCommunication/`. Existing duplicate Otzaria compile-source warnings and the App Intents metadata warning remain outside this prototype.
+- Final runtime verification: [iOS Build run 30091324308](https://github.com/davidpovarsky/Maktabah/actions/runs/30091324308) succeeded for commit `a4201e94b47977bdd48bbc663ca5dd344a4cd11e`.
+- Environment: `macos-26`, Xcode 26, `Maktabah.xcodeproj`, `Maktabah-iOS` scheme.
+- Package resolution retained Exyte Chat at the pinned revision and resolved Giphy `2.2.16`.
+- The unsigned Debug simulator build succeeded, passed the recursive `otool -L` verifier, installed with `simctl install`, and launched as `com.Drn.maktabah`.
+- Launch output was `com.Drn.maktabah: 16661`; after ten seconds the workflow confirmed `Maktabah remained alive for 10 seconds after launch (PID 16661)`. The captured system log contains no `DYLD Library missing` termination.
+- The unsigned Release device build also passed the recursive verifier. `find` showed `Maktabah.app/Frameworks/GiphyUISDK.framework/GiphyUISDK`, and the uploaded IPA contains the Giphy executable and `Info.plist`.
+- The workflow uploaded `Maktabah-iOS-simulator-app`, `Maktabah-iOS-unsigned-ipa-not-installable`, `zayit-configured-xcode-project`, and `build-logs`.
+- Existing Otzaria and Zayit Search preparation/build steps remain in the workflow and succeeded.
