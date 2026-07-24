@@ -24,6 +24,8 @@ struct iOSReaderView: View {
     @State private var showingNavigation = false
     @State private var showingTabsList = false
     @State private var isReading = false
+    @State private var showingEmbeddedAI = false
+    @State private var showingSocialChat = false
 
     init(book: BooksData,
          viewModel: ReaderViewModel? = nil,
@@ -71,6 +73,20 @@ struct iOSReaderView: View {
 
     var isDarkMode: Bool {
         textViewState.isDarkMode
+    }
+
+    private var prototypeHostContext: PrototypeHostContext {
+        let visibleExcerpt = viewModel.contentText
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .prefix(220)
+
+        return PrototypeHostContext(
+            title: book.book,
+            identifier: String(book.id),
+            collectionName: "Maktabah",
+            excerpt: visibleExcerpt.isEmpty ? nil : String(visibleExcerpt),
+            detail: "Content #\(viewModel.currentContentId)"
+        )
     }
 
     var body: some View {
@@ -157,6 +173,24 @@ struct iOSReaderView: View {
 
             CustomToolbarSpacer(placement: .topBarTrailing)
 
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    showingEmbeddedAI = true
+                } label: {
+                    Image(systemName: "sparkles")
+                }
+                .accessibilityLabel("AI Assistant")
+                .help("AI Assistant")
+
+                Button {
+                    showingSocialChat = true
+                } label: {
+                    Image(systemName: "bubble.left.and.bubble.right")
+                }
+                .accessibilityLabel("Social Chat")
+                .help("Social Chat")
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
                     showingBookInfo = true
@@ -240,6 +274,29 @@ struct iOSReaderView: View {
                 )
                 .presentationDetents([.medium, .large])
             }
+        }
+        .sheet(isPresented: $showingEmbeddedAI) {
+            NavigationStack {
+                EmbeddedAIChatView(
+                    context: prototypeHostContext,
+                    backgroundColor: backgroundColor,
+                    isDarkMode: isDarkMode,
+                    onClose: { showingEmbeddedAI = false }
+                )
+            }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .presentationContentInteraction(.scrolls)
+        }
+        .sheet(isPresented: $showingSocialChat) {
+            SocialConversationListView(
+                backgroundColor: backgroundColor,
+                isDarkMode: isDarkMode,
+                onClose: { showingSocialChat = false }
+            )
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .presentationContentInteraction(.scrolls)
         }
         .inspector(isPresented: Binding(
             get: { viewModel.otzariaSourcesInspectorVisible },
