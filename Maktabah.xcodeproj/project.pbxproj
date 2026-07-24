@@ -23,6 +23,7 @@
 		D0EC1000000000000000000E /* SocialRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000E /* SocialRoomView.swift */; };
 		D0EC1000000000000000000F /* SocialResourceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000F /* SocialResourceCard.swift */; };
 		D0EC10000000000000000010 /* SocialChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000010 /* SocialChatViewModel.swift */; };
+		D0EC10000000000000000011 /* MaktabahCommunicationInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000012 /* MaktabahCommunicationInspectorView.swift */; };
 		D0EC30000000000000000003 /* ExyteChat in Frameworks */ = {isa = PBXBuildFile; productRef = D0EC30000000000000000002 /* ExyteChat */; };
 		D0EC40000000000000000001 /* GiphyUISDK in Frameworks */ = {isa = PBXBuildFile; productRef = D0EC40000000000000000004 /* GiphyUISDK */; };
 		D0EC40000000000000000002 /* GiphyUISDK in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; productRef = D0EC40000000000000000004 /* GiphyUISDK */; };
@@ -628,6 +629,7 @@
 		D0EC0000000000000000000F /* SocialResourceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialResourceCard.swift; sourceTree = "<group>"; };
 		D0EC00000000000000000010 /* SocialChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialChatViewModel.swift; sourceTree = "<group>"; };
 		D0EC00000000000000000011 /* SwiftChat-ATTRIBUTION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "SwiftChat-ATTRIBUTION.md"; sourceTree = "<group>"; };
+		D0EC00000000000000000012 /* MaktabahCommunicationInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaktabahCommunicationInspectorView.swift; sourceTree = "<group>"; };
 		03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaReaderSettingsView.swift; path = Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
 		077C910EADF2F817F070515C /* OtzariaSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSchema.swift; path = Source/Otzaria/Data/OtzariaSchema.swift; sourceTree = "<group>"; };
 		09EF1B92A2DA781C9E871A84 /* ZayitSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchView.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift; sourceTree = "<group>"; };
@@ -1023,6 +1025,7 @@
 				D0EC00000000000000000001 /* PrototypeCommunicationModels.swift */,
 				D0EC00000000000000000002 /* PrototypeFixtures.swift */,
 				D0EC00000000000000000003 /* PrototypeHostContext.swift */,
+				D0EC00000000000000000012 /* MaktabahCommunicationInspectorView.swift */,
 				D0EC00000000000000000011 /* SwiftChat-ATTRIBUTION.md */,
 			);
 			path = Prototypes/EmbeddedCommunication;
@@ -2279,6 +2282,7 @@
 				D0EC1000000000000000000E /* SocialRoomView.swift in Sources */,
 				D0EC1000000000000000000F /* SocialResourceCard.swift in Sources */,
 				D0EC10000000000000000010 /* SocialChatViewModel.swift in Sources */,
+				D0EC10000000000000000011 /* MaktabahCommunicationInspectorView.swift in Sources */,
 				0B7A00000000000000000001 /* OtzariaAppContainer.swift in Sources */,
 				0B7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift in Sources */,
 				0B7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift in Sources */,

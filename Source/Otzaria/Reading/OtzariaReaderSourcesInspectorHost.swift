@@ -4,6 +4,7 @@ import SwiftUI
 struct OtzariaReaderSourcesInspectorHost: View {
     var viewModel: ReaderViewModel
     var navigationManager: iOSNavigationManager
+    var onClose: (() -> Void)?
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -19,7 +20,11 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 selectedBookID: $viewModel.otzariaSourcesSelectedBookID,
                 expandedSourceIDs: $viewModel.otzariaSourcesExpandedSourceIDs,
                 onClose: {
-                    viewModel.closeOtzariaSourcesInspector()
+                    if let onClose {
+                        onClose()
+                    } else {
+                        viewModel.closeOtzariaSourcesInspector()
+                    }
                 },
                 onOpenSource: { source in
                     navigationManager.openOtzariaLinkedSourceInNewTab(source)

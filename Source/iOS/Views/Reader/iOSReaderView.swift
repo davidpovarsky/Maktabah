@@ -24,8 +24,8 @@ struct iOSReaderView: View {
     @State private var showingNavigation = false
     @State private var showingTabsList = false
     @State private var isReading = false
-    @State private var showingEmbeddedAI = false
-    @State private var showingSocialChat = false
+    @State private var isReaderInspectorPresented = false
+    @State private var readerInspectorSection: MaktabahReaderInspectorSection = .assistant
 
     init(book: BooksData,
          viewModel: ReaderViewModel? = nil,
@@ -53,6 +53,22 @@ struct iOSReaderView: View {
 
     private func showPrimarySidebar() {
         columnVisibility?.wrappedValue = .all
+    }
+
+    private func toggleReaderInspector(_ section: MaktabahReaderInspectorSection) {
+        if isReaderInspectorPresented, readerInspectorSection == section {
+            closeReaderInspector()
+        } else {
+            readerInspectorSection = section
+            isReaderInspectorPresented = true
+        }
+    }
+
+    private func closeReaderInspector() {
+        isReaderInspectorPresented = false
+        if viewModel.otzariaSourcesInspectorVisible {
+            viewModel.closeOtzariaSourcesInspector()
+        }
     }
 
     var backgroundColor: Color {
@@ -175,7 +191,7 @@ struct iOSReaderView: View {
 
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button {
-                    showingEmbeddedAI = true
+                    toggleReaderInspector(.assistant)
                 } label: {
                     Image(systemName: "sparkles")
                 }
@@ -183,7 +199,7 @@ struct iOSReaderView: View {
                 .help("AI Assistant")
 
                 Button {
-                    showingSocialChat = true
+                    toggleReaderInspector(.socialChat)
                 } label: {
                     Image(systemName: "bubble.left.and.bubble.right")
                 }
@@ -275,43 +291,27 @@ struct iOSReaderView: View {
                 .presentationDetents([.medium, .large])
             }
         }
-        .sheet(isPresented: $showingEmbeddedAI) {
-            NavigationStack {
-                EmbeddedAIChatView(
-                    context: prototypeHostContext,
-                    backgroundColor: backgroundColor,
-                    isDarkMode: isDarkMode,
-                    onClose: { showingEmbeddedAI = false }
-                )
-            }
-            .presentationDetents([.large])
-            .presentationDragIndicator(.visible)
-            .presentationContentInteraction(.scrolls)
+        .onChange(of: viewModel.otzariaSourcesInspectorVisible) { _, isVisible in
+            guard isVisible else { return }
+            readerInspectorSection = .sources
+            isReaderInspectorPresented = true
         }
-        .sheet(isPresented: $showingSocialChat) {
-            SocialConversationListView(
+        .onChange(of: isReaderInspectorPresented) { _, isPresented in
+            if !isPresented, viewModel.otzariaSourcesInspectorVisible {
+                viewModel.closeOtzariaSourcesInspector()
+            }
+        }
+        .inspector(isPresented: $isReaderInspectorPresented) {
+            MaktabahCommunicationInspectorView(
+                viewModel: viewModel,
+                navigationManager: bManager,
+                context: prototypeHostContext,
                 backgroundColor: backgroundColor,
                 isDarkMode: isDarkMode,
-                onClose: { showingSocialChat = false }
+                selectedSection: $readerInspectorSection,
+                onClose: closeReaderInspector
             )
-            .presentationDetents([.large])
-            .presentationDragIndicator(.visible)
-            .presentationContentInteraction(.scrolls)
-        }
-        .inspector(isPresented: Binding(
-            get: { viewModel.otzariaSourcesInspectorVisible },
-            set: { newValue in
-                if newValue {
-                    viewModel.otzariaSourcesInspectorVisible = true
-                } else {
-                    viewModel.closeOtzariaSourcesInspector()
-                }
-            }
-        )) {
-            OtzariaReaderSourcesInspectorHost(
-                viewModel: viewModel,
-                navigationManager: bManager
-            )
+            .inspectorColumnWidth(min: 320, ideal: 400, max: 520)
         }
     }
 }

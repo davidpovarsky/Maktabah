@@ -4,10 +4,11 @@ import SwiftUI
 struct SocialRoomView: View {
     let conversation: PrototypeConversation
     let backgroundColor: Color
-
-    @State private var viewModel = SocialChatViewModel()
+    var viewModel: SocialChatViewModel
 
     var body: some View {
+        @Bindable var viewModel = viewModel
+
         ChatView(messages: viewModel.messages) { draft in
             viewModel.send(draft)
         } messageBuilder: { parameters in
@@ -46,7 +47,8 @@ struct SocialRoomView: View {
     NavigationStack {
         SocialRoomView(
             conversation: PrototypeFixtures.socialConversations[1],
-            backgroundColor: Color(uiColor: .systemBackground)
+            backgroundColor: Color(uiColor: .systemBackground),
+            viewModel: SocialChatViewModel()
         )
     }
 }
