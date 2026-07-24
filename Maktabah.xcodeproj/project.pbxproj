@@ -24,6 +24,8 @@
 		D0EC1000000000000000000F /* SocialResourceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000F /* SocialResourceCard.swift */; };
 		D0EC10000000000000000010 /* SocialChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000010 /* SocialChatViewModel.swift */; };
 		D0EC30000000000000000003 /* ExyteChat in Frameworks */ = {isa = PBXBuildFile; productRef = D0EC30000000000000000002 /* ExyteChat */; };
+		D0EC40000000000000000001 /* GiphyUISDK in Frameworks */ = {isa = PBXBuildFile; productRef = D0EC40000000000000000004 /* GiphyUISDK */; };
+		D0EC40000000000000000002 /* GiphyUISDK in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; productRef = D0EC40000000000000000004 /* GiphyUISDK */; };
 		0188612AC990EE65873AA327 /* OtzariaReaderSourcesInspectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D1DF5922776E052B335C9 /* OtzariaReaderSourcesInspectorHost.swift */; };
 		05F64A965C0ED2F923BF6903 /* iOSNavigationManager+OtzariaLinkedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5FBF6BD84F2D0B6A9492B /* iOSNavigationManager+OtzariaLinkedSource.swift */; };
 		06CAE0E23AF1937A55069845 /* OtzariaSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73663299D0877E6E00AEE1 /* OtzariaSourcesView.swift */; };
@@ -594,6 +596,20 @@
 		FE2193E6B320567B414B6FF0 /* OtzariaDatabaseManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BBFD198FACBB5BDFC0901E /* OtzariaDatabaseManagerAdapter.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D0EC40000000000000000005 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D0EC40000000000000000002 /* GiphyUISDK in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D0EC00000000000000000001 /* PrototypeCommunicationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeCommunicationModels.swift; sourceTree = "<group>"; };
 		D0EC00000000000000000002 /* PrototypeFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeFixtures.swift; sourceTree = "<group>"; };
@@ -989,6 +1005,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EC30000000000000000003 /* ExyteChat in Frameworks */,
+				D0EC40000000000000000001 /* GiphyUISDK in Frameworks */,
 				F30577492FA46222005732C6 /* libzstd in Frameworks */,
 				F863781C27AE47117CE50EC6 /* OtzariaSearchEngine.xcframework in Frameworks */,
 				84D12781C078EB5DB21319C0 /* MaktabahZayitSearch.xcframework in Frameworks */,
@@ -1823,6 +1840,7 @@
 			buildPhases = (
 				F30576E22FA46222005732C6 /* Sources */,
 				F30577472FA46222005732C6 /* Frameworks */,
+				D0EC40000000000000000005 /* Embed Frameworks */,
 				F305774A2FA46222005732C6 /* Resources */,
 			);
 			buildRules = (
@@ -1832,6 +1850,7 @@
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
 				D0EC30000000000000000002 /* ExyteChat */,
+				D0EC40000000000000000004 /* GiphyUISDK */,
 				F30576E02FA46222005732C6 /* libzstd */,
 			);
 			productName = maktab;
@@ -1867,6 +1886,7 @@
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
 				D0EC30000000000000000001 /* XCRemoteSwiftPackageReference "Chat" */,
+				D0EC40000000000000000003 /* XCRemoteSwiftPackageReference "giphy-ios-sdk" */,
 				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
 				4B7C91302F834CF700454BE1 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
@@ -3027,7 +3047,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/../Frameworks",
+					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
 				MARKETING_VERSION = 3.2;
@@ -3069,7 +3089,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/../Frameworks",
+					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
 				MARKETING_VERSION = 3.2;
@@ -3136,6 +3156,14 @@
 				revision = 554a0798e424ff15440d5af3b675cc9a5e65b759;
 			};
 		};
+		D0EC40000000000000000003 /* XCRemoteSwiftPackageReference "giphy-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Giphy/giphy-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 2.2.16;
+			};
+		};
 		4B7C90A42F83494200454BE1 /* XCRemoteSwiftPackageReference "zstd" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/zstd.git";
@@ -3175,6 +3203,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0EC30000000000000000001 /* XCRemoteSwiftPackageReference "Chat" */;
 			productName = ExyteChat;
+		};
+		D0EC40000000000000000004 /* GiphyUISDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0EC40000000000000000003 /* XCRemoteSwiftPackageReference "giphy-ios-sdk" */;
+			productName = GiphyUISDK;
 		};
 		4B7C90A32F83494200454BE1 /* libzstd */ = {
 			isa = XCSwiftPackageProductDependency;
