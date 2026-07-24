@@ -58,6 +58,8 @@ fi
 missing_count=0
 for binary in "${binaries[@]}"; do
   echo "Inspecting ${binary}"
+  otool_output="$(otool -L "${binary}")"
+  printf '%s\n' "${otool_output}"
   while IFS= read -r dependency; do
     [[ -z "${dependency}" ]] && continue
     case "${dependency}" in
@@ -71,7 +73,7 @@ for binary in "${binaries[@]}"; do
         fi
         ;;
     esac
-  done < <(otool -L "${binary}" | awk 'NR > 1 { print $1 }')
+  done < <(printf '%s\n' "${otool_output}" | awk 'NR > 1 { print $1 }')
 done
 
 if [[ "${missing_count}" -ne 0 ]]; then

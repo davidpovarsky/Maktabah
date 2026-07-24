@@ -199,6 +199,55 @@ jobs:
             | tee build/logs/verify-simulator-frameworks.log
           ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "${PRODUCT_NAME}-simulator-app.zip"
 
+      - name: Launch simulator app and verify it stays alive
+        run: |
+          set -euo pipefail
+          APP_PATH="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          BUNDLE_ID=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP_PATH/Info.plist")
+          SIMULATOR_UDID=$(xcrun simctl list devices available -j | /usr/bin/python3 -c '
+          import json
+          import sys
+
+          devices = json.load(sys.stdin)["devices"]
+          for runtime_devices in devices.values():
+              for device in runtime_devices:
+                  if device["name"].startswith("iPhone") and device.get("isAvailable", False):
+                      print(device["udid"])
+                      raise SystemExit
+          raise SystemExit("No available iPhone simulator was found")
+          ')
+
+          echo "Booting simulator ${SIMULATOR_UDID}"
+          xcrun simctl boot "$SIMULATOR_UDID" 2>/dev/null || true
+          xcrun simctl bootstatus "$SIMULATOR_UDID" -b
+          xcrun simctl install "$SIMULATOR_UDID" "$APP_PATH"
+
+          launch_output=$(xcrun simctl launch "$SIMULATOR_UDID" "$BUNDLE_ID")
+          printf '%s\n' "$launch_output" | tee build/logs/launch-simulator.log
+          app_pid="${launch_output##*: }"
+          sleep 10
+
+          if ! kill -0 "$app_pid" 2>/dev/null; then
+            echo "::error::${PRODUCT_NAME} exited within 10 seconds of launch."
+            xcrun simctl spawn "$SIMULATOR_UDID" log show \
+              --last 2m \
+              --style compact \
+              --predicate "process == '${PRODUCT_NAME}'" \
+              > build/logs/launch-simulator-system.log || true
+            exit 1
+          fi
+
+          echo "${PRODUCT_NAME} remained alive for 10 seconds after launch (PID ${app_pid})." \
+            | tee -a build/logs/launch-simulator.log
+          xcrun simctl io "$SIMULATOR_UDID" screenshot build/logs/launch-simulator.png
+          xcrun simctl spawn "$SIMULATOR_UDID" log show \
+            --last 2m \
+            --style compact \
+            --predicate "process == '${PRODUCT_NAME}'" \
+            > build/logs/launch-simulator-system.log || true
+          xcrun simctl terminate "$SIMULATOR_UDID" "$BUNDLE_ID"
+          xcrun simctl shutdown "$SIMULATOR_UDID"
+
       - name: Upload simulator app artifact
         uses: actions/upload-artifact@v4
         with:
