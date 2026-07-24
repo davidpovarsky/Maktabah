@@ -26,7 +26,6 @@
 		D0EC10000000000000000011 /* MaktabahCommunicationInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000012 /* MaktabahCommunicationInspectorView.swift */; };
 		D0EC30000000000000000003 /* ExyteChat in Frameworks */ = {isa = PBXBuildFile; productRef = D0EC30000000000000000002 /* ExyteChat */; };
 		D0EC40000000000000000001 /* GiphyUISDK in Frameworks */ = {isa = PBXBuildFile; productRef = D0EC40000000000000000004 /* GiphyUISDK */; };
-		D0EC40000000000000000002 /* GiphyUISDK in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; productRef = D0EC40000000000000000004 /* GiphyUISDK */; };
 		0188612AC990EE65873AA327 /* OtzariaReaderSourcesInspectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D1DF5922776E052B335C9 /* OtzariaReaderSourcesInspectorHost.swift */; };
 		05F64A965C0ED2F923BF6903 /* iOSNavigationManager+OtzariaLinkedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5FBF6BD84F2D0B6A9492B /* iOSNavigationManager+OtzariaLinkedSource.swift */; };
 		06CAE0E23AF1937A55069845 /* OtzariaSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73663299D0877E6E00AEE1 /* OtzariaSourcesView.swift */; };
@@ -596,20 +595,6 @@
 		FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */; };
 		FE2193E6B320567B414B6FF0 /* OtzariaDatabaseManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BBFD198FACBB5BDFC0901E /* OtzariaDatabaseManagerAdapter.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D0EC40000000000000000005 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D0EC40000000000000000002 /* GiphyUISDK in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D0EC00000000000000000001 /* PrototypeCommunicationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeCommunicationModels.swift; sourceTree = "<group>"; };
@@ -1843,7 +1828,6 @@
 			buildPhases = (
 				F30576E22FA46222005732C6 /* Sources */,
 				F30577472FA46222005732C6 /* Frameworks */,
-				D0EC40000000000000000005 /* Embed Frameworks */,
 				F305774A2FA46222005732C6 /* Resources */,
 			);
 			buildRules = (
