@@ -195,6 +195,8 @@ jobs:
 
           APP_PATH="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
           test -d "$APP_PATH"
+          bash Scripts/verify-embedded-frameworks.sh "$APP_PATH" \
+            | tee build/logs/verify-simulator-frameworks.log
           ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "${PRODUCT_NAME}-simulator-app.zip"
 
       - name: Upload simulator app artifact
@@ -220,6 +222,11 @@ jobs:
 
           APP_PATH="build/DerivedData-iphoneos/Build/Products/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.app"
           test -d "$APP_PATH"
+          bash Scripts/verify-embedded-frameworks.sh "$APP_PATH" \
+            | tee build/logs/verify-device-frameworks.log
+          test -f "$APP_PATH/Frameworks/GiphyUISDK.framework/GiphyUISDK"
+          find "$APP_PATH/Frameworks" -maxdepth 3 -print \
+            | tee build/logs/device-frameworks.txt
           rm -rf Payload "${PRODUCT_NAME}-unsigned.ipa"
           mkdir -p Payload
           cp -R "$APP_PATH" Payload/
