@@ -12,8 +12,8 @@ final class EmbeddedAIChatViewModel {
 
     private var streamingTask: Task<Void, Never>?
 
-    init(messages: [PrototypeAIMessage] = PrototypeFixtures.aiMessages) {
-        self.messages = messages
+    init(messages: [PrototypeAIMessage]? = nil) {
+        self.messages = messages ?? PrototypeFixtures.aiMessages
     }
 
     func startNewConversation() {

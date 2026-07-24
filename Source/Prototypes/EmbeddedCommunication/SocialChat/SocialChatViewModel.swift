@@ -8,8 +8,8 @@ final class SocialChatViewModel {
     var messages: [ExyteChat.Message]
     var notice: String?
 
-    init(messages: [ExyteChat.Message] = PrototypeFixtures.groupMessages) {
-        self.messages = messages
+    init(messages: [ExyteChat.Message]? = nil) {
+        self.messages = messages ?? PrototypeFixtures.groupMessages
     }
 
     func send(_ draft: DraftMessage) {

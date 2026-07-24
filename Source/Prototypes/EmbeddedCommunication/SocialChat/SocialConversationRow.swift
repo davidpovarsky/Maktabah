@@ -52,7 +52,7 @@ struct SocialConversationRow: View {
                             .foregroundStyle(.red)
                     }
                     Text(conversation.isTyping ? "Typing…" : conversation.lastMessage)
-                        .foregroundStyle(conversation.isTyping ? .tint : .secondary)
+                        .foregroundStyle(conversation.isTyping ? Color.accentColor : Color.secondary)
                         .lineLimit(1)
                     Spacer(minLength: 4)
                     if conversation.isLinkedToHostContent {
