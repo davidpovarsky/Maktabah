@@ -14,7 +14,7 @@ struct EmbeddedAIChatView: View {
         backgroundColor: Color,
         isDarkMode: Bool,
         presentation: PrototypeSurfacePresentation = .modal,
-        viewModel: EmbeddedAIChatViewModel = EmbeddedAIChatViewModel(),
+        viewModel: EmbeddedAIChatViewModel,
         startsStreaming: Bool = false,
         onClose: @escaping () -> Void
     ) {
@@ -175,6 +175,7 @@ struct EmbeddedAIChatView: View {
             ),
             backgroundColor: Color(uiColor: .systemBackground),
             isDarkMode: false,
+            viewModel: EmbeddedAIChatViewModel(),
             onClose: {}
         )
     }
@@ -192,6 +193,7 @@ struct EmbeddedAIChatView: View {
             ),
             backgroundColor: Color(uiColor: .systemBackground),
             isDarkMode: true,
+            viewModel: EmbeddedAIChatViewModel(),
             startsStreaming: true,
             onClose: {}
         )

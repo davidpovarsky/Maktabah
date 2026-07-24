@@ -13,7 +13,7 @@ struct SocialConversationListView: View {
         isDarkMode: Bool,
         presentation: PrototypeSurfacePresentation = .modal,
         navigationPath: Binding<NavigationPath> = .constant(NavigationPath()),
-        viewModel: SocialChatViewModel = SocialChatViewModel(),
+        viewModel: SocialChatViewModel,
         onClose: @escaping () -> Void
     ) {
         self.backgroundColor = backgroundColor
@@ -67,6 +67,7 @@ struct SocialConversationListView: View {
     SocialConversationListView(
         backgroundColor: Color(uiColor: .systemBackground),
         isDarkMode: false,
+        viewModel: SocialChatViewModel(),
         onClose: {}
     )
 }
