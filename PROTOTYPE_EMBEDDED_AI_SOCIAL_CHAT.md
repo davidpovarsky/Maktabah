@@ -84,4 +84,10 @@ Not produced in the Windows editing environment. Simulator screenshots should be
 
 ## Build results
 
-Pending GitHub Actions verification with the repository’s `Maktabah-iOS` scheme and configured stable Xcode runner.
+- Final verification: [iOS Build run 30057422454](https://github.com/davidpovarsky/Maktabah/actions/runs/30057422454) succeeded for commit `0d453cb10ea948fb17692372ca2c250eb82aa6e6`.
+- Environment: `macos-26`, Xcode 26.6 (build 17F113), `Maktabah.xcodeproj`, `Maktabah-iOS` scheme.
+- Both existing search-engine XCFramework build workflows and package resolution succeeded.
+- The requested unsigned Debug simulator build succeeded and uploaded `Maktabah-iOS-simulator-app`.
+- The workflow’s additional unsigned Release device build succeeded and uploaded `Maktabah-iOS-unsigned-ipa-not-installable` plus the generated Xcode project and build logs.
+- The initial run `30056506995` exposed the same conditional `ShapeStyle` inference error and unavailable Exyte modifier found by HelloNotes. Both were fixed before the successful run; the prototype fixture-default actor-isolation warnings were also removed.
+- The successful logs contain no warnings from `Source/Prototypes/EmbeddedCommunication/`. Existing duplicate Otzaria compile-source warnings and the App Intents metadata warning remain outside this prototype.
