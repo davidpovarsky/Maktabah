@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0EC10000000000000000001 /* PrototypeCommunicationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000001 /* PrototypeCommunicationModels.swift */; };
+		D0EC10000000000000000002 /* PrototypeFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000002 /* PrototypeFixtures.swift */; };
+		D0EC10000000000000000003 /* PrototypeHostContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000003 /* PrototypeHostContext.swift */; };
+		D0EC10000000000000000004 /* EmbeddedAIChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000004 /* EmbeddedAIChatView.swift */; };
+		D0EC10000000000000000005 /* EmbeddedAIChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000005 /* EmbeddedAIChatViewModel.swift */; };
+		D0EC10000000000000000006 /* EmbeddedAIMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000006 /* EmbeddedAIMessageView.swift */; };
+		D0EC10000000000000000007 /* EmbeddedAIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000007 /* EmbeddedAIComposer.swift */; };
+		D0EC10000000000000000008 /* EmbeddedAIReasoningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000008 /* EmbeddedAIReasoningView.swift */; };
+		D0EC10000000000000000009 /* EmbeddedAICitationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000009 /* EmbeddedAICitationView.swift */; };
+		D0EC1000000000000000000A /* EmbeddedAIToolCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000A /* EmbeddedAIToolCard.swift */; };
+		D0EC1000000000000000000B /* EmbeddedAIContextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000B /* EmbeddedAIContextHeader.swift */; };
+		D0EC1000000000000000000C /* SocialConversationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000C /* SocialConversationListView.swift */; };
+		D0EC1000000000000000000D /* SocialConversationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000D /* SocialConversationRow.swift */; };
+		D0EC1000000000000000000E /* SocialRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000E /* SocialRoomView.swift */; };
+		D0EC1000000000000000000F /* SocialResourceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC0000000000000000000F /* SocialResourceCard.swift */; };
+		D0EC10000000000000000010 /* SocialChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC00000000000000000010 /* SocialChatViewModel.swift */; };
+		D0EC30000000000000000003 /* ExyteChat in Frameworks */ = {isa = PBXBuildFile; productRef = D0EC30000000000000000002 /* ExyteChat */; };
 		0188612AC990EE65873AA327 /* OtzariaReaderSourcesInspectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D1DF5922776E052B335C9 /* OtzariaReaderSourcesInspectorHost.swift */; };
 		05F64A965C0ED2F923BF6903 /* iOSNavigationManager+OtzariaLinkedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5FBF6BD84F2D0B6A9492B /* iOSNavigationManager+OtzariaLinkedSource.swift */; };
 		06CAE0E23AF1937A55069845 /* OtzariaSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73663299D0877E6E00AEE1 /* OtzariaSourcesView.swift */; };
@@ -578,6 +595,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0EC00000000000000000001 /* PrototypeCommunicationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeCommunicationModels.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000002 /* PrototypeFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeFixtures.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000003 /* PrototypeHostContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeHostContext.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000004 /* EmbeddedAIChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAIChatView.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000005 /* EmbeddedAIChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAIChatViewModel.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000006 /* EmbeddedAIMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAIMessageView.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000007 /* EmbeddedAIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAIComposer.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000008 /* EmbeddedAIReasoningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAIReasoningView.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000009 /* EmbeddedAICitationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAICitationView.swift; sourceTree = "<group>"; };
+		D0EC0000000000000000000A /* EmbeddedAIToolCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAIToolCard.swift; sourceTree = "<group>"; };
+		D0EC0000000000000000000B /* EmbeddedAIContextHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedAIContextHeader.swift; sourceTree = "<group>"; };
+		D0EC0000000000000000000C /* SocialConversationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialConversationListView.swift; sourceTree = "<group>"; };
+		D0EC0000000000000000000D /* SocialConversationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialConversationRow.swift; sourceTree = "<group>"; };
+		D0EC0000000000000000000E /* SocialRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialRoomView.swift; sourceTree = "<group>"; };
+		D0EC0000000000000000000F /* SocialResourceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialResourceCard.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000010 /* SocialChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialChatViewModel.swift; sourceTree = "<group>"; };
+		D0EC00000000000000000011 /* SwiftChat-ATTRIBUTION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "SwiftChat-ATTRIBUTION.md"; sourceTree = "<group>"; };
 		03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaReaderSettingsView.swift; path = Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
 		077C910EADF2F817F070515C /* OtzariaSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSchema.swift; path = Source/Otzaria/Data/OtzariaSchema.swift; sourceTree = "<group>"; };
 		09EF1B92A2DA781C9E871A84 /* ZayitSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchView.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift; sourceTree = "<group>"; };
@@ -954,6 +988,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EC30000000000000000003 /* ExyteChat in Frameworks */,
 				F30577492FA46222005732C6 /* libzstd in Frameworks */,
 				F863781C27AE47117CE50EC6 /* OtzariaSearchEngine.xcframework in Frameworks */,
 				84D12781C078EB5DB21319C0 /* MaktabahZayitSearch.xcframework in Frameworks */,
@@ -963,6 +998,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0EC20000000000000000001 /* EmbeddedCommunication */ = {
+			isa = PBXGroup;
+			children = (
+				D0EC20000000000000000002 /* EmbeddedAI */,
+				D0EC20000000000000000003 /* SocialChat */,
+				D0EC00000000000000000001 /* PrototypeCommunicationModels.swift */,
+				D0EC00000000000000000002 /* PrototypeFixtures.swift */,
+				D0EC00000000000000000003 /* PrototypeHostContext.swift */,
+				D0EC00000000000000000011 /* SwiftChat-ATTRIBUTION.md */,
+			);
+			path = Prototypes/EmbeddedCommunication;
+			sourceTree = "<group>";
+		};
+		D0EC20000000000000000002 /* EmbeddedAI */ = {
+			isa = PBXGroup;
+			children = (
+				D0EC00000000000000000004 /* EmbeddedAIChatView.swift */,
+				D0EC00000000000000000005 /* EmbeddedAIChatViewModel.swift */,
+				D0EC00000000000000000006 /* EmbeddedAIMessageView.swift */,
+				D0EC00000000000000000007 /* EmbeddedAIComposer.swift */,
+				D0EC00000000000000000008 /* EmbeddedAIReasoningView.swift */,
+				D0EC00000000000000000009 /* EmbeddedAICitationView.swift */,
+				D0EC0000000000000000000A /* EmbeddedAIToolCard.swift */,
+				D0EC0000000000000000000B /* EmbeddedAIContextHeader.swift */,
+			);
+			path = EmbeddedAI;
+			sourceTree = "<group>";
+		};
+		D0EC20000000000000000003 /* SocialChat */ = {
+			isa = PBXGroup;
+			children = (
+				D0EC0000000000000000000C /* SocialConversationListView.swift */,
+				D0EC0000000000000000000D /* SocialConversationRow.swift */,
+				D0EC0000000000000000000E /* SocialRoomView.swift */,
+				D0EC0000000000000000000F /* SocialResourceCard.swift */,
+				D0EC00000000000000000010 /* SocialChatViewModel.swift */,
+			);
+			path = SocialChat;
+			sourceTree = "<group>";
+		};
 		0A7AF0000000000000000000 /* Otzaria */ = {
 			isa = PBXGroup;
 			children = (
@@ -1133,6 +1208,7 @@
 		4B32022A2EDAFE85003B95D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D0EC20000000000000000001 /* EmbeddedCommunication */,
 				0A7AF0000000000000000000 /* Otzaria */,
 				4B0139E52EEB3C9900424CFA /* Add-On View */,
 				4B6100DB2EFA720F00CCBED6 /* Al-Qur'an */,
@@ -1755,6 +1831,7 @@
 			);
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
+				D0EC30000000000000000002 /* ExyteChat */,
 				F30576E02FA46222005732C6 /* libzstd */,
 			);
 			productName = maktab;
@@ -1789,6 +1866,7 @@
 			);
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
+				D0EC30000000000000000001 /* XCRemoteSwiftPackageReference "Chat" */,
 				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
 				4B7C91302F834CF700454BE1 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
@@ -2165,6 +2243,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EC10000000000000000001 /* PrototypeCommunicationModels.swift in Sources */,
+				D0EC10000000000000000002 /* PrototypeFixtures.swift in Sources */,
+				D0EC10000000000000000003 /* PrototypeHostContext.swift in Sources */,
+				D0EC10000000000000000004 /* EmbeddedAIChatView.swift in Sources */,
+				D0EC10000000000000000005 /* EmbeddedAIChatViewModel.swift in Sources */,
+				D0EC10000000000000000006 /* EmbeddedAIMessageView.swift in Sources */,
+				D0EC10000000000000000007 /* EmbeddedAIComposer.swift in Sources */,
+				D0EC10000000000000000008 /* EmbeddedAIReasoningView.swift in Sources */,
+				D0EC10000000000000000009 /* EmbeddedAICitationView.swift in Sources */,
+				D0EC1000000000000000000A /* EmbeddedAIToolCard.swift in Sources */,
+				D0EC1000000000000000000B /* EmbeddedAIContextHeader.swift in Sources */,
+				D0EC1000000000000000000C /* SocialConversationListView.swift in Sources */,
+				D0EC1000000000000000000D /* SocialConversationRow.swift in Sources */,
+				D0EC1000000000000000000E /* SocialRoomView.swift in Sources */,
+				D0EC1000000000000000000F /* SocialResourceCard.swift in Sources */,
+				D0EC10000000000000000010 /* SocialChatViewModel.swift in Sources */,
 				0B7A00000000000000000001 /* OtzariaAppContainer.swift in Sources */,
 				0B7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift in Sources */,
 				0B7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift in Sources */,
@@ -3034,6 +3128,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D0EC30000000000000000001 /* XCRemoteSwiftPackageReference "Chat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/Chat.git";
+			requirement = {
+				kind = revision;
+				revision = 554a0798e424ff15440d5af3b675cc9a5e65b759;
+			};
+		};
 		4B7C90A42F83494200454BE1 /* XCRemoteSwiftPackageReference "zstd" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/zstd.git";
@@ -3069,6 +3171,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D0EC30000000000000000002 /* ExyteChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0EC30000000000000000001 /* XCRemoteSwiftPackageReference "Chat" */;
+			productName = ExyteChat;
+		};
 		4B7C90A32F83494200454BE1 /* libzstd */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4B7C90A42F83494200454BE1 /* XCRemoteSwiftPackageReference "zstd" */;
