@@ -1,0 +1,74 @@
+name: Otzaria Search Gates
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "Vendor/OtzariaSearchEngine/**"
+      - "Source/Otzaria/Search/**"
+      - "Source/iOS/Views/iPadLayout.swift"
+      - ".github/workflows/otzaria-search-gates.yml"
+  schedule:
+    - cron: "17 4 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  adapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Verify pin, resources and upstream drift
+        run: python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --latest --check --skip-validation
+      - name: Verify bridge formatting
+        run: cargo fmt --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml -- --check
+      - name: Verify C, Swift and Rust API parity
+        run: python3 Vendor/OtzariaSearchEngine/Scripts/verify-api-parity.py
+      - name: Verify locked lexical graph
+        run: |
+          cargo metadata --locked --no-default-features --format-version 1 --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml >/dev/null
+          cargo tree --locked --no-default-features --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml | tee /tmp/otzaria-tree.txt
+          grep -F "tantivy-fst v0.5.0 (" /tmp/otzaria-tree.txt
+          grep -F "Checkout/otzaria_search_engine/rust/vendor/tantivy-fst" /tmp/otzaria-tree.txt
+      - name: Test bridge and semantic contract
+        run: cargo test --locked --no-default-features --features semantic-mock --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
+      - name: Lint bridge with warnings denied
+        run: cargo clippy --locked --all-targets --no-default-features --features semantic-mock --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml -- -D warnings
+      - name: Confirm pristine upstream checkout
+        run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
+
+  apple-link:
+    runs-on: macos-26
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Test Swift recovery and batching policies
+        run: |
+          xcrun swiftc \
+            Source/Otzaria/Search/OtzariaSearchIndexingPolicy.swift \
+            Vendor/OtzariaSearchEngine/Tests/IndexingPolicyHarness/main.swift \
+            -o "$RUNNER_TEMP/otzaria-indexing-policy-tests"
+          "$RUNNER_TEMP/otzaria-indexing-policy-tests"
+      - name: Build production semantic XCFramework
+        run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+      - name: Compile production semantic host feature on macOS
+        run: cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
+      - name: Link simulator application
+        run: |
+          xcodebuild build \
+            -project Maktabah.xcodeproj \
+            -scheme Maktabah-iOS \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=
+      - name: Confirm pristine upstream checkout
+        run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"

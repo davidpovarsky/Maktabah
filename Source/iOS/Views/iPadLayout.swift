@@ -8,6 +8,7 @@ import SwiftUI
 struct iPadLayout: View {
     private enum DetailMode {
         case reader
+        case otzariaTextSearch
         case zayitSearch
     }
 
@@ -21,6 +22,7 @@ struct iPadLayout: View {
     @State private var path: [iOSTab] = []
     @State private var detailMode: DetailMode = .reader
     @State private var showingZayitReader = false
+    @State private var showingOtzariaReader = false
 
     @StateObject private var historyViewModel = HistoryViewModel.shared
 
@@ -111,13 +113,14 @@ struct iPadLayout: View {
         ThemeList(isGrouped: true) {
             Section {
                 ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
-                    if tab == .zayitSearch {
+                    if tab == .zayitSearch || tab == .otzariaTextSearch {
                         Button {
                             path.removeAll()
-                            selectedTab = .zayitSearch
+                            selectedTab = tab
                             bManager.switchToMode(.search)
                             showingZayitReader = false
-                            detailMode = .zayitSearch
+                            showingOtzariaReader = false
+                            detailMode = tab == .zayitSearch ? .zayitSearch : .otzariaTextSearch
                         } label: {
                             Label(tab.title, systemImage: tab.icon)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -148,6 +151,7 @@ struct iPadLayout: View {
                             ]?.lastContentId
                             detailMode = .reader
                             showingZayitReader = false
+                            showingOtzariaReader = false
                             bManager.openBook(book, initialContentId: lastId)
                         }
                     }
@@ -174,6 +178,7 @@ struct iPadLayout: View {
                             ]?.lastContentId
                             detailMode = .reader
                             showingZayitReader = false
+                            showingOtzariaReader = false
                             bManager.openBook(book, initialContentId: lastId)
                         }
                     }
@@ -193,6 +198,21 @@ struct iPadLayout: View {
         switch detailMode {
         case .reader:
             iOSReaderTabView(columnVisibility: $columnVisibility)
+        case .otzariaTextSearch:
+            NavigationStack {
+                OtzariaTextSearchView { item, query in
+                    guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
+                    bManager.openBook(
+                        book,
+                        initialContentId: item.page,
+                        searchText: query
+                    )
+                    showingOtzariaReader = true
+                }
+                .navigationDestination(isPresented: $showingOtzariaReader) {
+                    iOSReaderTabView(columnVisibility: $columnVisibility)
+                }
+            }
         case .zayitSearch:
             NavigationStack {
                 ZayitSearchView(
@@ -232,7 +252,8 @@ struct iPadLayout: View {
                         prompt: searchPrompt(for: tab).localized
                     )
             case .otzariaTextSearch:
-                OtzariaTextSearchView()
+                // Otzaria Search is presented in the split view's detail column.
+                EmptyView()
             case .zayitSearch:
                 // Zayit Search is presented in the split view's detail column.
                 EmptyView()
@@ -271,9 +292,10 @@ struct iPadLayout: View {
         .navigationTitle(tab.title)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
-            if tab != .zayitSearch {
+            if tab != .zayitSearch && tab != .otzariaTextSearch {
                 detailMode = .reader
                 showingZayitReader = false
+                showingOtzariaReader = false
             }
             if selectedTab != tab {
                 selectedTab = tab

@@ -47,10 +47,10 @@ jobs:
           path: |
             Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
             Vendor/OtzariaSearchEngine/ios_bridge/target
-            Vendor/OtzariaSearchEngine/upstream/otzaria_search_engine
+            Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine
             ~/.cargo/registry
             ~/.cargo/git
-          key: ${{ runner.os }}-otzaria-search-${{ hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs', 'Vendor/OtzariaSearchEngine/include/otzaria_search_engine.h', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+          key: ${{ runner.os }}-otzaria-search-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs', 'Vendor/OtzariaSearchEngine/include/otzaria_search_engine.h', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
 
       - name: Install Rust toolchain
         if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != '' && steps.cache-otzaria-search-engine.outputs.cache-hit != 'true'

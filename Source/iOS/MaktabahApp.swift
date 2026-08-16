@@ -80,6 +80,9 @@ struct MaktabahApp: App {
                 .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
                 .id(useDefaultTheme)
                 .toggleStyle(SwitchToggleStyle(tint: .green))
+                .task {
+                    await OtzariaCorpusAcceptanceRunner.runIfRequested()
+                }
                 /*
                 .onAppear {
                     if lastVersionPrompted != currentVersion {

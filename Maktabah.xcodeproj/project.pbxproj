@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5A100000000000000000001 /* dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000011 /* dictionary.json */; };
+		E5A100000000000000000002 /* Acronyms.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000012 /* Acronyms.json */; };
+		E5A100000000000000000003 /* OtzariaMagicDictionaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */; };
+		E5A100000000000000000004 /* OtzariaSearchIndexingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000014 /* OtzariaSearchIndexingPolicy.swift */; };
+		E5A100000000000000000005 /* OtzariaCorpusAcceptanceRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000015 /* OtzariaCorpusAcceptanceRunner.swift */; };
 		0188612AC990EE65873AA327 /* OtzariaReaderSourcesInspectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D1DF5922776E052B335C9 /* OtzariaReaderSourcesInspectorHost.swift */; };
 		05F64A965C0ED2F923BF6903 /* iOSNavigationManager+OtzariaLinkedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5FBF6BD84F2D0B6A9492B /* iOSNavigationManager+OtzariaLinkedSource.swift */; };
 		06CAE0E23AF1937A55069845 /* OtzariaSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73663299D0877E6E00AEE1 /* OtzariaSourcesView.swift */; };
@@ -68,7 +73,7 @@
 		22B8D385DFDB5D68F1C54090 /* OtzariaSearchResultResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC6A86F45CC518D23848335 /* OtzariaSearchResultResolver.swift */; };
 		23F2E457831663F0168344D9 /* ZayitSearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661B497BA6FC6A60656DEFB4 /* ZayitSearchModels.swift */; };
 		240682637A5169A63619E577 /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373C7B02164CDBB77BFFF48 /* CloudKitSyncManager.swift */; };
-		2555450DA3169DE1C4569DCF /* OtzariaSearchTextNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97333436F01969C829C884E9 /* OtzariaSearchTextNormalizer.swift */; };
+		2555450DA3169DE1C4569DCF /* OtzariaSearchSnippetRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97333436F01969C829C884E9 /* OtzariaSearchSnippetRenderer.swift */; };
 		2682E12C2F28E251F6AD1D73 /* OtzariaSearchEngineBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E51A09A9D3F590B13F6591 /* OtzariaSearchEngineBridge.swift */; };
 		26F0BA0049F9A1EED534CA4C /* ZayitSearchFolderAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB82552110BDDE54C00ECDC /* ZayitSearchFolderAccess.swift */; };
 		28A2E49C47AE409D42DA3144 /* OtzariaSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077C910EADF2F817F070515C /* OtzariaSchema.swift */; };
@@ -578,6 +583,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E5A100000000000000000011 /* dictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = dictionary.json; path = Vendor/OtzariaSearchEngine/Resources/dictionary.json; sourceTree = "<group>"; };
+		E5A100000000000000000012 /* Acronyms.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Acronyms.json; path = Vendor/OtzariaSearchEngine/Resources/Acronyms.json; sourceTree = "<group>"; };
+		E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaMagicDictionaryManager.swift; path = Source/Otzaria/Search/OtzariaMagicDictionaryManager.swift; sourceTree = "<group>"; };
+		E5A100000000000000000014 /* OtzariaSearchIndexingPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchIndexingPolicy.swift; path = Source/Otzaria/Search/OtzariaSearchIndexingPolicy.swift; sourceTree = "<group>"; };
+		E5A100000000000000000015 /* OtzariaCorpusAcceptanceRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaCorpusAcceptanceRunner.swift; path = Source/Otzaria/Search/OtzariaCorpusAcceptanceRunner.swift; sourceTree = "<group>"; };
 		03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaReaderSettingsView.swift; path = Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
 		077C910EADF2F817F070515C /* OtzariaSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSchema.swift; path = Source/Otzaria/Data/OtzariaSchema.swift; sourceTree = "<group>"; };
 		09EF1B92A2DA781C9E871A84 /* ZayitSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchView.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift; sourceTree = "<group>"; };
@@ -810,7 +820,7 @@
 		88C09DE835C53C6EFC0748C3 /* MaktabahApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MaktabahApp.swift; sourceTree = "<group>"; };
 		8BC8FF43F6E3752E4FC66E15 /* OtzariaSearchIndexManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchIndexManager.swift; path = Source/Otzaria/Search/OtzariaSearchIndexManager.swift; sourceTree = "<group>"; };
 		9382027F83A96D4E29E81FC7 /* ZayitSearchEngineBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchEngineBridge.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchEngineBridge.swift; sourceTree = "<group>"; };
-		97333436F01969C829C884E9 /* OtzariaSearchTextNormalizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchTextNormalizer.swift; path = Source/Otzaria/Search/OtzariaSearchTextNormalizer.swift; sourceTree = "<group>"; };
+		97333436F01969C829C884E9 /* OtzariaSearchSnippetRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchSnippetRenderer.swift; path = Source/Otzaria/Search/OtzariaSearchSnippetRenderer.swift; sourceTree = "<group>"; };
 		9AA7FEB259ADE4E7865B6C2E /* OtzariaLibraryPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaLibraryPolicy.swift; path = Source/Otzaria/Compatibility/OtzariaLibraryPolicy.swift; sourceTree = "<group>"; };
 		9AD9AB3AFE00C99EC0FDCB42 /* OtzariaCategoryPathResolver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaCategoryPathResolver.swift; path = Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift; sourceTree = "<group>"; };
 		9BE4E90A80B4A62A9CEB1921 /* ZayitSearchViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchViewModel.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift; sourceTree = "<group>"; };
@@ -1108,14 +1118,19 @@
 				E0E51A09A9D3F590B13F6591 /* OtzariaSearchEngineBridge.swift */,
 				8BC8FF43F6E3752E4FC66E15 /* OtzariaSearchIndexManager.swift */,
 				C02624E5DA36696642F2682F /* OtzariaSearchIndexer.swift */,
+				E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */,
+				E5A100000000000000000014 /* OtzariaSearchIndexingPolicy.swift */,
+				E5A100000000000000000015 /* OtzariaCorpusAcceptanceRunner.swift */,
 				CC3A200DED34CED0C82079DA /* OtzariaSearchMode.swift */,
 				AAFF3B3A37EBC11765DB1D66 /* OtzariaSearchModels.swift */,
-				97333436F01969C829C884E9 /* OtzariaSearchTextNormalizer.swift */,
+				97333436F01969C829C884E9 /* OtzariaSearchSnippetRenderer.swift */,
 				47E74DDB762ED57E3F6FCE0F /* OtzariaTantivySearchRepository.swift */,
 				9CD42C1D654701A1EEE8DD5A /* OtzariaTextSearchView.swift */,
 				739545E8313D862EF40C448C /* OtzariaTextSearchViewModel.swift */,
 				B56F1232B56DD096725FBFAC /* OtzariaStateViews.swift */,
 				A66D97DEDCA91106E55F05E3 /* OtzariaSearchEngine.xcframework */,
+				E5A100000000000000000011 /* dictionary.json */,
+				E5A100000000000000000012 /* Acronyms.json */,
 				D3A3E0C42567F66A756B0105 /* ZayitSearch */,
 			);
 			sourceTree = "<group>";
@@ -1888,6 +1903,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5A100000000000000000001 /* dictionary.json in Resources */,
+				E5A100000000000000000002 /* Acronyms.json in Resources */,
 				F305774F2FA46222005732C6 /* Assets.xcassets in Resources */,
 				F30577502FA46222005732C6 /* UthmanTN1-Ver10.otf in Resources */,
 				F30577512FA46222005732C6 /* PrivacyInfo.xcprivacy in Resources */,
@@ -2390,9 +2407,12 @@
 				2682E12C2F28E251F6AD1D73 /* OtzariaSearchEngineBridge.swift in Sources */,
 				76CCB99BDCC0308AD1E5B8B4 /* OtzariaSearchIndexManager.swift in Sources */,
 				CA752CE4C01E4BCBF61E4D9D /* OtzariaSearchIndexer.swift in Sources */,
+				E5A100000000000000000003 /* OtzariaMagicDictionaryManager.swift in Sources */,
+				E5A100000000000000000004 /* OtzariaSearchIndexingPolicy.swift in Sources */,
+				E5A100000000000000000005 /* OtzariaCorpusAcceptanceRunner.swift in Sources */,
 				EAF6E797CEC670587BA7C1AF /* OtzariaSearchMode.swift in Sources */,
 				94BBFFC0B8EDB1D946403A9C /* OtzariaSearchModels.swift in Sources */,
-				2555450DA3169DE1C4569DCF /* OtzariaSearchTextNormalizer.swift in Sources */,
+				2555450DA3169DE1C4569DCF /* OtzariaSearchSnippetRenderer.swift in Sources */,
 				413D6204C0870EE59CCBAA49 /* OtzariaTantivySearchRepository.swift in Sources */,
 				9752E9F2005F0B2ACFAE0BCB /* OtzariaTextSearchView.swift in Sources */,
 				ED93E81DE5D76481A2D6A662 /* OtzariaTextSearchViewModel.swift in Sources */,
@@ -2938,6 +2958,18 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
 				MARKETING_VERSION = 3.2;
 				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lc++",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Metal,
+					"-framework",
+					MetalKit,
+					"-framework",
+					Foundation,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2980,6 +3012,18 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.7.8;
 				MARKETING_VERSION = 3.2;
 				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lc++",
+					"-framework",
+					Accelerate,
+					"-framework",
+					Metal,
+					"-framework",
+					MetalKit,
+					"-framework",
+					Foundation,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "";

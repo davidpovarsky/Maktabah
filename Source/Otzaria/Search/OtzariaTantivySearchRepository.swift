@@ -26,6 +26,12 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         }
         let indexURL = manager.indexURL(for: databasePath)
         let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
+        let lexicalURL = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL
+        _ = try? engine.configureDictionaries(
+            magic: lexicalURL,
+            translation: Bundle.main.url(forResource: "dictionary", withExtension: "json"),
+            acronyms: Bundle.main.url(forResource: "Acronyms", withExtension: "json")
+        )
         engineCache[databasePath] = engine
         return engine
     }
@@ -80,10 +86,13 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         OtzariaIndexFileLogger.log("exclusive indexing end databasePath=\(databasePath)")
     }
 
-    func search(databasePath: String, request: OtzariaSearchRequest) throws -> [SearchResultItem] {
+    func search(databasePath: String, request: OtzariaSearchRequest) throws -> OtzariaSearchPage {
         let engine = try engine(databasePath: databasePath)
-        let results = try engine.search(request)
-        return results.map { result in
+        return try engine.search(request)
+    }
+
+    func navigationItems(from page: OtzariaSearchPage) -> [SearchResultItem] {
+        page.results.map { result in
             SearchResultItem(
                 archive: "Otzaria",
                 tableName: "otzaria:\(bookId(from: result.filePath) ?? 0)",
@@ -110,24 +119,24 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         while let openRange = remaining.range(of: openTag, options: [.caseInsensitive]) {
             let before = String(remaining[..<openRange.lowerBound])
             if !before.isEmpty {
-                mutable.append(NSAttributedString(string: OtzariaSearchTextNormalizer.plainTextFromSnippetHTML(before)))
+                mutable.append(NSAttributedString(string: OtzariaSearchSnippetRenderer.plainText(fromHTML: before)))
             }
             remaining = String(remaining[openRange.upperBound...])
             guard let closeRange = remaining.range(of: closeTag, options: [.caseInsensitive]) else { break }
             let highlighted = String(remaining[..<closeRange.lowerBound])
             mutable.append(NSAttributedString(
-                string: OtzariaSearchTextNormalizer.plainTextFromSnippetHTML(highlighted),
+                string: OtzariaSearchSnippetRenderer.plainText(fromHTML: highlighted),
                 attributes: highlightAttributes()
             ))
             remaining = String(remaining[closeRange.upperBound...])
         }
 
         if !remaining.isEmpty {
-            mutable.append(NSAttributedString(string: OtzariaSearchTextNormalizer.plainTextFromSnippetHTML(remaining)))
+            mutable.append(NSAttributedString(string: OtzariaSearchSnippetRenderer.plainText(fromHTML: remaining)))
         }
 
         if mutable.length == 0 {
-            return NSAttributedString(string: OtzariaSearchTextNormalizer.plainTextFromSnippetHTML(html))
+            return NSAttributedString(string: OtzariaSearchSnippetRenderer.plainText(fromHTML: html))
         }
         return mutable
     }

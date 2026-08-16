@@ -3,12 +3,26 @@ name = "otzaria_search_engine_ios"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+default = ["semantic"]
+semantic = ["search_engine/semantic"]
+semantic-mock = ["search_engine/semantic-mock"]
+
 [lib]
 name = "otzaria_search_engine_ios"
 crate-type = ["staticlib"]
 
 [dependencies]
-search_engine = { path = "../upstream/otzaria_search_engine/rust" }
+search_engine = { path = "../Checkout/otzaria_search_engine/rust", default-features = false }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 libc = "0.2"
+base64 = "0.22"
+
+[build-dependencies]
+serde_json = "1.0"
+
+# Cargo only reads patches from the workspace root. Mirror the canonical
+# upstream patch here; the source itself remains in the pristine checkout.
+[patch.crates-io]
+tantivy-fst = { path = "../Checkout/otzaria_search_engine/rust/vendor/tantivy-fst" }

@@ -7,7 +7,13 @@ struct OtzariaTextSearchView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     @StateObject private var viewModel = OtzariaTextSearchViewModel()
     @State private var didCopyIndexLog = false
+    @State private var showsAdvancedOptions = false
     @FocusState private var searchFocused: Bool
+    private let onOpenResult: ((SearchResultItem, String) -> Void)?
+
+    init(onOpenResult: ((SearchResultItem, String) -> Void)? = nil) {
+        self.onOpenResult = onOpenResult
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -32,7 +38,7 @@ struct OtzariaTextSearchView: View {
                 Button {
                     viewModel.rebuildIndex()
                 } label: {
-                    Label("בנה/רענן אינדקס", systemImage: "arrow.triangle.2.circlepath")
+                    Label(indexActionTitle, systemImage: "arrow.triangle.2.circlepath")
                 }
                 .disabled(viewModel.isIndexing || viewModel.isSearching)
 
@@ -79,6 +85,68 @@ struct OtzariaTextSearchView: View {
                 .pickerStyle(.menu)
             }
 
+            DisclosureGroup("אפשרויות חיפוש מתקדמות", isExpanded: $showsAdvancedOptions) {
+                VStack(alignment: .leading, spacing: 10) {
+                    TextField("שאילתה שלילית", text: $viewModel.negativeQuery)
+                        .textFieldStyle(.roundedBorder)
+
+                    HStack {
+                        Picker("טווח", selection: $viewModel.scope) {
+                            Text("מרחק מילים").tag(OtzariaSearchScope.wordDistance)
+                            Text("אותה פסקה").tag(OtzariaSearchScope.sameParagraph)
+                            Text("אותו סעיף").tag(OtzariaSearchScope.sameSection)
+                        }
+                        Picker("מילים נדרשות", selection: $viewModel.wordMatchMode) {
+                            Text("כולן").tag(OtzariaWordMatchMode.all)
+                            Text("מילה כלשהי").tag(OtzariaWordMatchMode.anyWord)
+                            Text("רוב המילים").tag(OtzariaWordMatchMode.mostWords)
+                            Text("לפחות…").tag(OtzariaWordMatchMode.atLeast)
+                        }
+                    }
+                    .pickerStyle(.menu)
+
+                    HStack {
+                        Stepper(
+                            "מרחק חיובי: \(viewModel.distance)",
+                            value: $viewModel.distance,
+                            in: 0...(viewModel.mode == .fuzzy ? 2 : 20)
+                        )
+                        Stepper(
+                            "מרחק שלילי: \(viewModel.negativeDistance)",
+                            value: $viewModel.negativeDistance,
+                            in: 0...20
+                        )
+                    }
+
+                    Picker("טווח לשאילתה השלילית", selection: $viewModel.negativeScope) {
+                        Text("מרחק מילים").tag(OtzariaSearchScope.wordDistance)
+                        Text("אותה פסקה").tag(OtzariaSearchScope.sameParagraph)
+                        Text("אותו סעיף").tag(OtzariaSearchScope.sameSection)
+                    }
+                    .pickerStyle(.menu)
+
+                    if viewModel.wordMatchMode == .atLeast {
+                        Stepper(
+                            "לפחות \(viewModel.wordMatchCount) מילים",
+                            value: $viewModel.wordMatchCount,
+                            in: 1...100
+                        )
+                    }
+
+                    HStack {
+                        Toggle("התאם ניקוד", isOn: $viewModel.matchNikud)
+                        Toggle("התאם טעמים", isOn: $viewModel.matchTaamim)
+                        Picker("קיבוץ", selection: $viewModel.grouping) {
+                            Text("ללא").tag(nil as OtzariaResultGrouping?)
+                            Text("אותו סעיף").tag(OtzariaResultGrouping.sameSection as OtzariaResultGrouping?)
+                            Text("טקסט זהה").tag(OtzariaResultGrouping.identicalText as OtzariaResultGrouping?)
+                        }
+                        .pickerStyle(.menu)
+                    }
+                }
+                .padding(.top, 8)
+            }
+
             HStack {
                 Text(viewModel.status.label)
                     .font(.footnote)
@@ -99,6 +167,18 @@ struct OtzariaTextSearchView: View {
                 Text(detail)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
+            }
+
+            if viewModel.totalCount > 0 {
+                Text(resultCountLabel)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
+            if viewModel.resultsTruncated {
+                Label("ייתכן שהתוצאות חלקיות — צמצמו את החיפוש", systemImage: "exclamationmark.triangle")
+                    .font(.footnote)
+                    .foregroundStyle(.orange)
             }
 
             if didCopyIndexLog {
@@ -122,9 +202,32 @@ struct OtzariaTextSearchView: View {
         if viewModel.results.isEmpty {
             emptyState
         } else {
-            SearchResultsListView(results: viewModel.results) { item in
-                openResult(item)
+            ThemeList(isGrouped: false) {
+                ForEach(Array(viewModel.results.enumerated()), id: \.offset) { index, item in
+                    Button { openResult(item) } label: {
+                        VStack(alignment: .leading, spacing: 5) {
+                            SearchResultRow(item: item)
+                            if let engineResults = viewModel.enginePage?.results,
+                               engineResults.indices.contains(index) {
+                                let engineResult = engineResults[index]
+                                if engineResult.mergedCount > 1 {
+                                    Text("\(engineResult.mergedCount) תוצאות אוחדו")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                    ForEach(engineResult.merged.prefix(3), id: \.id) { sibling in
+                                        Text("• \(sibling.title) — \(sibling.reference)")
+                                            .font(.caption2)
+                                            .foregroundStyle(.secondary)
+                                            .lineLimit(1)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .buttonStyle(.plain)
+                }
             }
+            .listStyle(.plain)
         }
     }
 
@@ -145,6 +248,10 @@ struct OtzariaTextSearchView: View {
     }
 
     private func openResult(_ item: SearchResultItem) {
+        if let onOpenResult {
+            onOpenResult(item, viewModel.query)
+            return
+        }
         Task {
             guard let bookData = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
             await MainActor.run {
@@ -163,5 +270,17 @@ struct OtzariaTextSearchView: View {
         UIPasteboard.general.string = text.isEmpty ? "Otzaria index log is empty." : text
         #endif
         didCopyIndexLog = true
+    }
+
+    private var indexActionTitle: String {
+        if case .paused = viewModel.status { return "המשך אינדוקס" }
+        return "בנה/רענן אינדקס"
+    }
+
+    private var resultCountLabel: String {
+        if let groups = viewModel.groupCount {
+            return "\(viewModel.totalCount) תוצאות גולמיות · \(groups) קבוצות"
+        }
+        return "\(viewModel.totalCount) תוצאות"
     }
 }

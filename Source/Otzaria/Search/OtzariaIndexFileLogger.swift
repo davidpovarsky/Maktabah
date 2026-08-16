@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(Darwin)
+import Darwin
+#endif
 
 enum OtzariaIndexFileLogger {
     private static let queue = DispatchQueue(label: "com.goldcreative.otzaria.index.filelogger")
@@ -49,6 +52,24 @@ enum OtzariaIndexFileLogger {
                 NSLog("%@", "[OtzariaIndex] clearLog failed: \(error.localizedDescription)")
             }
         }
+    }
+
+    static var memoryFootprint: String {
+        #if canImport(Darwin)
+        var info = task_vm_info_data_t()
+        var count = mach_msg_type_number_t(
+            MemoryLayout<task_vm_info_data_t>.size / MemoryLayout<natural_t>.size
+        )
+        let result = withUnsafeMutablePointer(to: &info) { pointer in
+            pointer.withMemoryRebound(to: integer_t.self, capacity: Int(count)) {
+                task_info(mach_task_self_, task_flavor_t(TASK_VM_INFO), $0, &count)
+            }
+        }
+        if result == KERN_SUCCESS {
+            return String(info.phys_footprint)
+        }
+        #endif
+        return "unavailable"
     }
 
     private static func write(_ message: String) {

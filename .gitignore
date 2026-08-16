@@ -36,10 +36,18 @@ Package.pins
 # Zayit search port generated artifacts and external data
 Vendor/ZayitSearchPort/Rust/target/
 Vendor/ZayitSearchPort/build/
+Vendor/OtzariaSearchEngine/Checkout/
+Vendor/OtzariaSearchEngine/ios_bridge/target/
+Vendor/OtzariaSearchEngine/build/
+.tmp-otzaria-engine/
+.tmp-otzaria-app/
 *.xcframework/
 zayit-search-index/
 seforim.db
 lexical.db
+*.gguf
+DerivedData/
+__pycache__/
 
 # CocoaPods
 #
