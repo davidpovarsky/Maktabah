@@ -69,6 +69,8 @@ jobs:
         run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
       - name: Compile production semantic host feature on macOS
         run: cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
+      - name: Build existing Zayit XCFramework dependency
+        run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
       - name: Link simulator application
         run: |
           xcodebuild build \
@@ -81,4 +83,5 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY=
       - name: Confirm pristine upstream checkout
+        if: always()
         run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
