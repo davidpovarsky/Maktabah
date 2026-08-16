@@ -2,6 +2,16 @@ name: Otzaria Search Gates
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - "codex/otzaria-search-upgrade-clean"
+    paths:
+      - "Vendor/OtzariaSearchEngine/**"
+      - "Source/Otzaria/Search/**"
+      - "Source/iOS/Views/iPadLayout.swift"
+      - "Source/iOS/MaktabahApp.swift"
+      - "Maktabah.xcodeproj/project.pbxproj"
+      - ".github/workflows/otzaria-search-gates.yml"
   pull_request:
     paths:
       - "Vendor/OtzariaSearchEngine/**"
