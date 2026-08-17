@@ -279,6 +279,7 @@ jobs:
           path: build/artifacts
       - name: Restore framework artifacts
         run: |
+          mkdir -p Vendor/ZayitSearchPort/build
           tar -C Vendor/OtzariaSearchEngine -xf build/artifacts/OtzariaSearchEngine.xcframework.tar
           tar -C Vendor/ZayitSearchPort/build -xf build/artifacts/MaktabahZayitSearch.xcframework.tar
           bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
