@@ -45,6 +45,14 @@ print(max(candidates)[2])
 PY
 )"
 echo "Using compatible iOS Simulator $UDID"
+# Always leave something in the report directory so an aborted or timed-out run
+# still uploads a usable artifact.
+{
+  echo "app=$APP"
+  echo "mode=${MODE:-full}"
+  echo "simulator_udid=$UDID"
+  echo "started_at=$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+} > "$REPORT_DIR/otzaria-native-bootstrap-run-context.txt"
 
 cleanup() {
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
@@ -114,8 +122,9 @@ SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$CANCEL_REPORT" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_CANCEL_BYTES=67108864 \
   xcrun simctl launch "$UDID" "$BUNDLE_ID"
 wait_for_report "$CANCEL_REPORT" 1800
-validate_passed "$CANCEL_REPORT"
+# Copy before validating so a failed phase still publishes its report.
 cp "$CANCEL_REPORT" "$REPORT_DIR/otzaria-native-bootstrap-cancel.json"
+validate_passed "$CANCEL_REPORT"
 xcrun simctl terminate "$UDID" "$BUNDLE_ID"
 echo "cancel_phase_seconds=$(($(date +%s) - cancel_started))"
 
@@ -124,8 +133,8 @@ SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=install \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$INSTALL_REPORT" \
   xcrun simctl launch "$UDID" "$BUNDLE_ID"
 wait_for_report "$INSTALL_REPORT" 10800
-validate_passed "$INSTALL_REPORT"
 cp "$INSTALL_REPORT" "$REPORT_DIR/otzaria-native-bootstrap-install.json"
+validate_passed "$INSTALL_REPORT"
 xcrun simctl terminate "$UDID" "$BUNDLE_ID"
 echo "install_phase_seconds=$(($(date +%s) - install_started))"
 

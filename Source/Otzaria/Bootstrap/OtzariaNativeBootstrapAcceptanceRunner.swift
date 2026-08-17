@@ -8,6 +8,12 @@ enum OtzariaNativeBootstrapAcceptanceRunner {
     private static let resultKey = "OTZARIA_NATIVE_BOOTSTRAP_RESULT"
     private static let priorReportKey = "OTZARIA_NATIVE_BOOTSTRAP_PRIOR_REPORT"
 
+    /// Outcome of the cancellation phase's production install task. Recorded so a
+    /// download that fails on its own is reported with its real error instead of
+    /// being masked by the cancellation-threshold deadline.
+    @MainActor private static var cancelPhaseInstallFinished = false
+    @MainActor private static var cancelPhaseInstallFailure: Error?
+
     static var isRequested: Bool {
         #if DEBUG
         ProcessInfo.processInfo.environment[phaseKey] != nil
@@ -103,11 +109,19 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             let storage = try OtzariaDatabaseStorage()
             let threshold = environment["OTZARIA_NATIVE_BOOTSTRAP_CANCEL_BYTES"]
                 .flatMap(Int64.init) ?? 64 * 1_024 * 1_024
-            let install = Task {
-                try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { _ in }
+            Self.cancelPhaseInstallFinished = false
+            Self.cancelPhaseInstallFailure = nil
+            let install = Task { @MainActor in
+                do {
+                    _ = try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { _ in }
+                } catch {
+                    Self.cancelPhaseInstallFailure = error
+                }
+                Self.cancelPhaseInstallFinished = true
             }
             let deadline = Date().addingTimeInterval(20 * 60)
             var persistedBytes: Int64 = 0
+            var reachedThreshold = false
             while Date() < deadline {
                 persistedBytes = OtzariaDatabaseDownloader.fileSize(
                     at: storage.downloadsRoot.appendingPathComponent(
@@ -116,23 +130,31 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
                 )
                 if persistedBytes >= threshold {
                     OtzariaBootstrapAdapter.cancelManagedDatabaseDownload()
+                    reachedThreshold = true
                     break
                 }
+                // Stop as soon as the production install settles on its own; the
+                // recorded failure below is the diagnosis, not the deadline.
+                if Self.cancelPhaseInstallFinished { break }
                 try await Task.sleep(nanoseconds: 250_000_000)
             }
-            guard persistedBytes >= threshold else {
+            if !reachedThreshold {
                 install.cancel()
-                throw OtzariaDatabaseBootstrapError.invalidResumeResponse(
-                    "download did not reach the cancellation threshold"
-                )
+                if let failure = Self.cancelPhaseInstallFailure { throw failure }
+                let reason = Self.cancelPhaseInstallFinished
+                    ? "download finished before reaching the cancellation threshold"
+                    : "download did not reach the cancellation threshold within 20 minutes; persisted \(persistedBytes) bytes"
+                throw OtzariaDatabaseBootstrapError.invalidResumeResponse(reason)
             }
-            do {
-                _ = try await install.value
+            await install.value
+            guard let cancellation = Self.cancelPhaseInstallFailure else {
                 throw OtzariaDatabaseBootstrapError.invalidResumeResponse(
                     "download completed before cancellation was observed"
                 )
-            } catch let error as OtzariaDatabaseBootstrapError {
-                guard case .cancelled = error else { throw error }
+            }
+            guard let bootstrapError = cancellation as? OtzariaDatabaseBootstrapError,
+                  case .cancelled = bootstrapError else {
+                throw cancellation
             }
 
             let partURL = storage.downloadsRoot.appendingPathComponent(
@@ -162,6 +184,20 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
                 !report.finalExists
         } catch {
             report.errors.append(error.localizedDescription)
+            if let storage = try? OtzariaDatabaseStorage() {
+                let partURL = storage.downloadsRoot.appendingPathComponent(
+                    OtzariaDatabaseDownloader.partFileName
+                )
+                let sidecarURL = storage.downloadsRoot.appendingPathComponent(
+                    OtzariaDatabaseDownloader.sidecarFileName
+                )
+                report.downloadedBytes = OtzariaDatabaseDownloader.fileSize(at: partURL)
+                report.errors.append(
+                    "downloads root: \(storage.downloadsRoot.path); part bytes: " +
+                    "\(report.downloadedBytes); sidecar present: " +
+                    "\(FileManager.default.fileExists(atPath: sidecarURL.path))"
+                )
+            }
         }
         try? write(report, to: resultURL)
     }
