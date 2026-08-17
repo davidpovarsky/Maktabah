@@ -8,6 +8,48 @@
 import SwiftUI
 
 struct CoreDownloadProgressView: View {
+    struct Configuration {
+        let title: String
+        let confirmationBadge: String
+        let confirmationMessage: String
+        let downloadingMessage: String
+        let chooseTitle: String
+        let cancelTitle: String?
+        let downloadTitle: String
+        let retryTitle: String
+        let cancelDownloadTitle: String?
+
+        static let maktabah = Configuration(
+            title: NSLocalizedString(
+                "core.modal.title",
+                value: "Database File Needed",
+                comment: "Core download modal title"
+            ),
+            confirmationBadge: String(localized: "Factory Setting"),
+            confirmationMessage: String(localized: "core.modal.message"),
+            downloadingMessage: String(localized: "core.modal.downloading"),
+            chooseTitle: String(localized: "Choose Library Folder…"),
+            cancelTitle: String(localized: "Quit"),
+            downloadTitle: String(localized: "Download"),
+            retryTitle: String(localized: "Try Again"),
+            cancelDownloadTitle: nil
+        )
+
+        static let otzaria = Configuration(
+            title: String(localized: "Otzaria Library Required"),
+            confirmationBadge: String(localized: "Otzaria"),
+            confirmationMessage: String(
+                localized: "Choose an existing seforim.db from Files, or download the official Otzaria Library."
+            ),
+            downloadingMessage: String(localized: "Preparing the Otzaria Library…"),
+            chooseTitle: String(localized: "Choose Otzaria Database…"),
+            cancelTitle: nil,
+            downloadTitle: String(localized: "Download Otzaria Library"),
+            retryTitle: String(localized: "Try Again"),
+            cancelDownloadTitle: String(localized: "Cancel Download")
+        )
+    }
+
     #if os(macOS)
     @ObservedObject var state: CoreDownloadProgressState
     #else
@@ -17,6 +59,8 @@ struct CoreDownloadProgressView: View {
     let onDownload: () -> Void
     let onChooseFolder: () -> Void
     let onQuit: () -> Void
+    var configuration: Configuration = .maktabah
+    var onCancelDownload: (() -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -41,13 +85,7 @@ struct CoreDownloadProgressView: View {
                 .frame(width: 36, height: 36)
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(
-                        NSLocalizedString(
-                            "core.modal.title",
-                            value: "Database File Needed",
-                            comment: "Core download modal title"
-                        )
-                    )
+                    Text(configuration.title)
                     .font(.headline)
 
                     badgeView
@@ -92,7 +130,7 @@ struct CoreDownloadProgressView: View {
         let label: String = {
             switch state.phase {
             case .confirmation:
-                return String(localized: "Factory Setting")
+                return configuration.confirmationBadge
             case .downloading:
                 return String(localized: "Downloading")
             case .error:
@@ -112,7 +150,7 @@ struct CoreDownloadProgressView: View {
     private var bodyText: some View {
         switch state.phase {
         case .confirmation:
-            let message = String(localized: "core.modal.message")
+            let message = configuration.confirmationMessage
             if state.totalSizeString.isEmpty {
                 Text(message)
                     .font(.callout)
@@ -125,9 +163,7 @@ struct CoreDownloadProgressView: View {
                     .multilineTextAlignment(.leading)
             }
         case .downloading:
-            Text(
-                String(localized:"core.modal.downloading")
-            )
+            Text(configuration.downloadingMessage)
             .font(.callout)
             .foregroundStyle(.secondary)
         case .error(let msg):
@@ -149,7 +185,7 @@ struct CoreDownloadProgressView: View {
     @ViewBuilder
     private var actionButtons: some View {
         Button(action: onChooseFolder) {
-            Text("Choose Library Folder…")
+            Text(configuration.chooseTitle)
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(.bordered)
@@ -158,17 +194,19 @@ struct CoreDownloadProgressView: View {
         Spacer()
         #endif
 
-        Button(action: onQuit) {
-            Text("Quit")
-            #if os(iOS)
-                .frame(maxWidth: .infinity)
-            #endif
+        if let cancelTitle = configuration.cancelTitle {
+            Button(action: onQuit) {
+                Text(cancelTitle)
+                #if os(iOS)
+                    .frame(maxWidth: .infinity)
+                #endif
+            }
+            .buttonStyle(.bordered)
+            .keyboardShortcut(.cancelAction)
         }
-        .buttonStyle(.bordered)
-        .keyboardShortcut(.cancelAction)
 
         Button(action: onDownload) {
-            Text("Download")
+            Text(configuration.downloadTitle)
             #if os(iOS)
                 .frame(maxWidth: .infinity)
             #endif
@@ -196,6 +234,15 @@ struct CoreDownloadProgressView: View {
                 .foregroundStyle(.secondary)
                 .monospacedDigit()
             }
+
+            if let cancelTitle = configuration.cancelDownloadTitle,
+               let onCancelDownload {
+                HStack {
+                    Spacer()
+                    Button(cancelTitle, action: onCancelDownload)
+                        .buttonStyle(.bordered)
+                }
+            }
         }
         .transition(.opacity.combined(with: .move(edge: .top)))
     }
@@ -203,14 +250,16 @@ struct CoreDownloadProgressView: View {
     private func errorView(_ msg: String) -> some View {
         HStack(spacing: 12) {
             Spacer()
-            Button(
-                "Quit",
-                action: onQuit
-            )
-            .buttonStyle(.bordered)
+            Button(configuration.chooseTitle, action: onChooseFolder)
+                .buttonStyle(.bordered)
+
+            if let cancelTitle = configuration.cancelTitle {
+                Button(cancelTitle, action: onQuit)
+                    .buttonStyle(.bordered)
+            }
 
             Button(
-                "Try Again",
+                configuration.retryTitle,
                 action: onDownload
             )
             .buttonStyle(.borderedProminent)

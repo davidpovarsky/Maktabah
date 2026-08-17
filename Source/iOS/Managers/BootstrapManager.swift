@@ -24,6 +24,8 @@ final class iOSBootstrapManager {
 
     private let downloader = CoreDatabaseDownloader()
     private var didPrepare = false
+    private var managedDownloadTask: Task<Void, Never>?
+    private var managedDownloadGeneration = UUID()
 
     func prepareIfNeeded() {
         guard !didPrepare else { return }
@@ -43,30 +45,11 @@ final class iOSBootstrapManager {
             return
         }
 
-        if AppConfig.hasCustomDatabaseFolder() {
-            if let mainPath = AppConfig.mainDatabasePath, FileManager.default.fileExists(atPath: mainPath) {
-                finishSetup()
-                return
-            } else {
-                AppConfig.resetCustomModeKey()
-            }
-        }
-
-        if downloader.areCoreFilesReady() {
-            finishSetup()
-            return
-        }
-
-        downloader.fetchTotalDownloadSize { [weak self] size in
-            Task { @MainActor in
-                if size > 0 {
-                    let mb = Double(size) / 1_048_576
-                    self?.coreDownloadState.totalSizeString = String(format: "%.1f MB", mb)
-                }
-                self?.isChecking = false
-                self?.coreDownloadState.phase = .confirmation
-            }
-        }
+        // The iOS product is backed by Otzaria. Maktabah's legacy
+        // main.sqlite/special.sqlite bundle is not a readiness gate here.
+        isChecking = false
+        coreDownloadState.totalSizeString = ""
+        coreDownloadState.phase = .confirmation
     }
 
     func installOtzariaDatabase(from url: URL) {
@@ -80,26 +63,59 @@ final class iOSBootstrapManager {
     }
 
     func startDownload() {
+        managedDownloadTask?.cancel()
+        managedDownloadGeneration = UUID()
+        let generation = managedDownloadGeneration
         isChecking = false
         coreDownloadState.phase = .downloading
         coreDownloadState.progress = 0
-        coreDownloadState.detail = ""
+        coreDownloadState.detail = "Connecting to Otzaria Library…"
 
-        downloader.startDownload(
-            onProgress: { [weak self] progress, detail in
-                self?.coreDownloadState.progress = progress
-                self?.coreDownloadState.detail = detail
-            },
-            onCompletion: { [weak self] error in
-                guard let self else { return }
-                if let error {
+        managedDownloadTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { [weak self] update in
+                    Task { @MainActor in
+                        guard let self, managedDownloadGeneration == generation else { return }
+                        coreDownloadState.phase = .downloading
+                        coreDownloadState.progress = update.fraction
+                        coreDownloadState.detail = update.detail
+                    }
+                }
+                guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
+                finishSetup()
+            } catch let error as OtzariaDatabaseBootstrapError {
+                guard managedDownloadGeneration == generation else { return }
+                if case .cancelled = error {
+                    coreDownloadState.phase = .confirmation
+                    coreDownloadState.progress = 0
+                    coreDownloadState.detail = ""
+                } else {
                     coreDownloadState.phase = .error(error.localizedDescription)
                     coreDownloadState.progress = 0
-                    return
                 }
-                finishSetup()
+            } catch is CancellationError {
+                guard managedDownloadGeneration == generation else { return }
+                coreDownloadState.phase = .confirmation
+                coreDownloadState.progress = 0
+                coreDownloadState.detail = ""
+            } catch {
+                guard managedDownloadGeneration == generation else { return }
+                coreDownloadState.phase = .error(error.localizedDescription)
+                coreDownloadState.progress = 0
             }
-        )
+            managedDownloadTask = nil
+        }
+    }
+
+    func cancelManagedDownload() {
+        managedDownloadGeneration = UUID()
+        OtzariaBootstrapAdapter.cancelManagedDatabaseDownload()
+        managedDownloadTask?.cancel()
+        managedDownloadTask = nil
+        coreDownloadState.phase = .confirmation
+        coreDownloadState.progress = 0
+        coreDownloadState.detail = ""
     }
 
     private func finishSetup() {

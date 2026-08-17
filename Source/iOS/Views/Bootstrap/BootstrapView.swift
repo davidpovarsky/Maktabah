@@ -24,23 +24,14 @@ struct iOSBootstrapView: View {
                     if bootstrapManager.isChecking {
                         ProgressView(String(localized: "Preparing Library..."))
                     } else {
-                        VStack(spacing: 12) {
-                            CoreDownloadProgressView(
-                                state: bootstrapManager.coreDownloadState,
-                                onDownload: { bootstrapManager.startDownload() },
-                                onChooseFolder: { bootstrapManager.chooseLibraryFolder() },
-                                onQuit: { cancellation() }
-                            )
-
-                            if bootstrapManager.coreDownloadState.phase != .downloading {
-                                Button {
-                                    showingOtzariaImporter = true
-                                } label: {
-                                    Label(String(localized: "Choose Otzaria Database"), systemImage: "externaldrive")
-                                }
-                                .buttonStyle(.bordered)
-                            }
-                        }
+                        CoreDownloadProgressView(
+                            state: bootstrapManager.coreDownloadState,
+                            onDownload: { bootstrapManager.startDownload() },
+                            onChooseFolder: { showingOtzariaImporter = true },
+                            onQuit: { cancellation() },
+                            configuration: .otzaria,
+                            onCancelDownload: { bootstrapManager.cancelManagedDownload() }
+                        )
                         .padding()
                     }
                 }
