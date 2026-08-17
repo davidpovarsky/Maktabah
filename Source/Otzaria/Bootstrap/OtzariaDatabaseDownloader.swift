@@ -9,6 +9,7 @@ actor OtzariaDatabaseDownloader {
 
     private var activeTask: URLSessionDataTask?
     private var cancellationRequested = false
+    private var isDownloading = false
 
     func cancel() {
         cancellationRequested = true
@@ -20,11 +21,13 @@ actor OtzariaDatabaseDownloader {
         workspaceURL: URL,
         progress: @escaping ProgressHandler
     ) async throws -> URL {
-        guard activeTask == nil else {
+        guard !isDownloading else {
             throw OtzariaDatabaseBootstrapError.invalidResumeResponse(
                 "another Otzaria database download is already active"
             )
         }
+        isDownloading = true
+        defer { isDownloading = false }
         cancellationRequested = false
 
         let fileManager = FileManager.default
