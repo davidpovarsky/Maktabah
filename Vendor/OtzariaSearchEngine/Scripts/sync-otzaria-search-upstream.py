@@ -7,6 +7,7 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import os
 import pathlib
 import re
 import subprocess
@@ -26,6 +27,17 @@ ENGINE_BRANCH = "refactor"
 APP_REPOSITORY = "Otzaria/otzaria"
 APP_BRANCH = "dev"
 RESOURCE_PATHS = ("assets/dictionary.json", "assets/Acronyms.json")
+
+
+def github_request(url: str) -> urllib.request.Request:
+    headers = {
+        "Accept": "application/vnd.github.raw+json",
+        "User-Agent": "Maktabah-Otzaria-Upstream-Sync",
+    }
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return urllib.request.Request(url, headers=headers)
 
 
 def run(*args: str, cwd: pathlib.Path | None = None, capture: bool = True) -> str:
@@ -90,8 +102,11 @@ def sync_resources(app_commit: str, write: bool) -> list[dict[str, object]]:
     if write:
         RESOURCES.mkdir(parents=True, exist_ok=True)
     for source_path in RESOURCE_PATHS:
-        url = f"https://raw.githubusercontent.com/{APP_REPOSITORY}/{app_commit}/{source_path}"
-        with urllib.request.urlopen(url, timeout=60) as response:
+        url = (
+            f"https://api.github.com/repos/{APP_REPOSITORY}/contents/"
+            f"{source_path}?ref={app_commit}"
+        )
+        with urllib.request.urlopen(github_request(url), timeout=60) as response:
             data = response.read()
         destination = RESOURCES / pathlib.Path(source_path).name
         if write:
