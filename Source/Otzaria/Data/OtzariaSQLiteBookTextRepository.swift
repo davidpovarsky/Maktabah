@@ -39,6 +39,7 @@ final class OtzariaSQLiteBookTextRepository: OtzariaBookTextRepository {
 
     func tableOfContents(bookId: Int) async throws -> [OtzariaTOCEntry] {
         try await database.read { db in
+            let schema = try OtzariaTOCSchemaCompatibility.projection(in: db)
             let statement = try OtzariaSQLiteStatement(database: db, sql: """
                 SELECT te.id,
                        te.bookId,
@@ -46,7 +47,7 @@ final class OtzariaSQLiteBookTextRepository: OtzariaBookTextRepository {
                        tt.text,
                        te.level,
                        te.lineId,
-                       COALESCE(te.lineIndex, ln.lineIndex) AS resolvedLineIndex,
+                       \(schema.resolvedLineIndex) AS resolvedLineIndex,
                        te.hasChildren
                 FROM tocEntry te
                 JOIN tocText tt ON tt.id = te.textId

@@ -12,6 +12,9 @@ enum OtzariaCorpusAcceptanceRunner {
         let indexedDocuments: UInt64
         let reopenedDocuments: UInt64
         let indexedSourcePaths: Int
+        let committedBooks: Int
+        let lastCatalogueOrdinal: Int
+        let batchSequence: Int
         let baseBooks: Int
         let booksWithAuthors: Int
         let categoryPaths: Int
@@ -114,6 +117,9 @@ enum OtzariaCorpusAcceptanceRunner {
                 indexedDocuments: count,
                 reopenedDocuments: reopenedCount,
                 indexedSourcePaths: paths.count,
+                committedBooks: finalCheckpoint?.committedBooks ?? 0,
+                lastCatalogueOrdinal: finalCheckpoint?.lastCatalogueOrdinal ?? -1,
+                batchSequence: finalCheckpoint?.batchSequence ?? 0,
                 baseBooks: plan.books.filter(\.isBaseBook).count,
                 booksWithAuthors: plan.books.filter { !$0.authorNames.isEmpty }.count,
                 categoryPaths: Set(plan.categoryPaths.values).count,
@@ -133,6 +139,9 @@ enum OtzariaCorpusAcceptanceRunner {
                 indexedDocuments: 0,
                 reopenedDocuments: 0,
                 indexedSourcePaths: 0,
+                committedBooks: 0,
+                lastCatalogueOrdinal: -1,
+                batchSequence: 0,
                 baseBooks: 0,
                 booksWithAuthors: 0,
                 categoryPaths: 0,

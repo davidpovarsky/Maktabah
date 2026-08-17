@@ -97,6 +97,22 @@ let storage = OtzariaDatabaseStorage(appSupportRoot: appSupport, downloadsRoot: 
 let installer = OtzariaDatabaseInstaller()
 let extractor = OtzariaZstdStreamExtractor()
 
+let currentProjection = OtzariaBookSchemaCompatibility.projection(
+    columns: ["id", "title", "categoryId"]
+)
+expect(currentProjection.filePath == "NULL", "current schema path fallback")
+expect(currentProjection.fileType == "'txt'", "current schema type fallback")
+expect(currentProjection.eligiblePredicate == "1 = 1", "current schema eligibility")
+let currentTOCProjection = OtzariaTOCSchemaCompatibility.projection(columns: ["id", "lineId"])
+expect(currentTOCProjection.resolvedLineIndex == "ln.lineIndex", "current TOC lineId fallback")
+let legacyProjection = OtzariaBookSchemaCompatibility.projection(
+    columns: ["id", "filePath", "fileType", "volume", "pages"]
+)
+expect(legacyProjection.filePath == "b.filePath", "legacy path column")
+expect(legacyProjection.eligiblePredicate.contains("fileType"), "legacy link filtering")
+let legacyTOCProjection = OtzariaTOCSchemaCompatibility.projection(columns: ["id", "lineId", "lineIndex"])
+expect(legacyTOCProjection.resolvedLineIndex == "COALESCE(te.lineIndex, ln.lineIndex)", "legacy TOC lineIndex fallback")
+
 let sourceURL = root.appendingPathComponent("valid.sqlite")
 let source = try makeSQLite(at: sourceURL, includeAllTables: true, marker: "first")
 let archive = root.appendingPathComponent("valid.sqlite.zst")

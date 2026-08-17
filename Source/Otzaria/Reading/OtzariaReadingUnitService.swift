@@ -368,13 +368,15 @@ final class OtzariaReadingUnitService {
     private func bookIndex(bookId: Int) throws -> BookIndex {
         if let cached = indexCache[bookId] { return cached }
         let start = Date()
+        let schema = try OtzariaTOCSchemaCompatibility.projection(in: db)
 
         let entries = try db.fetch(query: """
             SELECT te.id, te.parentId, COALESCE(tt.text, ''), COALESCE(te.level, 0)
             FROM tocEntry te
             LEFT JOIN tocText tt ON tt.id = te.textId
+            LEFT JOIN line ln ON ln.id = te.lineId
             WHERE te.bookId = ?
-            ORDER BY COALESCE(te.lineIndex, 0), te.id
+            ORDER BY COALESCE(\(schema.resolvedLineIndex), 0), te.id
         """, parameters: [bookId]) { row in
             TocEntry(
                 id: row.int(at: 0),

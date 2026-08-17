@@ -6,6 +6,7 @@ extension OtzariaMaktabahBridge {
             return try withDatabase { db in
                 let categories = try categoryMap(in: db)
                 let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
+                let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
                 return try db.fetch(query: """
                     WITH resolved AS (
@@ -25,7 +26,7 @@ extension OtzariaMaktabahBridge {
                         r.linkedBookId,
                         ln.lineIndex,
                         b.title AS bookTitle,
-                        b.filePath AS bookPath,
+                        \(schema.filePath) AS bookPath,
                         b.categoryId AS linkedCategoryId,
                         b.orderIndex AS linkedBookOrderIndex,
                         ln.heRef,

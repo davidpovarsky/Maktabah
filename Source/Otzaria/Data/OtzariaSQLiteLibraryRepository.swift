@@ -41,20 +41,21 @@ final class OtzariaSQLiteLibraryRepository: OtzariaLibraryRepository {
     }
 
     private static func fetchBooks(_ db: OpaquePointer) throws -> [OtzariaBook] {
+        let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
         let statement = try OtzariaSQLiteStatement(database: db, sql: """
-            SELECT id, title, categoryId, orderIndex, totalLines, heShortDesc,
-                   filePath, fileType, isBaseBook, hasTeamim, hasNekudot,
+            SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc,
+                   \(schema.filePath), \(schema.fileType), b.isBaseBook, b.hasTeamim, b.hasNekudot,
                    CASE
-                       WHEN hasTargumConnection = 1
-                         OR hasReferenceConnection = 1
-                         OR hasSourceConnection = 1
-                         OR hasCommentaryConnection = 1
-                         OR hasOtherConnection = 1 THEN 1
+                       WHEN b.hasTargumConnection = 1
+                         OR b.hasReferenceConnection = 1
+                         OR b.hasSourceConnection = 1
+                         OR b.hasCommentaryConnection = 1
+                         OR b.hasOtherConnection = 1 THEN 1
                        ELSE 0
                    END AS hasLinks
-            FROM book
-            WHERE COALESCE(fileType, '') NOT IN ('link', 'url')
-            ORDER BY orderIndex, title
+            FROM book b
+            WHERE \(schema.eligiblePredicate)
+            ORDER BY b.orderIndex, b.title
         """)
 
         var books: [OtzariaBook] = []

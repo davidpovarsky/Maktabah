@@ -2,7 +2,9 @@ import Foundation
 
 struct OtzariaDatabaseStorage: Sendable {
     static let safetyReserve: Int64 = 1_073_741_824
-    static let unknownOutputMultiplier: Int64 = 5
+    // The current production frame expands slightly above 5x. Use 6x before
+    // the archive header is available so the 1 GiB safety reserve stays intact.
+    static let unknownOutputMultiplier: Int64 = 6
 
     let appSupportRoot: URL
     let downloadsRoot: URL

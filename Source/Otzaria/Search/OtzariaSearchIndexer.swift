@@ -140,14 +140,15 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
     func makePlan(databasePath: String) throws -> Plan {
         let db = try SQLiteDatabase(path: databasePath, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
         let authors = (try? loadAuthorsByBook(db: db)) ?? [:]
+        let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
         let books = try db.fetch(query: """
             SELECT b.id, b.title, COALESCE(b.categoryId, 0),
                    COALESCE((SELECT COUNT(*) FROM line lc WHERE lc.bookId = b.id), COALESCE(b.totalLines, 0)),
-                   COALESCE(b.orderIndex, b.id), COALESCE(b.fileType, 'txt'),
+                   COALESCE(b.orderIndex, b.id), COALESCE(\(schema.fileType), 'txt'),
                    COALESCE(b.isBaseBook, 0),
                    COALESCE((SELECT SUM(length(CAST(l.content AS BLOB))) FROM line l WHERE l.bookId = b.id), 0)
             FROM book b
-            WHERE COALESCE(b.fileType, '') NOT IN ('link', 'url')
+            WHERE \(schema.eligiblePredicate)
             ORDER BY COALESCE(b.categoryId, 0), COALESCE(b.orderIndex, b.id), b.title, b.id
         """) { row in
             let id = row.int(at: 0)

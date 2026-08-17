@@ -234,12 +234,14 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         let db = try requireDatabase()
+        let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
         return try db.fetch(query: """
-            SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc, b.filePath, b.fileType,
+            SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc,
+                   \(schema.filePath), \(schema.fileType),
                    COALESCE((SELECT ba.authorId FROM book_author ba WHERE ba.bookId = b.id ORDER BY ba.authorId LIMIT 1), 0) AS firstAuthorId
             FROM book b
-            WHERE COALESCE(b.fileType, '') NOT IN ('link', 'url')
+            WHERE \(schema.eligiblePredicate)
             ORDER BY b.categoryId, b.orderIndex, b.title
         """) { row -> BooksData in
             let shortDescription = row.string(at: 5) ?? ""
@@ -282,13 +284,14 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         let db = try requireDatabase()
+        let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
         return try db.fetch(query: """
             SELECT a.id, a.name, COUNT(DISTINCT b.id) AS bookCount
             FROM author a
             JOIN book_author ba ON ba.authorId = a.id
             JOIN book b ON b.id = ba.bookId
-            WHERE COALESCE(b.fileType, '') NOT IN ('link', 'url')
+            WHERE \(schema.eligiblePredicate)
             GROUP BY a.id, a.name
             HAVING COUNT(DISTINCT b.id) > 0
             ORDER BY a.name, a.id
@@ -305,14 +308,16 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         let db = try requireDatabase()
+        let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
         return try db.fetch(query: """
-            SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc, b.filePath, b.fileType,
+            SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc,
+                   \(schema.filePath), \(schema.fileType),
                    COALESCE((SELECT ba2.authorId FROM book_author ba2 WHERE ba2.bookId = b.id ORDER BY ba2.authorId LIMIT 1), 0) AS firstAuthorId
             FROM book_author ba
             JOIN book b ON b.id = ba.bookId
             WHERE ba.authorId = ?
-              AND COALESCE(b.fileType, '') NOT IN ('link', 'url')
+              AND \(schema.eligiblePredicate)
             ORDER BY b.orderIndex, b.title
         """, parameters: [authorId]) { row -> BooksData in
             let shortDescription = row.string(at: 5) ?? ""
@@ -358,9 +363,11 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         let db = try requireDatabase()
+        let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
         return try db.fetch(query: """
-            SELECT b.id, b.title, b.categoryId, b.heShortDesc, b.orderIndex, b.totalLines, b.filePath,
+            SELECT b.id, b.title, b.categoryId, b.heShortDesc, b.orderIndex, b.totalLines,
+                   \(schema.filePath),
                    COALESCE((SELECT ba.authorId FROM book_author ba WHERE ba.bookId = b.id ORDER BY ba.authorId LIMIT 1), 0) AS firstAuthorId
             FROM book b
             WHERE b.id = ?
@@ -388,10 +395,12 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         guard let db = try? requireDatabase() else { return }
+        guard let schema = try? OtzariaBookSchemaCompatibility.projection(in: db) else { return }
 
         if let info = try? db.fetch(query: """
-            SELECT COALESCE(b.heShortDesc, ''), COALESCE(b.filePath, ''), COALESCE(s.name, ''),
-                   COALESCE(b.fileType, ''), COALESCE(b.volume, ''), COALESCE(b.pages, ''), COALESCE(b.totalLines, 0),
+            SELECT COALESCE(b.heShortDesc, ''), COALESCE(\(schema.filePath), ''), COALESCE(s.name, ''),
+                   COALESCE(\(schema.fileType), ''), COALESCE(\(schema.volume), ''),
+                   COALESCE(\(schema.pages), ''), COALESCE(b.totalLines, 0),
                    COALESCE((
                        SELECT group_concat(a.name, ', ')
                        FROM book_author ba
@@ -477,9 +486,10 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         guard let db = try? requireDatabase() else { return [] }
+        guard let schema = try? OtzariaTOCSchemaCompatibility.projection(in: db) else { return [] }
 
         return (try? db.fetch(query: """
-            SELECT te.id, te.parentId, te.level, COALESCE(te.lineIndex, ln.lineIndex, 0) AS resolvedLineIndex, tt.text
+            SELECT te.id, te.parentId, te.level, COALESCE(\(schema.resolvedLineIndex), 0) AS resolvedLineIndex, tt.text
             FROM tocEntry te
             JOIN tocText tt ON tt.id = te.textId
             LEFT JOIN line ln ON ln.id = te.lineId

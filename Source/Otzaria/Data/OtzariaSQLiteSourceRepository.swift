@@ -12,6 +12,7 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
         try await database.read { db in
             let categories = try Self.categoryMap(in: db)
             let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
+            let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
             let statement = try OtzariaSQLiteStatement(database: db, sql: """
                 WITH resolved AS (
                     SELECT
@@ -30,7 +31,7 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
                     r.linkedBookId,
                     ln.lineIndex,
                     b.title AS bookTitle,
-                    b.filePath AS bookPath,
+                    \(schema.filePath) AS bookPath,
                     b.categoryId AS linkedCategoryId,
                     b.orderIndex AS linkedBookOrderIndex,
                     ln.heRef,
