@@ -73,16 +73,22 @@ struct MaktabahApp: App {
 
     var body: some Scene {
         WindowGroup {
-            iOSBootstrapView()
-                .environmentObject(otzariaApp)
-                .environmentObject(otzariaNavigation)
-                .environmentObject(zayitSearchSession)
-                .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
-                .id(useDefaultTheme)
-                .toggleStyle(SwitchToggleStyle(tint: .green))
-                .task {
-                    await OtzariaCorpusAcceptanceRunner.runIfRequested()
-                }
+            if OtzariaNativeBootstrapAcceptanceRunner.isRequested {
+                Color.clear
+                    .task {
+                        await OtzariaNativeBootstrapAcceptanceRunner.runIfRequested()
+                    }
+            } else {
+                iOSBootstrapView()
+                    .environmentObject(otzariaApp)
+                    .environmentObject(otzariaNavigation)
+                    .environmentObject(zayitSearchSession)
+                    .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
+                    .id(useDefaultTheme)
+                    .toggleStyle(SwitchToggleStyle(tint: .green))
+                    .task {
+                        await OtzariaCorpusAcceptanceRunner.runIfRequested()
+                    }
                 /*
                 .onAppear {
                     if lastVersionPrompted != currentVersion {
@@ -97,20 +103,21 @@ struct MaktabahApp: App {
                     .interactiveDismissDisabled()
                 }
                  */
-                .onChange(of: useDefaultTheme) { _, _ in
-                    setupGlobalAppearances()
-                    // Force navigation bars and tab bars in all windows to redraw their appearances
-                    for scene in UIApplication.shared.connectedScenes {
-                        if let windowScene = scene as? UIWindowScene {
-                            windowScene.windows.forEach { window in
-                                for view in window.subviews {
-                                    view.removeFromSuperview()
-                                    window.addSubview(view)
+                    .onChange(of: useDefaultTheme) { _, _ in
+                        setupGlobalAppearances()
+                        // Force navigation bars and tab bars in all windows to redraw their appearances
+                        for scene in UIApplication.shared.connectedScenes {
+                            if let windowScene = scene as? UIWindowScene {
+                                windowScene.windows.forEach { window in
+                                    for view in window.subviews {
+                                        view.removeFromSuperview()
+                                        window.addSubview(view)
+                                    }
                                 }
                             }
                         }
                     }
-                }
+            }
         }
     }
 }
