@@ -5,50 +5,68 @@ on:
   push:
     branches:
       - "codex/otzaria-search-upgrade-clean"
-    paths:
-      - "Vendor/OtzariaSearchEngine/**"
-      - "Source/Otzaria/Search/**"
-      - "Source/Otzaria/Bootstrap/**"
-      - "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
-      - "Source/Otzaria/App/OtzariaAppContainer.swift"
-      - "Source/iOS/Managers/BootstrapManager.swift"
-      - "Source/iOS/Views/Bootstrap/BootstrapView.swift"
-      - "Source/View/CoreDownloadProgressView.swift"
-      - "Source/Managers/App Config/ZstdShim.swift"
-      - "Vendor/OtzariaBootstrapTests/**"
-      - "Source/iOS/Views/iPadLayout.swift"
+    paths: &otzaria_paths
+      - "Source/Otzaria/**"
       - "Source/iOS/MaktabahApp.swift"
-      - "Maktabah.xcodeproj/project.pbxproj"
-      - ".github/workflows/otzaria-search-gates.yml"
-  pull_request:
-    paths:
-      - "Vendor/OtzariaSearchEngine/**"
-      - "Source/Otzaria/Search/**"
-      - "Source/Otzaria/Bootstrap/**"
-      - "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
-      - "Source/Otzaria/App/OtzariaAppContainer.swift"
       - "Source/iOS/Managers/BootstrapManager.swift"
       - "Source/iOS/Views/Bootstrap/BootstrapView.swift"
+      - "Source/iOS/Views/iPadLayout.swift"
       - "Source/View/CoreDownloadProgressView.swift"
       - "Source/Managers/App Config/ZstdShim.swift"
+      - "Maktabah.xcodeproj/project.pbxproj"
+      - "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+      - "Vendor/OtzariaSearchEngine/**"
       - "Vendor/OtzariaBootstrapTests/**"
-      - "Source/iOS/Views/iPadLayout.swift"
+      - "Vendor/ZayitSearchPort/**"
+      - "Scripts/CI/**"
+      - "Scripts/run-otzaria-corpus-acceptance.sh"
+      - "Scripts/run-otzaria-native-bootstrap-acceptance.sh"
       - ".github/workflows/otzaria-search-gates.yml"
+      - ".github/workflows/ios-build.yml"
+  pull_request:
+    paths: *otzaria_paths
   schedule:
     - cron: "17 4 * * 1"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
-  adapter:
+  adapter-linux:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    outputs:
+      cargo-registry-hit: ${{ steps.cargo-registry.outputs.cache-hit }}
+      rust-target-hit: ${{ steps.rust-target.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | sha256sum | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - name: Cache Cargo registry
+        id: cargo-registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-registry-v2-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock') }}
+      - name: Cache bridge target
+        id: rust-target
+        uses: actions/cache@v4
+        with:
+          path: Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ runner.os }}-${{ runner.arch }}-otzaria-bridge-v2-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**') }}
       - name: Verify pin, resources and upstream drift
         run: python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --latest --check --skip-validation
       - name: Verify bridge formatting
@@ -61,19 +79,21 @@ jobs:
           cargo tree --locked --no-default-features --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml | tee /tmp/otzaria-tree.txt
           grep -F "tantivy-fst v0.5.0 (" /tmp/otzaria-tree.txt
           grep -F "Checkout/otzaria_search_engine/rust/vendor/tantivy-fst" /tmp/otzaria-tree.txt
-      - name: Test bridge and semantic contract
+      - name: Test bridge, dictionaries and semantic contract
         run: cargo test --locked --no-default-features --features semantic-mock --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
       - name: Lint bridge with warnings denied
         run: cargo clippy --locked --all-targets --no-default-features --features semantic-mock --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml -- -D warnings
       - name: Confirm pristine upstream checkout
+        if: always()
         run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
 
-  apple-link:
+  bootstrap-tests-macos:
     runs-on: macos-26
-    timeout-minutes: 90
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      - name: Select Xcode 26
+        run: bash Scripts/CI/select-xcode-26.sh
       - name: Test Otzaria release and resume policies
         run: |
           xcrun swiftc \
@@ -83,7 +103,7 @@ jobs:
             Vendor/OtzariaBootstrapTests/main.swift \
             -o "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
           "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
-      - name: Test streaming zstd, SQLite validation and atomic install
+      - name: Test streaming zstd, SQLite validation and rollback lifecycle
         run: |
           brew list zstd >/dev/null 2>&1 || brew install zstd
           ZSTD_PREFIX="$(brew --prefix zstd)"
@@ -98,9 +118,7 @@ jobs:
             Source/Otzaria/Core/OtzariaSecurityScopedBookmarkStore.swift \
             Source/Otzaria/Core/OtzariaDatabaseAccessController.swift \
             Vendor/OtzariaBootstrapTests/integration.swift \
-            -L "$ZSTD_PREFIX/lib" \
-            -lzstd \
-            -lsqlite3 \
+            -L "$ZSTD_PREFIX/lib" -lzstd -lsqlite3 \
             -Xlinker -rpath -Xlinker "$ZSTD_PREFIX/lib" \
             -o "$RUNNER_TEMP/otzaria-bootstrap-integration-tests"
           "$RUNNER_TEMP/otzaria-bootstrap-integration-tests"
@@ -111,23 +129,234 @@ jobs:
             Vendor/OtzariaSearchEngine/Tests/IndexingPolicyHarness/main.swift \
             -o "$RUNNER_TEMP/otzaria-indexing-policy-tests"
           "$RUNNER_TEMP/otzaria-indexing-policy-tests"
+
+  otzaria-framework-macos:
+    runs-on: macos-26
+    timeout-minutes: 90
+    outputs:
+      framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
+      cargo-registry-hit: ${{ steps.cargo-registry.outputs.cache-hit }}
+      rebuilt: ${{ steps.framework-valid.outputs.valid != 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 26
+        id: xcode
+        run: |
+          bash Scripts/CI/select-xcode-26.sh
+          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - name: Cache Cargo registry
+        id: cargo-registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-registry-v2-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock') }}
+      - name: Cache production Otzaria framework
+        id: framework-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-otzaria-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**', 'Vendor/OtzariaSearchEngine/include/**', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+      - name: Validate restored Otzaria framework
+        id: framework-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework Vendor/OtzariaSearchEngine/ios_bridge/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Build production semantic XCFramework
+        if: steps.framework-valid.outputs.valid != 'true'
         run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+      - name: Verify Otzaria framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
       - name: Compile production semantic host feature on macOS
         run: cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
-      - name: Build existing Zayit XCFramework dependency
+      - name: Package Otzaria framework artifact
+        run: |
+          mkdir -p build/artifacts
+          tar -C Vendor/OtzariaSearchEngine -cf build/artifacts/OtzariaSearchEngine.xcframework.tar OtzariaSearchEngine.xcframework
+      - uses: actions/upload-artifact@v4
+        with:
+          name: otzaria-production-xcframework
+          path: build/artifacts/OtzariaSearchEngine.xcframework.tar
+          compression-level: 0
+          if-no-files-found: error
+      - name: Confirm pristine upstream checkout
+        if: always()
+        run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
+
+  zayit-framework-macos:
+    runs-on: macos-26
+    timeout-minutes: 60
+    outputs:
+      framework-cache-hit: ${{ steps.framework-valid.outputs.valid }}
+      cargo-registry-hit: ${{ steps.cargo-registry.outputs.cache-hit }}
+      rebuilt: ${{ steps.framework-valid.outputs.valid != 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 26
+        id: xcode
+        run: |
+          bash Scripts/CI/select-xcode-26.sh
+          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - name: Cache Cargo registry
+        id: cargo-registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-registry-v2-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.lock') }}
+      - name: Cache Zayit framework
+        id: framework-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-zayit-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
+      - name: Validate restored Zayit framework
+        id: framework-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework Vendor/ZayitSearchPort/Rust/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Build Zayit XCFramework
+        if: steps.framework-valid.outputs.valid != 'true'
         run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+      - name: Verify Zayit framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+      - name: Package Zayit framework artifact
+        run: |
+          mkdir -p build/artifacts
+          tar -C Vendor/ZayitSearchPort/build -cf build/artifacts/MaktabahZayitSearch.xcframework.tar MaktabahZayitSearch.xcframework
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zayit-production-xcframework
+          path: build/artifacts/MaktabahZayitSearch.xcframework.tar
+          compression-level: 0
+          if-no-files-found: error
+
+  app-link-macos:
+    needs: [otzaria-framework-macos, zayit-framework-macos]
+    runs-on: macos-26
+    timeout-minutes: 60
+    outputs:
+      swiftpm-cache-hit: ${{ steps.swiftpm-cache.outputs.cache-hit }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 26 and identify SwiftPM inputs
+        id: cache-inputs
+        run: |
+          bash Scripts/CI/select-xcode-26.sh
+          echo "xcode=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "swiftpm=$(python3 Scripts/CI/cache-key-inputs.py swiftpm)" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        with:
+          name: otzaria-production-xcframework
+          path: build/artifacts
+      - uses: actions/download-artifact@v4
+        with:
+          name: zayit-production-xcframework
+          path: build/artifacts
+      - name: Restore framework artifacts
+        run: |
+          tar -C Vendor/OtzariaSearchEngine -xf build/artifacts/OtzariaSearchEngine.xcframework.tar
+          tar -C Vendor/ZayitSearchPort/build -xf build/artifacts/MaktabahZayitSearch.xcframework.tar
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+          bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+      - name: Verify committed Xcode project
+        run: python3 Scripts/CI/verify-otzaria-xcode-project.py
+      - name: Cache Swift package dependencies
+        id: swiftpm-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/org.swift.swiftpm
+            build/SourcePackages
+          key: ${{ runner.os }}-${{ runner.arch }}-swiftpm-v3-${{ steps.cache-inputs.outputs.xcode }}-${{ steps.cache-inputs.outputs.swiftpm }}
+      - name: Resolve packages once
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project Maktabah.xcodeproj \
+            -scheme Maktabah-iOS \
+            -clonedSourcePackagesDirPath build/SourcePackages
       - name: Link simulator application
         run: |
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
           xcodebuild build \
             -project Maktabah.xcodeproj \
             -scheme Maktabah-iOS \
             -configuration Debug \
             -sdk iphonesimulator \
             -destination "generic/platform=iOS Simulator" \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY=
+            -derivedDataPath build/DerivedData \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
+      - name: Verify required dictionaries in app bundle and engine startup
+        env:
+          OTZARIA_NATIVE_BOOTSTRAP_REPORT_DIR: ${{ github.workspace }}/build/logs
+        run: |
+          APP="$GITHUB_WORKSPACE/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+          test -f "$APP/dictionary.json"
+          test -f "$APP/Acronyms.json"
+          bash Scripts/run-otzaria-native-bootstrap-acceptance.sh "$APP" --dictionary-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: otzaria-fast-acceptance-logs
+          path: build/logs
+          if-no-files-found: warn
+          compression-level: 0
       - name: Confirm pristine upstream checkout
         if: always()
         run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
+
+  cache-summary:
+    if: always()
+    needs:
+      - adapter-linux
+      - bootstrap-tests-macos
+      - otzaria-framework-macos
+      - zayit-framework-macos
+      - app-link-macos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish cache and rebuild summary
+        run: |
+          {
+            echo "### Otzaria CI cache summary"
+            echo "- Otzaria framework cache: ${{ needs.otzaria-framework-macos.outputs.framework-cache-hit == 'true' && 'HIT' || 'MISS' }}"
+            echo "- Otzaria framework rebuilt: ${{ needs.otzaria-framework-macos.outputs.rebuilt }}"
+            echo "- Zayit cache: ${{ needs.zayit-framework-macos.outputs.framework-cache-hit == 'true' && 'HIT' || 'MISS' }}"
+            echo "- Zayit rebuilt: ${{ needs.zayit-framework-macos.outputs.rebuilt }}"
+            echo "- SwiftPM cache: ${{ needs.app-link-macos.outputs.swiftpm-cache-hit == 'true' && 'HIT' || 'MISS' }}"
+            echo "- Cargo registry cache (Linux): ${{ needs.adapter-linux.outputs.cargo-registry-hit == 'true' && 'HIT' || 'MISS' }}"
+            echo "- Rust target cache (Linux): ${{ needs.adapter-linux.outputs.rust-target-hit == 'true' && 'HIT' || 'MISS' }}"
+            echo "- Ruby cache: NOT USED"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          test "${{ needs.adapter-linux.result }}" = success
+          test "${{ needs.bootstrap-tests-macos.result }}" = success
+          test "${{ needs.otzaria-framework-macos.result }}" = success
+          test "${{ needs.zayit-framework-macos.result }}" = success
+          test "${{ needs.app-link-macos.result }}" = success
