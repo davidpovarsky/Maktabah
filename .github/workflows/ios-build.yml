@@ -2,6 +2,12 @@ name: iOS Build
 
 on:
   workflow_dispatch:
+    inputs:
+      run_corpus_acceptance:
+        description: Download the latest Otzaria database and run the heavy corpus acceptance
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -16,7 +22,7 @@ jobs:
   build-ios:
     name: Build iOS artifacts
     runs-on: macos-26
-    timeout-minutes: 90
+    timeout-minutes: 360
 
     steps:
       - name: Checkout
@@ -202,6 +208,63 @@ jobs:
         with:
           name: Maktabah-iOS-simulator-app
           path: Maktabah-simulator-app.zip
+          if-no-files-found: error
+
+      - name: Download, verify and extract latest Otzaria database
+        if: ${{ inputs.run_corpus_acceptance == true }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          RELEASE_JSON="$RUNNER_TEMP/otzaria-latest-release.json"
+          ARCHIVE="$RUNNER_TEMP/seforim.db.zst"
+          DATABASE="$RUNNER_TEMP/seforim.db"
+
+          gh api repos/Otzaria/SeforimLibrary/releases/latest > "$RELEASE_JSON"
+          cp "$RELEASE_JSON" build/logs/otzaria-latest-release.json
+          ASSET_COUNT="$(jq '[.assets[] | select(.name == "seforim.db.zst")] | length' "$RELEASE_JSON")"
+          test "$ASSET_COUNT" = "1"
+          TAG="$(jq -r '.tag_name' "$RELEASE_JSON")"
+          RELEASE_ID="$(jq -r '.id' "$RELEASE_JSON")"
+          ASSET_ID="$(jq -r '.assets[] | select(.name == "seforim.db.zst") | .id' "$RELEASE_JSON")"
+          URL="$(jq -r '.assets[] | select(.name == "seforim.db.zst") | .browser_download_url' "$RELEASE_JSON")"
+          EXPECTED_SIZE="$(jq -r '.assets[] | select(.name == "seforim.db.zst") | .size' "$RELEASE_JSON")"
+          DIGEST="$(jq -r '.assets[] | select(.name == "seforim.db.zst") | (.digest // "")' "$RELEASE_JSON")"
+
+          echo "release_id=$RELEASE_ID tag=$TAG asset_id=$ASSET_ID compressed_size=$EXPECTED_SIZE digest=$DIGEST"
+          df -h "$RUNNER_TEMP"
+          curl --fail --location --retry 5 --retry-all-errors --continue-at - --output "$ARCHIVE" "$URL"
+          ACTUAL_SIZE="$(stat -f%z "$ARCHIVE")"
+          test "$ACTUAL_SIZE" = "$EXPECTED_SIZE"
+          if [[ "$DIGEST" == sha256:* ]]; then
+            EXPECTED_SHA="${DIGEST#sha256:}"
+            ACTUAL_SHA="$(shasum -a 256 "$ARCHIVE" | awk '{print $1}')"
+            test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          fi
+
+          brew list zstd >/dev/null 2>&1 || brew install zstd
+          zstd -d --long=31 -T0 -f "$ARCHIVE" -o "$DATABASE"
+          echo "database_bytes=$(stat -f%z "$DATABASE")"
+          test "$(sqlite3 "$DATABASE" 'PRAGMA quick_check(1);')" = "ok"
+          test "$(sqlite3 "$DATABASE" "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name IN ('book','line','category');")" = "3"
+          echo "actual_book_count=$(sqlite3 "$DATABASE" 'SELECT COUNT(*) FROM book;')"
+
+      - name: Run real Otzaria corpus acceptance
+        if: ${{ inputs.run_corpus_acceptance == true }}
+        env:
+          OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD: "1"
+          OTZARIA_CORPUS_ACCEPTANCE_APP_PATH: ${{ github.workspace }}/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app
+          OTZARIA_CORPUS_ACCEPTANCE_REPORT_COPY: ${{ github.workspace }}/build/logs/otzaria-corpus-acceptance.json
+        run: bash Scripts/run-otzaria-corpus-acceptance.sh "$RUNNER_TEMP/seforim.db"
+
+      - name: Upload real corpus acceptance report
+        if: ${{ always() && inputs.run_corpus_acceptance == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: otzaria-real-corpus-acceptance
+          path: |
+            build/logs/otzaria-latest-release.json
+            build/logs/otzaria-corpus-acceptance.json
           if-no-files-found: error
 
       - name: Build unsigned device IPA for inspection
