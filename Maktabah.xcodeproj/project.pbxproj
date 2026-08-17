@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DAB100000000000000000001 /* OtzariaDatabaseDownloadModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000001 /* OtzariaDatabaseDownloadModels.swift */; };
+		DAB100000000000000000002 /* OtzariaLibraryReleaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000002 /* OtzariaLibraryReleaseClient.swift */; };
+		DAB100000000000000000003 /* OtzariaDatabaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000003 /* OtzariaDatabaseDownloader.swift */; };
+		DAB100000000000000000004 /* OtzariaZstdStreamExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000004 /* OtzariaZstdStreamExtractor.swift */; };
+		DAB100000000000000000005 /* OtzariaDatabaseInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000005 /* OtzariaDatabaseInstaller.swift */; };
+		DAB100000000000000000006 /* OtzariaDatabaseBootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000006 /* OtzariaDatabaseBootstrapService.swift */; };
 		E5A100000000000000000001 /* dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000011 /* dictionary.json */; };
 		E5A100000000000000000002 /* Acronyms.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000012 /* Acronyms.json */; };
 		E5A100000000000000000003 /* OtzariaMagicDictionaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */; };
@@ -583,6 +589,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DAB000000000000000000001 /* OtzariaDatabaseDownloadModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap/OtzariaDatabaseDownloadModels.swift; sourceTree = "<group>"; };
+		DAB000000000000000000002 /* OtzariaLibraryReleaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap/OtzariaLibraryReleaseClient.swift; sourceTree = "<group>"; };
+		DAB000000000000000000003 /* OtzariaDatabaseDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap/OtzariaDatabaseDownloader.swift; sourceTree = "<group>"; };
+		DAB000000000000000000004 /* OtzariaZstdStreamExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap/OtzariaZstdStreamExtractor.swift; sourceTree = "<group>"; };
+		DAB000000000000000000005 /* OtzariaDatabaseInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap/OtzariaDatabaseInstaller.swift; sourceTree = "<group>"; };
+		DAB000000000000000000006 /* OtzariaDatabaseBootstrapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap/OtzariaDatabaseBootstrapService.swift; sourceTree = "<group>"; };
 		E5A100000000000000000011 /* dictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = dictionary.json; path = Vendor/OtzariaSearchEngine/Resources/dictionary.json; sourceTree = "<group>"; };
 		E5A100000000000000000012 /* Acronyms.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Acronyms.json; path = Vendor/OtzariaSearchEngine/Resources/Acronyms.json; sourceTree = "<group>"; };
 		E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaMagicDictionaryManager.swift; path = Source/Otzaria/Search/OtzariaMagicDictionaryManager.swift; sourceTree = "<group>"; };
@@ -976,6 +988,12 @@
 		0A7AF0000000000000000000 /* Otzaria */ = {
 			isa = PBXGroup;
 			children = (
+				DAB000000000000000000001 /* OtzariaDatabaseDownloadModels.swift */,
+				DAB000000000000000000002 /* OtzariaLibraryReleaseClient.swift */,
+				DAB000000000000000000003 /* OtzariaDatabaseDownloader.swift */,
+				DAB000000000000000000004 /* OtzariaZstdStreamExtractor.swift */,
+				DAB000000000000000000005 /* OtzariaDatabaseInstaller.swift */,
+				DAB000000000000000000006 /* OtzariaDatabaseBootstrapService.swift */,
 				0A7A00000000000000000001 /* OtzariaAppContainer.swift */,
 				0A7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift */,
 				0A7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift */,
@@ -2182,6 +2200,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB100000000000000000001 /* OtzariaDatabaseDownloadModels.swift in Sources */,
+				DAB100000000000000000002 /* OtzariaLibraryReleaseClient.swift in Sources */,
+				DAB100000000000000000003 /* OtzariaDatabaseDownloader.swift in Sources */,
+				DAB100000000000000000004 /* OtzariaZstdStreamExtractor.swift in Sources */,
+				DAB100000000000000000005 /* OtzariaDatabaseInstaller.swift in Sources */,
+				DAB100000000000000000006 /* OtzariaDatabaseBootstrapService.swift in Sources */,
 				0B7A00000000000000000001 /* OtzariaAppContainer.swift in Sources */,
 				0B7A00000000000000000002 /* OtzariaIntegratedLibraryView.swift in Sources */,
 				0B7A00000000000000000003 /* OtzariaIntegratedNavigationState.swift in Sources */,

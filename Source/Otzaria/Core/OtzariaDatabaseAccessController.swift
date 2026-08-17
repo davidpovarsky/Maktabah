@@ -6,7 +6,7 @@ final class OtzariaDatabaseAccessController {
 
     enum Source {
         case externalBookmark
-        case legacyInternalCopy
+        case managedInternal
     }
 
     enum AccessError: LocalizedError {
@@ -39,17 +39,15 @@ final class OtzariaDatabaseAccessController {
     private let legacyPathKey = "otzaria_seforim_database_path"
     private let legacySelectionKey = "goldcreative.otzaria.legacyInternalCopySelected.v2"
     private let legacyMigrationCompletedKey = "goldcreative.otzaria.legacyInternalCopyMigrationCompleted.v2"
+    private let managedSelectionKey = "goldcreative.otzaria.managedInternalSelected.v3"
     private var scopedAccess: OtzariaSecurityScopedAccess?
 
     private init() {}
 
     var hasPersistedSelection: Bool {
         if bookmarkStore.hasBookmark { return true }
-        guard let legacyURL = try? legacyInternalCopyURL() else { return false }
-        let defaults = UserDefaults.standard
-        let shouldMigrate = !defaults.bool(forKey: legacyMigrationCompletedKey)
-        return (defaults.bool(forKey: legacySelectionKey) || shouldMigrate) &&
-            FileManager.default.fileExists(atPath: legacyURL.path)
+        guard let managedURL = try? managedInternalDatabaseURL() else { return false }
+        return FileManager.default.fileExists(atPath: managedURL.path)
     }
 
     func restoreIfNeeded() throws -> URL? {
@@ -74,20 +72,24 @@ final class OtzariaDatabaseAccessController {
         }
 
         let defaults = UserDefaults.standard
-        let legacyURL = try legacyInternalCopyURL()
-        let shouldUseLegacyCopy = defaults.bool(forKey: legacySelectionKey) ||
-            !defaults.bool(forKey: legacyMigrationCompletedKey)
-        if shouldUseLegacyCopy, FileManager.default.fileExists(atPath: legacyURL.path) {
-            try verifyExistsAndIsReadable(legacyURL)
-            defaults.set(true, forKey: legacySelectionKey)
+        let managedURL = try managedInternalDatabaseURL()
+        // This path was used by the legacy internal-copy flow and is also the
+        // stable destination for managed downloads. Its presence is sufficient
+        // for crash recovery even if the selection marker was not yet persisted.
+        if FileManager.default.fileExists(atPath: managedURL.path) {
+            try verifyExistsAndIsReadable(managedURL)
+            try validateDatabase(at: managedURL)
+            defaults.set(true, forKey: managedSelectionKey)
+            defaults.set(false, forKey: legacySelectionKey)
             defaults.set(true, forKey: legacyMigrationCompletedKey)
             defaults.removeObject(forKey: legacyPathKey)
-            currentURL = legacyURL
-            source = .legacyInternalCopy
-            return legacyURL
+            currentURL = managedURL
+            source = .managedInternal
+            return managedURL
         }
 
         defaults.set(false, forKey: legacySelectionKey)
+        defaults.set(false, forKey: managedSelectionKey)
         defaults.set(true, forKey: legacyMigrationCompletedKey)
         defaults.removeObject(forKey: legacyPathKey)
         return nil
@@ -112,7 +114,29 @@ final class OtzariaDatabaseAccessController {
         }
     }
 
-    func clearSelection(deleteLegacyInternalCopy: Bool = false) {
+    func activateManagedDatabase(at url: URL) throws -> URL {
+        let expectedURL = try managedInternalDatabaseURL().standardizedFileURL
+        guard url.standardizedFileURL == expectedURL else {
+            throw AccessError.invalidDatabase
+        }
+        try verifyExistsAndIsReadable(url)
+        try validateDatabase(at: url)
+
+        scopedAccess?.stop()
+        scopedAccess = nil
+        bookmarkStore.forget()
+        currentURL = url
+        source = .managedInternal
+
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: managedSelectionKey)
+        defaults.set(false, forKey: legacySelectionKey)
+        defaults.set(true, forKey: legacyMigrationCompletedKey)
+        defaults.removeObject(forKey: legacyPathKey)
+        return url
+    }
+
+    func clearSelection(deleteManagedInternalDatabase: Bool = false) {
         scopedAccess?.stop()
         scopedAccess = nil
         currentURL = nil
@@ -120,22 +144,24 @@ final class OtzariaDatabaseAccessController {
         bookmarkStore.forget()
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: legacySelectionKey)
+        defaults.set(false, forKey: managedSelectionKey)
         defaults.set(true, forKey: legacyMigrationCompletedKey)
         defaults.removeObject(forKey: legacyPathKey)
 
-        if deleteLegacyInternalCopy, let legacyURL = try? legacyInternalCopyURL() {
-            try? FileManager.default.removeItem(at: legacyURL)
+        if deleteManagedInternalDatabase, let managedURL = try? managedInternalDatabaseURL() {
+            try? FileManager.default.removeItem(at: managedURL)
         }
     }
 
     private func markExternalSelection() {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: legacySelectionKey)
+        defaults.set(false, forKey: managedSelectionKey)
         defaults.set(true, forKey: legacyMigrationCompletedKey)
         defaults.removeObject(forKey: legacyPathKey)
     }
 
-    private func legacyInternalCopyURL() throws -> URL {
+    func managedInternalDatabaseURL() throws -> URL {
         guard let appSupport = AppConfig.appSupportDir else {
             throw AccessError.applicationSupportUnavailable
         }
@@ -154,7 +180,7 @@ final class OtzariaDatabaseAccessController {
         }
     }
 
-    private func validateDatabase(at url: URL) throws {
+    func validateDatabase(at url: URL) throws {
         let database = try SQLiteDatabase(
             path: url.path,
             flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX

@@ -129,6 +129,12 @@ final class OtzariaMaktabahBridge {
         _ = try openIfNeeded()
     }
 
+    func activateManagedDatabase(at url: URL) throws {
+        resetConnection()
+        _ = try accessController.activateManagedDatabase(at: url)
+        _ = try openIfNeeded()
+    }
+
     @discardableResult
     func restoreDatabaseIfPossible() throws -> Bool {
         guard try accessController.restoreIfNeeded() != nil else { return false }
