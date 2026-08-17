@@ -76,10 +76,10 @@ final class iOSBootstrapManager {
             do {
                 try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { [weak self] update in
                     Task { @MainActor in
-                        guard let self, managedDownloadGeneration == generation else { return }
-                        coreDownloadState.phase = .downloading
-                        coreDownloadState.progress = update.fraction
-                        coreDownloadState.detail = update.detail
+                        guard let self, self.managedDownloadGeneration == generation else { return }
+                        self.coreDownloadState.phase = .downloading
+                        self.coreDownloadState.progress = update.fraction
+                        self.coreDownloadState.detail = update.detail
                     }
                 }
                 guard !Task.isCancelled, managedDownloadGeneration == generation else { return }

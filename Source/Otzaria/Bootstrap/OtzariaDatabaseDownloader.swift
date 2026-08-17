@@ -55,13 +55,13 @@ actor OtzariaDatabaseDownloader {
             }
             if currentLength > release.asset.compressedSize {
                 try invalidate(partURL: partURL, sidecarURL: sidecarURL)
-                try writeMetadata(
+                try Self.writeMetadata(
                     OtzariaDownloadResumeMetadata(release: release),
                     to: sidecarURL
                 )
             }
 
-            var metadata = try loadMetadata(from: sidecarURL)
+            var metadata = try Self.loadMetadata(from: sidecarURL)
                 ?? OtzariaDownloadResumeMetadata(release: release)
             let offset = Self.fileSize(at: partURL)
             let reusableOffset = OtzariaDownloadPolicy.reusableOffset(
@@ -75,7 +75,7 @@ actor OtzariaDatabaseDownloader {
             if offset > 0 && !canResume {
                 try invalidate(partURL: partURL, sidecarURL: sidecarURL)
                 metadata = OtzariaDownloadResumeMetadata(release: release)
-                try writeMetadata(metadata, to: sidecarURL)
+                try Self.writeMetadata(metadata, to: sidecarURL)
             }
 
             let actualOffset = canResume ? reusableOffset : 0
@@ -127,7 +127,7 @@ actor OtzariaDatabaseDownloader {
                     throw OtzariaDatabaseBootstrapError.invalidResumeResponse(reason)
                 }
                 try invalidate(partURL: partURL, sidecarURL: sidecarURL)
-                try writeMetadata(
+                try Self.writeMetadata(
                     OtzariaDownloadResumeMetadata(release: release),
                     to: sidecarURL
                 )
@@ -490,8 +490,10 @@ private final class OtzariaDownloadRoundDelegate: NSObject, URLSessionDataDelega
         do {
             try fileHandle?.synchronize()
             try fileHandle?.close()
-        } catch where terminalError == nil {
-            terminalError = OtzariaDatabaseBootstrapError.extractionWriteFailed(error.localizedDescription)
+        } catch {
+            if terminalError == nil {
+                terminalError = OtzariaDatabaseBootstrapError.extractionWriteFailed(error.localizedDescription)
+            }
         }
         fileHandle = nil
 
