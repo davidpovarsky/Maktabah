@@ -44,9 +44,12 @@ Vendor/OtzariaSearchEngine/build/
 *.xcframework/
 zayit-search-index/
 seforim.db
+*.db.zst
+*.part
 lexical.db
 *.gguf
 DerivedData/
+target/
 __pycache__/
 
 # CocoaPods
