@@ -235,7 +235,7 @@ struct OtzariaDatabaseInstaller: Sendable {
                     storage.finalDatabaseURL,
                     withItemAt: prepared.stagingURL,
                     backupItemName: storage.previousDatabaseURL.lastPathComponent,
-                    options: []
+                    options: [.withoutDeletingBackupItem]
                 )
             } else {
                 try fileManager.moveItem(at: prepared.stagingURL, to: storage.finalDatabaseURL)
