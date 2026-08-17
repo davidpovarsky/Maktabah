@@ -259,7 +259,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
         try? write(report, to: resultURL)
     }
 
-    static func runDictionaryChecks() throws -> DictionaryReport {
+    private static func runDictionaryChecks() throws -> DictionaryReport {
         let root = FileManager.default.temporaryDirectory.appendingPathComponent(
             "otzaria-dictionary-acceptance-\(UUID().uuidString)",
             isDirectory: true
@@ -345,7 +345,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
         return report
     }
 
-    static func populateDatabaseState(
+    private static func populateDatabaseState(
         _ report: inout Report,
         storage: OtzariaDatabaseStorage
     ) throws {
