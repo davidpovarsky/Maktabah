@@ -1106,6 +1106,56 @@ mod tests {
     }
 
     #[test]
+    fn bundled_required_dictionaries_load_without_optional_lexical_database() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        let index_path = CString::new(index.to_string_lossy().as_bytes()).unwrap();
+        let handle = otzaria_search_engine_new(index_path.as_ptr());
+        assert!(!handle.is_null());
+
+        let resources = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../Resources");
+        let valid = CString::new(
+            json!({
+                "magic": null,
+                "translation": resources.join("dictionary.json").to_string_lossy(),
+                "acronyms": resources.join("Acronyms.json").to_string_lossy()
+            })
+            .to_string(),
+        )
+        .unwrap();
+        let status = decode_ffi(otzaria_search_engine_set_dictionaries_json(
+            handle,
+            valid.as_ptr(),
+        ));
+        assert_eq!(status["ok"], true, "{status}");
+        assert_eq!(status["value"]["magic"], false);
+        assert_eq!(status["value"]["translation"], true);
+        assert_eq!(status["value"]["acronyms"], true);
+
+        let malformed = index.join("malformed-dictionary.json");
+        std::fs::write(&malformed, b"{not-json").unwrap();
+        let invalid = CString::new(
+            json!({
+                "magic": null,
+                "translation": malformed.to_string_lossy(),
+                "acronyms": resources.join("Acronyms.json").to_string_lossy()
+            })
+            .to_string(),
+        )
+        .unwrap();
+        let invalid_status = decode_ffi(otzaria_search_engine_set_dictionaries_json(
+            handle,
+            invalid.as_ptr(),
+        ));
+        assert_eq!(invalid_status["ok"], true, "{invalid_status}");
+        assert_eq!(invalid_status["value"]["translation"], false);
+        assert_eq!(invalid_status["value"]["acronyms"], true);
+
+        otzaria_search_engine_free(handle);
+        std::fs::remove_dir_all(index).unwrap();
+    }
+
+    #[test]
     fn omitted_generation_order_uses_the_pinned_upstream_default() {
         let text: BridgeTextBook = serde_json::from_value(json!({
             "title": "default", "topics": "/", "filePath": "default",

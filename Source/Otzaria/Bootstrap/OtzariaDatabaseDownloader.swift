@@ -180,7 +180,8 @@ actor OtzariaDatabaseDownloader {
         }
     }
 
-    static func verifyDownload(at url: URL, release: OtzariaLibraryRelease) throws {
+    @discardableResult
+    static func verifyDownload(at url: URL, release: OtzariaLibraryRelease) throws -> String? {
         let actualSize = fileSize(at: url)
         guard actualSize == release.asset.compressedSize else {
             throw OtzariaDatabaseBootstrapError.downloadSizeMismatch(
@@ -188,7 +189,7 @@ actor OtzariaDatabaseDownloader {
                 actual: actualSize
             )
         }
-        guard let expected = release.expectedSHA256 else { return }
+        guard let expected = release.expectedSHA256 else { return nil }
 
         let handle = try FileHandle(forReadingFrom: url)
         defer { try? handle.close() }
@@ -203,6 +204,7 @@ actor OtzariaDatabaseDownloader {
         guard actual == expected else {
             throw OtzariaDatabaseBootstrapError.digestMismatch(expected: expected, actual: actual)
         }
+        return actual
     }
 
     static func existingPartialSize(workspaceURL: URL, release: OtzariaLibraryRelease) -> Int64 {

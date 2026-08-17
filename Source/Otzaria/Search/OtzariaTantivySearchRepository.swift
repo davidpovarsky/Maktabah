@@ -26,14 +26,65 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         }
         let indexURL = manager.indexURL(for: databasePath)
         let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
-        let lexicalURL = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL
-        _ = try? engine.configureDictionaries(
-            magic: lexicalURL,
-            translation: Bundle.main.url(forResource: "dictionary", withExtension: "json"),
-            acronyms: Bundle.main.url(forResource: "Acronyms", withExtension: "json")
-        )
+        do {
+            try Self.configureRequiredDictionaries(
+                engine: engine,
+                magic: OtzariaMagicDictionaryManager.shared.validatedDatabaseURL,
+                translation: Bundle.main.url(forResource: "dictionary", withExtension: "json"),
+                acronyms: Bundle.main.url(forResource: "Acronyms", withExtension: "json")
+            )
+        } catch {
+            engine.close()
+            throw error
+        }
         engineCache[databasePath] = engine
         return engine
+    }
+
+    @discardableResult
+    static func configureRequiredDictionaries(
+        engine: OtzariaSearchEngineBridge,
+        magic: URL?,
+        translation: URL?,
+        acronyms: URL?
+    ) throws -> [String: Bool] {
+        guard let translation else {
+            throw OtzariaSearchError.invalidEngineResponse(
+                "Required Otzaria resource dictionary.json is missing from the app bundle."
+            )
+        }
+        guard let acronyms else {
+            throw OtzariaSearchError.invalidEngineResponse(
+                "Required Otzaria resource Acronyms.json is missing from the app bundle."
+            )
+        }
+        for (name, url) in [("dictionary.json", translation), ("Acronyms.json", acronyms)] {
+            guard FileManager.default.isReadableFile(atPath: url.path) else {
+                throw OtzariaSearchError.invalidEngineResponse(
+                    "Required Otzaria resource \(name) is not readable."
+                )
+            }
+        }
+
+        let status = try engine.configureDictionaries(
+            magic: magic,
+            translation: translation,
+            acronyms: acronyms
+        )
+        guard status["translation"] == true else {
+            throw OtzariaSearchError.invalidEngineResponse(
+                "Otzaria could not load required dictionary.json."
+            )
+        }
+        guard status["acronyms"] == true else {
+            throw OtzariaSearchError.invalidEngineResponse(
+                "Otzaria could not load required Acronyms.json."
+            )
+        }
+        if magic != nil, status["magic"] != true {
+            print("[OtzariaSearch] optional lexical.db could not be loaded; continuing without lexical expansion")
+        }
+        return status
     }
 
     func documentCount(databasePath: String) throws -> UInt64 {

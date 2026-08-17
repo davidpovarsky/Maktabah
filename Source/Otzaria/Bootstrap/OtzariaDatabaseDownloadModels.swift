@@ -116,6 +116,21 @@ struct OtzariaPreparedDatabaseInstallation: Sendable {
     let release: OtzariaLibraryRelease
     let stagingURL: URL
     let databaseFileSize: Int64
+    let extractionElapsedSeconds: TimeInterval
+    let validationElapsedSeconds: TimeInterval
+}
+
+struct OtzariaManagedDatabaseInstallResult: Sendable {
+    let release: OtzariaLibraryRelease
+    let finalURL: URL
+    let resumeFromBytes: Int64
+    let downloadedBytes: Int64
+    let actualSHA256: String?
+    let downloadElapsedSeconds: TimeInterval
+    let verificationElapsedSeconds: TimeInterval
+    let extractionElapsedSeconds: TimeInterval
+    let validationElapsedSeconds: TimeInterval
+    let databaseFileSize: Int64
 }
 
 enum OtzariaDatabaseBootstrapStage: Equatable, Sendable {

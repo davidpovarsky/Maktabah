@@ -80,6 +80,7 @@ private extension OtzariaZstdStreamExtractor {
         var totalWritten: Int64 = 0
         var lastResult: Int?
         var sawInput = false
+        var outputData = Data(count: outputChunkSize)
 
         do {
             while true {
@@ -97,7 +98,6 @@ private extension OtzariaZstdStreamExtractor {
 
                     while input.pos < input.size {
                         try Task.checkCancellation()
-                        var outputData = Data(count: outputChunkSize)
                         let produced: Int = try outputData.withUnsafeMutableBytes { outputBytes in
                             var output = ZSTD_outBuffer(
                                 dst: outputBytes.baseAddress,
@@ -111,9 +111,8 @@ private extension OtzariaZstdStreamExtractor {
                         }
 
                         if produced > 0 {
-                            outputData.count = produced
                             do {
-                                try outputHandle.write(contentsOf: outputData)
+                                try outputHandle.write(contentsOf: outputData.prefix(produced))
                             } catch {
                                 throw OtzariaDatabaseBootstrapError.extractionWriteFailed(
                                     error.localizedDescription

@@ -10,9 +10,18 @@ actor OtzariaDatabaseBootstrapService {
     private let installer = OtzariaDatabaseInstaller()
     private var currentStorage: OtzariaDatabaseStorage?
 
+    struct Preparation: Sendable {
+        let prepared: OtzariaPreparedDatabaseInstallation
+        let storage: OtzariaDatabaseStorage
+        let resumeFromBytes: Int64
+        let actualSHA256: String?
+        let downloadElapsedSeconds: TimeInterval
+        let verificationElapsedSeconds: TimeInterval
+    }
+
     func prepareManagedDatabase(
         progress: @escaping ProgressHandler
-    ) async throws -> (OtzariaPreparedDatabaseInstallation, OtzariaDatabaseStorage) {
+    ) async throws -> Preparation {
         progress(.init(stage: .connecting, fraction: 0.01, detail: "Connecting to Otzaria Library…"))
         let release = try await releaseClient.fetchLatestRelease()
         let storage = try OtzariaDatabaseStorage()
@@ -32,6 +41,10 @@ actor OtzariaDatabaseBootstrapService {
         )
 
         let archiveURL: URL
+        let downloadStarted = Date()
+        var downloadElapsed: TimeInterval = 0
+        var verificationElapsed: TimeInterval = 0
+        var actualSHA256: String?
         do {
             archiveURL = try await downloader.download(
                 release: release,
@@ -47,15 +60,18 @@ actor OtzariaDatabaseBootstrapService {
                     detail: detailPrefix + "\(Self.format(downloaded)) of \(Self.format(total))"
                 ))
             }
+            downloadElapsed = Date().timeIntervalSince(downloadStarted)
 
             progress(.init(
                 stage: .verifyingDownload,
                 fraction: 0.70,
                 detail: "Verifying the Otzaria download…"
             ))
-            try await Task.detached(priority: .utility) {
+            let verificationStarted = Date()
+            actualSHA256 = try await Task.detached(priority: .utility) {
                 try OtzariaDatabaseDownloader.verifyDownload(at: archiveURL, release: release)
             }.value
+            verificationElapsed = Date().timeIntervalSince(verificationStarted)
             print(
                 "[OtzariaBootstrap] download verified bytes=\(release.asset.compressedSize) " +
                 "sha256=\(release.expectedSHA256 == nil ? "not supplied" : "matched")"
@@ -100,7 +116,14 @@ actor OtzariaDatabaseBootstrapService {
                 "[OtzariaBootstrap] extraction and SQLite validation completed " +
                 "outputBytes=\(prepared.databaseFileSize)"
             )
-            return (prepared, storage)
+            return Preparation(
+                prepared: prepared,
+                storage: storage,
+                resumeFromBytes: existingPart,
+                actualSHA256: actualSHA256,
+                downloadElapsedSeconds: downloadElapsed,
+                verificationElapsedSeconds: verificationElapsed
+            )
         } catch let error as OtzariaDatabaseBootstrapError {
             if case .zstdCorruptData = error {
                 try? await downloader.invalidateDownload(workspaceURL: storage.downloadsRoot)
@@ -124,7 +147,17 @@ actor OtzariaDatabaseBootstrapService {
     }
 
     func finishSuccessfulInstall(storage: OtzariaDatabaseStorage) async {
+        await Task.detached(priority: .utility) { [installer] in
+            installer.completePromotion(storage: storage)
+        }.value
         await downloader.cleanupAfterSuccessfulInstall(workspaceURL: storage.downloadsRoot)
+        currentStorage = nil
+    }
+
+    func rollbackFailedActivation(storage: OtzariaDatabaseStorage) async throws {
+        try await Task.detached(priority: .utility) { [installer] in
+            try installer.rollbackPromotion(storage: storage)
+        }.value
         currentStorage = nil
     }
 

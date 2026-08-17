@@ -52,6 +52,14 @@ struct OtzariaDatabaseStorage: Sendable {
         otzariaRoot.appendingPathComponent("seforim-installation.json")
     }
 
+    var pendingInstallationManifestURL: URL {
+        otzariaRoot.appendingPathComponent("seforim-installation.json.installing")
+    }
+
+    var previousInstallationManifestURL: URL {
+        otzariaRoot.appendingPathComponent("seforim-installation.json.previous")
+    }
+
     func prepareDirectories() throws {
         let fileManager = FileManager.default
         try fileManager.createDirectory(at: otzariaRoot, withIntermediateDirectories: true)
@@ -77,7 +85,27 @@ struct OtzariaDatabaseStorage: Sendable {
             compressedSize,
             by: Self.unknownOutputMultiplier
         )
-        try requireAvailableCapacity(outputEstimate + Self.safetyReserve, at: otzariaRoot)
+        let existingFinal = Self.fileSizeIfPresent(finalDatabaseURL)
+        try requireAvailableCapacity(
+            Self.requiredExtractionCapacity(
+                outputEstimate: outputEstimate,
+                existingFinalSize: existingFinal
+            ),
+            at: otzariaRoot
+        )
+    }
+
+    // Replacing an existing managed database can temporarily retain the old
+    // file as the rollback copy while the new staging file is present. Count
+    // both conservatively; APFS clone/rename behavior is not assumed.
+    static func requiredExtractionCapacity(
+        outputEstimate: Int64,
+        existingFinalSize: Int64
+    ) -> Int64 {
+        let (files, filesOverflow) = outputEstimate.addingReportingOverflow(existingFinalSize)
+        let safeFiles = filesOverflow ? Int64.max / 2 : files
+        let (total, totalOverflow) = safeFiles.addingReportingOverflow(safetyReserve)
+        return totalOverflow ? Int64.max : total
     }
 
     func excludeFromBackup(_ url: URL) throws {
@@ -112,6 +140,10 @@ struct OtzariaDatabaseStorage: Sendable {
         let (result, overflow) = value.multipliedReportingOverflow(by: multiplier)
         return overflow ? Int64.max / 2 : result
     }
+    private static func fileSizeIfPresent(_ url: URL) -> Int64 {
+        let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
+        return (attributes?[.size] as? NSNumber)?.int64Value ?? 0
+    }
 }
 
 struct OtzariaDatabaseInstaller: Sendable {
@@ -142,17 +174,23 @@ struct OtzariaDatabaseInstaller: Sendable {
         )
 
         let written: Int64
+        let extractionStarted = Date()
+        var extractionElapsed: TimeInterval = 0
+        var validationElapsed: TimeInterval = 0
         do {
             written = try extractor.extract(
                 archiveURL: archiveURL,
                 outputURL: storage.stagingDatabaseURL,
                 progress: progress
             )
+            extractionElapsed = Date().timeIntervalSince(extractionStarted)
             try storage.excludeFromBackup(storage.stagingDatabaseURL)
             validationStarted()
+            let validationStartedAt = Date()
             try OtzariaDatabaseAccessController.shared.validateDatabase(
                 at: storage.stagingDatabaseURL
             )
+            validationElapsed = Date().timeIntervalSince(validationStartedAt)
         } catch let error as OtzariaDatabaseBootstrapError {
             try? fileManager.removeItem(at: storage.stagingDatabaseURL)
             throw error
@@ -164,7 +202,9 @@ struct OtzariaDatabaseInstaller: Sendable {
         return OtzariaPreparedDatabaseInstallation(
             release: release,
             stagingURL: storage.stagingDatabaseURL,
-            databaseFileSize: written
+            databaseFileSize: written,
+            extractionElapsedSeconds: extractionElapsed,
+            validationElapsedSeconds: validationElapsed
         )
     }
 
@@ -173,6 +213,7 @@ struct OtzariaDatabaseInstaller: Sendable {
         storage: OtzariaDatabaseStorage
     ) throws -> URL {
         let fileManager = FileManager.default
+        var promotionCompleted = false
         do {
             try recoverInterruptedInstallation(storage: storage)
             guard prepared.stagingURL.standardizedFileURL == storage.stagingDatabaseURL.standardizedFileURL,
@@ -199,6 +240,7 @@ struct OtzariaDatabaseInstaller: Sendable {
             } else {
                 try fileManager.moveItem(at: prepared.stagingURL, to: storage.finalDatabaseURL)
             }
+            promotionCompleted = true
 
             guard fileManager.fileExists(atPath: storage.finalDatabaseURL.path) else {
                 throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
@@ -206,29 +248,102 @@ struct OtzariaDatabaseInstaller: Sendable {
                 )
             }
             try storage.excludeFromBackup(storage.finalDatabaseURL)
-            try? removeManagedFileIfPresent(storage.previousDatabaseURL)
             do {
-                try writeManifest(prepared, to: storage.installationManifestURL, storage: storage)
+                try writeManifest(
+                    prepared,
+                    to: storage.pendingInstallationManifestURL,
+                    storage: storage
+                )
             } catch {
-                // The manifest is diagnostic metadata, not a prerequisite for opening a
-                // database that was already validated and promoted successfully.
-                print("[OtzariaBootstrap] installation manifest write failed: \(error.localizedDescription)")
+                // The pending manifest is diagnostic metadata. The validated database
+                // and its rollback copy remain the source of truth for recovery.
+                print("[OtzariaBootstrap] pending manifest write failed: \(error.localizedDescription)")
             }
             return storage.finalDatabaseURL
         } catch let error as OtzariaDatabaseBootstrapError {
-            try? restorePreviousDatabaseIfNecessary(storage: storage)
-            throw error
+            let promotionError = error
+            do {
+                if promotionCompleted {
+                    try rollbackPromotion(storage: storage)
+                } else {
+                    try recoverInterruptedInstallation(storage: storage)
+                }
+            } catch {
+                throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                    "\(promotionError.localizedDescription); rollback also failed: \(error.localizedDescription)"
+                )
+            }
+            throw promotionError
         } catch {
-            try? restorePreviousDatabaseIfNecessary(storage: storage)
-            throw OtzariaDatabaseBootstrapError.atomicInstallFailed(error.localizedDescription)
+            let promotionError = error
+            do {
+                if promotionCompleted {
+                    try rollbackPromotion(storage: storage)
+                } else {
+                    try recoverInterruptedInstallation(storage: storage)
+                }
+            } catch {
+                throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                    "\(promotionError.localizedDescription); rollback also failed: \(error.localizedDescription)"
+                )
+            }
+            throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                promotionError.localizedDescription
+            )
         }
     }
 
     func recoverInterruptedInstallation(storage: OtzariaDatabaseStorage) throws {
         try storage.prepareDirectories()
         try restorePreviousDatabaseIfNecessary(storage: storage)
-        if FileManager.default.fileExists(atPath: storage.finalDatabaseURL.path) {
-            try? removeManagedFileIfPresent(storage.previousDatabaseURL)
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: storage.finalDatabaseURL.path),
+           fileManager.fileExists(atPath: storage.previousDatabaseURL.path) {
+            do {
+                try OtzariaDatabaseAccessController.shared.validateDatabase(
+                    at: storage.finalDatabaseURL
+                )
+            } catch {
+                try rollbackPromotion(storage: storage)
+            }
+        }
+    }
+
+    func completePromotion(storage: OtzariaDatabaseStorage) {
+        do {
+            try promotePendingManifest(storage: storage)
+        } catch {
+            // Activation already reopened the validated database. Metadata failure
+            // must not turn a safe install into an unusable one.
+            print("[OtzariaBootstrap] installation manifest finalization failed: \(error.localizedDescription)")
+        }
+        for url in [storage.previousDatabaseURL, storage.previousInstallationManifestURL] {
+            do {
+                try removeManagedFileIfPresent(url)
+            } catch {
+                print("[OtzariaBootstrap] rollback cleanup failed for \(url.lastPathComponent): \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func rollbackPromotion(storage: OtzariaDatabaseStorage) throws {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: storage.previousDatabaseURL.path) {
+            try removeManagedFileIfPresent(storage.finalDatabaseURL)
+            try fileManager.moveItem(
+                at: storage.previousDatabaseURL,
+                to: storage.finalDatabaseURL
+            )
+        } else {
+            try removeManagedFileIfPresent(storage.finalDatabaseURL)
+        }
+        try? removeManagedFileIfPresent(storage.pendingInstallationManifestURL)
+        if fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path) {
+            try? removeManagedFileIfPresent(storage.installationManifestURL)
+            try fileManager.moveItem(
+                at: storage.previousInstallationManifestURL,
+                to: storage.installationManifestURL
+            )
         }
     }
 }
@@ -239,6 +354,13 @@ private extension OtzariaDatabaseInstaller {
         guard !fileManager.fileExists(atPath: storage.finalDatabaseURL.path),
               fileManager.fileExists(atPath: storage.previousDatabaseURL.path) else { return }
         try fileManager.moveItem(at: storage.previousDatabaseURL, to: storage.finalDatabaseURL)
+        if fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path) {
+            try? removeManagedFileIfPresent(storage.installationManifestURL)
+            try fileManager.moveItem(
+                at: storage.previousInstallationManifestURL,
+                to: storage.installationManifestURL
+            )
+        }
     }
 
     func removeManagedFileIfPresent(_ url: URL) throws {
@@ -261,5 +383,35 @@ private extension OtzariaDatabaseInstaller {
         encoder.dateEncodingStrategy = .iso8601
         try encoder.encode(manifest).write(to: url, options: .atomic)
         try storage.excludeFromBackup(url)
+    }
+
+    func promotePendingManifest(storage: OtzariaDatabaseStorage) throws {
+        let fileManager = FileManager.default
+        guard fileManager.fileExists(atPath: storage.pendingInstallationManifestURL.path) else {
+            return
+        }
+        if fileManager.fileExists(atPath: storage.installationManifestURL.path) {
+            try removeManagedFileIfPresent(storage.previousInstallationManifestURL)
+            try fileManager.moveItem(
+                at: storage.installationManifestURL,
+                to: storage.previousInstallationManifestURL
+            )
+        }
+        do {
+            try fileManager.moveItem(
+                at: storage.pendingInstallationManifestURL,
+                to: storage.installationManifestURL
+            )
+            try storage.excludeFromBackup(storage.installationManifestURL)
+        } catch {
+            if !fileManager.fileExists(atPath: storage.installationManifestURL.path),
+               fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path) {
+                try? fileManager.moveItem(
+                    at: storage.previousInstallationManifestURL,
+                    to: storage.installationManifestURL
+                )
+            }
+            throw error
+        }
     }
 }

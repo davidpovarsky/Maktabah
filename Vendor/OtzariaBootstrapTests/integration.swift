@@ -66,6 +66,13 @@ func compress(_ source: Data, to url: URL) throws {
     try output.write(to: url)
 }
 
+func databaseMarker(at url: URL) throws -> String {
+    let database = try SQLiteDatabase(path: url.path)
+    return try database.fetch(query: "SELECT title FROM book ORDER BY id LIMIT 1") {
+        $0.string(at: 0) ?? ""
+    }.first ?? ""
+}
+
 func release(size: Int64, id: Int64) -> OtzariaLibraryRelease {
     OtzariaLibraryRelease(
         id: id,
@@ -96,6 +103,13 @@ AppConfig.appSupportDir = appSupport
 let storage = OtzariaDatabaseStorage(appSupportRoot: appSupport, downloadsRoot: downloads)
 let installer = OtzariaDatabaseInstaller()
 let extractor = OtzariaZstdStreamExtractor()
+expect(
+    OtzariaDatabaseStorage.requiredExtractionCapacity(
+        outputEstimate: 10,
+        existingFinalSize: 20
+    ) == 30 + OtzariaDatabaseStorage.safetyReserve,
+    "replacement free-space calculation retains old final"
+)
 
 let currentProjection = OtzariaBookSchemaCompatibility.projection(
     columns: ["id", "title", "categoryId"]
@@ -147,8 +161,23 @@ let prepared = try installer.prepare(
 )
 let finalURL = try installer.promote(prepared, storage: storage)
 expect(FileManager.default.fileExists(atPath: finalURL.path), "initial atomic promotion")
+installer.completePromotion(storage: storage)
 try OtzariaDatabaseAccessController.shared.validateDatabase(at: finalURL)
 let installedBeforeFailure = try Data(contentsOf: finalURL)
+
+let missingPrepared = OtzariaPreparedDatabaseInstallation(
+    release: release(size: 1, id: 99),
+    stagingURL: storage.stagingDatabaseURL,
+    databaseFileSize: 0,
+    extractionElapsedSeconds: 0,
+    validationElapsedSeconds: 0
+)
+do {
+    _ = try installer.promote(missingPrepared, storage: storage)
+    fatalError("missing validated staging was promoted")
+} catch {}
+let markerAfterMissingStaging = try databaseMarker(at: finalURL)
+expect(markerAfterMissingStaging == "first", "missing staging never deletes current database")
 
 let missingURL = root.appendingPathComponent("missing.sqlite")
 let missingSource = try makeSQLite(at: missingURL, includeAllTables: false, marker: "invalid")
@@ -183,8 +212,30 @@ let staleWAL = URL(fileURLWithPath: finalURL.path + "-wal")
 try Data("stale".utf8).write(to: staleWAL)
 _ = try installer.promote(preparedSecond, storage: storage)
 expect(!FileManager.default.fileExists(atPath: staleWAL.path), "stale managed WAL removed")
+expect(FileManager.default.fileExists(atPath: storage.previousDatabaseURL.path), "rollback retained until activation")
+try installer.rollbackPromotion(storage: storage)
+let markerAfterRollback = try databaseMarker(at: finalURL)
+expect(markerAfterRollback == "first", "activation failure restores previous database")
+expect(!FileManager.default.fileExists(atPath: storage.previousDatabaseURL.path), "rollback consumes previous database")
+
+let preparedSecondAfterRollback = try installer.prepare(
+    archiveURL: secondArchive,
+    release: release(size: Int64((try Data(contentsOf: secondArchive)).count), id: 3),
+    storage: storage,
+    progress: { _, _ in },
+    validationStarted: {}
+)
+_ = try installer.promote(preparedSecondAfterRollback, storage: storage)
+expect(FileManager.default.fileExists(atPath: storage.previousDatabaseURL.path), "interrupted update keeps rollback copy")
+try installer.recoverInterruptedInstallation(storage: storage)
+expect(FileManager.default.fileExists(atPath: storage.previousDatabaseURL.path), "recovery does not delete rollback before reopen")
+let markerAfterRecovery = try databaseMarker(at: finalURL)
+expect(markerAfterRecovery == "second", "recovery keeps validated promoted database")
+installer.completePromotion(storage: storage)
+expect(!FileManager.default.fileExists(atPath: storage.previousDatabaseURL.path), "successful reopen cleans rollback")
 try OtzariaDatabaseAccessController.shared.validateDatabase(at: finalURL)
 expect(FileManager.default.fileExists(atPath: storage.installationManifestURL.path), "manifest written")
+expect(!FileManager.default.fileExists(atPath: storage.pendingInstallationManifestURL.path), "pending manifest finalized")
 
 let controller = OtzariaDatabaseAccessController.shared
 _ = try controller.activateManagedDatabase(at: finalURL)

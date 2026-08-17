@@ -130,9 +130,18 @@ final class OtzariaMaktabahBridge {
     }
 
     func activateManagedDatabase(at url: URL) throws {
-        resetConnection()
+        // Prove that the promoted file can be reopened before changing the
+        // persisted selection or discarding an external bookmark.
+        let candidate = try SQLiteDatabase(
+            path: url.path,
+            flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
+        )
         _ = try accessController.activateManagedDatabase(at: url)
-        _ = try openIfNeeded()
+        lock.lock()
+        database = candidate
+        openedDatabaseURL = url
+        readingUnitService = nil
+        lock.unlock()
     }
 
     @discardableResult
