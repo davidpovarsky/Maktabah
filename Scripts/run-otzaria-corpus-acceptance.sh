@@ -26,13 +26,35 @@ if [ "${OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD:-0}" != "1" ]; then
     CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
 fi
 
-RUNTIME="$(xcrun simctl list runtimes available -j | python3 -c 'import json,sys; r=[x["identifier"] for x in json.load(sys.stdin)["runtimes"] if "iOS" in x["identifier"] and x["isAvailable"]]; print(r[-1])')"
-DEVICE_TYPE="$(xcrun simctl list devicetypes -j | python3 -c 'import json,sys; d=[x["identifier"] for x in json.load(sys.stdin)["devicetypes"] if "iPad Pro" in x["name"]]; print(d[-1])')"
-UDID="$(xcrun simctl create Maktabah-Otzaria-Corpus-Acceptance "$DEVICE_TYPE" "$RUNTIME")"
-cleanup() { xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; xcrun simctl delete "$UDID" >/dev/null 2>&1 || true; }
+UDID="$(python3 <<'PY'
+import json
+import subprocess
+
+def simctl(*arguments):
+    return json.loads(subprocess.check_output(["xcrun", "simctl", *arguments, "-j"]))
+
+runtimes = {
+    runtime["identifier"]: tuple(int(part) for part in runtime["version"].split("."))
+    for runtime in simctl("list", "runtimes", "available")["runtimes"]
+    if runtime.get("isAvailable") and "iOS" in runtime["identifier"]
+}
+devices = simctl("list", "devices", "available")["devices"]
+candidates = []
+for runtime, version in runtimes.items():
+    for device in devices.get(runtime, []):
+        if device.get("isAvailable"):
+            iphone_preference = 1 if device.get("name", "").startswith("iPhone") else 0
+            candidates.append((version, iphone_preference, device["udid"]))
+if not candidates:
+    raise SystemExit("No compatible available iOS Simulator device")
+print(max(candidates)[2])
+PY
+)"
+echo "Using compatible iOS Simulator $UDID"
+cleanup() { xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
-xcrun simctl boot "$UDID"
+xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
 xcrun simctl bootstatus "$UDID" -b
 APP="${OTZARIA_CORPUS_ACCEPTANCE_APP_PATH:-$ROOT/build/OtzariaCorpusAcceptance/Build/Products/Debug-iphonesimulator/Maktabah.app}"
 test -d "$APP"
