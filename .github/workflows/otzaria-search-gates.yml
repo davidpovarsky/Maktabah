@@ -85,9 +85,9 @@ jobs:
         run: cargo test --locked --no-default-features --features semantic-mock --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
       - name: Lint bridge with warnings denied
         run: cargo clippy --locked --all-targets --no-default-features --features semantic-mock --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml -- -D warnings
-      - name: Confirm pristine upstream checkout
+      - name: Confirm exact pinned and pristine upstream checkout
         if: always()
-        run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
+        run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh --verify-only
 
   bootstrap-tests-macos:
     runs-on: macos-26
@@ -175,6 +175,11 @@ jobs:
             rm -rf Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework Vendor/OtzariaSearchEngine/ios_bridge/target
             echo "valid=false" >> "$GITHUB_OUTPUT"
           fi
+      # The framework cache stores build products only. The Cargo graph resolves
+      # path dependencies into the upstream checkout, so it must be materialized
+      # from the pin even when the cache hit skips the XCFramework build.
+      - name: Materialize pinned Otzaria upstream checkout
+        run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh
       - name: Build production semantic XCFramework
         if: steps.framework-valid.outputs.valid != 'true'
         run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
@@ -192,9 +197,9 @@ jobs:
           path: build/artifacts/OtzariaSearchEngine.xcframework.tar
           compression-level: 0
           if-no-files-found: error
-      - name: Confirm pristine upstream checkout
+      - name: Confirm exact pinned and pristine upstream checkout
         if: always()
-        run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
+        run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh --verify-only
 
   zayit-framework-macos:
     runs-on: macos-26
@@ -331,9 +336,9 @@ jobs:
           path: build/logs
           if-no-files-found: warn
           compression-level: 0
-      - name: Confirm pristine upstream checkout
-        if: always()
-        run: test -z "$(git -C Vendor/OtzariaSearchEngine/Checkout/otzaria_search_engine status --porcelain)"
+      # This job consumes prebuilt framework artifacts and never materializes the
+      # upstream checkout, so it owns no upstream state to verify. The pin and
+      # cleanliness gates live in adapter-linux and otzaria-framework-macos.
 
   cache-summary:
     if: always()
