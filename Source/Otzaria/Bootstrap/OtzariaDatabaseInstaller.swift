@@ -25,6 +25,11 @@ struct OtzariaDatabaseStorage: Sendable {
             .appendingPathComponent("Downloads", isDirectory: true)
     }
 
+    init(appSupportRoot: URL, downloadsRoot: URL) {
+        self.appSupportRoot = appSupportRoot
+        self.downloadsRoot = downloadsRoot
+    }
+
     var otzariaRoot: URL {
         appSupportRoot.appendingPathComponent("Otzaria", isDirectory: true)
     }

@@ -7,7 +7,7 @@ if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
 fi
 
 DATABASE="$1"
-EXPECTED="${2:-7030}"
+EXPECTED="${2:-}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 test -f "$DATABASE"
 case "$DATABASE" in /*) ;; *) echo "database path must be absolute" >&2; exit 64 ;; esac

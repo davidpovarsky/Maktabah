@@ -8,6 +8,14 @@ on:
     paths:
       - "Vendor/OtzariaSearchEngine/**"
       - "Source/Otzaria/Search/**"
+      - "Source/Otzaria/Bootstrap/**"
+      - "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
+      - "Source/Otzaria/App/OtzariaAppContainer.swift"
+      - "Source/iOS/Managers/BootstrapManager.swift"
+      - "Source/iOS/Views/Bootstrap/BootstrapView.swift"
+      - "Source/View/CoreDownloadProgressView.swift"
+      - "Source/Managers/App Config/ZstdShim.swift"
+      - "Vendor/OtzariaBootstrapTests/**"
       - "Source/iOS/Views/iPadLayout.swift"
       - "Source/iOS/MaktabahApp.swift"
       - "Maktabah.xcodeproj/project.pbxproj"
@@ -16,6 +24,14 @@ on:
     paths:
       - "Vendor/OtzariaSearchEngine/**"
       - "Source/Otzaria/Search/**"
+      - "Source/Otzaria/Bootstrap/**"
+      - "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
+      - "Source/Otzaria/App/OtzariaAppContainer.swift"
+      - "Source/iOS/Managers/BootstrapManager.swift"
+      - "Source/iOS/Views/Bootstrap/BootstrapView.swift"
+      - "Source/View/CoreDownloadProgressView.swift"
+      - "Source/Managers/App Config/ZstdShim.swift"
+      - "Vendor/OtzariaBootstrapTests/**"
       - "Source/iOS/Views/iPadLayout.swift"
       - ".github/workflows/otzaria-search-gates.yml"
   schedule:
@@ -58,6 +74,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+      - name: Test Otzaria release and resume policies
+        run: |
+          xcrun swiftc \
+            Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
+            Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift \
+            Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift \
+            Vendor/OtzariaBootstrapTests/main.swift \
+            -o "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
+          "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
+      - name: Test streaming zstd, SQLite validation and atomic install
+        run: |
+          brew list zstd >/dev/null 2>&1 || brew install zstd
+          ZSTD_PREFIX="$(brew --prefix zstd)"
+          xcrun swiftc \
+            'Source/Managers/App Config/ZstdShim.swift' \
+            Source/Managers/Database/SQLiteDatabase.swift \
+            Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
+            Source/Otzaria/Bootstrap/OtzariaZstdStreamExtractor.swift \
+            Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift \
+            Source/Otzaria/Core/OtzariaSecurityScopedAccess.swift \
+            Source/Otzaria/Core/OtzariaSecurityScopedBookmarkStore.swift \
+            Source/Otzaria/Core/OtzariaDatabaseAccessController.swift \
+            Vendor/OtzariaBootstrapTests/integration.swift \
+            -L "$ZSTD_PREFIX/lib" \
+            -lzstd \
+            -lsqlite3 \
+            -Xlinker -rpath -Xlinker "$ZSTD_PREFIX/lib" \
+            -o "$RUNNER_TEMP/otzaria-bootstrap-integration-tests"
+          "$RUNNER_TEMP/otzaria-bootstrap-integration-tests"
       - name: Test Swift recovery and batching policies
         run: |
           xcrun swiftc \

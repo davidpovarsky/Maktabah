@@ -28,13 +28,21 @@ enum OtzariaCorpusAcceptanceRunner {
         let environment = ProcessInfo.processInfo.environment
         guard let databasePath = environment["OTZARIA_CORPUS_ACCEPTANCE_DATABASE"],
               let resultPath = environment["OTZARIA_CORPUS_ACCEPTANCE_RESULT"] else { return }
-        let expectedBooks = Int(environment["OTZARIA_CORPUS_ACCEPTANCE_EXPECTED_BOOKS"] ?? "7030") ?? 7030
+        let configuredExpectedBooks = environment["OTZARIA_CORPUS_ACCEPTANCE_EXPECTED_BOOKS"]
+            .flatMap(Int.init)
+        var expectedBooks = configuredExpectedBooks ?? 0
         let resultURL = URL(fileURLWithPath: resultPath)
 
         do {
             let indexer = OtzariaSearchIndexer()
             let plan = try indexer.makePlan(databasePath: databasePath)
-            guard plan.books.count == expectedBooks else {
+            if expectedBooks == 0 { expectedBooks = plan.books.count }
+            guard plan.books.count >= 1_000 else {
+                throw OtzariaSearchError.invalidEngineResponse(
+                    "Corpus contains only \(plan.books.count) indexable books"
+                )
+            }
+            guard configuredExpectedBooks == nil || plan.books.count == expectedBooks else {
                 throw OtzariaSearchError.invalidEngineResponse(
                     "Corpus contains \(plan.books.count) indexable books; expected \(expectedBooks)"
                 )

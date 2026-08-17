@@ -61,8 +61,13 @@ actor OtzariaDatabaseDownloader {
             var metadata = try loadMetadata(from: sidecarURL)
                 ?? OtzariaDownloadResumeMetadata(release: release)
             let offset = Self.fileSize(at: partURL)
+            let reusableOffset = OtzariaDownloadPolicy.reusableOffset(
+                metadata: metadata,
+                release: release,
+                localSize: offset
+            )
             let validator = metadata.resumeValidator
-            let canResume = offset > 0 && validator != nil
+            let canResume = reusableOffset > 0 && reusableOffset < release.asset.compressedSize
 
             if offset > 0 && !canResume {
                 try invalidate(partURL: partURL, sidecarURL: sidecarURL)
@@ -70,7 +75,7 @@ actor OtzariaDatabaseDownloader {
                 try writeMetadata(metadata, to: sidecarURL)
             }
 
-            let actualOffset = canResume ? offset : 0
+            let actualOffset = canResume ? reusableOffset : 0
             let delegate = OtzariaDownloadRoundDelegate(
                 release: release,
                 partURL: partURL,
@@ -200,9 +205,12 @@ actor OtzariaDatabaseDownloader {
     static func existingPartialSize(workspaceURL: URL, release: OtzariaLibraryRelease) -> Int64 {
         let partURL = workspaceURL.appendingPathComponent(Self.partFileName)
         let sidecarURL = workspaceURL.appendingPathComponent(Self.sidecarFileName)
-        guard let metadata = try? loadMetadata(from: sidecarURL),
-              metadata.matches(release) else { return 0 }
-        return min(fileSize(at: partURL), release.asset.compressedSize)
+        let metadata = try? loadMetadata(from: sidecarURL)
+        return OtzariaDownloadPolicy.reusableOffset(
+            metadata: metadata,
+            release: release,
+            localSize: fileSize(at: partURL)
+        )
     }
 }
 
@@ -370,32 +378,28 @@ private final class OtzariaDownloadRoundDelegate: NSObject, URLSessionDataDelega
             "resumeOffset=\(requestedOffset) host=\(http.url?.host ?? "unknown")"
         )
 
-        if http.statusCode == 416 {
-            let localSize = OtzariaDatabaseDownloader.fileSize(at: partURL)
-            if localSize == release.asset.compressedSize {
-                result = .complete
-            } else {
-                result = .restartFresh("HTTP 416 did not prove that the local file is complete")
-            }
+        let responseAction = OtzariaDownloadPolicy.responseAction(
+            statusCode: http.statusCode,
+            requestedOffset: requestedOffset,
+            localSize: OtzariaDatabaseDownloader.fileSize(at: partURL),
+            expectedSize: release.asset.compressedSize,
+            contentRange: http.value(forHTTPHeaderField: "Content-Range")
+        )
+        switch responseAction {
+        case .complete:
+            result = .complete
             completionHandler(.cancel)
             return
-        }
-
-        guard http.statusCode == 200 || http.statusCode == 206 else {
-            terminalError = OtzariaDatabaseBootstrapError.downloadHTTPError(http.statusCode)
+        case .restartFresh(let reason):
+            result = .restartFresh(reason)
             completionHandler(.cancel)
             return
-        }
-
-        if http.statusCode == 206 {
-            guard requestedOffset > 0,
-                  let range = Self.parseContentRange(http.value(forHTTPHeaderField: "Content-Range")),
-                  range.start == requestedOffset,
-                  range.total == release.asset.compressedSize else {
-                result = .restartFresh("Content-Range did not match the requested offset or asset size")
-                completionHandler(.cancel)
-                return
-            }
+        case .failHTTP(let status):
+            terminalError = OtzariaDatabaseBootstrapError.downloadHTTPError(status)
+            completionHandler(.cancel)
+            return
+        case .acceptFresh, .append:
+            break
         }
 
         let responseETag = Self.strongETag(http.value(forHTTPHeaderField: "ETag"))
@@ -512,18 +516,4 @@ private final class OtzariaDownloadRoundDelegate: NSObject, URLSessionDataDelega
         return value
     }
 
-    private static func parseContentRange(_ value: String?) -> (start: Int64, end: Int64, total: Int64)? {
-        guard let value else { return nil }
-        let expression = try? NSRegularExpression(pattern: #"^bytes ([0-9]+)-([0-9]+)/([0-9]+)$"#)
-        let range = NSRange(value.startIndex..<value.endIndex, in: value)
-        guard let match = expression?.firstMatch(in: value, range: range), match.numberOfRanges == 4,
-              let startRange = Range(match.range(at: 1), in: value),
-              let endRange = Range(match.range(at: 2), in: value),
-              let totalRange = Range(match.range(at: 3), in: value),
-              let start = Int64(value[startRange]),
-              let end = Int64(value[endRange]),
-              let total = Int64(value[totalRange]),
-              start <= end, end < total else { return nil }
-        return (start, end, total)
-    }
 }
