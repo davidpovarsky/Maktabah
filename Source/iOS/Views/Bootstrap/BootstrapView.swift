@@ -38,7 +38,7 @@ struct iOSBootstrapView: View {
             }
         }
         .task {
-            bootstrapManager.prepareIfNeeded()
+            await bootstrapManager.prepareIfNeeded()
         }
         .onReceive(NotificationCenter.default.publisher(for: .requireCoreDownload)) { notification in
             let isCancellable = notification.userInfo?["isCancellable"] as? Bool ?? false

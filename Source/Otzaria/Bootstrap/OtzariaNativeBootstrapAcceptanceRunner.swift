@@ -267,7 +267,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
                 from: Data(contentsOf: URL(fileURLWithPath: priorPath))
             )
             report.phase = "restore"
-            let restored = try OtzariaBootstrapAdapter.restoreForAppLaunch()
+            let restored = try await OtzariaBootstrapAdapter.restoreForAppLaunch()
             let storage = try OtzariaDatabaseStorage()
             report.restoreAfterRelaunch = restored
             try populateDatabaseState(&report, storage: storage)

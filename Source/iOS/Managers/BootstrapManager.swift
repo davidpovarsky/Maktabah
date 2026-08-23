@@ -27,12 +27,12 @@ final class iOSBootstrapManager {
     private var managedDownloadTask: Task<Void, Never>?
     private var managedDownloadGeneration = UUID()
 
-    func prepareIfNeeded() {
+    func prepareIfNeeded() async {
         guard !didPrepare else { return }
         didPrepare = true
 
         do {
-            if try OtzariaBootstrapAdapter.restoreForAppLaunch() {
+            if try await OtzariaBootstrapAdapter.restoreForAppLaunch() {
                 finishSetup()
                 return
             }
@@ -184,7 +184,9 @@ final class iOSBootstrapManager {
         self.isCancellable = isCancellable
         didPrepare = false
         isReady = false
-        prepareIfNeeded()
+        Task { [weak self] in
+            await self?.prepareIfNeeded()
+        }
     }
 
     func cancelDownload() {

@@ -78,7 +78,7 @@ final class OtzariaDatabaseAccessController {
         // for crash recovery even if the selection marker was not yet persisted.
         if FileManager.default.fileExists(atPath: managedURL.path) {
             try verifyExistsAndIsReadable(managedURL)
-            try validateDatabase(at: managedURL)
+            try validateManagedDatabaseForRestore(at: managedURL)
             defaults.set(true, forKey: managedSelectionKey)
             defaults.set(false, forKey: legacySelectionKey)
             defaults.set(true, forKey: legacyMigrationCompletedKey)
@@ -120,7 +120,7 @@ final class OtzariaDatabaseAccessController {
             throw AccessError.invalidDatabase
         }
         try verifyExistsAndIsReadable(url)
-        try validateDatabase(at: url)
+        try validateManagedDatabaseForRestore(at: url)
 
         scopedAccess?.stop()
         scopedAccess = nil
@@ -193,6 +193,71 @@ final class OtzariaDatabaseAccessController {
             throw AccessError.invalidDatabase
         }
 
+        try validateRequiredSchema(in: database)
+    }
+
+    /// Managed databases have already passed the full SQLite integrity scan
+    /// before atomic promotion. Cold launch must not repeat that multi-gigabyte
+    /// scan on the scene-creation path.
+    private func validateManagedDatabaseForRestore(at url: URL) throws {
+        try verifyManagedInstallIdentityIfPresent(at: url)
+
+        let database = try SQLiteDatabase(
+            path: url.path,
+            flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
+        )
+        try validateRequiredSchema(in: database)
+    }
+
+    private func verifyManagedInstallIdentityIfPresent(at databaseURL: URL) throws {
+        let root = databaseURL.deletingLastPathComponent()
+        let pendingManifestURL = root.appendingPathComponent(
+            "seforim-installation.json.installing"
+        )
+        let previousDatabaseURL = root.appendingPathComponent("seforim.db.previous")
+        let manifestURLs = [
+            pendingManifestURL,
+            root.appendingPathComponent("seforim-installation.json"),
+        ]
+        // If promotion stopped before pending metadata was written, recovery
+        // has already performed the full integrity scan off the main actor.
+        // The stable manifest may still describe the rollback database.
+        if FileManager.default.fileExists(atPath: previousDatabaseURL.path),
+           !FileManager.default.fileExists(atPath: pendingManifestURL.path) {
+            return
+        }
+        guard let manifestURL = manifestURLs.first(where: {
+            FileManager.default.fileExists(atPath: $0.path)
+        }) else {
+            // Preserve compatibility with managed databases installed before
+            // installation manifests were introduced. Their schema is still
+            // checked below, without a full integrity scan during launch.
+            return
+        }
+
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let manifest = try decoder.decode(
+                OtzariaDatabaseInstallationManifest.self,
+                from: Data(contentsOf: manifestURL)
+            )
+            let attributes = try FileManager.default.attributesOfItem(atPath: databaseURL.path)
+            let actualSize = (attributes[.size] as? NSNumber)?.int64Value ?? -1
+            guard manifest.repository == OtzariaLibraryRelease.repository,
+                  manifest.assetName == OtzariaLibraryRelease.databaseAssetName,
+                  manifest.databaseFileSize > 0,
+                  manifest.databaseFileSize == actualSize else {
+                throw AccessError.invalidDatabase
+            }
+        } catch let error as AccessError {
+            throw error
+        } catch {
+            throw AccessError.invalidDatabase
+        }
+    }
+
+    private func validateRequiredSchema(in database: SQLiteDatabase) throws {
         let requiredTables = Set(["book", "line", "category"])
         let availableTables = Set(try database.fetch(
             query: "SELECT name FROM sqlite_master WHERE type = 'table'"

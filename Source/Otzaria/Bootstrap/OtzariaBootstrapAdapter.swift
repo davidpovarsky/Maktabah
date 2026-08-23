@@ -2,10 +2,14 @@ import Foundation
 
 @MainActor
 enum OtzariaBootstrapAdapter {
-    static func restoreForAppLaunch() throws -> Bool {
+    static func restoreForAppLaunch() async throws -> Bool {
         let storage = try OtzariaDatabaseStorage()
         let installer = OtzariaDatabaseInstaller()
-        try installer.recoverInterruptedInstallation(storage: storage)
+        // Ambiguous interrupted promotion may require a full SQLite scan. Keep
+        // that work off the main actor so iOS can finish creating the scene.
+        try await Task.detached(priority: .utility) {
+            try installer.recoverInterruptedInstallation(storage: storage)
+        }.value
         let fileManager = FileManager.default
         let interruptedPromotion = fileManager.fileExists(
             atPath: storage.pendingInstallationManifestURL.path

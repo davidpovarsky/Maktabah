@@ -32,7 +32,12 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) {
     if !condition() { fatalError("failed: \(message)") }
 }
 
-func makeSQLite(at url: URL, includeAllTables: Bool, marker: String) throws -> Data {
+func makeSQLite(
+    at url: URL,
+    includeAllTables: Bool,
+    marker: String,
+    launchRegressionPayloadBytes: Int = 0
+) throws -> Data {
     do {
         let database = try SQLiteDatabase(path: url.path)
         try database.execute(query: "CREATE TABLE book (id INTEGER PRIMARY KEY, title TEXT)")
@@ -40,6 +45,13 @@ func makeSQLite(at url: URL, includeAllTables: Bool, marker: String) throws -> D
         if includeAllTables {
             try database.execute(query: "CREATE TABLE line (id INTEGER PRIMARY KEY, bookId INTEGER, content TEXT)")
             try database.execute(query: "CREATE TABLE category (id INTEGER PRIMARY KEY, title TEXT)")
+        }
+        if launchRegressionPayloadBytes > 0 {
+            try database.execute(query: "CREATE TABLE launch_regression_payload (content BLOB)")
+            try database.execute(
+                query: "INSERT INTO launch_regression_payload (content) VALUES (zeroblob(?))",
+                parameters: [launchRegressionPayloadBytes]
+            )
         }
     }
     return try Data(contentsOf: url)
@@ -198,7 +210,12 @@ expect(installedAfterFailure == installedBeforeFailure, "old DB survives failed 
 expect(!FileManager.default.fileExists(atPath: storage.stagingDatabaseURL.path), "failed staging is removed")
 
 let secondURL = root.appendingPathComponent("second.sqlite")
-let secondSource = try makeSQLite(at: secondURL, includeAllTables: true, marker: "second")
+let secondSource = try makeSQLite(
+    at: secondURL,
+    includeAllTables: true,
+    marker: "second",
+    launchRegressionPayloadBytes: 32 * 1_024 * 1_024
+)
 let secondArchive = root.appendingPathComponent("second.sqlite.zst")
 try compress(secondSource, to: secondArchive)
 let preparedSecond = try installer.prepare(
@@ -213,6 +230,13 @@ try Data("stale".utf8).write(to: staleWAL)
 _ = try installer.promote(preparedSecond, storage: storage)
 expect(!FileManager.default.fileExists(atPath: staleWAL.path), "stale managed WAL removed")
 expect(FileManager.default.fileExists(atPath: storage.previousDatabaseURL.path), "rollback retained until activation")
+let promotionController = OtzariaDatabaseAccessController.shared
+_ = try promotionController.activateManagedDatabase(at: finalURL)
+expect(
+    promotionController.currentURL?.standardizedFileURL == finalURL.standardizedFileURL,
+    "pending manifest identifies promoted database before finalization"
+)
+promotionController.clearSelection()
 try installer.rollbackPromotion(storage: storage)
 let markerAfterRollback = try databaseMarker(at: finalURL)
 expect(markerAfterRollback == "first", "activation failure restores previous database")
@@ -243,8 +267,11 @@ if case .managedInternal? = controller.source {} else {
     fatalError("failed: managed database activation")
 }
 controller.clearSelection()
+let restoreStarted = Date()
 let restoredManaged = try controller.restoreIfNeeded()
+let restoreElapsed = Date().timeIntervalSince(restoreStarted)
 expect(restoredManaged?.standardizedFileURL == finalURL.standardizedFileURL, "managed bootstrap restore")
+expect(restoreElapsed < 1, "managed launch restore stays within its one-second latency budget")
 controller.clearSelection(deleteManagedInternalDatabase: true)
 let restoredAfterRemoval = try controller.restoreIfNeeded()
 expect(restoredAfterRemoval == nil, "no database returns to bootstrap confirmation")
