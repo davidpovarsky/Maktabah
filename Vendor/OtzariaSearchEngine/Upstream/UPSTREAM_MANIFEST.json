@@ -1,13 +1,13 @@
 {
   "branch": "refactor",
-  "commit": "c37e32e8d95aa499b208ee6316817de2a333fafa",
+  "commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
   "default_generation_order": 5,
   "engine_package_version": "0.1.0",
-  "index_schema_version": 3,
+  "index_schema_version": 4,
   "repository": "Otzaria/otzaria_search_engine",
   "resources": {
     "manifest": "RESOURCE_MANIFEST.json"
   },
   "semantic_sidecar_revision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
-  "synced_at": "2026-08-16T23:12:39Z"
+  "synced_at": "2026-08-23T22:08:01Z"
 }

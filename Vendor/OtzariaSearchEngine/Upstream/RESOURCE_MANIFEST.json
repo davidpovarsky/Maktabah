@@ -1,6 +1,6 @@
 {
   "reference_branch": "dev",
-  "reference_commit": "799e4a797a770e45b13460b64a9fad0c0c18c144",
+  "reference_commit": "ace537b26c0ccac407716dc4af3166178a43ed4f",
   "reference_repository": "Otzaria/otzaria",
   "resources": [
     {
@@ -9,7 +9,7 @@
       "name": "Aramaic translation dictionary",
       "purpose": "Aramaic-to-Hebrew expansion for advanced search",
       "sha256": "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69",
-      "source_commit": "799e4a797a770e45b13460b64a9fad0c0c18c144",
+      "source_commit": "ace537b26c0ccac407716dc4af3166178a43ed4f",
       "source_path": "assets/dictionary.json",
       "source_repository": "Otzaria/otzaria"
     },
@@ -19,7 +19,7 @@
       "name": "Acronyms dictionary",
       "purpose": "Acronym expansion for advanced search",
       "sha256": "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f",
-      "source_commit": "799e4a797a770e45b13460b64a9fad0c0c18c144",
+      "source_commit": "ace537b26c0ccac407716dc4af3166178a43ed4f",
       "source_path": "assets/Acronyms.json",
       "source_repository": "Otzaria/otzaria"
     },
