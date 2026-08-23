@@ -1101,7 +1101,7 @@ mod tests {
             value["value"]["upstreamCommit"],
             env!("OTZARIA_UPSTREAM_COMMIT")
         );
-        assert_eq!(value["value"]["indexSchemaVersion"], 3);
+        assert_eq!(value["value"]["indexSchemaVersion"], 4);
         assert_eq!(value["value"]["defaultGenerationOrder"], 5);
     }
 
@@ -1441,7 +1441,7 @@ mod tests {
 
         let compatibility = decode_ffi(otzaria_search_engine_check_compatibility(path.as_ptr()));
         assert_eq!(compatibility["value"]["compatible"], true);
-        assert_eq!(compatibility["value"]["requiredSchemaVersion"], 3);
+        assert_eq!(compatibility["value"]["requiredSchemaVersion"], 4);
         std::fs::remove_dir_all(index).unwrap();
     }
 }
