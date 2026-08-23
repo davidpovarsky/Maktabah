@@ -1,5 +1,21 @@
 # AGENTS.md — Repository Agent Instructions
 
+## Maktabah upstream and Otzaria integration policy
+
+Maktabah is the upstream UI and application foundation. Otzaria is a downstream integration that supplies database, content, search, and related engine capabilities. All implementation work must preserve that boundary.
+
+- Preserve Maktabah's original interface, visual language, navigation, components, interaction patterns, and user experience wherever practical.
+- Use Otzaria as a backend engine only. Do not introduce a parallel Otzaria-style application interface when the capability can be surfaced through Maktabah's existing UI.
+- Do not replace, remove, or broadly rewrite Maktabah's existing search. Add Otzaria-backed search through isolated services and the smallest necessary integration hooks, while preserving existing search behavior unless the user explicitly requests a particular change.
+- Keep all Otzaria code isolated in clearly named downstream modules, directories, adapters, services, or extensions. Do not mix Otzaria business logic into upstream-owned Maktabah files.
+- Integrate new Otzaria features into Maktabah's existing screens and components whenever possible, so the result continues to look and behave like Maktabah while using Otzaria's data and engines underneath.
+- Prefer additive composition, protocols, adapters, dependency injection, extensions, and narrow hooks over invasive changes to upstream code.
+- Modify upstream-owned Maktabah files only when an entry point, import, dependency registration, navigation route, lifecycle connection, or other narrow hook is unavoidable. Keep every such edit minimal, localized, and free of unrelated refactoring or formatting.
+- Do not duplicate, rename, move, reformat, or broadly rewrite upstream files merely to add Otzaria behavior.
+- For substantial changes, report which files are upstream-owned, which isolated Otzaria files were added, every unavoidable upstream-file edit, and any remaining merge risk.
+
+The intended product is Maktabah's original interface powered by Otzaria's database and engines—not two separate applications joined together. Optimize every change for straightforward future merges from Maktabah upstream.
+
 ## GitHub Actions policy
 
 - CI, builds, tests, audits, archives, and IPA generation run only on explicit user request.
