@@ -65,13 +65,22 @@ RESULT="$CONTAINER/Documents/otzaria-corpus-acceptance.json"
 STARTED_AT="$(date +%s)"
 SAMPLER_PID=""
 if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES:-}" ]; then
+  : > "$OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES"
   (
+    directory_bytes() {
+      if [ -d "$1" ]; then
+        du -sk "$1" | awk 'NR == 1 { printf "%.0f", $1 * 1024 }'
+      else
+        printf '0'
+      fi
+    }
+    INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex"
     while true; do
       printf '{"epoch":%s,"databaseBytes":%s,"indexRootBytes":%s,"workspaceBytes":%s}\n' \
         "$(date +%s)" \
         "$(stat -f %z "$CONTAINER/Documents/otzaria-corpus.db")" \
-        "$(( $(du -sk "$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex" 2>/dev/null | awk '{print $1+0}') * 1024 ))" \
-        "$(( $(du -sk "$GITHUB_WORKSPACE" 2>/dev/null | awk '{print $1+0}') * 1024 ))" \
+        "$(directory_bytes "$INDEX_ROOT")" \
+        "$(directory_bytes "$GITHUB_WORKSPACE")" \
         >> "$OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES"
       sleep 30
     done

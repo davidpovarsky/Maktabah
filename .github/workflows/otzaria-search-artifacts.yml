@@ -89,6 +89,7 @@ jobs:
         run: |
           INDEX="$(cat build/logs/otzaria-index-path.txt)"
           PEAK="$(python3 -c 'import json; print(max((r["databaseBytes"]+r["indexRootBytes"] for r in map(json.loads, open("build/logs/otzaria-disk-samples.jsonl"))), default=0))')"
+          test "$PEAK" -gt 0
           DURATION="$(cat build/logs/otzaria-build-duration.txt)"
           python3 Scripts/package-otzaria-search-artifact.py \
             --index "$INDEX" \
