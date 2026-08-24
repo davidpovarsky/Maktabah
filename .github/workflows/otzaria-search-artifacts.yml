@@ -1,0 +1,133 @@
+name: Build Otzaria Search Artifacts
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_release:
+        description: Publish verified package as a dedicated public data release
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: otzaria-search-artifact-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  lexical-artifact:
+    runs-on: macos-26
+    timeout-minutes: 720
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 26 and verify committed identity
+        run: |
+          bash Scripts/CI/select-xcode-26.sh
+          python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --check
+          test "$(git ls-remote https://github.com/Otzaria/otzaria_search_engine.git refs/heads/refactor | cut -f1)" = "$(tr -d '\n' < Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_COMMIT)"
+          df -h "$RUNNER_TEMP" "$GITHUB_WORKSPACE"
+          AVAILABLE_KIB="$(df -Pk "$RUNNER_TEMP" | awk 'NR==2 {print $4}')"
+          test "$AVAILABLE_KIB" -ge $((35 * 1024 * 1024))
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Cache build dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/org.swift.swiftpm
+            build/SourcePackages
+          key: ${{ runner.os }}-${{ runner.arch }}-otzaria-search-artifact-v1-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+      - name: Build pinned engines and simulator app
+        run: |
+          bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+          bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+          xcodebuild -resolvePackageDependencies -project Maktabah.xcodeproj -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
+          xcodebuild build \
+            -project Maktabah.xcodeproj \
+            -scheme Maktabah-iOS \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            -derivedDataPath build/OtzariaArtifactBuild \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
+      - name: Resolve and download official corpus/resources
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p build/otzaria-artifact build/logs
+          brew list zstd >/dev/null 2>&1 || brew install zstd
+          gh api repos/Otzaria/SeforimLibrary/releases/latest > build/logs/source-release.json
+          gh api repos/Otzaria/SeforimMagicIndexer/releases/latest > build/logs/magic-release.json
+          ASSET_URL="$(python3 -c 'import json; r=json.load(open("build/logs/source-release.json")); print(next(a["browser_download_url"] for a in r["assets"] if a["name"]=="seforim.db.zst"))')"
+          EXPECTED="$(python3 -c 'import json; r=json.load(open("build/logs/source-release.json")); print(next(a["digest"].split(":",1)[1] for a in r["assets"] if a["name"]=="seforim.db.zst"))')"
+          curl --fail --location --retry 5 --continue-at - --output "$RUNNER_TEMP/seforim.db.zst" "$ASSET_URL"
+          test "$(shasum -a 256 "$RUNNER_TEMP/seforim.db.zst" | cut -d' ' -f1)" = "$EXPECTED"
+          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/seforim.db.zst" -o "$RUNNER_TEMP/seforim.db"
+      - name: Build the full lexical index once and record disk samples
+        env:
+          OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD: "1"
+          OTZARIA_CORPUS_ACCEPTANCE_APP_PATH: ${{ github.workspace }}/build/OtzariaArtifactBuild/Build/Products/Debug-iphonesimulator/Maktabah.app
+          OTZARIA_CORPUS_ACCEPTANCE_REPORT_COPY: ${{ github.workspace }}/build/logs/otzaria-corpus-acceptance.json
+          OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE: ${{ github.workspace }}/build/logs/otzaria-index-path.txt
+          OTZARIA_CORPUS_ACCEPTANCE_DURATION_FILE: ${{ github.workspace }}/build/logs/otzaria-build-duration.txt
+          OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES: ${{ github.workspace }}/build/logs/otzaria-disk-samples.jsonl
+          OTZARIA_CORPUS_ACCEPTANCE_WAIT_ROUNDS: "7200"
+        run: bash Scripts/run-otzaria-corpus-acceptance.sh "$RUNNER_TEMP/seforim.db"
+      - name: Package deterministic streaming parts and manifest
+        run: |
+          INDEX="$(cat build/logs/otzaria-index-path.txt)"
+          PEAK="$(python3 -c 'import json; print(max((r["databaseBytes"]+r["indexRootBytes"] for r in map(json.loads, open("build/logs/otzaria-disk-samples.jsonl"))), default=0))')"
+          DURATION="$(cat build/logs/otzaria-build-duration.txt)"
+          python3 Scripts/package-otzaria-search-artifact.py \
+            --index "$INDEX" \
+            --database "$RUNNER_TEMP/seforim.db" \
+            --release-json build/logs/source-release.json \
+            --magic-release-json build/logs/magic-release.json \
+            --acceptance-json build/logs/otzaria-corpus-acceptance.json \
+            --output build/otzaria-artifact \
+            --peak-build-bytes "$PEAK" \
+            --build-duration-seconds "$DURATION"
+          python3 -m json.tool build/otzaria-artifact/otzaria-search-manifest.json >/dev/null
+      - name: Publish durable development-data release
+        if: ${{ inputs.publish_release }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          IDENTITY="$(python3 -c 'import json; print(json.load(open("build/otzaria-artifact/otzaria-search-manifest.json"))["artifactIdentity"])')"
+          SOURCE_TAG="$(python3 -c 'import json; print(json.load(open("build/logs/source-release.json"))["tag_name"])')"
+          TAG="otzaria-search-data-${SOURCE_TAG}-${IDENTITY:0:12}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Verified artifact release $TAG already exists; refusing a duplicate rebuild publication."
+          else
+            gh release create "$TAG" --title "Otzaria search data $SOURCE_TAG" --notes "Prebuilt Otzaria Tantivy search data. Artifact identity: $IDENTITY"
+            gh release upload "$TAG" build/otzaria-artifact/* --clobber
+          fi
+          printf '%s\n' "$TAG" > build/logs/otzaria-search-release-tag.txt
+      - name: Prove package portability and relaunch without indexing
+        run: |
+          bash Scripts/run-otzaria-prebuilt-acceptance.sh \
+            build/OtzariaArtifactBuild/Build/Products/Debug-iphonesimulator/Maktabah.app \
+            "$RUNNER_TEMP/seforim.db" \
+            build/otzaria-artifact/otzaria-search-manifest.json \
+            build/otzaria-artifact
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: otzaria-search-artifact-reports
+          path: |
+            build/logs
+            build/otzaria-artifact/otzaria-search-manifest.json
+            build/otzaria-artifact/otzaria-search-build-metrics.json
+          compression-level: 0
+          if-no-files-found: error
+      - name: Confirm package data was not added to git
+        if: always()
+        run: |
+          test -z "$(git status --short --untracked-files=no)"
+          test -z "$(git ls-files '*.gguf' '*.db.zst' 'build/otzaria-artifact/*')"

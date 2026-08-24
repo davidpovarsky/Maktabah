@@ -492,7 +492,21 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
             OtzariaIndexFileLogger.log("index finalizing removedStaleBooks=\(stalePaths.count)")
         }
         try engine.commit()
+        let bytesBeforeOptimize = directorySize(buildingURL)
+        let segmentsBeforeOptimize = segmentCount(buildingURL)
+        let optimizeStarted = Date()
         try engine.optimize()
+        let optimizeDuration = Date().timeIntervalSince(optimizeStarted)
+        let segmentsAfterOptimize = segmentCount(buildingURL)
+        let bytesAfterOptimize = directorySize(buildingURL)
+        try writeOptimizeMetrics(
+            at: buildingURL,
+            segmentsBefore: segmentsBeforeOptimize,
+            segmentsAfter: segmentsAfterOptimize,
+            bytesBefore: bytesBeforeOptimize,
+            bytesAfter: bytesAfterOptimize,
+            duration: optimizeDuration
+        )
 
         let compatibility = try OtzariaSearchEngineBridge.checkCompatibility(indexURL: buildingURL)
         guard compatibility.compatible else {
@@ -531,6 +545,50 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
         try OtzariaSearchIndexManager.shared.promoteBuildingIndex(databasePath: databasePath)
         repository.invalidate(databasePath: databasePath)
         return documentCount
+    }
+
+    private func segmentCount(_ indexURL: URL) -> Int {
+        let metaURL = indexURL.appendingPathComponent("meta.json")
+        guard let data = try? Data(contentsOf: metaURL),
+              let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let segments = object["segments"] as? [Any] else { return 0 }
+        return segments.count
+    }
+
+    private func directorySize(_ url: URL) -> UInt64 {
+        guard let enumerator = FileManager.default.enumerator(
+            at: url,
+            includingPropertiesForKeys: [.isRegularFileKey, .fileSizeKey]
+        ) else { return 0 }
+        var total: UInt64 = 0
+        for case let file as URL in enumerator {
+            guard let values = try? file.resourceValues(forKeys: [.isRegularFileKey, .fileSizeKey]),
+                  values.isRegularFile == true else { continue }
+            total += UInt64(values.fileSize ?? 0)
+        }
+        return total
+    }
+
+    private func writeOptimizeMetrics(
+        at indexURL: URL,
+        segmentsBefore: Int,
+        segmentsAfter: Int,
+        bytesBefore: UInt64,
+        bytesAfter: UInt64,
+        duration: TimeInterval
+    ) throws {
+        let payload: [String: Any] = [
+            "segmentsBeforeOptimize": segmentsBefore,
+            "segmentsAfterOptimize": segmentsAfter,
+            "bytesBeforeOptimize": bytesBefore,
+            "bytesAfterOptimize": bytesAfter,
+            "optimizeDurationSeconds": duration,
+        ]
+        let data = try JSONSerialization.data(withJSONObject: payload, options: [.prettyPrinted, .sortedKeys])
+        try data.write(
+            to: indexURL.appendingPathComponent("otzaria_lexical_build_metrics.json"),
+            options: .atomic
+        )
     }
 
     private func emptyCheckpoint(identity: OtzariaIndexBuildIdentity) -> OtzariaIndexCheckpoint {

@@ -29,6 +29,10 @@ enum OtzariaCorpusAcceptanceRunner {
     static func runIfRequested() async {
         #if DEBUG
         let environment = ProcessInfo.processInfo.environment
+        if environment["OTZARIA_PREBUILT_ACCEPTANCE_MANIFEST"] != nil {
+            await OtzariaPrebuiltSearchAcceptanceRunner.run(environment: environment)
+            return
+        }
         guard let databasePath = environment["OTZARIA_CORPUS_ACCEPTANCE_DATABASE"],
               let resultPath = environment["OTZARIA_CORPUS_ACCEPTANCE_RESULT"] else { return }
         let configuredExpectedBooks = environment["OTZARIA_CORPUS_ACCEPTANCE_EXPECTED_BOOKS"]

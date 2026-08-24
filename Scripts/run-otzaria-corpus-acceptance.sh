@@ -62,16 +62,43 @@ xcrun simctl install "$UDID" "$APP"
 CONTAINER="$(xcrun simctl get_app_container "$UDID" com.Drn.maktabah data)"
 cp "$DATABASE" "$CONTAINER/Documents/otzaria-corpus.db"
 RESULT="$CONTAINER/Documents/otzaria-corpus-acceptance.json"
+STARTED_AT="$(date +%s)"
+SAMPLER_PID=""
+if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES:-}" ]; then
+  (
+    while true; do
+      printf '{"epoch":%s,"databaseBytes":%s,"indexRootBytes":%s,"workspaceBytes":%s}\n' \
+        "$(date +%s)" \
+        "$(stat -f %z "$CONTAINER/Documents/otzaria-corpus.db")" \
+        "$(( $(du -sk "$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex" 2>/dev/null | awk '{print $1+0}') * 1024 ))" \
+        "$(( $(du -sk "$GITHUB_WORKSPACE" 2>/dev/null | awk '{print $1+0}') * 1024 ))" \
+        >> "$OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES"
+      sleep 30
+    done
+  ) &
+  SAMPLER_PID="$!"
+fi
 
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_DATABASE="$CONTAINER/Documents/otzaria-corpus.db" \
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_RESULT="$RESULT" \
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_EXPECTED_BOOKS="$EXPECTED" \
   xcrun simctl launch "$UDID" com.Drn.maktabah
 
-for _ in $(seq 1 720); do
+WAIT_ROUNDS="${OTZARIA_CORPUS_ACCEPTANCE_WAIT_ROUNDS:-720}"
+for _ in $(seq 1 "$WAIT_ROUNDS"); do
   if [ -f "$RESULT" ]; then
     if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_REPORT_COPY:-}" ]; then
       cp "$RESULT" "$OTZARIA_CORPUS_ACCEPTANCE_REPORT_COPY"
+    fi
+    if [ -n "$SAMPLER_PID" ]; then kill "$SAMPLER_PID" >/dev/null 2>&1 || true; wait "$SAMPLER_PID" 2>/dev/null || true; fi
+    if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE:-}" ]; then
+      INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex"
+      INDEX_PATH="$(find "$INDEX_ROOT" -mindepth 1 -maxdepth 1 -type d ! -name '*.building' ! -name '*.previous' ! -name '*.installing' | head -1)"
+      test -n "$INDEX_PATH"
+      printf '%s\n' "$INDEX_PATH" > "$OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE"
+    fi
+    if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_DURATION_FILE:-}" ]; then
+      printf '%s\n' "$(( $(date +%s) - STARTED_AT ))" > "$OTZARIA_CORPUS_ACCEPTANCE_DURATION_FILE"
     fi
     cat "$RESULT"
     python3 -c 'import json,sys; raise SystemExit(0 if json.load(open(sys.argv[1]))["passed"] else 1)' "$RESULT"
@@ -80,5 +107,5 @@ for _ in $(seq 1 720); do
   sleep 5
 done
 
-echo "acceptance timed out after 60 minutes; inspect the simulator and Otzaria index log" >&2
+echo "acceptance timed out after $((WAIT_ROUNDS * 5 / 60)) minutes; inspect the simulator and Otzaria index log" >&2
 exit 1

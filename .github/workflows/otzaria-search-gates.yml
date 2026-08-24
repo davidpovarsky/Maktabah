@@ -131,6 +131,17 @@ jobs:
             Vendor/OtzariaSearchEngine/Tests/IndexingPolicyHarness/main.swift \
             -o "$RUNNER_TEMP/otzaria-indexing-policy-tests"
           "$RUNNER_TEMP/otzaria-indexing-policy-tests"
+      - name: Test prebuilt artifact compatibility and storage policies
+        run: |
+          xcrun swiftc \
+            Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
+            Source/Otzaria/Search/OtzariaSearchMode.swift \
+            Source/Otzaria/Search/OtzariaSearchModels.swift \
+            Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift \
+            Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift \
+            Vendor/OtzariaSearchEngine/Tests/ArtifactPolicyHarness/main.swift \
+            -o "$RUNNER_TEMP/otzaria-artifact-policy-tests"
+          "$RUNNER_TEMP/otzaria-artifact-policy-tests"
 
   otzaria-framework-macos:
     runs-on: macos-26

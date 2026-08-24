@@ -36,7 +36,12 @@ struct OtzariaZstdStreamExtractor: Sendable {
         fileManager.createFile(atPath: outputURL.path, contents: nil)
 
         do {
-            return try extractCore(archiveURL: archiveURL, outputURL: outputURL, progress: progress)
+            return try extractCore(
+                archiveURL: archiveURL,
+                outputURL: outputURL,
+                append: false,
+                progress: progress
+            )
         } catch {
             try? fileManager.removeItem(at: outputURL)
             if error is CancellationError {
@@ -45,12 +50,47 @@ struct OtzariaZstdStreamExtractor: Sendable {
             throw error
         }
     }
+
+    @discardableResult
+    func extractPart(
+        archiveURL: URL,
+        outputURL: URL,
+        expectedOffset: Int64,
+        expectedOutputBytes: Int64,
+        progress: @escaping ProgressHandler
+    ) throws -> Int64 {
+        let fileManager = FileManager.default
+        let currentSize = ((try? fileManager.attributesOfItem(atPath: outputURL.path)[.size]) as? NSNumber)?.int64Value ?? 0
+        guard currentSize == expectedOffset else {
+            throw OtzariaDatabaseBootstrapError.extractionWriteFailed(
+                "\(outputURL.lastPathComponent) has offset \(currentSize), expected \(expectedOffset)"
+            )
+        }
+        if !fileManager.fileExists(atPath: outputURL.path) {
+            fileManager.createFile(atPath: outputURL.path, contents: nil)
+        }
+        do {
+            let written = try extractCore(
+                archiveURL: archiveURL,
+                outputURL: outputURL,
+                append: true,
+                progress: progress
+            )
+            guard written == expectedOutputBytes else {
+                throw OtzariaDatabaseBootstrapError.zstdCorruptData(
+                    "\(archiveURL.lastPathComponent) expanded to \(written), expected \(expectedOutputBytes) bytes"
+                )
+            }
+            return written
+        }
+    }
 }
 
 private extension OtzariaZstdStreamExtractor {
     func extractCore(
         archiveURL: URL,
         outputURL: URL,
+        append: Bool,
         progress: @escaping ProgressHandler
     ) throws -> Int64 {
         guard let stream = ZSTD_createDStream() else {
@@ -75,6 +115,7 @@ private extension OtzariaZstdStreamExtractor {
         defer { try? inputHandle.close() }
         let outputHandle = try FileHandle(forWritingTo: outputURL)
         defer { try? outputHandle.close() }
+        if append { try outputHandle.seekToEnd() }
 
         var totalConsumed: Int64 = 0
         var totalWritten: Int64 = 0

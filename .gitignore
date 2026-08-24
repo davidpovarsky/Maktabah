@@ -48,6 +48,10 @@ seforim.db
 *.part
 lexical.db
 *.gguf
+build/otzaria-artifact/
+otzaria-lexical-*.zst
+otzaria-search-build-metrics.json
+otzaria-search-manifest.json
 DerivedData/
 target/
 __pycache__/

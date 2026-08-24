@@ -238,7 +238,9 @@ struct OtzariaTextSearchView: View {
                 .foregroundStyle(.secondary)
             Text("חיפוש טקסטים באוצריא")
                 .font(.headline)
-            Text("בפעם הראשונה לחץ על 'בנה/רענן אינדקס'. לאחר מכן החיפוש רץ דרך מנוע Rust/Tantivy של אוצריא, ולא דרך SQLite FTS.")
+            Text(OtzariaDatabaseAccessController.shared.source == .managedInternal
+                ? "הורד והתקן את חבילת החיפוש המוכנה. לאחר מכן החיפוש נפתח דרך מנוע Rust/Tantivy של אוצריא, בלי לבנות מיליוני שורות במכשיר."
+                : "במסד חיצוני ניתן לבנות אינדקס מקומי. לאחר מכן החיפוש רץ דרך מנוע Rust/Tantivy של אוצריא.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -273,6 +275,9 @@ struct OtzariaTextSearchView: View {
     }
 
     private var indexActionTitle: String {
+        if OtzariaDatabaseAccessController.shared.source == .managedInternal {
+            return "הורד/התקן חיפוש"
+        }
         if case .paused = viewModel.status { return "המשך אינדוקס" }
         return "בנה/רענן אינדקס"
     }

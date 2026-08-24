@@ -437,6 +437,11 @@ struct OtzariaIndexedBooksManifest: Codable, Equatable, Sendable {
 enum OtzariaSearchIndexStatus: Equatable, Sendable {
     case unavailable
     case notBuilt
+    case checkingPackage
+    case packageAvailable(downloadBytes: Int64, requiredBytes: Int64, availableBytes: Int64)
+    case downloadingPackage(completedBytes: Int64, totalBytes: Int64)
+    case installingPackage(completedBytes: Int64, totalBytes: Int64)
+    case packageUnavailable(String)
     case ready(documentCount: UInt64)
     case rebuildRequired(String)
     case building(processedBooks: Int, totalBooks: Int, processedLines: Int)
@@ -448,6 +453,14 @@ enum OtzariaSearchIndexStatus: Equatable, Sendable {
         switch self {
         case .unavailable: return "לא נבחר מסד אוצריא"
         case .notBuilt: return "האינדקס עדיין לא נבנה"
+        case .checkingPackage: return "בודק זמינות חבילת חיפוש…"
+        case .packageAvailable(let download, let required, let available):
+            return "חבילת חיפוש זמינה · הורדה \(Self.bytes(download)) · נדרש \(Self.bytes(required)) · פנוי \(Self.bytes(available))"
+        case .downloadingPackage(let completed, let total):
+            return "מוריד חבילת חיפוש \(Self.bytes(completed))/\(Self.bytes(total))"
+        case .installingPackage(let completed, let total):
+            return "מתקין חבילת חיפוש \(Self.bytes(completed))/\(Self.bytes(total))"
+        case .packageUnavailable(let reason): return "חבילת חיפוש תואמת אינה זמינה: \(reason)"
         case .ready(let count): return "האינדקס מוכן (\(count) מסמכים)"
         case .rebuildRequired(let reason): return "נדרשת בנייה מחדש: \(reason)"
         case .building(let books, let total, let lines): return "מאנדקס \(books)/\(total) ספרים · \(lines) שורות"
@@ -455,6 +468,10 @@ enum OtzariaSearchIndexStatus: Equatable, Sendable {
         case .finalizing: return "מסיים ומאמת את האינדקס…"
         case .failed(let message): return "שגיאת אינדוקס: \(message)"
         }
+    }
+
+    private static func bytes(_ value: Int64) -> String {
+        ByteCountFormatter.string(fromByteCount: value, countStyle: .file)
     }
 }
 

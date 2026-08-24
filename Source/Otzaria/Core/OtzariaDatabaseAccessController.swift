@@ -4,7 +4,7 @@ import SQLite3
 final class OtzariaDatabaseAccessController {
     static let shared = OtzariaDatabaseAccessController()
 
-    enum Source {
+    enum Source: Equatable {
         case externalBookmark
         case managedInternal
     }

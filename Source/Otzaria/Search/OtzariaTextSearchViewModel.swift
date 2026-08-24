@@ -26,6 +26,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     @Published var matchTaamim = false
     @Published var isSearching = false
     @Published var isIndexing = false
+    @Published var isInstallingArtifact = false
     @Published var status: OtzariaSearchIndexStatus = .unavailable
     @Published var errorMessage: String?
     @Published var indexStatusDetail: String?
@@ -36,10 +37,11 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     private let repository = OtzariaTantivySearchRepository.shared
     private let indexingService = OtzariaSearchIndexingService.shared
+    private let artifactService = OtzariaSearchArtifactService.shared
     private var currentTask: Task<Void, Never>?
 
     func refreshStatus() {
-        guard !isIndexing else { return }
+        guard !isIndexing, !isInstallingArtifact else { return }
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
             status = .unavailable
             indexStatusDetail = nil
@@ -58,9 +60,23 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
             }
         }
         let manager = OtzariaSearchIndexManager.shared
-        if let compatibility = manager.compatibility(databasePath: path), compatibility.requiresRebuild {
-            status = .rebuildRequired(compatibility.reason ?? compatibility.status)
-            return
+        if OtzariaDatabaseAccessController.shared.source == .managedInternal,
+           let storage = try? OtzariaSearchArtifactStorage() {
+            let fileManager = FileManager.default
+            let interrupted = fileManager.fileExists(
+                atPath: storage.stagingURL(databasePath: path).path
+            ) || (
+                !fileManager.fileExists(atPath: manager.indexURL(for: path).path)
+                && fileManager.fileExists(atPath: manager.previousIndexURL(for: path).path)
+            )
+            if interrupted {
+                status = .checkingPackage
+                Task.detached(priority: .utility) {
+                    OtzariaSearchArtifactInstaller().recover(databasePath: path, storage: storage)
+                    await MainActor.run { self.refreshStatus() }
+                }
+                return
+            }
         }
         if manager.isIndexCurrent(databasePath: path) {
             do {
@@ -69,6 +85,33 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
             } catch {
                 status = .failed(error.localizedDescription)
             }
+            return
+        }
+        if OtzariaDatabaseAccessController.shared.source == .managedInternal {
+            status = .checkingPackage
+            indexStatusDetail = buildInfoDetail()
+            Task.detached(priority: .utility) { [artifactService] in
+                do {
+                    let availability = try await artifactService.checkAvailability(databasePath: path)
+                    await MainActor.run {
+                        guard !self.isInstallingArtifact else { return }
+                        self.status = .packageAvailable(
+                            downloadBytes: availability.artifact.manifest.lexicalArtifact.packagedBytes,
+                            requiredBytes: availability.requiredFreeBytes,
+                            availableBytes: availability.availableFreeBytes
+                        )
+                    }
+                } catch {
+                    await MainActor.run {
+                        guard !self.isInstallingArtifact else { return }
+                        self.status = .packageUnavailable(error.localizedDescription)
+                    }
+                }
+            }
+            return
+        }
+        if let compatibility = manager.compatibility(databasePath: path), compatibility.requiresRebuild {
+            status = .rebuildRequired(compatibility.reason ?? compatibility.status)
             return
         }
         if let checkpoint = manager.checkpoint(indexURL: manager.buildingIndexURL(for: path)) {
@@ -81,6 +124,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     }
 
     func rebuildIndex() {
+        if OtzariaDatabaseAccessController.shared.source == .managedInternal {
+            installPrebuiltIndex()
+            return
+        }
         OtzariaIndexFileLogger.clearLog()
         currentTask?.cancel()
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
@@ -131,8 +178,62 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     }
 
     func cancelIndexing() {
+        if isInstallingArtifact {
+            currentTask?.cancel()
+            Task { await artifactService.cancel() }
+            return
+        }
         currentTask?.cancel()
         indexStatusDetail = "עוצר לאחר rollback לנקודת ה־checkpoint המחויבת האחרונה…"
+    }
+
+    private func installPrebuiltIndex() {
+        currentTask?.cancel()
+        guard let path = OtzariaMaktabahBridge.shared.databasePath else {
+            status = .unavailable
+            return
+        }
+        isInstallingArtifact = true
+        isIndexing = true
+        errorMessage = nil
+        currentTask = Task.detached(priority: .utility) { [artifactService, repository] in
+            do {
+                let count = try await artifactService.install(databasePath: path) { progress in
+                    Task { @MainActor in
+                        switch progress.stage {
+                        case .downloading, .verifying:
+                            self.status = .downloadingPackage(
+                                completedBytes: progress.completedBytes,
+                                totalBytes: progress.totalBytes
+                            )
+                        case .extracting, .installing:
+                            self.status = .installingPackage(
+                                completedBytes: progress.completedBytes,
+                                totalBytes: progress.totalBytes
+                            )
+                        case .ready:
+                            break
+                        }
+                    }
+                }
+                repository.invalidate(databasePath: path)
+                await MainActor.run {
+                    self.status = .ready(documentCount: count)
+                    self.indexStatusDetail = self.buildInfoDetail()
+                    self.isInstallingArtifact = false
+                    self.isIndexing = false
+                    self.currentTask = nil
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = error.localizedDescription
+                    self.status = .failed(error.localizedDescription)
+                    self.isInstallingArtifact = false
+                    self.isIndexing = false
+                    self.currentTask = nil
+                }
+            }
+        }
     }
 
     func search() {
@@ -146,7 +247,9 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         let finalURL = OtzariaSearchIndexManager.shared.indexURL(for: path)
         guard FileManager.default.fileExists(atPath: finalURL.path) else {
             status = .notBuilt
-            errorMessage = "האינדקס אינו מוכן. בנה או המשך את אינדקס אוצריא לפני החיפוש."
+            errorMessage = OtzariaDatabaseAccessController.shared.source == .managedInternal
+                ? "האינדקס אינו מוכן. הורד והתקן חבילת חיפוש תואמת לפני החיפוש."
+                : "האינדקס אינו מוכן. בנה או המשך את אינדקס אוצריא לפני החיפוש."
             return
         }
 

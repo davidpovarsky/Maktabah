@@ -21,6 +21,13 @@
 		E5A100000000000000000003 /* OtzariaMagicDictionaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */; };
 		E5A100000000000000000004 /* OtzariaSearchIndexingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000014 /* OtzariaSearchIndexingPolicy.swift */; };
 		E5A100000000000000000005 /* OtzariaCorpusAcceptanceRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000015 /* OtzariaCorpusAcceptanceRunner.swift */; };
+		E6B000000000000000000001 /* OtzariaSearchArtifactManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A000000000000000000001 /* OtzariaSearchArtifactManifest.swift */; };
+		E6B000000000000000000002 /* OtzariaSearchArtifactPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A000000000000000000002 /* OtzariaSearchArtifactPolicy.swift */; };
+		E6B000000000000000000003 /* OtzariaSearchArtifactReleaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A000000000000000000003 /* OtzariaSearchArtifactReleaseClient.swift */; };
+		E6B000000000000000000004 /* OtzariaSearchArtifactDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A000000000000000000004 /* OtzariaSearchArtifactDownloader.swift */; };
+		E6B000000000000000000005 /* OtzariaSearchArtifactInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A000000000000000000005 /* OtzariaSearchArtifactInstaller.swift */; };
+		E6B000000000000000000006 /* OtzariaSearchArtifactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A000000000000000000006 /* OtzariaSearchArtifactService.swift */; };
+		E6B000000000000000000007 /* OtzariaPrebuiltSearchAcceptanceRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A000000000000000000007 /* OtzariaPrebuiltSearchAcceptanceRunner.swift */; };
 		0188612AC990EE65873AA327 /* OtzariaReaderSourcesInspectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D1DF5922776E052B335C9 /* OtzariaReaderSourcesInspectorHost.swift */; };
 		05F64A965C0ED2F923BF6903 /* iOSNavigationManager+OtzariaLinkedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5FBF6BD84F2D0B6A9492B /* iOSNavigationManager+OtzariaLinkedSource.swift */; };
 		06CAE0E23AF1937A55069845 /* OtzariaSourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A73663299D0877E6E00AEE1 /* OtzariaSourcesView.swift */; };
@@ -606,6 +613,13 @@
 		E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaMagicDictionaryManager.swift; path = Source/Otzaria/Search/OtzariaMagicDictionaryManager.swift; sourceTree = "<group>"; };
 		E5A100000000000000000014 /* OtzariaSearchIndexingPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchIndexingPolicy.swift; path = Source/Otzaria/Search/OtzariaSearchIndexingPolicy.swift; sourceTree = "<group>"; };
 		E5A100000000000000000015 /* OtzariaCorpusAcceptanceRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaCorpusAcceptanceRunner.swift; path = Source/Otzaria/Search/OtzariaCorpusAcceptanceRunner.swift; sourceTree = "<group>"; };
+		E6A000000000000000000001 /* OtzariaSearchArtifactManifest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactManifest.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift; sourceTree = "<group>"; };
+		E6A000000000000000000002 /* OtzariaSearchArtifactPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactPolicy.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift; sourceTree = "<group>"; };
+		E6A000000000000000000003 /* OtzariaSearchArtifactReleaseClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactReleaseClient.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactReleaseClient.swift; sourceTree = "<group>"; };
+		E6A000000000000000000004 /* OtzariaSearchArtifactDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactDownloader.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactDownloader.swift; sourceTree = "<group>"; };
+		E6A000000000000000000005 /* OtzariaSearchArtifactInstaller.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactInstaller.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactInstaller.swift; sourceTree = "<group>"; };
+		E6A000000000000000000006 /* OtzariaSearchArtifactService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSearchArtifactService.swift; path = Source/Otzaria/Search/Distribution/OtzariaSearchArtifactService.swift; sourceTree = "<group>"; };
+		E6A000000000000000000007 /* OtzariaPrebuiltSearchAcceptanceRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaPrebuiltSearchAcceptanceRunner.swift; path = Source/Otzaria/Search/Distribution/OtzariaPrebuiltSearchAcceptanceRunner.swift; sourceTree = "<group>"; };
 		03A984F3D95C5DBF2C32440D /* OtzariaReaderSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaReaderSettingsView.swift; path = Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift; sourceTree = "<group>"; };
 		077C910EADF2F817F070515C /* OtzariaSchema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSchema.swift; path = Source/Otzaria/Data/OtzariaSchema.swift; sourceTree = "<group>"; };
 		09EF1B92A2DA781C9E871A84 /* ZayitSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchView.swift; path = Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift; sourceTree = "<group>"; };
@@ -1148,6 +1162,13 @@
 				E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */,
 				E5A100000000000000000014 /* OtzariaSearchIndexingPolicy.swift */,
 				E5A100000000000000000015 /* OtzariaCorpusAcceptanceRunner.swift */,
+				E6A000000000000000000001 /* OtzariaSearchArtifactManifest.swift */,
+				E6A000000000000000000002 /* OtzariaSearchArtifactPolicy.swift */,
+				E6A000000000000000000003 /* OtzariaSearchArtifactReleaseClient.swift */,
+				E6A000000000000000000004 /* OtzariaSearchArtifactDownloader.swift */,
+				E6A000000000000000000005 /* OtzariaSearchArtifactInstaller.swift */,
+				E6A000000000000000000006 /* OtzariaSearchArtifactService.swift */,
+				E6A000000000000000000007 /* OtzariaPrebuiltSearchAcceptanceRunner.swift */,
 				CC3A200DED34CED0C82079DA /* OtzariaSearchMode.swift */,
 				AAFF3B3A37EBC11765DB1D66 /* OtzariaSearchModels.swift */,
 				97333436F01969C829C884E9 /* OtzariaSearchSnippetRenderer.swift */,
@@ -2446,6 +2467,13 @@
 				E5A100000000000000000003 /* OtzariaMagicDictionaryManager.swift in Sources */,
 				E5A100000000000000000004 /* OtzariaSearchIndexingPolicy.swift in Sources */,
 				E5A100000000000000000005 /* OtzariaCorpusAcceptanceRunner.swift in Sources */,
+				E6B000000000000000000001 /* OtzariaSearchArtifactManifest.swift in Sources */,
+				E6B000000000000000000002 /* OtzariaSearchArtifactPolicy.swift in Sources */,
+				E6B000000000000000000003 /* OtzariaSearchArtifactReleaseClient.swift in Sources */,
+				E6B000000000000000000004 /* OtzariaSearchArtifactDownloader.swift in Sources */,
+				E6B000000000000000000005 /* OtzariaSearchArtifactInstaller.swift in Sources */,
+				E6B000000000000000000006 /* OtzariaSearchArtifactService.swift in Sources */,
+				E6B000000000000000000007 /* OtzariaPrebuiltSearchAcceptanceRunner.swift in Sources */,
 				EAF6E797CEC670587BA7C1AF /* OtzariaSearchMode.swift in Sources */,
 				94BBFFC0B8EDB1D946403A9C /* OtzariaSearchModels.swift in Sources */,
 				2555450DA3169DE1C4569DCF /* OtzariaSearchSnippetRenderer.swift in Sources */,
