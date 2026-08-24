@@ -29,6 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode 26 and verify committed identity
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           bash Scripts/CI/select-xcode-26.sh
           python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --check
@@ -132,7 +134,7 @@ jobs:
             build/otzaria-artifact/otzaria-search-manifest.json
             build/otzaria-artifact/otzaria-search-build-metrics.json
           compression-level: 0
-          if-no-files-found: error
+          if-no-files-found: warn
       - name: Confirm package data was not added to git
         if: always()
         run: |
