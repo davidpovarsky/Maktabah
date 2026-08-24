@@ -18,6 +18,11 @@ on:
         required: false
         type: string
         default: ""
+      repair_manifest_layout:
+        description: Republish an existing package with corrected extracted-file metadata
+        required: false
+        type: boolean
+        default: false
   push:
     branches:
       - "codex/otzaria-search-upgrade-clean"
@@ -63,6 +68,7 @@ jobs:
     with:
       publish_release: ${{ inputs.publish_release }}
       existing_release_tag: ${{ inputs.verify_release_tag }}
+      repair_manifest_layout: ${{ inputs.repair_manifest_layout }}
 
   adapter-linux:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
