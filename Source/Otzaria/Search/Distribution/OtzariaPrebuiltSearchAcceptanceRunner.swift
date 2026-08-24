@@ -18,34 +18,67 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         let checks: [Check]
         let localIndexingRan: Bool
         let stagingAbsent: Bool
+        let nativeDownloadRan: Bool
+        let resumedDownloadBytes: Int64
         let error: String?
     }
 
     @MainActor
     static func run(environment: [String: String]) async {
         guard let manifestPath = environment["OTZARIA_PREBUILT_ACCEPTANCE_MANIFEST"],
-              let partsPath = environment["OTZARIA_PREBUILT_ACCEPTANCE_PARTS"],
               let databasePath = environment["OTZARIA_PREBUILT_ACCEPTANCE_DATABASE"],
               let resultPath = environment["OTZARIA_PREBUILT_ACCEPTANCE_RESULT"] else { return }
+        let partsPath = environment["OTZARIA_PREBUILT_ACCEPTANCE_PARTS"]
+        let releaseBaseURL = environment["OTZARIA_PREBUILT_ACCEPTANCE_RELEASE_BASE_URL"]
+            .flatMap { $0.isEmpty ? nil : $0 }
+        guard partsPath != nil || releaseBaseURL != nil else { return }
         let phase = environment["OTZARIA_PREBUILT_ACCEPTANCE_PHASE"] ?? "install"
         var identity = "unknown"
+        var nativeDownloadRan = false
+        var resumedDownloadBytes: Int64 = 0
         do {
             let manifest = try JSONDecoder().decode(
                 OtzariaSearchArtifactManifest.self,
                 from: Data(contentsOf: URL(fileURLWithPath: manifestPath))
             )
             identity = manifest.artifactIdentity
+            let partURLs: [String: URL]
+            if let releaseBaseURL, let base = URL(string: releaseBaseURL) {
+                partURLs = Dictionary(uniqueKeysWithValues: manifest.lexicalArtifact.parts.map {
+                    ($0.assetName, base.appendingPathComponent($0.assetName))
+                })
+            } else {
+                partURLs = [:]
+            }
             let resolved = OtzariaResolvedSearchArtifact(
                 releaseID: 0,
                 releaseTag: "acceptance",
                 manifest: manifest,
-                partURLs: [:]
+                partURLs: partURLs
             )
-            let parts = Dictionary(uniqueKeysWithValues: manifest.lexicalArtifact.parts.map {
-                ($0.assetName, URL(fileURLWithPath: partsPath).appendingPathComponent($0.assetName))
-            })
             let storage = try OtzariaSearchArtifactStorage()
             if phase == "install" {
+                let parts: [String: URL]
+                if releaseBaseURL != nil {
+                    let downloader = OtzariaSearchArtifactDownloader()
+                    try storage.prepare()
+                    let workspace = storage.workspaceURL(artifactIdentity: manifest.artifactIdentity)
+                    resumedDownloadBytes = await downloader.existingBytes(
+                        manifest: manifest,
+                        workspaceURL: workspace
+                    )
+                    parts = try await downloader.downloadAndVerify(
+                        artifact: resolved,
+                        workspaceURL: workspace,
+                        progress: { _, _ in }
+                    )
+                    nativeDownloadRan = true
+                } else {
+                    let root = URL(fileURLWithPath: partsPath!)
+                    parts = Dictionary(uniqueKeysWithValues: manifest.lexicalArtifact.parts.map {
+                        ($0.assetName, root.appendingPathComponent($0.assetName))
+                    })
+                }
                 _ = try await Task.detached(priority: .utility) {
                     try OtzariaSearchArtifactInstaller().install(
                         artifact: resolved,
@@ -55,6 +88,12 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                         progress: { _, _ in }
                     )
                 }.value
+                if nativeDownloadRan {
+                    let downloader = OtzariaSearchArtifactDownloader()
+                    await downloader.cleanup(
+                        workspaceURL: storage.workspaceURL(artifactIdentity: manifest.artifactIdentity)
+                    )
+                }
             }
             let manager = OtzariaSearchIndexManager.shared
             let finalURL = manager.indexURL(for: databasePath)
@@ -107,6 +146,8 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 checks: checks,
                 localIndexingRan: false,
                 stagingAbsent: true,
+                nativeDownloadRan: nativeDownloadRan,
+                resumedDownloadBytes: resumedDownloadBytes,
                 error: nil
             ), path: resultPath)
         } catch {
@@ -119,6 +160,8 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 checks: [],
                 localIndexingRan: false,
                 stagingAbsent: false,
+                nativeDownloadRan: nativeDownloadRan,
+                resumedDownloadBytes: resumedDownloadBytes,
                 error: error.localizedDescription
             ), path: resultPath)
         }

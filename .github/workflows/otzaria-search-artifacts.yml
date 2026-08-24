@@ -172,11 +172,17 @@ jobs:
           printf '%s\n' "$TAG" > build/logs/otzaria-search-release-tag.txt
       - name: Prove package portability and relaunch without indexing
         run: |
+          RELEASE_TAG="$(cat build/logs/otzaria-search-release-tag.txt 2>/dev/null || true)"
+          RELEASE_BASE_URL=""
+          if [ -n "$RELEASE_TAG" ]; then
+            RELEASE_BASE_URL="https://github.com/${{ github.repository }}/releases/download/$RELEASE_TAG"
+          fi
           bash Scripts/run-otzaria-prebuilt-acceptance.sh \
             build/OtzariaArtifactBuild/Build/Products/Debug-iphonesimulator/Maktabah.app \
             "$RUNNER_TEMP/seforim.db" \
             build/otzaria-artifact/otzaria-search-manifest.json \
-            build/otzaria-artifact
+            build/otzaria-artifact \
+            "$RELEASE_BASE_URL"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
