@@ -13,6 +13,11 @@ on:
         required: true
         type: boolean
         default: true
+      verify_release_tag:
+        description: Verify an existing prebuilt release without rebuilding the corpus
+        required: false
+        type: string
+        default: ""
   push:
     branches:
       - "codex/otzaria-search-upgrade-clean"
@@ -57,8 +62,10 @@ jobs:
     uses: ./.github/workflows/otzaria-search-artifacts.yml
     with:
       publish_release: ${{ inputs.publish_release }}
+      existing_release_tag: ${{ inputs.verify_release_tag }}
 
   adapter-linux:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     outputs:
@@ -109,6 +116,7 @@ jobs:
         run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh --verify-only
 
   bootstrap-tests-macos:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
     runs-on: macos-26
     timeout-minutes: 30
     steps:
@@ -163,6 +171,7 @@ jobs:
           "$RUNNER_TEMP/otzaria-artifact-policy-tests"
 
   otzaria-framework-macos:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
     runs-on: macos-26
     timeout-minutes: 90
     outputs:
@@ -232,6 +241,7 @@ jobs:
         run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh --verify-only
 
   zayit-framework-macos:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
     runs-on: macos-26
     timeout-minutes: 60
     outputs:
@@ -291,6 +301,7 @@ jobs:
           if-no-files-found: error
 
   app-link-macos:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
     needs: [otzaria-framework-macos, zayit-framework-macos]
     runs-on: macos-26
     timeout-minutes: 60
@@ -371,7 +382,7 @@ jobs:
       # cleanliness gates live in adapter-linux and otzaria-framework-macos.
 
   cache-summary:
-    if: always()
+    if: ${{ always() && !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
     needs:
       - adapter-linux
       - bootstrap-tests-macos

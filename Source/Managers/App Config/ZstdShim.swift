@@ -8,8 +8,8 @@
 
 import Foundation
 
-let ZSTD_CONTENTSIZE_ERROR: UInt64 = .max
-let ZSTD_CONTENTSIZE_UNKNOWN: UInt64 = .max - 1
+let ZSTD_CONTENTSIZE_UNKNOWN: UInt64 = .max
+let ZSTD_CONTENTSIZE_ERROR: UInt64 = .max - 1
 let ZSTD_d_windowLogMax: Int32 = 100
 
 struct ZSTD_inBuffer {

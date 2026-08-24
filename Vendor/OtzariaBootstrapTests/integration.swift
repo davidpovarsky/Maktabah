@@ -115,6 +115,8 @@ AppConfig.appSupportDir = appSupport
 let storage = OtzariaDatabaseStorage(appSupportRoot: appSupport, downloadsRoot: downloads)
 let installer = OtzariaDatabaseInstaller()
 let extractor = OtzariaZstdStreamExtractor()
+expect(ZSTD_CONTENTSIZE_UNKNOWN == UInt64.max, "zstd unknown content-size ABI constant")
+expect(ZSTD_CONTENTSIZE_ERROR == UInt64.max - 1, "zstd error content-size ABI constant")
 expect(
     OtzariaDatabaseStorage.requiredExtractionCapacity(
         outputEstimate: 10,
