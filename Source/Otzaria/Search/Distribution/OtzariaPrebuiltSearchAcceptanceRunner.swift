@@ -32,6 +32,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
               let databasePath = environment["OTZARIA_PREBUILT_ACCEPTANCE_DATABASE"],
               let resultPath = environment["OTZARIA_PREBUILT_ACCEPTANCE_RESULT"] else { return }
         let partsPath = environment["OTZARIA_PREBUILT_ACCEPTANCE_PARTS"]
+        let releasesPath = environment["OTZARIA_PREBUILT_ACCEPTANCE_RELEASES"]
         let releaseBaseURL = environment["OTZARIA_PREBUILT_ACCEPTANCE_RELEASE_BASE_URL"]
             .flatMap { $0.isEmpty ? nil : $0 }
         guard partsPath != nil || releaseBaseURL != nil else { return }
@@ -76,12 +77,20 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
             productionValidatorRan = true
 
             let resolved: OtzariaResolvedSearchArtifact
-            if let releaseBaseURL, let base = URL(string: releaseBaseURL) {
+            if let releaseBaseURL, let base = URL(string: releaseBaseURL), let releasesPath {
+                let manifestData = try Data(contentsOf: URL(fileURLWithPath: manifestPath))
+                let releasesData = try Data(contentsOf: URL(fileURLWithPath: releasesPath))
                 let discovered = try await OtzariaSearchArtifactReleaseClient().matchingArtifact(
+                    releasesData: releasesData,
                     database: databaseManifest,
                     databaseBytes: databaseBytes,
                     build: build
-                )
+                ) { requestedURL in
+                    guard requestedURL.lastPathComponent == OtzariaSearchArtifactReleaseClient.manifestAssetName else {
+                        throw OtzariaSearchArtifactError.missingPart(requestedURL.lastPathComponent)
+                    }
+                    return manifestData
+                }
                 guard discovered.releaseTag == base.lastPathComponent,
                       discovered.manifest == localManifest else {
                     throw OtzariaSearchArtifactError.validationFailed(
@@ -91,6 +100,10 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 productionDiscoveryRan = true
                 selectedReleaseTag = discovered.releaseTag
                 resolved = discovered
+            } else if releaseBaseURL != nil {
+                throw OtzariaSearchArtifactError.validationFailed(
+                    "captured production release metadata is required for native download acceptance"
+                )
             } else {
                 resolved = OtzariaResolvedSearchArtifact(
                     releaseID: 0,

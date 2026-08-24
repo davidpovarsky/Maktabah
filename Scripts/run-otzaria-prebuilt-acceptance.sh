@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ "$#" -lt 4 ] || [ "$#" -gt 5 ]; then
-  echo "usage: $0 /path/Maktabah.app /path/seforim.db /path/manifest.json /path/package-dir [release-base-url]" >&2
+if [ "$#" -lt 4 ] || [ "$#" -gt 6 ]; then
+  echo "usage: $0 /path/Maktabah.app /path/seforim.db /path/manifest.json /path/package-dir [release-base-url] [releases-json]" >&2
   exit 64
 fi
 APP="$1"
@@ -10,6 +10,7 @@ DATABASE="$2"
 MANIFEST="$3"
 PACKAGE="$4"
 RELEASE_BASE_URL="${5:-}"
+RELEASES_JSON="${6:-}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 test -d "$APP"; test -f "$DATABASE"; test -f "$MANIFEST"; test -d "$PACKAGE"
 
@@ -31,6 +32,9 @@ xcrun simctl install "$UDID" "$APP"
 CONTAINER="$(xcrun simctl get_app_container "$UDID" com.Drn.maktabah data)"
 cp "$DATABASE" "$CONTAINER/Documents/otzaria-prebuilt.db"
 cp "$MANIFEST" "$CONTAINER/Documents/otzaria-search-manifest.json"
+if [ -n "$RELEASES_JSON" ]; then
+  cp "$RELEASES_JSON" "$CONTAINER/Documents/otzaria-search-releases.json"
+fi
 mkdir -p "$CONTAINER/Documents/otzaria-search-parts"
 if [ -n "$RELEASE_BASE_URL" ]; then
   SEED_VALUES="$(python3 - "$MANIFEST" <<'PY'
@@ -63,6 +67,7 @@ run_phase() {
   local result="$CONTAINER/Documents/otzaria-prebuilt-$phase.json"
   rm -f "$result"
   SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_MANIFEST="$CONTAINER/Documents/otzaria-search-manifest.json" \
+  SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_RELEASES="$CONTAINER/Documents/otzaria-search-releases.json" \
   SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_PARTS="$CONTAINER/Documents/otzaria-search-parts" \
   SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_DATABASE="$CONTAINER/Documents/otzaria-prebuilt.db" \
   SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_RESULT="$result" \

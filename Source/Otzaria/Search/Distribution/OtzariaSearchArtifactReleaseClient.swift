@@ -21,9 +21,30 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
     ) async throws -> OtzariaResolvedSearchArtifact {
         let (data, response) = try await session.data(for: request(url: Self.releasesURL))
         try requireSuccess(response)
+        return try await matchingArtifact(
+            releasesData: data,
+            database: database,
+            databaseBytes: databaseBytes,
+            build: build
+        ) { url in
+            let (manifestData, manifestResponse) = try await session.data(
+                for: request(url: url)
+            )
+            try requireSuccess(manifestResponse)
+            return manifestData
+        }
+    }
+
+    func matchingArtifact(
+        releasesData: Data,
+        database: OtzariaDatabaseInstallationManifest,
+        databaseBytes: Int64,
+        build: OtzariaSearchEngineBuildInfo,
+        manifestLoader: @escaping @Sendable (URL) async throws -> Data
+    ) async throws -> OtzariaResolvedSearchArtifact {
         let releases: [Release]
         do {
-            releases = try JSONDecoder().decode([Release].self, from: data)
+            releases = try JSONDecoder().decode([Release].self, from: releasesData)
         } catch {
             throw OtzariaSearchArtifactError.downloadFailed("malformed GitHub release response")
         }
@@ -37,10 +58,7 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
                 "releaseID=\(release.id) manifestAsset=\(manifestAsset.name)"
             )
             do {
-                let (manifestData, manifestResponse) = try await session.data(
-                    for: request(url: manifestAsset.browserDownloadURL)
-                )
-                try requireSuccess(manifestResponse)
+                let manifestData = try await manifestLoader(manifestAsset.browserDownloadURL)
                 let manifest = try JSONDecoder().decode(
                     OtzariaSearchArtifactManifest.self,
                     from: manifestData
