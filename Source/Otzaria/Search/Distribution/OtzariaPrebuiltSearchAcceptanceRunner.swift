@@ -20,6 +20,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         let stagingAbsent: Bool
         let nativeDownloadRan: Bool
         let resumedDownloadBytes: Int64
+        let productionDiscoveryRan: Bool
+        let productionValidatorRan: Bool
+        let selectedReleaseTag: String?
         let error: String?
     }
 
@@ -36,26 +39,67 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         var identity = "unknown"
         var nativeDownloadRan = false
         var resumedDownloadBytes: Int64 = 0
+        var productionDiscoveryRan = false
+        var productionValidatorRan = false
+        var selectedReleaseTag: String?
         do {
-            let manifest = try JSONDecoder().decode(
+            let localManifest = try JSONDecoder().decode(
                 OtzariaSearchArtifactManifest.self,
                 from: Data(contentsOf: URL(fileURLWithPath: manifestPath))
             )
-            identity = manifest.artifactIdentity
-            let partURLs: [String: URL]
-            if let releaseBaseURL, let base = URL(string: releaseBaseURL) {
-                partURLs = Dictionary(uniqueKeysWithValues: manifest.lexicalArtifact.parts.map {
-                    ($0.assetName, base.appendingPathComponent($0.assetName))
-                })
-            } else {
-                partURLs = [:]
-            }
-            let resolved = OtzariaResolvedSearchArtifact(
-                releaseID: 0,
-                releaseTag: "acceptance",
-                manifest: manifest,
-                partURLs: partURLs
+            identity = localManifest.artifactIdentity
+            let databaseBytes = ((try FileManager.default.attributesOfItem(atPath: databasePath)[.size]) as? NSNumber)?.int64Value ?? 0
+            let source = localManifest.sourceDatabase
+            let sourceRelease = OtzariaLibraryRelease(
+                id: source.releaseID,
+                tag: source.releaseTag,
+                asset: .init(
+                    id: source.assetID,
+                    name: source.assetName,
+                    downloadURL: URL(string: "https://example.invalid/\(source.assetName)")!,
+                    compressedSize: source.compressedBytes,
+                    digest: source.sourceAssetDigest.isEmpty ? nil : source.sourceAssetDigest,
+                    updatedAt: nil
+                )
             )
+            let databaseManifest = OtzariaDatabaseInstallationManifest(
+                release: sourceRelease,
+                databaseFileSize: databaseBytes
+            )
+            let build = try OtzariaSearchEngineBridge.buildInfo()
+            try OtzariaSearchArtifactPolicy.validate(
+                localManifest,
+                database: databaseManifest,
+                databaseBytes: databaseBytes,
+                build: build
+            )
+            productionValidatorRan = true
+
+            let resolved: OtzariaResolvedSearchArtifact
+            if let releaseBaseURL, let base = URL(string: releaseBaseURL) {
+                let discovered = try await OtzariaSearchArtifactReleaseClient().matchingArtifact(
+                    database: databaseManifest,
+                    databaseBytes: databaseBytes,
+                    build: build
+                )
+                guard discovered.releaseTag == base.lastPathComponent,
+                      discovered.manifest == localManifest else {
+                    throw OtzariaSearchArtifactError.validationFailed(
+                        "production release discovery did not select the acceptance manifest"
+                    )
+                }
+                productionDiscoveryRan = true
+                selectedReleaseTag = discovered.releaseTag
+                resolved = discovered
+            } else {
+                resolved = OtzariaResolvedSearchArtifact(
+                    releaseID: 0,
+                    releaseTag: "acceptance-local",
+                    manifest: localManifest,
+                    partURLs: [:]
+                )
+            }
+            let manifest = resolved.manifest
             let storage = try OtzariaSearchArtifactStorage()
             if phase == "install" {
                 let parts: [String: URL]
@@ -148,6 +192,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 stagingAbsent: true,
                 nativeDownloadRan: nativeDownloadRan,
                 resumedDownloadBytes: resumedDownloadBytes,
+                productionDiscoveryRan: productionDiscoveryRan,
+                productionValidatorRan: productionValidatorRan,
+                selectedReleaseTag: selectedReleaseTag,
                 error: nil
             ), path: resultPath)
         } catch {
@@ -162,6 +209,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 stagingAbsent: false,
                 nativeDownloadRan: nativeDownloadRan,
                 resumedDownloadBytes: resumedDownloadBytes,
+                productionDiscoveryRan: productionDiscoveryRan,
+                productionValidatorRan: productionValidatorRan,
+                selectedReleaseTag: selectedReleaseTag,
                 error: error.localizedDescription
             ), path: resultPath)
         }

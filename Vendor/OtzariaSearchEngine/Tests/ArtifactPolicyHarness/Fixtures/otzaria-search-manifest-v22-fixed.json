@@ -1,0 +1,59 @@
+{
+  "artifactIdentity": "d16fd3c7cab56107147ecfb3e9b0a4ef19e7a6df4bf40cd98d07e6b7c0eb599c",
+  "formatVersion": 1,
+  "lexicalArtifact": {
+    "catalogueHash": "64198f207fa92521",
+    "documentCount": 5910542,
+    "extractedBytes": 4113825179,
+    "fileCount": 8,
+    "packagedBytes": 3012692206,
+    "parts": [
+      {"assetName":"otzaria-lexical-0000.zst","compression":"zstd","destinationOffset":0,"destinationPath":".managed.json","packagedBytes":100,"sha256":"1424713729f487bd479c0e6542e218269114ad655dc4d98b0adda3f6a52e2df5","uncompressedBytes":258},
+      {"assetName":"otzaria-lexical-0001.zst","compression":"zstd","destinationOffset":0,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.fast","packagedBytes":64217118,"sha256":"d06173c6f1ea06b18f868f49398bd189791f33322fc9f151b62f9be93c159957","uncompressedBytes":191506039},
+      {"assetName":"otzaria-lexical-0002.zst","compression":"zstd","destinationOffset":0,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.fieldnorm","packagedBytes":4305499,"sha256":"691039610ece3531f9063508881fc034e389b76b20fc14f93391a3c80df3d5ae","uncompressedBytes":23642300},
+      {"assetName":"otzaria-lexical-0003.zst","compression":"zstd","destinationOffset":0,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.idx","packagedBytes":398714774,"sha256":"eb40e23ab6d6cba49c613fea1ff9253c22c6bfb51414ef756357d94584b1f618","uncompressedBytes":536870912},
+      {"assetName":"otzaria-lexical-0004.zst","compression":"zstd","destinationOffset":536870912,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.idx","packagedBytes":132543815,"sha256":"c501d7a0d2706486b73099dfa663e54a18534d257dbd00edd40a5bcc14c7f647","uncompressedBytes":200075812},
+      {"assetName":"otzaria-lexical-0005.zst","compression":"zstd","destinationOffset":0,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.pos","packagedBytes":474850171,"sha256":"98ccb01339c700ccfcb6bdd5d8066842905f54919da531a2cdf9e7e8aca34b33","uncompressedBytes":536870912},
+      {"assetName":"otzaria-lexical-0006.zst","compression":"zstd","destinationOffset":536870912,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.pos","packagedBytes":115544496,"sha256":"439fbdb37519ed56cfca5d4aec02092c3c4f6c1e78f876a5d3e1691738f690ac","uncompressedBytes":130698586},
+      {"assetName":"otzaria-lexical-0007.zst","compression":"zstd","destinationOffset":0,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.store","packagedBytes":395222903,"sha256":"12fb98ad36c6e89db18012e4c919323a2fb3cce936119a7f0fd754b76d067ee6","uncompressedBytes":536870912},
+      {"assetName":"otzaria-lexical-0008.zst","compression":"zstd","destinationOffset":536870912,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.store","packagedBytes":394303275,"sha256":"2df690fb41949e2daef0dc525c4645cdef5f343a7622eccdd13eec76dba01e44","uncompressedBytes":536870912},
+      {"assetName":"otzaria-lexical-0009.zst","compression":"zstd","destinationOffset":1073741824,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.store","packagedBytes":393658067,"sha256":"5ea662bf7425dcf5d0a1750575e3c1cb0d340a1529b0983d48f0bd1c30a162f3","uncompressedBytes":536870912},
+      {"assetName":"otzaria-lexical-0010.zst","compression":"zstd","destinationOffset":1610612736,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.store","packagedBytes":394104169,"sha256":"f1b65f8ba319aa5cb1688f367a36ee1a03c31558334b52c77b30e5efad9e6a26","uncompressedBytes":536870912},
+      {"assetName":"otzaria-lexical-0011.zst","compression":"zstd","destinationOffset":2147483648,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.store","packagedBytes":219268905,"sha256":"a8d9d00a852aceca212f69dea041ceefb3987b4a6a785aff23ae855b62e613e7","uncompressedBytes":298508203},
+      {"assetName":"otzaria-lexical-0012.zst","compression":"zstd","destinationOffset":0,"destinationPath":"0ba321c320be4b4185ce2ac3b782b1a4.term","packagedBytes":25958427,"sha256":"5e3ae67da5ed4030df27be3820fcca57eeeaeb798ce8e9086b7d4408880a3683","uncompressedBytes":48165443},
+      {"assetName":"otzaria-lexical-0013.zst","compression":"zstd","destinationOffset":0,"destinationPath":"meta.json","packagedBytes":487,"sha256":"bdeca8de8aa841df16e363725f41a1a62eafeb35ee2b75a62f3e86ebcf7df8b4","uncompressedBytes":3066}
+    ],
+    "segmentsAfterOptimize": 1,
+    "segmentsBeforeOptimize": 3632,
+    "sourceCount": 7299
+  },
+  "lexicalEngine": {
+    "adapterVersion": "0.1.0",
+    "commit": "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+    "defaultGenerationOrder": 5,
+    "engineVersion": "0.1.0",
+    "indexSchemaVersion": 4,
+    "repository": "Otzaria/otzaria_search_engine",
+    "semanticSidecarRevision": "e836ea6cac05e695efdb03ef227e78cd1a624149",
+    "tantivyVersion": "0.26.1"
+  },
+  "resources": {
+    "Application Support/Otzaria/lexical.db": {"bytes":57122816,"sha256":"b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f","version":"v0.3.0"},
+    "Vendor/OtzariaSearchEngine/Resources/Acronyms.json": {"bytes":1366445,"sha256":"cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f","version":"ace537b26c0ccac407716dc4af3166178a43ed4f"},
+    "Vendor/OtzariaSearchEngine/Resources/dictionary.json": {"bytes":451576,"sha256":"cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69","version":"ace537b26c0ccac407716dc4af3166178a43ed4f"}
+  },
+  "semantic": null,
+  "sourceDatabase": {
+    "assetID": 524079347,
+    "assetName": "seforim.db.zst",
+    "bookCount": 7299,
+    "compressedBytes": 1549816972,
+    "databaseBytes": 7874232320,
+    "databaseSHA256": "5084546e5feb88e3247ed91dad3aa44d07704094a1c9f429d2d3b9a059aa8fc8",
+    "documentCount": 5910542,
+    "releaseID": 374584500,
+    "releaseTag": "v22-20260821152805",
+    "repository": "Otzaria/SeforimLibrary",
+    "sourceAssetDigest": "sha256:10775581965f9dde2ddc5335adbb4ee5882238f3f876f1ec1e7d471ca05265b7"
+  }
+}

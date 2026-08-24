@@ -108,4 +108,87 @@ do {
 } catch { rejected = true }
 require(rejected, "unsafe package path must be rejected")
 
+if CommandLine.arguments.count == 2 {
+    let fixtureURL = URL(fileURLWithPath: CommandLine.arguments[1])
+    let captured = try JSONDecoder().decode(
+        OtzariaSearchArtifactManifest.self,
+        from: Data(contentsOf: fixtureURL)
+    )
+    let source = captured.sourceDatabase
+    let capturedRelease = OtzariaLibraryRelease(
+        id: source.releaseID,
+        tag: source.releaseTag,
+        asset: .init(
+            id: source.assetID,
+            name: source.assetName,
+            downloadURL: URL(string: "https://example.invalid/\(source.assetName)")!,
+            compressedSize: source.compressedBytes,
+            digest: source.sourceAssetDigest,
+            updatedAt: nil
+        )
+    )
+    let capturedDatabase = OtzariaDatabaseInstallationManifest(
+        release: capturedRelease,
+        databaseFileSize: source.databaseBytes
+    )
+    let capturedEngine = captured.lexicalEngine
+    let capturedBuild = OtzariaSearchEngineBuildInfo(
+        upstreamRepository: capturedEngine.repository,
+        upstreamBranch: "refactor",
+        upstreamCommit: capturedEngine.commit,
+        engineVersion: capturedEngine.engineVersion,
+        indexSchemaVersion: capturedEngine.indexSchemaVersion,
+        defaultGenerationOrder: capturedEngine.defaultGenerationOrder,
+        semanticEnabled: true,
+        semanticSidecarRevision: capturedEngine.semanticSidecarRevision,
+        syncedAt: "captured-fixture",
+        adapterVersion: capturedEngine.adapterVersion,
+        resourceHashes: captured.resources.mapValues(\.sha256)
+    )
+    try OtzariaSearchArtifactPolicy.validate(
+        captured,
+        database: capturedDatabase,
+        databaseBytes: source.databaseBytes,
+        build: capturedBuild
+    )
+    require(captured.lexicalArtifact.parts.count == 14, "captured release part count changed")
+    require(captured.lexicalArtifact.fileCount == 8, "captured extracted file count changed")
+
+    let mismatched = OtzariaSearchArtifactManifest(
+        formatVersion: captured.formatVersion,
+        artifactIdentity: captured.artifactIdentity,
+        sourceDatabase: captured.sourceDatabase,
+        lexicalEngine: captured.lexicalEngine,
+        resources: captured.resources,
+        lexicalArtifact: .init(
+            documentCount: captured.lexicalArtifact.documentCount,
+            sourceCount: captured.lexicalArtifact.sourceCount,
+            catalogueHash: captured.lexicalArtifact.catalogueHash,
+            extractedBytes: captured.lexicalArtifact.extractedBytes,
+            packagedBytes: captured.lexicalArtifact.packagedBytes,
+            fileCount: 10,
+            segmentsBeforeOptimize: captured.lexicalArtifact.segmentsBeforeOptimize,
+            segmentsAfterOptimize: captured.lexicalArtifact.segmentsAfterOptimize,
+            parts: captured.lexicalArtifact.parts
+        ),
+        semantic: captured.semantic
+    )
+    do {
+        try OtzariaSearchArtifactPolicy.validate(
+            mismatched,
+            database: capturedDatabase,
+            databaseBytes: source.databaseBytes,
+            build: capturedBuild
+        )
+        fatalError("published file-count mismatch was accepted")
+    } catch let error as OtzariaSearchArtifactError {
+        require(
+            error == .malformedManifest(
+                "inconsistent extracted file layout: declaredFiles=10 representedPaths=8"
+            ),
+            "published mismatch did not report the exact failed invariant"
+        )
+    }
+}
+
 print("Otzaria search artifact manifest/storage/path tests passed")

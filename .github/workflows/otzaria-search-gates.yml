@@ -160,6 +160,7 @@ jobs:
           "$RUNNER_TEMP/otzaria-indexing-policy-tests"
       - name: Test prebuilt artifact compatibility and storage policies
         run: |
+          python3 -m unittest Scripts/Tests/test_package_otzaria_search_artifact.py
           xcrun swiftc \
             Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
             Source/Otzaria/Search/OtzariaSearchMode.swift \
@@ -168,7 +169,8 @@ jobs:
             Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift \
             Vendor/OtzariaSearchEngine/Tests/ArtifactPolicyHarness/main.swift \
             -o "$RUNNER_TEMP/otzaria-artifact-policy-tests"
-          "$RUNNER_TEMP/otzaria-artifact-policy-tests"
+          "$RUNNER_TEMP/otzaria-artifact-policy-tests" \
+            Vendor/OtzariaSearchEngine/Tests/ArtifactPolicyHarness/Fixtures/otzaria-search-manifest-v22-fixed.json
 
   otzaria-framework-macos:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}

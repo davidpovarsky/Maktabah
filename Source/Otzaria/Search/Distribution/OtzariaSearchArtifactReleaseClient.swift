@@ -32,6 +32,10 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
             guard let manifestAsset = release.assets.first(where: { $0.name == Self.manifestAssetName }) else {
                 continue
             }
+            OtzariaIndexFileLogger.log(
+                "search artifact discovery candidate releaseTag=\(release.tagName) " +
+                "releaseID=\(release.id) manifestAsset=\(manifestAsset.name)"
+            )
             do {
                 let (manifestData, manifestResponse) = try await session.data(
                     for: request(url: manifestAsset.browserDownloadURL)
@@ -41,11 +45,24 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
                     OtzariaSearchArtifactManifest.self,
                     from: manifestData
                 )
+                let artifact = manifest.lexicalArtifact
+                OtzariaIndexFileLogger.log(
+                    "search artifact manifest decoded stage=production-policy " +
+                    "releaseTag=\(release.tagName) manifestAsset=\(manifestAsset.name) " +
+                    "formatVersion=\(manifest.formatVersion) " +
+                    "artifactIdentity=\(String(manifest.artifactIdentity.prefix(12))) " +
+                    "parts=\(artifact.parts.count) files=\(artifact.fileCount) " +
+                    "extractedBytes=\(artifact.extractedBytes) packagedBytes=\(artifact.packagedBytes)"
+                )
                 try OtzariaSearchArtifactPolicy.validate(
                     manifest,
                     database: database,
                     databaseBytes: databaseBytes,
                     build: build
+                )
+                OtzariaIndexFileLogger.log(
+                    "search artifact manifest validated stage=production-policy " +
+                    "releaseTag=\(release.tagName) artifactIdentity=\(String(manifest.artifactIdentity.prefix(12)))"
                 )
                 var assets: [String: URL] = [:]
                 for asset in release.assets { assets[asset.name] = asset.browserDownloadURL }
@@ -64,8 +81,18 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
                 )
             } catch let error as OtzariaSearchArtifactError {
                 if case .incompatible = error { continue }
+                OtzariaIndexFileLogger.logError(
+                    "search artifact manifest validation failed stage=production-policy " +
+                    "releaseTag=\(release.tagName) manifestAsset=\(manifestAsset.name)",
+                    error: error
+                )
                 throw error
             } catch {
+                OtzariaIndexFileLogger.logError(
+                    "search artifact manifest decode failed stage=decode " +
+                    "releaseTag=\(release.tagName) manifestAsset=\(manifestAsset.name)",
+                    error: error
+                )
                 throw OtzariaSearchArtifactError.malformedManifest(error.localizedDescription)
             }
         }

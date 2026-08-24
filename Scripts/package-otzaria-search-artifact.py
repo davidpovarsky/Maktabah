@@ -13,6 +13,7 @@ import time
 
 CHUNK_BYTES = 512 * 1024 * 1024
 EXCLUDED_PREFIXES = ("otzaria_", ".otzaria_")
+RUNTIME_LOCK_FILENAMES = {".tantivy-meta.lock", ".tantivy-writer.lock"}
 
 
 def sha256(path: Path) -> str:
@@ -54,6 +55,24 @@ def selected_asset(release: dict, name: str) -> dict:
     return matches[0]
 
 
+def packageable_files(index: Path) -> tuple[list[Path], list[Path]]:
+    candidates = sorted(
+        path for path in index.rglob("*")
+        if path.is_file() and not path.name.startswith(EXCLUDED_PREFIXES)
+    )
+    empty_files = [path for path in candidates if path.stat().st_size == 0]
+    unexpected_empty_files = [
+        path for path in empty_files if path.name not in RUNTIME_LOCK_FILENAMES
+    ]
+    if unexpected_empty_files:
+        names = ", ".join(path.relative_to(index).as_posix() for path in unexpected_empty_files)
+        raise RuntimeError(f"index contains unexpected empty package files: {names}")
+    files = [path for path in candidates if path.stat().st_size > 0]
+    if not files:
+        raise RuntimeError("index contains no packageable files")
+    return files, empty_files
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--index", type=Path, required=True)
@@ -78,12 +97,7 @@ def main() -> None:
     optimize_path = args.index / "otzaria_lexical_build_metrics.json"
     optimize = json.loads(optimize_path.read_text()) if optimize_path.exists() else {}
 
-    files = sorted(
-        path for path in args.index.rglob("*")
-        if path.is_file() and not path.name.startswith(EXCLUDED_PREFIXES)
-    )
-    if not files:
-        raise RuntimeError("index contains no packageable files")
+    files, empty_files = packageable_files(args.index)
 
     parts = []
     part_number = 0
@@ -184,6 +198,9 @@ def main() -> None:
         "packageBytes": manifest["lexicalArtifact"]["packagedBytes"],
         "installPeakAdditionalBytes": extracted_bytes + manifest["lexicalArtifact"]["packagedBytes"] + 1_073_741_824,
         "fileCount": len(files),
+        "omittedRuntimeLockFiles": [
+            path.relative_to(args.index).as_posix() for path in empty_files
+        ],
         "segmentsBeforeOptimize": manifest["lexicalArtifact"]["segmentsBeforeOptimize"],
         "segmentsAfterOptimize": manifest["lexicalArtifact"]["segmentsAfterOptimize"],
         "documentCount": acceptance["indexedDocuments"],

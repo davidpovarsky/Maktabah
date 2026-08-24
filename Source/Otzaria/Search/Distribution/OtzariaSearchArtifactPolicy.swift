@@ -91,9 +91,18 @@ enum OtzariaSearchArtifactPolicy {
                 part.uncompressedBytes
             )
         }
-        guard expectedOffsets.count == artifact.fileCount,
-              expectedOffsets.values.reduce(Int64(0), saturatedAdd) == artifact.extractedBytes else {
-            throw OtzariaSearchArtifactError.malformedManifest("inconsistent extracted file layout")
+        guard expectedOffsets.count == artifact.fileCount else {
+            throw OtzariaSearchArtifactError.malformedManifest(
+                "inconsistent extracted file layout: declaredFiles=\(artifact.fileCount) " +
+                "representedPaths=\(expectedOffsets.count)"
+            )
+        }
+        let representedBytes = expectedOffsets.values.reduce(Int64(0), saturatedAdd)
+        guard representedBytes == artifact.extractedBytes else {
+            throw OtzariaSearchArtifactError.malformedManifest(
+                "inconsistent extracted file layout: declaredBytes=\(artifact.extractedBytes) " +
+                "representedBytes=\(representedBytes)"
+            )
         }
     }
 
