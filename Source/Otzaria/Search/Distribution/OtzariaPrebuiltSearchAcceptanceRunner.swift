@@ -77,7 +77,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 ))
                 guard page.totalCount > 0,
                       page.results.first?.filePath.hasPrefix("otzaria-book:") == true,
-                      page.results.first?.snippet.isEmpty == false else {
+                      page.results.first?.text.isEmpty == false else {
                     throw OtzariaSearchArtifactError.validationFailed("\(mode.rawValue) search failed")
                 }
                 checks.append(Check(
