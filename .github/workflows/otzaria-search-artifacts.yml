@@ -1,6 +1,12 @@
 name: Build Otzaria Search Artifacts
 
 on:
+  workflow_call:
+    inputs:
+      publish_release:
+        description: Publish verified package as a dedicated public data release
+        required: true
+        type: boolean
   workflow_dispatch:
     inputs:
       publish_release:

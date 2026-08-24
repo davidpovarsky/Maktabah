@@ -2,6 +2,17 @@ name: Otzaria Search Gates
 
 on:
   workflow_dispatch:
+    inputs:
+      build_search_artifacts:
+        description: Run the full-corpus prebuilt search artifact workflow
+        required: true
+        type: boolean
+        default: false
+      publish_release:
+        description: Publish the verified artifact as a public data release
+        required: true
+        type: boolean
+        default: true
   push:
     branches:
       - "codex/otzaria-search-upgrade-clean"
@@ -39,6 +50,14 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  lexical-artifact:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts }}
+    permissions:
+      contents: write
+    uses: ./.github/workflows/otzaria-search-artifacts.yml
+    with:
+      publish_release: ${{ inputs.publish_release }}
+
   adapter-linux:
     runs-on: ubuntu-latest
     timeout-minutes: 45
