@@ -195,7 +195,7 @@ struct UnifiedSearchWorkspaceView: View {
 
     private var packageMissing: Bool {
         if scope == .zayit { return zayitSession.state != .ready }
-        switch otzaria.status {
+        return switch otzaria.status {
         case .ready: false
         case .checkingPackage, .building, .finalizing, .downloadingPackage, .installingPackage: false
         default: true
