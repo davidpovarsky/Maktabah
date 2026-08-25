@@ -14,6 +14,22 @@ enum OtzariaSearchArtifactPolicy {
         return !components.isEmpty && components.allSatisfy { !$0.isEmpty && $0 != "." && $0 != ".." }
     }
 
+    static func managedIdentityMatchesCanonicalData(
+        _ identity: OtzariaIndexBuildIdentity,
+        currentDatabase: OtzariaIndexFingerprint,
+        build: OtzariaSearchEngineBuildInfo
+    ) -> Bool {
+        identity.database.fileSize == currentDatabase.fileSize
+            && identity.upstreamCommit == build.upstreamCommit
+            && identity.engineVersion == build.engineVersion
+            && identity.indexSchemaVersion == build.indexSchemaVersion
+            && identity.defaultGenerationOrder == build.defaultGenerationOrder
+            && identity.adapterVersion == build.adapterVersion
+            && identity.resourceHashes == build.resourceHashes
+        // Container path, mtime, and semantic sidecar registration are not
+        // part of the canonical lexical artifact identity.
+    }
+
     static func requiredInstallCapacity(
         manifest: OtzariaSearchArtifactManifest,
         alreadyDownloadedBytes: Int64,

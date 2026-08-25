@@ -106,6 +106,7 @@ struct iPadLayout: View {
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
         }
+        .environment(\.layoutDirection, .rightToLeft)
     }
 
     @ViewBuilder
@@ -115,12 +116,7 @@ struct iPadLayout: View {
                 ForEach(iOSTab.allCases.filter { $0 != .history && $0 != .zayitSearch }) { tab in
                     if tab == .otzariaTextSearch {
                         Button {
-                            path.removeAll()
-                            selectedTab = tab
-                            bManager.switchToMode(.search)
-                            showingZayitReader = false
-                            showingOtzariaReader = false
-                            detailMode = .otzariaTextSearch
+                            transitionSidebar(to: tab)
                         } label: {
                             Label(tab.title, systemImage: tab.icon)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -151,6 +147,7 @@ struct iPadLayout: View {
                             isFavorite: true,
                             viewModel: historyViewModel
                         ) {
+                            prepareReaderDetail()
                             let lastId = historyViewModel.entriesByBookId[
                                 book.id
                             ]?.lastContentId
@@ -178,6 +175,7 @@ struct iPadLayout: View {
                                 .contains(book.id),
                             viewModel: historyViewModel
                         ) {
+                            prepareReaderDetail()
                             let lastId = historyViewModel.entriesByBookId[
                                 book.id
                             ]?.lastContentId
@@ -317,13 +315,33 @@ struct iPadLayout: View {
     }
 
     private func selectSidebar(_ tab: iOSTab) {
+        transitionSidebar(to: tab)
+    }
+
+    private func transitionSidebar(to tab: iOSTab) {
+        // Every sidebar transition clears the complete author/detail route in
+        // one transaction. This prevents value-less nested NavigationLinks
+        // from surviving after the selected section changes.
+        path.removeAll()
+        showingZayitReader = false
+        showingOtzariaReader = false
+        sidebarSearchText = ""
+        bManager.authorViewModel.currentRowi = nil
+        bManager.authorViewModel.searchText = ""
+        selectedTab = tab
+        bManager.switchToMode(tab.appMode)
+        if tab == .otzariaTextSearch {
+            detailMode = .otzariaTextSearch
+        } else {
+            detailMode = .reader
+            path = [tab]
+        }
+    }
+
+    private func prepareReaderDetail() {
+        bManager.authorViewModel.currentRowi = nil
         showingZayitReader = false
         showingOtzariaReader = false
         detailMode = .reader
-        sidebarSearchText = ""
-        bManager.authorViewModel.currentRowi = nil
-        selectedTab = tab
-        bManager.switchToMode(tab.appMode)
-        path = [tab]
     }
 }

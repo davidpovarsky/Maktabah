@@ -92,6 +92,37 @@ require(
     ) == 300 + 800 + OtzariaSearchArtifactPolicy.safetyReserve,
     "prebuilt capacity must use package/staging bytes, not DB or old-index multipliers"
 )
+let staleManagedIdentity = OtzariaIndexBuildIdentity(
+    database: .init(databasePath: "/old/container/seforim.db", fileSize: 1_000, modificationTime: 1),
+    upstreamCommit: build.upstreamCommit,
+    engineVersion: build.engineVersion,
+    indexSchemaVersion: build.indexSchemaVersion,
+    defaultGenerationOrder: build.defaultGenerationOrder,
+    adapterVersion: build.adapterVersion,
+    resourceHashes: build.resourceHashes,
+    catalogueHash: "catalogue",
+    semanticArtifactIdentity: .init(
+        modelID: "stale", modelSHA256: String(repeating: "1", count: 64),
+        corpusIdentity: "old", sidecarRevision: build.semanticSidecarRevision,
+        embeddingDimension: 384
+    )
+)
+require(
+    OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(
+        staleManagedIdentity,
+        currentDatabase: .init(databasePath: "/new/container/seforim.db", fileSize: 1_000, modificationTime: 99),
+        build: build
+    ),
+    "managed v22 identity was invalidated by container path, mtime, or stale semantic registration"
+)
+require(
+    !OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(
+        staleManagedIdentity,
+        currentDatabase: .init(databasePath: "/new/container/seforim.db", fileSize: 999, modificationTime: 99),
+        build: build
+    ),
+    "managed identity accepted a different canonical database size"
+)
 
 var rejected = false
 do {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA1000000000000000000001 /* ZayitSearchDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000001 /* ZayitSearchDistribution.swift */; };
 		FA1000000000000000000002 /* UnifiedSearchWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000002 /* UnifiedSearchWorkspaceView.swift */; };
+		FA1000000000000000000003 /* UnifiedSearchPresentationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000003 /* UnifiedSearchPresentationPolicy.swift */; };
 		DAB100000000000000000001 /* OtzariaDatabaseDownloadModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000001 /* OtzariaDatabaseDownloadModels.swift */; };
 		DAB100000000000000000002 /* OtzariaLibraryReleaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000002 /* OtzariaLibraryReleaseClient.swift */; };
 		DAB100000000000000000003 /* OtzariaDatabaseDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000003 /* OtzariaDatabaseDownloader.swift */; };
@@ -815,6 +816,7 @@
 		5A9E0B7D273D4F95A7D8C100 /* ZayitSearchSessionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchSessionController.swift; path = Source/ZayitSearch/ZayitSearchSessionController.swift; sourceTree = "<group>"; };
 		FA0000000000000000000001 /* ZayitSearchDistribution.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZayitSearchDistribution.swift; path = Source/ZayitSearch/ZayitSearchDistribution.swift; sourceTree = "<group>"; };
 		FA0000000000000000000002 /* UnifiedSearchWorkspaceView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnifiedSearchWorkspaceView.swift; path = Source/ZayitSearch/UnifiedSearchWorkspaceView.swift; sourceTree = "<group>"; };
+		FA0000000000000000000003 /* UnifiedSearchPresentationPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnifiedSearchPresentationPolicy.swift; path = Source/ZayitSearch/UnifiedSearchPresentationPolicy.swift; sourceTree = "<group>"; };
 		4BCCCB612F9C41310027EC18 /* CopyableResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableResult.swift; sourceTree = "<group>"; };
 		4BD6C33B2EE6AA7F008684E3 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		4BD728222EE44C5500ACEB7C /* IbarotTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IbarotTextView.swift; sourceTree = "<group>"; };
@@ -1573,6 +1575,7 @@
 				5A9E0B7D273D4F95A7D8C100 /* ZayitSearchSessionController.swift */,
 				FA0000000000000000000001 /* ZayitSearchDistribution.swift */,
 				FA0000000000000000000002 /* UnifiedSearchWorkspaceView.swift */,
+				FA0000000000000000000003 /* UnifiedSearchPresentationPolicy.swift */,
 				1D17400FB8C5FF831D04C712 /* MaktabahZayitSearch.xcframework */,
 			);
 			name = ZayitSearch;
@@ -2500,6 +2503,7 @@
 				5A9E0B7D273D4F95A7D8C101 /* ZayitSearchSessionController.swift in Sources */,
 				FA1000000000000000000001 /* ZayitSearchDistribution.swift in Sources */,
 				FA1000000000000000000002 /* UnifiedSearchWorkspaceView.swift in Sources */,
+				FA1000000000000000000003 /* UnifiedSearchPresentationPolicy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

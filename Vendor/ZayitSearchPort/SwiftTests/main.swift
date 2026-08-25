@@ -15,4 +15,25 @@ require(SearchInlineMarkupSanitizer.plainText(from: malformed) == "before hit af
 let entities = "&lt;safe&gt; &amp; &#1513;&#x5DC;&#1493;&#1501; &quot;ok&quot;"
 require(SearchInlineMarkupSanitizer.plainText(from: entities) == #"<safe> & שלום "ok""#, "entities not decoded")
 
+require(
+    UnifiedSearchPresentationPolicy.resolve(
+        resultCount: 2,
+        isLoading: false,
+        errorMessage: nil,
+        hasSubmitted: true,
+        indexReady: false
+    ) == .results,
+    "release discovery/package state hid valid results"
+)
+require(
+    UnifiedSearchPresentationPolicy.resolve(
+        resultCount: 0,
+        isLoading: false,
+        errorMessage: "engine failed",
+        hasSubmitted: true,
+        indexReady: true
+    ) == .error("engine failed"),
+    "engine errors were collapsed into an empty state"
+)
+
 print("Zayit Swift presentation tests passed")

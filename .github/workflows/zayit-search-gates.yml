@@ -48,6 +48,7 @@ jobs:
         run: |
           swiftc \
             Vendor/ZayitSearchPort/Swift/ZayitSearchModels.swift \
+            Source/ZayitSearch/UnifiedSearchPresentationPolicy.swift \
             Vendor/ZayitSearchPort/SwiftTests/main.swift \
             -o "$RUNNER_TEMP/zayit-swift-tests"
           "$RUNNER_TEMP/zayit-swift-tests"

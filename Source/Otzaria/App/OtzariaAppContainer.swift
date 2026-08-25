@@ -409,7 +409,11 @@ final class OtzariaMaktabahBridge {
                 WHERE COALESCE(NULLIF(TRIM(\(schema.filePath)), ''), 'book:' || b.id) = ?
                 LIMIT 2
             """, parameters: [stableKey]) { row in row.int(at: 0) }
-            guard rows.count == 1, rows[0] == expectedBookId else { return nil }
+            guard rows.count == 1 else { return nil }
+            // A real canonical source path is authoritative across database
+            // rebuilds where numeric IDs may change. Only the documented
+            // `book:<id>` fallback remains tied to the original numeric ID.
+            if stableKey.hasPrefix("book:"), rows[0] != expectedBookId { return nil }
             return rows[0]
         }
         guard let resolvedID else { return nil }

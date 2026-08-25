@@ -34,6 +34,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     var resultsTruncated: Bool { enginePage?.truncated == true }
     var totalCount: UInt32 { enginePage?.totalCount ?? 0 }
     var groupCount: UInt32? { enginePage?.groupCount }
+    var isReady: Bool {
+        if case .ready = status { return true }
+        return false
+    }
 
     private let repository = OtzariaTantivySearchRepository.shared
     private let indexingService = OtzariaSearchIndexingService.shared
@@ -233,6 +237,60 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     self.currentTask = nil
                 }
             }
+        }
+    }
+
+    @discardableResult
+    func installManagedArtifactAndWait() async -> Bool {
+        guard !isReady else { return true }
+        guard let path = OtzariaMaktabahBridge.shared.databasePath else {
+            status = .unavailable
+            return false
+        }
+        isInstallingArtifact = true
+        isIndexing = true
+        errorMessage = nil
+        do {
+            let count = try await artifactService.install(databasePath: path) { progress in
+                Task { @MainActor in
+                    switch progress.stage {
+                    case .downloading, .verifying:
+                        self.status = .downloadingPackage(
+                            completedBytes: progress.completedBytes,
+                            totalBytes: progress.totalBytes
+                        )
+                    case .extracting, .installing:
+                        self.status = .installingPackage(
+                            completedBytes: progress.completedBytes,
+                            totalBytes: progress.totalBytes
+                        )
+                    case .ready: break
+                    }
+                }
+            }
+            repository.invalidate(databasePath: path)
+            status = .ready(documentCount: count)
+            indexStatusDetail = buildInfoDetail()
+            isInstallingArtifact = false
+            isIndexing = false
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            status = .failed(error.localizedDescription)
+            isInstallingArtifact = false
+            isIndexing = false
+            return false
+        }
+    }
+
+    func removeManagedIndex() {
+        guard let path = OtzariaMaktabahBridge.shared.databasePath else { return }
+        do {
+            try OtzariaSearchIndexManager.shared.clearIndex(databasePath: path)
+            repository.invalidate(databasePath: path)
+            status = .notBuilt
+        } catch {
+            status = .failed(error.localizedDescription)
         }
     }
 

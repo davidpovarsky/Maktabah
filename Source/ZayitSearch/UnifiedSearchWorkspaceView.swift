@@ -63,35 +63,63 @@ struct UnifiedSearchWorkspaceView: View {
     @State private var query = ""
     @State private var showsAdvanced = false
     @State private var showsSearchData = false
+    @State private var hasSubmitted = false
+    @State private var customSpacingText = ""
+    @State private var alternativeWordsText = ""
+    @State private var enablesPrefixes = false
+    @State private var enablesSuffixes = false
+    @State private var enablesSpellingVariants = false
+    @State private var enablesAramaic = false
+    @State private var ignoresQuotes = false
 
     let openOtzaria: (SearchResultItem, HighlightDescriptor) -> Void
     let openZayit: (ZayitSearchHit, HighlightDescriptor) -> Void
 
     var body: some View {
         Group {
-            if packageMissing {
+            switch contentState {
+            case .results:
+                List(results) { result in resultButton(result) }
+                    .listStyle(.plain)
+            case .loading:
+                VStack(spacing: 12) {
+                    ProgressView()
+                    Text("מחפש…").foregroundStyle(.secondary)
+                }
+            case .error(let message):
+                ContentUnavailableView(
+                    "החיפוש נכשל",
+                    systemImage: "exclamationmark.triangle",
+                    description: Text(message)
+                )
+            case .missingIndex:
                 ContentUnavailableView {
-                    Label("Search data is not ready", systemImage: "externaldrive.badge.exclamationmark")
+                    Label("נתוני החיפוש אינם מותקנים", systemImage: "externaldrive.badge.exclamationmark")
                 } description: {
-                    Text("Install or repair the selected search component in Search Data.")
+                    Text("ניתן להתקין או לתקן את רכיב החיפוש במסך נתוני החיפוש.")
                 } actions: {
-                    Button("Open Search Data") { showsSearchData = true }
+                    Button("פתח נתוני חיפוש") { showsSearchData = true }
                         .buttonStyle(.borderedProminent)
                 }
-            } else if results.isEmpty {
-                ContentUnavailableView.search(text: query)
-            } else {
-                List(results) { result in
-                    resultButton(result)
-                }
-                .listStyle(.plain)
+            case .empty:
+                ContentUnavailableView(
+                    "לא נמצאו תוצאות",
+                    systemImage: "magnifyingglass",
+                    description: Text("נסו לשנות את מילות החיפוש או את האפשרויות.")
+                )
+            case .notSearched:
+                ContentUnavailableView(
+                    "חיפוש בספרייה",
+                    systemImage: "text.magnifyingglass",
+                    description: Text("הקלידו שאילתה ולחצו חיפוש.")
+                )
             }
         }
-        .navigationTitle("Search")
+        .navigationTitle("חיפוש")
         .searchable(
             text: $query,
             placement: .navigationBarDrawer(displayMode: .always),
-            prompt: "Search all texts"
+            prompt: "חיפוש בכל הספרים"
         )
         .searchScopes($scope) {
             ForEach(UnifiedSearchScope.allCases) { item in Text(item.title).tag(item) }
@@ -100,7 +128,7 @@ struct UnifiedSearchWorkspaceView: View {
         .safeAreaInset(edge: .top) {
             VStack(spacing: 8) {
                 if scope == .advanced {
-                    DisclosureGroup("Advanced options", isExpanded: $showsAdvanced) {
+                    DisclosureGroup("אפשרויות חיפוש מתקדם", isExpanded: $showsAdvanced) {
                         advancedControls
                     }
                 }
@@ -126,20 +154,60 @@ struct UnifiedSearchWorkspaceView: View {
     }
 
     private var advancedControls: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Picker("Words", selection: $otzaria.wordMatchMode) {
-                    Text("All").tag(OtzariaWordMatchMode.all)
-                    Text("Any").tag(OtzariaWordMatchMode.anyWord)
-                    Text("Most").tag(OtzariaWordMatchMode.mostWords)
-                    Text("At least").tag(OtzariaWordMatchMode.atLeast)
-                }
-                Stepper("Distance \(otzaria.distance)", value: $otzaria.distance, in: 0...20)
+        VStack(alignment: .leading, spacing: 12) {
+            Picker("סדר תוצאות", selection: $otzaria.order) {
+                Text("סדר הספרים").tag(OtzariaSearchOrder.catalogue)
+                Text("רלוונטיות").tag(OtzariaSearchOrder.relevance)
             }
-            Toggle("Same section", isOn: Binding(
-                get: { otzaria.scope == .sameSection },
-                set: { otzaria.scope = $0 ? .sameSection : .wordDistance }
-            ))
+            TextField("שאילתה שלילית", text: $otzaria.negativeQuery)
+                .textFieldStyle(.roundedBorder)
+            HStack {
+                Picker("תחום חיובי", selection: $otzaria.scope) {
+                    Text("מרחק מילים").tag(OtzariaSearchScope.wordDistance)
+                    Text("אותה פסקה").tag(OtzariaSearchScope.sameParagraph)
+                    Text("אותו סעיף").tag(OtzariaSearchScope.sameSection)
+                }
+                Picker("מילים נדרשות", selection: $otzaria.wordMatchMode) {
+                    Text("כולן").tag(OtzariaWordMatchMode.all)
+                    Text("מילה כלשהי").tag(OtzariaWordMatchMode.anyWord)
+                    Text("רוב המילים").tag(OtzariaWordMatchMode.mostWords)
+                    Text("לפחות…").tag(OtzariaWordMatchMode.atLeast)
+                }
+            }
+            if otzaria.wordMatchMode == .atLeast {
+                Stepper("לפחות \(otzaria.wordMatchCount) מילים", value: $otzaria.wordMatchCount, in: 1...100)
+            }
+            Stepper("מרחק חיובי: \(otzaria.distance)", value: $otzaria.distance, in: 0...20)
+            if !otzaria.negativeQuery.isEmpty {
+                Picker("תחום השאילתה השלילית", selection: $otzaria.negativeScope) {
+                    Text("מרחק מילים").tag(OtzariaSearchScope.wordDistance)
+                    Text("אותה פסקה").tag(OtzariaSearchScope.sameParagraph)
+                    Text("אותו סעיף").tag(OtzariaSearchScope.sameSection)
+                }
+                Stepper("מרחק שלילי: \(otzaria.negativeDistance)", value: $otzaria.negativeDistance, in: 0...20)
+            }
+            Picker("קיבוץ", selection: $otzaria.grouping) {
+                Text("ללא").tag(nil as OtzariaResultGrouping?)
+                Text("אותו סעיף").tag(OtzariaResultGrouping.sameSection as OtzariaResultGrouping?)
+                Text("טקסט זהה").tag(OtzariaResultGrouping.identicalText as OtzariaResultGrouping?)
+            }
+            HStack {
+                Toggle("ניקוד", isOn: $otzaria.matchNikud)
+                Toggle("טעמים", isOn: $otzaria.matchTaamim)
+            }
+            HStack {
+                Toggle("קידומות", isOn: $enablesPrefixes)
+                Toggle("סיומות", isOn: $enablesSuffixes)
+                Toggle("כתיב מלא/חסר", isOn: $enablesSpellingVariants)
+            }
+            HStack {
+                Toggle("ארמית", isOn: $enablesAramaic)
+                Toggle("התעלם מגרשיים", isOn: $ignoresQuotes)
+            }
+            TextField("מרווחים מותאמים (למשל 0,2,1)", text: $customSpacingText)
+                .textFieldStyle(.roundedBorder)
+            TextField("מילים חלופיות לפי מיקום; פסיק בין מילים ונקודה־פסיק בין מיקומים", text: $alternativeWordsText)
+                .textFieldStyle(.roundedBorder)
         }
         .pickerStyle(.menu)
         .padding(.top, 6)
@@ -202,11 +270,21 @@ struct UnifiedSearchWorkspaceView: View {
         }
     }
 
+    private var contentState: UnifiedSearchPresentationState {
+        UnifiedSearchPresentationPolicy.resolve(
+            resultCount: results.count,
+            isLoading: isLoading,
+            errorMessage: scope == .zayit ? zayitSession.model.errorMessage : otzaria.errorMessage,
+            hasSubmitted: hasSubmitted,
+            indexReady: !packageMissing
+        )
+    }
+
     private var isLoading: Bool { scope == .zayit ? zayitSession.model.isLoading : otzaria.isSearching }
     private var statusText: String {
         if scope == .zayit {
             if let error = zayitSession.model.errorMessage { return error }
-            return zayitSession.model.hits.isEmpty ? "Zayit" : "Zayit results"
+            return zayitSession.model.hits.isEmpty ? "זית" : "תוצאות זית"
         }
         return otzaria.status.label
     }
@@ -214,6 +292,7 @@ struct UnifiedSearchWorkspaceView: View {
     private func runSearch() {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
+        hasSubmitted = true
         if scope == .zayit {
             zayitSession.model.query = trimmed
             zayitSession.model.runSearch()
@@ -227,8 +306,42 @@ struct UnifiedSearchWorkspaceView: View {
                 case .zayit: .advanced
                 }
             }()
+            if scope == .advanced { applyAdvancedWordOptions(to: trimmed) }
             otzaria.search()
         }
+    }
+
+    private func applyAdvancedWordOptions(to text: String) {
+        let words = (try? OtzariaSearchEngineBridge.splitQueryWords(text))
+            ?? text.split(whereSeparator: \.isWhitespace).map(String.init)
+        var options: [String: [String: Bool]] = [:]
+        for (index, word) in words.enumerated() {
+            options["\(word)_\(index)"] = [
+                "קידומות": enablesPrefixes,
+                "סיומות": enablesSuffixes,
+                "קידומות דקדוקיות": enablesPrefixes,
+                "סיומות דקדוקיות": enablesSuffixes,
+                "כתיב מלא/חסר": enablesSpellingVariants,
+                "קידומות ארמיות": enablesAramaic,
+                "סיומות ארמיות": enablesAramaic,
+                "תרגום ארמי": enablesAramaic,
+                "ראשי תיבות": ignoresQuotes,
+                "התעלם מגרשיים": ignoresQuotes,
+            ]
+        }
+        otzaria.searchOptions = options
+        otzaria.customSpacing = Dictionary(uniqueKeysWithValues: customSpacingText
+            .split(separator: ",", omittingEmptySubsequences: false)
+            .enumerated()
+            .map { ("\($0.offset)-\($0.offset + 1)", String($0.element).trimmingCharacters(in: .whitespaces)) })
+        otzaria.alternativeWords = Dictionary(uniqueKeysWithValues: alternativeWordsText
+            .split(separator: ";", omittingEmptySubsequences: false)
+            .enumerated()
+            .map {
+                (String($0.offset), $0.element.split(separator: ",")
+                    .map { String($0).trimmingCharacters(in: .whitespaces) }
+                    .filter { !$0.isEmpty })
+            })
     }
 
     private func resultButton(_ result: UnifiedSearchResult) -> some View {
@@ -281,56 +394,84 @@ struct UnifiedSearchWorkspaceView: View {
 }
 
 struct SearchDataView: View {
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var otzaria = OtzariaTextSearchViewModel()
     @StateObject private var zayit = ZayitSearchDataController.shared
     @State private var isInstallingAll = false
+    @State private var installMessage: String?
 
     var body: some View {
         List {
-            Section("Library") {
+            Section("ספרייה") {
                 componentRow(
-                    title: "Seforim DB", role: "Required",
-                    status: OtzariaMaktabahBridge.shared.databaseURL == nil ? "Not installed" : "Ready"
+                    title: "מסד ספרים", role: "חובה",
+                    status: OtzariaMaktabahBridge.shared.databaseURL == nil ? "לא מותקן" : "מוכן"
                 )
                 componentRow(
-                    title: "Shared lexical.db", role: "Recommended",
-                    status: OtzariaMagicDictionaryManager.shared.validatedDatabaseURL == nil ? "Not installed" : "Ready"
+                    title: "מילון לשוני משותף", role: "מומלץ",
+                    status: OtzariaMagicDictionaryManager.shared.validatedDatabaseURL == nil ? "לא מותקן" : "מוכן"
                 )
             }
-            Section("Search indexes") {
-                componentRow(title: "Otzaria lexical index", role: "Recommended", status: otzaria.status.label)
-                componentRow(title: "Zayit index", role: "Recommended", status: zayitLabel)
+            Section("אינדקסים לחיפוש") {
+                componentRow(title: "אינדקס אוצריא", role: "מומלץ", status: otzaria.status.label)
+                componentRow(title: "אינדקס זית", role: "מומלץ", status: zayitLabel)
             }
             Section {
-                Button("Download and install all") {
+                Button("הורד והתקן רכיבים חסרים") {
                     isInstallingAll = true
                     Task {
-                        _ = try? await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: true)
-                        await zayit.refresh(discover: true)
-                        await zayit.install()
-                        otzaria.rebuildIndex()
+                        installMessage = nil
+                        do {
+                            if OtzariaMaktabahBridge.shared.databaseURL == nil {
+                                try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { _ in }
+                            }
+                            if OtzariaMagicDictionaryManager.shared.validatedDatabaseURL == nil {
+                                _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: false)
+                            }
+                            otzaria.refreshStatus()
+                            if !otzaria.isReady, !(await otzaria.installManagedArtifactAndWait()) {
+                                throw SearchDataInstallError.component("אינדקס אוצריא", otzaria.errorMessage)
+                            }
+                            await zayit.refresh(discover: true)
+                            if !zayit.state.isReady {
+                                await zayit.install()
+                                guard zayit.state.isReady else {
+                                    throw SearchDataInstallError.component("אינדקס זית", zayitLabel)
+                                }
+                            }
+                            installMessage = "כל הרכיבים שנבחרו מוכנים."
+                        } catch {
+                            installMessage = error.localizedDescription
+                        }
                         isInstallingAll = false
                     }
                 }
                 .disabled(isInstallingAll)
-                Button("Continue with library only") { }
+                Button("המשך עם הספרייה בלבד") { dismiss() }
                     .foregroundStyle(.secondary)
+                if let installMessage {
+                    Text(installMessage)
+                        .font(.footnote)
+                        .foregroundStyle(installMessage.contains("מוכנים") ? .secondary : .red)
+                }
             } footer: {
                 Text("Components are downloaded and installed sequentially to reduce peak storage. Each component keeps its own version and identity.")
             }
-            Section("Advanced") {
-                NavigationLink("Diagnostics") { SearchDiagnosticsView() }
-                NavigationLink("Manual Zayit folder import") {
+            Section("מתקדם") {
+                NavigationLink("אבחון") { SearchDiagnosticsView() }
+                NavigationLink("ייבוא ידני של תיקיית זית") {
                     ZayitSearchView(
                         existingSeforimDB: { ZayitSearchExistingDatabaseProvider.currentURL },
                         openResult: { _ in }
                     )
                 }
-                Button("Repair Zayit") { Task { await zayit.refresh(discover: true); await zayit.install() } }
-                Button("Remove Zayit", role: .destructive) { zayit.remove() }
+                Button("תקן את זית") { Task { await zayit.refresh(discover: true); await zayit.install() } }
+                Button("הסר את זית", role: .destructive) { zayit.remove() }
+                Button("תקן אינדקס אוצריא") { Task { _ = await otzaria.installManagedArtifactAndWait() } }
+                Button("הסר אינדקס אוצריא", role: .destructive) { otzaria.removeManagedIndex() }
             }
         }
-        .navigationTitle("Search Data")
+        .navigationTitle("נתוני חיפוש")
         .task {
             otzaria.refreshStatus()
             await zayit.refresh(discover: true)
@@ -350,16 +491,26 @@ struct SearchDataView: View {
 
     private var zayitLabel: String {
         switch zayit.state {
-        case .notInstalled: "Not installed"
-        case .discovering: "Checking…"
-        case .available(let download, let installed): "Available · \(ByteCountFormatter.string(fromByteCount: download, countStyle: .file)) / \(ByteCountFormatter.string(fromByteCount: installed, countStyle: .file))"
-        case .downloading(let completed, let total): "Downloading \(completed)/\(total)"
-        case .installing(let completed, let total): "Installing \(completed)/\(total)"
-        case .ready(let manifest): "Ready · \(manifest.version)"
-        case .updateAvailable: "Update available"
-        case .repairRequired(let detail): "Repair required · \(detail)"
-        case .incompatible(let detail): "Incompatible · \(detail)"
-        case .failed(let detail): "Failed · \(detail)"
+        case .notInstalled: "לא מותקן"
+        case .discovering: "בודק זמינות…"
+        case .available(let download, let installed): "זמין · הורדה \(ByteCountFormatter.string(fromByteCount: download, countStyle: .file)) · מותקן \(ByteCountFormatter.string(fromByteCount: installed, countStyle: .file))"
+        case .downloading(let completed, let total): "מוריד \(completed)/\(total)"
+        case .installing(let completed, let total): "מתקין \(completed)/\(total)"
+        case .ready(let manifest): "מוכן · \(manifest.version)"
+        case .updateAvailable: "קיים עדכון"
+        case .repairRequired(let detail): "נדרש תיקון · \(detail)"
+        case .incompatible(let detail): "אינו תואם · \(detail)"
+        case .failed(let detail): "נכשל · \(detail)"
+        }
+    }
+}
+
+private enum SearchDataInstallError: LocalizedError {
+    case component(String, String?)
+    var errorDescription: String? {
+        switch self {
+        case .component(let name, let detail):
+            return "התקנת \(name) נכשלה. \(detail ?? "ניתן לנסות שוב מהמסך הזה.")"
         }
     }
 }
