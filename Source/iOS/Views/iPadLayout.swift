@@ -112,15 +112,15 @@ struct iPadLayout: View {
     private var sidebarContent: some View {
         ThemeList(isGrouped: true) {
             Section {
-                ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
-                    if tab == .zayitSearch || tab == .otzariaTextSearch {
+                ForEach(iOSTab.allCases.filter { $0 != .history && $0 != .zayitSearch }) { tab in
+                    if tab == .otzariaTextSearch {
                         Button {
                             path.removeAll()
                             selectedTab = tab
                             bManager.switchToMode(.search)
                             showingZayitReader = false
                             showingOtzariaReader = false
-                            detailMode = tab == .zayitSearch ? .zayitSearch : .otzariaTextSearch
+                            detailMode = .otzariaTextSearch
                         } label: {
                             Label(tab.title, systemImage: tab.icon)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -130,9 +130,14 @@ struct iPadLayout: View {
                         .foregroundStyle(.primary)
                         .accessibilityLabel(Text(tab.title))
                     } else {
-                        NavigationLink(value: tab) {
+                        Button {
+                            selectSidebar(tab)
+                        } label: {
                             Label(tab.title, systemImage: tab.icon)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
                         .foregroundStyle(.primary)
                     }
                 }
@@ -200,15 +205,22 @@ struct iPadLayout: View {
             iOSReaderTabView(columnVisibility: $columnVisibility)
         case .otzariaTextSearch:
             NavigationStack {
-                OtzariaTextSearchView { item, query in
-                    guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
-                    bManager.openBook(
-                        book,
-                        initialContentId: item.page,
-                        searchText: query
-                    )
-                    showingOtzariaReader = true
-                }
+                UnifiedSearchWorkspaceView(
+                    openOtzaria: { item, descriptor in
+                        guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
+                        bManager.openBook(
+                            book,
+                            initialContentId: item.page,
+                            searchText: descriptor.readerFallback
+                        )
+                        showingOtzariaReader = true
+                    },
+                    openZayit: { hit, _ in
+                        if ZayitSearchReaderNavigationAdapter.open(hit, using: bManager) {
+                            showingOtzariaReader = true
+                        }
+                    }
+                )
                 .navigationDestination(isPresented: $showingOtzariaReader) {
                     iOSReaderTabView(columnVisibility: $columnVisibility)
                 }
@@ -302,5 +314,16 @@ struct iPadLayout: View {
                 bManager.switchToMode(tab.appMode)
             }
         }
+    }
+
+    private func selectSidebar(_ tab: iOSTab) {
+        showingZayitReader = false
+        showingOtzariaReader = false
+        detailMode = .reader
+        sidebarSearchText = ""
+        bManager.authorViewModel.currentRowi = nil
+        selectedTab = tab
+        bManager.switchToMode(tab.appMode)
+        path = [tab]
     }
 }

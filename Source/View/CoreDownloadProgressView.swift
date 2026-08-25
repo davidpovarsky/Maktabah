@@ -18,6 +18,7 @@ struct CoreDownloadProgressView: View {
         let downloadTitle: String
         let retryTitle: String
         let cancelDownloadTitle: String?
+        let showsSearchComponents: Bool
 
         static let maktabah = Configuration(
             title: NSLocalizedString(
@@ -32,21 +33,21 @@ struct CoreDownloadProgressView: View {
             cancelTitle: String(localized: "Quit"),
             downloadTitle: String(localized: "Download"),
             retryTitle: String(localized: "Try Again"),
-            cancelDownloadTitle: nil
+            cancelDownloadTitle: nil,
+            showsSearchComponents: false
         )
 
         static let otzaria = Configuration(
             title: String(localized: "Otzaria Library Required"),
             confirmationBadge: String(localized: "Otzaria"),
-            confirmationMessage: String(
-                localized: "Choose an existing seforim.db from Files, or download the official Otzaria Library."
-            ),
+            confirmationMessage: String(localized: "Install the library and recommended search data together, or continue with the library only."),
             downloadingMessage: String(localized: "Preparing the Otzaria Library…"),
             chooseTitle: String(localized: "Choose Otzaria Database…"),
-            cancelTitle: nil,
-            downloadTitle: String(localized: "Download Otzaria Library"),
+            cancelTitle: String(localized: "Continue with library only"),
+            downloadTitle: String(localized: "Download and install all"),
             retryTitle: String(localized: "Try Again"),
-            cancelDownloadTitle: String(localized: "Cancel Download")
+            cancelDownloadTitle: String(localized: "Cancel Download"),
+            showsSearchComponents: true
         )
     }
 
@@ -95,6 +96,15 @@ struct CoreDownloadProgressView: View {
 
             bodyText
 
+            if configuration.showsSearchComponents, case .confirmation = state.phase {
+                VStack(spacing: 8) {
+                    searchComponent("Seforim DB", detail: "Required · 1.55 GB download · 7.87 GB installed", selected: true)
+                    searchComponent("Otzaria lexical index", detail: "Recommended · 3.01 GB download · 4.11 GB installed", selected: true)
+                    searchComponent("Zayit index", detail: "Recommended · separate versioned package", selected: true)
+                    searchComponent("Shared lexical.db", detail: "Recommended · 57 MB", selected: true)
+                }
+            }
+
             switch state.phase {
             case .confirmation:
                 confirmationButtons
@@ -123,6 +133,18 @@ struct CoreDownloadProgressView: View {
         .animation(.easeInOut(duration: 0.2), value: state.phase)
         .animation(.linear(duration: 0.15), value: state.progress)
         .controlSize(.large)
+    }
+
+    private func searchComponent(_ title: String, detail: String, selected: Bool) -> some View {
+        HStack(spacing: 10) {
+            Image(systemName: selected ? "checkmark.circle.fill" : "circle")
+                .foregroundStyle(selected ? Color.accentColor : Color.secondary)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title).font(.subheadline)
+                Text(detail).font(.caption2).foregroundStyle(.secondary)
+            }
+            Spacer()
+        }
     }
 
     @ViewBuilder

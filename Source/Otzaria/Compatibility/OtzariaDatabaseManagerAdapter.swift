@@ -55,6 +55,13 @@ enum OtzariaDatabaseManagerAdapter {
         try OtzariaMaktabahBridge.shared.fetchBook(byId: bookId)
     }
 
+    static func resolveBook(stableKey: String, expectedBookId: Int) throws -> BooksData? {
+        try OtzariaMaktabahBridge.shared.resolveBook(
+            stableKey: stableKey,
+            expectedBookId: expectedBookId
+        )
+    }
+
     static func bookExists(id: Int) -> Bool? {
         guard isEnabled else { return nil }
         return (try? OtzariaMaktabahBridge.shared.fetchBook(byId: id)) != nil

@@ -28,7 +28,7 @@ struct iOSBootstrapView: View {
                             state: bootstrapManager.coreDownloadState,
                             onDownload: { bootstrapManager.startDownload() },
                             onChooseFolder: { showingOtzariaImporter = true },
-                            onQuit: { cancellation() },
+                            onQuit: { bootstrapManager.continueWithLibraryOnly() },
                             configuration: .otzaria,
                             onCancelDownload: { bootstrapManager.cancelManagedDownload() }
                         )

@@ -22,7 +22,10 @@ enum OtzariaSearchArtifactPolicy {
         // `availableCapacity` already excludes the existing trusted index. Its
         // atomic rename to `.previous` consumes no additional file data.
         _ = existingFinalBytes
-        let remaining = max(0, manifest.lexicalArtifact.packagedBytes - alreadyDownloadedBytes)
+        // The installer streams one independently compressed part at a time,
+        // verifies and extracts it, then deletes it before downloading the next.
+        let largestPart = manifest.lexicalArtifact.parts.map(\.packagedBytes).max() ?? 0
+        let remaining = max(0, largestPart - min(alreadyDownloadedBytes, largestPart))
         return saturatedSum([
             remaining,
             manifest.lexicalArtifact.extractedBytes,
