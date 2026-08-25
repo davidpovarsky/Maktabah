@@ -247,9 +247,10 @@ actor ZayitSearchArtifactService {
         try validateLexicalDatabase(artifact.manifest, url: lexicalDatabaseURL)
         let storage = try ZayitSearchArtifactStorage()
         try storage.prepare()
-        let existing = directorySize(storage.finalIndex)
-        let required = artifact.manifest.extractedBytes + artifact.manifest.parts.map(\.packagedBytes).max()! +
-            existing + ZayitSearchArtifactStorage.reserveBytes
+        let required = ZayitInstallCapacityPolicy.requiredBytes(
+            extractedBytes: artifact.manifest.extractedBytes,
+            packagedPartBytes: artifact.manifest.parts.map(\.packagedBytes)
+        )
         let available = storage.availableCapacity()
         guard available >= required else {
             throw ZayitSearchDistributionError.insufficientStorage(required: required, available: available)

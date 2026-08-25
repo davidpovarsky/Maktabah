@@ -240,12 +240,13 @@ struct UnifiedSearchWorkspaceView: View {
                 matchedTerms: [], upstreamPattern: highlightPattern,
                 engine: .otzaria, fallbackQuery: query
             )
-            let plain = item.attributedText.string
+            let snippet = engine.map { SearchInlineMarkupSanitizer.segments(from: $0.text) }
+                ?? [.init(text: item.attributedText.string, highlighted: false)]
             return UnifiedSearchResult(
                 id: "otzaria:\(item.bookId):\(item.page):\(offset)", engine: .otzaria,
                 stableBookIdentity: engine?.filePath ?? "book:\(item.bookId)",
                 title: item.bookTitle, reference: engine?.reference ?? "",
-                snippet: [.init(text: plain, highlighted: false)],
+                snippet: snippet,
                 highlight: descriptor, payload: .otzaria(item, engine)
             )
         }
@@ -422,21 +423,30 @@ struct SearchDataView: View {
                     Task {
                         installMessage = nil
                         do {
-                            if OtzariaMaktabahBridge.shared.databaseURL == nil {
-                                try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { _ in }
-                            }
-                            if OtzariaMagicDictionaryManager.shared.validatedDatabaseURL == nil {
-                                _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: false)
-                            }
-                            otzaria.refreshStatus()
-                            if !otzaria.isReady, !(await otzaria.installManagedArtifactAndWait()) {
-                                throw SearchDataInstallError.component("אינדקס אוצריא", otzaria.errorMessage)
-                            }
-                            await zayit.refresh(discover: true)
-                            if !zayit.state.isReady {
-                                await zayit.install()
-                                guard zayit.state.isReady else {
-                                    throw SearchDataInstallError.component("אינדקס זית", zayitLabel)
+                            var ready: Set<SearchDataComponent> = []
+                            if OtzariaMaktabahBridge.shared.databaseURL != nil { ready.insert(.database) }
+                            if OtzariaMagicDictionaryManager.shared.validatedDatabaseURL != nil { ready.insert(.lexicalDatabase) }
+                            if otzaria.isReady { ready.insert(.otzariaIndex) }
+                            if zayit.state.isReady { ready.insert(.zayitIndex) }
+                            for component in SearchDataInstallPlanner.missingComponents(ready: ready) {
+                                switch component {
+                                case .database:
+                                    try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { _ in }
+                                case .lexicalDatabase:
+                                    _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: false)
+                                case .otzariaIndex:
+                                    otzaria.refreshStatus()
+                                    if !otzaria.isReady, !(await otzaria.installManagedArtifactAndWait()) {
+                                        throw SearchDataInstallError.component("אינדקס אוצריא", otzaria.errorMessage)
+                                    }
+                                case .zayitIndex:
+                                    await zayit.refresh(discover: true)
+                                    if !zayit.state.isReady {
+                                        await zayit.install()
+                                        guard zayit.state.isReady else {
+                                            throw SearchDataInstallError.component("אינדקס זית", zayitLabel)
+                                        }
+                                    }
                                 }
                             }
                             installMessage = "כל הרכיבים שנבחרו מוכנים."
@@ -452,10 +462,10 @@ struct SearchDataView: View {
                 if let installMessage {
                     Text(installMessage)
                         .font(.footnote)
-                        .foregroundStyle(installMessage.contains("מוכנים") ? .secondary : .red)
+                        .foregroundStyle(installMessage.contains("מוכנים") ? Color.secondary : Color.red)
                 }
             } footer: {
-                Text("Components are downloaded and installed sequentially to reduce peak storage. Each component keeps its own version and identity.")
+                Text("הרכיבים יורדים ומותקנים ברצף כדי לצמצם שימוש שיא באחסון. לכל רכיב נשמרים גרסה וזהות נפרדים.")
             }
             Section("מתקדם") {
                 NavigationLink("אבחון") { SearchDiagnosticsView() }

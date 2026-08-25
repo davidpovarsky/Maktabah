@@ -94,21 +94,42 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         if OtzariaDatabaseAccessController.shared.source == .managedInternal {
             status = .checkingPackage
             indexStatusDetail = buildInfoDetail()
+            let trustedIdentity = manager.trustedManagedArtifactIdentity(databasePath: path)
             Task.detached(priority: .utility) { [artifactService] in
                 do {
                     let availability = try await artifactService.checkAvailability(databasePath: path)
                     await MainActor.run {
                         guard !self.isInstallingArtifact else { return }
-                        self.status = .packageAvailable(
-                            downloadBytes: availability.artifact.manifest.lexicalArtifact.packagedBytes,
-                            requiredBytes: availability.requiredFreeBytes,
-                            availableBytes: availability.availableFreeBytes
-                        )
+                        let availableIdentity = availability.artifact.manifest.artifactIdentity
+                        switch OtzariaSearchArtifactPolicy.managedDiscoveryDisposition(
+                            trustedArtifactIdentity: trustedIdentity,
+                            availableArtifactIdentity: availableIdentity
+                        ) {
+                        case .repairRequired:
+                            self.status = .repairRequired(
+                                "החבילה המותקנת זוהתה, אך פתיחת האינדקס או metadata משני דורשים תיקון."
+                            )
+                        case .updateAvailable:
+                            self.status = .updateAvailable(
+                                downloadBytes: availability.artifact.manifest.lexicalArtifact.packagedBytes,
+                                artifactIdentity: availableIdentity
+                            )
+                        case .available:
+                            self.status = .packageAvailable(
+                                downloadBytes: availability.artifact.manifest.lexicalArtifact.packagedBytes,
+                                requiredBytes: availability.requiredFreeBytes,
+                                availableBytes: availability.availableFreeBytes
+                            )
+                        }
                     }
                 } catch {
                     await MainActor.run {
                         guard !self.isInstallingArtifact else { return }
-                        self.status = .packageUnavailable(error.localizedDescription)
+                        if trustedIdentity != nil {
+                            self.status = .repairRequired(error.localizedDescription)
+                        } else {
+                            self.status = .packageUnavailable(error.localizedDescription)
+                        }
                     }
                 }
             }

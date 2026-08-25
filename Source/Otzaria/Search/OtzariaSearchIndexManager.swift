@@ -21,7 +21,7 @@ final class OtzariaSearchIndexManager {
         if OtzariaDatabaseAccessController.shared.source == .managedInternal {
             return indexRootURL.appendingPathComponent("managed-library", isDirectory: true)
         }
-        indexRootURL.appendingPathComponent(stablePathHash(databasePath), isDirectory: true)
+        return indexRootURL.appendingPathComponent(stablePathHash(databasePath), isDirectory: true)
     }
 
     func buildingIndexURL(for databasePath: String) -> URL {
@@ -237,6 +237,25 @@ final class OtzariaSearchIndexManager {
 
     func compatibility(databasePath: String) -> OtzariaIndexCompatibility? {
         try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: indexURL(for: databasePath))
+    }
+
+    func trustedManagedArtifactIdentity(databasePath: String) -> String? {
+        let fileManager = FileManager.default
+        var candidates = [indexURL(for: databasePath)]
+        if let children = try? fileManager.contentsOfDirectory(
+            at: indexRootURL,
+            includingPropertiesForKeys: [.isDirectoryKey],
+            options: [.skipsHiddenFiles]
+        ) { candidates += children }
+        for candidate in candidates {
+            let url = candidate.appendingPathComponent("otzaria_prebuilt_installation.json")
+            guard let data = try? Data(contentsOf: url),
+                  let manifest = try? JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data) else {
+                continue
+            }
+            return manifest.artifactIdentity
+        }
+        return nil
     }
 
     func promoteBuildingIndex(databasePath: String) throws {

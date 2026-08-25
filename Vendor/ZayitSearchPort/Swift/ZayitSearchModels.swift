@@ -70,7 +70,14 @@ enum SearchInlineMarkupSanitizer {
                     .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
                     .split(whereSeparator: { $0.isWhitespace })
                     .first.map(String.init) ?? ""
-                if name == "b" || name == "strong" || name == "mark" {
+                let isOtzariaHighlight = name == "font" && (
+                    rawTag.contains("color=red")
+                        || rawTag.contains("color=\"red\"")
+                        || rawTag.contains("color='#ff0000'")
+                        || rawTag.contains("color=\"#ff0000\"")
+                        || rawTag.hasPrefix("/font")
+                )
+                if name == "b" || name == "strong" || name == "mark" || isOtzariaHighlight {
                     highlightDepth = rawTag.hasPrefix("/")
                         ? max(0, highlightDepth - 1) : highlightDepth + 1
                 } else if ["br", "p", "div", "li", "h1", "h2", "h3"].contains(name),

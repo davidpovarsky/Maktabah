@@ -1,5 +1,11 @@
 import Foundation
 
+enum OtzariaManagedDiscoveryDisposition: Equatable, Sendable {
+    case available
+    case updateAvailable
+    case repairRequired
+}
+
 enum OtzariaSearchArtifactPolicy {
     static let safetyReserve: Int64 = 1_073_741_824
 
@@ -28,6 +34,16 @@ enum OtzariaSearchArtifactPolicy {
             && identity.resourceHashes == build.resourceHashes
         // Container path, mtime, and semantic sidecar registration are not
         // part of the canonical lexical artifact identity.
+    }
+
+    static func managedDiscoveryDisposition(
+        trustedArtifactIdentity: String?,
+        availableArtifactIdentity: String
+    ) -> OtzariaManagedDiscoveryDisposition {
+        guard let trustedArtifactIdentity else { return .available }
+        return trustedArtifactIdentity == availableArtifactIdentity
+            ? .repairRequired
+            : .updateAvailable
     }
 
     static func requiredInstallCapacity(

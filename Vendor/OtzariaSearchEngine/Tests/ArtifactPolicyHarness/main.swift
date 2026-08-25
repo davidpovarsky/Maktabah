@@ -123,6 +123,60 @@ require(
     ),
     "managed identity accepted a different canonical database size"
 )
+require(
+    OtzariaSearchArtifactPolicy.managedDiscoveryDisposition(
+        trustedArtifactIdentity: nil,
+        availableArtifactIdentity: "A"
+    ) == .available,
+    "fresh install was not classified as available"
+)
+require(
+    OtzariaSearchArtifactPolicy.managedDiscoveryDisposition(
+        trustedArtifactIdentity: "A",
+        availableArtifactIdentity: "A"
+    ) == .repairRequired,
+    "same trusted artifact was offered as a new download"
+)
+require(
+    OtzariaSearchArtifactPolicy.managedDiscoveryDisposition(
+        trustedArtifactIdentity: "A",
+        availableArtifactIdentity: "B"
+    ) == .updateAvailable,
+    "different artifact was not classified as an update"
+)
+let fullRequest = OtzariaSearchRequest(
+    query: "לחתוך צנון בסכין בשרי",
+    mode: .advanced,
+    facets: ["/"],
+    limit: 25,
+    offset: 3,
+    order: .relevance,
+    distance: 4,
+    negativeQuery: "אסור",
+    negativeDistance: 2,
+    scope: .sameSection,
+    negativeScope: .sameParagraph,
+    wordMatchMode: .atLeast,
+    wordMatchCount: 3,
+    customSpacing: ["0-1": "2"],
+    negativeCustomSpacing: ["0-1": "1"],
+    alternativeWords: ["0": ["לקצוץ"]],
+    negativeAlternativeWords: ["0": ["מותר"]],
+    searchOptions: ["לחתוך_0": ["קידומות": true, "כתיב מלא/חסר": true]],
+    negativeSearchOptions: ["אסור_0": ["סיומות": true]],
+    matchNikud: true,
+    matchTaamim: true,
+    grouping: .identicalText
+)
+let fullRequestJSON = try JSONSerialization.jsonObject(with: JSONEncoder().encode(fullRequest)) as! [String: Any]
+require(fullRequestJSON["mode"] as? String == "advanced", "advanced mode was not sent upstream")
+require(fullRequestJSON["order"] as? String == "relevance", "ranking order was dropped")
+require(fullRequestJSON["negativeQuery"] as? String == "אסור", "negative query was dropped")
+require(fullRequestJSON["wordMatchMode"] as? String == "atLeast", "word match mode was dropped")
+require(fullRequestJSON["wordMatchCount"] as? Int == 3, "word match count was dropped")
+require((fullRequestJSON["customSpacing"] as? [String: Any])?["0-1"] as? String == "2", "custom spacing was dropped")
+require((fullRequestJSON["alternativeWords"] as? [String: Any])?["0"] as? [String] == ["לקצוץ"], "alternatives were dropped")
+require(fullRequestJSON["grouping"] as? String == "identicalText", "grouping was dropped")
 
 var rejected = false
 do {

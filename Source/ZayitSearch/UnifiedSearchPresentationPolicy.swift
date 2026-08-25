@@ -24,3 +24,16 @@ enum UnifiedSearchPresentationPolicy {
         return hasSubmitted ? .empty : .notSearched
     }
 }
+
+enum SearchDataComponent: String, CaseIterable, Hashable, Sendable {
+    case database
+    case lexicalDatabase
+    case otzariaIndex
+    case zayitIndex
+}
+
+enum SearchDataInstallPlanner {
+    static func missingComponents(ready: Set<SearchDataComponent>) -> [SearchDataComponent] {
+        SearchDataComponent.allCases.filter { !ready.contains($0) }
+    }
+}
