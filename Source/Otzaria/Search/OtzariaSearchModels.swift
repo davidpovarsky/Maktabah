@@ -351,6 +351,12 @@ struct OtzariaIndexFingerprint: Codable, Equatable, Sendable {
     let modificationTime: TimeInterval
 }
 
+struct OtzariaHighlightPattern: Codable, Equatable, Sendable {
+    let combinedPattern: String
+    let wordPatterns: [String]
+    let wordBoundaryEligible: [Bool]
+}
+
 struct OtzariaSemanticArtifactIdentity: Codable, Equatable, Sendable {
     let modelID: String
     let modelSHA256: String

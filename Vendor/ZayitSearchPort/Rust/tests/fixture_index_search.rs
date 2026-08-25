@@ -45,6 +45,8 @@ fn builds_and_searches_a_real_sqlite_fixture() {
         .expect("search exact term");
     assert_eq!(exact_term.hits.len(), 1);
     assert_eq!(exact_term.hits[0].line_id, 101);
+    assert_eq!(exact_term.hits[0].stable_book_key, "demo/sefer-yesod");
+    assert!(!exact_term.hits[0].matched_terms.is_empty());
 
     let quoted_phrase = engine
         .search(&request("\"שלום בית\"", SearchFilters::default()))
@@ -117,13 +119,25 @@ fn create_seforim_fixture(path: &Path) {
     conn.execute("INSERT INTO category VALUES (3, 1)", [])
         .unwrap();
     conn.execute(
-        "INSERT INTO book VALUES (?1, ?2, ?3, ?4, ?5)",
+        "INSERT INTO book(id,categoryId,title,orderIndex,isBaseBook) VALUES (?1, ?2, ?3, ?4, ?5)",
         params![10, 2, "ספר יסוד", 100, 1],
     )
     .unwrap();
+    conn.execute("ALTER TABLE book ADD COLUMN filePath TEXT", [])
+        .unwrap();
     conn.execute(
-        "INSERT INTO book VALUES (?1, ?2, ?3, ?4, ?5)",
+        "UPDATE book SET filePath=CASE id WHEN 10 THEN 'demo/sefer-yesod' ELSE 'demo/sefer-acher' END",
+        [],
+    )
+    .unwrap();
+    conn.execute(
+        "INSERT INTO book(id,categoryId,title,orderIndex,isBaseBook) VALUES (?1, ?2, ?3, ?4, ?5)",
         params![20, 3, "ספר אחר", 100, 0],
+    )
+    .unwrap();
+    conn.execute(
+        "UPDATE book SET filePath='demo/sefer-acher' WHERE id=20",
+        [],
     )
     .unwrap();
     conn.execute(
