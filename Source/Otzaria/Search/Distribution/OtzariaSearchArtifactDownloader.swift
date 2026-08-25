@@ -58,6 +58,41 @@ actor OtzariaSearchArtifactDownloader {
         }
     }
 
+    func prepareStreamingWorkspace(
+        manifest: OtzariaSearchArtifactManifest,
+        workspaceURL: URL
+    ) {
+        var keptOne = false
+        for part in manifest.lexicalArtifact.parts {
+            let url = partURL(part, workspaceURL: workspaceURL)
+            guard fileSize(url) > 0 else { continue }
+            if !keptOne {
+                keptOne = true
+            } else {
+                try? FileManager.default.removeItem(at: url)
+            }
+        }
+    }
+
+    func downloadAndVerifyPart(
+        artifact: OtzariaResolvedSearchArtifact,
+        part: OtzariaSearchArtifactManifest.Part,
+        workspaceURL: URL,
+        progress: @escaping @Sendable (Int64) -> Void
+    ) async throws -> URL {
+        cancellationRequested = false
+        try FileManager.default.createDirectory(at: workspaceURL, withIntermediateDirectories: true)
+        try excludeFromBackup(workspaceURL)
+        guard let remoteURL = artifact.partURLs[part.assetName] else {
+            throw OtzariaSearchArtifactError.missingPart(part.assetName)
+        }
+        let localURL = partURL(part, workspaceURL: workspaceURL)
+        if try verifyIfComplete(localURL, part: part) { return localURL }
+        try await downloadPart(part, from: remoteURL, to: localURL, progress: progress)
+        try verify(localURL, part: part)
+        return localURL
+    }
+
     func cleanup(workspaceURL: URL) {
         try? FileManager.default.removeItem(at: workspaceURL)
     }

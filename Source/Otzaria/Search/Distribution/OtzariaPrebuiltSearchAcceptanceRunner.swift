@@ -16,6 +16,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         let documentCount: UInt64
         let sourceCount: Int
         let checks: [Check]
+        let golden: GoldenCheck?
         let localIndexingRan: Bool
         let stagingAbsent: Bool
         let nativeDownloadRan: Bool
@@ -24,6 +25,15 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
         let productionValidatorRan: Bool
         let selectedReleaseTag: String?
         let error: String?
+    }
+
+    private struct GoldenCheck: Codable {
+        let query: String
+        let normalizedQuery: String
+        let orderedResultIDs: [UInt64]
+        let stableSourceIDs: [String]
+        let references: [String]
+        let highlightedTopResults: Int
     }
 
     @MainActor
@@ -183,6 +193,38 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                     firstFilePath: page.results.first?.filePath
                 ))
             }
+            let goldenQuery = "לחתוך צנון בסכין בשרי"
+            let normalizedGolden = try OtzariaSearchEngineBridge.sanitizeQuery(goldenQuery)
+            let goldenPage = try engine.search(OtzariaSearchRequest(
+                query: goldenQuery,
+                mode: .advanced,
+                facets: ["/"],
+                limit: 25,
+                order: .relevance,
+                wordMatchMode: .all
+            ))
+            let orderedIDs = goldenPage.results.map(\.id)
+            let stableIDs = goldenPage.results.map(\.filePath)
+            let references = goldenPage.results.map(\.reference)
+            let highlighted = goldenPage.results.filter {
+                $0.text.localizedCaseInsensitiveContains("<b>") ||
+                    $0.text.localizedCaseInsensitiveContains("<strong>")
+            }.count
+            guard !orderedIDs.isEmpty,
+                  Set(orderedIDs).count == orderedIDs.count,
+                  stableIDs.allSatisfy({ !$0.isEmpty }),
+                  references.contains(where: { !$0.isEmpty }),
+                  highlighted > 0 else {
+                throw OtzariaSearchArtifactError.validationFailed("golden parity result contract failed")
+            }
+            let golden = GoldenCheck(
+                query: goldenQuery,
+                normalizedQuery: normalizedGolden,
+                orderedResultIDs: orderedIDs,
+                stableSourceIDs: stableIDs,
+                references: references,
+                highlightedTopResults: highlighted
+            )
             let stagingAbsent = !FileManager.default.fileExists(
                 atPath: storage.stagingURL(databasePath: databasePath).path
             )
@@ -201,6 +243,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 documentCount: documentCount,
                 sourceCount: paths.count,
                 checks: checks,
+                golden: golden,
                 localIndexingRan: false,
                 stagingAbsent: true,
                 nativeDownloadRan: nativeDownloadRan,
@@ -218,6 +261,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 documentCount: 0,
                 sourceCount: 0,
                 checks: [],
+                golden: nil,
                 localIndexingRan: false,
                 stagingAbsent: false,
                 nativeDownloadRan: nativeDownloadRan,

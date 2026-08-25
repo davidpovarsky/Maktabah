@@ -11,11 +11,14 @@ struct AuthorModeView: View {
     }
 
     var body: some View {
-        if OtzariaMaktabahBridge.shared.isEnabled {
-            OtzariaAuthorsModeView(onOpenBook: onOpenBook)
-        } else {
-            maktabahNarratorsView(viewModel: navigationManager.authorViewModel)
+        Group {
+            if OtzariaMaktabahBridge.shared.isEnabled {
+                OtzariaAuthorsModeView(onOpenBook: onOpenBook)
+            } else {
+                maktabahNarratorsView(viewModel: navigationManager.authorViewModel)
+            }
         }
+        .environment(\.layoutDirection, .rightToLeft)
     }
 
     @ViewBuilder
@@ -55,8 +58,8 @@ struct iOSRowiReaderView: View {
     var body: some View {
         ThemeScrollView {
             Text(viewModel.rowiContentText)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .multilineTextAlignment(.trailing)
                 .environment(\.layoutDirection, .rightToLeft)
                 .padding()
         }

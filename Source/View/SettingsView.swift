@@ -382,7 +382,10 @@ extension SettingsView {
     }
 
     private var zayitCreditsSection: some View {
-        Section("About") {
+        Section("Search") {
+            NavigationLink("Search Data") {
+                SearchDataView()
+            }
             NavigationLink("Zayit Search Credits") {
                 ZayitSearchAttributionView()
             }

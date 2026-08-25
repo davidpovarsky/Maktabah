@@ -18,7 +18,10 @@ final class OtzariaSearchIndexManager {
     }
 
     func indexURL(for databasePath: String) -> URL {
-        indexRootURL.appendingPathComponent(stablePathHash(databasePath), isDirectory: true)
+        if OtzariaDatabaseAccessController.shared.source == .managedInternal {
+            return indexRootURL.appendingPathComponent("managed-library", isDirectory: true)
+        }
+        return indexRootURL.appendingPathComponent(stablePathHash(databasePath), isDirectory: true)
     }
 
     func buildingIndexURL(for databasePath: String) -> URL {
@@ -191,6 +194,9 @@ final class OtzariaSearchIndexManager {
     }
 
     func isIndexCurrent(databasePath: String) -> Bool {
+        if OtzariaDatabaseAccessController.shared.source == .managedInternal {
+            _ = try? recoverTrustedManagedIndex(databasePath: databasePath)
+        }
         let finalURL = indexURL(for: databasePath)
         guard let currentBuild = try? OtzariaSearchEngineBridge.buildInfo() else { return false }
         let registeredSemantic = decode(
@@ -199,16 +205,24 @@ final class OtzariaSearchIndexManager {
         ).flatMap {
             currentBuild.semanticEnabled && $0.sidecarRevision == currentBuild.semanticSidecarRevision ? $0 : nil
         }
+        let managed = OtzariaDatabaseAccessController.shared.source == .managedInternal
         guard FileManager.default.fileExists(atPath: finalURL.path),
               let identity = storedIdentity(indexURL: finalURL),
-              identity.database == (try? currentFingerprint(databasePath: databasePath)),
-              identity.upstreamCommit == currentBuild.upstreamCommit,
-              identity.engineVersion == currentBuild.engineVersion,
-              identity.indexSchemaVersion == currentBuild.indexSchemaVersion,
-              identity.defaultGenerationOrder == currentBuild.defaultGenerationOrder,
-              identity.adapterVersion == currentBuild.adapterVersion,
-              identity.resourceHashes == currentBuild.resourceHashes,
-              identity.semanticArtifactIdentity == registeredSemantic,
+              let currentDatabase = try? currentFingerprint(databasePath: databasePath),
+              (managed
+                  ? OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(
+                      identity,
+                      currentDatabase: currentDatabase,
+                      build: currentBuild
+                    )
+                  : identity.database == currentDatabase
+                      && identity.upstreamCommit == currentBuild.upstreamCommit
+                      && identity.engineVersion == currentBuild.engineVersion
+                      && identity.indexSchemaVersion == currentBuild.indexSchemaVersion
+                      && identity.defaultGenerationOrder == currentBuild.defaultGenerationOrder
+                      && identity.adapterVersion == currentBuild.adapterVersion
+                      && identity.resourceHashes == currentBuild.resourceHashes),
+              (managed || identity.semanticArtifactIdentity == registeredSemantic),
               let compatibility = try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: finalURL),
               compatibility.compatible else { return false }
         do {
@@ -223,6 +237,25 @@ final class OtzariaSearchIndexManager {
 
     func compatibility(databasePath: String) -> OtzariaIndexCompatibility? {
         try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: indexURL(for: databasePath))
+    }
+
+    func trustedManagedArtifactIdentity(databasePath: String) -> String? {
+        let fileManager = FileManager.default
+        var candidates = [indexURL(for: databasePath)]
+        if let children = try? fileManager.contentsOfDirectory(
+            at: indexRootURL,
+            includingPropertiesForKeys: [.isDirectoryKey],
+            options: [.skipsHiddenFiles]
+        ) { candidates += children }
+        for candidate in candidates {
+            let url = candidate.appendingPathComponent("otzaria_prebuilt_installation.json")
+            guard let data = try? Data(contentsOf: url),
+                  let manifest = try? JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data) else {
+                continue
+            }
+            return manifest.artifactIdentity
+        }
+        return nil
     }
 
     func promoteBuildingIndex(databasePath: String) throws {
@@ -328,6 +361,88 @@ final class OtzariaSearchIndexManager {
         guard available >= required else {
             throw OtzariaSearchError.insufficientStorage(requiredBytes: required, availableBytes: available)
         }
+    }
+
+    /// Recovers a trusted managed prebuilt index across app-container path,
+    /// database mtime, and stale semantic-registration changes. The signed
+    /// database and artifact manifests, engine/schema/resource identities,
+    /// Tantivy compatibility, and document count are the canonical identity.
+    @discardableResult
+    func recoverTrustedManagedIndex(databasePath: String) throws -> UInt64? {
+        guard OtzariaDatabaseAccessController.shared.source == .managedInternal else { return nil }
+        let fileManager = FileManager.default
+        try fileManager.createDirectory(at: indexRootURL, withIntermediateDirectories: true)
+        let target = indexURL(for: databasePath)
+        var candidates: [URL] = []
+        if fileManager.fileExists(atPath: target.path) { candidates.append(target) }
+        if let children = try? fileManager.contentsOfDirectory(
+            at: indexRootURL,
+            includingPropertiesForKeys: [.isDirectoryKey],
+            options: [.skipsHiddenFiles]
+        ) {
+            candidates += children.filter { candidate in
+                candidate != target
+                    && !candidate.lastPathComponent.hasSuffix(".building")
+                    && !candidate.lastPathComponent.hasSuffix(".installing")
+                    && !candidate.lastPathComponent.hasSuffix(".previous")
+                    && fileManager.fileExists(
+                        atPath: candidate.appendingPathComponent("otzaria_prebuilt_installation.json").path
+                    )
+            }
+        }
+
+        let databaseStorage = try OtzariaDatabaseStorage()
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let databaseManifest = try decoder.decode(
+            OtzariaDatabaseInstallationManifest.self,
+            from: Data(contentsOf: databaseStorage.installationManifestURL)
+        )
+        let databaseBytes = Int64(try currentFingerprint(databasePath: databasePath).fileSize)
+        let build = try OtzariaSearchEngineBridge.buildInfo()
+
+        for candidate in candidates {
+            let trustedURL = candidate.appendingPathComponent("otzaria_prebuilt_installation.json")
+            guard let data = try? Data(contentsOf: trustedURL),
+                  let manifest = try? JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data),
+                  (try? OtzariaSearchArtifactPolicy.validate(
+                    manifest,
+                    database: databaseManifest,
+                    databaseBytes: databaseBytes,
+                    build: build
+                  )) != nil,
+                  let compatibility = try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: candidate),
+                  compatibility.compatible else { continue }
+            let engine = try OtzariaSearchEngineBridge(indexURL: candidate)
+            let count: UInt64
+            do { count = try engine.documentCount() } catch { engine.close(); continue }
+            engine.close()
+            guard count == manifest.lexicalArtifact.documentCount else { continue }
+
+            if candidate != target {
+                guard !fileManager.fileExists(atPath: target.path) else { continue }
+                try fileManager.moveItem(at: candidate, to: target)
+            }
+            let repaired = OtzariaIndexBuildIdentity(
+                database: try currentFingerprint(databasePath: databasePath),
+                upstreamCommit: build.upstreamCommit,
+                engineVersion: build.engineVersion,
+                indexSchemaVersion: build.indexSchemaVersion,
+                defaultGenerationOrder: build.defaultGenerationOrder,
+                adapterVersion: build.adapterVersion,
+                resourceHashes: build.resourceHashes,
+                catalogueHash: manifest.lexicalArtifact.catalogueHash,
+                semanticArtifactIdentity: nil
+            )
+            if storedIdentity(indexURL: target) != repaired {
+                try writeIdentity(repaired, indexURL: target)
+                OtzariaIndexFileLogger.log(
+                    "repaired trusted managed index identity artifact=\(manifest.artifactIdentity)"
+                )
+            }
+            return count
+        }
+        return nil
     }
 
     private func directorySize(_ url: URL) -> UInt64 {
