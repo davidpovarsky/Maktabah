@@ -3,18 +3,17 @@ import Observation
 import SwiftUI
 import UIKit
 
-// Playground-only Swift stand-ins for application services/data. The goal is
-// to let the real production Views compile and render without databases,
-// downloaders, native search engines, CloudKit, or other runtime backends.
+// Playground-only Swift stand-ins for small presentation helpers. Runtime
+// services and state live in UIWorkbenchFacades.swift.
 
 extension String {
-    var localized: String { self }
     func convertToArabicDigits() -> String { self }
 }
 
 extension Color {
     static var appBackground: Color { Color(uiColor: .systemBackground) }
     static var appCellBackground: Color { Color(uiColor: .secondarySystemBackground) }
+    static var appSecondaryBackground: Color { Color(uiColor: .tertiarySystemBackground) }
 }
 
 extension View {
@@ -24,5 +23,9 @@ extension View {
 
     func themeListBackground() -> some View {
         listRowBackground(Color.appBackground)
+    }
+
+    func themeBackground() -> some View {
+        background(Color.appBackground)
     }
 }
