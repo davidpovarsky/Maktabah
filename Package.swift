@@ -96,7 +96,9 @@ let appTarget: Target = .executableTarget(
         "Scripts",
         "ci_scripts",
         "docs",
-        "Screenshots"
+        "Screenshots",
+        // macOS-only model; not used by the iPad presentation layer.
+        "Source/Models/BackgroundOptions.swift"
     ],
     sources: uiSources,
     resources: [
@@ -119,8 +121,8 @@ let package = Package(
             name: "Maktabah UI Workbench",
             targets: ["AppModule"],
             bundleIdentifier: "com.davidpovarsky.maktabah.uiworkbench",
-            displayVersion: "2.2",
-            bundleVersion: "4",
+            displayVersion: "2.3",
+            bundleVersion: "5",
             supportedDeviceFamilies: [.pad],
             supportedInterfaceOrientations: [
                 .portrait,
