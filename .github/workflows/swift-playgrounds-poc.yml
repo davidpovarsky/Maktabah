@@ -1,0 +1,119 @@
+name: Swift Playgrounds UI-Only Workbench
+
+on:
+  push:
+    branches:
+      - codex/swift-playgrounds-shared-ui-poc
+  workflow_dispatch:
+
+concurrency:
+  group: swift-playgrounds-ui-only-workbench
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Prepare diagnostic logs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-logs
+          {
+            uname -a
+            xcodebuild -version
+            xcrun swift --version
+          } 2>&1 | tee ci-logs/environment.log
+
+      - name: Select Xcode 26
+        shell: bash
+        run: bash Scripts/CI/select-xcode-26.sh 2>&1 | tee ci-logs/select-xcode-26.log
+
+      - name: Parse Playground package
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun swift package --package-path . dump-package \
+            > ci-logs/maktabah-ui-workbench-package.json \
+            2> >(tee ci-logs/dump-package-stderr.log >&2)
+
+      - name: Enforce Swift-only UI boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            grep -q 'MAKTABAH_UI_WORKBENCH' Package.swift
+            grep -q 'MaktabahUIWorkbenchApp.swift' Package.swift
+            grep -q 'UIWorkbenchMocks.swift' Package.swift
+            grep -q 'Source/iOS/Views' Package.swift
+            grep -q 'Source/iOS/Theme' Package.swift
+            grep -q 'Source/iOS/Wrappers' Package.swift
+            grep -q 'dependencies: \[\]' Package.swift
+
+            # App Playgrounds scans certain resources before SwiftPM exclusions.
+            # No string catalog may physically exist anywhere in this .swiftpm tree.
+            if find . -path './.git' -prune -o -name '*.xcstrings' -print -quit | grep -q .; then
+              echo 'ERROR: .xcstrings file physically present in UI-only Playground tree.'
+              find . -path './.git' -prune -o -name '*.xcstrings' -print
+              exit 1
+            fi
+
+            # An iPad App Playground must never have C/Rust/native/backend package dependencies.
+            if grep -Eq '\.package\s*\(' Package.swift; then
+              echo 'ERROR: external SwiftPM dependency present in UI-only Playground.'
+              exit 1
+            fi
+            if grep -Eq 'libzstd|ZstdShim|Otzaria/Bootstrap|Managers/Database|Managers/Engine|OtzariaSearchEngineBridge|OtzariaNativeLinkerStubs|ZayitSearchEngineBridge' Package.swift; then
+              echo 'ERROR: backend/native implementation leaked into UI-only Playground sources.'
+              exit 1
+            fi
+
+            test -f Source/iOS/Views/iOSMainView.swift
+            test -f Source/iOS/Views/iPadLayout.swift
+            test -f Source/iOS/Views/iOSLibraryView.swift
+            test -f Source/iOS/Views/Reader/iOSReaderView.swift
+            test -f PlaygroundSupport/MaktabahUIWorkbenchApp.swift
+            test -f PlaygroundSupport/UIWorkbenchMocks.swift
+            test -f PlaygroundSupport/GeneratedResourceSymbols.swift
+            test ! -e PlaygroundSupport/OtzariaNativeLinkerStubs.swift
+            test ! -e PlaygroundSupport/ZayitSearchEngineBridge.swift
+            echo 'Swift-only UI boundary validation passed.'
+          } 2>&1 | tee ci-logs/ui-only-boundary.log
+
+      - name: Build Swift-only iPad UI workbench
+        shell: bash
+        run: |
+          set -euo pipefail
+          SDK="$(xcrun --sdk iphonesimulator --show-sdk-path)"
+          {
+            echo '=== Swift-only Maktabah UI workbench ==='
+            echo "SDK=$SDK"
+            xcrun swift build \
+              --package-path . \
+              --configuration debug \
+              --triple arm64-apple-ios18.0-simulator \
+              --sdk "$SDK"
+          } 2>&1 | tee ci-logs/swift-ui-only-build.log
+
+      - name: Upload diagnostic log artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: swift-playgrounds-ui-only-logs-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ci-logs/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Guard production Xcode project
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code HEAD^ HEAD -- Maktabah.xcodeproj
