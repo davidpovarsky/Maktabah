@@ -6,9 +6,9 @@ import PackageDescription
 import AppleProductTypes
 #endif
 
-// Swift/SwiftUI/UIKit-only workbench. The real production UI and pure-Swift
-// presentation state are compiled in place. Database/download/search engines
-// are deliberately absent and are represented by PlaygroundSupport mocks.
+// Swift/SwiftUI/UIKit-only workbench. The real production UI is compiled in
+// place. Backend/runtime state is represented by PlaygroundSupport facades so
+// the iPad workbench never needs database, CloudKit, Rust/C, or download code.
 let uiSources = [
     // Real iOS UI — deliberately omit Bootstrap views/resources.
     "Source/iOS/Theme",
@@ -31,15 +31,14 @@ let uiSources = [
     "Source/iOS/Views/iPhoneLayout.swift",
     "Source/iOS/Wrappers",
 
-    // Real pure-Swift model/presentation state used by those screens.
+    // Real pure-Swift models/helpers used by those screens.
     "Source/Models",
+    "Source/Protocols/CopyableResult.swift",
     "Source/Managers/ViewCordinatoor/AppMode.swift",
-    "Source/Managers/ViewModels",
     "Source/Managers/String",
     "Source/Managers/TextView/TextViewState.swift",
     "Source/Managers/App Config/Fonts/ArabicFont.swift",
     "Source/Managers/App Config/UserDefaults.swift",
-    "Source/iOS/Managers/iOSNavigationManager.swift",
     "Source/iOS/Managers/UserFontManager.swift",
 
     // Real shared SwiftUI screens used by the iOS shell.
@@ -48,7 +47,7 @@ let uiSources = [
     "Source/View/ProgressBooksDownload.swift",
     "Source/View/WelcomeScreenView.swift",
 
-    // Otzaria presentation models/view-models and real UI, no SQLite/search engine.
+    // Otzaria presentation models/views only, no SQLite/search engine.
     "Source/Otzaria/Domain",
     "Source/Otzaria/Features/Authors",
     "Source/Otzaria/Features/Library",
@@ -61,18 +60,19 @@ let uiSources = [
     "Source/Otzaria/Search/OtzariaSearchSnippetRenderer.swift",
     "Source/Otzaria/Search/OtzariaTextSearchView.swift",
 
-    // Unified/Zayit presentation models only.
+    // Unified/Zayit presentation models only. The repository/engine is a
+    // PlaygroundSupport facade, while the actual View and ViewModel stay real.
     "Source/ZayitSearch/UnifiedSearchPresentationPolicy.swift",
     "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
     "Vendor/ZayitSearchPort/Swift/ZayitSearchModels.swift",
-    "Vendor/ZayitSearchPort/Swift/ZayitSearchRepository.swift",
     "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
     "Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift",
     "Vendor/ZayitSearchPort/Swift/ZayitSearchAttributionView.swift",
 
-    // Playground-only host and backend stand-ins.
+    // Playground-only host and presentation/backend stand-ins.
     "PlaygroundSupport/MaktabahUIWorkbenchApp.swift",
     "PlaygroundSupport/UIWorkbenchMocks.swift",
+    "PlaygroundSupport/UIWorkbenchFacades.swift",
     "PlaygroundSupport/GeneratedResourceSymbols.swift"
 ]
 
@@ -98,7 +98,12 @@ let appTarget: Target = .executableTarget(
         "docs",
         "Screenshots",
         // macOS-only model; not used by the iPad presentation layer.
-        "Source/Models/BackgroundOptions.swift"
+        "Source/Models/BackgroundOptions.swift",
+        // Backend-heavy presentation implementations are replaced only inside
+        // the workbench. Production Xcode targets still use these real files.
+        "Source/Managers/ViewModels",
+        "Source/iOS/Managers/iOSNavigationManager.swift",
+        "Vendor/ZayitSearchPort/Swift/ZayitSearchRepository.swift"
     ],
     sources: uiSources,
     resources: [
@@ -121,8 +126,8 @@ let package = Package(
             name: "Maktabah UI Workbench",
             targets: ["AppModule"],
             bundleIdentifier: "com.davidpovarsky.maktabah.uiworkbench",
-            displayVersion: "2.3",
-            bundleVersion: "5",
+            displayVersion: "2.4",
+            bundleVersion: "6",
             supportedDeviceFamilies: [.pad],
             supportedInterfaceOrientations: [
                 .portrait,
