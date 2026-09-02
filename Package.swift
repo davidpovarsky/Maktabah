@@ -82,6 +82,7 @@ let uiSources = [
     "PlaygroundSupport/UIWorkbenchOtzariaFacades.swift",
     "PlaygroundSupport/UIWorkbenchZayitFacades.swift",
     "PlaygroundSupport/UIWorkbenchCompatibility.swift",
+    "PlaygroundSupport/UIWorkbenchReaderCompatibility.swift",
     "PlaygroundSupport/UIWorkbenchReaderModels.swift",
     "PlaygroundSupport/UIWorkbenchBootstrapModels.swift",
     "PlaygroundSupport/GeneratedResourceSymbols.swift"
