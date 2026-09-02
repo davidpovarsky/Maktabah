@@ -84,6 +84,7 @@ struct iOSReaderTabsPopoverView: View {
     }
 }
 
+#if !MAKTABAH_UI_WORKBENCH
 #Preview {
     let mockBook = BooksData(
         id: 1,
@@ -124,3 +125,4 @@ struct iOSReaderTabsPopoverView: View {
     return iOSReaderTabsPopoverView(isPresented: .constant(true))
         .environment(manager)
 }
+#endif
