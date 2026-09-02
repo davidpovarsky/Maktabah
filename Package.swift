@@ -73,10 +73,14 @@ let uiSources = [
     "Vendor/ZayitSearchPort/Swift/ZayitSearchView.swift",
     "Vendor/ZayitSearchPort/Swift/ZayitSearchAttributionView.swift",
 
-    // Playground-only host and presentation/backend stand-ins.
+    // Playground-only host and isolated presentation/backend stand-ins.
     "PlaygroundSupport/MaktabahUIWorkbenchApp.swift",
     "PlaygroundSupport/UIWorkbenchMocks.swift",
-    "PlaygroundSupport/UIWorkbenchFacades.swift",
+    "PlaygroundSupport/UIWorkbenchBaseModels.swift",
+    "PlaygroundSupport/UIWorkbenchViewModels.swift",
+    "PlaygroundSupport/UIWorkbenchServices.swift",
+    "PlaygroundSupport/UIWorkbenchOtzariaFacades.swift",
+    "PlaygroundSupport/UIWorkbenchZayitFacades.swift",
     "PlaygroundSupport/UIWorkbenchCompatibility.swift",
     "PlaygroundSupport/UIWorkbenchReaderModels.swift",
     "PlaygroundSupport/UIWorkbenchBootstrapModels.swift",
