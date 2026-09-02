@@ -37,6 +37,7 @@ let uiSources = [
     "Source/Managers/ViewCordinatoor/AppMode.swift",
     "Source/Managers/String",
     "Source/Managers/TextView/TextViewState.swift",
+    "Source/Managers/App Config/StorageError.swift",
     "Source/Managers/App Config/Fonts/ArabicFont.swift",
     "Source/Managers/App Config/UserDefaults.swift",
     "Source/iOS/Managers/UserFontManager.swift",
@@ -48,12 +49,15 @@ let uiSources = [
     "Source/View/WelcomeScreenView.swift",
 
     // Otzaria presentation models/views only, no SQLite/search engine.
+    "Source/Otzaria/Core/String+OtzariaText.swift",
     "Source/Otzaria/Domain",
     "Source/Otzaria/Features/Authors",
     "Source/Otzaria/Features/Library",
     "Source/Otzaria/Features/Reader",
     "Source/Otzaria/Features/Settings",
     "Source/Otzaria/Features/Sources",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+    "Source/Otzaria/Reading/OtzariaTextViewLineSelectionAdapter.swift",
     "Source/Otzaria/SharedUI/OtzariaStateViews.swift",
     "Source/Otzaria/Search/OtzariaSearchMode.swift",
     "Source/Otzaria/Search/OtzariaSearchModels.swift",
@@ -73,6 +77,9 @@ let uiSources = [
     "PlaygroundSupport/MaktabahUIWorkbenchApp.swift",
     "PlaygroundSupport/UIWorkbenchMocks.swift",
     "PlaygroundSupport/UIWorkbenchFacades.swift",
+    "PlaygroundSupport/UIWorkbenchCompatibility.swift",
+    "PlaygroundSupport/UIWorkbenchReaderModels.swift",
+    "PlaygroundSupport/UIWorkbenchBootstrapModels.swift",
     "PlaygroundSupport/GeneratedResourceSymbols.swift"
 ]
 
