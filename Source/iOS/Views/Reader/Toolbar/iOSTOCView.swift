@@ -79,6 +79,7 @@ struct iOSTOCView: View {
     }
 }
 
+#if !MAKTABAH_UI_WORKBENCH
 #Preview {
     let node1 = TOCNode(from: TOC(bab: "المقدمة (Tanpa Sub)", level: 1, sub: 0, id: 1))
     let node2 = TOCNode(from: TOC(bab: "كتاب الطهارة (Dengan Sub)", level: 1, sub: 0, id: 2))
@@ -104,3 +105,4 @@ struct iOSTOCView: View {
         }
     )
 }
+#endif
