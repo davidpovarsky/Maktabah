@@ -151,6 +151,7 @@ struct iOSReaderNavigationPopoverView: View {
     }
 }
 
+#if !MAKTABAH_UI_WORKBENCH
 #Preview {
     let mockBook = BooksData(
         id: 1,
@@ -167,3 +168,4 @@ struct iOSReaderNavigationPopoverView: View {
 
     return iOSReaderNavigationPopoverView(viewModel: mockViewModel)
 }
+#endif
