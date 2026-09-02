@@ -27,10 +27,10 @@ struct iOSTOCView: View {
             return tocViewModel.tocNodes
         } else {
             let normalizedQuery = searchText.normalizeArabic(true)
-            let matches = tocViewModel.tocRanges.map(\.node).filter { 
+            let matches = tocViewModel.tocRanges.map(\.node).filter {
                 $0.bab.normalizeArabic(true).localizedStandardContains(normalizedQuery)
             }
-            return matches.map { 
+            return matches.map {
                 TOCNode(from: TOC(bab: $0.bab, level: $0.level, sub: $0.sub, id: $0.id))
             }
         }
@@ -85,18 +85,18 @@ struct iOSTOCView: View {
     let node2_1 = TOCNode(from: TOC(bab: "باب الوضوء", level: 2, sub: 1, id: 3))
     let node2_2 = TOCNode(from: TOC(bab: "باب الغسل (Dengan Sub)", level: 2, sub: 1, id: 4))
     let node2_2_1 = TOCNode(from: TOC(bab: "فصل في موجبات الغسل", level: 3, sub: 2, id: 5))
-    
+
     node2_2.children = [node2_2_1]
     node2.children = [node2_1, node2_2]
-    
+
     let node3 = TOCNode(from: TOC(bab: "كتاب الصلاة", level: 1, sub: 0, id: 6))
-    
+
     let mockNodes = [node1, node2, node3]
-    
+
     let dummyVM = BookTOCViewModel(connFactory: { BookConnection() })
     dummyVM.tocNodes = mockNodes
 
-    return iOSTOCView(
+    iOSTOCView(
         tocViewModel: dummyVM,
         selectedId: 3,
         onSelect: { selectedId in
