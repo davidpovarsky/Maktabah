@@ -136,6 +136,20 @@ jobs:
           if old_assert not in text:
               raise SystemExit('expected obsolete Otzaria localization assertion not found')
           text = text.replace(old_assert, new_asserts, 1)
+          old_check = '    run(["git", "diff", "--cached", "--check"])\n'
+          new_check = '''    check_result = run(["git", "diff", "--cached", "--check"], check=False)
+              if check_result.stdout:
+                  print("git diff --cached --check stdout:")
+                  print(check_result.stdout)
+              if check_result.stderr:
+                  print("git diff --cached --check stderr:", file=sys.stderr)
+                  print(check_result.stderr, file=sys.stderr)
+              if check_result.returncode != 0:
+                  raise RuntimeError(f"git diff --cached --check failed with status {check_result.returncode}")
+          '''
+          if old_check not in text:
+              raise SystemExit('expected cached diff check not found')
+          text = text.replace(old_check, new_check, 1)
           p.write_text(text)
           PY
           python3 /tmp/resolve-upstream-main-merge.py
