@@ -1,0 +1,142 @@
+name: Upstream semantic merge and validation 2026-09-04
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/upstream-main-sync-2026-09-04-mergework
+    paths:
+      - Scripts/resolve-upstream-main-merge-2026-09-04.py
+      - .github/workflows/upstream-merge-resolve-build-2026-09-04.yml
+
+permissions:
+  contents: write
+
+jobs:
+  resolve-and-build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: macos-latest
+    env:
+      TARGET_BRANCH: codex/upstream-main-sync-2026-09-04
+      RESOLVED_BRANCH: codex/upstream-main-sync-2026-09-04-resolved
+      UPSTREAM_SHA: 06158e767ee765f2451461a34d18feeeccc79fa5
+      WORKER_URL: ${{ secrets.WORKER_URL }}
+    steps:
+      - name: Check out merge tooling
+        uses: actions/checkout@v4
+        with:
+          ref: codex/upstream-main-sync-2026-09-04-mergework
+          fetch-depth: 0
+
+      - name: Preserve resolver and reset to clean target
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp Scripts/resolve-upstream-main-merge-2026-09-04.py /tmp/resolve-upstream-main-merge.py
+          chmod +x /tmp/resolve-upstream-main-merge.py
+          git fetch origin "$TARGET_BRANCH"
+          git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
+          test "$(git rev-parse HEAD)" = "f239428739996d71a9e9696cb931f8ce35a83161"
+
+      - name: Fetch exact upstream main and begin true merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote remove upstream 2>/dev/null || true
+          git remote add upstream https://github.com/bismillah-100/Maktabah.git
+          git fetch upstream main
+          test "$(git rev-parse upstream/main)" = "$UPSTREAM_SHA"
+          set +e
+          git merge --no-ff --no-commit "$UPSTREAM_SHA"
+          status=$?
+          set -e
+          test "$status" -eq 1
+          test "$(git diff --name-only --diff-filter=U | wc -l | tr -d ' ')" = "27"
+
+      - name: Resolve conflicts semantically
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 /tmp/resolve-upstream-main-merge.py
+          test -f .git/MERGE_HEAD
+          test "$(cat .git/MERGE_HEAD)" = "$UPSTREAM_SHA"
+
+      - name: Commit true two-parent merge and push test branch
+        id: merge_commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git commit -m "Merge upstream main 2026-09-04 with Otzaria adapters preserved"
+          parents="$(git show -s --format='%P' HEAD)"
+          echo "Merge parents: $parents"
+          test "$(printf '%s\n' "$parents" | wc -w | tr -d ' ')" = "2"
+          echo "$parents" | grep -q "f239428739996d71a9e9696cb931f8ce35a83161"
+          echo "$parents" | grep -q "$UPSTREAM_SHA"
+          git merge-base --is-ancestor "$UPSTREAM_SHA" HEAD
+          git merge-base --is-ancestor f239428739996d71a9e9696cb931f8ce35a83161 HEAD
+          git push --force origin "HEAD:refs/heads/$RESOLVED_BRANCH"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Inspect Xcode project and schemes
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -list -project Maktabah.xcodeproj
+
+      - name: Build iOS Simulator
+        shell: bash
+        run: |
+          set -o pipefail
+          rm -rf build/ios
+          xcodebuild build \
+            -project Maktabah.xcodeproj \
+            -scheme Maktabah-iOS \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/ios \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            WORKER_URL="$WORKER_URL" \
+            | tee /tmp/ios-build.log
+
+      - name: Native Otzaria bootstrap smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          app="$(find build/ios/Build/Products -type d -name 'Maktabah.app' | head -n 1)"
+          test -n "$app"
+          bash Scripts/run-otzaria-native-bootstrap-acceptance.sh "$(cd "$(dirname "$app")" && pwd)/$(basename "$app")" --dictionary-only
+
+      - name: Build macOS Direct
+        shell: bash
+        run: |
+          set -o pipefail
+          rm -rf build/macos
+          xcodebuild build \
+            -project Maktabah.xcodeproj \
+            -scheme Maktabah-Direct \
+            -configuration Debug \
+            -destination 'generic/platform=macOS' \
+            -derivedDataPath build/macos \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            WORKER_URL="$WORKER_URL" \
+            | tee /tmp/macos-build.log
+
+      - name: Final structural verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ steps.merge_commit.outputs.sha }}"
+          git status --short
+          test -z "$(git status --porcelain)"
+          git merge-base --is-ancestor "$UPSTREAM_SHA" HEAD
+          grep -q 'OtzariaLibraryDataAdapter.performSearchIfEnabled' 'Source/Managers/Database/LibraryDataManager.swift'
+          grep -q 'OtzariaNavigationAdapter.openBookIfEnabled' 'Source/iOS/Managers/iOSNavigationManager.swift'
+          grep -q 'UnifiedSearchWorkspaceView' 'Source/iOS/Views/iPadLayout.swift'
+          grep -q '"he"' Source/Localizable.xcstrings
