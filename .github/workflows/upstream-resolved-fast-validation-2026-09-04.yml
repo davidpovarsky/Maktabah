@@ -1,0 +1,149 @@
+name: Upstream resolved fast validation 2026-09-04
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/upstream-main-sync-2026-09-04-resolved
+    paths:
+      - .github/workflows/upstream-resolved-fast-validation-2026-09-04.yml
+      - Maktabah.xcodeproj/**
+      - Source/**
+
+env:
+  PROJECT_PATH: Maktabah.xcodeproj
+  SCHEME: Maktabah-iOS
+  PRODUCT_NAME: Maktabah
+
+jobs:
+  validate-merged-code:
+    runs-on: macos-26
+    timeout-minutes: 90
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Confirm exact ancestry and package graph
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor f239428739996d71a9e9696cb931f8ce35a83161 HEAD
+          git merge-base --is-ancestor 06158e767ee765f2451461a34d18feeeccc79fa5 HEAD
+          grep -q '066e75a8b3e99962685d6a90cdd5293ebffd9261' Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+          grep -q 'f8745da6ff1ad1e7bab384bd1f9d742439278e99' Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+      - name: Select Xcode 26
+        run: bash Scripts/CI/select-xcode-26.sh
+
+      - name: Download previously verified Otzaria XCFramework
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build-otzaria-xcframework
+          path: build/artifacts
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: davidpovarsky/Maktabah
+          run-id: 32860355082
+
+      - name: Download previously verified Zayit XCFramework
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build-zayit-xcframework
+          path: build/artifacts
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: davidpovarsky/Maktabah
+          run-id: 32860355082
+
+      - name: Download matching resolved Swift packages
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build-swift-packages
+          path: build/artifacts
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: davidpovarsky/Maktabah
+          run-id: 32860355082
+
+      - name: Restore and verify build inputs
+        run: |
+          set -euo pipefail
+          mkdir -p Vendor/ZayitSearchPort/build build
+          tar -C Vendor/OtzariaSearchEngine -xf build/artifacts/OtzariaSearchEngine.xcframework.tar
+          tar -C Vendor/ZayitSearchPort/build -xf build/artifacts/MaktabahZayitSearch.xcframework.tar
+          tar -C build -xf build/artifacts/SourcePackages.tar
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+          bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+          python3 Scripts/CI/verify-otzaria-xcode-project.py
+
+      - name: Build merged iOS Simulator app
+        run: |
+          set -o pipefail
+          mkdir -p build/logs
+          rm -rf build/FastDerivedData
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/FastDerivedData \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee build/logs/fast-simulator.log
+          APP="build/FastDerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          test -d "$APP"
+          test -f "$APP/dictionary.json"
+          test -f "$APP/Acronyms.json"
+
+      - name: Native bootstrap smoke test
+        run: |
+          set -euo pipefail
+          APP="build/FastDerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          bash Scripts/run-otzaria-native-bootstrap-acceptance.sh "$APP" --dictionary-only
+
+      - name: Build merged unsigned device app
+        run: |
+          set -o pipefail
+          rm -rf build/FastDerivedData-device
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/FastDerivedData-device \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee build/logs/fast-device.log
+
+      - name: Build merged macOS Direct target
+        run: |
+          set -o pipefail
+          rm -rf build/FastDerivedData-macos
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme Maktabah-Direct \
+            -configuration Debug \
+            -destination 'generic/platform=macOS' \
+            -derivedDataPath build/FastDerivedData-macos \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee build/logs/fast-macos.log
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: upstream-resolved-fast-validation-logs
+          path: build/logs
+          compression-level: 0
+          if-no-files-found: warn
