@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   merge-diagnostic:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Check out clean target branch
@@ -18,7 +19,7 @@ jobs:
           ref: codex/upstream-main-sync-2026-09-04
           fetch-depth: 0
 
-      - name: Merge complete upstream main and preserve diagnostic snapshot
+      - name: Merge complete upstream main and persist diagnostic report
         shell: bash
         run: |
           set -u
@@ -33,26 +34,53 @@ jobs:
           merge_status=$?
           set -e
 
-          echo "MERGE_STATUS=$merge_status"
-          echo "=== UNMERGED PATHS ==="
-          git diff --name-only --diff-filter=U | tee /tmp/conflicts.txt
-          echo "=== STATUS ==="
-          git status --short
-          echo "=== INDEX STAGES ==="
-          git ls-files -u || true
+          report=/tmp/upstream-merge-conflicts-2026-09-04.txt
+          : > "$report"
+          {
+            echo "MERGE_STATUS=$merge_status"
+            echo "TARGET_HEAD=$(git rev-parse HEAD)"
+            echo "UPSTREAM_HEAD=$(git rev-parse upstream/main)"
+            echo
+            echo "=== UNMERGED PATHS ==="
+            git diff --name-only --diff-filter=U
+            echo
+            echo "=== STATUS ==="
+            git status --short
+            echo
+            echo "=== INDEX STAGES ==="
+            git ls-files -u || true
+          } >> "$report"
 
-          if [ "$merge_status" -ne 0 ]; then
-            while IFS= read -r path; do
-              [ -n "$path" ] || continue
-              echo "--- CONFLICT: $path"
+          git diff --name-only --diff-filter=U > /tmp/conflicts.txt
+          while IFS= read -r path; do
+            [ -n "$path" ] || continue
+            {
+              echo
+              echo "================================================================================"
+              echo "CONFLICT: $path"
+              echo "================================================================================"
+              echo "--- WORKTREE DIFF / CONFLICT MARKERS ---"
               git diff -- "$path" || true
-            done < /tmp/conflicts.txt
-          fi
+              for stage in 1 2 3; do
+                case "$stage" in
+                  1) label=BASE ;;
+                  2) label=OURS ;;
+                  3) label=THEIRS_UPSTREAM ;;
+                esac
+                echo
+                echo "--- $label (stage $stage) ---"
+                if git cat-file -e ":$stage:$path" 2>/dev/null; then
+                  git show ":$stage:$path" || true
+                else
+                  echo "<absent>"
+                fi
+              done
+            } >> "$report"
+          done < /tmp/conflicts.txt
 
-          # This branch is disposable. Stage the merge snapshot (including conflict
-          # markers / selected modify-delete side) only so it can be inspected and
-          # resolved remotely. The final target branch will later receive a fresh,
-          # clean two-parent merge commit built from the resolved tree.
-          git add -A
-          git commit -m "WIP diagnostic merge upstream main 2026-09-04"
-          git push origin HEAD:codex/upstream-main-sync-2026-09-04-mergework --force
+          git merge --abort || true
+          git checkout -B codex/upstream-main-sync-2026-09-04-mergework origin/codex/upstream-main-sync-2026-09-04-mergework
+          cp "$report" upstream-merge-conflicts-2026-09-04.txt
+          git add upstream-merge-conflicts-2026-09-04.txt
+          git commit -m "Record upstream merge conflict report 2026-09-04"
+          git push origin HEAD:codex/upstream-main-sync-2026-09-04-mergework
