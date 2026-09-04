@@ -59,6 +59,75 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/resolve-upstream-main-merge.py')
+          text = p.read_text()
+          start = text.index('def patch_ibarot():')
+          end = text.index('\ndef assert_contains', start)
+          replacement = r'''def patch_ibarot():
+              path = "Source/iOS/Wrappers/iOSIbarotTextView.swift"
+              resolve_markers(path, "theirs")
+              text = read(path)
+              anchor = "        // Restore Scroll & Selection exactly once per content ID"
+              block_start = text.find(anchor)
+              if block_start < 0:
+                  raise RuntimeError("iOSIbarot restore anchor not found")
+              if_start = text.find("if context.coordinator.restoredContentId", block_start)
+              if if_start < 0:
+                  raise RuntimeError("iOSIbarot restore condition not found")
+              brace = text.find("{", if_start)
+              if brace < 0:
+                  raise RuntimeError("iOSIbarot restore opening brace not found")
+              depth = 0
+              block_end = None
+              for i in range(brace, len(text)):
+                  if text[i] == "{":
+                      depth += 1
+                  elif text[i] == "}":
+                      depth -= 1
+                      if depth == 0:
+                          block_end = i + 1
+                          break
+              if block_end is None:
+                  raise RuntimeError("iOSIbarot restore block is unterminated")
+              new = '''        if contentIdChanged {
+                  textView.selectedRange = NSRange(location: 0, length: 0)
+              }
+
+              if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
+                  switch pendingTarget {
+                  case .top:
+                      scrollTextViewToTop(textView)
+                  case .bottom:
+                      scrollTextViewToBottom(textView)
+                      let expectedContentId = viewModel.currentContentId
+                      DispatchQueue.main.async { [weak textView, weak viewModel] in
+                          guard let textView, let viewModel, viewModel.currentContentId == expectedContentId else { return }
+                          self.scrollTextViewToBottom(textView)
+                      }
+                  }
+                  viewModel.needsScrollRestore = false
+                  context.coordinator.restoredContentId = viewModel.currentContentId
+              } else if context.coordinator.restoredContentId != viewModel.currentContentId ||
+                          viewModel.needsScrollRestore
+              {
+                  if let scroll = viewModel.readerState.scrollPosition {
+                      textView.setContentOffset(scroll, animated: false)
+                  } else {
+                      textView.setContentOffset(CGPoint(x: 0, y: -textView.adjustedContentInset.top), animated: false)
+                  }
+                  if let range = viewModel.readerState.selectedRange {
+                      textView.selectedRange = range
+                  }
+                  viewModel.needsScrollRestore = false
+                  context.coordinator.restoredContentId = viewModel.currentContentId
+              }'''
+              text = text[:block_start] + new + text[block_end:]
+              write(path, text)
+          '''
+          p.write_text(text[:start] + replacement + text[end:])
+          PY
           python3 /tmp/resolve-upstream-main-merge.py
           test -f .git/MERGE_HEAD
           test "$(cat .git/MERGE_HEAD)" = "$UPSTREAM_SHA"
