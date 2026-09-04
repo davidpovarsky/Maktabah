@@ -2685,6 +2685,7 @@
 				F36382692FA7BFB40006636C /* iOSAnnotationEditorSheet.swift in Sources */,
 				F305771A2FA46222005732C6 /* BookUpdateVM.swift in Sources */,
 				F305771B2FA46222005732C6 /* BookUpdateView.swift in Sources */,
+				F3D38A942FD4B2F200387BA4 /* HistoryFavoriteSections.swift in Sources */,
 				F3D38A922FD47C3200387BA4 /* HistoryComponents.swift in Sources */,
 				F30577202FA46222005732C6 /* Narrator.swift in Sources */,
 				F3A20B142FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift in Sources */,
