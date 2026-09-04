@@ -20,6 +20,7 @@ jobs:
       TARGET_BRANCH: codex/upstream-main-sync-2026-09-04
       RESOLVED_BRANCH: codex/upstream-main-sync-2026-09-04-resolved
       UPSTREAM_SHA: 06158e767ee765f2451461a34d18feeeccc79fa5
+      SOURCE_SHA: f239428739996d71a9e9696cb931f8ce35a83161
       WORKER_URL: ${{ secrets.WORKER_URL }}
     steps:
       - name: Check out merge tooling
@@ -36,7 +37,7 @@ jobs:
           chmod +x /tmp/resolve-upstream-main-merge.py
           git fetch origin "$TARGET_BRANCH"
           git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
-          test "$(git rev-parse HEAD)" = "f239428739996d71a9e9696cb931f8ce35a83161"
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
 
       - name: Fetch exact upstream main and begin true merge
         shell: bash
@@ -158,14 +159,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # GitHub Actions tokens cannot push workflow-file modifications. Keep the
+          # source workflow files in this merge commit; they are applied afterward
+          # via the direct GitHub connector, while upstream remains the second parent.
+          git checkout "$SOURCE_SHA" -- .github/workflows/codeql.yml .github/workflows/release.yml
+          git add .github/workflows/codeql.yml .github/workflows/release.yml
           git commit -m "Merge upstream main 2026-09-04 with Otzaria adapters preserved"
           parents="$(git show -s --format='%P' HEAD)"
           echo "Merge parents: $parents"
           test "$(printf '%s\n' "$parents" | wc -w | tr -d ' ')" = "2"
-          echo "$parents" | grep -q "f239428739996d71a9e9696cb931f8ce35a83161"
+          echo "$parents" | grep -q "$SOURCE_SHA"
           echo "$parents" | grep -q "$UPSTREAM_SHA"
           git merge-base --is-ancestor "$UPSTREAM_SHA" HEAD
-          git merge-base --is-ancestor f239428739996d71a9e9696cb931f8ce35a83161 HEAD
+          git merge-base --is-ancestor "$SOURCE_SHA" HEAD
           git push --force origin "HEAD:refs/heads/$RESOLVED_BRANCH"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
@@ -223,7 +229,6 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "${{ steps.merge_commit.outputs.sha }}"
-          git status --short
           test -z "$(git status --porcelain)"
           git merge-base --is-ancestor "$UPSTREAM_SHA" HEAD
           grep -q 'OtzariaLibraryDataAdapter.performSearchIfEnabled' 'Source/Managers/Database/LibraryDataManager.swift'
