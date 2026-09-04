@@ -1,0 +1,58 @@
+name: Upstream merge diagnostic 2026-09-04
+
+on:
+  push:
+    branches:
+      - codex/upstream-main-sync-2026-09-04-mergework
+
+permissions:
+  contents: write
+
+jobs:
+  merge-diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out clean target branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/upstream-main-sync-2026-09-04
+          fetch-depth: 0
+
+      - name: Merge complete upstream main and preserve diagnostic snapshot
+        shell: bash
+        run: |
+          set -u
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote remove upstream 2>/dev/null || true
+          git remote add upstream https://github.com/bismillah-100/Maktabah.git
+          git fetch upstream main
+
+          set +e
+          git merge --no-ff --no-commit upstream/main
+          merge_status=$?
+          set -e
+
+          echo "MERGE_STATUS=$merge_status"
+          echo "=== UNMERGED PATHS ==="
+          git diff --name-only --diff-filter=U | tee /tmp/conflicts.txt
+          echo "=== STATUS ==="
+          git status --short
+          echo "=== INDEX STAGES ==="
+          git ls-files -u || true
+
+          if [ "$merge_status" -ne 0 ]; then
+            while IFS= read -r path; do
+              [ -n "$path" ] || continue
+              echo "--- CONFLICT: $path"
+              git diff -- "$path" || true
+            done < /tmp/conflicts.txt
+          fi
+
+          # This branch is disposable. Stage the merge snapshot (including conflict
+          # markers / selected modify-delete side) only so it can be inspected and
+          # resolved remotely. The final target branch will later receive a fresh,
+          # clean two-parent merge commit built from the resolved tree.
+          git add -A
+          git commit -m "WIP diagnostic merge upstream main 2026-09-04"
+          git push origin HEAD:codex/upstream-main-sync-2026-09-04-mergework --force
