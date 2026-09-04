@@ -19,7 +19,7 @@ jobs:
           ref: codex/upstream-main-sync-2026-09-04
           fetch-depth: 0
 
-      - name: Merge complete upstream main and persist diagnostic report
+      - name: Capture exact merge conflicts and index stages
         shell: bash
         run: |
           set -u
@@ -29,58 +29,36 @@ jobs:
           git remote add upstream https://github.com/bismillah-100/Maktabah.git
           git fetch upstream main
 
+          diag=/tmp/merge-diagnostics
+          rm -rf "$diag"
+          mkdir -p "$diag"/{base,ours,theirs,worktree}
+
           set +e
-          git merge --no-ff --no-commit upstream/main
+          git merge --no-ff --no-commit upstream/main > "$diag/merge.log" 2>&1
           merge_status=$?
           set -e
 
-          report=/tmp/upstream-merge-conflicts-2026-09-04.txt
-          : > "$report"
+          git diff --name-only --diff-filter=U > "$diag/conflicts.txt"
           {
             echo "MERGE_STATUS=$merge_status"
             echo "TARGET_HEAD=$(git rev-parse HEAD)"
             echo "UPSTREAM_HEAD=$(git rev-parse upstream/main)"
-            echo
-            echo "=== UNMERGED PATHS ==="
-            git diff --name-only --diff-filter=U
-            echo
-            echo "=== STATUS ==="
-            git status --short
-            echo
-            echo "=== INDEX STAGES ==="
-            git ls-files -u || true
-          } >> "$report"
+            echo "CONFLICT_COUNT=$(wc -l < "$diag/conflicts.txt" | tr -d ' ')"
+          } > "$diag/summary.txt"
 
-          git diff --name-only --diff-filter=U > /tmp/conflicts.txt
           while IFS= read -r path; do
             [ -n "$path" ] || continue
-            {
-              echo
-              echo "================================================================================"
-              echo "CONFLICT: $path"
-              echo "================================================================================"
-              echo "--- WORKTREE DIFF / CONFLICT MARKERS ---"
-              git diff -- "$path" || true
-              for stage in 1 2 3; do
-                case "$stage" in
-                  1) label=BASE ;;
-                  2) label=OURS ;;
-                  3) label=THEIRS_UPSTREAM ;;
-                esac
-                echo
-                echo "--- $label (stage $stage) ---"
-                if git cat-file -e ":$stage:$path" 2>/dev/null; then
-                  git show ":$stage:$path" || true
-                else
-                  echo "<absent>"
-                fi
-              done
-            } >> "$report"
-          done < /tmp/conflicts.txt
+            mkdir -p "$diag/base/$(dirname "$path")" "$diag/ours/$(dirname "$path")" "$diag/theirs/$(dirname "$path")" "$diag/worktree/$(dirname "$path")"
+            if git cat-file -e ":1:$path" 2>/dev/null; then git show ":1:$path" > "$diag/base/$path"; else printf '<absent>\n' > "$diag/base/$path"; fi
+            if git cat-file -e ":2:$path" 2>/dev/null; then git show ":2:$path" > "$diag/ours/$path"; else printf '<absent>\n' > "$diag/ours/$path"; fi
+            if git cat-file -e ":3:$path" 2>/dev/null; then git show ":3:$path" > "$diag/theirs/$path"; else printf '<absent>\n' > "$diag/theirs/$path"; fi
+            git diff -- "$path" > "$diag/worktree/$path.diff" || true
+          done < "$diag/conflicts.txt"
 
           git merge --abort || true
           git checkout -B codex/upstream-main-sync-2026-09-04-mergework origin/codex/upstream-main-sync-2026-09-04-mergework
-          cp "$report" upstream-merge-conflicts-2026-09-04.txt
-          git add upstream-merge-conflicts-2026-09-04.txt
-          git commit -m "Record upstream merge conflict report 2026-09-04"
+          rm -rf merge-diagnostics upstream-merge-conflicts-2026-09-04.txt
+          cp -R "$diag" merge-diagnostics
+          git add -A merge-diagnostics upstream-merge-conflicts-2026-09-04.txt
+          git commit -m "Capture inspectable upstream merge conflicts 2026-09-04"
           git push origin HEAD:codex/upstream-main-sync-2026-09-04-mergework
