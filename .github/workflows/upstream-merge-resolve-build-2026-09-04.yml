@@ -126,7 +126,17 @@ jobs:
               text = text[:block_start] + new + text[block_end:]
               write(path, text)
           """
-          p.write_text(text[:start] + replacement + text[end:])
+          text = text[:start] + replacement + text[end:]
+          old_assert = '    assert_contains("Source/Localizable.xcstrings", "Otzaria Library Required")\n'
+          new_asserts = (
+              '    assert_contains("Source/Localizable.xcstrings", "Choose Otzaria Database")\n'
+              '    assert_contains("Source/Localizable.xcstrings", "Disconnect Otzaria Database")\n'
+              '    assert_contains("Source/Localizable.xcstrings", "Otzaria Database Error")\n'
+          )
+          if old_assert not in text:
+              raise SystemExit('expected obsolete Otzaria localization assertion not found')
+          text = text.replace(old_assert, new_asserts, 1)
+          p.write_text(text)
           PY
           python3 /tmp/resolve-upstream-main-merge.py
           test -f .git/MERGE_HEAD
