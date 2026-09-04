@@ -1,0 +1,54 @@
+diff --cc Source/Managers/App Config/SettingsActions.swift
+index fb3d315,51a141b..0000000
+--- a/Source/Managers/App Config/SettingsActions.swift
++++ b/Source/Managers/App Config/SettingsActions.swift
+@@@ -256,6 -273,46 +273,49 @@@ enum SettingsActions 
+      }
+  
+      #if os(macOS)
+++<<<<<<< HEAD
+++=======
++     static func showFtsMigrationModal(archiveId: Int? = nil, onDismiss: (() -> Void)? = nil) {
++         var window: NSWindow?
++         let view = FtsMigrationProgressView(
++             onCancel: {
++                 window?.close()
++                 window = nil
++                 onDismiss?()
++             },
++             onUpdate: {
++                 if let archiveId {
++                     try await FtsMigrationManager.shared.migrateArchive(archiveId: archiveId)
++                 } else {
++                     try await FtsMigrationManager.shared.performMigration()
++                 }
++                 await MainActor.run { [window] in
++                     window?.close()
++                     onDismiss?()
++                 }
++             }
++         )
++ 
++         let hostingView = NSHostingView(rootView: view)
++         hostingView.autoresizingMask = [.width, .height]
++ 
++         let fittingSize = hostingView.fittingSize
++         let windowWidth = max(420, fittingSize.width)
++         let windowHeight = max(290, fittingSize.height)
++ 
++ 
++         let w = ReusableFunc.makeTitlelessWindow(
++             contentView: hostingView,
++             size: .init(width: windowWidth, height: windowHeight)
++         )
++         w.center()
++         w.level = .floating
++         window = w
++ 
++         w.makeKeyAndOrderFront(nil)
++     }
++ 
+++>>>>>>> upstream/main
+      static func downloadSelectiveLibrary() {
+          BulkDownloadModalCenter.shared.presentModal()
+      }

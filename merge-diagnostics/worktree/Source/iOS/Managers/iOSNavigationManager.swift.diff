@@ -1,0 +1,110 @@
+diff --cc Source/iOS/Managers/iOSNavigationManager.swift
+index 3ffb01e,609b48d..0000000
+--- a/Source/iOS/Managers/iOSNavigationManager.swift
++++ b/Source/iOS/Managers/iOSNavigationManager.swift
+@@@ -55,14 -119,8 +119,19 @@@ class iOSNavigationManager 
+              }
+          }
+  
+++<<<<<<< HEAD
+ +        NotificationCenter.default.addObserver(
+ +            forName: .libraryFolderChanged,
+ +            object: nil,
+ +            queue: .main
+ +        ) { [weak self] _ in
+ +            Task { @MainActor in
+ +                self?.clearAllTabs()
+ +            }
+++=======
++         if selectedBook?.id == oldId {
++             selectedBook = newBookData
+++>>>>>>> upstream/main
+          }
+      }
+  
+@@@ -216,35 -262,7 +285,39 @@@
+          activeIntegrationStates.removeAll { $0.id == state.id }
+      }
+  
+++<<<<<<< HEAD
+ +    private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) async {
+ +        if OtzariaNavigationAdapter.openBookIfEnabled(
+ +            book,
+ +            initialContentId: initialContentId,
+ +            searchText: searchText,
+ +            targetAnnotation: targetAnnotation,
+ +            presentReader: { [weak self] book, initialContentId, searchText, targetAnnotation in
+ +                self?.presentReader(
+ +                    book,
+ +                    initialContentId: initialContentId,
+ +                    searchText: searchText,
+ +                    targetAnnotation: targetAnnotation
+ +                )
+ +            }
+ +        ) {
+ +            return
+ +        }
+ +
+ +        if AppConfig.isUsingBundleMode, !CoreDatabaseDownloader().areCoreFilesReady() {
+ +            alertMessage = AlertMessage(
+ +                title: NSLocalizedString("Database File Needed", comment: "Missing core files alert title"),
+ +                message: NSLocalizedString(
+ +                    "The core database files are not ready yet. Finish the initial download first.",
+ +                    comment: "Missing core files alert message"
+ +                )
+ +            )
+ +            return
+ +        }
+ +
+++=======
++     private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, searchMode: SearchMode? = nil, nearDistance: Int = 10, targetAnnotation: Annotation? = nil, recordHistory: Bool = true) async {
+++>>>>>>> upstream/main
+          if AppConfig.isUsingBundleMode,
+             !BookArchiveIntegrator.shared.isBookIntegrated(book)
+          {
+@@@ -252,13 -270,15 +325,25 @@@
+              return
+          }
+  
+++<<<<<<< HEAD
+ +        presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
+ +
+ +        await Task.yield()
+ +
+ +        HistoryViewModel.shared.addBookToHistory(book.id)
+ +        if let initialContentId = initialContentId {
+ +            HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+++=======
++         presentReader(book, initialContentId: initialContentId, searchText: searchText, searchMode: searchMode, nearDistance: nearDistance, targetAnnotation: targetAnnotation, recordHistory: recordHistory)
++ 
++         await Task.yield()
++ 
++         if recordHistory {
++             HistoryViewModel.shared.addBookToHistory(book.id)
++             if let initialContentId {
++                 HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
++             }
+++>>>>>>> upstream/main
+          }
+      }
+  
+@@@ -266,18 -286,9 +351,18 @@@
+          for book: BooksData,
+          initialContentId: Int?
+      ) {
+ +        if OtzariaNavigationAdapter.presentReaderForIntegrationIfEnabled(
+ +            book,
+ +            initialContentId: initialContentId,
+ +            presentReader: { [weak self] book, initialContentId in
+ +                self?.presentReader(book, initialContentId: initialContentId)
+ +            }
+ +        ) {
+ +            return
+ +        }
+          // Prevent duplicate confirmation for the same book
+          if activeIntegrationStates.contains(where: {
+-             if case .single(let b, _) = $0.pendingData { return b.id == book.id }
++             if case let .single(b, _) = $0.pendingData { return b.id == book.id }
+              return false
+          }) {
+              return

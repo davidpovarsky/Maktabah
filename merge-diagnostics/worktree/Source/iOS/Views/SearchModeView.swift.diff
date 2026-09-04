@@ -1,0 +1,40 @@
+diff --cc Source/iOS/Views/SearchModeView.swift
+index e77c022,146e414..0000000
+--- a/Source/iOS/Views/SearchModeView.swift
++++ b/Source/iOS/Views/SearchModeView.swift
+@@@ -125,25 -170,17 +170,34 @@@ struct SearchModeView: View 
+  
+      private func handleSelection(_ item: SearchResultItem) {
+          Task {
+ -            let table = item.tableName.hasPrefix("b") ? String(item.tableName.dropFirst()) : item.tableName
+ +            let table: String
+ +            let contentId: Int
+ +            if item.tableName.hasPrefix("otzaria:") {
+ +                table = String(item.tableName.dropFirst("otzaria:".count))
+ +                contentId = item.page
+ +            } else if item.tableName.hasPrefix("b") {
+ +                table = String(item.tableName.dropFirst())
+ +                contentId = item.bookId
+ +            } else {
+ +                table = item.tableName
+ +                contentId = item.bookId
+ +            }
+ +
+              if let tableInt = Int(table), let bookData = LibraryDataManager.shared.getBook([tableInt]).first {
++                 let shouldRecord = UserDefaults.standard.recordSearchHistory
+                  await MainActor.run {
+                      navigationManager.openBook(
+                          bookData,
+++<<<<<<< HEAD
+ +                        initialContentId: contentId,
+ +                        searchText: navigationManager.searchViewModel.query
+++=======
++                         initialContentId: item.bookId,
++                         searchText: navigationManager.searchViewModel.query,
++                         searchMode: navigationManager.searchViewModel.searchMode,
++                         nearDistance: navigationManager.searchViewModel.nearDistance,
++                         recordHistory: shouldRecord
+++>>>>>>> upstream/main
+                      )
+                  }
+              }

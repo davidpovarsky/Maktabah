@@ -1,0 +1,83 @@
+diff --cc Source/iOS/Managers/BootstrapManager.swift
+index b17d087,9af6ee9..0000000
+--- a/Source/iOS/Managers/BootstrapManager.swift
++++ b/Source/iOS/Managers/BootstrapManager.swift
+@@@ -31,17 -29,23 +31,37 @@@ final class iOSBootstrapManager 
+          guard !didPrepare else { return }
+          didPrepare = true
+  
+++<<<<<<< HEAD
+ +        do {
+ +            if try await OtzariaBootstrapAdapter.restoreForAppLaunch() {
+ +                finishSetup()
+ +                return
+ +            }
+ +        } catch {
+ +            isChecking = false
+ +            coreDownloadState.phase = .error(
+ +                "The saved Otzaria database could not be reopened. " +
+ +                "Choose the database again.\n\n\(error.localizedDescription)"
+ +            )
+++=======
++         if AppConfig.hasCustomDatabaseFolder() {
++             if let customPath = AppConfig.databaseFilesPath {
++                 let customUrl = URL(fileURLWithPath: customPath)
++                 let parentUrl = customUrl.deletingLastPathComponent()
++                 if DatabaseManager.validateDatabaseFolder(parentUrl) == nil {
++                     finishSetup()
++                     return
++                 } else {
++                     AppConfig.resetCustomModeKey()
++                 }
++             } else {
++                 AppConfig.resetCustomModeKey()
++             }
++         }
++ 
++         if downloader.areCoreFilesReady() {
++             finishSetup()
+++>>>>>>> upstream/main
+              return
+          }
+  
+@@@ -236,9 -148,7 +256,13 @@@
+          self.isCancellable = isCancellable
+          didPrepare = false
+          isReady = false
+++<<<<<<< HEAD
+ +        Task { [weak self] in
+ +            await self?.prepareIfNeeded()
+ +        }
+++=======
++         prepareIfNeeded()
+++>>>>>>> upstream/main
+      }
+  
+      func cancelDownload() {
+@@@ -248,12 -158,16 +272,26 @@@
+      }
+  
+      func chooseLibraryFolder() {
+++<<<<<<< HEAD
+ +        _ = SettingsActions.selectLibraryFolder(showSuccessAlert: false, shouldTerminateOnCancel: false) { [weak self] success in
+ +            if success {
+ +                Task { @MainActor in
+ +                    self?.finishSetup()
+ +                }
+ +            }
+ +        }
+++=======
++         SettingsActions.selectLibraryFolder(
++             showSuccessAlert: false,
++             shouldTerminateOnCancel: false,
++             onCompletion: { [weak self] success in
++                 if success {
++                     Task { @MainActor in
++                         self?.finishSetup()
++                     }
++                 }
++             }
++         )
+++>>>>>>> upstream/main
+      }
+  }

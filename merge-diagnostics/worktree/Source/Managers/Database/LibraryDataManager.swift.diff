@@ -1,0 +1,76 @@
+diff --cc Source/Managers/Database/LibraryDataManager.swift
+index ef96a77,18b01f0..0000000
+--- a/Source/Managers/Database/LibraryDataManager.swift
++++ b/Source/Managers/Database/LibraryDataManager.swift
+@@@ -379,35 -387,20 +379,48 @@@ class LibraryDataManager 
+          completion: @escaping @MainActor (SearchResultItem) -> Void,
+          onComplete: @escaping @MainActor () -> Void
+      ) async {
++         if FtsMigrationManager.shared.isMigrating {
++             await MainActor.run {
++                 ReusableFunc.showAlert(
++                     title: String(localized: .ftsIsMigratingAlert), message: ""
++                 )
++             }
++             return
++         }
+          let allowed = tableToScan
+  
+++<<<<<<< HEAD
+ +        if await OtzariaLibraryDataAdapter.performSearchIfEnabled(
+ +            tableToScan: allowed,
+ +            query: query,
+ +            mode: mode,
+ +            onInitialize: onInitialize,
+ +            onTableProgress: onTableProgress,
+ +            onRowProgress: onRowProgress,
+ +            completion: completion,
+ +            onComplete: onComplete
+ +        ) {
+ +            return
+ +        }
+ +
+ +        let searchKeywords: [String]
+ +        switch mode {
+ +        case .phrase:
+ +            if query.trimmingCharacters(in: .whitespaces).isEmpty {
+ +                return
+ +            }
+ +            searchKeywords = [query.normalizeArabic()]
+ +        case .contains, .or:
+ +            searchKeywords = query.normalizeArabic().components(separatedBy: ",")
+ +                .map { $0.trimmingCharacters(in: .whitespaces) }
+ +                .filter { !$0.isEmpty }
+ +        }
+++=======
++         let searchKeywords = FtsQueryParser.extractKeywords(query: query, mode: mode)
+++>>>>>>> upstream/main
+  
+          if searchKeywords.isEmpty {
++             await onComplete()
+              return
+          }
+  
+@@@ -431,7 -424,7 +444,11 @@@
+  
+          for archiveId in allowedByArchive.keys.sorted() {
+              if Task.isCancelled { return }
+++<<<<<<< HEAD
+ +
+++=======
++             
+++>>>>>>> upstream/main
+              guard let archiveInfo = archives[archiveId] else { continue }
+              guard let dbPath = getDatabasePath(forArchive: archiveId) else {
+                  continue
+@@@ -464,6 -457,7 +481,10 @@@
+          }
+  
+          if totalTables == 0 || Task.isCancelled {
+++<<<<<<< HEAD
+++=======
++             await onComplete()
+++>>>>>>> upstream/main
+              return
+          }
+  

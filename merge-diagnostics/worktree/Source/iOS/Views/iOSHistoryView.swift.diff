@@ -1,0 +1,109 @@
+diff --cc Source/iOS/Views/iOSHistoryView.swift
+index 220c113,cdbf0d3..0000000
+--- a/Source/iOS/Views/iOSHistoryView.swift
++++ b/Source/iOS/Views/iOSHistoryView.swift
+@@@ -8,38 -14,38 +9,59 @@@ struct iOSHistoryView: View 
+          let filteredFavorites = viewModel.filteredFavorites
+          let filteredHistory = viewModel.filteredHistory
+  
+++<<<<<<< HEAD
+ +        ThemeList(isGrouped: true) {
+ +            if !filteredFavorites.isEmpty {
+ +                Section(header: Text("Favorites")) {
+ +                    ForEach(filteredFavorites, id: \.id) { book in
+ +                        BookRowView(book: book, isFavorite: true, viewModel: viewModel) {
+ +                            let lastId = viewModel.entriesByBookId[book.id]?.lastContentId
+ +                            navigationManager.openBook(book, initialContentId: lastId)
+ +                        }
+ +                    }
+ +                    .onDelete(perform: removeFavorite)
+ +                }
+++=======
++         ThemeList {
++             if !filteredHistory.isEmpty {
++                 HistorySection(books: filteredHistory, viewModel: viewModel)
++             }
++ 
++             if donationManager.shouldShowDonation {
++                 donationCard(topPad: 26, btmPad: 4)
+++>>>>>>> upstream/main
+              }
+  
+ -            if !filteredFavorites.isEmpty {
+ -                FavoritesSection(
+ -                    books: filteredFavorites,
+ -                    viewModel: viewModel,
+ -                    onOpen: { book in
+ -                        let lastId = viewModel.entriesByBookId[book.id]?.lastContentId
+ -                        navigationManager.openBook(book, initialContentId: lastId)
+ +            if !filteredHistory.isEmpty {
+ +                Section(header: Text("History")) {
+ +                    ForEach(filteredHistory, id: \.id) { book in
+ +                        BookRowView(book: book, isFavorite: viewModel.favoriteBookIds.contains(book.id), viewModel: viewModel) {
+ +                            let lastId = viewModel.entriesByBookId[book.id]?.lastContentId
+ +                            navigationManager.openBook(book, initialContentId: lastId)
+ +                        }
+                      }
+ -                )
+ +                    .onDelete(perform: removeHistory)
+ +                }
+              } else if filteredFavorites.isEmpty {
+ -                HistoryEmptyState(searchText: viewModel.searchText)
+ +                if !viewModel.searchText.isEmpty {
+ +                    Text("No results found for \"\(viewModel.searchText)\"")
+ +                        .foregroundColor(.secondary)
+ +                } else {
+ +                    Text("No recent history")
+ +                        .foregroundColor(.secondary)
+ +                }
+              }
++ 
++             #if DEBUG
++             donationCard(topPad: 12, btmPad: 24)
++             #else
++             if filteredHistory.count > 10,
++                filteredFavorites.count > 5,
++                !donationManager.shouldShowDonation
++             {
++                 donationCard(topPad: 12, btmPad: 24)
++             }
++             #endif
+          }
+          .refreshable {
+              CloudKitSyncManager.shared.fetchChanges()
+@@@ -49,18 -55,20 +71,35 @@@
+          .navigationTitle("History & Favorites")
+      }
+  
+++<<<<<<< HEAD
+ +    private func removeFavorite(at offsets: IndexSet) {
+ +        for index in offsets {
+ +            let book = viewModel.favoriteBooks[index]
+ +            viewModel.toggleFavorite(book.id)
+ +        }
+ +    }
+ +
+ +    private func removeHistory(at offsets: IndexSet) {
+ +        for index in offsets {
+ +            let book = viewModel.historyBooks[index]
+ +            viewModel.removeHistory(for: book.id)
+ +        }
+++=======
++     private func donationCard(
++         topPad: CGFloat,
++         btmPad: CGFloat
++     ) -> some View {
++         Section {
++             DonationHistoryButton {
++                 donationManager.showDonationSheet = true
++             }
++         }
++         .listRowInsets(.init(
++             top: topPad, leading: 16, bottom: btmPad, trailing: 16
++         ))
++         .listRowSeparator(.hidden)
++         .listRowBackground(Color.clear)
+++>>>>>>> upstream/main
+      }
+  }
+  

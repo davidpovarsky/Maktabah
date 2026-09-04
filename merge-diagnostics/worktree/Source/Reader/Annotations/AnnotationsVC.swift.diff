@@ -1,0 +1,166 @@
+diff --cc Source/Reader/Annotations/AnnotationsVC.swift
+index 73cb2d3,f76f574..0000000
+--- a/Source/Reader/Annotations/AnnotationsVC.swift
++++ b/Source/Reader/Annotations/AnnotationsVC.swift
+@@@ -43,60 -50,11 +50,68 @@@ class AnnotationsVC: NSViewController 
+      var popover: Bool = true
+      var isDataLoaded = false
+  
+++<<<<<<< HEAD
+ +    private lazy var scopePanel: NSPanel = {
+ +        let panel = NSPanel(
+ +            contentRect: NSRect(x: 0, y: 0, width: 300, height: 40),
+ +            styleMask: [.borderless, .nonactivatingPanel],
+ +            backing: .buffered,
+ +            defer: false
+ +        )
+ +        panel.hasShadow = true
+ +        panel.isOpaque = false
+ +        panel.backgroundColor = .windowBackgroundColor
+ +        panel.level = .popUpMenu
+ +
+ +        let contentView = NSView()
+ +        contentView.addSubview(scopeSegment)
+ +
+ +        scopeSegment.translatesAutoresizingMaskIntoConstraints = false
+ +        scopeSegment.trackingMode = .selectOne
+ +        if #available(macOS 26, *) { scopeSegment.borderShape = .capsule }
+ +
+ +        NSLayoutConstraint.activate([
+ +            scopeSegment.centerXAnchor.constraint(
+ +                equalTo: contentView.centerXAnchor
+ +            ),
+ +            scopeSegment.centerYAnchor.constraint(
+ +                equalTo: contentView.centerYAnchor
+ +            ),
+ +            scopeSegment.leadingAnchor.constraint(
+ +                equalTo: contentView.leadingAnchor,
+ +                constant: 8
+ +            ),
+ +            scopeSegment.trailingAnchor.constraint(
+ +                equalTo: contentView.trailingAnchor,
+ +                constant: -8
+ +            )
+ +        ])
+ +
+ +        panel.contentView = contentView
+ +        return panel
+ +    }()
+ +
+ +    private lazy var scopeSegment: NSSegmentedControl = {
+ +        let scopes = AnnotationSearchScope.allCases
+ +        let segment = NSSegmentedControl(
+ +            labels: scopes.map { $0.title },
+ +            trackingMode: .selectOne, target: self,
+ +            action: #selector(searchScopeChanged(_:))
+ +        )
+ +        segment.segmentStyle = .roundRect
+ +        segment.controlSize = .small
+ +        segment.refusesFirstResponder = true
+ +        return segment
+ +    }()
+ +
+ +    private enum SortMenuTag {
+++=======
++     let defaults = UserDefaults.standard
++ 
++     // MARK: - Sort State
++ 
++     enum SortMenuTag {
+++>>>>>>> upstream/main
+          static let fieldCreatedAt = 101
+          static let fieldContext = 102
+          static let fieldPage = 103
+@@@ -176,10 -189,10 +246,13 @@@
+          removeScopePanelFromWindow()
+      }
+  
+++<<<<<<< HEAD
+++=======
++     // MARK: - Actions
++ 
+++>>>>>>> upstream/main
+      @IBAction func reloadAnnotations(_ sender: Any?) {
+-         if sender != nil {
+-             AnnotationManager.shared.connect()
+-         }
++         if sender != nil { AnnotationManager.shared.connect() }
+          outlineView.dataSource = dataSource
+          outlineView.delegate = dataSource
+          outlineView.usesAutomaticRowHeights = true
+@@@ -579,72 -272,3 +332,75 @@@
+          #endif
+      }
+  }
+++<<<<<<< HEAD
+ +
+ +extension AnnotationsVC: NSWindowDelegate {
+ +    func windowWillClose(_ notification: Notification) {
+ +        tagPopover?.performClose(nil)
+ +        SharedPopover.annotationsVC = nil
+ +        SharedPopover.annotationsPopover.contentViewController = nil
+ +        Self.panel?.delegate = nil
+ +        Self.panel = nil
+ +    }
+ +
+ +    func windowDidResignKey(_ notification: Notification) {
+ +        outlineView.deselectAll(nil)
+ +        removeScopePanelFromWindow()
+ +    }
+ +
+ +    func windowDidBecomeKey(_ notification: Notification) {
+ +        if !searchField.stringValue.isEmpty { updateAndShowScopePanel() }
+ +    }
+ +}
+ +
+ +extension AnnotationsVC: NSSearchFieldDelegate {
+ +    func controlTextDidChange(_ obj: Notification) {
+ +        guard let obj = obj.object as? DSFSearchField,
+ +              obj === searchField
+ +        else { return }
+ +
+ +        searchField.stringValue.isEmpty
+ +            ? removeScopePanelFromWindow()
+ +            : updateAndShowScopePanel()
+ +    }
+ +
+ +    private func updateAndShowScopePanel() {
+ +        guard !scopePanel.isVisible else { return }
+ +
+ +        scopeSegment.selectedSegment = dataSource.viewModel.searchScope.rawValue
+ +
+ +        let fittingSize = scopeSegment.fittingSize
+ +        let panelWidth = max(fittingSize.width + 16, searchField.bounds.width)
+ +        let panelHeight = fittingSize.height + 12
+ +
+ +        let bounds = searchField.bounds
+ +        let rectInWindow = searchField.convert(bounds, to: nil)
+ +        guard let screenRect = searchField.window?.convertToScreen(rectInWindow) else { return }
+ +
+ +        let x = MainWindow.rtl ? (screenRect.maxX - panelWidth) : screenRect.minX
+ +        let y = screenRect.minY - panelHeight - 8
+ +
+ +        scopePanel.setFrame(
+ +            NSRect(x: x, y: y, width: panelWidth, height: panelHeight),
+ +            display: true
+ +        )
+ +
+ +        view.window?.addChildWindow(scopePanel, ordered: .above)
+ +    }
+ +
+ +    @objc private func searchScopeChanged(_ sender: NSSegmentedControl) {
+ +        guard let scope = AnnotationSearchScope(rawValue: sender.selectedSegment) else { return }
+ +        dataSource.viewModel.searchScope = scope
+ +    }
+ +
+ +    private func removeScopePanelFromWindow() {
+ +        guard let window = view.window,
+ +              let windows = window.childWindows,
+ +              windows.contains(scopePanel)
+ +        else { return }
+ +        scopePanel.orderOut(nil)
+ +        window.removeChildWindow(scopePanel)
+ +    }
+ +}
+++=======
+++>>>>>>> upstream/main

@@ -1,0 +1,18 @@
+diff --cc Source/Managers/Database/DatabaseManager.swift
+index 5e85442,09e9e9b..0000000
+--- a/Source/Managers/Database/DatabaseManager.swift
++++ b/Source/Managers/Database/DatabaseManager.swift
+@@@ -139,6 -159,10 +139,13 @@@ class DatabaseManager 
+  
+      private func handleSetupError() {
+          AppConfig.resetCustomModeKey()
+++<<<<<<< HEAD
+++=======
++         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
++             return
++         }
++         #if os(macOS)
+++>>>>>>> upstream/main
+          ReusableFunc.showAlert(
+              title: NSLocalizedString("Folder Not Found", comment: ""),
+              message: NSLocalizedString(

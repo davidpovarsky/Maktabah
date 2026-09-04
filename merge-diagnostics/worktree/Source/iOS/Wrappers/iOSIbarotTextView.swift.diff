@@ -1,0 +1,77 @@
+diff --cc Source/iOS/Wrappers/iOSIbarotTextView.swift
+index 34dcd57,e46743f..0000000
+--- a/Source/iOS/Wrappers/iOSIbarotTextView.swift
++++ b/Source/iOS/Wrappers/iOSIbarotTextView.swift
+@@@ -280,8 -275,9 +275,10 @@@ struct iOSIbarotTextView: UIViewReprese
+      @Binding var text: String
+      var annotations: [Annotation] = []
+      @Binding var searchText: String
++     var searchMode: SearchMode?
++     var nearDistance: Int = 10
+      var targetAnnotation: Annotation? = nil
+ +    var otzariaSelectedLineRange: NSRange?
+      var isMultiLanguage: Bool = false
+      var isImported: Bool = false
+      
+@@@ -440,30 -412,34 +439,61 @@@
+              }
+          }
+  
+++<<<<<<< HEAD
+ +        textView.attributedText = attributedString
+ +        textView.layoutIfNeeded()
+ +
+ +        let contentIdChanged = context.coordinator.lastHighlightedContentId != viewModel.currentContentId
+ +        if contentIdChanged {
+ +            textView.selectedRange = NSRange(location: 0, length: 0)
+ +        }
+ +
+ +        if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
+ +            switch pendingTarget {
+ +            case .top:
+ +                scrollTextViewToTop(textView)
+ +            case .bottom:
+ +                scrollTextViewToBottom(textView)
+ +                let expectedContentId = viewModel.currentContentId
+ +                DispatchQueue.main.async { [weak textView, weak viewModel] in
+ +                    guard let textView, let viewModel, viewModel.currentContentId == expectedContentId else { return }
+ +                    self.scrollTextViewToBottom(textView)
+ +                }
+ +            }
+ +
+ +            viewModel.needsScrollRestore = false
+ +            context.coordinator.restoredContentId = viewModel.currentContentId
+ +        } else if context.coordinator.restoredContentId != viewModel.currentContentId ||
+++=======
++         let contentIdChanged = context.coordinator.lastHighlightedContentId != viewModel.currentContentId
++         
++         var searchRanges: [NSRange] = []
++         var shouldTriggerSearchAnimation = false
++         
++         if !searchText.isEmpty {
++             searchRanges = attributedString.highlightSearchText(
++                 searchText: searchText,
++                 mode: searchMode,
++                 baseColor: .highlightText,
++                 nearDistance: nearDistance
++             )
++             
++             if context.coordinator.processedSearchText != searchText || contentIdChanged {
++                 context.coordinator.processedSearchText = searchText
++                 shouldTriggerSearchAnimation = true
++             }
++         } else {
++             context.coordinator.processedSearchText = nil
++         }
++ 
++         textView.attributedText = attributedString
++         textView.invalidateIntrinsicContentSize()
++         textView.setNeedsLayout()
++         textView.layoutIfNeeded()
++ 
++         // Restore Scroll & Selection exactly once per content ID
++         if context.coordinator.restoredContentId != viewModel.currentContentId ||
+++>>>>>>> upstream/main
+              viewModel.needsScrollRestore
+          {
+              if let scroll = viewModel.readerState.scrollPosition {

@@ -1,0 +1,45 @@
+diff --cc Source/Managers/ViewModels/AnnotationViewModel.swift
+index 2c86489,b9d916a..0000000
+--- a/Source/Managers/ViewModels/AnnotationViewModel.swift
++++ b/Source/Managers/ViewModels/AnnotationViewModel.swift
+@@@ -9,22 -9,24 +9,40 @@@ import Combin
+  import Foundation
+  import SwiftUI
+  
+++<<<<<<< HEAD
+ +enum AnnotationSearchScope: Int, CaseIterable, Identifiable, Sendable {
+++=======
++ enum AnnotationSearchScope: Int, Sendable, CaseIterable, Identifiable {
+++>>>>>>> upstream/main
+      case all = 0
+      case book = 1
+      case context = 2
+      case note = 3
+      case tag = 4
+  
+++<<<<<<< HEAD
+ +    var id: Int { rawValue }
+ +
+ +    var title: String {
+ +        switch self {
+ +        case .all: return "All".localized
+ +        case .book: return "Book".localized
+ +        case .context: return "Context".localized
+ +        case .note: return "Note".localized
+ +        case .tag: return "Tag".localized
+++=======
++     var id: Int {
++         rawValue
++     }
++ 
++     var title: String {
++         switch self {
++         case .all: "All".localized
++         case .book: "Book".localized
++         case .context: "Context".localized
++         case .note: "Note".localized
++         case .tag: "Tag".localized
+++>>>>>>> upstream/main
+          }
+      }
+  }

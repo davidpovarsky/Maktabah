@@ -1,0 +1,41 @@
+diff --cc Source/iOS/MaktabahApp.swift
+index f714396,82c4066..0000000
+--- a/Source/iOS/MaktabahApp.swift
++++ b/Source/iOS/MaktabahApp.swift
+@@@ -38,14 -35,13 +38,20 @@@ struct MaktabahApp: App 
+          AppConfig.initializeMode()
+          ArabicFont.registerCustomFonts()
+          UserFontManager.shared.registerUserFonts()
++         if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
++             UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: true])
++         }
+          AppConfig.setupAnnotationsAndResults()
+ -        CloudKitSyncManager.shared.initializeOnLaunch()
+ +        UserDefaults.standard.set(false, forKey: AppConfig.useICloudKey)
+ +        // CloudKitSyncManager.shared.initializeOnLaunch()
+          // CoreDatabaseBootstrap.run()
+          setupGlobalAppearances()
+++<<<<<<< HEAD
+ +        if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
+ +            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: false])
+ +        }
+++=======
+++>>>>>>> upstream/main
+      }
+  
+      private func setupGlobalAppearances() {
+@@@ -129,9 -112,10 +135,12 @@@ class AppDelegate: NSObject, UIApplicat
+      func application(_ application: UIApplication,
+                       didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                       fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+ -        CloudKitSyncManager.shared.fetchChanges()
+ -        completionHandler(.newData)
+ +        completionHandler(.noData)
+ +    }
+ +    func applicationWillTerminate(_ application: UIApplication) {
+++        CloudKitCoreManager.shared.syncWorker()
++     }
++     func applicationWillTerminate(_ application: UIApplication) {
+          CloudKitCoreManager.shared.syncWorker()
+      }
+  }

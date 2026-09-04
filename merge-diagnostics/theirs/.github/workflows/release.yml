@@ -1,0 +1,394 @@
+name: Release Maktabah
+
+on:
+  push:
+    tags:
+      - "v*"
+      - "V*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release (e.g., v1.0.0)"
+        required: true
+        type: string
+      skip_deployment:
+        description: "Skip deploying appcast to GitHub Pages"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  build:
+    runs-on: macos-26
+
+    steps:
+      # Checkout source
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+          fetch-depth: 0
+
+      # Pilih Xcode
+      - name: Select Xcode 26.4
+        uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
+        with:
+          xcode-version: "26.4"
+
+      # Cache SPM dependencies
+      - name: Cache SPM dependencies
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/Library/Caches/org.swift.swiftpm
+          key: spm-${{ runner.os }}-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            spm-${{ runner.os }}-
+
+      # Tentukan tag
+      - name: Set Tag Name
+        id: tag
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            echo "TAG_NAME=$INPUT_TAG" >> $GITHUB_OUTPUT
+          else
+            echo "TAG_NAME=$REF_NAME" >> $GITHUB_OUTPUT
+          fi
+
+      # Nama produk
+      - name: Set Product Name
+        id: vars
+        run: echo "PRODUCT_NAME=Maktabah" >> $GITHUB_OUTPUT
+
+      # Install Apple Certificate
+      - name: Install Apple Certificate
+        env:
+          P12_DATA: ${{ secrets.P12_DATA }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+        run: |
+          echo "$P12_DATA" | base64 --decode > /tmp/cert.p12
+          security create-keychain -p "" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+          security import /tmp/cert.p12 -k build.keychain -P "$P12_PASSWORD" -A
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+          rm /tmp/cert.p12
+
+      # Install Provisioning Profile macOS
+      - name: Install Provisioning Profile
+        env:
+          PROFILE_DATA: ${{ secrets.MAKTABAH_DIRECT_PROVISIONING_PROFILE }}
+          UUID_PROFILE: ${{ secrets.UUID_PROFILE }}
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$PROFILE_DATA" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/$UUID_PROFILE.provisionprofile
+
+      # Build archive macOS
+      - name: Build archive
+        env:
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          UUID_PROFILE: ${{ secrets.UUID_PROFILE }}
+          WORKER_URL: ${{ secrets.WORKER_URL }}
+        run: |
+          python3 - <<EOF
+          import os, re
+          path = 'Maktabah.xcodeproj/project.pbxproj'
+          with open(path, 'r') as f:
+              content = f.read()
+          
+          # 1. Patch Target-level (Maktabah-Direct Release)
+          target_config_id = '4B7C912D2F83494200454BE1'
+          uuid = os.environ['UUID_PROFILE']
+          team = os.environ['TEAM_ID']
+          
+          pattern = r'(' + target_config_id + r' /\* Release \*/ = \{[^{]*buildSettings = \{)(.*?)(\};)'
+          def replace_target(match):
+              h, s, f = match.group(1), match.group(2), match.group(3)
+              for k in ['CODE_SIGN_STYLE', 'CODE_SIGN_IDENTITY', 'PROVISIONING_PROFILE_SPECIFIER', 'DEVELOPMENT_TEAM']:
+                  s = re.sub(rf'\s+{k}\s+=\s+[^;]+;', '', s)
+              new = f'\n\t\t\t\tCODE_SIGN_STYLE = Manual;\n\t\t\t\tCODE_SIGN_IDENTITY = "Developer ID Application";\n\t\t\t\tPROVISIONING_PROFILE_SPECIFIER = "{uuid}";\n\t\t\t\tDEVELOPMENT_TEAM = {team};'
+              return h + new + s + f
+          content = re.sub(pattern, replace_target, content, flags=re.DOTALL)
+
+          # 2. Patch Project-level (agar tidak fallback ke Development)
+          content = content.replace('CODE_SIGN_IDENTITY = "Apple Development";', 'CODE_SIGN_IDENTITY = "Developer ID Application";')
+          
+          with open(path, 'w') as f:
+              f.write(content)
+          print("Successfully patched project for manual Developer ID signing.")
+          EOF
+
+          xcodebuild archive \
+            -project Maktabah.xcodeproj \
+            -scheme Maktabah-Direct \
+            -archivePath "build/Maktabah.xcarchive" \
+            -configuration Release \
+            -destination "generic/platform=macOS" \
+            WORKER_URL="$WORKER_URL" \
+            OTHER_CODE_SIGN_FLAGS="--timestamp --options=runtime"
+
+      - name: Export Developer ID App
+        env:
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          UUID_PROFILE: ${{ secrets.UUID_PROFILE }}
+        run: |
+          cat > build/ExportOptions.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>developer-id</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>teamID</key>
+            <string>${TEAM_ID}</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.Drn.maktabah</key>
+              <string>${UUID_PROFILE}</string>
+            </dict>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild -exportArchive \
+            -archivePath "build/Maktabah.xcarchive" \
+            -exportPath "build/exported" \
+            -exportOptionsPlist "build/ExportOptions.plist"
+
+      # Notarisasi App
+      - name: Notarize App
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # Zip dengan ditto agar symlink tetap intact
+          ditto -c -k --sequesterRsrc --keepParent \
+            "build/exported/Maktabah.app" \
+            "Maktabah_Notarize.zip"
+
+          # Kirim ke Apple Notary Service
+          xcrun notarytool submit "Maktabah_Notarize.zip" \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_PASSWORD" \
+            --team-id "$TEAM_ID" \
+            --wait \
+            --output-format json > notarize-result.json
+
+          cat notarize-result.json
+
+          SUBMISSION_ID=$(/usr/bin/python3 -c 'import json; print(json.load(open("notarize-result.json"))["id"])')
+          STATUS=$(/usr/bin/python3 -c 'import json; print(json.load(open("notarize-result.json"))["status"])')
+
+          xcrun notarytool log "$SUBMISSION_ID" \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_PASSWORD" \
+            --team-id "$TEAM_ID"
+
+          if [[ "$STATUS" != "Accepted" ]]; then
+            echo "Notarization failed with status: $STATUS"
+            exit 1
+          fi
+
+          # Tempelkan tiket notarisasi (Stapling)
+          xcrun stapler staple "build/exported/Maktabah.app"
+
+      # Package app dengan ditto (jaga symlink)
+      - name: Package app
+        env:
+          PRODUCT_NAME: ${{ steps.vars.outputs.PRODUCT_NAME }}
+          TAG_NAME: ${{ steps.tag.outputs.TAG_NAME }}
+        run: |
+          ZIP_NAME="${PRODUCT_NAME}-${TAG_NAME}.zip"
+          ditto -c -k --sequesterRsrc --keepParent \
+            "build/exported/Maktabah.app" \
+            "build/${ZIP_NAME}"
+
+      # Attest Build Provenance
+      - name: Attest Build Provenance
+        uses: actions/attest-build-provenance@ef244123eb79f2f7a7e75d99086184180e6d0018 # v1.4.4
+        with:
+          subject-path: "build/${{ steps.vars.outputs.PRODUCT_NAME }}-${{ steps.tag.outputs.TAG_NAME }}.zip"
+
+      # Upload ke GitHub Release
+      - name: Upload Release Asset
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
+        with:
+          tag_name: ${{ steps.tag.outputs.TAG_NAME }}
+          files: build/${{ steps.vars.outputs.PRODUCT_NAME }}-${{ steps.tag.outputs.TAG_NAME }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Generate appcast.xml dengan Sparkle
+      - name: Generate Appcast
+        env:
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+          PRODUCT_NAME: ${{ steps.vars.outputs.PRODUCT_NAME }}
+          TAG_NAME: ${{ steps.tag.outputs.TAG_NAME }}
+        run: |
+          # Cari generate_appcast dari Sparkle package
+          SPARKLE_BIN=$(find ~/Library/Developer/Xcode/DerivedData -name "generate_appcast" 2>/dev/null | head -1)
+          if [[ -z "$SPARKLE_BIN" ]]; then
+            echo "ERROR: generate_appcast tidak ditemukan"
+            exit 1
+          fi
+
+          # Siapkan folder staging berisi zip
+          mkdir -p build/sparkle_staging
+          cp "build/${PRODUCT_NAME}-${TAG_NAME}.zip" \
+             build/sparkle_staging/
+
+          # Generate appcast.xml
+          DOWNLOAD_PREFIX="https://github.com/bismillah-100/Maktabah/releases/download/$TAG_NAME/"
+          echo "$SPARKLE_PRIVATE_KEY" | base64 --decode | "$SPARKLE_BIN" \
+            --ed-key-file - \
+            --download-url-prefix "$DOWNLOAD_PREFIX" \
+            build/sparkle_staging/
+
+          # Simpan appcast.xml ke root workspace
+          cp build/sparkle_staging/appcast.xml appcast.xml
+
+          # Inject <sparkle:releaseNotesLink> yang dihapus generate_appcast
+          python3 - <<'PYEOF2'
+          import re
+
+          with open('appcast.xml', 'r') as f:
+              xml = f.read()
+
+          tag = '<sparkle:releaseNotesLink>https://bismillah-100.github.io/Maktabah/releases-notes.html</sparkle:releaseNotesLink>'
+
+          # Sisipkan setelah <enclosure ... /> di setiap <item>
+          xml = re.sub(r'(<enclosure[^>]*/\s*>)', '\\1\n            ' + tag, xml, flags=re.DOTALL)
+
+          with open('appcast.xml', 'w') as f:
+              f.write(xml)
+
+          print('releaseNotesLink berhasil di-inject.')
+          PYEOF2
+
+          echo "appcast.xml berhasil dibuat:"
+          cat appcast.xml
+
+      # Push appcast.xml dan releases-notes.html ke gh-pages sekaligus
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.skip_deployment)
+        env:
+          TAG_NAME: ${{ steps.tag.outputs.TAG_NAME }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          TAG="$TAG_NAME"
+          VERSION="${TAG#v}"
+          VERSION="${VERSION#V}"
+          RELEASE_DATE=$(date +"%B %d, %Y")
+          TAG_MESSAGE=$(git tag -l --format='%(contents)' "$TAG" 2>/dev/null || echo "")
+
+          rm -rf /tmp/maktabah-gh-pages
+          git fetch origin gh-pages
+          git worktree add /tmp/maktabah-gh-pages origin/gh-pages
+
+          # Update releases-notes.html: sisipkan section baru setelah <body>
+          python3 - <<PYEOF3
+          import re, os, sys
+
+          version = "$VERSION"
+          release_date = "$RELEASE_DATE"
+          tag_message = """$TAG_MESSAGE"""
+          notes_file = "/tmp/maktabah-gh-pages/releases-notes.html"
+
+          # Hapus blok signature yang ikut tersimpan di annotated tag
+          tag_message = re.sub(
+              r'\n*-----BEGIN (?:SSH|PGP) SIGNATURE-----.*?-----END (?:SSH|PGP) SIGNATURE-----\n*',
+              '\n',
+              tag_message,
+              flags=re.DOTALL,
+          ).strip()
+
+          # Parse tag message -> sections
+          sections = {}
+          current_section = None
+          current_items = []
+
+          for line in tag_message.strip().split('\n'):
+              line = line.strip()
+              if line.lower() in ['new', 'changes', 'fixes', 'improvements']:
+                  if current_section and current_items:
+                      sections[current_section] = current_items
+                  current_section = line.capitalize()
+                  current_items = []
+              elif line and current_section:
+                  item = re.sub(r'^[-*]\s*', '', line)
+                  if item:
+                      current_items.append(item)
+
+          if current_section and current_items:
+              sections[current_section] = current_items
+
+          # Build HTML section baru
+          html_section = f'''<h2>Version {version}</h2>
+          <p class="version">{release_date}</p>
+          '''
+
+          for section in ['New', 'Changes', 'Fixes', 'Improvements']:
+              if section in sections and sections[section]:
+                  html_section += f'<h3>{section}</h3>\n<ul>\n'
+                  for item in sections[section]:
+                      html_section += f'  <li>{item}</li>\n'
+                  html_section += '</ul>\n'
+
+          html_section += '\n<hr>\n'
+
+          # Sisipkan tepat setelah <body>
+          with open(notes_file, 'r') as f:
+              content = f.read()
+
+          existing_version_pattern = re.compile(
+              rf'<h2>\s*Version\s+{re.escape(version)}\s*</h2>',
+              flags=re.IGNORECASE,
+          )
+          if existing_version_pattern.search(content):
+              print(f"Version {version} sudah ada di releases-notes.html, skip insert.")
+              sys.exit(0)
+
+          marker = '<body>'
+          idx = content.find(marker)
+          if idx == -1:
+              print("ERROR: <body> tidak ditemukan")
+              sys.exit(1)
+
+          insert_at = idx + len(marker)
+          new_content = content[:insert_at] + '\n\n' + html_section + content[insert_at:]
+
+          with open(notes_file, 'w') as f:
+              f.write(new_content)
+
+          print(f"releases-notes.html updated untuk versi {version}")
+          PYEOF3
+
+          # Copy appcast.xml
+          cp appcast.xml /tmp/maktabah-gh-pages/appcast.xml
+
+          # Commit keduanya sekaligus — satu push, tidak ada double trigger
+          cd /tmp/maktabah-gh-pages
+          git add appcast.xml releases-notes.html
+
+          if git diff --cached --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
+
+          git commit -m "release: $TAG_NAME"
+          git push origin HEAD:gh-pages

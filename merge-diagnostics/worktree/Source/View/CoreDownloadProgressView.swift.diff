@@ -1,0 +1,137 @@
+diff --cc Source/View/CoreDownloadProgressView.swift
+index c7399d6,a0d0a44..0000000
+--- a/Source/View/CoreDownloadProgressView.swift
++++ b/Source/View/CoreDownloadProgressView.swift
+@@@ -8,49 -8,6 +8,52 @@@
+  import SwiftUI
+  
+  struct CoreDownloadProgressView: View {
+++<<<<<<< HEAD
+ +    struct Configuration {
+ +        let title: String
+ +        let confirmationBadge: String
+ +        let confirmationMessage: String
+ +        let downloadingMessage: String
+ +        let chooseTitle: String
+ +        let cancelTitle: String?
+ +        let downloadTitle: String
+ +        let retryTitle: String
+ +        let cancelDownloadTitle: String?
+ +        let showsSearchComponents: Bool
+ +
+ +        static let maktabah = Configuration(
+ +            title: NSLocalizedString(
+ +                "core.modal.title",
+ +                value: "Database File Needed",
+ +                comment: "Core download modal title"
+ +            ),
+ +            confirmationBadge: String(localized: "Factory Setting"),
+ +            confirmationMessage: String(localized: "core.modal.message"),
+ +            downloadingMessage: String(localized: "core.modal.downloading"),
+ +            chooseTitle: String(localized: "Choose Library Folder…"),
+ +            cancelTitle: String(localized: "Quit"),
+ +            downloadTitle: String(localized: "Download"),
+ +            retryTitle: String(localized: "Try Again"),
+ +            cancelDownloadTitle: nil,
+ +            showsSearchComponents: false
+ +        )
+ +
+ +        static let otzaria = Configuration(
+ +            title: String(localized: "Otzaria Library Required"),
+ +            confirmationBadge: String(localized: "Otzaria"),
+ +            confirmationMessage: String(localized: "Install the library and recommended search data together, or continue with the library only."),
+ +            downloadingMessage: String(localized: "Preparing the Otzaria Library…"),
+ +            chooseTitle: String(localized: "Choose Otzaria Database…"),
+ +            cancelTitle: String(localized: "Continue with library only"),
+ +            downloadTitle: String(localized: "Download and install all"),
+ +            retryTitle: String(localized: "Try Again"),
+ +            cancelDownloadTitle: String(localized: "Cancel Download"),
+ +            showsSearchComponents: true
+ +        )
+ +    }
+ +
+++=======
+++>>>>>>> upstream/main
+      #if os(macOS)
+      @ObservedObject var state: CoreDownloadProgressState
+      #else
+@@@ -207,28 -149,26 +210,51 @@@
+      @ViewBuilder
+      private var actionButtons: some View {
+          Button(action: onChooseFolder) {
+++<<<<<<< HEAD
+ +            Text(configuration.chooseTitle)
+ +                .frame(maxWidth: .infinity)
+ +        }
+ +        .buttonStyle(.bordered)
+ +
+ +        #if os(macOS)
+ +        Spacer()
+ +        #endif
+ +
+ +        if let cancelTitle = configuration.cancelTitle {
+ +            Button(action: onQuit) {
+ +                Text(cancelTitle)
+ +                #if os(iOS)
+ +                    .frame(maxWidth: .infinity)
+ +                #endif
+ +            }
+ +            .buttonStyle(.bordered)
+ +            .keyboardShortcut(.cancelAction)
+ +        }
+ +
+ +        Button(action: onDownload) {
+ +            Text(configuration.downloadTitle)
+++=======
++             Text("Choose Library Folder…")
++                 .frame(maxWidth: .infinity)
++         }
++         .buttonStyle(.bordered)
++ 
++         #if os(macOS)
++         Spacer()
++         #endif
++ 
++         Button(action: onQuit) {
++             Text("Quit")
++             #if os(iOS)
++                 .frame(maxWidth: .infinity)
++             #endif
++         }
++         .buttonStyle(.bordered)
++         .keyboardShortcut(.cancelAction)
++ 
++         Button(action: onDownload) {
++             Text("Download")
+++>>>>>>> upstream/main
+              #if os(iOS)
+                  .frame(maxWidth: .infinity)
+              #endif
+@@@ -272,16 -203,14 +298,27 @@@
+      private func errorView(_ msg: String) -> some View {
+          HStack(spacing: 12) {
+              Spacer()
+++<<<<<<< HEAD
+ +            Button(configuration.chooseTitle, action: onChooseFolder)
+ +                .buttonStyle(.bordered)
+ +
+ +            if let cancelTitle = configuration.cancelTitle {
+ +                Button(cancelTitle, action: onQuit)
+ +                    .buttonStyle(.bordered)
+ +            }
+ +
+ +            Button(
+ +                configuration.retryTitle,
+++=======
++             Button(
++                 "Quit",
++                 action: onQuit
++             )
++             .buttonStyle(.bordered)
++ 
++             Button(
++                 "Try Again",
+++>>>>>>> upstream/main
+                  action: onDownload
+              )
+              .buttonStyle(.borderedProminent)

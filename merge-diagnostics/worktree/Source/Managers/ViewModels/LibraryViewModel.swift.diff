@@ -1,0 +1,31 @@
+diff --cc Source/Managers/ViewModels/LibraryViewModel.swift
+index cd81daf,0632178..0000000
+--- a/Source/Managers/ViewModels/LibraryViewModel.swift
++++ b/Source/Managers/ViewModels/LibraryViewModel.swift
+@@@ -34,6 -34,8 +34,11 @@@ final class LibraryViewModel: ViewModel
+      var isDownloadModal = false
+      var singleBookToDelete: BooksData?
+      var reloadTask: Task<Void, Never>?
+++<<<<<<< HEAD
+++=======
++     var availableUpdateCount: Int = 0
++     private var historySelectionTask: Task<Void, Never>?
+++>>>>>>> upstream/main
+  
+      #if os(macOS)
+      @Published var searchQuery: String = ""
+@@@ -659,8 -698,9 +712,14 @@@
+              forName: .libraryFolderChanged, object: nil, queue: .current
+          ) { [weak self] _ in
+              guard let self, reloadTask == nil else { return }
+++<<<<<<< HEAD
+ +            reloadTask = Task { @MainActor [weak self] in
+ +                guard let self else { return }
+++=======
++             reloadTask?.cancel()
++             reloadTask = Task { @MainActor [weak self] in
++                 guard let self, !Task.isCancelled else { return }
+++>>>>>>> upstream/main
+                  await refreshLibrary()
+                  reloadTask = nil
+              }

@@ -1,0 +1,67 @@
+Auto-merging .github/workflows/codeql.yml
+CONFLICT (content): Merge conflict in .github/workflows/codeql.yml
+Auto-merging .github/workflows/release.yml
+CONFLICT (content): Merge conflict in .github/workflows/release.yml
+Auto-merging Maktabah.xcodeproj/project.pbxproj
+CONFLICT (content): Merge conflict in Maktabah.xcodeproj/project.pbxproj
+Auto-merging Source/BooksLibrary/LibraryViewManager.swift
+Auto-merging Source/Localizable.xcstrings
+CONFLICT (content): Merge conflict in Source/Localizable.xcstrings
+Auto-merging Source/Managers/App Config/AppConfig.swift
+Auto-merging Source/Managers/App Config/SettingsActions.swift
+CONFLICT (content): Merge conflict in Source/Managers/App Config/SettingsActions.swift
+Auto-merging Source/Managers/App Config/ZstdShim.swift
+Auto-merging Source/Managers/CloudKit/CloudKitCoreManager.swift
+CONFLICT (content): Merge conflict in Source/Managers/CloudKit/CloudKitCoreManager.swift
+Auto-merging Source/Managers/Database/BookConnection.swift
+CONFLICT (content): Merge conflict in Source/Managers/Database/BookConnection.swift
+Auto-merging Source/Managers/Database/CloudKitSyncManager.swift
+Auto-merging Source/Managers/Database/CoreDatabaseDownloader.swift
+Auto-merging Source/Managers/Database/DatabaseManager.swift
+CONFLICT (content): Merge conflict in Source/Managers/Database/DatabaseManager.swift
+Auto-merging Source/Managers/Database/LibraryDataManager.swift
+CONFLICT (content): Merge conflict in Source/Managers/Database/LibraryDataManager.swift
+Auto-merging Source/Managers/Engine/SearchEngine.swift
+Auto-merging Source/Managers/ViewModels/AnnotationViewModel.swift
+CONFLICT (content): Merge conflict in Source/Managers/ViewModels/AnnotationViewModel.swift
+Auto-merging Source/Managers/ViewModels/LibraryViewModel.swift
+CONFLICT (content): Merge conflict in Source/Managers/ViewModels/LibraryViewModel.swift
+Auto-merging Source/Managers/ViewModels/NarratorViewModel.swift
+Auto-merging Source/Managers/ViewModels/ReaderViewModel.swift
+CONFLICT (content): Merge conflict in Source/Managers/ViewModels/ReaderViewModel.swift
+Auto-merging Source/Managers/ViewModels/SearchViewModel.swift
+Auto-merging Source/Models/DataModel.swift
+Auto-merging Source/Protocols/AppDelegate.swift
+CONFLICT (content): Merge conflict in Source/Protocols/AppDelegate.swift
+Auto-merging Source/Reader/Annotations/AnnotationsVC.swift
+CONFLICT (content): Merge conflict in Source/Reader/Annotations/AnnotationsVC.swift
+Auto-merging Source/View/CoreDownloadProgressView.swift
+CONFLICT (content): Merge conflict in Source/View/CoreDownloadProgressView.swift
+Auto-merging Source/View/SettingsView.swift
+CONFLICT (content): Merge conflict in Source/View/SettingsView.swift
+Auto-merging Source/iOS-Info.plist
+Auto-merging Source/iOS/MaktabahApp.swift
+CONFLICT (content): Merge conflict in Source/iOS/MaktabahApp.swift
+Auto-merging Source/iOS/Managers/BootstrapManager.swift
+CONFLICT (content): Merge conflict in Source/iOS/Managers/BootstrapManager.swift
+Auto-merging Source/iOS/Managers/iOSNavigationManager.swift
+CONFLICT (content): Merge conflict in Source/iOS/Managers/iOSNavigationManager.swift
+Auto-merging Source/iOS/Views/Bootstrap/BootstrapView.swift
+CONFLICT (content): Merge conflict in Source/iOS/Views/Bootstrap/BootstrapView.swift
+CONFLICT (modify/delete): Source/iOS/Views/HistoryFavoriteSections.swift deleted in HEAD and modified in upstream/main.  Version upstream/main of Source/iOS/Views/HistoryFavoriteSections.swift left in tree.
+Auto-merging Source/iOS/Views/Reader/Toolbar/iOSReaderBottomToolbarView.swift
+Auto-merging Source/iOS/Views/Reader/iOSReaderView.swift
+Auto-merging Source/iOS/Views/SearchModeView.swift
+CONFLICT (content): Merge conflict in Source/iOS/Views/SearchModeView.swift
+Auto-merging Source/iOS/Views/iOSHistoryView.swift
+CONFLICT (content): Merge conflict in Source/iOS/Views/iOSHistoryView.swift
+Auto-merging Source/iOS/Views/iOSLibraryView.swift
+CONFLICT (content): Merge conflict in Source/iOS/Views/iOSLibraryView.swift
+Auto-merging Source/iOS/Views/iOSMainView.swift
+CONFLICT (content): Merge conflict in Source/iOS/Views/iOSMainView.swift
+Auto-merging Source/iOS/Views/iPadLayout.swift
+CONFLICT (content): Merge conflict in Source/iOS/Views/iPadLayout.swift
+Auto-merging Source/iOS/Views/iPhoneLayout.swift
+Auto-merging Source/iOS/Wrappers/iOSIbarotTextView.swift
+CONFLICT (content): Merge conflict in Source/iOS/Wrappers/iOSIbarotTextView.swift
+Automatic merge failed; fix conflicts and then commit the result.

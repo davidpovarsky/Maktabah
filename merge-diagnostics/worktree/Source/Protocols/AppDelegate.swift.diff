@@ -1,0 +1,58 @@
+diff --cc Source/Protocols/AppDelegate.swift
+index 8be69ac,2a669a7..0000000
+--- a/Source/Protocols/AppDelegate.swift
++++ b/Source/Protocols/AppDelegate.swift
+@@@ -101,22 -104,30 +104,37 @@@ class AppDelegate: NSObject, NSApplicat
+          #endif
+  
+          AppConfig.setupAnnotationsAndResults()
+ -        CloudKitSyncManager.shared.initializeOnLaunch()
+ -        // Register for CloudKit remote notifications
+ -        NSApplication.shared.registerForRemoteNotifications()
+ +        if AppConfig.useICloud {
+ +            CloudKitSyncManager.shared.initializeOnLaunch()
+ +            // Register for CloudKit remote notifications
+ +            NSApplication.shared.registerForRemoteNotifications()
+ +        }
+  
+          /*
+-         showWelcomeScreenIfNeeded()
+-          */
++          showWelcomeScreenIfNeeded()
++           */
+  
+          // Check for core database updates (blocking, throttled 6 months)
+          checkCoreDatabaseUpdate()
++ 
++         // Check for book updates in background (throttled 24h, low priority)
++         checkBookUpdatesPeriodically()
++ 
++         NotificationCenter.default.addObserver(
++             forName: .booksChanged,
++             object: nil,
++             queue: .main
++         ) { [weak self] _ in
++             self?.checkBookUpdatesPeriodically(force: true)
++         }
+      }
+  
+++<<<<<<< HEAD
+ +    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
+ +        guard AppConfig.useICloud else { return }
+++=======
++     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String: Any]) {
+++>>>>>>> upstream/main
+          Task {
+              try await Task.sleep(for: .seconds(5))
+              CloudKitSyncManager.shared.fetchChanges()
+@@@ -124,8 -135,9 +142,10 @@@
+      }
+  
+      func applicationDidBecomeActive(_ notification: Notification) {
+ +        guard AppConfig.useICloud else { return }
+          CloudKitSyncManager.shared.fetchChanges()
++         DonationManager.shared.recordActivation()
++         DonationManager.shared.checkAndPromptMacOSSheet(on: keyWindow ?? mainWindowController?.window)
+      }
+  
+      /*

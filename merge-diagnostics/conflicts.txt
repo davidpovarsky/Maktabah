@@ -1,0 +1,27 @@
+.github/workflows/codeql.yml
+.github/workflows/release.yml
+Maktabah.xcodeproj/project.pbxproj
+Source/Localizable.xcstrings
+Source/Managers/App Config/SettingsActions.swift
+Source/Managers/CloudKit/CloudKitCoreManager.swift
+Source/Managers/Database/BookConnection.swift
+Source/Managers/Database/DatabaseManager.swift
+Source/Managers/Database/LibraryDataManager.swift
+Source/Managers/ViewModels/AnnotationViewModel.swift
+Source/Managers/ViewModels/LibraryViewModel.swift
+Source/Managers/ViewModels/ReaderViewModel.swift
+Source/Protocols/AppDelegate.swift
+Source/Reader/Annotations/AnnotationsVC.swift
+Source/View/CoreDownloadProgressView.swift
+Source/View/SettingsView.swift
+Source/iOS/MaktabahApp.swift
+Source/iOS/Managers/BootstrapManager.swift
+Source/iOS/Managers/iOSNavigationManager.swift
+Source/iOS/Views/Bootstrap/BootstrapView.swift
+Source/iOS/Views/HistoryFavoriteSections.swift
+Source/iOS/Views/SearchModeView.swift
+Source/iOS/Views/iOSHistoryView.swift
+Source/iOS/Views/iOSLibraryView.swift
+Source/iOS/Views/iOSMainView.swift
+Source/iOS/Views/iPadLayout.swift
+Source/iOS/Wrappers/iOSIbarotTextView.swift

@@ -1,0 +1,134 @@
+diff --cc Source/iOS/Views/iPadLayout.swift
+index 3af4330,fbdebb5..0000000
+--- a/Source/iOS/Views/iPadLayout.swift
++++ b/Source/iOS/Views/iPadLayout.swift
+@@@ -20,13 -14,11 +20,14 @@@ struct iPadLayout: View 
+      @State private var showingSearchHelp = false
+      @State private var showingAddFavorites = false
+      @State private var path: [iOSTab] = []
+ +    @State private var detailMode: DetailMode = .reader
+ +    @State private var showingZayitReader = false
+ +    @State private var showingOtzariaReader = false
+  
+      @StateObject private var historyViewModel = HistoryViewModel.shared
++     @ObservedObject private var donationManager = DonationManager.shared
+  
+-     // Sidebar search tetap lokal — dipakai hanya untuk filter sidebar (Favorites & History)
++     /// Sidebar search tetap lokal — dipakai hanya untuk filter sidebar (Favorites & History)
+      @State private var sidebarSearchText: String = ""
+  
+      private var filteredFavorites: [BooksData] {
+@@@ -106,10 -96,8 +107,9 @@@
+          .sheet(isPresented: $showingAddFavorites) {
+              iOSAddFavoriteSheet(viewModel: historyViewModel)
+          }
+ +        .environment(\.layoutDirection, .rightToLeft)
+      }
+  
+-     @ViewBuilder
+      private var sidebarContent: some View {
+          ThemeList(isGrouped: true) {
+              Section {
+@@@ -167,80 -110,29 +167,101 @@@
+              }
+  
+              if !filteredHistory.isEmpty {
+ -                HistorySection(books: filteredHistory, viewModel: historyViewModel)
+ +                Section(header: Text("History".localized)) {
+ +                    ForEach(filteredHistory, id: \.id) { book in
+ +                        BookRowView(
+ +                            book: book,
+ +                            isFavorite: historyViewModel.favoriteBookIds
+ +                                .contains(book.id),
+ +                            viewModel: historyViewModel
+ +                        ) {
+ +                            prepareReaderDetail()
+ +                            let lastId = historyViewModel.entriesByBookId[
+ +                                book.id
+ +                            ]?.lastContentId
+ +                            detailMode = .reader
+ +                            showingZayitReader = false
+ +                            showingOtzariaReader = false
+ +                            bManager.openBook(book, initialContentId: lastId)
+ +                        }
+ +                    }
+ +                    .onDelete { offsets in
+ +                        for index in offsets {
+ +                            let book = filteredHistory[index]
+ +                            historyViewModel.removeHistory(for: book.id)
+ +                        }
+ +                    }
+ +                }
+              }
+ +        }
+ +    }
+  
+++<<<<<<< HEAD
+ +    @ViewBuilder
+ +    private var detailContent: some View {
+ +        switch detailMode {
+ +        case .reader:
+ +            iOSReaderTabView(columnVisibility: $columnVisibility)
+ +        case .otzariaTextSearch:
+ +            NavigationStack {
+ +                UnifiedSearchWorkspaceView(
+ +                    openOtzaria: { item, descriptor in
+ +                        guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
+ +                        bManager.openBook(
+ +                            book,
+ +                            initialContentId: item.page,
+ +                            searchText: descriptor.readerFallback
+ +                        )
+ +                        showingOtzariaReader = true
+ +                    },
+ +                    openZayit: { hit, _ in
+ +                        if ZayitSearchReaderNavigationAdapter.open(hit, using: bManager) {
+ +                            showingOtzariaReader = true
+ +                        }
+++=======
++             if donationManager.shouldShowDonation {
++                 Section {
++                     DonationHistoryButton {
++                         donationManager.showDonationSheet = true
++                     }
++                 }
++                 .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 4, trailing: 16))
++                 .listRowSeparator(.hidden)
++                 .listRowBackground(Color.clear)
++             }
++ 
++             if !filteredFavorites.isEmpty {
++                 FavoritesSection(
++                     books: filteredFavorites,
++                     viewModel: historyViewModel,
++                     onOpen: { book in
++                         let lastId = historyViewModel.entriesByBookId[book.id]?.lastContentId
++                         bManager.openBook(book, initialContentId: lastId)
+++>>>>>>> upstream/main
+                      }
+                  )
+ +                .navigationDestination(isPresented: $showingOtzariaReader) {
+ +                    iOSReaderTabView(columnVisibility: $columnVisibility)
+ +                }
+ +            }
+ +        case .zayitSearch:
+ +            NavigationStack {
+ +                ZayitSearchView(
+ +                    existingSeforimDB: {
+ +                        ZayitSearchExistingDatabaseProvider.currentURL
+ +                    },
+ +                    openResult: { hit in
+ +                        if ZayitSearchReaderNavigationAdapter.open(
+ +                            hit,
+ +                            using: bManager
+ +                        ) {
+ +                            showingZayitReader = true
+ +                        }
+ +                    }
+ +                )
+ +                .navigationDestination(isPresented: $showingZayitReader) {
+ +                    iOSReaderTabView(columnVisibility: $columnVisibility)
+ +                }
+              }
+          }
+      }

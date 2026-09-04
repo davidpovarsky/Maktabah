@@ -1,0 +1,21 @@
+diff --cc Source/iOS/Views/iOSMainView.swift
+index 37cf897,2600649..0000000
+--- a/Source/iOS/Views/iOSMainView.swift
++++ b/Source/iOS/Views/iOSMainView.swift
+@@@ -102,6 -101,13 +109,16 @@@ struct iOSMainView: View 
+                  dismissButton: .default(Text("OK"))
+              )
+          }
+++<<<<<<< HEAD
+++=======
++         .onChange(of: scenePhase) { oldPhase, newPhase in
++             if newPhase == .active {
++                 CloudKitSyncManager.shared.fetchChanges()
++                 DonationManager.shared.recordActivation()
++                 DonationManager.shared.checkAndPromptIOSSheet()
++             }
++         }
+++>>>>>>> upstream/main
+      }
+  }
+  

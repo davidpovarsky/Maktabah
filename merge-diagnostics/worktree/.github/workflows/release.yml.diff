@@ -1,0 +1,16 @@
+diff --cc .github/workflows/release.yml
+index 35e0ef9,1391bef..0000000
+--- a/.github/workflows/release.yml
++++ b/.github/workflows/release.yml
+@@@ -117,7 -131,7 +131,11 @@@ jobs
+              -archivePath "build/Maktabah.xcarchive" \
+              -configuration Release \
+              -destination "generic/platform=macOS" \
+++<<<<<<< HEAD
+ +            WORKER_URL="${{ secrets.WORKER_URL }}" \
+++=======
++             WORKER_URL="$WORKER_URL" \
+++>>>>>>> upstream/main
+              OTHER_CODE_SIGN_FLAGS="--timestamp --options=runtime"
+  
+        - name: Export Developer ID App

@@ -1,0 +1,54 @@
+diff --cc Source/iOS/Views/Bootstrap/BootstrapView.swift
+index 2bd9bb6,41fa9ef..0000000
+--- a/Source/iOS/Views/Bootstrap/BootstrapView.swift
++++ b/Source/iOS/Views/Bootstrap/BootstrapView.swift
+@@@ -27,10 -25,8 +27,15 @@@ struct iOSBootstrapView: View 
+                          CoreDownloadProgressView(
+                              state: bootstrapManager.coreDownloadState,
+                              onDownload: { bootstrapManager.startDownload() },
+++<<<<<<< HEAD
+ +                            onChooseFolder: { showingOtzariaImporter = true },
+ +                            onQuit: { bootstrapManager.continueWithLibraryOnly() },
+ +                            configuration: .otzaria,
+ +                            onCancelDownload: { bootstrapManager.cancelManagedDownload() }
+++=======
++                             onChooseFolder: { bootstrapManager.chooseLibraryFolder() },
++                             onQuit: { cancellation() }
+++>>>>>>> upstream/main
+                          )
+                          .padding()
+                      }
+@@@ -38,23 -34,17 +43,32 @@@
+              }
+          }
+          .task {
+ -            bootstrapManager.prepareIfNeeded()
+ +            await bootstrapManager.prepareIfNeeded()
+ +        }
+ +        .onReceive(NotificationCenter.default.publisher(for: .requireCoreDownload)) { notification in
+ +            let isCancellable = notification.userInfo?["isCancellable"] as? Bool ?? false
+ +            bootstrapManager.reloadLibrary(isCancellable: isCancellable)
+ +        }
+ +        .fileImporter(
+ +            isPresented: $showingOtzariaImporter,
+ +            allowedContentTypes: [.database, .data, .item],
+ +            allowsMultipleSelection: false
+ +        ) { result in
+ +            if case let .success(urls) = result, let url = urls.first {
+ +                bootstrapManager.installOtzariaDatabase(from: url)
+ +            } else if case let .failure(error) = result {
+ +                bootstrapManager.coreDownloadState.phase = .error(error.localizedDescription)
+ +            }
+          }
++         .onReceive(NotificationCenter.default.publisher(for: .requireCoreDownload)) { notification in
++             let isCancellable = notification.userInfo?["isCancellable"] as? Bool ?? false
++             bootstrapManager.reloadLibrary(isCancellable: isCancellable)
++         }
++         .onChange(of: bootstrapManager.isReady) { oldValue, newValue in
++             if newValue {
++                 CloudKitSyncManager.shared.fetchChanges()
++             }
++         }
+          .overlay {
+              if bootstrapManager.showCoreUpdateAlert {
+                  ZStack {

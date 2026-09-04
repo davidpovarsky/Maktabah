@@ -1,0 +1,170 @@
+diff --cc Source/Managers/ViewModels/ReaderViewModel.swift
+index 327447c,d95e5e9..0000000
+--- a/Source/Managers/ViewModels/ReaderViewModel.swift
++++ b/Source/Managers/ViewModels/ReaderViewModel.swift
+@@@ -24,11 -42,11 +42,12 @@@ class ReaderViewModel: ViewModelBase 
+      var currentBook: BooksData?
+      var currentPage: Int?
+      var currentPart: Int?
+ +    var currentHeRef: String?
+      var currentContentId: Int = 0
++     var recordHistory: Bool = true
+  
+      #if os(macOS)
+-     @Published var contentText: String = ""
++     @Published var contentPayload: ContentRenderPayload = .init(text: "", keepScrollPosition: false)
+      @Published var state: ViewModelState = .idle
+      @Published var totalParts: Int = 0
+      @Published var minPageInPart: Int = 0
+@@@ -73,12 -97,14 +98,19 @@@
+      static let kfgqpcTitle = Font.custom(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 18)
+      static let kfgqpcList = Font.custom(ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 20)
+  
+ +    enum PendingReaderScrollTarget {
+ +        case top
+ +        case bottom
+ +    }
+ +
+      var searchText: String = ""
++     var searchMode: SearchMode?
++     var nearDistance: Int = UserDefaults.standard.searchNearDistance {
++         didSet {
++             UserDefaults.standard.searchNearDistance = nearDistance
++         }
++     }
++ 
+      var targetAnnotation: Annotation?
+      var searchViewModel = SearchViewModel()
+      var readerState: ReaderState = .init()
+@@@ -139,52 -148,12 +172,55 @@@
+      }
+  
+      var diacriticsText: String {
+-         BookPageCache.shared.get(
+-             bookId: currentBook?.id ?? 0,
+-             contentId: currentContentId
+-         )?.nash ?? ""
++         currentBookContent?.nash ?? ""
+      }
+  
+++<<<<<<< HEAD
+ +    /// Helper for copy functionality
+ +    func getCopyReference(for selectedText: String) -> String {
+ +        let bookName = currentBook?.book ?? ""
+ +        var referencePage: [String] = []
+ +
+ +        if let otzariaReference = otzariaCurrentReferencePage() {
+ +            referencePage.append(otzariaReference)
+ +        } else {
+ +            if let part = currentPart, part != -1 {
+ +                referencePage.append("ج: \(part)".convertToArabicDigits())
+ +            }
+ +
+ +            if let page = currentPage {
+ +                referencePage.append("ص: \(page)".convertToArabicDigits())
+ +            }
+ +        }
+ +
+ +        let referenceLines = "~ \(bookName) - \(referencePage.joined(separator: " • "))"
+ +        return "\(selectedText)\n\n__________\n\(referenceLines)"
+ +    }
+ +
+ +    /// Helper for share functionality
+ +    func getShareReference(for selectedText: String) -> String {
+ +        let bookName = currentBook?.book ?? ""
+ +        var referencePage: [String] = []
+ +
+ +        if let otzariaReference = otzariaCurrentReferencePage() {
+ +            referencePage.append(otzariaReference)
+ +        } else {
+ +            if let part = currentPart, part != -1 {
+ +                referencePage.append("ج: \(part)".convertToArabicDigits())
+ +            }
+ +
+ +            if let page = currentPage {
+ +                referencePage.append("ص: \(page)".convertToArabicDigits())
+ +            }
+ +        }
+ +
+ +        let referenceLines = "~ \(bookName) - \(referencePage.joined(separator: " • "))"
+ +        return "\(selectedText)\n\n\(referenceLines)"
+++=======
++     var currentBookContent: BookContent? {
++         guard let bkId = currentBook?.id else { return nil }
++         return BookPageCache.shared.get(bookId: bkId, contentId: currentContentId)
+++>>>>>>> upstream/main
+      }
+  
+      // MARK: - Dependencies
+@@@ -223,12 -190,9 +259,10 @@@
+              try bookConnection.connect(archive: book.archive)
+          } catch {
+              contentText = DatabaseError.bookNotFound(book.archive).localizedDescription
+ +            otzariaReaderLog("loadInitialContent connectError bookId=\(book.id) error=\(error.localizedDescription) durationMs=\(otzariaReaderElapsedMs(start))")
+          }
+  
+-         // Start loading TOC immediately for both platforms
+-         tocViewModel.loadTOC(book: book)
+- 
++         loadTOC(book: book)
+          guard let initialContentId else {
+              loadFromHistory(for: book)
+              return
+@@@ -246,11 -208,12 +280,15 @@@
+          }
+      }
+  
++     func loadTOC(book: BooksData) {
++         tocViewModel.loadTOC(book: book)
++     }
++ 
+      func getContent(bkId: Int, contentId: Int) -> BookContent? {
+ -        bookConnection.getContent(bkid: String(bkId), contentId: contentId)
+ +        let start = Date()
+ +        let content = bookConnection.getContent(bkid: String(bkId), contentId: contentId)
+ +        otzariaReaderLog("getContent bookId=\(bkId) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") nashCount=\(content?.nash.count ?? 0) durationMs=\(otzariaReaderElapsedMs(start))")
+ +        return content
+      }
+  
+      func loadFromHistory(for book: BooksData) {
+@@@ -442,14 -385,17 +481,18 @@@
+          return nil
+      }
+  
+-     func cleanUpState() {
++     func resetContentState() {
+          contentText = ""
+-         currentBook = nil
+          currentPage = nil
+          currentPart = nil
+ +        currentHeRef = nil
+          currentID = nil
+          currentContentId = 0
++     }
++ 
++     func cleanUpState() {
++         resetContentState()
++         currentBook = nil
+          windowTitle = ""
+          windowSubtitle = ""
+          bookConnection = .init()
+@@@ -459,12 -405,13 +502,19 @@@
+      // MARK: - Private: Core Update
+  
+      func updateContentState(with content: BookContent) {
+++<<<<<<< HEAD
+ +        let start = Date()
+ +        let previousContentId = currentContentId
+++=======
++         #if os(macOS)
++         contentPayload = ContentRenderPayload(text: content.nash, content: content, keepScrollPosition: false)
++         #else
+++>>>>>>> upstream/main
+          contentText = content.nash
++         #endif
+          currentPart = content.part
+          currentPage = content.page
+ +        currentHeRef = content.heRef
+          currentID = content.id
+          currentContentId = content.id
+  

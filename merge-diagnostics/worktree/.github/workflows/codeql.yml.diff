@@ -1,0 +1,32 @@
+diff --cc .github/workflows/codeql.yml
+index de34c16,3c2bd24..0000000
+--- a/.github/workflows/codeql.yml
++++ b/.github/workflows/codeql.yml
+@@@ -1,7 -1,8 +1,12 @@@
+  name: "CodeQL Advanced"
+  
+  on:
+++<<<<<<< HEAD
+ +  workflow_dispatch:
+++=======
++   schedule:
++     - cron: '32 13 * * 5'
+++>>>>>>> upstream/main
+  
+  jobs:
+    analyze:
+@@@ -58,9 -70,9 +74,13 @@@
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            ENABLE_TESTABILITY=NO \
+++<<<<<<< HEAD
+ +          WORKER_URL="${{ secrets.WORKER_URL }}"
+++=======
++           WORKER_URL="$WORKER_URL"
+++>>>>>>> upstream/main
+  
+      - name: Perform CodeQL Analysis
+-       uses: github/codeql-action/analyze@v4
++       uses: github/codeql-action/analyze@db488ddef3bf6cb639b32c2e9a7c0a7ea8271d28 # v4.37.8
+        with:
+          category: "/language:${{matrix.language}}"
