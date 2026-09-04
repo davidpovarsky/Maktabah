@@ -98,7 +98,7 @@ jobs:
       - name: Native Otzaria bootstrap smoke test
         run: |
           set -euo pipefail
-          APP="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          APP="$GITHUB_WORKSPACE/build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
           bash Scripts/run-otzaria-native-bootstrap-acceptance.sh "$APP" --dictionary-only
 
       - name: Build unsigned iOS device app
