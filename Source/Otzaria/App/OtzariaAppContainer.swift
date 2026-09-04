@@ -536,7 +536,13 @@ final class OtzariaMaktabahBridge {
         }) ?? []
     }
 
-    func search(query: String, selectedBookIds: Set<Int>? = nil, limit: Int? = 200, mode: SearchMode = .phrase) -> [SearchResultItem] {
+    func search(
+        query: String,
+        selectedBookIds: Set<Int>? = nil,
+        limit: Int? = 200,
+        mode: SearchMode = .phrase,
+        nearDistance: Int = 10
+    ) -> [SearchResultItem] {
         lock.lock()
         defer { lock.unlock() }
         guard let db = try? requireDatabase() else { return [] }
@@ -544,16 +550,15 @@ final class OtzariaMaktabahBridge {
         let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !normalizedQuery.isEmpty else { return [] }
 
-        let terms: [String]
-        switch mode {
-        case .phrase:
-            terms = [normalizedQuery]
-        case .contains, .or:
-            terms = normalizedQuery.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
-        }
+        let terms = FtsQueryParser.extractKeywords(query: normalizedQuery, mode: mode)
         guard !terms.isEmpty else { return [] }
 
-        let matchQuery = mode == .or ? terms.joined(separator: " OR ") : terms.joined(separator: " ")
+        let matchQuery = FtsQueryParser.buildFtsQuery(
+            query: normalizedQuery,
+            mode: mode,
+            nearDistance: nearDistance
+        )
+        guard !matchQuery.isEmpty else { return [] }
         let maxResults = limit ?? 200
 
         func bookFilterSQL(parameters: inout [Any]) -> String {
@@ -566,8 +571,22 @@ final class OtzariaMaktabahBridge {
         func mapRows(_ rows: [(Int, Int, Int, String, String, String)]) -> [SearchResultItem] {
             rows.map { row in
                 let cleaned = row.4.otsariaPlainText
-                let snippet = cleaned.snippetAround(keywords: terms, contextLength: 60)
-                let highlighted = snippet.highlightedAttributedText(keywords: terms)
+                let snippet: String
+                let highlighted: NSAttributedString
+                if mode == .near {
+                    snippet = cleaned.snippetNear(
+                        keywords: terms,
+                        nearDistance: nearDistance,
+                        contextLength: 60
+                    )
+                    highlighted = snippet.highlightedAttributedText(
+                        keywords: terms,
+                        nearDistance: nearDistance
+                    )
+                } else {
+                    snippet = cleaned.snippetAround(keywords: terms, contextLength: 60)
+                    highlighted = snippet.highlightedAttributedText(keywords: terms)
+                }
                 return SearchResultItem(
                     archive: "Otzaria",
                     tableName: "otzaria:\(row.1)",

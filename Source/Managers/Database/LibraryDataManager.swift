@@ -394,6 +394,7 @@ class LibraryDataManager {
             tableToScan: allowed,
             query: query,
             mode: mode,
+            nearDistance: nearDistance,
             onInitialize: onInitialize,
             onTableProgress: onTableProgress,
             onRowProgress: onRowProgress,

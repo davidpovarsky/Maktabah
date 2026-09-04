@@ -57,6 +57,7 @@ enum OtzariaLibraryDataAdapter {
         tableToScan: Set<String>,
         query: String,
         mode: SearchMode,
+        nearDistance: Int,
         onInitialize: @escaping @MainActor (Int) -> Void,
         onTableProgress: @escaping @MainActor (Int) -> Void,
         onRowProgress: @escaping @MainActor (String, String, Int, Int) -> Void,
@@ -81,7 +82,8 @@ enum OtzariaLibraryDataAdapter {
             query: query,
             selectedBookIds: selectedIds,
             limit: nil,
-            mode: mode
+            mode: mode,
+            nearDistance: nearDistance
         )
 
         await MainActor.run {
