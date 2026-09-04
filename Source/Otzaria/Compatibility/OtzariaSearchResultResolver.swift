@@ -4,7 +4,11 @@ enum OtzariaSearchResultResolver {
     private static let tablePrefix = "otzaria:"
 
     static var allowsSearchWithoutSelectedTables: Bool {
+        #if os(iOS)
         OtzariaMaktabahBridge.shared.isEnabled
+        #else
+        false
+        #endif
     }
 
     static func bookId(from tableName: String) -> Int? {

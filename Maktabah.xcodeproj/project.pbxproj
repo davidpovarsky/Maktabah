@@ -22,6 +22,12 @@
 		DAB100000000000000000009 /* OtzariaNativeBootstrapAcceptanceRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB000000000000000000009 /* OtzariaNativeBootstrapAcceptanceRunner.swift */; };
 		DAA200000000000000000001 /* OtzariaLibraryDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002C /* OtzariaLibraryDataAdapter.swift */; };
 		DAA200000000000000000002 /* OtzariaLibraryDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002C /* OtzariaLibraryDataAdapter.swift */; };
+		DAA200000000000000000003 /* OtzariaLibraryPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002D /* OtzariaLibraryPolicy.swift */; };
+		DAA200000000000000000004 /* OtzariaSearchResultResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002E /* OtzariaSearchResultResolver.swift */; };
+		DAA200000000000000000005 /* ReaderViewModel+OtzariaLineSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000022 /* ReaderViewModel+OtzariaLineSources.swift */; };
+		DAA200000000000000000006 /* OtzariaLibraryPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002D /* OtzariaLibraryPolicy.swift */; };
+		DAA200000000000000000007 /* OtzariaSearchResultResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002E /* OtzariaSearchResultResolver.swift */; };
+		DAA200000000000000000008 /* ReaderViewModel+OtzariaLineSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000022 /* ReaderViewModel+OtzariaLineSources.swift */; };
 		E5A100000000000000000001 /* dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000011 /* dictionary.json */; };
 		E5A100000000000000000002 /* Acronyms.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000012 /* Acronyms.json */; };
 		E5A100000000000000000003 /* OtzariaMagicDictionaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */; };
@@ -2199,6 +2205,9 @@
 				4B5DF9342EDC2FE60082DE7F /* LibraryVC.swift in Sources */,
 				F32167292FBAA39F00601DB3 /* BookImportView.swift in Sources */,
 				DAA200000000000000000001 /* OtzariaLibraryDataAdapter.swift in Sources */,
+				DAA200000000000000000003 /* OtzariaLibraryPolicy.swift in Sources */,
+				DAA200000000000000000004 /* OtzariaSearchResultResolver.swift in Sources */,
+				DAA200000000000000000005 /* ReaderViewModel+OtzariaLineSources.swift in Sources */,
 				4B5EC2962EE331D500991F39 /* SavedResults.swift in Sources */,
 				4B58EDCB2EE3DBE800073495 /* ResultsViewManager.swift in Sources */,
 				4B0139E92EEB3CB000424CFA /* InitProgress.swift in Sources */,
@@ -2364,6 +2373,9 @@
 				4B7C90A92F83494200454BE1 /* AnnotationCellView.swift in Sources */,
 				4B7C90AA2F83494200454BE1 /* LibraryVC.swift in Sources */,
 				DAA200000000000000000002 /* OtzariaLibraryDataAdapter.swift in Sources */,
+				DAA200000000000000000006 /* OtzariaLibraryPolicy.swift in Sources */,
+				DAA200000000000000000007 /* OtzariaSearchResultResolver.swift in Sources */,
+				DAA200000000000000000008 /* ReaderViewModel+OtzariaLineSources.swift in Sources */,
 				4B7C90AC2F83494200454BE1 /* SavedResults.swift in Sources */,
 				4B7C90AD2F83494200454BE1 /* ResultsViewManager.swift in Sources */,
 				F37F1C36300268E3002B5618 /* AnnotationManager.swift in Sources */,

@@ -2,7 +2,11 @@ import Foundation
 
 enum OtzariaLibraryPolicy {
     static var isEnabled: Bool {
+        #if os(iOS)
         OtzariaMaktabahBridge.shared.isEnabled
+        #else
+        false
+        #endif
     }
 
     static func isBookDownloaded(_ book: BooksData) -> Bool? {

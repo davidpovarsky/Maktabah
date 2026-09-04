@@ -85,7 +85,11 @@ extension ReaderViewModel {
 
 extension ReaderViewModel {
     var isOtzariaReaderEnabled: Bool {
+        #if os(iOS)
         OtzariaMaktabahBridge.shared.isEnabled
+        #else
+        false
+        #endif
     }
 
     func otzariaCurrentReferencePage() -> String? {
@@ -94,8 +98,10 @@ extension ReaderViewModel {
     }
 
     func otzariaReaderLog(_ message: String) {
+        #if os(iOS)
         guard isOtzariaReaderEnabled else { return }
         OtzariaFileLogger.shared.log("[ReaderViewModel] \(message)")
+        #endif
     }
 
     func otzariaReaderElapsedMs(_ start: Date) -> Int {
