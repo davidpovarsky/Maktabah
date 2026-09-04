@@ -65,7 +65,7 @@ jobs:
           text = p.read_text()
           start = text.index('def patch_ibarot():')
           end = text.index('\ndef assert_contains', start)
-          replacement = r'''def patch_ibarot():
+          replacement = r"""def patch_ibarot():
               path = "Source/iOS/Wrappers/iOSIbarotTextView.swift"
               resolve_markers(path, "theirs")
               text = read(path)
@@ -125,7 +125,7 @@ jobs:
               }'''
               text = text[:block_start] + new + text[block_end:]
               write(path, text)
-          '''
+          """
           p.write_text(text[:start] + replacement + text[end:])
           PY
           python3 /tmp/resolve-upstream-main-merge.py
