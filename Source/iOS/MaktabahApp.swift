@@ -35,14 +35,20 @@ struct MaktabahApp: App {
      */
 
     init() {
+        // Native acceptance launches exercise isolated Otzaria bootstrap/search
+        // paths and must not be blocked by unrelated first-launch setup.
+        if OtzariaNativeBootstrapAcceptanceRunner.isRequested {
+            return
+        }
+
         AppConfig.initializeMode()
         ArabicFont.registerCustomFonts()
         UserFontManager.shared.registerUserFonts()
         if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
-            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: true])
+            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: false])
         }
-        AppConfig.setupAnnotationsAndResults()
         UserDefaults.standard.set(false, forKey: AppConfig.useICloudKey)
+        AppConfig.setupAnnotationsAndResults()
         // CloudKitSyncManager.shared.initializeOnLaunch()
         // CoreDatabaseBootstrap.run()
         setupGlobalAppearances()
