@@ -110,7 +110,6 @@
 		006F20CC814442B69245E15B /* AnnotationJsonDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9B3C1A41B45B78A2BF9C3 /* AnnotationJsonDocument.swift */; };
 		17475414BB0B621BFDC173ED /* FtsMigrationProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D47941A1D403C301B2748A /* FtsMigrationProgressView.swift */; };
 		1878A376483C464F9B105C5F /* AnVC+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B24EBA21B744A68FB0E0BB /* AnVC+Share.swift */; };
-		240682637A5169A63619E577 /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373C7B02164CDBB77BFFF48 /* CloudKitSyncManager.swift */; };
 		2519CB6A1E669FBF7124993E /* HistoryDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87A6247BC6183CE4E42296D /* HistoryDatabaseManager.swift */; };
 		3090DBCA5F8C3E3A3E5921B5 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3599633FC8314B93AC7E536B /* AnVC+LineMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D7BAF818D3447A9204EB5D /* AnVC+LineMenu.swift */; };
@@ -709,9 +708,7 @@
 		FE2193E6B320567B414B6FF0 /* OtzariaDatabaseManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BBFD198FACBB5BDFC0901E /* OtzariaDatabaseManagerAdapter.swift */; };
 		F7619505363C4134841E0BFE /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82BE78484304FF69C3B8BA1 /* Color+Hex.swift */; };
 		F98231AA5FBD41F496614AA3 /* AnnotationJsonDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9B3C1A41B45B78A2BF9C3 /* AnnotationJsonDocument.swift */; };
-		FB254BD29A50C530E907662A /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373C7B02164CDBB77BFFF48 /* CloudKitSyncManager.swift */; };
 		FCEE7463632B425A8C6EC39F /* AnVC+TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC076CB67A649FEB4A2E06C /* AnVC+TagFilter.swift */; };
-		FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */; };
 		FF34047318724E38BF0C64DD /* AnVC+TagPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F3B4745FB4F15962E767F /* AnVC+TagPopover.swift */; };
 /* End PBXBuildFile section */
 
@@ -1010,11 +1007,9 @@
 		EF964A27B1D530BC318E1F7A /* OtzariaIntegratedReaderDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaIntegratedReaderDetailView.swift; path = Source/Otzaria/App/OtzariaIntegratedReaderDetailView.swift; sourceTree = "<group>"; };
 		F2E687966F83FF7CCE34EA1F /* OtzariaReaderViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaReaderViewModel.swift; path = Source/Otzaria/Features/Reader/OtzariaReaderViewModel.swift; sourceTree = "<group>"; };
 		90D47941A1D403C301B2748A /* FtsMigrationProgressView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FtsMigrationProgressView.swift; sourceTree = "<group>"; };
-		9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = iOSHistoryView.swift; sourceTree = "<group>"; };
 		9E4593850FE48263B93695A4 /* FtsMigrationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FtsMigrationManager.swift; sourceTree = "<group>"; };
 		A4921EC4B33C46338E59F39B /* AnVC+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnVC+Search.swift"; sourceTree = "<group>"; };
 		BEC076CB67A649FEB4A2E06C /* AnVC+TagFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnVC+TagFilter.swift"; sourceTree = "<group>"; };
-		C2CCE35AFE445BF8BEF37C5F /* CloudKitSyncable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 		CC0F3B4745FB4F15962E767F /* AnVC+TagPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnVC+TagPopover.swift"; sourceTree = "<group>"; };
 		D00F222F577745268CA496C9 /* AnVC+Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnVC+Panel.swift"; sourceTree = "<group>"; };
 		DEA6E156516C4CE0B2C53601 /* AnVC+Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnVC+Sort.swift"; sourceTree = "<group>"; };
@@ -1801,6 +1796,8 @@
 				F31111952FC00F060024B638 /* Search */,
 				F30577772FA463B1005732C6 /* AnnotationListView.swift */,
 				F30577782FA463B1005732C6 /* AuthorModeView.swift */,
+				F3D38A912FD47C3200387BA4 /* HistoryComponents.swift */,
+				F3D38A932FD4B2F200387BA4 /* HistoryFavoriteSections.swift */,
 				9CCE06036EE212C652A4D740 /* iOSHistoryView.swift */,
 				F30577792FA463B1005732C6 /* iOSLibraryView.swift */,
 				F30577792FA463B1005732C7 /* iOSLibraryViewController.swift */,

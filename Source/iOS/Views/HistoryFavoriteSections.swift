@@ -55,6 +55,46 @@ struct FavoritesSection: View {
     }
 }
 
+// MARK: - Sidebar Book Row
+
+/// Compact row retained for the iPad sidebar, where opening a book must also
+/// coordinate the split-view reader state maintained by `iPadLayout`.
+struct BookRowView: View {
+    let book: BooksData
+    let isFavorite: Bool
+    @ObservedObject var viewModel: HistoryViewModel
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                Text(book.book)
+                    .font(ReaderViewModel.kfgqpcList)
+                    .foregroundColor(.primary)
+                Spacer()
+                Button {
+                    viewModel.toggleFavorite(book.id)
+                } label: {
+                    Image(systemName: isFavorite ? "star.fill" : "star")
+                        .foregroundColor(isFavorite ? .yellow : .gray)
+                }
+                .accessibilityLabel(
+                    isFavorite
+                        ? String(localized: "Remove Favorite")
+                        : String(localized: "Add Favorite")
+                )
+                .help(
+                    isFavorite
+                        ? String(localized: "Remove Favorite")
+                        : String(localized: "Add Favorite")
+                )
+                .buttonStyle(.plain)
+            }
+            .contentShape(Rectangle())
+        }
+    }
+}
+
 // MARK: - HistoryEmptyState
 
 /// Placeholder saat tidak ada history maupun favorit.
