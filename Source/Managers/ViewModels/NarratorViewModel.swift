@@ -138,7 +138,7 @@ final class NarratorViewModel: ViewModelBase {
     func loadData() async {
         defer { state = .loaded }
         guard tabaqaGroups.isEmpty else { return }
-        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
+        if OtzariaLibraryDataAdapter.isEnabled && DatabaseManager.shared.dbSpecial == nil {
             tabaqaGroups = []
             return
         }
@@ -149,7 +149,7 @@ final class NarratorViewModel: ViewModelBase {
     }
 
     func searchRowis(query: String) {
-        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
+        if OtzariaLibraryDataAdapter.isEnabled && DatabaseManager.shared.dbSpecial == nil {
             tabaqaGroups = []
             return
         }
@@ -158,7 +158,7 @@ final class NarratorViewModel: ViewModelBase {
     }
 
     func loadMore(group: TabaqaGroup, completion: @escaping (Int?) -> Void) {
-        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil {
+        if OtzariaLibraryDataAdapter.isEnabled && DatabaseManager.shared.dbSpecial == nil {
             completion(nil)
             return
         }
@@ -231,7 +231,7 @@ final class NarratorViewModel: ViewModelBase {
 
     func startSearch(query: String) {
         guard !query.isEmpty else { return }
-        if OtzariaMaktabahBridge.shared.isEnabled && DatabaseManager.shared.dbSpecial == nil { return }
+        if OtzariaLibraryDataAdapter.isEnabled && DatabaseManager.shared.dbSpecial == nil { return }
         isSearching = true
         isPaused = false
         isStopped = false

@@ -2,7 +2,11 @@ import Foundation
 
 enum OtzariaLibraryDataAdapter {
     static var isEnabled: Bool {
+        #if os(iOS)
         OtzariaMaktabahBridge.shared.isEnabled
+        #else
+        false
+        #endif
     }
 
     static func buildCategoryHierarchy(from allCategories: [CategoryData]) -> (
@@ -66,6 +70,7 @@ enum OtzariaLibraryDataAdapter {
     ) async -> Bool {
         guard isEnabled else { return false }
 
+        #if os(iOS)
         let selectedIds: Set<Int>? = tableToScan.isEmpty
             ? nil
             : Set(tableToScan.compactMap { tableName in
@@ -96,6 +101,9 @@ enum OtzariaLibraryDataAdapter {
             onComplete()
         }
         return true
+        #else
+        return false
+        #endif
     }
 
     static func buildAuthorHierarchyIfEnabled(
