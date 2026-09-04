@@ -12,7 +12,7 @@ class SidebarVC: NSViewController {
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var searchField: DSFSearchField!
-    @IBOutlet weak var searchContainer: NSView!
+    @IBOutlet weak var searchContainer: NSVisualEffectView!
     @IBOutlet weak var xBtn: NSButton!
 
     weak var delegate: SidebarDelegate?
@@ -21,13 +21,14 @@ class SidebarVC: NSViewController {
     var idToRow: [Int: Int] = [:]
 
     var filteredTree: [TOCNode] = []
+    var flatNodes: [TOCNode] = []
 
     var isFiltering: Bool {
         !searchField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     var db: BookConnection!
-    
+
     var previousSelectedRow: Int?
 
     var enableDelegate: Bool = true
@@ -37,6 +38,9 @@ class SidebarVC: NSViewController {
             xBtn.isEnabled = !searchFieldIsHidden
         }
     }
+
+    private var windowsObservation: NSKeyValueObservation?
+    private var tabBarObservation: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +55,9 @@ class SidebarVC: NSViewController {
             systemSymbolName: "line.3.horizontal.decrease.circle"
         )
 
+        outlineView.target = self
+        outlineView.doubleAction = #selector(onDoubleClick(_:))
+
         searchField.searchSubmitCallback = { [weak self] query in
             self?.startSearch(query)
         }
@@ -60,23 +67,40 @@ class SidebarVC: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-//        guard let window = view.window,
-//              let guide = window.contentLayoutGuide as? NSLayoutGuide
-//        else { return }
-//
-//        let ve = NSVisualEffectView()
-//        ve.material = .fullScreenUI
-//        ve.blendingMode = .withinWindow
-//        ve.state = .active
-//        ve.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(ve, positioned: .above, relativeTo: outlineView)
-//
-//        NSLayoutConstraint.activate([
-//            ve.topAnchor.constraint(equalTo: view.topAnchor),
-//            ve.bottomAnchor.constraint(equalTo: guide.topAnchor),
-//            ve.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            ve.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-//        ])
+        startWindowObservation()
+    }
+
+    deinit {
+        windowsObservation = nil
+        if let obs = tabBarObservation {
+            NotificationCenter.default.removeObserver(obs)
+        }
+    }
+
+    func startWindowObservation() {
+        guard windowsObservation == nil,
+              let window = view.window,
+              let tabGroup = window.tabGroup
+        else { return }
+
+        windowsObservation = tabGroup.observe(
+            \.windows,
+             options: []
+        ) { _,_ in
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                updateScrollViewInsets(searchContainer.isHidden)
+            }
+        }
+
+        tabBarObservation = NotificationCenter.default.addObserver(
+            forName: .windowTabBarDidChange,
+            object: nil, queue: .main,
+            using: { [weak self] _ in
+                guard let self else { return }
+                updateScrollViewInsets(searchContainer.isHidden)
+            }
+        )
     }
 
     @IBAction func performFindPanelAction(_ sender: Any) {
@@ -89,10 +113,11 @@ class SidebarVC: NSViewController {
             scrollView.drawsBackground = true
             scrollView.backgroundColor = color.nsColor
         }
-        searchContainer.wantsLayer = true
-        searchContainer.layer?.backgroundColor = color.nsColor.cgColor
         // Update outline view
         outlineView.backgroundColor = .clear
+        searchContainer.wantsLayer = true
+        searchContainer.material = .fullScreenUI
+        searchContainer.blendingMode = .withinWindow
     }
 
     @IBAction func hideSearchFieldEsc(_ sender: Any?) {
@@ -106,24 +131,31 @@ class SidebarVC: NSViewController {
         let hide = searchFieldIsHidden
 
         searchContainer.isHidden = hide
-        searchField.isHidden = hide
+        updateScrollViewInsets(hide)
+    }
 
-        // 3. Buat Constraint yang Baru
-        if !hide {
-            // KONDISI 1: TIDAK TERSEMBUNYI (Unhide)
+    func updateScrollViewInsets(_ searchFieldHidden: Bool) {
+        if !searchFieldHidden {
             scrollView.automaticallyAdjustsContentInsets = false
-            scrollView.contentInsets.top = 88
+            scrollView.contentInsets.top = view.safeAreaInsets.top +
+                                           searchContainer.frame.height
             searchField.becomeFirstResponder()
         } else {
-            // KONDISI 2: TERSEMBUNYI (Hide)
-            // Hubungkan scrollView top ke superview top dengan constant 0
-            // Asumsi superview dari scrollView adalah view utama ViewController
             scrollView.automaticallyAdjustsContentInsets = true
         }
     }
 
     func updateTOC(_ nodes: [TOCNode]) {
         self.tocTree = nodes
+
+        var flat: [TOCNode] = []
+        func traverse(_ node: TOCNode) {
+            flat.append(node)
+            for child in node.children { traverse(child) }
+        }
+        for node in nodes { traverse(node) }
+        self.flatNodes = flat
+
         self.outlineView.reloadData()
         Task { await self.rebuildLookupCache() }
     }
@@ -137,22 +169,11 @@ class SidebarVC: NSViewController {
         if query.isEmpty {
             filteredTree = []
         } else {
-            var allNodes: [TOCNode] = []
-            func traverse(_ node: TOCNode) {
-                allNodes.append(node)
-                for child in node.children { traverse(child) }
-            }
-            for root in tocTree { traverse(root) }
-
-            let matches = allNodes.filter { $0.bab.localizedStandardContains(query) }
-
-            // bikin tree baru hanya dengan node yang cocok
-            filteredTree = matches
+            // perf: Use a single-pass filter on pre-flattened nodes to avoid recursive tree traversals on each search keystroke
+            filteredTree = flatNodes.filter { $0.bab.localizedStandardContains(query) }
         }
-
         outlineView.reloadData()
         outlineView.expandItem(nil, expandChildren: true) // supaya semua hasil terlihat
-
     }
 
     @MainActor
@@ -170,6 +191,7 @@ class SidebarVC: NSViewController {
     func cleanUpOutlineView() {
         filteredTree.removeAll()
         tocTree.removeAll()
+        flatNodes.removeAll()
         idToRow.removeAll()
         searchField.stringValue.removeAll()
         outlineView.reloadData()
@@ -308,5 +330,17 @@ extension SidebarVC {
         }
 
         enableDelegate = true
+    }
+
+    @objc private func onDoubleClick(_ sender: AnyObject) {
+        let clickedRow = outlineView.clickedRow
+        guard clickedRow != -1, let item = outlineView.item(atRow: clickedRow) as? TOCNode else { return }
+        if !item.children.isEmpty {
+            if outlineView.isItemExpanded(item) {
+                outlineView.collapseItem(item)
+            } else {
+                outlineView.expandItem(item)
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@
 import Cocoa
 
 class ResultWriter: NSViewController {
+    @IBOutlet weak var queryTextField: NSTextField!
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var okButton: NSButton!
     @IBOutlet weak var xButton: NSButton!
@@ -19,6 +20,8 @@ class ResultWriter: NSViewController {
     var results: [SearchResultItem] = []
     var resultsVM: ResultsViewManager!
     var query: String = ""
+    var searchMode: SearchMode = .phrase
+    var searchViewModel: SearchViewModel?
     
     var nsBtns: [NSButton] {
         [xButton, okButton]
@@ -44,12 +47,14 @@ class ResultWriter: NSViewController {
         super.viewDidAppear()
         ReusableFunc.showProgressWindow(view)
         textField.stringValue = query
+        queryTextField.stringValue = query
         Task.detached() { [weak self] in
             await self?.viewModel.getFolders()
             await MainActor.run { [weak self] in
                 guard let self else { return }
                 outlineView.reloadData()
                 ReusableFunc.closeProgressWindow(view)
+                view.window?.makeFirstResponder(textField)
             }
         }
         okButton.action = #selector(saveClicked(_:))
@@ -128,6 +133,8 @@ class ResultWriter: NSViewController {
             try viewModel.saveSearchResults(
                 results: results,
                 query: query,
+                searchMode: searchMode.rawValue,
+                nearDistance: searchViewModel?.nearDistance ?? 10,
                 folderId: folderId,
                 name: name
             )

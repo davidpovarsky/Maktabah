@@ -3,7 +3,6 @@
 //  maktab
 //
 //  Created by MacBook on 15/12/25.
-//  Handle offline imported books
 //
 
 import Cocoa
@@ -11,7 +10,13 @@ import Cocoa
 @MainActor
 class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     weak var delegate: AnnotationDelegate?
-    weak var outlineView: NSOutlineView?
+    weak var outlineView: NSOutlineView? {
+        didSet {
+            outlineView?.target = self
+            outlineView?.doubleAction = #selector(onDoubleClick(_:))
+        }
+    }
+
     var onAddTagsRequested: (([Int64], NSRect) -> Void)?
     var onRemoveTagsRequested: (([Int64], NSRect) -> Void)?
 
@@ -22,22 +27,11 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     /// Cache Formatter
     private let calendar = Calendar.current
 
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
-    }()
-
-    private lazy var relativeFormatter: RelativeDateTimeFormatter = {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        return formatter
-    }()
-
     var onSelectItem: ((Int) -> Void)?
 
-    var groupingMode: AnnotationGroupingMode { viewModel.groupingMode }
+    var groupingMode: AnnotationGroupingMode {
+        viewModel.groupingMode
+    }
 
     let menu = NSMenu()
 
@@ -115,7 +109,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     deinit {
         #if DEBUG
-            print("Annotations Data Source deinit")
+        print("Annotations Data Source deinit")
         #endif
     }
 
@@ -203,7 +197,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
     private func handleTagModeUpdate(annotationId _: Int64, diff: TagUpdateDiff?) {
         guard let outlineView else { return }
-        guard let diff = diff else {
+        guard let diff else {
             outlineView.reloadData()
             return
         }
@@ -377,13 +371,13 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     @objc private func addTagClicked(_: NSMenuItem) {
         let annotationIDs = prepareContextMenuSelection()
         guard !annotationIDs.isEmpty else { return }
-        onAddTagsRequested?(annotationIDs, contextMenuAnchorRect())
+        onAddTagsRequested?(annotationIDs, outlineView?.contextMenuAnchorRect() ?? .zero)
     }
 
     @objc private func removeTagClicked(_: NSMenuItem) {
         let annotationIDs = prepareContextMenuSelection()
         guard !annotationIDs.isEmpty else { return }
-        onRemoveTagsRequested?(annotationIDs, contextMenuAnchorRect())
+        onRemoveTagsRequested?(annotationIDs, outlineView?.contextMenuAnchorRect() ?? .zero)
     }
 
     @objc private func renameTagClicked(_ sender: NSMenuItem) {
@@ -430,7 +424,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
 
         func rename(from currentName: String, to newName: String) {
             do {
-                try AnnotationManager.shared.renameTag(from: currentName, to: newName)
+                try viewModel.renameTag(from: currentName, to: newName)
             } catch {
                 sender.stringValue = currentName
                 let errorAlert = NSAlert()
@@ -594,11 +588,11 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 )
                 let dateString =
                     calendar.isDateInToday(targetDate)
-                        ? relativeFormatter.localizedString(
+                        ? RelativeDateTimeFormatter.shared.localizedString(
                             for: targetDate,
                             relativeTo: Date()
                         )
-                        : dateFormatter.string(from: targetDate)
+                        : DateFormatter.mediumDateShortTime.string(from: targetDate)
 
                 let kitab = LibraryDataManager.shared.getBook([annotation.bkId]).first?.book ?? "<Unknown Book>"
                 let metaText =
@@ -677,10 +671,10 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
     private func performDeleteTagRoots(_ nodes: [AnnotationNode]) {
         for node in nodes where node.kind == .tag {
             do {
-                try AnnotationManager.shared.deleteTag(named: node.title)
+                try viewModel.deleteTag(named: node.title)
             } catch {
                 #if DEBUG
-                    print("Error deleting tag '\(node.title)': \(error)")
+                print("Error deleting tag '\(node.title)': \(error)")
                 #endif
             }
         }
@@ -694,7 +688,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                 try AnnotationManager.shared.deleteAnnotation(id: id)
             } catch {
                 #if DEBUG
-                    print("Error deleting annotation \(id): \(error)")
+                print("Error deleting annotation \(id): \(error)")
                 #endif
             }
         }
@@ -710,9 +704,9 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                     try AnnotationManager.shared.deleteAnnotation(id: id)
                 } catch {
                     #if DEBUG
-                        print(
-                            "Error deleting annotation \(id) from book '\(bookNode.title)': \(error)"
-                        )
+                    print(
+                        "Error deleting annotation \(id) from book '\(bookNode.title)': \(error)"
+                    )
                     #endif
                 }
             }
@@ -755,6 +749,19 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             return node.children[index]
         }
         fatalError("Invalid item or index.")
+    }
+
+    @objc private func onDoubleClick(_ sender: AnyObject) {
+        guard let outlineView else { return }
+        let clickedRow = outlineView.clickedRow
+        guard clickedRow != -1, let item = outlineView.item(atRow: clickedRow) as? AnnotationNode else { return }
+        if !item.children.isEmpty {
+            if outlineView.isItemExpanded(item) {
+                outlineView.collapseItem(item)
+            } else {
+                outlineView.expandItem(item)
+            }
+        }
     }
 }
 
@@ -852,12 +859,12 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
         )
 
         let formattedString: String = if calendar.isDateInToday(targetDate) {
-            relativeFormatter.localizedString(
+            RelativeDateTimeFormatter.shared.localizedString(
                 for: targetDate,
                 relativeTo: Date()
             )
         } else {
-            dateFormatter.string(from: targetDate)
+            DateFormatter.mediumDateShortTime.string(from: targetDate)
         }
 
         cell.date.stringValue = formattedString
@@ -939,7 +946,7 @@ extension AnnotationOutlineDataSource: NSOutlineViewDelegate,
               let annotation = item.annotation
         else {
             #if DEBUG
-                print("outlineView item not as Annotations")
+            print("outlineView item not as Annotations")
             #endif
             return
         }
@@ -1109,16 +1116,8 @@ extension AnnotationOutlineDataSource: NSMenuDelegate {
 }
 
 private extension AnnotationOutlineDataSource {
-    private func effectiveRows(for outlineView: NSOutlineView) -> IndexSet {
-        let clickedRow = outlineView.clickedRow
-        if clickedRow == -1 { return outlineView.selectedRowIndexes }
-        return outlineView.selectedRowIndexes.contains(clickedRow)
-            ? outlineView.selectedRowIndexes
-            : IndexSet(integer: clickedRow)
-    }
-
     private func effectiveNodes(for outlineView: NSOutlineView) -> [AnnotationNode] {
-        effectiveRows(for: outlineView).compactMap {
+        outlineView.effectiveRows().compactMap {
             outlineView.item(atRow: $0) as? AnnotationNode
         }
     }
@@ -1129,14 +1128,5 @@ private extension AnnotationOutlineDataSource {
         // Kembalikan kosong jika ada node yang bukan annotation
         guard nodes.allSatisfy({ $0.annotation != nil }) else { return [] }
         return nodes.compactMap { $0.annotation?.id }
-    }
-
-    func contextMenuAnchorRect() -> NSRect {
-        guard let outlineView else { return .zero }
-        let anchorRow = outlineView.clickedRow >= 0
-            ? outlineView.clickedRow
-            : outlineView.selectedRow
-        guard anchorRow >= 0 else { return outlineView.bounds }
-        return outlineView.rect(ofRow: anchorRow)
     }
 }

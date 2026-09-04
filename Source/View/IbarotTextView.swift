@@ -1,5 +1,5 @@
 //
-//  StylingTextView.swift
+//  IbarotTextView.swift
 //  maktab
 //
 //  Created by MacBook on 06/12/25.
@@ -9,19 +9,25 @@ import Cocoa
 
 class IbarotTextView: NSTextView {
     let state = TextViewState.shared
-    let renderer = ArabicTextRenderer()  // ← NEW
+    let renderer = ArabicTextRenderer() // ← NEW
     var viewModel: ReaderViewModel?
 
     var onAddAnnotation: ((NSRange, NSColor, AnnotationMode, String) -> Void)?
     var onUpdateAnnotation: ((Annotation) -> Void)?
     var onDeleteAnnotation: ((Int64) -> Void)?
-    
-    var annotations: [Annotation] { viewModel?.currentAnnotations ?? [] }
-    var diacriticsText: String? { viewModel?.diacriticsText ?? "" }
+
+    var annotations: [Annotation] {
+        viewModel?.currentAnnotations ?? []
+    }
+
+    var diacriticsText: String? {
+        viewModel?.diacriticsText ?? ""
+    }
 
     private(set) var currentRenderResult: ArabicRenderResult?
     private(set) var footnoteRanges: [NSRange] = []
     private var annotationClickSetting: NSObjectProtocol?
+    private let taskQueue = SerialTaskQueue()
 
     override var string: String {
         didSet {
@@ -34,10 +40,21 @@ class IbarotTextView: NSTextView {
         }
     }
 
-    var bkId: Int? { viewModel?.currentBook?.id }
-    var contentId: Int? { viewModel?.currentContentId }
-    var page: Int? { viewModel?.currentPage }
-    var part: Int? { viewModel?.currentPart }
+    var bkId: Int? {
+        viewModel?.currentBook?.id
+    }
+
+    var contentId: Int? {
+        viewModel?.currentContentId
+    }
+
+    var page: Int? {
+        viewModel?.currentPage
+    }
+
+    var part: Int? {
+        viewModel?.currentPart
+    }
 
     lazy var colorMenuView: AnnotationColorMenuView = {
         let view = AnnotationColorMenuView(target: self)
@@ -88,7 +105,7 @@ class IbarotTextView: NSTextView {
             queue: .current,
             using: { [weak self] notification in
                 guard let userInfo = notification.userInfo,
-                    let enable = userInfo["enable"] as? Bool
+                      let enable = userInfo["enable"] as? Bool
                 else {
                     return
                 }
@@ -104,13 +121,11 @@ class IbarotTextView: NSTextView {
             guard let self else { return }
             // single click → tampilkan popover
             if let urlStr = link as? String,
-                let id = Int64(urlStr),
-                let ann = AnnotationManager.shared.loadAnnotationById(id)
+               let id = Int64(urlStr),
+               let ann = AnnotationManager.shared.loadAnnotationById(id)
             {
-                presentAnnotationEditor(
-                    ann,
-                    atCharIndex: charIndex
-                )
+                let charRange = NSRange(location: charIndex, length: 1)
+                presentAnnotationEditor(ann, displayedRange: charRange)
             }
         }
     }
@@ -158,10 +173,9 @@ class IbarotTextView: NSTextView {
 
     deinit {
         #if DEBUG
-            print("deinit IbarotTextView")
+        print("deinit IbarotTextView")
         #endif
-        if let annotationClickSetting
-        {
+        if let annotationClickSetting {
             NotificationCenter.default.removeObserver(annotationClickSetting)
         }
         annotationClickSetting = nil
@@ -169,7 +183,8 @@ class IbarotTextView: NSTextView {
 
     private func setupTextView() {
         // Setup untuk teks Arab
-        alignment = .natural  // RTL untuk Arab
+        textLayoutManager?.delegate = self
+        alignment = .natural // RTL untuk Arab
         isEditable = false
         isAutomaticLinkDetectionEnabled = false
         linkTextAttributes = [:]
@@ -181,7 +196,7 @@ class IbarotTextView: NSTextView {
         enclosingScrollView?.hasHorizontalScroller = false
 
         linkTextAttributes = [
-            .cursor: NSCursor.pointingHand
+            .cursor: NSCursor.pointingHand,
         ]
     }
 
@@ -202,17 +217,26 @@ class IbarotTextView: NSTextView {
             }
         }
 
-        // Batch update
-        ts.beginEditing()
         if enable {
+            guard !annotations.isEmpty || !annotationRanges.isEmpty else {
+                window?.invalidateCursorRects(for: self)
+                return
+            }
             refreshAnnotations()
         } else {
+            guard !annotationRanges.isEmpty else {
+                window?.invalidateCursorRects(for: self)
+                return
+            }
+            ts.beginEditing()
             for annotation in annotationRanges {
                 ts.removeAttribute(.link, range: annotation.range)
             }
+            ts.endEditing()
         }
-        ts.endEditing()
 
+        textLayoutManager?.ensureFullDocumentLayout()
+        needsDisplay = true
         window?.invalidateCursorRects(for: self)
     }
 
@@ -225,58 +249,20 @@ class IbarotTextView: NSTextView {
         textStorage?.setAttributedString(attributedString)
     }
 
-    func loadIbarotText(
-        _ text: String,
-        color: NSColor = .header,
-        isMultiLanguage: Bool? = false,
-        isImported: Bool? = false,
-        keepScrollPosition: Bool = false
-    ) {
-        var scrollPercentage: CGFloat = 0
-        var visibleRect: NSRect = .zero
-        
-        if keepScrollPosition, let scrollView = enclosingScrollView {
-            visibleRect = scrollView.documentVisibleRect
-            let totalHeight = scrollView.documentView?.frame.size.height ?? 0
-            scrollPercentage = totalHeight > 0 ? (visibleRect.origin.y / totalHeight) : 0
-        }
-
-        let renderResult = renderer.render(
-            text: text,
-            highlightColor: color,
-            showHarakat: state.showHarakat,
-            isMultiLanguage: isMultiLanguage ?? false,
-            isImported: isImported ?? false
-        )
-        currentRenderResult = renderResult
-        footnoteRanges = renderResult.footnoteRanges
-
-        guard let ts = textStorage else { return }
-
-        ts.beginEditing()
-        ts.setAttributedString(renderResult.attributedString)
-
-        renderer.applyAnnotations(
-            annotations,
-            to: ts,
-            showHarakat: state.showHarakat,
-            replacementEvents: renderResult.replacementEvents
-        )
-
-        ts.endEditing()
-
-        if keepScrollPosition, let scrollView = enclosingScrollView {
-            let newTotalHeight = scrollView.documentView?.frame.size.height ?? 0
-            let targetY = scrollPercentage * newTotalHeight
-            let targetPoint = NSPoint(x: visibleRect.origin.x, y: targetY)
-            scrollView.contentView.scroll(to: targetPoint)
-            scrollView.reflectScrolledClipView(scrollView.contentView)
-        }
-    }
-
     func updateLineHeight() {
-        guard let ts = textStorage else { return }
-        renderer.updateLineHeight(in: ts)  // ← simpel!
+        guard let ts = textStorage, let scrollView = enclosingScrollView else { return }
+        let visibleRect = scrollView.documentVisibleRect
+        let totalHeight = scrollView.documentView?.frame.size.height ?? 0
+        let scrollPercentage = totalHeight > 0 ? (visibleRect.origin.y / totalHeight) : 0
+
+        renderer.updateLineHeight(in: ts) // ← simpel!
+
+        textLayoutManager?.ensureFullDocumentLayout()
+
+        let newTotalHeight = scrollView.documentView?.frame.size.height ?? 0
+        let targetY = scrollPercentage * newTotalHeight
+        scrollView.contentView.scroll(to: NSPoint(x: visibleRect.origin.x, y: targetY))
+        scrollView.reflectScrolledClipView(scrollView.contentView)
     }
 
     override func changeFont(_ sender: Any?) {
@@ -286,7 +272,7 @@ class IbarotTextView: NSTextView {
         state.setFont(fontName)
     }
 
-    // Fungsi yang diperbarui: menerima data dari viewModel
+    /// Fungsi yang diperbarui: menerima data dari viewModel
     func displayAuthor(_ attributedString: AttributedString) {
         currentRenderResult = nil
         do {
@@ -308,7 +294,7 @@ class IbarotTextView: NSTextView {
 
         let filtered = filterMenuItems(menu)
         let groupA = buildHighlightGroup()
-        let (editItems) = buildNoteItem(event, filtered: filtered)
+        let editItems = buildNoteItem(event, filtered: filtered)
 
         menu.removeAllItems()
         addItemsToMenu(
@@ -351,7 +337,7 @@ class IbarotTextView: NSTextView {
 
             // 2. Identifier (stabil, tidak dilokalisasi)
             if let id = item.identifier?.rawValue.lowercased(),
-                identifierKeywords.contains(where: id.contains)
+               identifierKeywords.contains(where: id.contains)
             {
                 return nil
             }
@@ -404,17 +390,15 @@ class IbarotTextView: NSTextView {
         superview?.userInterfaceLayoutDirection == .rightToLeft
     }
 
-    lazy var quoteImage: NSImage? = {
-        isRtl
-            ? .init(
-                systemSymbolName: "quote.opening",
-                accessibilityDescription: nil
-            )
-            : NSImage(
-                systemSymbolName: "quote.closing",
-                accessibilityDescription: nil
-            )
-    }()
+    lazy var quoteImage: NSImage? = isRtl
+        ? .init(
+            systemSymbolName: "quote.opening",
+            accessibilityDescription: nil
+        )
+        : NSImage(
+            systemSymbolName: "quote.closing",
+            accessibilityDescription: nil
+        )
 
     private func buildNoteItem(_ event: NSEvent, filtered: [NSMenuItem]) -> (
         [NSMenuItem]
@@ -428,7 +412,7 @@ class IbarotTextView: NSTextView {
         noteItem.target = self
         var extraItems: [NSMenuItem] = []
         guard bkId != nil, contentId != nil else {
-            return (extraItems)
+            return extraItems
         }
         let pointInView = convert(event.locationInWindow, from: nil)
 
@@ -440,9 +424,9 @@ class IbarotTextView: NSTextView {
             extraItems.append(buildDeleteItem(existing))
         } else {
             // Jika tidak ada di klik, cek selection dengan logic yang lebih baik
-            let displayedSelection = self.selectedRange()
+            let displayedSelection = selectedRange()
             let selection = sourceRange(forDisplayedRange: displayedSelection)
-            
+
             if selection.length > 0 {
                 let overlapping = annotations.first {
                     let r = state.showHarakat ? $0.rangeDiacritics : $0.range
@@ -470,7 +454,7 @@ class IbarotTextView: NSTextView {
         ]
 
         // Copy/Look Up/Translate
-        filtered.forEach { item in
+        for item in filtered {
             if allowedKeywords.contains(where: {
                 item.title.localizedStandardContains($0)
             }) {
@@ -520,7 +504,7 @@ class IbarotTextView: NSTextView {
     private func buildDeleteItem(_ annotation: Annotation) -> NSMenuItem {
         let title =
             annotation.note == nil
-            ? "Delete Highlight".localized : "Delete Highlight & Note".localized
+                ? "Delete Highlight".localized : "Delete Highlight & Note".localized
 
         let item = NSMenuItem(
             title: title,
@@ -556,8 +540,8 @@ class IbarotTextView: NSTextView {
         // Find and add share item
         if let shareItem = filtered.first(where: {
             $0.title.localizedStandardContains("Share") ||
-            $0.title.localizedStandardContains("Bagikan") ||
-            $0.title.localizedStandardContains("مشاركة")
+                $0.title.localizedStandardContains("Bagikan") ||
+                $0.title.localizedStandardContains("مشاركة")
         }) {
             shareItem.image = NSImage(systemSymbolName: "square.and.arrow.up", accessibilityDescription: nil)
             menu.addItem(.separator())
@@ -606,8 +590,7 @@ class IbarotTextView: NSTextView {
         for lineFragment in fragment.textLineFragments {
             let lineFrame = lineFragment.typographicBounds
 
-            if pointInFragment.y >= lineFrame.minY && pointInFragment.y <= lineFrame.maxY {
-
+            if pointInFragment.y >= lineFrame.minY, pointInFragment.y <= lineFrame.maxY {
                 let pointInLine = CGPoint(
                     x: pointInFragment.x - lineFrame.minX,
                     y: pointInFragment.y - lineFrame.minY
@@ -623,13 +606,12 @@ class IbarotTextView: NSTextView {
 
     @objc private func deleteAnnotationMenuItem(_ sender: NSMenuItem) {
         guard let idAny = sender.representedObject else { return }
-        let id: Int64?
-        if let i = idAny as? Int64 {
-            id = i
+        let id: Int64? = if let i = idAny as? Int64 {
+            i
         } else if let i = idAny as? Int {
-            id = Int64(i)
+            Int64(i)
         } else {
-            id = nil
+            nil
         }
 
         guard let annId = id else { return }
@@ -644,9 +626,10 @@ class IbarotTextView: NSTextView {
         with color: NSColor,
         mode: AnnotationMode
     ) throws {
-
         defer {
-            setSelectedRange(NSRange(location: NSNotFound, length: 0))
+            if selectedRange.length > 0 {
+                setSelectedRange(NSRange(location: selectedRange.location, length: 0))
+            }
             colorMenuView.reloadColors()
         }
 
@@ -691,7 +674,7 @@ class IbarotTextView: NSTextView {
             try applyAnnotations(in: sel, with: color, mode: .highlight)
         } catch {
             #if DEBUG
-                print("Failed to save or update highlight: \(error)")
+            print("Failed to save or update highlight: \(error)")
             #endif
         }
     }
@@ -701,20 +684,19 @@ class IbarotTextView: NSTextView {
 
         do {
             try applyAnnotations(in: sel, with: .black, mode: .underline)
-            setSelectedRange(NSRange(location: NSNotFound, length: 0))
         } catch {
             #if DEBUG
-                print("Failed to save highlight: \(error)")
+            print("Failed to save highlight: \(error)")
             #endif
         }
     }
 
     @IBAction func annotateSelection(_ sender: Any?) {
-        let displayedSelection = self.selectedRange()
+        let displayedSelection = selectedRange()
         let selection = sourceRange(forDisplayedRange: displayedSelection)
         guard selection.length > 0,
-            let bkId, let contentId,
-            let page, let part
+              let bkId, let contentId,
+              let page, let part
         else { return }
 
         let overlapping = annotations.first {
@@ -723,14 +705,12 @@ class IbarotTextView: NSTextView {
         }
 
         if let existing = overlapping {
-            let middleIndex = displayedSelection.location + (displayedSelection.length / 2)
-            presentAnnotationEditor(existing, atCharIndex: middleIndex)
+            presentAnnotationEditor(existing, displayedRange: displayedSelection)
             return
         }
 
         let calculator = ArabicRangeCalculator()
 
-        let middleIndex = displayedSelection.location + (displayedSelection.length / 2)
         let ns = sourceTextForAnnotations() as NSString
         let selectedText = ns.substring(with: selection)
         let (rangeWithDiacritics, rangeWithoutDiacritics) =
@@ -758,46 +738,45 @@ class IbarotTextView: NSTextView {
             tags: []
         )
 
-        presentAnnotationEditor(ann, atCharIndex: middleIndex)
+        presentAnnotationEditor(ann, displayedRange: displayedSelection)
     }
 
     func refreshAnnotations() {
         guard let ts = textStorage else { return }
-        ts.beginEditing()
-
-        // ==========================================
-        // LANGKAH PENTING: BERSIHKAN ATRIBUT LAMA 🧹
-        // ==========================================
         let fullRange = NSRange(location: 0, length: ts.length)
+        var rangesToClear: [NSRange] = []
 
-        // Hapus Background (Highlight)
-        ts.removeAttribute(.backgroundColor, range: fullRange)
+        ts.enumerateAttribute(NSAttributedString.Key("annotationID"), in: fullRange, options: []) { value, range, _ in
+            if value != nil {
+                rangesToClear.append(range)
+            }
+        }
 
-        // Hapus Underline
-        ts.removeAttribute(.underlineStyle, range: fullRange)
+        guard !rangesToClear.isEmpty || !annotations.isEmpty else { return }
 
-        // Hapus Link (Agar area klik hilang untuk yang sudah dihapus)
-        ts.removeAttribute(.link, range: fullRange)
+        ts.beginEditing()
+        for range in rangesToClear {
+            ts.removeAttribute(.backgroundColor, range: range)
+            ts.removeAttribute(.underlineStyle, range: range)
+            ts.removeAttribute(.link, range: range)
+            ts.removeAttribute(NSAttributedString.Key("annotationID"), range: range)
+        }
 
-        // Hapus ID Anotasi custom Anda
-        ts.removeAttribute(NSAttributedString.Key("annotationID"), range: fullRange)
-
-        // ==========================================
-
-        // 2. Apply yang baru (Fresh)
         renderer.applyAnnotations(
             annotations,
             to: ts,
             showHarakat: state.showHarakat,
             replacementEvents: currentRenderResult?.replacementEvents ?? []
         )
-
         ts.endEditing()
+
+        textLayoutManager?.ensureFullDocumentLayout()
+        needsDisplay = true
     }
 
     func presentAnnotationEditor(
         _ annotation: Annotation,
-        atCharIndex charIndex: Int
+        displayedRange: NSRange
     ) {
         let editor = AnnotationEditorVC()
         editor.annotation = annotation
@@ -806,47 +785,27 @@ class IbarotTextView: NSTextView {
         pop.contentViewController = editor
         pop.behavior = .transient
 
-        let anchorView = enclosingScrollView?.contentView ?? self
-        var glyphRect: NSRect = .zero
-
-        if let tlm = textLayoutManager {
-            let docStart = tlm.documentRange.location
-
-            // Setara dengan TextKit 1 boundingRect(forGlyphRange:in:textContainer)
-            if let location = tlm.location(docStart, offsetBy: charIndex),
-               let endLocation = tlm.location(location, offsetBy: 1),
-               let textRange = NSTextRange(location: location, end: endLocation)
-            {
-                tlm.enumerateTextSegments(
-                    in: textRange,
-                    type: .standard,
-                    options: []
-                ) { _, segmentFrame, _, _ in
-                    glyphRect = segmentFrame
-                    return false
-                }
-            }
-        }
-
-        if glyphRect != .zero {
-            let containerOrigin = textContainerOrigin
-            let rectInView = NSRect(
-                x: glyphRect.origin.x + containerOrigin.x,
-                y: glyphRect.origin.y + containerOrigin.y,
-                width: max(glyphRect.width, 1),
-                height: max(glyphRect.height, 1)
-            )
-            pop.show(relativeTo: rectInView, of: anchorView, preferredEdge: .maxY)
+        // firstRect(forCharacterRange:) returns a rect in screen coordinates —
+        // the same API used by the system for autocomplete/tooltip, guaranteed precision.
+        var actualRange = displayedRange
+        let rectInWindow = firstRect(forCharacterRange: displayedRange, actualRange: &actualRange)
+        let anchor: NSRect
+        if let window {
+            let rectInView = convert(window.convertFromScreen(rectInWindow), from: nil)
+            anchor = rectInView == .zero ? bounds : rectInView
         } else {
-            pop.show(relativeTo: bounds, of: anchorView, preferredEdge: .maxY)
+            anchor = bounds
         }
+
+        pop.show(relativeTo: anchor, of: self, preferredEdge: .maxY)
     }
 
     @objc private func showNoteFromMenu(_ sender: NSMenuItem) {
         if let (_, charIndex, ann) = sender.representedObject
             as? (Int64, Int, Annotation)
         {
-            presentAnnotationEditor(ann, atCharIndex: charIndex)
+            let charRange = NSRange(location: charIndex, length: 1)
+            presentAnnotationEditor(ann, displayedRange: charRange)
         }
     }
 
@@ -881,44 +840,51 @@ class IbarotTextView: NSTextView {
         let annotation = userInfo[AnnotationNotificationKeys.annotation] as? Annotation
         let annotationId = userInfo[AnnotationNotificationKeys.annotationId] as? Int64
 
-        ts.beginEditing()
+        let isCurrentPageAnnotation = (annotation?.bkId == bkId && annotation?.contentId == contentId)
+
         switch changeType {
         case .added:
-            if let ann = annotation, ann.bkId == self.bkId, ann.contentId == self.contentId {
-                renderer.applyAnnotations(
-                    [ann],
-                    to: ts,
-                    showHarakat: state.showHarakat,
-                    replacementEvents: currentRenderResult?.replacementEvents ?? []
-                )
-            }
+            guard isCurrentPageAnnotation, let ann = annotation else { return }
+            ts.beginEditing()
+            renderer.applyAnnotations(
+                [ann],
+                to: ts,
+                showHarakat: state.showHarakat,
+                replacementEvents: currentRenderResult?.replacementEvents ?? []
+            )
+            ts.endEditing()
         case .updated:
-            if let ann = annotation, ann.bkId == self.bkId, ann.contentId == self.contentId, let id = ann.id {
-                removeAttributesForAnnotationId(id)
-                renderer.applyAnnotations(
-                    [ann],
-                    to: ts,
-                    showHarakat: state.showHarakat,
-                    replacementEvents: currentRenderResult?.replacementEvents ?? []
-                )
-            }
+            guard isCurrentPageAnnotation, let ann = annotation, let id = ann.id else { return }
+            ts.beginEditing()
+            performRemoveAttributes(forAnnotationId: id, in: ts)
+            renderer.applyAnnotations(
+                [ann],
+                to: ts,
+                showHarakat: state.showHarakat,
+                replacementEvents: currentRenderResult?.replacementEvents ?? []
+            )
+            ts.endEditing()
         case .deleted:
-            if let id = annotationId {
-                removeAttributesForAnnotationId(id)
-            }
+            guard let id = annotationId else { return }
+            ts.beginEditing()
+            performRemoveAttributes(forAnnotationId: id, in: ts)
+            ts.endEditing()
         }
-        ts.endEditing()
-        
+
+        needsDisplay = true
+
         // UI Cleanup
-        setSelectedRange(NSRange(location: NSNotFound, length: 0))
+        let sel = selectedRange()
+        if sel.length > 0 {
+            setSelectedRange(NSRange(location: sel.location, length: 0))
+        }
         colorMenuView.reloadColors()
     }
 
-    private func removeAttributesForAnnotationId(_ id: Int64) {
-        guard let ts = textStorage else { return }
+    private func performRemoveAttributes(forAnnotationId id: Int64, in ts: NSTextStorage) {
         let fullRange = NSRange(location: 0, length: ts.length)
         var rangesToClear: [NSRange] = []
-        
+
         ts.enumerateAttribute(
             NSAttributedString.Key("annotationID"),
             in: fullRange,
@@ -928,10 +894,9 @@ class IbarotTextView: NSTextView {
                 rangesToClear.append(range)
             }
         }
-        
+
         guard !rangesToClear.isEmpty else { return }
-        
-        ts.beginEditing()
+
         for range in rangesToClear {
             ts.removeAttribute(.backgroundColor, range: range)
             ts.removeAttribute(.underlineStyle, range: range)
@@ -940,17 +905,142 @@ class IbarotTextView: NSTextView {
             ts.removeAttribute(NSAttributedString.Key("annotationNote"), range: range)
             ts.removeAttribute(NSAttributedString.Key("underlineColor"), range: range)
         }
-        ts.endEditing()
+    }
+}
+
+extension IbarotTextView: TextViewRenderable {
+    func loadIbarotText(
+        _ text: String,
+        content: BookContent? = nil,
+        color: NSColor?,
+        isMultiLanguage: Bool?,
+        isImported: Bool?,
+        keepScrollPosition: Bool?
+    ) {
+        guard let scrollView = enclosingScrollView else { return }
+        ReusableFunc.showProgressWindow(scrollView.contentView)
+        taskQueue.cancelAll()
+
+        var scrollPercentage: CGFloat = 0
+        var visibleRect: NSRect = .zero
+        if keepScrollPosition == true {
+            visibleRect = scrollView.documentVisibleRect
+            let totalHeight = scrollView.documentView?.frame.size.height ?? 0
+            scrollPercentage = totalHeight > 0 ? (visibleRect.origin.y / totalHeight) : 0
+        }
+
+        let targetBkId = content != nil ? bkId : (viewModel?.currentBook?.id ?? bkId)
+        let targetContentId = content?.id ?? (viewModel?.currentContentId ?? contentId)
+
+        taskQueue.enqueue { [weak self] in
+            guard let self, !Task.isCancelled else { return }
+
+            let renderResult = await renderer.render(
+                bookId: targetBkId,
+                contentId: targetContentId,
+                text: text,
+                highlightColor: color ?? .header,
+                showHarakat: state.showHarakat,
+                isMultiLanguage: isMultiLanguage ?? false,
+                isImported: isImported ?? false
+            )
+
+            // render() sendiri CPU-bound & nggak preemptible, tapi minimal
+            // hasil stale nggak akan dipakai kalau sudah kadung di-cancel
+            if Task.isCancelled { return }
+
+            await MainActor.run { [weak self] in
+                defer { ReusableFunc.closeProgressWindow(scrollView.contentView) }
+                guard let self, !Task.isCancelled,
+                      let textStorage, let textLayoutManager
+                else { return }
+
+                currentRenderResult = renderResult
+                footnoteRanges = renderResult.footnoteRanges
+                let finalAttributedString = NSMutableAttributedString(
+                    attributedString: renderResult.attributedString
+                )
+
+                textStorage.beginEditing()
+                textStorage.setAttributedString(finalAttributedString)
+                renderer.applyAnnotations(
+                    annotations, to: textStorage,
+                    showHarakat: state.showHarakat,
+                    replacementEvents: renderResult.replacementEvents
+                )
+                textStorage.endEditing()
+
+                textLayoutManager.ensureFullDocumentLayout()
+
+                if keepScrollPosition == true {
+                    let newTotalHeight = scrollView.documentView?.frame.size.height ?? 0
+                    let targetY = scrollPercentage * newTotalHeight
+                    scrollView.contentView.scroll(to: NSPoint(x: visibleRect.origin.x, y: targetY))
+                    scrollView.reflectScrolledClipView(scrollView.contentView)
+                } else {
+                    scrollToBeginningOfDocument(nil)
+                }
+            }
+        }
+    }
+
+    @MainActor
+    func highlightAndScrollToAnns(_ ann: Annotation) async {
+        taskQueue.enqueue { [weak self] in
+            guard let self, !Task.isCancelled else { return }
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                let r = displayedRange(for: ann)
+                textLayoutManager?.ensureFullDocumentLayout()
+                needsLayout = true
+                scrollRangeToVisible(r)
+                enclosingScrollView?.contentView.layoutSubtreeIfNeeded()
+                layoutSubtreeIfNeeded()
+                showFindIndicator(for: r)
+            }
+        }
+    }
+
+    @MainActor
+    func highlightAndScrollToText(_ searchText: String, mode: SearchMode?, nearDistance: Int) async {
+        taskQueue.enqueue { [weak self] in
+            guard let self, !Task.isCancelled else { return }
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                let ranges = textStorage?.highlightSearchText(
+                    searchText: searchText,
+                    mode: mode,
+                    baseColor: .highlightText,
+                    nearDistance: nearDistance
+                ) ?? []
+
+                guard let firstRange = ranges.first else { return }
+
+                textLayoutManager?.ensureFullDocumentLayout()
+                needsLayout = true
+                scrollRangeToVisible(firstRange)
+                enclosingScrollView?.contentView.layoutSubtreeIfNeeded()
+                layoutSubtreeIfNeeded()
+                showFindIndicator(for: firstRange)
+            }
+        }
+    }
+
+    func scrollTo(_ scrollPos: CGPoint) async {
+        taskQueue.enqueue { [weak self] in
+            guard let self, let scrollView = await enclosingScrollView else { return }
+            await scrollView.contentView.scroll(to: NSPoint(x: .zero, y: scrollPos.y))
+            await scrollView.reflectScrolledClipView(scrollView.contentView)
+        }
     }
 }
 
 extension IbarotTextView {
-
     // MARK: - buildHighlightGroup (pengganti)
 
     /// Mengembalikan satu NSMenuItem dengan view horizontal (warna + underline).
     func buildHighlightGroup() -> [NSMenuItem] {
-        return [colorMenuItem, .separator()]
+        [colorMenuItem, .separator()]
     }
 
     // MARK: - Actions dari AnnotationColorMenuView
@@ -981,9 +1071,9 @@ extension IbarotTextView {
         var current: NSView? = sender
         while let superview = current?.superview {
             if let menuItem = current?.enclosingMenuItem,
-                let menu = menuItem.menu
+               let menu = menuItem.menu
             {
-                menu.cancelTracking()  // Tutup paksa di sini
+                menu.cancelTracking() // Tutup paksa di sini
                 break
             }
             current = superview

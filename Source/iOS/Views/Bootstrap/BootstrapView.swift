@@ -55,6 +55,11 @@ struct iOSBootstrapView: View {
                 bootstrapManager.coreDownloadState.phase = .error(error.localizedDescription)
             }
         }
+        .onChange(of: bootstrapManager.isReady) { oldValue, newValue in
+            if newValue, AppConfig.useICloud {
+                CloudKitSyncManager.shared.fetchChanges()
+            }
+        }
         .overlay {
             if bootstrapManager.showCoreUpdateAlert {
                 ZStack {

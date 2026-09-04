@@ -26,7 +26,7 @@ class RowiSidebarVC: NSViewController {
 
     // MARK: - ViewModel
 
-    var viewModel: NarratorViewModel!
+    var viewModel: NarratorViewModel?
 
     weak var delegate: RowiSidebarDelegate?
 
@@ -87,10 +87,12 @@ class RowiSidebarVC: NSViewController {
         outlineView.dataSource = self
         outlineView.delegate = self
         searchField.delegate = self
+        outlineView.target = self
+        outlineView.doubleAction = #selector(onDoubleClick(_:))
     }
 
     func loadData() async {
-        await viewModel.loadData()
+        await viewModel?.loadData()
         await MainActor.run { [weak self] in
             guard let self else { return }
             outlineView.reloadData()
@@ -105,7 +107,7 @@ class RowiSidebarVC: NSViewController {
 
         let workItem = DispatchWorkItem { [weak self] in
             guard let self else { return }
-            viewModel.searchRowis(query: query)
+            viewModel?.searchRowis(query: query)
 
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
@@ -134,7 +136,7 @@ class RowiSidebarVC: NSViewController {
         let startingIndex = group.displayedRowis.count
 
         // Panggil loadMore untuk memperbarui data model.
-        viewModel.loadMore(group: group) { [weak self] itemsLoadedCount in // itemsLoadedCount adalah data baru yang di-pass dari loadMore
+        viewModel?.loadMore(group: group) { [weak self] itemsLoadedCount in // itemsLoadedCount adalah data baru yang di-pass dari loadMore
             guard let self, let itemsLoaded = itemsLoadedCount else { return }
 
             outlineView.beginUpdates()
@@ -161,6 +163,18 @@ class RowiSidebarVC: NSViewController {
             outlineView.endUpdates()
         }
     }
+
+    @objc private func onDoubleClick(_ sender: AnyObject) {
+        let clickedRow = outlineView.clickedRow
+        guard clickedRow != -1, let item = outlineView.item(atRow: clickedRow) else { return }
+        if item is TabaqaGroup {
+            if outlineView.isItemExpanded(item) {
+                outlineView.collapseItem(item)
+            } else {
+                outlineView.expandItem(item)
+            }
+        }
+    }
 }
 
 // MARK: - OutlineView DataSource
@@ -169,7 +183,7 @@ extension RowiSidebarVC: NSOutlineViewDataSource {
         if let group = item as? TabaqaGroup {
             return group.displayedRowis.count + (group.hasMore ? 1 : 0)  // +1 untuk tombol
         }
-        return viewModel.tabaqaGroups.count
+        return viewModel?.tabaqaGroups.count ?? 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
@@ -180,7 +194,7 @@ extension RowiSidebarVC: NSOutlineViewDataSource {
                 return "LoadMore"  // Marker untuk load more button
             }
         }
-        return viewModel.tabaqaGroups[index]
+        return viewModel?.tabaqaGroups[index] ?? ""
     }
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {

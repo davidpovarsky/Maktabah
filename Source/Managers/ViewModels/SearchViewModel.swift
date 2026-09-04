@@ -22,6 +22,11 @@ final class SearchViewModel: ViewModelBase {
 
     var query: String = ""
     var searchMode: SearchMode = .phrase
+    var nearDistance: Int = UserDefaults.standard.searchNearDistance {
+        didSet {
+            UserDefaults.standard.searchNearDistance = nearDistance
+        }
+    }
     private(set) var results: [SearchResultItem] = []
     private(set) var isSearching: Bool = false
     private(set) var isPaused: Bool = false
@@ -70,6 +75,8 @@ final class SearchViewModel: ViewModelBase {
     let rowProgressDidUpdate = PassthroughSubject<(completed: Int, total: Int), Never>()
     /// Dikirim sekali saat search selesai sepenuhnya
     let searchDidComplete = PassthroughSubject<Void, Never>()
+    /// Dikirim saat data dimigrasi atau butuh reload UI secara penuh
+    let searchNeedsReload = PassthroughSubject<Void, Never>()
     #endif
 
     private let bkConn = BookConnection()
@@ -90,9 +97,12 @@ final class SearchViewModel: ViewModelBase {
 
     private let searchEngine = SearchEngine()
     private let ldm = LibraryDataManager.shared
+    private var searchWork: Task<Void, Never>?
+
+    #if os(iOS)
     private let filterSubject = PassthroughSubject<String, Never>()
     private let refreshSubject = PassthroughSubject<Void, Never>()
-    private var searchWork: Task<Void, Never>?
+    #endif
 
     // MARK: - Init
 
@@ -125,19 +135,17 @@ final class SearchViewModel: ViewModelBase {
             .sink { [weak self] in self?.updateDisplayedCategories() }
             .store(in: &cancellables)
 
-        addObserver(
-            forName: .bookIntegrated, object: nil, queue: .main
-        ) { [weak self] _ in
-            Task { @MainActor [weak self] in
-                self?.refreshSubject.send(())
-            }
-        }
+        #endif
 
         addObserver(
             forName: .bookIntegrated, object: nil, queue: .main
         ) { [weak self] _ in
             Task { @MainActor [weak self] in
+                #if os(macOS)
+                self?.searchNeedsReload.send(())
+                #else
                 self?.refreshSubject.send(())
+                #endif
             }
         }
 
@@ -145,26 +153,78 @@ final class SearchViewModel: ViewModelBase {
             forName: .booksChanged, object: nil, queue: .main
         ) { [weak self] _ in
             Task { @MainActor [weak self] in
+                #if os(macOS)
+                self?.searchNeedsReload.send(())
+                #else
                 self?.refreshSubject.send(())
+                #endif
             }
         }
-        #endif
+
+        addObserver(
+            forName: .bookIdMigrated, object: nil, queue: .main
+        ) { [weak self] notification in
+            Task { @MainActor [weak self] in
+                guard let self = self,
+                      let userInfo = notification.userInfo,
+                      let oldId = userInfo["oldId"] as? Int,
+                      let newId = userInfo["newId"] as? Int else { return }
+
+                self.migrateBookId(from: oldId, to: newId)
+            }
+        }
 
         addObserver(
             forName: .libraryFolderChanged, object: nil, queue: .current
         ) { [weak self] _ in
             Task { @MainActor [weak self] in
                 guard let self else { return }
+                stopSearch()
                 state = .loading
                 ldm.resetState()
                 await ldm.reloadAllData()
+                await ldm.buildArchive()
                 #if os(iOS)
-                loadLibraryData()
-                #elseif os(macOS)
-                state = .loaded
+                updateDisplayedCategories()
                 #endif
+                state = .loaded
             }
         }
+    }
+
+    // MARK: - Migration Support
+
+    func migrateBookId(from oldId: Int, to newId: Int) {
+        if selectedBookIds.contains(oldId) {
+            selectedBookIds.remove(oldId)
+            selectedBookIds.insert(newId)
+        }
+
+        for i in 0..<results.count {
+            if results[i].bookId == oldId {
+                let oldItem = results[i]
+                results[i] = SearchResultItem(
+                    archive: oldItem.archive,
+                    tableName: "b\(newId)",
+                    bookId: newId,
+                    bookTitle: oldItem.bookTitle,
+                    page: oldItem.page,
+                    part: oldItem.part,
+                    attributedText: oldItem.attributedText
+                )
+            }
+        }
+
+        #if os(macOS)
+        if targetBookId == String(oldId) {
+            targetBookId = String(newId)
+        }
+        searchNeedsReload.send(())
+        #endif
+
+        #if os(iOS)
+        updateDisplayedCategories()
+        #endif
     }
 
     // MARK: - Library
@@ -236,6 +296,7 @@ final class SearchViewModel: ViewModelBase {
         case 0: searchMode = .phrase
         case 1: searchMode = .contains
         case 2: searchMode = .or
+        case 3: searchMode = .near
         default: break
         }
     }
@@ -308,7 +369,13 @@ final class SearchViewModel: ViewModelBase {
         onFinish: (@MainActor () -> Void)? = nil
     ) -> Task<Void, Never> {
         clearResults()
-        if let first = savedResults.first { query = first.query }
+        if let first = savedResults.first {
+            query = first.query
+            if let mode = SearchMode(rawValue: first.searchMode) {
+                searchMode = mode
+            }
+            nearDistance = first.nearDistance
+        }
         results = []
         totalTables = 0
         completedTables = 0
@@ -369,10 +436,26 @@ final class SearchViewModel: ViewModelBase {
         let book = ldm.booksById[bookId]
         let isMultilingual = book?.isMultiLanguage ?? false
 
-        let normalized = bookContent.nash.convertToArabicDigits(isMultilingual: isMultilingual)
-        let queryConverted = item.query.convertToArabicDigits(isMultilingual: isMultilingual)
-        let snippet = normalized.snippetAround(keywords: [queryConverted], contextLength: 60)
-        let attributed = snippet.highlightedAttributedText(keywords: [queryConverted])
+        let normalized = bookContent.nash
+            .convertToArabicDigits(isMultilingual: isMultilingual)
+            .normalizeArabic()
+
+        let mode = SearchMode(rawValue: item.searchMode) ?? .phrase
+
+        // Ekstrak keyword individual sesuai mode — penting untuk NEAR agar
+        // snippetAround bisa menemukan spanning window antar semua kata kunci.
+        let keywords = FtsQueryParser.extractKeywords(query: item.query, mode: mode)
+            .map { $0.convertToArabicDigits(isMultilingual: isMultilingual) }
+
+        let snippet: String
+        let attributed: NSAttributedString
+        if mode == .near {
+            snippet = normalized.snippetNear(keywords: keywords, nearDistance: item.nearDistance, contextLength: 60)
+            attributed = snippet.highlightedAttributedText(keywords: keywords, nearDistance: item.nearDistance)
+        } else {
+            snippet = normalized.snippetAround(keywords: keywords, contextLength: 60)
+            attributed = snippet.highlightedAttributedText(keywords: keywords)
+        }
 
         return SearchResultItem(
             archive: item.archive,
@@ -408,18 +491,18 @@ final class SearchViewModel: ViewModelBase {
     }
 
     @MainActor
-    func startSearch() {
+    func startSearch() async {
         if query.isEmpty { return }
 
-        if searchEngine.currentlyPaused() ||
-            isPaused {
+        let enginePaused = await searchEngine.currentlyPaused()
+        if enginePaused || isPaused {
             searchEngine.resume()
             isPaused = false
             return
         }
 
-        if searchEngine.isRunning() ||
-            isSearching {
+        let engineRunning = await searchEngine.isRunning()
+        if engineRunning || isSearching {
             searchEngine.pause()
             isPaused = true
             return
@@ -453,14 +536,15 @@ final class SearchViewModel: ViewModelBase {
 
         if tablesToScan.isEmpty && !OtzariaSearchResultResolver.allowsSearchWithoutSelectedTables { stopSearch(); return }
 
-        searchWork = Task.detached(priority: .userInitiated) { [weak self] in
+        searchWork = Task.detached(priority: .userInitiated) { [weak self, tablesToScan] in
             guard let self else { return }
 
             await ldm.performSearch(
                 tableToScan: tablesToScan,
                 searchEngine: searchEngine,
-                query: query,
+                query: query.replacing("،", with: ","),
                 mode: searchMode,
+                nearDistance: nearDistance,
                 onInitialize: { [weak self] total in
                     self?.totalTables = total
                     self?.completedTables = 0
@@ -557,6 +641,12 @@ extension SearchViewModel {
         if let savedQuery = state.searchQuery {
             query = savedQuery
         }
+        if let raw = state.searchModeRaw, let mode = SearchMode(rawValue: raw) {
+            searchMode = mode
+        }
+        if let dist = state.searchNearDistance {
+            nearDistance = dist
+        }
 
         // Memasukkan kembali daftar hasil pencarian yang tersimpan
         results = savedResults
@@ -567,6 +657,8 @@ extension SearchViewModel {
     func updateState(_ state: inout ReaderState) {
         state.searchResults = results
         state.searchQuery = query
+        state.searchModeRaw = searchMode.rawValue
+        state.searchNearDistance = nearDistance
     }
 
     /// Membersihkan seluruh data pencarian di dalam ViewModel.

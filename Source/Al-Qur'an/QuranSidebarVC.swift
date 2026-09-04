@@ -11,7 +11,6 @@ class QuranSidebarVC: NSViewController {
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var searchField: DSFSearchField!
-    @IBOutlet weak var searchContainer: NSView!
     @IBOutlet weak var xBtn: NSButton!
 
     private let manager: QuranDataManager = .shared
@@ -66,6 +65,8 @@ class QuranSidebarVC: NSViewController {
         outlineView.delegate = self
         outlineView.dataSource = self
         outlineView.allowsMultipleSelection = false
+        outlineView.target = self
+        outlineView.doubleAction = #selector(onDoubleClick(_:))
     }
 
     func loadData() {
@@ -109,20 +110,16 @@ class QuranSidebarVC: NSViewController {
     }
 
     @objc func unhideSearchField() {
-        #if DEBUG
-        print("unhideSearchField")
-        #endif
-
         let hide = searchField.isHidden
 
-        searchContainer.isHidden = !hide
         searchField.isHidden = !hide
 
         // 3. Buat Constraint yang Baru
         if hide {
             // KONDISI 1: TIDAK TERSEMBUNYI (Unhide)
             scrollView.automaticallyAdjustsContentInsets = false
-            scrollView.contentInsets.top = 88
+            scrollView.contentInsets.top = view.safeAreaInsets.top +
+                                           searchField.frame.height + 8
             searchField.becomeFirstResponder()
         } else {
             // KONDISI 2: TERSEMBUNYI (Hide)
@@ -170,6 +167,18 @@ class QuranSidebarVC: NSViewController {
         outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         outlineView.scrollRowToVisible(row)
         enableDelegate = true
+    }
+
+    @objc private func onDoubleClick(_ sender: AnyObject) {
+        let clickedRow = outlineView.clickedRow
+        guard clickedRow != -1, let item = outlineView.item(atRow: clickedRow) else { return }
+        if item is SurahNode {
+            if outlineView.isItemExpanded(item) {
+                outlineView.collapseItem(item)
+            } else {
+                outlineView.expandItem(item)
+            }
+        }
     }
 }
 

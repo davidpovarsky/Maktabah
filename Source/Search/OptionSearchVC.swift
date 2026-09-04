@@ -7,10 +7,11 @@
 
 import Cocoa
 import Combine
+import SwiftUI
 
 class OptionSearchVC: NSViewController {
-
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var stackView: NSStackView!
     @IBOutlet weak var progressTable: NSProgressIndicator!
     @IBOutlet weak var progressRows: NSProgressIndicator!
     @IBOutlet weak var searchField: DSFSearchField!
@@ -25,16 +26,14 @@ class OptionSearchVC: NSViewController {
 
     /// Menu Item Copy
     lazy var copyMenuItem: NSMenuItem = {
-       let item = NSMenuItem()
+        let item = NSMenuItem()
         item.title = String(localized: "Copy")
         item.action = #selector(copy(_:))
         item.target = self
         return item
     }()
 
-    lazy var viewModel: SearchViewModel = {
-        .init()
-    }()
+    lazy var viewModel: SearchViewModel = .init()
 
     var results: [SearchResultItem] {
         viewModel.results
@@ -56,13 +55,17 @@ class OptionSearchVC: NSViewController {
     var bkId: String = "" {
         didSet { viewModel.targetBookId = bkId }
     }
-    var onSelectedItem: ((Int, String) -> Void)?
+
+    var onSelectedItem: ((Int, String, SearchMode, String) -> Void)?
     var onCleanUp: (() -> Void)?
 
     var compactConfigured: Bool = false
 
     private var cancellables = Set<AnyCancellable>()
     private var resultsLoadingTask: Task<Void, Never>?
+    private var migrationButton: NSView?
+    private var nearDistanceField: NSTextField?
+    private var nearDistanceWidthConstraint: NSLayoutConstraint?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +84,7 @@ class OptionSearchVC: NSViewController {
                 cleanUpButton, startButton, stopButton, insertNewResults,
                 displayResults,
             ]
-            btn.forEach { button in
+            for button in btn {
                 button?.borderShape = .capsule
             }
         } else {
@@ -98,12 +101,95 @@ class OptionSearchVC: NSViewController {
 
         setupViewModelCallbacks()
         bindViewModelPublishers()
+        setupNearDistanceControl()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         if viewModel.state == .loaded { return }
         setupUI()
+    }
+
+    private func setupMigrationButtonIfNeeded() {
+        FtsMigrationManager.shared.checkNeedsMigration()
+
+        let isHidden = UserDefaults.standard.bool(forKey: "hideFtsMigrationBanner")
+        guard let stackView = optionsSegment.superview as? NSStackView,
+              FtsMigrationManager.shared.needsMigration &&
+                migrationButton == nil && !isHidden
+        else { return }
+
+        let title = bkId.isEmpty
+        ? String(localized: .ftsMigrationUpdateNowCountBtn(
+            FtsMigrationManager.shared.totalArchivesToMigrate
+        ))
+        : String(localized: .ftsMigrationAvailableBook)
+
+        let segmentedControl = NSSegmentedControl()
+        segmentedControl.segmentCount = 2
+        segmentedControl.trackingMode = .selectAny
+
+        segmentedControl.setLabel(title, forSegment: 0)
+
+        if let menuImage = NSImage(systemSymbolName: "chevron.down", accessibilityDescription: nil) {
+            segmentedControl.setImage(menuImage, forSegment: 1)
+        }
+
+        // Atur lebar manual untuk tombol menu jika perlu
+        segmentedControl.setWidth(30, forSegment: 1)
+
+        segmentedControl.target = self
+        segmentedControl.action = #selector(migrationSegmentClicked(_:))
+
+        stackView.insertArrangedSubview(segmentedControl, at: 0)
+        migrationButton = segmentedControl
+    }
+
+    @objc private func migrationSegmentClicked(_ sender: NSSegmentedControl) {
+        if sender.isSelected(forSegment: 0) {
+            sender.setSelected(false, forSegment: 0)
+            startMigration(sender)
+        }
+
+        if sender.isSelected(forSegment: 1) {
+            sender.setSelected(false, forSegment: 1)
+            showMigrationOptions(sender)
+        }
+    }
+
+    @objc private func showMigrationOptions(_ sender: NSView) {
+        let menu = NSMenu()
+        let hideItem = NSMenuItem(title: String(localized: ".ftsMigrationHideBannerBtn"), action: #selector(hideMigrationBanner), keyEquivalent: "")
+        hideItem.target = self
+        menu.addItem(hideItem)
+
+        let point = NSPoint(x: sender.bounds.minX, y: sender.bounds.maxY)
+        menu.popUp(positioning: nil, at: point, in: sender)
+    }
+
+    @objc private func hideMigrationBanner() {
+        UserDefaults.standard.set(true, forKey: "hideFtsMigrationBanner")
+        migrationButton?.isHidden = true
+        migrationButton?.removeFromSuperview()
+        migrationButton = nil
+
+        ReusableFunc.showAlert(
+            title: String(localized: .ftsMigrationAlertTitle),
+            message: String(localized: .ftsMigrationAlertMessage),
+            style: .informational
+        )
+    }
+
+    @objc private func startMigration(_ sender: NSView) {
+        let archiveId: Int? = !bkId.isEmpty
+            ? Int(bkId).flatMap { try? DatabaseManager.shared.fetchBook(byId: $0) }?.archive
+            : nil
+
+        SettingsActions.showFtsMigrationModal(archiveId: archiveId) { [weak self] in
+            self?.migrationButton?.isHidden = true
+            self?.migrationButton?.removeFromSuperview()
+            self?.migrationButton = nil
+        }
     }
 
     private func setupViewModelCallbacks() {
@@ -113,7 +199,7 @@ class OptionSearchVC: NSViewController {
                 guard let self else { return }
                 let newCount = viewModel.results.count
                 if newCount > tableView.numberOfRows {
-                    let indexSet = IndexSet(tableView.numberOfRows..<newCount)
+                    let indexSet = IndexSet(tableView.numberOfRows ..< newCount)
                     tableView.insertRows(at: indexSet)
                 }
             }
@@ -153,6 +239,7 @@ class OptionSearchVC: NSViewController {
         viewModel.loadLibraryDataForDisplay(libraryViewManager: libraryViewManager) { [weak self] in
             self?.resetIndeterminateProgress(true)
         }
+        setupMigrationButtonIfNeeded()
     }
 
     func compactButton() {
@@ -199,7 +286,7 @@ class OptionSearchVC: NSViewController {
                 progressRows.doubleValue = progressRows.maxValue
                 let newCount = viewModel.results.count
                 if newCount > prevCount {
-                    tableView.insertRows(at: IndexSet(prevCount..<newCount))
+                    tableView.insertRows(at: IndexSet(prevCount ..< newCount))
                 }
             }
             .store(in: &cancellables)
@@ -232,6 +319,13 @@ class OptionSearchVC: NSViewController {
                 resetProgressBar()
             }
             .store(in: &cancellables)
+
+        viewModel.searchNeedsReload
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
 
     private func setupTableView() {
@@ -240,14 +334,16 @@ class OptionSearchVC: NSViewController {
         tableView.target = self
         ReusableFunc.registerNib(
             tableView: tableView,
-            nibName: .resultNib,  // CellIViewIdentifier.resultNib
-            cellIdentifier: .resultAndOutlineChild  // CellIViewIdentifier.resultAndOutlineChild
+            nibName: .resultNib, // CellIViewIdentifier.resultNib
+            cellIdentifier: .resultAndOutlineChild // CellIViewIdentifier.resultAndOutlineChild
         )
     }
 
     @IBAction func saveResults(_ sender: NSButton) {
         let sr = ResultWriter()
         sr.query = searchField.stringValue
+        sr.searchMode = viewModel.searchMode
+        sr.searchViewModel = viewModel
         let popover = NSPopover()
         popover.contentViewController = sr
         popover.behavior = .semitransient
@@ -264,7 +360,7 @@ class OptionSearchVC: NSViewController {
         viewModel.clearResults()
         tableView.removeRows(
             at: IndexSet(
-                integersIn: 0..<tableView.numberOfRows
+                integersIn: 0 ..< tableView.numberOfRows
             )
         )
         tableView.sortDescriptors.removeAll()
@@ -301,8 +397,7 @@ class OptionSearchVC: NSViewController {
         } else if !bkId.isEmpty {
             viewModel.setTargetBook(bkId)
         }
-
-        viewModel.startSearch()
+        Task { await viewModel.startSearch() }
     }
 
     func resetProgressBar() {
@@ -325,24 +420,24 @@ class OptionSearchVC: NSViewController {
     }
 
     @IBAction func startSearch(_ sender: Any) {
-            if searchText.isEmpty || (compactConfigured && bkId.isEmpty) { return }
-            ReusableFunc.updateBuiltInRecents(with: searchText, in: searchField)
+        if searchText.isEmpty || (compactConfigured && bkId.isEmpty) { return }
+        ReusableFunc.updateBuiltInRecents(with: searchText, in: searchField)
 
-            let isPaused = viewModel.isPaused
-            let isRunning = viewModel.isSearching
+        let isPaused = viewModel.isPaused
+        let isRunning = viewModel.isSearching
 
-            if !isRunning, !isPaused {
-                setupIndeterminateProgress()
-            }
-
-            startSearchEngine()
-
-            if isPaused {
-                updateStartButton(systemSymbolName: "pause.fill", state: .on)
-            } else {
-                updateStartButton(state: .on)
-            }
+        if !isRunning, !isPaused {
+            setupIndeterminateProgress()
         }
+
+        startSearchEngine()
+
+        if isPaused {
+            updateStartButton(systemSymbolName: "pause.fill", state: .on)
+        } else {
+            updateStartButton(state: .on)
+        }
+    }
 
     @IBAction func stopSearch(_ sender: Any?) {
         viewModel.stopSearch()
@@ -355,8 +450,62 @@ class OptionSearchVC: NSViewController {
         resultsLoadingTask?.cancel()
     }
 
+    private func setupNearDistanceControl() {
+        guard let stackView = optionsSegment.superview as? NSStackView else { return }
+
+        let field = NSTextField(string: "\(viewModel.nearDistance)")
+        field.focusRingType = .none
+        field.placeholderString = String(localized: "nearDistancePlaceholder")
+        field.font = NSFont.systemFont(ofSize: 11)
+        field.alignment = .center
+        field.isBezeled = true
+        field.bezelStyle = .roundedBezel
+        field.isHidden = true
+        field.translatesAutoresizingMaskIntoConstraints = false
+
+        let widthConstraint = field.widthAnchor.constraint(
+            equalToConstant: viewModel.searchMode != .near ? 0 : 45
+        )
+        widthConstraint.isActive = true
+        nearDistanceWidthConstraint = widthConstraint
+
+        field.target = self
+        field.action = #selector(distanceFieldChanged(_:))
+
+        if let index = stackView.arrangedSubviews.firstIndex(of: optionsSegment) {
+            stackView.insertArrangedSubview(field, at: index + 1)
+        } else {
+            stackView.addArrangedSubview(field)
+        }
+        nearDistanceField = field
+    }
+
+    @objc private func distanceFieldChanged(_ sender: NSTextField) {
+        if let val = Int(sender.stringValue), val > 0 {
+            viewModel.nearDistance = val
+        } else {
+            sender.stringValue = "\(viewModel.nearDistance)"
+        }
+    }
+
     @IBAction func optionsSegmentDidCange(_ sender: NSSegmentedControl) {
         viewModel.setSearchModeFromSegment(sender.selectedSegment)
+        let isNear = viewModel.searchMode == .near
+        if isNear {
+            nearDistanceField?.stringValue = ""
+            nearDistanceField?.isHidden = false
+        }
+        NSAnimationContext.runAnimationGroup { [weak self] ctx in
+            guard let self else { return }
+            ctx.duration = 0.15
+            ctx.allowsImplicitAnimation = true
+            ctx.timingFunction = CAMediaTimingFunction(name: .easeIn)
+            nearDistanceWidthConstraint?.animator().constant = isNear ? 45 : 0
+            stackView.animator().layoutSubtreeIfNeeded()
+        } completionHandler: { [weak self] in
+            guard let self, let nearDistanceField else { return }
+            if isNear { nearDistanceField.stringValue = .init(viewModel.nearDistance) }
+        }
     }
 
     @IBAction func searchFieldDidChange(_ sender: NSSearchField) {
@@ -386,10 +535,10 @@ class OptionSearchVC: NSViewController {
 }
 
 // MARK: - NSTableViewDataSource & Delegate
-extension OptionSearchVC: NSTableViewDataSource, NSTableViewDelegate {
 
+extension OptionSearchVC: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return results.count
+        results.count
     }
 
     func tableView(
@@ -445,7 +594,7 @@ extension OptionSearchVC: NSTableViewDataSource, NSTableViewDelegate {
         let row = tableView.selectedRow
         guard row >= 0, row < results.count else {
             #if DEBUG
-                print("result out of range")
+            print("result out of range")
             #endif
             return
         }
@@ -459,7 +608,6 @@ extension OptionSearchVC: NSTableViewDataSource, NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         24
     }
-
 }
 
 extension OptionSearchVC: NSSearchFieldDelegate {
@@ -470,7 +618,7 @@ extension OptionSearchVC: NSSearchFieldDelegate {
     ) -> Bool {
         switch commandSelector {
         case #selector(NSResponder.insertNewline(_:)),
-            #selector(NSResponder.insertLineBreak(_:)):
+             #selector(NSResponder.insertLineBreak(_:)):
             startSearch(commandSelector)
             return true
         default: return false
@@ -489,18 +637,39 @@ extension OptionSearchVC: LibraryViewDelegate {
             return
         }
 
+        let shouldRecord = UserDefaults.standard.recordSearchHistory
+        if let ibarotVC = delegate as? IbarotTextVC {
+            ibarotVC.viewModel.recordHistory = ibarotVC.viewModel.currentBook?.id == bookData.id
+                ? (ibarotVC.viewModel.recordHistory || shouldRecord)
+                : shouldRecord
+        }
+
+        if shouldRecord {
+            HistoryViewModel.shared.addBookToHistory(bookData.id)
+        }
+
         // Penggunaan Task sudah benar di sini, tidak perlu Task.detached lagi
-        await delegate?.didSelectBook(for: bookData)
+        await delegate?.didSelectBook(for: bookData, loadContent: false)
         await itemDelegate?.didSelectResult(
             for: book.bookId,
-            highlightText: searchText
+            highlightText: searchText,
+            mode: viewModel.searchMode,
+            nearDistance: viewModel.nearDistance
         )
-        onSelectedItem?(book.bookId, searchField.stringValue)
+        onSelectedItem?(
+            book.bookId,
+            searchField.stringValue,
+            viewModel.searchMode,
+            nearDistanceField?.stringValue ?? "10"
+        )
     }
 }
 
 extension OptionSearchVC: ResultsDelegate {
     func didSelect(savedResults: [SavedResultsItem]) {
+        if let sheet = view.window?.attachedSheet {
+            view.window?.endSheet(sheet)
+        }
         viewModel.clearResults()
         tableView.reloadData()
         stopSearch(nil)
@@ -511,6 +680,16 @@ extension OptionSearchVC: ResultsDelegate {
         searchField.stringValue = savedResults.first?.query ?? ""
         searchText = searchField.stringValue
 
+        if let first = savedResults.first,
+           let mode = SearchMode(rawValue: first.searchMode) {
+            viewModel.setSearchMode(mode)
+            optionsSegment?.selectedSegment = mode.rawValue
+            viewModel.nearDistance = first.nearDistance
+            nearDistanceField?.stringValue = "\(first.nearDistance)"
+            nearDistanceField?.isHidden = mode != .near
+            nearDistanceWidthConstraint?.constant = mode == .near ? 45 : 0
+        }
+
         resultsLoadingTask = viewModel.loadSavedResults(
             savedResults,
             onProgress: { [weak self] total in
@@ -520,7 +699,7 @@ extension OptionSearchVC: ResultsDelegate {
             onInsert: { [weak self] prev, newCount in
                 guard let self else { return }
                 progressTable.doubleValue += Double(newCount - prev)
-                tableView.insertRows(at: IndexSet(prev..<newCount))
+                tableView.insertRows(at: IndexSet(prev ..< newCount))
             },
             onFinish: { [weak self] in
                 guard let self else { return }
@@ -548,6 +727,11 @@ extension OptionSearchVC: ReaderStateComponent {
         tableView.reloadData()
         searchField.stringValue = viewModel.query
         searchText = viewModel.query
+
+        optionsSegment?.selectedSegment = viewModel.searchMode.rawValue
+        nearDistanceField?.stringValue = "\(viewModel.nearDistance)"
+        nearDistanceField?.isHidden = viewModel.searchMode != .near
+        nearDistanceWidthConstraint?.constant = viewModel.searchMode == .near ? 45 : 0
     }
 
     func cleanUpState() {
@@ -557,7 +741,6 @@ extension OptionSearchVC: ReaderStateComponent {
         tableView.reloadData()
     }
 }
-
 
 extension OptionSearchVC: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {

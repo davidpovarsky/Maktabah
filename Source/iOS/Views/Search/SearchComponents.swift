@@ -10,9 +10,12 @@ struct SearchHistoryOverlay: View {
     @Binding var isVisible: Bool?
     @State private var showingHelp: Bool = false
     @State private var isShowing = false
+    @FocusState private var isDistanceFocused: Bool
+    @ScaledMetric(relativeTo: .body) private var distanceFieldWidth: CGFloat = 44
+    @ScaledMetric(relativeTo: .body) private var distanceFieldHeight: CGFloat = 28
 
     private var shouldShow: Bool {
-        isVisible == true ||
+        isVisible == true || isDistanceFocused ||
         (isSearching && isVisible == nil &&
          !viewModel.isSearching && viewModel.results.isEmpty)
     }
@@ -80,10 +83,12 @@ struct SearchHistoryOverlay: View {
                 ForEach(Array(viewModel.searchHistory.enumerated()), id: \.element) { index, historyQuery in
                     VStack(spacing: 0) {
                         Button(action: {
-                            viewModel.query = historyQuery
-                            viewModel.addToHistory(historyQuery)
-                            viewModel.startSearch()
-                            isVisible = false
+                            Task {
+                                viewModel.query = historyQuery
+                                viewModel.addToHistory(historyQuery)
+                                await viewModel.startSearch()
+                                isVisible = false
+                            }
                         }) {
                             HStack {
                                 Image(systemName: "clock.arrow.circlepath")
@@ -117,13 +122,31 @@ struct SearchHistoryOverlay: View {
     private var inputControls: some View {
         HStack(spacing: 12) {
             Picker("Mode", selection: $viewModel.searchMode) {
-                Image(systemName: "text.quote").tag(SearchMode.phrase)
-                Image(systemName: "checklist.checked").tag(SearchMode.contains)
-                Image(systemName: "checklist").tag(SearchMode.or)
+                Image(systemName: SearchMode.imageNameForMode(.phrase))
+                    .tag(SearchMode.phrase)
+                Image(systemName: SearchMode.imageNameForMode(.contains))
+                    .tag(SearchMode.contains)
+                Image(systemName: SearchMode.imageNameForMode(.or))
+                    .tag(SearchMode.or)
+                Image(systemName: SearchMode.imageNameForMode(.near))
+                    .tag(SearchMode.near)
             }
             .controlSize(.regular)
             .pickerStyle(.segmented)
             .frame(maxWidth: .infinity)
+
+            if viewModel.searchMode == .near {
+                TextField("10", value: $viewModel.nearDistance, format: .number)
+                    .focused($isDistanceFocused)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.center)
+                    .frame(width: distanceFieldWidth, height: distanceFieldHeight)
+                    .background(Color.appCellBackground)
+                    .cornerRadius(6)
+                    .overlay(RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
+            }
 
             Spacer()
 
@@ -138,6 +161,11 @@ struct SearchHistoryOverlay: View {
                     .presentationCompactAdaptation(.popover)
             }
         }
+        .animation(
+            .easeInOut(duration: 0.25)
+            .delay(0.25),
+            value: viewModel.searchMode
+        )
         .prominentButtonStyleIfAvailable()
         .padding(.horizontal)
         .padding(.vertical, 8)
@@ -226,6 +254,16 @@ struct SearchHelpView: View {
                     Label("anyWordsSearchTitle", systemImage: "checklist")
                         .font(.subheadline).bold()
                     Text("anyWordsSearchDesc")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                }
+
+                Divider()
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Label("nearSearchTitle", systemImage: "text.word.spacing")
+                        .font(.subheadline).bold()
+                    Text("nearSearchDesc")
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }
@@ -331,7 +369,7 @@ struct SearchToolbar: ToolbarContent {
                     ? "pause" : "play",
                 isOn: Binding(
                     get: { viewModel.isSearching },
-                    set: { _, _ in viewModel.startSearch() }
+                    set: { _, _ in Task { await viewModel.startSearch() }}
                 )
             )
             .labelStyle(.iconOnly)

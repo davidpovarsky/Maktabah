@@ -15,6 +15,24 @@ extension ReaderViewModel: ObservableObject {}
 import SwiftUI
 #endif
 
+#if os(macOS)
+struct ContentRenderPayload: Equatable {
+    let text: String
+    let content: BookContent?
+    let keepScrollPosition: Bool
+
+    init(text: String, content: BookContent? = nil, keepScrollPosition: Bool = false) {
+        self.text = text
+        self.content = content
+        self.keepScrollPosition = keepScrollPosition
+    }
+
+    static func == (lhs: ContentRenderPayload, rhs: ContentRenderPayload) -> Bool {
+        lhs.text == rhs.text && lhs.content === rhs.content && lhs.keepScrollPosition == rhs.keepScrollPosition
+    }
+}
+#endif
+
 #if os(iOS)
 @Observable
 #endif
@@ -26,13 +44,19 @@ class ReaderViewModel: ViewModelBase {
     var currentPart: Int?
     var currentHeRef: String?
     var currentContentId: Int = 0
+    var recordHistory: Bool = true
 
     #if os(macOS)
-    @Published var contentText: String = ""
+    @Published var contentPayload: ContentRenderPayload = .init(text: "", keepScrollPosition: false)
     @Published var state: ViewModelState = .idle
     @Published var totalParts: Int = 0
     @Published var minPageInPart: Int = 0
     @Published var maxPageInPart: Int = 0
+
+    var contentText: String {
+        get { contentPayload.text }
+        set { contentPayload = ContentRenderPayload(text: newValue, keepScrollPosition: false) }
+    }
     #else
     var contentText: String = ""
     var state: ViewModelState = .idle
@@ -56,8 +80,9 @@ class ReaderViewModel: ViewModelBase {
     /// Called when window title should be updated
     var onWindowTitleChanged: ((String, String) -> Void)?
 
-    // macOS Annotations Support. Tidak perlu publish disini.
-    // IbarotTextView sudah pintar handling notifikasi perubahan anotasi.
+    /// macOS Annotations Support.
+    /// Dibuat sebagai computed property yang didelegasikan langsung ke `AnnotationManager.shared`
+    /// sebagai single source of truth. Performa tetap optimal karena `loadAnnotations` sudah di-cache in-memory.
     var currentAnnotations: [Annotation] {
         guard let bkId = currentBook?.id else { return .init() }
         return annotationManager.loadAnnotations(
@@ -79,6 +104,13 @@ class ReaderViewModel: ViewModelBase {
     }
 
     var searchText: String = ""
+    var searchMode: SearchMode?
+    var nearDistance: Int = UserDefaults.standard.searchNearDistance {
+        didSet {
+            UserDefaults.standard.searchNearDistance = nearDistance
+        }
+    }
+
     var targetAnnotation: Annotation?
     var searchViewModel = SearchViewModel()
     var readerState: ReaderState = .init()
@@ -104,6 +136,7 @@ class ReaderViewModel: ViewModelBase {
     #endif
 
     // MARK: - Computed Properties
+
     #if os(macOS)
     lazy var tocViewModel: BookTOCViewModel = .init(connFactory: { [weak self] in
         self?.bookConnection ?? BookConnection()
@@ -139,52 +172,12 @@ class ReaderViewModel: ViewModelBase {
     }
 
     var diacriticsText: String {
-        BookPageCache.shared.get(
-            bookId: currentBook?.id ?? 0,
-            contentId: currentContentId
-        )?.nash ?? ""
+        currentBookContent?.nash ?? ""
     }
 
-    /// Helper for copy functionality
-    func getCopyReference(for selectedText: String) -> String {
-        let bookName = currentBook?.book ?? ""
-        var referencePage: [String] = []
-
-        if let otzariaReference = otzariaCurrentReferencePage() {
-            referencePage.append(otzariaReference)
-        } else {
-            if let part = currentPart, part != -1 {
-                referencePage.append("ج: \(part)".convertToArabicDigits())
-            }
-
-            if let page = currentPage {
-                referencePage.append("ص: \(page)".convertToArabicDigits())
-            }
-        }
-
-        let referenceLines = "~ \(bookName) - \(referencePage.joined(separator: " • "))"
-        return "\(selectedText)\n\n__________\n\(referenceLines)"
-    }
-
-    /// Helper for share functionality
-    func getShareReference(for selectedText: String) -> String {
-        let bookName = currentBook?.book ?? ""
-        var referencePage: [String] = []
-
-        if let otzariaReference = otzariaCurrentReferencePage() {
-            referencePage.append(otzariaReference)
-        } else {
-            if let part = currentPart, part != -1 {
-                referencePage.append("ج: \(part)".convertToArabicDigits())
-            }
-
-            if let page = currentPage {
-                referencePage.append("ص: \(page)".convertToArabicDigits())
-            }
-        }
-
-        let referenceLines = "~ \(bookName) - \(referencePage.joined(separator: " • "))"
-        return "\(selectedText)\n\n\(referenceLines)"
+    var currentBookContent: BookContent? {
+        guard let bkId = currentBook?.id else { return nil }
+        return BookPageCache.shared.get(bookId: bkId, contentId: currentContentId)
     }
 
     // MARK: - Dependencies
@@ -226,9 +219,7 @@ class ReaderViewModel: ViewModelBase {
             otzariaReaderLog("loadInitialContent connectError bookId=\(book.id) error=\(error.localizedDescription) durationMs=\(otzariaReaderElapsedMs(start))")
         }
 
-        // Start loading TOC immediately for both platforms
-        tocViewModel.loadTOC(book: book)
-
+        loadTOC(book: book)
         guard let initialContentId else {
             loadFromHistory(for: book)
             return
@@ -244,6 +235,10 @@ class ReaderViewModel: ViewModelBase {
             contentText = "Content ID not found."
             otzariaReaderLog("loadInitialContent nilContent bookId=\(book.id) requestedContentId=\(initialContentId) durationMs=\(otzariaReaderElapsedMs(start))")
         }
+    }
+
+    func loadTOC(book: BooksData) {
+        tocViewModel.loadTOC(book: book)
     }
 
     func getContent(bkId: Int, contentId: Int) -> BookContent? {
@@ -395,6 +390,7 @@ class ReaderViewModel: ViewModelBase {
     }
 
     #if os(macOS)
+
     // MARK: - State Management
 
     func updateState(_ state: inout ReaderState) {
@@ -442,14 +438,18 @@ class ReaderViewModel: ViewModelBase {
         return nil
     }
 
-    func cleanUpState() {
+    func resetContentState() {
         contentText = ""
-        currentBook = nil
         currentPage = nil
         currentPart = nil
         currentHeRef = nil
         currentID = nil
         currentContentId = 0
+    }
+
+    func cleanUpState() {
+        resetContentState()
+        currentBook = nil
         windowTitle = ""
         windowSubtitle = ""
         bookConnection = .init()
@@ -461,14 +461,18 @@ class ReaderViewModel: ViewModelBase {
     func updateContentState(with content: BookContent) {
         let start = Date()
         let previousContentId = currentContentId
+        #if os(macOS)
+        contentPayload = ContentRenderPayload(text: content.nash, content: content, keepScrollPosition: false)
+        #else
         contentText = content.nash
+        #endif
         currentPart = content.part
         currentPage = content.page
         currentHeRef = content.heRef
         currentID = content.id
         currentContentId = content.id
 
-        if let bookId = currentBook?.id {
+        if recordHistory, let bookId = currentBook?.id {
             historyVM.updateLastContentId(content.id, for: bookId)
         }
 
@@ -499,7 +503,7 @@ class ReaderViewModel: ViewModelBase {
     }
 
     #if os(macOS)
-    func refreshCurrentPage() {
+    func refreshCurrentPage(keepScrollPosition: Bool = true) {
         guard let currentBook, let currentID,
               let content = bookConnection.getContent(
                   bkid: "\(currentBook.id)",
@@ -507,7 +511,7 @@ class ReaderViewModel: ViewModelBase {
               )
         else { return }
 
-        contentText = content.nash
+        contentPayload = ContentRenderPayload(text: content.nash, content: content, keepScrollPosition: keepScrollPosition)
         onContentChanged?(content)
     }
 
@@ -624,6 +628,8 @@ class ReaderViewModel: ViewModelBase {
 
     func didSelectSearch(query: String, contentId: Int) {
         searchText = query
+        searchMode = searchViewModel.searchMode
+        nearDistance = searchViewModel.nearDistance
         fetchContentById(contentId)
     }
 
@@ -632,6 +638,100 @@ class ReaderViewModel: ViewModelBase {
         fetchContentById(Int(ann.contentId))
     }
     #endif
+
+    // MARK: - Shared: Copy References
+
+    /// Helper for copy functionality
+    func getCopyReference(for selectedText: String) -> String {
+        buildReference(for: selectedText)
+    }
+
+    /// Helper for share functionality
+    func getShareReference(for selectedText: String) -> String {
+        buildReference(for: selectedText)
+    }
+
+    func getCopyBookAndPage() -> String {
+        let bookName = currentBook?.book ?? ""
+        let pageInfo = getCopyPageInfo()
+        var parts: [String] = []
+        if !bookName.isEmpty {
+            parts.append(bookName)
+        }
+        if !pageInfo.isEmpty {
+            parts.append(pageInfo)
+        }
+        let result = parts.joined(separator: " - ")
+        return result.isEmpty ? "" : result
+    }
+
+    func getCopyBabPath() -> String {
+        guard let path = tocViewModel.deepestPath(forContentId: currentContentId),
+              !path.isEmpty
+        else {
+            return ""
+        }
+        let result = path.map(\.bab).joined(separator: " -- ")
+        return result.isEmpty ? "" : result
+    }
+
+    func getCopyPageInfo() -> String {
+        var pageParts: [String] = []
+        if let page = currentPage {
+            pageParts.append("ص \(page)".convertToArabicDigits())
+        }
+        if let part = currentPart, part != -1 {
+            pageParts.append("ج \(part)".convertToArabicDigits())
+        }
+        return pageParts.joined(separator: " - ")
+    }
+
+    func getCopyCitation() -> String {
+        let bookName = currentBook?.book ?? ""
+        let pageInfo = getCopyPageInfo()
+
+        let rawBabPath: String = if let path = tocViewModel.deepestPath(forContentId: currentContentId), !path.isEmpty {
+            path.map(\.bab).joined(separator: " -- ")
+        } else {
+            ""
+        }
+
+        var citationParts: [String] = []
+
+        var bookAndPage = ""
+        if !bookName.isEmpty {
+            if !pageInfo.isEmpty {
+                bookAndPage = "\(bookName) (\(pageInfo))"
+            } else {
+                bookAndPage = bookName
+            }
+        } else if !pageInfo.isEmpty {
+            bookAndPage = pageInfo
+        }
+
+        if !bookAndPage.isEmpty {
+            citationParts.append(bookAndPage)
+        }
+
+        if !rawBabPath.isEmpty {
+            citationParts.append(rawBabPath)
+        }
+
+        let citation = citationParts.joined(separator: " ، ")
+        return citation.isEmpty ? "" : "— " + citation
+    }
+
+    private func buildReference(for selectedText: String) -> String {
+        let trimmedText = selectedText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedText.isEmpty else { return "" }
+
+        let citation = getCopyCitation()
+        if citation.isEmpty {
+            return "\(trimmedText)"
+        } else {
+            return "\(trimmedText)\n\n\(citation)"
+        }
+    }
 
     // MARK: - Shared: Annotations
 
@@ -708,7 +808,18 @@ extension ReaderViewModel {
         ) { [weak self] notification in
             Task { @MainActor in self?.handleBookIntegrated(notification) }
         }
+
         #endif
+
+        addObserver(
+            forName: .bookIdMigrated,
+            object: nil, queue: .current
+        ) { [weak self] notification in
+            guard let userInfo = notification.userInfo,
+                  let oldId = userInfo["oldId"] as? Int,
+                  let newId = userInfo["newId"] as? Int else { return }
+            Task { @MainActor in self?.handleBookIdMigrated(oldId: oldId, newId: newId) }
+        }
 
         #if os(iOS)
         addObserver(
@@ -727,6 +838,13 @@ extension ReaderViewModel {
             self?.loadAnnotations()
         }
         #endif
+    }
+
+    func handleBookIdMigrated(oldId: Int, newId: Int) {
+        guard let current = currentBook, current.id == oldId else { return }
+        if let newBookData = LibraryDataManager.shared.booksById[newId] {
+            currentBook = newBookData
+        }
     }
 
     #if os(macOS)

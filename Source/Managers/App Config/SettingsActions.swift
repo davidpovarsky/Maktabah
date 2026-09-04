@@ -5,6 +5,7 @@
 
 #if canImport(AppKit)
 import AppKit
+import SwiftUI
 #elseif canImport(UIKit)
 import UIKit
 import UniformTypeIdentifiers
@@ -85,9 +86,11 @@ enum SettingsActions {
         #endif
     }
 
+    @discardableResult
     static func selectLibraryFolder(
         showSuccessAlert: Bool,
         shouldTerminateOnCancel: Bool,
+        validate: ((URL) -> Error?)? = nil,
         onCompletion: ((Bool) -> Void)? = nil
     ) -> Bool {
         #if os(macOS)
@@ -102,6 +105,11 @@ enum SettingsActions {
         let response = panel.runModal()
 
         if response == .OK, let url = panel.url {
+            if let error = validate?(url) {
+                ReusableFunc.showAlert(title: "Error", message: error.localizedDescription)
+                onCompletion?(false)
+                return false
+            }
             let success = performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
             onCompletion?(success)
             return success
@@ -120,6 +128,12 @@ enum SettingsActions {
             picker.allowsMultipleSelection = false
             
             documentPickerCoordinator = DocumentPickerCoordinator(onPick: { url in
+                if let error = validate?(url) {
+                    ReusableFunc.showAlert(title: "Error", message: error.localizedDescription)
+                    onCompletion?(false)
+                    documentPickerCoordinator = nil
+                    return
+                }
                 let success = performLibraryFolderMigration(url: url, showSuccessAlert: showSuccessAlert)
                 onCompletion?(success)
                 documentPickerCoordinator = nil
@@ -166,6 +180,8 @@ enum SettingsActions {
 
         DatabaseManager.shared.reloadConnectionAndLibrary()
 
+        FtsMigrationManager.shared.checkNeedsMigration()
+
         if showSuccessAlert {
             ReusableFunc.showAlert(
                 title: "masterFolderRenewed".localized,
@@ -210,6 +226,7 @@ enum SettingsActions {
 
         let finishSetup = {
             DatabaseManager.shared.reloadConnectionAndLibrary()
+            FtsMigrationManager.shared.checkNeedsMigration()
         }
 
         let restorePreviousMode = {
@@ -256,6 +273,46 @@ enum SettingsActions {
     }
 
     #if os(macOS)
+    static func showFtsMigrationModal(archiveId: Int? = nil, onDismiss: (() -> Void)? = nil) {
+        var window: NSWindow?
+        let view = FtsMigrationProgressView(
+            onCancel: {
+                window?.close()
+                window = nil
+                onDismiss?()
+            },
+            onUpdate: {
+                if let archiveId {
+                    try await FtsMigrationManager.shared.migrateArchive(archiveId: archiveId)
+                } else {
+                    try await FtsMigrationManager.shared.performMigration()
+                }
+                await MainActor.run { [window] in
+                    window?.close()
+                    onDismiss?()
+                }
+            }
+        )
+
+        let hostingView = NSHostingView(rootView: view)
+        hostingView.autoresizingMask = [.width, .height]
+
+        let fittingSize = hostingView.fittingSize
+        let windowWidth = max(420, fittingSize.width)
+        let windowHeight = max(290, fittingSize.height)
+
+
+        let w = ReusableFunc.makeTitlelessWindow(
+            contentView: hostingView,
+            size: .init(width: windowWidth, height: windowHeight)
+        )
+        w.center()
+        w.level = .floating
+        window = w
+
+        w.makeKeyAndOrderFront(nil)
+    }
+
     static func downloadSelectiveLibrary() {
         BulkDownloadModalCenter.shared.presentModal()
     }
@@ -346,7 +403,7 @@ enum SettingsActions {
         ResultsHandler.shared.disconnect()
 
         if let oldURL, fm.fileExists(atPath: oldURL.path) {
-            let filesToMove = ["Annotations.sqlite", "SearchResults.sqlite", "Annotations.sqlite-wal", "Annotations.sqlite-shm", "SearchResults.sqlite-wal", "SearchResults.sqlite-shm"]
+            let filesToMove = ["Annotations.sqlite", "SearchResults.sqlite", "History.sqlite", "Annotations.sqlite-wal", "Annotations.sqlite-shm", "SearchResults.sqlite-wal", "SearchResults.sqlite-shm", "History.sqlite-wal", "History.sqlite-shm"]
 
             // Phase 1: Check for collisions
             if resolution == .ask {

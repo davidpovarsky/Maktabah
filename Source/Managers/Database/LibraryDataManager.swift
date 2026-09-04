@@ -276,23 +276,22 @@ class LibraryDataManager {
         var archives: [Int: ArchiveInfo] = [:]
         var seenTables = Set<String>() // untuk menghindari duplikat
 
-        // rekursif kumpulkan BooksData dari node (CategoryData atau BooksData)
-        func collectBooks(from node: Any) -> [BooksData] {
-            var result: [BooksData] = []
-
+        // Kumpulkan buku dalam urutan hierarki secara efisien menggunakan array tunggal untuk menghindari overhead alokasi O(N^2)
+        func collectBooks(from node: Any, into result: inout [BooksData]) {
             if let book = node as? BooksData {
                 result.append(book)
             } else if let cat = node as? CategoryData {
                 for child in cat.children {
-                    result.append(contentsOf: collectBooks(from: child))
+                    collectBooks(from: child, into: &result)
                 }
             }
-            return result
         }
 
         // iterasi semua root category dan kumpulkan buku dari seluruh subtree
         for root in rootCats {
-            let books = collectBooks(from: root)
+            var books: [BooksData] = []
+            collectBooks(from: root, into: &books)
+
             for book in books {
                 let archiveId = book.archive
                 // LEWATI SEMUA ARCHIVE = 0
@@ -373,13 +372,23 @@ class LibraryDataManager {
         searchEngine: SearchEngine,
         query: String,
         mode: SearchMode,
+        nearDistance: Int = 10,
         onInitialize: @escaping @MainActor (Int) -> Void,
         onTableProgress: @escaping @MainActor (Int) -> Void,
         onRowProgress: @escaping @MainActor (String, String, Int, Int) -> Void,
         completion: @escaping @MainActor (SearchResultItem) -> Void,
         onComplete: @escaping @MainActor () -> Void
     ) async {
+        if FtsMigrationManager.shared.isMigrating {
+            await MainActor.run {
+                ReusableFunc.showAlert(
+                    title: String(localized: .ftsIsMigratingAlert), message: ""
+                )
+            }
+            return
+        }
         let allowed = tableToScan
+
 
         if await OtzariaLibraryDataAdapter.performSearchIfEnabled(
             tableToScan: allowed,
@@ -394,20 +403,10 @@ class LibraryDataManager {
             return
         }
 
-        let searchKeywords: [String]
-        switch mode {
-        case .phrase:
-            if query.trimmingCharacters(in: .whitespaces).isEmpty {
-                return
-            }
-            searchKeywords = [query.normalizeArabic()]
-        case .contains, .or:
-            searchKeywords = query.normalizeArabic().components(separatedBy: ",")
-                .map { $0.trimmingCharacters(in: .whitespaces) }
-                .filter { !$0.isEmpty }
-        }
+        let searchKeywords = FtsQueryParser.extractKeywords(query: query, mode: mode)
 
         if searchKeywords.isEmpty {
+            await onComplete()
             return
         }
 
@@ -431,7 +430,7 @@ class LibraryDataManager {
 
         for archiveId in allowedByArchive.keys.sorted() {
             if Task.isCancelled { return }
-
+            
             guard let archiveInfo = archives[archiveId] else { continue }
             guard let dbPath = getDatabasePath(forArchive: archiveId) else {
                 continue
@@ -464,6 +463,7 @@ class LibraryDataManager {
         }
 
         if totalTables == 0 || Task.isCancelled {
+            await onComplete()
             return
         }
 
@@ -474,9 +474,11 @@ class LibraryDataManager {
             var completedTablesGlobal = 0
 
             searchEngine.startSearch(
+                query: query,
                 keywords: searchKeywords,
                 allowedTables: allowed.isEmpty ? nil : allowed,
                 mode: mode,
+                nearDistance: nearDistance,
                 onInitialize: { totalWorkers in
                     Task { @MainActor [totalTables] in
                         // Kirim hanya total tables
@@ -496,32 +498,44 @@ class LibraryDataManager {
                     }
                 },
                 onResult: { tableName, archive, content in
-                    Task { @MainActor in
-                        let bookId = Int(tableName.dropFirst()) ?? 0
-                        let (bookTitle, isMultilingual, isImported) = self.lock.withLock {
-                            let book = self._booksById[bookId]
-                            return (book?.book ?? "", book?.isMultiLanguage ?? false, book?.isImported ?? false)
-                        }
+                    let bookId = Int(tableName.dropFirst()) ?? 0
+                    let (bookTitle, isMultilingual, isImported) = self.lock.withLock {
+                        let book = self._booksById[bookId]
+                        return (book?.book ?? "", book?.isMultiLanguage ?? false, book?.isImported ?? false)
+                    }
 
-                        // Strip tags untuk imported books (lebih efisien dengan versi ringan)
-                        let strippedNash = isImported ? content.nash.stripSpanTags() : content.nash
-                        let normalizedNash = strippedNash.convertToArabicDigits(isMultilingual: isMultilingual)
-                        let searchKeywordsConverted = searchKeywords.map { $0.convertToArabicDigits(isMultilingual: isMultilingual) }
-                        let snippet = normalizedNash
+                    // Strip tags untuk imported books (lebih efisien dengan versi ringan)
+                    let strippedNash = isImported ? content.nash.stripSpanTags() : content.nash
+                    let normalizedNash = strippedNash.convertToArabicDigits(isMultilingual: isMultilingual)
+                    let searchKeywordsConverted = searchKeywords.map { $0.convertToArabicDigits(isMultilingual: isMultilingual) }
+                    let snippet: String
+                    let highlightedSnippet: NSAttributedString
+                    if mode == .near {
+                        snippet = normalizedNash
+                            .normalizeArabic()
+                            .snippetNear(keywords: searchKeywordsConverted, nearDistance: nearDistance, contextLength: 60)
+                        highlightedSnippet = snippet.highlightedAttributedText(
+                            keywords: searchKeywordsConverted, nearDistance: nearDistance)
+                    } else {
+                        snippet = normalizedNash
                             .normalizeArabic()
                             .snippetAround(keywords: searchKeywordsConverted, contextLength: 60)
-                        let highlightedSnippet = snippet.highlightedAttributedText(
+                        highlightedSnippet = snippet.highlightedAttributedText(
                             keywords: searchKeywordsConverted)
-                        completion(
-                            SearchResultItem(
-                                archive: archive,
-                                tableName: tableName,
-                                bookId: content.id,
-                                bookTitle: bookTitle,
-                                page: content.page,
-                                part: content.part,
-                                attributedText: highlightedSnippet
-                            ))
+                    }
+
+                    let item = SearchResultItem(
+                        archive: archive,
+                        tableName: tableName,
+                        bookId: content.id,
+                        bookTitle: bookTitle,
+                        page: content.page,
+                        part: content.part,
+                        attributedText: highlightedSnippet
+                    )
+
+                    Task { @MainActor in
+                        completion(item)
                     }
                 },
                 onComplete: {
@@ -561,7 +575,7 @@ class LibraryDataManager {
     /// Filter hierarchy untuk search (category mode)
     func filterCategory(_ category: CategoryData, searchText: String) -> CategoryData? {
         let normalizedSearch = searchText.normalizeArabic(false)
-        let categoryMatches = category.name.normalizeArabic(false).localizedStandardContains(normalizedSearch)
+        let categoryMatches = category.normalizedName.contains(normalizedSearch)
 
         // Jika kategori sendiri cocok, tampilkan semua children-nya tanpa filter
         // (misalnya: author "Imam Nawawi" cocok → semua bukunya ditampilkan)
@@ -576,7 +590,7 @@ class LibraryDataManager {
             if let childCategory = child as? CategoryData {
                 return filterCategory(childCategory, searchText: normalizedSearch)
             } else if let book = child as? BooksData {
-                if book.book.normalizeArabic(false).localizedStandardContains(normalizedSearch) {
+                if book.normalizedBook.contains(normalizedSearch) {
                     return book
                 }
             }
@@ -601,7 +615,7 @@ class LibraryDataManager {
         var matchedAuthors: [CategoryData] = []
 
         for category in categories {
-            if category.name.normalizeArabic(false).localizedStandardContains(normalizedSearch) {
+            if category.normalizedName.contains(normalizedSearch) {
                 // Author name matches - return ALL books under this author
                 let cloned = category.copy() as! CategoryData
                 cloned.children = category.children
@@ -619,7 +633,7 @@ class LibraryDataManager {
         for category in categories {
             let matchingBooks = category.children.compactMap { child -> Any? in
                 if let book = child as? BooksData {
-                    if book.book.normalizeArabic(false).localizedStandardContains(normalizedSearch) {
+                    if book.normalizedBook.contains(normalizedSearch) {
                         return book
                     }
                 }
@@ -716,20 +730,20 @@ class LibraryDataManager {
             }
         }
 
-        // Debug: print author counts
+        // Debug: print author hierarchy status (sanitized; no data values)
         #if DEBUG
             print("=== Author Hierarchy Debug ===")
-            print("Total books in _booksById: \(allBooks.count)")
-            print("Total authors in Auth table: \(authors.count)")
-            print("Author groups (muallif != 0): \(booksByAuthor.count)")
-            print("Books with muallif=0: \(booksWithNoAuthor.count)")
+            print("Author hierarchy rebuild started")
+            print("Author/book grouping computed")
+            print("Author hierarchy integrity check completed")
+            print("Author hierarchy debug summary generated")
 
-            // Show sample of author IDs that have books but not in Auth table
+            // Keep internal check but avoid logging IDs/counts
             let authorIdsInBooks = Set(booksByAuthor.keys)
             let authorIdsInAuthTable = Set(authors.map { $0.id })
             let missingAuthorIds = authorIdsInBooks.subtracting(authorIdsInAuthTable)
             if !missingAuthorIds.isEmpty {
-                print("Author IDs in books but NOT in Auth table: \(missingAuthorIds.prefix(10))")
+                print("Author hierarchy mismatch detected")
             }
         #endif
 
@@ -789,9 +803,7 @@ class LibraryDataManager {
         }
 
         #if DEBUG
-            print("Total author categories created: \(authorCategories.count)")
-            print("Total books in author hierarchy: \(authorCategories.reduce(0) { $0 + $1.children.count })")
-            print("=== End Debug ===")
+            print("Author hierarchy build completed.")
         #endif
 
         return authorCategories
@@ -864,6 +876,49 @@ class LibraryDataManager {
 }
 
 extension LibraryDataManager {
+    
+    /// Pemeriksaan pembaruan buku dengan jeda satu hari.
+    /// - Parameters:
+    ///   - force: Menjalankan pemeriksaan pembaruan buku lebih dari sekali dalam satu hari.
+    ///   - completion: Nilai `int` pembaruan yang tersedia yang dijalankan di main thread.
+    func checkBookUpdatesPeriodically(
+        force: Bool = false,
+        completion: @escaping @MainActor @Sendable (Int) -> Void
+    ) {
+        let key = "last_book_update_check"
+        let lastCheck = UserDefaults.standard.double(forKey: key)
+        let oneDayInSeconds: TimeInterval = 86_400
+        var count: Int = 0
+
+        if !force, Date().timeIntervalSince1970 - lastCheck < oneDayInSeconds {
+            Task { @MainActor in
+                completion(count)
+            }
+            return
+        }
+
+        Task.detached(priority: .utility) {
+            guard let items = try? await BookUpdateManager.shared
+                .fetchAvailableUpdates(from: BookUpdateViewModel.mainCSVURL)
+            else {
+                await MainActor.run {
+                    completion(0)
+                }
+                return
+            }
+
+            count = items.filter(\.needsUpdate).count
+
+            UserDefaults.standard.set(
+                Date().timeIntervalSince1970,
+                forKey: key
+            )
+
+            await MainActor.run { [count] in
+                completion(count)
+            }
+        }
+    }
 
     /// Update atau insert books berdasarkan BookUpdateResult
     /// - Parameter updateResults: Results dari book update process
@@ -992,6 +1047,7 @@ extension LibraryDataManager {
 extension Notification.Name {
     static let booksChanged = Notification.Name("booksChanged")
     static let bookIntegrated = Notification.Name("bookIntegrated")
+    static let bookIdMigrated = Notification.Name("bookIdMigrated")
 }
 
 // MARK: - Type-safe Posting Helper

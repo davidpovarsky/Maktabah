@@ -63,19 +63,23 @@ struct iOSMoveItemView: View {
     private var isRootDisabled: Bool {
         switch target {
         case .folder(let node):
-            return disabledFolderIds.contains(node.id) ||
-                   (viewModel.parentById[node.id] ?? nil) == nil
+            return (viewModel.parentById[node.id] ?? nil) == nil
         case .result(let node):
             return node.parentId == nil
         }
     }
 
     private func getAllDescendantIds(of node: FolderNode) -> [Int64] {
-        var ids: [Int64] = [node.id]
-        for child in node.children {
-            ids.append(contentsOf: getAllDescendantIds(of: child))
-        }
+        var ids: [Int64] = []
+        _getAllDescendantIds(of: node, ids: &ids)
         return ids
+    }
+
+    private func _getAllDescendantIds(of node: FolderNode, ids: inout [Int64]) {
+        ids.append(node.id)
+        for child in node.children {
+            _getAllDescendantIds(of: child, ids: &ids)
+        }
     }
 
     // MARK: - Action

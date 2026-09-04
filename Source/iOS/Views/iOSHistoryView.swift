@@ -1,45 +1,51 @@
+//
+//  iOSHistoryView.swift
+//  Maktabah-iOS
+//
+
 import SwiftUI
 
 struct iOSHistoryView: View {
     @StateObject private var viewModel = HistoryViewModel.shared
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
+    @ObservedObject private var donationManager = DonationManager.shared
 
     var body: some View {
         let filteredFavorites = viewModel.filteredFavorites
         let filteredHistory = viewModel.filteredHistory
 
-        ThemeList(isGrouped: true) {
-            if !filteredFavorites.isEmpty {
-                Section(header: Text("Favorites")) {
-                    ForEach(filteredFavorites, id: \.id) { book in
-                        BookRowView(book: book, isFavorite: true, viewModel: viewModel) {
-                            let lastId = viewModel.entriesByBookId[book.id]?.lastContentId
-                            navigationManager.openBook(book, initialContentId: lastId)
-                        }
-                    }
-                    .onDelete(perform: removeFavorite)
-                }
+        ThemeList {
+            if !filteredHistory.isEmpty {
+                HistorySection(books: filteredHistory, viewModel: viewModel)
             }
 
-            if !filteredHistory.isEmpty {
-                Section(header: Text("History")) {
-                    ForEach(filteredHistory, id: \.id) { book in
-                        BookRowView(book: book, isFavorite: viewModel.favoriteBookIds.contains(book.id), viewModel: viewModel) {
-                            let lastId = viewModel.entriesByBookId[book.id]?.lastContentId
-                            navigationManager.openBook(book, initialContentId: lastId)
-                        }
-                    }
-                    .onDelete(perform: removeHistory)
-                }
-            } else if filteredFavorites.isEmpty {
-                if !viewModel.searchText.isEmpty {
-                    Text("No results found for \"\(viewModel.searchText)\"")
-                        .foregroundColor(.secondary)
-                } else {
-                    Text("No recent history")
-                        .foregroundColor(.secondary)
-                }
+            if donationManager.shouldShowDonation {
+                donationCard(topPad: 26, btmPad: 4)
             }
+
+            if !filteredFavorites.isEmpty {
+                FavoritesSection(
+                    books: filteredFavorites,
+                    viewModel: viewModel,
+                    onOpen: { book in
+                        let lastId = viewModel.entriesByBookId[book.id]?.lastContentId
+                        navigationManager.openBook(book, initialContentId: lastId)
+                    }
+                )
+            } else if filteredFavorites.isEmpty {
+                HistoryEmptyState(searchText: viewModel.searchText)
+            }
+
+            #if DEBUG
+            donationCard(topPad: 12, btmPad: 24)
+            #else
+            if filteredHistory.count > 10,
+               filteredFavorites.count > 5,
+               !donationManager.shouldShowDonation
+            {
+                donationCard(topPad: 12, btmPad: 24)
+            }
+            #endif
         }
         .refreshable {
             CloudKitSyncManager.shared.fetchChanges()
@@ -49,49 +55,24 @@ struct iOSHistoryView: View {
         .navigationTitle("History & Favorites")
     }
 
-    private func removeFavorite(at offsets: IndexSet) {
-        for index in offsets {
-            let book = viewModel.favoriteBooks[index]
-            viewModel.toggleFavorite(book.id)
-        }
-    }
-
-    private func removeHistory(at offsets: IndexSet) {
-        for index in offsets {
-            let book = viewModel.historyBooks[index]
-            viewModel.removeHistory(for: book.id)
-        }
-    }
-}
-
-struct BookRowView: View {
-    let book: BooksData
-    let isFavorite: Bool
-    @ObservedObject var viewModel: HistoryViewModel
-    @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            HStack {
-                Text(book.book)
-                    .font(ReaderViewModel.kfgqpcList)
-                    .foregroundColor(.primary)
-                Spacer()
-                Button(action: {
-                    viewModel.toggleFavorite(book.id)
-                }) {
-                    Image(systemName: isFavorite ? "star.fill" : "star")
-                        .foregroundColor(isFavorite ? .yellow : .gray)
-                }
-                .accessibilityLabel(isFavorite ? String(localized: "Remove Favorite") : String(localized: "Add Favorite"))
-                .help(isFavorite ? String(localized: "Remove Favorite") : String(localized: "Add Favorite"))
-                .buttonStyle(PlainButtonStyle())
+    private func donationCard(
+        topPad: CGFloat,
+        btmPad: CGFloat
+    ) -> some View {
+        Section {
+            DonationHistoryButton {
+                donationManager.showDonationSheet = true
             }
-            .contentShape(Rectangle())
         }
+        .listRowInsets(.init(
+            top: topPad, leading: 16, bottom: btmPad, trailing: 16
+        ))
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
     }
 }
+
+// MARK: - iOSAddFavoriteSheet
 
 struct iOSAddFavoriteSheet: View {
     @Environment(\.dismiss) private var dismiss

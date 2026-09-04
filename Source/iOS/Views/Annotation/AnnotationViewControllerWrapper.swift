@@ -13,6 +13,7 @@ struct AnnotationViewControllerWrapper: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> iOSAnnotationViewController {
         let vc = iOSAnnotationViewController()
+        vc.viewModel = viewModel
         vc.additionalSafeAreaInsets.bottom = 15
         vc.onAnnotationSelected = { node in
             context.coordinator.handleSelection(node)
@@ -20,6 +21,13 @@ struct AnnotationViewControllerWrapper: UIViewControllerRepresentable {
         vc.onAnnotationDeleted = { node in
             if let id = node.annotation?.id {
                 viewModel.deleteAnnotation(id: id)
+            }
+        }
+
+        vc.onRefreshRequested = { [weak vc] in
+            CloudKitSyncManager.shared.fetchChanges()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                vc?.endRefreshing()
             }
         }
 
@@ -32,11 +40,15 @@ struct AnnotationViewControllerWrapper: UIViewControllerRepresentable {
         viewModel.onTreeUpdate = { [weak vc] nodes, mode in
             vc?.handleTreeUpdate(nodes: nodes.map { SwiftUIAnnotationNode(from: $0) }, groupingMode: mode)
         }
+        viewModel.onTagsChanged = { [weak vc] _ in
+            vc?.updateTagFilterHeader()
+        }
 
         return vc
     }
 
     func updateUIViewController(_ uiViewController: iOSAnnotationViewController, context: Context) {
+        uiViewController.viewModel = viewModel
         // Only set initial data — incremental updates come from notifications via callback
         if !context.coordinator.hasAppliedOnce {
             context.coordinator.hasAppliedOnce = true
@@ -46,6 +58,7 @@ struct AnnotationViewControllerWrapper: UIViewControllerRepresentable {
                 animated: false
             )
         }
+        uiViewController.updateTagFilterHeader()
     }
 
     func makeCoordinator() -> Coordinator {

@@ -8,7 +8,6 @@
 import Cocoa
 import Combine
 
-
 @MainActor
 class LibraryViewManager: NSObject {
     static let filterSegmentIndexKey = "LibraryFilterSegmentIndex"
@@ -34,7 +33,7 @@ class LibraryViewManager: NSObject {
         downloadView: Bool = false
     ) {
         self.outlineView = outlineView
-        self.viewModel = .init()
+        viewModel = .init()
         if searchView {
             viewModel.showOnlyDownloaded = true
         }
@@ -45,13 +44,16 @@ class LibraryViewManager: NSObject {
         setupDSFSearchField()
         setupContextMenu()
         bindToViewModel()
+
+        outlineView.target = self
+        outlineView.doubleAction = #selector(onDoubleClick(_:))
     }
 
     private func bindToViewModel() {
         viewModel.updateSubject
-            .filter({ [weak self] _ in
+            .filter { [weak self] _ in
                 self?.isSetupComplete == true
-            })
+            }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] update in
                 guard let self else { return }
@@ -61,9 +63,9 @@ class LibraryViewManager: NSObject {
                     if viewModel.searchQuery.isEmpty {
                         restoreSelection(byBookName: viewModel.selectedBookName)
                     }
-                case .reloadItem(let item, let reloadChildren):
+                case let .reloadItem(item, reloadChildren):
                     outlineView.reloadItem(item, reloadChildren: reloadChildren)
-                case .expandItem(let item):
+                case let .expandItem(item):
                     if let category = item as? CategoryData {
                         outlineView.expandItem(category, expandChildren: true)
                     } else if let bookName = item as? String {
@@ -71,7 +73,7 @@ class LibraryViewManager: NSObject {
                     } else {
                         outlineView.expandItem(item, expandChildren: true)
                     }
-                case .scrollRowToVisible(let item):
+                case let .scrollRowToVisible(item):
                     let row = outlineView.row(forItem: item)
                     if row >= 0 {
                         outlineView.scrollRowToVisible(row)
@@ -80,11 +82,16 @@ class LibraryViewManager: NSObject {
                     outlineView.beginUpdates()
                 case .endUpdates:
                     outlineView.endUpdates()
-                case .removeItems(let indexes, let parent):
+                case let .removeItems(indexes, parent):
                     outlineView.removeItems(at: indexes, inParent: parent, withAnimation: [.slideUp])
-                case .insertItems(let indexes, let parent):
+                case let .insertItems(indexes, parent):
                     outlineView.insertItems(at: indexes, inParent: parent, withAnimation: [.slideDown])
-                case .moveItem(let from, let to, let parent):
+                    if viewModel.isFlatMode,
+                       let selectedBook = viewModel.selectedBookName
+                    {
+                        restoreFlatSelection(byBookName: selectedBook)
+                    }
+                case let .moveItem(from, to, parent):
                     outlineView.moveItem(at: from, inParent: parent, to: to, inParent: parent)
                 }
             }
@@ -133,10 +140,33 @@ class LibraryViewManager: NSObject {
     // MARK: - Selection Restore (UI)
 
     func restoreSelection(byBookName bookName: String?) {
+        if viewModel.isFlatMode {
+            restoreFlatSelection(byBookName: bookName)
+            return
+        }
+
         guard let bookName,
               let (category, book) = viewModel.restoreSelectionEntry(byBookName: bookName)
         else { return }
         outlineView.expandItem(category)
+        safelySelectOutlineRow(for: book)
+    }
+
+    private func restoreFlatSelection(byBookName bookName: String?) {
+        guard let bookName,
+              let firstCat = viewModel.displayedCategories.first,
+              let book = firstCat.children.compactMap({
+                  $0 as? BooksData
+              }).first(where: { $0.book == bookName })
+        else {
+            outlineView.deselectAll(nil)
+            return
+        }
+
+        safelySelectOutlineRow(for: book)
+    }
+
+    private func safelySelectOutlineRow(for book: BooksData) {
         let row = outlineView.row(forItem: book)
         if row >= 0 {
             outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
@@ -161,7 +191,7 @@ class LibraryViewManager: NSObject {
     @objc func checkboxToggled(_ sender: NSButton) {
         let row = outlineView.row(for: sender)
         guard row != -1, let item = outlineView.item(atRow: row) else { return }
-        
+
         if let category = item as? CategoryData {
             viewModel.toggleCategorySelection(category)
             outlineView.reloadItem(category, reloadChildren: true)
@@ -183,11 +213,23 @@ class LibraryViewManager: NSObject {
         }
         checkBoxToggle?()
     }
+
+    @objc private func onDoubleClick(_ sender: AnyObject) {
+        let clickedRow = outlineView.clickedRow
+        guard clickedRow != -1, let item = outlineView.item(atRow: clickedRow) else { return }
+        if item is CategoryData {
+            if outlineView.isItemExpanded(item) {
+                outlineView.collapseItem(item)
+            } else {
+                outlineView.expandItem(item)
+            }
+        }
+    }
 }
 
 // MARK: - NSOutlineViewDataSource
-extension LibraryViewManager: NSOutlineViewDataSource {
 
+extension LibraryViewManager: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item == nil {
             if viewModel.isFlatMode, let firstCat = viewModel.displayedCategories.first {
@@ -217,8 +259,8 @@ extension LibraryViewManager: NSOutlineViewDataSource {
 }
 
 // MARK: - NSOutlineViewDelegate
-extension LibraryViewManager: NSOutlineViewDelegate {
 
+extension LibraryViewManager: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         let cellIdentifier = NSUserInterfaceItemIdentifier("DataCell")
         let headerIdentifier = NSUserInterfaceItemIdentifier("HeaderCell")
@@ -258,13 +300,13 @@ extension LibraryViewManager: NSOutlineViewDelegate {
             ReusableFunc.updateBuiltInRecents(with: item.book, in: searchField)
             viewModel.handleBookSelection(book: item)
         }
-
-        if selectedRow == -1 {
-            viewModel.selectedBookName = nil
-        }
+        // Do not set viewModel.selectedBookName = nil when selectedRow is -1
+        // as this breaks selection restoration during data reloads/updates.
     }
 
-    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat { 26 }
+    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+        26
+    }
 
     @objc func deleteBookAction(_ sender: NSMenuItem) {
         guard let books = sender.representedObject as? [BooksData] else { return }
@@ -289,6 +331,7 @@ extension LibraryViewManager: NSOutlineViewDelegate {
 }
 
 // MARK: - NSMenuDelegate
+
 extension LibraryViewManager: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
@@ -302,7 +345,8 @@ extension LibraryViewManager: NSMenuDelegate {
         var integratedBooks: [BooksData] = []
         for row in rowsToProcess {
             if let book = outlineView.item(atRow: row) as? BooksData,
-               BookArchiveIntegrator.shared.isBookIntegrated(book) {
+               BookArchiveIntegrator.shared.isBookIntegrated(book)
+            {
                 integratedBooks.append(book)
             }
         }

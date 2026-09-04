@@ -17,6 +17,7 @@ class IbarotTextVC: NSViewController {
 
     var sidebarVC: SidebarVC?
     var libraryVC: LibraryVC?
+    weak var textDelegate: TextViewRenderable?
 
     /// ViewModel - manages all reader business logic
     let viewModel: ReaderViewModel = .init()
@@ -48,22 +49,27 @@ class IbarotTextVC: NSViewController {
         super.viewDidLoad()
         setupBindings()
         setupNotificationObservers()
+        textDelegate = textView
     }
 
     // MARK: - Setup
 
     private func setupBindings() {
         textView.viewModel = viewModel
-        // Bind content text changes
-        viewModel.bind(viewModel.$contentText) { [weak self] text in
-            guard let self, !text.isEmpty else { return }
-            textView.loadIbarotText(
-                text,
-                color: NSColor.header,
-                isMultiLanguage: viewModel.currentBook?.isMultiLanguage,
-                isImported: viewModel.currentBook?.isImported ?? false
-            )
-        }
+        // Bind content text changes syncrhounously
+        viewModel.$contentPayload
+            .sink { [weak self] payload in
+                guard let self, !payload.text.isEmpty else { return }
+                textDelegate?.loadIbarotText(
+                    payload.text,
+                    content: payload.content,
+                    color: NSColor.header,
+                    isMultiLanguage: viewModel.currentBook?.isMultiLanguage,
+                    isImported: viewModel.currentBook?.isImported ?? false,
+                    keepScrollPosition: payload.keepScrollPosition
+                )
+            }
+            .store(in: &viewModel.cancellables)
 
         // Bind window title changes
         viewModel.onWindowTitleChanged = { [weak self] title, subtitle in
@@ -74,7 +80,7 @@ class IbarotTextVC: NSViewController {
         // Bind content changed callback
         viewModel.onContentChanged = { [weak self] content in
             guard let self else { return }
-            handleNavigationToContent(content)
+            handleNavigationToContent(content.id)
         }
 
         // Setup textView annotation callbacks
@@ -123,7 +129,7 @@ class IbarotTextVC: NSViewController {
 
         // Bind TOC events
         viewModel.tocViewModel.onTOCLoadingStateChanged = { [weak self] isLoading in
-            guard let self = self, let sidebarView = self.sidebarVC?.view else { return }
+            guard let self, let sidebarView = sidebarVC?.view else { return }
             if isLoading {
                 ReusableFunc.showProgressWindow(sidebarView)
             } else {
@@ -132,12 +138,25 @@ class IbarotTextVC: NSViewController {
         }
 
         viewModel.tocViewModel.onTOCLoaded = { [weak self] nodes in
-            self?.sidebarVC?.updateTOC(nodes)
+            guard let self else { return }
+            sidebarVC?.updateTOC(nodes)
+            // Auto-expand TOC ke konten yang sedang aktif begitu TOC selesai di-load di background
+            if viewModel.currentContentId > 0 {
+                handleNavigationToContent(viewModel.currentContentId)
+            }
+        }
+    }
+
+    private var observerTokens: [NSObjectProtocol] = []
+
+    deinit {
+        for token in observerTokens {
+            NotificationCenter.default.removeObserver(token)
         }
     }
 
     private func setupNotificationObservers() {
-        NotificationCenter.default.addObserver(
+        observerTokens.append(NotificationCenter.default.addObserver(
             forName: .libraryFolderChanged,
             object: nil,
             queue: .current
@@ -145,9 +164,9 @@ class IbarotTextVC: NSViewController {
             guard let self else { return }
             viewModel.cleanUpState()
             viewModel.tocViewModel.cleanUp()
-        }
+        })
 
-        NotificationCenter.default.addObserver(
+        observerTokens.append(NotificationCenter.default.addObserver(
             forName: .bookIntegrated,
             object: nil,
             queue: .main
@@ -158,7 +177,27 @@ class IbarotTextVC: NSViewController {
                     clearUI()
                 }
             }
-        }
+        })
+
+        observerTokens.append(NotificationCenter.default.addObserver(
+            forName: .bookIdMigrated,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let self,
+                  let userInfo = notification.userInfo,
+                  let oldId = userInfo["oldId"] as? Int,
+                  let newId = userInfo["newId"] as? Int else { return }
+
+            if viewModel.currentBook?.id == oldId {
+                // ReaderViewModel handleBookIdMigrated will update its currentBook.
+                // We just need to make sure IbarotTextVC doesn't crash or holds onto stale state.
+                // Re-rendering or updating title can be triggered here if necessary.
+                if let newBookData = LibraryDataManager.shared.booksById[newId] {
+                    viewModel.currentBook = newBookData
+                }
+            }
+        })
     }
 
     // MARK: - State Accessors
@@ -174,14 +213,22 @@ class IbarotTextVC: NSViewController {
         return nil
     }
 
-    var currentBook: BooksData? { viewModel.currentBook }
+    var currentBook: BooksData? {
+        viewModel.currentBook
+    }
 
-    var currentPage: Int? { viewModel.currentPage }
+    var currentPage: Int? {
+        viewModel.currentPage
+    }
 
-    var currentPart: Int? { viewModel.currentPart }
+    var currentPart: Int? {
+        viewModel.currentPart
+    }
 
     /// Alias ke viewModel.bookConnection untuk backward compatibility dengan SidebarVC
-    var bookDB: BookConnection { viewModel.bookConnection }
+    var bookDB: BookConnection {
+        viewModel.bookConnection
+    }
 
     var currentRowi: Rowi? {
         get { splitVC?.currentState.currentRowi }
@@ -201,6 +248,9 @@ class IbarotTextVC: NSViewController {
     }
 
     func didChangeBook(book: BooksData, loadSidebar: Bool = true) {
+        if viewModel.currentBook?.id != book.id {
+            viewModel.resetContentState()
+        }
         viewModel.currentBook = book
 
         // Update window title
@@ -220,6 +270,11 @@ class IbarotTextVC: NSViewController {
 
     func applyFont(_ redraw: Bool) {
         if !redraw {
+            guard let scrollView = textView.enclosingScrollView else { return }
+            let visibleRect = scrollView.documentVisibleRect
+            let totalHeight = scrollView.documentView?.frame.size.height ?? 0
+            let scrollPercentage = totalHeight > 0 ? (visibleRect.origin.y / totalHeight) : 0
+
             let defaults = UserDefaults.standard
             var fontSize = CGFloat(defaults.textViewFontSize)
             if fontSize == 0 { fontSize = defaultFontSize }
@@ -231,17 +286,27 @@ class IbarotTextVC: NSViewController {
                 fontSize: fontSize
             )
             textView.typingAttributes[.font] = NSFont(name: fontName, size: fontSize)
+
+            textView.textLayoutManager?.ensureFullDocumentLayout()
+
+            let newTotalHeight = scrollView.documentView?.frame.size.height ?? 0
+            let targetY = scrollPercentage * newTotalHeight
+            scrollView.contentView.scroll(to: NSPoint(x: visibleRect.origin.x, y: targetY))
+            scrollView.reflectScrolledClipView(scrollView.contentView)
         } else {
-            viewModel.refreshCurrentPage()
+            viewModel.refreshCurrentPage(keepScrollPosition: true)
         }
     }
 
     func toggleHarakat(_ on: Bool) {
-        viewModel.refreshCurrentPage()
+        viewModel.refreshCurrentPage(keepScrollPosition: true)
     }
 
     func applyBackgroundColor(_ color: NSColor) {
         textView.backgroundColor = color
+        if let textLayoutManager = textView.textLayoutManager {
+            textLayoutManager.invalidateLayout(for: textLayoutManager.documentRange)
+        }
     }
 
     // MARK: - Actions
@@ -263,22 +328,32 @@ class IbarotTextVC: NSViewController {
                 WindowController.showPopOver(sender: button, viewController: bookInf)
             } else {
                 bookInf.popOver = false
-                self.presentAsSheet(bookInf)
+                presentAsSheet(bookInf)
             }
         }
     }
 
     @IBAction func copyWith(_ sender: Any? = nil) {
-        let attributedText: NSAttributedString
-        if textView.selectedRange.length > 1 {
-            attributedText = textView.attributedString().attributedSubstring(from: textView.selectedRange())
+        let rawAttributedText: NSAttributedString = if textView.selectedRange.length > 1 {
+            textView.attributedString().attributedSubstring(from: textView.selectedRange())
         } else {
-            attributedText = textView.attributedString()
+            textView.attributedString()
         }
+        let attributedText = rawAttributedText.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        let combined = NSMutableAttributedString(attributedString: attributedText)
-        let formattedReference = viewModel.getCopyReference(for: "")
-        combined.append(NSAttributedString(string: formattedReference.replacingOccurrences(of: "\n\n", with: "")))
+        let rtlStyle = NSMutableParagraphStyle()
+        rtlStyle.baseWritingDirection = .rightToLeft
+        rtlStyle.alignment = .right
+        let rtlAttributes: [NSAttributedString.Key: Any] = [.paragraphStyle: rtlStyle]
+
+        let combined = NSMutableAttributedString()
+        combined.append(attributedText)
+        combined.append(NSAttributedString(string: "\n\n", attributes: rtlAttributes))
+
+        let citation = viewModel.getCopyCitation()
+        if !citation.isEmpty {
+            combined.append(NSAttributedString(string: citation, attributes: rtlAttributes))
+        }
 
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -308,17 +383,17 @@ class IbarotTextVC: NSViewController {
 
     private var lastSelectedContentIdFromSidebar: Int?
 
-    private func handleNavigationToContent(_ content: BookContent) {
+    private func handleNavigationToContent(_ contentId: Int) {
         guard let sidebarVC else { return }
-        
-        if lastSelectedContentIdFromSidebar == content.id {
+
+        if lastSelectedContentIdFromSidebar == contentId {
             lastSelectedContentIdFromSidebar = nil
             return
         }
-        
+
         sidebarVC.enableDelegate = false
         Task {
-            if let node = viewModel.tocViewModel.findNode(forContentId: content.id) {
+            if let node = viewModel.tocViewModel.findNode(forContentId: contentId) {
                 let path = viewModel.tocViewModel.pathToNode(node)
                 await sidebarVC.selectNode(node, path: path)
             }
@@ -333,7 +408,7 @@ class IbarotTextVC: NSViewController {
         var expandedIDs: [Int] = []
         func collectExpanded(item: Any?) {
             let childCount = outlineView.numberOfChildren(ofItem: item)
-            for i in 0..<childCount {
+            for i in 0 ..< childCount {
                 let child = outlineView.child(i, ofItem: item)
                 if let node = child as? TOCNode {
                     if outlineView.isItemExpanded(child) {
@@ -363,11 +438,16 @@ extension IbarotTextVC {
         }
     }
 
-    func displayBook(_ book: BooksData) async throws {
+    func displayBook(
+        _ book: BooksData,
+        loadContent: Bool = true
+    ) async throws {
         do {
             try await viewModel.connectBookWithBundleFallback(book)
             didChangeBook(book: book)
-            viewModel.loadInitialContent()
+            loadContent
+                ? viewModel.loadInitialContent()
+                : viewModel.loadTOC(book: book)
         } catch is CancellationError {
             throw CancellationError()
         } catch {
@@ -391,31 +471,6 @@ extension IbarotTextVC {
 
         viewModel.fetchContentById(contentId)
     }
-
-    @MainActor
-    func highlighAndScrollToAnns(_ ann: Annotation) {
-        let range = textView.displayedRange(for: ann)
-        textView.scrollRangeToVisible(range)
-        Task { [weak self] in
-            await Task.yield()
-            await Task.yield()
-            self?.textView.showFindIndicator(for: range)
-        }
-    }
-
-    @MainActor
-    func highlightAndScrollToText(_ searchText: String) {
-        guard let range = textView.textStorage?.highlightSearchText(
-            searchText: searchText,
-            baseColor: .highlightText
-        ) else { return }
-
-        Task { [weak textView] in
-            textView?.scrollRangeToVisible(range)
-            await Task.yield()
-            textView?.showFindIndicator(for: range)
-        }
-    }
 }
 
 // MARK: - SidebarDelegate
@@ -430,20 +485,19 @@ extension IbarotTextVC: SidebarDelegate {
 // MARK: - LibraryDelegate
 
 extension IbarotTextVC: LibraryDelegate {
-    func didSelectBook(for book: BooksData) async {
+    func didSelectBook(for book: BooksData, loadContent: Bool) async {
+        if loadContent { viewModel.recordHistory = true }
         if viewModel.currentBook?.id == book.id { return }
-        try? await displayBook(book)
+        try? await displayBook(book, loadContent: loadContent)
     }
 }
 
 // MARK: - OptionSearchDelegate
 
 extension IbarotTextVC: OptionSearchDelegate {
-    func didSelectResult(for id: Int, highlightText: String) async {
-        handleDelegate(id, fromResults: true)
-        DispatchQueue.main.async { [weak self] in
-            self?.highlightAndScrollToText(highlightText)
-        }
+    func didSelectResult(for id: Int, highlightText: String, mode: SearchMode?, nearDistance: Int) async {
+        if viewModel.currentContentId != id { handleDelegate(id) }
+        await textDelegate?.highlightAndScrollToText(highlightText, mode: mode, nearDistance: nearDistance)
     }
 }
 
@@ -462,7 +516,7 @@ extension IbarotTextVC {
             $0.authorDisplayMode = .rowiInfo
         }
         #if DEBUG
-            print("Author mode: display mode (\(String(describing: state.authorDisplayMode)))")
+        print("Author mode: display mode (\(String(describing: state.authorDisplayMode)))")
         #endif
     }
 }
@@ -489,7 +543,7 @@ extension IbarotTextVC: TarjamahBDelegate {
             contentId: tarjamahB.id
         ) else {
             #if DEBUG
-                print("unable to get content from tarjamahB")
+            print("unable to get content from tarjamahB")
             #endif
             return
         }
@@ -498,10 +552,8 @@ extension IbarotTextVC: TarjamahBDelegate {
         setRowiDisplayMode()
 
         try? await Task.sleep(nanoseconds: 300_000_000)
-        await MainActor.run { [weak self] in
-            if let query {
-                self?.highlightAndScrollToText(query.normalizeArabic(true))
-            }
+        if let query {
+            await textDelegate?.highlightAndScrollToText(query.normalizeArabic(true), mode: .phrase, nearDistance: 10)
         }
     }
 }
@@ -516,7 +568,7 @@ extension IbarotTextVC: ReaderStateComponent {
             state.scrollPosition = scrollView.documentVisibleRect.origin
         }
 
-        if let sidebarVC = sidebarVC {
+        if let sidebarVC {
             state.expandedNodeIDs = collectExpandedNodeIDs()
             state.sidebarScrollPosition = sidebarVC.scrollView.documentVisibleRect.origin
         }
@@ -531,36 +583,36 @@ extension IbarotTextVC: ReaderStateComponent {
         try? viewModel.bookConnection.connect(archive: book.archive)
 
         if AppConfig.isUsingBundleMode,
-           !BookArchiveIntegrator.shared.isBookIntegrated(book) {
+           !BookArchiveIntegrator.shared.isBookIntegrated(book)
+        {
             viewModel.currentBook = nil
             return
-        } else {
         }
 
         Task { [weak self] in
             guard let self else { return }
 
-            if viewModel.currentBook?.id != book.id {
-                viewModel.restore(from: state)
-            }
-
             await MainActor.run { [weak self] in
                 guard let self else { return }
+
+                viewModel.restore(from: state)
 
                 if let range = state.selectedRange {
                     textView.setSelectedRange(range)
                     view.window?.makeFirstResponder(textView)
                 }
 
-                if let query = state.searchQuery {
-                    highlightAndScrollToText(query)
-                }
-
                 libraryVC?.dataVM.viewModel.selectedBookName = book.book
+            }
 
-                if let scrollPos = state.scrollPosition {
-                    textView.enclosingScrollView?.documentView?.scroll(scrollPos)
-                }
+            if let query = state.searchQuery {
+                let mode = state.searchModeRaw.flatMap { SearchMode(rawValue: $0) }
+                let nearDistance = state.searchNearDistance ?? 10
+                await textDelegate?.highlightAndScrollToText(query, mode: mode, nearDistance: nearDistance)
+            }
+
+            if let scrollPos = state.scrollPosition {
+                await textDelegate?.scrollTo(scrollPos)
             }
         }
     }

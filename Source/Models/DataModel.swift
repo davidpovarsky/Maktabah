@@ -54,6 +54,8 @@ struct TOC {
 class BooksData: Codable, Identifiable {
     let id: Int
     let book: String
+    let normalizedBook: String
+
     let archive: Int
     let muallif: Int
     var catId: Int?
@@ -69,12 +71,12 @@ class BooksData: Codable, Identifiable {
     var isImported: Bool {
         return pdfCs == 4
     }
-    var bithoqoh: String {
+    var bithoqoh: String = .init() {
         didSet {
             bithoqoh = bithoqoh.convertToArabicDigits()
         }
     }
-    var info: String {
+    var info: String = .init() {
         didSet {
             info = info.convertToArabicDigits()
         }
@@ -84,16 +86,18 @@ class BooksData: Codable, Identifiable {
     init(id: Int, book: String, archive: Int, muallif: Int, bithoqoh: String = "", info: String = "") {
         self.id = id
         self.book = StringInterner.shared.intern(book)
+        self.normalizedBook = book.normalizeArabic(false)
         self.archive = archive
         self.muallif = muallif
-        self.bithoqoh = bithoqoh
-        self.info = info
+        self.bithoqoh = bithoqoh.convertToArabicDigits()
+        self.info = info.convertToArabicDigits()
     }
 }
 
 class CategoryData: NSCopying {
     let id: Int
     let name: String
+    let normalizedName: String
     let level: Int
     let order: Int
     let parentId: Int?
@@ -103,6 +107,7 @@ class CategoryData: NSCopying {
     init(id: Int, name: String, level: Int, order: Int, parentId: Int? = nil) {
         self.id = id
         self.name = StringInterner.shared.intern(name)
+        self.normalizedName = name.normalizeArabic(false)
         self.level = level
         self.order = order
         self.parentId = parentId
@@ -116,6 +121,40 @@ class CategoryData: NSCopying {
             order: self.order,
             parentId: self.parentId
         )
+    }
+}
+
+struct CleanedTextKey: Hashable {
+    let showHarakat: Bool
+    let isMultiLanguage: Bool
+    let isImported: Bool
+}
+
+final class ProcessedArabicContent {
+    let sourceText: String
+    let displayText: String
+    let coloredRanges: [NSRange]
+    let footnoteRanges: [NSRange]
+    let replacementEvents: [HonorificReplacementEvent]
+    let importedHeaderRanges: [NSRange]
+    let ligatureRanges: [NSRange]
+
+    init(
+        sourceText: String,
+        displayText: String,
+        coloredRanges: [NSRange],
+        footnoteRanges: [NSRange],
+        replacementEvents: [HonorificReplacementEvent],
+        importedHeaderRanges: [NSRange],
+        ligatureRanges: [NSRange]
+    ) {
+        self.sourceText = sourceText
+        self.displayText = displayText
+        self.coloredRanges = coloredRanges
+        self.footnoteRanges = footnoteRanges
+        self.replacementEvents = replacementEvents
+        self.importedHeaderRanges = importedHeaderRanges
+        self.ligatureRanges = ligatureRanges
     }
 }
 
@@ -282,6 +321,30 @@ struct SearchResultsSorter {
 }
 
 extension NSAttributedString {
+    func trimmingCharacters(in set: CharacterSet) -> NSAttributedString {
+        let nsString = string as NSString
+        var start = 0
+        var length = nsString.length
+
+        while start < length {
+            let charCode = nsString.character(at: start)
+            guard let scalar = UnicodeScalar(charCode), set.contains(scalar) else {
+                break
+            }
+            start += 1
+        }
+
+        while length > start {
+            let charCode = nsString.character(at: length - 1)
+            guard let scalar = UnicodeScalar(charCode), set.contains(scalar) else {
+                break
+            }
+            length -= 1
+        }
+
+        return attributedSubstring(from: NSRange(location: start, length: length - start))
+    }
+
     var contentSortKey: String {
         let plain = string.trimmingCharacters(in: .whitespacesAndNewlines)
         // 2 kalimat = split by ". " atau ".\n", ambil 2 elemen pertama
@@ -305,6 +368,8 @@ struct SavedResultsItem {
     let query: String
     let bookId: Int
     let bookTitle: String
+    var searchMode: Int = 0
+    var nearDistance: Int = 10
 }
 
 struct Muallif: Decodable {
@@ -319,8 +384,6 @@ struct Muallif: Decodable {
     let namaLengkap: String // Opsional, tergantung penggunaannya
 
     // Properti tambahan yang sering ada di Syamilah (tapi tidak di kueri Anda)
-    // let tahunWafatHijriah: Int? // (higriAD)
-    // let tahunWafatMasehi: Int? // (AD)
 
     // MARK: - CodingKeys (Jika nama properti Swift berbeda dari nama Kolom SQL)
     private enum CodingKeys: String, CodingKey {

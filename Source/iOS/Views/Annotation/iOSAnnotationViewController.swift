@@ -10,13 +10,15 @@ import UIKit
 class iOSAnnotationViewController: UIViewController {
     // MARK: - Public interface
 
+    weak var viewModel: AnnotationViewModel?
     var onAnnotationSelected: ((SwiftUIAnnotationNode) -> Void)?
     var onAnnotationDeleted: ((SwiftUIAnnotationNode) -> Void)?
     var onNeedFullReload: (() -> Void)?
+    var onRefreshRequested: (() -> Void)?
 
-    // MARK: - Private
+    // MARK: - Properties
 
-    private var collectionView: UICollectionView!
+    private(set) var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<String, AnnotationItem>!
     private var expandedGroups: Set<String> = []
 
@@ -35,6 +37,9 @@ class iOSAnnotationViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         configureDataSource()
+        if !currentNodes.isEmpty {
+            rebuildSnapshot(animated: false)
+        }
     }
 
     // MARK: - Full Rebuild (nodes passed from ViewModel)
@@ -42,12 +47,18 @@ class iOSAnnotationViewController: UIViewController {
     func handleTreeUpdate(nodes: [SwiftUIAnnotationNode], groupingMode: AnnotationGroupingMode) {
         currentNodes = nodes
         currentGroupingMode = groupingMode
+        guard isViewLoaded, dataSource != nil else { return }
         rebuildSnapshot(animated: true)
     }
 
     // MARK: - Incremental Update Entry Point
 
     func handleIncrementalUpdate(changeType: AnnotationChangeType, userInfo: [AnyHashable: Any]) {
+        guard isViewLoaded, dataSource != nil else {
+            onNeedFullReload?()
+            return
+        }
+
         let annotation = userInfo[AnnotationNotificationKeys.annotation] as? Annotation
         let annotationId = (userInfo[AnnotationNotificationKeys.annotationId] as? Int64) ?? annotation?.id
         let diff = userInfo[AnnotationNotificationKeys.tagDiff] as? TagUpdateDiff
@@ -67,7 +78,7 @@ class iOSAnnotationViewController: UIViewController {
     // MARK: - Incremental Updates
 
     private func handleAddedAnnotation(annotationId: Int64?, diff: TagUpdateDiff?, oldParentIndex: Int?, newParentIndex: Int?) {
-        if let diff = diff {
+        if let diff {
             handleTagDiff(diff)
             return
         }
@@ -77,13 +88,13 @@ class iOSAnnotationViewController: UIViewController {
     }
 
     private func handleUpdatedAnnotation(annotationId: Int64?, diff: TagUpdateDiff?) {
-        if let diff = diff {
+        if let diff {
             handleTagDiff(diff)
             return
         }
 
         // Book mode fallback
-        if let annotationId = annotationId {
+        if let annotationId {
             guard let updatedAnnotation = AnnotationManager.shared.loadAnnotationById(annotationId) else {
                 onNeedFullReload?()
                 return
@@ -101,7 +112,7 @@ class iOSAnnotationViewController: UIViewController {
             let targetAnnotationId = entry.annotationNode.annotation?.id
 
             let itemsToDelete = sectionSnap.items.filter {
-                if case .annotation(let node) = $0 { return node.annotation?.id == targetAnnotationId }
+                if case let .annotation(node) = $0 { return node.annotation?.id == targetAnnotationId }
                 return false
             }
 
@@ -152,7 +163,7 @@ class iOSAnnotationViewController: UIViewController {
 
             let newNode = SwiftUIAnnotationNode(from: entry.annotationNode, parentId: sectionID)
             let newItem = AnnotationItem.annotation(newNode)
-            
+
             if !sectionSnap.items.contains(where: { $0.node.annotation?.id == newNode.annotation?.id }) {
                 sectionSnap.append([newItem], to: groupItem)
                 dataSource.apply(sectionSnap, to: sectionID, animatingDifferences: true)
@@ -168,7 +179,7 @@ class iOSAnnotationViewController: UIViewController {
     }
 
     private func handleDeletedAnnotation(annotationId: Int64?, oldParentIndex: Int?, newParentIndex: Int?) {
-        guard let annotationId = annotationId else {
+        guard let annotationId else {
             onNeedFullReload?()
             return
         }
@@ -177,7 +188,7 @@ class iOSAnnotationViewController: UIViewController {
             var sectionSnap = dataSource.snapshot(for: sectionID)
 
             let itemsToDelete = sectionSnap.items.filter {
-                if case .annotation(let node) = $0 { return node.annotation?.id == annotationId }
+                if case let .annotation(node) = $0 { return node.annotation?.id == annotationId }
                 return false
             }
 
@@ -206,8 +217,6 @@ class iOSAnnotationViewController: UIViewController {
 
     /// Mengganti item lama dengan yang baru langsung di section snapshot untuk memastikan struktur hierarki terjaga
     private func updateItemInSections(with updatedAnnotation: Annotation) {
-        guard isViewLoaded, dataSource != nil else { return }
-
         var found = false
         for sectionID in dataSource.snapshot().sectionIdentifiers {
             var sectionSnapshot = dataSource.snapshot(for: sectionID)
@@ -226,9 +235,9 @@ class iOSAnnotationViewController: UIViewController {
                         children: nil
                     )
                     let updatedItem = AnnotationItem.annotation(updatedNode)
-                    
+
                     if oldItem == updatedItem { continue }
-                    
+
                     sectionSnapshot.insert([updatedItem], after: oldItem)
                     sectionSnapshot.delete([oldItem])
                 }
@@ -250,9 +259,9 @@ class iOSAnnotationViewController: UIViewController {
         listConfig.backgroundColor = .appBackground
         listConfig.trailingSwipeActionsConfigurationProvider = { [weak self] indexPath in
             guard let self,
-                  let dataSource = self.dataSource,
+                  let dataSource,
                   let item = dataSource.itemIdentifier(for: indexPath),
-                  case .annotation(let node) = item
+                  case let .annotation(node) = item
             else { return nil }
 
             let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, _ in
@@ -271,8 +280,7 @@ class iOSAnnotationViewController: UIViewController {
 
         listConfig.itemSeparatorHandler = { [weak self] indexPath, sectionSeparatorConfiguration in
             var separatorConfig = sectionSeparatorConfiguration
-            guard let self,
-                  let dataSource = self.dataSource,
+            guard let self, let dataSource,
                   let item = dataSource.itemIdentifier(for: indexPath)
             else {
                 return separatorConfig
@@ -288,7 +296,21 @@ class iOSAnnotationViewController: UIViewController {
             return separatorConfig
         }
 
-        let layout = UICollectionViewCompositionalLayout { [weak self] _, environment in
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(40)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        header.pinToVisibleBounds = false
+
+        let layoutConfig = UICollectionViewCompositionalLayoutConfiguration()
+        layoutConfig.boundarySupplementaryItems = [header]
+
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: { [weak self] _, environment in
             guard let self else {
                 return NSCollectionLayoutSection.list(
                     using: listConfig,
@@ -298,15 +320,25 @@ class iOSAnnotationViewController: UIViewController {
             let section = NSCollectionLayoutSection.list(using: listConfig, layoutEnvironment: environment)
             section.contentInsets = sectionInsets
             return section
-        }
+        }, configuration: layoutConfig)
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(
+            iOSTagFilterHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: iOSTagFilterHeaderView.reuseIdentifier
+        )
         collectionView.backgroundColor = SettingsViewModel.shared.useDefaultTheme
             ? .systemGroupedBackground : .appBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.semanticContentAttribute = .forceLeftToRight
         collectionView.delegate = self
+
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
@@ -354,10 +386,21 @@ class iOSAnnotationViewController: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<String, AnnotationItem>(
             collectionView: collectionView
         ) { collectionView, indexPath, item in
-            return collectionView.dequeueConfiguredReusableCell(
+            collectionView.dequeueConfiguredReusableCell(
                 using: item.isGroup ? groupCellReg : annotationCellReg,
                 for: indexPath, item: item.node
             )
+        }
+
+        dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader else { return nil }
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: iOSTagFilterHeaderView.reuseIdentifier,
+                for: indexPath
+            ) as? iOSTagFilterHeaderView
+            self?.configureTagFilterHeader(header)
+            return header
         }
     }
 
@@ -374,7 +417,7 @@ class iOSAnnotationViewController: UIViewController {
     }
 
     private func rebuildSnapshot(animated: Bool) {
-        let newSectionIDs = currentNodes.map { $0.id }
+        let newSectionIDs = currentNodes.map(\.id)
         let currentSectionIDs = dataSource.snapshot().sectionIdentifiers
 
         if newSectionIDs != currentSectionIDs {
@@ -415,7 +458,8 @@ class iOSAnnotationViewController: UIViewController {
             }
 
             guard existing.items != sectionSnapshot.items ||
-                  existing.visibleItems != sectionSnapshot.visibleItems else {
+                existing.visibleItems != sectionSnapshot.visibleItems
+            else {
                 continue
             }
 
@@ -441,8 +485,8 @@ class iOSAnnotationViewController: UIViewController {
 
         dataSource.apply(sectionSnapshot, to: id, animatingDifferences: true)
         if let indexPath = dataSource.indexPath(for: groupItem),
-           let cell = collectionView.cellForItem(at: indexPath) {
-
+           let cell = collectionView.cellForItem(at: indexPath)
+        {
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {
                 if var config = cell.contentConfiguration as? ListContentConfiguration {
                     config.isExpanded = willExpand
@@ -456,10 +500,10 @@ class iOSAnnotationViewController: UIViewController {
 
     private func iconForKind(_ kind: AnnotationNodeKind) -> String {
         switch kind {
-        case .book: return "book.pages.fill"
-        case .tag: return "tag.fill"
-        case .untagged: return "tag.slash.fill"
-        default: return "folder.fill"
+        case .book: "book.pages.fill"
+        case .tag: "tag.fill"
+        case .untagged: "tag.slash.fill"
+        default: "folder.fill"
         }
     }
 
@@ -467,6 +511,14 @@ class iOSAnnotationViewController: UIViewController {
         item.isGroup
             ? ListLayoutMetrics.separatorTrailingOffset(isRoot: true, indentationLevel: 0)
             : ListLayoutMetrics.defaultPadding * 2
+    }
+
+    @objc private func handleRefresh() {
+        onRefreshRequested?()
+    }
+
+    func endRefreshing() {
+        collectionView.refreshControl?.endRefreshing()
     }
 }
 

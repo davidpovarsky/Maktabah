@@ -39,30 +39,88 @@ class iOSNavigationManager {
     var openTabs: [ReaderTab] = []
     var activeTabId: UUID?
 
+    private var observerTokens: [NotificationToken] = []
+
     init() {
         setupObservers()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     private func setupObservers() {
-        NotificationCenter.default.addObserver(
-            forName: .bookIntegrated,
-            object: nil,
-            queue: .main
-        ) { [weak self] notification in
-            guard let self, let bookId = notification.object as? Int else { return }
-            Task { @MainActor in
-                self.handleBookIntegrationChanged(bookId: bookId)
+        observerTokens.append(
+            NotificationToken(
+                token: NotificationCenter.default.addObserver(
+                    forName: .bookIntegrated,
+                    object: nil,
+                    queue: .main
+                ) { notification in
+                    guard let bookId = notification.object as? Int else {
+                        return
+                    }
+                    Task { @MainActor [weak self] in
+                        guard let self else { return }
+                        self.handleBookIntegrationChanged(bookId: bookId)
+                    }
+                }
+            )
+        )
+
+        observerTokens.append(
+            NotificationToken(
+                token: NotificationCenter.default.addObserver(
+                    forName: .libraryFolderChanged,
+                    object: nil,
+                    queue: .main
+                ) { _ in
+                    Task { @MainActor [weak self] in
+                        self?.clearAllTabs()
+                    }
+                }
+            )
+        )
+
+        observerTokens.append(
+            NotificationToken(
+                token: NotificationCenter.default.addObserver(
+                    forName: .bookIdMigrated,
+                    object: nil,
+                    queue: .main
+                ) { [weak self] notification in
+                    guard let userInfo = notification.userInfo,
+                        let oldId = userInfo["oldId"] as? Int,
+                        let newId = userInfo["newId"] as? Int
+                    else { return }
+                    Task { @MainActor [weak self] in
+                        guard let self else { return }
+                        handleBookIdMigrated(oldId: oldId, newId: newId)
+                    }
+                }
+            )
+        )
+    }
+
+    private func handleBookIdMigrated(oldId: Int, newId: Int) {
+        let ldm = LibraryDataManager.shared
+        guard let newBookData = ldm.booksById[newId] else { return }
+
+        for i in 0 ..< openTabs.count {
+            if openTabs[i].book.id == oldId {
+                let oldTab = openTabs[i]
+                openTabs[i] = ReaderTab(
+                    id: oldTab.id,
+                    book: newBookData,
+                    initialContentId: oldTab.initialContentId,
+                    viewModel: oldTab.viewModel
+                )
+                openTabs[i].viewModel.currentBook = newBookData
             }
         }
 
-        NotificationCenter.default.addObserver(
-            forName: .libraryFolderChanged,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            Task { @MainActor in
-                self?.clearAllTabs()
-            }
+        if selectedBook?.id == oldId {
+            selectedBook = newBookData
         }
     }
 
@@ -82,9 +140,9 @@ class iOSNavigationManager {
         currentMode = mode
     }
 
-    func openBook(_ book: BooksData, initialContentId: Int? = nil, searchText: String? = nil, targetAnnotation: Annotation? = nil) {
+    func openBook(_ book: BooksData, initialContentId: Int? = nil, searchText: String? = nil, searchMode: SearchMode? = nil, nearDistance: Int = 10, targetAnnotation: Annotation? = nil, recordHistory: Bool = true) {
         Task {
-            await openBookAsync(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
+            await openBookAsync(book, initialContentId: initialContentId, searchText: searchText, searchMode: searchMode, nearDistance: nearDistance, targetAnnotation: targetAnnotation, recordHistory: recordHistory)
         }
     }
 
@@ -164,7 +222,7 @@ class iOSNavigationManager {
                 }
             }
 
-        case .single(let book, let initialContentId):
+        case let .single(book, initialContentId):
             state.mode = .downloading
             state.message = NSLocalizedString(
                 "Downloading book file from server...",
@@ -185,7 +243,7 @@ class iOSNavigationManager {
                     )
 
                     await MainActor.run {
-                        if !MaktabahApp.isIpad && self.selectedBook != nil {
+                        if !MaktabahApp.isIpad, self.selectedBook != nil {
                             // Do not automatically push a new book if there is already an active reader on iPhone
                         } else {
                             self.presentReader(book, initialContentId: initialContentId)
@@ -216,7 +274,7 @@ class iOSNavigationManager {
         activeIntegrationStates.removeAll { $0.id == state.id }
     }
 
-    private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) async {
+    private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, searchMode: SearchMode? = nil, nearDistance: Int = 10, targetAnnotation: Annotation? = nil, recordHistory: Bool = true) async {
         if OtzariaNavigationAdapter.openBookIfEnabled(
             book,
             initialContentId: initialContentId,
@@ -227,21 +285,13 @@ class iOSNavigationManager {
                     book,
                     initialContentId: initialContentId,
                     searchText: searchText,
-                    targetAnnotation: targetAnnotation
+                    searchMode: searchMode,
+                    nearDistance: nearDistance,
+                    targetAnnotation: targetAnnotation,
+                    recordHistory: recordHistory
                 )
             }
         ) {
-            return
-        }
-
-        if AppConfig.isUsingBundleMode, !CoreDatabaseDownloader().areCoreFilesReady() {
-            alertMessage = AlertMessage(
-                title: NSLocalizedString("Database File Needed", comment: "Missing core files alert title"),
-                message: NSLocalizedString(
-                    "The core database files are not ready yet. Finish the initial download first.",
-                    comment: "Missing core files alert message"
-                )
-            )
             return
         }
 
@@ -252,13 +302,15 @@ class iOSNavigationManager {
             return
         }
 
-        presentReader(book, initialContentId: initialContentId, searchText: searchText, targetAnnotation: targetAnnotation)
+        presentReader(book, initialContentId: initialContentId, searchText: searchText, searchMode: searchMode, nearDistance: nearDistance, targetAnnotation: targetAnnotation, recordHistory: recordHistory)
 
         await Task.yield()
 
-        HistoryViewModel.shared.addBookToHistory(book.id)
-        if let initialContentId = initialContentId {
-            HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+        if recordHistory {
+            HistoryViewModel.shared.addBookToHistory(book.id)
+            if let initialContentId {
+                HistoryViewModel.shared.updateLastContentId(initialContentId, for: book.id)
+            }
         }
     }
 
@@ -277,7 +329,7 @@ class iOSNavigationManager {
         }
         // Prevent duplicate confirmation for the same book
         if activeIntegrationStates.contains(where: {
-            if case .single(let b, _) = $0.pendingData { return b.id == book.id }
+            if case let .single(b, _) = $0.pendingData { return b.id == book.id }
             return false
         }) {
             return
@@ -359,7 +411,7 @@ class iOSNavigationManager {
         state.progress = 0
     }
 
-    private func presentReader(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, targetAnnotation: Annotation? = nil) {
+    private func presentReader(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, searchMode: SearchMode? = nil, nearDistance: Int = 10, targetAnnotation: Annotation? = nil, recordHistory: Bool = true) {
         switchToMode(.viewer)
         clearPendingBookIntegration()
 
@@ -370,22 +422,35 @@ class iOSNavigationManager {
         if let existingTabIndex = openTabs.firstIndex(where: { $0.book.id == book.id }) {
             activeTabId = openTabs[existingTabIndex].id
             // Update initialContentId if provided, so the reader can jump to it
+            let updatedTab = openTabs[existingTabIndex]
+            updatedTab.viewModel.recordHistory = updatedTab.viewModel.recordHistory || recordHistory
             if let contentId = initialContentId {
-                var updatedTab = openTabs[existingTabIndex]
-                updatedTab.initialContentId = contentId
-                updatedTab.viewModel.searchText = searchText ?? ""
-                updatedTab.viewModel.targetAnnotation = targetAnnotation
-                updatedTab.viewModel.fetchContentById(contentId)
+                let isSameContent = updatedTab.viewModel.currentContentId == contentId
+                let hasNewSearch = (searchText != nil && !searchText!.isEmpty)
+                let hasNewTarget = (targetAnnotation != nil)
+
+                if !isSameContent || hasNewSearch || hasNewTarget {
+                    updatedTab.viewModel.searchText = searchText ?? ""
+                    updatedTab.viewModel.searchMode = searchMode
+                    updatedTab.viewModel.nearDistance = nearDistance
+                    updatedTab.viewModel.targetAnnotation = targetAnnotation
+                    updatedTab.viewModel.fetchContentById(contentId)
+                }
+
                 openTabs[existingTabIndex] = updatedTab
             } else {
-                let updatedTab = openTabs[existingTabIndex]
                 updatedTab.viewModel.searchText = searchText ?? ""
+                updatedTab.viewModel.searchMode = searchMode
+                updatedTab.viewModel.nearDistance = nearDistance
                 updatedTab.viewModel.targetAnnotation = targetAnnotation
                 openTabs[existingTabIndex] = updatedTab
             }
         } else {
             let viewModel = ReaderViewModel(book: book)
+            viewModel.recordHistory = recordHistory
             viewModel.searchText = searchText ?? ""
+            viewModel.searchMode = searchMode
+            viewModel.nearDistance = nearDistance
             viewModel.targetAnnotation = targetAnnotation
             viewModel.loadInitialContent(initialContentId: initialContentId)
             let newTab = ReaderTab(id: UUID(), book: book, initialContentId: initialContentId, viewModel: viewModel)

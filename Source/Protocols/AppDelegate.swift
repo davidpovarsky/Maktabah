@@ -6,9 +6,9 @@
 //  Restorable state saat membuka jendela baru
 //
 
+import CloudKit
 import Cocoa
 import SwiftUI
-import CloudKit
 import UniformTypeIdentifiers
 #if DIRECT_DISTRIBUTION
 import Sparkle
@@ -16,7 +16,6 @@ import Sparkle
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-
     @IBOutlet var menu: NSMenu!
     @IBOutlet weak var viewMenu: NSMenu!
     @IBOutlet weak var appUpdatesMenuItem: NSMenuItem!
@@ -25,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var controlMenu: NSMenu!
     @IBOutlet weak var clickEditAnnotationMenuItem: NSMenuItem!
     @IBOutlet weak var screenTimeMenuItem: NSMenuItem!
+    @IBOutlet weak var bookUpdatesMenuItem: NSMenuItem!
     
     fileprivate var mainWindowController: NSWindowController!
 
@@ -62,6 +62,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let wc = WindowController()
         mainWindowController = wc
         guard let window = wc.window else { return }
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"]
+            == "1" { return }
+
         window.makeKeyAndOrderFront(nil)
     }
 
@@ -78,9 +81,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         controlMenu.delegate = self
         _ = ScreenTimeManager.shared // untuk init supaya pengaturan diload.
 
-        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.lineHeight : 1.0])
-        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorDark : 3])
-        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorLight : 0])
+        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.lineHeight: 1.0])
+        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorDark: 3])
+        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorLight: 0])
         UserDefaults.standard.register(defaults: ["annotationsLayoutDirection": 1])
 
         if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
@@ -89,7 +92,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         #if DIRECT_DISTRIBUTION
         UserDefaults.standard.register(
-            defaults: [UserDefaults.autoCheckAppUpdatesKey : true]
+            defaults: [UserDefaults.autoCheckAppUpdatesKey: true]
         )
         Task.detached(priority: .low) { [unowned self] in
             if !UserDefaults.standard.autoCheckAppUpdates { return }
@@ -108,11 +111,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         /*
-        showWelcomeScreenIfNeeded()
-         */
+         showWelcomeScreenIfNeeded()
+          */
 
         // Check for core database updates (blocking, throttled 6 months)
         checkCoreDatabaseUpdate()
+
+        // Check for book updates in background (throttled 24h, low priority)
+        checkBookUpdatesPeriodically()
+
+        NotificationCenter.default.addObserver(
+            forName: .booksChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.checkBookUpdatesPeriodically(force: true)
+        }
     }
 
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
@@ -124,50 +138,53 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
-        guard AppConfig.useICloud else { return }
-        CloudKitSyncManager.shared.fetchChanges()
+        if AppConfig.useICloud {
+            CloudKitSyncManager.shared.fetchChanges()
+        }
+        DonationManager.shared.recordActivation()
+        DonationManager.shared.checkAndPromptMacOSSheet(on: keyWindow ?? mainWindowController?.window)
     }
 
     /*
-    func showWelcomeScreenIfNeeded() {
-        let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
-        let lastVersion = UserDefaults.standard.string(forKey: "lastVersionPrompted") ?? ""
+     func showWelcomeScreenIfNeeded() {
+         let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+         let lastVersion = UserDefaults.standard.string(forKey: "lastVersionPrompted") ?? ""
 
-        if lastVersion != currentVersion {
-            let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 520, height: 500),
-                styleMask: [.fullSizeContentView, .titled],
-                backing: .buffered,
-                defer: false
-            )
+         if lastVersion != currentVersion {
+             let window = NSWindow(
+                 contentRect: NSRect(x: 0, y: 0, width: 520, height: 500),
+                 styleMask: [.fullSizeContentView, .titled],
+                 backing: .buffered,
+                 defer: false
+             )
 
-            let contentView = WelcomeScreenView { [weak self, weak window] in
-                guard let window else { return }
-                UserDefaults.standard.set(currentVersion, forKey: "lastVersionPrompted")
+             let contentView = WelcomeScreenView { [weak self, weak window] in
+                 guard let window else { return }
+                 UserDefaults.standard.set(currentVersion, forKey: "lastVersionPrompted")
 
-                if let mainWin = self?.mainWindowController?.window, mainWin.sheets.contains(window) {
-                    mainWin.endSheet(window)
-                } else {
-                    window.close()
-                }
-            }
+                 if let mainWin = self?.mainWindowController?.window, mainWin.sheets.contains(window) {
+                     mainWin.endSheet(window)
+                 } else {
+                     window.close()
+                 }
+             }
 
-            let hostingView = NSHostingView(rootView: contentView)
-            window.contentView = hostingView
-            window.title = "What's New"
-            window.titleVisibility = .hidden
-            window.titlebarAppearsTransparent = true
-            window.isReleasedWhenClosed = false
+             let hostingView = NSHostingView(rootView: contentView)
+             window.contentView = hostingView
+             window.title = "What's New"
+             window.titleVisibility = .hidden
+             window.titlebarAppearsTransparent = true
+             window.isReleasedWhenClosed = false
 
-            if let mainWin = mainWindowController?.window {
-                mainWin.beginSheet(window)
-            } else {
-                window.center()
-                window.makeKeyAndOrderFront(nil)
-            }
-        }
-    }
-     */
+             if let mainWin = mainWindowController?.window {
+                 mainWin.beginSheet(window)
+             } else {
+                 window.center()
+                 window.makeKeyAndOrderFront(nil)
+             }
+         }
+     }
+      */
 
     func applicationWillTerminate(_ aNotification: Notification) {
         CloudKitCoreManager.shared.syncWorker()
@@ -177,14 +194,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        return true
+        true
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         mainWindowController = nil
         return false
     }
-    
+
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows: Bool) -> Bool {
         if !hasVisibleWindows {
             newWindow(sender)
@@ -233,7 +250,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func restorePersistedState(_ window: MainWindow?) {
         guard let window else {
             #if DEBUG
-                print("mainWindowController window nil")
+            print("mainWindowController window nil")
             #endif
             return
         }
@@ -242,16 +259,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         guard let splitVC = window.contentViewController as? SplitVC else {
             #if DEBUG
-                print("Cannot restore state: SplitVC not found")
+            print("Cannot restore state: SplitVC not found")
             #endif
             return
         }
-        
+
         // Get last active mode
         let lastMode = window.currentMode
 
         #if DEBUG
-            print("Restoring app to last mode: \(lastMode)")
+        print("Restoring app to last mode: \(lastMode)")
         #endif
 
         splitVC.setupForMode(lastMode)
@@ -279,17 +296,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let hostingView = NSHostingView(rootView: contentView)
         hostingView.frame = NSRect(x: 0, y: 0, width: 600, height: 520)
 
-        let window = NSWindow(
-            contentRect: hostingView.frame,
+        let window = ReusableFunc.makeWindow(
+            contentView: hostingView,
             styleMask: [.titled, .closable, .miniaturizable, .resizable],
-            backing: .buffered,
-            defer: false
+            title: String(localized: "Settings")
         )
 
-        window.center()
-        window.title = String(localized: "Settings")
-        window.contentView = hostingView
-        window.isReleasedWhenClosed = false
         window.makeKeyAndOrderFront(sender)
 
         settingsWindow = window
@@ -317,23 +329,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         hostingView.frame = NSRect(x: 0, y: 0, width: 400, height: 300)
 
         // 3. Buat Window baru dengan style mask yang sudah benar dari awal
-        let window = NSWindow(
-            contentRect: hostingView.frame,
-            styleMask: [.fullSizeContentView, .titled, .resizable], // ← Langsung pakai di sini
-            backing: .buffered,
-            defer: false
+        let window = ReusableFunc.makeWindow(
+            contentView: hostingView,
+            styleMask: [.fullSizeContentView, .titled, .resizable],
+            title: "Books Updates".localized
         )
-
-        window.center()
-        window.title = "Books Updates".localized
-        window.titlebarAppearsTransparent = true
-        window.titlebarSeparatorStyle = .none
-        window.titleVisibility = .hidden
-        window.contentView = hostingView
-        window.isReleasedWhenClosed = false
 
         // 4. Jalankan sebagai Modal
         NSApp.runModal(for: window)
+        checkBookUpdatesPeriodically(force: true)
+    }
+
+    // MARK: - Book Updates Periodic Check & Badge
+
+    fileprivate func checkBookUpdatesPeriodically(force: Bool = false) {
+        LibraryDataManager.shared.checkBookUpdatesPeriodically(
+            force: force
+        ) { [weak self] count in
+            self?.updateBookUpdatesBadge(count: count)
+        }
+    }
+
+    fileprivate func updateBookUpdatesBadge(count: Int) {
+        if #available(macOS 14.0, *) {
+            bookUpdatesMenuItem?.badge = count > 0 ? .init(count: count) : nil
+        } else {
+            if count > 0 {
+                bookUpdatesMenuItem?.title = "\("Books Updates".localized) (\(count))"
+            } else {
+                bookUpdatesMenuItem?.title = "Books Updates".localized
+            }
+        }
     }
 
     @IBAction func importOfflineBook(_ sender: Any?) {
@@ -343,28 +369,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func showOfflineImportWindow() {
         let contentView = OfflineImportFormView(onImport: { [unowned self]
             (url: URL, metadata: BookMetadata, authorRow: [String: Any]?) async in
-            await performCustomImport(
-                url: url,
-                metadata: metadata,
-                authorRow: authorRow
-            )
+                await performCustomImport(
+                    url: url,
+                    metadata: metadata,
+                    authorRow: authorRow
+                )
         })
 
         let hostingView = NSHostingView(rootView: contentView)
         hostingView.frame = NSRect(x: 0, y: 0, width: 600, height: 600)
 
-        let window = NSWindow(
-            contentRect: hostingView.frame,
+        let window = ReusableFunc.makeWindow(
+            contentView: hostingView,
             styleMask: [.fullSizeContentView, .titled, .closable, .resizable],
-            backing: .buffered,
-            defer: false
+            title: "Import Offline Book"
         )
 
-        window.center()
         window.titleVisibility = .hidden
-        window.title = "Import Offline Book"
-        window.contentView = hostingView
-        window.isReleasedWhenClosed = false
         window.makeKeyAndOrderFront(nil as Any?)
     }
 
@@ -372,7 +393,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func performCustomImport(url: URL, metadata: BookMetadata, authorRow: [String: Any]?) async {
         do {
             let result = try await BookUpdateManager
-                .shared.importOfflineUpdate (
+                .shared.importOfflineUpdate(
                     from: url,
                     providedMetadata: metadata,
                     authorRow: authorRow
@@ -392,7 +413,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             )
 
             #if DEBUG
-                print("[Offline Import] Failed to import book from \(url.lastPathComponent): \(error)")
+            print("[Offline Import] Failed to import book from \(url.lastPathComponent): \(error)")
             #endif
         }
     }
@@ -414,7 +435,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let fileExtension = tempURL.pathExtension
 
             guard let fontURL = Bundle.main.url(forResource: fileNameWithoutExtension,
-                                                withExtension: fileExtension) else {
+                                                withExtension: fileExtension)
+            else {
                 print("Font file tidak ditemukan: \(fontFile)")
                 continue
             }
@@ -456,7 +478,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     fileprivate func buildViewMenu() {
         let reader = buildMenu(
-            NSLocalizedString("Reader", comment: ""),  image: "book.fill",
+            NSLocalizedString("Reader", comment: ""), image: "book.fill",
             representedObject: .viewer, keyEquivalent: "1"
         )
 
@@ -491,15 +513,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
 
         let quranWindow = buildMenu(NSLocalizedString("QuranMenuBar", comment: ""), image: "character.book.closed.ar", keyEquivalent: "u")
-        
-        let bookInfoImage: String
-        
-        if #available(macOS 15.4, *) {
-            bookInfoImage = "info.circle.text.page.rtl"
+
+        let bookInfoImage = if #available(macOS 15.4, *) {
+            "info.circle.text.page.rtl"
         } else {
-            bookInfoImage = "info.circle"
+            "info.circle"
         }
-        
+
         let bookInfo = buildMenu(NSLocalizedString("BookInfo", comment: ""), image: bookInfoImage, keyEquivalent: "i")
 
         let resetCurrentView = buildMenu(
@@ -528,7 +548,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         quranWindow.action = #selector(displayQuranWindow(_:))
         resetCurrentView.action = #selector(resetCurrentViewState)
 
+        let donationItem = buildMenu(
+            String(localized: .Donation.supportDevelopmentShort),
+            image: "heart.fill",
+            keyEquivalent: ""
+        )
+        donationItem.action = #selector(showDonationSheet(_:))
         viewMenu.insertItem(.separator(), at: viewMenu.items.count - 1)
+        viewMenu.insertItem(donationItem, at: viewMenu.items.count - 1)
+
+        viewMenu.insertItem(.separator(), at: viewMenu.items.count - 1)
+
         viewMenu.insertItem(resetCurrentView, at: viewMenu.items.count - 1)
         viewMenu.insertItem(.separator(), at: viewMenu.items.count - 1)
         viewMenu.insertItem(quranWindow, at: viewMenu.items.count - 1)
@@ -591,7 +621,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .resizable,
             .miniaturizable,
             .fullSizeContentView,
-            .utilityWindow
+            .utilityWindow,
         ]
 
         let window = QuranWindow(
@@ -630,7 +660,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showDiacritics(_ sender: NSMenuItem) {
         TextViewState.shared.toggleHarakat()
     }
-    
+
+    @IBAction func showDonationSheet(_ sender: Any?) {
+        DonationManager.shared.presentDonationSheet(on: keyWindow ?? mainWindowController?.window)
+    }
+
     @objc private func showCurrentBookInfo(_ sender: NSMenuItem) {
         keyWindow?.splitVC.bookInfo(sender)
     }
@@ -642,7 +676,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func increaseFontSize(_ sender: NSMenuItem) {
         TextViewState.shared.changeFontSize(by: 2)
     }
-    
+
     @IBAction func newWindow(_ sender: Any) {
         let wc = WindowController()
         wc.window?.setFrameAutosaveName("MainWindow")
@@ -659,6 +693,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         w.makeKeyAndOrderFront(sender)
         w.displayIfNeeded()
+    }
+
+    @IBAction func newTabWindow(_ sender: Any?) {
+        guard let keyWindow else { return }
+        keyWindow.newWindowForTab(sender)
     }
 
     deinit {

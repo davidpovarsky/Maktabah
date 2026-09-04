@@ -57,7 +57,8 @@ struct iOSSavedResultsView: View {
                         onRenameFolder: { itemToRename = .folder($0) },
                         onDeleteResult: { viewModel.deleteResult($0.parentId, name: $0.name) },
                         onMoveResult: { itemToMove = .result($0) },
-                        onRenameResult: { itemToRename = .result($0) }
+                        onRenameResult: { itemToRename = .result($0) },
+                        onNewFolder: { parent in itemToRename = .newFolder(parent: parent) }
                     )
                 }
             }
@@ -73,59 +74,52 @@ struct iOSSavedResultsView: View {
                     onRenameFolder: { itemToRename = .folder($0) },
                     onDeleteResult: { viewModel.deleteResult($0.parentId, name: $0.name) },
                     onMoveResult: { itemToMove = .result($0) },
-                    onRenameResult: { itemToRename = .result($0) }
+                    onRenameResult: { itemToRename = .result($0) },
+                    onNewFolder: { parent in itemToRename = .newFolder(parent: parent) }
                 )
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") { dismiss() }
                 }
-                ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        itemToRename = .newRootFolder
-                    } label: {
-                        Label("New Folder", systemImage: "folder.badge.plus")
-                    }
+            }
+        }
+        // Sheet & Alerts
+        .sheet(item: $itemToMove) { target in
+            iOSMoveItemView(target: target)
+        }
+        .alert(
+            "Delete Folder",
+            isPresented: Binding(
+                get: { folderToDelete != nil },
+                set: { if !$0 { folderToDelete = nil } }
+            ),
+            presenting: folderToDelete
+        ) { folder in
+            Button("Delete", role: .destructive) {
+                viewModel.deleteFolder(node: folder)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: { folder in
+            Text("\"\(folder.name)\" and all its contents will be permanently deleted.")
+        }
+        .alert(
+            itemToRename?.alertTitle ?? "",
+            isPresented: Binding(
+                get: { itemToRename != nil },
+                set: { if !$0 { itemToRename = nil } }
+            )
+        ) {
+            TextField("Name", text: Binding(
+                get: { itemToRename?.draftName ?? "" },
+                set: { itemToRename?.draftName = $0 }
+            ))
+            Button("Save") {
+                if let target = itemToRename {
+                    commitRename(target)
                 }
             }
-            // Sheet & Alerts
-            .sheet(item: $itemToMove) { target in
-                iOSMoveItemView(target: target)
-            }
-            .alert(
-                "Delete Folder",
-                isPresented: Binding(
-                    get: { folderToDelete != nil },
-                    set: { if !$0 { folderToDelete = nil } }
-                ),
-                presenting: folderToDelete
-            ) { folder in
-                Button("Delete", role: .destructive) {
-                    viewModel.deleteFolder(node: folder)
-                }
-                Button("Cancel", role: .cancel) {}
-            } message: { folder in
-                Text("\"\(folder.name)\" and all its contents will be permanently deleted.")
-            }
-            .alert(
-                itemToRename?.alertTitle ?? "",
-                isPresented: Binding(
-                    get: { itemToRename != nil },
-                    set: { if !$0 { itemToRename = nil } }
-                )
-            ) {
-                TextField("Name", text: Binding(
-                    get: { itemToRename?.draftName ?? "" },
-                    set: { itemToRename?.draftName = $0 }
-                ))
-                Button("Save") {
-                    if let target = itemToRename {
-                        commitRename(target)
-                    }
-                }
-                .disabled((itemToRename?.draftName ?? "").trimmingCharacters(in: .whitespaces).isEmpty)
-                Button("Cancel", role: .cancel) {}
-            }
+            Button("Cancel", role: .cancel) {}
         }
         .task {
             await viewModel.getFolders()
@@ -200,8 +194,12 @@ struct iOSSavedResultsView: View {
             case .result(let node):
                 guard node.name != newName else { return }
                 try viewModel.updateResultQueryName(id: node.id, newName: newName)
-            case .newRootFolder:
-                try viewModel.addRootFolder(name: newName)
+            case .newFolder(let parent):
+                if let parent {
+                    try viewModel.addSubFolder(parentNode: parent, name: newName)
+                } else {
+                    try viewModel.addRootFolder(name: newName)
+                }
             }
         } catch {
             // Errors are silent in SwiftUI; could show another alert if needed
@@ -227,12 +225,18 @@ struct iOSFolderContentList: View {
     let onDeleteResult: (ResultNode) -> Void
     let onMoveResult: (ResultNode) -> Void
     let onRenameResult: (ResultNode) -> Void
+    let onNewFolder: (FolderNode?) -> Void
 
     let viewModel: ResultsViewModel = .shared
 
+    private var currentFolder: FolderNode? {
+        guard let folder else { return nil }
+        return viewModel.folderById[folder.id] ?? folder
+    }
+
     private var children: [FolderNode] {
-        if let folder {
-            return folder.children
+        if let currentFolder {
+            return currentFolder.children
         } else {
             return viewModel.folderRoots
         }
@@ -278,6 +282,15 @@ struct iOSFolderContentList: View {
         }
         .listStyle(.plain)
         .navigationTitle(folder?.name ?? "Saved Results".localized)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    onNewFolder(currentFolder)
+                } label: {
+                    Label("New Folder", systemImage: "folder.badge.plus")
+                }
+            }
+        }
     }
 }
 
@@ -287,7 +300,7 @@ struct RenameTarget: Identifiable {
     enum Kind {
         case folder(FolderNode)
         case result(ResultNode)
-        case newRootFolder
+        case newFolder(parent: FolderNode?)
     }
 
     let id = UUID()
@@ -302,15 +315,15 @@ struct RenameTarget: Identifiable {
         RenameTarget(kind: .result(node), draftName: node.name)
     }
 
-    static var newRootFolder: RenameTarget {
-        RenameTarget(kind: .newRootFolder, draftName: "")
+    static func newFolder(parent: FolderNode? = nil) -> RenameTarget {
+        RenameTarget(kind: .newFolder(parent: parent), draftName: "")
     }
 
     var alertTitle: String {
         switch kind {
         case .folder:   return String(localized: "Rename Folder")
         case .result:   return String(localized: "Rename Result")
-        case .newRootFolder: return String(localized: "New Folder")
+        case .newFolder: return String(localized: "New Folder")
         }
     }
 }
@@ -324,7 +337,8 @@ struct ResultRow: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Image(systemName: "doc.text.magnifyingglass")
+                let mode = SearchMode(rawValue: result.searchMode) ?? .phrase
+                Image(systemName: SearchMode.imageNameForMode(mode))
                     .accessibilityHidden(true)
                 VStack(alignment: .leading) {
                     Text(result.name)

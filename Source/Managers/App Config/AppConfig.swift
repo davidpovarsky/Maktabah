@@ -351,10 +351,8 @@ struct AppConfig {
                 bookmarkDataIsStale: &isStale
             )
 
-            let startAccess = url.startAccessingSecurityScopedResource()
-            if startAccess {
-                return url
-            }
+            _ = url.startAccessingSecurityScopedResource()
+            return url
         } catch {
             print("Bookmark resolve error:", error)
         }
@@ -524,9 +522,9 @@ struct AppConfig {
             if let bundlePath = archiveCachePath {
                 let mainSqFile = "main.sqlite"
                 let specialSqFile = "special.sqlite"
-                // let specialFtsSqFile = "special_fts.sqlite"
+                 let specialFtsSqFile = "special_fts.sqlite"
 
-                for fileName in [mainSqFile, specialSqFile] {
+                for fileName in [mainSqFile, specialSqFile, specialFtsSqFile] {
                     let sourcePath = "\(bundlePath)/\(fileName)"
                     let destPath = filesDir.appendingPathComponent(fileName).path
 
@@ -595,7 +593,7 @@ struct AppConfig {
 
     private static func migrateFiles(from sourceURL: URL, to destURL: URL) {
         let fm = FileManager.default
-        let files = ["Annotations.sqlite", "SearchResults.sqlite"]
+        let files = ["Annotations.sqlite", "SearchResults.sqlite", "History.sqlite"]
         let exts = ["", "-wal", "-shm"]
 
         for file in files {
@@ -640,6 +638,10 @@ struct AppConfig {
             setupAnnotationsAndResults()
 
             CloudKitSyncManager.shared.setupAndInitialSync()
+        } else {
+            // Reset flag agar saat re-enable, uploadAllLocalData jalan kembali
+            // sehingga data yang dibuat saat CloudKit off tidak terlewat
+            UserDefaults.standard.removeObject(forKey: "CloudKitSyncManager_InitialUploadDone")
         }
         DispatchQueue.main.async { completion(nil) }
     }

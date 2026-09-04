@@ -129,6 +129,50 @@ class ReusableFunc {
         }
     }
 
+    // MARK: - WINDOW
+    static func makeTitlelessWindow(contentView: NSView, size: NSSize) -> NSWindow {
+        let w = NSWindow(
+            contentRect: NSRect(origin: .zero, size: size),
+            styleMask: [.titled, .fullSizeContentView],
+            backing: .buffered,
+            defer: false
+        )
+        w.contentView = contentView
+        w.titlebarAppearsTransparent = true
+        w.isMovableByWindowBackground = true
+        w.isOpaque = false
+        w.backgroundColor = .clear
+        w.hasShadow = true
+        w.titleVisibility = .hidden
+        w.isReleasedWhenClosed = false
+        w.standardWindowButton(.closeButton)?.isHidden = true
+        w.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        w.standardWindowButton(.zoomButton)?.isHidden = true
+        return w
+    }
+
+    static func makeWindow(
+        contentView: NSView,
+        styleMask: NSWindow.StyleMask,
+        size: NSSize? = nil,
+        title: String = "",
+        centered: Bool = true
+    ) -> NSWindow {
+        let window = NSWindow(
+            contentRect: contentView.frame,
+            styleMask: styleMask,
+            backing: .buffered,
+            defer: false
+        )
+
+        window.title = title
+        window.contentView = contentView
+        window.isReleasedWhenClosed = false
+        if centered { window.center() }
+
+        return window
+    }
+
     // MARK: - OTHERS
     static func resolveRowsToProcess(selectedRows: IndexSet, clickedRow: Int) -> IndexSet {
         if selectedRows.contains(clickedRow), selectedRows.count > 1 {
@@ -169,18 +213,22 @@ class ReusableFunc {
     /// Menampilkan jendela peringatan standar kepada pengguna.
     #if os(macOS)
     static func showAlert(title: String, message: String, style: NSAlert.Style = .warning) {
-        let alert = NSAlert()
-        alert.alertStyle = style
-        alert.messageText = title
-        alert.informativeText = message
-        alert.runModal()
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.alertStyle = style
+            alert.messageText = title
+            alert.informativeText = message
+            alert.runModal()
+        }
     }
     #else
     static func showAlert(title: String, message: String) {
-        guard let topVC = getTopViewController() else { return }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        topVC.present(alert, animated: true)
+        DispatchQueue.main.async {
+            guard let topVC = getTopViewController() else { return }
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            topVC.present(alert, animated: true)
+        }
     }
 
     static func getTopViewController() -> UIViewController? {
@@ -196,46 +244,17 @@ class ReusableFunc {
     }
     #endif
 
-    // MARK: - Fungsi Pemeriksaan Koneksi Internet Langsung
-
-    /// Fungsi ini akan memeriksa ketersediaan internet secara asinkron.
-    /// - Returns: `true` jika internet tersedia, `false` jika internet offline.
-    static func checkInternetConnectivityDirectly() async throws -> Bool {
-        // Pilih URL yang Anda yakin selalu online, misal Google atau API server Anda.
-        let url = URL(string: "https://www.google.com")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "HEAD" // Minta hanya header, lebih cepat dan hemat bandwidth.
-        request.timeoutInterval = 5.0 // Batasi waktu respons menjadi 5 detik.
-
-        do {
-            let (_, response) = try await URLSession.shared.data(for: request) // Gunakan async data(for:)
-
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                #if DEBUG
-                    print("Internet tersedia melalui koneksi langsung.")
-                #endif
-                return true
-            } else {
-                #if DEBUG
-                    print("Internet tidak tersedia melalui koneksi langsung. Status code: \((response as? HTTPURLResponse)?.statusCode ?? -1)")
-                #endif
-                return false
-            }
-        } catch {
-            #if DEBUG
-                print("Gagal memeriksa koneksi internet. Error: \(error.localizedDescription)")
-            #endif
-            // Jika ada error (misal, tidak ada koneksi sama sekali, timeout), anggap tidak ada internet
-            return false
-        }
-    }
 
     static func decompressData(_ data: Data?) -> String {
         guard let compressed = data, !compressed.isEmpty else { return "" }
+        return compressed.withUnsafeBytes { ptr in decompressData(from: ptr) }
+    }
 
-        return compressed.withUnsafeBytes { (ptr: UnsafeRawBufferPointer) -> String in
-            // 1. Ambil ukuran asli dari frame ZSTD
-            let expectedSize = ZSTD_getFrameContentSize(ptr.baseAddress, compressed.count)
+    static func decompressData(from ptr: UnsafeRawBufferPointer?) -> String {
+        guard let ptr = ptr, ptr.count > 0 else { return "" }
+
+        // 1. Ambil ukuran asli dari frame ZSTD
+        let expectedSize = ZSTD_getFrameContentSize(ptr.baseAddress, ptr.count)
 
             // Cek jika ukuran tidak valid atau error
             if expectedSize == ZSTD_CONTENTSIZE_ERROR || expectedSize == ZSTD_CONTENTSIZE_UNKNOWN {
@@ -246,28 +265,36 @@ class ReusableFunc {
                 return ""
             }
 
-            var outputBuffer = Data(count: Int(expectedSize))
-            let decompressedSize = outputBuffer.withUnsafeMutableBytes { (outPtr: UnsafeMutableRawBufferPointer) -> Int in
-                return ZSTD_decompress(
-                    outPtr.baseAddress,
-                    Int(expectedSize),
+            let expectedSizeInt = Int(expectedSize)
+            return String(unsafeUninitializedCapacity: expectedSizeInt) { outBuffer in
+                let dict = Thread.current.threadDictionary
+                let dctx: OpaquePointer
+                if let wrapper = dict["Maktabah.ZSTDDCtx"] as? ZSTDContextWrapper {
+                    dctx = wrapper.dctx
+                } else {
+                    let wrapper = ZSTDContextWrapper()
+                    dict["Maktabah.ZSTDDCtx"] = wrapper
+                    dctx = wrapper.dctx
+                }
+
+                let decompressedSize = ZSTD_decompressDCtx(
+                    dctx,
+                    outBuffer.baseAddress,
+                    expectedSizeInt,
                     ptr.baseAddress,
-                    compressed.count
+                    ptr.count
                 )
-            }
 
-            if ZSTD_isError(decompressedSize) != 0 {
-                let errorName = String(cString: ZSTD_getErrorName(decompressedSize))
-                print("❌ Zstd Error: \(errorName)")
-                return ""
-            }
+                if ZSTD_isError(decompressedSize) != 0 {
+                    let errorName = String(cString: ZSTD_getErrorName(decompressedSize))
+                    #if DEBUG
+                    print("❌ Zstd Error: \(errorName)")
+                    #endif
+                    return 0
+                }
 
-            if decompressedSize < Int(expectedSize) {
-                outputBuffer.removeSubrange(decompressedSize..<outputBuffer.count)
+                return decompressedSize
             }
-
-            return String(data: outputBuffer, encoding: .utf8) ?? ""
-        }
     }
 
     static func compressData(_ text: String, level: Int32 = 10) -> Data? {
@@ -382,6 +409,9 @@ class ReusableFunc {
         let option3Label = createTitleLabel(text: String(localized: "anyWordsSearchTitle"))
         let option3Desc = createDescLabel(text: String(localized: "anyWordsSearchDesc"))
 
+        let option4Label = createTitleLabel(text: String(localized: "nearSearchTitle"))
+        let option4Desc = createDescLabel(text: String(localized: "nearSearchDesc"))
+
         // 5. Tambahkan Konten ke StackView
         stackView.addArrangedSubview(option1Label)
         stackView.addArrangedSubview(option1Desc)
@@ -396,6 +426,11 @@ class ReusableFunc {
         stackView.addArrangedSubview(option3Label)
         stackView.addArrangedSubview(option3Desc)
 
+        stackView.addArrangedSubview(createSeparator())
+
+        stackView.addArrangedSubview(option4Label)
+        stackView.addArrangedSubview(option4Desc)
+
         // 6. Konfigurasi dan Tampilkan Popover
         searchHelpPopover.contentViewController = contentVC
         searchHelpPopover.behavior = .transient // Popover menutup ketika fokus hilang
@@ -403,7 +438,7 @@ class ReusableFunc {
         // Tampilkan popover, relatif terhadap tombol (sender)
         searchHelpPopover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .minX)
     }
-    
+
     // MARK: - NSIMAGE
     static func systemImage(named name: String) -> NSImage {
         guard let image = NSImage(systemSymbolName: name,
@@ -413,3 +448,20 @@ class ReusableFunc {
     }
     #endif
 }
+
+#if os(macOS)
+extension NSOutlineView {
+    func effectiveRows() -> IndexSet {
+        if clickedRow == -1 { return selectedRowIndexes }
+        return selectedRowIndexes.contains(clickedRow)
+            ? selectedRowIndexes
+            : IndexSet(integer: clickedRow)
+    }
+
+    func contextMenuAnchorRect() -> NSRect {
+        let anchorRow = clickedRow >= 0 ? clickedRow : selectedRow
+        guard anchorRow >= 0 else { return bounds }
+        return rect(ofRow: anchorRow)
+    }
+}
+#endif

@@ -9,22 +9,24 @@ import Combine
 import Foundation
 import SwiftUI
 
-enum AnnotationSearchScope: Int, CaseIterable, Identifiable, Sendable {
+enum AnnotationSearchScope: Int, Sendable, CaseIterable, Identifiable {
     case all = 0
     case book = 1
     case context = 2
     case note = 3
     case tag = 4
 
-    var id: Int { rawValue }
+    var id: Int {
+        rawValue
+    }
 
     var title: String {
         switch self {
-        case .all: return "All".localized
-        case .book: return "Book".localized
-        case .context: return "Context".localized
-        case .note: return "Note".localized
-        case .tag: return "Tag".localized
+        case .all: "All".localized
+        case .book: "Book".localized
+        case .context: "Context".localized
+        case .note: "Note".localized
+        case .tag: "Tag".localized
         }
     }
 }
@@ -49,14 +51,14 @@ struct SwiftUIAnnotationNode: Identifiable {
         self.annotation = annotation
         self.children = children
     }
-    
+
     static func id(from node: AnnotationNode) -> String {
         if node.kind == .annotation, let ann = node.annotation, let annId = ann.id {
             return "ann-\(annId)"
         }
         return "group-\(node.kind)-\(node.title)"
     }
-    
+
     /// Convert the core AppKit/Foundation AnnotationNode to SwiftUI identifiable node
     init(from node: AnnotationNode, parentId: String? = nil) {
         let baseId = SwiftUIAnnotationNode.id(from: node)
@@ -68,7 +70,6 @@ struct SwiftUIAnnotationNode: Identifiable {
         children = node.children.isEmpty ? nil : node.children.map { SwiftUIAnnotationNode(from: $0, parentId: currentId) }
     }
 }
-
 
 @MainActor
 #if os(iOS)
@@ -139,6 +140,50 @@ class AnnotationViewModel: ViewModelBase, @unchecked Sendable {
         }
     }
 
+    // MARK: - Tag Filtering
+
+    var selectedTags: Set<String> = [] {
+        didSet {
+            guard oldValue != selectedTags else { return }
+            applyFilter()
+        }
+    }
+
+    var tagFilterMode: TagFilterMode = .or {
+        didSet {
+            guard oldValue != tagFilterMode else { return }
+            if !selectedTags.isEmpty {
+                applyFilter()
+            }
+        }
+    }
+
+    /// All unique tag names from annotation manager
+    var allTags: [String] {
+        AnnotationManager.shared.allTagNames()
+    }
+
+    /// Tags that are relevant based on current filter mode and selections.
+    /// In AND mode with active selections, only tags that co-occur in the matching annotations are returned.
+    var availableTags: [String] {
+        availableTags(for: selectedTags)
+    }
+
+    func availableTags(for tags: Set<String>) -> [String] {
+        guard tagFilterMode == .and, !tags.isEmpty,
+              let root = AnnotationManager.shared.rootNode
+        else {
+            return allTags
+        }
+
+        var coOccurringTags = Set(tags)
+        let matchingNodes = filterNodesByTags(root.children, tags: tags)
+        gatherTags(from: matchingNodes, into: &coOccurringTags)
+        return coOccurringTags.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+    }
+
+    var onTagsChanged: (([String]) -> Void)?
+
     // MARK: - Update Callbacks
 
     /// Controller implements these to apply changes
@@ -196,7 +241,9 @@ class AnnotationViewModel: ViewModelBase, @unchecked Sendable {
               let changeType = AnnotationChangeType(rawValue: rawType)
         else { return }
 
-        if !searchText.isEmpty {
+        onTagsChanged?(availableTags)
+
+        if !searchText.isEmpty || !selectedTags.isEmpty {
             applyFilter()
             return
         }
@@ -206,7 +253,8 @@ class AnnotationViewModel: ViewModelBase, @unchecked Sendable {
         if UserDefaults.standard.hideMissingBookAnnotations,
            let annotationId = userInfo[AnnotationNotificationKeys.annotationId] as? Int64,
            let annotation = AnnotationManager.shared.loadAnnotationById(annotationId),
-           LibraryDataManager.shared.getBook([annotation.bkId]).isEmpty {
+           LibraryDataManager.shared.getBook([annotation.bkId]).isEmpty
+        {
             return
         }
 
@@ -239,11 +287,40 @@ class AnnotationViewModel: ViewModelBase, @unchecked Sendable {
         onTreeUpdate?(filteredNodes, groupingMode)
     }
 
+    func renameTag(from oldName: String, to newName: String) throws {
+        try AnnotationManager.shared.renameTag(from: oldName, to: newName)
+        if let match = selectedTags.first(where: { $0.caseInsensitiveCompare(oldName) == .orderedSame }) {
+            var updated = selectedTags
+            updated.remove(match)
+            updated.insert(newName)
+            selectedTags = updated
+        }
+    }
+
+    func deleteTag(named tagName: String) throws {
+        try AnnotationManager.shared.deleteTag(named: tagName)
+        if let match = selectedTags.first(where: { $0.caseInsensitiveCompare(tagName) == .orderedSame }) {
+            selectedTags.remove(match)
+        }
+    }
+
     private func reloadFromManager() {
         guard let coreNodes = AnnotationManager.shared.rootNode?.children else { return }
 
+        let currentAllTags = Set(allTags)
+        let validSelected = selectedTags.filter { currentAllTags.contains($0) }
+        if validSelected != selectedTags {
+            selectedTags = validSelected
+            return
+        }
+
         var isFiltered = false
         var nodes = coreNodes
+
+        if !selectedTags.isEmpty {
+            nodes = filterNodesByTags(nodes)
+            isFiltered = true
+        }
 
         if !searchText.isEmpty {
             nodes = filterNodes(nodes, with: searchText)
@@ -255,6 +332,9 @@ class AnnotationViewModel: ViewModelBase, @unchecked Sendable {
         } else {
             cachedFilteredNodes = nil
         }
+
+        let currentTags = availableTags
+        onTagsChanged?(currentTags)
     }
 
     private func filterOutMissingBooks(from nodes: [AnnotationNode]) -> [AnnotationNode] {
@@ -283,6 +363,29 @@ class AnnotationViewModel: ViewModelBase, @unchecked Sendable {
                 }
             } else {
                 let filteredChildren = applyBookFilter(from: node.children, existingBkIds: existingBkIds)
+                if !filteredChildren.isEmpty {
+                    let copy = AnnotationNode(title: node.title, kind: node.kind, annotation: nil)
+                    copy.children = filteredChildren
+                    result.append(copy)
+                }
+            }
+        }
+        return result
+    }
+
+    private func filterNodesByTags(_ nodes: [AnnotationNode], tags: Set<String>? = nil) -> [AnnotationNode] {
+        let activeTags = tags ?? selectedTags
+        guard !activeTags.isEmpty else { return nodes }
+        var result: [AnnotationNode] = []
+        for node in nodes {
+            if node.kind == .annotation, let ann = node.annotation {
+                let annTags = Set(ann.tags.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty })
+                let matches = tagFilterMode == .and
+                    ? activeTags.allSatisfy { annTags.contains($0) }
+                    : !activeTags.isDisjoint(with: annTags)
+                if matches { result.append(node) }
+            } else {
+                let filteredChildren = filterNodesByTags(node.children, tags: tags)
                 if !filteredChildren.isEmpty {
                     let copy = AnnotationNode(title: node.title, kind: node.kind, annotation: nil)
                     copy.children = filteredChildren
@@ -340,6 +443,32 @@ class AnnotationViewModel: ViewModelBase, @unchecked Sendable {
             try AnnotationManager.shared.deleteAnnotation(id: id)
         } catch {
             print("Failed to delete annotation: \(error.localizedDescription)")
+        }
+    }
+
+    func toggleTagSelection(_ tag: String) {
+        if selectedTags.contains(tag) {
+            selectedTags.remove(tag)
+        } else {
+            selectedTags.insert(tag)
+        }
+    }
+
+    func toggleTagFilterMode() {
+        tagFilterMode = tagFilterMode == .or ? .and : .or
+    }
+
+    private func gatherTags(from nodes: [AnnotationNode], into set: inout Set<String>) {
+        for node in nodes {
+            if let ann = node.annotation {
+                for tag in ann.tags {
+                    let trimmed = tag.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !trimmed.isEmpty { set.insert(trimmed) }
+                }
+            }
+            if !node.children.isEmpty {
+                gatherTags(from: node.children, into: &set)
+            }
         }
     }
 }

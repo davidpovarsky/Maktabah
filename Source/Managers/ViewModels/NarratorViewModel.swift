@@ -248,18 +248,17 @@ final class NarratorViewModel: ViewModelBase {
                 onBatchResult: { [weak self] newBatch in
                     guard let self else { return }
 
-                    var resultsBatch = [TarjamahResult]()
-                    await tarjamahManager.loadMultipleTarjamahContent(
+                    let resultsBatch = await tarjamahManager.loadMultipleTarjamahContent(
                         newBatch,
+                        query: query,
                         pauseController: pauseController
                     ) { [weak self] in
                         self?.isStopped ?? true
-                    } onBatchResult: { loadedResults in
-                        resultsBatch.append(contentsOf: loadedResults)
                     } onProgress: { _, _ in }
 
                     await MainActor.run { [weak self, resultsBatch] in
                         guard let self else { return }
+                        guard !Task.isCancelled, !resultsBatch.isEmpty else { return }
                         let startIndex = searchTarjamahList.count
                         searchTarjamahList.append(contentsOf: resultsBatch)
                         #if os(macOS)
@@ -268,6 +267,7 @@ final class NarratorViewModel: ViewModelBase {
                     }
                 },
                 onComplete: { [weak self] in
+                    guard !Task.isCancelled else { return }
                     Task { @MainActor in
                         self?.stopSearch()
                         #if os(macOS)
@@ -280,12 +280,12 @@ final class NarratorViewModel: ViewModelBase {
     }
 
     func pauseSearch() {
-        pauseController.pause()
+        Task { await pauseController.pause() }
         isPaused = true
     }
 
     func resumeSearch() {
-        pauseController.resume()
+        Task { await pauseController.resume() }
         isPaused = false
     }
 
@@ -295,7 +295,7 @@ final class NarratorViewModel: ViewModelBase {
         isPaused = false
         searchTask?.cancel()
         searchTask = nil
-        pauseController.resume()
+        Task { await pauseController.resume() }
     }
 
     // MARK: - Content Rendering

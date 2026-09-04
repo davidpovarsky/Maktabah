@@ -46,14 +46,20 @@ struct iOSLibraryView: View {
                 handleOtzariaImport(result, viewModel: viewModel)
             }
             .sheet(isPresented: $viewModel.showingImportSheet) {
-                NavigationView {
+                NavigationStack {
                     OfflineImportFormView { url, metadata, authorRow in
                         await viewModel.importOfflineBook(from: url, metadata: metadata, authorRow: authorRow)
                     }
                 }
             }
-            .alert(String(localized: "Import Success"), isPresented: $viewModel.showImportSuccessAlert) {
-                Button(String(localized: "OK"), role: .cancel) {}
+            .sheet(isPresented: $viewModel.showingUpdateSheet) {
+                UpdateView()
+            }
+            .task {
+                viewModel.checkBookUpdatesPeriodically()
+            }
+            .alert("Import Success", isPresented: $viewModel.showImportSuccessAlert) {
+                Button("OK", role: .cancel) {}
             } message: {
                 Text(String(localized: .importSuccessDesc))
             }
@@ -134,94 +140,128 @@ struct iOSLibraryView: View {
     @ToolbarContentBuilder
     private func toolbarContent(viewModel: LibraryViewModel) -> some ToolbarContent {
         if viewModel.isSelectionMode {
-            ToolbarItem(placement: .topBarLeading) {
-                Button(String(localized: "Done")) {
-                    viewModel.exitSelectionMode()
-                }
-                .disabled(viewModel.isBulkDownloading)
-            }
-
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                Button {
-                    viewModel.showingDeleteConfirmation = true
-                } label: {
-                    Label(String(localized: "Delete"), systemImage: "trash")
-                }
-                .disabled(viewModel.selectedDeleteCount == 0 || viewModel.isBulkDownloading)
-                .tint(.red)
-            }
+            selectionToolbarItems(viewModel: viewModel)
         } else {
-            ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    Section(String(localized: "Group By")) {
-                        Button { viewModel.viewMode = .category } label: {
-                            Label(String(localized: "Category"), systemImage: "folder")
-                        }
-                        Button { viewModel.viewMode = .author } label: {
-                            Label(String(localized: "Author"), systemImage: "person")
-                        }
-                    }
-                } label: {
-                    Label(
-                        String(localized: "Group By"),
-                        systemImage: viewModel.viewMode == .category ? "folder" : "person"
-                    )
-                }
-            }
+            standardToolbarItems(viewModel: viewModel)
+        }
+    }
 
+    @ToolbarContentBuilder
+    private func selectionToolbarItems(viewModel: LibraryViewModel) -> some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button("Done") {
+                viewModel.exitSelectionMode()
+            }
+            .disabled(viewModel.isBulkDownloading)
+        }
+
+        ToolbarItemGroup(placement: .topBarTrailing) {
+            Button {
+                viewModel.showingDeleteConfirmation = true
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+            .disabled(viewModel.selectedDeleteCount == 0 || viewModel.isBulkDownloading)
+            .tint(.red)
+        }
+    }
+
+    @ToolbarContentBuilder
+    private func standardToolbarItems(viewModel: LibraryViewModel) -> some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            groupByMenu(viewModel: viewModel)
+        }
+
+        ToolbarItem(placement: .topBarTrailing) {
             if !OtzariaLibraryImportActions.isEnabled && AppConfig.isUsingBundleMode {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Toggle(isOn: Binding(
-                        get: { viewModel.showOnlyDownloaded },
-                        set: { viewModel.showOnlyDownloaded = $0 }
-                    )) {
-                        Label(String(localized: "Downloaded"), systemImage: "line.3.horizontal.decrease")
-                    }
-                    .labelStyle(.iconOnly)
-                    .toggleStyle(.button)
-                }
-            }
-
-            CustomToolbarSpacer(placement: .topBarTrailing)
-
-            ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    Button {
-                        showingOtzariaImporter = true
-                    } label: {
-                        Label(String(localized: "Choose Otzaria Database"), systemImage: "externaldrive")
-                    }
-
-                    if OtzariaLibraryImportActions.isEnabled {
-                        Button(role: .destructive) {
-                            OtzariaLibraryImportActions.disconnectDatabase(viewModel: viewModel)
-                        } label: {
-                            Label(String(localized: "Disconnect Otzaria Database"), systemImage: "xmark.circle")
-                        }
-                    }
-
-                    Divider()
-
-                    Button {
-                        viewModel.enterSelectionMode()
-                    } label: {
-                        Label(String(localized: "Select") + "...", systemImage: "checkmark.circle")
-                    }
-                    .disabled(OtzariaLibraryImportActions.isEnabled)
-
-                    Button {
-                        viewModel.showingImportSheet = true
-                    } label: {
-                        Label(String(localized: "Import Book"), systemImage: "plus.viewfinder")
-                    }
-                    .disabled(OtzariaLibraryImportActions.isEnabled)
-                } label: {
-                    Image(systemName: "ellipsis")
-                }
-                .accessibilityLabel(String(localized: "Library Options"))
-                .help(String(localized: "Library Options"))
+                downloadedFilterToggle(viewModel: viewModel)
             }
         }
+
+        CustomToolbarSpacer(placement: .topBarTrailing)
+
+        ToolbarItem(placement: .topBarTrailing) {
+            optionsMenu(viewModel: viewModel)
+        }
+    }
+
+    @ViewBuilder
+    private func groupByMenu(viewModel: LibraryViewModel) -> some View {
+        Menu {
+            Section("Group By") {
+                Button { viewModel.viewMode = .category } label: {
+                    Label("Category", systemImage: "folder")
+                }
+                Button { viewModel.viewMode = .author } label: {
+                    Label("Author", systemImage: "person")
+                }
+            }
+        } label: {
+            Label(
+                "Group By",
+                systemImage: viewModel.viewMode == .category ? "folder" : "person"
+            )
+        }
+    }
+
+    @ViewBuilder
+    private func downloadedFilterToggle(viewModel: LibraryViewModel) -> some View {
+        Toggle(isOn: Binding(
+            get: { viewModel.showOnlyDownloaded },
+            set: { viewModel.showOnlyDownloaded = $0 }
+        )) {
+            Label("Downloaded", systemImage: "line.3.horizontal.decrease")
+        }
+        .labelStyle(.iconOnly)
+        .toggleStyle(.button)
+    }
+
+    @ViewBuilder
+    private func optionsMenu(viewModel: LibraryViewModel) -> some View {
+        Menu {
+            Button {
+                showingOtzariaImporter = true
+            } label: {
+                Label(String(localized: "Choose Otzaria Database"), systemImage: "externaldrive")
+            }
+
+            if OtzariaLibraryImportActions.isEnabled {
+                Button(role: .destructive) {
+                    OtzariaLibraryImportActions.disconnectDatabase(viewModel: viewModel)
+                } label: {
+                    Label(String(localized: "Disconnect Otzaria Database"), systemImage: "xmark.circle")
+                }
+            } else {
+                Divider()
+
+                Button {
+                    viewModel.enterSelectionMode()
+                } label: {
+                    Label("Select".localized + "...", systemImage: "checkmark.circle")
+                }
+
+                Button {
+                    viewModel.showingUpdateSheet = true
+                } label: {
+                    Label(
+                        viewModel.availableUpdateCount > 0
+                            ? "\("Update Books".localized) (\(viewModel.availableUpdateCount))"
+                            : "Update Books".localized,
+                        systemImage: "arrow.triangle.2.circlepath"
+                    )
+                }
+
+                Button {
+                    viewModel.showingImportSheet = true
+                } label: {
+                    Label("Import Book", systemImage: "plus.viewfinder")
+                }
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+        }
+        .accessibilityLabel(String(localized: "Library Options"))
+        .help(String(localized: "Library Options"))
     }
 
     private func handleOtzariaImport(_ result: Result<[URL], Error>, viewModel: LibraryViewModel) {

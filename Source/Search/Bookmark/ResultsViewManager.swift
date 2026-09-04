@@ -123,9 +123,21 @@ class ResultsViewManager: NSObject {
         // Subscribe ke onTreeChange agar NSOutlineView bisa update inkremental
         super.init()
 
+        setupOutlineView()
+
         vm.onTreeChange = { [weak self] change in
             self?.applyTreeChange(change)
         }
+    }
+
+    private func setupOutlineView() {
+        guard let outlineView = outlineView else { return }
+        outlineView.target = self
+        outlineView.doubleAction = #selector(onDoubleClick(_:))
+
+        let itemMenu = NSMenu()
+        itemMenu.delegate = self
+        outlineView.menu = itemMenu
     }
 
     func applyTreeChange(_ change: BookmarkTreeChange) {
@@ -392,51 +404,143 @@ extension ResultsViewManager: NSOutlineViewDataSource {
             }
         }
     }
+
+    /// Simpan ID unik item
+    func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
+        if let folder = item as? FolderNode {
+            return folder.id
+        }
+        return nil
+    }
+
+    /// Restore item dari ID unik saat data di-load
+    func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
+        if let id = object as? Int64 {
+            return vm.findFolder(id)
+        }
+        return nil
+    }
 }
 
 extension ResultsViewManager: NSOutlineViewDelegate {
-    func outlineView(
+        func outlineView(
         _ outlineView: NSOutlineView,
         viewFor tableColumn: NSTableColumn?,
         item: Any
     ) -> NSView? {
 
+        if tableColumn?.identifier.rawValue == "query", let result = item as? ResultNode {
+            let cellIdentifier = NSUserInterfaceItemIdentifier("queryCell")
+            var cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView
+            if cell == nil {
+                cell = NSTableCellView()
+                cell?.identifier = cellIdentifier
+                let textField = NSTextField(labelWithString: "")
+                textField.translatesAutoresizingMaskIntoConstraints = false
+                textField.lineBreakMode = .byTruncatingTail
+                cell?.addSubview(textField)
+                cell?.textField = textField
+                if let cell = cell {
+                    NSLayoutConstraint.activate([
+                        textField.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 2),
+                        textField.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -2),
+                        textField.centerYAnchor.constraint(equalTo: cell.centerYAnchor)
+                    ])
+                }
+            }
+            if let query = result.items.first?.query, !query.isEmpty {
+                cell?.textField?.stringValue = query
+            } else {
+                cell?.textField?.stringValue = ""
+            }
+            return cell
+        }
+
+        if tableColumn?.identifier.rawValue == "modifiedDate", let result = item as? ResultNode {
+            let cellIdentifier = NSUserInterfaceItemIdentifier("dateCell")
+            var cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView
+            if cell == nil {
+                cell = NSTableCellView()
+                cell?.identifier = cellIdentifier
+                let textField = NSTextField(labelWithString: "")
+                textField.translatesAutoresizingMaskIntoConstraints = false
+                textField.textColor = .secondaryLabelColor
+                textField.lineBreakMode = .byTruncatingTail
+                cell?.addSubview(textField)
+                cell?.textField = textField
+                if let cell = cell {
+                    NSLayoutConstraint.activate([
+                        textField.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 2),
+                        textField.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -2),
+                        textField.centerYAnchor.constraint(equalTo: cell.centerYAnchor)
+                    ])
+                }
+            }
+            if let timestamp = result.lastModified {
+                let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+                let formattedString: String = if Calendar.current.isDateInToday(date) {
+                    RelativeDateTimeFormatter.shared.localizedString(for: date, relativeTo: Date())
+                } else {
+                    DateFormatter.mediumDate.string(from: date)
+                }
+                cell?.textField?.stringValue = formattedString
+            } else {
+                cell?.textField?.stringValue = "-"
+            }
+            return cell
+        }
+
         if let result = item as? ResultNode,
-            let cell = outlineView.makeView(
+           tableColumn?.identifier.rawValue == "AutomaticTableColumnIdentifier.0" {
+            if let cell = outlineView.makeView(
                 withIdentifier: resultCellIdentifier,
                 owner: self
             ) as? NSTableCellView,
             let textField = cell.textField
-        {
-            textField.stringValue = "\(result.name)"
-            textField.delegate = self
-            textField.isEditable = true
-            return cell
+            {
+                let mode = SearchMode(rawValue: result.searchMode) ?? .phrase
+                let imageName = SearchMode.imageNameForMode(mode)
+                cell.imageView?.image = NSImage(
+                    systemSymbolName: imageName, accessibilityDescription: nil
+                )
+                textField.stringValue = "\(result.name)"
+                textField.delegate = self
+                textField.isEditable = true
+                return cell
+            }
         }
 
         if let folder = item as? FolderNode,
-            let cell = outlineView.makeView(
+            tableColumn?.identifier.rawValue == "AutomaticTableColumnIdentifier.0" {
+            if let cell = outlineView.makeView(
                 withIdentifier: folderCellIdentifier,
                 owner: self
             ) as? NSTableCellView,
             let textField = cell.textField
-        {
-            textField.stringValue = "\(folder.name)"
-            textField.delegate = self
-            textField.isEditable = true
-            return cell
+            {
+                textField.stringValue = "\(folder.name)"
+                textField.delegate = self
+                textField.isEditable = true
+                return cell
+            }
         }
         return nil
     }
 
-    func outlineViewSelectionDidChange(_ notification: Notification) {
-        let row = outlineView.selectedRow
-        guard row >= 0,
-            let result = outlineView.item(atRow: row) as? ResultNode
-        else { return }
+    @objc private func onDoubleClick(_ sender: AnyObject) {
+        guard let outlineView = outlineView else { return }
+        let clickedRow = outlineView.clickedRow
+        guard clickedRow >= 0, let item = outlineView.item(atRow: clickedRow) else { return }
 
-        // Tampilkan hasil pencarian
-        delegate?.didSelect(savedResults: result.items)
+        if let folder = item as? FolderNode {
+            if outlineView.isItemExpanded(folder) {
+                outlineView.collapseItem(folder)
+            } else {
+                outlineView.expandItem(folder)
+            }
+        } else if let result = item as? ResultNode {
+            delegate?.didSelect(savedResults: result.items)
+        }
     }
 }
 
@@ -630,4 +734,144 @@ extension ResultsViewManager: NSTextFieldDelegate {
 extension NSPasteboard.PasteboardType {
     static let folderNode = NSPasteboard.PasteboardType("com.maktab.folderNode")
     static let resultNode = NSPasteboard.PasteboardType("com.maktab.resultNode")
+}
+
+extension ResultsViewManager: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.removeAllItems()
+        guard let outlineView = outlineView else { return }
+
+        if menu == outlineView.headerView?.menu {
+            updateHeaderMenu(menu, outlineView: outlineView)
+        } else if menu == outlineView.menu {
+            updateItemContextMenu(menu, outlineView: outlineView)
+        }
+    }
+
+    private func updateHeaderMenu(_ menu: NSMenu, outlineView: NSOutlineView) {
+        for column in outlineView.tableColumns {
+            let title: String
+            if column.identifier.rawValue == "AutomaticTableColumnIdentifier.0" {
+                title = "Title".localized
+            } else if column.identifier.rawValue == "query" {
+                title = "Query".localized
+            } else if column.identifier.rawValue == "modifiedDate" {
+                title = "Date Modified".localized
+            } else if !column.title.isEmpty {
+                title = column.title
+            } else {
+                title = column.identifier.rawValue
+            }
+
+            let menuItem = NSMenuItem(
+                title: title,
+                action: #selector(toggleColumnVisibility(_:)),
+                keyEquivalent: ""
+            )
+            menuItem.target = self
+            menuItem.representedObject = column
+            menuItem.state = column.isHidden ? .off : .on
+
+            if column.identifier.rawValue == "AutomaticTableColumnIdentifier.0" || column == outlineView.outlineTableColumn {
+                menuItem.isEnabled = false
+            } else {
+                menuItem.isEnabled = true
+            }
+
+            menu.addItem(menuItem)
+        }
+    }
+
+    private func updateItemContextMenu(_ menu: NSMenu, outlineView: NSOutlineView) {
+        let rows = outlineView.effectiveRows()
+        guard !rows.isEmpty else { return }
+
+        let items = rows.compactMap { outlineView.item(atRow: $0) }
+        guard !items.isEmpty else { return }
+
+        if items.count == 1 {
+            let renameItem = NSMenuItem(
+                title: "Rename".localized,
+                action: #selector(renameSelectedItem(_:)),
+                keyEquivalent: ""
+            )
+            renameItem.target = self
+            renameItem.image = NSImage(
+                systemSymbolName: "pencil",
+                accessibilityDescription: ""
+            )
+            menu.addItem(renameItem)
+        }
+
+        let deleteItem = NSMenuItem(
+            title: "Delete".localized,
+            action: #selector(deleteSelectedItems(_:)),
+            keyEquivalent: ""
+        )
+        deleteItem.target = self
+        deleteItem.image = NSImage(
+            systemSymbolName: "trash",
+            accessibilityDescription: ""
+        )
+        menu.addItem(deleteItem)
+
+        if items.count == 1 {
+            if let result = items.first as? ResultNode {
+                menu.addItem(.separator())
+                let startSearchItem = NSMenuItem(
+                    title: "Start Search".localized,
+                    action: #selector(startSearchSelectedItem(_:)),
+                    keyEquivalent: ""
+                )
+                startSearchItem.target = self
+                startSearchItem.representedObject = result
+                startSearchItem.image = .init(
+                    systemSymbolName: "play.fill",
+                    accessibilityDescription: ""
+                )
+                menu.addItem(startSearchItem)
+            }
+        }
+    }
+
+    @objc private func startSearchSelectedItem(_ sender: NSMenuItem) {
+        if let result = sender.representedObject as? ResultNode {
+            delegate?.didSelect(savedResults: result.items)
+            return
+        }
+        guard let outlineView = outlineView else { return }
+        let rows = outlineView.effectiveRows()
+        guard let firstRow = rows.first,
+              let result = outlineView.item(atRow: firstRow) as? ResultNode
+        else { return }
+        delegate?.didSelect(savedResults: result.items)
+    }
+
+    @objc private func toggleColumnVisibility(_ sender: NSMenuItem) {
+        guard let column = sender.representedObject as? NSTableColumn else { return }
+        column.isHidden = !column.isHidden
+    }
+
+    @objc private func renameSelectedItem(_ sender: NSMenuItem) {
+        guard let outlineView = outlineView else { return }
+        let rows = outlineView.effectiveRows()
+        guard let firstRow = rows.first, firstRow >= 0 else { return }
+        outlineView.editColumn(0, row: firstRow, with: nil, select: true)
+    }
+
+    @objc private func deleteSelectedItems(_ sender: NSMenuItem) {
+        guard let outlineView = outlineView else { return }
+        let rows = outlineView.effectiveRows()
+        let items = rows.compactMap { outlineView.item(atRow: $0) }
+        guard !items.isEmpty else { return }
+
+        for item in items {
+            if let folder = item as? FolderNode {
+                vm.deleteFolder(node: folder)
+            } else if let result = item as? ResultNode {
+                let parent = outlineView.parent(forItem: result) as? FolderNode
+                vm.deleteResult(parent?.id, name: result.name)
+            }
+        }
+    }
 }

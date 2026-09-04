@@ -14,10 +14,22 @@ actor TarjamahDatabaseActor {
 
     init(dbPath: String) throws {
         self.conn = try SQLiteConnection(dbPath: dbPath)
+        let ftsPath = dbPath.replacingOccurrences(of: "special.sqlite", with: "special_fts.sqlite")
+        if FileManager.default.fileExists(atPath: ftsPath) {
+            try? self.conn.attachDatabase(path: ftsPath, as: "fts_db")
+        }
     }
 
     func queryRows(sql: String, params: [SQLValue]) throws -> [[String: Any?]] {
         return try conn.queryRows(sql: sql, params: params)
+    }
+
+    func queryMapped<T>(sql: String, params: [SQLValue], mapper: (OpaquePointer) -> T) throws -> [T] {
+        return try conn.queryMapped(sql: sql, params: params, mapper: mapper)
+    }
+
+    func queryTarjamah(sql: String, params: [SQLValue], isIsoName: Bool) throws -> [TarjamahMen] {
+        return try conn.queryTarjamah(sql: sql, params: params, isIsoName: isIsoName)
     }
 }
 
@@ -44,9 +56,271 @@ class TarjamahGlobalManager {
 
     func setupConnection() {
         guard let specialPath = AppConfig.specialDatabasePath else { return }
+
         // Inisialisasi actor
         dbActor = try? TarjamahDatabaseActor(dbPath: specialPath)
     }
+
+    #if os(macOS)
+    func optimizeSpecialDatabaseIfNeeded() {
+        guard let mainDbPath = AppConfig.specialDatabasePath else { return }
+        let ftsPath = mainDbPath.replacingOccurrences(
+            of: "special.sqlite",
+            with: "special_fts.sqlite"
+        )
+
+        let fm = FileManager.default
+        var needsOptimization = false
+
+        // 0. Ensure index exists to prevent extremely slow FTS JOIN queries
+        if let db = try? SQLiteConnection(dbPath: mainDbPath) {
+            try? db.execute(query: "CREATE INDEX IF NOT EXISTS idx_men_u_uid ON men_u(uId);")
+            try? db.execute(query: "CREATE INDEX IF NOT EXISTS idx_men_b_id ON men_b(Id);")
+        }
+
+        if !fm.fileExists(atPath: ftsPath) {
+            needsOptimization = true
+        } else if let attr = try? fm.attributesOfItem(atPath: ftsPath),
+                  let size = attr[.size] as? Int64, size == 0 {
+            needsOptimization = true
+        }
+
+        guard needsOptimization else { return }
+
+        print("Memulai optimasi special.sqlite (FTS & ZSTD Compression)...")
+
+        try? fm.removeItem(atPath: ftsPath)
+
+        var db: OpaquePointer?
+        guard sqlite3_open(mainDbPath, &db) == SQLITE_OK else {
+            print("❌ Gagal buka db")
+            return
+        }
+        defer { sqlite3_close(db) }
+
+        // 1. COMPRESS men_u
+        sqlite3_exec(db, "BEGIN", nil, nil, nil)
+
+        let renameResult = sqlite3_exec(
+            db, "ALTER TABLE men_u RENAME TO old_men_u",
+            nil, nil, nil
+        )
+        if renameResult == SQLITE_OK {
+            let createSql = """
+                CREATE TABLE men_u (
+                    Name BLOB,
+                    IsoName BLOB,
+                    Bk INTEGER,
+                    Id INTEGER,
+                    uId INTEGER
+                )
+            """
+            sqlite3_exec(db, createSql, nil, nil, nil)
+
+            var readStmt: OpaquePointer?
+            sqlite3_prepare_v2(
+                db,
+                "SELECT Name, IsoName, Bk, Id, uId FROM old_men_u",
+                -1, &readStmt, nil
+            )
+
+            var insertStmt: OpaquePointer?
+            sqlite3_prepare_v2(
+                db,
+                "INSERT INTO men_u (Name, IsoName, Bk, Id, uId) VALUES (?, ?, ?, ?, ?)",
+                -1, &insertStmt, nil
+            )
+
+            let SQLITE_TRANSIENT = unsafeBitCast(
+                OpaquePointer(bitPattern: -1),
+                to: sqlite3_destructor_type.self
+            )
+
+            while sqlite3_step(readStmt) == SQLITE_ROW {
+                // Name
+                if let namePtr = sqlite3_column_text(readStmt, 0) {
+                    let bytes = sqlite3_column_bytes(readStmt, 0)
+                    let buffer = UnsafeBufferPointer(start: namePtr, count: Int(bytes))
+                    let nameStr = String(decoding: buffer, as: UTF8.self)
+                    if let compressed = ReusableFunc.compressData(nameStr, level: 10) {
+                        _ = compressed.withUnsafeBytes { ptr in
+                            sqlite3_bind_blob(
+                                insertStmt, 1,
+                                ptr.baseAddress,
+                                Int32(compressed.count),
+                                SQLITE_TRANSIENT
+                            )
+                        }
+                    } else {
+                        sqlite3_bind_null(insertStmt, 1)
+                    }
+                } else {
+                    sqlite3_bind_null(insertStmt, 1)
+                }
+
+                // IsoName
+                if let isoPtr = sqlite3_column_text(readStmt, 1) {
+                    let bytes = sqlite3_column_bytes(readStmt, 1)
+                    let buffer = UnsafeBufferPointer(start: isoPtr, count: Int(bytes))
+                    let isoStr = String(decoding: buffer, as: UTF8.self)
+                    if let compressed = ReusableFunc.compressData(isoStr, level: 10) {
+                        _ = compressed.withUnsafeBytes { ptr in
+                            sqlite3_bind_blob(
+                                insertStmt, 2,
+                                ptr.baseAddress,
+                                Int32(compressed.count),
+                                SQLITE_TRANSIENT
+                            )
+                        }
+                    } else {
+                        sqlite3_bind_null(insertStmt, 2)
+                    }
+                } else {
+                    sqlite3_bind_null(insertStmt, 2)
+                }
+
+                sqlite3_bind_int(insertStmt, 3, sqlite3_column_int(readStmt, 2))
+                sqlite3_bind_int(insertStmt, 4, sqlite3_column_int(readStmt, 3))
+                sqlite3_bind_int(insertStmt, 5, sqlite3_column_int(readStmt, 4))
+
+                sqlite3_step(insertStmt)
+                sqlite3_reset(insertStmt)
+            }
+            sqlite3_finalize(readStmt)
+            sqlite3_finalize(insertStmt)
+
+            sqlite3_exec(db, "DROP TABLE old_men_u", nil, nil, nil)
+            sqlite3_exec(db, "COMMIT", nil, nil, nil)
+            print("men_u selesai dikompres")
+        } else {
+            sqlite3_exec(db, "ROLLBACK", nil, nil, nil)
+            print("Tabel men_u mungkin sudah dikompres atau gagal rename.")
+        }
+
+        // 2. CREATE FTS DB
+        try? db?.safeAttachDatabase(path: ftsPath, schema: "fts_db")
+
+        let createFtsSql = """
+        CREATE VIRTUAL TABLE IF NOT EXISTS fts_db.men_u_fts
+        USING fts5(
+            IsoName_clean,
+            content='',
+            tokenize='unicode61'
+        )
+        """
+        sqlite3_exec(db, createFtsSql, nil, nil, nil)
+
+        let createFtsBSql = """
+        CREATE VIRTUAL TABLE IF NOT EXISTS fts_db.men_b_fts
+        USING fts5(
+            Name_clean,
+            content='',
+            tokenize='unicode61'
+        )
+        """
+        sqlite3_exec(db, createFtsBSql, nil, nil, nil)
+
+        sqlite3_exec(db, "BEGIN", nil, nil, nil)
+
+        var readFtsStmt: OpaquePointer?
+        sqlite3_prepare_v2(
+            db, "SELECT uId, IsoName FROM men_u WHERE IsoName IS NOT NULL",
+            -1, &readFtsStmt, nil
+        )
+
+        var insertFtsStmt: OpaquePointer?
+        sqlite3_prepare_v2(
+            db, "INSERT INTO fts_db.men_u_fts(rowid, IsoName_clean) VALUES (?, ?)",
+            -1, &insertFtsStmt, nil
+        )
+
+        let SQLITE_TRANSIENT = unsafeBitCast(
+            OpaquePointer(bitPattern: -1),
+            to: sqlite3_destructor_type.self
+        )
+
+        while sqlite3_step(readFtsStmt) == SQLITE_ROW {
+            let uid = sqlite3_column_int(readFtsStmt, 0)
+            var isoNameClean = ""
+
+            if sqlite3_column_type(readFtsStmt, 1) == SQLITE_BLOB {
+                if let blob = sqlite3_column_blob(readFtsStmt, 1) {
+                    let bytes = sqlite3_column_bytes(readFtsStmt, 1)
+                    let buffer = UnsafeRawBufferPointer(start: blob, count: Int(bytes))
+                    let decompressed = ReusableFunc.decompressData(from: buffer)
+                    isoNameClean = decompressed.stemArabicLight10()
+                }
+            } else if sqlite3_column_type(readFtsStmt, 1) == SQLITE_TEXT {
+                if let text = sqlite3_column_text(readFtsStmt, 1) {
+                    let bytes = sqlite3_column_bytes(readFtsStmt, 1)
+                    let buffer = UnsafeBufferPointer(start: text, count: Int(bytes))
+                    isoNameClean = String(decoding: buffer, as: UTF8.self).stemArabicLight10()
+                }
+            }
+
+            if !isoNameClean.isEmpty {
+                sqlite3_bind_int(insertFtsStmt, 1, uid)
+                _ = isoNameClean.withCString { ptr in
+                    sqlite3_bind_text(insertFtsStmt, 2, ptr, -1, SQLITE_TRANSIENT)
+                }
+                sqlite3_step(insertFtsStmt)
+                sqlite3_reset(insertFtsStmt)
+            }
+        }
+
+        sqlite3_finalize(readFtsStmt)
+        sqlite3_finalize(insertFtsStmt)
+
+        // MARK: Populate men_b_fts
+
+        var readFtsBStmt: OpaquePointer?
+        sqlite3_prepare_v2(
+            db, "SELECT Id, Name FROM men_b WHERE Name IS NOT NULL AND Name != ''",
+            -1, &readFtsBStmt, nil
+        )
+
+        var insertFtsBStmt: OpaquePointer?
+        sqlite3_prepare_v2(
+            db, "INSERT INTO fts_db.men_b_fts(rowid, Name_clean) VALUES (?, ?)",
+            -1, &insertFtsBStmt, nil)
+
+        while sqlite3_step(readFtsBStmt) == SQLITE_ROW {
+            let uid = sqlite3_column_int(readFtsBStmt, 0)
+            var nameClean = ""
+
+            if let text = sqlite3_column_text(readFtsBStmt, 1) {
+                let bytes = sqlite3_column_bytes(readFtsBStmt, 1)
+                let buffer = UnsafeBufferPointer(start: text, count: Int(bytes))
+                nameClean = String(decoding: buffer, as: UTF8.self).stemArabicLight10()
+            }
+
+            if !nameClean.isEmpty {
+                sqlite3_bind_int(insertFtsBStmt, 1, uid)
+                _ = nameClean.withCString { ptr in
+                    sqlite3_bind_text(insertFtsBStmt, 2, ptr, -1, SQLITE_TRANSIENT)
+                }
+                sqlite3_step(insertFtsBStmt)
+                sqlite3_reset(insertFtsBStmt)
+            }
+        }
+
+        sqlite3_finalize(readFtsBStmt)
+        sqlite3_finalize(insertFtsBStmt)
+
+        sqlite3_exec(db, "COMMIT", nil, nil, nil)
+
+        // 3. VACUUM
+        print("VACUUM...")
+        sqlite3_exec(db, "VACUUM main", nil, nil, nil)
+        sqlite3_exec(db, "VACUUM fts_db", nil, nil, nil)
+
+        sqlite3_exec(db, "DETACH DATABASE fts_db", nil, nil, nil)
+        print("DONE: FTS created and optimized")
+
+        // RE-INIT dbActor so it attaches the newly created fts_db
+        self.dbActor = try? TarjamahDatabaseActor(dbPath: mainDbPath)
+    }
+    #endif
 
     // MARK: - 1. Global Search (String) with Pause & Streaming
 
@@ -59,24 +333,23 @@ class TarjamahGlobalManager {
         onBatchResult: @escaping @Sendable ([TarjamahMen]) async -> Void, // Ubah jadi async
         onComplete: @escaping () -> Void
     ) async {
+        defer { onComplete() }
 
-        let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !normalizedQuery.isEmpty else {
-            onComplete()
-            return
-        }
+        let sanitizedQuery = query
+            .filter { $0.isLetter || $0.isNumber || $0.isWhitespace }
+            .stemArabicLight10()
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !sanitizedQuery.isEmpty else { return }
 
         // 1. Cek Cache dulu
-        if let cached = searchStringCache[normalizedQuery] {
-            print("📦 Cache Hit for query: \(normalizedQuery)")
+        if let cached = searchStringCache[sanitizedQuery] {
+            print("📦 Cache Hit for query: \(sanitizedQuery)")
             await onBatchResult(cached) // Kirim semua langsung
-            onComplete()
             return
         }
 
         guard let conn = dbActor else {
             print("❌ Connection error")
-            onComplete()
             return
         }
 
@@ -97,13 +370,13 @@ class TarjamahGlobalManager {
         // A. Search di men_b (LIKE)
         // ---------------------------------------------------------
         do {
-            if stopFlag() { return }
+            if stopFlag() || Task.isCancelled { return }
             await pauseController?.waitIfPaused()
 
-            let ftsQuery = "\"\(normalizedQuery)\" *"   // phrase + prefix
+            let ftsQuery = "\"\(sanitizedQuery)\" *"   // phrase + prefix
 
             let sqlB = """
-            SELECT main.Name, main.Bk, main.Id, main.ManId, main.bId
+            SELECT main.Name, '', main.Bk, main.Id, main.ManId, main.bId
             FROM men_b AS main
             JOIN men_b_fts AS fts ON main.Id = fts.rowid
             WHERE fts.Name_clean MATCH ?
@@ -111,24 +384,42 @@ class TarjamahGlobalManager {
             LIMIT ?
             """
 
-            let rowsB = try await conn.queryRows(
+            let rowsB = try await conn.queryMapped(
                 sql: sqlB,
                 params: [.text(ftsQuery), .int(limit)]
-            )
+            ) { stmt -> TarjamahMen in
+                var nameStr = ""
+                let type = sqlite3_column_type(stmt, 0)
 
-            for (index, r) in rowsB.enumerated() {
+                if type == SQLITE_TEXT {
+                    if let txt = sqlite3_column_text(stmt, 0) {
+                        let bytes = sqlite3_column_bytes(stmt, 0)
+                        let buffer = UnsafeBufferPointer(start: txt, count: Int(bytes))
+                        nameStr = String(decoding: buffer, as: UTF8.self)
+                    }
+                } else if type == SQLITE_BLOB {
+                    if let blobPointer = sqlite3_column_blob(stmt, 0) {
+                        let blobSize = Int(sqlite3_column_bytes(stmt, 0))
+                        let buffer = UnsafeRawBufferPointer(start: blobPointer, count: blobSize)
+                        nameStr = ReusableFunc.decompressData(from: buffer)
+                    }
+                }
+
+                let bk = Int(sqlite3_column_int64(stmt, 2))
+                let id = Int(sqlite3_column_int64(stmt, 3))
+
+                return TarjamahMen(name: nameStr, bk: bk, id: id)
+            }
+
+            for (index, mutT) in rowsB.enumerated() {
                 if index % 10 == 0 {
-                    if stopFlag() { return }
+                    if stopFlag() || Task.isCancelled { return }
                     await pauseController?.waitIfPaused()
                 }
 
-                let name  = r["Name"] as? String ?? ""
-                let bk    = (r["Bk"] as? Int) ?? 0
-                let id    = (r["Id"] as? Int) ?? 0
+                var t = mutT
 
-                var t = TarjamahMen(name: name, bk: bk, id: id)
-
-                if let bookData = LibraryDataManager.shared.getBook([bk]).first {
+                if let bookData = LibraryDataManager.shared.getBook([t.bk]).first {
                     t.bookTitle = bookData.book
                     t.archive   = bookData.archive
                 }
@@ -153,7 +444,7 @@ class TarjamahGlobalManager {
             if stopFlag() { return }
             await pauseController?.waitIfPaused()
 
-            let ftsQuery = "\"\(normalizedQuery)\" *" // Phrase + Prefix
+            let ftsQuery = "\"\(sanitizedQuery)\" *" // Phrase + Prefix
 
             let sqlU = """
             SELECT main.Name, main.IsoName, main.Bk, main.Id, main.uId
@@ -164,37 +455,27 @@ class TarjamahGlobalManager {
             LIMIT ?
             """
 
-            let rowsU = try await conn.queryRows(sql: sqlU, params: [.text(ftsQuery), .int(limit)])
+            let tarjamahsU = try await conn.queryTarjamah(sql: sqlU, params: [.text(ftsQuery), .int(limit)], isIsoName: true)
 
-            for (index, r) in rowsU.enumerated() {
+            for (index, t) in tarjamahsU.enumerated() {
+                var tVar = t
                 if index % 10 == 0 {
-                    if stopFlag() { return }
+                    if stopFlag() || Task.isCancelled { return }
                     await pauseController?.waitIfPaused()
                 }
 
-                // Handle Blob Decompression
-                var isoStr = ""
-                if let data = r["IsoName"] as? Data {
-                    isoStr = ReusableFunc.decompressData(data)
-                } else if let s = r["IsoName"] as? String {
-                    isoStr = s
-                }
+                if let bookData = LibraryDataManager.shared.getBook([tVar.bk]).first {
+                    tVar.bookTitle = bookData.book
+                    tVar.archive = bookData.archive
 
-                let bk = (r["Bk"] as? Int) ?? 0
-                let id = (r["Id"] as? Int) ?? 0
+                    allResults.append(tVar)
+                    batchBuffer.append(tVar)
 
-                var t = TarjamahMen(name: isoStr, bk: bk, id: id) // manid nil di men_u
-
-                if let bookData = LibraryDataManager.shared.getBook([bk]).first {
-                    t.bookTitle = bookData.book
-                    t.archive = bookData.archive
-                }
-
-                allResults.append(t)
-                batchBuffer.append(t)
-
-                if batchBuffer.count >= 5 {
-                    await flushBuffer()
+                    if batchBuffer.count >= 5 {
+                        await flushBuffer()
+                    }
+                } else {
+                    continue
                 }
             }
         } catch {
@@ -202,11 +483,7 @@ class TarjamahGlobalManager {
         }
 
         await flushBuffer() // Sisa buffer akhir
-
-        // Simpan ke cache untuk query ini
-        searchStringCache[normalizedQuery] = allResults
-
-        onComplete()
+        searchStringCache[sanitizedQuery] = allResults
     }
 
     // MARK: - 2. Rowa Lookup (Search by ID) - Merged from MenBManager
@@ -224,26 +501,21 @@ class TarjamahGlobalManager {
 
         do {
             let sql = """
-            SELECT Name, Bk, Id, ManId
+            SELECT Name, '', Bk, Id, ManId
             FROM men_b
             WHERE Manid = ?
             ORDER BY Bk, Id
             """
 
-            let rows = try await conn.queryRows(sql: sql, params: [.int(rowaId)])
+            let tarjamahs = try await conn.queryTarjamah(sql: sql, params: [.int(rowaId)], isIsoName: false)
 
-            for r in rows {
-                let name = r["Name"] as? String ?? ""
-                let bk   = (r["Bk"] as? Int) ?? 0
-                let id   = (r["Id"] as? Int) ?? 0
-
-                var t = TarjamahMen(name: name, bk: bk, id: id)
-
-                if let bookData = LibraryDataManager.shared.getBook([bk]).first {
-                    t.bookTitle = bookData.book
-                    t.archive = bookData.archive
+            for t in tarjamahs {
+                var tVar = t
+                if let bookData = LibraryDataManager.shared.getBook([tVar.bk]).first {
+                    tVar.bookTitle = bookData.book
+                    tVar.archive = bookData.archive
                 }
-                results.append(t)
+                results.append(tVar)
             }
 
             // 2. Simpan ke Cache
@@ -263,19 +535,28 @@ class TarjamahGlobalManager {
     /// Load content untuk banyak item sekaligus dengan progress streaming
     func loadMultipleTarjamahContent(
         _ tarjamahList: [TarjamahMen],
+        query: String? = nil,
         pauseController: PauseController?,
         stopFlag: @escaping () -> Bool,
-        onBatchResult: @escaping ([TarjamahResult]) -> Void,
         onProgress: @escaping (Int, Int) -> Void
-    ) async {
+    ) async -> [TarjamahResult] {
 
-        guard !tarjamahList.isEmpty else { return }
+        guard !tarjamahList.isEmpty else { return [] }
 
         var batchBuffer: [TarjamahResult] = []
 
+        let targetQuery = query?.trimmingCharacters(in: .whitespaces)
+
+        if let targetQuery {
+            var searchKeywords = FtsQueryParser.extractKeywords(query: targetQuery, mode: .phrase)
+            if searchKeywords.isEmpty {
+                searchKeywords = [targetQuery.normalizeArabic()]
+            }
+        }
+
         for (index, tarjamah) in tarjamahList.enumerated() {
             // Cek Stop
-            if stopFlag() {
+            if stopFlag() || Task.isCancelled {
                 print("🛑 Loading stopped at index \(index)")
                 break
             }
@@ -284,19 +565,12 @@ class TarjamahGlobalManager {
             await pauseController?.waitIfPaused()
 
             do {
-                guard let result = try await loadTarjamahContent(tarjamah) else { break }
+                let effectiveQuery = targetQuery == nil ? tarjamah.name : targetQuery!
+                guard let result = try await loadTarjamahContent(tarjamah, query: effectiveQuery) else {
+                    continue
+                }
                 batchBuffer.append(result)
 
-                // Stream setiap 5 item selesai
-                if batchBuffer.count >= 5 {
-                    let chunk = batchBuffer
-                    batchBuffer.removeAll()
-                    await MainActor.run {
-                        onBatchResult(chunk)
-                    }
-                }
-
-                // Update progress UI
                 await MainActor.run {
                     onProgress(index + 1, tarjamahList.count)
                 }
@@ -306,18 +580,19 @@ class TarjamahGlobalManager {
             }
         }
 
-        // Flush sisa buffer
-        if !batchBuffer.isEmpty {
-            let chunk = batchBuffer
-            await MainActor.run {
-                onBatchResult(chunk)
-            }
-        }
+        return batchBuffer
     }
 
     /// Load konten single (Atomic operation)
-    func loadTarjamahContent(_ tarjamah: TarjamahMen) async throws -> TarjamahResult? {
-        guard let archive = tarjamah.archive else {
+    func loadTarjamahContent(_ tarjamah: TarjamahMen, query: String) async throws -> TarjamahResult? {
+        let book: BooksData? = await Task.detached {
+            LibraryDataManager.shared.getBook([tarjamah.bk]).first
+        }.value
+        var archiveId = tarjamah.archive
+        if archiveId == nil {
+            archiveId = book?.archive
+        }
+        guard let archive = archiveId else {
             throw NSError(domain: "Tarjamah", code: -1, userInfo: [NSLocalizedDescriptionKey: "No Archive ID"])
         }
 
@@ -326,26 +601,25 @@ class TarjamahGlobalManager {
 
         let sql = "SELECT nass FROM \(tableName) WHERE id = ? LIMIT 1"
 
-        let rows = try await pool.read(at: 0) { conn in
-            try conn.queryRows(sql: sql, params: [.int(tarjamah.id)])
+        let nass = try await pool.read(at: 0) { conn in
+            try conn.querySingleNass(sql: sql, params: [.int(tarjamah.id)])
         }
 
-        guard let firstRow = rows.first else {
+        guard let nass = nass else {
             throw NSError(domain: "Tarjamah", code: -2, userInfo: [NSLocalizedDescriptionKey: "Not found"])
         }
 
-        var nass = ""
-        // Handle BLOB (Compressed) or TEXT
-        if let blobData = firstRow["nass"] as? Data {
-            nass = ReusableFunc.decompressData(blobData)
-        } else if let textData = firstRow["nass"] as? String {
-            nass = textData
-        }
+        let isMultilingual = book?.isMultiLanguage ?? false
+        let isImported = book?.isImported ?? false
 
-        // Buat snippet
-        let snippet = nass.snippetAround(keywords: [tarjamah.name], contextLength: 100)
+        let strippedNash = isImported ? nass.stripSpanTags() : nass
+        let normalizedNash = strippedNash.convertToArabicDigits(isMultilingual: isMultilingual)
 
-        return TarjamahResult(tarjamah: tarjamah, content: snippet) // atau return nass full
+        let snippet = normalizedNash
+            .snippetAround(keywords: [query], contextLength: 60)
+        let highlightedSnippet = snippet.highlightedAttributedText(keywords: [query])
+
+        return TarjamahResult(tarjamah: tarjamah, content: snippet, attributedText: highlightedSnippet)
     }
 
     /// Load semua konten tarjamah untuk rawi
@@ -368,7 +642,7 @@ class TarjamahGlobalManager {
 
         for (index, tarjamah) in tarjamahList.enumerated() {
             do {
-                guard let result = try await loadTarjamahContent(tarjamah) else { break }
+                guard let result = try await loadTarjamahContent(tarjamah, query: tarjamah.name) else { continue }
                 results.append(result)
 
                 await MainActor.run {

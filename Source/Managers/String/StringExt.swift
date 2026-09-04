@@ -53,6 +53,8 @@ extension String {
 
         let removableCharacters: Set<Character> = ["¬", "§"]
         var index = startIndex
+        let replL = replacementL
+        let replR = replacementR
 
         struct DeltaEvent {
             let oldOffset: Int
@@ -77,7 +79,7 @@ extension String {
                self[nextIndex] == "n" {
                 finalString.append("\n")
                 nextDelta -= 1
-                
+
                 let nextCharLen = String(self[nextIndex]).utf16.count
                 if nextDelta != currentDelta {
                     events.append(DeltaEvent(oldOffset: oldUtf16Offset + charLen + nextCharLen, delta: nextDelta))
@@ -90,14 +92,14 @@ extension String {
                 switch character {
                 case "{":
                     let symbolStart = finalString.utf16.count
-                    finalString += replacementL
-                    nextDelta += (replacementL.utf16.count - charLen)
-                    coloredRanges.append(NSRange(location: symbolStart, length: replacementL.utf16.count))
+                    finalString += replL
+                    nextDelta += (replL.utf16.count - charLen)
+                    coloredRanges.append(NSRange(location: symbolStart, length: replL.utf16.count))
                 case "}":
                     let symbolStart = finalString.utf16.count
-                    finalString += replacementR
-                    nextDelta += (replacementR.utf16.count - charLen)
-                    coloredRanges.append(NSRange(location: symbolStart, length: replacementR.utf16.count))
+                    finalString += replR
+                    nextDelta += (replR.utf16.count - charLen)
+                    coloredRanges.append(NSRange(location: symbolStart, length: replR.utf16.count))
                 case "(", ")", "[", "]", "«", "»", ".", "،", ",", ":", "!", "/", "؟", "?", "\"", ";", "؛", "|":
                     // Simbol yang selalu di-highlight di mana saja
                     let symbolStart = finalString.utf16.count
@@ -177,51 +179,31 @@ extension String {
     }
 
     /// Versi ringan: hanya mengembalikan string bersih tanpa menghitung ranges.
-    /// Lebih efisien untuk operasi yang tidak memerlukan header ranges.
+    /// Menggunakan single-pass scalar scanner (O(N)) tanpa NSRegularExpression.
     func stripSpanTags() -> String {
         guard !isEmpty else { return self }
-
-        // Fast path: jika tidak ada tag, return langsung
         if !contains("<") { return self }
 
-        let nsSelf = self as NSString
-        let fullRange = NSRange(location: 0, length: nsSelf.length)
+        var result = ""
+        result.reserveCapacity(utf8.count)
 
-        var allMatches: [(range: NSRange, replacement: String)] = []
+        var isInsideTag = false
 
-        Cached.spanTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
-            guard let match = match else { return }
-            let inner = nsSelf.substring(with: match.range(at: 1))
-            allMatches.append((match.range, inner))
+        for scalar in unicodeScalars {
+            if scalar == "<" {
+                isInsideTag = true
+            } else if scalar == ">" {
+                if isInsideTag {
+                    isInsideTag = false
+                } else {
+                    result.unicodeScalars.append(scalar)
+                }
+            } else if !isInsideTag {
+                result.unicodeScalars.append(scalar)
+            }
         }
 
-        Cached.anchorTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
-            guard let match = match else { return }
-            let inner = nsSelf.substring(with: match.range(at: 1))
-            allMatches.append((match.range, inner))
-        }
-
-        Cached.hadeethTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
-            guard let match = match else { return }
-            allMatches.append((match.range, ""))
-        }
-
-        Cached.manTag?.enumerateMatches(in: self, range: fullRange) { match, _, _ in
-            guard let match = match else { return }
-            let inner = nsSelf.substring(with: match.range(at: 1))
-            allMatches.append((match.range, inner))
-        }
-
-        if allMatches.isEmpty { return self }
-
-        allMatches.sort { $0.range.location > $1.range.location }
-
-        let mutableString = nsSelf.mutableCopy() as! NSMutableString
-        for m in allMatches {
-            mutableString.replaceCharacters(in: m.range, with: m.replacement)
-        }
-
-        return mutableString as String
+        return result
     }
 
     /// Versi lengkap: mengembalikan string bersih DAN ranges untuk header color.
@@ -392,66 +374,191 @@ extension String {
         return (colored, footnote)
     }
 
+    /// Versi ringan: hanya string bersih tanpa menghitung ranges maupun highlight.
+    /// Gunakan ini jika tidak butuh coloredRanges (misal: AnnotationCoordinator).
     func cleanedText() -> String {
-        var cleaned = self
+        let replL = replacementL
+        let replR = replacementR
+        let removable: Set<Character> = ["¬", "§"]
 
-        // --- Langkah 1: Ganti literal "\\n" dengan newline '\n' ---
-        // Operasi ini harus dilakukan terlebih dahulu secara terpisah atau dengan regex terpisah
-        // agar tidak bentrok dengan karakter '\' yang mungkin digunakan di regex lain.
-        cleaned = cleaned.replacingOccurrences(of: "\\n", with: "\n")
+        var result = ""
+        result.reserveCapacity(self.count)
 
-        // Hapus karakter "¬" dan "§" dalam SATU operasi pemindaian
-        let charactersToRemove: Set<Character> = ["¬", "§"]
-        cleaned.removeAll { charactersToRemove.contains($0) }
-
-        // --- Langkah 2: Gabungkan penggantian Kurung Kurawal dengan satu Regex ---
-        // Pola: Mencocokkan '{' atau '}'
-        let bracketPattern = "[{}]"
-
-        do {
-            let regex = try NSRegularExpression(pattern: bracketPattern, options: [])
-            let range = NSRange(cleaned.startIndex..., in: cleaned)
-            // let nsString = cleaned as NSString
-
-            // Menggunakan enumerateMatches untuk memproses penggantian yang berbeda secara manual
-            var finalString = cleaned
-            var offset = 0 // Untuk melacak perubahan panjang string
-
-            regex.enumerateMatches(in: cleaned, options: [], range: range) { (match, flags, stop) in
-                guard let match = match else { return }
-
-                guard let originalRange = Range(match.range, in: cleaned) else { return }
-                let matchedCharacter = String(cleaned[originalRange])
-                let replacement: String
-
-                // Menentukan string pengganti
-                switch matchedCharacter {
-                case "{":
-                    replacement = " ﴿" // Panjang: 3 karakter
-                case "}":
-                    replacement = "﴾ " // Panjang: 3 karakter
-                default:
-                    return
+        var index = startIndex
+        while index < endIndex {
+            let ch = self[index]
+            if removable.contains(ch) {
+                index = self.index(after: index)
+            } else if ch == "\\",
+                      let next = self.index(index, offsetBy: 1, limitedBy: endIndex),
+                      next < endIndex,
+                      self[next] == "n" {
+                result.append("\n")
+                index = self.index(after: next)
+            } else {
+                switch ch {
+                case "{": result += replL
+                case "}": result += replR
+                default:  result.append(ch)
                 }
+                index = self.index(after: index)
+            }
+        }
+        return result
+    }
 
-                // Menghitung range (jangkauan) penggantian yang sudah diimbangi (offset)
-                let adjustedRange = NSRange(location: match.range.location + offset, length: match.range.length)
+    /// Returns all NSRanges in `self` that match any of the given Arabic keywords or multi-word phrases,
+    /// handling Alif, Ta Marbuta/Ha, Alif Maqsura/Ya, and per-word prefix variations (ال, و, ف, ب, ك, ل).
+    func findArabicMatchingRanges(keywords: [String]) -> [NSRange] {
+        return findArabicMatchingRangesWithIndex(keywords: keywords).map { $0.range }
+    }
 
-                if let swiftRange = Range(adjustedRange, in: finalString) {
-                    finalString.replaceSubrange(swiftRange, with: replacement)
+    func findArabicMatchingRangesWithIndex(keywords: [String]) -> [(range: NSRange, keywordIndex: Int)] {
+        guard !keywords.isEmpty, !self.isEmpty else { return [] }
 
-                    // Update offset berdasarkan perubahan panjang string
-                    // 3 karakter (replacement) - 1 karakter (original) = +2
-                    offset += (replacement.count - matchedCharacter.count)
-                }
+        var normalizedScalars: [UnicodeScalar] = []
+        normalizedScalars.reserveCapacity(self.unicodeScalars.count)
+        var indexMap: [Int] = []
+        indexMap.reserveCapacity(self.unicodeScalars.count)
+
+        var utf16Offset = 0
+        for scalar in self.unicodeScalars {
+            let scalarLen = scalar.utf16.count
+            let val = scalar.value
+
+            if scalar.isArabicHarakat || val == 0x0640 {
+                utf16Offset += scalarLen
+                continue
             }
 
-            return finalString
+            let normalizedScalar: UnicodeScalar = switch val {
+            case 0x0623, 0x0625, 0x0622, 0x0671: UnicodeScalar(0x0627)! // ا
+            case 0x0629: UnicodeScalar(0x0647)! // ه
+            case 0x0649: UnicodeScalar(0x064A)! // ي
+            default: scalar
+            }
 
-        } catch {
-            print("Error compiling regex:", error)
-            return cleaned // Jika regex gagal, kembalikan string setelah Langkah 1
+            indexMap.append(utf16Offset)
+            normalizedScalars.append(normalizedScalar)
+            utf16Offset += scalarLen
         }
+
+        let normalizedText = String(String.UnicodeScalarView(normalizedScalars))
+        var ranges: [(range: NSRange, keywordIndex: Int)] = []
+
+        func coreWord(_ s: String) -> String {
+            return s.stemArabicLight10()
+        }
+
+        func normalizeToken(_ token: Substring) -> String {
+            var norm = ""
+            for scalar in token.unicodeScalars {
+                if scalar.isArabicHarakat || scalar.value == 0x0640 { continue }
+                switch scalar.value {
+                case 0x0623, 0x0625, 0x0622, 0x0671: norm.append("ا")
+                case 0x0629: norm.append("ه")
+                case 0x0649: norm.append("ي")
+                default: norm.unicodeScalars.append(scalar)
+                }
+            }
+            return norm
+        }
+
+        struct TextWord {
+            let text: String
+            let core: String
+            let normStartIdx: Int
+            let normEndIdx: Int
+        }
+
+        var textWords: [TextWord] = []
+        textWords.reserveCapacity(normalizedText.count / 5)
+
+        var wordStartCharIdx: String.Index? = nil
+        var wordStartScalarOffset: Int = 0
+        var currentScalarOffset = 0
+
+        for idx in normalizedText.indices {
+            let ch = normalizedText[idx]
+            if ch.isWhitespace || ch.isPunctuation {
+                if let start = wordStartCharIdx {
+                    let wordStr = String(normalizedText[start..<idx])
+                    let core = coreWord(wordStr)
+                    textWords.append(TextWord(text: wordStr, core: core, normStartIdx: wordStartScalarOffset, normEndIdx: currentScalarOffset))
+                    wordStartCharIdx = nil
+                }
+            } else {
+                if wordStartCharIdx == nil {
+                    wordStartCharIdx = idx
+                    wordStartScalarOffset = currentScalarOffset
+                }
+            }
+            currentScalarOffset += ch.unicodeScalars.count
+        }
+
+        if let start = wordStartCharIdx {
+            let wordStr = String(normalizedText[start...])
+            let core = coreWord(wordStr)
+            textWords.append(TextWord(text: wordStr, core: core, normStartIdx: wordStartScalarOffset, normEndIdx: currentScalarOffset))
+        }
+
+        if textWords.isEmpty { return [] }
+
+        for (keywordIndex, keyword) in keywords.enumerated() {
+            let trimmed = keyword.trimmingCharacters(in: .whitespaces)
+            guard !trimmed.isEmpty else { continue }
+
+            let rawTokens = trimmed.split(whereSeparator: { $0.isWhitespace || $0.isPunctuation })
+            struct QueryWord {
+                let norm: String
+                let core: String
+            }
+            let queryWords: [QueryWord] = rawTokens.compactMap { token -> QueryWord? in
+                let norm = normalizeToken(token)
+                guard !norm.isEmpty else { return nil }
+                return QueryWord(norm: norm, core: coreWord(norm))
+            }
+
+            guard !queryWords.isEmpty else { continue }
+            let m = queryWords.count
+
+            if m <= textWords.count {
+                for i in 0...(textWords.count - m) {
+                    var sequenceMatches = true
+                    for j in 0..<m {
+                        let tw = textWords[i + j]
+                        let qw = queryWords[j]
+                        if tw.text != qw.norm && tw.core != qw.core && tw.text != qw.core && tw.core != qw.norm {
+                            sequenceMatches = false
+                            break
+                        }
+                    }
+
+                    if sequenceMatches {
+                        let firstWord = textWords[i]
+                        let lastWord = textWords[i + m - 1]
+
+                        let normStartIdx = firstWord.normStartIdx
+                        let normEndIdx = lastWord.normEndIdx
+
+                        if normStartIdx < indexMap.count {
+                            let rawUtf16Start = indexMap[normStartIdx]
+                            let rawUtf16End: Int = normEndIdx < indexMap.count ? indexMap[normEndIdx] : utf16Offset
+
+                            if rawUtf16End > rawUtf16Start {
+                                let nsRange = NSRange(location: rawUtf16Start, length: rawUtf16End - rawUtf16Start)
+                                if !ranges.contains(where: { $0.range == nsRange && $0.keywordIndex == keywordIndex }) {
+                                    ranges.append((range: nsRange, keywordIndex: keywordIndex))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        ranges.sort { $0.range.location < $1.range.location }
+        return ranges
     }
 
     /// Mengambil potongan teks di sekitar keyword yang ditemukan.
@@ -459,91 +566,205 @@ extension String {
     ///   - keywords: Array kata kunci yang dicari.
     ///   - contextLength: Jumlah karakter (bukan kata) sebelum dan sesudah keyword agar pas di UI.
     func snippetAround(keywords: [String], contextLength: Int = 60) -> String {
-        // 1. Cari range pertama dari SALAH SATU keyword yang cocok
-        // Menggunakan opsi .diacriticInsensitive agar "Al-Fatihah" cocok dengan "AlFatihah" atau teks berharakat.
-        var bestRange: Range<String.Index>? = nil
-
-        for keyword in keywords {
-            // Kita cari keyword di dalam self dengan opsi yang longgar
-            if let found = self.range(of: keyword, options: [.caseInsensitive, .diacriticInsensitive, .widthInsensitive]) {
-                // Ambil yang paling awal ditemukan
-                if bestRange == nil || found.lowerBound < bestRange!.lowerBound {
-                    bestRange = found
-                }
-            }
-        }
-
-        // 2. Jika tidak ada keyword yang ketemu (fallback), kembalikan awal teks
-        guard let targetRange = bestRange else {
+        let ranges = findArabicMatchingRanges(keywords: keywords)
+        guard let firstRange = ranges.first,
+              let targetRange = Range(firstRange, in: self) else {
             let limit = min(self.count, contextLength * 2)
             return String(self.prefix(limit)).replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
         }
 
-        // 3. Hitung batas awal dan akhir snippet
-        // Mundur 'contextLength' karakter dari awal keyword
         var startIdx = self.index(targetRange.lowerBound, offsetBy: -contextLength, limitedBy: self.startIndex) ?? self.startIndex
-
-        // Maju 'contextLength' karakter dari akhir keyword
         var endIdx = self.index(targetRange.upperBound, offsetBy: contextLength, limitedBy: self.endIndex) ?? self.endIndex
 
-        // 4. Snap to Space (Rapikan pemotongan)
-        // Jangan memotong kata di tengah jalan. Cari spasi terdekat sebelumnya.
         if startIdx > self.startIndex, let spaceIdx = self.range(of: " ", options: .backwards, range: self.startIndex..<startIdx)?.upperBound {
             startIdx = spaceIdx
         }
 
-        // Cari spasi terdekat sesudahnya
         if endIdx < self.endIndex, let spaceIdx = self.range(of: " ", range: endIdx..<self.endIndex)?.lowerBound {
             endIdx = spaceIdx
         }
 
-        // 5. Buat Snippet
         let rawSnippet = self[startIdx..<endIdx]
 
-        // Bersihkan newline dan spasi ganda
         var cleanSnippet = rawSnippet
             .replacingOccurrences(of: "\\n", with: " ")
             .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
 
-        // Opsional: Tambahkan "..." jika teks terpotong
         if startIdx > self.startIndex { cleanSnippet = "..." + cleanSnippet }
         if endIdx < self.endIndex { cleanSnippet = cleanSnippet + "..." }
 
         return cleanSnippet
     }
 
+    /// Membuat cuplikan teks dengan mencari keyword yang berdekatan dalam rentang kata (word distance)
+    /// yang spesifik, cocok untuk pencarian mode NEAR.
+    /// - Parameters:
+    ///   - keywords: Array kata kunci yang dicari.
+    ///   - nearDistance: Jarak maksimal kata antar keyword.
+    ///   - contextLength: Jumlah karakter konteks di sekitar hasil.
+    func snippetNear(keywords: [String], nearDistance: Int, contextLength: Int = 60) -> String {
+        let rangesWithIndex = findArabicMatchingRangesWithIndex(keywords: keywords)
+        guard !rangesWithIndex.isEmpty else {
+            let limit = min(self.count, contextLength * 2)
+            return String(self.prefix(limit)).replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+        }
+
+        let sortedRanges = rangesWithIndex.sorted(by: { $0.range.location < $1.range.location })
+        var bestStartIdx: String.Index?
+        var bestEndIdx: String.Index?
+
+        let uniqueKeywordsCount = Set(sortedRanges.map { $0.keywordIndex }).count
+        var foundCluster = false
+
+        if uniqueKeywordsCount > 1 {
+            var minWordDistance = Int.max
+            let maxAllowedDistance = nearDistance * (uniqueKeywordsCount - 1) + 5
+
+            for i in 0..<sortedRanges.count {
+                var currentSet = Set<Int>()
+                for j in i..<sortedRanges.count {
+                    currentSet.insert(sortedRanges[j].keywordIndex)
+
+                    if currentSet.count == uniqueKeywordsCount {
+                        let startRange = sortedRanges[i].range
+                        let endRange = sortedRanges[j].range
+
+                        guard let startBound = Range(startRange, in: self)?.upperBound,
+                              let endBound = Range(endRange, in: self)?.lowerBound,
+                              startBound <= endBound else { continue }
+
+                        let textBetween = self[startBound..<endBound]
+                        let wordsBetween = textBetween.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }.count
+
+                        if wordsBetween <= maxAllowedDistance && wordsBetween < minWordDistance {
+                            minWordDistance = wordsBetween
+                            bestStartIdx = Range(startRange, in: self)?.lowerBound
+                            bestEndIdx = Range(endRange, in: self)?.upperBound
+                            foundCluster = true
+                        }
+                        break // Kita sudah temukan window minimal yang berawal dari i
+                    }
+                }
+            }
+        }
+
+        if !foundCluster {
+            bestStartIdx = Range(sortedRanges[0].range, in: self)?.lowerBound
+            bestEndIdx = Range(sortedRanges[0].range, in: self)?.upperBound
+        }
+
+        guard let targetStart = bestStartIdx, let targetEnd = bestEndIdx else {
+            let limit = min(self.count, contextLength * 2)
+            return String(self.prefix(limit)).replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+        }
+
+        var startIdx = self.index(targetStart, offsetBy: -contextLength, limitedBy: self.startIndex) ?? self.startIndex
+        var endIdx = self.index(targetEnd, offsetBy: contextLength, limitedBy: self.endIndex) ?? self.endIndex
+
+        if startIdx > self.startIndex, let spaceIdx = self.range(of: " ", options: .backwards, range: self.startIndex..<startIdx)?.upperBound {
+            startIdx = spaceIdx
+        }
+
+        if endIdx < self.endIndex, let spaceIdx = self.range(of: " ", range: endIdx..<self.endIndex)?.lowerBound {
+            endIdx = spaceIdx
+        }
+
+        let rawSnippet = self[startIdx..<endIdx]
+
+        var cleanSnippet = rawSnippet
+            .replacingOccurrences(of: "\n", with: " ")
+            .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+
+        if startIdx > self.startIndex { cleanSnippet = "..." + cleanSnippet }
+        if endIdx < self.endIndex { cleanSnippet = cleanSnippet + "..." }
+
+        return cleanSnippet
+    }
+
+    /// Memfilter ranges sehingga hanya menyisakan ranges yang merupakan bagian dari valid NEAR cluster
+func filterRangesForNearMode(rangesWithIndex: [(range: NSRange, keywordIndex: Int)], keywordsCount: Int, nearDistance: Int) -> [NSRange] {
+        guard rangesWithIndex.count >= 2, keywordsCount > 1 else { return rangesWithIndex.map { $0.range } }
+
+        let sortedRanges = rangesWithIndex.sorted(by: { $0.range.location < $1.range.location })
+        let uniqueKeywordsCount = Set(sortedRanges.map { $0.keywordIndex }).count
+        guard uniqueKeywordsCount > 1 else { return [] }
+
+        let maxAllowedDistance = nearDistance * (uniqueKeywordsCount - 1) + 5
+        var validRanges = Set<NSRange>()
+
+        var left = 0
+        var countMap: [Int: Int] = [:]
+        var satisfiedTypes = 0
+
+        for right in 0..<sortedRanges.count {
+            let rightKw = sortedRanges[right].keywordIndex
+            countMap[rightKw, default: 0] += 1
+            if countMap[rightKw] == 1 { satisfiedTypes += 1 }
+
+            // Susutkan dari kiri selama window masih tetap punya semua keyword unik
+            // setelah elemen kiri dibuang (artinya elemen kiri itu duplikat/redundan)
+            while satisfiedTypes == uniqueKeywordsCount {
+                let leftKw = sortedRanges[left].keywordIndex
+                if countMap[leftKw]! > 1 {
+                    countMap[leftKw]! -= 1
+                    left += 1
+                } else {
+                    break
+                }
+            }
+
+            guard satisfiedTypes == uniqueKeywordsCount else { continue }
+
+            // window [left, right] sekarang adalah window PALING KETAT yang berakhir di 'right'
+            let startRange = sortedRanges[left].range
+            let endRange = sortedRanges[right].range
+
+            if startRange == endRange {
+                validRanges.insert(startRange)
+                continue
+            }
+
+            guard let startBound = Range(startRange, in: self)?.upperBound,
+                  let endBound = Range(endRange, in: self)?.lowerBound,
+                  startBound <= endBound else { continue }
+
+            let textBetween = self[startBound..<endBound]
+            let wordsBetween = textBetween.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }.count
+
+            if wordsBetween <= maxAllowedDistance {
+                for k in left...right {
+                    validRanges.insert(sortedRanges[k].range)
+                }
+            }
+        }
+
+        return sortedRanges.map { $0.range }.filter { validRanges.contains($0) }
+    }
+
     /// Membuat NSAttributedString dengan highlight keyword.
     /// Dijalankan sekali saat data diproses, bukan saat scrolling.
-    func highlightedAttributedText(keywords: [String]) -> NSAttributedString {
+    func highlightedAttributedText(keywords: [String], nearDistance: Int? = nil) -> NSAttributedString {
         let attributed = NSMutableAttributedString(string: self)
 
-        // 1. Set Paragraph Style (Truncating Tail)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byTruncatingTail
         paragraphStyle.alignment = .right
 
-        // Apply style ke seluruh teks
         attributed.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributed.length))
 
-        // 2. Highlight Logic (Berat)
-        let wholeRange = self.startIndex..<self.endIndex
+        var ranges: [NSRange]
 
-        for keyword in keywords where !keyword.isEmpty {
-            var searchRange = wholeRange
+        // Hanya highlight keyword yang benar-benar berdekatan jika ini mode NEAR
+        if let nearDistance = nearDistance, keywords.count > 1 {
+            let rangesWithIndex = self.findArabicMatchingRangesWithIndex(keywords: keywords)
+            ranges = filterRangesForNearMode(rangesWithIndex: rangesWithIndex, keywordsCount: keywords.count, nearDistance: nearDistance)
+        } else {
+            ranges = self.findArabicMatchingRanges(keywords: keywords)
+        }
 
-            // Loop pencarian (Heavy operation)
-            while let found = self.range(of: keyword, options: [.caseInsensitive, .diacriticInsensitive, .widthInsensitive], range: searchRange) {
-                let nsRange = NSRange(found, in: self)
-
-                // Set warna highlight
-                attributed.addAttribute(.backgroundColor, value: PlatformColor.systemYellow.withAlphaComponent(0.4), range: nsRange)
-                // attributed.addAttribute(.foregroundColor, value: PlatformColor.black, range: nsRange) // Opsional: agar kontras
-
-                if found.upperBound < self.endIndex {
-                    searchRange = found.upperBound..<self.endIndex
-                } else {
-                    break
-                }
+        for range in ranges {
+            if range.location + range.length <= attributed.length {
+                attributed.addAttribute(.backgroundColor, value: PlatformColor.systemYellow.withAlphaComponent(0.4), range: range)
             }
         }
 
@@ -627,10 +848,103 @@ extension String {
 extension Character {
     var isArabicLetter: Bool {
         guard let scalar = unicodeScalars.first else { return false }
-        return (0x0600...0x06FF).contains(scalar.value) || 
-               (0x0750...0x077F).contains(scalar.value) || 
+        return (0x0600...0x06FF).contains(scalar.value) ||
+               (0x0750...0x077F).contains(scalar.value) ||
                (0x08A0...0x08FF).contains(scalar.value)
     }
+}
+
+extension StringProtocol {
+    /// Checks the first strong letter of the text/paragraph to determine if it is RTL (Arabic, Hebrew, etc.).
+    /// Returns `true` if RTL or empty/neutral, and `false` if LTR.
+    var isParagraphRTL: Bool {
+        for scalar in unicodeScalars {
+            if scalar.properties.isDefaultIgnorableCodePoint || scalar.properties.isWhitespace {
+                continue
+            }
+            let category = scalar.properties.generalCategory
+            switch category {
+            case .uppercaseLetter, .lowercaseLetter, .titlecaseLetter, .modifierLetter, .otherLetter:
+                let val = scalar.value
+                if (0x0590...0x08FF).contains(val) ||
+                   (0xFB1D...0xFDFF).contains(val) ||
+                   (0xFE70...0xFEFF).contains(val) ||
+                   (0x10800...0x1EFFF).contains(val) {
+                    return true
+                } else {
+                    return false
+                }
+            default:
+                continue
+            }
+        }
+        return true
+    }
+}
+
+extension NSTextStorage {
+    /// Adjusts text alignment and writing direction line-by-line (paragraph-by-paragraph)
+    /// based on the first strong letter of each paragraph.
+    func applyAutoDirectionAlignments(font: PlatformFont? = nil) {
+        let nsString = self.string as NSString
+        guard nsString.length > 0 else { return }
+
+        beginEditing()
+        var lineStart = 0
+        while lineStart < nsString.length {
+            let paragraphRange = nsString.paragraphRange(for: NSRange(location: lineStart, length: 0))
+            let paragraphText = nsString.substring(with: paragraphRange)
+
+            let isRTL = paragraphText.isParagraphRTL
+            let targetAlignment: NSTextAlignment = isRTL ? .right : .left
+            let targetDirection: NSWritingDirection = isRTL ? .rightToLeft : .leftToRight
+
+            var currentStyle: NSMutableParagraphStyle
+            if let existingStyle = attribute(.paragraphStyle, at: paragraphRange.location, effectiveRange: nil) as? NSParagraphStyle {
+                currentStyle = existingStyle.mutableCopy() as! NSMutableParagraphStyle
+            } else {
+                currentStyle = NSMutableParagraphStyle()
+            }
+
+            if currentStyle.alignment != targetAlignment || currentStyle.baseWritingDirection != targetDirection {
+                currentStyle.alignment = targetAlignment
+                currentStyle.baseWritingDirection = targetDirection
+                addAttribute(.paragraphStyle, value: currentStyle, range: paragraphRange)
+            }
+
+            if let font = font {
+                addAttribute(.font, value: font, range: paragraphRange)
+            }
+
+            lineStart = NSMaxRange(paragraphRange)
+        }
+        endEditing()
+    }
+}
+
+#if os(macOS)
+extension NSTextField {
+    /// Adjusts field alignment and writing direction based on stringValue's first strong character.
+    func updateAutoDirectionAlignment() {
+        let isRTL = stringValue.isParagraphRTL
+        alignment = isRTL ? .right : .left
+        baseWritingDirection = isRTL ? .rightToLeft : .leftToRight
+    }
+}
+#endif
+
+
+private struct StringExtCache {
+    static let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "ar")
+        return formatter
+    }()
+
+    static let tabaqaRegex: NSRegularExpression? = {
+        let pattern = #"(W)|([FGHIJKLMNOP])|([0-9]+)"#
+        return try? NSRegularExpression(pattern: pattern)
+    }()
 }
 
 extension String {
@@ -667,24 +981,27 @@ extension String {
      */
     private func replaceSingleAbbreviations(with mapping: [String: String]) -> String {
         guard !mapping.isEmpty else { return self }
-        let keys = mapping.keys.map { NSRegularExpression.escapedPattern(for: $0) }.joined(separator: "|")
-        guard let regex = try? Regex("(\(keys))") else { return self }
 
-        // Lakukan penggantian single-pass
-        return self.replacing(regex) { (match: Regex<AnyRegexOutput>.Match) in
+        var result = ""
+        var currentIndex = self.startIndex
 
-            // 1. Ambil Capture Group 1 (indeks 1).
-            // Hasilnya adalah tipe yang sesuai, yang kita gunakan untuk inisialisasi String.
-            let abbreviationOutput = match.output[1]
-
-            // 2. Akses value-nya, yang merupakan Substring, dan konversi ke String.
-            // Metode .substring memungkinkan konversi yang aman.
-            let abbreviation = String(abbreviationOutput.substring!)
-            // ATAU, jika Anda menggunakan Swift 5.8+, Anda bisa mencoba:
-            // let abbreviation = String(abbreviationOutput.value)
-
-            return mapping[abbreviation] ?? abbreviation
+        while currentIndex < self.endIndex {
+            var matchFound = false
+            for (key, value) in mapping {
+                if self[currentIndex...].hasPrefix(key) {
+                    result += value
+                    currentIndex = self.index(currentIndex, offsetBy: key.count)
+                    matchFound = true
+                    break // Hanya apply 1 match di posisi ini
+                }
+            }
+            if !matchFound {
+                result.append(self[currentIndex])
+                currentIndex = self.index(after: currentIndex)
+            }
         }
+
+        return result
     }
 
     // --- Fungsi Utama yang Menggabungkan Kedua Langkah ---
@@ -701,11 +1018,8 @@ extension String {
     }
 
     func convertedTabaqa() -> String {
-        let formatter = NumberFormatter()
-        formatter.locale = Locale(identifier: "ar")
-
-        let pattern = #"(W)|([FGHIJKLMNOP])|([0-9]+)"#
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return self }
+        let formatter = StringExtCache.numberFormatter
+        guard let regex = StringExtCache.tabaqaRegex else { return self }
 
         let ns = self as NSString
         let matches = regex.matches(in: self, range: NSRange(location: 0, length: ns.length))
@@ -789,58 +1103,96 @@ extension String {
 extension String {
 
     func normalizedForMatching() -> String {
-        return filter { !$0.isArabicHarakat() }
+        removingHarakat()
     }
 }
 
 extension String {
-    // Cari range di teks original (dengan harakat) berdasarkan selected text dan posisi perkiraan
-    func findRangeInOriginal(selectedText: String, approximateRange: NSRange) -> NSRange {
-        // Bersihkan harakat dari selected text dan self
-        let cleanSelected = selectedText.normalizedForMatching()
+    /* Cari range di teks original (dengan harakat).
+     `approximateRange` berada dalam koordinat NO-HARAKAT (sourceText yang sudah di-strip).
+     `self` adalah teks WITH-HARAKAT (diacText / nash asli).
 
+     Solusi: strip harakat dari self sambil membangun offsetMap ke posisi asli,
+     cari selectedText di no-harakat space (koordinat cocok dengan approximateRange),
+     lalu gunakan offsetMap untuk menghasilkan range di with-harakat string. */
+    func findRangeInOriginal(selectedText: String, approximateRange: NSRange) -> NSRange {
+        let cleanSelected = selectedText.normalizedForMatching()
         guard !cleanSelected.isEmpty else { return approximateRange }
 
-        // Cari posisi di teks tanpa harakat
-        let nsClean = self as NSString
-        let foundRange = nsClean.range(of: cleanSelected, options: .diacriticInsensitive)
+        // Bangun versi no-harakat dari self + offsetMap: [noHarakatUtf16Idx -> withHarakatUtf16Idx]
+        var noHarakatText = ""
+        noHarakatText.reserveCapacity(utf16.count)
+        // +1 untuk sentinel di akhir
+        var offsetMap = [Int]()
+        offsetMap.reserveCapacity(utf16.count + 1)
 
-        guard foundRange.location != NSNotFound else {
-            return approximateRange // fallback
+        var withHarakatIdx = 0
+        for scalar in unicodeScalars {
+            let len = scalar.utf16.count
+            if !scalar.isArabicHarakat {
+                for _ in 0..<len { offsetMap.append(withHarakatIdx) }
+                noHarakatText.unicodeScalars.append(scalar)
+            }
+            withHarakatIdx += len
         }
+        offsetMap.append(withHarakatIdx) // sentinel
 
-        return foundRange
+        // Cari di no-harakat space (koordinat sama dengan approximateRange)
+        let nsNoHarakat = noHarakatText as NSString
+        let totalLen = nsNoHarakat.length
+        let cleanLen = (cleanSelected as NSString).length
+        let radius = 300
+        let searchStart = max(0, approximateRange.location - radius)
+        let searchEnd = min(totalLen, approximateRange.location + approximateRange.length + radius + cleanLen)
+        let searchLength = searchEnd - searchStart
+
+        var found = NSRange(location: NSNotFound, length: 0)
+        if searchLength > 0 {
+            found = nsNoHarakat.range(
+                of: cleanSelected,
+                options: .diacriticInsensitive,
+                range: NSRange(location: searchStart, length: searchLength)
+            )
+        }
+        if found.location == NSNotFound {
+            found = nsNoHarakat.range(of: cleanSelected, options: .diacriticInsensitive)
+        }
+        guard found.location != NSNotFound else { return approximateRange }
+
+        // Map posisi no-harakat → posisi with-harakat via offsetMap
+        let mapStart = min(found.location, offsetMap.count - 1)
+        let mapEnd   = min(found.location + found.length, offsetMap.count - 1)
+        let harakatStart  = offsetMap[mapStart]
+        let harakatEnd    = offsetMap[mapEnd]
+        return NSRange(location: harakatStart, length: max(0, harakatEnd - harakatStart))
     }
 
     func calculateRangeWithoutHarakat(from sourceRange: NSRange, in sourceTextWithHarakat: String) -> NSRange {
-        let sourceNS = sourceTextWithHarakat as NSString
-
-        // 1. Hitung offset start (skip harakat)
         var startOffset = 0
-        for i in 0..<sourceRange.location {
-            let char = sourceNS.character(at: i)
-            let scalar = UnicodeScalar(char)!
-            let c = Character(scalar)
-            if !c.isArabicHarakat() {
-                startOffset += 1
-            }
-        }
-
-        // 2. Hitung length (skip harokat)
         var selectedLength = 0
-        for i in sourceRange.location..<(sourceRange.location + sourceRange.length) {
-            let char = sourceNS.character(at: i)
-            let scalar = UnicodeScalar(char)!
-            let c = Character(scalar)
-            if !c.isArabicHarakat() {
-                selectedLength += 1
+        var currentUtf16 = 0
+
+        for scalar in sourceTextWithHarakat.unicodeScalars {
+            let len = scalar.utf16.count
+            let isHarakat = scalar.isArabicHarakat
+
+            if currentUtf16 < sourceRange.location {
+                if !isHarakat {
+                    startOffset += len
+                }
+            } else if currentUtf16 < sourceRange.location + sourceRange.length {
+                if !isHarakat {
+                    selectedLength += len
+                }
+            } else {
+                break
             }
+
+            currentUtf16 += len
         }
 
-        // 3. Di teks tanpa harakat (self), posisi langsung = offset
         return NSRange(location: startOffset, length: selectedLength)
     }
-
 }
 
 extension Character {
@@ -865,5 +1217,141 @@ extension UnicodeScalar {
 extension String {
     var localized: String {
         return NSLocalizedString(self, comment: "")
+    }
+}
+
+// MARK: - Lucene Arabic Light10 Stemmer
+
+public struct ArabicLightStemmer {
+    private static let prefixScalars: [[UnicodeScalar]] = [
+        "والله", "وبالله", "فالله", "فبالله",
+        "والل", "فالل", "بالل", "كالل", "وللم", "فللم",
+        "وال", "فال", "بال", "كال", "لل", "ال"
+    ].map { Array($0.removingHarakat().unicodeScalars) }
+
+    private static let suffixScalars: [[UnicodeScalar]] = [
+        "هما", "تاني", "تَيْن", "كُمَا", "هُمَا",
+        "ان", "ات", "ون", "ين", "يه", "ية", "هم", "هن", "كم", "نا", "ها", "وا", "يا", "ك"
+    ].map { Array($0.removingHarakat().unicodeScalars) }
+
+    /// Stems a single Arabic word using Lucene Light10 algorithm without temporary String allocations.
+    public static func stemWord(_ input: String) -> String {
+        guard !input.isEmpty else { return input }
+
+        var buffer = ContiguousArray<UnicodeScalar>()
+        buffer.reserveCapacity(input.unicodeScalars.count)
+
+        stemWordToBuffer(input.unicodeScalars, into: &buffer)
+
+        return String(String.UnicodeScalarView(buffer))
+    }
+
+    public static func stemWordToBuffer<S: Sequence>(_ scalars: S, into output: inout ContiguousArray<UnicodeScalar>) where S.Element == UnicodeScalar {
+        var clean = ContiguousArray<UnicodeScalar>()
+        clean.reserveCapacity(32)
+
+        for scalar in scalars {
+            let val = scalar.value
+            // Skip harakat & tatweel
+            if scalar.isArabicHarakat || val == 0x0640 {
+                continue
+            }
+
+            // Normalization
+            if val == 0x0623 || val == 0x0625 || val == 0x0622 || val == 0x0671 {
+                clean.append(UnicodeScalar(0x0627)!)
+            } else if val == 0x0629 {
+                clean.append(UnicodeScalar(0x0647)!)
+            } else if val == 0x0649 {
+                clean.append(UnicodeScalar(0x064A)!)
+            } else {
+                clean.append(scalar)
+            }
+        }
+
+        var start = 0
+        var count = clean.count
+
+        // Prefix trimming
+        for prefix in prefixScalars {
+            let pLen = prefix.count
+            if count - pLen >= 3 {
+                var isMatch = true
+                for i in 0..<pLen {
+                    if clean[start + i] != prefix[i] {
+                        isMatch = false
+                        break
+                    }
+                }
+                if isMatch {
+                    start += pLen
+                    count -= pLen
+                    break
+                }
+            }
+        }
+
+        // Suffix trimming
+        for suffix in suffixScalars {
+            let sLen = suffix.count
+            if count - sLen >= 3 {
+                var isMatch = true
+                for i in 0..<sLen {
+                    if clean[start + count - sLen + i] != suffix[i] {
+                        isMatch = false
+                        break
+                    }
+                }
+                if isMatch {
+                    count -= sLen
+                    break
+                }
+            }
+        }
+
+        if count > 0 {
+            output.append(contentsOf: clean[start..<(start + count)])
+        }
+    }
+
+    /// Stems all Arabic words in a given text block in a single pass with minimum allocations.
+    public static func stemText(_ text: String) -> String {
+        guard !text.isEmpty else { return text }
+
+        var outputScalars = ContiguousArray<UnicodeScalar>()
+        outputScalars.reserveCapacity(text.unicodeScalars.count)
+
+        var currentToken = ContiguousArray<UnicodeScalar>()
+        currentToken.reserveCapacity(32)
+
+        for scalar in text.unicodeScalars {
+            let val = scalar.value
+            let isArabic = (0x0600...0x06FF).contains(val) ||
+                           (0x0750...0x077F).contains(val) ||
+                           (0x08A0...0x08FF).contains(val)
+
+            if isArabic {
+                currentToken.append(scalar)
+            } else {
+                if !currentToken.isEmpty {
+                    stemWordToBuffer(currentToken, into: &outputScalars)
+                    currentToken.removeAll(keepingCapacity: true)
+                }
+                outputScalars.append(scalar)
+            }
+        }
+
+        if !currentToken.isEmpty {
+            stemWordToBuffer(currentToken, into: &outputScalars)
+        }
+
+        return String(String.UnicodeScalarView(outputScalars))
+    }
+}
+
+extension String {
+    /// Stems Arabic text using Lucene Light10 algorithm.
+    public func stemArabicLight10() -> String {
+        ArabicLightStemmer.stemText(self)
     }
 }

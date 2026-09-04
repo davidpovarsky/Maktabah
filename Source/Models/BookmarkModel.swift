@@ -16,11 +16,13 @@ import Observation
 class FolderNode: Identifiable, Hashable {
     let id: Int64
     var name: String
+    var lastModified: Int64?
     var children: [FolderNode] = []
 
-    init(id: Int64, name: String) {
+    init(id: Int64, name: String, lastModified: Int64? = nil) {
         self.id = id
         self.name = name
+        self.lastModified = lastModified
     }
 
     static func == (lhs: FolderNode, rhs: FolderNode) -> Bool {
@@ -39,12 +41,26 @@ class ResultNode: Identifiable, Hashable {
     var id: Int64
     var parentId: Int64?
     var name: String
+    var lastModified: Int64?
+    var searchMode: Int
+    var nearDistance: Int
     let items: [SavedResultsItem]
 
-    init(id: Int64, parentId: Int64?, name: String, items: [SavedResultsItem]) {
+    init(
+        id: Int64,
+        parentId: Int64?,
+        name: String,
+        lastModified: Int64? = nil,
+        searchMode: Int = 0,
+        nearDistance: Int = 10,
+        items: [SavedResultsItem]
+    ) {
         self.id = id
         self.parentId = parentId
         self.name = name
+        self.lastModified = lastModified
+        self.searchMode = searchMode
+        self.nearDistance = nearDistance
         self.items = items
     }
 

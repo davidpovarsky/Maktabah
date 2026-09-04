@@ -26,8 +26,10 @@ struct SQLiteRow {
     }
 
     func string(at index: Int32) -> String? {
-        guard let cString = sqlite3_column_text(stmt, index) else { return nil }
-        return String(cString: cString)
+        guard let textPtr = sqlite3_column_text(stmt, index) else { return nil }
+        let bytes = sqlite3_column_bytes(stmt, index)
+        let buffer = UnsafeBufferPointer(start: textPtr, count: Int(bytes))
+        return String(decoding: buffer, as: UTF8.self)
     }
 
     func double(at index: Int32) -> Double {
@@ -38,6 +40,12 @@ struct SQLiteRow {
         guard let blobPtr = sqlite3_column_blob(stmt, index) else { return nil }
         let blobSize = sqlite3_column_bytes(stmt, index)
         return Data(bytes: blobPtr, count: Int(blobSize))
+    }
+
+    func rawBlob(at index: Int32) -> UnsafeRawBufferPointer? {
+        guard let blobPtr = sqlite3_column_blob(stmt, index) else { return nil }
+        let blobSize = sqlite3_column_bytes(stmt, index)
+        return UnsafeRawBufferPointer(start: blobPtr, count: Int(blobSize))
     }
 
     func isNull(at index: Int32) -> Bool {
@@ -52,6 +60,10 @@ struct SQLiteRow {
 class SQLiteDatabase {
     let dbPointer: OpaquePointer
     private let lock = NSRecursiveLock()
+    private var savepointCounter: Int = 0
+    private var statementCache: [String: OpaquePointer] = [:]
+    private var cacheKeys: [String] = [] // Untuk LRU eviction
+    private let maxCacheSize = 100
 
     init(path: String, flags: Int32 = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX) throws {
         var db: OpaquePointer?
@@ -65,6 +77,10 @@ class SQLiteDatabase {
     }
 
     deinit {
+        for stmt in statementCache.values {
+            sqlite3_finalize(stmt)
+        }
+        statementCache.removeAll()
         sqlite3_close(dbPointer)
     }
 
@@ -72,13 +88,33 @@ class SQLiteDatabase {
         lock.lock()
         defer { lock.unlock() }
 
-        try _executeNoLock(query: "BEGIN TRANSACTION;")
-        do {
-            try block()
-            try _executeNoLock(query: "COMMIT;")
-        } catch {
-            try? _executeNoLock(query: "ROLLBACK;")
-            throw error
+        // Cek apakah sudah dalam transaksi aktif untuk mendukung nested transaction.
+        // SQLite tidak mendukung nested BEGIN TRANSACTION — gunakan SAVEPOINT sebagai gantinya.
+        let isNested = sqlite3_get_autocommit(dbPointer) == 0
+
+        if isNested {
+            savepointCounter += 1
+            let savepointName = "sp\(savepointCounter)"
+            defer { savepointCounter -= 1 }
+
+            try _executeNoLock(query: "SAVEPOINT \(savepointName);")
+            do {
+                try block()
+                try _executeNoLock(query: "RELEASE SAVEPOINT \(savepointName);")
+            } catch {
+                try? _executeNoLock(query: "ROLLBACK TO SAVEPOINT \(savepointName);")
+                try? _executeNoLock(query: "RELEASE SAVEPOINT \(savepointName);")
+                throw error
+            }
+        } else {
+            try _executeNoLock(query: "BEGIN TRANSACTION;")
+            do {
+                try block()
+                try _executeNoLock(query: "COMMIT;")
+            } catch {
+                try? _executeNoLock(query: "ROLLBACK;")
+                throw error
+            }
         }
     }
 
@@ -98,12 +134,35 @@ class SQLiteDatabase {
     // MARK: - Internal no-lock variants (caller must hold lock)
 
     private func _executeNoLock(query: String, parameters: [Any] = []) throws {
-        var stmt: OpaquePointer?
-        guard sqlite3_prepare_v2(dbPointer, query, -1, &stmt, nil) == SQLITE_OK else {
-            let error = String(cString: sqlite3_errmsg(dbPointer))
-            throw SQLiteError.prepareFailed(error)
+        let stmt: OpaquePointer
+
+        if let cachedStmt = statementCache[query] {
+            stmt = cachedStmt
+            sqlite3_reset(stmt)
+            sqlite3_clear_bindings(stmt)
+
+            // Perbarui LRU order
+            if let idx = cacheKeys.firstIndex(of: query) {
+                cacheKeys.remove(at: idx)
+                cacheKeys.append(query)
+            }
+        } else {
+            var newStmt: OpaquePointer?
+            guard sqlite3_prepare_v2(dbPointer, query, -1, &newStmt, nil) == SQLITE_OK else {
+                let error = String(cString: sqlite3_errmsg(dbPointer))
+                throw SQLiteError.prepareFailed(error)
+            }
+            stmt = newStmt!
+
+            if statementCache.count >= maxCacheSize, let oldestKey = cacheKeys.first {
+                if let oldStmt = statementCache.removeValue(forKey: oldestKey) {
+                    sqlite3_finalize(oldStmt)
+                }
+                cacheKeys.removeFirst()
+            }
+            statementCache[query] = stmt
+            cacheKeys.append(query)
         }
-        defer { sqlite3_finalize(stmt) }
 
         try bind(parameters: parameters, to: stmt)
 
@@ -115,17 +174,40 @@ class SQLiteDatabase {
 
     @discardableResult
     private func _fetchNoLock<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
-        var stmt: OpaquePointer?
-        guard sqlite3_prepare_v2(dbPointer, query, -1, &stmt, nil) == SQLITE_OK else {
-            let error = String(cString: sqlite3_errmsg(dbPointer))
-            throw SQLiteError.prepareFailed(error)
+        let stmt: OpaquePointer
+
+        if let cachedStmt = statementCache[query] {
+            stmt = cachedStmt
+            sqlite3_reset(stmt)
+            sqlite3_clear_bindings(stmt)
+
+            // Perbarui LRU order
+            if let idx = cacheKeys.firstIndex(of: query) {
+                cacheKeys.remove(at: idx)
+                cacheKeys.append(query)
+            }
+        } else {
+            var newStmt: OpaquePointer?
+            guard sqlite3_prepare_v2(dbPointer, query, -1, &newStmt, nil) == SQLITE_OK else {
+                let error = String(cString: sqlite3_errmsg(dbPointer))
+                throw SQLiteError.prepareFailed(error)
+            }
+            stmt = newStmt!
+
+            if statementCache.count >= maxCacheSize, let oldestKey = cacheKeys.first {
+                if let oldStmt = statementCache.removeValue(forKey: oldestKey) {
+                    sqlite3_finalize(oldStmt)
+                }
+                cacheKeys.removeFirst()
+            }
+            statementCache[query] = stmt
+            cacheKeys.append(query)
         }
-        defer { sqlite3_finalize(stmt) }
 
         try bind(parameters: parameters, to: stmt)
 
         var results: [T] = []
-        let row = SQLiteRow(stmt: stmt!)
+        let row = SQLiteRow(stmt: stmt)
 
         while sqlite3_step(stmt) == SQLITE_ROW {
             let mapped = try mapping(row)
@@ -163,6 +245,31 @@ class SQLiteDatabase {
             default:
                 throw SQLiteError.bindFailed("Unsupported type for parameter at index \(index)")
             }
+        }
+    }
+}
+
+
+// MARK: - Safe Database Attach
+extension OpaquePointer {
+    func safeAttachDatabase(path: String, schema: String) throws {
+        let sql = "ATTACH DATABASE ? AS \(schema)"
+        var stmt: OpaquePointer?
+
+        guard sqlite3_prepare_v2(self, sql, -1, &stmt, nil) == SQLITE_OK else {
+            let errorString = String(cString: sqlite3_errmsg(self))
+            throw NSError(domain: "SQLite", code: Int(sqlite3_errcode(self)), userInfo: [NSLocalizedDescriptionKey: "Prepare failed: \(errorString)"])
+        }
+        defer { sqlite3_finalize(stmt) }
+
+        path.withCString { ptr in
+            let SQLITE_TRANSIENT = unsafeBitCast(OpaquePointer(bitPattern: -1), to: sqlite3_destructor_type.self)
+            sqlite3_bind_text(stmt, 1, ptr, -1, SQLITE_TRANSIENT)
+        }
+
+        guard sqlite3_step(stmt) == SQLITE_DONE else {
+            let errorString = String(cString: sqlite3_errmsg(self))
+            throw NSError(domain: "SQLite", code: Int(sqlite3_errcode(self)), userInfo: [NSLocalizedDescriptionKey: "Step failed: \(errorString)"])
         }
     }
 }

@@ -20,29 +20,6 @@ enum ArchiveDatabaseTools {
         let isPrimaryKey: Bool
     }
 
-    static func replaceTable(
-        db: OpaquePointer,
-        tableName: String,
-        sourceSchema: String
-    ) throws {
-        let columns = try loadTableColumns(
-            tableName: tableName,
-            db: db,
-            schemaName: sourceSchema
-        )
-
-        let createSQL = makeCreateTableSQL(
-            tableName: tableName,
-            columns: columns
-        )
-
-        try exec(db, "DROP TABLE IF EXISTS \(tableName);")
-        try exec(db, createSQL)
-        try exec(
-            db,
-            "INSERT INTO \"\(tableName)\" SELECT * FROM \(sourceSchema).\"\(tableName)\";"
-        )
-    }
 
 
     /// Menyalin satu tabel dari `sourceSchema` ke `main`.
@@ -59,6 +36,28 @@ enum ArchiveDatabaseTools {
         )
     }
 
+    /// Menjalankan block operasi di dalam SQLite transaction jika belum ada transaksi aktif.
+    static func withTransaction(
+        db: OpaquePointer,
+        _ block: () throws -> Void
+    ) throws {
+        let isInTransaction = sqlite3_get_autocommit(db) == 0
+        if !isInTransaction {
+            try exec(db, "BEGIN TRANSACTION;")
+        }
+        do {
+            try block()
+            if !isInTransaction {
+                try exec(db, "COMMIT;")
+            }
+        } catch {
+            if !isInTransaction {
+                try? exec(db, "ROLLBACK;")
+            }
+            throw error
+        }
+    }
+
     /// Membangun FTS dari `sourceSchema.<sourceTable>` ke `ftsSchema.<ftsTable>`.
     /// Kolom `nass` diasumsikan TEXT.
     static func buildFTS(
@@ -66,7 +65,8 @@ enum ArchiveDatabaseTools {
         ftsSchema: String = "fts_db",
         ftsTable: String,
         sourceSchema: String,
-        sourceTable: String
+        sourceTable: String,
+        isNassCompressed: Bool = false
     ) throws {
         try exec(db, "DROP TABLE IF EXISTS \(ftsSchema).\(ftsTable);")
         try exec(
@@ -92,22 +92,64 @@ enum ArchiveDatabaseTools {
         }
         defer { sqlite3_finalize(insertStmt) }
 
-        while sqlite3_step(selectStmt) == SQLITE_ROW {
-            guard let textPtr = sqlite3_column_text(selectStmt, 1) else { continue }
-            let normalized = String(cString: textPtr)
-                .replacingOccurrences(of: "\n", with: " ")
-                .normalizeArabic()
-            guard !normalized.isEmpty else { continue }
+        try withTransaction(db: db) {
+            while sqlite3_step(selectStmt) == SQLITE_ROW {
+                try autoreleasepool {
+                    let rawText: String
 
-            sqlite3_reset(insertStmt)
-            sqlite3_clear_bindings(insertStmt)
-            sqlite3_bind_int64(insertStmt, 1, sqlite3_column_int64(selectStmt, 0))
-            _ = normalized.withCString {
-                sqlite3_bind_text(insertStmt, 2, $0, -1, sqliteTransient)
+                    if isNassCompressed {
+                        let blobBytes = sqlite3_column_bytes(selectStmt, 1)
+                        guard let blobPtr = sqlite3_column_blob(selectStmt, 1) else { return }
+                        let buffer = UnsafeRawBufferPointer(start: blobPtr, count: Int(blobBytes))
+                        rawText = ReusableFunc.decompressData(from: buffer)
+                    } else {
+                        guard let textPtr = sqlite3_column_text(selectStmt, 1) else { return }
+                        let textBytes = sqlite3_column_bytes(selectStmt, 1)
+                        let textBuffer = UnsafeBufferPointer(start: textPtr, count: Int(textBytes))
+                        rawText = String(decoding: textBuffer, as: UTF8.self)
+                    }
+
+                    let preProcessed = rawText
+                        .replacingOccurrences(of: "\n", with: " ")
+                        .stripSpanTags()
+
+                    let normalized = preProcessed.stemArabicLight10()
+                    guard !normalized.isEmpty else { return }
+
+                    sqlite3_reset(insertStmt)
+                    sqlite3_clear_bindings(insertStmt)
+                    sqlite3_bind_int64(insertStmt, 1, sqlite3_column_int64(selectStmt, 0))
+                    _ = normalized.withCString {
+                        sqlite3_bind_text(insertStmt, 2, $0, -1, sqliteTransient)
+                    }
+
+                    if sqlite3_step(insertStmt) != SQLITE_DONE {
+                        throw sqliteError(db, message: "Error insert FTS \(ftsTable).")
+                    }
+                }
             }
-
-            if sqlite3_step(insertStmt) != SQLITE_DONE {
-                throw sqliteError(db, message: "Error insert FTS \(ftsTable).")
+        }
+        
+        let checkMetadataSql = "SELECT name FROM \(ftsSchema).sqlite_master WHERE type='table' AND name='metadata';"
+        var stmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, checkMetadataSql, -1, &stmt, nil) == SQLITE_OK {
+            let step = sqlite3_step(stmt)
+            sqlite3_finalize(stmt)
+            if step != SQLITE_ROW {
+                let countTablesSql = "SELECT count(*) FROM \(ftsSchema).sqlite_master WHERE type='table' AND name LIKE '%_fts';"
+                var countStmt: OpaquePointer?
+                var ftsCount = 0
+                if sqlite3_prepare_v2(db, countTablesSql, -1, &countStmt, nil) == SQLITE_OK {
+                    if sqlite3_step(countStmt) == SQLITE_ROW {
+                        ftsCount = Int(sqlite3_column_int64(countStmt, 0))
+                    }
+                    sqlite3_finalize(countStmt)
+                }
+                
+                if ftsCount <= 1 {
+                    try exec(db, "CREATE TABLE IF NOT EXISTS \(ftsSchema).metadata (key TEXT PRIMARY KEY, value INTEGER);")
+                    try exec(db, "INSERT OR REPLACE INTO \(ftsSchema).metadata (key, value) VALUES ('fts_version', 2);")
+                }
             }
         }
     }
@@ -129,8 +171,19 @@ enum ArchiveDatabaseTools {
 
         var columns: [TableColumnInfo] = []
         while sqlite3_step(stmt) == SQLITE_ROW {
-            let name = String(cString: sqlite3_column_text(stmt, 1))
-            let type = String(cString: sqlite3_column_text(stmt, 2))
+            let namePtr = sqlite3_column_text(stmt, 1)
+            let typePtr = sqlite3_column_text(stmt, 2)
+
+            let name = namePtr.map { ptr -> String in
+                let bytes = sqlite3_column_bytes(stmt, 1)
+                return String(decoding: UnsafeBufferPointer(start: ptr, count: Int(bytes)), as: UTF8.self)
+            } ?? ""
+
+            let type = typePtr.map { ptr -> String in
+                let bytes = sqlite3_column_bytes(stmt, 2)
+                return String(decoding: UnsafeBufferPointer(start: ptr, count: Int(bytes)), as: UTF8.self)
+            } ?? ""
+
             let isPrimaryKey = sqlite3_column_int64(stmt, 5) == 1
             columns.append(
                 TableColumnInfo(
@@ -159,8 +212,13 @@ enum ArchiveDatabaseTools {
     }
 
     private static func exec(_ db: OpaquePointer, _ sql: String) throws {
-        if sqlite3_exec(db, sql, nil, nil, nil) != SQLITE_OK {
-            throw sqliteError(db, message: "Run SQL Error.")
+        var stmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) != SQLITE_OK {
+            throw sqliteError(db, message: "Run SQL Prepare Error.")
+        }
+        defer { sqlite3_finalize(stmt) }
+        if sqlite3_step(stmt) != SQLITE_DONE {
+            throw sqliteError(db, message: "Run SQL Step Error.")
         }
     }
 

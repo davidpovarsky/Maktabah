@@ -57,6 +57,21 @@ class ResultsViewModel {
             name: .savedResultsTreeDidUpdate,
             object: nil
         )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleBookIdMigrated(_:)),
+            name: .bookIdMigrated,
+            object: nil
+        )
+    }
+
+    @objc private func handleBookIdMigrated(_ notification: Notification) {
+        Task {
+            await getFolders()
+            await dbLoadAllResults()
+            notifyChange(.fullReload)
+        }
     }
 
     @objc private func handleSavedResultsTreeDidUpdate() {
@@ -336,7 +351,7 @@ class ResultsViewModel {
         }
     }
 
-    func saveSearchResults(results: [SearchResultItem], query: String, folderId: Int64?, name: String) throws {
+    func saveSearchResults(results: [SearchResultItem], query: String, searchMode: Int = 0, nearDistance: Int = 10, folderId: Int64?, name: String) throws {
         var groupedResults: [String: GroupedResult] = [:]
 
         for item in results {
@@ -359,32 +374,14 @@ class ResultsViewModel {
             }
         }
 
-        var firstError: Error?
-
-        for (_, group) in groupedResults {
-            let commaSeparatedContentIds = group.contentIds.joined(separator: ",")
-            do {
-                try db.insertResult(
-                    group.archive,
-                    bkId: group.bkId,
-                    contentId: commaSeparatedContentIds,
-                    folderId: folderId,
-                    query: query,
-                    name: name
-                )
-            } catch {
-                if firstError == nil {
-                    firstError = error
-                }
-                #if DEBUG
-                print("Error saving result for group \(group):", error)
-                #endif
-            }
-        }
-
-        if let error = firstError {
-            throw error
-        }
+        try db.insertResults(
+            groupedResults,
+            folderId: folderId,
+            query: query,
+            searchMode: searchMode,
+            nearDistance: nearDistance,
+            name: name
+        )
     }
 
     // MARK: - Move folder / move result
@@ -449,11 +446,16 @@ class ResultsViewModel {
     }
 
     private func getAllDescendantIds(of node: FolderNode) -> [Int64] {
-        var ids: [Int64] = [node.id]
-        for child in node.children {
-            ids.append(contentsOf: getAllDescendantIds(of: child))
-        }
+        var ids: [Int64] = []
+        _getAllDescendantIds(of: node, ids: &ids)
         return ids
+    }
+
+    private func _getAllDescendantIds(of node: FolderNode, ids: inout [Int64]) {
+        ids.append(node.id)
+        for child in node.children {
+            _getAllDescendantIds(of: child, ids: &ids)
+        }
     }
 
     private func removeNodeFromTree(_ node: FolderNode) {
