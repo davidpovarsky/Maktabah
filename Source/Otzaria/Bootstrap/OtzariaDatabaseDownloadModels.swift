@@ -89,6 +89,9 @@ struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
 }
 
 struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {
+    let profileID: String?
+    let profileVersion: Int?
+    let artifactIdentity: String?
     let repository: String
     let releaseID: Int64
     let releaseTag: String
@@ -100,6 +103,11 @@ struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {
     let databaseFileSize: Int64
 
     init(release: OtzariaLibraryRelease, databaseFileSize: Int64) {
+        let profile = OtzariaDataProfileRegistry.activeProfile
+        let descriptor = profile?.artifact(.database)
+        profileID = profile?.profileID
+        profileVersion = profile?.profileVersion
+        artifactIdentity = descriptor?.identity
         repository = OtzariaLibraryRelease.repository
         releaseID = release.id
         releaseTag = release.tag

@@ -121,8 +121,8 @@ expect(
     OtzariaDatabaseStorage.requiredExtractionCapacity(
         outputEstimate: 10,
         existingFinalSize: 20
-    ) == 30 + OtzariaDatabaseStorage.safetyReserve,
-    "replacement free-space calculation retains old final"
+    ) == 10 + OtzariaDatabaseStorage.safetyReserve,
+    "replacement free-space calculation does not double-count installed data"
 )
 
 let currentProjection = OtzariaBookSchemaCompatibility.projection(

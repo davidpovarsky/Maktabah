@@ -1,6 +1,9 @@
 import Foundation
 
 final class OtzariaReadingUnitService {
+    static let maximumLinesPerUnit = 120
+    static let maximumHTMLCharactersPerUnit = 25_000
+
     private struct TocEntry {
         let id: Int
         let parentId: Int?
@@ -129,15 +132,16 @@ final class OtzariaReadingUnitService {
         let cacheKey = "\(bookId):\(mode.storageValue)"
         if let cached = summariesCache[cacheKey] { return cached }
 
-        let summaries: [UnitSummary]
+        let rawSummaries: [UnitSummary]
         switch mode {
         case .line:
-            summaries = try lineSummaries(bookId: bookId)
+            rawSummaries = try lineSummaries(bookId: bookId)
         case .paragraph:
-            summaries = try paragraphSummaries(bookId: bookId)
+            rawSummaries = try paragraphSummaries(bookId: bookId)
         case .chapter:
-            summaries = try chapterSummaries(bookId: bookId)
+            rawSummaries = try chapterSummaries(bookId: bookId)
         }
+        let summaries = try boundedSummaries(rawSummaries)
 
         summariesCache[cacheKey] = summaries
         log("unitSummaries bookId=\(bookId) mode=\(mode.storageValue) count=\(summaries.count) durationMs=\(elapsedMs(start))")
@@ -309,30 +313,112 @@ final class OtzariaReadingUnitService {
         )
     }
 
+    private func boundedSummaries(_ summaries: [UnitSummary]) throws -> [UnitSummary] {
+        var bounded: [UnitSummary] = []
+        for summary in summaries {
+            let sizes = try sourceLineCharacterCounts(
+                bookId: summary.bookId,
+                lineIndices: summary.sourceLineIndices
+            )
+            var chunk: [Int] = []
+            var characters = 0
+            var chunkIndex = 0
+
+            func appendChunk() {
+                guard let start = chunk.first, let end = chunk.last else { return }
+                bounded.append(UnitSummary(
+                    key: "\(summary.key):part:\(chunkIndex)",
+                    bookId: summary.bookId,
+                    tocEntryId: summary.tocEntryId,
+                    title: chunkIndex == 0 ? summary.title : nil,
+                    level: summary.level,
+                    startLineIndex: start,
+                    endLineIndex: end,
+                    sourceLineIndices: chunk,
+                    includeDescendants: false
+                ))
+                chunkIndex += 1
+                chunk = []
+                characters = 0
+            }
+
+            for lineIndex in summary.sourceLineIndices.sorted() {
+                let lineCharacters = max(0, sizes[lineIndex] ?? 0)
+                let wouldExceedLines = chunk.count >= Self.maximumLinesPerUnit
+                let wouldExceedCharacters = !chunk.isEmpty &&
+                    characters + lineCharacters > Self.maximumHTMLCharactersPerUnit
+                if wouldExceedLines || wouldExceedCharacters { appendChunk() }
+                chunk.append(lineIndex)
+                characters += lineCharacters
+            }
+            appendChunk()
+
+            if chunkIndex > 1 {
+                log(
+                    "bounded oversized unit bookId=\(summary.bookId) key=\(summary.key) " +
+                    "parts=\(chunkIndex) sourceLines=\(summary.sourceLineIndices.count)"
+                )
+            }
+        }
+        return bounded
+    }
+
+    private func sourceLineCharacterCounts(
+        bookId: Int,
+        lineIndices: [Int]
+    ) throws -> [Int: Int] {
+        guard !lineIndices.isEmpty else { return [:] }
+        var result: [Int: Int] = [:]
+        for chunkStart in stride(from: 0, to: lineIndices.count, by: 900) {
+            let chunk = Array(
+                lineIndices[chunkStart..<min(chunkStart + 900, lineIndices.count)]
+            )
+            let placeholders = Array(repeating: "?", count: chunk.count)
+                .joined(separator: ",")
+            var parameters: [Any] = [bookId]
+            parameters.append(contentsOf: chunk)
+            let rows = try db.fetch(query: """
+                SELECT lineIndex, length(COALESCE(content, ''))
+                FROM line
+                WHERE bookId = ? AND lineIndex IN (\(placeholders))
+            """, parameters: parameters) { row in
+                (lineIndex: row.int(at: 0), characters: row.int(at: 1))
+            }
+            for row in rows { result[row.lineIndex] = row.characters }
+        }
+        return result
+    }
+
     private func sourceLines(for summary: UnitSummary) throws -> [SourceLine] {
         let start = Date()
-        let lines: [SourceLine]
-
-        if let tocEntryId = summary.tocEntryId {
-            let entryIds: [Int]
-            if summary.includeDescendants {
-                let index = try bookIndex(bookId: summary.bookId)
-                entryIds = descendantEntryIds(including: tocEntryId, index: index)
-            } else {
-                entryIds = [tocEntryId]
-            }
-            lines = try sourceLines(bookId: summary.bookId, tocEntryIds: entryIds)
-        } else {
-            lines = try db.fetch(query: """
-                SELECT id, lineIndex, content, heRef
-                FROM line
-                WHERE bookId = ? AND lineIndex = ?
-                LIMIT 1
-            """, parameters: [summary.bookId, summary.startLineIndex], mapping: mapSourceLine)
-        }
+        let lines = try sourceLines(
+            bookId: summary.bookId,
+            lineIndices: summary.sourceLineIndices
+        )
 
         log("sourceLines bookId=\(summary.bookId) tocEntryId=\(summary.tocEntryId.map(String.init) ?? "nil") start=\(summary.startLineIndex) count=\(lines.count) durationMs=\(elapsedMs(start))")
         return lines
+    }
+
+    private func sourceLines(bookId: Int, lineIndices: [Int]) throws -> [SourceLine] {
+        guard !lineIndices.isEmpty else { return [] }
+        var allLines: [SourceLine] = []
+        for chunkStart in stride(from: 0, to: lineIndices.count, by: 900) {
+            let chunk = Array(
+                lineIndices[chunkStart..<min(chunkStart + 900, lineIndices.count)]
+            )
+            let placeholders = Array(repeating: "?", count: chunk.count)
+                .joined(separator: ",")
+            var parameters: [Any] = [bookId]
+            parameters.append(contentsOf: chunk)
+            allLines.append(contentsOf: try db.fetch(query: """
+                SELECT id, lineIndex, content, heRef
+                FROM line
+                WHERE bookId = ? AND lineIndex IN (\(placeholders))
+                ORDER BY lineIndex
+            """, parameters: parameters, mapping: mapSourceLine))
+        }
+        return allLines.sorted { $0.lineIndex < $1.lineIndex }
     }
 
     private func sourceLines(bookId: Int, tocEntryIds: [Int]) throws -> [SourceLine] {

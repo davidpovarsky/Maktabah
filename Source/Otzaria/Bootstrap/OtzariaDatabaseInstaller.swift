@@ -1,19 +1,21 @@
 import Foundation
 
 struct OtzariaDatabaseStorage: Sendable {
-    static let safetyReserve: Int64 = 1_073_741_824
+    static let safetyReserve = OtzariaInstallCapacityCalculator.defaultSafetyReserveBytes
     // The current production frame expands slightly above 5x. Use 6x before
     // the archive header is available so the 1 GiB safety reserve stays intact.
     static let unknownOutputMultiplier: Int64 = 6
 
     let appSupportRoot: URL
     let downloadsRoot: URL
+    let profileID: String
 
     init() throws {
         guard let appSupportRoot = AppConfig.appSupportDir else {
             throw OtzariaDatabaseAccessController.AccessError.applicationSupportUnavailable
         }
         self.appSupportRoot = appSupportRoot
+        profileID = OtzariaDataProfileRegistry.activeProfileID
 
         let caches = try FileManager.default.url(
             for: .cachesDirectory,
@@ -21,19 +23,38 @@ struct OtzariaDatabaseStorage: Sendable {
             appropriateFor: nil,
             create: true
         )
-        downloadsRoot = caches
-            .appendingPathComponent("Maktabah", isDirectory: true)
-            .appendingPathComponent("Otzaria", isDirectory: true)
-            .appendingPathComponent("Downloads", isDirectory: true)
+        if profileID == OtzariaDataProfileRegistry.productionID {
+            downloadsRoot = caches
+                .appendingPathComponent("Maktabah", isDirectory: true)
+                .appendingPathComponent("Otzaria", isDirectory: true)
+                .appendingPathComponent("Downloads", isDirectory: true)
+        } else {
+            downloadsRoot = caches
+                .appendingPathComponent("Maktabah", isDirectory: true)
+                .appendingPathComponent("Otzaria", isDirectory: true)
+                .appendingPathComponent("Profiles", isDirectory: true)
+                .appendingPathComponent(profileID, isDirectory: true)
+                .appendingPathComponent("Downloads", isDirectory: true)
+        }
     }
 
-    init(appSupportRoot: URL, downloadsRoot: URL) {
+    init(
+        appSupportRoot: URL,
+        downloadsRoot: URL,
+        profileID: String = OtzariaDataProfileRegistry.productionID
+    ) {
         self.appSupportRoot = appSupportRoot
         self.downloadsRoot = downloadsRoot
+        self.profileID = profileID
     }
 
     var otzariaRoot: URL {
-        appSupportRoot.appendingPathComponent("Otzaria", isDirectory: true)
+        let root = appSupportRoot.appendingPathComponent("Otzaria", isDirectory: true)
+        guard profileID != OtzariaDataProfileRegistry.productionID else { return root }
+        return root
+            .appendingPathComponent("Profiles", isDirectory: true)
+            .appendingPathComponent(profileID, isDirectory: true)
+            .appendingPathComponent("database", isDirectory: true)
     }
 
     var finalDatabaseURL: URL {
@@ -69,13 +90,19 @@ struct OtzariaDatabaseStorage: Sendable {
     }
 
     func preflightDownload(release: OtzariaLibraryRelease, existingPart: Int64) throws {
-        let remainingDownload = max(0, release.asset.compressedSize - existingPart)
         let outputEstimate = multipliedWithoutOverflow(
             release.asset.compressedSize,
             by: Self.unknownOutputMultiplier
         )
+        let plan = OtzariaInstallCapacityCalculator.plan(
+            compressedBytes: release.asset.compressedSize,
+            extractedBytes: outputEstimate,
+            existingInstallBytes: Self.fileSizeIfPresent(finalDatabaseURL),
+            currentPartialDownloadBytes: existingPart,
+            retainsRollbackCopy: false
+        )
         try requireAvailableCapacity(
-            remainingDownload + outputEstimate + Self.safetyReserve,
+            plan.peakAdditionalBytes,
             at: downloadsRoot
         )
     }
@@ -86,26 +113,30 @@ struct OtzariaDatabaseStorage: Sendable {
             by: Self.unknownOutputMultiplier
         )
         let existingFinal = Self.fileSizeIfPresent(finalDatabaseURL)
-        try requireAvailableCapacity(
-            Self.requiredExtractionCapacity(
-                outputEstimate: outputEstimate,
-                existingFinalSize: existingFinal
-            ),
-            at: otzariaRoot
+        let plan = OtzariaInstallCapacityCalculator.plan(
+            compressedBytes: compressedSize,
+            extractedBytes: outputEstimate,
+            existingInstallBytes: existingFinal,
+            currentPartialDownloadBytes: compressedSize,
+            retainsRollbackCopy: false
         )
+        try requireAvailableCapacity(plan.peakAdditionalBytes, at: otzariaRoot)
     }
 
-    // Replacing an existing managed database can temporarily retain the old
-    // file as the rollback copy while the new staging file is present. Count
-    // both conservatively; APFS clone/rename behavior is not assumed.
+    // Available-capacity values already exclude the installed database. The
+    // rollback promotion is a same-volume rename, so only staging output and
+    // the safety reserve consume additional free bytes.
     static func requiredExtractionCapacity(
         outputEstimate: Int64,
         existingFinalSize: Int64
     ) -> Int64 {
-        let (files, filesOverflow) = outputEstimate.addingReportingOverflow(existingFinalSize)
-        let safeFiles = filesOverflow ? Int64.max / 2 : files
-        let (total, totalOverflow) = safeFiles.addingReportingOverflow(safetyReserve)
-        return totalOverflow ? Int64.max : total
+        OtzariaInstallCapacityCalculator.plan(
+            compressedBytes: 1,
+            extractedBytes: outputEstimate,
+            existingInstallBytes: existingFinalSize,
+            currentPartialDownloadBytes: 1,
+            retainsRollbackCopy: false
+        ).peakAdditionalBytes
     }
 
     func excludeFromBackup(_ url: URL) throws {

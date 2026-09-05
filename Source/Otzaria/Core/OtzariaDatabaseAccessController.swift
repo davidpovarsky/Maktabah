@@ -153,6 +153,15 @@ final class OtzariaDatabaseAccessController {
         }
     }
 
+    /// Closes only process-local access. Persisted bookmarks and every profile's
+    /// installed files remain untouched so a profile switch can reconcile them.
+    func resetRuntimeState() {
+        scopedAccess?.stop()
+        scopedAccess = nil
+        currentURL = nil
+        source = nil
+    }
+
     private func markExternalSelection() {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: legacySelectionKey)
@@ -162,12 +171,7 @@ final class OtzariaDatabaseAccessController {
     }
 
     func managedInternalDatabaseURL() throws -> URL {
-        guard let appSupport = AppConfig.appSupportDir else {
-            throw AccessError.applicationSupportUnavailable
-        }
-        return appSupport
-            .appendingPathComponent("Otzaria", isDirectory: true)
-            .appendingPathComponent("seforim.db", isDirectory: false)
+        try OtzariaDatabaseStorage().finalDatabaseURL
     }
 
     private func verifyExistsAndIsReadable(_ url: URL) throws {
@@ -242,10 +246,12 @@ final class OtzariaDatabaseAccessController {
                 OtzariaDatabaseInstallationManifest.self,
                 from: Data(contentsOf: manifestURL)
             )
+            let activeProfileID = OtzariaDataProfileRegistry.activeProfileID
             let attributes = try FileManager.default.attributesOfItem(atPath: databaseURL.path)
             let actualSize = (attributes[.size] as? NSNumber)?.int64Value ?? -1
             guard manifest.repository == OtzariaLibraryRelease.repository,
                   manifest.assetName == OtzariaLibraryRelease.databaseAssetName,
+                  (manifest.profileID == nil || manifest.profileID == activeProfileID),
                   manifest.databaseFileSize > 0,
                   manifest.databaseFileSize == actualSize else {
                 throw AccessError.invalidDatabase

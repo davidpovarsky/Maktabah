@@ -1,19 +1,21 @@
 import SwiftUI
 
 #if os(iOS)
+/// Otzaria data rendered through Maktabah's original hierarchical people UI.
 struct OtzariaAuthorsModeView: View {
     let onOpenBook: ((BooksData) -> Void)?
+
+    @StateObject private var viewModel = OtzariaAuthorsViewModel()
+    @State private var selectedAuthor: OtzariaAuthor?
 
     init(onOpenBook: ((BooksData) -> Void)? = nil) {
         self.onOpenBook = onOpenBook
     }
 
-    @StateObject private var viewModel = OtzariaAuthorsViewModel()
-
     var body: some View {
         Group {
             if viewModel.isLoading && viewModel.authors.isEmpty {
-                ProgressView("טוען מחברים...")
+                ProgressView("טוען מחברים…")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .themeBackground()
             } else if let error = viewModel.errorMessage, viewModel.authors.isEmpty {
@@ -24,50 +26,39 @@ struct OtzariaAuthorsModeView: View {
                 )
                 .themeBackground()
             } else {
-                List {
-                    ForEach(viewModel.filteredAuthors) { author in
-                        NavigationLink {
-                            OtzariaAuthorBooksView(
-                                author: author,
-                                viewModel: viewModel,
-                                onOpenBook: onOpenBook
-                            )
-                            .id(author.id)
-                        } label: {
-                            VStack(alignment: .trailing, spacing: 4) {
-                                Text(author.name)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.trailing)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-
-                                Text("\(author.bookCount) ספרים")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                    .multilineTextAlignment(.trailing)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .contentShape(Rectangle())
-                            .environment(\.layoutDirection, .rightToLeft)
-                        }
-                        .listRowInsets(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                iOSRowiSidebarView(
+                    groups: { viewModel.maktabahGroups },
+                    searchQuery: viewModel.searchText,
+                    onSelectRowi: { rowi in
+                        selectedAuthor = viewModel.author(id: rowi.id)
+                    },
+                    onLoadMore: { group, completion in
+                        group.loadMore()
+                        completion()
                     }
-                }
-                .listStyle(.insetGrouped)
+                )
+                .themeTint()
+                .ignoresSafeArea(edges: [.vertical])
                 .searchable(
                     text: $viewModel.searchText,
                     placement: .navigationBarDrawer(displayMode: .automatic),
                     prompt: "חפש מחבר"
                 )
                 .themeBackground()
+                .navigationDestination(item: $selectedAuthor) { author in
+                    OtzariaAuthorBooksView(
+                        author: author,
+                        viewModel: viewModel,
+                        onOpenBook: onOpenBook
+                    )
+                    .id(author.id)
+                }
             }
         }
         .navigationTitle("מחברים")
         .navigationBarTitleDisplayMode(.inline)
         .environment(\.layoutDirection, .rightToLeft)
-        .task {
-            await viewModel.loadAuthors()
-        }
+        .task { await viewModel.loadAuthors() }
     }
 }
 
@@ -82,7 +73,7 @@ private struct OtzariaAuthorBooksView: View {
     var body: some View {
         Group {
             if isLoading {
-                ProgressView("טוען ספרים...")
+                ProgressView("טוען ספרים…")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .themeBackground()
             } else if books.isEmpty {
@@ -91,28 +82,21 @@ private struct OtzariaAuthorBooksView: View {
             } else {
                 List(books, id: \.id) { book in
                     Button {
-                        if let onOpenBook {
-                            onOpenBook(book)
-                        } else {
-                            navigationManager.openBook(book)
-                        }
+                        if let onOpenBook { onOpenBook(book) }
+                        else { navigationManager.openBook(book) }
                     } label: {
                         VStack(alignment: .trailing, spacing: 4) {
                             Text(book.book)
                                 .font(.headline)
-                                .multilineTextAlignment(.trailing)
                                 .frame(maxWidth: .infinity, alignment: .trailing)
-
                             if !book.info.isEmpty {
                                 Text(book.info)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                                     .lineLimit(2)
-                                    .multilineTextAlignment(.trailing)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                             }
                         }
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                         .contentShape(Rectangle())
                         .environment(\.layoutDirection, .rightToLeft)
                     }
@@ -127,7 +111,6 @@ private struct OtzariaAuthorBooksView: View {
         .environment(\.layoutDirection, .rightToLeft)
         .task(id: author.id) {
             isLoading = true
-            books = []
             books = await viewModel.books(for: author)
             isLoading = false
         }

@@ -835,6 +835,13 @@ final class CoreDownloadModalCenter {
 
 // MARK: - Progress State
 
+struct CoreDownloadComponentDetail: Identifiable, Equatable {
+    let id: String
+    let title: String
+    let detail: String
+    let isReady: Bool
+}
+
 final class CoreDownloadProgressState: ObservableObject {
     enum Phase: Equatable {
         case confirmation
@@ -846,6 +853,7 @@ final class CoreDownloadProgressState: ObservableObject {
     @Published var progress: Double = 0
     @Published var detail: String = ""
     @Published var totalSizeString: String = ""
+    @Published var componentDetails: [CoreDownloadComponentDetail] = []
 }
 
 #elseif os(iOS)
@@ -862,5 +870,6 @@ final class CoreDownloadProgressState {
     var progress: Double = 0
     var detail: String = ""
     var totalSizeString: String = ""
+    var componentDetails: [CoreDownloadComponentDetail] = []
 }
 #endif

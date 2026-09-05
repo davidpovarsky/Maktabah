@@ -17,7 +17,9 @@ struct iOSHistoryView: View {
                             navigationManager.openBook(book, initialContentId: lastId)
                         }
                     }
-                    .onDelete(perform: removeFavorite)
+                    .onDelete { offsets in
+                        removeFavorite(at: offsets, from: filteredFavorites)
+                    }
                 }
             }
 
@@ -29,7 +31,9 @@ struct iOSHistoryView: View {
                             navigationManager.openBook(book, initialContentId: lastId)
                         }
                     }
-                    .onDelete(perform: removeHistory)
+                    .onDelete { offsets in
+                        removeHistory(at: offsets, from: filteredHistory)
+                    }
                 }
             } else if filteredFavorites.isEmpty {
                 if !viewModel.searchText.isEmpty {
@@ -42,23 +46,27 @@ struct iOSHistoryView: View {
             }
         }
         .refreshable {
-            CloudKitSyncManager.shared.fetchChanges()
-            try? await Task.sleep(nanoseconds: 1_000_000_000)
+            if AppConfig.useICloud {
+                CloudKitSyncManager.shared.fetchChanges()
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
+            }
         }
         .withActiveIntegrationStates()
         .navigationTitle("History & Favorites")
     }
 
-    private func removeFavorite(at offsets: IndexSet) {
+    private func removeFavorite(at offsets: IndexSet, from filteredBooks: [BooksData]) {
         for index in offsets {
-            let book = viewModel.favoriteBooks[index]
+            guard filteredBooks.indices.contains(index) else { continue }
+            let book = filteredBooks[index]
             viewModel.toggleFavorite(book.id)
         }
     }
 
-    private func removeHistory(at offsets: IndexSet) {
+    private func removeHistory(at offsets: IndexSet, from filteredBooks: [BooksData]) {
         for index in offsets {
-            let book = viewModel.historyBooks[index]
+            guard filteredBooks.indices.contains(index) else { continue }
+            let book = filteredBooks[index]
             viewModel.removeHistory(for: book.id)
         }
     }

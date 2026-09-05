@@ -20,13 +20,13 @@ final class CloudKitSyncManager {
     private let pendingDeletesKey = "CloudKitSyncManager_PendingDeletes"
     private let syncQueue = DispatchQueue(label: "com.maktabah.cloudkitsync", attributes: .concurrent)
     private var accountChangeObserver: NSObjectProtocol?
+    private var infrastructureIsActive = false
 
     private var core: CloudKitCoreManager { CloudKitCoreManager.shared }
 
-    private init() {
-        setupAccountChangeObserver()
-        setupNetworkMonitor()
-    }
+    // Accessing shared while iCloud is disabled must not create CKContainer,
+    // observers, or a network monitor.
+    private init() {}
 
     // MARK: - Network Monitoring
 
@@ -37,6 +37,23 @@ final class CloudKitSyncManager {
             #endif
             self?.retryAllPendingOperations()
         }
+    }
+
+    private func activateInfrastructureIfNeeded() {
+        guard !infrastructureIsActive else { return }
+        infrastructureIsActive = true
+        setupAccountChangeObserver()
+        setupNetworkMonitor()
+    }
+
+    func deactivateForDisabledICloud() {
+        guard infrastructureIsActive else { return }
+        infrastructureIsActive = false
+        if let accountChangeObserver {
+            NotificationCenter.default.removeObserver(accountChangeObserver)
+            self.accountChangeObserver = nil
+        }
+        NetworkMonitor.shared.onConnectivityRestored = nil
     }
 
     private func retryAllPendingOperations() {
@@ -157,6 +174,7 @@ final class CloudKitSyncManager {
 
     func initializeOnLaunch() {
         guard AppConfig.useICloud else { return }
+        activateInfrastructureIfNeeded()
 
         checkUserIdentityChange()
         core.setSyncing(false)

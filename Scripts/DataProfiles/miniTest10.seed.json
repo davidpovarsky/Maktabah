@@ -1,0 +1,29 @@
+{
+  "profileID": "miniTest10",
+  "profileVersion": 1,
+  "source": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseTag": "v23-20260829032606",
+    "releaseID": 240592829,
+    "assetName": "seforim.db.zst",
+    "assetSHA256": "c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662"
+  },
+  "bookIDs": [
+    1,
+    28,
+    40,
+    103,
+    382,
+    3152,
+    3163,
+    3276,
+    3764,
+    3891
+  ],
+  "goldenQueries": [
+    "בראשית ברא",
+    "לחתוך צנון בסכין בשרי",
+    "מסילת ישרים",
+    "דרשות הרן"
+  ]
+}

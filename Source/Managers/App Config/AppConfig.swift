@@ -640,6 +640,8 @@ struct AppConfig {
             setupAnnotationsAndResults()
 
             CloudKitSyncManager.shared.setupAndInitialSync()
+        } else {
+            CloudKitSyncManager.shared.deactivateForDisabledICloud()
         }
         DispatchQueue.main.async { completion(nil) }
     }

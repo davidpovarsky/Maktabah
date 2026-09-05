@@ -90,6 +90,10 @@ enum SettingsActions {
         shouldTerminateOnCancel: Bool,
         onCompletion: ((Bool) -> Void)? = nil
     ) -> Bool {
+        guard !OtzariaProductPolicy.disablesLegacyLibraryActions else {
+            onCompletion?(false)
+            return false
+        }
         #if os(macOS)
         let panel = NSOpenPanel()
         panel.message = NSLocalizedString("appNeedAccess", comment: "")
@@ -201,6 +205,10 @@ enum SettingsActions {
     }
 
     static func switchToBundleMode(onCompletion: (() -> Void)? = nil) {
+        guard !OtzariaProductPolicy.disablesLegacyLibraryActions else {
+            onCompletion?()
+            return
+        }
         let wasBundleMode = AppConfig.isUsingBundleMode
         let previousCustomBookmark = UserDefaults.standard.data(
             forKey: AppConfig.customDatabaseFolderKey
@@ -262,6 +270,7 @@ enum SettingsActions {
     #endif
 
     static func openFullLibraryDownloadURL() {
+        guard !OtzariaProductPolicy.disablesLegacyLibraryActions else { return }
         guard let url = URL(string: fullLibraryDownloadURL) else { return }
         #if os(macOS)
         NSWorkspace.shared.open(url)
@@ -392,7 +401,7 @@ enum SettingsActions {
 
     static func setUseCrossPlatformSync(_ use: Bool) {
         AppConfig.useCrossPlatformSync = use
-        if use {
+        if use, AppConfig.useICloud {
             CloudKitCoreManager.shared.notifyWorkerToSync()
         }
     }

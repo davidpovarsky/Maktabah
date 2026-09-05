@@ -291,6 +291,9 @@ final class SettingsViewModel: ObservableObject {
 
 struct SettingsView: View {
     @StateObject private var viewModel = SettingsViewModel.shared
+    @State private var activeDataProfileID = OtzariaDataProfileRegistry.activeProfileID
+    @State private var isSwitchingDataProfile = false
+    @State private var dataProfileError: String?
 
     var body: some View {
         #if os(macOS)
@@ -329,10 +332,15 @@ extension SettingsView {
 extension SettingsView {
     private var iOSForm: some View {
         Form {
-            databaseModeSection
-                .listRowBackground(Color.appCellBackground)
-            libraryStorageSection
-                .listRowBackground(Color.appCellBackground)
+            if OtzariaProductPolicy.usesManagedOtzariaData {
+                dataProfileSection
+                    .listRowBackground(Color.appCellBackground)
+            } else {
+                databaseModeSection
+                    .listRowBackground(Color.appCellBackground)
+                libraryStorageSection
+                    .listRowBackground(Color.appCellBackground)
+            }
             annotationsSection
                 .listRowBackground(Color.appCellBackground)
             appearanceSection
@@ -340,19 +348,22 @@ extension SettingsView {
             zayitCreditsSection
                 .listRowBackground(Color.appCellBackground)
 
-            if AppConfig.isUsingBundleMode,
+            if !OtzariaProductPolicy.usesManagedOtzariaData,
+               AppConfig.isUsingBundleMode,
                viewModel.hasPendingVacuum || viewModel.isVacuuming {
                 optimizationSection
                     .listRowBackground(Color.appCellBackground)
             }
 
-            if shouldShowUpdatesSection {
+            if !OtzariaProductPolicy.usesManagedOtzariaData, shouldShowUpdatesSection {
                 updatesSection
                     .listRowBackground(Color.appCellBackground)
             }
 
-            downloadsSection
-                .listRowBackground(Color.appCellBackground)
+            if !OtzariaProductPolicy.usesManagedOtzariaData {
+                downloadsSection
+                    .listRowBackground(Color.appCellBackground)
+            }
         }
         .formStyle(.grouped)
         .controlSize(.large)
@@ -362,6 +373,44 @@ extension SettingsView {
             collisionAlertButtons
         } message: {
             Text(.annotationsMoveFolderFileExistsDesc)
+        }
+    }
+
+    private var dataProfileSection: some View {
+        Section("Otzaria Data") {
+            Picker("Data Profile", selection: $activeDataProfileID) {
+                Text("Production").tag(OtzariaDataProfileRegistry.productionID)
+                Text("miniTest10").tag(OtzariaDataProfileRegistry.miniTest10ID)
+            }
+            .disabled(isSwitchingDataProfile)
+            .onChange(of: activeDataProfileID) { oldValue, newValue in
+                guard oldValue != newValue else { return }
+                isSwitchingDataProfile = true
+                dataProfileError = nil
+                Task {
+                    do {
+                        let snapshot = try await OtzariaDataProfileSwitchService.shared.switchProfile(to: newValue)
+                        if !snapshot.isReady {
+                            NotificationCenter.default.post(
+                                name: .requireCoreDownload,
+                                object: nil,
+                                userInfo: ["isCancellable": false]
+                            )
+                        }
+                    } catch {
+                        activeDataProfileID = oldValue
+                        dataProfileError = error.localizedDescription
+                    }
+                    isSwitchingDataProfile = false
+                }
+            }
+
+            NavigationLink("Data Components") { SearchDataView() }
+
+            if isSwitchingDataProfile { ProgressView("Switching profile…") }
+            if let dataProfileError {
+                Text(dataProfileError).font(.caption).foregroundStyle(.red)
+            }
         }
     }
 

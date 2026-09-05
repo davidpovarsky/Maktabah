@@ -26,29 +26,33 @@ final class iOSBootstrapManager {
     private var didPrepare = false
     private var managedDownloadTask: Task<Void, Never>?
     private var managedDownloadGeneration = UUID()
+    private var reconciliation: OtzariaDataReconciliationSnapshot?
 
     func prepareIfNeeded() async {
         guard !didPrepare else { return }
         didPrepare = true
 
-        do {
-            if try await OtzariaBootstrapAdapter.restoreForAppLaunch() {
-                finishSetup()
-                return
-            }
-        } catch {
+        let snapshot = await OtzariaDataReconciliationService.shared.reconcile()
+        reconciliation = snapshot
+        updateComponentDetails(snapshot)
+
+        if case .failed(let detail) = snapshot.database {
             isChecking = false
             coreDownloadState.phase = .error(
                 "The saved Otzaria database could not be reopened. " +
-                "Choose the database again.\n\n\(error.localizedDescription)"
+                "Choose the database again.\n\n\(detail)"
             )
+            return
+        }
+
+        if snapshot.isReady {
+            finishSetup()
             return
         }
 
         // The iOS product is backed by Otzaria. Maktabah's legacy
         // main.sqlite/special.sqlite bundle is not a readiness gate here.
         isChecking = false
-        coreDownloadState.totalSizeString = ""
         coreDownloadState.phase = .confirmation
     }
 
@@ -74,12 +78,20 @@ final class iOSBootstrapManager {
         managedDownloadTask = Task { [weak self] in
             guard let self else { return }
             do {
-                try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { [weak self] update in
-                    Task { @MainActor in
-                        guard let self, self.managedDownloadGeneration == generation else { return }
-                        self.coreDownloadState.phase = .downloading
-                        self.coreDownloadState.progress = update.fraction * 0.25
-                        self.coreDownloadState.detail = update.detail
+                let initial: OtzariaDataReconciliationSnapshot
+                if let reconciliation {
+                    initial = reconciliation
+                } else {
+                    initial = await OtzariaDataReconciliationService.shared.reconcile()
+                }
+                if !initial.database.isReady {
+                    try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { [weak self] update in
+                        Task { @MainActor in
+                            guard let self, self.managedDownloadGeneration == generation else { return }
+                            self.coreDownloadState.phase = .downloading
+                            self.coreDownloadState.progress = update.fraction * 0.25
+                            self.coreDownloadState.detail = update.detail
+                        }
                     }
                 }
                 guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
@@ -132,8 +144,13 @@ final class iOSBootstrapManager {
     }
 
     private func installRecommendedSearchData(generation: UUID) async throws {
-        coreDownloadState.detail = "Installing shared lexical data…"
-        _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: true)
+        var snapshot = await OtzariaDataReconciliationService.shared.reconcile(
+            restoreDatabase: false
+        )
+        if !snapshot.lexicalDatabase.isReady {
+            coreDownloadState.detail = "Installing shared lexical data…"
+            _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: true)
+        }
         coreDownloadState.progress = 0.35
         guard managedDownloadGeneration == generation,
               let databasePath = OtzariaMaktabahBridge.shared.databasePath,
@@ -142,32 +159,108 @@ final class iOSBootstrapManager {
             throw CancellationError()
         }
 
-        _ = try await OtzariaSearchArtifactService.shared.install(databasePath: databasePath) { [weak self] update in
-            Task { @MainActor in
-                guard let self, self.managedDownloadGeneration == generation else { return }
-                let fraction = update.totalBytes > 0
-                    ? Double(update.completedBytes) / Double(update.totalBytes) : 0
-                self.coreDownloadState.progress = 0.35 + min(1, fraction) * 0.35
-                self.coreDownloadState.detail = "Installing Otzaria search data…"
+        snapshot = await OtzariaDataReconciliationService.shared.reconcile(
+            restoreDatabase: false
+        )
+        if !snapshot.otzariaIndex.isReady {
+            _ = try await OtzariaSearchArtifactService.shared.install(databasePath: databasePath) { [weak self] update in
+                Task { @MainActor in
+                    guard let self, self.managedDownloadGeneration == generation else { return }
+                    let fraction = update.totalBytes > 0
+                        ? Double(update.completedBytes) / Double(update.totalBytes) : 0
+                    self.coreDownloadState.progress = 0.35 + min(1, fraction) * 0.35
+                    self.coreDownloadState.detail = "Installing Otzaria search data…"
+                }
             }
         }
 
-        try await ZayitSearchArtifactService.shared.install(
-            databaseURL: databaseURL,
-            lexicalDatabaseURL: lexicalURL
-        ) { [weak self] state in
-            Task { @MainActor in
-                guard let self, self.managedDownloadGeneration == generation else { return }
-                switch state {
-                case .downloading(let completed, let total), .installing(let completed, let total):
-                    let fraction = total > 0 ? Double(completed) / Double(total) : 0
-                    self.coreDownloadState.progress = 0.70 + min(1, fraction) * 0.30
-                default: break
+        snapshot = await OtzariaDataReconciliationService.shared.reconcile(
+            restoreDatabase: false
+        )
+        if !snapshot.zayitIndex.isReady {
+            try await ZayitSearchArtifactService.shared.install(
+                databaseURL: databaseURL,
+                lexicalDatabaseURL: lexicalURL
+            ) { [weak self] state in
+                Task { @MainActor in
+                    guard let self, self.managedDownloadGeneration == generation else { return }
+                    switch state {
+                    case .downloading(let completed, let total), .installing(let completed, let total):
+                        let fraction = total > 0 ? Double(completed) / Double(total) : 0
+                        self.coreDownloadState.progress = 0.70 + min(1, fraction) * 0.30
+                    default: break
+                    }
+                    self.coreDownloadState.detail = "Installing Zayit search data…"
                 }
-                self.coreDownloadState.detail = "Installing Zayit search data…"
             }
         }
+
+        let final = await OtzariaDataReconciliationService.shared.reconcile(
+            restoreDatabase: false
+        )
+        reconciliation = final
+        updateComponentDetails(final)
+        guard final.isReady else {
+            throw NSError(
+                domain: "OtzariaDataReconciliation",
+                code: 1,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "One or more data components did not become ready after installation."
+                ]
+            )
+        }
         coreDownloadState.progress = 1
+    }
+
+    private func updateComponentDetails(_ snapshot: OtzariaDataReconciliationSnapshot) {
+        let profile = OtzariaDataProfileRegistry.activeProfile
+        let components: [(
+            OtzariaArtifactComponent,
+            String,
+            Bool,
+            OtzariaDataReconciliationSnapshot.ComponentState
+        )] = [
+            (.database, "Seforim DB", true, snapshot.database),
+            (.lexicalDatabase, "Shared lexical.db", false, snapshot.lexicalDatabase),
+            (.otzariaIndex, "Otzaria lexical index", false, snapshot.otzariaIndex),
+            (.zayitIndex, "Zayit index", false, snapshot.zayitIndex),
+        ]
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .file
+        coreDownloadState.componentDetails = components.map { component, title, required, state in
+            let role = required ? "Required" : "Recommended"
+            let status = state.isReady ? "Ready" : "Install or repair"
+            let detail: String
+            if let descriptor = profile?.artifact(component) {
+                let plan = OtzariaInstallCapacityCalculator.plan(
+                    descriptor: descriptor,
+                    existingInstallBytes: 0,
+                    retainsRollbackCopy: false
+                )
+                detail = "\(role) · \(formatter.string(fromByteCount: descriptor.compressedBytes)) download · " +
+                    "\(formatter.string(fromByteCount: descriptor.extractedBytes)) installed · " +
+                    "\(formatter.string(fromByteCount: plan.peakAdditionalBytes)) free required · \(status)"
+            } else {
+                detail = "\(role) · sizes loaded from the release manifest · \(status)"
+            }
+            return CoreDownloadComponentDetail(
+                id: component.rawValue,
+                title: title,
+                detail: detail,
+                isReady: state.isReady
+            )
+        }
+        if let profile, !profile.artifacts.isEmpty {
+            let totalDownload = profile.artifacts.reduce(Int64(0)) {
+                $0 + $1.compressedBytes
+            }
+            coreDownloadState.totalSizeString = formatter.string(
+                fromByteCount: totalDownload
+            )
+        } else {
+            coreDownloadState.totalSizeString = ""
+        }
     }
 
     private func finishSetup() {

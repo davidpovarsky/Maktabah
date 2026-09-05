@@ -132,6 +132,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         completionHandler(.noData)
     }
     func applicationWillTerminate(_ application: UIApplication) {
+        guard AppConfig.useICloud else { return }
         CloudKitCoreManager.shared.syncWorker()
     }
 }

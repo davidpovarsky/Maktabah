@@ -13,13 +13,26 @@ final class OtzariaSearchIndexManager {
     private init() {}
 
     var indexRootURL: URL {
-        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("Otzaria/TantivySearchIndex", isDirectory: true)
+        let appSupport = FileManager.default.urls(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask
+        ).first!
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        if profileID == OtzariaDataProfileRegistry.productionID {
+            return appSupport.appendingPathComponent("Otzaria/TantivySearchIndex", isDirectory: true)
+        }
+        return appSupport
+            .appendingPathComponent("Otzaria/Profiles", isDirectory: true)
+            .appendingPathComponent(profileID, isDirectory: true)
+            .appendingPathComponent("otzariaIndex", isDirectory: true)
     }
 
     func indexURL(for databasePath: String) -> URL {
         if OtzariaDatabaseAccessController.shared.source == .managedInternal {
-            return indexRootURL.appendingPathComponent("managed-library", isDirectory: true)
+            return indexRootURL.appendingPathComponent(
+                "managed-library-\(OtzariaDataProfileRegistry.activeProfileID)",
+                isDirectory: true
+            )
         }
         return indexRootURL.appendingPathComponent(stablePathHash(databasePath), isDirectory: true)
     }

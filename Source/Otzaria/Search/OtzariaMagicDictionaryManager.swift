@@ -46,8 +46,20 @@ actor OtzariaMagicDictionaryManager {
     private let refreshInterval: TimeInterval = 24 * 60 * 60
 
     nonisolated var databaseURL: URL {
-        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("Otzaria/SearchResources", isDirectory: true)
+        let appSupport = FileManager.default.urls(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask
+        ).first!
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        if profileID == OtzariaDataProfileRegistry.productionID {
+            return appSupport
+                .appendingPathComponent("Otzaria/SearchResources", isDirectory: true)
+                .appendingPathComponent("lexical.db")
+        }
+        return appSupport
+            .appendingPathComponent("Otzaria/Profiles", isDirectory: true)
+            .appendingPathComponent(profileID, isDirectory: true)
+            .appendingPathComponent("lexicalDatabase", isDirectory: true)
             .appendingPathComponent("lexical.db")
     }
 

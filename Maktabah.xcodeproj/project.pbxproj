@@ -43,6 +43,14 @@
 		0B7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift */; };
 		0B7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift */; };
 		0B7A00000000000000000034 /* OtzariaDatabaseAccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000034 /* OtzariaDatabaseAccessController.swift */; };
+		0B7A00000000000000000035 /* OtzariaDataProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000035 /* OtzariaDataProfile.swift */; };
+		0B7A00000000000000000036 /* OtzariaDataProfileRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000036 /* OtzariaDataProfileRegistry.swift */; };
+		0B7A00000000000000000037 /* OtzariaArtifactStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000037 /* OtzariaArtifactStorage.swift */; };
+		0B7A00000000000000000038 /* OtzariaDataReconciliationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000038 /* OtzariaDataReconciliationService.swift */; };
+		B7D100000000000000000001 /* OtzariaDataProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D000000000000000000001 /* OtzariaDataProfile.swift */; };
+		B7D100000000000000000002 /* OtzariaDataProfileRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D000000000000000000002 /* OtzariaDataProfileRegistry.swift */; };
+		B7D100000000000000000003 /* OtzariaArtifactStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D000000000000000000003 /* OtzariaArtifactStorage.swift */; };
+		B7D100000000000000000004 /* OtzariaDataReconciliationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D000000000000000000004 /* OtzariaDataReconciliationService.swift */; };
 		0B7A00000000000000000008 /* OtzariaSQLiteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000008 /* OtzariaSQLiteConnection.swift */; };
 		0B7A00000000000000000009 /* OtzariaSQLiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000009 /* OtzariaSQLiteError.swift */; };
 		0B7A0000000000000000000A /* OtzariaSQLiteStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000000A /* OtzariaSQLiteStatement.swift */; };
@@ -635,6 +643,14 @@
 		0A7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSecurityScopedAccess.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSecurityScopedBookmarkStore.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000034 /* OtzariaDatabaseAccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaDatabaseAccessController.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000035 /* OtzariaDataProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProfiles/OtzariaDataProfile.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000036 /* OtzariaDataProfileRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProfiles/OtzariaDataProfileRegistry.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000037 /* OtzariaArtifactStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProfiles/OtzariaArtifactStorage.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000038 /* OtzariaDataReconciliationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProfiles/OtzariaDataReconciliationService.swift; sourceTree = "<group>"; };
+		A7D000000000000000000001 /* OtzariaDataProfile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaDataProfile.swift; path = Source/Otzaria/DataProfiles/OtzariaDataProfile.swift; sourceTree = "<group>"; };
+		A7D000000000000000000002 /* OtzariaDataProfileRegistry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaDataProfileRegistry.swift; path = Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift; sourceTree = "<group>"; };
+		A7D000000000000000000003 /* OtzariaArtifactStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaArtifactStorage.swift; path = Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift; sourceTree = "<group>"; };
+		A7D000000000000000000004 /* OtzariaDataReconciliationService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaDataReconciliationService.swift; path = Source/Otzaria/DataProfiles/OtzariaDataReconciliationService.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000008 /* OtzariaSQLiteConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSQLiteConnection.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000009 /* OtzariaSQLiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSQLiteError.swift; sourceTree = "<group>"; };
 		0A7A0000000000000000000A /* OtzariaSQLiteStatement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/OtzariaSQLiteStatement.swift; sourceTree = "<group>"; };
@@ -1033,6 +1049,10 @@
 				0A7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift */,
 				0A7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift */,
 				0A7A00000000000000000034 /* OtzariaDatabaseAccessController.swift */,
+				0A7A00000000000000000035 /* OtzariaDataProfile.swift */,
+				0A7A00000000000000000036 /* OtzariaDataProfileRegistry.swift */,
+				0A7A00000000000000000037 /* OtzariaArtifactStorage.swift */,
+				0A7A00000000000000000038 /* OtzariaDataReconciliationService.swift */,
 				0A7A00000000000000000008 /* OtzariaSQLiteConnection.swift */,
 				0A7A00000000000000000009 /* OtzariaSQLiteError.swift */,
 				0A7A0000000000000000000A /* OtzariaSQLiteStatement.swift */,
@@ -1137,6 +1157,10 @@
 				D70297616BEFFB6843399C00 /* OtzariaSQLiteSourceRepository.swift */,
 				077C910EADF2F817F070515C /* OtzariaSchema.swift */,
 				D2DEABA0BA0C5DE04BE9421D /* OtzariaFileLogger.swift */,
+				A7D000000000000000000001 /* OtzariaDataProfile.swift */,
+				A7D000000000000000000002 /* OtzariaDataProfileRegistry.swift */,
+				A7D000000000000000000003 /* OtzariaArtifactStorage.swift */,
+				A7D000000000000000000004 /* OtzariaDataReconciliationService.swift */,
 				D53B45897D3D2C895F9C685B /* OtzariaModels.swift */,
 				7B0509B7C8EAF4789ED7CF86 /* OtzariaRepositories.swift */,
 				38AB9FE1D072520084814002 /* OtzariaAuthorsModeView.swift */,
@@ -2259,6 +2283,10 @@
 				0B7A00000000000000000006 /* OtzariaSecurityScopedAccess.swift in Sources */,
 				0B7A00000000000000000007 /* OtzariaSecurityScopedBookmarkStore.swift in Sources */,
 				0B7A00000000000000000034 /* OtzariaDatabaseAccessController.swift in Sources */,
+				0B7A00000000000000000035 /* OtzariaDataProfile.swift in Sources */,
+				0B7A00000000000000000036 /* OtzariaDataProfileRegistry.swift in Sources */,
+				0B7A00000000000000000037 /* OtzariaArtifactStorage.swift in Sources */,
+				0B7A00000000000000000038 /* OtzariaDataReconciliationService.swift in Sources */,
 				0B7A00000000000000000008 /* OtzariaSQLiteConnection.swift in Sources */,
 				0B7A00000000000000000009 /* OtzariaSQLiteError.swift in Sources */,
 				0B7A0000000000000000000A /* OtzariaSQLiteStatement.swift in Sources */,
@@ -2446,6 +2474,10 @@
 				FAB11F264C95B72A7DDE6814 /* OtzariaSQLiteSourceRepository.swift in Sources */,
 				28A2E49C47AE409D42DA3144 /* OtzariaSchema.swift in Sources */,
 				671C585782D20CD95C183579 /* OtzariaFileLogger.swift in Sources */,
+				B7D100000000000000000001 /* OtzariaDataProfile.swift in Sources */,
+				B7D100000000000000000002 /* OtzariaDataProfileRegistry.swift in Sources */,
+				B7D100000000000000000003 /* OtzariaArtifactStorage.swift in Sources */,
+				B7D100000000000000000004 /* OtzariaDataReconciliationService.swift in Sources */,
 				D6A1273F37C7ECD3130C755E /* OtzariaModels.swift in Sources */,
 				420B2AC3624F2A03CDFE5940 /* OtzariaRepositories.swift in Sources */,
 				476FAFCBDBF9D29FFDD11DF3 /* OtzariaAuthorsModeView.swift in Sources */,

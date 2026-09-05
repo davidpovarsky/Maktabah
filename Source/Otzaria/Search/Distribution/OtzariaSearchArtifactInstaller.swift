@@ -7,12 +7,22 @@ struct OtzariaSearchArtifactStorage: Sendable {
     init() throws {
         let manager = OtzariaSearchIndexManager.shared
         indexRootURL = manager.indexRootURL
-        downloadsRootURL = try FileManager.default.url(
+        var downloads = try FileManager.default.url(
             for: .cachesDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("Maktabah/Otzaria/SearchDownloads", isDirectory: true)
+        ).appendingPathComponent("Maktabah/Otzaria", isDirectory: true)
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        if profileID == OtzariaDataProfileRegistry.productionID {
+            downloads = downloads.appendingPathComponent("SearchDownloads", isDirectory: true)
+        } else {
+            downloads = downloads
+                .appendingPathComponent("Profiles", isDirectory: true)
+                .appendingPathComponent(profileID, isDirectory: true)
+                .appendingPathComponent("OtzariaSearchDownloads", isDirectory: true)
+        }
+        downloadsRootURL = downloads
     }
 
     init(indexRootURL: URL, downloadsRootURL: URL) {

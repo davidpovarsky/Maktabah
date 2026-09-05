@@ -113,8 +113,10 @@ struct iPadLayout: View {
     private var sidebarContent: some View {
         ThemeList(isGrouped: true) {
             Section {
-                ForEach(iOSTab.allCases.filter { $0 != .history && $0 != .zayitSearch }) { tab in
-                    if tab == .otzariaTextSearch {
+                ForEach(iOSTab.allCases.filter {
+                    $0 != .history && $0 != .zayitSearch && $0 != .otzariaTextSearch
+                }) { tab in
+                    if tab == .search {
                         Button {
                             transitionSidebar(to: tab)
                         } label: {
@@ -268,12 +270,8 @@ struct iPadLayout: View {
                 // Zayit Search is presented in the split view's detail column.
                 EmptyView()
             case .search:
-                SearchModeView()
-                    .searchable(
-                        text: $searchVM.filterText,
-                        placement: .navigationBarDrawer(displayMode: .always),
-                        prompt: searchPrompt(for: tab).localized
-                    )
+                // Unified search is presented in the split view's detail column.
+                EmptyView()
             case .author:
                 AuthorModeView(onOpenBook: { book in
                     bManager.openBook(book)
@@ -330,7 +328,7 @@ struct iPadLayout: View {
         bManager.authorViewModel.searchText = ""
         selectedTab = tab
         bManager.switchToMode(tab.appMode)
-        if tab == .otzariaTextSearch {
+        if tab == .otzariaTextSearch || tab == .search {
             detailMode = .otzariaTextSearch
         } else {
             detailMode = .reader

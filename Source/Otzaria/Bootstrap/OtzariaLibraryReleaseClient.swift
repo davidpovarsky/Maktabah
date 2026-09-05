@@ -12,6 +12,25 @@ struct OtzariaLibraryReleaseClient: Sendable {
     }
 
     func fetchLatestRelease() async throws -> OtzariaLibraryRelease {
+        if let profile = OtzariaDataProfileRegistry.activeProfile,
+           profile.profileID != OtzariaDataProfileRegistry.productionID {
+            guard let artifact = profile.artifact(.database) else {
+                throw OtzariaDataProfileError.missingArtifact(.database)
+            }
+            return OtzariaLibraryRelease(
+                id: profile.sourceDatabase.releaseID,
+                tag: profile.sourceDatabase.releaseTag,
+                asset: .init(
+                    id: Int64(profile.profileVersion),
+                    name: artifact.assetName,
+                    downloadURL: artifact.downloadURL,
+                    compressedSize: artifact.compressedBytes,
+                    digest: "sha256:\(artifact.sha256.lowercased())",
+                    updatedAt: nil
+                )
+            )
+        }
+
         var request = URLRequest(url: Self.latestReleaseURL)
         request.timeoutInterval = 30
         request.cachePolicy = .reloadIgnoringLocalCacheData

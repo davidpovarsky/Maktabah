@@ -2,25 +2,48 @@ import SwiftUI
 import UIKit
 
 struct iOSRowiSidebarView: UIViewControllerRepresentable {
-    var viewModel: NarratorViewModel
+    private let groups: () -> [TabaqaGroup]
+    private let onSelectRowi: (Rowi) -> Void
+    private let onLoadMore: (TabaqaGroup, @escaping () -> Void) -> Void
     @Environment(\.isSearching) private var isSearching
     let searchQuery: String
 
+    init(viewModel: NarratorViewModel, searchQuery: String) {
+        groups = { viewModel.tabaqaGroups }
+        onSelectRowi = { viewModel.selectRowi($0) }
+        onLoadMore = { group, completion in
+            viewModel.loadMore(group: group) { _ in completion() }
+        }
+        self.searchQuery = searchQuery
+    }
+
+    init(
+        groups: @escaping () -> [TabaqaGroup],
+        searchQuery: String,
+        onSelectRowi: @escaping (Rowi) -> Void,
+        onLoadMore: @escaping (TabaqaGroup, @escaping () -> Void) -> Void
+    ) {
+        self.groups = groups
+        self.searchQuery = searchQuery
+        self.onSelectRowi = onSelectRowi
+        self.onLoadMore = onLoadMore
+    }
+
     func makeCoordinator() -> Coordinator {
-        Coordinator(viewModel: viewModel)
+        Coordinator(groups: groups, onSelectRowi: onSelectRowi, onLoadMore: onLoadMore)
     }
 
     func makeUIViewController(context: Context) -> iOSRowiHierarchicalCollectionViewController {
         let vc = iOSRowiHierarchicalCollectionViewController()
 
         vc.onSelectRowi = { rowi in
-            context.coordinator.viewModel.selectRowi(rowi)
+            context.coordinator.onSelectRowi(rowi)
         }
 
         vc.onLoadMore = { group in
-            context.coordinator.viewModel.loadMore(group: group) { _ in
+            context.coordinator.onLoadMore(group) {
                 DispatchQueue.main.async {
-                    vc.applyGroups(context.coordinator.viewModel.tabaqaGroups, isSearching: !context.coordinator.searchQuery.isEmpty)
+                    vc.applyGroups(context.coordinator.groups(), isSearching: !context.coordinator.searchQuery.isEmpty)
                 }
             }
         }
@@ -30,15 +53,23 @@ struct iOSRowiSidebarView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: iOSRowiHierarchicalCollectionViewController, context: Context) {
         context.coordinator.searchQuery = searchQuery
-        uiViewController.applyGroups(viewModel.tabaqaGroups, isSearching: !searchQuery.isEmpty)
+        uiViewController.applyGroups(groups(), isSearching: !searchQuery.isEmpty)
     }
 
     class Coordinator {
-        let viewModel: NarratorViewModel
+        let groups: () -> [TabaqaGroup]
+        let onSelectRowi: (Rowi) -> Void
+        let onLoadMore: (TabaqaGroup, @escaping () -> Void) -> Void
         var searchQuery: String = ""
 
-        init(viewModel: NarratorViewModel) {
-            self.viewModel = viewModel
+        init(
+            groups: @escaping () -> [TabaqaGroup],
+            onSelectRowi: @escaping (Rowi) -> Void,
+            onLoadMore: @escaping (TabaqaGroup, @escaping () -> Void) -> Void
+        ) {
+            self.groups = groups
+            self.onSelectRowi = onSelectRowi
+            self.onLoadMore = onLoadMore
         }
     }
 }

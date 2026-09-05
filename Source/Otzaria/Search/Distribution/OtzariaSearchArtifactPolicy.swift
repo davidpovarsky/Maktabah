@@ -51,18 +51,17 @@ enum OtzariaSearchArtifactPolicy {
         alreadyDownloadedBytes: Int64,
         existingFinalBytes: Int64
     ) -> Int64 {
-        // `availableCapacity` already excludes the existing trusted index. Its
-        // atomic rename to `.previous` consumes no additional file data.
-        _ = existingFinalBytes
         // The installer streams one independently compressed part at a time,
         // verifies and extracts it, then deletes it before downloading the next.
         let largestPart = manifest.lexicalArtifact.parts.map(\.packagedBytes).max() ?? 0
-        let remaining = max(0, largestPart - min(alreadyDownloadedBytes, largestPart))
-        return saturatedSum([
-            remaining,
-            manifest.lexicalArtifact.extractedBytes,
-            safetyReserve,
-        ])
+        return OtzariaInstallCapacityCalculator.plan(
+            compressedBytes: max(1, largestPart),
+            extractedBytes: max(1, manifest.lexicalArtifact.extractedBytes),
+            existingInstallBytes: existingFinalBytes,
+            currentPartialDownloadBytes: alreadyDownloadedBytes,
+            retainsRollbackCopy: false,
+            safetyReserveBytes: safetyReserve
+        ).peakAdditionalBytes
     }
 
     static func validate(

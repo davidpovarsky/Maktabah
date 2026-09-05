@@ -18,6 +18,23 @@ final class OtzariaAuthorsViewModel: ObservableObject {
         return authors.filter { $0.name.localizedCaseInsensitiveContains(query) }
     }
 
+    var maktabahGroups: [TabaqaGroup] {
+        Dictionary(grouping: filteredAuthors) { String($0.name.first ?? "#") }
+            .map { letter, authors in
+                let rows = authors
+                    .sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
+                    .map { Rowi(id: $0.id, tabaqa: letter, isoName: $0.name) }
+                let group = TabaqaGroup(code: letter, name: letter, rowis: rows)
+                group.initialLoad()
+                return group
+            }
+            .sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
+    }
+
+    func author(id: Int) -> OtzariaAuthor? {
+        authors.first { $0.id == id }
+    }
+
     func loadAuthors() async {
         guard authors.isEmpty else { return }
         isLoading = true

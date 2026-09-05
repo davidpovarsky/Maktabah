@@ -98,10 +98,13 @@ struct CoreDownloadProgressView: View {
 
             if configuration.showsSearchComponents, case .confirmation = state.phase {
                 VStack(spacing: 8) {
-                    searchComponent("Seforim DB", detail: "Required · 1.55 GB download · 7.87 GB installed", selected: true)
-                    searchComponent("Otzaria lexical index", detail: "Recommended · 3.01 GB download · 4.11 GB installed", selected: true)
-                    searchComponent("Zayit index", detail: "Recommended · separate versioned package", selected: true)
-                    searchComponent("Shared lexical.db", detail: "Recommended · 57 MB", selected: true)
+                    ForEach(state.componentDetails) { component in
+                        searchComponent(
+                            component.title,
+                            detail: component.detail,
+                            selected: component.isReady
+                        )
+                    }
                 }
             }
 
@@ -137,8 +140,8 @@ struct CoreDownloadProgressView: View {
 
     private func searchComponent(_ title: String, detail: String, selected: Bool) -> some View {
         HStack(spacing: 10) {
-            Image(systemName: selected ? "checkmark.circle.fill" : "circle")
-                .foregroundStyle(selected ? Color.accentColor : Color.secondary)
+            Image(systemName: selected ? "checkmark.circle.fill" : "arrow.down.circle")
+                .foregroundStyle(selected ? Color.green : Color.accentColor)
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.subheadline)
                 Text(detail).font(.caption2).foregroundStyle(.secondary)

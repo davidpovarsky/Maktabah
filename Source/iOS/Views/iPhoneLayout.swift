@@ -21,10 +21,6 @@ struct iPhoneLayout: View {
             Tab(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon, value: .viewer) {
                 viewerTabContent
             }
-            Tab(iOSTab.otzariaTextSearch.title, systemImage: iOSTab.otzariaTextSearch.icon, value: .otzariaTextSearch) {
-                otzariaTextSearchTabContent
-            }
-
             Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search, role: .search) {
                 searchTabContent
             }
@@ -46,7 +42,8 @@ struct iPhoneLayout: View {
             iOSAddFavoriteSheet(viewModel: HistoryViewModel.shared)
         }
         .onAppear {
-            selectedTab = savedSelectedTab == .zayitSearch ? .otzariaTextSearch : savedSelectedTab
+            selectedTab = [.zayitSearch, .otzariaTextSearch].contains(savedSelectedTab)
+                ? .search : savedSelectedTab
         }
         .onChange(of: selectedTab) { _, newValue in
             savedSelectedTab = newValue
@@ -75,7 +72,7 @@ struct iPhoneLayout: View {
     }
 
     @ViewBuilder
-    private var otzariaTextSearchTabContent: some View {
+    private var searchTabContent: some View {
         NavigationStack {
             UnifiedSearchWorkspaceView(
                 openOtzaria: { item, descriptor in
@@ -86,19 +83,6 @@ struct iPhoneLayout: View {
                     ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
                 }
             )
-                .navigationTitle(iOSTab.otzariaTextSearch.title)
-                .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
-                    manager: bManager
-                )
-                .toolbarGeneral(showSettings: $showSettings)
-        }
-    }
-
-    @ViewBuilder
-    private var searchTabContent: some View {
-        NavigationStack {
-            SearchModeView()
                 .navigationTitle(iOSTab.search.title)
                 .adaptiveReaderPush(
                     item: $bManager.selectedBook,
@@ -106,11 +90,6 @@ struct iPhoneLayout: View {
                 )
                 .toolbarGeneral(showSettings: $showSettings)
         }
-        .searchable(
-            text: Bindable(bManager.searchViewModel).filterText,
-            placement: .toolbar,
-            prompt: String(localized: "Filter Books to Search")
-        )
     }
 
     @ViewBuilder

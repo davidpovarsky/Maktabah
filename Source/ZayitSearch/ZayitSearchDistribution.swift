@@ -118,7 +118,7 @@ enum ZayitSearchDistributionError: LocalizedError, Sendable {
 }
 
 struct ZayitSearchArtifactStorage: Sendable {
-    static let reserveBytes: Int64 = 1_073_741_824
+    static let reserveBytes = OtzariaInstallCapacityCalculator.defaultSafetyReserveBytes
     let root: URL
     let downloads: URL
 
@@ -132,8 +132,20 @@ struct ZayitSearchArtifactStorage: Sendable {
             appropriateFor: nil,
             create: true
         )
-        root = appSupport.appendingPathComponent("Otzaria/Zayit", isDirectory: true)
-        downloads = caches.appendingPathComponent("Maktabah/Zayit/Downloads", isDirectory: true)
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        if profileID == OtzariaDataProfileRegistry.productionID {
+            root = appSupport.appendingPathComponent("Otzaria/Zayit", isDirectory: true)
+            downloads = caches.appendingPathComponent("Maktabah/Zayit/Downloads", isDirectory: true)
+        } else {
+            root = appSupport
+                .appendingPathComponent("Otzaria/Profiles", isDirectory: true)
+                .appendingPathComponent(profileID, isDirectory: true)
+                .appendingPathComponent("zayitIndex", isDirectory: true)
+            downloads = caches
+                .appendingPathComponent("Maktabah/Otzaria/Profiles", isDirectory: true)
+                .appendingPathComponent(profileID, isDirectory: true)
+                .appendingPathComponent("ZayitDownloads", isDirectory: true)
+        }
     }
 
     init(root: URL, downloads: URL) {
