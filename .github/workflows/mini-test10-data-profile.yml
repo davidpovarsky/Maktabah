@@ -1,6 +1,12 @@
 name: Build miniTest10 Data Profile
 
 on:
+  workflow_call:
+    inputs:
+      publish_release:
+        description: Publish the immutable miniTest10 release
+        required: true
+        type: boolean
   workflow_dispatch:
     inputs:
       publish_release:

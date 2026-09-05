@@ -61,7 +61,7 @@ env:
 
 jobs:
   lexical-artifact:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts && inputs.verify_release_tag != 'miniTest10' }}
     permissions:
       contents: write
     uses: ./.github/workflows/otzaria-search-artifacts.yml
@@ -69,6 +69,14 @@ jobs:
       publish_release: ${{ inputs.publish_release }}
       existing_release_tag: ${{ inputs.verify_release_tag }}
       repair_manifest_layout: ${{ inputs.repair_manifest_layout }}
+
+  mini-profile:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts && inputs.verify_release_tag == 'miniTest10' }}
+    permissions:
+      contents: write
+    uses: ./.github/workflows/mini-test10-data-profile.yml
+    with:
+      publish_release: ${{ inputs.publish_release }}
 
   adapter-linux:
     if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts) }}
