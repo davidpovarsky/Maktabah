@@ -45,7 +45,8 @@ final class OtzariaDatabaseAccessController {
     private init() {}
 
     var hasPersistedSelection: Bool {
-        if bookmarkStore.hasBookmark { return true }
+        if OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
+           bookmarkStore.hasBookmark { return true }
         guard let managedURL = try? managedInternalDatabaseURL() else { return false }
         return FileManager.default.fileExists(atPath: managedURL.path)
     }
@@ -53,7 +54,8 @@ final class OtzariaDatabaseAccessController {
     func restoreIfNeeded() throws -> URL? {
         if let currentURL { return currentURL }
 
-        if let restored = try bookmarkStore.restore() {
+        if OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
+           let restored = try bookmarkStore.restore() {
             let access = try OtzariaSecurityScopedAccess.start(for: restored.url)
             do {
                 try verifyExistsAndIsReadable(restored.url)
@@ -162,12 +164,7 @@ final class OtzariaDatabaseAccessController {
     }
 
     func managedInternalDatabaseURL() throws -> URL {
-        guard let appSupport = AppConfig.appSupportDir else {
-            throw AccessError.applicationSupportUnavailable
-        }
-        return appSupport
-            .appendingPathComponent("Otzaria", isDirectory: true)
-            .appendingPathComponent("seforim.db", isDirectory: false)
+        try OtzariaDatabaseStorage().finalDatabaseURL
     }
 
     private func verifyExistsAndIsReadable(_ url: URL) throws {
@@ -244,8 +241,13 @@ final class OtzariaDatabaseAccessController {
             )
             let attributes = try FileManager.default.attributesOfItem(atPath: databaseURL.path)
             let actualSize = (attributes[.size] as? NSNumber)?.int64Value ?? -1
+            let active = OtzariaDataProfileRegistry.activeIdentity
+            let expectedAsset = OtzariaDataProfileRegistry.activeProfile?.databaseAssetName
+                ?? OtzariaLibraryRelease.databaseAssetName
             guard manifest.repository == OtzariaLibraryRelease.repository,
-                  manifest.assetName == OtzariaLibraryRelease.databaseAssetName,
+                  manifest.assetName == expectedAsset,
+                  manifest.effectiveProfileID == active.id,
+                  manifest.effectiveProfileVersion == active.version,
                   manifest.databaseFileSize > 0,
                   manifest.databaseFileSize == actualSize else {
                 throw AccessError.invalidDatabase

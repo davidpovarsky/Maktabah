@@ -56,6 +56,8 @@ def main() -> None:
     parser.add_argument("--lexical-sha256", required=True)
     parser.add_argument("--lexical-bytes", required=True, type=int)
     parser.add_argument("--peak-build-bytes", required=True, type=int)
+    parser.add_argument("--data-profile", default="production")
+    parser.add_argument("--data-profile-version", type=int, default=1)
     args = parser.parse_args()
 
     metadata = json.loads((args.index / "zayit-index-metadata.json").read_text())
@@ -127,6 +129,9 @@ def main() -> None:
         "packagedBytes": sum(part["packagedBytes"] for part in parts),
         "parts": parts,
     }
+    if args.data_profile != "production" or args.data_profile_version != 1:
+        manifest["profileID"] = args.data_profile
+        manifest["profileVersion"] = args.data_profile_version
     manifest["artifactIdentity"] = canonical_digest(manifest)
     (args.output / "zayit-search-manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"

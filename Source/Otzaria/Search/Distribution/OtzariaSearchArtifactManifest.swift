@@ -4,12 +4,17 @@ struct OtzariaSearchArtifactManifest: Codable, Equatable, Sendable {
     static let currentFormatVersion = 1
 
     let formatVersion: Int
+    var profileID: String? = nil
+    var profileVersion: Int? = nil
     let artifactIdentity: String
     let sourceDatabase: SourceDatabase
     let lexicalEngine: LexicalEngine
     let resources: [String: Resource]
     let lexicalArtifact: LexicalArtifact
     let semantic: SemanticArtifact?
+
+    var effectiveProfileID: String { profileID ?? OtzariaDataProfileRegistry.productionID }
+    var effectiveProfileVersion: Int { profileVersion ?? 1 }
 
     struct SourceDatabase: Codable, Equatable, Sendable {
         let repository: String

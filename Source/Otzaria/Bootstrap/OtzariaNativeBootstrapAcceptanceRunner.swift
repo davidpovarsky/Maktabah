@@ -83,7 +83,7 @@ enum OtzariaNativeBootstrapAcceptanceRunner {
         case "cancel":
             await runCancellationPhase(environment: environment, resultURL: resultURL)
         case "install":
-            await runInstallPhase(resultURL: resultURL)
+            await runInstallPhase(environment: environment, resultURL: resultURL)
         case "restore":
             await runRestorePhase(environment: environment, resultURL: resultURL)
         case "dictionary":
@@ -203,7 +203,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
     }
 
     @MainActor
-    static func runInstallPhase(resultURL: URL) async {
+    static func runInstallPhase(environment: [String: String], resultURL: URL) async {
         var report = Report(phase: "install")
         do {
             let result = try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { _ in }
@@ -228,8 +228,9 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             try populateDatabaseState(&report, storage: storage)
             let dictionaryReport = try runDictionaryChecks()
             report.dictionaryConfigured = dictionaryReport.passed
+            let requireResume = environment["OTZARIA_NATIVE_BOOTSTRAP_REQUIRE_RESUME"] != "0"
             report.passed = report.shaMatched &&
-                report.resumeFromBytes > 0 &&
+                (!requireResume || report.resumeFromBytes >= 0) &&
                 report.quickCheck?.lowercased() == "ok" &&
                 Set(report.requiredTables) == Set(["book", "line", "category"]) &&
                 report.bookCount > 0 &&

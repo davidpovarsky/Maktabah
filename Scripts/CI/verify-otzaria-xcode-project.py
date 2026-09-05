@@ -46,7 +46,11 @@ for expected in [
     if expected not in frameworks:
         missing.append(expected)
 
-for expected in ["dictionary.json in Resources", "Acronyms.json in Resources"]:
+for expected in [
+    "dictionary.json in Resources",
+    "Acronyms.json in Resources",
+    "miniTest10.profile.json in Resources",
+]:
     if expected not in resources:
         missing.append(expected)
 

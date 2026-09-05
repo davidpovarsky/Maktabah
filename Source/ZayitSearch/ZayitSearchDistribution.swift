@@ -6,6 +6,8 @@ struct ZayitSearchArtifactManifest: Codable, Equatable, Sendable {
     static let currentIndexSchemaVersion = 2
 
     let manifestSchemaVersion: Int
+    var profileID: String? = nil
+    var profileVersion: Int? = nil
     let artifactIdentity: String
     let component: String
     let version: String
@@ -17,6 +19,9 @@ struct ZayitSearchArtifactManifest: Codable, Equatable, Sendable {
     let extractedBytes: Int64
     let packagedBytes: Int64
     let parts: [Part]
+
+    var effectiveProfileID: String { profileID ?? OtzariaDataProfileRegistry.productionID }
+    var effectiveProfileVersion: Int { profileVersion ?? 1 }
 
     struct RequiredDatabase: Codable, Equatable, Sendable {
         let releaseTag: String
@@ -132,8 +137,8 @@ struct ZayitSearchArtifactStorage: Sendable {
             appropriateFor: nil,
             create: true
         )
-        root = appSupport.appendingPathComponent("Otzaria/Zayit", isDirectory: true)
-        downloads = caches.appendingPathComponent("Maktabah/Zayit/Downloads", isDirectory: true)
+        root = OtzariaProfileStorage.applicationSupportRoot(base: appSupport, component: .zayitSearch)
+        downloads = OtzariaProfileStorage.downloadsRoot(base: caches, component: .zayitSearch)
     }
 
     init(root: URL, downloads: URL) {
@@ -319,6 +324,30 @@ private extension ZayitSearchArtifactService {
     }
 
     func resolveArtifact() async throws -> ZayitResolvedArtifact {
+        if OtzariaDataProfileRegistry.activeProfileID != OtzariaDataProfileRegistry.productionID {
+            let profile: OtzariaDataProfile
+            do {
+                profile = try OtzariaDataProfileRegistry.requireActiveProfile()
+            } catch {
+                throw ZayitSearchDistributionError.incompatible(error.localizedDescription)
+            }
+            let (data, response) = try await URLSession.shared.data(from: profile.zayitManifestURL)
+            guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+                throw ZayitSearchDistributionError.unavailable
+            }
+            let manifest = try JSONDecoder().decode(ZayitSearchArtifactManifest.self, from: data)
+            guard manifest.manifestSchemaVersion == ZayitSearchArtifactManifest.currentSchemaVersion,
+                  manifest.engine.indexSchemaVersion == ZayitSearchArtifactManifest.currentIndexSchemaVersion else {
+                throw ZayitSearchDistributionError.incompatible("unsupported manifest or index schema")
+            }
+            return .init(
+                releaseTag: "otzaria-miniTest10-v\(profile.profileVersion)",
+                manifest: manifest,
+                partURLs: Dictionary(uniqueKeysWithValues: manifest.parts.map {
+                    ($0.assetName, profile.releaseBaseURL.appendingPathComponent($0.assetName))
+                })
+            )
+        }
         let url = URL(string: "https://api.github.com/repos/\(Self.repository)/releases?per_page=30")!
         var request = URLRequest(url: url)
         request.setValue("Maktabah-iOS-Zayit", forHTTPHeaderField: "User-Agent")
@@ -349,6 +378,11 @@ private extension ZayitSearchArtifactService {
               manifest.engine.indexSchemaVersion == ZayitSearchArtifactManifest.currentIndexSchemaVersion else {
             throw ZayitSearchDistributionError.incompatible("unsupported manifest or index schema")
         }
+        guard OtzariaDataProfileCompatibility.matchesActiveProfile(
+            profileID: manifest.profileID, profileVersion: manifest.profileVersion
+        ) else {
+            throw ZayitSearchDistributionError.incompatible("data profile identity mismatch")
+        }
         let bytes = ((try? FileManager.default.attributesOfItem(atPath: databaseURL.path)[.size]) as? NSNumber)?.int64Value ?? 0
         guard bytes == manifest.requiredDatabase.bytes else {
             throw ZayitSearchDistributionError.incompatible("database size/identity mismatch")
@@ -358,6 +392,8 @@ private extension ZayitSearchArtifactService {
            let installed = try? JSONDecoder().decode(OtzariaDatabaseInstallationManifest.self, from: data) {
             let digest = installed.digest?.replacingOccurrences(of: "sha256:", with: "").lowercased()
             guard installed.releaseTag == manifest.requiredDatabase.releaseTag,
+                  installed.effectiveProfileID == manifest.effectiveProfileID,
+                  installed.effectiveProfileVersion == manifest.effectiveProfileVersion,
                   digest == manifest.requiredDatabase.compressedAssetSHA256.lowercased() else {
                 throw ZayitSearchDistributionError.incompatible("the index was built for a different DB release")
             }

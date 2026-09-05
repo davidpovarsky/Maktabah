@@ -89,6 +89,8 @@ struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
 }
 
 struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {
+    var profileID: String? = nil
+    var profileVersion: Int? = nil
     let repository: String
     let releaseID: Int64
     let releaseTag: String
@@ -100,6 +102,11 @@ struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {
     let databaseFileSize: Int64
 
     init(release: OtzariaLibraryRelease, databaseFileSize: Int64) {
+        let identity = OtzariaDataProfileRegistry.activeIdentity
+        if identity.id != OtzariaDataProfileRegistry.productionID {
+            profileID = identity.id
+            profileVersion = identity.version
+        }
         repository = OtzariaLibraryRelease.repository
         releaseID = release.id
         releaseTag = release.tag
@@ -110,6 +117,9 @@ struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {
         installedAt = Date()
         self.databaseFileSize = databaseFileSize
     }
+
+    var effectiveProfileID: String { profileID ?? OtzariaDataProfileRegistry.productionID }
+    var effectiveProfileVersion: Int { profileVersion ?? 1 }
 }
 
 struct OtzariaPreparedDatabaseInstallation: Sendable {

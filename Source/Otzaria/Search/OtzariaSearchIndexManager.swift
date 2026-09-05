@@ -13,8 +13,8 @@ final class OtzariaSearchIndexManager {
     private init() {}
 
     var indexRootURL: URL {
-        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("Otzaria/TantivySearchIndex", isDirectory: true)
+        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        return OtzariaProfileStorage.applicationSupportRoot(base: base, component: .otzariaSearch)
     }
 
     func indexURL(for databasePath: String) -> URL {

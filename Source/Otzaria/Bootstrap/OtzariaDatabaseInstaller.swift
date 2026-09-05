@@ -21,10 +21,7 @@ struct OtzariaDatabaseStorage: Sendable {
             appropriateFor: nil,
             create: true
         )
-        downloadsRoot = caches
-            .appendingPathComponent("Maktabah", isDirectory: true)
-            .appendingPathComponent("Otzaria", isDirectory: true)
-            .appendingPathComponent("Downloads", isDirectory: true)
+        downloadsRoot = OtzariaProfileStorage.downloadsRoot(base: caches, component: .database)
     }
 
     init(appSupportRoot: URL, downloadsRoot: URL) {
@@ -33,7 +30,7 @@ struct OtzariaDatabaseStorage: Sendable {
     }
 
     var otzariaRoot: URL {
-        appSupportRoot.appendingPathComponent("Otzaria", isDirectory: true)
+        OtzariaProfileStorage.applicationSupportRoot(base: appSupportRoot, component: .database)
     }
 
     var finalDatabaseURL: URL {

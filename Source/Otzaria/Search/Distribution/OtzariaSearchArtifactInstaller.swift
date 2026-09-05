@@ -7,12 +7,13 @@ struct OtzariaSearchArtifactStorage: Sendable {
     init() throws {
         let manager = OtzariaSearchIndexManager.shared
         indexRootURL = manager.indexRootURL
-        downloadsRootURL = try FileManager.default.url(
+        let caches = try FileManager.default.url(
             for: .cachesDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("Maktabah/Otzaria/SearchDownloads", isDirectory: true)
+        )
+        downloadsRootURL = OtzariaProfileStorage.downloadsRoot(base: caches, component: .otzariaSearch)
     }
 
     init(indexRootURL: URL, downloadsRootURL: URL) {

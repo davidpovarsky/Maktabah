@@ -19,6 +19,33 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
         databaseBytes: Int64,
         build: OtzariaSearchEngineBuildInfo
     ) async throws -> OtzariaResolvedSearchArtifact {
+        if OtzariaDataProfileRegistry.activeProfileID != OtzariaDataProfileRegistry.productionID {
+            let profile: OtzariaDataProfile
+            do {
+                profile = try OtzariaDataProfileRegistry.requireActiveProfile()
+            } catch {
+                throw OtzariaSearchArtifactError.incompatible(error.localizedDescription)
+            }
+            let (data, response) = try await session.data(for: request(url: profile.otzariaManifestURL))
+            try requireSuccess(response)
+            let manifest: OtzariaSearchArtifactManifest
+            do {
+                manifest = try JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data)
+            } catch {
+                throw OtzariaSearchArtifactError.malformedManifest(error.localizedDescription)
+            }
+            try OtzariaSearchArtifactPolicy.validate(
+                manifest, database: database, databaseBytes: databaseBytes, build: build
+            )
+            return OtzariaResolvedSearchArtifact(
+                releaseID: Int64(profile.profileVersion),
+                releaseTag: "otzaria-miniTest10-v\(profile.profileVersion)",
+                manifest: manifest,
+                partURLs: Dictionary(uniqueKeysWithValues: manifest.lexicalArtifact.parts.map {
+                    ($0.assetName, profile.releaseBaseURL.appendingPathComponent($0.assetName))
+                })
+            )
+        }
         let (data, response) = try await session.data(for: request(url: Self.releasesURL))
         try requireSuccess(response)
         return try await matchingArtifact(

@@ -132,6 +132,15 @@ jobs:
       - name: Test Otzaria release and resume policies
         run: |
           xcrun swiftc \
+            Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
+            Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
+            Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift \
+            Vendor/OtzariaDataProfileTests/main.swift \
+            -o "$RUNNER_TEMP/otzaria-data-profile-tests"
+          "$RUNNER_TEMP/otzaria-data-profile-tests"
+          xcrun swiftc \
+            Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
+            Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
             Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
             Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift \
             Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift \
@@ -145,6 +154,9 @@ jobs:
           xcrun swiftc \
             'Source/Managers/App Config/ZstdShim.swift' \
             Source/Managers/Database/SQLiteDatabase.swift \
+            Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
+            Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
+            Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift \
             Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
             Source/Otzaria/Bootstrap/OtzariaZstdStreamExtractor.swift \
             Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift \
@@ -166,8 +178,12 @@ jobs:
           "$RUNNER_TEMP/otzaria-indexing-policy-tests"
       - name: Test prebuilt artifact compatibility and storage policies
         run: |
-          python3 -m unittest Scripts/Tests/test_package_otzaria_search_artifact.py
+          python3 -m unittest \
+            Scripts/Tests/test_data_profiles.py \
+            Scripts/Tests/test_package_otzaria_search_artifact.py
           xcrun swiftc \
+            Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
+            Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
             Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
             Source/Otzaria/Search/OtzariaSearchMode.swift \
             Source/Otzaria/Search/OtzariaSearchModels.swift \

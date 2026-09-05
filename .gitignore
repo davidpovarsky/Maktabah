@@ -55,6 +55,8 @@ otzaria-search-manifest.json
 DerivedData/
 target/
 __pycache__/
+.codex-data-profile-build/
+build/miniTest10/
 
 # CocoaPods
 #

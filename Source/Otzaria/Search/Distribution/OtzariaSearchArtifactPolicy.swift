@@ -74,6 +74,14 @@ enum OtzariaSearchArtifactPolicy {
         guard manifest.formatVersion == OtzariaSearchArtifactManifest.currentFormatVersion else {
             throw OtzariaSearchArtifactError.incompatible("manifest format \(manifest.formatVersion)")
         }
+        guard manifest.effectiveProfileID == database.effectiveProfileID,
+              manifest.effectiveProfileVersion == database.effectiveProfileVersion,
+              OtzariaDataProfileCompatibility.matchesActiveProfile(
+                  profileID: manifest.profileID,
+                  profileVersion: manifest.profileVersion
+              ) else {
+            throw OtzariaSearchArtifactError.incompatible("data profile identity")
+        }
         let source = manifest.sourceDatabase
         guard source.repository == database.repository,
               source.releaseID == database.releaseID,

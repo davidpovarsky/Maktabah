@@ -1,0 +1,195 @@
+name: Build miniTest10 Data Profile
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_release:
+        description: Publish the immutable miniTest10 release
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mini-test10-data-profile-v1
+  cancel-in-progress: false
+
+jobs:
+  build-verify-publish:
+    runs-on: macos-26
+    timeout-minutes: 240
+    env:
+      PROFILE_ID: miniTest10
+      PROFILE_VERSION: "1"
+      PROFILE_TAG: otzaria-miniTest10-v1
+      SOURCE_TAG: v23-20260829032606
+      SOURCE_ASSET_SHA256: c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662
+      SOURCE_DATABASE_SHA256: 7e2cff76086f07c85ee30470948b458d99ddb36b84dae5c4e5b57ad5f2562501
+      MINI_DATABASE_SHA256: ceec3727088cdaeff8cfe2bf04a12efb8e56978f230b8e81b211fceac28ff510
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode and install deterministic tooling
+        run: |
+          set -euo pipefail
+          bash Scripts/CI/select-xcode-26.sh
+          brew list zstd >/dev/null 2>&1 || brew install zstd
+          python3 -m pip install --disable-pip-version-check zstandard==0.23.0
+          mkdir -p build/miniTest10/{database,otzaria,zayit,logs} "$RUNNER_TEMP/miniTest10"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Download and authenticate the pinned official database
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/Otzaria/SeforimLibrary/releases/tags/$SOURCE_TAG" > build/miniTest10/logs/source-official-release.json
+          gh release download "$SOURCE_TAG" --repo Otzaria/SeforimLibrary --pattern seforim.db.zst --dir "$RUNNER_TEMP/miniTest10"
+          test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db.zst" | cut -d' ' -f1)" = "$SOURCE_ASSET_SHA256"
+          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/miniTest10/seforim.db.zst" -o "$RUNNER_TEMP/miniTest10/seforim.db"
+          test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db" | cut -d' ' -f1)" = "$SOURCE_DATABASE_SHA256"
+      - name: Build the canonical ten-book database twice
+        run: |
+          set -euo pipefail
+          python3 Scripts/build-otzaria-data-profile.py \
+            --source "$RUNNER_TEMP/miniTest10/seforim.db" \
+            --seed Scripts/DataProfiles/miniTest10.seed.json \
+            --output build/miniTest10/database/miniTest10-seforim.db --compress
+          python3 Scripts/build-otzaria-data-profile.py \
+            --source "$RUNNER_TEMP/miniTest10/seforim.db" \
+            --seed Scripts/DataProfiles/miniTest10.seed.json \
+            --output "$RUNNER_TEMP/miniTest10/repro.db" --compress
+          cmp build/miniTest10/database/miniTest10-seforim.db "$RUNNER_TEMP/miniTest10/repro.db"
+          cmp build/miniTest10/database/miniTest10-seforim.db.zst "$RUNNER_TEMP/miniTest10/repro.db.zst"
+          test "$(shasum -a 256 build/miniTest10/database/miniTest10-seforim.db | cut -d' ' -f1)" = "$MINI_DATABASE_SHA256"
+          sqlite3 build/miniTest10/database/miniTest10-seforim.db 'PRAGMA foreign_key_check; PRAGMA integrity_check;' | grep -qx ok
+          python3 Scripts/verify-mini-test10-profile.py \
+            --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
+            --database build/miniTest10/database/miniTest10-seforim.db \
+            --archive build/miniTest10/database/miniTest10-seforim.db.zst
+      - name: Resolve lexical resource and synthetic mini release identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/Otzaria/SeforimMagicIndexer/releases/latest > build/miniTest10/logs/magic-release.json
+          gh release download "$(python3 -c 'import json; print(json.load(open("build/miniTest10/logs/magic-release.json"))["tag_name"])')" \
+            --repo Otzaria/SeforimMagicIndexer --pattern lexical.db --dir "$RUNNER_TEMP/miniTest10"
+          python3 Scripts/make-mini-test10-release-json.py \
+            --official build/miniTest10/logs/source-official-release.json \
+            --archive build/miniTest10/database/miniTest10-seforim.db.zst \
+            --output build/miniTest10/logs/source-profile-release.json
+      - name: Build pinned engines and simulator app
+        run: |
+          set -euo pipefail
+          bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+          bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+          xcodebuild -resolvePackageDependencies -project Maktabah.xcodeproj -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
+          xcodebuild build -project Maktabah.xcodeproj -scheme Maktabah-iOS -configuration Debug \
+            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/MiniTest10Build -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
+      - name: Build the actual Otzaria index and package it
+        env:
+          OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD: "1"
+          OTZARIA_CORPUS_ACCEPTANCE_APP_PATH: ${{ github.workspace }}/build/MiniTest10Build/Build/Products/Debug-iphonesimulator/Maktabah.app
+          OTZARIA_CORPUS_ACCEPTANCE_REPORT_COPY: ${{ github.workspace }}/build/miniTest10/logs/otzaria-acceptance.json
+          OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE: ${{ github.workspace }}/build/miniTest10/logs/otzaria-index-path.txt
+          OTZARIA_CORPUS_ACCEPTANCE_DURATION_FILE: ${{ github.workspace }}/build/miniTest10/logs/otzaria-duration.txt
+          OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES: ${{ github.workspace }}/build/miniTest10/logs/otzaria-disk.jsonl
+        run: |
+          set -euo pipefail
+          bash Scripts/run-otzaria-corpus-acceptance.sh "$(pwd)/build/miniTest10/database/miniTest10-seforim.db" 10
+          INDEX="$(cat build/miniTest10/logs/otzaria-index-path.txt)"
+          PEAK="$(python3 -c 'import json; print(max(r["databaseBytes"]+r["indexRootBytes"] for r in map(json.loads,open("build/miniTest10/logs/otzaria-disk.jsonl"))))')"
+          python3 Scripts/package-otzaria-search-artifact.py \
+            --index "$INDEX" --database build/miniTest10/database/miniTest10-seforim.db \
+            --release-json build/miniTest10/logs/source-profile-release.json \
+            --database-asset-name miniTest10-seforim.db.zst \
+            --magic-release-json build/miniTest10/logs/magic-release.json \
+            --acceptance-json build/miniTest10/logs/otzaria-acceptance.json \
+            --output build/miniTest10/otzaria --peak-build-bytes "$PEAK" \
+            --build-duration-seconds "$(cat build/miniTest10/logs/otzaria-duration.txt)" \
+            --data-profile "$PROFILE_ID" --data-profile-version "$PROFILE_VERSION"
+      - name: Build the actual Zayit index, query it, and package it
+        env:
+          ZAYIT_DATABASE_RELEASE_TAG: v23-20260829032606
+          ZAYIT_BUILDER_COMMIT: ${{ github.sha }}
+          ZAYIT_UPSTREAM_COMMIT: c53ea7b1a034c206f6c96c86188941c64b69ad2a
+          ZAYIT_GENERATED_UNIX_SECONDS: "0"
+        run: |
+          set -euo pipefail
+          export ZAYIT_DATABASE_ASSET_SHA256="$(shasum -a 256 build/miniTest10/database/miniTest10-seforim.db.zst | cut -d' ' -f1)"
+          cargo build --release --locked --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml --bins
+          BUILDER=Vendor/ZayitSearchPort/Rust/target/release/zayit-index-builder
+          QUERY=Vendor/ZayitSearchPort/Rust/target/release/zayit-query
+          "$BUILDER" build/miniTest10/database/miniTest10-seforim.db "$RUNNER_TEMP/miniTest10/zayit-index"
+          "$QUERY" build/miniTest10/database/miniTest10-seforim.db "$RUNNER_TEMP/miniTest10/lexical.db" \
+            "$RUNNER_TEMP/miniTest10/zayit-index" 'בראשית' > build/miniTest10/logs/zayit-query.json
+          python3 -c 'import json; assert json.load(open("build/miniTest10/logs/zayit-query.json"))["hits"]'
+          LEXICAL_TAG="$(python3 -c 'import json; print(json.load(open("build/miniTest10/logs/magic-release.json"))["tag_name"])')"
+          LEXICAL_SHA="$(shasum -a 256 "$RUNNER_TEMP/miniTest10/lexical.db" | cut -d' ' -f1)"
+          LEXICAL_BYTES="$(stat -f %z "$RUNNER_TEMP/miniTest10/lexical.db")"
+          PEAK="$(du -sk "$RUNNER_TEMP/miniTest10/zayit-index" | awk '{print $1*1024}')"
+          python3 Scripts/package-zayit-search-artifact.py \
+            --index "$RUNNER_TEMP/miniTest10/zayit-index" --output build/miniTest10/zayit \
+            --lexical-version "$LEXICAL_TAG" --lexical-sha256 "$LEXICAL_SHA" --lexical-bytes "$LEXICAL_BYTES" \
+            --peak-build-bytes "$PEAK" --data-profile "$PROFILE_ID" --data-profile-version "$PROFILE_VERSION"
+      - name: Prove both indexes use the identical canonical database
+        run: |
+          python3 Scripts/verify-mini-test10-profile.py \
+            --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
+            --database build/miniTest10/database/miniTest10-seforim.db \
+            --archive build/miniTest10/database/miniTest10-seforim.db.zst \
+            --otzaria-manifest build/miniTest10/otzaria/otzaria-search-manifest.json \
+            --zayit-manifest build/miniTest10/zayit/zayit-search-manifest.json
+      - name: Publish or verify the immutable profile release
+        if: ${{ inputs.publish_release }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cp Source/Otzaria/DataProfiles/miniTest10.profile.json build/miniTest10/miniTest10.profile.json
+          if gh release view "$PROFILE_TAG" >/dev/null 2>&1; then
+            mkdir -p build/miniTest10/existing
+            gh release download "$PROFILE_TAG" --pattern '*.json' --dir build/miniTest10/existing
+            cmp build/miniTest10/existing/miniTest10.profile.json build/miniTest10/miniTest10.profile.json
+            cmp build/miniTest10/existing/otzaria-search-manifest.json build/miniTest10/otzaria/otzaria-search-manifest.json
+            cmp build/miniTest10/existing/zayit-search-manifest.json build/miniTest10/zayit/zayit-search-manifest.json
+          else
+            gh release create "$PROFILE_TAG" --title 'Otzaria miniTest10 data profile v1' \
+              --notes 'Immutable ten-book test corpus with Otzaria and Zayit indexes built from the same canonical database.'
+            gh release upload "$PROFILE_TAG" \
+              build/miniTest10/database/miniTest10-seforim.db.zst \
+              build/miniTest10/miniTest10.profile.json \
+              build/miniTest10/otzaria/* build/miniTest10/zayit/*
+          fi
+      - name: Simulator install, mini bootstrap, relaunch, and Otzaria search smoke
+        if: ${{ inputs.publish_release }}
+        env:
+          OTZARIA_MINI_PROFILE_REPORT_DIR: ${{ github.workspace }}/build/miniTest10/logs
+          OTZARIA_PREBUILT_ACCEPTANCE_DATA_PROFILE: miniTest10
+        run: |
+          set -euo pipefail
+          APP="$(pwd)/build/MiniTest10Build/Build/Products/Debug-iphonesimulator/Maktabah.app"
+          bash Scripts/run-mini-test10-bootstrap-acceptance.sh "$APP"
+          bash Scripts/run-otzaria-prebuilt-acceptance.sh "$APP" \
+            "$(pwd)/build/miniTest10/database/miniTest10-seforim.db" \
+            "$(pwd)/build/miniTest10/otzaria/otzaria-search-manifest.json" \
+            "$(pwd)/build/miniTest10/otzaria"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: miniTest10-data-profile-reports
+          path: |
+            build/miniTest10/logs
+            build/miniTest10/database/*.provenance.json
+            build/miniTest10/otzaria/*.json
+            build/miniTest10/zayit/*.json
+          compression-level: 0
+          if-no-files-found: warn
+      - name: Confirm generated data was not added to git
+        if: always()
+        run: |
+          test -z "$(git status --short --untracked-files=no)"
+          test -z "$(git ls-files '*.db' '*.db.zst' 'build/miniTest10/*')"

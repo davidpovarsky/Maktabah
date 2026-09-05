@@ -83,6 +83,9 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--peak-build-bytes", type=int, required=True)
     parser.add_argument("--build-duration-seconds", type=float, required=True)
+    parser.add_argument("--data-profile", default="production")
+    parser.add_argument("--data-profile-version", type=int, default=1)
+    parser.add_argument("--database-asset-name", default="seforim.db.zst")
     args = parser.parse_args()
 
     args.output.mkdir(parents=True, exist_ok=True)
@@ -91,7 +94,7 @@ def main() -> None:
     release = json.loads(args.release_json.read_text())
     acceptance = json.loads(args.acceptance_json.read_text())
     magic_release = json.loads(args.magic_release_json.read_text())
-    db_asset = selected_asset(release, "seforim.db.zst")
+    db_asset = selected_asset(release, args.database_asset_name)
     magic_asset = selected_asset(magic_release, "lexical.db")
     identity = json.loads((args.index / "otzaria_search_identity.json").read_text())
     optimize_path = args.index / "otzaria_lexical_build_metrics.json"
@@ -183,6 +186,9 @@ def main() -> None:
         },
         "semantic": None,
     }
+    if args.data_profile != "production" or args.data_profile_version != 1:
+        manifest["profileID"] = args.data_profile
+        manifest["profileVersion"] = args.data_profile_version
     manifest["artifactIdentity"] = canonical_digest(manifest)
     manifest_path = args.output / "otzaria-search-manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
