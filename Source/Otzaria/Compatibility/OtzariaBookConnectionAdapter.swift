@@ -2,13 +2,18 @@ import Foundation
 
 enum OtzariaBookConnectionAdapter {
     static var isEnabled: Bool {
+        #if os(iOS)
         OtzariaMaktabahBridge.shared.isEnabled
+        #else
+        false
+        #endif
     }
 
     @discardableResult
     static func connectIfEnabled(archive: Int) throws -> Bool {
         guard isEnabled else { return false }
 
+        #if os(iOS)
         let start = Date()
         log("connect start enabled=true archive=\(archive)")
         do {
@@ -19,11 +24,15 @@ enum OtzariaBookConnectionAdapter {
             log("connect error enabled=true archive=\(archive) error=\(error.localizedDescription) durationMs=\(elapsedMs(start))")
             throw error
         }
+        #else
+        return false
+        #endif
     }
 
     static func getContent(bkid: String, contentId: Int) -> BookContent? {
         guard isEnabled, let bookId = Int(bkid) else { return nil }
 
+        #if os(iOS)
         let start = Date()
         let content = OtzariaMaktabahBridge.shared.getContent(
             bookId: bookId,
@@ -31,29 +40,41 @@ enum OtzariaBookConnectionAdapter {
         )
         log("getContent enabled=true bookId=\(bookId) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") durationMs=\(elapsedMs(start))")
         return content
+        #else
+        return nil
+        #endif
     }
 
     static func getFirstContent(bkid: String) -> BookContent? {
         guard isEnabled, let bookId = Int(bkid) else { return nil }
 
+        #if os(iOS)
         let start = Date()
         let content = OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookId)
         log("getFirstContent enabled=true bookId=\(bookId) result=\(content == nil ? "nil" : "ok") durationMs=\(elapsedMs(start))")
         return content
+        #else
+        return nil
+        #endif
     }
 
     static func getContent(bkid: String, part: Int, page: Int) -> BookContent? {
         guard isEnabled, let bookId = Int(bkid) else { return nil }
 
+        #if os(iOS)
         return OtzariaMaktabahBridge.shared.getContent(
             bookId: bookId,
             contentId: page
         )
+        #else
+        return nil
+        #endif
     }
 
     static func getNextPage(from currentBook: BooksData, contentId: Int) -> BookContent? {
         guard isEnabled else { return nil }
 
+        #if os(iOS)
         let start = Date()
         let content = OtzariaMaktabahBridge.shared.getNextContent(
             bookId: currentBook.id,
@@ -61,11 +82,15 @@ enum OtzariaBookConnectionAdapter {
         )
         log("getNextPage enabled=true bookId=\(currentBook.id) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") durationMs=\(elapsedMs(start))")
         return content
+        #else
+        return nil
+        #endif
     }
 
     static func getPrevPage(from currentBook: BooksData, contentId: Int) -> BookContent? {
         guard isEnabled else { return nil }
 
+        #if os(iOS)
         let start = Date()
         let content = OtzariaMaktabahBridge.shared.getPreviousContent(
             bookId: currentBook.id,
@@ -73,34 +98,55 @@ enum OtzariaBookConnectionAdapter {
         )
         log("getPrevPage enabled=true bookId=\(currentBook.id) contentId=\(contentId) result=\(content == nil ? "nil" : "ok") durationMs=\(elapsedMs(start))")
         return content
+        #else
+        return nil
+        #endif
     }
 
     static func getTotalParts(bkid: String) -> Int? {
         guard isEnabled, let bookId = Int(bkid) else { return nil }
+        #if os(iOS)
         return OtzariaMaktabahBridge.shared.getTotalParts(bookId: bookId)
+        #else
+        return nil
+        #endif
     }
 
     static func getMaxPage(bkid: String) -> Int? {
         guard isEnabled, let bookId = Int(bkid) else { return nil }
+        #if os(iOS)
         return OtzariaMaktabahBridge.shared.getMaxPage(bookId: bookId)
+        #else
+        return nil
+        #endif
     }
 
     static func getMinPage(bkid: String) -> Int? {
         guard isEnabled, let bookId = Int(bkid) else { return nil }
+        #if os(iOS)
         return OtzariaMaktabahBridge.shared.getMinPage(bookId: bookId)
+        #else
+        return nil
+        #endif
     }
 
     static func getTOCEntries(for book: BooksData) -> [TOC]? {
         guard isEnabled else { return nil }
 
+        #if os(iOS)
         let start = Date()
         let entries = OtzariaMaktabahBridge.shared.getTOCEntries(for: book)
         log("getTOCEntries enabled=true bookId=\(book.id) count=\(entries.count) durationMs=\(elapsedMs(start))")
         return entries
+        #else
+        return nil
+        #endif
     }
 
     private static func log(_ message: String) {
+        #if os(iOS)
         OtzariaFileLogger.shared.log("[BookConnection] \(message)")
+        #endif
     }
 
     private static func elapsedMs(_ start: Date) -> Int {

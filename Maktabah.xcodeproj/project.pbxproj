@@ -30,6 +30,8 @@
 		DAA200000000000000000008 /* ReaderViewModel+OtzariaLineSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000022 /* ReaderViewModel+OtzariaLineSources.swift */; };
 		DAA200000000000000000009 /* OtzariaDatabaseManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002B /* OtzariaDatabaseManagerAdapter.swift */; };
 		DAA20000000000000000000A /* OtzariaDatabaseManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002B /* OtzariaDatabaseManagerAdapter.swift */; };
+		DAA20000000000000000000B /* OtzariaBookConnectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002A /* OtzariaBookConnectionAdapter.swift */; };
+		DAA20000000000000000000C /* OtzariaBookConnectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0000000000000000002A /* OtzariaBookConnectionAdapter.swift */; };
 		E5A100000000000000000001 /* dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000011 /* dictionary.json */; };
 		E5A100000000000000000002 /* Acronyms.json in Resources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000012 /* Acronyms.json */; };
 		E5A100000000000000000003 /* OtzariaMagicDictionaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A100000000000000000013 /* OtzariaMagicDictionaryManager.swift */; };
@@ -2211,6 +2213,7 @@
 				DAA200000000000000000004 /* OtzariaSearchResultResolver.swift in Sources */,
 				DAA200000000000000000005 /* ReaderViewModel+OtzariaLineSources.swift in Sources */,
 				DAA200000000000000000009 /* OtzariaDatabaseManagerAdapter.swift in Sources */,
+				DAA20000000000000000000B /* OtzariaBookConnectionAdapter.swift in Sources */,
 				4B5EC2962EE331D500991F39 /* SavedResults.swift in Sources */,
 				4B58EDCB2EE3DBE800073495 /* ResultsViewManager.swift in Sources */,
 				4B0139E92EEB3CB000424CFA /* InitProgress.swift in Sources */,
@@ -2380,6 +2383,7 @@
 				DAA200000000000000000007 /* OtzariaSearchResultResolver.swift in Sources */,
 				DAA200000000000000000008 /* ReaderViewModel+OtzariaLineSources.swift in Sources */,
 				DAA20000000000000000000A /* OtzariaDatabaseManagerAdapter.swift in Sources */,
+				DAA20000000000000000000C /* OtzariaBookConnectionAdapter.swift in Sources */,
 				4B7C90AC2F83494200454BE1 /* SavedResults.swift in Sources */,
 				4B7C90AD2F83494200454BE1 /* ResultsViewManager.swift in Sources */,
 				F37F1C36300268E3002B5618 /* AnnotationManager.swift in Sources */,
