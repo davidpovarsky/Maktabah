@@ -193,7 +193,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                     firstFilePath: page.results.first?.filePath
                 ))
             }
-            let goldenQuery = OtzariaDataProfileRegistry.activeProfile?.goldenQueries.first
+            let goldenQuery = environment["OTZARIA_PREBUILT_ACCEPTANCE_GOLDEN_QUERY"]
+                .flatMap { $0.isEmpty ? nil : $0 }
+                ?? OtzariaDataProfileRegistry.activeProfile?.goldenQueries.first
                 ?? "לחתוך צנון בסכין בשרי"
             let normalizedGolden = try OtzariaSearchEngineBridge.sanitizeQuery(goldenQuery)
             let goldenPage = try engine.search(OtzariaSearchRequest(
@@ -216,7 +218,11 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                   stableIDs.allSatisfy({ !$0.isEmpty }),
                   references.contains(where: { !$0.isEmpty }),
                   highlighted > 0 else {
-                throw OtzariaSearchArtifactError.validationFailed("golden parity result contract failed")
+                let referenced = references.filter { !$0.isEmpty }.count
+                throw OtzariaSearchArtifactError.validationFailed(
+                    "golden parity result contract failed query=\(goldenQuery) " +
+                        "results=\(orderedIDs.count) references=\(referenced) highlighted=\(highlighted)"
+                )
             }
             let golden = GoldenCheck(
                 query: goldenQuery,

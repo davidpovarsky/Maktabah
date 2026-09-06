@@ -195,6 +195,7 @@ jobs:
         env:
           OTZARIA_MINI_PROFILE_REPORT_DIR: ${{ github.workspace }}/build/miniTest10/logs
           OTZARIA_PREBUILT_ACCEPTANCE_DATA_PROFILE: miniTest10
+          OTZARIA_PREBUILT_ACCEPTANCE_GOLDEN_QUERY: בראשית
         run: |
           set -euo pipefail
           APP="$(pwd)/build/MiniTest10Build/Build/Products/Debug-iphonesimulator/Maktabah.app"
