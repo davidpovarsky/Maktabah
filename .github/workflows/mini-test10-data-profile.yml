@@ -133,6 +133,7 @@ jobs:
           test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$DEVICE_APP/Info.plist")" = "$PROFILE_ID"
           test ! -e "$DEVICE_APP/seforim.db"
           test ! -e "$DEVICE_APP/lexical.db"
+          rm -rf -- build/MiniTest10DeviceBuild
       - name: Build the actual Otzaria index and package it
         env:
           OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD: "1"

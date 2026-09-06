@@ -56,7 +56,7 @@ trap cleanup EXIT
 
 boot_simulator() {
   local attempt boot_output
-  for attempt in 1 2; do
+  for attempt in 1 2 3; do
     xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
     if boot_output="$(xcrun simctl bootstatus "$UDID" -b 2>&1)" &&
        ! grep -q "Data Migration Failed" <<<"$boot_output"; then
@@ -64,13 +64,13 @@ boot_simulator() {
       return 0
     fi
     printf '%s\n' "$boot_output" >&2
-    if [ "$attempt" -eq 1 ]; then
-      echo "Simulator boot was unhealthy; erasing it and retrying once" >&2
+    if [ "$attempt" -lt 3 ]; then
+      echo "Simulator boot was unhealthy; erasing it before the next attempt" >&2
       xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
       xcrun simctl erase "$UDID"
     fi
   done
-  echo "Simulator failed to reach a healthy boot state after two attempts" >&2
+  echo "Simulator failed to reach a healthy boot state after three attempts" >&2
   return 1
 }
 
