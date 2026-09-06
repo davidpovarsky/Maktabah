@@ -169,19 +169,19 @@ jobs:
               --archive build/miniTest10/existing/miniTest10-seforim.db.zst \
               --otzaria-manifest build/miniTest10/existing/otzaria-search-manifest.json \
               --zayit-manifest build/miniTest10/existing/zayit-search-manifest.json
-            python3 - <<'PY'
-            import hashlib, json, pathlib
-            root = pathlib.Path('build/miniTest10/existing')
-            manifests = [
-                json.loads((root / 'otzaria-search-manifest.json').read_text())['lexicalArtifact']['parts'],
-                json.loads((root / 'zayit-search-manifest.json').read_text())['parts'],
-            ]
-            for parts in manifests:
-                for part in parts:
-                    path = root / part['assetName']
-                    assert path.stat().st_size == part['packagedBytes']
-                    assert hashlib.sha256(path.read_bytes()).hexdigest() == part['sha256']
-            PY
+          python3 - <<'PY'
+          import hashlib, json, pathlib
+          root = pathlib.Path('build/miniTest10/existing')
+          manifests = [
+              json.loads((root / 'otzaria-search-manifest.json').read_text())['lexicalArtifact']['parts'],
+              json.loads((root / 'zayit-search-manifest.json').read_text())['parts'],
+          ]
+          for parts in manifests:
+              for part in parts:
+                  path = root / part['assetName']
+                  assert path.stat().st_size == part['packagedBytes']
+                  assert hashlib.sha256(path.read_bytes()).hexdigest() == part['sha256']
+          PY
           else
             gh release create "$PROFILE_TAG" --title 'Otzaria miniTest10 data profile v1' \
               --notes 'Immutable ten-book test corpus with Otzaria and Zayit indexes built from the same canonical database.'
