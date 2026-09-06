@@ -33,7 +33,7 @@ jobs:
       SOURCE_TAG: v23-20260829032606
       SOURCE_ASSET_SHA256: c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662
       SOURCE_DATABASE_SHA256: 7e2cff76086f07c85ee30470948b458d99ddb36b84dae5c4e5b57ad5f2562501
-      MINI_DATABASE_SHA256: ceec3727088cdaeff8cfe2bf04a12efb8e56978f230b8e81b211fceac28ff510
+      MINI_DATABASE_SHA256: 26060dd7d9d9c6892986882418b61f861963b9c75aca72905c77e02aed3eaea4
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode and install deterministic tooling

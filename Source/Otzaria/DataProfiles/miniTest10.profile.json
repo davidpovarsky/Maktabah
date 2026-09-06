@@ -1,8 +1,8 @@
 {
   "bookIDs": [1, 28, 40, 103, 382, 3152, 3163, 3276, 3764, 3891],
   "databaseAssetName": "miniTest10-seforim.db.zst",
-  "databaseCompressedBytes": 6914324,
-  "databaseCompressedSHA256": "96fb6479cc9b07a5368d222973c3aa264a7e029ef5104eed1caf63a21ce71cb7",
+  "databaseCompressedBytes": 6914082,
+  "databaseCompressedSHA256": "c43ec5b30f755fbb5618d479c894de8fe7b38ca240a2b63d96cdd66545623660",
   "displayName": "miniTest10",
   "goldenQueries": ["בראשית ברא", "לחתוך צנון בסכין בשרי", "מסילת ישרים", "דרשות הרן"],
   "otzariaManifestAssetName": "otzaria-search-manifest.json",
@@ -14,8 +14,8 @@
     "assetName": "seforim.db.zst",
     "sourceAssetBytes": 1373487294,
     "sourceAssetSHA256": "c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662",
-    "databaseBytes": 47415296,
-    "databaseSHA256": "ceec3727088cdaeff8cfe2bf04a12efb8e56978f230b8e81b211fceac28ff510",
+    "databaseBytes": 47419392,
+    "databaseSHA256": "26060dd7d9d9c6892986882418b61f861963b9c75aca72905c77e02aed3eaea4",
     "releaseID": 378882475,
     "releaseTag": "v23-20260829032606",
     "repository": "Otzaria/SeforimLibrary"
