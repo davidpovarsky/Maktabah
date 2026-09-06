@@ -54,27 +54,8 @@ echo "Using compatible iOS Simulator $UDID"
 cleanup() { xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
-boot_simulator() {
-  local attempt boot_output
-  for attempt in 1 2 3; do
-    xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
-    if boot_output="$(xcrun simctl bootstatus "$UDID" -b 2>&1)" &&
-       ! grep -q "Data Migration Failed" <<<"$boot_output"; then
-      printf '%s\n' "$boot_output"
-      return 0
-    fi
-    printf '%s\n' "$boot_output" >&2
-    if [ "$attempt" -lt 3 ]; then
-      echo "Simulator boot was unhealthy; erasing it before the next attempt" >&2
-      xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
-      xcrun simctl erase "$UDID"
-    fi
-  done
-  echo "Simulator failed to reach a healthy boot state after three attempts" >&2
-  return 1
-}
-
-boot_simulator
+xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
+xcrun simctl bootstatus "$UDID" -b
 APP="${OTZARIA_CORPUS_ACCEPTANCE_APP_PATH:-$ROOT/build/OtzariaCorpusAcceptance/Build/Products/Debug-iphonesimulator/Maktabah.app}"
 test -d "$APP"
 xcrun simctl install "$UDID" "$APP"
