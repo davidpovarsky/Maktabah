@@ -193,7 +193,8 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                     firstFilePath: page.results.first?.filePath
                 ))
             }
-            let goldenQuery = "לחתוך צנון בסכין בשרי"
+            let goldenQuery = OtzariaDataProfileRegistry.activeProfile?.goldenQueries.first
+                ?? "לחתוך צנון בסכין בשרי"
             let normalizedGolden = try OtzariaSearchEngineBridge.sanitizeQuery(goldenQuery)
             let goldenPage = try engine.search(OtzariaSearchRequest(
                 query: goldenQuery,

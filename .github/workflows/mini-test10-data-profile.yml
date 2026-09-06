@@ -34,6 +34,7 @@ jobs:
       SOURCE_ASSET_SHA256: c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662
       SOURCE_DATABASE_SHA256: 7e2cff76086f07c85ee30470948b458d99ddb36b84dae5c4e5b57ad5f2562501
       MINI_DATABASE_SHA256: 26060dd7d9d9c6892986882418b61f861963b9c75aca72905c77e02aed3eaea4
+      DATA_BUILDER_REVISION: 5a3298fcec02fb2560a1a746b831530c72485053
     steps:
       - uses: actions/checkout@v4
       - name: Select Xcode and install deterministic tooling
@@ -122,7 +123,7 @@ jobs:
       - name: Build the actual Zayit index, query it, and package it
         env:
           ZAYIT_DATABASE_RELEASE_TAG: v23-20260829032606
-          ZAYIT_BUILDER_COMMIT: ${{ github.sha }}
+          ZAYIT_BUILDER_COMMIT: ${{ env.DATA_BUILDER_REVISION }}
           ZAYIT_UPSTREAM_COMMIT: c53ea7b1a034c206f6c96c86188941c64b69ad2a
           ZAYIT_GENERATED_UNIX_SECONDS: "0"
         run: |
