@@ -374,7 +374,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             order: .relevance,
             wordMatchMode: .all
         ))
-        report.otzariaSearchResults = otzariaPage.totalCount
+        report.otzariaSearchResults = UInt64(otzariaPage.totalCount)
 
         let zayitStorage = try ZayitSearchArtifactStorage()
         guard case .ready(let manifest) = await ZayitSearchArtifactService.shared.status(
