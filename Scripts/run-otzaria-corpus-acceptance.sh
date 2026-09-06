@@ -79,6 +79,19 @@ APP="${OTZARIA_CORPUS_ACCEPTANCE_APP_PATH:-$ROOT/build/OtzariaCorpusAcceptance/B
 test -d "$APP"
 xcrun simctl install "$UDID" "$APP"
 CONTAINER="$(xcrun simctl get_app_container "$UDID" com.Drn.maktabah data)"
+EMBEDDED_PROFILE_ID="$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$APP/Info.plist" 2>/dev/null || true)"
+case "$EMBEDDED_PROFILE_ID" in
+  ""|production|'$('*)
+    INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex"
+    ;;
+  *)
+    if [[ ! "$EMBEDDED_PROFILE_ID" =~ ^[A-Za-z0-9._-]+$ ]]; then
+      echo "invalid embedded Otzaria data profile ID: $EMBEDDED_PROFILE_ID" >&2
+      exit 1
+    fi
+    INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/Profiles/$EMBEDDED_PROFILE_ID/otzariaSearch"
+    ;;
+esac
 cp "$DATABASE" "$CONTAINER/Documents/otzaria-corpus.db"
 RESULT="$CONTAINER/Documents/otzaria-corpus-acceptance.json"
 STARTED_AT="$(date +%s)"
@@ -93,7 +106,6 @@ if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES:-}" ]; then
         printf '0'
       fi
     }
-    INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex"
     while true; do
       printf '{"epoch":%s,"databaseBytes":%s,"indexRootBytes":%s,"workspaceBytes":%s}\n' \
         "$(date +%s)" \
@@ -120,7 +132,6 @@ for _ in $(seq 1 "$WAIT_ROUNDS"); do
     fi
     if [ -n "$SAMPLER_PID" ]; then kill "$SAMPLER_PID" >/dev/null 2>&1 || true; wait "$SAMPLER_PID" 2>/dev/null || true; fi
     if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE:-}" ]; then
-      INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex"
       INDEX_PATH="$(find "$INDEX_ROOT" -mindepth 1 -maxdepth 1 -type d ! -name '*.building' ! -name '*.previous' ! -name '*.installing' | head -1)"
       test -n "$INDEX_PATH"
       printf '%s\n' "$INDEX_PATH" > "$OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE"
