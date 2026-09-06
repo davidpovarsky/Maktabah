@@ -210,8 +210,10 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
             let stableIDs = goldenPage.results.map(\.filePath)
             let references = goldenPage.results.map(\.reference)
             let highlighted = goldenPage.results.filter {
-                $0.text.localizedCaseInsensitiveContains("<b>") ||
-                    $0.text.localizedCaseInsensitiveContains("<strong>")
+                $0.text.localizedCaseInsensitiveContains("<font color=red>") ||
+                    $0.text.localizedCaseInsensitiveContains("<b>") ||
+                    $0.text.localizedCaseInsensitiveContains("<strong>") ||
+                    $0.text.localizedCaseInsensitiveContains("<mark>")
             }.count
             guard !orderedIDs.isEmpty,
                   Set(orderedIDs).count == orderedIDs.count,
