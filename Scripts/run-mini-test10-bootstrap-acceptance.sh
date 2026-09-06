@@ -40,8 +40,8 @@ wait_report() {
 
 INSTALL="$CONTAINER/Documents/miniTest10-install.json"
 RESTORE="$CONTAINER/Documents/miniTest10-restore.json"
-SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=install \
+SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_INSTALL_SEARCH=1 \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_REQUIRE_RESUME=0 \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$INSTALL" \
   xcrun simctl launch "$UDID" "$BUNDLE_ID"
@@ -51,12 +51,16 @@ python3 - "$INSTALL" <<'PY'
 import json,sys
 r=json.load(open(sys.argv[1])); assert r['passed'], r
 assert r['bookCount']==10 and r['lineCount']==18195, r
+assert r['profileID']=='miniTest10' and r['profileVersion']==2, r
+assert r['lexicalReady'] and r['otzariaIndexDocuments']==18195, r
+assert r['otzariaSearchResults']>0 and r['zayitSearchResults']>0, r
+assert r['zayitArtifactIdentity'], r
 assert '/Otzaria/Profiles/miniTest10/database/' in r['finalPath'], r
 PY
 xcrun simctl terminate "$UDID" "$BUNDLE_ID"
 
-SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=restore \
+SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_INSTALL_SEARCH=1 \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$RESTORE" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_PRIOR_REPORT="$INSTALL" \
   xcrun simctl launch "$UDID" "$BUNDLE_ID"
@@ -65,5 +69,8 @@ cp "$RESTORE" "$REPORT_DIR/miniTest10-bootstrap-restore.json"
 python3 - "$RESTORE" <<'PY'
 import json,sys
 r=json.load(open(sys.argv[1])); assert r['passed'] and r['restoreAfterRelaunch'], r
+assert r['profileID']=='miniTest10' and r['profileVersion']==2, r
+assert r['otzariaIndexDocuments']==18195 and r['otzariaSearchResults']>0, r
+assert r['zayitArtifactIdentity'] and r['zayitSearchResults']>0, r
 PY
 cat "$RESTORE"

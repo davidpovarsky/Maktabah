@@ -18,6 +18,10 @@ class DataProfileTests(unittest.TestCase):
         self.assertEqual(profile["goldenQueries"], seed["goldenQueries"])
         self.assertEqual(profile["sourceDatabase"]["releaseID"], seed["source"]["releaseID"])
         self.assertEqual(profile["sourceDatabase"]["sourceAssetSHA256"], seed["source"]["assetSHA256"])
+        self.assertEqual(profile["profileVersion"], 2)
+        self.assertTrue(profile["releaseBaseURL"].endswith("/otzaria-miniTest10-v2"))
+        self.assertEqual(profile["sharedLexicalDatabase"]["releaseTag"], "v0.3.0")
+        self.assertEqual(profile["sharedLexicalDatabase"]["bytes"], 57122816)
 
     def test_synthetic_release_uses_profile_archive_identity(self):
         path = ROOT / "Scripts/make-mini-test10-release-json.py"

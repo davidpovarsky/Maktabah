@@ -40,9 +40,13 @@ actor OtzariaMagicDictionaryManager {
         var checkedAt: Date
     }
 
-    private let releaseURL = URL(
-        string: "https://api.github.com/repos/Otzaria/SeforimMagicIndexer/releases/latest"
-    )!
+    private var releaseURL: URL {
+        let base = "https://api.github.com/repos/Otzaria/SeforimMagicIndexer/releases"
+        guard let pinned = OtzariaDataProfileRegistry.activeProfile?.sharedLexicalDatabase else {
+            return URL(string: "\(base)/latest")!
+        }
+        return URL(string: "\(base)/tags/\(pinned.releaseTag)")!
+    }
     private let refreshInterval: TimeInterval = 24 * 60 * 60
 
     nonisolated var databaseURL: URL {
@@ -57,6 +61,13 @@ actor OtzariaMagicDictionaryManager {
         guard FileManager.default.fileExists(atPath: url.path),
               let marker = Self.decodeMarker(at: markerURL),
               (try? Self.sha256(url)) == marker.sha256 else { return nil }
+        if let pinned = OtzariaDataProfileRegistry.activeProfile?.sharedLexicalDatabase {
+            guard marker.tagName == pinned.releaseTag,
+                  marker.size == UInt64(pinned.bytes),
+                  marker.sha256.caseInsensitiveCompare(pinned.sha256) == .orderedSame else {
+                return nil
+            }
+        }
         return url
     }
 
@@ -73,6 +84,16 @@ actor OtzariaMagicDictionaryManager {
         let release: Release = try await json(request: request(for: releaseURL))
         guard let asset = release.assets.first(where: { $0.name == "lexical.db" }) else {
             throw OtzariaSearchError.invalidEngineResponse("Latest SeforimMagicIndexer release has no lexical.db asset")
+        }
+        if let pinned = OtzariaDataProfileRegistry.activeProfile?.sharedLexicalDatabase {
+            guard release.tagName == pinned.releaseTag,
+                  asset.size == UInt64(pinned.bytes),
+                  asset.digest?.replacingOccurrences(of: "sha256:", with: "")
+                    .caseInsensitiveCompare(pinned.sha256) == .orderedSame else {
+                throw OtzariaSearchError.invalidEngineResponse(
+                    "The selected data profile requires a different lexical.db identity"
+                )
+            }
         }
         try requireHTTPS(asset.browserDownloadURL)
 
@@ -107,6 +128,10 @@ actor OtzariaMagicDictionaryManager {
             let actualHash = try Self.sha256(partURL)
             guard actualHash.caseInsensitiveCompare(expectedHash) == .orderedSame else {
                 throw OtzariaSearchError.invalidEngineResponse("lexical.db SHA-256 mismatch")
+            }
+            if let pinned = OtzariaDataProfileRegistry.activeProfile?.sharedLexicalDatabase,
+               actualHash.caseInsensitiveCompare(pinned.sha256) != .orderedSame {
+                throw OtzariaSearchError.invalidEngineResponse("lexical.db does not match the selected data profile")
             }
 
             if FileManager.default.fileExists(atPath: databaseURL.path) {

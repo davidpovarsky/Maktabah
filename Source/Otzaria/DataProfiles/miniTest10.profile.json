@@ -7,8 +7,13 @@
   "goldenQueries": ["בראשית ברא", "לחתוך צנון בסכין בשרי", "מסילת ישרים", "דרשות הרן"],
   "otzariaManifestAssetName": "otzaria-search-manifest.json",
   "profileID": "miniTest10",
-  "profileVersion": 1,
-  "releaseBaseURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-miniTest10-v1",
+  "profileVersion": 2,
+  "releaseBaseURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-miniTest10-v2",
+  "sharedLexicalDatabase": {
+    "bytes": 57122816,
+    "releaseTag": "v0.3.0",
+    "sha256": "b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f"
+  },
   "sourceDatabase": {
     "assetID": 534804935,
     "assetName": "seforim.db.zst",

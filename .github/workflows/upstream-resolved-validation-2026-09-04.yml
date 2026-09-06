@@ -94,6 +94,7 @@ jobs:
           test -d "$APP"
           test -f "$APP/dictionary.json"
           test -f "$APP/Acronyms.json"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$APP/Info.plist")" = production
 
       - name: Native Otzaria bootstrap smoke test
         run: |
@@ -121,6 +122,7 @@ jobs:
             2>&1 | tee build/logs/build-device.log
           APP="build/DerivedData-iphoneos/Build/Products/Release-iphoneos/${PRODUCT_NAME}.app"
           test -d "$APP"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$APP/Info.plist")" = production
           if find "$APP" -type f \( -name 'seforim.db' -o -name 'lexical.db' \) -print -quit | grep -q .; then
             echo "Runtime Otzaria databases must not be embedded in the app bundle" >&2
             exit 1

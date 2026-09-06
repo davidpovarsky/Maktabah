@@ -34,7 +34,7 @@ def main() -> None:
             "digest": f"sha256:{digest(args.archive)}",
             "browser_download_url": (
                 "https://github.com/davidpovarsky/Maktabah/releases/download/"
-                "otzaria-miniTest10-v1/miniTest10-seforim.db.zst"
+                "otzaria-miniTest10-v2/miniTest10-seforim.db.zst"
             ),
         }],
     }

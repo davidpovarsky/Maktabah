@@ -3404,6 +3404,7 @@
 					"-framework",
 					Foundation,
 				);
+				OTZARIA_DEFAULT_DATA_PROFILE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3458,6 +3459,7 @@
 					"-framework",
 					Foundation,
 				);
+				OTZARIA_DEFAULT_DATA_PROFILE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Drn.maktabah;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "";

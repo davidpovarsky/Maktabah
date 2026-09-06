@@ -12,6 +12,35 @@ let bundled = try JSONDecoder().decode(
 )
 try bundled.validate()
 require(bundled.profileID == mini && bundled.bookIDs.count == 10, "bundled mini profile is invalid")
+require(bundled.profileVersion == 2, "bundled mini profile version is not canonical v2")
+require(bundled.sharedLexicalDatabase.releaseTag == "v0.3.0", "lexical release is not pinned")
+
+require(
+    OtzariaDataProfileRegistry.resolvedProfileID(
+        arguments: ["Maktabah"], environment: [:], embeddedDefault: nil
+    ) == production,
+    "an ordinary production build must default to production"
+)
+require(
+    OtzariaDataProfileRegistry.resolvedProfileID(
+        arguments: ["Maktabah"], environment: [:], embeddedDefault: mini
+    ) == mini,
+    "an embedded mini build default was not selected"
+)
+require(
+    OtzariaDataProfileRegistry.resolvedProfileID(
+        arguments: ["Maktabah"], environment: [OtzariaDataProfileRegistry.environmentKey: production],
+        embeddedDefault: mini
+    ) == production,
+    "environment override did not outrank the embedded default"
+)
+require(
+    OtzariaDataProfileRegistry.resolvedProfileID(
+        arguments: ["Maktabah", OtzariaDataProfileRegistry.launchArgument, mini],
+        environment: [OtzariaDataProfileRegistry.environmentKey: production], embeddedDefault: production
+    ) == mini,
+    "launch argument did not have highest precedence"
+)
 
 require(
     OtzariaDataProfileCompatibility.matches(
@@ -27,13 +56,13 @@ require(
 )
 require(
     OtzariaDataProfileCompatibility.matches(
-        profileID: mini, profileVersion: 1, activeID: mini, activeVersion: 1
+        profileID: mini, profileVersion: 2, activeID: mini, activeVersion: 2
     ),
     "same miniTest10 profile did not survive relaunch validation"
 )
 require(
     !OtzariaDataProfileCompatibility.matches(
-        profileID: mini, profileVersion: 1, activeID: production, activeVersion: 1
+        profileID: mini, profileVersion: 2, activeID: production, activeVersion: 1
     ),
     "miniTest10 metadata leaked into production"
 )

@@ -12,5 +12,7 @@
 	</array>
 	<key>WorkerURL</key>
 	<string>$(WORKER_URL)</string>
+	<key>OtzariaDefaultDataProfile</key>
+	<string>$(OTZARIA_DEFAULT_DATA_PROFILE)</string>
 </dict>
 </plist>

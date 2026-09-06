@@ -7,6 +7,7 @@ enum OtzariaNativeBootstrapAcceptanceRunner {
     private static let phaseKey = "OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE"
     private static let resultKey = "OTZARIA_NATIVE_BOOTSTRAP_RESULT"
     private static let priorReportKey = "OTZARIA_NATIVE_BOOTSTRAP_PRIOR_REPORT"
+    private static let installSearchKey = "OTZARIA_NATIVE_BOOTSTRAP_INSTALL_SEARCH"
 
     /// Outcome of the cancellation phase's production install task. Recorded so a
     /// download that fails on its own is reported with its real error instead of
@@ -25,6 +26,8 @@ enum OtzariaNativeBootstrapAcceptanceRunner {
     private struct Report: Codable {
         var passed = false
         var phase = ""
+        var profileID = ""
+        var profileVersion = 0
         var releaseID: Int64?
         var releaseTag: String?
         var assetID: Int64?
@@ -56,6 +59,12 @@ enum OtzariaNativeBootstrapAcceptanceRunner {
         var backupExcluded = false
         var managedWithoutSecurityScope = false
         var dictionaryConfigured = false
+        var searchArtifactsRequested = false
+        var lexicalReady = false
+        var otzariaIndexDocuments: UInt64 = 0
+        var otzariaSearchResults: UInt64 = 0
+        var zayitArtifactIdentity: String?
+        var zayitSearchResults: UInt64 = 0
         var errors: [String] = []
     }
 
@@ -206,6 +215,10 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
     static func runInstallPhase(environment: [String: String], resultURL: URL) async {
         var report = Report(phase: "install")
         do {
+            let profile = OtzariaDataProfileRegistry.activeIdentity
+            report.profileID = profile.id
+            report.profileVersion = profile.version
+            report.searchArtifactsRequested = environment[installSearchKey] == "1"
             let result = try await OtzariaBootstrapAdapter.downloadAndInstallManagedDatabase { _ in }
             let storage = try OtzariaDatabaseStorage()
             report.releaseID = result.release.id
@@ -228,6 +241,25 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             try populateDatabaseState(&report, storage: storage)
             let dictionaryReport = try runDictionaryChecks()
             report.dictionaryConfigured = dictionaryReport.passed
+            if report.searchArtifactsRequested {
+                _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: false)
+                guard let lexicalURL = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL else {
+                    throw OtzariaSearchError.invalidEngineResponse("validated lexical.db is unavailable")
+                }
+                report.lexicalReady = true
+                report.otzariaIndexDocuments = try await OtzariaSearchArtifactService.shared.install(
+                    databasePath: result.finalURL.path
+                ) { _ in }
+                try await ZayitSearchArtifactService.shared.install(
+                    databaseURL: result.finalURL,
+                    lexicalDatabaseURL: lexicalURL
+                ) { _ in }
+                try await populateSearchState(
+                    &report,
+                    databaseURL: result.finalURL,
+                    lexicalURL: lexicalURL
+                )
+            }
             let requireResume = environment["OTZARIA_NATIVE_BOOTSTRAP_REQUIRE_RESUME"] != "0"
             report.passed = report.shaMatched &&
                 (!requireResume || report.resumeFromBytes >= 0) &&
@@ -244,7 +276,14 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
                 report.installationManifestExists &&
                 report.backupExcluded &&
                 report.managedWithoutSecurityScope &&
-                report.dictionaryConfigured
+                report.dictionaryConfigured &&
+                (!report.searchArtifactsRequested || (
+                    report.lexicalReady &&
+                    report.otzariaIndexDocuments == 18_195 &&
+                    report.otzariaSearchResults > 0 &&
+                    report.zayitArtifactIdentity != nil &&
+                    report.zayitSearchResults > 0
+                ))
         } catch {
             report.errors.append(error.localizedDescription)
         }
@@ -272,13 +311,33 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             let storage = try OtzariaDatabaseStorage()
             report.restoreAfterRelaunch = restored
             try populateDatabaseState(&report, storage: storage)
+            if report.searchArtifactsRequested {
+                guard let finalPath = report.finalPath,
+                      let lexicalURL = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL else {
+                    throw OtzariaSearchError.invalidEngineResponse(
+                        "relaunch did not restore the mini database and lexical resource"
+                    )
+                }
+                report.lexicalReady = true
+                try await populateSearchState(
+                    &report,
+                    databaseURL: URL(fileURLWithPath: finalPath),
+                    lexicalURL: lexicalURL
+                )
+            }
             report.passed = report.passed &&
                 restored &&
                 report.source == "managedInternal" &&
                 report.finalExists &&
                 report.quickCheck?.lowercased() == "ok" &&
                 report.bookCount > 0 &&
-                report.lineCount > 0
+                report.lineCount > 0 &&
+                (!report.searchArtifactsRequested || (
+                    report.otzariaIndexDocuments == 18_195 &&
+                    report.otzariaSearchResults > 0 &&
+                    report.zayitArtifactIdentity != nil &&
+                    report.zayitSearchResults > 0
+                ))
         } catch {
             report.passed = false
             report.errors.append(error.localizedDescription)
@@ -294,6 +353,54 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             report = DictionaryReport(error: error.localizedDescription)
         }
         try? write(report, to: resultURL)
+    }
+
+    @MainActor
+    private static func populateSearchState(
+        _ report: inout Report,
+        databaseURL: URL,
+        lexicalURL: URL
+    ) async throws {
+        let otzaria = try OtzariaSearchEngineBridge(
+            indexURL: OtzariaSearchIndexManager.shared.indexURL(for: databaseURL.path)
+        )
+        defer { otzaria.close() }
+        report.otzariaIndexDocuments = try otzaria.documentCount()
+        let otzariaPage = try otzaria.search(OtzariaSearchRequest(
+            query: "בראשית",
+            mode: .advanced,
+            facets: ["/"],
+            limit: 25,
+            order: .relevance,
+            wordMatchMode: .all
+        ))
+        report.otzariaSearchResults = otzariaPage.totalCount
+
+        let zayitStorage = try ZayitSearchArtifactStorage()
+        guard case .ready(let manifest) = await ZayitSearchArtifactService.shared.status(
+            databaseURL: databaseURL
+        ) else {
+            throw ZayitSearchDistributionError.validationFailed(
+                "the installed Zayit artifact was not restored as ready"
+            )
+        }
+        report.zayitArtifactIdentity = manifest.artifactIdentity
+        let paths = try ZayitSearchDataValidator.managedPaths(
+            seforimDB: databaseURL,
+            lexicalDB: lexicalURL,
+            indexDirectory: zayitStorage.finalIndex
+        )
+        let zayit = ZayitSearchEngineBridge()
+        defer { zayit.close() }
+        try zayit.open(paths: paths)
+        let zayitPage = try zayit.search(ZayitSearchRequest(
+            query: "בראשית",
+            near: ZayitSearchMatchMode.flexible.nearValue,
+            limit: 25,
+            offset: 0,
+            filters: .init()
+        ))
+        report.zayitSearchResults = zayitPage.totalHits
     }
 
     private static func runDictionaryChecks() throws -> DictionaryReport {

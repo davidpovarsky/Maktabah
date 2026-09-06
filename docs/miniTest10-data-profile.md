@@ -1,6 +1,6 @@
 # miniTest10 data profile
 
-`miniTest10` is an opt-in, immutable test corpus. Production remains the default and keeps its existing release discovery and storage paths.
+`miniTest10` is an immutable test corpus. Production remains the project default and keeps its existing release discovery and storage paths.
 
 Select it only in debug/acceptance launches:
 
@@ -8,9 +8,20 @@ Select it only in debug/acceptance launches:
 -OtzariaDataProfile miniTest10
 ```
 
-or with `OTZARIA_DATA_PROFILE=miniTest10`. There is intentionally no production Settings control.
+or with `OTZARIA_DATA_PROFILE=miniTest10`. A dedicated build can instead embed
+`OTZARIA_DEFAULT_DATA_PROFILE=miniTest10` in its Info.plist, which makes a normal
+iPad launch select the mini profile without injected process state. Explicit
+arguments and environment variables still take precedence. There is intentionally
+no production Settings control.
 
-The profile is built from the pinned Otzaria v23 database and retains canonical book, line, category, TOC, link, author, topic, version, and related IDs. Its database and both Tantivy indexes are published by the manual `Build miniTest10 Data Profile` workflow in the immutable `otzaria-miniTest10-v1` release. All three manifests carry `profileID=miniTest10` and `profileVersion=1`; production metadata without those optional fields is interpreted as `production/1` for backward compatibility.
+The profile is built from the pinned Otzaria v23 database and pinned lexical
+release `v0.3.0`, and retains canonical book, line, category, TOC, link, author,
+topic, version, and related IDs. Its database and both Tantivy indexes are
+published by the manual `Build miniTest10 Data Profile` workflow in the immutable
+`otzaria-miniTest10-v2` release. All three manifests carry `profileID=miniTest10`
+and `profileVersion=2`; production metadata without those optional fields is
+interpreted as `production/1` for backward compatibility. Historical v1 remains
+untouched.
 
 Non-production data is isolated below `Application Support/Otzaria/Profiles/<profile>/` and matching cache namespaces. The shared `lexical.db` remains corpus-independent and is validated by its existing version, size, and SHA-256 contract.
 

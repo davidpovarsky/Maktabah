@@ -5,11 +5,14 @@ enum OtzariaDataProfileRegistry {
     static let miniTest10ID = "miniTest10"
     static let launchArgument = "-OtzariaDataProfile"
     static let environmentKey = "OTZARIA_DATA_PROFILE"
+    static let embeddedDefaultKey = "OtzariaDefaultDataProfile"
 
     static var activeProfileID: String {
-        if let value = launchArgumentValue(), !value.isEmpty { return value }
-        if let value = ProcessInfo.processInfo.environment[environmentKey], !value.isEmpty { return value }
-        return productionID
+        resolvedProfileID(
+            arguments: ProcessInfo.processInfo.arguments,
+            environment: ProcessInfo.processInfo.environment,
+            embeddedDefault: Bundle.main.object(forInfoDictionaryKey: embeddedDefaultKey) as? String
+        )
     }
 
     static var activeProfile: OtzariaDataProfile? {
@@ -43,8 +46,21 @@ enum OtzariaDataProfileRegistry {
         return profile
     }
 
-    private static func launchArgumentValue() -> String? {
-        let arguments = ProcessInfo.processInfo.arguments
+    static func resolvedProfileID(
+        arguments: [String],
+        environment: [String: String],
+        embeddedDefault: String?
+    ) -> String {
+        if let value = launchArgumentValue(arguments: arguments), !value.isEmpty { return value }
+        if let value = environment[environmentKey], !value.isEmpty { return value }
+        if let value = embeddedDefault?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !value.isEmpty, !value.hasPrefix("$(") {
+            return value
+        }
+        return productionID
+    }
+
+    private static func launchArgumentValue(arguments: [String]) -> String? {
         guard let index = arguments.firstIndex(of: launchArgument),
               arguments.indices.contains(index + 1) else { return nil }
         return arguments[index + 1]

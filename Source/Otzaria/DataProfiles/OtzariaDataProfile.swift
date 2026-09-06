@@ -19,6 +19,12 @@ struct OtzariaDataProfile: Codable, Equatable, Identifiable, Sendable {
         let databaseSHA256: String
     }
 
+    struct SharedLexicalDatabase: Codable, Equatable, Sendable {
+        let releaseTag: String
+        let bytes: Int64
+        let sha256: String
+    }
+
     let profileID: String
     let profileVersion: Int
     let displayName: String
@@ -29,6 +35,7 @@ struct OtzariaDataProfile: Codable, Equatable, Identifiable, Sendable {
     let otzariaManifestAssetName: String
     let zayitManifestAssetName: String
     let sourceDatabase: SourceDatabase
+    let sharedLexicalDatabase: SharedLexicalDatabase
     let bookIDs: [Int]
     let goldenQueries: [String]
 
@@ -46,6 +53,9 @@ struct OtzariaDataProfile: Codable, Equatable, Identifiable, Sendable {
               databaseCompressedBytes > 0,
               sourceDatabase.databaseBytes > 0,
               sourceDatabase.sourceAssetBytes > 0,
+              !sharedLexicalDatabase.releaseTag.isEmpty,
+              sharedLexicalDatabase.bytes > 0,
+              Self.isSHA256(sharedLexicalDatabase.sha256),
               Self.isSHA256(sourceDatabase.sourceAssetSHA256),
               Self.isSHA256(databaseCompressedSHA256),
               Self.isSHA256(sourceDatabase.databaseSHA256) else {
