@@ -103,6 +103,7 @@ jobs:
           test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/lexical.db" | cut -d' ' -f1)" = "$LEXICAL_SHA256"
           python3 Scripts/make-mini-test10-release-json.py \
             --official build/miniTest10/logs/source-official-release.json \
+            --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
             --archive build/miniTest10/database/miniTest10-seforim.db.zst \
             --output build/miniTest10/logs/source-profile-release.json
       - name: Build pinned engines and simulator app

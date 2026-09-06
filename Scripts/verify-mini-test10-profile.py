@@ -60,6 +60,10 @@ def main() -> None:
         assert manifest["sourceDatabase"]["databaseSHA256"] == db_hash
         assert manifest["sourceDatabase"]["databaseBytes"] == args.database.stat().st_size
         assert manifest["sourceDatabase"]["bookCount"] == 10
+        assert manifest["sourceDatabase"]["repository"] == profile["sourceDatabase"]["repository"]
+        assert manifest["sourceDatabase"]["releaseID"] == profile["sourceDatabase"]["releaseID"]
+        assert manifest["sourceDatabase"]["releaseTag"] == profile["sourceDatabase"]["releaseTag"]
+        assert manifest["sourceDatabase"]["assetID"] == profile["profileVersion"]
         assert manifest["sourceDatabase"]["assetName"] == "miniTest10-seforim.db.zst"
         assert manifest["sourceDatabase"]["sourceAssetDigest"] == f"sha256:{archive_hash}"
         lexical = manifest["resources"]["Application Support/Otzaria/lexical.db"]
@@ -72,6 +76,7 @@ def main() -> None:
         assert manifest["requiredDatabase"]["canonicalSHA256"] == db_hash
         assert manifest["requiredDatabase"]["compressedAssetSHA256"] == archive_hash
         assert manifest["requiredDatabase"]["bytes"] == args.database.stat().st_size
+        assert manifest["requiredDatabase"]["releaseTag"] == profile["sourceDatabase"]["releaseTag"]
         assert manifest["counts"]["books"] == 10
         lexical = manifest["sharedLexicalDatabase"]
         assert lexical["version"] == profile["sharedLexicalDatabase"]["releaseTag"]
