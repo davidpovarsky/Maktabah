@@ -44,7 +44,10 @@ enum OtzariaCorpusAcceptanceRunner {
             let indexer = OtzariaSearchIndexer()
             let plan = try indexer.makePlan(databasePath: databasePath)
             if expectedBooks == 0 { expectedBooks = plan.books.count }
-            guard plan.books.count >= 1_000 else {
+            // The default invocation remains a full-corpus production gate.
+            // An explicit count is reserved for deterministic fixture profiles
+            // such as miniTest10 and is still checked for an exact match below.
+            guard configuredExpectedBooks != nil || plan.books.count >= 1_000 else {
                 throw OtzariaSearchError.invalidEngineResponse(
                     "Corpus contains only \(plan.books.count) indexable books"
                 )
