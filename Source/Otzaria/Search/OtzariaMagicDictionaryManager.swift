@@ -115,42 +115,47 @@ actor OtzariaMagicDictionaryManager {
 
         let (temporaryURL, response) = try await URLSession.shared.download(for: request(for: asset.browserDownloadURL))
         try validateHTTP(response)
-        try FileManager.default.moveItem(at: temporaryURL, to: partURL)
-        do {
-            let values = try partURL.resourceValues(forKeys: [.fileSizeKey])
-            let actualSize = UInt64(values.fileSize ?? 0)
-            guard actualSize == asset.size else {
-                throw OtzariaSearchError.invalidEngineResponse(
-                    "lexical.db size mismatch: expected \(asset.size), received \(actualSize)"
-                )
-            }
-            let actualHash = try Self.sha256(partURL)
-            guard actualHash.caseInsensitiveCompare(expectedHash) == .orderedSame else {
-                throw OtzariaSearchError.invalidEngineResponse("lexical.db SHA-256 mismatch")
-            }
-            if let pinned = OtzariaDataProfileRegistry.activeProfile?.sharedLexicalDatabase,
-               actualHash.caseInsensitiveCompare(pinned.sha256) != .orderedSame {
-                throw OtzariaSearchError.invalidEngineResponse("lexical.db does not match the selected data profile")
-            }
 
-            if FileManager.default.fileExists(atPath: databaseURL.path) {
-                _ = try FileManager.default.replaceItemAt(databaseURL, withItemAt: partURL)
-            } else {
-                try FileManager.default.moveItem(at: partURL, to: databaseURL)
+        return try ITorahStorageLock.withLock(name: "lexical-db-mutation") {
+            let partID = "\(ProcessInfo.processInfo.processIdentifier)-\(UUID().uuidString)"
+            let partURL = directory.appendingPathComponent("lexical.db.part-\(partID)")
+            try FileManager.default.moveItem(at: temporaryURL, to: partURL)
+            do {
+                let values = try partURL.resourceValues(forKeys: [.fileSizeKey])
+                let actualSize = UInt64(values.fileSize ?? 0)
+                guard actualSize == asset.size else {
+                    throw OtzariaSearchError.invalidEngineResponse(
+                        "lexical.db size mismatch: expected \(asset.size), received \(actualSize)"
+                    )
+                }
+                let actualHash = try Self.sha256(partURL)
+                guard actualHash.caseInsensitiveCompare(expectedHash) == .orderedSame else {
+                    throw OtzariaSearchError.invalidEngineResponse("lexical.db SHA-256 mismatch")
+                }
+                if let pinned = OtzariaDataProfileRegistry.activeProfile?.sharedLexicalDatabase,
+                   actualHash.caseInsensitiveCompare(pinned.sha256) != .orderedSame {
+                    throw OtzariaSearchError.invalidEngineResponse("lexical.db does not match the selected data profile")
+                }
+
+                if FileManager.default.fileExists(atPath: databaseURL.path) {
+                    _ = try FileManager.default.replaceItemAt(databaseURL, withItemAt: partURL)
+                } else {
+                    try FileManager.default.moveItem(at: partURL, to: databaseURL)
+                }
+                try atomicWrite(Marker(
+                    tagName: release.tagName,
+                    assetID: asset.id,
+                    assetURL: asset.browserDownloadURL,
+                    size: asset.size,
+                    sha256: actualHash,
+                    installedAt: Date(),
+                    checkedAt: Date()
+                ), to: markerURL)
+                return true
+            } catch {
+                try? FileManager.default.removeItem(at: partURL)
+                throw error
             }
-            try atomicWrite(Marker(
-                tagName: release.tagName,
-                assetID: asset.id,
-                assetURL: asset.browserDownloadURL,
-                size: asset.size,
-                sha256: actualHash,
-                installedAt: Date(),
-                checkedAt: Date()
-            ), to: markerURL)
-            return true
-        } catch {
-            try? FileManager.default.removeItem(at: partURL)
-            throw error
         }
     }
 

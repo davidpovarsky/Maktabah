@@ -42,7 +42,17 @@ final class OtzariaDatabaseAccessController {
     private let managedSelectionKey = "goldcreative.otzaria.managedInternalSelected.v3"
     private var scopedAccess: OtzariaSecurityScopedAccess?
 
-    private init() {}
+    private init() {
+        ITorahSharedContainer.databaseValidator = { [weak self] url, _ in
+            guard let self else { return true }
+            do {
+                try self.validateDatabase(at: url)
+                return true
+            } catch {
+                return false
+            }
+        }
+    }
 
     var hasPersistedSelection: Bool {
         ITorahSharedContainer.migrateLegacyDataIfNeeded()
@@ -154,7 +164,10 @@ final class OtzariaDatabaseAccessController {
         defaults.removeObject(forKey: legacyPathKey)
 
         if deleteManagedInternalDatabase, let managedURL = try? managedInternalDatabaseURL() {
-            try? FileManager.default.removeItem(at: managedURL)
+            let profileID = OtzariaDataProfileRegistry.activeProfileID
+            ITorahStorageLock.withLock(name: "database-mutation-\(profileID)") {
+                try? FileManager.default.removeItem(at: managedURL)
+            }
         }
     }
 

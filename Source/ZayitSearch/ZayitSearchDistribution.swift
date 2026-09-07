@@ -150,15 +150,18 @@ struct ZayitSearchArtifactStorage: Sendable {
     }
 
     func cleanupOrphans(preservingPartialDownloads: Bool = true) {
-        let manager = FileManager.default
-        try? manager.removeItem(at: installingIndex)
-        if !manager.fileExists(atPath: finalIndex.path), manager.fileExists(atPath: previousIndex.path) {
-            try? manager.moveItem(at: previousIndex, to: finalIndex)
-        } else if manager.fileExists(atPath: previousIndex.path) {
-            try? manager.removeItem(at: previousIndex)
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        ITorahStorageLock.withLock(name: "zayit-search-mutation-\(profileID)") {
+            let manager = FileManager.default
+            try? manager.removeItem(at: installingIndex)
+            if !manager.fileExists(atPath: finalIndex.path), manager.fileExists(atPath: previousIndex.path) {
+                try? manager.moveItem(at: previousIndex, to: finalIndex)
+            } else if manager.fileExists(atPath: previousIndex.path) {
+                try? manager.removeItem(at: previousIndex)
+            }
+            guard !preservingPartialDownloads else { return }
+            try? manager.removeItem(at: downloads)
         }
-        guard !preservingPartialDownloads else { return }
-        try? manager.removeItem(at: downloads)
     }
 
     func availableCapacity() -> Int64 {
@@ -500,24 +503,27 @@ private extension ZayitSearchArtifactService {
     }
 
     func promote(storage: ZayitSearchArtifactStorage, manifest: ZayitSearchArtifactManifest) throws {
-        let manager = FileManager.default
-        if manager.fileExists(atPath: storage.previousIndex.path) { try manager.removeItem(at: storage.previousIndex) }
-        if manager.fileExists(atPath: storage.finalIndex.path) { try manager.moveItem(at: storage.finalIndex, to: storage.previousIndex) }
-        do {
-            try manager.moveItem(at: storage.installingIndex, to: storage.finalIndex)
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-            try encoder.encode(manifest).write(to: storage.installedManifest, options: .atomic)
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        try ITorahStorageLock.withLock(name: "zayit-search-mutation-\(profileID)") {
+            let manager = FileManager.default
             if manager.fileExists(atPath: storage.previousIndex.path) { try manager.removeItem(at: storage.previousIndex) }
-            for item in (try? manager.contentsOfDirectory(at: storage.downloads, includingPropertiesForKeys: nil)) ?? [] {
-                try? manager.removeItem(at: item)
+            if manager.fileExists(atPath: storage.finalIndex.path) { try manager.moveItem(at: storage.finalIndex, to: storage.previousIndex) }
+            do {
+                try manager.moveItem(at: storage.installingIndex, to: storage.finalIndex)
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+                try encoder.encode(manifest).write(to: storage.installedManifest, options: .atomic)
+                if manager.fileExists(atPath: storage.previousIndex.path) { try manager.removeItem(at: storage.previousIndex) }
+                for item in (try? manager.contentsOfDirectory(at: storage.downloads, includingPropertiesForKeys: nil)) ?? [] {
+                    try? manager.removeItem(at: item)
+                }
+            } catch {
+                try? manager.removeItem(at: storage.finalIndex)
+                if manager.fileExists(atPath: storage.previousIndex.path) {
+                    try? manager.moveItem(at: storage.previousIndex, to: storage.finalIndex)
+                }
+                throw error
             }
-        } catch {
-            try? manager.removeItem(at: storage.finalIndex)
-            if manager.fileExists(atPath: storage.previousIndex.path) {
-                try? manager.moveItem(at: storage.previousIndex, to: storage.finalIndex)
-            }
-            throw error
         }
     }
 

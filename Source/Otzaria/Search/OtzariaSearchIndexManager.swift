@@ -258,41 +258,47 @@ final class OtzariaSearchIndexManager {
     }
 
     func promoteBuildingIndex(databasePath: String) throws {
-        let fileManager = FileManager.default
-        let finalURL = indexURL(for: databasePath)
-        let buildingURL = buildingIndexURL(for: databasePath)
-        let previousURL = previousIndexURL(for: databasePath)
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profileID)") {
+            let fileManager = FileManager.default
+            let finalURL = indexURL(for: databasePath)
+            let buildingURL = buildingIndexURL(for: databasePath)
+            let previousURL = previousIndexURL(for: databasePath)
 
-        guard fileManager.fileExists(atPath: buildingURL.path) else {
-            throw OtzariaSearchError.invalidEngineResponse("No validated building index exists to promote")
-        }
-        if fileManager.fileExists(atPath: previousURL.path) {
-            OtzariaIndexFileLogger.log("promotion deleting previous index retained from the prior successful promotion")
-            try fileManager.removeItem(at: previousURL)
-        }
-        if fileManager.fileExists(atPath: finalURL.path) {
-            try fileManager.moveItem(at: finalURL, to: previousURL)
-        }
-        do {
-            try fileManager.moveItem(at: buildingURL, to: finalURL)
-            try? fileManager.removeItem(at: sentinelURL(for: databasePath))
-        } catch {
-            if fileManager.fileExists(atPath: finalURL.path) {
-                try? fileManager.removeItem(at: finalURL)
+            guard fileManager.fileExists(atPath: buildingURL.path) else {
+                throw OtzariaSearchError.invalidEngineResponse("No validated building index exists to promote")
             }
             if fileManager.fileExists(atPath: previousURL.path) {
-                try? fileManager.moveItem(at: previousURL, to: finalURL)
+                OtzariaIndexFileLogger.log("promotion deleting previous index retained from the prior successful promotion")
+                try fileManager.removeItem(at: previousURL)
             }
-            throw error
+            if fileManager.fileExists(atPath: finalURL.path) {
+                try fileManager.moveItem(at: finalURL, to: previousURL)
+            }
+            do {
+                try fileManager.moveItem(at: buildingURL, to: finalURL)
+                try? fileManager.removeItem(at: sentinelURL(for: databasePath))
+            } catch {
+                if fileManager.fileExists(atPath: finalURL.path) {
+                    try? fileManager.removeItem(at: finalURL)
+                }
+                if fileManager.fileExists(atPath: previousURL.path) {
+                    try? fileManager.moveItem(at: previousURL, to: finalURL)
+                }
+                throw error
+            }
         }
     }
 
     func clearIndex(databasePath: String) throws {
-        let fileManager = FileManager.default
-        for url in [indexURL(for: databasePath), buildingIndexURL(for: databasePath), previousIndexURL(for: databasePath)] {
-            if fileManager.fileExists(atPath: url.path) { try fileManager.removeItem(at: url) }
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profileID)") {
+            let fileManager = FileManager.default
+            for url in [indexURL(for: databasePath), buildingIndexURL(for: databasePath), previousIndexURL(for: databasePath)] {
+                if fileManager.fileExists(atPath: url.path) { try fileManager.removeItem(at: url) }
+            }
+            try? fileManager.removeItem(at: sentinelURL(for: databasePath))
         }
-        try? fileManager.removeItem(at: sentinelURL(for: databasePath))
     }
 
     private func atomicWrite<T: Encodable>(_ value: T, to url: URL) throws {
@@ -369,79 +375,83 @@ final class OtzariaSearchIndexManager {
     @discardableResult
     func recoverTrustedManagedIndex(databasePath: String) throws -> UInt64? {
         guard OtzariaDatabaseAccessController.shared.source == .managedInternal else { return nil }
-        let fileManager = FileManager.default
-        try fileManager.createDirectory(at: indexRootURL, withIntermediateDirectories: true)
-        let target = indexURL(for: databasePath)
-        var candidates: [URL] = []
-        if fileManager.fileExists(atPath: target.path) { candidates.append(target) }
-        if let children = try? fileManager.contentsOfDirectory(
-            at: indexRootURL,
-            includingPropertiesForKeys: [.isDirectoryKey],
-            options: [.skipsHiddenFiles]
-        ) {
-            candidates += children.filter { candidate in
-                candidate != target
-                    && !candidate.lastPathComponent.hasSuffix(".building")
-                    && !candidate.lastPathComponent.hasSuffix(".installing")
-                    && !candidate.lastPathComponent.hasSuffix(".previous")
-                    && fileManager.fileExists(
-                        atPath: candidate.appendingPathComponent("otzaria_prebuilt_installation.json").path
-                    )
+        let profileID = OtzariaDataProfileRegistry.activeProfileID
+        return try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profileID)") {
+            let fileManager = FileManager.default
+            try fileManager.createDirectory(at: indexRootURL, withIntermediateDirectories: true)
+            let target = indexURL(for: databasePath)
+            var candidates: [URL] = []
+            if fileManager.fileExists(atPath: target.path) { candidates.append(target) }
+            if let children = try? fileManager.contentsOfDirectory(
+                at: indexRootURL,
+                includingPropertiesForKeys: [.isDirectoryKey],
+                options: [.skipsHiddenFiles]
+            ) {
+                candidates += children.filter { candidate in
+                    candidate != target
+                        && !candidate.lastPathComponent.hasSuffix(".building")
+                        && !candidate.lastPathComponent.hasSuffix(".installing")
+                        && !candidate.lastPathComponent.hasSuffix(".previous")
+                        && fileManager.fileExists(
+                            atPath: candidate.appendingPathComponent("otzaria_prebuilt_installation.json").path
+                        )
+                }
             }
-        }
 
-        let databaseStorage = try OtzariaDatabaseStorage()
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let databaseManifest = try decoder.decode(
-            OtzariaDatabaseInstallationManifest.self,
-            from: Data(contentsOf: databaseStorage.installationManifestURL)
-        )
-        let databaseBytes = Int64(try currentFingerprint(databasePath: databasePath).fileSize)
-        let build = try OtzariaSearchEngineBridge.buildInfo()
-
-        for candidate in candidates {
-            let trustedURL = candidate.appendingPathComponent("otzaria_prebuilt_installation.json")
-            guard let data = try? Data(contentsOf: trustedURL),
-                  let manifest = try? JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data),
-                  (try? OtzariaSearchArtifactPolicy.validate(
-                    manifest,
-                    database: databaseManifest,
-                    databaseBytes: databaseBytes,
-                    build: build
-                  )) != nil,
-                  let compatibility = try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: candidate),
-                  compatibility.compatible else { continue }
-            let engine = try OtzariaSearchEngineBridge(indexURL: candidate)
-            let count: UInt64
-            do { count = try engine.documentCount() } catch { engine.close(); continue }
-            engine.close()
-            guard count == manifest.lexicalArtifact.documentCount else { continue }
-
-            if candidate != target {
-                guard !fileManager.fileExists(atPath: target.path) else { continue }
-                try fileManager.moveItem(at: candidate, to: target)
-            }
-            let repaired = OtzariaIndexBuildIdentity(
-                database: try currentFingerprint(databasePath: databasePath),
-                upstreamCommit: build.upstreamCommit,
-                engineVersion: build.engineVersion,
-                indexSchemaVersion: build.indexSchemaVersion,
-                defaultGenerationOrder: build.defaultGenerationOrder,
-                adapterVersion: build.adapterVersion,
-                resourceHashes: build.resourceHashes,
-                catalogueHash: manifest.lexicalArtifact.catalogueHash,
-                semanticArtifactIdentity: nil
+            let databaseStorage = try OtzariaDatabaseStorage()
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let databaseManifest = try decoder.decode(
+                OtzariaDatabaseInstallationManifest.self,
+                from: Data(contentsOf: databaseStorage.installationManifestURL)
             )
-            if storedIdentity(indexURL: target) != repaired {
-                try writeIdentity(repaired, indexURL: target)
-                OtzariaIndexFileLogger.log(
-                    "repaired trusted managed index identity artifact=\(manifest.artifactIdentity)"
+            let databaseBytes = Int64(try currentFingerprint(databasePath: databasePath).fileSize)
+            let build = try OtzariaSearchEngineBridge.buildInfo()
+
+            for candidate in candidates {
+                let trustedURL = candidate.appendingPathComponent("otzaria_prebuilt_installation.json")
+                guard let data = try? Data(contentsOf: trustedURL),
+                      let manifest = try? JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data),
+                      (try? OtzariaSearchArtifactPolicy.validate(
+                        manifest,
+                        database: databaseManifest,
+                        databaseBytes: databaseBytes,
+                        build: build
+                      )) != nil,
+                      let compatibility = try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: candidate),
+                      compatibility.compatible else { continue }
+
+                let engine = try OtzariaSearchEngineBridge(indexURL: candidate)
+                let count: UInt64
+                do { count = try engine.documentCount() } catch { engine.close(); continue }
+                engine.close()
+                guard count == manifest.lexicalArtifact.documentCount else { continue }
+
+                if candidate != target {
+                    guard !fileManager.fileExists(atPath: target.path) else { continue }
+                    try fileManager.moveItem(at: candidate, to: target)
+                }
+                let repaired = OtzariaIndexBuildIdentity(
+                    database: try currentFingerprint(databasePath: databasePath),
+                    upstreamCommit: build.upstreamCommit,
+                    engineVersion: build.engineVersion,
+                    indexSchemaVersion: build.indexSchemaVersion,
+                    defaultGenerationOrder: build.defaultGenerationOrder,
+                    adapterVersion: build.adapterVersion,
+                    resourceHashes: build.resourceHashes,
+                    catalogueHash: manifest.lexicalArtifact.catalogueHash,
+                    semanticArtifactIdentity: nil
                 )
+                if storedIdentity(indexURL: target) != repaired {
+                    try writeIdentity(repaired, indexURL: target)
+                    OtzariaIndexFileLogger.log(
+                        "repaired trusted managed index identity artifact=\(manifest.artifactIdentity)"
+                    )
+                }
+                return count
             }
-            return count
+            return nil
         }
-        return nil
     }
 
     private func directorySize(_ url: URL) -> UInt64 {

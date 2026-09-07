@@ -8,19 +8,30 @@ struct OtzariaDatabaseStorage: Sendable {
 
     let appSupportRoot: URL
     let downloadsRoot: URL
+    let profileID: String
 
-    init() throws {
+    init(profileID: String = OtzariaDataProfileRegistry.activeProfileID) throws {
+        self.profileID = profileID
         self.appSupportRoot = ITorahSharedContainer.sharedRootURL
-        self.downloadsRoot = OtzariaProfileStorage.downloadsRoot(base: ITorahSharedContainer.downloadsRootURL, component: .database)
+        self.downloadsRoot = OtzariaProfileStorage.downloadsRoot(
+            base: ITorahSharedContainer.downloadsRootURL,
+            component: .database,
+            profileID: profileID
+        )
     }
 
-    init(appSupportRoot: URL, downloadsRoot: URL) {
+    init(appSupportRoot: URL, downloadsRoot: URL, profileID: String = OtzariaDataProfileRegistry.activeProfileID) {
         self.appSupportRoot = appSupportRoot
         self.downloadsRoot = downloadsRoot
+        self.profileID = profileID
     }
 
     var otzariaRoot: URL {
-        OtzariaProfileStorage.applicationSupportRoot(base: appSupportRoot, component: .database)
+        OtzariaProfileStorage.applicationSupportRoot(
+            base: appSupportRoot,
+            component: .database,
+            profileID: profileID
+        )
     }
 
     var finalDatabaseURL: URL {
@@ -29,6 +40,10 @@ struct OtzariaDatabaseStorage: Sendable {
 
     var stagingDatabaseURL: URL {
         otzariaRoot.appendingPathComponent("seforim.db.installing")
+    }
+
+    func uniqueStagingDatabaseURL() -> URL {
+        otzariaRoot.appendingPathComponent("seforim.db.installing-\(ProcessInfo.processInfo.processIdentifier)-\(UUID().uuidString)")
     }
 
     var previousDatabaseURL: URL {
@@ -147,10 +162,11 @@ struct OtzariaDatabaseInstaller: Sendable {
         try recoverInterruptedInstallation(storage: storage)
 
         let fileManager = FileManager.default
-        try removeManagedFileIfPresent(storage.stagingDatabaseURL)
+        let stagingURL = storage.uniqueStagingDatabaseURL()
+        try removeManagedFileIfPresent(stagingURL)
         for suffix in ["-wal", "-shm", "-journal"] {
             try removeManagedFileIfPresent(
-                URL(fileURLWithPath: storage.stagingDatabaseURL.path + suffix)
+                URL(fileURLWithPath: stagingURL.path + suffix)
             )
         }
 
@@ -167,28 +183,28 @@ struct OtzariaDatabaseInstaller: Sendable {
         do {
             written = try extractor.extract(
                 archiveURL: archiveURL,
-                outputURL: storage.stagingDatabaseURL,
+                outputURL: stagingURL,
                 progress: progress
             )
             extractionElapsed = Date().timeIntervalSince(extractionStarted)
-            try storage.excludeFromBackup(storage.stagingDatabaseURL)
+            try storage.excludeFromBackup(stagingURL)
             validationStarted()
             let validationStartedAt = Date()
             try OtzariaDatabaseAccessController.shared.validateDatabase(
-                at: storage.stagingDatabaseURL
+                at: stagingURL
             )
             validationElapsed = Date().timeIntervalSince(validationStartedAt)
         } catch let error as OtzariaDatabaseBootstrapError {
-            try? fileManager.removeItem(at: storage.stagingDatabaseURL)
+            try? fileManager.removeItem(at: stagingURL)
             throw error
         } catch {
-            try? fileManager.removeItem(at: storage.stagingDatabaseURL)
+            try? fileManager.removeItem(at: stagingURL)
             throw OtzariaDatabaseBootstrapError.sqliteValidationFailed(error.localizedDescription)
         }
 
         return OtzariaPreparedDatabaseInstallation(
             release: release,
-            stagingURL: storage.stagingDatabaseURL,
+            stagingURL: stagingURL,
             databaseFileSize: written,
             extractionElapsedSeconds: extractionElapsed,
             validationElapsedSeconds: validationElapsed
@@ -199,88 +215,96 @@ struct OtzariaDatabaseInstaller: Sendable {
         _ prepared: OtzariaPreparedDatabaseInstallation,
         storage: OtzariaDatabaseStorage
     ) throws -> URL {
-        let fileManager = FileManager.default
-        var promotionCompleted = false
-        do {
-            try recoverInterruptedInstallation(storage: storage)
-            guard prepared.stagingURL.standardizedFileURL == storage.stagingDatabaseURL.standardizedFileURL,
-                  fileManager.fileExists(atPath: prepared.stagingURL.path) else {
-                throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
-                    "the validated staging database is missing"
-                )
-            }
-
-            for suffix in ["-wal", "-shm", "-journal"] {
-                try removeManagedFileIfPresent(
-                    URL(fileURLWithPath: storage.finalDatabaseURL.path + suffix)
-                )
-            }
-
-            if fileManager.fileExists(atPath: storage.finalDatabaseURL.path) {
-                try removeManagedFileIfPresent(storage.previousDatabaseURL)
-                _ = try fileManager.replaceItemAt(
-                    storage.finalDatabaseURL,
-                    withItemAt: prepared.stagingURL,
-                    backupItemName: storage.previousDatabaseURL.lastPathComponent,
-                    options: [.withoutDeletingBackupItem]
-                )
-            } else {
-                try fileManager.moveItem(at: prepared.stagingURL, to: storage.finalDatabaseURL)
-            }
-            promotionCompleted = true
-
-            guard fileManager.fileExists(atPath: storage.finalDatabaseURL.path) else {
-                throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
-                    "atomic promotion did not create the final database"
-                )
-            }
-            try storage.excludeFromBackup(storage.finalDatabaseURL)
+        try ITorahStorageLock.withLock(name: "database-mutation-\(storage.profileID)") {
+            let fileManager = FileManager.default
+            var promotionCompleted = false
             do {
-                try writeManifest(
-                    prepared,
-                    to: storage.pendingInstallationManifestURL,
-                    storage: storage
-                )
-            } catch {
-                // The pending manifest is diagnostic metadata. The validated database
-                // and its rollback copy remain the source of truth for recovery.
-                print("[OtzariaBootstrap] pending manifest write failed: \(error.localizedDescription)")
-            }
-            return storage.finalDatabaseURL
-        } catch let error as OtzariaDatabaseBootstrapError {
-            let promotionError = error
-            do {
-                if promotionCompleted {
-                    try rollbackPromotion(storage: storage)
-                } else {
-                    try recoverInterruptedInstallation(storage: storage)
+                try recoverInterruptedInstallationUnderLock(storage: storage)
+                guard fileManager.fileExists(atPath: prepared.stagingURL.path),
+                      prepared.stagingURL.deletingLastPathComponent().standardizedFileURL == storage.otzariaRoot.standardizedFileURL else {
+                    throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                        "the validated staging database is missing"
+                    )
                 }
-            } catch {
-                throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
-                    "\(promotionError.localizedDescription); rollback also failed: \(error.localizedDescription)"
-                )
-            }
-            throw promotionError
-        } catch {
-            let promotionError = error
-            do {
-                if promotionCompleted {
-                    try rollbackPromotion(storage: storage)
-                } else {
-                    try recoverInterruptedInstallation(storage: storage)
+
+                for suffix in ["-wal", "-shm", "-journal"] {
+                    try removeManagedFileIfPresent(
+                        URL(fileURLWithPath: storage.finalDatabaseURL.path + suffix)
+                    )
                 }
+
+                if fileManager.fileExists(atPath: storage.finalDatabaseURL.path) {
+                    try removeManagedFileIfPresent(storage.previousDatabaseURL)
+                    _ = try fileManager.replaceItemAt(
+                        storage.finalDatabaseURL,
+                        withItemAt: prepared.stagingURL,
+                        backupItemName: storage.previousDatabaseURL.lastPathComponent,
+                        options: [.withoutDeletingBackupItem]
+                    )
+                } else {
+                    try fileManager.moveItem(at: prepared.stagingURL, to: storage.finalDatabaseURL)
+                }
+                promotionCompleted = true
+
+                guard fileManager.fileExists(atPath: storage.finalDatabaseURL.path) else {
+                    throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                        "atomic promotion did not create the final database"
+                    )
+                }
+                try storage.excludeFromBackup(storage.finalDatabaseURL)
+                do {
+                    try writeManifest(
+                        prepared,
+                        to: storage.pendingInstallationManifestURL,
+                        storage: storage
+                    )
+                } catch {
+                    // The pending manifest is diagnostic metadata. The validated database
+                    // and its rollback copy remain the source of truth for recovery.
+                    print("[OtzariaBootstrap] pending manifest write failed: \(error.localizedDescription)")
+                }
+                return storage.finalDatabaseURL
+            } catch let error as OtzariaDatabaseBootstrapError {
+                let promotionError = error
+                do {
+                    if promotionCompleted {
+                        try rollbackPromotionUnderLock(storage: storage)
+                    } else {
+                        try recoverInterruptedInstallationUnderLock(storage: storage)
+                    }
+                } catch {
+                    throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                        "\(promotionError.localizedDescription); rollback also failed: \(error.localizedDescription)"
+                    )
+                }
+                throw promotionError
             } catch {
+                let promotionError = error
+                do {
+                    if promotionCompleted {
+                        try rollbackPromotionUnderLock(storage: storage)
+                    } else {
+                        try recoverInterruptedInstallationUnderLock(storage: storage)
+                    }
+                } catch {
+                    throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                        "\(promotionError.localizedDescription); rollback also failed: \(error.localizedDescription)"
+                    )
+                }
                 throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
-                    "\(promotionError.localizedDescription); rollback also failed: \(error.localizedDescription)"
+                    promotionError.localizedDescription
                 )
             }
-            throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
-                promotionError.localizedDescription
-            )
         }
     }
 
     func recoverInterruptedInstallation(storage: OtzariaDatabaseStorage) throws {
+        try ITorahStorageLock.withLock(name: "database-mutation-\(storage.profileID)") {
+            try recoverInterruptedInstallationUnderLock(storage: storage)
+        }
+    }
+
+    private func recoverInterruptedInstallationUnderLock(storage: OtzariaDatabaseStorage) throws {
         try storage.prepareDirectories()
         try restorePreviousDatabaseIfNecessary(storage: storage)
         let fileManager = FileManager.default
@@ -291,29 +315,37 @@ struct OtzariaDatabaseInstaller: Sendable {
                     at: storage.finalDatabaseURL
                 )
             } catch {
-                try rollbackPromotion(storage: storage)
+                try rollbackPromotionUnderLock(storage: storage)
             }
         }
     }
 
     func completePromotion(storage: OtzariaDatabaseStorage) {
-        do {
-            try promotePendingManifest(storage: storage)
-        } catch {
-            // Activation already reopened the validated database. Metadata failure
-            // must not turn a safe install into an unusable one.
-            print("[OtzariaBootstrap] installation manifest finalization failed: \(error.localizedDescription)")
-        }
-        for url in [storage.previousDatabaseURL, storage.previousInstallationManifestURL] {
+        ITorahStorageLock.withLock(name: "database-mutation-\(storage.profileID)") {
             do {
-                try removeManagedFileIfPresent(url)
+                try promotePendingManifest(storage: storage)
             } catch {
-                print("[OtzariaBootstrap] rollback cleanup failed for \(url.lastPathComponent): \(error.localizedDescription)")
+                // Activation already reopened the validated database. Metadata failure
+                // must not turn a safe install into an unusable one.
+                print("[OtzariaBootstrap] installation manifest finalization failed: \(error.localizedDescription)")
+            }
+            for url in [storage.previousDatabaseURL, storage.previousInstallationManifestURL] {
+                do {
+                    try removeManagedFileIfPresent(url)
+                } catch {
+                    print("[OtzariaBootstrap] rollback cleanup failed for \(url.lastPathComponent): \(error.localizedDescription)")
+                }
             }
         }
     }
 
     func rollbackPromotion(storage: OtzariaDatabaseStorage) throws {
+        try ITorahStorageLock.withLock(name: "database-mutation-\(storage.profileID)") {
+            try rollbackPromotionUnderLock(storage: storage)
+        }
+    }
+
+    private func rollbackPromotionUnderLock(storage: OtzariaDatabaseStorage) throws {
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: storage.previousDatabaseURL.path) {
             try removeManagedFileIfPresent(storage.finalDatabaseURL)

@@ -145,6 +145,7 @@ jobs:
             Source/Otzaria/Storage/ITorahSharedContainer.swift \
             Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift \
             Vendor/OtzariaDataProfileTests/main.swift \
+            -lsqlite3 \
             -o "$RUNNER_TEMP/otzaria-data-profile-tests"
           "$RUNNER_TEMP/otzaria-data-profile-tests"
           xcrun swiftc \
@@ -190,7 +191,8 @@ jobs:
         run: |
           python3 -m unittest \
             Scripts/Tests/test_data_profiles.py \
-            Scripts/Tests/test_package_otzaria_search_artifact.py
+            Scripts/Tests/test_package_otzaria_search_artifact.py \
+            Scripts/Tests/test_shared_storage.py
           xcrun swiftc \
             Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
