@@ -315,6 +315,13 @@ jobs:
           esac
           test "$get_task_allow" = false
 
+          echo "Validating provisioning profile App Group entitlement..."
+          groups=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.security.application-groups' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
+          if ! grep -Fq "group.com.davidpovarsky.chavrusatext" <<< "$groups"; then
+            echo "::error::Provisioning profile $name is missing required App Group 'group.com.davidpovarsky.chavrusatext'"
+            exit 1
+          fi
+
           if /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' "$RUNNER_TEMP/app-profile.plist" >/dev/null 2>&1; then
             echo "::error::Profile $name is device-limited, not an App Store distribution profile"
             exit 1
@@ -348,6 +355,7 @@ jobs:
           grep -E "^\s*DEVELOPMENT_TEAM = $TEAM_ID$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
           grep -E "^\s*PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE_SPECIFIER$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
           grep -E '^\s*MARKETING_VERSION = 1\.0\.0$' "$BUILD_DIR/logs/ios-signing-build-settings.log"
+          grep -E '^\s*CODE_SIGN_ENTITLEMENTS = Source/ChavrusaText-iOS\.entitlements$' "$BUILD_DIR/logs/ios-signing-build-settings.log"
 
       - name: Archive signed app
         shell: bash
@@ -460,6 +468,13 @@ jobs:
             *."$APP_BUNDLE_ID") ;;
             *) echo "::error::Signed application-identifier does not match $APP_BUNDLE_ID"; exit 1 ;;
           esac
+
+          echo "Validating signed application App Groups..."
+          signed_groups=$(/usr/libexec/PlistBuddy -c 'Print :com.apple.security.application-groups' "$BUILD_DIR/logs/app-entitlements.plist" 2>/dev/null || true)
+          if ! grep -Fq "group.com.davidpovarsky.chavrusatext" <<< "$signed_groups"; then
+            echo "::error::Signed app is missing required App Group 'group.com.davidpovarsky.chavrusatext'"
+            exit 1
+          fi
 
           echo "Asserting no stale legacy identifiers..."
           if grep -F "Q37L5CJ4ZG" "$BUILD_DIR/logs/app-entitlements.plist"; then
