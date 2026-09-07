@@ -45,6 +45,7 @@ final class OtzariaDatabaseAccessController {
     private init() {}
 
     var hasPersistedSelection: Bool {
+        ITorahSharedContainer.migrateLegacyDataIfNeeded()
         if OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
            bookmarkStore.hasBookmark { return true }
         guard let managedURL = try? managedInternalDatabaseURL() else { return false }
@@ -53,6 +54,8 @@ final class OtzariaDatabaseAccessController {
 
     func restoreIfNeeded() throws -> URL? {
         if let currentURL { return currentURL }
+
+        ITorahSharedContainer.migrateLegacyDataIfNeeded()
 
         if OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
            let restored = try bookmarkStore.restore() {

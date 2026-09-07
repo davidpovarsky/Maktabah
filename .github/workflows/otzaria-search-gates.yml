@@ -142,6 +142,7 @@ jobs:
           xcrun swiftc \
             Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
+            Source/Otzaria/Storage/ITorahSharedContainer.swift \
             Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift \
             Vendor/OtzariaDataProfileTests/main.swift \
             -o "$RUNNER_TEMP/otzaria-data-profile-tests"
@@ -162,6 +163,7 @@ jobs:
           xcrun swiftc \
             'Source/Managers/App Config/ZstdShim.swift' \
             Source/Managers/Database/SQLiteDatabase.swift \
+            Source/Otzaria/Storage/ITorahSharedContainer.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
             Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift \

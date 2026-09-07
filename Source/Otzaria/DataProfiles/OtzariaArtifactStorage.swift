@@ -2,7 +2,7 @@ import Foundation
 
 enum OtzariaProfileStorage {
     static func applicationSupportRoot(
-        base: URL,
+        base: URL = ITorahSharedContainer.sharedRootURL,
         component: OtzariaDataComponent,
         profileID: String = OtzariaDataProfileRegistry.activeProfileID
     ) -> URL {
@@ -20,7 +20,7 @@ enum OtzariaProfileStorage {
     }
 
     static func downloadsRoot(
-        base: URL,
+        base: URL = ITorahSharedContainer.downloadsRootURL,
         component: OtzariaDataComponent,
         profileID: String = OtzariaDataProfileRegistry.activeProfileID
     ) -> URL {

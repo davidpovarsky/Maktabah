@@ -128,17 +128,8 @@ struct ZayitSearchArtifactStorage: Sendable {
     let downloads: URL
 
     init() throws {
-        guard let appSupport = AppConfig.appSupportDir else {
-            throw ZayitSearchDistributionError.validationFailed("Application Support is unavailable")
-        }
-        let caches = try FileManager.default.url(
-            for: .cachesDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        )
-        root = OtzariaProfileStorage.applicationSupportRoot(base: appSupport, component: .zayitSearch)
-        downloads = OtzariaProfileStorage.downloadsRoot(base: caches, component: .zayitSearch)
+        root = OtzariaProfileStorage.applicationSupportRoot(base: ITorahSharedContainer.sharedRootURL, component: .zayitSearch)
+        downloads = OtzariaProfileStorage.downloadsRoot(base: ITorahSharedContainer.downloadsRootURL, component: .zayitSearch)
     }
 
     init(root: URL, downloads: URL) {

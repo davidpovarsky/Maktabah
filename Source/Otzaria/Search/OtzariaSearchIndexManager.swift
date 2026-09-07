@@ -13,8 +13,7 @@ final class OtzariaSearchIndexManager {
     private init() {}
 
     var indexRootURL: URL {
-        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        return OtzariaProfileStorage.applicationSupportRoot(base: base, component: .otzariaSearch)
+        OtzariaProfileStorage.applicationSupportRoot(base: ITorahSharedContainer.sharedRootURL, component: .otzariaSearch)
     }
 
     func indexURL(for databasePath: String) -> URL {

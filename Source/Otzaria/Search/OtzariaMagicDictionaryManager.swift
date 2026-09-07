@@ -50,8 +50,7 @@ actor OtzariaMagicDictionaryManager {
     private let refreshInterval: TimeInterval = 24 * 60 * 60
 
     nonisolated var databaseURL: URL {
-        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("Otzaria/SearchResources", isDirectory: true)
+        ITorahSharedContainer.searchResourcesRootURL
             .appendingPathComponent("lexical.db")
     }
 

@@ -10,18 +10,8 @@ struct OtzariaDatabaseStorage: Sendable {
     let downloadsRoot: URL
 
     init() throws {
-        guard let appSupportRoot = AppConfig.appSupportDir else {
-            throw OtzariaDatabaseAccessController.AccessError.applicationSupportUnavailable
-        }
-        self.appSupportRoot = appSupportRoot
-
-        let caches = try FileManager.default.url(
-            for: .cachesDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        )
-        downloadsRoot = OtzariaProfileStorage.downloadsRoot(base: caches, component: .database)
+        self.appSupportRoot = ITorahSharedContainer.sharedRootURL
+        self.downloadsRoot = OtzariaProfileStorage.downloadsRoot(base: ITorahSharedContainer.downloadsRootURL, component: .database)
     }
 
     init(appSupportRoot: URL, downloadsRoot: URL) {

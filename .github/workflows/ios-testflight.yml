@@ -321,6 +321,10 @@ jobs:
             echo "::error::Provisioning profile $name is missing required App Group 'group.com.davidpovarsky.chavrusatext'"
             exit 1
           fi
+          if ! grep -Fq "group.com.davidpovarsky.itorah" <<< "$groups"; then
+            echo "::error::Provisioning profile $name is missing required App Group 'group.com.davidpovarsky.itorah'"
+            exit 1
+          fi
 
           if /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' "$RUNNER_TEMP/app-profile.plist" >/dev/null 2>&1; then
             echo "::error::Profile $name is device-limited, not an App Store distribution profile"
@@ -473,6 +477,10 @@ jobs:
           signed_groups=$(/usr/libexec/PlistBuddy -c 'Print :com.apple.security.application-groups' "$BUILD_DIR/logs/app-entitlements.plist" 2>/dev/null || true)
           if ! grep -Fq "group.com.davidpovarsky.chavrusatext" <<< "$signed_groups"; then
             echo "::error::Signed app is missing required App Group 'group.com.davidpovarsky.chavrusatext'"
+            exit 1
+          fi
+          if ! grep -Fq "group.com.davidpovarsky.itorah" <<< "$signed_groups"; then
+            echo "::error::Signed app is missing required App Group 'group.com.davidpovarsky.itorah'"
             exit 1
           fi
 

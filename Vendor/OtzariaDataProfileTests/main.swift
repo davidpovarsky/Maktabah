@@ -87,4 +87,26 @@ require(miniDatabase.path != miniOtzaria.path && miniOtzaria.path != miniZayit.p
         "partial component installs must use isolated roots")
 require(miniDatabase.path.contains("/Profiles/miniTest10/"), "mini profile root is not namespaced")
 
-print("Otzaria data profile isolation/relaunch/partial/mismatch tests passed")
+// MARK: - ITorahSharedContainer Tests
+
+require(ITorahSharedContainer.appGroupIdentifier == "group.com.davidpovarsky.itorah",
+        "canonical iTorah App Group identifier is incorrect")
+require(ITorahSharedContainer.chavrusaTextAppGroupIdentifier == "group.com.davidpovarsky.chavrusatext",
+        "canonical ChavrusaText App Group identifier is incorrect")
+
+let testContainerDir = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+    .appendingPathComponent("itorah-test-\(UUID().uuidString)", isDirectory: true)
+ITorahSharedContainer.sharedRootOverride = testContainerDir
+
+let prodDB = ITorahSharedContainer.databaseURL(profileID: production)
+let miniDB = ITorahSharedContainer.databaseURL(profileID: mini)
+require(prodDB != miniDB, "production and mini databases must not have colliding URLs")
+require(prodDB.path.contains("Otzaria") && prodDB.lastPathComponent == "seforim.db", "production db URL path mismatch")
+require(miniDB.path.contains("miniTest10") && miniDB.lastPathComponent == "seforim.db", "mini db URL path mismatch")
+require(ITorahSharedContainer.downloadsRootURL.path.hasSuffix("Otzaria/Downloads") || ITorahSharedContainer.downloadsRootURL.path.hasSuffix("Otzaria\\Downloads"), "downloads root path mismatch")
+require(ITorahSharedContainer.searchResourcesRootURL.path.hasSuffix("Otzaria/SearchResources") || ITorahSharedContainer.searchResourcesRootURL.path.hasSuffix("Otzaria\\SearchResources"), "search resources root path mismatch")
+
+ITorahSharedContainer.sharedRootOverride = nil
+try? FileManager.default.removeItem(at: testContainerDir)
+
+print("Otzaria data profile isolation/relaunch/partial/mismatch and ITorahSharedContainer tests passed")

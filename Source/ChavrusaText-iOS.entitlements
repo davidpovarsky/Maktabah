@@ -5,6 +5,7 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.com.davidpovarsky.chavrusatext</string>
+		<string>group.com.davidpovarsky.itorah</string>
 	</array>
 </dict>
 </plist>
