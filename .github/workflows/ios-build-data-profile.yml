@@ -1,0 +1,261 @@
+name: iOS Build Data Profile IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      data_profile:
+        description: Data profile to embed as the app default
+        required: true
+        default: production
+        type: choice
+        options:
+          - production
+          - miniTest10
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ inputs.data_profile }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  PROJECT_PATH: Maktabah.xcodeproj
+  SCHEME: Maktabah-iOS
+  PRODUCT_NAME: Maktabah
+  DATA_PROFILE: ${{ inputs.data_profile }}
+  MINI_PROFILE_TAG: otzaria-miniTest10-v2
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-profile-ipa:
+    name: Build ${{ inputs.data_profile }} unsigned device IPA
+    runs-on: macos-26
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 26
+        id: xcode
+        run: |
+          bash Scripts/CI/select-xcode-26.sh
+          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-data-profile-cargo-v1-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/Cargo.lock') }}
+
+      - name: Cache Otzaria framework
+        id: otzaria-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-otzaria-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**', 'Vendor/OtzariaSearchEngine/include/**', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+
+      - name: Validate restored Otzaria framework
+        id: otzaria-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework Vendor/OtzariaSearchEngine/ios_bridge/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Materialize pinned Otzaria upstream checkout
+        run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh
+
+      - name: Build Otzaria XCFramework
+        if: steps.otzaria-valid.outputs.valid != 'true'
+        run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+
+      - name: Verify Otzaria framework
+        run: |
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+          cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
+
+      - name: Cache Zayit framework
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-zayit-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
+
+      - name: Validate restored Zayit framework
+        id: zayit-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework Vendor/ZayitSearchPort/Rust/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Zayit XCFramework
+        if: steps.zayit-valid.outputs.valid != 'true'
+        run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+
+      - name: Verify Zayit framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+
+      - name: Cache Swift package dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/org.swift.swiftpm
+            build/SourcePackages
+          key: ${{ runner.os }}-${{ runner.arch }}-data-profile-swiftpm-v1-${{ steps.xcode.outputs.id }}-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-data-profile-swiftpm-v1-${{ steps.xcode.outputs.id }}-
+
+      - name: Resolve Swift packages
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -clonedSourcePackagesDirPath build/SourcePackages
+
+      - name: Validate selected data profile
+        run: |
+          set -euo pipefail
+          case "$DATA_PROFILE" in
+            production)
+              echo "Using production data discovery and storage paths"
+              ;;
+            miniTest10)
+              python3 - <<'PY'
+          import json
+          from pathlib import Path
+          profile = json.loads(Path('Source/Otzaria/DataProfiles/miniTest10.profile.json').read_text())
+          assert profile['profileID'] == 'miniTest10'
+          assert profile['profileVersion'] == 2
+          assert len(profile['bookIDs']) == 10
+          assert profile['databaseAssetName'] == 'miniTest10-seforim.db.zst'
+          assert profile['releaseBaseURL'].endswith('/otzaria-miniTest10-v2')
+          PY
+              ;;
+            *)
+              echo "::error::Unsupported data profile: $DATA_PROFILE"
+              exit 1
+              ;;
+          esac
+
+      - name: Verify published miniTest10 assets
+        if: inputs.data_profile == 'miniTest10'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${MINI_PROFILE_TAG}" > build/logs/miniTest10-release.json
+          python3 - <<'PY'
+          import json
+          release = json.load(open('build/logs/miniTest10-release.json'))
+          names = {asset['name'] for asset in release['assets']}
+          required = {
+              'miniTest10-seforim.db.zst',
+              'miniTest10.profile.json',
+              'otzaria-search-manifest.json',
+              'zayit-search-manifest.json',
+          }
+          missing = sorted(required - names)
+          assert not missing, f'missing miniTest10 release assets: {missing}'
+          PY
+
+      - name: Verify Xcode integration
+        run: python3 Scripts/CI/verify-otzaria-xcode-project.py
+
+      - name: Build selected data-profile IPA
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
+          set -o pipefail
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "build/DerivedData-${DATA_PROFILE}-iphoneos" \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee "build/logs/build-${DATA_PROFILE}-device.log"
+
+          APP="build/DerivedData-${DATA_PROFILE}-iphoneos/Build/Products/Release-iphoneos/${PRODUCT_NAME}.app"
+          test -d "$APP"
+
+          ACTUAL_PROFILE="$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$APP/Info.plist")"
+          test "$ACTUAL_PROFILE" = "$DATA_PROFILE"
+
+          if [ "$DATA_PROFILE" = "miniTest10" ]; then
+            test -f "$APP/miniTest10.profile.json"
+          fi
+
+          test ! -e "$APP/seforim.db"
+          test ! -e "$APP/lexical.db"
+          test ! -e "$APP/zayit-search-index"
+
+          IPA="${PRODUCT_NAME}-${DATA_PROFILE}-unsigned.ipa"
+          rm -rf Payload "$IPA"
+          mkdir -p Payload
+          cp -R "$APP" Payload/
+          /usr/bin/zip -qry "$IPA" Payload
+
+          if unzip -l "$IPA" | grep -E '(^|/)(seforim\.db|lexical\.db)( |$)|zayit-search-index'; then
+            echo "::error::$DATA_PROFILE IPA unexpectedly contains runtime database/search data"
+            exit 1
+          fi
+
+      - name: Upload selected-profile IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Maktabah-iOS-${{ inputs.data_profile }}-unsigned-ipa-not-installable
+          path: Maktabah-${{ inputs.data_profile }}-unsigned.ipa
+          compression-level: 0
+          if-no-files-found: error
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-profile-${{ inputs.data_profile }}-build-logs
+          path: build/logs
+          compression-level: 0
+          if-no-files-found: warn
+
+      - name: Publish summary
+        if: always()
+        run: |
+          {
+            echo "### iOS data-profile IPA"
+            echo "- App source: shared"
+            echo "- Selected data profile: \`$DATA_PROFILE\`"
+            if [ "$DATA_PROFILE" = "miniTest10" ]; then
+              echo "- Runtime corpus: 10-book miniTest10 database and matching search indexes"
+              echo "- Mini release tag: \`$MINI_PROFILE_TAG\`"
+            else
+              echo "- Runtime corpus: production database and production search indexes"
+            fi
+            echo "- Runtime databases/search indexes are downloaded after launch and are not bundled in the IPA"
+            echo "- IPA is unsigned and is intended for build validation/inspection"
+          } >> "$GITHUB_STEP_SUMMARY"
