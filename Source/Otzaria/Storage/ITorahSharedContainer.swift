@@ -7,11 +7,11 @@ import SQLite3
 #endif
 
 /// Error types for the iTorah shared storage container.
-public enum ITorahSharedContainerError: LocalizedError, Sendable {
+enum ITorahSharedContainerError: LocalizedError, Sendable {
     case appGroupUnavailable(String)
     case invalidDataset(String)
 
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .appGroupUnavailable(let group):
             return "CRITICAL CONFIGURATION ERROR: The shared App Group container '\(group)' could not be resolved on a physical device. Ensure the App ID has the App Groups capability and the active provisioning profile includes '\(group)'. Refusing fallback to private storage to prevent corpus divergence."
@@ -31,15 +31,15 @@ public enum ITorahSharedContainerError: LocalizedError, Sendable {
 /// - Installers, migrators, and index builders acquire an exclusive cross-process lock via `ITorahStorageLock`
 ///   on the container, write into staging files, validate the payload, and atomically promote into place.
 ///   Readers never see incomplete or half-written assets.
-public enum ITorahSharedContainer: Sendable {
+enum ITorahSharedContainer: Sendable {
     /// Ecosystem-wide shared App Group identifier for the Torah corpus and search engine.
-    public static let appGroupIdentifier = "group.com.davidpovarsky.itorah"
+    static let appGroupIdentifier = "group.com.davidpovarsky.itorah"
 
     /// ChavrusaText app-specific App Group identifier, reserved for app-specific state.
-    public static let chavrusaTextAppGroupIdentifier = "group.com.davidpovarsky.chavrusatext"
+    static let chavrusaTextAppGroupIdentifier = "group.com.davidpovarsky.chavrusatext"
 
     /// Subdirectory inside the container for Otzaria data.
-    public static let otzariaNamespace = "Otzaria"
+    static let otzariaNamespace = "Otzaria"
 
     // MARK: - Testing and Dependency Injection
 
@@ -64,7 +64,7 @@ public enum ITorahSharedContainer: Sendable {
     private static let overrideBox = StorageOverrideBox()
 
     /// Thread-safe storage root override for tests and previews.
-    public static var sharedRootOverride: URL? {
+    static var sharedRootOverride: URL? {
         get { overrideBox.value }
         set { overrideBox.value = newValue }
     }
@@ -90,7 +90,7 @@ public enum ITorahSharedContainer: Sendable {
     private static let legacyRootsBox = LegacyRootsOverrideBox()
 
     /// Thread-safe legacy roots override for tests and previews.
-    public static var legacyRootsOverride: [URL]? {
+    static var legacyRootsOverride: [URL]? {
         get { legacyRootsBox.value }
         set { legacyRootsBox.value = newValue }
     }
@@ -116,7 +116,7 @@ public enum ITorahSharedContainer: Sendable {
     private static let realDeviceSimulationBox = TestingFlagBox()
 
     /// Testing hook: simulates a physical iOS device where the App Group container is unavailable.
-    public static var simulateRealDeviceMissingContainerForTesting: Bool {
+    static var simulateRealDeviceMissingContainerForTesting: Bool {
         get { realDeviceSimulationBox.value }
         set { realDeviceSimulationBox.value = newValue }
     }
@@ -124,7 +124,7 @@ public enum ITorahSharedContainer: Sendable {
     // MARK: - Pluggable Validator Hooks
 
     private final class ValidatorHooksBox: @unchecked Sendable {
-        private let lock = NSLock()
+        fileprivate let lock = NSLock()
         var databaseValidator: (@Sendable (URL, String) throws -> Bool)?
         var searchIndexValidator: (@Sendable (URL, String) throws -> Bool)?
         var zayitIndexValidator: (@Sendable (URL, String) throws -> Bool)?
@@ -133,7 +133,7 @@ public enum ITorahSharedContainer: Sendable {
 
     private static let hooksBox = ValidatorHooksBox()
 
-    public static var databaseValidator: (@Sendable (URL, String) throws -> Bool)? {
+    static var databaseValidator: (@Sendable (URL, String) throws -> Bool)? {
         get {
             hooksBox.lock.lock()
             defer { hooksBox.lock.unlock() }
@@ -146,7 +146,7 @@ public enum ITorahSharedContainer: Sendable {
         }
     }
 
-    public static var searchIndexValidator: (@Sendable (URL, String) throws -> Bool)? {
+    static var searchIndexValidator: (@Sendable (URL, String) throws -> Bool)? {
         get {
             hooksBox.lock.lock()
             defer { hooksBox.lock.unlock() }
@@ -159,7 +159,7 @@ public enum ITorahSharedContainer: Sendable {
         }
     }
 
-    public static var zayitIndexValidator: (@Sendable (URL, String) throws -> Bool)? {
+    static var zayitIndexValidator: (@Sendable (URL, String) throws -> Bool)? {
         get {
             hooksBox.lock.lock()
             defer { hooksBox.lock.unlock() }
@@ -172,7 +172,7 @@ public enum ITorahSharedContainer: Sendable {
         }
     }
 
-    public static var lexicalValidator: (@Sendable (URL) throws -> Bool)? {
+    static var lexicalValidator: (@Sendable (URL) throws -> Bool)? {
         get {
             hooksBox.lock.lock()
             defer { hooksBox.lock.unlock() }
@@ -196,7 +196,7 @@ public enum ITorahSharedContainer: Sendable {
     ///
     /// On Simulator / macOS / test harness:
     /// Falls back to test root or Application Support.
-    public static func resolveSharedRootURL() throws -> URL {
+    static func resolveSharedRootURL() throws -> URL {
         if simulateRealDeviceMissingContainerForTesting {
             NSLog("CRITICAL: iTorah App Group container '%@' is unavailable (simulated real-device check).", appGroupIdentifier)
             throw ITorahSharedContainerError.appGroupUnavailable(appGroupIdentifier)
@@ -242,7 +242,7 @@ public enum ITorahSharedContainer: Sendable {
     /// On a real physical iOS device where the App Group container cannot resolve,
     /// this property halts execution with `fatalError` rather than silently creating
     /// an unshared private corpus.
-    public static var sharedRootURL: URL {
+    static var sharedRootURL: URL {
         do {
             return try resolveSharedRootURL()
         } catch {
@@ -251,25 +251,25 @@ public enum ITorahSharedContainer: Sendable {
     }
 
     /// Canonical shared directory for Otzaria data inside the container.
-    public static var otzariaRootURL: URL {
+    static var otzariaRootURL: URL {
         sharedRootURL.appendingPathComponent(otzariaNamespace, isDirectory: true)
     }
 
     /// Canonical shared downloads and staging directory inside the container.
     /// Placing downloads inside the same container ensures atomic moves on promotion.
-    public static var downloadsRootURL: URL {
+    static var downloadsRootURL: URL {
         otzariaRootURL.appendingPathComponent("Downloads", isDirectory: true)
     }
 
     /// Shared search resources directory (e.g. lexical database).
-    public static var searchResourcesRootURL: URL {
+    static var searchResourcesRootURL: URL {
         otzariaRootURL.appendingPathComponent("SearchResources", isDirectory: true)
     }
 
     // MARK: - Component Paths
 
     /// Resolves the storage root for a given component and data profile.
-    public static func componentURL(
+    static func componentURL(
         component: OtzariaDataComponent,
         profileID: String = OtzariaDataProfileRegistry.activeProfileID
     ) -> URL {
@@ -281,7 +281,7 @@ public enum ITorahSharedContainer: Sendable {
     }
 
     /// Resolves the canonical database file URL (`seforim.db`) for a profile.
-    public static func databaseURL(
+    static func databaseURL(
         profileID: String = OtzariaDataProfileRegistry.activeProfileID
     ) -> URL {
         componentURL(component: .database, profileID: profileID)
@@ -289,7 +289,7 @@ public enum ITorahSharedContainer: Sendable {
     }
 
     /// Resolves the canonical installation manifest URL for a profile.
-    public static func databaseManifestURL(
+    static func databaseManifestURL(
         profileID: String = OtzariaDataProfileRegistry.activeProfileID
     ) -> URL {
         componentURL(component: .database, profileID: profileID)
@@ -308,7 +308,7 @@ public enum ITorahSharedContainer: Sendable {
     /// 4. If adjacent `seforim-installation.json` manifest exists:
     ///    verifies manifest's effectiveProfileID matches `profileID`, and file size matches.
     /// 5. If `databaseValidator` hook is registered, executes it.
-    public static func isDatabaseValid(at url: URL, profileID: String) -> Bool {
+    static func isDatabaseValid(at url: URL, profileID: String) -> Bool {
         let fileManager = FileManager.default
         var isDir: ObjCBool = false
         guard fileManager.fileExists(atPath: url.path, isDirectory: &isDir), !isDir.boolValue else {
@@ -404,7 +404,7 @@ public enum ITorahSharedContainer: Sendable {
     /// 2. Contains `meta.json` with valid JSON containing `"segments"` or `"schema"`.
     /// 3. If `otzaria_prebuilt_installation.json` exists, verifies profile compatibility.
     /// 4. If `searchIndexValidator` hook is registered, executes it.
-    public static func isOtzariaSearchValid(at url: URL, profileID: String) -> Bool {
+    static func isOtzariaSearchValid(at url: URL, profileID: String) -> Bool {
         let fileManager = FileManager.default
         var isDir: ObjCBool = false
         guard fileManager.fileExists(atPath: url.path, isDirectory: &isDir), isDir.boolValue else {
@@ -450,7 +450,7 @@ public enum ITorahSharedContainer: Sendable {
     /// 3. `zayit-index-metadata.json` is valid JSON containing `"schema_version"`.
     /// 4. If `zayit-installation.json` exists in parent directory, verifies profile compatibility.
     /// 5. If `zayitIndexValidator` hook is registered, executes it.
-    public static func isZayitSearchValid(at url: URL, profileID: String) -> Bool {
+    static func isZayitSearchValid(at url: URL, profileID: String) -> Bool {
         let fileManager = FileManager.default
         var isDir: ObjCBool = false
         guard fileManager.fileExists(atPath: url.path, isDirectory: &isDir), isDir.boolValue else {
@@ -498,7 +498,7 @@ public enum ITorahSharedContainer: Sendable {
     /// 2. Valid SQLite header and PRAGMA quick_check(1) == "ok".
     /// 3. If `lexical.db.release.json` marker is present, verifies size / sha256.
     /// 4. If `lexicalValidator` hook is registered, executes it.
-    public static func isLexicalDatabaseValid(at url: URL) -> Bool {
+    static func isLexicalDatabaseValid(at url: URL) -> Bool {
         let fileManager = FileManager.default
         var isDir: ObjCBool = false
         guard fileManager.fileExists(atPath: url.path, isDirectory: &isDir), !isDir.boolValue else {
@@ -572,7 +572,7 @@ public enum ITorahSharedContainer: Sendable {
     /// - Validated: Truncated or corrupted legacy datasets are never promoted.
     /// - Atomic: Uses unique `.migrating` staging files and atomically renames on completion.
     /// - Coordinated: Uses cross-process `ITorahStorageLock` to prevent race conditions.
-    public static func migrateLegacyDataIfNeeded(
+    static func migrateLegacyDataIfNeeded(
         profileID: String = OtzariaDataProfileRegistry.activeProfileID,
         customLegacyRoots: [URL]? = nil
     ) {
@@ -826,7 +826,7 @@ public enum ITorahSharedContainer: Sendable {
 // MARK: - Cross-Process File Lock
 
 /// Robust cross-process and cross-thread locking mechanism for the iTorah container.
-public enum ITorahStorageLock {
+enum ITorahStorageLock {
     private final class LockMapBox: @unchecked Sendable {
         private let mutex = NSLock()
         private var locks: [String: NSLock] = [:]
@@ -845,7 +845,7 @@ public enum ITorahStorageLock {
 
     private static let lockMap = LockMapBox()
 
-    public static func withLock<T>(name: String, block: () throws -> T) rethrows -> T {
+    static func withLock<T>(name: String, block: () throws -> T) rethrows -> T {
         let threadLock = lockMap.lock(for: name)
         threadLock.lock()
         defer { threadLock.unlock() }
