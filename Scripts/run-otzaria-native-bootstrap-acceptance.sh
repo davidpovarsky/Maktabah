@@ -10,8 +10,8 @@ APP="$1"
 MODE="${2:-}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REPORT_DIR="${OTZARIA_NATIVE_BOOTSTRAP_REPORT_DIR:-$ROOT/build/logs}"
-BUNDLE_ID="com.Drn.maktabah"
 test -d "$APP"
+BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
 case "$APP" in /*) ;; *) echo "app path must be absolute" >&2; exit 64 ;; esac
 mkdir -p "$REPORT_DIR"
 

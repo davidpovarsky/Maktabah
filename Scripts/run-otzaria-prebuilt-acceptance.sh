@@ -27,9 +27,10 @@ PY
 )"
 xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
 xcrun simctl bootstatus "$UDID" -b
-xcrun simctl uninstall "$UDID" com.Drn.maktabah >/dev/null 2>&1 || true
+BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
+xcrun simctl uninstall "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 xcrun simctl install "$UDID" "$APP"
-CONTAINER="$(xcrun simctl get_app_container "$UDID" com.Drn.maktabah data)"
+CONTAINER="$(xcrun simctl get_app_container "$UDID" "$BUNDLE_ID" data)"
 cp "$DATABASE" "$CONTAINER/Documents/otzaria-prebuilt.db"
 cp "$MANIFEST" "$CONTAINER/Documents/otzaria-search-manifest.json"
 if [ -n "$RELEASES_JSON" ]; then
@@ -74,7 +75,7 @@ run_phase() {
   SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_PHASE="$phase" \
   SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_RELEASE_BASE_URL="$RELEASE_BASE_URL" \
   SIMCTL_CHILD_OTZARIA_PREBUILT_ACCEPTANCE_GOLDEN_QUERY="${OTZARIA_PREBUILT_ACCEPTANCE_GOLDEN_QUERY:-}" \
-    xcrun simctl launch "$UDID" com.Drn.maktabah >/dev/null
+    xcrun simctl launch "$UDID" "$BUNDLE_ID" >/dev/null
   for _ in $(seq 1 720); do
     if [ -f "$result" ]; then
       cp "$result" "$ROOT/build/logs/otzaria-prebuilt-$phase.json"
@@ -90,6 +91,6 @@ run_phase() {
 
 mkdir -p "$ROOT/build/logs"
 run_phase install
-xcrun simctl terminate "$UDID" com.Drn.maktabah >/dev/null 2>&1 || true
+xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 run_phase reopen
-xcrun simctl terminate "$UDID" com.Drn.maktabah >/dev/null 2>&1 || true
+xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true

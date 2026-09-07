@@ -1,0 +1,525 @@
+name: Build Signed ChavrusaText iOS IPA and Upload to TestFlight
+
+on:
+  workflow_dispatch:
+    inputs:
+      data_profile:
+        description: Data profile to embed as the app default
+        required: true
+        default: production
+        type: choice
+        options:
+          - production
+          - miniTest10
+      upload_to_testflight:
+        description: Validate and upload the exported IPA to App Store Connect/TestFlight
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: signed-ios-testflight-${{ github.ref }}-${{ inputs.data_profile }}
+  cancel-in-progress: false
+
+env:
+  PROJECT_PATH: Maktabah.xcodeproj
+  SCHEME: Maktabah-iOS
+  PRODUCT_NAME: Maktabah
+  APP_BUNDLE_ID: com.davidpovarsky.chavrusatext
+  TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+  DATA_PROFILE: ${{ inputs.data_profile }}
+  MINI_PROFILE_TAG: otzaria-miniTest10-v2
+  BUILD_DIR: ${{ github.workspace }}/build/signed-ios
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-sign-and-upload:
+    name: Build, Sign, and Deliver ChavrusaText (${{ inputs.data_profile }})
+    runs-on: macos-26
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 26
+        id: xcode
+        run: |
+          bash Scripts/CI/select-xcode-26.sh
+          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-data-profile-cargo-v1-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/Cargo.lock') }}
+
+      - name: Cache Otzaria framework
+        id: otzaria-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-otzaria-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**', 'Vendor/OtzariaSearchEngine/include/**', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+
+      - name: Validate restored Otzaria framework
+        id: otzaria-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework Vendor/OtzariaSearchEngine/ios_bridge/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Materialize pinned Otzaria upstream checkout
+        run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh
+
+      - name: Build Otzaria XCFramework
+        if: steps.otzaria-valid.outputs.valid != 'true'
+        run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+
+      - name: Verify Otzaria framework
+        run: |
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+          cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
+
+      - name: Cache Zayit framework
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-zayit-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
+
+      - name: Validate restored Zayit framework
+        id: zayit-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework Vendor/ZayitSearchPort/Rust/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Zayit XCFramework
+        if: steps.zayit-valid.outputs.valid != 'true'
+        run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+
+      - name: Verify Zayit framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+
+      - name: Cache Swift package dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/org.swift.swiftpm
+            build/SourcePackages
+          key: ${{ runner.os }}-${{ runner.arch }}-data-profile-swiftpm-v1-${{ steps.xcode.outputs.id }}-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-data-profile-swiftpm-v1-${{ steps.xcode.outputs.id }}-
+
+      - name: Resolve Swift packages
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -clonedSourcePackagesDirPath build/SourcePackages
+
+      - name: Validate selected data profile
+        run: |
+          set -euo pipefail
+          case "$DATA_PROFILE" in
+            production)
+              echo "Using production data profile"
+              ;;
+            miniTest10)
+              python3 - <<'PY'
+          import json
+          from pathlib import Path
+          profile = json.loads(Path('Source/Otzaria/DataProfiles/miniTest10.profile.json').read_text())
+          assert profile['profileID'] == 'miniTest10'
+          assert profile['profileVersion'] == 2
+          assert len(profile['bookIDs']) == 10
+          assert profile['databaseAssetName'] == 'miniTest10-seforim.db.zst'
+          assert profile['releaseBaseURL'].endswith('/otzaria-miniTest10-v2')
+          PY
+              ;;
+            *)
+              echo "::error::Unsupported data profile: $DATA_PROFILE"
+              exit 1
+              ;;
+          esac
+
+      - name: Verify published miniTest10 assets
+        if: inputs.data_profile == 'miniTest10'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/logs
+          gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${MINI_PROFILE_TAG}" > build/logs/miniTest10-release.json
+          python3 - <<'PY'
+          import json
+          release = json.load(open('build/logs/miniTest10-release.json'))
+          names = {asset['name'] for asset in release['assets']}
+          required = {
+              'miniTest10-seforim.db.zst',
+              'miniTest10.profile.json',
+              'otzaria-search-manifest.json',
+              'zayit-search-manifest.json',
+          }
+          missing = sorted(required - names)
+          assert not missing, f'missing miniTest10 release assets: {missing}'
+          PY
+
+      - name: Verify Xcode integration
+        run: python3 Scripts/CI/verify-otzaria-xcode-project.py
+
+      - name: Compute unique build number
+        shell: bash
+        run: |
+          build_number=$((GITHUB_RUN_NUMBER * 100 + GITHUB_RUN_ATTEMPT))
+          echo "BUILD_NUMBER=$build_number" >> "$GITHUB_ENV"
+          echo "Using CFBundleVersion $build_number"
+
+      - name: Restore App Store Connect API key
+        if: ${{ inputs.upload_to_testflight }}
+        shell: bash
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          ASC_KEY_ID_VALUE: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID_VALUE: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -Eeuo pipefail
+          if [ -z "$ASC_KEY_P8" ] || [ -z "$ASC_KEY_ID_VALUE" ] || [ -z "$ASC_ISSUER_ID_VALUE" ]; then
+            echo "::error::Missing one of the App Store Connect API credentials: ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID"
+            exit 1
+          fi
+          mkdir -p "$HOME/.appstoreconnect/private_keys"
+          key_path="$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID_VALUE}.p8"
+          printf '%s' "$ASC_KEY_P8" | base64 --decode > "$key_path"
+          chmod 600 "$key_path"
+          echo "ASC_KEY_ID=$ASC_KEY_ID_VALUE" >> "$GITHUB_ENV"
+          echo "ASC_ISSUER_ID=$ASC_ISSUER_ID_VALUE" >> "$GITHUB_ENV"
+          echo "ASC_KEY_PATH=$key_path" >> "$GITHUB_ENV"
+
+      - name: Verify App Store Connect app record exists
+        if: ${{ inputs.upload_to_testflight }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          python3 -m pip install --quiet 'PyJWT[crypto]==2.10.1'
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          import jwt
+
+          bundle_id = os.environ["APP_BUNDLE_ID"]
+          with open(os.environ["ASC_KEY_PATH"], "rb") as key_file:
+              private_key = key_file.read()
+          now = int(time.time())
+          token = jwt.encode(
+              {"iss": os.environ["ASC_ISSUER_ID"], "iat": now, "exp": now + 600, "aud": "appstoreconnect-v1"},
+              private_key,
+              algorithm="ES256",
+              headers={"kid": os.environ["ASC_KEY_ID"], "typ": "JWT"},
+          )
+          query = urllib.parse.urlencode({"filter[bundleId]": bundle_id, "fields[apps]": "name,bundleId,sku"})
+          request = urllib.request.Request(
+              f"https://api.appstoreconnect.apple.com/v1/apps?{query}",
+              headers={"Authorization": f"Bearer {token}"},
+          )
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  apps = json.load(response).get("data", [])
+          except urllib.error.HTTPError as error:
+              print(f"::error::App Store Connect app-record preflight failed with HTTP {error.code}. Check ASC API key access.")
+              sys.exit(1)
+          if not apps:
+              print(f"::error::No App Store Connect app record exists for {bundle_id}.")
+              print("::error::Please create the iOS app record in App Store Connect before running. Use: Name: ChavrusaText, Bundle ID: "
+                    f"{bundle_id}, SKU: chavrusatext-ios, Primary Locale: en-US.")
+              sys.exit(1)
+          attributes = apps[0].get("attributes", {})
+          print(f"Found App Store Connect app record: {attributes.get('name', '<unnamed>')} ({bundle_id}) [ID: {apps[0].get('id')}]")
+          PY
+
+      - name: Import distribution certificate and provisioning profile
+        shell: bash
+        env:
+          APPLE_CERTIFICATE_P12_B64: ${{ secrets.APPLE_CERTIFICATE_P12_B64 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_MAIN_PROVISIONING_PROFILE_B64: ${{ secrets.APPLE_MAIN_PROVISIONING_PROFILE_B64 }}
+        run: |
+          set -Eeuo pipefail
+          if [ -z "${TEAM_ID:-}" ]; then
+            echo "::error::Required repository secret APPLE_TEAM_ID is empty"
+            exit 1
+          fi
+          for required in APPLE_CERTIFICATE_P12_B64 APPLE_CERTIFICATE_PASSWORD APPLE_MAIN_PROVISIONING_PROFILE_B64; do
+            if [ -z "${!required:-}" ]; then
+              echo "::error::Required signing secret $required is empty"
+              exit 1
+            fi
+          done
+
+          keychain="$RUNNER_TEMP/chavrusatext-signing.keychain-db"
+          keychain_password="$(openssl rand -hex 24)"
+          certificate="$RUNNER_TEMP/apple-distribution.p12"
+          app_profile="$RUNNER_TEMP/ChavrusaText_App_Store.mobileprovision"
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+
+          printf '%s' "$APPLE_CERTIFICATE_P12_B64" | base64 --decode > "$certificate"
+          printf '%s' "$APPLE_MAIN_PROVISIONING_PROFILE_B64" | base64 --decode > "$app_profile"
+
+          security create-keychain -p "$keychain_password" "$keychain"
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$keychain_password" "$keychain"
+          security import "$certificate" -P "$APPLE_CERTIFICATE_PASSWORD" -A -f pkcs12 -k "$keychain"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$keychain_password" "$keychain"
+          security list-keychains -d user -s "$keychain"
+          security default-keychain -d user -s "$keychain"
+          security find-identity -v -p codesigning "$keychain" | grep 'Apple Distribution'
+
+          # Validate provisioning profile
+          security cms -D -i "$app_profile" > "$RUNNER_TEMP/app-profile.plist"
+          uuid=$(/usr/libexec/PlistBuddy -c 'Print :UUID' "$RUNNER_TEMP/app-profile.plist")
+          name=$(/usr/libexec/PlistBuddy -c 'Print :Name' "$RUNNER_TEMP/app-profile.plist")
+          team=$(/usr/libexec/PlistBuddy -c 'Print :TeamIdentifier:0' "$RUNNER_TEMP/app-profile.plist")
+          app_identifier=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:application-identifier' "$RUNNER_TEMP/app-profile.plist")
+          get_task_allow=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:get-task-allow' "$RUNNER_TEMP/app-profile.plist")
+
+          test "$team" = "$TEAM_ID"
+          case "$app_identifier" in
+            *."$APP_BUNDLE_ID") ;;
+            *) echo "::error::Profile $name is for $app_identifier, expected $APP_BUNDLE_ID"; exit 1 ;;
+          esac
+          test "$get_task_allow" = false
+
+          if /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' "$RUNNER_TEMP/app-profile.plist" >/dev/null 2>&1; then
+            echo "::error::Profile $name is device-limited, not an App Store distribution profile"
+            exit 1
+          fi
+          if /usr/libexec/PlistBuddy -c 'Print :ProvisionsAllDevices' "$RUNNER_TEMP/app-profile.plist" >/dev/null 2>&1; then
+            echo "::error::Profile $name is an enterprise profile, not an App Store distribution profile"
+            exit 1
+          fi
+
+          cp "$app_profile" "$HOME/Library/MobileDevice/Provisioning Profiles/$uuid.mobileprovision"
+          echo "APP_PROFILE_SPECIFIER=$name" >> "$GITHUB_ENV"
+          echo "APP_PROFILE_UUID=$uuid" >> "$GITHUB_ENV"
+          echo "SIGNING_KEYCHAIN=$keychain" >> "$GITHUB_ENV"
+          echo "Successfully installed profile $name ($uuid)"
+
+      - name: Signing preflight check
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          mkdir -p "$BUILD_DIR/logs"
+          xcodebuild -project "$PROJECT_PATH" -target "$SCHEME" \
+            -configuration Release -destination 'generic/platform=iOS' \
+            DEVELOPMENT_TEAM="$TEAM_ID" CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="$APP_PROFILE_SPECIFIER" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            -showBuildSettings | tee "$BUILD_DIR/logs/ios-signing-build-settings.log"
+
+          grep -E "^\s*PRODUCT_BUNDLE_IDENTIFIER = $APP_BUNDLE_ID$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
+          grep -E "^\s*DEVELOPMENT_TEAM = $TEAM_ID$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
+          grep -E "^\s*PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE_SPECIFIER$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
+          grep -E '^\s*MARKETING_VERSION = 1\.0\.0$' "$BUILD_DIR/logs/ios-signing-build-settings.log"
+
+      - name: Archive signed app
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
+          xcodebuild archive \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$BUILD_DIR/Maktabah-iOS.xcarchive" \
+            -derivedDataPath "$BUILD_DIR/DerivedData" \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            DEVELOPMENT_TEAM="$TEAM_ID" \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="$APP_PROFILE_SPECIFIER" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            | tee "$BUILD_DIR/logs/archive.log"
+
+      - name: Export App Store Connect IPA
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          export_options="$RUNNER_TEMP/ExportOptions.plist"
+          cat > "$export_options" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store-connect</string>
+            <key>destination</key>
+            <string>export</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>signingCertificate</key>
+            <string>Apple Distribution</string>
+            <key>teamID</key>
+            <string>$TEAM_ID</string>
+            <key>manageAppVersionAndBuildNumber</key>
+            <false/>
+            <key>stripSwiftSymbols</key>
+            <true/>
+            <key>uploadSymbols</key>
+            <true/>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>$APP_BUNDLE_ID</key>
+              <string>$APP_PROFILE_SPECIFIER</string>
+            </dict>
+          </dict>
+          </plist>
+          PLIST
+          plutil -lint "$export_options"
+
+          mkdir -p "$BUILD_DIR/export"
+          xcodebuild -exportArchive \
+            -archivePath "$BUILD_DIR/Maktabah-iOS.xcarchive" \
+            -exportPath "$BUILD_DIR/export" \
+            -exportOptionsPlist "$export_options" \
+            | tee "$BUILD_DIR/logs/export.log"
+
+          raw_ipa=$(find "$BUILD_DIR/export" -maxdepth 1 -type f -name '*.ipa' -print -quit)
+          test -n "$raw_ipa"
+          test -s "$raw_ipa"
+
+          final_ipa="$BUILD_DIR/export/ChavrusaText-${DATA_PROFILE}-${BUILD_NUMBER}.ipa"
+          cp "$raw_ipa" "$final_ipa"
+          echo "IPA_PATH=$final_ipa" >> "$GITHUB_ENV"
+          shasum -a 256 "$final_ipa" | tee "$BUILD_DIR/export/ChavrusaText-${DATA_PROFILE}-${BUILD_NUMBER}.ipa.sha256"
+
+      - name: Validate exported IPA
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          verify_dir="$RUNNER_TEMP/verify-ipa"
+          rm -rf "$verify_dir"
+          ditto -x -k "$IPA_PATH" "$verify_dir"
+          app=$(find "$verify_dir/Payload" -maxdepth 1 -type d -name '*.app' -print -quit)
+          test -d "$app"
+
+          echo "Validating Info.plist..."
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$app/Info.plist")" = "$APP_BUNDLE_ID"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$app/Info.plist")" = "1.0.0"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$app/Info.plist")" = "$BUILD_NUMBER"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$app/Info.plist")" = "$DATA_PROFILE"
+
+          DISPLAY_NAME="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleDisplayName' "$app/Info.plist" 2>/dev/null || true)"
+          echo "CFBundleDisplayName: $DISPLAY_NAME"
+          test "$DISPLAY_NAME" = "ChavrusaText"
+
+          echo "Validating code signature..."
+          codesign --verify --deep --strict --verbose=2 "$app"
+          codesign -dvvv "$app" 2> "$BUILD_DIR/logs/app-codesign.txt"
+          cat "$BUILD_DIR/logs/app-codesign.txt"
+          grep -F "Authority=Apple Distribution" "$BUILD_DIR/logs/app-codesign.txt"
+
+          echo "Validating entitlements..."
+          codesign --display --entitlements - --xml "$app" > "$BUILD_DIR/logs/app-entitlements.plist"
+          cat "$BUILD_DIR/logs/app-entitlements.plist"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :com.apple.developer.team-identifier' "$BUILD_DIR/logs/app-entitlements.plist")" = "$TEAM_ID"
+
+          case "$(/usr/libexec/PlistBuddy -c 'Print :application-identifier' "$BUILD_DIR/logs/app-entitlements.plist")" in
+            *."$APP_BUNDLE_ID") ;;
+            *) echo "::error::Signed application-identifier does not match $APP_BUNDLE_ID"; exit 1 ;;
+          esac
+
+          echo "Asserting no stale legacy identifiers..."
+          if grep -F "Q37L5CJ4ZG" "$BUILD_DIR/logs/app-entitlements.plist"; then
+            echo "::error::Stale team ID Q37L5CJ4ZG found in entitlements"
+            exit 1
+          fi
+          if grep -F "com.Drn.maktabah" "$BUILD_DIR/logs/app-entitlements.plist"; then
+            echo "::error::Stale bundle ID com.Drn.maktabah found in entitlements"
+            exit 1
+          fi
+          if grep -F "iCloud.Maktabah" "$BUILD_DIR/logs/app-entitlements.plist"; then
+            echo "::error::Stale iCloud container iCloud.Maktabah found in entitlements"
+            exit 1
+          fi
+
+          echo "Asserting no runtime database files are bundled in the IPA..."
+          if unzip -l "$IPA_PATH" | grep -E '(^|/)(seforim\.db|lexical\.db)( |$)|zayit-search-index'; then
+            echo "::error::IPA unexpectedly contains runtime database/search data"
+            exit 1
+          fi
+
+          echo "IPA validation passed successfully!"
+
+      - name: Validate with App Store Connect
+        if: ${{ inputs.upload_to_testflight }}
+        run: |
+          xcrun altool --validate-app \
+            -f "$IPA_PATH" \
+            -t ios \
+            --apiKey "$ASC_KEY_ID" \
+            --apiIssuer "$ASC_ISSUER_ID"
+
+      - name: Upload to App Store Connect and TestFlight
+        if: ${{ inputs.upload_to_testflight }}
+        run: |
+          xcrun altool --upload-app \
+            -f "$IPA_PATH" \
+            -t ios \
+            --apiKey "$ASC_KEY_ID" \
+            --apiIssuer "$ASC_ISSUER_ID"
+
+      - name: Upload signed IPA and build logs
+        if: success() || (failure() && env.IPA_PATH != '')
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChavrusaText-${{ inputs.data_profile }}-signed-ipa-${{ env.BUILD_NUMBER }}
+          path: |
+            ${{ env.IPA_PATH }}
+            ${{ env.BUILD_DIR }}/export/*.sha256
+            ${{ env.BUILD_DIR }}/Maktabah-iOS.xcarchive/dSYMs
+            ${{ env.BUILD_DIR }}/logs
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Remove temporary signing material
+        if: always()
+        shell: bash
+        run: |
+          if [ -n "${SIGNING_KEYCHAIN:-}" ]; then
+            security delete-keychain "$SIGNING_KEYCHAIN" || true
+          fi
+          rm -f "$HOME/Library/MobileDevice/Provisioning Profiles/${APP_PROFILE_UUID:-missing}.mobileprovision"
+          rm -f "${ASC_KEY_PATH:-$RUNNER_TEMP/missing-asc-key}"

@@ -58,8 +58,9 @@ xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
 xcrun simctl bootstatus "$UDID" -b
 APP="${OTZARIA_CORPUS_ACCEPTANCE_APP_PATH:-$ROOT/build/OtzariaCorpusAcceptance/Build/Products/Debug-iphonesimulator/Maktabah.app}"
 test -d "$APP"
+BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
 xcrun simctl install "$UDID" "$APP"
-CONTAINER="$(xcrun simctl get_app_container "$UDID" com.Drn.maktabah data)"
+CONTAINER="$(xcrun simctl get_app_container "$UDID" "$BUNDLE_ID" data)"
 EMBEDDED_PROFILE_ID="$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$APP/Info.plist" 2>/dev/null || true)"
 case "$EMBEDDED_PROFILE_ID" in
   ""|production|'$('*)
@@ -103,7 +104,7 @@ fi
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_DATABASE="$CONTAINER/Documents/otzaria-corpus.db" \
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_RESULT="$RESULT" \
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_EXPECTED_BOOKS="$EXPECTED" \
-  xcrun simctl launch "$UDID" com.Drn.maktabah
+  xcrun simctl launch "$UDID" "$BUNDLE_ID"
 
 WAIT_ROUNDS="${OTZARIA_CORPUS_ACCEPTANCE_WAIT_ROUNDS:-720}"
 for _ in $(seq 1 "$WAIT_ROUNDS"); do

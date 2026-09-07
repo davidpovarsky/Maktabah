@@ -87,3 +87,11 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Apple Signing and Credentials
+*.p8
+*.p12
+*.cer
+*.key
+*.mobileprovision
+*.provisionprofile

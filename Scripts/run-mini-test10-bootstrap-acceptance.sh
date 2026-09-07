@@ -9,7 +9,7 @@ fi
 APP="$1"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REPORT_DIR="${OTZARIA_MINI_PROFILE_REPORT_DIR:-$ROOT/build/logs}"
-BUNDLE_ID="com.Drn.maktabah"
+BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
 mkdir -p "$REPORT_DIR"
 
 UDID="$(python3 <<'PY'
