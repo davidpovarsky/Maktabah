@@ -209,10 +209,11 @@ jobs:
             echo "::error::Missing one of the App Store Connect API credentials: ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID"
             exit 1
           fi
-          mkdir -p "$HOME/.appstoreconnect/private_keys"
+          mkdir -p "$HOME/.appstoreconnect/private_keys" "$HOME/.private_keys"
           key_path="$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID_VALUE}.p8"
           printf '%s' "$ASC_KEY_P8" | base64 --decode > "$key_path"
-          chmod 600 "$key_path"
+          cp "$key_path" "$HOME/.private_keys/AuthKey_${ASC_KEY_ID_VALUE}.p8"
+          chmod 600 "$key_path" "$HOME/.private_keys/AuthKey_${ASC_KEY_ID_VALUE}.p8"
           echo "ASC_KEY_ID=$ASC_KEY_ID_VALUE" >> "$GITHUB_ENV"
           echo "ASC_ISSUER_ID=$ASC_ISSUER_ID_VALUE" >> "$GITHUB_ENV"
           echo "ASC_KEY_PATH=$key_path" >> "$GITHUB_ENV"
@@ -222,8 +223,9 @@ jobs:
         shell: bash
         run: |
           set -Eeuo pipefail
-          python3 -m pip install --quiet 'PyJWT[crypto]==2.10.1'
-          python3 - <<'PY'
+          python3 -m venv "$RUNNER_TEMP/asc-venv"
+          "$RUNNER_TEMP/asc-venv/bin/pip" install --quiet 'PyJWT[crypto]==2.10.1'
+          "$RUNNER_TEMP/asc-venv/bin/python" - <<'PY'
           import json
           import os
           import sys
