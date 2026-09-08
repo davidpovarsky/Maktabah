@@ -6,7 +6,7 @@ enum SefariaArchiveValidator {
         let archive: Archive
         do { archive = try Archive(url: url, accessMode: .read) }
         catch { throw LibraryBackendError.corruptData("unreadable ZIP: \(error)") }
-        guard !archive.isEmpty else {
+        guard archive.first(where: { _ in true }) != nil else {
             throw LibraryBackendError.corruptData("empty or unreadable ZIP")
         }
         for entry in archive {

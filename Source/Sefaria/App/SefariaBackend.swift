@@ -21,7 +21,11 @@ final class SefariaBackend {
         self.hybrid = SefariaHybridStore(offline: offline, remote: remote)
     }
 
-    func register(with coordinator: BackendCoordinator = .shared) {
+    func register() {
+        register(with: .shared)
+    }
+
+    func register(with coordinator: BackendCoordinator) {
         coordinator.register(LibraryBackendRegistration(
             id: .sefaria,
             sourceDescription: "Read from Sefaria downloads first, with cloud fallback when needed.",

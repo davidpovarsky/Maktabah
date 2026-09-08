@@ -8,7 +8,7 @@ extension Notification.Name {
 @MainActor
 final class BackendCoordinator: ObservableObject {
     static let shared = BackendCoordinator()
-    static let selectionDefaultsKey = "activeLibraryBackend.v1"
+    nonisolated static let selectionDefaultsKey = "activeLibraryBackend.v1"
 
     @Published private(set) var activeBackendID: BackendID
     @Published private(set) var generation: UInt64 = 0
