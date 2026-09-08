@@ -36,6 +36,17 @@ final class iOSBootstrapManager {
         ) == nil
         requiresInitialSourceSelection = requiresSelection
         isChecking = !requiresSelection
+
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-bootstrapInsufficientSpacePreview") {
+            requiresInitialSourceSelection = false
+            didPrepare = true
+            presentInsufficientSpace(
+                required: 8_500_000_000,
+                available: 1_200_000_000
+            )
+        }
+        #endif
     }
 
     func prepareIfNeeded() async {

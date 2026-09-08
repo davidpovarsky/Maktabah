@@ -242,6 +242,45 @@ jobs:
           test -f "$APP/dictionary.json"
           test -f "$APP/Acronyms.json"
           tar -C "$(dirname "$APP")" -cf build/artifacts/Maktabah-simulator-app.tar "$(basename "$APP")"
+      - name: Capture iPad bootstrap localization smoke screenshots
+        run: |
+          APP="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist")"
+          DEVICE_TYPE="$(xcrun simctl list devicetypes -j | python3 -c 'import json,sys; values=json.load(sys.stdin)["devicetypes"]; print(next(item["identifier"] for item in values if "iPad Pro" in item["name"] and "13-inch" in item["name"]))')"
+          RUNTIME="$(xcrun simctl list runtimes -j | python3 -c 'import json,sys; values=[item for item in json.load(sys.stdin)["runtimes"] if item.get("isAvailable") and item["identifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS")]; print(values[-1]["identifier"])')"
+          UDID="$(xcrun simctl create 'Maktabah Bootstrap iPad' "$DEVICE_TYPE" "$RUNTIME")"
+          trap 'xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; xcrun simctl delete "$UDID" >/dev/null 2>&1 || true' EXIT
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          mkdir -p build/ipad-bootstrap-screenshots
+
+          capture_screen() {
+            local language="$1"
+            local locale="$2"
+            local state="$3"
+            local output="$4"
+            xcrun simctl uninstall "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
+            xcrun simctl install "$UDID" "$APP"
+            if [ "$state" = "error" ]; then
+              xcrun simctl launch "$UDID" "$BUNDLE_ID" -AppleLanguages "($language)" -AppleLocale "$locale" -bootstrapInsufficientSpacePreview
+            else
+              xcrun simctl launch "$UDID" "$BUNDLE_ID" -AppleLanguages "($language)" -AppleLocale "$locale"
+            fi
+            sleep 3
+            xcrun simctl io "$UDID" screenshot "build/ipad-bootstrap-screenshots/$output"
+            xcrun simctl terminate "$UDID" "$BUNDLE_ID"
+          }
+
+          capture_screen en en_US source source-en.png
+          capture_screen he he_IL source source-he.png
+          capture_screen en en_US error error-en.png
+          capture_screen he he_IL error error-he.png
+          test "$(find build/ipad-bootstrap-screenshots -name '*.png' -size +10k | wc -l | tr -d ' ')" = 4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iPad-bootstrap-localization-screenshots
+          path: build/ipad-bootstrap-screenshots
+          if-no-files-found: error
       - uses: actions/upload-artifact@v4
         with:
           name: Maktabah-iOS-simulator-app
