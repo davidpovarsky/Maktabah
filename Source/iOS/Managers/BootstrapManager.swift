@@ -31,10 +31,11 @@ final class iOSBootstrapManager {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        requiresInitialSourceSelection = defaults.object(
+        let requiresSelection = defaults.object(
             forKey: BackendCoordinator.selectionDefaultsKey
         ) == nil
-        isChecking = !requiresInitialSourceSelection
+        requiresInitialSourceSelection = requiresSelection
+        isChecking = !requiresSelection
     }
 
     func prepareIfNeeded() async {
