@@ -183,7 +183,6 @@ jobs:
           ZSTD_PREFIX="$(brew --prefix zstd)"
           xcrun swiftc \
             'Source/Managers/App Config/ZstdShim.swift' \
-            Vendor/OtzariaDataProfileTests/AppConfigShim.swift \
             Source/Managers/Database/SQLiteDatabase.swift \
             Source/Otzaria/Storage/ITorahSharedContainer.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
