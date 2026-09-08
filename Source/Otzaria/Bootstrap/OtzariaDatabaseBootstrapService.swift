@@ -22,7 +22,11 @@ actor OtzariaDatabaseBootstrapService {
     func prepareManagedDatabase(
         progress: @escaping ProgressHandler
     ) async throws -> Preparation {
-        progress(.init(stage: .connecting, fraction: 0.01, detail: "Connecting to Otzaria Library…"))
+        progress(.init(
+            stage: .connecting,
+            fraction: 0.01,
+            detail: String(localized: "bootstrap.status.connecting")
+        ))
         let release = try await releaseClient.fetchLatestRelease()
         let storage = try OtzariaDatabaseStorage()
         currentStorage = storage
@@ -51,13 +55,27 @@ actor OtzariaDatabaseBootstrapService {
                 workspaceURL: storage.downloadsRoot
             ) { downloaded, total, resumedFrom in
                 let ratio = total > 0 ? Double(downloaded) / Double(total) : 0
-                let detailPrefix = resumedFrom > 0
-                    ? "Resuming from \(Self.format(resumedFrom)) — "
-                    : ""
+                let detail: String
+                if resumedFrom > 0 {
+                    detail = String(
+                        format: String(localized: "bootstrap.status.download.resuming"),
+                        locale: .current,
+                        Self.format(resumedFrom),
+                        Self.format(downloaded),
+                        Self.format(total)
+                    )
+                } else {
+                    detail = String(
+                        format: String(localized: "bootstrap.status.download.progress"),
+                        locale: .current,
+                        Self.format(downloaded),
+                        Self.format(total)
+                    )
+                }
                 progress(.init(
                     stage: .downloading(resumedFrom: resumedFrom),
                     fraction: 0.03 + 0.65 * min(max(ratio, 0), 1),
-                    detail: detailPrefix + "\(Self.format(downloaded)) of \(Self.format(total))"
+                    detail: detail
                 ))
             }
             downloadElapsed = Date().timeIntervalSince(downloadStarted)
@@ -65,7 +83,7 @@ actor OtzariaDatabaseBootstrapService {
             progress(.init(
                 stage: .verifyingDownload,
                 fraction: 0.70,
-                detail: "Verifying the Otzaria download…"
+                detail: String(localized: "bootstrap.status.verifyingDownload")
             ))
             let verificationStarted = Date()
             actualSHA256 = try await Task.detached(priority: .utility) {
@@ -97,20 +115,25 @@ actor OtzariaDatabaseBootstrapService {
                     progress(.init(
                         stage: .extracting,
                         fraction: 0.72 + 0.20 * min(max(ratio, 0), 1),
-                        detail: "Extracting Otzaria Library… \(Self.format(consumed)) of \(Self.format(total))"
+                        detail: String(
+                            format: String(localized: "bootstrap.status.extracting"),
+                            locale: .current,
+                            Self.format(consumed),
+                            Self.format(total)
+                        )
                     ))
                 } validationStarted: {
                     progress(.init(
                         stage: .validatingDatabase,
                         fraction: 0.93,
-                        detail: "Verifying the Otzaria database…"
+                        detail: String(localized: "bootstrap.status.verifyingDatabase")
                     ))
                 }
             }.value
             progress(.init(
                 stage: .validatingDatabase,
                 fraction: 0.94,
-                detail: "Otzaria database integrity and schema verified"
+                detail: String(localized: "bootstrap.status.databaseVerified")
             ))
             print(
                 "[OtzariaBootstrap] extraction and SQLite validation completed " +
@@ -137,11 +160,19 @@ actor OtzariaDatabaseBootstrapService {
         storage: OtzariaDatabaseStorage,
         progress: @escaping ProgressHandler
     ) async throws -> URL {
-        progress(.init(stage: .installing, fraction: 0.97, detail: "Installing Otzaria Library…"))
+        progress(.init(
+            stage: .installing,
+            fraction: 0.97,
+            detail: String(localized: "bootstrap.status.installingLibrary")
+        ))
         let finalURL = try await Task.detached(priority: .utility) { [installer] in
             try installer.promote(prepared, storage: storage)
         }.value
-        progress(.init(stage: .ready, fraction: 1, detail: "Otzaria Library is ready"))
+        progress(.init(
+            stage: .ready,
+            fraction: 1,
+            detail: String(localized: "bootstrap.status.ready")
+        ))
         print("[OtzariaBootstrap] managed database promoted path=\(finalURL.path)")
         return finalURL
     }

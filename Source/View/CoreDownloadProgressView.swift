@@ -19,6 +19,7 @@ struct CoreDownloadProgressView: View {
         let retryTitle: String
         let cancelDownloadTitle: String?
         let showsSearchComponents: Bool
+        let stacksErrorActions: Bool
 
         static let maktabah = Configuration(
             title: NSLocalizedString(
@@ -34,20 +35,22 @@ struct CoreDownloadProgressView: View {
             downloadTitle: String(localized: "Download"),
             retryTitle: String(localized: "Try Again"),
             cancelDownloadTitle: nil,
-            showsSearchComponents: false
+            showsSearchComponents: false,
+            stacksErrorActions: false
         )
 
         static let otzaria = Configuration(
-            title: String(localized: "Otzaria Library Required"),
-            confirmationBadge: String(localized: "Otzaria"),
-            confirmationMessage: String(localized: "Install the library and recommended search data together, or continue with the library only."),
-            downloadingMessage: String(localized: "Preparing the Otzaria Library…"),
-            chooseTitle: String(localized: "Choose Otzaria Database…"),
-            cancelTitle: String(localized: "Continue with library only"),
-            downloadTitle: String(localized: "Download and install all"),
-            retryTitle: String(localized: "Try Again"),
-            cancelDownloadTitle: String(localized: "Cancel Download"),
-            showsSearchComponents: true
+            title: String(localized: "bootstrap.otzaria.title"),
+            confirmationBadge: String(localized: "bootstrap.otzaria.badge"),
+            confirmationMessage: String(localized: "bootstrap.otzaria.confirmation"),
+            downloadingMessage: String(localized: "bootstrap.otzaria.preparing"),
+            chooseTitle: String(localized: "bootstrap.action.chooseDatabase"),
+            cancelTitle: String(localized: "bootstrap.action.continueLibraryOnly"),
+            downloadTitle: String(localized: "bootstrap.action.downloadAll"),
+            retryTitle: String(localized: "bootstrap.action.retry"),
+            cancelDownloadTitle: String(localized: "bootstrap.action.cancelDownload"),
+            showsSearchComponents: true,
+            stacksErrorActions: true
         )
     }
 
@@ -98,10 +101,26 @@ struct CoreDownloadProgressView: View {
 
             if configuration.showsSearchComponents, case .confirmation = state.phase {
                 VStack(spacing: 8) {
-                    searchComponent("Seforim DB", detail: "Required · 1.55 GB download · 7.87 GB installed", selected: true)
-                    searchComponent("Otzaria lexical index", detail: "Recommended · 3.01 GB download · 4.11 GB installed", selected: true)
-                    searchComponent("Zayit index", detail: "Recommended · separate versioned package", selected: true)
-                    searchComponent("Shared lexical.db", detail: "Recommended · 57 MB", selected: true)
+                    searchComponent(
+                        String(localized: "bootstrap.component.library.title"),
+                        detail: String(localized: "bootstrap.component.library.detail"),
+                        selected: true
+                    )
+                    searchComponent(
+                        String(localized: "bootstrap.component.otzariaSearch.title"),
+                        detail: String(localized: "bootstrap.component.otzariaSearch.detail"),
+                        selected: true
+                    )
+                    searchComponent(
+                        String(localized: "bootstrap.component.zayit.title"),
+                        detail: String(localized: "bootstrap.component.zayit.detail"),
+                        selected: true
+                    )
+                    searchComponent(
+                        String(localized: "bootstrap.component.sharedLexical.title"),
+                        detail: String(localized: "bootstrap.component.sharedLexical.detail"),
+                        selected: true
+                    )
                 }
             }
 
@@ -156,7 +175,9 @@ struct CoreDownloadProgressView: View {
             case .downloading:
                 return String(localized: "Downloading")
             case .error:
-                return String(localized: "Error")
+                return configuration.stacksErrorActions
+                    ? String(localized: "bootstrap.status.error")
+                    : String(localized: "Error")
             }
         }()
 
@@ -189,10 +210,32 @@ struct CoreDownloadProgressView: View {
             .font(.callout)
             .foregroundStyle(.secondary)
         case .error(let msg):
-            Text(msg)
-                .font(.callout)
-                .foregroundStyle(.red)
+            if configuration.stacksErrorActions {
+                let presentation = state.errorPresentation ?? CoreDownloadErrorPresentation(
+                    title: String(localized: "bootstrap.error.generic.title"),
+                    detail: msg,
+                    guidance: nil
+                )
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(presentation.title)
+                        .font(.headline)
+                        .foregroundStyle(.red)
+                    Text(presentation.detail)
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                    if let guidance = presentation.guidance {
+                        Text(guidance)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
                 .multilineTextAlignment(.leading)
+            } else {
+                Text(msg)
+                    .font(.callout)
+                    .foregroundStyle(.red)
+                    .multilineTextAlignment(.leading)
+            }
         }
     }
 
@@ -269,25 +312,55 @@ struct CoreDownloadProgressView: View {
         .transition(.opacity.combined(with: .move(edge: .top)))
     }
 
-    private func errorView(_ msg: String) -> some View {
-        HStack(spacing: 12) {
-            Spacer()
-            Button(configuration.chooseTitle, action: onChooseFolder)
-                .buttonStyle(.bordered)
-
-            if let cancelTitle = configuration.cancelTitle {
-                Button(cancelTitle, action: onQuit)
-                    .buttonStyle(.bordered)
+    private func errorView(_: String) -> some View {
+        Group {
+            if configuration.stacksErrorActions {
+                VStack(spacing: 10) {
+                    errorActionButton(configuration.retryTitle, style: .primary, action: onDownload)
+                    errorActionButton(configuration.chooseTitle, style: .secondary, action: onChooseFolder)
+                    if let cancelTitle = configuration.cancelTitle {
+                        errorActionButton(cancelTitle, style: .secondary, action: onQuit)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            } else {
+                HStack(spacing: 12) {
+                    Spacer()
+                    Button(configuration.chooseTitle, action: onChooseFolder)
+                        .buttonStyle(.bordered)
+                    if let cancelTitle = configuration.cancelTitle {
+                        Button(cancelTitle, action: onQuit)
+                            .buttonStyle(.bordered)
+                    }
+                    Button(configuration.retryTitle, action: onDownload)
+                        .buttonStyle(.borderedProminent)
+                        .keyboardShortcut(.defaultAction)
+                }
             }
-
-            Button(
-                configuration.retryTitle,
-                action: onDownload
-            )
-            .buttonStyle(.borderedProminent)
-            .keyboardShortcut(.defaultAction)
         }
         .transition(.opacity.combined(with: .move(edge: .bottom)))
+    }
+
+    private enum ErrorActionStyle { case primary, secondary }
+
+    @ViewBuilder
+    private func errorActionButton(
+        _ title: String,
+        style: ErrorActionStyle,
+        action: @escaping () -> Void
+    ) -> some View {
+        let button = Button(action: action) {
+            Text(title)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+        }
+        if style == .primary {
+            button
+                .buttonStyle(.borderedProminent)
+                .keyboardShortcut(.defaultAction)
+        } else {
+            button.buttonStyle(.bordered)
+        }
     }
 }
 

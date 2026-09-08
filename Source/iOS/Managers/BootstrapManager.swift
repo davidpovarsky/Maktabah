@@ -14,7 +14,8 @@ import SwiftUI
 final class iOSBootstrapManager {
     var isReady = false
     var coreDownloadState = CoreDownloadProgressState()
-    var isChecking = true
+    var isChecking: Bool
+    var requiresInitialSourceSelection: Bool
     var isUpdating = false
     var isCancellable = false
 
@@ -26,9 +27,22 @@ final class iOSBootstrapManager {
     private var didPrepare = false
     private var managedDownloadTask: Task<Void, Never>?
     private var managedDownloadGeneration = UUID()
+    private let defaults: UserDefaults
+
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+        requiresInitialSourceSelection = defaults.object(
+            forKey: BackendCoordinator.selectionDefaultsKey
+        ) == nil
+        isChecking = !requiresInitialSourceSelection
+    }
 
     func prepareIfNeeded() async {
         guard !didPrepare else { return }
+        guard !requiresInitialSourceSelection else {
+            isChecking = false
+            return
+        }
         didPrepare = true
 
         if !BackendCoordinator.shared.usesNativeMaktabahDataPath {
@@ -42,10 +56,9 @@ final class iOSBootstrapManager {
                 return
             }
         } catch {
-            isChecking = false
-            coreDownloadState.phase = .error(
-                "The saved Otzaria database could not be reopened. " +
-                "Choose the database again.\n\n\(error.localizedDescription)"
+            presentError(
+                title: String(localized: "bootstrap.error.savedDatabase.title"),
+                detail: String(localized: "bootstrap.error.savedDatabase.detail")
             )
             return
         }
@@ -54,7 +67,21 @@ final class iOSBootstrapManager {
         // main.sqlite/special.sqlite bundle is not a readiness gate here.
         isChecking = false
         coreDownloadState.totalSizeString = ""
+        coreDownloadState.errorPresentation = nil
         coreDownloadState.phase = .confirmation
+    }
+
+    func selectInitialSource(_ source: BackendID) {
+        defaults.set(source.rawValue, forKey: BackendCoordinator.selectionDefaultsKey)
+        if BackendCoordinator.shared.activeBackendID != source {
+            BackendCoordinator.shared.select(source)
+        }
+        requiresInitialSourceSelection = false
+        didPrepare = false
+        isChecking = true
+        Task { [weak self] in
+            await self?.prepareIfNeeded()
+        }
     }
 
     func installOtzariaDatabase(from url: URL) {
@@ -62,9 +89,18 @@ final class iOSBootstrapManager {
             try OtzariaBootstrapAdapter.installDatabase(from: url)
             finishSetup()
         } catch {
-            coreDownloadState.phase = .error(error.localizedDescription)
-            isChecking = false
+            presentError(
+                title: String(localized: "bootstrap.error.selectedDatabase.title"),
+                detail: String(localized: "bootstrap.error.selectedDatabase.detail")
+            )
         }
+    }
+
+    func handleDatabaseImportFailure() {
+        presentError(
+            title: String(localized: "bootstrap.error.selectedDatabase.title"),
+            detail: String(localized: "bootstrap.error.selectedDatabase.detail")
+        )
     }
 
     func startDownload() {
@@ -74,7 +110,8 @@ final class iOSBootstrapManager {
         isChecking = false
         coreDownloadState.phase = .downloading
         coreDownloadState.progress = 0
-        coreDownloadState.detail = "Connecting to Otzaria Library…"
+        coreDownloadState.errorPresentation = nil
+        coreDownloadState.detail = String(localized: "bootstrap.status.connecting")
 
         managedDownloadTask = Task { [weak self] in
             guard let self else { return }
@@ -96,19 +133,19 @@ final class iOSBootstrapManager {
                     coreDownloadState.phase = .confirmation
                     coreDownloadState.progress = 0
                     coreDownloadState.detail = ""
+                    coreDownloadState.errorPresentation = nil
                 } else {
-                    coreDownloadState.phase = .error(error.localizedDescription)
-                    coreDownloadState.progress = 0
+                    presentBootstrapError(error)
                 }
             } catch is CancellationError {
                 guard managedDownloadGeneration == generation else { return }
                 coreDownloadState.phase = .confirmation
                 coreDownloadState.progress = 0
                 coreDownloadState.detail = ""
+                coreDownloadState.errorPresentation = nil
             } catch {
                 guard managedDownloadGeneration == generation else { return }
-                coreDownloadState.phase = .error(error.localizedDescription)
-                coreDownloadState.progress = 0
+                presentInstallError(error)
             }
             managedDownloadTask = nil
         }
@@ -126,18 +163,22 @@ final class iOSBootstrapManager {
         coreDownloadState.phase = .confirmation
         coreDownloadState.progress = 0
         coreDownloadState.detail = ""
+        coreDownloadState.errorPresentation = nil
     }
 
     func continueWithLibraryOnly() {
         if OtzariaMaktabahBridge.shared.isEnabled {
             finishSetup()
         } else {
-            coreDownloadState.phase = .error("Install or choose the required Seforim database first.")
+            presentError(
+                title: String(localized: "bootstrap.error.databaseRequired.title"),
+                detail: String(localized: "bootstrap.error.databaseRequired.detail")
+            )
         }
     }
 
     private func installRecommendedSearchData(generation: UUID) async throws {
-        coreDownloadState.detail = "Installing shared lexical data…"
+        coreDownloadState.detail = String(localized: "bootstrap.status.sharedLexical")
         _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: true)
         coreDownloadState.progress = 0.35
         guard managedDownloadGeneration == generation,
@@ -153,7 +194,7 @@ final class iOSBootstrapManager {
                 let fraction = update.totalBytes > 0
                     ? Double(update.completedBytes) / Double(update.totalBytes) : 0
                 self.coreDownloadState.progress = 0.35 + min(1, fraction) * 0.35
-                self.coreDownloadState.detail = "Installing Otzaria search data…"
+                self.coreDownloadState.detail = String(localized: "bootstrap.status.otzariaSearch")
             }
         }
 
@@ -169,10 +210,60 @@ final class iOSBootstrapManager {
                     self.coreDownloadState.progress = 0.70 + min(1, fraction) * 0.30
                 default: break
                 }
-                self.coreDownloadState.detail = "Installing Zayit search data…"
+                self.coreDownloadState.detail = String(localized: "bootstrap.status.zayitSearch")
             }
         }
         coreDownloadState.progress = 1
+    }
+
+    private func presentBootstrapError(_ error: OtzariaDatabaseBootstrapError) {
+        if case let .insufficientDiskSpace(required, available) = error {
+            presentInsufficientSpace(required: required, available: available)
+        } else {
+            presentError(
+                title: String(localized: "bootstrap.error.install.title"),
+                detail: String(localized: "bootstrap.error.install.detail")
+            )
+        }
+    }
+
+    private func presentInstallError(_ error: Error) {
+        if let error = error as? OtzariaSearchArtifactError,
+           case let .insufficientStorage(required, available) = error {
+            presentInsufficientSpace(required: required, available: available)
+        } else if let error = error as? ZayitSearchDistributionError,
+                  case let .insufficientStorage(required, available) = error {
+            presentInsufficientSpace(required: required, available: available)
+        } else {
+            presentError(
+                title: String(localized: "bootstrap.error.install.title"),
+                detail: String(localized: "bootstrap.error.install.detail")
+            )
+        }
+    }
+
+    private func presentInsufficientSpace(required: Int64, available: Int64) {
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .file
+        let requiredText = formatter.string(fromByteCount: required)
+        let availableText = formatter.string(fromByteCount: available)
+        let format = String(localized: "bootstrap.error.space.detail")
+        presentError(
+            title: String(localized: "bootstrap.error.space.title"),
+            detail: String(format: format, locale: .current, requiredText, availableText),
+            guidance: String(localized: "bootstrap.error.space.guidance")
+        )
+    }
+
+    private func presentError(title: String, detail: String, guidance: String? = nil) {
+        isChecking = false
+        coreDownloadState.progress = 0
+        coreDownloadState.errorPresentation = CoreDownloadErrorPresentation(
+            title: title,
+            detail: detail,
+            guidance: guidance
+        )
+        coreDownloadState.phase = .error(detail)
     }
 
     private func finishSetup() {
@@ -182,6 +273,7 @@ final class iOSBootstrapManager {
             LibraryDataManager.shared.resetState()
         }
         isChecking = false
+        coreDownloadState.errorPresentation = nil
         isReady = true
 
         // Check for core database updates (non-blocking, throttled 6 months)

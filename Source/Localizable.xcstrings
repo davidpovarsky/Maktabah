@@ -1,6 +1,349 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "bootstrap.status.databaseVerified": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria database integrity and schema verified" } },
+        "he": { "stringUnit": { "state": "translated", "value": "תקינות מסד הנתונים והמבנה של אוצריא אומתו" } }
+      }
+    },
+    "bootstrap.status.download.progress": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "%1$@ of %2$@" } },
+        "he": { "stringUnit": { "state": "translated", "value": "%1$@ מתוך %2$@" } }
+      }
+    },
+    "bootstrap.status.download.resuming": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Resuming from %1$@ — %2$@ of %3$@" } },
+        "he": { "stringUnit": { "state": "translated", "value": "ממשיך מ־%1$@ — %2$@ מתוך %3$@" } }
+      }
+    },
+    "bootstrap.status.extracting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Extracting the Otzaria library… %1$@ of %2$@" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מחלץ את ספריית אוצריא… %1$@ מתוך %2$@" } }
+      }
+    },
+    "bootstrap.status.installingLibrary": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Installing the Otzaria library…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מתקין את ספריית אוצריא…" } }
+      }
+    },
+    "bootstrap.status.ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The Otzaria library is ready" } },
+        "he": { "stringUnit": { "state": "translated", "value": "ספריית אוצריא מוכנה" } }
+      }
+    },
+    "bootstrap.status.verifyingDatabase": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Verifying the Otzaria database…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מאמת את מסד הנתונים של אוצריא…" } }
+      }
+    },
+    "bootstrap.status.verifyingDownload": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Verifying the Otzaria download…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מאמת את ההורדה של אוצריא…" } }
+      }
+    },
+    "bootstrap.action.cancelDownload": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Cancel Download" } },
+        "he": { "stringUnit": { "state": "translated", "value": "בטל הורדה" } }
+      }
+    },
+    "bootstrap.action.chooseDatabase": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Choose Otzaria Database…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "בחר מסד נתונים של אוצריא…" } }
+      }
+    },
+    "bootstrap.action.continueLibraryOnly": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Continue with library only" } },
+        "he": { "stringUnit": { "state": "translated", "value": "המשך עם הספרייה בלבד" } }
+      }
+    },
+    "bootstrap.action.downloadAll": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Download and install all" } },
+        "he": { "stringUnit": { "state": "translated", "value": "הורד והתקן הכול" } }
+      }
+    },
+    "bootstrap.action.retry": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Try Again" } },
+        "he": { "stringUnit": { "state": "translated", "value": "נסה שוב" } }
+      }
+    },
+    "bootstrap.component.library.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Required · about 1.55 GB" } },
+        "he": { "stringUnit": { "state": "translated", "value": "נדרש · כ־1.55 ג״ב" } }
+      }
+    },
+    "bootstrap.component.library.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria library database" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מסד ספריית אוצריא" } }
+      }
+    },
+    "bootstrap.component.otzariaSearch.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Recommended for fast offline search" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מומלץ לחיפוש מקומי מהיר" } }
+      }
+    },
+    "bootstrap.component.otzariaSearch.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria search index" } },
+        "he": { "stringUnit": { "state": "translated", "value": "אינדקס החיפוש של אוצריא" } }
+      }
+    },
+    "bootstrap.component.sharedLexical.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Recommended for Hebrew word lookup" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מומלץ לאיתור מילים בעברית" } }
+      }
+    },
+    "bootstrap.component.sharedLexical.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Shared lexical data" } },
+        "he": { "stringUnit": { "state": "translated", "value": "נתונים מילוניים משותפים" } }
+      }
+    },
+    "bootstrap.component.zayit.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Recommended for advanced offline search" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מומלץ לחיפוש מקומי מתקדם" } }
+      }
+    },
+    "bootstrap.component.zayit.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Zayit search index" } },
+        "he": { "stringUnit": { "state": "translated", "value": "אינדקס החיפוש זית" } }
+      }
+    },
+    "bootstrap.error.databaseRequired.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Install or choose an Otzaria database before continuing." } },
+        "he": { "stringUnit": { "state": "translated", "value": "יש להתקין או לבחור מסד נתונים של אוצריא לפני שממשיכים." } }
+      }
+    },
+    "bootstrap.error.databaseRequired.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria database required" } },
+        "he": { "stringUnit": { "state": "translated", "value": "נדרש מסד נתונים של אוצריא" } }
+      }
+    },
+    "bootstrap.error.generic.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Installation could not be completed" } },
+        "he": { "stringUnit": { "state": "translated", "value": "לא ניתן להשלים את ההתקנה" } }
+      }
+    },
+    "bootstrap.error.install.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Please try again, choose an existing Otzaria database, or continue with the library only." } },
+        "he": { "stringUnit": { "state": "translated", "value": "אפשר לנסות שוב, לבחור מסד נתונים קיים של אוצריא, או להמשיך עם הספרייה בלבד." } }
+      }
+    },
+    "bootstrap.error.install.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria installation failed" } },
+        "he": { "stringUnit": { "state": "translated", "value": "התקנת אוצריא נכשלה" } }
+      }
+    },
+    "bootstrap.error.savedDatabase.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Choose the Otzaria database again or download a new copy." } },
+        "he": { "stringUnit": { "state": "translated", "value": "בחר שוב את מסד הנתונים של אוצריא או הורד עותק חדש." } }
+      }
+    },
+    "bootstrap.error.savedDatabase.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The saved database could not be opened" } },
+        "he": { "stringUnit": { "state": "translated", "value": "לא ניתן לפתוח את מסד הנתונים השמור" } }
+      }
+    },
+    "bootstrap.error.selectedDatabase.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Choose a valid Otzaria database and try again." } },
+        "he": { "stringUnit": { "state": "translated", "value": "בחר מסד נתונים תקין של אוצריא ונסה שוב." } }
+      }
+    },
+    "bootstrap.error.selectedDatabase.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The selected database could not be opened" } },
+        "he": { "stringUnit": { "state": "translated", "value": "לא ניתן לפתוח את מסד הנתונים שנבחר" } }
+      }
+    },
+    "bootstrap.error.space.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria needs about %1$@ to install. %2$@ is currently available." } },
+        "he": { "stringUnit": { "state": "translated", "value": "להתקנת ספריית אוצריא נדרשים כ־%1$@, ובמכשיר פנויים כ־%2$@." } }
+      }
+    },
+    "bootstrap.error.space.guidance": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Free up space and try again, choose an existing database, or continue with the library only." } },
+        "he": { "stringUnit": { "state": "translated", "value": "אפשר לפנות מקום ולנסות שוב, לבחור מסד נתונים קיים, או להמשיך עם הספרייה בלבד." } }
+      }
+    },
+    "bootstrap.error.space.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Not enough free space" } },
+        "he": { "stringUnit": { "state": "translated", "value": "אין מספיק מקום פנוי" } }
+      }
+    },
+    "bootstrap.otzaria.badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria" } },
+        "he": { "stringUnit": { "state": "translated", "value": "אוצריא" } }
+      }
+    },
+    "bootstrap.otzaria.confirmation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Install the library and recommended search data together, or continue with the library only." } },
+        "he": { "stringUnit": { "state": "translated", "value": "אפשר להתקין יחד את הספרייה ואת נתוני החיפוש המומלצים, או להמשיך עם הספרייה בלבד." } }
+      }
+    },
+    "bootstrap.otzaria.preparing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Preparing the Otzaria library…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מכין את ספריית אוצריא…" } }
+      }
+    },
+    "bootstrap.otzaria.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria Library Required" } },
+        "he": { "stringUnit": { "state": "translated", "value": "נדרשת ספריית אוצריא" } }
+      }
+    },
+    "bootstrap.source.badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Library source" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מקור הספרייה" } }
+      }
+    },
+    "bootstrap.source.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Choose how you want to access the library. You can change this later in Settings." } },
+        "he": { "stringUnit": { "state": "translated", "value": "בחר כיצד לגשת לספרייה. אפשר לשנות זאת מאוחר יותר בהגדרות." } }
+      }
+    },
+    "bootstrap.source.otzaria.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Local library for offline use" } },
+        "he": { "stringUnit": { "state": "translated", "value": "ספרייה מקומית לשימוש ללא חיבור לאינטרנט" } }
+      }
+    },
+    "bootstrap.source.otzaria.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria" } },
+        "he": { "stringUnit": { "state": "translated", "value": "אוצריא" } }
+      }
+    },
+    "bootstrap.source.sefaria.detail": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Cloud library; an internet connection is required" } },
+        "he": { "stringUnit": { "state": "translated", "value": "ספרייה מהענן; נדרש חיבור לאינטרנט" } }
+      }
+    },
+    "bootstrap.source.sefaria.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Sefaria" } },
+        "he": { "stringUnit": { "state": "translated", "value": "ספריא" } }
+      }
+    },
+    "bootstrap.source.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Choose a library source" } },
+        "he": { "stringUnit": { "state": "translated", "value": "בחירת מקור לספרייה" } }
+      }
+    },
+    "bootstrap.status.connecting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Connecting to the Otzaria library…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מתחבר לספריית אוצריא…" } }
+      }
+    },
+    "bootstrap.status.error": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Error" } },
+        "he": { "stringUnit": { "state": "translated", "value": "שגיאה" } }
+      }
+    },
+    "bootstrap.status.otzariaSearch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Installing Otzaria search data…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מתקין את נתוני החיפוש של אוצריא…" } }
+      }
+    },
+    "bootstrap.status.sharedLexical": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Installing shared lexical data…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מתקין נתונים מילוניים משותפים…" } }
+      }
+    },
+    "bootstrap.status.zayitSearch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Installing Zayit search data…" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מתקין את נתוני החיפוש של זית…" } }
+      }
+    },
     "": {
       "shouldTranslate": false
     },
