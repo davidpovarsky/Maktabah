@@ -7,6 +7,87 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000001 /* LibraryBackendModels.swift */; };
+		CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000002 /* LibraryBackendProtocols.swift */; };
+		CE1000000000000000000003 /* BackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000003 /* BackendCoordinator.swift */; };
+		CE1000000000000000000004 /* QualifiedLocatorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000004 /* QualifiedLocatorStore.swift */; };
+		CE1000000000000000000005 /* BackendComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000005 /* BackendComposition.swift */; };
+		CE1000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000006 /* LegacyIdentityRegistry.swift */; };
+		CE1000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000007 /* MaktabahBackendAdapter.swift */; };
+		CE1000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000008 /* OfflineLibraryManagementView.swift */; };
+		CE1000000000000000000009 /* SefariaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000009 /* SefariaModels.swift */; };
+		CE100000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000A /* SefariaNetworkConfiguration.swift */; };
+		CE100000000000000000000B /* SefariaHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000B /* SefariaHTTPClient.swift */; };
+		CE100000000000000000000C /* SefariaDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000C /* SefariaDTOs.swift */; };
+		CE100000000000000000000D /* SefariaRemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000D /* SefariaRemoteStore.swift */; };
+		CE100000000000000000000E /* SefariaDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000E /* SefariaDiskCache.swift */; };
+		CE100000000000000000000F /* SefariaExportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000F /* SefariaExportModels.swift */; };
+		CE1000000000000000000010 /* SefariaOfflinePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000010 /* SefariaOfflinePaths.swift */; };
+		CE1000000000000000000011 /* SefariaPackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000011 /* SefariaPackageManager.swift */; };
+		CE1000000000000000000012 /* SefariaOfflineStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000012 /* SefariaOfflineStore.swift */; };
+		CE1000000000000000000013 /* SefariaHybridStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000013 /* SefariaHybridStore.swift */; };
+		CE1000000000000000000014 /* SefariaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000014 /* SefariaBackend.swift */; };
+		CE1000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000015 /* OtzariaGenericBackendAdapter.swift */; };
+		CE1000000000000000000016 /* OtzariaBackendActivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000016 /* OtzariaBackendActivation.swift */; };
+		CE1000000000000000000017 /* SefariaArchiveValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000017 /* SefariaArchiveValidator.swift */; };
+		CE1000000000000000000018 /* SefariaUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000018 /* SefariaUpdateManager.swift */; };
+		CE1000000000000000000019 /* SefariaNavigationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000019 /* SefariaNavigationParser.swift */; };
+		CE1000000000000000000020 /* SefariaPackagePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000020 /* SefariaPackagePolicy.swift */; };
+		CE2000000000000000000001 /* LibraryBackendModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000001 /* LibraryBackendModels.swift */; };
+		CE2000000000000000000002 /* LibraryBackendProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000002 /* LibraryBackendProtocols.swift */; };
+		CE2000000000000000000003 /* BackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000003 /* BackendCoordinator.swift */; };
+		CE2000000000000000000004 /* QualifiedLocatorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000004 /* QualifiedLocatorStore.swift */; };
+		CE2000000000000000000005 /* BackendComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000005 /* BackendComposition.swift */; };
+		CE2000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000006 /* LegacyIdentityRegistry.swift */; };
+		CE2000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000007 /* MaktabahBackendAdapter.swift */; };
+		CE2000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000008 /* OfflineLibraryManagementView.swift */; };
+		CE2000000000000000000009 /* SefariaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000009 /* SefariaModels.swift */; };
+		CE200000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000A /* SefariaNetworkConfiguration.swift */; };
+		CE200000000000000000000B /* SefariaHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000B /* SefariaHTTPClient.swift */; };
+		CE200000000000000000000C /* SefariaDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000C /* SefariaDTOs.swift */; };
+		CE200000000000000000000D /* SefariaRemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000D /* SefariaRemoteStore.swift */; };
+		CE200000000000000000000E /* SefariaDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000E /* SefariaDiskCache.swift */; };
+		CE200000000000000000000F /* SefariaExportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000F /* SefariaExportModels.swift */; };
+		CE2000000000000000000010 /* SefariaOfflinePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000010 /* SefariaOfflinePaths.swift */; };
+		CE2000000000000000000011 /* SefariaPackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000011 /* SefariaPackageManager.swift */; };
+		CE2000000000000000000012 /* SefariaOfflineStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000012 /* SefariaOfflineStore.swift */; };
+		CE2000000000000000000013 /* SefariaHybridStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000013 /* SefariaHybridStore.swift */; };
+		CE2000000000000000000014 /* SefariaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000014 /* SefariaBackend.swift */; };
+		CE2000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000015 /* OtzariaGenericBackendAdapter.swift */; };
+		CE2000000000000000000016 /* OtzariaBackendActivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000016 /* OtzariaBackendActivation.swift */; };
+		CE2000000000000000000017 /* SefariaArchiveValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000017 /* SefariaArchiveValidator.swift */; };
+		CE2000000000000000000018 /* SefariaUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000018 /* SefariaUpdateManager.swift */; };
+		CE2000000000000000000019 /* SefariaNavigationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000019 /* SefariaNavigationParser.swift */; };
+		CE2000000000000000000020 /* SefariaPackagePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000020 /* SefariaPackagePolicy.swift */; };
+		CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000001 /* LibraryBackendModels.swift */; };
+		CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000002 /* LibraryBackendProtocols.swift */; };
+		CE3000000000000000000003 /* BackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000003 /* BackendCoordinator.swift */; };
+		CE3000000000000000000004 /* QualifiedLocatorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000004 /* QualifiedLocatorStore.swift */; };
+		CE3000000000000000000005 /* BackendComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000005 /* BackendComposition.swift */; };
+		CE3000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000006 /* LegacyIdentityRegistry.swift */; };
+		CE3000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000007 /* MaktabahBackendAdapter.swift */; };
+		CE3000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000008 /* OfflineLibraryManagementView.swift */; };
+		CE3000000000000000000009 /* SefariaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000009 /* SefariaModels.swift */; };
+		CE300000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000A /* SefariaNetworkConfiguration.swift */; };
+		CE300000000000000000000B /* SefariaHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000B /* SefariaHTTPClient.swift */; };
+		CE300000000000000000000C /* SefariaDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000C /* SefariaDTOs.swift */; };
+		CE300000000000000000000D /* SefariaRemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000D /* SefariaRemoteStore.swift */; };
+		CE300000000000000000000E /* SefariaDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000E /* SefariaDiskCache.swift */; };
+		CE300000000000000000000F /* SefariaExportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000F /* SefariaExportModels.swift */; };
+		CE3000000000000000000010 /* SefariaOfflinePaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000010 /* SefariaOfflinePaths.swift */; };
+		CE3000000000000000000011 /* SefariaPackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000011 /* SefariaPackageManager.swift */; };
+		CE3000000000000000000012 /* SefariaOfflineStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000012 /* SefariaOfflineStore.swift */; };
+		CE3000000000000000000013 /* SefariaHybridStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000013 /* SefariaHybridStore.swift */; };
+		CE3000000000000000000014 /* SefariaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000014 /* SefariaBackend.swift */; };
+		CE3000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000015 /* OtzariaGenericBackendAdapter.swift */; };
+		CE3000000000000000000016 /* OtzariaBackendActivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000016 /* OtzariaBackendActivation.swift */; };
+		CE3000000000000000000017 /* SefariaArchiveValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000017 /* SefariaArchiveValidator.swift */; };
+		CE3000000000000000000018 /* SefariaUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000018 /* SefariaUpdateManager.swift */; };
+		CE3000000000000000000019 /* SefariaNavigationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000019 /* SefariaNavigationParser.swift */; };
+		CE3000000000000000000020 /* SefariaPackagePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000020 /* SefariaPackagePolicy.swift */; };
+		CEF000000000000000000003 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CEF000000000000000000002 /* ZIPFoundation */; };
+		CEF000000000000000000004 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CEF000000000000000000002 /* ZIPFoundation */; };
+		CEF000000000000000000005 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CEF000000000000000000002 /* ZIPFoundation */; };
 		DAF100000000000000000001 /* OtzariaDataProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF000000000000000000001 /* OtzariaDataProfile.swift */; };
 		DAF100000000000000000002 /* OtzariaDataProfileRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF000000000000000000002 /* OtzariaDataProfileRegistry.swift */; };
 		DAF100000000000000000003 /* OtzariaArtifactStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF000000000000000000003 /* OtzariaArtifactStorage.swift */; };
@@ -730,6 +811,32 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE0000000000000000000001 /* LibraryBackendModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendModels.swift; sourceTree = "<group>"; };
+		CE0000000000000000000002 /* LibraryBackendProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendProtocols.swift; sourceTree = "<group>"; };
+		CE0000000000000000000003 /* BackendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCoordinator.swift; sourceTree = "<group>"; };
+		CE0000000000000000000004 /* QualifiedLocatorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifiedLocatorStore.swift; sourceTree = "<group>"; };
+		CE0000000000000000000005 /* BackendComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendComposition.swift; sourceTree = "<group>"; };
+		CE0000000000000000000006 /* LegacyIdentityRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyIdentityRegistry.swift; sourceTree = "<group>"; };
+		CE0000000000000000000007 /* MaktabahBackendAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaktabahBackendAdapter.swift; sourceTree = "<group>"; };
+		CE0000000000000000000008 /* OfflineLibraryManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineLibraryManagementView.swift; sourceTree = "<group>"; };
+		CE0000000000000000000009 /* SefariaModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/SefariaModels.swift; sourceTree = "<group>"; };
+		CE000000000000000000000A /* SefariaNetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network/SefariaNetworkConfiguration.swift; sourceTree = "<group>"; };
+		CE000000000000000000000B /* SefariaHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network/SefariaHTTPClient.swift; sourceTree = "<group>"; };
+		CE000000000000000000000C /* SefariaDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network/SefariaDTOs.swift; sourceTree = "<group>"; };
+		CE000000000000000000000D /* SefariaRemoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network/SefariaRemoteStore.swift; sourceTree = "<group>"; };
+		CE000000000000000000000E /* SefariaDiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache/SefariaDiskCache.swift; sourceTree = "<group>"; };
+		CE000000000000000000000F /* SefariaExportModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline/SefariaExportModels.swift; sourceTree = "<group>"; };
+		CE0000000000000000000010 /* SefariaOfflinePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline/SefariaOfflinePaths.swift; sourceTree = "<group>"; };
+		CE0000000000000000000011 /* SefariaPackageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloads/SefariaPackageManager.swift; sourceTree = "<group>"; };
+		CE0000000000000000000012 /* SefariaOfflineStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline/SefariaOfflineStore.swift; sourceTree = "<group>"; };
+		CE0000000000000000000013 /* SefariaHybridStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/SefariaHybridStore.swift; sourceTree = "<group>"; };
+		CE0000000000000000000014 /* SefariaBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/SefariaBackend.swift; sourceTree = "<group>"; };
+		CE0000000000000000000015 /* OtzariaGenericBackendAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility/OtzariaGenericBackendAdapter.swift; sourceTree = "<group>"; };
+		CE0000000000000000000016 /* OtzariaBackendActivation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility/OtzariaBackendActivation.swift; sourceTree = "<group>"; };
+		CE0000000000000000000017 /* SefariaArchiveValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline/SefariaArchiveValidator.swift; sourceTree = "<group>"; };
+		CE0000000000000000000018 /* SefariaUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloads/SefariaUpdateManager.swift; sourceTree = "<group>"; };
+		CE0000000000000000000019 /* SefariaNavigationParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/SefariaNavigationParser.swift; sourceTree = "<group>"; };
+		CE0000000000000000000020 /* SefariaPackagePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloads/SefariaPackagePolicy.swift; sourceTree = "<group>"; };
 		DAF000000000000000000001 /* OtzariaDataProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProfiles/OtzariaDataProfile.swift; sourceTree = "<group>"; };
 		DAF000000000000000000002 /* OtzariaDataProfileRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProfiles/OtzariaDataProfileRegistry.swift; sourceTree = "<group>"; };
 		DAF000000000000000000003 /* OtzariaArtifactStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProfiles/OtzariaArtifactStorage.swift; sourceTree = "<group>"; };
@@ -1161,6 +1268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF000000000000000000003 /* ZIPFoundation in Frameworks */,
 				4B88322F2F7EB3A7004C6213 /* libzstd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1169,6 +1277,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF000000000000000000004 /* ZIPFoundation in Frameworks */,
 				4B7C91322F834CF700454BE1 /* Sparkle in Frameworks */,
 				4B7C91092F83494200454BE1 /* libzstd in Frameworks */,
 			);
@@ -1178,6 +1287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF000000000000000000005 /* ZIPFoundation in Frameworks */,
 				F30577492FA46222005732C6 /* libzstd in Frameworks */,
 				F863781C27AE47117CE50EC6 /* OtzariaSearchEngine.xcframework in Frameworks */,
 				84D12781C078EB5DB21319C0 /* MaktabahZayitSearch.xcframework in Frameworks */,
@@ -1187,9 +1297,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CEEE00000000000000000001 /* LibraryBackend */ = {
+			isa = PBXGroup;
+			children = (
+				CE0000000000000000000001 /* LibraryBackendModels.swift */,
+				CE0000000000000000000002 /* LibraryBackendProtocols.swift */,
+				CE0000000000000000000003 /* BackendCoordinator.swift */,
+				CE0000000000000000000004 /* QualifiedLocatorStore.swift */,
+				CE0000000000000000000005 /* BackendComposition.swift */,
+				CE0000000000000000000006 /* LegacyIdentityRegistry.swift */,
+				CE0000000000000000000007 /* MaktabahBackendAdapter.swift */,
+				CE0000000000000000000008 /* OfflineLibraryManagementView.swift */,
+			);
+			path = LibraryBackend;
+			sourceTree = "<group>";
+		};
+		CEEE00000000000000000002 /* Sefaria */ = {
+			isa = PBXGroup;
+			children = (
+				CE0000000000000000000009 /* SefariaModels.swift */,
+				CE0000000000000000000019 /* SefariaNavigationParser.swift */,
+				CE000000000000000000000A /* SefariaNetworkConfiguration.swift */,
+				CE000000000000000000000B /* SefariaHTTPClient.swift */,
+				CE000000000000000000000C /* SefariaDTOs.swift */,
+				CE000000000000000000000D /* SefariaRemoteStore.swift */,
+				CE000000000000000000000E /* SefariaDiskCache.swift */,
+				CE000000000000000000000F /* SefariaExportModels.swift */,
+				CE0000000000000000000010 /* SefariaOfflinePaths.swift */,
+				CE0000000000000000000011 /* SefariaPackageManager.swift */,
+				CE0000000000000000000012 /* SefariaOfflineStore.swift */,
+				CE0000000000000000000017 /* SefariaArchiveValidator.swift */,
+				CE0000000000000000000018 /* SefariaUpdateManager.swift */,
+				CE0000000000000000000020 /* SefariaPackagePolicy.swift */,
+				CE0000000000000000000013 /* SefariaHybridStore.swift */,
+				CE0000000000000000000014 /* SefariaBackend.swift */,
+			);
+			path = Sefaria;
+			sourceTree = "<group>";
+		};
 		0A7AF0000000000000000000 /* Otzaria */ = {
 			isa = PBXGroup;
 			children = (
+				CE0000000000000000000015 /* OtzariaGenericBackendAdapter.swift */,
+				CE0000000000000000000016 /* OtzariaBackendActivation.swift */,
 				DAF000000000000000000001 /* OtzariaDataProfile.swift */,
 				DAF000000000000000000002 /* OtzariaDataProfileRegistry.swift */,
 				DAF000000000000000000003 /* OtzariaArtifactStorage.swift */,
@@ -1386,6 +1536,8 @@
 		4B32022A2EDAFE85003B95D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CEEE00000000000000000001 /* LibraryBackend */,
+				CEEE00000000000000000002 /* Sefaria */,
 				0A7AF0000000000000000000 /* Otzaria */,
 				4B0139E52EEB3C9900424CFA /* Add-On View */,
 				4B6100DB2EFA720F00CCBED6 /* Al-Qur'an */,
@@ -2018,6 +2170,7 @@
 			);
 			name = Maktabah;
 			packageProductDependencies = (
+				CEF000000000000000000002 /* ZIPFoundation */,
 				4B88322E2F7EB3A7004C6213 /* libzstd */,
 			);
 			productName = maktab;
@@ -2038,6 +2191,7 @@
 			);
 			name = "Maktabah-Direct";
 			packageProductDependencies = (
+				CEF000000000000000000002 /* ZIPFoundation */,
 				4B7C90A32F83494200454BE1 /* libzstd */,
 				4B7C91312F834CF700454BE1 /* Sparkle */,
 			);
@@ -2059,6 +2213,7 @@
 			);
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
+				CEF000000000000000000002 /* ZIPFoundation */,
 				F30576E02FA46222005732C6 /* libzstd */,
 			);
 			productName = maktab;
@@ -2093,6 +2248,7 @@
 			);
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
+				CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
 				4B7C91302F834CF700454BE1 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
@@ -2218,6 +2374,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+				CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+				CE1000000000000000000003 /* BackendCoordinator.swift in Sources */,
+				CE1000000000000000000004 /* QualifiedLocatorStore.swift in Sources */,
+				CE1000000000000000000005 /* BackendComposition.swift in Sources */,
+				CE1000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */,
+				CE1000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */,
+				CE1000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */,
+				CE1000000000000000000009 /* SefariaModels.swift in Sources */,
+				CE100000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
+				CE100000000000000000000B /* SefariaHTTPClient.swift in Sources */,
+				CE100000000000000000000C /* SefariaDTOs.swift in Sources */,
+				CE100000000000000000000D /* SefariaRemoteStore.swift in Sources */,
+				CE100000000000000000000E /* SefariaDiskCache.swift in Sources */,
+				CE100000000000000000000F /* SefariaExportModels.swift in Sources */,
+				CE1000000000000000000010 /* SefariaOfflinePaths.swift in Sources */,
+				CE1000000000000000000011 /* SefariaPackageManager.swift in Sources */,
+				CE1000000000000000000012 /* SefariaOfflineStore.swift in Sources */,
+				CE1000000000000000000013 /* SefariaHybridStore.swift in Sources */,
+				CE1000000000000000000014 /* SefariaBackend.swift in Sources */,
+				CE1000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				CE1000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
+				CE1000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
+				CE1000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
+				CE1000000000000000000019 /* SefariaNavigationParser.swift in Sources */,
+				CE1000000000000000000020 /* SefariaPackagePolicy.swift in Sources */,
 				4BD6C33C2EE6AA7F008684E3 /* MainWindow.swift in Sources */,
 				4BDAB98C2F69E860007D0945 /* SettingsView.swift in Sources */,
 				4B01CA302EFD366E002A66FA /* AppConfig.swift in Sources */,
@@ -2389,6 +2571,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+				CE2000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+				CE2000000000000000000003 /* BackendCoordinator.swift in Sources */,
+				CE2000000000000000000004 /* QualifiedLocatorStore.swift in Sources */,
+				CE2000000000000000000005 /* BackendComposition.swift in Sources */,
+				CE2000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */,
+				CE2000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */,
+				CE2000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */,
+				CE2000000000000000000009 /* SefariaModels.swift in Sources */,
+				CE200000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
+				CE200000000000000000000B /* SefariaHTTPClient.swift in Sources */,
+				CE200000000000000000000C /* SefariaDTOs.swift in Sources */,
+				CE200000000000000000000D /* SefariaRemoteStore.swift in Sources */,
+				CE200000000000000000000E /* SefariaDiskCache.swift in Sources */,
+				CE200000000000000000000F /* SefariaExportModels.swift in Sources */,
+				CE2000000000000000000010 /* SefariaOfflinePaths.swift in Sources */,
+				CE2000000000000000000011 /* SefariaPackageManager.swift in Sources */,
+				CE2000000000000000000012 /* SefariaOfflineStore.swift in Sources */,
+				CE2000000000000000000013 /* SefariaHybridStore.swift in Sources */,
+				CE2000000000000000000014 /* SefariaBackend.swift in Sources */,
+				CE2000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				CE2000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
+				CE2000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
+				CE2000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
+				CE2000000000000000000019 /* SefariaNavigationParser.swift in Sources */,
+				CE2000000000000000000020 /* SefariaPackagePolicy.swift in Sources */,
 				4B7C90A62F83494200454BE1 /* MainWindow.swift in Sources */,
 				4B7C90A72F83494200454BE1 /* SettingsView.swift in Sources */,
 				4B7C90A82F83494200454BE1 /* AppConfig.swift in Sources */,
@@ -2562,6 +2770,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,
+				CE3000000000000000000004 /* QualifiedLocatorStore.swift in Sources */,
+				CE3000000000000000000005 /* BackendComposition.swift in Sources */,
+				CE3000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */,
+				CE3000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */,
+				CE3000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */,
+				CE3000000000000000000009 /* SefariaModels.swift in Sources */,
+				CE300000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
+				CE300000000000000000000B /* SefariaHTTPClient.swift in Sources */,
+				CE300000000000000000000C /* SefariaDTOs.swift in Sources */,
+				CE300000000000000000000D /* SefariaRemoteStore.swift in Sources */,
+				CE300000000000000000000E /* SefariaDiskCache.swift in Sources */,
+				CE300000000000000000000F /* SefariaExportModels.swift in Sources */,
+				CE3000000000000000000010 /* SefariaOfflinePaths.swift in Sources */,
+				CE3000000000000000000011 /* SefariaPackageManager.swift in Sources */,
+				CE3000000000000000000012 /* SefariaOfflineStore.swift in Sources */,
+				CE3000000000000000000013 /* SefariaHybridStore.swift in Sources */,
+				CE3000000000000000000014 /* SefariaBackend.swift in Sources */,
+				CE3000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				CE3000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
+				CE3000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
+				CE3000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
+				CE3000000000000000000019 /* SefariaNavigationParser.swift in Sources */,
+				CE3000000000000000000020 /* SefariaPackagePolicy.swift in Sources */,
 				DAF100000000000000000001 /* OtzariaDataProfile.swift in Sources */,
 				DAF100000000000000000002 /* OtzariaDataProfileRegistry.swift in Sources */,
 				DAF100000000000000000003 /* OtzariaArtifactStorage.swift in Sources */,
@@ -3518,6 +3752,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.9.20;
+			};
+		};
 		4B7C90A42F83494200454BE1 /* XCRemoteSwiftPackageReference "zstd" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/zstd.git";
@@ -3553,6 +3795,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CEF000000000000000000002 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
 		4B7C90A32F83494200454BE1 /* libzstd */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4B7C90A42F83494200454BE1 /* XCRemoteSwiftPackageReference "zstd" */;
