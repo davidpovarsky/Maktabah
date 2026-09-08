@@ -2,16 +2,71 @@ name: Apply ChavrusaText CloudKit Schema
 
 on:
   workflow_dispatch:
+    inputs:
+      operation:
+        description: CloudKit schema operation
+        required: true
+        default: verify-production
+        type: choice
+        options:
+          - verify-production
+          - import-development
 
 permissions:
   contents: read
 
 concurrency:
-  group: chavrusatext-cloudkit-schema-${{ github.ref }}
+  group: chavrusatext-cloudkit-schema-${{ github.ref }}-${{ inputs.operation }}
   cancel-in-progress: false
 
 jobs:
+  verify-production:
+    if: inputs.operation == 'verify-production'
+    name: Export and verify Production schema
+    runs-on: macos-26
+    timeout-minutes: 15
+    env:
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      CLOUDKIT_MANAGEMENT_TOKEN: ${{ secrets.CLOUDKIT_MANAGEMENT_TOKEN }}
+      CLOUDKIT_CONTAINER_ID: iCloud.com.davidpovarsky.chavrusatext
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required secrets and cktool
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${APPLE_TEAM_ID:-}" || { echo "::error::Missing APPLE_TEAM_ID"; exit 1; }
+          test -n "${CLOUDKIT_MANAGEMENT_TOKEN:-}" || { echo "::error::Missing CLOUDKIT_MANAGEMENT_TOKEN"; exit 1; }
+          xcrun cktool export-schema --help >/dev/null
+
+      - name: Export actual Production schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun cktool export-schema \
+            --team-id "$APPLE_TEAM_ID" \
+            --container-id "iCloud.com.davidpovarsky.chavrusatext" \
+            --environment production \
+            --output-file production.ckdb
+          test -s production.ckdb
+
+      - name: Verify required record types and custom fields semantically
+        run: python3 Scripts/CI/verify-cloudkit-production-schema.py production.ckdb
+
+      - name: Upload exported Production schema
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chavrusatext-cloudkit-production-schema-${{ github.run_id }}
+          path: production.ckdb
+          if-no-files-found: warn
+          retention-days: 30
+
   validate-and-import-development:
+    if: inputs.operation == 'import-development'
     name: Validate and import Development schema
     runs-on: macos-26
     timeout-minutes: 20
