@@ -1,0 +1,52 @@
+DEFINE SCHEMA
+
+// ChavrusaText CloudKit schema.
+// The app currently stores these records in the private database, so no
+// public-database GRANT clauses or query indexes are required here.
+
+RECORD TYPE Annotation (
+    bkId INT64,
+    contentId INT64,
+    rangeLocation INT64,
+    rangeLength INT64,
+    rangeDiacLocation INT64,
+    rangeDiacLength INT64,
+    colorHex STRING,
+    type INT64,
+    note STRING,
+    createdAt INT64,
+    context STRING,
+    page INT64,
+    part INT64,
+    lastModified INT64,
+    tags LIST<STRING>,
+    backendLocator STRING
+);
+
+RECORD TYPE SearchFolder (
+    name STRING,
+    lastModified INT64,
+    parentCkRecordId STRING
+);
+
+RECORD TYPE SearchResult (
+    name STRING,
+    query STRING,
+    searchMode INT64,
+    nearDistance INT64,
+    archive INT64,
+    bkId INT64,
+    contentId STRING,
+    lastModified INT64,
+    folderCkRecordId STRING
+);
+
+RECORD TYPE ReadingEntry (
+    bookId INT64,
+    lastContentId INT64,
+    lastOpenedAt TIMESTAMP,
+    favoritedAt TIMESTAMP,
+    positionUpdatedAt TIMESTAMP,
+    isFavorite INT64,
+    lastModified INT64
+);
