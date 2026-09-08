@@ -88,8 +88,11 @@ def find_bundle_id(client: AppStoreConnectClient, identifier: str) -> dict:
         raise SystemExit(1)
     bundle = exact[0]
     platform = bundle.get("attributes", {}).get("platform")
-    if platform != "IOS":
-        print(f"::error::Bundle ID {identifier} has platform {platform}, expected IOS")
+    if platform not in {"IOS", "UNIVERSAL"}:
+        print(
+            f"::error::Bundle ID {identifier} has platform {platform}, "
+            "expected IOS or UNIVERSAL"
+        )
         raise SystemExit(1)
     return bundle
 
