@@ -351,6 +351,7 @@ final class SearchViewModel: ViewModelBase {
     #endif
 
     /// Resolve `BooksData` dari `SearchResultItem`. Returns nil jika tidak ditemukan.
+    @MainActor
     func resolveBook(from result: SearchResultItem) -> BooksData? {
         if let locator = result.backendLocator {
             return MaktabahBackendAdapter.resolveBook(for: locator, in: ldm)

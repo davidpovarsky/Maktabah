@@ -41,8 +41,10 @@ func runNavigationAndPackageTests() throws {
     try Data("old".utf8).write(to: target)
     try Data("new".utf8).write(to: staged)
     try SefariaFileTransaction.atomicReplace(staged, target: target)
-    try expect(try Data(contentsOf: target) == Data("new".utf8), "atomic replacement")
+    let replacedData = try Data(contentsOf: target)
+    try expect(replacedData == Data("new".utf8), "atomic replacement")
     let interrupted = directory.appendingPathComponent("interrupted")
     try Data("partial".utf8).write(to: interrupted)
-    try expect(try Data(contentsOf: target) == Data("new".utf8), "staging cannot corrupt known-good target")
+    let preservedData = try Data(contentsOf: target)
+    try expect(preservedData == Data("new".utf8), "staging cannot corrupt known-good target")
 }
