@@ -219,7 +219,6 @@ jobs:
           echo "Using CFBundleVersion $build_number"
 
       - name: Restore App Store Connect API key
-        if: ${{ inputs.upload_to_testflight }}
         shell: bash
         env:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
@@ -240,8 +239,7 @@ jobs:
           echo "ASC_ISSUER_ID=$ASC_ISSUER_ID_VALUE" >> "$GITHUB_ENV"
           echo "ASC_KEY_PATH=$key_path" >> "$GITHUB_ENV"
 
-      - name: Verify App Store Connect app record exists
-        if: ${{ inputs.upload_to_testflight }}
+      - name: Verify App Store Connect app and registered Bundle ID
         shell: bash
         run: |
           set -Eeuo pipefail
@@ -287,19 +285,24 @@ jobs:
           print(f"Found App Store Connect app record: {attributes.get('name', '<unnamed>')} ({bundle_id}) [ID: {apps[0].get('id')}]")
           PY
 
-      - name: Import distribution certificate and provisioning profile
+          "$RUNNER_TEMP/asc-venv/bin/python" Scripts/CI/app-store-connect-provisioning.py inspect \
+            --key-path "$ASC_KEY_PATH" \
+            --key-id "$ASC_KEY_ID" \
+            --issuer-id "$ASC_ISSUER_ID" \
+            --bundle-id "$APP_BUNDLE_ID"
+
+      - name: Import Apple Distribution certificate
         shell: bash
         env:
           APPLE_CERTIFICATE_P12_B64: ${{ secrets.APPLE_CERTIFICATE_P12_B64 }}
           APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          APPLE_MAIN_PROVISIONING_PROFILE_B64: ${{ secrets.APPLE_MAIN_PROVISIONING_PROFILE_B64 }}
         run: |
           set -Eeuo pipefail
           if [ -z "${TEAM_ID:-}" ]; then
             echo "::error::Required repository secret APPLE_TEAM_ID is empty"
             exit 1
           fi
-          for required in APPLE_CERTIFICATE_P12_B64 APPLE_CERTIFICATE_PASSWORD APPLE_MAIN_PROVISIONING_PROFILE_B64; do
+          for required in APPLE_CERTIFICATE_P12_B64 APPLE_CERTIFICATE_PASSWORD; do
             if [ -z "${!required:-}" ]; then
               echo "::error::Required signing secret $required is empty"
               exit 1
@@ -309,11 +312,9 @@ jobs:
           keychain="$RUNNER_TEMP/chavrusatext-signing.keychain-db"
           keychain_password="$(openssl rand -hex 24)"
           certificate="$RUNNER_TEMP/apple-distribution.p12"
-          app_profile="$RUNNER_TEMP/ChavrusaText_App_Store.mobileprovision"
           mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
 
           printf '%s' "$APPLE_CERTIFICATE_P12_B64" | base64 --decode > "$certificate"
-          printf '%s' "$APPLE_MAIN_PROVISIONING_PROFILE_B64" | base64 --decode > "$app_profile"
 
           security create-keychain -p "$keychain_password" "$keychain"
           security set-keychain-settings -lut 21600 "$keychain"
@@ -323,79 +324,146 @@ jobs:
           security list-keychains -d user -s "$keychain"
           security default-keychain -d user -s "$keychain"
           security find-identity -v -p codesigning "$keychain" | grep 'Apple Distribution'
-
-          # Validate provisioning profile
-          security cms -D -i "$app_profile" > "$RUNNER_TEMP/app-profile.plist"
-          uuid=$(/usr/libexec/PlistBuddy -c 'Print :UUID' "$RUNNER_TEMP/app-profile.plist")
-          name=$(/usr/libexec/PlistBuddy -c 'Print :Name' "$RUNNER_TEMP/app-profile.plist")
-          team=$(/usr/libexec/PlistBuddy -c 'Print :TeamIdentifier:0' "$RUNNER_TEMP/app-profile.plist")
-          app_identifier=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:application-identifier' "$RUNNER_TEMP/app-profile.plist")
-          get_task_allow=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:get-task-allow' "$RUNNER_TEMP/app-profile.plist")
-
-          test "$team" = "$TEAM_ID"
-          case "$app_identifier" in
-            *."$APP_BUNDLE_ID") ;;
-            *) echo "::error::Profile $name is for $app_identifier, expected $APP_BUNDLE_ID"; exit 1 ;;
-          esac
-          test "$get_task_allow" = false
-
-          echo "Validating provisioning profile App Group entitlement..."
-          groups=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.security.application-groups' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
-          if ! grep -Fq "group.com.davidpovarsky.chavrusatext" <<< "$groups"; then
-            echo "::error::Provisioning profile $name is missing required App Group 'group.com.davidpovarsky.chavrusatext'"
-            exit 1
-          fi
-          if ! grep -Fq "group.com.davidpovarsky.itorah" <<< "$groups"; then
-            echo "::error::Provisioning profile $name is missing required App Group 'group.com.davidpovarsky.itorah'"
-            exit 1
-          fi
-
-          echo "Validating provisioning profile iCloud and push entitlements..."
-          profile_containers=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.icloud-container-identifiers' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
-          grep -Fq "iCloud.com.davidpovarsky.chavrusatext" <<< "$profile_containers" || {
-            echo "::error::Provisioning profile $name is missing iCloud container 'iCloud.com.davidpovarsky.chavrusatext'"
-            exit 1
-          }
-          profile_services=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.icloud-services' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
-          grep -Fq "CloudKit" <<< "$profile_services" || { echo "::error::Provisioning profile $name is missing CloudKit"; exit 1; }
-          grep -Fq "CloudDocuments" <<< "$profile_services" || { echo "::error::Provisioning profile $name is missing iCloud Documents"; exit 1; }
-          profile_ubiquity=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.ubiquity-container-identifiers' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
-          grep -Fq "iCloud.com.davidpovarsky.chavrusatext" <<< "$profile_ubiquity" || { echo "::error::Provisioning profile $name is missing the ubiquity container"; exit 1; }
-          test "$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.ubiquity-kvstore-identifier' "$RUNNER_TEMP/app-profile.plist")" = "$TEAM_ID.$APP_BUNDLE_ID"
-          test "$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:aps-environment' "$RUNNER_TEMP/app-profile.plist")" = "production"
-
-          if /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' "$RUNNER_TEMP/app-profile.plist" >/dev/null 2>&1; then
-            echo "::error::Profile $name is device-limited, not an App Store distribution profile"
-            exit 1
-          fi
-          if /usr/libexec/PlistBuddy -c 'Print :ProvisionsAllDevices' "$RUNNER_TEMP/app-profile.plist" >/dev/null 2>&1; then
-            echo "::error::Profile $name is an enterprise profile, not an App Store distribution profile"
-            exit 1
-          fi
-
-          cp "$app_profile" "$HOME/Library/MobileDevice/Provisioning Profiles/$uuid.mobileprovision"
-          echo "APP_PROFILE_SPECIFIER=$name" >> "$GITHUB_ENV"
-          echo "APP_PROFILE_UUID=$uuid" >> "$GITHUB_ENV"
+          distribution_cert_serial=$(security find-certificate -c 'Apple Distribution' -p "$keychain" | openssl x509 -noout -serial | cut -d= -f2)
+          test -n "$distribution_cert_serial"
+          echo "DISTRIBUTION_CERT_SERIAL=$distribution_cert_serial" >> "$GITHUB_ENV"
           echo "SIGNING_KEYCHAIN=$keychain" >> "$GITHUB_ENV"
-          echo "Successfully installed profile $name ($uuid)"
+          echo "Imported Apple Distribution certificate with serial $distribution_cert_serial"
+
+      - name: Obtain and verify App Store provisioning before archive
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          mkdir -p "$BUILD_DIR/logs"
+          container_id="iCloud.com.davidpovarsky.chavrusatext"
+          automatic_derived="$BUILD_DIR/DerivedDataProvisioningAutomatic"
+          auth_args=(
+            -allowProvisioningUpdates
+            -authenticationKeyPath "$ASC_KEY_PATH"
+            -authenticationKeyID "$ASC_KEY_ID"
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+          )
+
+          verify_signed_app() {
+            local app="$1"
+            local prefix="$2"
+            test -d "$app"
+            test -f "$app/embedded.mobileprovision"
+            security cms -D -i "$app/embedded.mobileprovision" > "$BUILD_DIR/logs/${prefix}-profile.plist"
+            codesign --verify --deep --strict --verbose=2 "$app"
+            codesign --display --entitlements - --xml "$app" > "$BUILD_DIR/logs/${prefix}-app-entitlements.plist"
+            python3 Scripts/CI/verify-ios-signing-entitlements.py \
+              --profile-plist "$BUILD_DIR/logs/${prefix}-profile.plist" \
+              --app-entitlements "$BUILD_DIR/logs/${prefix}-app-entitlements.plist" \
+              --team-id "$TEAM_ID" \
+              --bundle-id "$APP_BUNDLE_ID" \
+              --container-id "$container_id"
+          }
+
+          automatic_ok=false
+          if xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "$automatic_derived" \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            DEVELOPMENT_TEAM="$TEAM_ID" \
+            CODE_SIGN_STYLE=Automatic \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            "${auth_args[@]}" \
+            | tee "$BUILD_DIR/logs/automatic-provisioning-build.log"; then
+            automatic_app=$(find "$automatic_derived/Build/Products/Release-iphoneos" -maxdepth 1 -type d -name '*.app' -print -quit)
+            if [ -n "$automatic_app" ] && verify_signed_app "$automatic_app" automatic; then
+              automatic_ok=true
+            fi
+          fi
+
+          if [ "$automatic_ok" = true ]; then
+            echo "SIGNING_MODE=Automatic" >> "$GITHUB_ENV"
+            echo "Provisioning method: Xcode automatic signing with App Store Connect API authentication"
+            exit 0
+          fi
+
+          echo "Automatic provisioning did not produce a qualifying App Store profile; using official App Store Connect provisioning API fallback."
+          generated_profile="$RUNNER_TEMP/ChavrusaText_App_Store_Automated.mobileprovision"
+          profile_metadata="$RUNNER_TEMP/generated-profile.json"
+          "$RUNNER_TEMP/asc-venv/bin/python" Scripts/CI/app-store-connect-provisioning.py create-profile \
+            --key-path "$ASC_KEY_PATH" \
+            --key-id "$ASC_KEY_ID" \
+            --issuer-id "$ASC_ISSUER_ID" \
+            --bundle-id "$APP_BUNDLE_ID" \
+            --certificate-serial "$DISTRIBUTION_CERT_SERIAL" \
+            --output "$generated_profile" \
+            --metadata-output "$profile_metadata"
+
+          security cms -D -i "$generated_profile" > "$RUNNER_TEMP/generated-profile.plist"
+          profile_uuid=$(/usr/libexec/PlistBuddy -c 'Print :UUID' "$RUNNER_TEMP/generated-profile.plist")
+          profile_name=$(/usr/libexec/PlistBuddy -c 'Print :Name' "$RUNNER_TEMP/generated-profile.plist")
+          cp "$generated_profile" "$HOME/Library/MobileDevice/Provisioning Profiles/$profile_uuid.mobileprovision"
+
+          manual_derived="$BUILD_DIR/DerivedDataProvisioningManual"
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "$manual_derived" \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            DEVELOPMENT_TEAM="$TEAM_ID" \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="$profile_name" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            | tee "$BUILD_DIR/logs/api-profile-build.log"
+          manual_app=$(find "$manual_derived/Build/Products/Release-iphoneos" -maxdepth 1 -type d -name '*.app' -print -quit)
+          verify_signed_app "$manual_app" api-generated
+
+          echo "SIGNING_MODE=Manual" >> "$GITHUB_ENV"
+          echo "APP_PROFILE_SPECIFIER=$profile_name" >> "$GITHUB_ENV"
+          echo "APP_PROFILE_UUID=$profile_uuid" >> "$GITHUB_ENV"
+          echo "Provisioning method: App Store Connect API-created IOS_APP_STORE profile"
 
       - name: Signing preflight check
         shell: bash
         run: |
           set -Eeuo pipefail
           mkdir -p "$BUILD_DIR/logs"
-          xcodebuild -project "$PROJECT_PATH" -target "$SCHEME" \
+          signing_args=(
+            DEVELOPMENT_TEAM="$TEAM_ID"
+            CODE_SIGN_IDENTITY="Apple Distribution"
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
+            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE"
+          )
+          if [ "$SIGNING_MODE" = Automatic ]; then
+            signing_args+=(
+              CODE_SIGN_STYLE=Automatic
+              PROVISIONING_PROFILE_SPECIFIER=
+              -allowProvisioningUpdates
+              -authenticationKeyPath "$ASC_KEY_PATH"
+              -authenticationKeyID "$ASC_KEY_ID"
+              -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+            )
+          else
+            signing_args+=(CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER="$APP_PROFILE_SPECIFIER")
+          fi
+
+          xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" \
             -configuration Release -destination 'generic/platform=iOS' \
-            DEVELOPMENT_TEAM="$TEAM_ID" CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            PROVISIONING_PROFILE_SPECIFIER="$APP_PROFILE_SPECIFIER" \
-            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
-            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            "${signing_args[@]}" \
             -showBuildSettings | tee "$BUILD_DIR/logs/ios-signing-build-settings.log"
 
           grep -E "^\s*PRODUCT_BUNDLE_IDENTIFIER = $APP_BUNDLE_ID$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
           grep -E "^\s*DEVELOPMENT_TEAM = $TEAM_ID$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
-          grep -E "^\s*PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE_SPECIFIER$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
+          if [ "$SIGNING_MODE" = Manual ]; then
+            grep -E "^\s*PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE_SPECIFIER$" "$BUILD_DIR/logs/ios-signing-build-settings.log"
+          fi
           grep -E '^\s*MARKETING_VERSION = 1\.0\.0$' "$BUILD_DIR/logs/ios-signing-build-settings.log"
           grep -E '^\s*CODE_SIGN_ENTITLEMENTS = Source/ChavrusaText-iOS\.entitlements$' "$BUILD_DIR/logs/ios-signing-build-settings.log"
 
@@ -405,6 +473,25 @@ jobs:
           set -Eeuo pipefail
           JOBS="$(sysctl -n hw.ncpu)"
           [ "$JOBS" -le 8 ] || JOBS=8
+          signing_args=(
+            DEVELOPMENT_TEAM="$TEAM_ID"
+            CODE_SIGN_IDENTITY="Apple Distribution"
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
+            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE"
+          )
+          if [ "$SIGNING_MODE" = Automatic ]; then
+            signing_args+=(
+              CODE_SIGN_STYLE=Automatic
+              PROVISIONING_PROFILE_SPECIFIER=
+              -allowProvisioningUpdates
+              -authenticationKeyPath "$ASC_KEY_PATH"
+              -authenticationKeyID "$ASC_KEY_ID"
+              -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+            )
+          else
+            signing_args+=(CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER="$APP_PROFILE_SPECIFIER")
+          fi
+
           xcodebuild archive \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
@@ -415,19 +502,39 @@ jobs:
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
             -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
-            DEVELOPMENT_TEAM="$TEAM_ID" \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            PROVISIONING_PROFILE_SPECIFIER="$APP_PROFILE_SPECIFIER" \
-            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
-            OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            "${signing_args[@]}" \
             | tee "$BUILD_DIR/logs/archive.log"
+
+      - name: Verify archived profile and app entitlements
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          app="$BUILD_DIR/Maktabah-iOS.xcarchive/Products/Applications/$PRODUCT_NAME.app"
+          test -d "$app"
+          security cms -D -i "$app/embedded.mobileprovision" > "$BUILD_DIR/logs/archive-profile.plist"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          codesign --display --entitlements - --xml "$app" > "$BUILD_DIR/logs/archive-app-entitlements.plist"
+          python3 Scripts/CI/verify-ios-signing-entitlements.py \
+            --profile-plist "$BUILD_DIR/logs/archive-profile.plist" \
+            --app-entitlements "$BUILD_DIR/logs/archive-app-entitlements.plist" \
+            --team-id "$TEAM_ID" \
+            --bundle-id "$APP_BUNDLE_ID" \
+            --container-id "iCloud.com.davidpovarsky.chavrusatext"
 
       - name: Export App Store Connect IPA
         shell: bash
         run: |
           set -Eeuo pipefail
           export_options="$RUNNER_TEMP/ExportOptions.plist"
+          provisioning_profiles=""
+          if [ "$SIGNING_MODE" = Manual ]; then
+            provisioning_profiles="
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>$APP_BUNDLE_ID</key>
+              <string>$APP_PROFILE_SPECIFIER</string>
+            </dict>"
+          fi
           cat > "$export_options" <<PLIST
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -438,7 +545,7 @@ jobs:
             <key>destination</key>
             <string>export</string>
             <key>signingStyle</key>
-            <string>manual</string>
+            <string>$(echo "$SIGNING_MODE" | tr '[:upper:]' '[:lower:]')</string>
             <key>signingCertificate</key>
             <string>Apple Distribution</string>
             <key>teamID</key>
@@ -449,11 +556,7 @@ jobs:
             <true/>
             <key>uploadSymbols</key>
             <true/>
-            <key>provisioningProfiles</key>
-            <dict>
-              <key>$APP_BUNDLE_ID</key>
-              <string>$APP_PROFILE_SPECIFIER</string>
-            </dict>
+          $provisioning_profiles
           </dict>
           </plist>
           PLIST
@@ -464,6 +567,10 @@ jobs:
             -archivePath "$BUILD_DIR/Maktabah-iOS.xcarchive" \
             -exportPath "$BUILD_DIR/export" \
             -exportOptionsPlist "$export_options" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
             | tee "$BUILD_DIR/logs/export.log"
 
           raw_ipa=$(find "$BUILD_DIR/export" -maxdepth 1 -type f -name '*.ipa' -print -quit)
@@ -503,7 +610,14 @@ jobs:
 
           echo "Validating entitlements..."
           codesign --display --entitlements - --xml "$app" > "$BUILD_DIR/logs/app-entitlements.plist"
+          security cms -D -i "$app/embedded.mobileprovision" > "$BUILD_DIR/logs/exported-profile.plist"
           cat "$BUILD_DIR/logs/app-entitlements.plist"
+          python3 Scripts/CI/verify-ios-signing-entitlements.py \
+            --profile-plist "$BUILD_DIR/logs/exported-profile.plist" \
+            --app-entitlements "$BUILD_DIR/logs/app-entitlements.plist" \
+            --team-id "$TEAM_ID" \
+            --bundle-id "$APP_BUNDLE_ID" \
+            --container-id "iCloud.com.davidpovarsky.chavrusatext"
           test "$(/usr/libexec/PlistBuddy -c 'Print :com.apple.developer.team-identifier' "$BUILD_DIR/logs/app-entitlements.plist")" = "$TEAM_ID"
 
           case "$(/usr/libexec/PlistBuddy -c 'Print :application-identifier' "$BUILD_DIR/logs/app-entitlements.plist")" in
