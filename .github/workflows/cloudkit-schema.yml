@@ -1,0 +1,67 @@
+name: Apply ChavrusaText CloudKit Schema
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chavrusatext-cloudkit-schema-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-and-import-development:
+    name: Validate and import Development schema
+    runs-on: macos-26
+    timeout-minutes: 20
+    env:
+      TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      CLOUDKIT_MANAGEMENT_TOKEN: ${{ secrets.CLOUDKIT_MANAGEMENT_TOKEN }}
+      CLOUDKIT_CONTAINER_ID: iCloud.com.davidpovarsky.chavrusatext
+      CLOUDKIT_SCHEMA: CloudKit/ChavrusaText.ckdb
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${TEAM_ID:-}" ]; then
+            echo "::error::Missing repository secret APPLE_TEAM_ID"
+            exit 1
+          fi
+          if [ -z "${CLOUDKIT_MANAGEMENT_TOKEN:-}" ]; then
+            echo "::error::Missing repository secret CLOUDKIT_MANAGEMENT_TOKEN"
+            exit 1
+          fi
+
+      - name: Verify cktool is available
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun cktool --help >/dev/null
+          echo "cktool available"
+
+      - name: Validate CloudKit schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun cktool validate-schema \
+            --team-id "$TEAM_ID" \
+            --container-id "$CLOUDKIT_CONTAINER_ID" \
+            --environment development \
+            --file "$CLOUDKIT_SCHEMA"
+
+      - name: Import CloudKit schema into Development
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun cktool import-schema \
+            --team-id "$TEAM_ID" \
+            --container-id "$CLOUDKIT_CONTAINER_ID" \
+            --environment development \
+            --validate \
+            --file "$CLOUDKIT_SCHEMA"
