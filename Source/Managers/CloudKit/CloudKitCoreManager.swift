@@ -5,7 +5,6 @@
 
 import CloudKit
 import Foundation
-import Security
 
 final class CloudKitCoreManager {
     static let shared = CloudKitCoreManager()
@@ -34,30 +33,10 @@ final class CloudKitCoreManager {
 
     private init() {
         zoneId = CKRecordZone.ID(zoneName: "AnnotationsZone", ownerName: CKCurrentUserDefaultName)
-        guard Self.hasContainerEntitlement(Self.containerIdentifier) else {
-            let message = "Missing signed iCloud container entitlement: \(Self.containerIdentifier)"
-            container = nil
-            privateDatabase = nil
-            configurationError = message
-            print("CloudKit configuration error: \(message)")
-            return
-        }
         let resolvedContainer = CKContainer(identifier: Self.containerIdentifier)
         container = resolvedContainer
         privateDatabase = resolvedContainer.privateCloudDatabase
         configurationError = nil
-    }
-
-    private static func hasContainerEntitlement(_ identifier: String) -> Bool {
-        guard let task = SecTaskCreateFromSelf(nil),
-              let value = SecTaskCopyValueForEntitlement(
-                  task,
-                  "com.apple.developer.icloud-container-identifiers" as CFString,
-                  nil
-              ) else { return false }
-        if let identifiers = value as? [String] { return identifiers.contains(identifier) }
-        if let singleIdentifier = value as? String { return singleIdentifier == identifier }
-        return false
     }
 
     func setSyncing(_ syncing: Bool, completion: (() -> Void)? = nil) {
