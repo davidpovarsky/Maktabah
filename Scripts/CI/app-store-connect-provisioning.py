@@ -101,7 +101,7 @@ def inspect_capabilities(
     client: AppStoreConnectClient, bundle: dict, identifier: str
 ) -> None:
     capabilities = client.list_all(
-        f"/v1/bundleIds/{bundle['id']}/bundleIdCapabilities?limit=200"
+        f"/v1/bundleIds/{bundle['id']}/bundleIdCapabilities"
     )
     capability_types = sorted(
         item.get("attributes", {}).get("capabilityType", "<unknown>")
