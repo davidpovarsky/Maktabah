@@ -10,7 +10,7 @@ import Security
 final class CloudKitCoreManager {
     static let shared = CloudKitCoreManager()
 
-    static let containerIdentifier = "iCloud.Maktabah"
+    static let containerIdentifier = "iCloud.com.davidpovarsky.chavrusatext"
 
     let container: CKContainer?
     let privateDatabase: CKDatabase?

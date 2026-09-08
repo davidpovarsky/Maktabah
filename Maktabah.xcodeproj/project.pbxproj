@@ -3711,7 +3711,7 @@
 				OTZARIA_DEFAULT_DATA_PROFILE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidpovarsky.chavrusatext;
 				PRODUCT_NAME = Maktabah;
-				PROVISIONING_PROFILE_SPECIFIER = ChavrusaText_App_Store;
+				PROVISIONING_PROFILE_SPECIFIER = ChavrusaText_App_Store_iCloud;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
