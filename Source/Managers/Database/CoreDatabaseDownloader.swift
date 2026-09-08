@@ -580,6 +580,12 @@ private final class CoreDownloadDelegate: NSObject, URLSessionDownloadDelegate {
 
 // MARK: - CoreDatabaseBootstrap
 
+struct CoreDownloadErrorPresentation: Equatable {
+    let title: String
+    let detail: String
+    let guidance: String?
+}
+
 #if os(macOS)
 
 /// Entry point yang dipanggil sinkron dari AppDelegate.applicationDidFinishLaunching
@@ -814,12 +820,6 @@ final class CoreDownloadModalCenter {
 }
 
 // MARK: - Progress State
-
-struct CoreDownloadErrorPresentation: Equatable {
-    let title: String
-    let detail: String
-    let guidance: String?
-}
 
 final class CoreDownloadProgressState: ObservableObject {
     enum Phase: Equatable {
