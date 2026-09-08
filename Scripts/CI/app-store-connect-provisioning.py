@@ -132,13 +132,22 @@ def create_profile(
     output: Path,
     metadata_output: Path,
 ) -> None:
-    certificates = client.list_all("/v1/certificates?limit=200")
+    certificate_query = urllib.parse.urlencode(
+        {
+            "fields[certificates]": (
+                "name,certificateType,displayName,serialNumber,platform,"
+                "expirationDate,activated"
+            ),
+            "limit": "200",
+        }
+    )
+    certificates = client.list_all(f"/v1/certificates?{certificate_query}")
     wanted_serial = normalize_serial(certificate_serial)
     candidates = []
     for certificate in certificates:
         attributes = certificate.get("attributes", {})
         certificate_type = attributes.get("certificateType", "")
-        if not attributes.get("activated", False):
+        if attributes.get("activated") is False:
             continue
         if "DISTRIBUTION" not in certificate_type:
             continue
@@ -146,10 +155,14 @@ def create_profile(
             candidates.append(certificate)
     if len(candidates) != 1:
         available = [
-            f"{item.get('attributes', {}).get('certificateType')}:{item.get('attributes', {}).get('serialNumber')}"
+            (
+                f"{item.get('attributes', {}).get('certificateType')}:"
+                f"{item.get('attributes', {}).get('serialNumber')}:"
+                f"activated={item.get('attributes', {}).get('activated', '<not-returned>')}"
+            )
             for item in certificates
-            if item.get("attributes", {}).get("activated", False)
-            and "DISTRIBUTION" in item.get("attributes", {}).get("certificateType", "")
+            if "DISTRIBUTION"
+            in item.get("attributes", {}).get("certificateType", "")
         ]
         print(
             f"::error::Expected one active Apple Distribution certificate matching serial "
