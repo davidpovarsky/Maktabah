@@ -58,6 +58,8 @@ class BooksData: Codable, Identifiable {
 
     let archive: Int
     let muallif: Int
+    /// Canonical, source-qualified identity for non-legacy backends.
+    var backendLocator: TextLocator?
     var catId: Int?
     var downloadFilename: String?
     var compressedDownloadSize: Int64?
@@ -83,12 +85,13 @@ class BooksData: Codable, Identifiable {
     }
     var isChecked: Bool = true
 
-    init(id: Int, book: String, archive: Int, muallif: Int, bithoqoh: String = "", info: String = "") {
+    init(id: Int, book: String, archive: Int, muallif: Int, bithoqoh: String = "", info: String = "", backendLocator: TextLocator? = nil) {
         self.id = id
         self.book = StringInterner.shared.intern(book)
         self.normalizedBook = book.normalizeArabic(false)
         self.archive = archive
         self.muallif = muallif
+        self.backendLocator = backendLocator
         self.bithoqoh = bithoqoh.convertToArabicDigits()
         self.info = info.convertToArabicDigits()
     }
@@ -164,16 +167,18 @@ class BookContent {
     let page: Int
     let part: Int
     let heRef: String?
+    let backendLocator: TextLocator?
 
     var surah: Int?
     var aya: Int?
 
-    init(id: Int, nash: String, page: Int = 1, part: Int = 1, heRef: String? = nil) {
+    init(id: Int, nash: String, page: Int = 1, part: Int = 1, heRef: String? = nil, backendLocator: TextLocator? = nil) {
         self.id = id
         self.nash = nash
         self.page = page
         self.part = part
         self.heRef = heRef
+        self.backendLocator = backendLocator
     }
 }
 
@@ -185,6 +190,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     let page: Int
     let part: Int
     let attributedText: NSAttributedString
+    let backendLocator: TextLocator?
 
     enum CodingKeys: String, CodingKey {
         case archive
@@ -194,6 +200,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         case page
         case part
         case attributedText
+        case backendLocator
     }
 
     init(
@@ -203,7 +210,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         bookTitle: String,
         page: Int,
         part: Int,
-        attributedText: NSAttributedString
+        attributedText: NSAttributedString,
+        backendLocator: TextLocator? = nil
     ) {
         self.archive = archive
         self.tableName = tableName
@@ -212,6 +220,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         self.page = page
         self.part = part
         self.attributedText = attributedText
+        self.backendLocator = backendLocator
     }
 
     func encode(to encoder: Encoder) throws {
@@ -230,6 +239,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         )
 
         try container.encode(data, forKey: .attributedText)
+        try container.encodeIfPresent(backendLocator, forKey: .backendLocator)
     }
 
     init(from decoder: Decoder) throws {
@@ -241,6 +251,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         bookTitle = try container.decode(String.self, forKey: .bookTitle)
         page = try container.decode(Int.self, forKey: .page)
         part = try container.decode(Int.self, forKey: .part)
+        backendLocator = try container.decodeIfPresent(TextLocator.self, forKey: .backendLocator)
 
         let data = try container.decode(Data.self, forKey: .attributedText)
 
@@ -267,7 +278,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(bookId)
+        hasher.combine(backendLocator?.persistenceKey ?? "legacy:\(bookId)")
     }
 }
 

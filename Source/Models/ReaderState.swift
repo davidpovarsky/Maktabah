@@ -24,6 +24,7 @@ struct ReaderState: Codable {
     var currentPage: Int?
     var currentID: Int?
     var currentPart: Int?
+    var currentLocator: TextLocator?
     var currentRowi: Rowi?
     var isSidebarCollapsed: Bool = false
 
@@ -72,6 +73,7 @@ struct ReaderState: Codable {
         currentPage = nil
         currentID = nil
         currentPart = nil
+        currentLocator = nil
         scrollPosition = nil
         selectedRange = nil
         currentRowi = nil
@@ -101,6 +103,7 @@ extension ReaderState: Equatable {
     static func == (lhs: ReaderState, rhs: ReaderState) -> Bool {
         return lhs.currentBook?.id == rhs.currentBook?.id
             && lhs.currentID == rhs.currentID
+            && lhs.currentLocator == rhs.currentLocator
             && lhs.currentRowi?.id == rhs.currentRowi?.id
             && lhs.authorDisplayMode == rhs.authorDisplayMode
     }
