@@ -321,17 +321,6 @@ final class SearchViewModel: ViewModelBase {
         currentTable = ""
     }
 
-    /// Resolve `BooksData` dari `SearchResultItem`. Returns nil jika tidak ditemukan.
-    func resolveBook(from result: SearchResultItem) -> BooksData? {
-        if let locator = result.backendLocator {
-            return MaktabahBackendAdapter.resolveBook(for: locator, in: ldm)
-        }
-        OtzariaSearchResultResolver.resolveBook(
-            from: result,
-            libraryDataManager: ldm
-        )
-    }
-
     /// Load data library lalu isi `libraryViewManager` dengan kategori.
     func loadLibraryDataForDisplay(
         libraryViewManager: LibraryViewManager?,
@@ -360,6 +349,17 @@ final class SearchViewModel: ViewModelBase {
         }
     }
     #endif
+
+    /// Resolve `BooksData` dari `SearchResultItem`. Returns nil jika tidak ditemukan.
+    func resolveBook(from result: SearchResultItem) -> BooksData? {
+        if let locator = result.backendLocator {
+            return MaktabahBackendAdapter.resolveBook(for: locator, in: ldm)
+        }
+        return OtzariaSearchResultResolver.resolveBook(
+            from: result,
+            libraryDataManager: ldm
+        )
+    }
 
     // MARK: - Bookmarked Search Results
 
