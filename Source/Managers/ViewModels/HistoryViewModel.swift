@@ -106,6 +106,10 @@ class HistoryViewModel: ViewModelBase, ObservableObject {
                   let newId = userInfo["newId"] as? Int else { return }
             self?.migrateBookId(from: oldId, to: newId)
         }
+
+        addObserver(forName: .activeLibraryBackendDidChange, object: nil, queue: .main) { [weak self] _ in
+            self?.loadBooksData()
+        }
     }
 
     // MARK: - Load from Database
@@ -212,6 +216,29 @@ class HistoryViewModel: ViewModelBase, ObservableObject {
         loadBooksData()
 
         CloudKitSyncManager.shared.uploadHistory(entries: [entry], trackPending: false)
+    }
+
+    func toggleFavorite(_ book: BooksData) {
+        guard let locator = book.backendLocator else { toggleFavorite(book.id); return }
+        Task { [weak self] in
+            let current = await QualifiedLocatorStore.shared.entries()
+                .first(where: { $0.locator.persistenceKey == locator.persistenceKey })?.isFavorite ?? false
+            try? await QualifiedLocatorStore.shared.setFavorite(!current, locator: locator, title: book.book)
+            await MainActor.run { self?.loadBooksData() }
+        }
+    }
+
+    func isFavorite(_ book: BooksData) -> Bool {
+        guard let locator = book.backendLocator else { return isFavorite(book.id) }
+        return favoriteBooks.contains { $0.backendLocator?.persistenceKey == locator.persistenceKey }
+    }
+
+    func removeHistory(for book: BooksData) {
+        guard let locator = book.backendLocator else { removeHistory(for: book.id); return }
+        Task { [weak self] in
+            try? await QualifiedLocatorStore.shared.removeHistory(locator)
+            await MainActor.run { self?.loadBooksData() }
+        }
     }
 
     func removeHistory(for bookId: Int) {
@@ -408,6 +435,22 @@ class HistoryViewModel: ViewModelBase, ObservableObject {
 
         historyBooks = hIds.compactMap { booksDict[$0] }
         favoriteBooks = fIds.compactMap { booksDict[$0] }
+
+        Task { [weak self] in
+            let qualified = await QualifiedLocatorStore.shared.entries()
+            await MainActor.run {
+                guard let self else { return }
+                let active = BackendCoordinator.shared.activeBackendID
+                if BackendCoordinator.shared.usesNativeMaktabahDataPath { return }
+                let relevant = qualified.filter { $0.locator.backend == active }
+                historyBooks = relevant.filter { $0.lastOpened != .distantPast }.compactMap { entry in
+                    MaktabahBackendAdapter.resolveBook(for: entry.locator, in: LibraryDataManager.shared)
+                }
+                favoriteBooks = relevant.filter(\.isFavorite).compactMap { entry in
+                    MaktabahBackendAdapter.resolveBook(for: entry.locator, in: LibraryDataManager.shared)
+                }
+            }
+        }
     }
 
     // MARK: - CloudKit Sync Support

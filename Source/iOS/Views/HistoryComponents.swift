@@ -95,7 +95,7 @@ struct SyncedScrollRow: View {
                     BookCard(
                         book: book,
                         cardHeight: cardHeight,
-                        isFavorite: viewModel.isFavorite(book.id),
+                        isFavorite: viewModel.isFavorite(book),
                         viewModel: viewModel,
                         historySection: true
                     ) {
@@ -106,7 +106,7 @@ struct SyncedScrollRow: View {
                     .fixedSize(horizontal: true, vertical: false)
                     .contextMenu {
                         Button(role: .destructive) {
-                            viewModel.removeHistory(for: book.id)
+                            viewModel.removeHistory(for: book)
                         } label: {
                             Label("Remove from History", systemImage: "clock.badge.xmark")
                         }
@@ -240,7 +240,7 @@ struct BookCard: View {
                 }
 
                 Button(action: {
-                    viewModel.toggleFavorite(book.id)
+                    viewModel.toggleFavorite(book)
                 }) {
                     Image(systemName: isFavorite ? "star.fill" : "star")
                         .foregroundColor(isFavorite ? .yellow : .gray)
@@ -263,7 +263,7 @@ struct BookCard: View {
                 Button(role: .destructive) {
                     showPopover = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        viewModel.removeHistory(for: book.id)
+                        viewModel.removeHistory(for: book)
                     }
                 } label: {
                     Label("Remove from History", systemImage: "clock.badge.xmark")

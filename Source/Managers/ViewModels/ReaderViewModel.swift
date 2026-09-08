@@ -190,6 +190,8 @@ class ReaderViewModel: ViewModelBase {
     // MARK: - Private Properties
 
     private var _currentID: Int?
+    private var backendSection: LibraryTextSection?
+    private var backendLoadTask: Task<Void, Never>?
 
     private var currentID: Int? {
         get { _currentID }
@@ -209,6 +211,10 @@ class ReaderViewModel: ViewModelBase {
     /// Loads initial content, optionally restoring a specific contentId
     func loadInitialContent(initialContentId: Int? = nil) {
         guard let book = currentBook else { return }
+        if let locator = book.backendLocator {
+            loadBackendInitialContent(book: book, locator: locator)
+            return
+        }
         let start = Date()
         otzariaReaderLog("loadInitialContent start bookId=\(book.id) title=\(book.book) initialContentId=\(initialContentId.map(String.init) ?? "nil")")
 
@@ -239,6 +245,53 @@ class ReaderViewModel: ViewModelBase {
 
     func loadTOC(book: BooksData) {
         tocViewModel.loadTOC(book: book)
+    }
+
+    private func loadBackendInitialContent(book: BooksData, locator: TextLocator) {
+        backendLoadTask?.cancel()
+        backendLoadTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            var target = locator
+            let isWorkRoot: Bool
+            switch locator.position {
+            case .canonicalRef(let ref): isWorkRoot = ref == locator.workKey
+            case .legacyLine(let line): isWorkRoot = line == 0
+            }
+            if isWorkRoot,
+               let recent = await QualifiedLocatorStore.shared.entries().first(where: {
+                   $0.locator.backend == locator.backend && $0.locator.workKey == locator.workKey
+               }) {
+                target = recent.locator
+            }
+            loadBackendContent(target)
+        }
+    }
+
+    private func loadBackendContent(_ locator: TextLocator) {
+        backendLoadTask?.cancel()
+        state = .loading
+        let expectedBookKey = locator.workKey
+        backendLoadTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            do {
+                let section = try await BackendCoordinator.shared.section(at: locator)
+                try Task.checkCancellation()
+                guard currentBook?.backendLocator?.workKey == expectedBookKey else { return }
+                backendSection = section
+                let content = MaktabahBackendAdapter.content(from: section)
+                if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
+                updateContentState(with: content)
+                state = .loaded
+            } catch is CancellationError {
+                return
+            } catch LibraryBackendError.staleRequest {
+                return
+            } catch {
+                contentText = error.localizedDescription
+                state = .error(error.localizedDescription)
+            }
+            backendLoadTask = nil
+        }
     }
 
     func getContent(bkId: Int, contentId: Int) -> BookContent? {
@@ -351,6 +404,13 @@ class ReaderViewModel: ViewModelBase {
     }
 
     func goToNextPage() {
+        if let locator = backendSection?.next {
+            #if os(iOS)
+            pendingReaderScrollTarget = .top
+            #endif
+            loadBackendContent(locator)
+            return
+        }
         let start = Date()
         otzariaReaderLog("goToNextPage start bookId=\(currentBook?.id ?? -1) contentId=\(currentContentId)")
         guard let content = navigateToPage(direction: .next) else { return }
@@ -362,6 +422,13 @@ class ReaderViewModel: ViewModelBase {
     }
 
     func goToPrevPage() {
+        if let locator = backendSection?.previous {
+            #if os(iOS)
+            pendingReaderScrollTarget = .bottom
+            #endif
+            loadBackendContent(locator)
+            return
+        }
         let start = Date()
         otzariaReaderLog("goToPrevPage start bookId=\(currentBook?.id ?? -1) contentId=\(currentContentId)")
         guard let content = navigateToPage(direction: .prev) else { return }
@@ -374,6 +441,18 @@ class ReaderViewModel: ViewModelBase {
 
     func fetchContentById(_ contentId: Int) {
         guard let currentBook else { return }
+        if currentBook.backendLocator != nil,
+           let locator = LegacyIdentityRegistry.shared.locator(for: contentId) {
+            loadBackendContent(locator)
+            return
+        }
+        if currentBook.backendLocator != nil,
+           let locator = backendSection?.segments.first(where: {
+               LegacyIdentityRegistry.shared.id(for: $0.locator) == contentId
+           })?.locator {
+            loadBackendContent(locator)
+            return
+        }
         if let content = bookConnection.getContent(
             bkid: "\(currentBook.id)",
             contentId: contentId,
@@ -472,7 +551,9 @@ class ReaderViewModel: ViewModelBase {
         currentID = content.id
         currentContentId = content.id
 
-        if recordHistory, let bookId = currentBook?.id {
+        if recordHistory, let locator = content.backendLocator, let title = currentBook?.book {
+            Task { try? await QualifiedLocatorStore.shared.record(locator, title: title) }
+        } else if recordHistory, let bookId = currentBook?.id {
             historyVM.updateLastContentId(content.id, for: bookId)
         }
 
@@ -491,6 +572,7 @@ class ReaderViewModel: ViewModelBase {
         readerState.currentID = content.id
         readerState.currentPart = content.part
         readerState.currentPage = content.page
+        readerState.currentLocator = content.backendLocator
         // Clear saved scroll/selection so it scrolls to top on page change
         readerState.scrollPosition = nil
         readerState.selectedRange = nil
@@ -557,6 +639,12 @@ class ReaderViewModel: ViewModelBase {
     // MARK: - Navigation Limits
 
     func updateNavigationLimits() {
+        guard currentBook?.backendLocator == nil else {
+            totalParts = 1
+            minPageInPart = backendSection?.previous == nil ? 1 : 0
+            maxPageInPart = backendSection?.next == nil ? 1 : 2
+            return
+        }
         guard let part = currentPart, let book = currentBook else { return }
         let bkid = String(book.id)
 
@@ -775,7 +863,8 @@ class ReaderViewModel: ViewModelBase {
             part: currentPart ?? 0,
             diacriticsText: diacriticsText,
             showHarakat: showHarakat,
-            mode: mode
+            mode: mode,
+            backendLocator: backendSection?.locator
         )
         loadAnnotations()
     }

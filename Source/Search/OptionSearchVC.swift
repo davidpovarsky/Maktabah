@@ -644,7 +644,7 @@ extension OptionSearchVC: LibraryViewDelegate {
                 : shouldRecord
         }
 
-        if shouldRecord {
+        if shouldRecord, bookData.backendLocator == nil {
             HistoryViewModel.shared.addBookToHistory(bookData.id)
         }
 

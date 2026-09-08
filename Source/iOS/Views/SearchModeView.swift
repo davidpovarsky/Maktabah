@@ -169,6 +169,18 @@ struct SearchModeView: View {
     }
 
     private func handleSelection(_ item: SearchResultItem) {
+        if let book = viewModel.resolveBook(from: item) {
+            let shouldRecord = UserDefaults.standard.recordSearchHistory
+            navigationManager.openBook(
+                book,
+                initialContentId: item.backendLocator == nil ? item.page : nil,
+                searchText: navigationManager.searchViewModel.query,
+                searchMode: navigationManager.searchViewModel.searchMode,
+                nearDistance: navigationManager.searchViewModel.nearDistance,
+                recordHistory: shouldRecord
+            )
+            return
+        }
         Task {
             let table: String
             let contentId: Int

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject private var viewModel = SettingsViewModel.shared
+    @StateObject private var backendCoordinator = BackendCoordinator.shared
     #if os(macOS)
     @ObservedObject private var ftsManager = FtsMigrationManager.shared
     #elseif os(iOS)
@@ -65,6 +66,7 @@ struct SettingsView: View {
 extension SettingsView {
     private var macOSForm: some View {
         Form {
+            librarySourceSection
             databaseModeSection
             searchIndexSection
             libraryStorageSection
@@ -91,6 +93,8 @@ extension SettingsView {
 extension SettingsView {
     private var iOSForm: some View {
         Form {
+            librarySourceSection
+                .listRowBackground(Color.appCellBackground)
             databaseModeSection
                 .listRowBackground(Color.appCellBackground)
             searchIndexSection
@@ -206,6 +210,30 @@ extension SettingsView {
 
 // MARK: - Shared Sections
 extension SettingsView {
+    private var librarySourceSection: some View {
+        Section("Library Source") {
+            Picker("Source", selection: Binding(
+                get: { backendCoordinator.activeBackendID },
+                set: { backendCoordinator.select($0) }
+            )) {
+                ForEach(BackendID.allCases) { backend in
+                    Text(backend.displayName).tag(backend)
+                }
+            }
+
+            Text(backendCoordinator.activeSourceDescription)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            if backendCoordinator.activeCapabilities.contains(.offlineLibrary),
+               backendCoordinator.offlineProvider() != nil {
+                NavigationLink("Manage Offline Library") {
+                    OfflineLibraryManagementView()
+                }
+            }
+        }
+    }
+
     private var databaseModeSection: some View {
         Section {
             Toggle(isOn: Binding(

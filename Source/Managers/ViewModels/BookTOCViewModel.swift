@@ -39,6 +39,31 @@ class BookTOCViewModel {
 
     func loadTOC(book: BooksData) {
         loadingTask?.cancel()
+        if let locator = book.backendLocator {
+            loadingTask = Task { @MainActor [weak self] in
+                guard let self else { return }
+                onTOCLoadingStateChanged?(true)
+                do {
+                    let work = LibraryWork(locator: locator, title: locator.workKey,
+                        heTitle: book.book, categories: [], description: nil)
+                    let nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
+                    func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
+                        let id = LegacyIdentityRegistry.shared.id(for: item.locator)
+                        let node = TOCNode(from: TOC(bab: item.title, level: level, sub: 0, id: id))
+                        node.children = item.children.map { convert($0, level: level + 1) }
+                        return node
+                    }
+                    let tree = nodes.map { convert($0, level: 1) }
+                    tocNodes = tree
+                    let allNodes = flattenNodes(tree)
+                    tocRanges = allNodes.map { TOCRange(start: $0.id, end: $0.id, node: $0) }
+                    nodeIdCache = Dictionary(uniqueKeysWithValues: allNodes.map { ($0.id, $0) })
+                    onTOCLoaded?(tree)
+                } catch { print("Failed to load backend TOC: \(error)") }
+                onTOCLoadingStateChanged?(false)
+            }
+            return
+        }
         loadingTask = Task { [weak self] in
             guard let self else { return }
 

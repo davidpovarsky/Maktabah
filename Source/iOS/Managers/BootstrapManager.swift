@@ -31,6 +31,11 @@ final class iOSBootstrapManager {
         guard !didPrepare else { return }
         didPrepare = true
 
+        if !BackendCoordinator.shared.usesNativeMaktabahDataPath {
+            finishSetup()
+            return
+        }
+
         do {
             if try await OtzariaBootstrapAdapter.restoreForAppLaunch() {
                 finishSetup()
@@ -171,12 +176,17 @@ final class iOSBootstrapManager {
     }
 
     private func finishSetup() {
-        DatabaseManager.shared.reloadConnectionAndLibrary()
+        if BackendCoordinator.shared.usesNativeMaktabahDataPath {
+            DatabaseManager.shared.reloadConnectionAndLibrary()
+        } else {
+            LibraryDataManager.shared.resetState()
+        }
         isChecking = false
         isReady = true
 
         // Check for core database updates (non-blocking, throttled 6 months)
-        if OtzariaBootstrapAdapter.shouldCheckCoreDatabaseUpdate {
+        if BackendCoordinator.shared.usesNativeMaktabahDataPath,
+           OtzariaBootstrapAdapter.shouldCheckCoreDatabaseUpdate {
             checkCoreDatabaseUpdate()
         }
     }

@@ -86,7 +86,7 @@ struct iOSReaderBottomToolbarView: View {
             .accessibilityLabel(String(localized: "Annotations"))
             .help(String(localized: "Annotations"))
 
-            if OtzariaMaktabahBridge.shared.isEnabled {
+            if OtzariaBackendActivation.isActive {
                 Divider()
 
                 Menu {

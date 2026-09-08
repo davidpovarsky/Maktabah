@@ -77,6 +77,7 @@ struct Annotation {
     // CloudKit Sync Support
     var ckRecordId: String?
     var lastModified: Int64?
+    var backendLocator: TextLocator? = nil
 }
 
 enum AnnotationNodeKind {

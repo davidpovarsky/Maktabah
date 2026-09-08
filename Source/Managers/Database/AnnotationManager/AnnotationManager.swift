@@ -34,6 +34,7 @@ final class AnnotationManager {
     let colAnnPart = "part"
     let colAnnCkRecordId = "ckRecordId"
     let colAnnLastModified = "lastModified"
+    let colAnnBackendLocator = "backendLocator"
 
     let tagsTable = "tags"
     let colTagId = "id"

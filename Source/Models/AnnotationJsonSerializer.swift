@@ -50,6 +50,11 @@ enum AnnotationJsonSerializer {
             if let lastModified = ann.lastModified {
                 obj["lastModified"] = lastModified > 9_999_999_999 ? lastModified : lastModified * 1000
             }
+            if let locator = ann.backendLocator,
+               let data = try? JSONEncoder().encode(locator),
+               let json = String(data: data, encoding: .utf8) {
+                obj["backendLocator"] = json
+            }
 
             array.append(obj)
         }
@@ -120,6 +125,9 @@ enum AnnotationJsonSerializer {
             let ckRecordId = obj["ckRecordId"] as? String
             let lastModifiedRaw = (obj["lastModified"] as? NSNumber)?.int64Value
             let lastModified = lastModifiedRaw.map { $0 > 9_999_999_999 ? $0 / 1000 : $0 }
+            let backendLocator = (obj["backendLocator"] as? String)
+                .flatMap { $0.data(using: .utf8) }
+                .flatMap { try? JSONDecoder().decode(TextLocator.self, from: $0) }
 
             result.append(
                 Annotation(
@@ -139,7 +147,8 @@ enum AnnotationJsonSerializer {
                     partArb: String(part).convertToArabicDigits(),
                     tags: tags,
                     ckRecordId: ckRecordId,
-                    lastModified: lastModified
+                    lastModified: lastModified,
+                    backendLocator: backendLocator
                 )
             )
         }

@@ -323,6 +323,9 @@ final class SearchViewModel: ViewModelBase {
 
     /// Resolve `BooksData` dari `SearchResultItem`. Returns nil jika tidak ditemukan.
     func resolveBook(from result: SearchResultItem) -> BooksData? {
+        if let locator = result.backendLocator {
+            return MaktabahBackendAdapter.resolveBook(for: locator, in: ldm)
+        }
         OtzariaSearchResultResolver.resolveBook(
             from: result,
             libraryDataManager: ldm
@@ -381,6 +384,35 @@ final class SearchViewModel: ViewModelBase {
         completedTables = 0
         completedRowsInTable = 0
         totalRowsInTable = 0
+
+        if MaktabahBackendAdapter.usesGenericModels {
+            let requestQuery = query
+            searchWork = Task { @MainActor [weak self] in
+                guard let self else { return }
+                do {
+                    let page = try await BackendCoordinator.shared.search(.init(
+                        query: requestQuery, offset: 0, limit: 200
+                    ))
+                    try Task.checkCancellation()
+                    results = page.hits.map(MaktabahBackendAdapter.searchItem)
+                    totalTables = max(page.total, 1)
+                    completedTables = page.hits.count
+                    isSearching = false
+                    #if os(macOS)
+                    searchDidComplete.send()
+                    #endif
+                } catch is CancellationError {
+                    isSearching = false
+                } catch LibraryBackendError.staleRequest {
+                    isSearching = false
+                } catch {
+                    isSearching = false
+                    state = .error(error.localizedDescription)
+                }
+                searchWork = nil
+            }
+            return
+        }
 
         let task = Task.detached { [weak self] in
             guard let self else { return }

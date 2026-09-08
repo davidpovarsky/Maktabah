@@ -16,7 +16,6 @@ final class AnnotationSyncHandler: CloudKitRecordParser {
 
     static func parse(from record: CKRecord) -> Annotation? {
         guard let bkId = record["bkId"] as? Int,
-              bkId >= 0,
               let contentId = record["contentId"] as? Int,
               let rangeLocation = record["rangeLocation"] as? Int,
               let rangeLength = record["rangeLength"] as? Int,
@@ -35,6 +34,10 @@ final class AnnotationSyncHandler: CloudKitRecordParser {
         let tags = record["tags"] as? [String] ?? []
         let note = record["note"] as? String
         let lastModified = record["lastModified"] as? Int64
+        let backendLocator = (record["backendLocator"] as? String)
+            .flatMap { $0.data(using: .utf8) }
+            .flatMap { try? JSONDecoder().decode(TextLocator.self, from: $0) }
+        guard bkId >= 0 || backendLocator != nil else { return nil }
 
         return Annotation(
             id: nil,
@@ -53,7 +56,8 @@ final class AnnotationSyncHandler: CloudKitRecordParser {
             partArb: String(part).convertToArabicDigits(),
             tags: tags,
             ckRecordId: record.recordID.recordName,
-            lastModified: lastModified
+            lastModified: lastModified,
+            backendLocator: backendLocator
         )
     }
 }
@@ -79,6 +83,11 @@ extension Annotation: CloudKitSyncable {
         record["part"] = self.part
         record["lastModified"] = self.lastModified ?? Int64(Date().timeIntervalSince1970)
         record["tags"] = self.tags
+        if let backendLocator,
+           let data = try? JSONEncoder().encode(backendLocator),
+           let json = String(data: data, encoding: .utf8) {
+            record["backendLocator"] = json
+        }
 
         return record
     }

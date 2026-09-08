@@ -25,8 +25,8 @@ extension AnnotationManager {
                 \(colAnnBkId), \(colAnnContentId), \(colAnnStart), \(colAnnLength),
                 \(colAnnStartDiac), \(colAnnLengthDiac), \(colAnnColor), \(colAnnType),
                 \(colAnnNote), \(colAnnCreatedAt), \(colAnnContext), \(colAnnPart),
-                \(colAnnPage), \(colAnnCkRecordId), \(colAnnLastModified)
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                \(colAnnPage), \(colAnnCkRecordId), \(colAnnLastModified), \(colAnnBackendLocator)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             """
 
             let params: [Any] = [
@@ -44,7 +44,9 @@ extension AnnotationManager {
                 annotationToSave.part,
                 annotationToSave.page,
                 annotationToSave.ckRecordId ?? NSNull(),
-                annotationToSave.lastModified ?? 0
+                annotationToSave.lastModified ?? 0,
+                annotationToSave.backendLocator.flatMap { try? JSONEncoder().encode($0) }
+                    .flatMap { String(data: $0, encoding: .utf8) } ?? NSNull()
             ]
 
             try _db.execute(query: sql, parameters: params)
@@ -340,6 +342,9 @@ extension AnnotationManager {
         let page = row.int(at: 13)
         let ckId = row.string(at: 14)
         let lastMod = !row.isNull(at: 15) ? row.int64(at: 15) : nil
+        let backendLocator = row.string(at: 16)
+            .flatMap { $0.data(using: .utf8) }
+            .flatMap { try? JSONDecoder().decode(TextLocator.self, from: $0) }
 
         return Annotation(
             id: id,
@@ -358,7 +363,8 @@ extension AnnotationManager {
             partArb: String(part).convertToArabicDigits(),
             tags: [], // Tags will be loaded in bulk
             ckRecordId: ckId,
-            lastModified: lastMod
+            lastModified: lastMod,
+            backendLocator: backendLocator
         )
     }
 }

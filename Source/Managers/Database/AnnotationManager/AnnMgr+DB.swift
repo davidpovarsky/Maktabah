@@ -68,6 +68,9 @@ extension AnnotationManager {
         if !columns.contains(colAnnLastModified) {
             try exec("ALTER TABLE \(annotationsTable) ADD COLUMN \(colAnnLastModified) INTEGER;")
         }
+        if !columns.contains(colAnnBackendLocator) {
+            try exec("ALTER TABLE \(annotationsTable) ADD COLUMN \(colAnnBackendLocator) TEXT;")
+        }
 
         try exec("CREATE INDEX IF NOT EXISTS idx_ann_bk_content ON \(annotationsTable) (\(colAnnBkId), \(colAnnContentId));")
 

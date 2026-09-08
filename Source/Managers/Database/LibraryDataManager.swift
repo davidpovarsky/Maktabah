@@ -59,6 +59,18 @@ class LibraryDataManager {
             }
             let newTask = Task { [self] in
                 do {
+                    if let generic = try await MaktabahBackendAdapter.loadLibraryIfNeeded() {
+                        lock.withLock {
+                            _allRootCategories = generic.roots
+                            _categoryMap = Dictionary(uniqueKeysWithValues: generic.roots.flatMap(Self.flattenCategories).map { ($0.id, $0) })
+                            _booksById = generic.books
+                            _archives = [:]
+                            _archivesBuiltFromFullData = true
+                            _isDataLoaded = true
+                        }
+                        lock.withLock { _loadingTask = nil }
+                        return
+                    }
                     let results = try await Task.detached(priority: .userInitiated) { [self] in
                         let allCategories = try db.fetchAllCategories()
                         let (localRootCats, localCategoryMap) =
@@ -117,6 +129,10 @@ class LibraryDataManager {
         rootCats: [CategoryData], categoryMap: [Int: CategoryData]
     ) {
         OtzariaLibraryDataAdapter.buildCategoryHierarchy(from: allCategories)
+    }
+
+    private static func flattenCategories(_ root: CategoryData) -> [CategoryData] {
+        [root] + root.children.compactMap { $0 as? CategoryData }.flatMap(flattenCategories)
     }
 
     private func loadBooksAndIndex(for allCategories: [CategoryData]) throws
@@ -262,6 +278,10 @@ class LibraryDataManager {
     func buildArchive() async {
         let (built, isLoaded, rootCats) = lock.withLock {
             (_archivesBuiltFromFullData, _isDataLoaded, _allRootCategories)
+        }
+        if await MainActor.run(body: { MaktabahBackendAdapter.usesGenericModels }) {
+            lock.withLock { _archives = [:]; _archivesBuiltFromFullData = true }
+            return
         }
         if let state = OtzariaLibraryDataAdapter.emptyArchiveStateIfEnabled() {
             lock.withLock {

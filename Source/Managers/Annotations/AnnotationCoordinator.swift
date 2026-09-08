@@ -71,7 +71,8 @@ class AnnotationCoordinator {
         part: Int,
         diacriticsText: String?,
         showHarakat: Bool,
-        mode: AnnotationMode = .highlight
+        mode: AnnotationMode = .highlight,
+        backendLocator: TextLocator? = nil
     ) throws -> Annotation {
         let calculator = ArabicRangeCalculator()
         let ranges = calculator.calculateRanges(
@@ -98,7 +99,8 @@ class AnnotationCoordinator {
             page: page,
             part: part,
             pageArb: String(page).convertToArabicDigits(),
-            partArb: String(part).convertToArabicDigits()
+            partArb: String(part).convertToArabicDigits(),
+            backendLocator: backendLocator
         )
 
         try manager.addAnnotation(ann)

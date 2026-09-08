@@ -130,7 +130,7 @@ extension AnnotationManager {
                         let remoteLastMod = ann.lastModified ?? 0
 
                         if remoteLastMod >= localLastMod {
-                            let updateSql = "UPDATE \(annotationsTable) SET \(colAnnBkId) = ?, \(colAnnContentId) = ?, \(colAnnStart) = ?, \(colAnnLength) = ?, \(colAnnStartDiac) = ?, \(colAnnLengthDiac) = ?, \(colAnnColor) = ?, \(colAnnType) = ?, \(colAnnNote) = ?, \(colAnnLastModified) = ?, \(colAnnPart) = ?, \(colAnnPage) = ? WHERE \(colAnnId) = ?;"
+                            let updateSql = "UPDATE \(annotationsTable) SET \(colAnnBkId) = ?, \(colAnnContentId) = ?, \(colAnnStart) = ?, \(colAnnLength) = ?, \(colAnnStartDiac) = ?, \(colAnnLengthDiac) = ?, \(colAnnColor) = ?, \(colAnnType) = ?, \(colAnnNote) = ?, \(colAnnLastModified) = ?, \(colAnnPart) = ?, \(colAnnPage) = ?, \(colAnnBackendLocator) = ? WHERE \(colAnnId) = ?;"
 
                             let params: [Any] = [
                                 ann.bkId,
@@ -145,6 +145,8 @@ extension AnnotationManager {
                                 ann.lastModified ?? 0,
                                 ann.part,
                                 ann.page,
+                                ann.backendLocator.flatMap { try? JSONEncoder().encode($0) }
+                                    .flatMap { String(data: $0, encoding: .utf8) } ?? NSNull(),
                                 existingLocalId,
                             ]
 
@@ -159,8 +161,8 @@ extension AnnotationManager {
                             \(colAnnBkId), \(colAnnContentId), \(colAnnStart), \(colAnnLength),
                             \(colAnnStartDiac), \(colAnnLengthDiac), \(colAnnColor), \(colAnnType),
                             \(colAnnNote), \(colAnnCreatedAt), \(colAnnContext), \(colAnnPart),
-                            \(colAnnPage), \(colAnnCkRecordId), \(colAnnLastModified)
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                            \(colAnnPage), \(colAnnCkRecordId), \(colAnnLastModified), \(colAnnBackendLocator)
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                         """
 
                         let params: [Any] = [
@@ -179,6 +181,8 @@ extension AnnotationManager {
                             ann.page,
                             ckId,
                             ann.lastModified ?? 0,
+                            ann.backendLocator.flatMap { try? JSONEncoder().encode($0) }
+                                .flatMap { String(data: $0, encoding: .utf8) } ?? NSNull(),
                         ]
 
                         try _db.execute(query: insertSql, parameters: params)

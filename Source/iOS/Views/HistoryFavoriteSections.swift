@@ -42,7 +42,7 @@ struct FavoritesSection: View {
                 BookCard(
                     book: book,
                     cardHeight: 50,
-                    isFavorite: viewModel.isFavorite(book.id),
+                    isFavorite: viewModel.isFavorite(book),
                     viewModel: viewModel, historySection: false
                 ) {
                     onOpen(book)
@@ -73,7 +73,7 @@ struct BookRowView: View {
                     .foregroundColor(.primary)
                 Spacer()
                 Button {
-                    viewModel.toggleFavorite(book.id)
+                    viewModel.toggleFavorite(book)
                 } label: {
                     Image(systemName: isFavorite ? "star.fill" : "star")
                         .foregroundColor(isFavorite ? .yellow : .gray)

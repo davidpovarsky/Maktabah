@@ -160,7 +160,7 @@ struct iPadLayout: View {
                     .onDelete { offsets in
                         for index in offsets {
                             let book = filteredFavorites[index]
-                            historyViewModel.toggleFavorite(book.id)
+                            historyViewModel.toggleFavorite(book)
                         }
                     }
                 }
@@ -188,7 +188,7 @@ struct iPadLayout: View {
                     .onDelete { offsets in
                         for index in offsets {
                             let book = filteredHistory[index]
-                            historyViewModel.removeHistory(for: book.id)
+                            historyViewModel.removeHistory(for: book)
                         }
                     }
                 }

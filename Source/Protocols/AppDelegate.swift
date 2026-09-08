@@ -54,9 +54,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     override init() {
         super.init()
+        BackendComposition.registerAll()
         registerCustomFonts()
         AppConfig.initializeMode()
-        CoreDatabaseBootstrap.run()
+        if BackendCoordinator.shared.usesNativeMaktabahDataPath {
+            CoreDatabaseBootstrap.run()
+        }
 
         UserDefaults.standard.register(defaults: ["AplFirstLaunch": true])
         let wc = WindowController()

@@ -35,6 +35,7 @@ struct MaktabahApp: App {
      */
 
     init() {
+        BackendComposition.registerAll()
         // Native acceptance launches exercise isolated Otzaria bootstrap/search
         // paths and must not be blocked by unrelated first-launch setup.
         if OtzariaNativeBootstrapAcceptanceRunner.isRequested {

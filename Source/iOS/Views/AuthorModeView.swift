@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AuthorModeView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
+    @StateObject private var backendCoordinator = BackendCoordinator.shared
     @State private var navigateToReader = false
 
     let onOpenBook: ((BooksData) -> Void)?
@@ -12,7 +13,10 @@ struct AuthorModeView: View {
 
     var body: some View {
         Group {
-            if OtzariaMaktabahBridge.shared.isEnabled {
+            if !backendCoordinator.activeCapabilities.contains(.authors) {
+                ContentUnavailableView("Authors are not available for this library source",
+                    systemImage: "person.2.slash")
+            } else if OtzariaBackendActivation.isActive {
                 OtzariaAuthorsModeView(onOpenBook: onOpenBook)
             } else {
                 maktabahNarratorsView(viewModel: navigationManager.authorViewModel)
