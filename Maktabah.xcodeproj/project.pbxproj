@@ -2233,6 +2233,17 @@
 					4B3202272EDAFE85003B95D1 = {
 						CreatedOnToolsVersion = 15.2;
 					};
+					F30576DD2FA46222005732C6 = {
+						CreatedOnToolsVersion = 26.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 4B3202232EDAFE85003B95D1 /* Build configuration list for PBXProject "Maktabah" */;

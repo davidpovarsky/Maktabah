@@ -14,5 +14,9 @@
 	<string>$(WORKER_URL)</string>
 	<key>OtzariaDefaultDataProfile</key>
 	<string>$(OTZARIA_DEFAULT_DATA_PROFILE)</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

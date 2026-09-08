@@ -1,5 +1,14 @@
 import Foundation
 
+enum SefariaCatalogIdentity {
+    static func categoryID(path: [String]) -> String {
+        let encodedPath = path.map {
+            $0.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? $0
+        }.joined(separator: "/")
+        return "sefaria/category/\(encodedPath)"
+    }
+}
+
 enum SefariaJSONValue: Codable, Hashable, Sendable {
     case string(String), array([SefariaJSONValue]), object([String: SefariaJSONValue])
     case number(Double), bool(Bool), null

@@ -174,6 +174,10 @@ final class CloudKitSyncManager {
 
     func initializeOnLaunch() {
         guard AppConfig.useICloud else { return }
+        guard core.isAvailable, let privateDatabase = core.privateDatabase else {
+            print("CloudKitSyncManager: initialization skipped: \(core.configurationError ?? "CloudKit unavailable")")
+            return
+        }
 
         checkUserIdentityChange()
         core.setSyncing(false)
@@ -196,7 +200,7 @@ final class CloudKitSyncManager {
             }
         }
         operation.qualityOfService = .userInitiated
-        core.privateDatabase.add(operation)
+        privateDatabase.add(operation)
     }
 
     private func performInitialUploadCheck() {
@@ -1007,7 +1011,12 @@ final class CloudKitSyncManager {
     }
 
     private func checkUserIdentityChange() {
-        core.container.fetchUserRecordID { [weak self] recordID, _ in
+        guard let container = core.container else { return }
+        container.fetchUserRecordID { [weak self] recordID, error in
+            if let error {
+                print("CloudKitSyncManager: unable to resolve iCloud account: \(error)")
+                return
+            }
             guard let self, let currentID = recordID?.recordName else { return }
             let lastID = UserDefaults.standard.string(forKey: "CloudKitSyncManager_LastUserRecordID")
             if let lastID, lastID != currentID {
@@ -1018,6 +1027,7 @@ final class CloudKitSyncManager {
     }
 
     private func subscribeToChanges() {
+        guard let privateDatabase = core.privateDatabase else { return }
         let subscriptionId = "AnnotationsZoneSubscription"
         let subscription = CKRecordZoneSubscription(zoneID: core.zoneId, subscriptionID: subscriptionId)
         let notificationInfo = CKSubscription.NotificationInfo()
@@ -1026,7 +1036,12 @@ final class CloudKitSyncManager {
 
         let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: nil)
         operation.qualityOfService = .utility
-        core.privateDatabase.add(operation)
+        operation.modifySubscriptionsResultBlock = { result in
+            if case .failure(let error) = result {
+                print("CloudKitSyncManager: subscription unavailable: \(error)")
+            }
+        }
+        privateDatabase.add(operation)
     }
 
     func resetChangeToken() {

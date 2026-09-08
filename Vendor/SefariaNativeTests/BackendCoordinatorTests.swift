@@ -25,6 +25,18 @@ func runBackendCoordinatorTests() async throws {
         search: nil, authors: nil, metadata: nil, offline: nil, usesNativeMaktabahDataPath: false,
         invalidateTransientState: {}))
     try expect(coordinator.activeBackendID == .otzaria, "default Otzaria selection")
+    try expect(coordinator.committedBackendID == nil, "default backend is not committed")
+    try expect(coordinator.resolveStartup(hasValidOtzariaInstallation: false) == .chooseSource,
+        "fresh install chooses source")
+    coordinator.beginConfiguration(of: .otzaria)
+    try expect(coordinator.pendingBackendID == .otzaria, "Otzaria selection remains pending")
+    try expect(defaults.object(forKey: BackendCoordinator.selectionDefaultsKey) == nil,
+        "pending Otzaria does not persist")
+    let unfinishedRelaunch = BackendCoordinator(defaults: defaults)
+    try expect(unfinishedRelaunch.resolveStartup(hasValidOtzariaInstallation: false) == .chooseSource,
+        "unfinished Otzaria configuration returns to chooser on relaunch")
+    coordinator.cancelConfiguration()
+    try expect(coordinator.pendingBackendID == nil, "pending selection cancels")
     let stale = Task { try await coordinator.catalog() }
     try await Task.sleep(nanoseconds: 20_000_000)
     coordinator.select(.sefaria)
@@ -36,4 +48,19 @@ func runBackendCoordinatorTests() async throws {
         "persistent source selection")
     let result = try await coordinator.catalog()
     try expect(result.first?.title == "new", "selected backend result")
+
+    let relaunch = BackendCoordinator(defaults: defaults)
+    try expect(relaunch.committedBackendID == .sefaria, "committed Sefaria survives relaunch")
+    try expect(relaunch.resolveStartup(hasValidOtzariaInstallation: false) == .ready(.sefaria),
+        "persisted Sefaria bypasses Otzaria bootstrap")
+    relaunch.beginConfiguration(of: .otzaria)
+    relaunch.cancelConfiguration()
+    try expect(relaunch.committedBackendID == .sefaria,
+        "cancelling an Otzaria switch preserves committed Sefaria")
+
+    defaults.removeObject(forKey: BackendCoordinator.selectionDefaultsKey)
+    let legacy = BackendCoordinator(defaults: defaults)
+    try expect(legacy.resolveStartup(hasValidOtzariaInstallation: true) == .ready(.otzaria),
+        "legacy valid Otzaria installation is preserved")
+    try expect(legacy.committedBackendID == .otzaria, "legacy Otzaria migration commits selection")
 }

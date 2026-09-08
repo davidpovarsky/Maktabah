@@ -16,6 +16,7 @@ final class iOSBootstrapManager {
     var coreDownloadState = CoreDownloadProgressState()
     var isChecking: Bool
     var requiresInitialSourceSelection: Bool
+    var requiresSefariaConfirmation = false
     var isUpdating = false
     var isCancellable = false
 
@@ -27,15 +28,12 @@ final class iOSBootstrapManager {
     private var didPrepare = false
     private var managedDownloadTask: Task<Void, Never>?
     private var managedDownloadGeneration = UUID()
-    private let defaults: UserDefaults
+    private let backendCoordinator: BackendCoordinator
 
-    init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-        let requiresSelection = defaults.object(
-            forKey: BackendCoordinator.selectionDefaultsKey
-        ) == nil
-        requiresInitialSourceSelection = requiresSelection
-        isChecking = !requiresSelection
+    init(backendCoordinator: BackendCoordinator = .shared) {
+        self.backendCoordinator = backendCoordinator
+        requiresInitialSourceSelection = false
+        isChecking = true
 
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-bootstrapInsufficientSpacePreview") {
@@ -51,22 +49,16 @@ final class iOSBootstrapManager {
 
     func prepareIfNeeded() async {
         guard !didPrepare else { return }
-        guard !requiresInitialSourceSelection else {
-            isChecking = false
-            return
-        }
         didPrepare = true
 
-        if !BackendCoordinator.shared.usesNativeMaktabahDataPath {
+        if backendCoordinator.committedBackendID == .sefaria {
             finishSetup()
             return
         }
 
+        let restored: Bool
         do {
-            if try await OtzariaBootstrapAdapter.restoreForAppLaunch() {
-                finishSetup()
-                return
-            }
+            restored = try await OtzariaBootstrapAdapter.restoreForAppLaunch()
         } catch {
             presentError(
                 title: String(localized: "bootstrap.error.savedDatabase.title"),
@@ -75,30 +67,44 @@ final class iOSBootstrapManager {
             return
         }
 
-        // The iOS product is backed by Otzaria. Maktabah's legacy
-        // main.sqlite/special.sqlite bundle is not a readiness gate here.
-        isChecking = false
-        coreDownloadState.totalSizeString = ""
-        coreDownloadState.errorPresentation = nil
-        coreDownloadState.phase = .confirmation
+        switch backendCoordinator.resolveStartup(hasValidOtzariaInstallation: restored) {
+        case .ready:
+            finishSetup()
+        case .chooseSource:
+            showSourceSelection()
+        case .configureOtzaria:
+            showOtzariaConfiguration()
+        }
     }
 
     func selectInitialSource(_ source: BackendID) {
-        defaults.set(source.rawValue, forKey: BackendCoordinator.selectionDefaultsKey)
-        if BackendCoordinator.shared.activeBackendID != source {
-            BackendCoordinator.shared.select(source)
+        switch source {
+        case .sefaria:
+            backendCoordinator.beginConfiguration(of: .sefaria)
+            requiresInitialSourceSelection = false
+            requiresSefariaConfirmation = true
+            isChecking = false
+        case .otzaria:
+            backendCoordinator.beginConfiguration(of: .otzaria)
+            showOtzariaConfiguration()
         }
-        requiresInitialSourceSelection = false
-        didPrepare = false
-        isChecking = true
-        Task { [weak self] in
-            await self?.prepareIfNeeded()
-        }
+    }
+
+    func confirmSefariaSelection() {
+        backendCoordinator.commit(.sefaria)
+        requiresSefariaConfirmation = false
+        finishSetup()
+    }
+
+    func returnFromSefariaConfirmation() {
+        backendCoordinator.cancelConfiguration()
+        showSourceSelection()
     }
 
     func installOtzariaDatabase(from url: URL) {
         do {
             try OtzariaBootstrapAdapter.installDatabase(from: url)
+            backendCoordinator.commit(.otzaria)
             finishSetup()
         } catch {
             presentError(
@@ -138,6 +144,7 @@ final class iOSBootstrapManager {
                 }
                 guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
                 try await installRecommendedSearchData(generation: generation)
+                backendCoordinator.commit(.otzaria)
                 finishSetup()
             } catch let error as OtzariaDatabaseBootstrapError {
                 guard managedDownloadGeneration == generation else { return }
@@ -180,6 +187,7 @@ final class iOSBootstrapManager {
 
     func continueWithLibraryOnly() {
         if OtzariaMaktabahBridge.shared.isEnabled {
+            backendCoordinator.commit(.otzaria)
             finishSetup()
         } else {
             presentError(
@@ -279,17 +287,18 @@ final class iOSBootstrapManager {
     }
 
     private func finishSetup() {
-        if BackendCoordinator.shared.usesNativeMaktabahDataPath {
+        if backendCoordinator.usesNativeMaktabahDataPath {
             DatabaseManager.shared.reloadConnectionAndLibrary()
         } else {
             LibraryDataManager.shared.resetState()
         }
         isChecking = false
+        requiresSefariaConfirmation = false
         coreDownloadState.errorPresentation = nil
         isReady = true
 
         // Check for core database updates (non-blocking, throttled 6 months)
-        if BackendCoordinator.shared.usesNativeMaktabahDataPath,
+        if backendCoordinator.usesNativeMaktabahDataPath,
            OtzariaBootstrapAdapter.shouldCheckCoreDatabaseUpdate {
             checkCoreDatabaseUpdate()
         }
@@ -355,6 +364,52 @@ final class iOSBootstrapManager {
         }
     }
 
+    func configureBackend(_ backendID: BackendID) {
+        guard backendID != backendCoordinator.activeBackendID else { return }
+        if backendID == .sefaria {
+            backendCoordinator.commit(.sefaria)
+            return
+        }
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            backendCoordinator.commit(.otzaria)
+            return
+        }
+        backendCoordinator.beginConfiguration(of: .otzaria)
+        isReady = false
+        showOtzariaConfiguration()
+    }
+
+    func returnFromOtzariaConfiguration() {
+        cancelManagedDownload()
+        backendCoordinator.cancelConfiguration()
+        coreDownloadState.errorPresentation = nil
+        if backendCoordinator.committedBackendID != .sefaria {
+            showSourceSelection()
+        } else {
+            requiresInitialSourceSelection = false
+            isChecking = false
+            isReady = true
+        }
+    }
+
+    private func showSourceSelection() {
+        requiresInitialSourceSelection = true
+        requiresSefariaConfirmation = false
+        isChecking = false
+        isReady = false
+        coreDownloadState.errorPresentation = nil
+    }
+
+    private func showOtzariaConfiguration() {
+        requiresInitialSourceSelection = false
+        requiresSefariaConfirmation = false
+        isChecking = false
+        isReady = false
+        coreDownloadState.totalSizeString = ""
+        coreDownloadState.errorPresentation = nil
+        coreDownloadState.phase = .confirmation
+    }
+
     func cancelDownload() {
         SettingsActions.cancelBundleModeSwitch()
         isChecking = false
@@ -365,6 +420,9 @@ final class iOSBootstrapManager {
         _ = SettingsActions.selectLibraryFolder(showSuccessAlert: false, shouldTerminateOnCancel: false) { [weak self] success in
             if success {
                 Task { @MainActor in
+                    if OtzariaMaktabahBridge.shared.isEnabled {
+                        self?.backendCoordinator.commit(.otzaria)
+                    }
                     self?.finishSetup()
                 }
             }

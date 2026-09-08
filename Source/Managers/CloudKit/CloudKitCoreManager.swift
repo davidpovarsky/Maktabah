@@ -5,13 +5,19 @@
 
 import CloudKit
 import Foundation
+import Security
 
 final class CloudKitCoreManager {
     static let shared = CloudKitCoreManager()
 
-    let container: CKContainer
-    let privateDatabase: CKDatabase
+    static let containerIdentifier = "iCloud.Maktabah"
+
+    let container: CKContainer?
+    let privateDatabase: CKDatabase?
     let zoneId: CKRecordZone.ID
+    let configurationError: String?
+
+    var isAvailable: Bool { container != nil && privateDatabase != nil }
 
     let changeTokenKey = "CKServerChangeToken_AnnotationsZone"
     private(set) var isSyncing = false
@@ -27,9 +33,31 @@ final class CloudKitCoreManager {
     }()
 
     private init() {
-        container = CKContainer(identifier: "iCloud.Maktabah")
-        privateDatabase = container.privateCloudDatabase
         zoneId = CKRecordZone.ID(zoneName: "AnnotationsZone", ownerName: CKCurrentUserDefaultName)
+        guard Self.hasContainerEntitlement(Self.containerIdentifier) else {
+            let message = "Missing signed iCloud container entitlement: \(Self.containerIdentifier)"
+            container = nil
+            privateDatabase = nil
+            configurationError = message
+            print("CloudKit configuration error: \(message)")
+            return
+        }
+        let resolvedContainer = CKContainer(identifier: Self.containerIdentifier)
+        container = resolvedContainer
+        privateDatabase = resolvedContainer.privateCloudDatabase
+        configurationError = nil
+    }
+
+    private static func hasContainerEntitlement(_ identifier: String) -> Bool {
+        guard let task = SecTaskCreateFromSelf(nil),
+              let value = SecTaskCopyValueForEntitlement(
+                  task,
+                  "com.apple.developer.icloud-container-identifiers" as CFString,
+                  nil
+              ) else { return false }
+        if let identifiers = value as? [String] { return identifiers.contains(identifier) }
+        if let singleIdentifier = value as? String { return singleIdentifier == identifier }
+        return false
     }
 
     func setSyncing(_ syncing: Bool, completion: (() -> Void)? = nil) {
@@ -68,6 +96,10 @@ final class CloudKitCoreManager {
     // MARK: - Core Operations
 
     func upload(records: [CKRecord], completion: ((Result<Void, Error>) -> Void)? = nil) {
+        guard let privateDatabase else {
+            completion?(.failure(CloudKitConfigurationError.unavailable(configurationError)))
+            return
+        }
         guard !records.isEmpty else {
             completion?(.success(()))
             return
@@ -87,6 +119,10 @@ final class CloudKitCoreManager {
     }
 
     func delete(recordIds: [CKRecord.ID], completion: ((Result<Void, Error>) -> Void)? = nil) {
+        guard let privateDatabase else {
+            completion?(.failure(CloudKitConfigurationError.unavailable(configurationError)))
+            return
+        }
         guard !recordIds.isEmpty else {
             completion?(.success(()))
             return
@@ -109,6 +145,10 @@ final class CloudKitCoreManager {
         recordDeleted: @escaping (CKRecord.ID) -> Void,
         completion: @escaping (Result<(CKServerChangeToken?, Bool), Error>) -> Void
     ) {
+        guard let privateDatabase else {
+            completion(.failure(CloudKitConfigurationError.unavailable(configurationError)))
+            return
+        }
         let options = CKFetchRecordZoneChangesOperation.ZoneConfiguration()
         options.previousServerChangeToken = previousToken
 
@@ -211,6 +251,17 @@ final class CloudKitCoreManager {
             guard !Task.isCancelled else { return }
             asyncWorker()
             notifyTask = nil
+        }
+    }
+}
+
+enum CloudKitConfigurationError: LocalizedError {
+    case unavailable(String?)
+
+    var errorDescription: String? {
+        switch self {
+        case .unavailable(let detail):
+            return detail ?? "CloudKit is unavailable for this signed application."
         }
     }
 }

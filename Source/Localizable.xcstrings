@@ -267,6 +267,20 @@
         "he": { "stringUnit": { "state": "translated", "value": "מקור הספרייה" } }
       }
     },
+    "bootstrap.source.back": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Back" } },
+        "he": { "stringUnit": { "state": "translated", "value": "חזרה" } }
+      }
+    },
+    "bootstrap.source.change": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Change Library Source" } },
+        "he": { "stringUnit": { "state": "translated", "value": "שינוי מקור הספרייה" } }
+      }
+    },
     "bootstrap.source.message": {
       "extractionState": "manual",
       "localizations": {
@@ -293,6 +307,20 @@
       "localizations": {
         "en": { "stringUnit": { "state": "translated", "value": "Cloud library; an internet connection is required" } },
         "he": { "stringUnit": { "state": "translated", "value": "ספרייה מהענן; נדרש חיבור לאינטרנט" } }
+      }
+    },
+    "bootstrap.source.sefaria.confirmation": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Read from Sefaria's cloud library now. Offline packages remain optional and can be managed later." } },
+        "he": { "stringUnit": { "state": "translated", "value": "אפשר להתחיל לקרוא כעת מספריית הענן של ספריא. חבילות לקריאה לא מקוונת הן אופציונליות וניתן לנהל אותן בהמשך." } }
+      }
+    },
+    "bootstrap.source.sefaria.continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Continue with Sefaria" } },
+        "he": { "stringUnit": { "state": "translated", "value": "המשך עם ספריא" } }
       }
     },
     "bootstrap.source.sefaria.title": {

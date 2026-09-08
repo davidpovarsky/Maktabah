@@ -1,6 +1,11 @@
 import Foundation
 
 func runNavigationAndPackageTests() throws {
+    let firstRepeatedLeaf = SefariaCatalogIdentity.categoryID(path: ["Tanakh", "Commentary"])
+    let secondRepeatedLeaf = SefariaCatalogIdentity.categoryID(path: ["Talmud", "Commentary"])
+    try expect(firstRepeatedLeaf != secondRepeatedLeaf, "category identity includes full path")
+    try expect(firstRepeatedLeaf == SefariaCatalogIdentity.categoryID(path: ["Tanakh", "Commentary"]),
+        "category identity is deterministic")
     let index = try JSONDecoder().decode(SefariaIndexDTO.self, from: fixture("index-complex.json"))
     let nodes = SefariaNavigationParser.nodes(schema: index.schema, indexTitle: index.title, baseRef: index.title)
     try expect(nodes.count == 2, "complex root nodes")

@@ -189,6 +189,28 @@ jobs:
       - name: Verify Xcode integration
         run: python3 Scripts/CI/verify-otzaria-xcode-project.py
 
+      - name: Test corrected backend selection and Sefaria identity contracts
+        run: |
+          xcrun swiftc \
+            Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/LibraryBackend/LibraryBackendProtocols.swift \
+            Source/LibraryBackend/BackendCoordinator.swift \
+            Source/LibraryBackend/LegacyIdentityRegistry.swift \
+            Source/Sefaria/Domain/SefariaModels.swift \
+            Source/Sefaria/Domain/SefariaNavigationParser.swift \
+            Source/Sefaria/Network/SefariaDTOs.swift \
+            Source/Sefaria/Offline/SefariaExportModels.swift \
+            Source/Sefaria/Downloads/SefariaPackagePolicy.swift \
+            Vendor/SefariaNativeTests/TestSupport.swift \
+            Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
+            Vendor/SefariaNativeTests/DecodingTests.swift \
+            Vendor/SefariaNativeTests/NavigationAndPackageTests.swift \
+            Vendor/SefariaNativeTests/BackendCoordinatorTests.swift \
+            Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift \
+            Vendor/SefariaNativeTests/SefariaNativeTestMain.swift \
+            -o "$RUNNER_TEMP/sefaria-native-tests"
+          "$RUNNER_TEMP/sefaria-native-tests"
+
       - name: Compute unique build number
         shell: bash
         run: |
@@ -327,6 +349,20 @@ jobs:
             echo "::error::Provisioning profile $name is missing required App Group 'group.com.davidpovarsky.itorah'"
             exit 1
           fi
+
+          echo "Validating provisioning profile iCloud and push entitlements..."
+          profile_containers=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.icloud-container-identifiers' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
+          grep -Fq "iCloud.Maktabah" <<< "$profile_containers" || {
+            echo "::error::Provisioning profile $name is missing iCloud container 'iCloud.Maktabah'"
+            exit 1
+          }
+          profile_services=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.icloud-services' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
+          grep -Fq "CloudKit" <<< "$profile_services" || { echo "::error::Provisioning profile $name is missing CloudKit"; exit 1; }
+          grep -Fq "CloudDocuments" <<< "$profile_services" || { echo "::error::Provisioning profile $name is missing iCloud Documents"; exit 1; }
+          profile_ubiquity=$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.ubiquity-container-identifiers' "$RUNNER_TEMP/app-profile.plist" 2>/dev/null || true)
+          grep -Fq "iCloud.Maktabah" <<< "$profile_ubiquity" || { echo "::error::Provisioning profile $name is missing the ubiquity container"; exit 1; }
+          test "$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.developer.ubiquity-kvstore-identifier' "$RUNNER_TEMP/app-profile.plist")" = "$TEAM_ID.$APP_BUNDLE_ID"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:aps-environment' "$RUNNER_TEMP/app-profile.plist")" = "production"
 
           if /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' "$RUNNER_TEMP/app-profile.plist" >/dev/null 2>&1; then
             echo "::error::Profile $name is device-limited, not an App Store distribution profile"
@@ -484,6 +520,17 @@ jobs:
             exit 1
           fi
 
+          echo "Validating signed application iCloud and push entitlements..."
+          signed_containers=$(/usr/libexec/PlistBuddy -c 'Print :com.apple.developer.icloud-container-identifiers' "$BUILD_DIR/logs/app-entitlements.plist" 2>/dev/null || true)
+          grep -Fq "iCloud.Maktabah" <<< "$signed_containers" || { echo "::error::Signed app is missing iCloud.Maktabah"; exit 1; }
+          signed_services=$(/usr/libexec/PlistBuddy -c 'Print :com.apple.developer.icloud-services' "$BUILD_DIR/logs/app-entitlements.plist" 2>/dev/null || true)
+          grep -Fq "CloudKit" <<< "$signed_services" || { echo "::error::Signed app is missing CloudKit"; exit 1; }
+          grep -Fq "CloudDocuments" <<< "$signed_services" || { echo "::error::Signed app is missing iCloud Documents"; exit 1; }
+          signed_ubiquity=$(/usr/libexec/PlistBuddy -c 'Print :com.apple.developer.ubiquity-container-identifiers' "$BUILD_DIR/logs/app-entitlements.plist" 2>/dev/null || true)
+          grep -Fq "iCloud.Maktabah" <<< "$signed_ubiquity" || { echo "::error::Signed app is missing the ubiquity container"; exit 1; }
+          test "$(/usr/libexec/PlistBuddy -c 'Print :com.apple.developer.ubiquity-kvstore-identifier' "$BUILD_DIR/logs/app-entitlements.plist")" = "$TEAM_ID.$APP_BUNDLE_ID"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :aps-environment' "$BUILD_DIR/logs/app-entitlements.plist")" = "production"
+
           echo "Asserting no stale legacy identifiers..."
           if grep -F "Q37L5CJ4ZG" "$BUILD_DIR/logs/app-entitlements.plist"; then
             echo "::error::Stale team ID Q37L5CJ4ZG found in entitlements"
@@ -493,11 +540,6 @@ jobs:
             echo "::error::Stale bundle ID com.Drn.maktabah found in entitlements"
             exit 1
           fi
-          if grep -F "iCloud.Maktabah" "$BUILD_DIR/logs/app-entitlements.plist"; then
-            echo "::error::Stale iCloud container iCloud.Maktabah found in entitlements"
-            exit 1
-          fi
-
           echo "Asserting no runtime database files are bundled in the IPA..."
           if unzip -l "$IPA_PATH" | grep -E '(^|/)(seforim\.db|lexical\.db)( |$)|zayit-search-index'; then
             echo "::error::IPA unexpectedly contains runtime database/search data"

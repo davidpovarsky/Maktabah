@@ -214,7 +214,22 @@ extension SettingsView {
         Section("Library Source") {
             Picker("Source", selection: Binding(
                 get: { backendCoordinator.activeBackendID },
-                set: { backendCoordinator.select($0) }
+                set: { requestedBackend in
+                    guard requestedBackend != backendCoordinator.activeBackendID else { return }
+                    #if os(iOS)
+                    if requestedBackend == .otzaria, !OtzariaMaktabahBridge.shared.isEnabled {
+                        backendCoordinator.beginConfiguration(of: .otzaria)
+                        NotificationCenter.default.post(
+                            name: .libraryBackendConfigurationRequested,
+                            object: BackendID.otzaria
+                        )
+                    } else {
+                        backendCoordinator.commit(requestedBackend)
+                    }
+                    #else
+                    backendCoordinator.commit(requestedBackend)
+                    #endif
+                }
             )) {
                 ForEach(BackendID.allCases) { backend in
                     Text(backend.displayName).tag(backend)

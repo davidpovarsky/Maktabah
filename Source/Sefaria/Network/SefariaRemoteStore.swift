@@ -20,13 +20,13 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     func catalog(forceRefresh: Bool) async throws -> [LibraryCatalogNode] {
         if !forceRefresh, let cached: [SefariaTOCEntryDTO] = await cache.decode("catalog.json") {
             rememberTitles(cached)
-            return cached.map(Self.mapCatalog)
+            return cached.map { Self.mapCatalog($0, parentPath: []) }
         }
         let url = try configuration.apiURL(path: "/api/index")
         let dto = try await client.get([SefariaTOCEntryDTO].self, url: url)
         try await cache.encode(dto, as: "catalog.json")
         rememberTitles(dto)
-        return dto.map(Self.mapCatalog)
+        return dto.map { Self.mapCatalog($0, parentPath: []) }
     }
 
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
@@ -118,17 +118,19 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         }
     }
 
-    private static func mapCatalog(_ entry: SefariaTOCEntryDTO) -> LibraryCatalogNode {
+    private static func mapCatalog(_ entry: SefariaTOCEntryDTO, parentPath: [String]) -> LibraryCatalogNode {
         if let title = entry.title {
             let locator = TextLocator(backend: .sefaria, workKey: title, position: .canonicalRef(title))
             let work = LibraryWork(locator: locator, title: title, heTitle: entry.heTitle,
-                categories: [], description: nil)
+                categories: parentPath, description: nil)
             return LibraryCatalogNode(id: locator.persistenceKey, kind: .work, title: title,
                 heTitle: entry.heTitle, work: work, children: [])
         }
         let title = entry.category ?? ""
-        return LibraryCatalogNode(id: "sefaria-category|\(title)", kind: .category, title: title,
-            heTitle: entry.heCategory, work: nil, children: entry.contents.map(mapCatalog))
+        let path = parentPath + [title]
+        return LibraryCatalogNode(id: SefariaCatalogIdentity.categoryID(path: path), kind: .category,
+            title: title, heTitle: entry.heCategory, work: nil,
+            children: entry.contents.map { mapCatalog($0, parentPath: path) })
     }
 
 }

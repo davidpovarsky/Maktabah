@@ -7,6 +7,7 @@ enum SefariaNativeTestMain {
             try runLocatorAndRefTests()
             try runDecodingTests()
             try runNavigationAndPackageTests()
+            try runLegacyIdentityRegistryTests()
             try await runBackendCoordinatorTests()
             print("Sefaria native contract tests passed")
         } catch {

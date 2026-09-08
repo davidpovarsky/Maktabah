@@ -164,6 +164,7 @@ jobs:
             Source/LibraryBackend/LibraryBackendModels.swift \
             Source/LibraryBackend/LibraryBackendProtocols.swift \
             Source/LibraryBackend/BackendCoordinator.swift \
+            Source/LibraryBackend/LegacyIdentityRegistry.swift \
             Source/Sefaria/Domain/SefariaModels.swift \
             Source/Sefaria/Domain/SefariaNavigationParser.swift \
             Source/Sefaria/Network/SefariaDTOs.swift \
@@ -173,6 +174,7 @@ jobs:
             Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
             Vendor/SefariaNativeTests/DecodingTests.swift \
             Vendor/SefariaNativeTests/NavigationAndPackageTests.swift \
+            Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift \
             Vendor/SefariaNativeTests/BackendCoordinatorTests.swift \
             Vendor/SefariaNativeTests/SefariaNativeTestMain.swift \
             -o "$RUNNER_TEMP/sefaria-native-tests"

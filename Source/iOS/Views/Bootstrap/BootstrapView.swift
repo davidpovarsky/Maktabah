@@ -28,15 +28,32 @@ struct iOSBootstrapView: View {
                             bootstrapManager.selectInitialSource(source)
                         }
                         .padding()
-                    } else {
-                        CoreDownloadProgressView(
-                            state: bootstrapManager.coreDownloadState,
-                            onDownload: { bootstrapManager.startDownload() },
-                            onChooseFolder: { showingOtzariaImporter = true },
-                            onQuit: { bootstrapManager.continueWithLibraryOnly() },
-                            configuration: .otzaria,
-                            onCancelDownload: { bootstrapManager.cancelManagedDownload() }
+                    } else if bootstrapManager.requiresSefariaConfirmation {
+                        BootstrapSefariaConfirmationView(
+                            onContinue: { bootstrapManager.confirmSefariaSelection() },
+                            onBack: { bootstrapManager.returnFromSefariaConfirmation() }
                         )
+                        .padding()
+                    } else {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Button {
+                                bootstrapManager.returnFromOtzariaConfiguration()
+                            } label: {
+                                Label(String(localized: "bootstrap.source.change"), systemImage: "chevron.backward")
+                            }
+                            .buttonStyle(.plain)
+                            .foregroundStyle(.tint)
+
+                            CoreDownloadProgressView(
+                                state: bootstrapManager.coreDownloadState,
+                                onDownload: { bootstrapManager.startDownload() },
+                                onChooseFolder: { showingOtzariaImporter = true },
+                                onQuit: { bootstrapManager.continueWithLibraryOnly() },
+                                configuration: .otzaria,
+                                onCancelDownload: { bootstrapManager.cancelManagedDownload() }
+                            )
+                        }
+                        .frame(maxWidth: 400)
                         .padding()
                     }
                 }
@@ -48,6 +65,10 @@ struct iOSBootstrapView: View {
         .onReceive(NotificationCenter.default.publisher(for: .requireCoreDownload)) { notification in
             let isCancellable = notification.userInfo?["isCancellable"] as? Bool ?? false
             bootstrapManager.reloadLibrary(isCancellable: isCancellable)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .libraryBackendConfigurationRequested)) { notification in
+            guard let backendID = notification.object as? BackendID else { return }
+            bootstrapManager.configureBackend(backendID)
         }
         .fileImporter(
             isPresented: $showingOtzariaImporter,
@@ -100,6 +121,39 @@ struct iOSBootstrapView: View {
                 message: "Database File Needed".localized
             )
         }
+    }
+}
+
+private struct BootstrapSefariaConfirmationView: View {
+    let onContinue: () -> Void
+    let onBack: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Button(action: onBack) {
+                Label(String(localized: "bootstrap.source.back"), systemImage: "chevron.backward")
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.tint)
+
+            Label(String(localized: "bootstrap.source.sefaria.title"), systemImage: "cloud.fill")
+                .font(.headline)
+            Text(String(localized: "bootstrap.source.sefaria.confirmation"))
+                .font(.callout)
+                .foregroundStyle(.secondary)
+            Button(String(localized: "bootstrap.source.sefaria.continue"), action: onContinue)
+                .buttonStyle(.borderedProminent)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+        .padding(20)
+        .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(.regularMaterial))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .strokeBorder(.quaternary, lineWidth: 1)
+        )
+        .frame(maxWidth: 400)
+        .fixedSize(horizontal: false, vertical: true)
+        .controlSize(.large)
     }
 }
 

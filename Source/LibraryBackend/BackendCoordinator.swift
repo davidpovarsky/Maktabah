@@ -3,14 +3,21 @@ import Foundation
 
 extension Notification.Name {
     static let activeLibraryBackendDidChange = Notification.Name("activeLibraryBackendDidChange")
+    static let libraryBackendConfigurationRequested = Notification.Name("libraryBackendConfigurationRequested")
 }
 
 @MainActor
 final class BackendCoordinator: ObservableObject {
+    enum StartupResolution: Equatable {
+        case chooseSource
+        case configureOtzaria
+        case ready(BackendID)
+    }
     static let shared = BackendCoordinator()
     nonisolated static let selectionDefaultsKey = "activeLibraryBackend.v1"
 
     @Published private(set) var activeBackendID: BackendID
+    @Published private(set) var pendingBackendID: BackendID?
     @Published private(set) var generation: UInt64 = 0
 
     private var registrations: [BackendID: LibraryBackendRegistration] = [:]
@@ -19,8 +26,14 @@ final class BackendCoordinator: ObservableObject {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        activeBackendID = defaults.string(forKey: Self.selectionDefaultsKey)
-            .flatMap(BackendID.init(rawValue:)) ?? .otzaria
+        let committed = defaults.string(forKey: Self.selectionDefaultsKey)
+            .flatMap(BackendID.init(rawValue:))
+        activeBackendID = committed ?? .otzaria
+        pendingBackendID = nil
+    }
+
+    var committedBackendID: BackendID? {
+        defaults.string(forKey: Self.selectionDefaultsKey).flatMap(BackendID.init(rawValue:))
     }
 
     var activeCapabilities: BackendCapabilities {
@@ -39,14 +52,37 @@ final class BackendCoordinator: ObservableObject {
         registrations[registration.id] = registration
     }
 
-    func select(_ backendID: BackendID) {
-        guard backendID != activeBackendID else { return }
+    func beginConfiguration(of backendID: BackendID) {
+        pendingBackendID = backendID
+    }
+
+    func cancelConfiguration() {
+        pendingBackendID = nil
+    }
+
+    func resolveStartup(hasValidOtzariaInstallation: Bool) -> StartupResolution {
+        switch committedBackendID {
+        case .sefaria:
+            return .ready(.sefaria)
+        case .otzaria:
+            return hasValidOtzariaInstallation ? .ready(.otzaria) : .configureOtzaria
+        case nil:
+            guard hasValidOtzariaInstallation else { return .chooseSource }
+            commit(.otzaria)
+            return .ready(.otzaria)
+        }
+    }
+
+    func commit(_ backendID: BackendID) {
+        let wasCommitted = committedBackendID == backendID
+        pendingBackendID = nil
+        defaults.set(backendID.rawValue, forKey: Self.selectionDefaultsKey)
+        guard !wasCommitted || backendID != activeBackendID else { return }
         let oldRegistrations = registrations.values
         inFlightCancellations.values.forEach { $0() }
         inFlightCancellations.removeAll()
         generation &+= 1
         activeBackendID = backendID
-        defaults.set(backendID.rawValue, forKey: Self.selectionDefaultsKey)
         Task {
             for registration in oldRegistrations {
                 await registration.invalidateTransientState()
@@ -54,6 +90,11 @@ final class BackendCoordinator: ObservableObject {
         }
         NotificationCenter.default.post(name: .activeLibraryBackendDidChange, object: backendID)
         NotificationCenter.default.post(name: .libraryFolderChanged, object: nil)
+    }
+
+    /// Compatibility entry point for callers whose selection is immediately usable.
+    func select(_ backendID: BackendID) {
+        commit(backendID)
     }
 
     func catalog(forceRefresh: Bool = false) async throws -> [LibraryCatalogNode] {

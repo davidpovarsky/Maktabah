@@ -45,12 +45,16 @@ struct MaktabahApp: App {
         AppConfig.initializeMode()
         ArabicFont.registerCustomFonts()
         UserFontManager.shared.registerUserFonts()
-        if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
-            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: false])
+        let cloudKitRestorationKey = "cloudKitCapabilityRestored.v1"
+        UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: true])
+        if !UserDefaults.standard.bool(forKey: cloudKitRestorationKey) {
+            // Previous sideload builds force-wrote this preference to false on every launch,
+            // so there is no intentional user choice to preserve from those builds.
+            UserDefaults.standard.set(true, forKey: AppConfig.useICloudKey)
+            UserDefaults.standard.set(true, forKey: cloudKitRestorationKey)
         }
-        UserDefaults.standard.set(false, forKey: AppConfig.useICloudKey)
         AppConfig.setupAnnotationsAndResults()
-        // CloudKitSyncManager.shared.initializeOnLaunch()
+        CloudKitSyncManager.shared.initializeOnLaunch()
         // CoreDatabaseBootstrap.run()
         setupGlobalAppearances()
     }
@@ -130,13 +134,24 @@ struct MaktabahApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        // application.registerForRemoteNotifications()
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        if AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable {
+            application.registerForRemoteNotifications()
+        }
+        return true
     }
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        completionHandler(.noData)
+        guard AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable else {
+            completionHandler(.noData)
+            return
+        }
+        CloudKitSyncManager.shared.fetchChanges()
+        completionHandler(.newData)
     }
     func applicationWillTerminate(_ application: UIApplication) {
         CloudKitCoreManager.shared.syncWorker()
