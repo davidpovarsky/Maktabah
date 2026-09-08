@@ -3,7 +3,7 @@ import Foundation
 enum OtzariaLibraryPolicy {
     static var isEnabled: Bool {
         #if os(iOS)
-        OtzariaMaktabahBridge.shared.isEnabled
+        OtzariaBackendActivation.isActive
         #else
         false
         #endif

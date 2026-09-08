@@ -3,7 +3,7 @@ import Foundation
 #if os(iOS)
 extension iOSNavigationManager {
     func openOtzariaLinkedSourceInNewTab(_ source: OtzariaLinkedSource) {
-        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
+        guard OtzariaBackendActivation.isActive else { return }
 
         let book = LibraryDataManager.shared.getBook([source.linkedBookId]).first
             ?? (try? OtzariaMaktabahBridge.shared.fetchBook(byId: source.linkedBookId))

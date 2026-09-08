@@ -56,7 +56,7 @@ enum OtzariaUnitMode: Equatable, Codable {
 #if os(iOS)
 extension ReaderViewModel {
     var otzariaAvailableUnitModes: [OtzariaUnitLevelOption] {
-        guard OtzariaMaktabahBridge.shared.isEnabled,
+        guard OtzariaBackendActivation.isActive,
               let currentBook else {
             return []
         }
@@ -69,7 +69,7 @@ extension ReaderViewModel {
     }
 
     func setOtzariaUnitMode(_ mode: OtzariaUnitMode) {
-        guard OtzariaMaktabahBridge.shared.isEnabled,
+        guard OtzariaBackendActivation.isActive,
               let currentBook else {
             return
         }

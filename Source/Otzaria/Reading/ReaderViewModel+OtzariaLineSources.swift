@@ -32,7 +32,7 @@ extension ReaderViewModel {
     }
 
     func didTapOtzariaText(at characterIndex: Int) {
-        guard OtzariaMaktabahBridge.shared.isEnabled else { return }
+        guard OtzariaBackendActivation.isActive else { return }
         guard let currentBook else {
             OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria tap ignored without currentBook characterIndex=\(characterIndex)")
             return
@@ -73,7 +73,7 @@ extension ReaderViewModel {
     }
 
     func resolveOtzariaLineAnchor(for selectedRange: NSRange) -> OtzariaLineAnchor? {
-        guard OtzariaMaktabahBridge.shared.isEnabled, let currentBook else { return nil }
+        guard OtzariaBackendActivation.isActive, let currentBook else { return nil }
         return OtzariaMaktabahBridge.shared.lineAnchor(
             bookId: currentBook.id,
             contentId: currentContentId,
@@ -86,7 +86,7 @@ extension ReaderViewModel {
 extension ReaderViewModel {
     var isOtzariaReaderEnabled: Bool {
         #if os(iOS)
-        OtzariaMaktabahBridge.shared.isEnabled
+        OtzariaBackendActivation.isActive
         #else
         false
         #endif

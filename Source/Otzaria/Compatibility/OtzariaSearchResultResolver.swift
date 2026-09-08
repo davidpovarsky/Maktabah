@@ -5,7 +5,7 @@ enum OtzariaSearchResultResolver {
 
     static var allowsSearchWithoutSelectedTables: Bool {
         #if os(iOS)
-        OtzariaMaktabahBridge.shared.isEnabled
+        OtzariaBackendActivation.isActive
         #else
         false
         #endif

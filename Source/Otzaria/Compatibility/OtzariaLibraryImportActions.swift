@@ -4,7 +4,7 @@ import Foundation
 @MainActor
 enum OtzariaLibraryImportActions {
     static var isEnabled: Bool {
-        OtzariaMaktabahBridge.shared.isEnabled
+        OtzariaBackendActivation.isActive
     }
 
     static func handleDownloadSingleBook(
