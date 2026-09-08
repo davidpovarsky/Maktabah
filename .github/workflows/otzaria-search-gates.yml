@@ -140,7 +140,7 @@ jobs:
       - name: Test Otzaria release and resume policies
         run: |
           xcrun swiftc \
-            'Source/Managers/App Config/AppConfig.swift' \
+            Vendor/OtzariaDataProfileTests/AppConfigShim.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
             Source/Otzaria/Storage/ITorahSharedContainer.swift \
@@ -183,7 +183,7 @@ jobs:
           ZSTD_PREFIX="$(brew --prefix zstd)"
           xcrun swiftc \
             'Source/Managers/App Config/ZstdShim.swift' \
-            'Source/Managers/App Config/AppConfig.swift' \
+            Vendor/OtzariaDataProfileTests/AppConfigShim.swift \
             Source/Managers/Database/SQLiteDatabase.swift \
             Source/Otzaria/Storage/ITorahSharedContainer.swift \
             Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \

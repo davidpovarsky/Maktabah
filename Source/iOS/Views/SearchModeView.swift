@@ -156,7 +156,7 @@ struct SearchModeView: View {
         SearchResultsSorter.sort(&filtered, by: sortKey, ascending: sortAscending)
 
         return SearchResultsListView(results: filtered) { item in
-            handleSelection(item)
+            handleSelection(item, viewModel: viewModel)
         }
         .searchable(
             text: $kitabFilter,
@@ -168,7 +168,7 @@ struct SearchModeView: View {
         }
     }
 
-    private func handleSelection(_ item: SearchResultItem) {
+    private func handleSelection(_ item: SearchResultItem, viewModel: SearchViewModel) {
         if let book = viewModel.resolveBook(from: item) {
             let shouldRecord = UserDefaults.standard.recordSearchHistory
             navigationManager.openBook(

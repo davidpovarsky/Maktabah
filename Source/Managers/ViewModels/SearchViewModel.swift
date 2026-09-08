@@ -387,7 +387,7 @@ final class SearchViewModel: ViewModelBase {
 
         if MaktabahBackendAdapter.usesGenericModels {
             let requestQuery = query
-            searchWork = Task { @MainActor [weak self] in
+            let task = Task { @MainActor [weak self] in
                 guard let self else { return }
                 do {
                     let page = try await BackendCoordinator.shared.search(.init(
@@ -411,7 +411,8 @@ final class SearchViewModel: ViewModelBase {
                 }
                 searchWork = nil
             }
-            return
+            searchWork = task
+            return task
         }
 
         let task = Task.detached { [weak self] in

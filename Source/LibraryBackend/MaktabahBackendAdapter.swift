@@ -2,7 +2,11 @@ import Foundation
 
 @MainActor
 enum MaktabahBackendAdapter {
-    static var usesGenericModels: Bool { !BackendCoordinator.shared.usesNativeMaktabahDataPath }
+    nonisolated static var usesGenericModels: Bool {
+        let selected = UserDefaults.standard.string(forKey: BackendCoordinator.selectionDefaultsKey)
+            .flatMap(BackendID.init(rawValue:)) ?? .otzaria
+        return selected == .sefaria
+    }
 
     static func loadLibraryIfNeeded() async throws -> (roots: [CategoryData], books: [Int: BooksData])? {
         guard usesGenericModels else { return nil }
