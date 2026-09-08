@@ -1,0 +1,1 @@
+{"hits":{"total":{"value":1},"hits":[{"_score":4.5,"_source":{"ref":"Genesis 1:1","heRef":"בראשית א׳:א׳","title":"Genesis","lang":"he","content":"בראשית ברא"},"highlight":{"naive_lemmatizer":["<b>בראשית</b> ברא"]}}]}}

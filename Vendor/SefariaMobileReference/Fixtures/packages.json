@@ -1,0 +1,5 @@
+[
+  {"en":"COMPLETE LIBRARY","he":"כל הספרייה","color":"Other","size":1000},
+  {"en":"TANAKH and all commentaries","he":"תנ״ך וכל המפרשים","color":"Tanakh","size":700,"indexes":["Genesis","Rashi on Genesis"]},
+  {"en":"TANAKH with Rashi","he":"תנ״ך עם רש״י","color":"Tanakh","parent":"TANAKH and all commentaries","size":300,"indexes":["Genesis","Rashi on Genesis"]}
+]

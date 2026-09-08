@@ -157,6 +157,25 @@ jobs:
             Vendor/OtzariaBootstrapTests/main.swift \
             -o "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
           "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
+      - name: Test generic backend and Sefaria contracts
+        run: |
+          xcrun swiftc \
+            Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/LibraryBackend/LibraryBackendProtocols.swift \
+            Source/LibraryBackend/BackendCoordinator.swift \
+            Source/Sefaria/Domain/SefariaModels.swift \
+            Source/Sefaria/Domain/SefariaNavigationParser.swift \
+            Source/Sefaria/Network/SefariaDTOs.swift \
+            Source/Sefaria/Offline/SefariaExportModels.swift \
+            Source/Sefaria/Downloads/SefariaPackagePolicy.swift \
+            Vendor/SefariaNativeTests/TestSupport.swift \
+            Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
+            Vendor/SefariaNativeTests/DecodingTests.swift \
+            Vendor/SefariaNativeTests/NavigationAndPackageTests.swift \
+            Vendor/SefariaNativeTests/BackendCoordinatorTests.swift \
+            Vendor/SefariaNativeTests/SefariaNativeTestMain.swift \
+            -o "$RUNNER_TEMP/sefaria-native-tests"
+          "$RUNNER_TEMP/sefaria-native-tests"
       - name: Test streaming zstd, SQLite validation and rollback lifecycle
         run: |
           brew list zstd >/dev/null 2>&1 || brew install zstd
