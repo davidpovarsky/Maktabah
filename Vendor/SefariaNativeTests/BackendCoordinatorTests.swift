@@ -54,9 +54,22 @@ func runBackendCoordinatorTests() async throws {
     try expect(relaunch.resolveStartup(hasValidOtzariaInstallation: false) == .ready(.sefaria),
         "persisted Sefaria bypasses Otzaria bootstrap")
     relaunch.beginConfiguration(of: .otzaria)
+    try expect(relaunch.activeBackendID == .sefaria,
+        "pending Otzaria switch does not replace the committed backend")
     relaunch.cancelConfiguration()
     try expect(relaunch.committedBackendID == .sefaria,
         "cancelling an Otzaria switch preserves committed Sefaria")
+
+    relaunch.beginConfiguration(of: .otzaria)
+    relaunch.commit(.otzaria)
+    try expect(relaunch.pendingBackendID == nil, "successful Otzaria setup clears pending state")
+    try expect(relaunch.committedBackendID == .otzaria,
+        "successful Otzaria setup commits the backend")
+    let installedRelaunch = BackendCoordinator(defaults: defaults)
+    try expect(installedRelaunch.resolveStartup(hasValidOtzariaInstallation: true) == .ready(.otzaria),
+        "committed Otzaria with a valid installation is ready on relaunch")
+    try expect(installedRelaunch.resolveStartup(hasValidOtzariaInstallation: false) == .configureOtzaria,
+        "committed Otzaria without an installation resumes configuration")
 
     defaults.removeObject(forKey: BackendCoordinator.selectionDefaultsKey)
     let legacy = BackendCoordinator(defaults: defaults)
