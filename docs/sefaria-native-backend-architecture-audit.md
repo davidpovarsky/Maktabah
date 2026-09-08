@@ -1,7 +1,7 @@
 # Native Sefaria backend architecture audit
 
-Audit date: 2026-09-08  
-Maktabah base: `e46761c26210ece8148a846103dfc4da4c950031` (`origin/dev`)  
+Audit date: 2026-09-08
+Maktabah base: `e46761c26210ece8148a846103dfc4da4c950031` (`origin/dev`)
 Sefaria-Mobile reference: `77eb30f66ea71a0af6638c3b5c03a4624f68da8f` (`master`)
 
 ## Existing call chain
