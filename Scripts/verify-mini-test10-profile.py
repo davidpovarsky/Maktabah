@@ -32,7 +32,7 @@ def main() -> None:
     profile = json.loads(args.profile.read_text(encoding="utf-8"))
     db_hash = sha256(args.database)
     archive_hash = sha256(args.archive)
-    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] == 2
+    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] == 3
     assert profile["sharedLexicalDatabase"] == {
         "bytes": 57122816,
         "releaseTag": "v0.3.0",
@@ -56,7 +56,7 @@ def main() -> None:
 
     if args.otzaria_manifest:
         manifest = json.loads(args.otzaria_manifest.read_text())
-        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 2
+        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 3
         assert manifest["sourceDatabase"]["databaseSHA256"] == db_hash
         assert manifest["sourceDatabase"]["databaseBytes"] == args.database.stat().st_size
         assert manifest["sourceDatabase"]["bookCount"] == 10
@@ -72,7 +72,7 @@ def main() -> None:
         assert lexical["sha256"] == profile["sharedLexicalDatabase"]["sha256"]
     if args.zayit_manifest:
         manifest = json.loads(args.zayit_manifest.read_text())
-        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 2
+        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 3
         assert manifest["requiredDatabase"]["canonicalSHA256"] == db_hash
         assert manifest["requiredDatabase"]["compressedAssetSHA256"] == archive_hash
         assert manifest["requiredDatabase"]["bytes"] == args.database.stat().st_size
