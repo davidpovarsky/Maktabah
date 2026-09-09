@@ -251,6 +251,7 @@ jobs:
             -o "$RUNNER_TEMP/inspector-backend-tests"
           "$RUNNER_TEMP/inspector-backend-tests"
       - name: Run live Sefaria contracts and real package smoke
+        id: live_sefaria_smoke
         if: ${{ inputs.run_live_sefaria_smoke }}
         continue-on-error: true
         run: bash Scripts/run-sefaria-native-smoke.sh
@@ -329,6 +330,11 @@ jobs:
           path: build/logs
           compression-level: 0
           if-no-files-found: warn
+      - name: Enforce live Sefaria result after all simulator validations
+        if: ${{ always() && inputs.run_live_sefaria_smoke && steps.live_sefaria_smoke.outcome != 'success' }}
+        run: |
+          echo "Live Sefaria smoke failed; all independent checks and simulator validations have completed."
+          exit 1
 
   device-build:
     name: Build unsigned device IPA
