@@ -13,6 +13,11 @@ on:
         required: false
         default: false
         type: boolean
+      run_live_sefaria_smoke:
+        description: Run live Sefaria API and real smallest-package contract smoke
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ inputs.run_heavy_otzaria_acceptance && 'heavy' || 'normal' }}
@@ -245,6 +250,9 @@ jobs:
             Vendor/SefariaNativeTests/SefariaNativeTestMain.swift \
             -o "$RUNNER_TEMP/inspector-backend-tests"
           "$RUNNER_TEMP/inspector-backend-tests"
+      - name: Run live Sefaria contracts and real package smoke
+        if: ${{ inputs.run_live_sefaria_smoke }}
+        run: bash Scripts/run-sefaria-native-smoke.sh
       - name: Build simulator app without signing
         run: |
           mkdir -p build/logs

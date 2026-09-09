@@ -5,6 +5,7 @@ output="${TMPDIR:-/tmp}/sefaria-native-smoke"
 xcrun swiftc \
   Source/LibraryBackend/LibraryBackendModels.swift \
   Source/Sefaria/Domain/SefariaModels.swift \
+  Source/Sefaria/Domain/SefariaNavigationParser.swift \
   Source/Sefaria/Network/SefariaNetworkConfiguration.swift \
   Source/Sefaria/Network/SefariaHTTPClient.swift \
   Source/Sefaria/Network/SefariaDTOs.swift \
