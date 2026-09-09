@@ -53,7 +53,10 @@ def require_entitlements(
         fail(f"{label} missing ubiquity container {container_id}; found {sorted(ubiquity)}")
     expected_kvstore = expected_application_id
     kvstore = entitlements.get("com.apple.developer.ubiquity-kvstore-identifier")
-    if kvstore != expected_kvstore:
+    profile_kvstore_wildcard = f"{team_id}.*"
+    if kvstore != expected_kvstore and not (
+        allow_profile_wildcards and kvstore == profile_kvstore_wildcard
+    ):
         fail(
             f"{label} key-value-store identifier: expected {expected_kvstore}, "
             f"found {kvstore!r}"
@@ -125,6 +128,8 @@ def main() -> int:
     if "*" in values(profile_entitlements, "com.apple.developer.icloud-services"):
         print("  profile iCloud-services authorization: * (signed app is exact)")
     print(f"  key-value store: {args.team_id}.{args.bundle_id}")
+    if profile_entitlements.get("com.apple.developer.ubiquity-kvstore-identifier") == f"{args.team_id}.*":
+        print("  profile key-value-store authorization: TEAM.* (signed app is exact)")
     print("  aps-environment: production (no APNs SSL certificate required)")
     print("Signed app entitlements match the provisioning profile")
     return 0
