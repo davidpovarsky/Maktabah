@@ -1,7 +1,8 @@
 import Foundation
 
 actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
-    LibraryNavigationProviding, LibrarySearchProviding, LibraryMetadataProviding {
+    LibraryNavigationProviding, LibrarySearchProviding, LibraryMetadataProviding,
+    LibraryRelationshipsProviding {
     private let configuration: SefariaNetworkConfiguration
     private let client: SefariaHTTPClient
     private let cache: SefariaDiskCache
@@ -101,6 +102,32 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                   let work = SefariaRef.workKey(from: ref, knownTitles: Array(knownTitles)) else { return nil }
             return TextLocator(backend: .sefaria, workKey: work, position: .canonicalRef(ref))
         }
+    }
+
+    func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
+        guard locator.backend == .sefaria, case .canonicalRef(let ref) = locator.position else {
+            throw LibraryBackendError.invalidLocator
+        }
+        let url = try configuration.apiURL(
+            pathPrefix: "/api/links/",
+            pathComponent: ref,
+            queryItems: [URLQueryItem(name: "with_text", value: "1")]
+        )
+        let rows = try await client.get([SefariaRelationshipLinkDTO].self, url: url)
+        return rows.compactMap { SefariaRelationshipMapper.source($0, knownTitles: knownTitles) }
+    }
+
+    func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
+        guard locator.backend == .sefaria, case .canonicalRef(let ref) = locator.position else {
+            throw LibraryBackendError.invalidLocator
+        }
+        let url = try configuration.apiURL(
+            pathPrefix: "/api/ref-topic-links/",
+            pathComponent: ref,
+            queryItems: [URLQueryItem(name: "interface_lang", value: "english")]
+        )
+        let rows = try await client.get([SefariaRelationshipTopicDTO].self, url: url)
+        return SefariaRelationshipMapper.topics(rows)
     }
 
     func clearTransientState() { knownTitles.removeAll() }

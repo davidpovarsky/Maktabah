@@ -20,6 +20,15 @@ func runDecodingTests() throws {
         "search response to canonical ref")
     let offline = try decoder.decode(SefariaOfflineMetadataDTO.self, from: fixture("offline-metadata.json"))
     try expect(offline.links?.first?.first?.type == "commentary", "offline links")
+
+    let richLinks = try decoder.decode([SefariaRelationshipLinkDTO].self, from: Data(#"[{"sourceRef":"Rashi on Genesis 1:1:1","sourceHeRef":"רש״י","category":"Commentary","type":"commentary","collectiveTitle":{"en":"Rashi","he":"רש״י"},"he":"פירוש","heVersionTitle":"מקראות","heLicense":"CC-BY-SA","indexTitle":"Rashi on Genesis"}]"#.utf8))
+    let richLink = SefariaRelationshipMapper.source(richLinks[0], knownTitles: [])
+    try expect(richLink?.locator.workKey == "Rashi on Genesis", "rich link target identity")
+    try expect(richLink?.category == "Commentary" && richLink?.primaryText == "פירוש", "rich link fields")
+
+    let richTopics = try decoder.decode([SefariaRelationshipTopicDTO].self, from: Data(#"[{"topic":"creation","descriptions":{"en":{"title":"Creation"},"he":{"title":"בריאה"}}},{"topic":"creation"}]"#.utf8))
+    let topics = SefariaRelationshipMapper.topics(richTopics)
+    try expect(topics.count == 1 && topics[0].titleHe == "בריאה", "rich topic mapping and deduplication")
     do {
         _ = try decoder.decode(SefariaTextsV3DTO.self, from: Data("{bad".utf8))
         throw TestFailure.failed("malformed response was accepted")

@@ -36,6 +36,7 @@ final class SefariaBackend {
             search: remote,
             authors: nil,
             metadata: remote,
+            relationships: remote,
             offline: packages,
             usesNativeMaktabahDataPath: false,
             invalidateTransientState: { [remote = self.remote, offline = self.offline,

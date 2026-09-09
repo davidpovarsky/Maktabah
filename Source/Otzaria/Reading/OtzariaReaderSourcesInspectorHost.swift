@@ -1,30 +1,38 @@
-import SwiftUI
-
 #if os(iOS)
+import SwiftUI
+import TorahInspectorCore
+import TorahInspectorUI
+
 struct OtzariaReaderSourcesInspectorHost: View {
     var viewModel: ReaderViewModel
     var navigationManager: iOSNavigationManager
+    @ObservedObject private var backendCoordinator = BackendCoordinator.shared
+    @State private var inspectorSession = MaktabahTorahInspectorSession()
 
     var body: some View {
         @Bindable var viewModel = viewModel
 
-        if viewModel.otzariaSourcesInspectorVisible {
-            OtzariaLineSourcesInspectorView(
-                selectedLine: viewModel.otzariaSelectedLineAnchor,
-                sources: viewModel.otzariaLinkedSources,
-                isLoading: viewModel.otzariaSourcesIsLoading,
-                error: viewModel.otzariaSourcesError,
-                isPresented: viewModel.otzariaSourcesInspectorVisible,
-                selectedGroupID: $viewModel.otzariaSourcesSelectedGroupID,
-                selectedBookID: $viewModel.otzariaSourcesSelectedBookID,
-                expandedSourceIDs: $viewModel.otzariaSourcesExpandedSourceIDs,
+        if viewModel.otzariaSourcesInspectorVisible,
+           let selection = inspectorSession.selection(
+                sefariaLocator: viewModel.readerState.currentLocator,
+                otzariaLine: viewModel.otzariaSelectedLineAnchor
+           ) {
+            TorahInspectorUI.TorahInspectorView(
+                repository: inspectorSession.repository,
+                selection: selection,
                 onClose: {
                     viewModel.closeOtzariaSourcesInspector()
                 },
-                onOpenSource: { source in
-                    navigationManager.openOtzariaLinkedSourceInNewTab(source)
+                onOpenInNewTab: { selection in
+                    guard let locator = inspectorSession.locator(for: selection) else { return }
+                    navigationManager.openTorahInspectorLocationInNewTab(locator)
                 }
             )
+            .id("\(backendCoordinator.generation):\(selection.id)")
+            .onChange(of: backendCoordinator.generation) { _, _ in
+                inspectorSession = MaktabahTorahInspectorSession()
+                viewModel.closeOtzariaSourcesInspector()
+            }
         } else {
             EmptyView()
         }

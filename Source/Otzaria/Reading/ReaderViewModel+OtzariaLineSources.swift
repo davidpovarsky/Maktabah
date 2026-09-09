@@ -32,6 +32,14 @@ extension ReaderViewModel {
     }
 
     func didTapOtzariaText(at characterIndex: Int) {
+        if BackendCoordinator.shared.activeBackendID == .sefaria {
+            guard readerState.currentLocator?.backend == .sefaria else { return }
+            otzariaSelectedLineAnchor = nil
+            otzariaSourcesInspectorVisible = true
+            otzariaSourcesIsLoading = false
+            otzariaSourcesError = nil
+            return
+        }
         guard OtzariaBackendActivation.isActive else { return }
         guard let currentBook else {
             OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria tap ignored without currentBook characterIndex=\(characterIndex)")

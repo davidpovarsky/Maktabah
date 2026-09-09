@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A30000000000000000000001 /* TorahInspectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000001 /* TorahInspectorCore */; };
+		A30000000000000000000002 /* TorahInspectorUI in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000002 /* TorahInspectorUI */; };
+		A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */; };
+		A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */; };
 		CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000001 /* LibraryBackendModels.swift */; };
 		CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000002 /* LibraryBackendProtocols.swift */; };
 		CE1000000000000000000003 /* BackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000003 /* BackendCoordinator.swift */; };
@@ -811,6 +815,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaktabahTorahInspectorAdapter.swift; path = Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift; sourceTree = "<group>"; };
+		A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaInspectorRelationshipsProvider.swift; path = Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift; sourceTree = "<group>"; };
 		CE0000000000000000000001 /* LibraryBackendModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendModels.swift; sourceTree = "<group>"; };
 		CE0000000000000000000002 /* LibraryBackendProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendProtocols.swift; sourceTree = "<group>"; };
 		CE0000000000000000000003 /* BackendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCoordinator.swift; sourceTree = "<group>"; };
@@ -1287,6 +1293,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30000000000000000000001 /* TorahInspectorCore in Frameworks */,
+				A30000000000000000000002 /* TorahInspectorUI in Frameworks */,
 				CEF000000000000000000005 /* ZIPFoundation in Frameworks */,
 				F30577492FA46222005732C6 /* libzstd in Frameworks */,
 				F863781C27AE47117CE50EC6 /* OtzariaSearchEngine.xcframework in Frameworks */,
@@ -1338,6 +1346,8 @@
 		0A7AF0000000000000000000 /* Otzaria */ = {
 			isa = PBXGroup;
 			children = (
+				A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */,
+				A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */,
 				CE0000000000000000000015 /* OtzariaGenericBackendAdapter.swift */,
 				CE0000000000000000000016 /* OtzariaBackendActivation.swift */,
 				DAF000000000000000000001 /* OtzariaDataProfile.swift */,
@@ -2213,6 +2223,8 @@
 			);
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
+				A20000000000000000000001 /* TorahInspectorCore */,
+				A20000000000000000000002 /* TorahInspectorUI */,
 				CEF000000000000000000002 /* ZIPFoundation */,
 				F30576E02FA46222005732C6 /* libzstd */,
 			);
@@ -2259,6 +2271,7 @@
 			);
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
+				A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */,
 				CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
 				4B7C91302F834CF700454BE1 /* XCRemoteSwiftPackageReference "Sparkle" */,
@@ -2781,6 +2794,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */,
+				A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */,
 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,
@@ -3766,6 +3781,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
@@ -3809,6 +3832,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A20000000000000000000001 /* TorahInspectorCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */;
+			productName = TorahInspectorCore;
+		};
+		A20000000000000000000002 /* TorahInspectorUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */;
+			productName = TorahInspectorUI;
+		};
 		CEF000000000000000000002 /* ZIPFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;

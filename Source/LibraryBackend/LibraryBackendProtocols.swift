@@ -26,6 +26,11 @@ protocol LibraryMetadataProviding: Sendable {
     func related(to locator: TextLocator) async throws -> [TextLocator]
 }
 
+protocol LibraryRelationshipsProviding: Sendable {
+    func links(for locator: TextLocator) async throws -> [LibraryRelatedSource]
+    func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic]
+}
+
 protocol OfflineLibraryProviding: Sendable {
     func packages(forceRefresh: Bool) async throws -> [OfflinePackage]
     func installedPackageIDs() async -> Set<String>
@@ -46,6 +51,7 @@ struct LibraryBackendRegistration: Sendable {
     let search: (any LibrarySearchProviding)?
     let authors: (any LibraryAuthorsProviding)?
     let metadata: (any LibraryMetadataProviding)?
+    let relationships: (any LibraryRelationshipsProviding)?
     let offline: (any OfflineLibraryProviding)?
     /// Existing Maktabah/Otzaria models remain the most compatible presentation path.
     /// Backends that return only neutral models opt into the narrow compatibility bridge.

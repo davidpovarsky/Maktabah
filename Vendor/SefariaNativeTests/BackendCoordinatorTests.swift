@@ -10,6 +10,19 @@ private actor FixtureCatalog: LibraryCatalogProviding {
     }
 }
 
+private actor FixtureRelationships: LibraryRelationshipsProviding {
+    let delay: UInt64
+    let backend: BackendID
+    init(delay: UInt64 = 0, backend: BackendID) { self.delay = delay; self.backend = backend }
+    func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
+        if delay > 0 { try await Task.sleep(nanoseconds: delay) }
+        return [.init(locator: locator, displayRef: backend.rawValue, heRef: nil,
+            category: "Other", type: "link", collectiveTitle: nil, heCollectiveTitle: nil,
+            primaryText: nil, translation: nil, versionTitle: nil, heVersionTitle: nil, license: nil)]
+    }
+    func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] { [] }
+}
+
 @MainActor
 func runBackendCoordinatorTests() async throws {
     let suite = "SefariaNativeTests.\(UUID().uuidString)"
@@ -18,11 +31,11 @@ func runBackendCoordinatorTests() async throws {
     let coordinator = BackendCoordinator(defaults: defaults)
     coordinator.register(.init(id: .otzaria, sourceDescription: "O", capabilities: [.catalog],
         catalog: FixtureCatalog(delay: 500_000_000, title: "old"), text: nil, navigation: nil,
-        search: nil, authors: nil, metadata: nil, offline: nil, usesNativeMaktabahDataPath: true,
+        search: nil, authors: nil, metadata: nil, relationships: nil, offline: nil, usesNativeMaktabahDataPath: true,
         invalidateTransientState: {}))
     coordinator.register(.init(id: .sefaria, sourceDescription: "S", capabilities: [.catalog],
         catalog: FixtureCatalog(title: "new"), text: nil, navigation: nil,
-        search: nil, authors: nil, metadata: nil, offline: nil, usesNativeMaktabahDataPath: false,
+        search: nil, authors: nil, metadata: nil, relationships: nil, offline: nil, usesNativeMaktabahDataPath: false,
         invalidateTransientState: {}))
     try expect(coordinator.activeBackendID == .otzaria, "default Otzaria selection")
     try expect(coordinator.committedBackendID == nil, "default backend is not committed")
@@ -76,4 +89,28 @@ func runBackendCoordinatorTests() async throws {
     try expect(legacy.resolveStartup(hasValidOtzariaInstallation: true) == .ready(.otzaria),
         "legacy valid Otzaria installation is preserved")
     try expect(legacy.committedBackendID == .otzaria, "legacy Otzaria migration commits selection")
+
+    let relationshipSuite = "SefariaNativeRelationships.\(UUID().uuidString)"
+    let relationshipDefaults = UserDefaults(suiteName: relationshipSuite)!
+    defer { relationshipDefaults.removePersistentDomain(forName: relationshipSuite) }
+    let relationshipCoordinator = BackendCoordinator(defaults: relationshipDefaults)
+    relationshipCoordinator.register(.init(id: .otzaria, sourceDescription: "O", capabilities: [.links],
+        catalog: nil, text: nil, navigation: nil, search: nil, authors: nil, metadata: nil,
+        relationships: FixtureRelationships(delay: 500_000_000, backend: .otzaria), offline: nil,
+        usesNativeMaktabahDataPath: true, invalidateTransientState: {}))
+    relationshipCoordinator.register(.init(id: .sefaria, sourceDescription: "S", capabilities: [.links],
+        catalog: nil, text: nil, navigation: nil, search: nil, authors: nil, metadata: nil,
+        relationships: FixtureRelationships(backend: .sefaria), offline: nil,
+        usesNativeMaktabahDataPath: false, invalidateTransientState: {}))
+    let otzariaLocator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(1))
+    let staleRelationships = Task { try await relationshipCoordinator.links(for: otzariaLocator) }
+    try await Task.sleep(nanoseconds: 20_000_000)
+    relationshipCoordinator.select(.sefaria)
+    do {
+        _ = try await staleRelationships.value
+        throw TestFailure.failed("stale relationship result leaked across providers")
+    } catch is CancellationError {}
+    let sefariaLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+    let currentRelationships = try await relationshipCoordinator.links(for: sefariaLocator)
+    try expect(currentRelationships.first?.displayRef == "sefaria", "active relationship provider is selected")
 }

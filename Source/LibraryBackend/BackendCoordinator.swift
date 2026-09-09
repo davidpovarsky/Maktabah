@@ -156,6 +156,22 @@ final class BackendCoordinator: ObservableObject {
         return try await perform { try await provider.related(to: locator) }
     }
 
+    func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
+        guard locator.backend == activeBackendID,
+              let provider = registrations[activeBackendID]?.relationships else {
+            throw LibraryBackendError.capabilityUnavailable
+        }
+        return try await perform { try await provider.links(for: locator) }
+    }
+
+    func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
+        guard locator.backend == activeBackendID,
+              let provider = registrations[activeBackendID]?.relationships else {
+            throw LibraryBackendError.capabilityUnavailable
+        }
+        return try await perform { try await provider.topics(for: locator) }
+    }
+
     func offlineProvider() -> (any OfflineLibraryProviding)? {
         registrations[activeBackendID]?.offline
     }

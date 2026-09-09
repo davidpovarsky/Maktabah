@@ -125,6 +125,31 @@ struct LibraryTextLink: Codable, Hashable, Sendable {
     let sourceRef: String?
 }
 
+struct LibraryRelatedSource: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let displayRef: String
+    let heRef: String?
+    let category: String
+    let type: String
+    let collectiveTitle: String?
+    let heCollectiveTitle: String?
+    let primaryText: String?
+    let translation: String?
+    let versionTitle: String?
+    let heVersionTitle: String?
+    let license: String?
+
+    var id: String { "\(locator.persistenceKey)|\(type)|\(category)" }
+}
+
+struct LibraryRelatedTopic: Codable, Hashable, Identifiable, Sendable {
+    let slug: String
+    let titleHe: String?
+    let titleEn: String?
+
+    var id: String { slug }
+}
+
 struct LibraryTextSection: Codable, Hashable, Sendable {
     enum Origin: String, Codable, Sendable { case offline, remote, diskCache }
     let locator: TextLocator
