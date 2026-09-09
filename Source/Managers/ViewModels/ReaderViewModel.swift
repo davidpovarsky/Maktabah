@@ -621,6 +621,7 @@ class ReaderViewModel: ViewModelBase {
         }
     }
 
+    @MainActor
     func setReaderTextMode(_ mode: LibraryReaderTextMode) {
         TextViewState.shared.setReaderTextMode(mode)
         guard let section = backendSection else { return }

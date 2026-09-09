@@ -95,7 +95,8 @@ private func runSearchContractMappingTests() throws {
 }
 
 private func runNestedOfflineDecodingTests() throws {
-    let nested = Data(#"{
+    let nested = Data(#"""
+    {
       "ref":"Deep Work 1",
       "sections":{
         "Deep Work 1:1":{
@@ -109,7 +110,8 @@ private func runNestedOfflineDecodingTests() throws {
           "versions":[{"versionTitle":"Source Version","language":"he"}],"links":[]
         }
       }
-    }"#.utf8)
+    }
+    """#.utf8)
     let metadata = try JSONDecoder().decode(SefariaOfflineMetadataDTO.self, from: nested)
     let flattened = metadata.flattenedSections
     try expect(flattened.map(\.sectionRef) == ["Deep Work 1:1", "Deep Work 1:2"],
@@ -117,9 +119,11 @@ private func runNestedOfflineDecodingTests() throws {
     try expect(flattened.allSatisfy { $0.containerRef == "Deep Work 1" },
         "nested metadata retains wrapper filename ref")
 
-    let wrappedVersion = try JSONDecoder().decode(SefariaJSONValue.self, from: Data(#"{
+    let wrappedVersion = try JSONDecoder().decode(SefariaJSONValue.self, from: Data(#"""
+    {
       "ref":"Deep Work 1","sections":{"Deep Work 1:1":["א","ב"],"Deep Work 1:2":["ג"]}
-    }"#.utf8))
+    }
+    """#.utf8))
     try expect(wrappedVersion.value(inSectionsFor: "Deep Work 1:1")?.segmentStrings.count == 2,
         "nested version section is readable")
 

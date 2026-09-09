@@ -95,7 +95,7 @@ enum SefariaNavigationParser {
         let addressTypes = strings(object["addressTypes"])
         let start = firstOffset(object)
         return (0..<count).map { offset in
-            let address = address(offset: offset + start, type: addressTypes.first)
+            let address = address(offset: offset + start, type: addressTypes?.first)
             let ref = append(address: address, to: baseRef, depth: 0)
             return LibraryTOCNode(
                 locator: locator(indexTitle: indexTitle, ref: ref),
