@@ -113,4 +113,42 @@ func runBackendCoordinatorTests() async throws {
     let sefariaLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
     let currentRelationships = try await relationshipCoordinator.links(for: sefariaLocator)
     try expect(currentRelationships.first?.displayRef == "sefaria", "active relationship provider is selected")
+
+    #if OTZARIA_INSPECTOR_MAPPING_TESTS
+    try runOtzariaInspectorMappingTests()
+    #endif
 }
+
+#if OTZARIA_INSPECTOR_MAPPING_TESTS
+private func runOtzariaInspectorMappingTests() throws {
+    func unit(_ start: Int, anchors: [OtzariaLineAnchor]) -> OtzariaReadingUnit {
+        OtzariaReadingUnit(
+            id: "unit-\(start)", bookId: 42, tocEntryId: nil, title: "Unit \(start)", level: nil,
+            startLineIndex: start, endLineIndex: anchors.last?.lineIndex ?? start,
+            sourceLineIndices: anchors.map(\.lineIndex), lineAnchors: anchors,
+            html: "", plainText: anchors.map(\.text).joined(separator: " "), heRef: "ספר \(start)"
+        )
+    }
+    let anchors = [
+        OtzariaLineAnchor(id: 10, bookId: 42, lineIndex: 7, heRef: "א", text: "ראשון", range: NSRange(location: 0, length: 5)),
+        OtzariaLineAnchor(id: 11, bookId: 42, lineIndex: 8, heRef: "ב", text: "שני", range: NSRange(location: 6, length: 3))
+    ]
+    let section = OtzariaInspectorDocumentMapper.section(
+        from: unit(7, anchors: anchors), previous: unit(3, anchors: []), next: unit(12, anchors: [])
+    )
+    try expect(section.segments.map(\.primaryText) == ["ראשון", "שני"], "Otzaria unit maps line anchors to segments")
+    try expect(section.segments.map(\.locator.position) == [.legacyLine(7), .legacyLine(8)], "Otzaria segment identity")
+    try expect(section.previous?.position == .legacyLine(3), "Otzaria previous unit mapping")
+    try expect(section.next?.position == .legacyLine(12), "Otzaria next unit mapping")
+
+    let related = OtzariaInspectorRelationshipsProvider.map(OtzariaLinkedSource(
+        id: 1, connectionType: "COMMENTARY", linkedLineId: 99, linkedBookId: 8,
+        linkedLineIndex: 13, bookTitle: "מפרש", bookPath: nil, linkedCategoryId: 2,
+        linkedCategoryPath: ["פרשנות"], linkedBookOrderIndex: 1, heRef: "מפרש א",
+        content: "<b>פירוש</b>"
+    ))
+    try expect(related.category == "Commentary", "Otzaria commentary category mapping")
+    try expect(related.locator.backend == .otzaria && related.locator.position == .legacyLine(13), "Otzaria link locator mapping")
+    try expect(related.primaryText == "פירוש", "Otzaria linked text normalization")
+}
+#endif

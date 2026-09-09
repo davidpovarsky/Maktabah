@@ -219,6 +219,32 @@ jobs:
           bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
           bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
           python3 Scripts/CI/verify-otzaria-xcode-project.py
+      - name: Test Inspector backend mappings
+        run: |
+          xcrun swiftc -D OTZARIA_INSPECTOR_MAPPING_TESTS \
+            Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/LibraryBackend/LibraryBackendProtocols.swift \
+            Source/LibraryBackend/BackendCoordinator.swift \
+            Source/LibraryBackend/LegacyIdentityRegistry.swift \
+            Source/Sefaria/Domain/SefariaModels.swift \
+            Source/Sefaria/Domain/SefariaNavigationParser.swift \
+            Source/Sefaria/Network/SefariaDTOs.swift \
+            Source/Sefaria/Offline/SefariaExportModels.swift \
+            Source/Sefaria/Downloads/SefariaPackagePolicy.swift \
+            Source/Otzaria/Core/String+OtzariaText.swift \
+            Source/Otzaria/Domain/OtzariaModels.swift \
+            Source/Otzaria/Reading/OtzariaLineAnchor.swift \
+            Source/Otzaria/Reading/OtzariaReadingUnit.swift \
+            Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift \
+            Vendor/SefariaNativeTests/TestSupport.swift \
+            Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
+            Vendor/SefariaNativeTests/DecodingTests.swift \
+            Vendor/SefariaNativeTests/NavigationAndPackageTests.swift \
+            Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift \
+            Vendor/SefariaNativeTests/BackendCoordinatorTests.swift \
+            Vendor/SefariaNativeTests/SefariaNativeTestMain.swift \
+            -o "$RUNNER_TEMP/inspector-backend-tests"
+          "$RUNNER_TEMP/inspector-backend-tests"
       - name: Build simulator app without signing
         run: |
           mkdir -p build/logs

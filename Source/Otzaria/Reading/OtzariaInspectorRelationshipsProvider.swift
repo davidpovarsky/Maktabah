@@ -1,5 +1,45 @@
 import Foundation
 
+enum OtzariaInspectorDocumentMapper {
+    static func section(
+        from unit: OtzariaReadingUnit,
+        previous: OtzariaReadingUnit?,
+        next: OtzariaReadingUnit?
+    ) -> LibraryTextSection {
+        let locator = lineLocator(bookID: unit.bookId, lineIndex: unit.startLineIndex)
+        return LibraryTextSection(
+            locator: locator,
+            displayRef: unit.title ?? unit.heRef ?? locator.persistenceKey,
+            heRef: unit.heRef,
+            segments: unit.lineAnchors.map { anchor in
+                LibraryTextSegment(
+                    locator: lineLocator(bookID: unit.bookId, lineIndex: anchor.lineIndex),
+                    heRef: anchor.heRef,
+                    primaryText: anchor.text,
+                    translation: nil
+                )
+            },
+            previous: previous.map { lineLocator(bookID: $0.bookId, lineIndex: $0.startLineIndex) },
+            next: next.map { lineLocator(bookID: $0.bookId, lineIndex: $0.startLineIndex) },
+            versions: [TextVersionMetadata(
+                title: "Otzaria local library",
+                language: "he",
+                actualLanguage: "he",
+                sourceURL: nil,
+                license: nil,
+                notes: nil,
+                isPrimary: true
+            )],
+            links: [],
+            origin: .offline
+        )
+    }
+
+    private static func lineLocator(bookID: Int, lineIndex: Int) -> TextLocator {
+        TextLocator(backend: .otzaria, workKey: "book:\(bookID)", position: .legacyLine(lineIndex))
+    }
+}
+
 struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @unchecked Sendable {
     func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
         #if os(iOS)

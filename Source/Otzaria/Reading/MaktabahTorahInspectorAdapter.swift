@@ -108,7 +108,12 @@ final class MaktabahTorahInspectorSession {
         }
     }
 
-    private func map(_ section: LibraryTextSection, requestedReference: String) throws -> TorahTextDocument {
+    private func map(
+        _ section: LibraryTextSection,
+        requestedReference: String,
+        hebrewSectionRef: String? = nil,
+        rawProviderPayload: String? = nil
+    ) throws -> TorahTextDocument {
         let mappedSegments = section.segments.enumerated().compactMap { index, segment -> TorahTextSegment? in
             let text = segment.primaryText.isEmpty ? (segment.translation ?? "") : segment.primaryText
             guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
@@ -133,7 +138,7 @@ final class MaktabahTorahInspectorSession {
             canonicalRef: sectionReference,
             hebrewRef: section.heRef,
             sectionRef: sectionReference,
-            hebrewSectionRef: section.heRef,
+            hebrewSectionRef: hebrewSectionRef ?? section.heRef,
             segments: mappedSegments,
             previousSectionRef: section.previous.map { Self.reference(for: $0) },
             nextSectionRef: section.next.map { Self.reference(for: $0) },
@@ -144,7 +149,7 @@ final class MaktabahTorahInspectorSession {
                 license: version?.license,
                 direction: (version?.actualLanguage ?? version?.language) == "he" ? "rtl" : "ltr"
             ),
-            rawProviderPayload: "{\"origin\":\"\(section.origin.rawValue)\"}"
+            rawProviderPayload: rawProviderPayload ?? "{\"origin\":\"\(section.origin.rawValue)\"}"
         )
     }
 
@@ -170,46 +175,11 @@ final class MaktabahTorahInspectorSession {
             afterLineIndex: unit.endLineIndex,
             mode: otzaria.currentReadingUnitMode
         )
-        let sectionLocator = TextLocator(
-            backend: .otzaria,
-            workKey: "book:\(bookID)",
-            position: .legacyLine(unit.startLineIndex)
-        )
-        let sectionReference = Self.reference(for: sectionLocator)
-        remember(sectionLocator, for: sectionReference)
-        let segments = unit.lineAnchors.enumerated().map { index, anchor in
-            let anchorLocator = TextLocator(
-                backend: .otzaria,
-                workKey: "book:\(bookID)",
-                position: .legacyLine(anchor.lineIndex)
-            )
-            let anchorReference = Self.reference(for: anchorLocator)
-            remember(anchorLocator, for: anchorReference)
-            return TorahTextSegment(
-                canonicalRef: anchorReference,
-                hebrewRef: anchor.heRef,
-                text: anchor.text,
-                ordinal: index + 1
-            )
-        }
-        guard !segments.isEmpty else { throw TorahError.noText }
-        return TorahTextDocument(
-            providerID: BackendID.otzaria.rawValue,
-            requestedRef: requestedReference,
-            canonicalRef: sectionReference,
-            hebrewRef: unit.heRef,
-            sectionRef: sectionReference,
+        let section = OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
+        return try map(
+            section,
+            requestedReference: requestedReference,
             hebrewSectionRef: unit.title ?? unit.heRef,
-            segments: segments,
-            previousSectionRef: previous.map { Self.reference(for: $0) },
-            nextSectionRef: next.map { Self.reference(for: $0) },
-            version: TorahTextVersionMetadata(
-                language: "he",
-                actualLanguage: "he",
-                languageFamilyName: "hebrew",
-                versionTitle: "Otzaria local library",
-                direction: "rtl"
-            ),
             rawProviderPayload: "{\"bookId\":\(bookID),\"unitId\":\"\(unit.id)\"}"
         )
     }
@@ -258,10 +228,6 @@ final class MaktabahTorahInspectorSession {
         default:
             return locator.persistenceKey
         }
-    }
-
-    private static func reference(for unit: OtzariaReadingUnit) -> String {
-        "otzaria:v1:\(unit.bookId):\(unit.startLineIndex)"
     }
 
     private static func otzariaBookID(from workKey: String) -> Int? {
