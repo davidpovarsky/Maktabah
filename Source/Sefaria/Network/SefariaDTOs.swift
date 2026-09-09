@@ -42,17 +42,33 @@ struct SefariaSearchBody: Encodable, Sendable {
     let field = "naive_lemmatizer"
     let start: Int
     let size: Int
-    let sortType = "relevance"
-    let exact = false
-    let appliedFilters: [String] = []
-    let appliedFilterAggTypes: [String] = []
-    let aggregationsToUpdate: [String] = []
+    let slop = 10
+    let sortMethod = "score"
+    let sortFields = ["pagesheetrank"]
+    let sortReverse = false
+    let sortScoreMissing = 0.04
+    let sourceProjection = true
+    let filters: [String]
+    let filterFields: [String]
+    let aggregations: [String] = []
+
+    init(query: String, start: Int, size: Int, filters: [String] = []) {
+        self.query = query
+        self.start = start
+        self.size = size
+        self.filters = filters
+        self.filterFields = Array(repeating: "path", count: filters.count)
+    }
 
     enum CodingKeys: String, CodingKey {
-        case query, type, field, start, size, exact
-        case sortType = "sort_type"
-        case appliedFilters = "applied_filters"
-        case appliedFilterAggTypes, aggregationsToUpdate
+        case query, type, field, start, size, slop, filters
+        case sortMethod = "sort_method"
+        case sortFields = "sort_fields"
+        case sortReverse = "sort_reverse"
+        case sortScoreMissing = "sort_score_missing"
+        case sourceProjection = "source_proj"
+        case filterFields = "filter_fields"
+        case aggregations = "aggs"
     }
 }
 
@@ -77,6 +93,13 @@ struct SefariaSearchResponseDTO: Decodable, Sendable {
             let version: String?
             let lang: String?
             let content: String?
+            let exact: String?
+            let naiveLemmatizer: String?
+
+            enum CodingKeys: String, CodingKey {
+                case ref, heRef, title, version, lang, content, exact
+                case naiveLemmatizer = "naive_lemmatizer"
+            }
         }
         let score: Double?
         let source: Source
@@ -170,4 +193,18 @@ struct SefariaIndexDTO: Decodable, Sendable {
     let title: String
     let categories: [String]
     let schema: SefariaJSONValue
+    let alternateStructures: [String: SefariaJSONValue]?
+
+    enum CodingKeys: String, CodingKey {
+        case title, categories, schema
+        case alternateStructures = "alt_structs"
+    }
+}
+
+struct SefariaShapeDTO: Decodable, Sendable {
+    let isComplex: Bool?
+    let heTitle: String?
+    let title: String
+    let length: Int?
+    let chapters: SefariaJSONValue
 }

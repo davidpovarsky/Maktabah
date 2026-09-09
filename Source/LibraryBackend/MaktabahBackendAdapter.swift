@@ -19,8 +19,8 @@ enum MaktabahBackendAdapter {
                 let book = BooksData(id: id, book: work.heTitle ?? work.title, archive: 0, muallif: 0,
                     bithoqoh: work.description ?? "", info: work.title)
                 book.backendLocator = work.locator
+                book.backendSearchPath = (work.categories + [work.title]).joined(separator: "/")
                 book.catId = parentID
-                book.pdfCs = 4
                 books[id] = book
                 return book
             }
@@ -35,15 +35,16 @@ enum MaktabahBackendAdapter {
         return (roots, books)
     }
 
-    static func content(from section: LibraryTextSection) -> BookContent {
-        let text = section.segments.map { segment in
-            if let translation = segment.translation, !translation.isEmpty {
-                return segment.primaryText + "\n" + translation
-            }
-            return segment.primaryText
-        }.joined(separator: "\n\n")
+    static func renderModel(
+        from section: LibraryTextSection,
+        preferredMode: LibraryReaderTextMode
+    ) -> LibraryReaderRenderModel {
+        LibraryReaderRenderModel(section: section, preferredMode: preferredMode)
+    }
+
+    static func content(from section: LibraryTextSection, renderModel: LibraryReaderRenderModel) -> BookContent {
         let id = LegacyIdentityRegistry.shared.id(for: section.locator)
-        return BookContent(id: id, nash: text, page: 1, part: 1,
+        return BookContent(id: id, nash: renderModel.text, page: 1, part: 1,
             heRef: section.heRef ?? section.displayRef, backendLocator: section.locator)
     }
 
@@ -66,6 +67,7 @@ enum MaktabahBackendAdapter {
             muallif: original.muallif, bithoqoh: original.bithoqoh, info: original.info,
             backendLocator: locator)
         copy.catId = original.catId
+        copy.backendSearchPath = original.backendSearchPath
         copy.pdfCs = original.pdfCs
         copy.orderIndex = original.orderIndex
         copy.totalLines = original.totalLines

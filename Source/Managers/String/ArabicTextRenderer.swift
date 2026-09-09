@@ -113,7 +113,8 @@ class ArabicTextRenderer {
         let key = CleanedTextKey(
             showHarakat: showHarakat,
             isMultiLanguage: isMultiLanguage,
-            isImported: isImported
+            isImported: isImported,
+            textHash: text.hashValue
         )
 
         let processed: ProcessedArabicContent

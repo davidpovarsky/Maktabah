@@ -109,7 +109,7 @@ struct iOSReaderBottomToolbarView: View {
             Image(systemName: "ellipsis")
         }
         .popover(isPresented: $showingOptions) {
-            ViewOptionsView()
+            ViewOptionsView(readerViewModel: viewModel)
                 .frame(width: 300, height: 500)
                 .presentationCompactAdaptation(.popover)
         }

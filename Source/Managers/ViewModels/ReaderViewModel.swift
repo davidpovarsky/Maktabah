@@ -119,9 +119,11 @@ class ReaderViewModel: ViewModelBase {
     var fetchScrollPosition: (() -> CGPoint?)?
     var fetchSelectedRange: (() -> NSRange?)?
     var currentAnnotations: [Annotation] = []
+    var backendRenderModel: LibraryReaderRenderModel?
+    var selectedSegmentLocator: TextLocator?
     var otzariaSelectedLineAnchor: OtzariaLineAnchor?
     var otzariaLinkedSources: [OtzariaLinkedSource] = []
-    var otzariaSourcesInspectorVisible: Bool = false
+    var readerInspectorVisible: Bool = false
     var otzariaSourcesIsLoading: Bool = false
     var otzariaSourcesError: String?
     var otzariaSourcesSelectedGroupID: String?
@@ -278,7 +280,12 @@ class ReaderViewModel: ViewModelBase {
                 try Task.checkCancellation()
                 guard currentBook?.backendLocator?.workKey == expectedBookKey else { return }
                 backendSection = section
-                let content = MaktabahBackendAdapter.content(from: section)
+                let renderModel = MaktabahBackendAdapter.renderModel(
+                    from: section,
+                    preferredMode: TextViewState.shared.readerTextMode
+                )
+                backendRenderModel = renderModel
+                let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
                 if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
                 updateContentState(with: content)
                 state = .loaded
@@ -519,6 +526,8 @@ class ReaderViewModel: ViewModelBase {
 
     func resetContentState() {
         contentText = ""
+        backendRenderModel = nil
+        selectedSegmentLocator = nil
         currentPage = nil
         currentPart = nil
         currentHeRef = nil
@@ -583,6 +592,46 @@ class ReaderViewModel: ViewModelBase {
         #endif
         otzariaReaderLog("updateContentState bookId=\(currentBook?.id ?? -1) title=\(currentBook?.book ?? "") contentId=\(content.id) currentHeRef=\(currentHeRef ?? "") nashCount=\(content.nash.count) durationMs=\(otzariaReaderElapsedMs(start))")
     }
+
+    #if os(iOS)
+    var availableReaderTextModes: [LibraryReaderTextMode] {
+        backendRenderModel?.capabilities.availableModes ?? []
+    }
+
+    var currentReaderTextMode: LibraryReaderTextMode {
+        backendRenderModel?.mode ?? TextViewState.shared.readerTextMode
+    }
+
+    var selectedSegmentRange: NSRange? {
+        if let range = backendRenderModel?.renderedSegment(for: selectedSegmentLocator)?.range {
+            return range
+        }
+        return otzariaSelectedLineAnchor?.range
+    }
+
+    var usesNaturalReaderTextDirection: Bool {
+        guard let model = backendRenderModel else { return currentBook?.isMultiLanguage ?? false }
+        switch model.mode {
+        case .both:
+            return true
+        case .source:
+            return model.capabilities.sourceDirection != .rightToLeft
+        case .translation:
+            return model.capabilities.translationDirection != .rightToLeft
+        }
+    }
+
+    func setReaderTextMode(_ mode: LibraryReaderTextMode) {
+        TextViewState.shared.setReaderTextMode(mode)
+        guard let section = backendSection else { return }
+        let renderModel = MaktabahBackendAdapter.renderModel(from: section, preferredMode: mode)
+        backendRenderModel = renderModel
+        selectedSegmentLocator = nil
+        let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
+        if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
+        updateContentState(with: content)
+    }
+    #endif
 
     #if os(macOS)
     func refreshCurrentPage(keepScrollPosition: Bool = true) {

@@ -24,6 +24,7 @@ extension ReaderViewModel {
     }
 
     func clearOtzariaLineSelectionForContentChange() {
+        selectedSegmentLocator = nil
         otzariaSelectedLineAnchor = nil
         otzariaLinkedSources = []
         otzariaSourcesError = nil
@@ -32,11 +33,12 @@ extension ReaderViewModel {
     }
 
     @MainActor
-    func didTapOtzariaText(at characterIndex: Int) {
-        if BackendCoordinator.shared.activeBackendID == .sefaria {
-            guard readerState.currentLocator?.backend == .sefaria else { return }
+    func didTapReaderText(at characterIndex: Int) {
+        if let mapping = backendRenderModel?.renderedSegment(at: characterIndex) {
+            guard mapping.locator.backend == BackendCoordinator.shared.activeBackendID else { return }
+            selectedSegmentLocator = mapping.locator
             otzariaSelectedLineAnchor = nil
-            otzariaSourcesInspectorVisible = true
+            readerInspectorVisible = true
             otzariaSourcesIsLoading = false
             otzariaSourcesError = nil
             return
@@ -59,7 +61,12 @@ extension ReaderViewModel {
         }
 
         otzariaSelectedLineAnchor = anchor
-        otzariaSourcesInspectorVisible = true
+        selectedSegmentLocator = TextLocator(
+            backend: .otzaria,
+            workKey: "book:\(anchor.bookId)",
+            position: .legacyLine(anchor.lineIndex)
+        )
+        readerInspectorVisible = true
         otzariaSourcesIsLoading = true
         otzariaSourcesError = nil
 
@@ -72,8 +79,9 @@ extension ReaderViewModel {
         OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria links loaded lineId=\(anchor.id) count=\(links.count)")
     }
 
-    func closeOtzariaSourcesInspector() {
-        otzariaSourcesInspectorVisible = false
+    func closeReaderInspector() {
+        readerInspectorVisible = false
+        selectedSegmentLocator = nil
         otzariaSelectedLineAnchor = nil
         otzariaLinkedSources = []
         otzariaSourcesIsLoading = false

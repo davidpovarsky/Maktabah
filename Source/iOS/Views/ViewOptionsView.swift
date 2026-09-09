@@ -4,6 +4,8 @@ import UniformTypeIdentifiers
 struct ViewOptionsView: View {
     @Environment(\.dismiss) private var dismiss
 
+    var readerViewModel: ReaderViewModel? = nil
+
     @State private var state = TextViewState.shared
     @ObservedObject private var userFontManager = UserFontManager.shared
     
@@ -58,6 +60,27 @@ struct ViewOptionsView: View {
             get: { state.clickableAnnotation },
             set: { state.setClickableAnnotation($0) }
         )
+    }
+
+    private var readerTextModeBinding: Binding<LibraryReaderTextMode> {
+        Binding(
+            get: { readerViewModel?.currentReaderTextMode ?? state.readerTextMode },
+            set: { mode in
+                if let readerViewModel {
+                    readerViewModel.setReaderTextMode(mode)
+                } else {
+                    state.setReaderTextMode(mode)
+                }
+            }
+        )
+    }
+
+    private func readerModeTitle(_ mode: LibraryReaderTextMode) -> String {
+        switch mode {
+        case .source: String(localized: "Source")
+        case .translation: String(localized: "Translation")
+        case .both: String(localized: "Both")
+        }
     }
 
     var body: some View {
@@ -117,6 +140,13 @@ struct ViewOptionsView: View {
                 }
 
                 ThemeSection("Display") {
+                    if let modes = readerViewModel?.availableReaderTextModes, !modes.isEmpty {
+                        Picker("Text", selection: readerTextModeBinding) {
+                            ForEach(modes) { mode in
+                                Text(readerModeTitle(mode)).tag(mode)
+                            }
+                        }
+                    }
                     Toggle("Show Harakat", isOn: showHarakatBinding)
                     Toggle("Clickable Annotations", isOn: clickableAnnotationBinding)
                 }

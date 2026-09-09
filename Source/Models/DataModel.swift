@@ -60,6 +60,8 @@ class BooksData: Codable, Identifiable {
     let muallif: Int
     /// Canonical, source-qualified identity for non-legacy backends.
     var backendLocator: TextLocator?
+    /// Backend-native search path (for example Sefaria's catalog `path` filter).
+    var backendSearchPath: String?
     var catId: Int?
     var downloadFilename: String?
     var compressedDownloadSize: Int64?
@@ -85,13 +87,14 @@ class BooksData: Codable, Identifiable {
     }
     var isChecked: Bool = true
 
-    init(id: Int, book: String, archive: Int, muallif: Int, bithoqoh: String = "", info: String = "", backendLocator: TextLocator? = nil) {
+    init(id: Int, book: String, archive: Int, muallif: Int, bithoqoh: String = "", info: String = "", backendLocator: TextLocator? = nil, backendSearchPath: String? = nil) {
         self.id = id
         self.book = StringInterner.shared.intern(book)
         self.normalizedBook = book.normalizeArabic(false)
         self.archive = archive
         self.muallif = muallif
         self.backendLocator = backendLocator
+        self.backendSearchPath = backendSearchPath
         self.bithoqoh = bithoqoh.convertToArabicDigits()
         self.info = info.convertToArabicDigits()
     }
@@ -131,6 +134,7 @@ struct CleanedTextKey: Hashable {
     let showHarakat: Bool
     let isMultiLanguage: Bool
     let isImported: Bool
+    let textHash: Int
 }
 
 final class ProcessedArabicContent {

@@ -39,9 +39,10 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             return map(cached, origin: .diskCache).asLibrarySection()
         }
         let url = try configuration.apiURL(pathPrefix: "/api/v3/texts/", pathComponent: ref, queryItems: [
-            URLQueryItem(name: "version", value: "primary"),
+            URLQueryItem(name: "version", value: "source"),
             URLQueryItem(name: "version", value: "translation"),
-            URLQueryItem(name: "return_format", value: "strip_only_footnotes")
+            URLQueryItem(name: "fill_in_missing_segments", value: "1"),
+            URLQueryItem(name: "return_format", value: "text_only")
         ])
         let dto = try await client.get(SefariaTextsV3DTO.self, url: url)
         try await cache.encode(dto, as: cacheName)
@@ -61,21 +62,48 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     }
 
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
-        let url = try configuration.apiURL(pathPrefix: "/api/v2/raw/index/", pathComponent: work.locator.workKey)
-        let index = try await client.get(SefariaIndexDTO.self, url: url)
-        return SefariaNavigationParser.nodes(schema: index.schema, indexTitle: index.title, baseRef: index.title)
+        let indexURL = try configuration.apiURL(
+            pathPrefix: "/api/v2/raw/index/",
+            pathComponent: work.locator.workKey
+        )
+        let shapeURL = try configuration.apiURL(
+            pathPrefix: "/api/shape/",
+            pathComponent: work.locator.workKey
+        )
+        async let indexRequest = client.get(SefariaIndexDTO.self, url: indexURL)
+        async let shapeRequest = client.get([SefariaShapeDTO].self, url: shapeURL)
+        let index = try await indexRequest
+        let shapes = try? await shapeRequest
+        if let shapes, !shapes.isEmpty {
+            return SefariaNavigationParser.nodes(
+                shapes: shapes,
+                schema: index.schema,
+                alternateStructures: index.alternateStructures,
+                indexTitle: index.title
+            )
+        }
+        return SefariaNavigationParser.nodes(
+            schema: index.schema,
+            alternateStructures: index.alternateStructures,
+            indexTitle: index.title,
+            baseRef: index.title
+        )
     }
 
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         let url = try configuration.apiURL(path: "/api/search-wrapper")
         let response = try await client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
-            query: request.query, start: request.offset, size: request.limit
+            query: request.query, start: request.offset, size: request.limit, filters: request.filters
         ))
         if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
         let hits = response.hits.hits.compactMap { hit -> LibrarySearchHit? in
             guard let work = SefariaRef.workKey(from: hit.source.ref, knownTitles: Array(knownTitles))
                 ?? hit.source.title else { return nil }
-            let snippet = hit.highlight?.values.first?.first ?? hit.source.content ?? ""
+            let snippet = hit.highlight?.values.first?.first
+                ?? hit.source.content
+                ?? hit.source.naiveLemmatizer
+                ?? hit.source.exact
+                ?? ""
             return LibrarySearchHit(
                 locator: TextLocator(backend: .sefaria, workKey: work, position: .canonicalRef(hit.source.ref)),
                 displayRef: hit.source.ref,
@@ -84,7 +112,10 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 score: hit.score
             )
         }
-        let next = request.offset + hits.count < response.hits.total.value ? request.offset + hits.count : nil
+        let receivedCount = response.hits.hits.count
+        let next = receivedCount > 0 && request.offset + receivedCount < response.hits.total.value
+            ? request.offset + receivedCount
+            : nil
         return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next)
     }
 

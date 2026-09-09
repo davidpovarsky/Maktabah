@@ -80,6 +80,10 @@ class TextViewState {
         }
     }
 
+    private(set) var readerTextMode: LibraryReaderTextMode {
+        didSet { defaults.libraryReaderTextMode = readerTextMode }
+    }
+
     // MARK: - Computed Properties
     var isDarkMode: Bool {
         backgroundColorIndex > 1
@@ -126,6 +130,7 @@ class TextViewState {
         self.fontName = defaults.textViewFontName
         self.backgroundColorIndex = defaults.textViewBackgroundColorLight
         self.clickableAnnotation = defaults.enableAnnotationClick
+        self.readerTextMode = defaults.libraryReaderTextMode
     }
 
     // MARK: - Public Methods
@@ -154,6 +159,10 @@ class TextViewState {
     
     func setClickableAnnotation(_ enable: Bool) {
         clickableAnnotation = enable
+    }
+
+    func setReaderTextMode(_ mode: LibraryReaderTextMode) {
+        readerTextMode = mode
     }
 
     /// Masukkan warna baru ke indeks 0. Duplikat dipindah ke depan. Maks 5.

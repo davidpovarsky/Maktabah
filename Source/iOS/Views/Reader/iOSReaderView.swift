@@ -82,11 +82,11 @@ struct iOSReaderView: View {
             searchMode: viewModel.searchMode,
             nearDistance: viewModel.nearDistance,
             targetAnnotation: viewModel.targetAnnotation,
-            otzariaSelectedLineRange: viewModel.otzariaSourcesInspectorVisible
-                ? viewModel.otzariaSelectedLineAnchor?.range
+            selectedSegmentRange: viewModel.readerInspectorVisible
+                ? viewModel.selectedSegmentRange
                 : nil,
-            isMultiLanguage: book.isMultiLanguage,
-            isImported: book.isImported,
+            isMultiLanguage: viewModel.usesNaturalReaderTextDirection,
+            isImported: viewModel.backendRenderModel == nil && book.isImported,
             viewModel: viewModel,
             onAddAnnotation: { range, mode, sourceText, color in
                 do {
@@ -101,7 +101,7 @@ struct iOSReaderView: View {
                 showingAnnotationActionSheet = true
             },
             onTapTextCharacterIndex: { index in
-                viewModel.didTapOtzariaText(at: index)
+                viewModel.didTapReaderText(at: index)
             },
             onNavigateNext: { viewModel.goToNextPage() },
             onNavigatePrev: { viewModel.goToPrevPage() }
@@ -240,12 +240,12 @@ struct iOSReaderView: View {
             }
         }
         .inspector(isPresented: Binding(
-            get: { viewModel.otzariaSourcesInspectorVisible },
+            get: { viewModel.readerInspectorVisible },
             set: { newValue in
                 if newValue {
-                    viewModel.otzariaSourcesInspectorVisible = true
+                    viewModel.readerInspectorVisible = true
                 } else {
-                    viewModel.closeOtzariaSourcesInspector()
+                    viewModel.closeReaderInspector()
                 }
             }
         )) {

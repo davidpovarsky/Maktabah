@@ -528,6 +528,11 @@ final class SearchViewModel: ViewModelBase {
     func startSearch() async {
         if query.isEmpty { return }
 
+        if !BackendCoordinator.shared.usesNativeMaktabahDataPath {
+            await startBackendSearch()
+            return
+        }
+
         let enginePaused = await searchEngine.currentlyPaused()
         if enginePaused || isPaused {
             searchEngine.resume()
@@ -611,6 +616,66 @@ final class SearchViewModel: ViewModelBase {
                 }
             )
         }
+    }
+
+    @MainActor
+    private func startBackendSearch() async {
+        searchWork?.cancel()
+        isSearching = true
+        isPaused = false
+        results = []
+        totalTables = 0
+        completedTables = 0
+        completedRowsInTable = 0
+        totalRowsInTable = 0
+
+        let requestQuery = query
+        let backendFilters = selectedBookIds.compactMap { bookID in
+            let book = ldm.booksById[bookID]
+            return book?.backendSearchPath ?? book?.backendLocator?.workKey
+        }
+        let task = Task { @MainActor [weak self] in
+            guard let self else { return }
+            var offset = 0
+            let pageSize = 100
+            let maximumDisplayedResults = 1_000
+            var seenOffsets = Set<Int>()
+            do {
+                while seenOffsets.insert(offset).inserted {
+                    let page = try await BackendCoordinator.shared.search(.init(
+                        query: requestQuery,
+                        offset: offset,
+                        limit: pageSize,
+                        filters: backendFilters
+                    ))
+                    try Task.checkCancellation()
+                    results.append(contentsOf: page.hits.map(MaktabahBackendAdapter.searchItem))
+                    totalTables = max(page.total, 1)
+                    completedTables = results.count
+                    if results.count >= maximumDisplayedResults {
+                        results = Array(results.prefix(maximumDisplayedResults))
+                        break
+                    }
+                    guard let next = page.nextOffset, next > offset else { break }
+                    offset = next
+                }
+                isSearching = false
+                #if os(macOS)
+                searchDidComplete.send()
+                #endif
+            } catch is CancellationError {
+                isSearching = false
+            } catch LibraryBackendError.staleRequest {
+                results = []
+                isSearching = false
+            } catch {
+                isSearching = false
+                state = .error(error.localizedDescription)
+            }
+            searchWork = nil
+        }
+        searchWork = task
+        await task.value
     }
 
     func stopSearch() {

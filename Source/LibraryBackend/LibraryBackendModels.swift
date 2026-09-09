@@ -114,6 +114,149 @@ struct LibraryTextSegment: Codable, Hashable, Identifiable, Sendable {
     let primaryText: String
     let translation: String?
     var id: String { locator.persistenceKey }
+
+    /// Backend-neutral name used by the reader. `primaryText` remains encoded for
+    /// compatibility with already persisted values.
+    var sourceText: String { primaryText }
+}
+
+enum LibraryReaderTextMode: String, Codable, CaseIterable, Identifiable, Sendable {
+    case source
+    case translation
+    case both
+
+    var id: String { rawValue }
+}
+
+enum LibraryTextDirection: String, Codable, Hashable, Sendable {
+    case leftToRight
+    case rightToLeft
+    case natural
+
+    static func inferred(from language: String?) -> Self {
+        switch language?.lowercased() {
+        case "he", "hebrew", "ar", "arabic", "arc", "aramaic": .rightToLeft
+        case nil, "": .natural
+        default: .leftToRight
+        }
+    }
+}
+
+struct LibraryReaderCapabilities: Codable, Hashable, Sendable {
+    let availableModes: [LibraryReaderTextMode]
+    let sourceDirection: LibraryTextDirection
+    let translationDirection: LibraryTextDirection
+
+    var supportsTranslation: Bool { availableModes.contains(.translation) }
+}
+
+struct LibraryRenderedSegment: Codable, Hashable, Identifiable, Sendable {
+    let rangeLocation: Int
+    let rangeLength: Int
+    let segment: LibraryTextSegment
+
+    var id: String { segment.id }
+    var range: NSRange { NSRange(location: rangeLocation, length: rangeLength) }
+    var locator: TextLocator { segment.locator }
+
+    func contains(characterIndex: Int) -> Bool {
+        characterIndex >= rangeLocation && characterIndex < rangeLocation + rangeLength
+    }
+}
+
+/// Immutable reader payload that keeps semantic identity alongside the legacy
+/// plain string consumed by Maktabah's existing text view.
+struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
+    let text: String
+    let mode: LibraryReaderTextMode
+    let capabilities: LibraryReaderCapabilities
+    let renderedSegments: [LibraryRenderedSegment]
+
+    init(section: LibraryTextSection, preferredMode: LibraryReaderTextMode) {
+        let hasSource = section.segments.contains { !$0.sourceText.readerPlainText.isEmpty }
+        let hasTranslation = section.segments.contains { !($0.translation?.readerPlainText ?? "").isEmpty }
+        var modes: [LibraryReaderTextMode] = []
+        if hasSource { modes.append(.source) }
+        if hasTranslation { modes.append(.translation) }
+        if hasSource && hasTranslation { modes.append(.both) }
+        if modes.isEmpty { modes = [.source] }
+
+        let resolvedMode = modes.contains(preferredMode) ? preferredMode : (hasSource ? .source : .translation)
+        let sourceVersion = section.versions.first(where: { $0.isPrimary })
+            ?? section.versions.first(where: { LibraryTextDirection.inferred(from: $0.actualLanguage ?? $0.language) == .rightToLeft })
+            ?? section.versions.first
+        let translationVersion = section.versions.first(where: { version in
+            guard let sourceVersion else { return true }
+            return version.title != sourceVersion.title || version.language != sourceVersion.language
+        })
+        capabilities = LibraryReaderCapabilities(
+            availableModes: modes,
+            sourceDirection: .inferred(from: sourceVersion?.actualLanguage ?? sourceVersion?.language),
+            translationDirection: .inferred(from: translationVersion?.actualLanguage ?? translationVersion?.language)
+        )
+        mode = resolvedMode
+
+        var output = ""
+        var mappings: [LibraryRenderedSegment] = []
+        for segment in section.segments {
+            let source = segment.sourceText.readerPlainText
+            let translation = segment.translation?.readerPlainText ?? ""
+            let block: String
+            switch resolvedMode {
+            case .source:
+                block = Self.directional(source, direction: capabilities.sourceDirection)
+            case .translation:
+                block = Self.directional(translation, direction: capabilities.translationDirection)
+            case .both:
+                let parts = [
+                    Self.directional(source, direction: capabilities.sourceDirection),
+                    Self.directional(translation, direction: capabilities.translationDirection)
+                ].filter { !$0.isEmpty }
+                block = parts.joined(separator: "\n")
+            }
+            guard !block.isEmpty else { continue }
+            if !output.isEmpty { output += "\n\n" }
+            let location = (output as NSString).length
+            output += block
+            mappings.append(LibraryRenderedSegment(
+                rangeLocation: location,
+                rangeLength: (block as NSString).length,
+                segment: segment
+            ))
+        }
+        text = output
+        renderedSegments = mappings
+    }
+
+    func renderedSegment(at characterIndex: Int) -> LibraryRenderedSegment? {
+        renderedSegments.first { $0.contains(characterIndex: characterIndex) }
+    }
+
+    func renderedSegment(for locator: TextLocator?) -> LibraryRenderedSegment? {
+        guard let locator else { return nil }
+        return renderedSegments.first { $0.locator == locator }
+    }
+
+    private static func directional(_ value: String, direction: LibraryTextDirection) -> String {
+        guard !value.isEmpty else { return "" }
+        switch direction {
+        case .rightToLeft: return "\u{202B}\(value)\u{202C}"
+        case .leftToRight: return "\u{202A}\(value)\u{202C}"
+        case .natural: return value
+        }
+    }
+}
+
+private extension String {
+    var readerPlainText: String {
+        replacingOccurrences(of: #"(?i)<br\s*/?>"#, with: "\n", options: .regularExpression)
+            .replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&gt;", with: ">")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 struct LibraryTextLink: Codable, Hashable, Sendable {
@@ -167,6 +310,7 @@ struct LibrarySearchRequest: Codable, Hashable, Sendable {
     let query: String
     let offset: Int
     let limit: Int
+    var filters: [String] = []
 }
 
 struct LibrarySearchHit: Codable, Hashable, Identifiable, Sendable {

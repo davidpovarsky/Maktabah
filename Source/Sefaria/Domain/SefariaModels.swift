@@ -43,6 +43,31 @@ enum SefariaJSONValue: Codable, Hashable, Sendable {
         default: return []
         }
     }
+
+    /// Section-level text while retaining null padding inserted by the iOS
+    /// exporter for address offsets.
+    var segmentStrings: [String?] {
+        switch self {
+        case .string(let value): return [value]
+        case .array(let values):
+            return values.flatMap { value -> [String?] in
+                switch value {
+                case .string(let string): return [string]
+                case .null: return [nil]
+                case .array: return value.segmentStrings
+                default: return [nil]
+                }
+            }
+        case .null: return [nil]
+        default: return []
+        }
+    }
+
+    func value(inSectionsFor reference: String) -> SefariaJSONValue? {
+        guard case .object(let object) = self,
+              case .object(let sections)? = object["sections"] else { return nil }
+        return sections[reference]
+    }
 }
 
 struct SefariaVersion: Codable, Hashable, Sendable {
@@ -71,21 +96,23 @@ struct SefariaSection: Codable, Hashable, Sendable {
     let origin: LibraryTextSection.Origin
 
     func asLibrarySection() -> LibraryTextSection {
-        let source = versions.first(where: { $0.isSource == true || $0.language == "he" })
-            ?? versions.first(where: { $0.language == "he" }) ?? versions.first
+        let source = versions.first(where: { $0.isSource == true })
+            ?? versions.first(where: { $0.isPrimary == true })
+            ?? versions.first(where: { $0.language == "he" })
+            ?? versions.first
         let translation = versions.first {
             ($0.versionTitle != source?.versionTitle || $0.language != source?.language)
                 && ($0.language == "en" || $0.isSource != true)
         }
-        let primary = source?.text?.flattenedStrings ?? []
-        let translated = translation?.text?.flattenedStrings ?? []
+        let primary = source?.text?.segmentStrings ?? []
+        let translated = translation?.text?.segmentStrings ?? []
         let count = max(primary.count, translated.count)
         let segments = (0..<count).map { index in
             let segmentRef = count == 1 ? sectionRef : SefariaRef.segmentRef(sectionRef: sectionRef, offset: index + 1)
             return LibraryTextSegment(
                 locator: TextLocator(backend: .sefaria, workKey: indexTitle, position: .canonicalRef(segmentRef)),
                 heRef: nil,
-                primaryText: index < primary.count ? primary[index] : "",
+                primaryText: index < primary.count ? (primary[index] ?? "") : "",
                 translation: index < translated.count ? translated[index] : nil
             )
         }

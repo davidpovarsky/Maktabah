@@ -270,6 +270,72 @@ class PullNavigationIndicatorView: UIView {
     }
 }
 
+enum ReaderTextIndexMapper {
+    static func sourceCharacterIndex(
+        forDisplayedIndex displayedIndex: Int,
+        sourceText: String,
+        showHarakat: Bool
+    ) -> Int {
+        guard !showHarakat else { return displayedIndex }
+        var displayedOffset = 0
+        var sourceOffset = 0
+        for scalar in sourceText.unicodeScalars {
+            let scalarLength = String(scalar).utf16.count
+            if scalar.isArabicHarakat {
+                sourceOffset += scalarLength
+                continue
+            }
+            if displayedOffset >= displayedIndex { return sourceOffset }
+            displayedOffset += scalarLength
+            sourceOffset += scalarLength
+        }
+        return sourceOffset
+    }
+
+    static func displayedRange(
+        forSourceRange range: NSRange,
+        sourceText: String,
+        showHarakat: Bool
+    ) -> NSRange {
+        guard !showHarakat else { return range }
+        let nsText = sourceText as NSString
+        let boundedStart = min(max(0, range.location), nsText.length)
+        let boundedEnd = min(max(boundedStart, NSMaxRange(range)), nsText.length)
+        let prefixLength = (nsText.substring(to: boundedStart).removingHarakat() as NSString).length
+        let endLength = (nsText.substring(to: boundedEnd).removingHarakat() as NSString).length
+        return NSRange(location: prefixLength, length: endLength - prefixLength)
+    }
+}
+
+fileprivate struct RenderSignature: Hashable {
+    let contentID: Int
+    let textHash: Int
+    let textLength: Int
+    let showHarakat: Bool
+    let isMultiLanguage: Bool
+    let isImported: Bool
+    let fontName: String
+    let fontSize: CGFloat
+    let lineHeight: Double
+}
+
+fileprivate struct AnnotationRenderSignature: Hashable {
+    let id: Int64?
+    let range: NSRange
+    let diacriticsRange: NSRange
+    let colorHex: String
+    let type: Int
+}
+
+fileprivate struct DecorationSignature: Hashable {
+    let renderSignature: RenderSignature
+    let annotations: [AnnotationRenderSignature]
+    let searchText: String
+    let searchMode: String
+    let nearDistance: Int
+    let clickableAnnotations: Bool
+}
+
 /// SwiftUI Wrapper for iOSCustomIbarotTextView
 struct iOSIbarotTextView: UIViewRepresentable {
     @Binding var text: String
@@ -278,7 +344,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     var searchMode: SearchMode?
     var nearDistance: Int = 10
     var targetAnnotation: Annotation? = nil
-    var otzariaSelectedLineRange: NSRange?
+    var selectedSegmentRange: NSRange?
     var isMultiLanguage: Bool = false
     var isImported: Bool = false
     
@@ -386,84 +452,108 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
 
         let renderer = ArabicTextRenderer()
-        let headerColor = UIColor.header
-
-        let renderResult = renderer.render(
-            bookId: viewModel.currentBook?.id,
-            contentId: viewModel.currentContentId,
-            text: text,
-            highlightColor: headerColor,
+        let renderSignature = RenderSignature(
+            contentID: viewModel.currentContentId,
+            textHash: text.hashValue,
+            textLength: (text as NSString).length,
             showHarakat: state.showHarakat,
             isMultiLanguage: isMultiLanguage,
-            isImported: isImported
+            isImported: isImported,
+            fontName: state.fontName,
+            fontSize: state.fontSize,
+            lineHeight: state.lineHeight
         )
-
-        textView.currentRenderResult = renderResult
-        context.coordinator.currentRenderResult = renderResult
-
-        let attributedString = NSMutableAttributedString(
-            attributedString: renderResult.attributedString
-        )
-        renderer.applyAnnotations(
-            annotations,
-            to: attributedString,
-            showHarakat: state.showHarakat,
-            replacementEvents: renderResult.replacementEvents
-        )
-
-        if let selectedRange = otzariaSelectedLineRange {
-            let displayedRange = renderResult.remapDisplayedRange(selectedRange)
-            if displayedRange.location >= 0,
-               displayedRange.length > 0,
-               NSMaxRange(displayedRange) <= attributedString.length {
-                attributedString.addAttribute(
-                    .backgroundColor,
-                    value: UIColor.systemBlue.withAlphaComponent(0.14),
-                    range: displayedRange
-                )
-            }
+        let contentChanged = context.coordinator.renderSignature != renderSignature
+        if contentChanged || context.coordinator.currentRenderResult == nil {
+            let renderResult = renderer.render(
+                bookId: viewModel.currentBook?.id,
+                contentId: viewModel.currentContentId,
+                text: text,
+                highlightColor: .header,
+                showHarakat: state.showHarakat,
+                isMultiLanguage: isMultiLanguage,
+                isImported: isImported
+            )
+            context.coordinator.renderSignature = renderSignature
+            context.coordinator.currentRenderResult = renderResult
+            context.coordinator.baseAttributedString = renderResult.attributedString
+            textView.currentRenderResult = renderResult
         }
 
-        // Apply clickable links berdasarkan setting
-        if state.clickableAnnotation {
-            attributedString.enumerateAttribute(
-                NSAttributedString.Key("annotationID"),
-                in: NSRange(location: 0, length: attributedString.length)
-            ) { value, range, _ in
-                if let id = value as? Int64 {
-                    let urlString = "annotation://\(id)"
-                    if let url = URL(string: urlString) {
-                        attributedString.addAttribute(.link, value: url, range: range)
-                    }
+        guard let renderResult = context.coordinator.currentRenderResult,
+              let baseAttributedString = context.coordinator.baseAttributedString else { return }
+        textView.currentRenderResult = renderResult
+        let contentIdChanged = context.coordinator.lastHighlightedContentId != viewModel.currentContentId
+        let decorationSignature = DecorationSignature(
+            renderSignature: renderSignature,
+            annotations: annotations.map {
+                AnnotationRenderSignature(
+                    id: $0.id,
+                    range: $0.range,
+                    diacriticsRange: $0.rangeDiacritics,
+                    colorHex: $0.colorHex,
+                    type: $0.type.rawValue
+                )
+            },
+            searchText: searchText,
+            searchMode: searchMode.map { String(describing: $0) } ?? "",
+            nearDistance: nearDistance,
+            clickableAnnotations: state.clickableAnnotation
+        )
+        let decorationsChanged = context.coordinator.decorationSignature != decorationSignature
+        var searchRanges = context.coordinator.searchRanges
+        var shouldTriggerSearchAnimation = false
+
+        if contentChanged || decorationsChanged {
+            let decorated = NSMutableAttributedString(attributedString: baseAttributedString)
+            renderer.applyAnnotations(
+                annotations,
+                to: decorated,
+                showHarakat: state.showHarakat,
+                replacementEvents: renderResult.replacementEvents
+            )
+            if state.clickableAnnotation {
+                decorated.enumerateAttribute(
+                    NSAttributedString.Key("annotationID"),
+                    in: NSRange(location: 0, length: decorated.length)
+                ) { value, range, _ in
+                    guard let id = value as? Int64,
+                          let url = URL(string: "annotation://\(id)") else { return }
+                    decorated.addAttribute(.link, value: url, range: range)
                 }
             }
-        }
-
-        let contentIdChanged = context.coordinator.lastHighlightedContentId != viewModel.currentContentId
-        
-        var searchRanges: [NSRange] = []
-        var shouldTriggerSearchAnimation = false
-        
-        if !searchText.isEmpty {
-            searchRanges = attributedString.highlightSearchText(
+            searchRanges = searchText.isEmpty ? [] : decorated.highlightSearchText(
                 searchText: searchText,
                 mode: searchMode,
                 baseColor: .highlightText,
                 nearDistance: nearDistance
             )
-            
-            if context.coordinator.processedSearchText != searchText || contentIdChanged {
-                context.coordinator.processedSearchText = searchText
-                shouldTriggerSearchAnimation = true
-            }
-        } else {
-            context.coordinator.processedSearchText = nil
+            shouldTriggerSearchAnimation = !searchText.isEmpty
+                && (context.coordinator.processedSearchText != searchText || contentIdChanged)
+            context.coordinator.processedSearchText = searchText.isEmpty ? nil : searchText
+            context.coordinator.decorationSignature = decorationSignature
+            context.coordinator.decoratedAttributedString = decorated
+            context.coordinator.searchRanges = searchRanges
+            context.coordinator.selectedDisplayedRange = nil
+            context.coordinator.replaceTextStorage(
+                in: textView,
+                with: decorated,
+                preserveSelection: !contentIdChanged,
+                preserveOffset: !contentIdChanged
+            )
+            textView.invalidateIntrinsicContentSize()
+            textView.setNeedsLayout()
+            textView.layoutIfNeeded()
         }
 
-        textView.attributedText = attributedString
-        textView.invalidateIntrinsicContentSize()
-        textView.setNeedsLayout()
-        textView.layoutIfNeeded()
+        let displayedSelectedRange = selectedSegmentRange.map {
+            renderResult.remapDisplayedRange(ReaderTextIndexMapper.displayedRange(
+                forSourceRange: $0,
+                sourceText: text,
+                showHarakat: state.showHarakat
+            ))
+        }
+        context.coordinator.updateSegmentHighlight(in: textView, displayedRange: displayedSelectedRange)
 
         if contentIdChanged {
         textView.selectedRange = NSRange(location: 0, length: 0)
@@ -544,6 +634,12 @@ struct iOSIbarotTextView: UIViewRepresentable {
     class Coordinator: NSObject, UITextViewDelegate, UIGestureRecognizerDelegate {
         var parent: iOSIbarotTextView
         var currentRenderResult: ArabicRenderResult?
+        var baseAttributedString: NSAttributedString?
+        var decoratedAttributedString: NSAttributedString?
+        fileprivate var renderSignature: RenderSignature?
+        fileprivate var decorationSignature: DecorationSignature?
+        var selectedDisplayedRange: NSRange?
+        var searchRanges: [NSRange] = []
         var restoredContentId: Int?
         var lastHighlightedContentId: Int?
         var processedSearchText: String?
@@ -560,6 +656,52 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         init(_ parent: iOSIbarotTextView) {
             self.parent = parent
+        }
+
+        func replaceTextStorage(
+            in textView: UITextView,
+            with value: NSAttributedString,
+            preserveSelection: Bool,
+            preserveOffset: Bool
+        ) {
+            let priorSelection = textView.selectedRange
+            let priorOffset = textView.contentOffset
+            textView.textStorage.beginEditing()
+            textView.textStorage.setAttributedString(value)
+            textView.textStorage.endEditing()
+            if preserveSelection, NSMaxRange(priorSelection) <= textView.textStorage.length {
+                textView.selectedRange = priorSelection
+            }
+            if preserveOffset { textView.setContentOffset(priorOffset, animated: false) }
+        }
+
+        func updateSegmentHighlight(in textView: UITextView, displayedRange: NSRange?) {
+            guard selectedDisplayedRange != displayedRange else { return }
+            textView.textStorage.beginEditing()
+            if let oldRange = selectedDisplayedRange,
+               NSMaxRange(oldRange) <= textView.textStorage.length,
+               let decoratedAttributedString {
+                textView.textStorage.removeAttribute(.backgroundColor, range: oldRange)
+                decoratedAttributedString.enumerateAttribute(.backgroundColor, in: oldRange) { value, range, _ in
+                    if let value {
+                        textView.textStorage.addAttribute(.backgroundColor, value: value, range: range)
+                    }
+                }
+            }
+            if let displayedRange,
+               displayedRange.location >= 0,
+               displayedRange.length > 0,
+               NSMaxRange(displayedRange) <= textView.textStorage.length {
+                textView.textStorage.addAttribute(
+                    .backgroundColor,
+                    value: UIColor.systemBlue.withAlphaComponent(0.14),
+                    range: displayedRange
+                )
+                selectedDisplayedRange = displayedRange
+            } else {
+                selectedDisplayedRange = nil
+            }
+            textView.textStorage.endEditing()
         }
 
         @objc func handleTextTap(_ recognizer: UITapGestureRecognizer) {
@@ -586,7 +728,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
                     .remapSourceRange(NSRange(location: characterIndex, length: 0))
                     .location ?? characterIndex
                 self.parent.onTapTextCharacterIndex?(
-                    OtzariaTextViewLineSelectionAdapter.sourceCharacterIndex(
+                    ReaderTextIndexMapper.sourceCharacterIndex(
                         forDisplayedIndex: sourceIndex,
                         sourceText: self.parent.text,
                         showHarakat: TextViewState.shared.showHarakat

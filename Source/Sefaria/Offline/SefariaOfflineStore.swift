@@ -93,9 +93,10 @@ actor SefariaOfflineStore: LibraryTextProviding {
             let files = (try? FileManager.default.contentsOfDirectory(at: directory,
                 includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])) ?? []
             let decoder = JSONDecoder()
-            all = files.filter { $0.lastPathComponent.hasSuffix(".metadata.json") }.compactMap {
-                guard let data = try? Data(contentsOf: $0) else { return nil }
-                return try? decoder.decode(SefariaOfflineMetadataDTO.self, from: data)
+            all = files.filter { $0.lastPathComponent.hasSuffix(".metadata.json") }.flatMap { url -> [SefariaOfflineMetadataDTO] in
+                guard let data = try? Data(contentsOf: url),
+                      let document = try? decoder.decode(SefariaOfflineMetadataDTO.self, from: data) else { return [] }
+                return document.flattenedSections
             }
             metadataByBook[title] = all
         }
@@ -118,10 +119,12 @@ actor SefariaOfflineStore: LibraryTextProviding {
         var result: [SefariaVersion] = []
         for pointer in metadata.versions {
             let hash = Self.shortMD5(pointer.versionTitle)
-            let filename = "\(metadata.sectionRef).\(hash).\(pointer.language).json"
+            let fileRef = metadata.containerRef ?? metadata.sectionRef
+            let filename = "\(fileRef).\(hash).\(pointer.language).json"
             let url = directory.appendingPathComponent(filename)
             guard let data = try? Data(contentsOf: url),
-                  let text = try? JSONDecoder().decode(SefariaJSONValue.self, from: data) else { continue }
+                  let document = try? JSONDecoder().decode(SefariaJSONValue.self, from: data) else { continue }
+            let text = document.value(inSectionsFor: metadata.sectionRef) ?? document
             let metadataVersion = index?.versions.first {
                 $0.versionTitle == pointer.versionTitle && $0.language == pointer.language
             }

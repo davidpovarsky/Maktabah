@@ -76,6 +76,86 @@ struct SefariaOfflineMetadataDTO: Codable, Sendable {
     let prev: String?
     let versions: [VersionPointer]
     let links: [[SefariaLink]]?
+    let sections: [String: SefariaOfflineMetadataDTO]?
+    let containerRef: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case ref, heRef, indexTitle, sectionRef, next, prev, versions, links, sections
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        ref = try values.decode(String.self, forKey: .ref)
+        heRef = try values.decodeIfPresent(String.self, forKey: .heRef)
+        indexTitle = try values.decodeIfPresent(String.self, forKey: .indexTitle) ?? ""
+        sectionRef = try values.decodeIfPresent(String.self, forKey: .sectionRef) ?? ref
+        next = try values.decodeIfPresent(String.self, forKey: .next)
+        prev = try values.decodeIfPresent(String.self, forKey: .prev)
+        versions = try values.decodeIfPresent([VersionPointer].self, forKey: .versions) ?? []
+        links = try values.decodeIfPresent([[SefariaLink]].self, forKey: .links)
+        sections = try values.decodeIfPresent([String: Self].self, forKey: .sections)
+        containerRef = nil
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(ref, forKey: .ref)
+        try values.encodeIfPresent(heRef, forKey: .heRef)
+        if !indexTitle.isEmpty { try values.encode(indexTitle, forKey: .indexTitle) }
+        if sectionRef != ref { try values.encode(sectionRef, forKey: .sectionRef) }
+        try values.encodeIfPresent(next, forKey: .next)
+        try values.encodeIfPresent(prev, forKey: .prev)
+        if !versions.isEmpty { try values.encode(versions, forKey: .versions) }
+        try values.encodeIfPresent(links, forKey: .links)
+        try values.encodeIfPresent(sections, forKey: .sections)
+    }
+
+    var flattenedSections: [SefariaOfflineMetadataDTO] {
+        guard let sections, !sections.isEmpty else { return [self] }
+        return sections.keys.sorted().flatMap { key -> [Self] in
+            guard let child = sections[key] else { return [] }
+            return child.withContainerRef(containerRef ?? ref).flattenedSections
+        }
+    }
+
+    private func withContainerRef(_ value: String) -> Self {
+        Self(
+            ref: ref,
+            heRef: heRef,
+            indexTitle: indexTitle,
+            sectionRef: sectionRef,
+            next: next,
+            prev: prev,
+            versions: versions,
+            links: links,
+            sections: sections,
+            containerRef: value
+        )
+    }
+
+    private init(
+        ref: String,
+        heRef: String?,
+        indexTitle: String,
+        sectionRef: String,
+        next: String?,
+        prev: String?,
+        versions: [VersionPointer],
+        links: [[SefariaLink]]?,
+        sections: [String: Self]?,
+        containerRef: String?
+    ) {
+        self.ref = ref
+        self.heRef = heRef
+        self.indexTitle = indexTitle
+        self.sectionRef = sectionRef
+        self.next = next
+        self.prev = prev
+        self.versions = versions
+        self.links = links
+        self.sections = sections
+        self.containerRef = containerRef
+    }
 }
 
 struct SefariaOfflineIndexDTO: Codable, Sendable {

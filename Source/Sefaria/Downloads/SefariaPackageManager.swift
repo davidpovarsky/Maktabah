@@ -99,6 +99,9 @@ actor SefariaPackageManager: OfflineLibraryProviding {
             ]
             let listURL = try configuration.readonlyURL(path: "/packageData", queryItems: query)
             let bundlePaths = try await client.get([String].self, url: listURL)
+            guard !bundlePaths.isEmpty else {
+                throw LibraryBackendError.invalidResponse("package \(package.id) has no downloadable bundles")
+            }
             let transaction = paths.staging.appendingPathComponent(UUID().uuidString, isDirectory: true)
             let payload = transaction.appendingPathComponent("payload", isDirectory: true)
             try FileManager.default.createDirectory(at: payload, withIntermediateDirectories: true)
@@ -113,7 +116,7 @@ actor SefariaPackageManager: OfflineLibraryProviding {
                 } else {
                     remoteURL = try configuration.readonlyURL(path: bundlePath)
                 }
-                let (downloaded, response) = try await client.download(url: remoteURL)
+                let (downloaded, response) = try await downloadBundleWithRetry(remoteURL)
                 let expected = response.expectedContentLength
                 let availableBytes = availableCapacity(at: paths.root)
                 if expected > 0, availableBytes > 0, availableBytes < expected * 2 {
@@ -136,6 +139,9 @@ actor SefariaPackageManager: OfflineLibraryProviding {
             let titles = Set(try SefariaArchiveValidator.bookArchives(in: payload).map {
                 $0.deletingPathExtension().lastPathComponent
             })
+            guard !titles.isEmpty else {
+                throw LibraryBackendError.corruptData("package \(package.id) contains no book archives")
+            }
             let titleUpdates = try await updates.snapshot(for: titles)
             try SefariaFileTransaction.atomicReplace(payload, target: target)
             state.packages[package.id] = .init(id: package.id, installedAt: Date(),
@@ -163,6 +169,23 @@ actor SefariaPackageManager: OfflineLibraryProviding {
         guard !didCleanupStaging else { return }
         didCleanupStaging = true
         try? FileManager.default.removeItem(at: paths.staging)
+    }
+
+    private func downloadBundleWithRetry(_ url: URL, maximumAttempts: Int = 3) async throws -> (URL, HTTPURLResponse) {
+        var lastError: Error?
+        for attempt in 1...maximumAttempts {
+            try Task.checkCancellation()
+            do {
+                return try await client.download(url: url)
+            } catch is CancellationError {
+                throw CancellationError()
+            } catch {
+                lastError = error
+                guard attempt < maximumAttempts else { break }
+                try await Task.sleep(nanoseconds: UInt64(attempt) * 1_000_000_000)
+            }
+        }
+        throw lastError ?? LibraryBackendError.invalidResponse("bundle download failed")
     }
     private func removeOrphanedExpandedBooks() { try? FileManager.default.removeItem(at: paths.expandedBooks) }
 

@@ -57,6 +57,14 @@ extension UserDefaults {
         }
     }
 
+    var libraryReaderTextMode: LibraryReaderTextMode {
+        get {
+            string(forKey: TextViewKeys.readerTextMode)
+                .flatMap(LibraryReaderTextMode.init(rawValue:)) ?? .source
+        }
+        set { set(newValue.rawValue, forKey: TextViewKeys.readerTextMode) }
+    }
+
     // MARK: - extendScreenTime (Bool)
     var extendScreenTime: Bool {
         get {
@@ -341,6 +349,7 @@ extension UserDefaults {
         static let backgroundColorLight = "textViewBackgroundColorLight"
         static let backgroundColorDark = "textViewBackgroundColorDark"
         static let showHarakat = "textViewShowHarakat"
+        static let readerTextMode = "libraryReaderTextMode.v1"
         static let extendScreenTime = "extendScreenTime"
         static let lineHeight = "lineHeight"
         static let annotationClick = "enableAnnotationClick"
