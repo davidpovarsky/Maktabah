@@ -39,6 +39,14 @@ func runNavigationAndPackageTests() throws {
     try expect(deep[0].children[0].locator.position == .canonicalRef("Deep Work 1:1"), "depth-two ref")
     try expect(deep[0].children.map(\.title) == ["1", "2"], "depth-three shape")
 
+    let liveComplexShape = try JSONDecoder().decode([SefariaShapeDTO].self, from: Data(#"[{"isComplex":true,"section":"Haggadah","book":"Pesach Haggadah","chapters":[{"heTitle":"קדש","title":"Pesach Haggadah, Kadesh","chapters":2}]}]"#.utf8))
+    try expect(liveComplexShape.first?.title == "Pesach Haggadah", "complex shape accepts book as root title")
+    let liveComplexNodes = SefariaNavigationParser.nodes(shapes: liveComplexShape, schema: deepSchema,
+        indexTitle: "Pesach Haggadah")
+    try expect(liveComplexNodes.first?.children.first?.locator.position == .canonicalRef("Pesach Haggadah, Kadesh"),
+        "complex shape uses exact child ref")
+    try expect(liveComplexNodes.first?.children.first?.title == "קדש", "complex shape uses Hebrew child title")
+
     let schemaWithDefault: SefariaJSONValue = .object(["nodes": .array([
         .object(["key": .string("default"), "default": .bool(true), "lengths": .array([.number(2)]),
             "addressTypes": .array([.string("Integer")])]),

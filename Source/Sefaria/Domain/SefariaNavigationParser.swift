@@ -115,6 +115,23 @@ enum SefariaNavigationParser {
         switch value {
         case .array(let values):
             return values.enumerated().map { offset, child in
+                if case .object(let object) = child,
+                   let childRef = string(object["title"]) ?? string(object["book"]) ?? string(object["section"]) {
+                    let childTitle = string(object["heTitle"]) ?? childRef
+                    return LibraryTOCNode(
+                        locator: locator(indexTitle: indexTitle, ref: childRef),
+                        title: childTitle,
+                        children: object["chapters"].map {
+                            shapeChildren(
+                                $0,
+                                indexTitle: indexTitle,
+                                baseRef: childRef,
+                                addressTypes: addressTypes,
+                                depth: depth
+                            )
+                        } ?? []
+                    )
+                }
                 let address = address(offset: offset, type: addressTypes[safe: depth])
                 let ref = append(address: address, to: baseRef, depth: depth)
                 let descendants: [LibraryTOCNode]

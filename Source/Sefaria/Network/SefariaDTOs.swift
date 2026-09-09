@@ -207,4 +207,28 @@ struct SefariaShapeDTO: Decodable, Sendable {
     let title: String
     let length: Int?
     let chapters: SefariaJSONValue
+
+    private enum CodingKeys: String, CodingKey {
+        case isComplex, heTitle, title, book, section, length, chapters
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        isComplex = try values.decodeIfPresent(Bool.self, forKey: .isComplex)
+        heTitle = try values.decodeIfPresent(String.self, forKey: .heTitle)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
+            ?? values.decodeIfPresent(String.self, forKey: .book)
+            ?? values.decodeIfPresent(String.self, forKey: .section)
+            ?? ""
+        length = try values.decodeIfPresent(Int.self, forKey: .length)
+        chapters = try values.decodeIfPresent(SefariaJSONValue.self, forKey: .chapters) ?? .array([])
+    }
+
+    init(isComplex: Bool?, heTitle: String?, title: String, length: Int?, chapters: SefariaJSONValue) {
+        self.isComplex = isComplex
+        self.heTitle = heTitle
+        self.title = title
+        self.length = length
+        self.chapters = chapters
+    }
 }
