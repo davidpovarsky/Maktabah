@@ -47,8 +47,11 @@ enum SefariaNativeSmoke {
         let ref = try await client.get(SefariaJSONValue.self,
             url: config.apiURL(pathPrefix: "/api/ref/", pathComponent: "Berakhot 31a"))
         guard case .object(let refObject) = ref,
-              case .array(let navigationRefs)? = refObject["navigation_refs"],
-              !navigationRefs.isEmpty else {
+              case .object(let navigationRefs)? = refObject["navigation_refs"],
+              navigationRefs["prev_section_ref"] == .string("Berakhot 30b"),
+              navigationRefs["next_section_ref"] == .string("Berakhot 31b"),
+              navigationRefs["first_subref"] == .string("Berakhot 31a:1"),
+              navigationRefs["last_subref"] == .string("Berakhot 31a:28") else {
             throw LibraryBackendError.invalidResponse("Ref navigation metadata missing")
         }
 
