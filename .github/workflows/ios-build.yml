@@ -268,7 +268,7 @@ jobs:
             fi
             sleep 3
             xcrun simctl io "$UDID" screenshot "build/ipad-bootstrap-screenshots/$output"
-            xcrun simctl terminate "$UDID" "$BUNDLE_ID"
+            xcrun simctl terminate "$UDID" "$BUNDLE_ID" || true
           }
 
           capture_screen en en_US source source-en.png
