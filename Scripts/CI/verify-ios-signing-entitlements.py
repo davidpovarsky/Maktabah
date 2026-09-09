@@ -22,7 +22,13 @@ def fail(message: str) -> None:
 
 
 def require_entitlements(
-    label: str, entitlements: dict, team_id: str, bundle_id: str, container_id: str
+    label: str,
+    entitlements: dict,
+    team_id: str,
+    bundle_id: str,
+    container_id: str,
+    *,
+    allow_profile_wildcards: bool = False,
 ) -> None:
     expected_application_id = f"{team_id}.{bundle_id}"
     if entitlements.get("application-identifier") != expected_application_id:
@@ -35,7 +41,7 @@ def require_entitlements(
         fail(f"{label} missing iCloud container {container_id}; found {sorted(containers)}")
     services = values(entitlements, "com.apple.developer.icloud-services")
     missing_services = {"CloudKit", "CloudDocuments"} - services
-    if missing_services:
+    if missing_services and not (allow_profile_wildcards and "*" in services):
         fail(
             f"{label} missing iCloud services {sorted(missing_services)}; "
             f"found {sorted(services)}"
@@ -97,6 +103,7 @@ def main() -> int:
         args.team_id,
         args.bundle_id,
         args.container_id,
+        allow_profile_wildcards=True,
     )
     require_entitlements(
         "Signed app",
@@ -115,6 +122,8 @@ def main() -> int:
     print(f"  application-identifier: {args.team_id}.{args.bundle_id}")
     print(f"  iCloud container: {args.container_id}")
     print("  iCloud services: CloudKit, CloudDocuments")
+    if "*" in values(profile_entitlements, "com.apple.developer.icloud-services"):
+        print("  profile iCloud-services authorization: * (signed app is exact)")
     print(f"  key-value store: {args.team_id}.{args.bundle_id}")
     print("  aps-environment: production (no APNs SSL certificate required)")
     print("Signed app entitlements match the provisioning profile")
