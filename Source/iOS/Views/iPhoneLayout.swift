@@ -21,12 +21,15 @@ struct iPhoneLayout: View {
             Tab(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon, value: .viewer) {
                 viewerTabContent
             }
-            Tab(iOSTab.otzariaTextSearch.title, systemImage: iOSTab.otzariaTextSearch.icon, value: .otzariaTextSearch) {
-                otzariaTextSearchTabContent
-            }
 
-            Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search, role: .search) {
-                searchTabContent
+            if BackendCoordinator.shared.activeBackendID == .sefaria {
+                Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
+                    searchTabContent
+                }
+            } else {
+                Tab(iOSTab.otzariaTextSearch.title, systemImage: iOSTab.otzariaTextSearch.icon, value: .otzariaTextSearch) {
+                    otzariaTextSearchTabContent
+                }
             }
 
             Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
@@ -46,7 +49,22 @@ struct iPhoneLayout: View {
             iOSAddFavoriteSheet(viewModel: HistoryViewModel.shared)
         }
         .onAppear {
-            selectedTab = savedSelectedTab == .zayitSearch ? .otzariaTextSearch : savedSelectedTab
+            if BackendCoordinator.shared.activeBackendID == .sefaria {
+                if savedSelectedTab == .otzariaTextSearch || savedSelectedTab == .zayitSearch {
+                    selectedTab = .search
+                } else {
+                    selectedTab = savedSelectedTab
+                }
+            } else {
+                selectedTab = savedSelectedTab == .zayitSearch ? .otzariaTextSearch : savedSelectedTab
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
+            if BackendCoordinator.shared.activeBackendID == .sefaria && (selectedTab == .otzariaTextSearch || selectedTab == .zayitSearch) {
+                selectedTab = .search
+            } else if BackendCoordinator.shared.activeBackendID != .sefaria && selectedTab == .search {
+                selectedTab = .otzariaTextSearch
+            }
         }
         .onChange(of: selectedTab) { _, newValue in
             savedSelectedTab = newValue
@@ -76,22 +94,26 @@ struct iPhoneLayout: View {
 
     @ViewBuilder
     private var otzariaTextSearchTabContent: some View {
-        NavigationStack {
-            UnifiedSearchWorkspaceView(
-                openOtzaria: { item, descriptor in
-                    guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
-                    bManager.openBook(book, initialContentId: item.page, searchText: descriptor.readerFallback)
-                },
-                openZayit: { hit, _ in
-                    ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
-                }
-            )
-                .navigationTitle(iOSTab.otzariaTextSearch.title)
-                .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
-                    manager: bManager
+        if BackendCoordinator.shared.activeBackendID == .sefaria {
+            searchTabContent
+        } else {
+            NavigationStack {
+                UnifiedSearchWorkspaceView(
+                    openOtzaria: { item, descriptor in
+                        guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
+                        bManager.openBook(book, initialContentId: item.page, searchText: descriptor.readerFallback)
+                    },
+                    openZayit: { hit, _ in
+                        ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
+                    }
                 )
-                .toolbarGeneral(showSettings: $showSettings)
+                    .navigationTitle(iOSTab.otzariaTextSearch.title)
+                    .adaptiveReaderPush(
+                        item: $bManager.selectedBook,
+                        manager: bManager
+                    )
+                    .toolbarGeneral(showSettings: $showSettings)
+            }
         }
     }
 

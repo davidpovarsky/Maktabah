@@ -180,6 +180,26 @@ final class SearchViewModel: ViewModelBase {
             Task { @MainActor [weak self] in
                 guard let self else { return }
                 stopSearch()
+                results.removeAll()
+                state = .loading
+                ldm.resetState()
+                await ldm.reloadAllData()
+                await ldm.buildArchive()
+                #if os(iOS)
+                updateDisplayedCategories()
+                #endif
+                state = .loaded
+            }
+        }
+
+        addObserver(
+            forName: .activeLibraryBackendDidChange, object: nil, queue: .current
+        ) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                stopSearch()
+                results.removeAll()
+                query = ""
                 state = .loading
                 ldm.resetState()
                 await ldm.reloadAllData()
@@ -247,9 +267,14 @@ final class SearchViewModel: ViewModelBase {
 
     #if os(iOS)
     func updateDisplayedCategories() {
-        let base: [CategoryData] = AppConfig.isUsingBundleMode
-            ? ldm.filterIntegrated()
-            : ldm.allRootCategories
+        let base: [CategoryData]
+        if MaktabahBackendAdapter.usesGenericModels {
+            base = ldm.allRootCategories
+        } else if AppConfig.isUsingBundleMode {
+            base = ldm.filterIntegrated()
+        } else {
+            base = ldm.allRootCategories
+        }
 
         if filterText.isEmpty {
             displayedCategories = base

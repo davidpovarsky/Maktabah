@@ -108,12 +108,22 @@ struct iPadLayout: View {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
         }
         .environment(\.layoutDirection, .rightToLeft)
+        .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
+            if BackendCoordinator.shared.activeBackendID == .sefaria && detailMode == .otzariaTextSearch {
+                transitionSidebar(to: .search)
+            }
+        }
     }
 
     private var sidebarContent: some View {
         ThemeList(isGrouped: true) {
             Section {
-                ForEach(iOSTab.allCases.filter { $0 != .history && $0 != .zayitSearch }) { tab in
+                let visibleTabs = iOSTab.allCases.filter { tab in
+                    if tab == .history || tab == .zayitSearch { return false }
+                    if BackendCoordinator.shared.activeBackendID == .sefaria && tab == .otzariaTextSearch { return false }
+                    return true
+                }
+                ForEach(visibleTabs) { tab in
                     if tab == .otzariaTextSearch {
                         Button {
                             transitionSidebar(to: tab)
@@ -214,7 +224,10 @@ struct iPadLayout: View {
         case .reader:
             iOSReaderTabView(columnVisibility: $columnVisibility)
         case .otzariaTextSearch:
-            NavigationStack {
+            if BackendCoordinator.shared.activeBackendID == .sefaria {
+                iOSReaderTabView(columnVisibility: $columnVisibility)
+            } else {
+                NavigationStack {
                 UnifiedSearchWorkspaceView(
                     openOtzaria: { item, descriptor in
                         guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
@@ -234,6 +247,7 @@ struct iPadLayout: View {
                 .navigationDestination(isPresented: $showingOtzariaReader) {
                     iOSReaderTabView(columnVisibility: $columnVisibility)
                 }
+            }
             }
         case .zayitSearch:
             NavigationStack {

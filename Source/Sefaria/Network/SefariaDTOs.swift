@@ -118,7 +118,32 @@ struct SefariaLocalizedTitleDTO: Codable, Hashable, Sendable {
     let he: String?
 }
 
-struct SefariaRelationshipLinkDTO: Codable, Hashable, Sendable {
+/// Flexible string field that tolerates String, [], or [String] from the Sefaria /api/links/ API.
+private enum SefariaFlexString: Decodable, Hashable, Sendable {
+    case string(String)
+    case none
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(String.self) {
+            self = value.isEmpty ? .none : .string(value)
+            return
+        }
+        if let array = try? container.decode([String].self) {
+            let joined = array.filter { !$0.isEmpty }.first
+            self = joined.map { .string($0) } ?? .none
+            return
+        }
+        self = .none
+    }
+
+    var stringValue: String? {
+        if case .string(let value) = self { return value }
+        return nil
+    }
+}
+
+struct SefariaRelationshipLinkDTO: Hashable, Sendable {
     let sourceRef: String?
     let sourceHeRef: String?
     let ref: String?
@@ -133,6 +158,32 @@ struct SefariaRelationshipLinkDTO: Codable, Hashable, Sendable {
     let heLicense: String?
     let license: String?
     let indexTitle: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case sourceRef, sourceHeRef, ref, heRef, category, type, collectiveTitle
+        case he, text, versionTitle, heVersionTitle, heLicense, license
+        case indexTitle = "index_title"
+    }
+}
+
+extension SefariaRelationshipLinkDTO: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        sourceRef = try values.decodeIfPresent(String.self, forKey: .sourceRef)
+        sourceHeRef = try values.decodeIfPresent(String.self, forKey: .sourceHeRef)
+        ref = try values.decodeIfPresent(String.self, forKey: .ref)
+        heRef = try values.decodeIfPresent(String.self, forKey: .heRef)
+        category = try values.decodeIfPresent(String.self, forKey: .category)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        collectiveTitle = try values.decodeIfPresent(SefariaLocalizedTitleDTO.self, forKey: .collectiveTitle)
+        he = (try values.decodeIfPresent(SefariaFlexString.self, forKey: .he))?.stringValue
+        text = (try values.decodeIfPresent(SefariaFlexString.self, forKey: .text))?.stringValue
+        versionTitle = try values.decodeIfPresent(String.self, forKey: .versionTitle)
+        heVersionTitle = try values.decodeIfPresent(String.self, forKey: .heVersionTitle)
+        heLicense = try values.decodeIfPresent(String.self, forKey: .heLicense)
+        license = try values.decodeIfPresent(String.self, forKey: .license)
+        indexTitle = try values.decodeIfPresent(String.self, forKey: .indexTitle)
+    }
 }
 
 struct SefariaTopicDescriptionDTO: Codable, Hashable, Sendable {

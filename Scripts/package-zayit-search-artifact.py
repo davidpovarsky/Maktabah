@@ -48,6 +48,23 @@ def compress_range(source: Path, offset: int, length: int, output: Path) -> None
             raise RuntimeError(f"zstd failed for {source}")
 
 
+FORBIDDEN_MANAGED_FILENAMES = {".managed.json"}
+
+
+def packageable_files(index: Path) -> list[Path]:
+    all_files = [path for path in index.rglob("*") if path.is_file()]
+    for path in all_files:
+        if path.name in FORBIDDEN_MANAGED_FILENAMES or path.name.endswith(".managed.json"):
+            raise RuntimeError(f"forbidden runtime management file present in index: {path.name}")
+    files = sorted(
+        path for path in all_files
+        if path.stat().st_size > 0 and not path.name.startswith(".")
+    )
+    if not files or not (index / "meta.json").is_file():
+        raise RuntimeError("invalid Tantivy index")
+    return files
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--index", required=True, type=Path)
@@ -63,9 +80,7 @@ def main() -> None:
     metadata = json.loads((args.index / "zayit-index-metadata.json").read_text())
     if metadata["schema_version"] != 2:
         raise RuntimeError("only Zayit index schema 2 can be published")
-    files = sorted(path for path in args.index.rglob("*") if path.is_file() and path.stat().st_size)
-    if not files or not (args.index / "meta.json").is_file():
-        raise RuntimeError("invalid Tantivy index")
+    files = packageable_files(args.index)
 
     args.output.mkdir(parents=True, exist_ok=True)
     parts: list[dict] = []

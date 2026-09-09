@@ -67,7 +67,9 @@ struct SearchModeView: View {
             .animation(.interpolatingSpring(stiffness: 300, damping: 20),
                        value: viewModel.isSearching)
             .onAppear {
-                ftsManager.checkNeedsMigration()
+                if BackendCoordinator.shared.usesNativeMaktabahDataPath {
+                    ftsManager.checkNeedsMigration()
+                }
             }
             .overlay {
                 if showFtsMigrationOverlay {
@@ -171,9 +173,10 @@ struct SearchModeView: View {
     private func handleSelection(_ item: SearchResultItem, viewModel: SearchViewModel) {
         if let book = viewModel.resolveBook(from: item) {
             let shouldRecord = UserDefaults.standard.recordSearchHistory
+            let targetContentId = item.backendLocator != nil ? item.bookId : item.page
             navigationManager.openBook(
                 book,
-                initialContentId: item.backendLocator == nil ? item.page : nil,
+                initialContentId: targetContentId,
                 searchText: navigationManager.searchViewModel.query,
                 searchMode: navigationManager.searchViewModel.searchMode,
                 nearDistance: navigationManager.searchViewModel.nearDistance,
@@ -213,7 +216,7 @@ struct SearchModeView: View {
 
     @ViewBuilder
     private func ftsMigrationBanner() -> some View {
-        if ftsManager.needsMigration && !hideFtsMigrationBanner && !ftsManager.isMigrating {
+        if BackendCoordinator.shared.usesNativeMaktabahDataPath && ftsManager.needsMigration && !hideFtsMigrationBanner && !ftsManager.isMigrating {
             VStack(spacing: 8) {
                 HStack {
                     Image(systemName: "sparkles")

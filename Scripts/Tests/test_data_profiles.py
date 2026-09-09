@@ -19,8 +19,8 @@ class DataProfileTests(unittest.TestCase):
         self.assertEqual(profile["sourceDatabase"]["releaseID"], seed["source"]["releaseID"])
         self.assertEqual(profile["sourceDatabase"]["assetID"], seed["source"]["assetID"])
         self.assertEqual(profile["sourceDatabase"]["sourceAssetSHA256"], seed["source"]["assetSHA256"])
-        self.assertEqual(profile["profileVersion"], 2)
-        self.assertTrue(profile["releaseBaseURL"].endswith("/otzaria-miniTest10-v2"))
+        self.assertEqual(profile["profileVersion"], 3)
+        self.assertTrue(profile["releaseBaseURL"].endswith("/otzaria-miniTest10-v3"))
         self.assertEqual(profile["sharedLexicalDatabase"]["releaseTag"], "v0.3.0")
         self.assertEqual(profile["sharedLexicalDatabase"]["bytes"], 57122816)
 
@@ -36,9 +36,9 @@ class DataProfileTests(unittest.TestCase):
             spec.loader.exec_module(module)
             self.assertEqual(len(module.digest(archive)), 64)
             profile = {
-                "profileVersion": 2,
+                "profileVersion": 3,
                 "databaseAssetName": "miniTest10-seforim.db.zst",
-                "releaseBaseURL": "https://example.invalid/releases/otzaria-miniTest10-v2",
+                "releaseBaseURL": "https://example.invalid/releases/otzaria-miniTest10-v3",
             }
             payload = module.build_payload({"id": 42, "tag_name": "source-v1"}, profile, archive)
             self.assertEqual(payload["assets"][0]["id"], profile["profileVersion"])

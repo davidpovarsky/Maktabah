@@ -37,6 +37,7 @@ func runDecodingTests() throws {
     try runReaderRenderModelTests()
     try runSearchContractMappingTests()
     try runNestedOfflineDecodingTests()
+    try runHeterogeneousLinksDecodingTests()
 }
 
 private func runReaderRenderModelTests() throws {
@@ -134,4 +135,64 @@ private func runNestedOfflineDecodingTests() throws {
     let decoded = try JSONDecoder().decode(SefariaInstalledState.self, from: JSONEncoder().encode(installed))
     try expect(decoded.packages["fixture"]?.bundlePaths == ["bundle-1.zip", "bundle-2.zip"],
         "multi-bundle installed state round-trips atomically")
+}
+
+private func runHeterogeneousLinksDecodingTests() throws {
+    let decoder = JSONDecoder()
+    let json = Data(#"""
+    [
+      {
+        "sourceRef": "Rashi on Genesis 1:1:1",
+        "sourceHeRef": "רש״י",
+        "category": "Commentary",
+        "type": "commentary",
+        "he": "פירוש כמחרוזת",
+        "text": "commentary as string",
+        "index_title": "Rashi on Genesis"
+      },
+      {
+        "sourceRef": "Ibn Ezra on Genesis 1:1:1",
+        "category": "Commentary",
+        "type": "commentary",
+        "he": ["פסוק א", "פסוק ב"],
+        "text": ["verse 1", "verse 2"],
+        "index_title": "Ibn Ezra on Genesis"
+      },
+      {
+        "sourceRef": "Ramban on Genesis 1:1:1",
+        "category": "Commentary",
+        "type": "commentary",
+        "he": [],
+        "text": [],
+        "index_title": "Ramban on Genesis"
+      }
+    ]
+    """#.utf8)
+
+    let dtos = try decoder.decode([SefariaRelationshipLinkDTO].self, from: json)
+    try expect(dtos.count == 3, "decoded all heterogeneous link DTOs")
+    try expect(dtos[0].indexTitle == "Rashi on Genesis", "snake_case index_title decoded for row 0")
+    try expect(dtos[0].he?.value == "פירוש כמחרוזת", "string he decoded for row 0")
+    try expect(dtos[1].indexTitle == "Ibn Ezra on Genesis", "snake_case index_title decoded for row 1")
+    try expect(dtos[1].he?.value == "פסוק א\nפסוק ב", "array he decoded as multiline string for row 1")
+    try expect(dtos[1].text?.value == "verse 1\nverse 2", "array text decoded as multiline string for row 1")
+    try expect(dtos[2].he?.value == nil, "empty array he decoded as nil for row 2")
+
+    let mixedJson = Data(#"""
+    [
+      {"sourceRef": "Valid 1", "category": "Commentary", "type": "commentary", "index_title": "Valid 1"},
+      {"badField": 123},
+      {"sourceRef": "Valid 2", "category": "Midrash", "type": "midrash", "index_title": "Valid 2"}
+    ]
+    """#.utf8)
+    let rows = (try? decoder.decode([SefariaJSONValue].self, from: mixedJson)) ?? []
+    var parsed: [SefariaRelationshipLinkDTO] = []
+    for row in rows {
+        if let data = try? JSONEncoder().encode(row),
+           let dto = try? decoder.decode(SefariaRelationshipLinkDTO.self, from: data) {
+            parsed.append(dto)
+        }
+    }
+    try expect(parsed.count == 2, "malformed row skipped without failing valid rows")
+    try expect(parsed[0].sourceRef == "Valid 1" && parsed[1].sourceRef == "Valid 2", "valid rows preserved")
 }

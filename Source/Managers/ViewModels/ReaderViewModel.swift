@@ -213,8 +213,9 @@ class ReaderViewModel: ViewModelBase {
     /// Loads initial content, optionally restoring a specific contentId
     func loadInitialContent(initialContentId: Int? = nil) {
         guard let book = currentBook else { return }
+        loadTOC(book: book)
         if let locator = book.backendLocator {
-            loadBackendInitialContent(book: book, locator: locator)
+            loadBackendInitialContent(book: book, locator: locator, initialContentId: initialContentId)
             return
         }
         let start = Date()
@@ -227,7 +228,6 @@ class ReaderViewModel: ViewModelBase {
             otzariaReaderLog("loadInitialContent connectError bookId=\(book.id) error=\(error.localizedDescription) durationMs=\(otzariaReaderElapsedMs(start))")
         }
 
-        loadTOC(book: book)
         guard let initialContentId else {
             loadFromHistory(for: book)
             return
@@ -249,21 +249,29 @@ class ReaderViewModel: ViewModelBase {
         tocViewModel.loadTOC(book: book)
     }
 
-    private func loadBackendInitialContent(book: BooksData, locator: TextLocator) {
+    private func loadBackendInitialContent(book: BooksData, locator: TextLocator, initialContentId: Int? = nil) {
         backendLoadTask?.cancel()
         backendLoadTask = Task { @MainActor [weak self] in
             guard let self else { return }
             var target = locator
-            let isWorkRoot: Bool
-            switch locator.position {
-            case .canonicalRef(let ref): isWorkRoot = ref == locator.workKey
-            case .legacyLine(let line): isWorkRoot = line == 0
-            }
-            if isWorkRoot,
-               let recent = await QualifiedLocatorStore.shared.entries().first(where: {
-                   $0.locator.backend == locator.backend && $0.locator.workKey == locator.workKey
-               }) {
-                target = recent.locator
+            if let initialContentId {
+                if let initialLocator = LegacyIdentityRegistry.shared.locator(for: initialContentId) {
+                    target = initialLocator
+                } else if locator.backend == .otzaria {
+                    target = TextLocator(backend: locator.backend, workKey: locator.workKey, position: .legacyLine(initialContentId))
+                }
+            } else {
+                let isWorkRoot: Bool
+                switch locator.position {
+                case .canonicalRef(let ref): isWorkRoot = ref == locator.workKey
+                case .legacyLine(let line): isWorkRoot = line == 0
+                }
+                if isWorkRoot,
+                   let recent = await QualifiedLocatorStore.shared.entries().first(where: {
+                       $0.locator.backend == locator.backend && $0.locator.workKey == locator.workKey
+                   }) {
+                    target = recent.locator
+                }
             }
             loadBackendContent(target)
         }

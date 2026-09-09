@@ -170,7 +170,7 @@ struct iOSReaderView: View {
         }
         .onChange(of: initialContentId) { _, newValue in
             if viewModel.contentText.isEmpty {
-                viewModel.loadInitialContent()
+                viewModel.loadInitialContent(initialContentId: newValue)
             }
         }
         .onAppear {
@@ -253,6 +253,7 @@ struct iOSReaderView: View {
                 viewModel: viewModel,
                 navigationManager: bManager
             )
+            .inspectorColumnWidth(min: 320, ideal: 400, max: 500)
         }
     }
 }

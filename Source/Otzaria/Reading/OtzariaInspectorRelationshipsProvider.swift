@@ -55,7 +55,16 @@ struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @un
                 ?? unit.lineAnchors.first else {
             throw LibraryBackendError.invalidLocator
         }
-        return OtzariaMaktabahBridge.shared.getLinksForLine(anchor).map(Self.map)
+        let sources = OtzariaMaktabahBridge.shared.getLinksForLine(anchor).map(Self.map)
+        var seen = Set<String>()
+        var deduplicated: [LibraryRelatedSource] = []
+        for source in sources {
+            let key = "\(source.locator.persistenceKey)|\(source.type)|\(source.category)"
+            if seen.insert(key).inserted {
+                deduplicated.append(source)
+            }
+        }
+        return deduplicated
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif

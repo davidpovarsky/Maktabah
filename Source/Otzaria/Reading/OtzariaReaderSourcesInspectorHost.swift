@@ -20,6 +20,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
             TorahInspectorUI.TorahInspectorView(
                 repository: inspectorSession.repository,
                 selection: selection,
+                entryMode: .segmentRelationships,
                 onClose: {
                     viewModel.closeReaderInspector()
                 },

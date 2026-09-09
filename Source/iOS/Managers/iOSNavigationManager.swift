@@ -276,7 +276,7 @@ class iOSNavigationManager {
 
     private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, searchMode: SearchMode? = nil, nearDistance: Int = 10, targetAnnotation: Annotation? = nil, recordHistory: Bool = true) async {
         if book.backendLocator != nil {
-            presentReader(book, initialContentId: nil, searchText: searchText, searchMode: searchMode,
+            presentReader(book, initialContentId: initialContentId, searchText: searchText, searchMode: searchMode,
                 nearDistance: nearDistance, targetAnnotation: targetAnnotation, recordHistory: recordHistory)
             return
         }

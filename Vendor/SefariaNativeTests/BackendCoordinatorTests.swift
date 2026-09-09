@@ -114,6 +114,11 @@ func runBackendCoordinatorTests() async throws {
     let currentRelationships = try await relationshipCoordinator.links(for: sefariaLocator)
     try expect(currentRelationships.first?.displayRef == "sefaria", "active relationship provider is selected")
 
+    try expect(coordinator.capabilities.contains(.catalog), "coordinator reflects active backend capabilities")
+    try expect(coordinator.usesNativeMaktabahDataPath == false, "Sefaria does not use native Maktabah data path")
+    coordinator.select(.otzaria)
+    try expect(coordinator.usesNativeMaktabahDataPath == true, "Otzaria uses native Maktabah data path")
+
     #if OTZARIA_INSPECTOR_MAPPING_TESTS
     try runOtzariaInspectorMappingTests()
     #endif

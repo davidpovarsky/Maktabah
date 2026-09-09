@@ -144,9 +144,26 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             pathComponent: ref,
             queryItems: [URLQueryItem(name: "with_text", value: "1")]
         )
-        let rows = try await client.get([SefariaRelationshipLinkDTO].self, url: url)
-        return rows.compactMap { SefariaRelationshipMapper.source($0, knownTitles: knownTitles) }
+        // Decode rows independently: one malformed row is logged and skipped
+        // rather than failing the entire relationship list.
+        let rawArray = try await client.get([SefariaJSONValue].self, url: url)
+        let decoder = JSONDecoder()
+        var results: [LibraryRelatedSource] = []
+        for (index, raw) in rawArray.enumerated() {
+            guard case .object = raw else { continue }
+            do {
+                let data = try JSONEncoder().encode(raw)
+                let row = try decoder.decode(SefariaRelationshipLinkDTO.self, from: data)
+                if let source = SefariaRelationshipMapper.source(row, knownTitles: knownTitles) {
+                    results.append(source)
+                }
+            } catch {
+                print("[Sefaria] links row \(index) for '\(ref)' rejected: \(error)")
+            }
+        }
+        return results
     }
+
 
     func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
         guard locator.backend == .sefaria, case .canonicalRef(let ref) = locator.position else {

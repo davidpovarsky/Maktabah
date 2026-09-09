@@ -14,6 +14,7 @@ import time
 CHUNK_BYTES = 512 * 1024 * 1024
 EXCLUDED_PREFIXES = ("otzaria_", ".otzaria_")
 RUNTIME_LOCK_FILENAMES = {".tantivy-meta.lock", ".tantivy-writer.lock"}
+FORBIDDEN_MANAGED_FILENAMES = {".managed.json"}
 
 
 def sha256(path: Path) -> str:
@@ -56,9 +57,13 @@ def selected_asset(release: dict, name: str) -> dict:
 
 
 def packageable_files(index: Path) -> tuple[list[Path], list[Path]]:
+    all_files = [path for path in index.rglob("*") if path.is_file()]
+    for path in all_files:
+        if path.name in FORBIDDEN_MANAGED_FILENAMES or path.name.endswith(".managed.json"):
+            raise RuntimeError(f"forbidden runtime management file present in index: {path.name}")
     candidates = sorted(
-        path for path in index.rglob("*")
-        if path.is_file() and not path.name.startswith(EXCLUDED_PREFIXES)
+        path for path in all_files
+        if not path.name.startswith(EXCLUDED_PREFIXES)
     )
     empty_files = [path for path in candidates if path.stat().st_size == 0]
     unexpected_empty_files = [
@@ -67,7 +72,10 @@ def packageable_files(index: Path) -> tuple[list[Path], list[Path]]:
     if unexpected_empty_files:
         names = ", ".join(path.relative_to(index).as_posix() for path in unexpected_empty_files)
         raise RuntimeError(f"index contains unexpected empty package files: {names}")
-    files = [path for path in candidates if path.stat().st_size > 0]
+    files = [
+        path for path in candidates
+        if path.stat().st_size > 0 and not (path.name.startswith(".") and path.name not in RUNTIME_LOCK_FILENAMES)
+    ]
     if not files:
         raise RuntimeError("index contains no packageable files")
     return files, empty_files

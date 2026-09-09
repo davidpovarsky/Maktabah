@@ -19,4 +19,9 @@ func runLegacyIdentityRegistryTests() throws {
     try expect(locators.map(reloaded.id(for:)) == firstIDs, "legacy surrogate IDs remain stable after reload")
     try expect(reloaded.persistenceBatchCount == 0, "cached legacy lookups do not write UserDefaults")
     try expect(reloaded.locator(for: firstIDs[200]) == locators[200], "reverse identity mapping survives reload")
+
+    let tocLocator = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 2a"))
+    let tocSurrogateID = registry.id(for: tocLocator)
+    try expect(registry.locator(for: tocSurrogateID) == tocLocator, "TOC locator round-trips through registry")
+    try expect(registry.locator(for: 999_999_999) == nil, "unregistered surrogate ID returns nil")
 }
