@@ -815,8 +815,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaktabahTorahInspectorAdapter.swift; path = Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift; sourceTree = "<group>"; };
-		A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaInspectorRelationshipsProvider.swift; path = Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift; sourceTree = "<group>"; };
+		A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/MaktabahTorahInspectorAdapter.swift; sourceTree = "<group>"; };
+		A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaInspectorRelationshipsProvider.swift; sourceTree = "<group>"; };
 		CE0000000000000000000001 /* LibraryBackendModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendModels.swift; sourceTree = "<group>"; };
 		CE0000000000000000000002 /* LibraryBackendProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendProtocols.swift; sourceTree = "<group>"; };
 		CE0000000000000000000003 /* BackendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCoordinator.swift; sourceTree = "<group>"; };
