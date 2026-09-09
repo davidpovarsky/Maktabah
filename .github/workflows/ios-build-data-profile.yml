@@ -24,7 +24,7 @@ env:
   SCHEME: Maktabah-iOS
   PRODUCT_NAME: Maktabah
   DATA_PROFILE: ${{ inputs.data_profile }}
-  MINI_PROFILE_TAG: otzaria-miniTest10-v2
+  MINI_PROFILE_TAG: otzaria-miniTest10-v3
   CARGO_TERM_COLOR: always
 
 jobs:
@@ -143,10 +143,10 @@ jobs:
           from pathlib import Path
           profile = json.loads(Path('Source/Otzaria/DataProfiles/miniTest10.profile.json').read_text())
           assert profile['profileID'] == 'miniTest10'
-          assert profile['profileVersion'] == 2
+          assert profile['profileVersion'] == 3
           assert len(profile['bookIDs']) == 10
           assert profile['databaseAssetName'] == 'miniTest10-seforim.db.zst'
-          assert profile['releaseBaseURL'].endswith('/otzaria-miniTest10-v2')
+          assert profile['releaseBaseURL'].endswith('/otzaria-miniTest10-v3')
           PY
               ;;
             *)
