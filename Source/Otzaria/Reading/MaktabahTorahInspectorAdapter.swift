@@ -8,8 +8,12 @@ final class MaktabahTorahInspectorSession {
     private let otzaria: OtzariaMaktabahBridge
     private var locatorsByReference: [String: TextLocator] = [:]
 
+    convenience init() {
+        self.init(coordinator: .shared, otzaria: .shared)
+    }
+
     init(
-        coordinator: BackendCoordinator = .shared,
+        coordinator: BackendCoordinator,
         otzaria: OtzariaMaktabahBridge = .shared
     ) {
         self.coordinator = coordinator

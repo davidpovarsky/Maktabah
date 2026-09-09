@@ -31,6 +31,7 @@ extension ReaderViewModel {
         readerState.selectedRange = nil
     }
 
+    @MainActor
     func didTapOtzariaText(at characterIndex: Int) {
         if BackendCoordinator.shared.activeBackendID == .sefaria {
             guard readerState.currentLocator?.backend == .sefaria else { return }
