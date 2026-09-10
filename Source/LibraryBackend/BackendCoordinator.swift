@@ -40,6 +40,10 @@ final class BackendCoordinator: ObservableObject {
         registrations[activeBackendID]?.capabilities ?? []
     }
 
+    var capabilities: BackendCapabilities {
+        activeCapabilities
+    }
+
     var usesNativeMaktabahDataPath: Bool {
         registrations[activeBackendID]?.usesNativeMaktabahDataPath ?? true
     }
