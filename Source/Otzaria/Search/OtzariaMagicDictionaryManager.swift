@@ -199,6 +199,12 @@ actor OtzariaMagicDictionaryManager {
         var request = URLRequest(url: url)
         request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
         request.setValue("Maktabah-Otzaria-Search", forHTTPHeaderField: "User-Agent")
+        if url.host == "api.github.com" {
+            let env = ProcessInfo.processInfo.environment
+            if let token = env["GH_TOKEN"] ?? env["GITHUB_TOKEN"], !token.isEmpty {
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+        }
         return request
     }
 
@@ -211,7 +217,8 @@ actor OtzariaMagicDictionaryManager {
     private func validateHTTP(_ response: URLResponse) throws {
         guard let response = response as? HTTPURLResponse,
               (200..<300).contains(response.statusCode) else {
-            throw OtzariaSearchError.invalidEngineResponse("lexical.db server returned a non-success response")
+            let code = (response as? HTTPURLResponse)?.statusCode ?? -1
+            throw OtzariaSearchError.invalidEngineResponse("lexical.db server returned a non-success response (status \(code))")
         }
     }
 

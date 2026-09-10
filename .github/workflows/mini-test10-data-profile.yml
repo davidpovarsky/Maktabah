@@ -398,12 +398,14 @@ jobs:
       - name: Simulator install, mini bootstrap, relaunch, and Otzaria search smoke
         if: ${{ inputs.publish_release }}
         env:
+          GH_TOKEN: ${{ github.token }}
           OTZARIA_MINI_PROFILE_REPORT_DIR: ${{ github.workspace }}/build/miniTest10/logs
           OTZARIA_PREBUILT_ACCEPTANCE_GOLDEN_QUERY: בראשית
+          OTZARIA_LEXICAL_DATABASE_PATH: ${{ runner.temp }}/miniTest10/lexical.db
         run: |
           set -euo pipefail
           APP="$(pwd)/build/MiniTest10Build/Build/Products/Debug-iphonesimulator/Maktabah.app"
-          bash Scripts/run-mini-test10-bootstrap-acceptance.sh "$APP"
+          bash Scripts/run-mini-test10-bootstrap-acceptance.sh "$APP" "$OTZARIA_LEXICAL_DATABASE_PATH"
           bash Scripts/run-otzaria-prebuilt-acceptance.sh "$APP" \
             "$(pwd)/build/miniTest10/database/miniTest10-seforim.db" \
             "$(pwd)/build/miniTest10/otzaria/otzaria-search-manifest.json" \
@@ -424,6 +426,8 @@ jobs:
       - name: Confirm generated data was not added to git
         if: always()
         run: |
+          git status --short --untracked-files=no
+          git checkout -- Maktabah.xcodeproj/project.xcworkspace 2>/dev/null || true
           test -z "$(git status --short --untracked-files=no)"
           test -z "$(git ls-files '*.db' '*.db.zst' 'build/miniTest10/*')"
 
