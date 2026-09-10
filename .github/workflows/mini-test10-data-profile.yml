@@ -74,18 +74,12 @@ jobs:
             echo "Release $PROFILE_TAG exists; downloading and verifying assets..."
             gh release download "$PROFILE_TAG" --dir build/miniTest10/existing
 
-            python3 - <<'PY'
-            import json, pathlib
-            root = pathlib.Path('build/miniTest10/existing')
-            required = [
-                'miniTest10-seforim.db.zst',
-                'miniTest10.profile.json',
-                'otzaria-search-manifest.json',
-                'zayit-search-manifest.json',
-            ]
-            for name in required:
-                assert (root / name).is_file(), f"Missing required asset: {name}"
-            PY
+            python3 -c '
+import json, pathlib
+root = pathlib.Path("build/miniTest10/existing")
+for name in ["miniTest10-seforim.db.zst", "miniTest10.profile.json", "otzaria-search-manifest.json", "zayit-search-manifest.json"]:
+    assert (root / name).is_file(), f"Missing required asset: {name}"
+'
 
             zstd -d --no-progress -f build/miniTest10/existing/miniTest10-seforim.db.zst -o build/miniTest10/database/miniTest10-seforim.db
             test "$(shasum -a 256 build/miniTest10/database/miniTest10-seforim.db | cut -d' ' -f1)" = "$MINI_DATABASE_SHA256"
@@ -98,19 +92,19 @@ jobs:
               --otzaria-manifest build/miniTest10/existing/otzaria-search-manifest.json \
               --zayit-manifest build/miniTest10/existing/zayit-search-manifest.json
 
-            python3 - <<'PY'
-            import hashlib, json, pathlib
-            root = pathlib.Path('build/miniTest10/existing')
-            manifests = [
-                json.loads((root / 'otzaria-search-manifest.json').read_text())['lexicalArtifact']['parts'],
-                json.loads((root / 'zayit-search-manifest.json').read_text())['parts'],
-            ]
-            for parts in manifests:
-                for part in parts:
-                    path = root / part['assetName']
-                    assert path.stat().st_size == part['packagedBytes'], f"Size mismatch for {part['assetName']}"
-                    assert hashlib.sha256(path.read_bytes()).hexdigest() == part['sha256'], f"SHA256 mismatch for {part['assetName']}"
-            PY
+            python3 -c '
+import hashlib, json, pathlib
+root = pathlib.Path("build/miniTest10/existing")
+manifests = [
+    json.loads((root / "otzaria-search-manifest.json").read_text())["lexicalArtifact"]["parts"],
+    json.loads((root / "zayit-search-manifest.json").read_text())["parts"],
+]
+for parts in manifests:
+    for part in parts:
+        path = root / part["assetName"]
+        assert path.stat().st_size == part["packagedBytes"], f"Size mismatch for {part[\"assetName\"]}"
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == part["sha256"], f"SHA mismatch for {part[\"assetName\"]}"
+'
 
             cp build/miniTest10/existing/otzaria-* build/miniTest10/otzaria/
             cp build/miniTest10/existing/zayit-* build/miniTest10/zayit/
