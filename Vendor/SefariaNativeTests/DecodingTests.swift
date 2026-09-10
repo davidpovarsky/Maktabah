@@ -172,11 +172,12 @@ private func runHeterogeneousLinksDecodingTests() throws {
     let dtos = try decoder.decode([SefariaRelationshipLinkDTO].self, from: json)
     try expect(dtos.count == 3, "decoded all heterogeneous link DTOs")
     try expect(dtos[0].indexTitle == "Rashi on Genesis", "snake_case index_title decoded for row 0")
-    try expect(dtos[0].he?.value == "פירוש כמחרוזת", "string he decoded for row 0")
+    try expect(dtos[0].he == "פירוש כמחרוזת", "string he decoded for row 0")
     try expect(dtos[1].indexTitle == "Ibn Ezra on Genesis", "snake_case index_title decoded for row 1")
-    try expect(dtos[1].he?.value == "פסוק א\nפסוק ב", "array he decoded as multiline string for row 1")
-    try expect(dtos[1].text?.value == "verse 1\nverse 2", "array text decoded as multiline string for row 1")
-    try expect(dtos[2].he?.value == nil, "empty array he decoded as nil for row 2")
+    try expect(dtos[1].he == "פסוק א\nפסוק ב", "array he decoded as multiline string for row 1")
+    try expect(dtos[1].text == "verse 1\nverse 2", "array text decoded as multiline string for row 1")
+    try expect(dtos[2].he == nil, "empty array he decoded as nil for row 2")
+    try expect(dtos[2].text == nil, "empty array text decoded as nil for row 2")
 
     let mixedJson = Data(#"""
     [
@@ -186,13 +187,15 @@ private func runHeterogeneousLinksDecodingTests() throws {
     ]
     """#.utf8)
     let rows = (try? decoder.decode([SefariaJSONValue].self, from: mixedJson)) ?? []
-    var parsed: [SefariaRelationshipLinkDTO] = []
+    var mappedSources: [LibraryRelatedSource] = []
     for row in rows {
+        guard case .object = row else { continue }
         if let data = try? JSONEncoder().encode(row),
-           let dto = try? decoder.decode(SefariaRelationshipLinkDTO.self, from: data) {
-            parsed.append(dto)
+           let dto = try? decoder.decode(SefariaRelationshipLinkDTO.self, from: data),
+           let source = SefariaRelationshipMapper.source(dto, knownTitles: []) {
+            mappedSources.append(source)
         }
     }
-    try expect(parsed.count == 2, "malformed row skipped without failing valid rows")
-    try expect(parsed[0].sourceRef == "Valid 1" && parsed[1].sourceRef == "Valid 2", "valid rows preserved")
+    try expect(mappedSources.count == 2, "row lacking ref/sourceRef dropped during mapping without failing valid rows")
+    try expect(mappedSources[0].displayRef == "Valid 1" && mappedSources[1].displayRef == "Valid 2", "valid sources mapped")
 }

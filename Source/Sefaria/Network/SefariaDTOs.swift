@@ -130,8 +130,8 @@ private enum SefariaFlexString: Decodable, Hashable, Sendable {
             return
         }
         if let array = try? container.decode([String].self) {
-            let joined = array.filter { !$0.isEmpty }.first
-            self = joined.map { .string($0) } ?? .none
+            let nonEmpty = array.filter { !$0.isEmpty }
+            self = nonEmpty.isEmpty ? .none : .string(nonEmpty.joined(separator: "\n"))
             return
         }
         self = .none
@@ -163,6 +163,7 @@ struct SefariaRelationshipLinkDTO: Hashable, Sendable {
         case sourceRef, sourceHeRef, ref, heRef, category, type, collectiveTitle
         case he, text, versionTitle, heVersionTitle, heLicense, license
         case indexTitle = "index_title"
+        case indexTitleCamel = "indexTitle"
     }
 }
 
@@ -183,6 +184,7 @@ extension SefariaRelationshipLinkDTO: Decodable {
         heLicense = try values.decodeIfPresent(String.self, forKey: .heLicense)
         license = try values.decodeIfPresent(String.self, forKey: .license)
         indexTitle = try values.decodeIfPresent(String.self, forKey: .indexTitle)
+            ?? values.decodeIfPresent(String.self, forKey: .indexTitleCamel)
     }
 }
 
