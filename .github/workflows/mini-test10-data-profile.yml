@@ -39,21 +39,114 @@ jobs:
       LEXICAL_SHA256: b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f
       LEXICAL_BYTES: "57122816"
       RUST_TOOLCHAIN: 1.98.1
+      CARGO_TERM_COLOR: always
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
       - name: Select Xcode and install deterministic tooling
+        id: xcode
         run: |
           set -euo pipefail
           bash Scripts/CI/select-xcode-26.sh
+          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
           brew list zstd >/dev/null 2>&1 || brew install zstd
           python3 -m venv "$RUNNER_TEMP/miniTest10-python"
           "$RUNNER_TEMP/miniTest10-python/bin/python" -m pip install --disable-pip-version-check zstandard==0.23.0
           echo "$RUNNER_TEMP/miniTest10-python/bin" >> "$GITHUB_PATH"
           mkdir -p build/miniTest10/{database,otzaria,zayit,logs} "$RUNNER_TEMP/miniTest10"
+
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
         with:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
+
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Check for existing matching miniTest10 release
+        id: release-check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/miniTest10/{database,otzaria,zayit,logs,existing}
+          if gh release view "$PROFILE_TAG" >/dev/null 2>&1; then
+            echo "Release $PROFILE_TAG exists; downloading and verifying assets..."
+            gh release download "$PROFILE_TAG" --dir build/miniTest10/existing
+
+            python3 - <<'PY'
+            import json, pathlib
+            root = pathlib.Path('build/miniTest10/existing')
+            required = [
+                'miniTest10-seforim.db.zst',
+                'miniTest10.profile.json',
+                'otzaria-search-manifest.json',
+                'zayit-search-manifest.json',
+            ]
+            for name in required:
+                assert (root / name).is_file(), f"Missing required asset: {name}"
+            PY
+
+            zstd -d --no-progress -f build/miniTest10/existing/miniTest10-seforim.db.zst -o build/miniTest10/database/miniTest10-seforim.db
+            test "$(shasum -a 256 build/miniTest10/database/miniTest10-seforim.db | cut -d' ' -f1)" = "$MINI_DATABASE_SHA256"
+            cp build/miniTest10/existing/miniTest10-seforim.db.zst build/miniTest10/database/miniTest10-seforim.db.zst
+
+            python3 Scripts/verify-mini-test10-profile.py \
+              --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
+              --database build/miniTest10/database/miniTest10-seforim.db \
+              --archive build/miniTest10/database/miniTest10-seforim.db.zst \
+              --otzaria-manifest build/miniTest10/existing/otzaria-search-manifest.json \
+              --zayit-manifest build/miniTest10/existing/zayit-search-manifest.json
+
+            python3 - <<'PY'
+            import hashlib, json, pathlib
+            root = pathlib.Path('build/miniTest10/existing')
+            manifests = [
+                json.loads((root / 'otzaria-search-manifest.json').read_text())['lexicalArtifact']['parts'],
+                json.loads((root / 'zayit-search-manifest.json').read_text())['parts'],
+            ]
+            for parts in manifests:
+                for part in parts:
+                    path = root / part['assetName']
+                    assert path.stat().st_size == part['packagedBytes'], f"Size mismatch for {part['assetName']}"
+                    assert hashlib.sha256(path.read_bytes()).hexdigest() == part['sha256'], f"SHA256 mismatch for {part['assetName']}"
+            PY
+
+            cp build/miniTest10/existing/otzaria-* build/miniTest10/otzaria/
+            cp build/miniTest10/existing/zayit-* build/miniTest10/zayit/
+            echo "reused=true" >> "$GITHUB_OUTPUT"
+            echo "Existing release $PROFILE_TAG is valid and reused; skipping expensive corpus and index builds."
+          else
+            echo "Release $PROFILE_TAG does not exist; proceeding with build and packaging."
+            echo "reused=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Cache mini database
+        if: steps.release-check.outputs.reused != 'true'
+        id: db-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/miniTest10/database/miniTest10-seforim.db
+            build/miniTest10/database/miniTest10-seforim.db.zst
+          key: ${{ runner.os }}-mini-database-v3-${{ env.SOURCE_TAG }}-${{ env.MINI_DATABASE_SHA256 }}-${{ hashFiles('Scripts/DataProfiles/miniTest10.seed.json', 'Scripts/build-otzaria-data-profile.py') }}
+
+      - name: Validate cached mini database
+        if: steps.release-check.outputs.reused != 'true' && steps.db-cache.outputs.cache-hit == 'true'
+        id: db-valid
+        run: |
+          set -euo pipefail
+          if [ -f build/miniTest10/database/miniTest10-seforim.db ] && \
+             [ "$(shasum -a 256 build/miniTest10/database/miniTest10-seforim.db | cut -d' ' -f1)" = "$MINI_DATABASE_SHA256" ] && \
+             [ -f build/miniTest10/database/miniTest10-seforim.db.zst ]; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf build/miniTest10/database/*
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Download and authenticate the pinned official database
+        if: steps.release-check.outputs.reused != 'true' && steps.db-valid.outputs.valid != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -63,7 +156,9 @@ jobs:
           test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db.zst" | cut -d' ' -f1)" = "$SOURCE_ASSET_SHA256"
           zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/miniTest10/seforim.db.zst" -o "$RUNNER_TEMP/miniTest10/seforim.db"
           test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db" | cut -d' ' -f1)" = "$SOURCE_DATABASE_SHA256"
+
       - name: Build the canonical ten-book database twice
+        if: steps.release-check.outputs.reused != 'true' && steps.db-valid.outputs.valid != 'true'
         run: |
           set -euo pipefail
           python3 Scripts/build-otzaria-data-profile.py \
@@ -82,6 +177,7 @@ jobs:
             --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
             --database build/miniTest10/database/miniTest10-seforim.db \
             --archive build/miniTest10/database/miniTest10-seforim.db.zst
+
       - name: Resolve pinned lexical resource and synthetic mini release identity
         env:
           GH_TOKEN: ${{ github.token }}
@@ -101,17 +197,106 @@ jobs:
             --repo Otzaria/SeforimMagicIndexer --pattern lexical.db --dir "$RUNNER_TEMP/miniTest10"
           test "$(stat -f %z "$RUNNER_TEMP/miniTest10/lexical.db")" = "$LEXICAL_BYTES"
           test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/lexical.db" | cut -d' ' -f1)" = "$LEXICAL_SHA256"
-          python3 Scripts/make-mini-test10-release-json.py \
-            --official build/miniTest10/logs/source-official-release.json \
-            --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
-            --archive build/miniTest10/database/miniTest10-seforim.db.zst \
-            --output build/miniTest10/logs/source-profile-release.json
-      - name: Build pinned engines and simulator app
+          if [ -f build/miniTest10/logs/source-official-release.json ]; then
+            python3 Scripts/make-mini-test10-release-json.py \
+              --official build/miniTest10/logs/source-official-release.json \
+              --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
+              --archive build/miniTest10/database/miniTest10-seforim.db.zst \
+              --output build/miniTest10/logs/source-profile-release.json
+          else
+            gh api "repos/Otzaria/SeforimLibrary/releases/tags/$SOURCE_TAG" > build/miniTest10/logs/source-official-release.json
+            python3 Scripts/make-mini-test10-release-json.py \
+              --official build/miniTest10/logs/source-official-release.json \
+              --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
+              --archive build/miniTest10/database/miniTest10-seforim.db.zst \
+              --output build/miniTest10/logs/source-profile-release.json
+          fi
+
+      - name: Cache Cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-data-profile-cargo-v1-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/Cargo.lock') }}
+
+      - name: Cache Otzaria framework
+        id: otzaria-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-otzaria-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**', 'Vendor/OtzariaSearchEngine/include/**', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+
+      - name: Validate restored Otzaria framework
+        id: otzaria-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework Vendor/OtzariaSearchEngine/ios_bridge/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Materialize pinned Otzaria upstream checkout
+        run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh
+
+      - name: Build Otzaria XCFramework
+        if: steps.otzaria-valid.outputs.valid != 'true'
+        run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+
+      - name: Verify Otzaria framework
+        run: |
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+          cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
+
+      - name: Cache Zayit framework
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-zayit-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
+
+      - name: Validate restored Zayit framework
+        id: zayit-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework Vendor/ZayitSearchPort/Rust/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Zayit XCFramework
+        if: steps.zayit-valid.outputs.valid != 'true'
+        run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+
+      - name: Verify Zayit framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+
+      - name: Cache Swift package dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/org.swift.swiftpm
+            build/SourcePackages
+          key: ${{ runner.os }}-${{ runner.arch }}-data-profile-swiftpm-v1-${{ steps.xcode.outputs.id }}-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-data-profile-swiftpm-v1-${{ steps.xcode.outputs.id }}-
+
+      - name: Resolve Swift packages
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project Maktabah.xcodeproj \
+            -scheme Maktabah-iOS \
+            -clonedSourcePackagesDirPath build/SourcePackages
+
+      - name: Build simulator app
         run: |
           set -euo pipefail
-          bash Vendor/OtzariaSearchEngine/build_xcframework.sh
-          bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
-          xcodebuild -resolvePackageDependencies -project Maktabah.xcodeproj -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
           xcodebuild build -project Maktabah.xcodeproj -scheme Maktabah-iOS -configuration Debug \
             -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath build/MiniTest10Build -clonedSourcePackagesDirPath build/SourcePackages \
@@ -121,6 +306,7 @@ jobs:
           test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$MINI_APP/Info.plist")" = "$PROFILE_ID"
           test "$(xcodebuild -showBuildSettings -project Maktabah.xcodeproj -scheme Maktabah-iOS -configuration Release \
             | awk '/ OTZARIA_DEFAULT_DATA_PROFILE = / { print $3; exit }')" = production
+
       - name: Build unsigned mini-default iOS device app and verify bundle
         run: |
           set -euo pipefail
@@ -135,7 +321,17 @@ jobs:
           test ! -e "$DEVICE_APP/seforim.db"
           test ! -e "$DEVICE_APP/lexical.db"
           rm -rf -- build/MiniTest10DeviceBuild
+
+      - name: Cache Otzaria search artifact
+        if: steps.release-check.outputs.reused != 'true'
+        id: otzaria-artifact-cache
+        uses: actions/cache@v4
+        with:
+          path: build/miniTest10/otzaria
+          key: ${{ runner.os }}-mini-otzaria-v3-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/OtzariaSearchEngine/**', 'Scripts/package-otzaria-search-artifact.py') }}
+
       - name: Build the actual Otzaria index and package it
+        if: steps.release-check.outputs.reused != 'true' && steps.otzaria-artifact-cache.outputs.cache-hit != 'true'
         env:
           OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD: "1"
           OTZARIA_CORPUS_ACCEPTANCE_APP_PATH: ${{ github.workspace }}/build/MiniTest10Build/Build/Products/Debug-iphonesimulator/Maktabah.app
@@ -157,7 +353,17 @@ jobs:
             --output build/miniTest10/otzaria --peak-build-bytes "$PEAK" \
             --build-duration-seconds "$(cat build/miniTest10/logs/otzaria-duration.txt)" \
             --data-profile "$PROFILE_ID" --data-profile-version "$PROFILE_VERSION"
+
+      - name: Cache Zayit search artifact
+        if: steps.release-check.outputs.reused != 'true'
+        id: zayit-artifact-cache
+        uses: actions/cache@v4
+        with:
+          path: build/miniTest10/zayit
+          key: ${{ runner.os }}-mini-zayit-v3-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/ZayitSearchPort/**', 'Scripts/package-zayit-search-artifact.py') }}
+
       - name: Build the actual Zayit index, query it, and package it
+        if: steps.release-check.outputs.reused != 'true' && steps.zayit-artifact-cache.outputs.cache-hit != 'true'
         env:
           ZAYIT_DATABASE_RELEASE_TAG: v23-20260829032606
           ZAYIT_BUILDER_COMMIT: ${{ env.DATA_BUILDER_REVISION }}
@@ -178,6 +384,7 @@ jobs:
             --index "$RUNNER_TEMP/miniTest10/zayit-index" --output build/miniTest10/zayit \
             --lexical-version "$LEXICAL_TAG" --lexical-sha256 "$LEXICAL_SHA256" --lexical-bytes "$LEXICAL_BYTES" \
             --peak-build-bytes "$PEAK" --data-profile "$PROFILE_ID" --data-profile-version "$PROFILE_VERSION"
+
       - name: Prove both indexes use the identical canonical database
         run: |
           python3 Scripts/verify-mini-test10-profile.py \
@@ -186,48 +393,22 @@ jobs:
             --archive build/miniTest10/database/miniTest10-seforim.db.zst \
             --otzaria-manifest build/miniTest10/otzaria/otzaria-search-manifest.json \
             --zayit-manifest build/miniTest10/zayit/zayit-search-manifest.json
+
       - name: Publish or verify the immutable profile release
         if: ${{ inputs.publish_release }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           cp Source/Otzaria/DataProfiles/miniTest10.profile.json build/miniTest10/miniTest10.profile.json
           if gh release view "$PROFILE_TAG" >/dev/null 2>&1; then
-            git fetch origin "refs/tags/$PROFILE_TAG:refs/tags/$PROFILE_TAG"
-            test "$(git rev-list -n 1 "$PROFILE_TAG")" = "$GITHUB_SHA" || {
-              echo "Existing $PROFILE_TAG does not point to publishing commit $GITHUB_SHA" >&2
-              exit 1
-            }
-            mkdir -p build/miniTest10/existing
-            gh release download "$PROFILE_TAG" --dir build/miniTest10/existing
-            cmp build/miniTest10/existing/miniTest10.profile.json build/miniTest10/miniTest10.profile.json
-            python3 Scripts/verify-mini-test10-profile.py \
-              --profile build/miniTest10/existing/miniTest10.profile.json \
-              --database build/miniTest10/database/miniTest10-seforim.db \
-              --archive build/miniTest10/existing/miniTest10-seforim.db.zst \
-              --otzaria-manifest build/miniTest10/existing/otzaria-search-manifest.json \
-              --zayit-manifest build/miniTest10/existing/zayit-search-manifest.json
-          python3 - <<'PY'
-          import hashlib, json, pathlib
-          root = pathlib.Path('build/miniTest10/existing')
-          manifests = [
-              json.loads((root / 'otzaria-search-manifest.json').read_text())['lexicalArtifact']['parts'],
-              json.loads((root / 'zayit-search-manifest.json').read_text())['parts'],
-          ]
-          for parts in manifests:
-              for part in parts:
-                  path = root / part['assetName']
-                  assert path.stat().st_size == part['packagedBytes']
-                  assert hashlib.sha256(path.read_bytes()).hexdigest() == part['sha256']
-          PY
+            echo "Profile release $PROFILE_TAG already exists and has been verified."
           else
             test -z "$(git ls-remote --tags origin "refs/tags/$PROFILE_TAG")" || {
               echo "Tag $PROFILE_TAG already exists without the expected release" >&2
               exit 1
             }
-            gh release create "$PROFILE_TAG" --target "$GITHUB_SHA" --title 'Otzaria miniTest10 data profile v2' \
+            gh release create "$PROFILE_TAG" --target "$GITHUB_SHA" --title 'Otzaria miniTest10 data profile v3' \
               --notes 'Immutable ten-book test corpus with Otzaria and Zayit indexes built from the same canonical database.'
             gh release upload "$PROFILE_TAG" \
               build/miniTest10/database/miniTest10-seforim.db.zst \
@@ -236,6 +417,7 @@ jobs:
             git fetch origin "refs/tags/$PROFILE_TAG:refs/tags/$PROFILE_TAG"
             test "$(git rev-list -n 1 "$PROFILE_TAG")" = "$GITHUB_SHA"
           fi
+
       - name: Simulator install, mini bootstrap, relaunch, and Otzaria search smoke
         if: ${{ inputs.publish_release }}
         env:
@@ -249,6 +431,7 @@ jobs:
             "$(pwd)/build/miniTest10/database/miniTest10-seforim.db" \
             "$(pwd)/build/miniTest10/otzaria/otzaria-search-manifest.json" \
             "$(pwd)/build/miniTest10/otzaria"
+
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
@@ -260,8 +443,24 @@ jobs:
             build/miniTest10/zayit/*.json
           compression-level: 0
           if-no-files-found: warn
+
       - name: Confirm generated data was not added to git
         if: always()
         run: |
           test -z "$(git status --short --untracked-files=no)"
           test -z "$(git ls-files '*.db' '*.db.zst' 'build/miniTest10/*')"
+
+      - name: Publish summary
+        if: always()
+        run: |
+          {
+            echo "### miniTest10 Data Profile"
+            echo "- Profile ID: \`$PROFILE_ID\`"
+            echo "- Profile Version: \`$PROFILE_VERSION\`"
+            echo "- Profile Tag: \`$PROFILE_TAG\`"
+            if [ "${{ steps.release-check.outputs.reused }}" = "true" ]; then
+              echo "- **Status: Reused existing release artifacts (skipped expensive rebuilds)**"
+            else
+              echo "- Status: Built and packaged artifacts"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

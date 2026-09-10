@@ -47,14 +47,7 @@ for runtime, version in runtimes.items():
             candidates.append((version, iphone_preference, device["udid"]))
 if not candidates:
     raise SystemExit("No compatible available iOS Simulator device")
-# Prefer iOS 18.x (stable on macos-26) over iOS 26 (Data Migration issues).
-# Sort: first prefer major==18 over major!=18, then by (version, iphone_preference).
-def sort_key(c):
-    version, iphone_pref, udid = c
-    major = version[0]
-    tier = 0 if major == 18 else (1 if major < 18 else 2)
-    return (tier, version, iphone_pref)
-print(max(candidates, key=sort_key)[2])
+print(max(candidates)[2])
 PY
 )"
 echo "Using compatible iOS Simulator $UDID"
@@ -62,15 +55,7 @@ cleanup() { xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
 xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
-BOOT_STATUS_OUTPUT="$(xcrun simctl bootstatus "$UDID" -b 2>&1 || true)"
-echo "$BOOT_STATUS_OUTPUT"
-if echo "$BOOT_STATUS_OUTPUT" | grep -q "Data Migration Failed"; then
-  echo "Simulator Data Migration Failed; erasing and retrying..." >&2
-  xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
-  xcrun simctl erase "$UDID"
-  xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
-  xcrun simctl bootstatus "$UDID" -b
-fi
+xcrun simctl bootstatus "$UDID" -b
 APP="${OTZARIA_CORPUS_ACCEPTANCE_APP_PATH:-$ROOT/build/OtzariaCorpusAcceptance/Build/Products/Debug-iphonesimulator/Maktabah.app}"
 test -d "$APP"
 BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
