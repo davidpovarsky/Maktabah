@@ -38,7 +38,7 @@ struct MaktabahApp: App {
         BackendComposition.registerAll()
         // Native acceptance launches exercise isolated Otzaria bootstrap/search
         // paths and must not be blocked by unrelated first-launch setup.
-        if OtzariaNativeBootstrapAcceptanceRunner.isRequested {
+        if OtzariaNativeBootstrapAcceptanceRunner.isRequested || OtzariaCorpusAcceptanceRunner.isRequested {
             return
         }
 
@@ -89,6 +89,11 @@ struct MaktabahApp: App {
                     .task {
                         await OtzariaNativeBootstrapAcceptanceRunner.runIfRequested()
                     }
+            } else if OtzariaCorpusAcceptanceRunner.isRequested {
+                Color.clear
+                    .task {
+                        await OtzariaCorpusAcceptanceRunner.runIfRequested()
+                    }
             } else {
                 iOSBootstrapView()
                     .environmentObject(otzariaApp)
@@ -97,9 +102,6 @@ struct MaktabahApp: App {
                     .applyIpadColorScheme(isIpad: Self.isIpad, isDarkMode: isDarkMode)
                     .id(useDefaultTheme)
                     .toggleStyle(SwitchToggleStyle(tint: .green))
-                    .task {
-                        await OtzariaCorpusAcceptanceRunner.runIfRequested()
-                    }
                 /*
                 .onAppear {
                     if lastVersionPrompted != currentVersion {

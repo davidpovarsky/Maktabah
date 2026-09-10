@@ -25,6 +25,16 @@ enum OtzariaCorpusAcceptanceRunner {
         let error: String?
     }
 
+    static var isRequested: Bool {
+        #if DEBUG
+        let env = ProcessInfo.processInfo.environment
+        return env["OTZARIA_CORPUS_ACCEPTANCE_DATABASE"] != nil
+            || env["OTZARIA_PREBUILT_ACCEPTANCE_MANIFEST"] != nil
+        #else
+        false
+        #endif
+    }
+
     @MainActor
     static func runIfRequested() async {
         #if DEBUG
