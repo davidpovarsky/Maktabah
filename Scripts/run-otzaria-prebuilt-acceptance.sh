@@ -47,8 +47,7 @@ if not candidates:
 
 candidates.sort(reverse=True)
 best = candidates[0]
-sys.stderr.write(f"Selected simulator: {best[2]} (iOS {'.'.join(map(str, best[1]))}, UDID: {best[3]})
-")
+sys.stderr.write(f"Selected simulator: {best[2]} (iOS {'.'.join(map(str, best[1]))}, UDID: {best[3]})\n")
 print(best[3])
 PY
 )"
