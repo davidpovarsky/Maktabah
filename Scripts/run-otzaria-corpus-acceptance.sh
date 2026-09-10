@@ -55,7 +55,13 @@ cleanup() { xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
 xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
-xcrun simctl bootstatus "$UDID" -b
+if ! xcrun simctl bootstatus "$UDID" -b 2>&1; then
+  echo "Simulator boot failed (possible Data Migration issue); erasing and retrying..." >&2
+  xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
+  xcrun simctl erase "$UDID"
+  xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
+  xcrun simctl bootstatus "$UDID" -b
+fi
 APP="${OTZARIA_CORPUS_ACCEPTANCE_APP_PATH:-$ROOT/build/OtzariaCorpusAcceptance/Build/Products/Debug-iphonesimulator/Maktabah.app}"
 test -d "$APP"
 BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
