@@ -47,7 +47,14 @@ for runtime, version in runtimes.items():
             candidates.append((version, iphone_preference, device["udid"]))
 if not candidates:
     raise SystemExit("No compatible available iOS Simulator device")
-print(max(candidates)[2])
+# Prefer iOS 18.x (stable on macos-26) over iOS 26 (Data Migration issues).
+# Sort: first prefer major==18 over major!=18, then by (version, iphone_preference).
+def sort_key(c):
+    version, iphone_pref, udid = c
+    major = version[0]
+    tier = 0 if major == 18 else (1 if major < 18 else 2)
+    return (tier, version, iphone_pref)
+print(max(candidates, key=sort_key)[2])
 PY
 )"
 echo "Using compatible iOS Simulator $UDID"
