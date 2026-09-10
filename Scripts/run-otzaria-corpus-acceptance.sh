@@ -55,8 +55,10 @@ cleanup() { xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
 xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
-if ! xcrun simctl bootstatus "$UDID" -b 2>&1; then
-  echo "Simulator boot failed (possible Data Migration issue); erasing and retrying..." >&2
+BOOT_STATUS_OUTPUT="$(xcrun simctl bootstatus "$UDID" -b 2>&1 || true)"
+echo "$BOOT_STATUS_OUTPUT"
+if echo "$BOOT_STATUS_OUTPUT" | grep -q "Data Migration Failed"; then
+  echo "Simulator Data Migration Failed; erasing and retrying..." >&2
   xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
   xcrun simctl erase "$UDID"
   xcrun simctl boot "$UDID" >/dev/null 2>&1 || true
