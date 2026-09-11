@@ -8,7 +8,7 @@ import SwiftUI
 struct iPadLayout: View {
     private enum DetailMode {
         case reader
-        case otzariaTextSearch
+        case textSearch
         case zayitSearch
     }
 
@@ -55,7 +55,7 @@ struct iPadLayout: View {
     private func searchPrompt(for tab: iOSTab) -> String {
         switch tab {
         case .viewer: String(localized: "Search Library")
-        case .otzariaTextSearch: String(localized: "Search Otzaria Texts")
+        case .textSearch: String(localized: "Search Texts")
         case .zayitSearch: String(localized: "Search Zayit Index")
         case .search: String(localized: "Filter Books to Search")
         case .author: String(localized: "Search Narrators")
@@ -109,7 +109,7 @@ struct iPadLayout: View {
         }
         .environment(\.layoutDirection, .rightToLeft)
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
-            if BackendCoordinator.shared.activeBackendID == .sefaria && detailMode == .otzariaTextSearch {
+            if detailMode == .textSearch && !BackendCoordinator.shared.capabilities.contains(.search) {
                 transitionSidebar(to: .search)
             }
         }
@@ -120,11 +120,11 @@ struct iPadLayout: View {
             Section {
                 let visibleTabs = iOSTab.allCases.filter { tab in
                     if tab == .history || tab == .zayitSearch { return false }
-                    if BackendCoordinator.shared.activeBackendID == .sefaria && tab == .otzariaTextSearch { return false }
+                    if tab == .textSearch && !BackendCoordinator.shared.capabilities.contains(.search) { return false }
                     return true
                 }
                 ForEach(visibleTabs) { tab in
-                    if tab == .otzariaTextSearch {
+                    if tab == .textSearch {
                         Button {
                             transitionSidebar(to: tab)
                         } label: {
@@ -223,31 +223,37 @@ struct iPadLayout: View {
         switch detailMode {
         case .reader:
             iOSReaderTabView(columnVisibility: $columnVisibility)
-        case .otzariaTextSearch:
-            if BackendCoordinator.shared.activeBackendID == .sefaria {
-                iOSReaderTabView(columnVisibility: $columnVisibility)
+        case .textSearch:
+            if BackendCoordinator.shared.usesNativeMaktabahDataPath {
+                NavigationStack {
+                    UnifiedSearchWorkspaceView(
+                        openOtzaria: { item, descriptor in
+                            guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
+                            bManager.openBook(
+                                book,
+                                initialContentId: item.page,
+                                searchText: descriptor.readerFallback
+                            )
+                            showingOtzariaReader = true
+                        },
+                        openZayit: { hit, _ in
+                            if ZayitSearchReaderNavigationAdapter.open(hit, using: bManager) {
+                                showingOtzariaReader = true
+                            }
+                        }
+                    )
+                    .navigationDestination(isPresented: $showingOtzariaReader) {
+                        iOSReaderTabView(columnVisibility: $columnVisibility)
+                    }
+                }
             } else {
                 NavigationStack {
-                UnifiedSearchWorkspaceView(
-                    openOtzaria: { item, descriptor in
-                        guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
-                        bManager.openBook(
-                            book,
-                            initialContentId: item.page,
-                            searchText: descriptor.readerFallback
+                    SearchModeView()
+                        .adaptiveReaderPush(
+                            item: $bManager.selectedBook,
+                            manager: bManager
                         )
-                        showingOtzariaReader = true
-                    },
-                    openZayit: { hit, _ in
-                        if ZayitSearchReaderNavigationAdapter.open(hit, using: bManager) {
-                            showingOtzariaReader = true
-                        }
-                    }
-                )
-                .navigationDestination(isPresented: $showingOtzariaReader) {
-                    iOSReaderTabView(columnVisibility: $columnVisibility)
                 }
-            }
             }
         case .zayitSearch:
             NavigationStack {
@@ -287,8 +293,8 @@ struct iPadLayout: View {
                         placement: .navigationBarDrawer(displayMode: .always),
                         prompt: searchPrompt(for: tab).localized
                     )
-            case .otzariaTextSearch:
-                // Otzaria Search is presented in the split view's detail column.
+            case .textSearch:
+                // Text Search is presented in the split view's detail column.
                 EmptyView()
             case .zayitSearch:
                 // Zayit Search is presented in the split view's detail column.
@@ -328,7 +334,7 @@ struct iPadLayout: View {
         .navigationTitle(tab.title)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
-            if tab != .zayitSearch && tab != .otzariaTextSearch {
+            if tab != .zayitSearch && tab != .textSearch {
                 detailMode = .reader
                 showingZayitReader = false
                 showingOtzariaReader = false
@@ -356,8 +362,8 @@ struct iPadLayout: View {
         bManager.authorViewModel.searchText = ""
         selectedTab = tab
         bManager.switchToMode(tab.appMode)
-        if tab == .otzariaTextSearch {
-            detailMode = .otzariaTextSearch
+        if tab == .textSearch {
+            detailMode = .textSearch
         } else {
             detailMode = .reader
             path = [tab]

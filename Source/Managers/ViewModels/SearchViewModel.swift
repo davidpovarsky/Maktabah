@@ -199,6 +199,7 @@ final class SearchViewModel: ViewModelBase {
                 guard let self else { return }
                 stopSearch()
                 results.removeAll()
+                selectedBookIds.removeAll()
                 query = ""
                 state = .loading
                 ldm.resetState()

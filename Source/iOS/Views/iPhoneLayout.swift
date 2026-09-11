@@ -22,13 +22,9 @@ struct iPhoneLayout: View {
                 viewerTabContent
             }
 
-            if BackendCoordinator.shared.activeBackendID == .sefaria {
-                Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
-                    searchTabContent
-                }
-            } else {
-                Tab(iOSTab.otzariaTextSearch.title, systemImage: iOSTab.otzariaTextSearch.icon, value: .otzariaTextSearch) {
-                    otzariaTextSearchTabContent
+            if BackendCoordinator.shared.capabilities.contains(.search) {
+                Tab(iOSTab.textSearch.title, systemImage: iOSTab.textSearch.icon, value: .textSearch) {
+                    textSearchTabContent
                 }
             }
 
@@ -49,21 +45,15 @@ struct iPhoneLayout: View {
             iOSAddFavoriteSheet(viewModel: HistoryViewModel.shared)
         }
         .onAppear {
-            if BackendCoordinator.shared.activeBackendID == .sefaria {
-                if savedSelectedTab == .otzariaTextSearch || savedSelectedTab == .zayitSearch {
-                    selectedTab = .search
-                } else {
-                    selectedTab = savedSelectedTab
-                }
+            if (savedSelectedTab == .textSearch || savedSelectedTab == .zayitSearch) && !BackendCoordinator.shared.capabilities.contains(.search) {
+                selectedTab = .viewer
             } else {
-                selectedTab = savedSelectedTab == .zayitSearch ? .otzariaTextSearch : savedSelectedTab
+                selectedTab = savedSelectedTab == .zayitSearch ? .textSearch : savedSelectedTab
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
-            if BackendCoordinator.shared.activeBackendID == .sefaria && (selectedTab == .otzariaTextSearch || selectedTab == .zayitSearch) {
-                selectedTab = .search
-            } else if BackendCoordinator.shared.activeBackendID != .sefaria && selectedTab == .search {
-                selectedTab = .otzariaTextSearch
+            if selectedTab == .textSearch && !BackendCoordinator.shared.capabilities.contains(.search) {
+                selectedTab = .viewer
             }
         }
         .onChange(of: selectedTab) { _, newValue in
@@ -93,10 +83,8 @@ struct iPhoneLayout: View {
     }
 
     @ViewBuilder
-    private var otzariaTextSearchTabContent: some View {
-        if BackendCoordinator.shared.activeBackendID == .sefaria {
-            searchTabContent
-        } else {
+    private var textSearchTabContent: some View {
+        if BackendCoordinator.shared.usesNativeMaktabahDataPath {
             NavigationStack {
                 UnifiedSearchWorkspaceView(
                     openOtzaria: { item, descriptor in
@@ -107,7 +95,17 @@ struct iPhoneLayout: View {
                         ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
                     }
                 )
-                    .navigationTitle(iOSTab.otzariaTextSearch.title)
+                .navigationTitle(iOSTab.textSearch.title)
+                .adaptiveReaderPush(
+                    item: $bManager.selectedBook,
+                    manager: bManager
+                )
+                .toolbarGeneral(showSettings: $showSettings)
+            }
+        } else {
+            NavigationStack {
+                SearchModeView()
+                    .navigationTitle(iOSTab.textSearch.title)
                     .adaptiveReaderPush(
                         item: $bManager.selectedBook,
                         manager: bManager
