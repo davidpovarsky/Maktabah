@@ -84,6 +84,8 @@ func manifest(part: OtzariaSearchArtifactManifest.Part = part) -> OtzariaSearchA
 
 try OtzariaSearchArtifactPolicy.validate(manifest(), database: database, databaseBytes: 1_000, build: build)
 require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("a/b.store"), "safe nested path rejected")
+require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("a6827f6aae074a7e8a6b54a3020bad2b.fast"), "Tantivy .fast file rejected")
+require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("indices/segment.fast"), "nested .fast file rejected")
 require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("../escape"), "path traversal accepted")
 require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("C:/escape"), "drive path accepted")
 require(
