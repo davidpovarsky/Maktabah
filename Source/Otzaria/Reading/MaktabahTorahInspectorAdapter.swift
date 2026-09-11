@@ -45,7 +45,7 @@ final class MaktabahTorahInspectorSession {
                   locator.backend == .sefaria,
                   case .canonicalRef(let reference) = locator.position else { return nil }
             remember(locator, for: reference)
-            return TorahInspectorSelection(providerID: BackendID.sefaria.rawValue, canonicalRef: reference)
+            return TorahInspectorSelection(providerID: BackendID.sefaria.rawValue, canonicalRef: reference, preferredSegmentRef: reference)
         case .otzaria:
             guard let line = otzariaLine else { return nil }
             let locator = TextLocator(
