@@ -109,31 +109,62 @@ enum OtzariaSearchArtifactError: LocalizedError, Equatable, Sendable {
     var errorDescription: String? {
         switch self {
         case .unavailable:
-            return "A compatible Otzaria search package is not available yet."
-        case .malformedManifest(let detail):
-            return "The Otzaria search package manifest is invalid: \(detail)"
-        case .incompatible(let detail):
-            return "The Otzaria search package is not compatible with this library: \(detail)"
+            return NSLocalizedString("חבילת חיפוש Otzaria תואמת אינה זמינה כעת.", comment: "")
+        case .malformedManifest:
+            return NSLocalizedString("חבילת חיפוש Otzaria לא תקינה.", comment: "")
+        case .incompatible:
+            return NSLocalizedString("חבילת חיפוש Otzaria אינה תואמת לספרייה זו.", comment: "")
         case .missingPart(let name):
-            return "The Otzaria search package is missing \(name)."
+            return String(format: NSLocalizedString("חלק חסר בחבילת החיפוש: %@.", comment: ""), name)
         case .invalidPartPath(let path):
-            return "The Otzaria search package contains an unsafe path: \(path)"
+            return String(format: NSLocalizedString("חבילת החיפוש מכילה נתיב לא בטוח: %@.", comment: ""), path)
         case .insufficientStorage(let required, let available):
-            return "Search index installation requires \(Self.format(required)); \(Self.format(available)) is available."
+            return String(format: NSLocalizedString("אין מספיק מקום פנוי להתקנת אינדקס חיפוש — נדרש %@, זמין %@.", comment: ""), Self.format(required), Self.format(available))
         case .downloadFailed(let detail):
-            return "The Otzaria search package download failed: \(detail)"
+            return String(format: NSLocalizedString("הורדת חבילת החיפוש נכשלה: %@.", comment: ""), detail)
         case .sizeMismatch(let asset, _, _):
-            return "The downloaded search package part has the wrong size: \(asset)."
+            return String(format: NSLocalizedString("גודל שגוי בחלק שהורד: %@.", comment: ""), asset)
         case .digestMismatch(let asset):
-            return "The downloaded search package part failed SHA-256 verification: \(asset)."
-        case .extractionFailed(let detail):
-            return "The Otzaria search package could not be extracted: \(detail)"
-        case .validationFailed(let detail):
-            return "The staged Otzaria search index is invalid: \(detail)"
-        case .activationFailed(let detail):
-            return "The Otzaria search index could not be activated safely: \(detail)"
+            return String(format: NSLocalizedString("אימות SHA-256 נכשל עבור: %@.", comment: ""), asset)
+        case .extractionFailed:
+            return NSLocalizedString("לא ניתן לחלץ את חבילת החיפוש.", comment: "")
+        case .validationFailed:
+            return NSLocalizedString("אינדקס החיפוש שהותקן אינו תקין.", comment: "")
+        case .activationFailed:
+            return NSLocalizedString("לא ניתן להפעיל את אינדקס החיפוש באופן בטוח.", comment: "")
         case .cancelled:
-            return "The Otzaria search package download was cancelled. It can be resumed later."
+            return NSLocalizedString("הורדת חבילת החיפוש בוטלה. ניתן לחדש מאוחר יותר.", comment: "")
+        }
+    }
+
+    var failureReason: String? {
+        switch self {
+        case .malformedManifest(let detail): return detail
+        case .incompatible(let detail): return detail
+        case .downloadFailed(let detail): return detail
+        case .extractionFailed(let detail): return detail
+        case .validationFailed(let detail): return detail
+        case .activationFailed(let detail): return detail
+        default: return nil
+        }
+    }
+
+    var recoverySuggestion: String? {
+        switch self {
+        case .unavailable, .incompatible:
+            return NSLocalizedString("נסה לעדכן את האפליקציה לגרסה האחרונה.", comment: "")
+        case .insufficientStorage:
+            return NSLocalizedString("פנה מקום במכשיר ונסה שוב.", comment: "")
+        case .downloadFailed, .sizeMismatch, .digestMismatch:
+            return NSLocalizedString("בדוק את חיבור הרשת ונסה שוב.", comment: "")
+        case .extractionFailed, .validationFailed, .activationFailed:
+            return NSLocalizedString("נסה להוריד מחדש. אם הבעיה נמשכת, פנה לתמיכה.", comment: "")
+        case .invalidPartPath:
+            return NSLocalizedString("חבילה זו עלולה להיות פגומה. נסה להוריד מחדש.", comment: "")
+        case .malformedManifest:
+            return NSLocalizedString("חבילה זו אינה תקינה. נסה לעדכן את האפליקציה.", comment: "")
+        case .cancelled, .missingPart:
+            return nil
         }
     }
 

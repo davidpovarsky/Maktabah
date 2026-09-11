@@ -86,14 +86,20 @@ struct OtzariaSearchArtifactInstaller: Sendable {
                     throw OtzariaSearchArtifactError.missingPart(part.assetName)
                 }
                 let destination = stagingURL.appendingPathComponent(part.destinationPath)
-                let standardizedRoot = stagingURL.standardizedFileURL.path + "/"
-                guard destination.standardizedFileURL.path.hasPrefix(standardizedRoot) else {
+                guard OtzariaSearchArtifactPolicy.validateSafeRelativePath(part.destinationPath) else {
                     throw OtzariaSearchArtifactError.invalidPartPath(part.destinationPath)
                 }
+                let resolvedRoot = stagingURL.resolvingSymlinksInPath().path + "/"
                 try fileManager.createDirectory(
                     at: destination.deletingLastPathComponent(),
                     withIntermediateDirectories: true
                 )
+                let resolvedDest = destination.deletingLastPathComponent()
+                    .resolvingSymlinksInPath()
+                    .appendingPathComponent(destination.lastPathComponent).path
+                guard resolvedDest.hasPrefix(resolvedRoot) else {
+                    throw OtzariaSearchArtifactError.invalidPartPath(part.destinationPath)
+                }
                 let base = extracted
                 do {
                     try extractor.extractPart(
@@ -184,10 +190,17 @@ struct OtzariaSearchArtifactInstaller: Sendable {
                 try Task.checkCancellation()
                 let archiveURL = try await downloadPart(part)
                 let destination = stagingURL.appendingPathComponent(part.destinationPath)
-                guard destination.standardizedFileURL.path.hasPrefix(stagingURL.standardizedFileURL.path + "/") else {
+                guard OtzariaSearchArtifactPolicy.validateSafeRelativePath(part.destinationPath) else {
                     throw OtzariaSearchArtifactError.invalidPartPath(part.destinationPath)
                 }
+                let resolvedRoot = stagingURL.resolvingSymlinksInPath().path + "/"
                 try fileManager.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true)
+                let resolvedDest = destination.deletingLastPathComponent()
+                    .resolvingSymlinksInPath()
+                    .appendingPathComponent(destination.lastPathComponent).path
+                guard resolvedDest.hasPrefix(resolvedRoot) else {
+                    throw OtzariaSearchArtifactError.invalidPartPath(part.destinationPath)
+                }
                 let base = extracted
                 do {
                     try extractor.extractPart(
