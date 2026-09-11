@@ -342,9 +342,13 @@ extension AnnotationManager {
         let page = row.int(at: 13)
         let ckId = row.string(at: 14)
         let lastMod = !row.isNull(at: 15) ? row.int64(at: 15) : nil
-        let backendLocator = row.string(at: 16)
+        var backendLocator = row.string(at: 16)
             .flatMap { $0.data(using: .utf8) }
             .flatMap { try? JSONDecoder().decode(TextLocator.self, from: $0) }
+
+        if backendLocator == nil && bkId < 0 {
+            backendLocator = LegacyIdentityRegistry.shared.locator(for: bkId)
+        }
 
         return Annotation(
             id: id,

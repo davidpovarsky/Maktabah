@@ -911,6 +911,10 @@ class ReaderViewModel: ViewModelBase {
         color: PlatformColor
     ) throws {
         guard let book = currentBook else { return }
+        let locator = backendSection?.locator ?? book.backendLocator
+        if let locator {
+            LegacyIdentityRegistry.shared.register(title: book.book, for: locator)
+        }
         _ = try annotationCoordinator.saveHighlight(
             text: sourceText,
             range: range,
@@ -922,7 +926,7 @@ class ReaderViewModel: ViewModelBase {
             diacriticsText: diacriticsText,
             showHarakat: showHarakat,
             mode: mode,
-            backendLocator: backendSection?.locator
+            backendLocator: locator
         )
         loadAnnotations()
     }

@@ -75,6 +75,33 @@ struct AnnotationViewControllerWrapper: UIViewControllerRepresentable {
         @MainActor
         func handleSelection(_ node: SwiftUIAnnotationNode) {
             guard node.kind == .annotation, let ann = node.annotation else { return }
+            let locator = ann.backendLocator ?? (ann.bkId < 0 ? LegacyIdentityRegistry.shared.locator(for: ann.bkId) : nil)
+            if let locator {
+                if locator.backend != BackendCoordinator.shared.activeBackendID {
+                    BackendCoordinator.shared.commit(locator.backend)
+                }
+                if locator.backend == .sefaria {
+                    let bookTitle = ann.resolvedBookTitle
+                    let book = BooksData(
+                        id: ann.bkId,
+                        book: bookTitle,
+                        archive: 0,
+                        muallif: 0,
+                        bithoqoh: "",
+                        info: bookTitle,
+                        backendLocator: locator
+                    )
+                    navigationManager.openBook(book, initialContentId: Int(ann.contentId), targetAnnotation: ann)
+                    return
+                } else if locator.backend == .otzaria {
+                    let otzariaBookId = ann.bkId > 0 ? ann.bkId : (Annotation.extractOtzariaBookId(from: locator.workKey) ?? ann.bkId)
+                    if let book = LibraryDataManager.shared.getBook([otzariaBookId]).first {
+                        navigationManager.openBook(book, initialContentId: Int(ann.contentId), targetAnnotation: ann)
+                        return
+                    }
+                }
+            }
+
             if let book = LibraryDataManager.shared.getBook([ann.bkId]).first {
                 navigationManager.openBook(book, initialContentId: Int(ann.contentId), targetAnnotation: ann)
             } else {

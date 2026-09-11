@@ -140,12 +140,12 @@ extension AnnotationManager {
                 return
             }
 
-            let bookNode = findOrCreateBookNode(for: annotation.bkId, in: root)
+            let bookNode = findOrCreateBookNode(for: annotation, in: root)
 
             let displayTitle: String = if let note = annotation.note, !note.isEmpty {
                 note
             } else {
-                annotation.context
+                annotation.context.readerPlainText
             }
 
             let annotationNode = AnnotationNode(
@@ -191,7 +191,7 @@ extension AnnotationManager {
             if let note = annotation.note, !note.isEmpty {
                 node.title = note
             } else {
-                node.title = annotation.context
+                node.title = annotation.context.readerPlainText
             }
             node.annotation = annotation
 
@@ -244,6 +244,23 @@ extension AnnotationManager {
 
     // MARK: - Private Tree Helpers
 
+    func findOrCreateBookNode(for annotation: Annotation, in root: AnnotationNode) -> AnnotationNode {
+        let expectedTitle = annotation.resolvedBookTitle
+        if let existing = root.children.first(where: { node in
+            if let firstChild = node.children.first, let ann = firstChild.annotation {
+                return ann.resolvedBookTitle == expectedTitle
+            }
+            return node.title == expectedTitle
+        }) {
+            return existing
+        }
+
+        let bookNode = AnnotationNode(title: expectedTitle, kind: .book)
+        let idx = root.children.insertionIndex(for: bookNode, using: compareNodes)
+        root.children.insert(bookNode, at: idx)
+        return bookNode
+    }
+
     func findOrCreateBookNode(for bkId: Int, in root: AnnotationNode) -> AnnotationNode {
         if let existing = root.children.first(where: { node in
             guard let firstChild = node.children.first,
@@ -253,14 +270,18 @@ extension AnnotationManager {
             return existing
         }
 
-        guard let book = LibraryDataManager.shared.getBook([bkId]).first else {
-            let fallbackNode = AnnotationNode(title: "Unknown Book", kind: .book)
-            let idx = root.children.insertionIndex(for: fallbackNode, using: compareNodes)
-            root.children.insert(fallbackNode, at: idx)
-            return fallbackNode
+        let bookTitle: String
+        if let book = LibraryDataManager.shared.getBook([bkId]).first {
+            bookTitle = book.book
+        } else if let loc = LegacyIdentityRegistry.shared.locator(for: bkId) {
+            bookTitle = LegacyIdentityRegistry.shared.title(for: loc) ?? (loc.backend == .sefaria ? loc.workKey : "ספר (\(bkId))")
+        } else if bkId > 0 {
+            bookTitle = "ספר #\(bkId)"
+        } else {
+            bookTitle = "ספר לא מזוהה (\(bkId))"
         }
 
-        let bookNode = AnnotationNode(title: book.book, kind: .book)
+        let bookNode = AnnotationNode(title: bookTitle, kind: .book)
         let idx = root.children.insertionIndex(for: bookNode, using: compareNodes)
         root.children.insert(bookNode, at: idx)
 
@@ -281,12 +302,17 @@ extension AnnotationManager {
     // MARK: - Tree Population
 
     func populateBookTree(root: AnnotationNode, annotations: [Annotation]) {
-        let grouped = Dictionary(grouping: annotations, by: { $0.bkId })
+        let grouped = Dictionary(grouping: annotations, by: { ann in
+            if let loc = ann.backendLocator ?? (ann.bkId < 0 ? LegacyIdentityRegistry.shared.locator(for: ann.bkId) : nil) {
+                return "\(loc.backend.rawValue):\(loc.workKey)"
+            }
+            return "legacy:\(ann.bkId)"
+        })
 
-        for bkId in grouped.keys {
-            let annsForBook = grouped[bkId] ?? []
-            let bookTitle = LibraryDataManager
-                .shared.getBook([bkId]).first?.book ?? "Unknown Book" + " (\(bkId))"
+        for key in grouped.keys {
+            let annsForBook = grouped[key] ?? []
+            guard let firstAnn = annsForBook.first else { continue }
+            let bookTitle = firstAnn.resolvedBookTitle
             let bookNode = AnnotationNode(title: bookTitle, kind: .book)
 
             for ann in annsForBook {
@@ -353,7 +379,7 @@ extension AnnotationManager {
         if let note = annotation.note, !note.isEmpty {
             return note
         }
-        return annotation.context
+        return annotation.context.readerPlainText
     }
 
     func pushRecentColor(_ annotation: Annotation) {

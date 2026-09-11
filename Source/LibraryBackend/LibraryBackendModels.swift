@@ -247,7 +247,7 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
     }
 }
 
-private extension String {
+extension String {
     var readerPlainText: String {
         replacingOccurrences(of: #"(?i)<br\s*/?>"#, with: "\n", options: .regularExpression)
             .replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)

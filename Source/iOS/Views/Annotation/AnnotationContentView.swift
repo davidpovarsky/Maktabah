@@ -97,7 +97,7 @@ class AnnotationContentView: UIView, UIContentView {
         let arabicFont = UIFont(name: ArabicFont.kfgqpcUthmanTahaNaskh.rawValue, size: 18)
             ?? .preferredFont(forTextStyle: .body)
 
-        let contextText = ann.context
+        let contextText = ann.context.readerPlainText
         let attrContext = NSMutableAttributedString(
             string: contextText,
             attributes: [
@@ -139,13 +139,8 @@ class AnnotationContentView: UIView, UIContentView {
 
         // Secondary info: book title (jika group by tag) atau tags (jika group by book)
         if config.groupingMode == .tag {
-            if let book = LibraryDataManager.shared.getBook([ann.bkId]).first {
-                secondaryLabel.text = book.book
-                secondaryLabel.textColor = .secondaryLabel
-            } else {
-                secondaryLabel.text = "Book #\(ann.bkId) not found"
-                secondaryLabel.textColor = .systemRed
-            }
+            secondaryLabel.text = ann.resolvedBookTitle
+            secondaryLabel.textColor = .secondaryLabel
             secondaryLabel.isHidden = false
         } else {
             if !ann.tags.isEmpty {

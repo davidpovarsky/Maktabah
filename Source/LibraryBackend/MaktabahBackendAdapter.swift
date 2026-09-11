@@ -15,8 +15,9 @@ enum MaktabahBackendAdapter {
 
         func convert(_ node: LibraryCatalogNode, level: Int, parentID: Int?) -> Any {
             if let work = node.work {
-                let id = LegacyIdentityRegistry.shared.id(for: work.locator)
-                let book = BooksData(id: id, book: work.heTitle ?? work.title, archive: 0, muallif: 0,
+                let title = work.heTitle ?? work.title
+                let id = LegacyIdentityRegistry.shared.id(for: work.locator, title: title)
+                let book = BooksData(id: id, book: title, archive: 0, muallif: 0,
                     bithoqoh: work.description ?? "", info: work.title)
                 book.backendLocator = work.locator
                 book.backendSearchPath = (work.categories + [work.title]).joined(separator: "/")

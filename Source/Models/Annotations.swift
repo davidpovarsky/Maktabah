@@ -175,3 +175,49 @@ extension PlatformColor {
     }
 }
 
+// MARK: - Cross-Backend Title Resolution
+
+extension Annotation {
+    var resolvedBookTitle: String {
+        let locator = backendLocator ?? (bkId < 0 ? LegacyIdentityRegistry.shared.locator(for: bkId) : nil)
+        if let locator {
+            if let cached = LegacyIdentityRegistry.shared.title(for: locator) {
+                return cached
+            }
+            if locator.backend == .sefaria {
+                return locator.workKey
+            }
+            if locator.backend == .otzaria {
+                let otzariaId = Self.extractOtzariaBookId(from: locator.workKey)
+                if let otzariaId, let book = LibraryDataManager.shared.getBook([otzariaId]).first {
+                    return book.book
+                }
+            }
+        }
+        if bkId > 0 {
+            if let book = LibraryDataManager.shared.getBook([bkId]).first {
+                return book.book
+            }
+            return "ספר #\(bkId)"
+        }
+        if let loc = LegacyIdentityRegistry.shared.locator(for: bkId) {
+            if let cached = LegacyIdentityRegistry.shared.title(for: loc) {
+                return cached
+            }
+            if loc.backend == .sefaria { return loc.workKey }
+            if let otzariaId = Self.extractOtzariaBookId(from: loc.workKey),
+               let book = LibraryDataManager.shared.getBook([otzariaId]).first {
+                return book.book
+            }
+        }
+        return "ספר לא מזוהה (\(bkId))"
+    }
+
+    static func extractOtzariaBookId(from workKey: String) -> Int? {
+        if workKey.hasPrefix("book:") {
+            return Int(workKey.dropFirst("book:".count))
+        }
+        return Int(workKey)
+    }
+}
+

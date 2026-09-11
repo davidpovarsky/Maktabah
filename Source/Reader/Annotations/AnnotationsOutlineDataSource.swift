@@ -533,7 +533,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
             else if let annotation = node.annotation {
                 let color = NSColor(hex: annotation.colorHex) ?? .yellow
 
-                let contextText = "\(annotation.context)\n"
+                let contextText = "\(annotation.context.readerPlainText)\n"
                 let attrContext = NSMutableAttributedString(
                     string: contextText,
                     attributes: [
@@ -594,7 +594,7 @@ class AnnotationOutlineDataSource: NSObject, NSOutlineViewDataSource {
                         )
                         : DateFormatter.mediumDateShortTime.string(from: targetDate)
 
-                let kitab = LibraryDataManager.shared.getBook([annotation.bkId]).first?.book ?? "<Unknown Book>"
+                let kitab = annotation.resolvedBookTitle
                 let metaText =
                     "\(kitab) • الجزء: \(annotation.partArb ?? "-") • الصفحة: \(annotation.pageArb ?? "-") \(annotation.tags.map { " -- \($0)" }.joined(separator: " "))\n\(dateString)"
 
