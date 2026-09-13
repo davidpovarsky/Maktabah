@@ -1,4 +1,4 @@
-#if DEBUG && os(iOS)
+#if os(iOS)
 import Foundation
 
 /// Opt-in simulator diagnostic for the complete shared Reader/Inspector/Search
@@ -9,7 +9,11 @@ enum SharedTorahDataDiagnosticRunner {
     private static let resultKey = "SHARED_TORAH_DIAGNOSTIC_RESULT"
 
     static var isRequested: Bool {
+        #if DEBUG
         ProcessInfo.processInfo.environment[backendKey] != nil
+        #else
+        false
+        #endif
     }
 
     struct Row: Codable {
