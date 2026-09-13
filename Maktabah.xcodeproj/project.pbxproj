@@ -3789,8 +3789,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
 			requirement = {
-				kind = exactVersion;
-				version = 0.1.2;
+				kind = revision;
+				revision = 98492d4bb8b903cf2c690e35005ad88d344acb7a;
 			};
 		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {

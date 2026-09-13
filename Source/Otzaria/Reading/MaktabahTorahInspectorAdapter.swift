@@ -6,18 +6,25 @@ import TorahInspectorCore
 final class MaktabahTorahInspectorSession {
     private let coordinator: BackendCoordinator
     private let otzaria: OtzariaMaktabahBridge
+    private let preferredMode: LibraryReaderTextMode
     private var locatorsByReference: [String: TextLocator] = [:]
 
     convenience init() {
-        self.init(coordinator: .shared, otzaria: .shared)
+        self.init(preferredMode: UserDefaults.standard.libraryReaderTextMode)
+    }
+
+    convenience init(preferredMode: LibraryReaderTextMode) {
+        self.init(coordinator: .shared, otzaria: .shared, preferredMode: preferredMode)
     }
 
     init(
         coordinator: BackendCoordinator,
-        otzaria: OtzariaMaktabahBridge = .shared
+        otzaria: OtzariaMaktabahBridge = .shared,
+        preferredMode: LibraryReaderTextMode = UserDefaults.standard.libraryReaderTextMode
     ) {
         self.coordinator = coordinator
         self.otzaria = otzaria
+        self.preferredMode = preferredMode
     }
 
     lazy var repository = TorahInspectorRepository(
@@ -84,9 +91,10 @@ final class MaktabahTorahInspectorSession {
         return sources.map { source in
             let sourceReference = Self.reference(for: source.locator)
             remember(source.locator, for: sourceReference)
+            let usesHebrewReference = preferredMode != .translation
             return TorahLinkedSource(
                 sourceRef: sourceReference,
-                sourceHebrewRef: source.heRef,
+                sourceHebrewRef: usesHebrewReference ? source.heRef : nil,
                 category: source.category,
                 type: source.type,
                 collectiveTitle: source.collectiveTitle,
@@ -115,13 +123,17 @@ final class MaktabahTorahInspectorSession {
         rawProviderPayload: String? = nil
     ) throws -> TorahTextDocument {
         let mappedSegments = section.segments.enumerated().compactMap { index, segment -> TorahTextSegment? in
-            let text = segment.primaryText.isEmpty ? (segment.translation ?? "") : segment.primaryText
+            let text = LibraryPresentationPolicy.text(
+                source: segment.primaryText,
+                translation: segment.translation,
+                mode: preferredMode
+            )
             guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
             let reference = Self.reference(for: segment.locator)
             remember(segment.locator, for: reference)
             return TorahTextSegment(
                 canonicalRef: reference,
-                hebrewRef: segment.heRef,
+                hebrewRef: preferredMode == .translation ? nil : segment.heRef,
                 text: text,
                 ordinal: index + 1
             )
@@ -129,23 +141,27 @@ final class MaktabahTorahInspectorSession {
         guard !mappedSegments.isEmpty else { throw TorahError.noText }
         if let previous = section.previous { remember(previous, for: Self.reference(for: previous)) }
         if let next = section.next { remember(next, for: Self.reference(for: next)) }
-        let version = section.versions.first(where: \.isPrimary) ?? section.versions.first
+        let version = preferredMode == .translation
+            ? section.versions.first(where: {
+                LibraryTextDirection.inferred(from: $0.actualLanguage ?? $0.language) == .leftToRight
+            }) ?? section.versions.first(where: \.isPrimary) ?? section.versions.first
+            : section.versions.first(where: \.isPrimary) ?? section.versions.first
         let sectionReference = Self.reference(for: section.locator)
         remember(section.locator, for: sectionReference)
         return TorahTextDocument(
             providerID: section.locator.backend.rawValue,
             requestedRef: requestedReference,
             canonicalRef: sectionReference,
-            hebrewRef: section.heRef,
+            hebrewRef: preferredMode == .translation ? nil : section.heRef,
             sectionRef: sectionReference,
-            hebrewSectionRef: hebrewSectionRef ?? section.heRef,
+            hebrewSectionRef: preferredMode == .translation ? nil : (hebrewSectionRef ?? section.heRef),
             segments: mappedSegments,
             previousSectionRef: section.previous.map { Self.reference(for: $0) },
             nextSectionRef: section.next.map { Self.reference(for: $0) },
             version: TorahTextVersionMetadata(
                 language: version?.language ?? "he",
                 actualLanguage: version?.actualLanguage,
-                versionTitle: version?.title ?? "Sefaria",
+                versionTitle: version?.title ?? section.locator.backend.displayName,
                 license: version?.license,
                 direction: (version?.actualLanguage ?? version?.language) == "he" ? "rtl" : "ltr"
             ),

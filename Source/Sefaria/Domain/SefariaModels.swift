@@ -84,6 +84,34 @@ struct SefariaVersion: Codable, Hashable, Sendable {
     let text: SefariaJSONValue?
 }
 
+extension SefariaVersion {
+    private enum CodingKeys: String, CodingKey {
+        case versionTitle, language, actualLanguage, versionSource, license, versionNotes
+        case priority, isPrimary, isSource, direction, text
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        versionTitle = try values.decode(String.self, forKey: .versionTitle)
+        language = try values.decode(String.self, forKey: .language)
+        actualLanguage = try values.decodeIfPresent(String.self, forKey: .actualLanguage)
+        versionSource = try values.decodeIfPresent(String.self, forKey: .versionSource)
+        license = try values.decodeIfPresent(String.self, forKey: .license)
+        versionNotes = try values.decodeIfPresent(String.self, forKey: .versionNotes)
+        if let numeric = try? values.decode(Double.self, forKey: .priority) {
+            priority = numeric
+        } else if let string = try? values.decode(String.self, forKey: .priority) {
+            priority = Double(string)
+        } else {
+            priority = nil
+        }
+        isPrimary = try values.decodeIfPresent(Bool.self, forKey: .isPrimary)
+        isSource = try values.decodeIfPresent(Bool.self, forKey: .isSource)
+        direction = try values.decodeIfPresent(String.self, forKey: .direction)
+        text = try values.decodeIfPresent(SefariaJSONValue.self, forKey: .text)
+    }
+}
+
 struct SefariaSection: Codable, Hashable, Sendable {
     let ref: String
     let heRef: String?
@@ -108,10 +136,13 @@ struct SefariaSection: Codable, Hashable, Sendable {
         let translated = translation?.text?.segmentStrings ?? []
         let count = max(primary.count, translated.count)
         let segments = (0..<count).map { index in
-            let segmentRef = count == 1 ? sectionRef : SefariaRef.segmentRef(sectionRef: sectionRef, offset: index + 1)
+            let segmentRef = count == 1 ? ref : SefariaRef.segmentRef(sectionRef: sectionRef, offset: index + 1)
+            let segmentHeRef = count == 1
+                ? heRef
+                : heRef.map { "\($0):\(index + 1)" }
             return LibraryTextSegment(
                 locator: TextLocator(backend: .sefaria, workKey: indexTitle, position: .canonicalRef(segmentRef)),
-                heRef: nil,
+                heRef: segmentHeRef,
                 primaryText: index < primary.count ? (primary[index] ?? "") : "",
                 translation: index < translated.count ? translated[index] : nil
             )

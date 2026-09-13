@@ -15,7 +15,9 @@ enum MaktabahBackendAdapter {
 
         func convert(_ node: LibraryCatalogNode, level: Int, parentID: Int?) -> Any {
             if let work = node.work {
-                let title = work.heTitle ?? work.title
+                let title = LibraryPresentationPolicy.prefersHebrew()
+                    ? (work.heTitle ?? work.title)
+                    : work.title
                 let id = LegacyIdentityRegistry.shared.id(for: work.locator, title: title)
                 let book = BooksData(id: id, book: title, archive: 0, muallif: 0,
                     bithoqoh: work.description ?? "", info: work.title)
@@ -45,8 +47,11 @@ enum MaktabahBackendAdapter {
 
     static func content(from section: LibraryTextSection, renderModel: LibraryReaderRenderModel) -> BookContent {
         let id = LegacyIdentityRegistry.shared.id(for: section.locator)
+        let displayRef = renderModel.mode == .translation
+            ? section.displayRef
+            : (section.heRef ?? section.displayRef)
         return BookContent(id: id, nash: renderModel.text, page: 1, part: 1,
-            heRef: section.heRef ?? section.displayRef, backendLocator: section.locator)
+            heRef: displayRef, backendLocator: section.locator)
     }
 
     static func searchItem(from hit: LibrarySearchHit) -> SearchResultItem {
@@ -54,8 +59,11 @@ enum MaktabahBackendAdapter {
             position: hit.locator.backend == .sefaria ? .canonicalRef(hit.locator.workKey) : .legacyLine(0))
         let id = LegacyIdentityRegistry.shared.id(for: workLocator)
         let resultID = LegacyIdentityRegistry.shared.id(for: hit.locator)
+        let displayRef = LibraryPresentationPolicy.prefersHebrew()
+            ? (hit.heRef ?? hit.displayRef)
+            : hit.displayRef
         return SearchResultItem(archive: hit.locator.backend.displayName,
-            tableName: "qualified:\(id)", bookId: resultID, bookTitle: hit.heRef ?? hit.displayRef,
+            tableName: "qualified:\(id)", bookId: resultID, bookTitle: displayRef,
             page: 1, part: 1, attributedText: NSAttributedString(string: hit.snippet),
             backendLocator: hit.locator)
     }

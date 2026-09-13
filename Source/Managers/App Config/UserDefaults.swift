@@ -59,8 +59,11 @@ extension UserDefaults {
 
     var libraryReaderTextMode: LibraryReaderTextMode {
         get {
-            string(forKey: TextViewKeys.readerTextMode)
-                .flatMap(LibraryReaderTextMode.init(rawValue:)) ?? .source
+            if let saved = string(forKey: TextViewKeys.readerTextMode)
+                .flatMap(LibraryReaderTextMode.init(rawValue:)) {
+                return saved
+            }
+            return LibraryPresentationPolicy.defaultReaderMode()
         }
         set { set(newValue.rawValue, forKey: TextViewKeys.readerTextMode) }
     }

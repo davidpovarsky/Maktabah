@@ -29,10 +29,13 @@ struct OtzariaReaderSourcesInspectorHost: View {
                     navigationManager.openTorahInspectorLocationInNewTab(locator)
                 }
             )
-            .id("\(backendCoordinator.generation):\(selection.id)")
+            .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue):\(selection.id)")
             .onChange(of: backendCoordinator.generation) { _, _ in
                 inspectorSession = MaktabahTorahInspectorSession()
                 viewModel.closeReaderInspector()
+            }
+            .onChange(of: viewModel.currentReaderTextMode) { _, mode in
+                inspectorSession = MaktabahTorahInspectorSession(preferredMode: mode)
             }
         } else {
             EmptyView()

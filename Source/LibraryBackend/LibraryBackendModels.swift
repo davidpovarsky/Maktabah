@@ -128,6 +128,34 @@ enum LibraryReaderTextMode: String, Codable, CaseIterable, Identifiable, Sendabl
     var id: String { rawValue }
 }
 
+enum LibraryPresentationPolicy {
+    static func prefersHebrew(localeIdentifier: String? = Locale.preferredLanguages.first) -> Bool {
+        guard let language = localeIdentifier?.lowercased() else { return false }
+        return language.hasPrefix("he") || language.hasPrefix("iw")
+    }
+
+    static func defaultReaderMode(localeIdentifier: String? = Locale.preferredLanguages.first) -> LibraryReaderTextMode {
+        prefersHebrew(localeIdentifier: localeIdentifier) ? .source : .translation
+    }
+
+    static func text(
+        source: String,
+        translation: String?,
+        mode: LibraryReaderTextMode
+    ) -> String {
+        let source = source.readerPlainText
+        let translation = translation?.readerPlainText ?? ""
+        switch mode {
+        case .source:
+            return source.isEmpty ? translation : source
+        case .translation:
+            return translation.isEmpty ? source : translation
+        case .both:
+            return [source, translation].filter { !$0.isEmpty }.joined(separator: "\n")
+        }
+    }
+}
+
 enum LibraryTextDirection: String, Codable, Hashable, Sendable {
     case leftToRight
     case rightToLeft

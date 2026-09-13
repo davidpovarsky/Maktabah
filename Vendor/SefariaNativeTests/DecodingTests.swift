@@ -8,6 +8,7 @@ func runDecodingTests() throws {
         versions: genesis.versions, linksBySegment: [], origin: .remote).asLibrarySection()
     try expect(section.segments.count == 2, "ordinary text segments")
     try expect(section.segments[0].translation == "In the beginning", "translation pairing")
+    try expect(section.segments[0].heRef != nil, "Hebrew segment reference retained")
     try expect(section.versions.first?.license == "CC-BY-SA", "version attribution")
 
     let bavli = try decoder.decode(SefariaTextsV3DTO.self, from: fixture("texts-berakhot.json"))
@@ -38,6 +39,55 @@ func runDecodingTests() throws {
     try runSearchContractMappingTests()
     try runNestedOfflineDecodingTests()
     try runHeterogeneousLinksDecodingTests()
+    try runFlexibleVersionPriorityTests()
+    try runExactSegmentReferenceTests()
+    try runPresentationPolicyTests()
+}
+
+private func runFlexibleVersionPriorityTests() throws {
+    let version = try JSONDecoder().decode(SefariaVersion.self, from: Data(#"""
+    {
+      "versionTitle":"Linked Source","language":"en","priority":"0.25","text":"value"
+    }
+    """#.utf8))
+    try expect(version.priority == 0.25, "string version priority decodes as numeric metadata")
+}
+
+private func runExactSegmentReferenceTests() throws {
+    let response = try JSONDecoder().decode(SefariaTextsV3DTO.self, from: Data(#"""
+    {
+      "versions":[{"versionTitle":"Hebrew","language":"he","isSource":true,"text":"בראשית ברא"}],
+      "ref":"Genesis 1:1","heRef":"בראשית א׳:א׳","sectionRef":"Genesis 1",
+      "next":"Genesis 1:2","prev":null,"indexTitle":"Genesis"
+    }
+    """#.utf8))
+    let section = SefariaSection(
+        ref: response.ref,
+        heRef: response.heRef,
+        sectionRef: response.sectionRef,
+        indexTitle: response.indexTitle,
+        next: response.next,
+        prev: response.prev,
+        versions: response.versions,
+        linksBySegment: [],
+        origin: .remote
+    ).asLibrarySection()
+
+    try expect(section.segments.first?.locator.position == .canonicalRef("Genesis 1:1"),
+        "single-segment response retains exact canonical reference")
+    try expect(section.segments.first?.heRef == "בראשית א׳:א׳",
+        "single-segment response retains exact Hebrew reference")
+}
+
+private func runPresentationPolicyTests() throws {
+    try expect(LibraryPresentationPolicy.defaultReaderMode(localeIdentifier: "he-IL") == .source,
+        "Hebrew locale defaults to source")
+    try expect(LibraryPresentationPolicy.defaultReaderMode(localeIdentifier: "en-US") == .translation,
+        "English locale defaults to translation")
+    try expect(LibraryPresentationPolicy.text(source: "מקור", translation: nil, mode: .translation) == "מקור",
+        "missing translation falls back to source")
+    try expect(LibraryPresentationPolicy.text(source: "מקור", translation: "Translation", mode: .translation) == "Translation",
+        "translation mode selects available translation")
 }
 
 private func runReaderRenderModelTests() throws {
