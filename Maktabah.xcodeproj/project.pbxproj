@@ -89,6 +89,7 @@
 		CE3000000000000000000018 /* SefariaUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000018 /* SefariaUpdateManager.swift */; };
 		CE3000000000000000000019 /* SefariaNavigationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000019 /* SefariaNavigationParser.swift */; };
 		CE3000000000000000000020 /* SefariaPackagePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000020 /* SefariaPackagePolicy.swift */; };
+		CE3000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift */; };
 		CEF000000000000000000003 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CEF000000000000000000002 /* ZIPFoundation */; };
 		CEF000000000000000000004 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CEF000000000000000000002 /* ZIPFoundation */; };
 		CEF000000000000000000005 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = CEF000000000000000000002 /* ZIPFoundation */; };
@@ -819,6 +820,7 @@
 		A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaInspectorRelationshipsProvider.swift; sourceTree = "<group>"; };
 		CE0000000000000000000001 /* LibraryBackendModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendModels.swift; sourceTree = "<group>"; };
 		CE0000000000000000000002 /* LibraryBackendProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendProtocols.swift; sourceTree = "<group>"; };
+		CE0000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTorahDataDiagnosticRunner.swift; sourceTree = "<group>"; };
 		CE0000000000000000000003 /* BackendCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendCoordinator.swift; sourceTree = "<group>"; };
 		CE0000000000000000000004 /* QualifiedLocatorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifiedLocatorStore.swift; sourceTree = "<group>"; };
 		CE0000000000000000000005 /* BackendComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendComposition.swift; sourceTree = "<group>"; };
@@ -1316,6 +1318,7 @@
 				CE0000000000000000000006 /* LegacyIdentityRegistry.swift */,
 				CE0000000000000000000007 /* MaktabahBackendAdapter.swift */,
 				CE0000000000000000000008 /* OfflineLibraryManagementView.swift */,
+				CE0000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift */,
 			);
 			path = LibraryBackend;
 			sourceTree = "<group>";
@@ -2804,6 +2807,7 @@
 				CE3000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */,
 				CE3000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */,
 				CE3000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */,
+				CE3000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift in Sources */,
 				CE3000000000000000000009 /* SefariaModels.swift in Sources */,
 				CE300000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
 				CE300000000000000000000B /* SefariaHTTPClient.swift in Sources */,

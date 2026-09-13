@@ -38,7 +38,9 @@ struct MaktabahApp: App {
         BackendComposition.registerAll()
         // Native acceptance launches exercise isolated Otzaria bootstrap/search
         // paths and must not be blocked by unrelated first-launch setup.
-        if OtzariaNativeBootstrapAcceptanceRunner.isRequested || OtzariaCorpusAcceptanceRunner.isRequested {
+        if OtzariaNativeBootstrapAcceptanceRunner.isRequested
+            || OtzariaCorpusAcceptanceRunner.isRequested
+            || SharedTorahDataDiagnosticRunner.isRequested {
             return
         }
 
@@ -84,7 +86,12 @@ struct MaktabahApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if OtzariaNativeBootstrapAcceptanceRunner.isRequested {
+            if SharedTorahDataDiagnosticRunner.isRequested {
+                Color.clear
+                    .task {
+                        await SharedTorahDataDiagnosticRunner.runIfRequested()
+                    }
+            } else if OtzariaNativeBootstrapAcceptanceRunner.isRequested {
                 Color.clear
                     .task {
                         await OtzariaNativeBootstrapAcceptanceRunner.runIfRequested()
