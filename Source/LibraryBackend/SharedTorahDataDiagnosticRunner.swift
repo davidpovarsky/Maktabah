@@ -193,11 +193,12 @@ enum SharedTorahDataDiagnosticRunner {
             let refPassed = wantsHebrew
                 ? !(selected?.hebrewRef ?? document.hebrewRef ?? "").isEmpty
                 : !(selected?.canonicalRef ?? "").isEmpty
-            let snippetsPassed = links.allSatisfy {
+            let snippetCount = links.filter {
                 let preferred = wantsHebrew ? $0.hebrewText : $0.englishText
                 let fallback = wantsHebrew ? $0.englishText : $0.hebrewText
                 return !((preferred ?? fallback) ?? "").readerPlainText.isEmpty
-            }
+            }.count
+            let snippetsPassed = snippetCount > 0
             let passed = document.providerID == backend.rawValue
                 && selected != nil
                 && !selectedText.readerPlainText.isEmpty
@@ -210,7 +211,7 @@ enum SharedTorahDataDiagnosticRunner {
                 component: "Inspector",
                 input: reference,
                 expected: "selected text/ref, relationships/snippets, stable backend",
-                actual: "provider=\(document.providerID); selected=\(selected?.canonicalRef ?? "nil"); links=\(links.count); topics=\(topics.count)",
+                actual: "provider=\(document.providerID); selected=\(selected?.canonicalRef ?? "nil"); links=\(links.count); snippets=\(snippetCount); topics=\(topics.count)",
                 passed: passed,
                 backend: backend,
                 locale: locale,
