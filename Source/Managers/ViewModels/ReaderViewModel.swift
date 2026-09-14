@@ -935,7 +935,6 @@ class ReaderViewModel: ViewModelBase {
 
     private func annotationLocator(for book: BooksData) -> TextLocator? {
         if let locator = backendSection?.locator ?? book.backendLocator { return locator }
-        guard BackendCoordinator.shared.activeBackendID == .otzaria else { return nil }
         return TextLocator(
             backend: .otzaria,
             workKey: "book:\(book.id)",
