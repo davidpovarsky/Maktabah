@@ -23,84 +23,113 @@ struct iOSReaderNavigationPopoverView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            if viewModel.totalParts > 1 {
-                VStack(spacing: 8) {
-                    if isSlidingPart {
-                        Text("الجزء: \(Int(localPart))".convertToArabicDigits())
+            if viewModel.currentBook?.backendLocator != nil {
+                HStack(spacing: 20) {
+                    Button {
+                        if let prev = viewModel.backendSection?.previous {
+                            viewModel.loadBackendContent(prev)
+                        }
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .font(.title2)
+                    }
+                    .disabled(viewModel.backendSection?.previous == nil)
+                    
+                    Text(viewModel.backendSection?.displayRef ?? viewModel.backendSection?.heRef ?? "")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+                    
+                    Button {
+                        if let next = viewModel.backendSection?.next {
+                            viewModel.loadBackendContent(next)
+                        }
+                    } label: {
+                        Image(systemName: "chevron.forward")
+                            .font(.title2)
+                    }
+                    .disabled(viewModel.backendSection?.next == nil)
+                }
+            } else {
+                if viewModel.totalParts > 1 {
+                    VStack(spacing: 8) {
+                        if isSlidingPart {
+                            Text("الجزء: \(Int(localPart))".convertToArabicDigits())
+                                .font(.headline)
+                                .foregroundColor(.accentColor)
+                        } else {
+                            Text("الجزء")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+
+                        HStack {
+                            Text("١".convertToArabicDigits())
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+
+                            Slider(
+                                value: $localPart,
+                                in: 1...Double(max(1, viewModel.totalParts)),
+                                step: 1
+                            ) { editing in
+                                isSlidingPart = editing
+                                if !editing {
+                                    viewModel.jumpToPart(Int(localPart))
+                                }
+                            }
+
+                            Text("\(viewModel.totalParts)".convertToArabicDigits())
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .environment(\.layoutDirection, .rightToLeft)
+                }
+
+                if viewModel.maxPageInPart > viewModel.minPageInPart {
+                    VStack(spacing: 8) {
+                        if isSlidingPage {
+                            Text(
+                                "الصفحة: \(Int(localPage))".convertToArabicDigits()
+                            )
                             .font(.headline)
                             .foregroundColor(.accentColor)
-                    } else {
-                        Text("الجزء")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
+                        } else {
+                            Text("الصفحة")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
 
-                    HStack {
-                        Text("١".convertToArabicDigits())
+                        HStack {
+                            Text(
+                                "\(viewModel.minPageInPart)".convertToArabicDigits()
+                            )
                             .font(.caption2)
                             .foregroundColor(.secondary)
 
-                        Slider(
-                            value: $localPart,
-                            in: 1...Double(max(1, viewModel.totalParts)),
-                            step: 1
-                        ) { editing in
-                            isSlidingPart = editing
-                            if !editing {
-                                viewModel.jumpToPart(Int(localPart))
+                            Slider(
+                                value: $localPage,
+                                in: Double(
+                                    viewModel.minPageInPart
+                                )...Double(viewModel.maxPageInPart),
+                                step: 1
+                            ) { editing in
+                                isSlidingPage = editing
+                                if !editing {
+                                    viewModel.jumpToPage(Int(localPage))
+                                }
                             }
-                        }
 
-                        Text("\(viewModel.totalParts)".convertToArabicDigits())
+                            Text(
+                                "\(viewModel.maxPageInPart)".convertToArabicDigits()
+                            )
                             .font(.caption2)
                             .foregroundColor(.secondary)
-                    }
-                }
-                .environment(\.layoutDirection, .rightToLeft)
-            }
-
-            if viewModel.maxPageInPart > viewModel.minPageInPart {
-                VStack(spacing: 8) {
-                    if isSlidingPage {
-                        Text(
-                            "الصفحة: \(Int(localPage))".convertToArabicDigits()
-                        )
-                        .font(.headline)
-                        .foregroundColor(.accentColor)
-                    } else {
-                        Text("الصفحة")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-
-                    HStack {
-                        Text(
-                            "\(viewModel.minPageInPart)".convertToArabicDigits()
-                        )
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-
-                        Slider(
-                            value: $localPage,
-                            in: Double(
-                                viewModel.minPageInPart
-                            )...Double(viewModel.maxPageInPart),
-                            step: 1
-                        ) { editing in
-                            isSlidingPage = editing
-                            if !editing {
-                                viewModel.jumpToPage(Int(localPage))
-                            }
                         }
-
-                        Text(
-                            "\(viewModel.maxPageInPart)".convertToArabicDigits()
-                        )
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
                     }
+                    .environment(\.layoutDirection, .rightToLeft)
                 }
-                .environment(\.layoutDirection, .rightToLeft)
             }
         }
         .padding()

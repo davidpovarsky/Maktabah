@@ -50,6 +50,7 @@ class BookTOCViewModel {
                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
                         let node = TOCNode(from: TOC(bab: item.title, level: level, sub: 0, id: id))
+                        node.backendLocator = item.locator
                         node.children = item.children.map { convert($0, level: level + 1) }
                         return node
                     }

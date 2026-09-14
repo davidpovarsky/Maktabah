@@ -20,6 +20,9 @@ class TOCNode: Identifiable {
     let entryId: Int
     let parentId: Int?
     var children: [TOCNode] = []
+    /// Canonical locator for backend-originated nodes.  When present,
+    /// navigation should use this directly instead of the legacy integer ``id``.
+    var backendLocator: TextLocator?
 
     var endID: Int = .max
 
