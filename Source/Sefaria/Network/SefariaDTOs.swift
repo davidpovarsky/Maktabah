@@ -39,23 +39,46 @@ struct SefariaTOCEntryDTO: Codable, Sendable {
 struct SefariaSearchBody: Encodable, Sendable {
     let query: String
     let type = "text"
-    let field = "naive_lemmatizer"
+    let field: String
     let start: Int
     let size: Int
-    let slop = 10
-    let sortMethod = "score"
-    let sortFields = ["pagesheetrank"]
-    let sortReverse = false
+    let slop: Int
+    let sortMethod: String
+    let sortFields: [String]
+    let sortReverse: Bool
     let sortScoreMissing = 0.04
     let sourceProjection = true
     let filters: [String]
     let filterFields: [String]
     let aggregations: [String] = []
 
-    init(query: String, start: Int, size: Int, filters: [String] = []) {
+    init(
+        query: String,
+        start: Int,
+        size: Int,
+        filters: [String] = [],
+        options: LibrarySearchOptions = LibrarySearchOptions()
+    ) {
         self.query = query
         self.start = start
         self.size = size
+        let containsHebrew = query.unicodeScalars.contains { (0x0590...0x05FF).contains(Int($0.value)) }
+        field = options.matchMode == .hebrewLemmatized && containsHebrew
+            ? "naive_lemmatizer"
+            : "exact"
+        slop = max(0, options.wordDistance)
+        switch options.sortOrder {
+        case .relevance:
+            sortMethod = "score"
+            sortFields = ["pagesheetrank"]
+        case .canonical:
+            sortMethod = "sort"
+            sortFields = ["order"]
+        case .chronological:
+            sortMethod = "sort"
+            sortFields = ["comp_date"]
+        }
+        sortReverse = options.reverseSort
         self.filters = filters
         self.filterFields = Array(repeating: "path", count: filters.count)
     }

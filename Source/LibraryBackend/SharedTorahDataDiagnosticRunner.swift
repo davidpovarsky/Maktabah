@@ -7,6 +7,8 @@ import Foundation
 enum SharedTorahDataDiagnosticRunner {
     private static let backendKey = "SHARED_TORAH_DIAGNOSTIC"
     private static let resultKey = "SHARED_TORAH_DIAGNOSTIC_RESULT"
+    private static let annotationPhaseKey = "SHARED_TORAH_DIAGNOSTIC_ANNOTATION_PHASE"
+    private static let annotationMarker = "shared-torah-cross-backend"
 
     static var isRequested: Bool {
         #if DEBUG
@@ -66,6 +68,12 @@ enum SharedTorahDataDiagnosticRunner {
             await diagnoseReader(scenario, backend: backend, locale: requestedLocale, report: &report)
             await diagnoseInspector(scenario, backend: backend, locale: requestedLocale, report: &report)
             await diagnoseSearch(scenario, backend: backend, locale: requestedLocale, report: &report)
+            await diagnoseAnnotations(
+                backend: backend,
+                locale: requestedLocale,
+                phase: environment[annotationPhaseKey],
+                report: &report
+            )
         } catch {
             append(
                 component: "setup",
@@ -285,10 +293,311 @@ enum SharedTorahDataDiagnosticRunner {
                 locale: locale,
                 report: &report
             )
+
+            let targetID = LegacyIdentityRegistry.shared.id(for: hit.locator)
+            let canonicalBookID = canonicalBookID(for: hit.locator)
+            let book = BooksData(
+                id: canonicalBookID,
+                book: hit.displayRef,
+                archive: 0,
+                muallif: 0,
+                backendLocator: hit.locator
+            )
+            let navigation = iOSNavigationManager()
+            navigation.openBook(
+                book,
+                initialContentId: targetID,
+                searchText: scenario.searchQuery,
+                recordHistory: false
+            )
+            let openedReader = await waitForReader(in: navigation, targetID: targetID)
+            let readerExact = openedReader?.backendRenderModel?.renderedSegments.contains {
+                $0.locator == hit.locator
+            } == true
+            append(
+                component: "Search selection → Reader",
+                input: hit.locator.persistenceKey,
+                expected: "selection opens Reader mode at the exact result",
+                actual: "mode=\(navigation.currentMode); bookID=\(navigation.selectedBook?.id ?? 0); contentID=\(openedReader?.currentContentId ?? 0); exact=\(readerExact)",
+                passed: navigation.currentMode == .viewer
+                    && navigation.selectedBook?.id == canonicalBookID
+                    && openedReader?.currentContentId == targetID
+                    && readerExact,
+                backend: backend,
+                locale: locale,
+                report: &report
+            )
         } catch {
             append(component: "Search", input: scenario.searchQuery,
                 expected: "results and exact Reader/Inspector target", actual: "request failed", error: error,
                 backend: backend, locale: locale, report: &report)
+        }
+    }
+
+    private static func diagnoseAnnotations(
+        backend: BackendID,
+        locale: String,
+        phase: String?,
+        report: inout Report
+    ) async {
+        do {
+            let target = try await annotationTarget(for: backend)
+            let manager = AnnotationManager.shared
+            if phase == "seed-otzaria" {
+                try cleanupDiagnosticAnnotations(manager)
+            }
+
+            if phase == "verify-otzaria-seed-sefaria" {
+                let seeded = CrossBackendAnnotationResolver.annotations(
+                    forBookID: target.bookID,
+                    contentID: target.contentID,
+                    text: target.text,
+                    locator: target.locator,
+                    manager: manager
+                ).filter { $0.note?.contains("\(annotationMarker):otzaria") == true }
+                appendCrossBackendAnnotationRow(
+                    seeded,
+                    expectedBackend: .otzaria,
+                    target: target,
+                    backend: backend,
+                    locale: locale,
+                    report: &report
+                )
+            } else if phase == "verify-sefaria-seed-cleanup" {
+                let seeded = CrossBackendAnnotationResolver.annotations(
+                    forBookID: target.bookID,
+                    contentID: target.contentID,
+                    text: target.text,
+                    locator: target.locator,
+                    manager: manager
+                ).filter { $0.note?.contains("\(annotationMarker):sefaria") == true }
+                appendCrossBackendAnnotationRow(
+                    seeded,
+                    expectedBackend: .sefaria,
+                    target: target,
+                    backend: backend,
+                    locale: locale,
+                    report: &report
+                )
+            }
+
+            let keepForCrossBackend = phase == "seed-otzaria" || phase == "verify-otzaria-seed-sefaria"
+            let created = try createDiagnosticAnnotations(
+                target: target,
+                backend: backend,
+                locale: locale,
+                manager: manager,
+                crossBackendSeed: keepForCrossBackend
+            )
+            let loaded = manager.loadAnnotations(bkId: target.bookID, contentId: target.contentID)
+                .filter { annotation in created.contains { $0.id == annotation.id } }
+            let ids = loaded.compactMap(\.id)
+            let cloudIDs = loaded.compactMap(\.ckRecordId)
+            let passed = loaded.count == 2
+                && Set(ids).count == 2
+                && Set(cloudIDs).count == 2
+                && loaded.contains(where: { $0.type == .highlight })
+                && loaded.contains(where: { $0.type == .underline })
+                && loaded.allSatisfy { $0.bkId == target.bookID && $0.note?.isEmpty == false }
+            append(
+                component: "Annotations write/read",
+                input: target.locator.persistenceKey,
+                expected: "highlight and note persist with stable annotation and canonical book IDs",
+                actual: "rows=\(loaded.count); ids=\(ids); bookIDs=\(loaded.map(\.bkId)); cloudIDs=\(cloudIDs.count)",
+                passed: passed,
+                backend: backend,
+                locale: locale,
+                report: &report
+            )
+
+            if !keepForCrossBackend {
+                for annotation in created {
+                    if let id = annotation.id { try manager.deleteAnnotation(id: id) }
+                }
+            }
+            if phase == "verify-sefaria-seed-cleanup" {
+                try cleanupDiagnosticAnnotations(manager)
+            }
+        } catch {
+            append(
+                component: "Annotations write/read",
+                input: backend.rawValue,
+                expected: "highlight, note and cross-backend identity",
+                actual: "annotation diagnostic failed",
+                error: error,
+                backend: backend,
+                locale: locale,
+                report: &report
+            )
+        }
+    }
+
+    private struct AnnotationTarget {
+        let locator: TextLocator
+        let bookID: Int
+        let contentID: Int
+        let text: String
+        let range: NSRange
+    }
+
+    private static func annotationTarget(for backend: BackendID) async throws -> AnnotationTarget {
+        if (try? OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()) == true,
+           let books = try? OtzariaMaktabahBridge.shared.fetchAllBooks() {
+            CrossBackendBookIdentityIndex.shared.prepare(
+                otzariaBooks: books.map { (id: $0.id, title: $0.book) }
+            )
+        }
+
+        let locator: TextLocator
+        switch backend {
+        case .otzaria:
+            let page = try await BackendCoordinator.shared.search(.init(
+                query: "בראשית ברא",
+                offset: 0,
+                limit: 25
+            ))
+            guard let genesis = page.hits.first(where: { $0.locator.workKey == "book:1" }) else {
+                throw LibraryBackendError.invalidResponse("Otzaria Genesis annotation target was not found")
+            }
+            locator = genesis.locator
+        case .sefaria:
+            let work = LibraryWork(
+                locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis")),
+                title: "Genesis",
+                heTitle: "בראשית",
+                categories: ["Tanakh", "Torah"],
+                description: nil
+            )
+            _ = CrossBackendBookIdentityIndex.shared.canonicalID(for: work)
+            locator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+        }
+
+        let section = try await BackendCoordinator.shared.section(at: locator)
+        guard let segment = section.segments.first(where: { $0.locator == locator }) ?? section.segments.first else {
+            throw LibraryBackendError.invalidResponse("annotation target has no text segment")
+        }
+        let text = segment.sourceText.readerPlainText
+        let full = text as NSString
+        guard full.length > 0 else {
+            throw LibraryBackendError.invalidResponse("annotation target text is empty")
+        }
+        let provisional = NSRange(location: 0, length: min(16, full.length))
+        let range = full.rangeOfComposedCharacterSequences(for: provisional)
+        return AnnotationTarget(
+            locator: segment.locator,
+            bookID: canonicalBookID(for: segment.locator),
+            contentID: LegacyIdentityRegistry.shared.id(for: segment.locator),
+            text: text,
+            range: range
+        )
+    }
+
+    private static func createDiagnosticAnnotations(
+        target: AnnotationTarget,
+        backend: BackendID,
+        locale: String,
+        manager: AnnotationManager,
+        crossBackendSeed: Bool
+    ) throws -> [Annotation] {
+        let coordinator = AnnotationCoordinator()
+        let notePrefix = crossBackendSeed
+            ? "\(annotationMarker):\(backend.rawValue)"
+            : "shared-torah-roundtrip:\(backend.rawValue):\(locale)"
+        var highlight = try coordinator.saveHighlight(
+            text: target.text,
+            range: target.range,
+            color: .systemYellow,
+            bkId: target.bookID,
+            contentId: target.contentID,
+            page: 1,
+            part: 1,
+            diacriticsText: nil,
+            showHarakat: false,
+            mode: .highlight,
+            backendLocator: target.locator
+        )
+        highlight.note = "\(notePrefix):highlight-note"
+        try manager.updateAnnotation(highlight)
+
+        var underline = try coordinator.saveHighlight(
+            text: target.text,
+            range: target.range,
+            color: .systemBlue,
+            bkId: target.bookID,
+            contentId: target.contentID,
+            page: 1,
+            part: 1,
+            diacriticsText: nil,
+            showHarakat: false,
+            mode: .underline,
+            backendLocator: target.locator
+        )
+        underline.note = "\(notePrefix):underline-note"
+        try manager.updateAnnotation(underline)
+        return [highlight, underline]
+    }
+
+    private static func appendCrossBackendAnnotationRow(
+        _ annotations: [Annotation],
+        expectedBackend: BackendID,
+        target: AnnotationTarget,
+        backend: BackendID,
+        locale: String,
+        report: inout Report
+    ) {
+        let locators = annotations.compactMap(\.backendLocator)
+        let passed = annotations.count == 2
+            && annotations.allSatisfy { $0.id != nil && $0.bkId == target.bookID }
+            && locators.allSatisfy { $0.backend == expectedBackend }
+            && annotations.contains(where: { $0.type == .highlight })
+            && annotations.contains(where: { $0.type == .underline })
+        append(
+            component: "Annotations cross-backend",
+            input: "\(expectedBackend.rawValue) → \(backend.rawValue)",
+            expected: "same annotation IDs and canonical book ID after backend switch",
+            actual: "rows=\(annotations.count); ids=\(annotations.compactMap(\.id)); bookIDs=\(annotations.map(\.bkId)); canonical=\(target.bookID)",
+            passed: passed,
+            backend: backend,
+            locale: locale,
+            report: &report
+        )
+    }
+
+    private static func cleanupDiagnosticAnnotations(_ manager: AnnotationManager) throws {
+        for annotation in manager.loadAnnotations() where
+            annotation.note?.contains(annotationMarker) == true
+                || annotation.note?.contains("shared-torah-roundtrip:") == true {
+            if let id = annotation.id { try manager.deleteAnnotation(id: id) }
+        }
+    }
+
+    private static func canonicalBookID(for locator: TextLocator) -> Int {
+        if let shared = CrossBackendBookIdentityIndex.shared.canonicalID(for: locator) { return shared }
+        if locator.backend == .otzaria,
+           let id = Annotation.extractOtzariaBookId(from: locator.workKey) { return id }
+        let root = TextLocator(
+            backend: locator.backend,
+            workKey: locator.workKey,
+            position: locator.backend == .sefaria ? .canonicalRef(locator.workKey) : .legacyLine(0)
+        )
+        return LegacyIdentityRegistry.shared.id(for: root)
+    }
+
+    private static func waitForReader(
+        in navigation: iOSNavigationManager,
+        targetID: Int
+    ) async -> ReaderViewModel? {
+        for _ in 0..<150 {
+            if let activeID = navigation.activeTabId,
+               let reader = navigation.openTabs.first(where: { $0.id == activeID })?.viewModel,
+               reader.state == .loaded,
+               reader.currentContentId == targetID {
+                return reader
+            }
+            try? await Task.sleep(for: .milliseconds(100))
+        }
+        return navigation.activeTabId.flatMap { activeID in
+            navigation.openTabs.first(where: { $0.id == activeID })?.viewModel
         }
     }
 

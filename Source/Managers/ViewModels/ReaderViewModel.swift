@@ -883,9 +883,12 @@ class ReaderViewModel: ViewModelBase {
 
     func loadAnnotations() {
         guard let book = currentBook else { return }
-        let anns = annotationManager.loadAnnotations(
-            bkId: book.id,
-            contentId: currentContentId
+        let anns = CrossBackendAnnotationResolver.annotations(
+            forBookID: book.id,
+            contentID: currentContentId,
+            text: contentText,
+            locator: annotationLocator(for: book),
+            manager: annotationManager
         )
 
         #if os(iOS)
@@ -894,12 +897,10 @@ class ReaderViewModel: ViewModelBase {
     }
 
     func findBestAnnotation(for range: NSRange) -> Annotation? {
-        guard let book = currentBook else { return nil }
-        // TODO: Otzaria annotations are currently unit-based. They need line-aware mapping using OtzariaLineAnchor ranges before changing storage/loading behavior.
+        guard currentBook != nil else { return nil }
         return annotationCoordinator.findBestAnnotation(
             overlapping: range,
-            bkId: book.id,
-            contentId: currentContentId,
+            in: currentAnnotations,
             showHarakat: TextViewState.shared.showHarakat
         )
     }
@@ -911,7 +912,8 @@ class ReaderViewModel: ViewModelBase {
         color: PlatformColor
     ) throws {
         guard let book = currentBook else { return }
-        let locator = backendSection?.locator ?? book.backendLocator
+        let locator = backendRenderModel?.renderedSegment(at: range.location)?.locator
+            ?? annotationLocator(for: book)
         if let locator {
             LegacyIdentityRegistry.shared.register(title: book.book, for: locator)
         }
@@ -929,6 +931,16 @@ class ReaderViewModel: ViewModelBase {
             backendLocator: locator
         )
         loadAnnotations()
+    }
+
+    private func annotationLocator(for book: BooksData) -> TextLocator? {
+        if let locator = backendSection?.locator ?? book.backendLocator { return locator }
+        guard BackendCoordinator.shared.activeBackendID == .otzaria else { return nil }
+        return TextLocator(
+            backend: .otzaria,
+            workKey: "book:\(book.id)",
+            position: .legacyLine(currentContentId)
+        )
     }
 
     func deleteAnnotation(id: Int64) throws {

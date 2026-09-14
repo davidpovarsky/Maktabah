@@ -27,6 +27,22 @@ func runLegacyIdentityRegistryTests() throws {
     try expect(registry.title(for: tocSurrogateID) == "ברכות", "title is retrieved by surrogate ID")
     try expect(registry.locator(for: 999_999_999) == nil, "unregistered surrogate ID returns nil")
 
+    let compatibility = CrossBackendBookIdentityIndex.shared
+    compatibility.prepare(otzariaBooks: [(id: 1, title: "בראשית"), (id: 28, title: "תהילים")])
+    let genesisWork = LibraryWork(
+        locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis")),
+        title: "Genesis",
+        heTitle: "בְּרֵאשִׁית",
+        categories: ["Tanakh", "Torah"],
+        description: nil
+    )
+    try expect(compatibility.canonicalID(for: genesisWork) == 1,
+        "Sefaria Hebrew title maps to the stable Otzaria book ID")
+    let otzariaLocator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(7))
+    let sefariaLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+    try expect(compatibility.areEquivalent(otzariaLocator, sefariaLocator),
+        "section locators from both backends resolve to one canonical book")
+
     // Test HTML sanitization for annotation excerpts
     let rawHTML = "<span class=\"hebrew\">בראשית ברא</span><br/>אלהים &amp; שמים"
     let cleanText = rawHTML.readerPlainText

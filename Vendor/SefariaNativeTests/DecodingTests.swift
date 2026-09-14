@@ -143,6 +143,25 @@ private func runSearchContractMappingTests() throws {
         "search pagination contract")
     try expect(object?["filters"] as? [String] == ["Tanakh/Torah/Genesis"], "in-book search filters")
     try expect(object?["filter_fields"] as? [String] == ["path"], "in-book search filter fields")
+
+    let exactData = try JSONEncoder().encode(SefariaSearchBody(
+        query: "creation",
+        start: 0,
+        size: 20,
+        options: LibrarySearchOptions(
+            matchMode: .exact,
+            wordDistance: 0,
+            sortOrder: .chronological,
+            reverseSort: true
+        )
+    ))
+    let exact = try JSONSerialization.jsonObject(with: exactData) as? [String: Any]
+    try expect(exact?["field"] as? String == "exact" && exact?["slop"] as? Int == 0,
+        "exact Sefaria search field and word distance contract")
+    try expect(exact?["sort_method"] as? String == "sort"
+        && exact?["sort_fields"] as? [String] == ["comp_date"]
+        && exact?["sort_reverse"] as? Bool == true,
+        "Sefaria chronological sort contract")
 }
 
 private func runNestedOfflineDecodingTests() throws {

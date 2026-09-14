@@ -221,3 +221,74 @@ extension Annotation {
     }
 }
 
+enum CrossBackendAnnotationResolver {
+    static func annotations(
+        forBookID bookID: Int,
+        contentID: Int,
+        text: String,
+        locator: TextLocator?,
+        manager: AnnotationManager = .shared
+    ) -> [Annotation] {
+        let exact = manager.loadAnnotations(bkId: bookID, contentId: contentID)
+        guard let locator, !text.isEmpty else { return exact }
+
+        var byID = Dictionary(uniqueKeysWithValues: exact.compactMap { annotation in
+            annotation.id.map { ($0, annotation) }
+        })
+        let source = text as NSString
+        for annotation in manager.loadAnnotations(bkId: bookID) {
+            guard let id = annotation.id, byID[id] == nil,
+                  let annotationLocator = annotation.backendLocator,
+                  CrossBackendBookIdentityIndex.shared.areEquivalent(annotationLocator, locator),
+                  !annotation.context.isEmpty else { continue }
+            let exactMatch = source.range(of: annotation.context)
+            let match = exactMatch.location == NSNotFound
+                ? normalizedRange(of: annotation.context, in: text)
+                : exactMatch
+            guard match.location != NSNotFound else { continue }
+            var rebased = annotation
+            rebased.range = match
+            rebased.rangeDiacritics = match
+            byID[id] = rebased
+        }
+        return byID.values.sorted {
+            if $0.range.location == $1.range.location { return ($0.id ?? 0) < ($1.id ?? 0) }
+            return $0.range.location < $1.range.location
+        }
+    }
+
+    private static func normalizedRange(of needle: String, in text: String) -> NSRange {
+        let normalizedNeedle = normalized(needle).text
+        guard !normalizedNeedle.isEmpty else { return NSRange(location: NSNotFound, length: 0) }
+        let haystack = normalized(text)
+        let match = (haystack.text as NSString).range(of: normalizedNeedle)
+        guard match.location != NSNotFound,
+              match.location < haystack.offsets.count,
+              NSMaxRange(match) <= haystack.offsets.count else {
+            return NSRange(location: NSNotFound, length: 0)
+        }
+        let start = haystack.offsets[match.location]
+        let end = NSMaxRange(match) == haystack.offsets.count
+            ? (text as NSString).length
+            : haystack.offsets[NSMaxRange(match)]
+        return NSRange(location: start, length: max(0, end - start))
+    }
+
+    private static func normalized(_ value: String) -> (text: String, offsets: [Int]) {
+        var output = ""
+        var offsets: [Int] = []
+        var originalOffset = 0
+        for scalar in value.unicodeScalars {
+            let length = scalar.utf16.count
+            let isDirectionalControl = (0x202A...0x202E).contains(Int(scalar.value))
+                || (0x2066...0x2069).contains(Int(scalar.value))
+            if !CharacterSet.nonBaseCharacters.contains(scalar) && !isDirectionalControl {
+                output.unicodeScalars.append(scalar)
+                for _ in 0..<length { offsets.append(originalOffset) }
+            }
+            originalOffset += length
+        }
+        return (output.lowercased(), offsets)
+    }
+}
+

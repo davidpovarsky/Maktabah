@@ -136,3 +136,72 @@ private extension NSLock {
         return try body()
     }
 }
+
+/// Canonical book IDs shared by backend-specific locators. Otzaria's database
+/// ID remains the stable ID when the same work is present in both catalogs.
+/// Only unique, exact normalized titles are linked so similarly named
+/// commentaries cannot be attached to the wrong work.
+final class CrossBackendBookIdentityIndex: @unchecked Sendable {
+    static let shared = CrossBackendBookIdentityIndex()
+
+    private let lock = NSLock()
+    private var otzariaIDsByTitle: [String: Int] = [:]
+    private var canonicalIDsByWork: [String: Int] = [:]
+
+    func prepare(otzariaBooks: [(id: Int, title: String)]) {
+        var candidates: [String: [Int]] = [:]
+        for book in otzariaBooks {
+            candidates[Self.normalizedTitle(book.book), default: []].append(book.id)
+        }
+        let unique = candidates.compactMapValues { ids in
+            ids.count == 1 ? ids[0] : nil
+        }
+        lock.synchronized {
+            otzariaIDsByTitle = unique
+            for book in otzariaBooks {
+                canonicalIDsByWork[Self.workKey(.otzaria, "book:\(book.id)")] = book.id
+            }
+        }
+    }
+
+    func register(_ work: LibraryWork, canonicalID: Int) {
+        lock.synchronized {
+            canonicalIDsByWork[Self.workKey(work.locator.backend, work.locator.workKey)] = canonicalID
+        }
+    }
+
+    func canonicalID(for work: LibraryWork) -> Int? {
+        if let existing = canonicalID(for: work.locator) { return existing }
+        let candidates = [work.heTitle, work.title].compactMap { $0 }.map(Self.normalizedTitle)
+        let matched = lock.synchronized {
+            candidates.compactMap { otzariaIDsByTitle[$0] }.first
+        }
+        if let matched { register(work, canonicalID: matched) }
+        return matched
+    }
+
+    func canonicalID(for locator: TextLocator) -> Int? {
+        lock.synchronized {
+            canonicalIDsByWork[Self.workKey(locator.backend, locator.workKey)]
+        }
+    }
+
+    func areEquivalent(_ lhs: TextLocator, _ rhs: TextLocator) -> Bool {
+        guard lhs.backend != rhs.backend,
+              let left = canonicalID(for: lhs),
+              let right = canonicalID(for: rhs) else { return false }
+        return left == right
+    }
+
+    private static func workKey(_ backend: BackendID, _ workKey: String) -> String {
+        "\(backend.rawValue)|\(workKey)"
+    }
+
+    private static func normalizedTitle(_ title: String) -> String {
+        let scalars = title.decomposedStringWithCanonicalMapping.unicodeScalars.filter { scalar in
+            !CharacterSet.nonBaseCharacters.contains(scalar)
+                && (CharacterSet.letters.contains(scalar) || CharacterSet.decimalDigits.contains(scalar))
+        }
+        return String(String.UnicodeScalarView(scalars)).lowercased()
+    }
+}

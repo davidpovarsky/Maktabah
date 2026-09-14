@@ -21,7 +21,7 @@ enum UnifiedSearchScope: String, CaseIterable, Identifiable, Sendable {
 }
 
 struct HighlightDescriptor: Equatable, Sendable {
-    enum Engine: String, Sendable { case otzaria, zayit }
+    enum Engine: String, Sendable { case otzaria, sefaria, zayit }
     let literalTerms: [String]
     let matchedTerms: [String]
     let upstreamPattern: String?
@@ -36,7 +36,7 @@ struct HighlightDescriptor: Equatable, Sendable {
 
 struct UnifiedSearchResult: Identifiable {
     enum Payload {
-        case otzaria(SearchResultItem, OtzariaEngineSearchResult?)
+        case library(SearchResultItem, OtzariaEngineSearchResult?)
         case zayit(ZayitSearchHit)
     }
 
@@ -57,12 +57,15 @@ struct UnifiedSearchResult: Identifiable {
 }
 
 struct UnifiedSearchWorkspaceView: View {
+    @Environment(iOSNavigationManager.self) private var navigationManager
+    @ObservedObject private var backendCoordinator = BackendCoordinator.shared
     @StateObject private var otzaria = OtzariaTextSearchViewModel()
     @EnvironmentObject private var zayitSession: ZayitSearchSessionController
     @State private var scope: UnifiedSearchScope = .advanced
     @State private var query = ""
     @State private var showsAdvanced = false
     @State private var showsSearchData = false
+    @State private var showsBookFilters = false
     @State private var hasSubmitted = false
     @State private var customSpacingText = ""
     @State private var alternativeWordsText = ""
@@ -72,7 +75,7 @@ struct UnifiedSearchWorkspaceView: View {
     @State private var enablesAramaic = false
     @State private var ignoresQuotes = false
 
-    let openOtzaria: (SearchResultItem, HighlightDescriptor) -> Void
+    let openLibrary: (SearchResultItem, HighlightDescriptor) -> Void
     let openZayit: (ZayitSearchHit, HighlightDescriptor) -> Void
 
     var body: some View {
@@ -122,14 +125,18 @@ struct UnifiedSearchWorkspaceView: View {
             prompt: "חיפוש בכל הספרים"
         )
         .searchScopes($scope) {
-            ForEach(UnifiedSearchScope.allCases) { item in Text(item.title).tag(item) }
+            ForEach(availableScopes) { item in Text(item.title).tag(item) }
         }
         .onSubmit(of: .search, runSearch)
         .safeAreaInset(edge: .top) {
             VStack(spacing: 8) {
                 if scope == .advanced {
                     DisclosureGroup("אפשרויות חיפוש מתקדם", isExpanded: $showsAdvanced) {
-                        advancedControls
+                        if isSefaria {
+                            sefariaAdvancedControls(navigationManager.searchViewModel)
+                        } else {
+                            advancedControls
+                        }
                     }
                 }
                 HStack {
@@ -146,11 +153,59 @@ struct UnifiedSearchWorkspaceView: View {
         .sheet(isPresented: $showsSearchData) {
             NavigationStack { SearchDataView() }
         }
+        .sheet(isPresented: $showsBookFilters) {
+            SefariaBookFilterSheet()
+        }
         .task {
-            otzaria.refreshStatus()
-            await zayitSession.restoreIfNeeded(existingSeforimDB: ZayitSearchExistingDatabaseProvider.currentURL)
+            if !isSefaria {
+                otzaria.refreshStatus()
+                await zayitSession.restoreIfNeeded(existingSeforimDB: ZayitSearchExistingDatabaseProvider.currentURL)
+            }
+        }
+        .onChange(of: backendCoordinator.activeBackendID) { _, _ in
+            scope = .advanced
+            hasSubmitted = false
         }
         .environment(\.layoutDirection, .rightToLeft)
+    }
+
+    private var isSefaria: Bool { backendCoordinator.activeBackendID == .sefaria }
+
+    private var availableScopes: [UnifiedSearchScope] {
+        isSefaria ? [.exact, .advanced] : UnifiedSearchScope.allCases
+    }
+
+    private func sefariaAdvancedControls(_ viewModel: SearchViewModel) -> some View {
+        @Bindable var viewModel = viewModel
+        return VStack(alignment: .leading, spacing: 12) {
+            Picker("התאמת מילים", selection: $viewModel.backendSearchOptions.matchMode) {
+                Text("מדויק").tag(LibrarySearchMatchMode.exact)
+                Text("הטיות עבריות").tag(LibrarySearchMatchMode.hebrewLemmatized)
+            }
+            Stepper(
+                "מרחק בין מילים: \(viewModel.backendSearchOptions.wordDistance)",
+                value: $viewModel.backendSearchOptions.wordDistance,
+                in: 0...20
+            )
+            Picker("סדר תוצאות", selection: $viewModel.backendSearchOptions.sortOrder) {
+                Text("רלוונטיות").tag(LibrarySearchSortOrder.relevance)
+                Text("סדר הספרים").tag(LibrarySearchSortOrder.canonical)
+                Text("כרונולוגי").tag(LibrarySearchSortOrder.chronological)
+            }
+            Toggle("סדר הפוך", isOn: $viewModel.backendSearchOptions.reverseSort)
+            Button {
+                showsBookFilters = true
+            } label: {
+                Label(
+                    viewModel.selectedBookIds.isEmpty
+                        ? "סינון לפי ספרים"
+                        : "ספרים שנבחרו: \(viewModel.selectedBookIds.count)",
+                    systemImage: "line.3.horizontal.decrease.circle"
+                )
+            }
+        }
+        .pickerStyle(.menu)
+        .padding(.top, 6)
     }
 
     private var advancedControls: some View {
@@ -214,6 +269,28 @@ struct UnifiedSearchWorkspaceView: View {
     }
 
     private var results: [UnifiedSearchResult] {
+        if isSefaria {
+            return navigationManager.searchViewModel.results.enumerated().map { offset, item in
+                let locator = item.backendLocator
+                let descriptor = HighlightDescriptor(
+                    literalTerms: query.split(whereSeparator: \.isWhitespace).map(String.init),
+                    matchedTerms: [],
+                    upstreamPattern: nil,
+                    engine: .sefaria,
+                    fallbackQuery: query
+                )
+                return UnifiedSearchResult(
+                    id: "sefaria:\(locator?.persistenceKey ?? String(item.bookId)):\(offset)",
+                    engine: .sefaria,
+                    stableBookIdentity: locator?.workKey ?? "book:\(item.bookId)",
+                    title: locator?.workKey ?? item.bookTitle,
+                    reference: item.bookTitle,
+                    snippet: SearchInlineMarkupSanitizer.segments(from: item.attributedText.string),
+                    highlight: descriptor,
+                    payload: .library(item, nil)
+                )
+            }
+        }
         if scope == .zayit {
             return zayitSession.model.hits.map { hit in
                 let descriptor = HighlightDescriptor(
@@ -247,7 +324,7 @@ struct UnifiedSearchWorkspaceView: View {
                 stableBookIdentity: engine?.filePath ?? "book:\(item.bookId)",
                 title: item.bookTitle, reference: engine?.reference ?? "",
                 snippet: snippet,
-                highlight: descriptor, payload: .otzaria(item, engine)
+                highlight: descriptor, payload: .library(item, engine)
             )
         }
     }
@@ -263,6 +340,7 @@ struct UnifiedSearchWorkspaceView: View {
     }
 
     private var packageMissing: Bool {
+        if isSefaria { return false }
         if scope == .zayit { return zayitSession.state != .ready }
         return switch otzaria.status {
         case .ready: false
@@ -275,14 +353,28 @@ struct UnifiedSearchWorkspaceView: View {
         UnifiedSearchPresentationPolicy.resolve(
             resultCount: results.count,
             isLoading: isLoading,
-            errorMessage: scope == .zayit ? zayitSession.model.errorMessage : otzaria.errorMessage,
+            errorMessage: searchErrorMessage,
             hasSubmitted: hasSubmitted,
             indexReady: !packageMissing
         )
     }
 
-    private var isLoading: Bool { scope == .zayit ? zayitSession.model.isLoading : otzaria.isSearching }
+    private var searchErrorMessage: String? {
+        if isSefaria, case .error(let message) = navigationManager.searchViewModel.state { return message }
+        return scope == .zayit ? zayitSession.model.errorMessage : otzaria.errorMessage
+    }
+
+    private var isLoading: Bool {
+        if isSefaria { return navigationManager.searchViewModel.isSearching }
+        return scope == .zayit ? zayitSession.model.isLoading : otzaria.isSearching
+    }
     private var statusText: String {
+        if isSefaria {
+            let model = navigationManager.searchViewModel
+            if model.isSearching { return "מחפש ב־Sefaria…" }
+            if !model.results.isEmpty { return "\(model.results.count) מתוך \(model.totalTables) תוצאות" }
+            return model.selectedBookIds.isEmpty ? "Sefaria" : "סינון ל־\(model.selectedBookIds.count) ספרים"
+        }
         if scope == .zayit {
             if let error = zayitSession.model.errorMessage { return error }
             return zayitSession.model.hits.isEmpty ? "זית" : "תוצאות זית"
@@ -294,6 +386,17 @@ struct UnifiedSearchWorkspaceView: View {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
         hasSubmitted = true
+        if isSefaria {
+            let viewModel = navigationManager.searchViewModel
+            viewModel.query = trimmed
+            if scope == .exact {
+                viewModel.backendSearchOptions.matchMode = .exact
+                viewModel.backendSearchOptions.wordDistance = 0
+            }
+            viewModel.addToHistory(trimmed)
+            Task { await viewModel.startSearch() }
+            return
+        }
         if scope == .zayit {
             zayitSession.model.query = trimmed
             zayitSession.model.runSearch()
@@ -376,7 +479,7 @@ struct UnifiedSearchWorkspaceView: View {
 
     private func open(_ result: UnifiedSearchResult) {
         switch result.payload {
-        case .otzaria(let item, _): openOtzaria(item, result.highlight)
+        case .library(let item, _): openLibrary(item, result.highlight)
         case .zayit(let hit): openZayit(hit, result.highlight)
         }
     }
@@ -391,6 +494,31 @@ struct UnifiedSearchWorkspaceView: View {
         #if canImport(UIKit)
         UIPasteboard.general.string = text
         #endif
+    }
+}
+
+private struct SefariaBookFilterSheet: View {
+    @Environment(iOSNavigationManager.self) private var navigationManager
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        @Bindable var viewModel = navigationManager.searchViewModel
+        NavigationStack {
+            SearchFilterUIKitView(
+                viewModel: viewModel,
+                displayedCategories: viewModel.displayedCategories,
+                updateTrigger: viewModel.updateTrigger,
+                onTap: {}
+            )
+            .themeTint()
+            .navigationTitle("סינון לפי ספרים")
+            .searchable(text: $viewModel.filterText, prompt: "חיפוש ספר")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("סיום") { dismiss() }
+                }
+            }
+        }
     }
 }
 

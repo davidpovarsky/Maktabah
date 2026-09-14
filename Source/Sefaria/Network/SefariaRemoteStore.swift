@@ -93,7 +93,11 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         let url = try configuration.apiURL(path: "/api/search-wrapper")
         let response = try await client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
-            query: request.query, start: request.offset, size: request.limit, filters: request.filters
+            query: request.query,
+            start: request.offset,
+            size: request.limit,
+            filters: request.filters,
+            options: request.options
         ))
         if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
         let hits = response.hits.hits.compactMap { hit -> LibrarySearchHit? in

@@ -339,6 +339,29 @@ struct LibrarySearchRequest: Codable, Hashable, Sendable {
     let offset: Int
     let limit: Int
     var filters: [String] = []
+    var options = LibrarySearchOptions()
+}
+
+enum LibrarySearchMatchMode: String, Codable, CaseIterable, Identifiable, Sendable {
+    case exact
+    case hebrewLemmatized
+
+    var id: Self { self }
+}
+
+enum LibrarySearchSortOrder: String, Codable, CaseIterable, Identifiable, Sendable {
+    case relevance
+    case canonical
+    case chronological
+
+    var id: Self { self }
+}
+
+struct LibrarySearchOptions: Codable, Hashable, Sendable {
+    var matchMode: LibrarySearchMatchMode = .hebrewLemmatized
+    var wordDistance: Int = 10
+    var sortOrder: LibrarySearchSortOrder = .relevance
+    var reverseSort = false
 }
 
 struct LibrarySearchHit: Codable, Hashable, Identifiable, Sendable {

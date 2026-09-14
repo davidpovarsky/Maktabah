@@ -60,6 +60,25 @@ class AnnotationCoordinator {
         return findLargestOverlap(in: anns, with: selectionRange, showHarakat: showHarakat)
     }
 
+    func findBestAnnotation(
+        overlapping selectionRange: NSRange,
+        in annotations: [Annotation],
+        showHarakat: Bool
+    ) -> Annotation? {
+        let containing = annotations.filter { annotation in
+            let range = showHarakat ? annotation.rangeDiacritics : annotation.range
+            return range.contains(selectionRange)
+        }
+        if let best = containing.min(by: { left, right in
+            let leftRange = showHarakat ? left.rangeDiacritics : left.range
+            let rightRange = showHarakat ? right.rangeDiacritics : right.range
+            return leftRange.length < rightRange.length
+        }) {
+            return best
+        }
+        return findLargestOverlap(in: annotations, with: selectionRange, showHarakat: showHarakat)
+    }
+
     @discardableResult
     func saveHighlight(
         text: String,
@@ -85,7 +104,7 @@ class AnnotationCoordinator {
 
         let hex = color.hexString()
 
-        let ann = Annotation(
+        var ann = Annotation(
             id: nil,
             bkId: bkId,
             contentId: contentId,
@@ -103,7 +122,10 @@ class AnnotationCoordinator {
             backendLocator: backendLocator
         )
 
-        try manager.addAnnotation(ann)
+        ann.id = try manager.addAnnotation(ann)
+        if let id = ann.id, let saved = manager.loadAnnotationById(id) {
+            return saved
+        }
         return ann
     }
 

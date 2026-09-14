@@ -84,34 +84,27 @@ struct iPhoneLayout: View {
 
     @ViewBuilder
     private var textSearchTabContent: some View {
-        if BackendCoordinator.shared.usesNativeMaktabahDataPath {
-            NavigationStack {
-                UnifiedSearchWorkspaceView(
-                    openOtzaria: { item, descriptor in
-                        guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
-                        bManager.openBook(book, initialContentId: item.page, searchText: descriptor.readerFallback)
-                    },
-                    openZayit: { hit, _ in
-                        ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
-                    }
-                )
-                .navigationTitle(iOSTab.textSearch.title)
-                .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
-                    manager: bManager
-                )
-                .toolbarGeneral(showSettings: $showSettings)
-            }
-        } else {
-            NavigationStack {
-                SearchModeView()
-                    .navigationTitle(iOSTab.textSearch.title)
-                    .adaptiveReaderPush(
-                        item: $bManager.selectedBook,
-                        manager: bManager
+        NavigationStack {
+            UnifiedSearchWorkspaceView(
+                openLibrary: { item, descriptor in
+                    guard let book = bManager.searchViewModel.resolveBook(from: item) else { return }
+                    let targetContentId = item.backendLocator != nil ? item.bookId : item.page
+                    bManager.openBook(
+                        book,
+                        initialContentId: targetContentId,
+                        searchText: descriptor.readerFallback
                     )
-                    .toolbarGeneral(showSettings: $showSettings)
-            }
+                },
+                openZayit: { hit, _ in
+                    ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
+                }
+            )
+            .navigationTitle(iOSTab.textSearch.title)
+            .adaptiveReaderPush(
+                item: $bManager.selectedBook,
+                manager: bManager
+            )
+            .toolbarGeneral(showSettings: $showSettings)
         }
     }
 

@@ -216,7 +216,9 @@ run_shared_torah_diagnostic() {
   local backend="$1"
   local language="$2"
   local locale="$3"
-  local report="$CONTAINER/Documents/shared-torah-${backend}-${language}.json"
+  local annotation_phase="${4:-}"
+  local suffix="${5:-}"
+  local report="$CONTAINER/Documents/shared-torah-${backend}-${language}${suffix}.json"
   rm -f "$report"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 
@@ -225,20 +227,22 @@ run_shared_torah_diagnostic() {
     SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC="$backend" \
     SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC_LOCALE="$language" \
     SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC_RESULT="$report" \
+    SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC_ANNOTATION_PHASE="$annotation_phase" \
       xcrun simctl launch "$UDID" "$BUNDLE_ID" \
         -AppleLanguages "($language)" -AppleLocale "$locale"
   )"
   local pid
   pid="$(echo "$launch_output" | grep -o '[0-9]\+' | tail -1)"
-  wait_report "$report" "$pid" "shared-torah-${backend}-${language}" 240
-  cp "$report" "$REPORT_DIR/shared-torah-${backend}-${language}.json"
+  wait_report "$report" "$pid" "shared-torah-${backend}-${language}${suffix}" 300
+  cp "$report" "$REPORT_DIR/shared-torah-${backend}-${language}${suffix}.json"
 }
 
 # Continue through the complete 2 x 2 matrix before enforcing any failures.
-run_shared_torah_diagnostic otzaria he he_IL
+run_shared_torah_diagnostic otzaria he he_IL seed-otzaria
 run_shared_torah_diagnostic otzaria en en_US
-run_shared_torah_diagnostic sefaria he he_IL
+run_shared_torah_diagnostic sefaria he he_IL verify-otzaria-seed-sefaria
 run_shared_torah_diagnostic sefaria en en_US
+run_shared_torah_diagnostic otzaria he he_IL verify-sefaria-seed-cleanup -cross-return
 
 python3 - "$REPORT_DIR" <<'PY'
 import json
@@ -247,18 +251,16 @@ import sys
 
 root = pathlib.Path(sys.argv[1])
 reports = []
-for backend in ("otzaria", "sefaria"):
-    for language in ("he", "en"):
-        path = root / f"shared-torah-{backend}-{language}.json"
-        report = json.loads(path.read_text())
-        reports.append(report)
-        for row in report["rows"]:
-            status = "PASS" if row["passed"] else "FAIL"
-            error = row.get("error") or ""
-            print(
-                f'{row["backend"]} | {row["locale"]} | {row["component"]} | '
-                f'{row["input"]} | {row["expected"]} | {row["actual"]} | {status} | {error}'
-            )
+for path in sorted(root.glob("shared-torah-*.json")):
+    report = json.loads(path.read_text())
+    reports.append(report)
+    for row in report["rows"]:
+        status = "PASS" if row["passed"] else "FAIL"
+        error = row.get("error") or ""
+        print(
+            f'{row["backend"]} | {row["locale"]} | {row["component"]} | '
+            f'{row["input"]} | {row["expected"]} | {row["actual"]} | {status} | {error}'
+        )
 
 failures = [row for report in reports for row in report["rows"] if not row["passed"]]
 if failures:

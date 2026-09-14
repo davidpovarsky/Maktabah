@@ -10,6 +10,12 @@ enum MaktabahBackendAdapter {
 
     static func loadLibraryIfNeeded() async throws -> (roots: [CategoryData], books: [Int: BooksData])? {
         guard usesGenericModels else { return nil }
+        if (try? OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()) == true,
+           let otzariaBooks = try? OtzariaMaktabahBridge.shared.fetchAllBooks() {
+            CrossBackendBookIdentityIndex.shared.prepare(
+                otzariaBooks: otzariaBooks.map { (id: $0.id, title: $0.book) }
+            )
+        }
         let nodes = try await BackendCoordinator.shared.catalog()
         var books: [Int: BooksData] = [:]
 
@@ -18,7 +24,9 @@ enum MaktabahBackendAdapter {
                 let title = LibraryPresentationPolicy.prefersHebrew()
                     ? (work.heTitle ?? work.title)
                     : work.title
-                let id = LegacyIdentityRegistry.shared.id(for: work.locator, title: title)
+                let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: work)
+                    ?? LegacyIdentityRegistry.shared.id(for: work.locator, title: title)
+                CrossBackendBookIdentityIndex.shared.register(work, canonicalID: id)
                 let book = BooksData(id: id, book: title, archive: 0, muallif: 0,
                     bithoqoh: work.description ?? "", info: work.title)
                 book.backendLocator = work.locator
@@ -57,7 +65,8 @@ enum MaktabahBackendAdapter {
     static func searchItem(from hit: LibrarySearchHit) -> SearchResultItem {
         let workLocator = TextLocator(backend: hit.locator.backend, workKey: hit.locator.workKey,
             position: hit.locator.backend == .sefaria ? .canonicalRef(hit.locator.workKey) : .legacyLine(0))
-        let id = LegacyIdentityRegistry.shared.id(for: workLocator)
+        let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: workLocator)
+            ?? LegacyIdentityRegistry.shared.id(for: workLocator)
         let resultID = LegacyIdentityRegistry.shared.id(for: hit.locator)
         let displayRef = LibraryPresentationPolicy.prefersHebrew()
             ? (hit.heRef ?? hit.displayRef)
@@ -71,7 +80,9 @@ enum MaktabahBackendAdapter {
     static func resolveBook(for locator: TextLocator, in manager: LibraryDataManager) -> BooksData? {
         let workLocator = TextLocator(backend: locator.backend, workKey: locator.workKey,
             position: locator.backend == .sefaria ? .canonicalRef(locator.workKey) : .legacyLine(0))
-        guard let original = manager.getBook([LegacyIdentityRegistry.shared.id(for: workLocator)]).first else { return nil }
+        let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: workLocator)
+            ?? LegacyIdentityRegistry.shared.id(for: workLocator)
+        guard let original = manager.getBook([id]).first else { return nil }
         let copy = BooksData(id: original.id, book: original.book, archive: original.archive,
             muallif: original.muallif, bithoqoh: original.bithoqoh, info: original.info,
             backendLocator: locator)

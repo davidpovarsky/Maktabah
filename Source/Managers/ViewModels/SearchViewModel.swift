@@ -36,6 +36,7 @@ final class SearchViewModel: ViewModelBase {
     private(set) var totalRowsInTable: Int = 0
     private(set) var completedRowsInTable: Int = 0
     private(set) var selectedBookIds: Set<Int> = []
+    var backendSearchOptions = LibrarySearchOptions()
 
     #if os(macOS)
     @Published var state: ViewModelState = .loading
@@ -672,7 +673,8 @@ final class SearchViewModel: ViewModelBase {
                         query: requestQuery,
                         offset: offset,
                         limit: pageSize,
-                        filters: backendFilters
+                        filters: backendFilters,
+                        options: backendSearchOptions
                     ))
                     try Task.checkCancellation()
                     results.append(contentsOf: page.hits.map(MaktabahBackendAdapter.searchItem))
