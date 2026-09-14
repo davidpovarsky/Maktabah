@@ -22,7 +22,6 @@ struct AuthorModeView: View {
                 maktabahNarratorsView(viewModel: navigationManager.authorViewModel)
             }
         }
-        .environment(\.layoutDirection, .rightToLeft)
     }
 
     @ViewBuilder

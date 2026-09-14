@@ -30,6 +30,10 @@ func runDecodingTests() throws {
     let richTopics = try decoder.decode([SefariaRelationshipTopicDTO].self, from: Data(#"[{"topic":"creation","descriptions":{"en":{"title":"Creation"},"he":{"title":"בריאה"}}},{"topic":"creation"}]"#.utf8))
     let topics = SefariaRelationshipMapper.topics(richTopics)
     try expect(topics.count == 1 && topics[0].titleHe == "בריאה", "rich topic mapping and deduplication")
+
+    let directTitleTopics = try decoder.decode([SefariaRelationshipTopicDTO].self, from: Data(#"[{"topic":"shabbat","title":{"en":"Shabbat","he":"שבת"}}]"#.utf8))
+    let mappedDirectTopics = SefariaRelationshipMapper.topics(directTitleTopics)
+    try expect(mappedDirectTopics.count == 1 && mappedDirectTopics[0].titleHe == "שבת" && mappedDirectTopics[0].titleEn == "Shabbat", "direct topic title mapping")
     do {
         _ = try decoder.decode(SefariaTextsV3DTO.self, from: Data("{bad".utf8))
         throw TestFailure.failed("malformed response was accepted")

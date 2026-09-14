@@ -284,6 +284,26 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(backendLocator?.persistenceKey ?? "legacy:\(bookId)")
     }
+
+    func formatForClipboard() -> String {
+        let isHebrewBackend = backendLocator != nil || archive == "Otzaria" || archive == "Sefaria"
+        if isHebrewBackend {
+            var locationParts: [String] = []
+            if part > 0 { locationParts.append("כרך: \(part)") }
+            if page > 0 { locationParts.append("עמ': \(page)") }
+            let location = locationParts.joined(separator: " • ")
+            if !location.isEmpty {
+                return "\(bookTitle) - \(location)\n\(attributedText.string)\n\n"
+            }
+            return "\(bookTitle)\n\(attributedText.string)\n\n"
+        }
+        let pageArab = String(page).convertToArabicDigits()
+        let partArab = String(part).convertToArabicDigits()
+        if page != -1, part != -1 {
+            return "\(bookTitle) - ج: \(partArab) • ص: \(pageArab)\n\(attributedText.string)\n\n"
+        }
+        return "\(bookTitle)\n\(attributedText.string)\n\n"
+    }
 }
 
 enum SearchSortKey: String, CaseIterable {

@@ -255,13 +255,18 @@ final class OtzariaMaktabahBridge {
         """) { row -> BooksData in
             let shortDescription = row.string(at: 5) ?? ""
             let filePath = row.string(at: 6) ?? ""
+            let bookId = row.int(at: 0)
+            let workKey = !filePath.isEmpty ? filePath : "book:\(bookId)"
+            let locator = TextLocator(backend: .otzaria, workKey: workKey, position: .legacyLine(0))
             let book = BooksData(
-                id: row.int(at: 0),
+                id: bookId,
                 book: row.string(at: 1) ?? "Untitled",
                 archive: 0,
                 muallif: row.int(at: 8),
                 bithoqoh: shortDescription,
-                info: shortDescription.isEmpty ? filePath : shortDescription
+                info: shortDescription.isEmpty ? filePath : shortDescription,
+                backendLocator: locator,
+                backendSearchPath: filePath.isEmpty ? nil : filePath
             )
             book.catId = row.int(at: 2)
             book.orderIndex = row.isNull(at: 3) ? nil : row.int(at: 3)
@@ -331,13 +336,18 @@ final class OtzariaMaktabahBridge {
         """, parameters: [authorId]) { row -> BooksData in
             let shortDescription = row.string(at: 5) ?? ""
             let filePath = row.string(at: 6) ?? ""
+            let bookId = row.int(at: 0)
+            let workKey = !filePath.isEmpty ? filePath : "book:\(bookId)"
+            let locator = TextLocator(backend: .otzaria, workKey: workKey, position: .legacyLine(0))
             let book = BooksData(
-                id: row.int(at: 0),
+                id: bookId,
                 book: row.string(at: 1) ?? "Untitled",
                 archive: 0,
                 muallif: row.int(at: 8),
                 bithoqoh: shortDescription,
-                info: shortDescription.isEmpty ? filePath : shortDescription
+                info: shortDescription.isEmpty ? filePath : shortDescription,
+                backendLocator: locator,
+                backendSearchPath: filePath.isEmpty ? nil : filePath
             )
             book.catId = row.int(at: 2)
             book.orderIndex = row.isNull(at: 3) ? nil : row.int(at: 3)
@@ -384,13 +394,17 @@ final class OtzariaMaktabahBridge {
         """, parameters: [bookId]) { row -> BooksData in
             let shortDescription = row.string(at: 3) ?? ""
             let filePath = row.string(at: 6) ?? ""
+            let workKey = !filePath.isEmpty ? filePath : "book:\(bookId)"
+            let locator = TextLocator(backend: .otzaria, workKey: workKey, position: .legacyLine(0))
             let book = BooksData(
                 id: row.int(at: 0),
                 book: row.string(at: 1) ?? "Untitled",
                 archive: 0,
                 muallif: row.int(at: 7),
                 bithoqoh: shortDescription,
-                info: shortDescription.isEmpty ? filePath : shortDescription
+                info: shortDescription.isEmpty ? filePath : shortDescription,
+                backendLocator: locator,
+                backendSearchPath: filePath.isEmpty ? nil : filePath
             )
             book.catId = row.int(at: 2)
             book.orderIndex = row.isNull(at: 4) ? nil : row.int(at: 4)
@@ -406,14 +420,16 @@ final class OtzariaMaktabahBridge {
             let rows = try database.fetch(query: """
                 SELECT b.id
                 FROM book b
-                WHERE COALESCE(NULLIF(TRIM(\(schema.filePath)), ''), 'book:' || b.id) = ?
+                WHERE NULLIF(TRIM(\(schema.filePath)), '') = ?
+                   OR 'book:' || b.id = ?
                 LIMIT 2
-            """, parameters: [stableKey]) { row in row.int(at: 0) }
+            """, parameters: [stableKey, stableKey]) { row in row.int(at: 0) }
             guard rows.count == 1 else { return nil }
             // A real canonical source path is authoritative across database
             // rebuilds where numeric IDs may change. Only the documented
             // `book:<id>` fallback remains tied to the original numeric ID.
-            if stableKey.hasPrefix("book:"), rows[0] != expectedBookId { return nil }
+            let effectiveExpected = expectedBookId > 0 ? expectedBookId : (stableKey.hasPrefix("book:") ? Int(stableKey.dropFirst("book:".count)) : nil)
+            if let effectiveExpected, rows[0] != effectiveExpected { return nil }
             return rows[0]
         }
         guard let resolvedID else { return nil }

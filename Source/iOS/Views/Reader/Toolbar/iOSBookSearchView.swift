@@ -22,7 +22,12 @@ struct iOSBookSearchView: View {
                 // Results List
                 SearchResultsListView(
                     results: viewModel.results,
-                    showsBookTitle: false
+                    showsBookTitle: false,
+                    isLoadingMore: viewModel.isLoadingMoreBackendResults,
+                    hasMore: viewModel.hasMoreBackendResults,
+                    onLoadMore: {
+                        viewModel.loadNextBackendPage()
+                    }
                 ) { item in
                     onSelect(item.bookId, viewModel.query)
                 }

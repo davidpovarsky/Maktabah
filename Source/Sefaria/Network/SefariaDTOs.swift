@@ -218,6 +218,7 @@ struct SefariaTopicDescriptionDTO: Codable, Hashable, Sendable {
 struct SefariaRelationshipTopicDTO: Codable, Hashable, Sendable {
     let topic: String?
     let descriptions: [String: SefariaTopicDescriptionDTO]?
+    let title: SefariaLocalizedTitleDTO?
 }
 
 enum SefariaRelationshipMapper {
@@ -249,10 +250,12 @@ enum SefariaRelationshipMapper {
         var seen = Set<String>()
         return rows.compactMap { row in
             guard let slug = row.topic?.nonEmpty, seen.insert(slug).inserted else { return nil }
+            let titleHe = row.title?.he?.nonEmpty ?? row.descriptions?["he"]?.title?.nonEmpty
+            let titleEn = row.title?.en?.nonEmpty ?? row.descriptions?["en"]?.title?.nonEmpty
             return LibraryRelatedTopic(
                 slug: slug,
-                titleHe: row.descriptions?["he"]?.title?.nonEmpty,
-                titleEn: row.descriptions?["en"]?.title?.nonEmpty
+                titleHe: titleHe,
+                titleEn: titleEn
             )
         }
     }

@@ -37,6 +37,15 @@ final class SearchViewModel: ViewModelBase {
     private(set) var completedRowsInTable: Int = 0
     private(set) var selectedBookIds: Set<Int> = []
     var backendSearchOptions = LibrarySearchOptions()
+    private(set) var backendNextOffset: Int? = nil
+    private(set) var backendTotalResults: Int = 0
+    private(set) var isLoadingMoreBackendResults: Bool = false
+    var hasMoreBackendResults: Bool {
+        backendNextOffset != nil && results.count < backendTotalResults
+    }
+    private var backendSearchGeneration: UInt64 = 0
+    private var loadMoreBackendWork: Task<Void, Never>?
+    let backendPageSize = 100
 
     #if os(macOS)
     @Published var state: ViewModelState = .loading
@@ -648,9 +657,17 @@ final class SearchViewModel: ViewModelBase {
     @MainActor
     private func startBackendSearch() async {
         searchWork?.cancel()
+        loadMoreBackendWork?.cancel()
+        loadMoreBackendWork = nil
+        backendSearchGeneration &+= 1
+        let generation = backendSearchGeneration
+
         isSearching = true
         isPaused = false
         results = []
+        backendNextOffset = nil
+        backendTotalResults = 0
+        isLoadingMoreBackendResults = false
         totalTables = 0
         completedTables = 0
         completedRowsInTable = 0
@@ -663,54 +680,110 @@ final class SearchViewModel: ViewModelBase {
         }
         let task = Task { @MainActor [weak self] in
             guard let self else { return }
-            var offset = 0
-            let pageSize = 100
-            let maximumDisplayedResults = 1_000
-            var seenOffsets = Set<Int>()
             do {
-                while seenOffsets.insert(offset).inserted {
-                    let page = try await BackendCoordinator.shared.search(.init(
-                        query: requestQuery,
-                        offset: offset,
-                        limit: pageSize,
-                        filters: backendFilters,
-                        options: backendSearchOptions
-                    ))
-                    try Task.checkCancellation()
-                    results.append(contentsOf: page.hits.map(MaktabahBackendAdapter.searchItem))
-                    totalTables = max(page.total, 1)
-                    completedTables = results.count
-                    if results.count >= maximumDisplayedResults {
-                        results = Array(results.prefix(maximumDisplayedResults))
-                        break
-                    }
-                    guard let next = page.nextOffset, next > offset else { break }
-                    offset = next
-                }
+                let page = try await BackendCoordinator.shared.search(.init(
+                    query: requestQuery,
+                    offset: 0,
+                    limit: backendPageSize,
+                    filters: backendFilters,
+                    options: backendSearchOptions
+                ))
+                try Task.checkCancellation()
+                guard self.backendSearchGeneration == generation else { return }
+
+                results = page.hits.map(MaktabahBackendAdapter.searchItem)
+                backendTotalResults = page.total
+                backendNextOffset = page.nextOffset
+                totalTables = max(page.total, 1)
+                completedTables = results.count
                 isSearching = false
                 #if os(macOS)
                 searchDidComplete.send()
                 #endif
             } catch is CancellationError {
-                isSearching = false
+                if self.backendSearchGeneration == generation {
+                    isSearching = false
+                }
             } catch LibraryBackendError.staleRequest {
-                results = []
-                isSearching = false
+                if self.backendSearchGeneration == generation {
+                    results = []
+                    isSearching = false
+                }
             } catch {
-                isSearching = false
-                state = .error(error.localizedDescription)
+                if self.backendSearchGeneration == generation {
+                    isSearching = false
+                    state = .error(error.localizedDescription)
+                }
             }
-            searchWork = nil
+            if self.searchWork == task {
+                self.searchWork = nil
+            }
         }
         searchWork = task
         await task.value
+    }
+
+    @MainActor
+    func loadNextBackendPage() {
+        guard !isSearching,
+              !isLoadingMoreBackendResults,
+              let offset = backendNextOffset,
+              offset > 0,
+              results.count < backendTotalResults else { return }
+
+        isLoadingMoreBackendResults = true
+        let generation = backendSearchGeneration
+        let requestQuery = query
+        let backendFilters = selectedBookIds.compactMap { bookID in
+            let book = ldm.booksById[bookID]
+            return book?.backendSearchPath ?? book?.backendLocator?.workKey
+        }
+
+        loadMoreBackendWork?.cancel()
+        let task = Task { @MainActor [weak self] in
+            guard let self else { return }
+            do {
+                let page = try await BackendCoordinator.shared.search(.init(
+                    query: requestQuery,
+                    offset: offset,
+                    limit: backendPageSize,
+                    filters: backendFilters,
+                    options: backendSearchOptions
+                ))
+                try Task.checkCancellation()
+                guard self.backendSearchGeneration == generation else { return }
+
+                let newItems = page.hits.map(MaktabahBackendAdapter.searchItem)
+                results.append(contentsOf: newItems)
+                backendNextOffset = page.nextOffset
+                completedTables = results.count
+                isLoadingMoreBackendResults = false
+            } catch is CancellationError {
+                if self.backendSearchGeneration == generation {
+                    isLoadingMoreBackendResults = false
+                }
+            } catch {
+                if self.backendSearchGeneration == generation {
+                    // Preserve loaded pages on error; allow retry
+                    isLoadingMoreBackendResults = false
+                }
+            }
+            if self.loadMoreBackendWork == task {
+                self.loadMoreBackendWork = nil
+            }
+        }
+        loadMoreBackendWork = task
     }
 
     func stopSearch() {
         searchEngine.stop()
         searchWork?.cancel()
         searchWork = nil
+        loadMoreBackendWork?.cancel()
+        loadMoreBackendWork = nil
+        backendSearchGeneration &+= 1
         isSearching = false
+        isLoadingMoreBackendResults = false
         isPaused = false
 
         #if os(macOS)
@@ -722,6 +795,8 @@ final class SearchViewModel: ViewModelBase {
     func clearResults() {
         stopSearch()
         results.removeAll()
+        backendNextOffset = nil
+        backendTotalResults = 0
     }
 
     func sortResults(by key: SearchSortKey, ascending: Bool) {

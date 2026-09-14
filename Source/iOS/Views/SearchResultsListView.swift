@@ -3,13 +3,30 @@ import SwiftUI
 struct SearchResultsListView: View {
     let results: [SearchResultItem]
     var showsBookTitle: Bool = true
+    var isLoadingMore: Bool = false
+    var hasMore: Bool = false
+    var onLoadMore: (() -> Void)? = nil
     let onSelect: (SearchResultItem) -> Void
 
     var body: some View {
         ThemeList(isGrouped: false) {
-            ForEach(Array(results.enumerated()), id: \.offset) { _, item in
+            ForEach(Array(results.enumerated()), id: \.offset) { index, item in
                 Button(action: { onSelect(item) }) {
                     SearchResultRow(item: item, showsBookTitle: showsBookTitle)
+                }
+                .onAppear {
+                    if index >= max(0, results.count - 10), hasMore, !isLoadingMore {
+                        onLoadMore?()
+                    }
+                }
+            }
+
+            if isLoadingMore {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding(.vertical, 8)
+                    Spacer()
                 }
             }
         }
@@ -20,6 +37,23 @@ struct SearchResultsListView: View {
 struct SearchResultRow: View {
     let item: SearchResultItem
     var showsBookTitle: Bool = true
+
+    private var locationText: String {
+        let isHebrewBackend = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+        if isHebrewBackend {
+            var parts: [String] = []
+            if item.part > 0 {
+                parts.append(String(format: NSLocalizedString("search.result.volume", default: "כרך %d", comment: ""), item.part))
+            }
+            if item.page > 0 {
+                parts.append(String(format: NSLocalizedString("search.result.page", default: "עמ' %d", comment: ""), item.page))
+            }
+            return parts.joined(separator: " • ")
+        } else {
+            return "ص: \(item.page)".convertToArabicDigits() +
+                " -" + "ج: \(item.part)".convertToArabicDigits()
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -34,12 +68,9 @@ struct SearchResultRow: View {
                         .frame(maxHeight: 18)
                 }
 
-                Text(
-                    "ص: \(item.page)".convertToArabicDigits() +
-                        " -" + "ج: \(item.part)".convertToArabicDigits()
-                )
-                .font(.caption)
-                .foregroundColor(.secondary)
+                Text(locationText)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
 
             Text(AttributedString(item.attributedText))
@@ -49,7 +80,6 @@ struct SearchResultRow: View {
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .environment(\.layoutDirection, .rightToLeft)
         .padding(.vertical, 4)
         .contentShape(Rectangle())
     }

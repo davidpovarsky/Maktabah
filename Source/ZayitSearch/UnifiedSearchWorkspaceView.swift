@@ -166,7 +166,6 @@ struct UnifiedSearchWorkspaceView: View {
             scope = .advanced
             hasSubmitted = false
         }
-        .environment(\.layoutDirection, .rightToLeft)
     }
 
     private var isSefaria: Bool { backendCoordinator.activeBackendID == .sefaria }

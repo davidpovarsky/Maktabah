@@ -107,7 +107,6 @@ struct iPadLayout: View {
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
         }
-        .environment(\.layoutDirection, .rightToLeft)
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
             if detailMode == .textSearch && !BackendCoordinator.shared.capabilities.contains(.search) {
                 transitionSidebar(to: .search)

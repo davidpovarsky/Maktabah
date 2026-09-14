@@ -78,6 +78,38 @@ enum MaktabahBackendAdapter {
     }
 
     static func resolveBook(for locator: TextLocator, in manager: LibraryDataManager) -> BooksData? {
+        if locator.backend == .otzaria {
+            let numericId = locator.workKey.hasPrefix("book:")
+                ? Int(locator.workKey.dropFirst("book:".count))
+                : nil
+            if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(
+                stableKey: locator.workKey,
+                expectedBookId: numericId ?? 0
+            ) {
+                let copy = BooksData(
+                    id: resolved.id, book: resolved.book, archive: resolved.archive,
+                    muallif: resolved.muallif, bithoqoh: resolved.bithoqoh, info: resolved.info,
+                    backendLocator: locator, backendSearchPath: resolved.backendSearchPath
+                )
+                copy.catId = resolved.catId
+                copy.pdfCs = resolved.pdfCs
+                copy.orderIndex = resolved.orderIndex
+                copy.totalLines = resolved.totalLines
+                return copy
+            }
+            if let numericId, let direct = manager.getBook([numericId]).first {
+                let copy = BooksData(
+                    id: direct.id, book: direct.book, archive: direct.archive,
+                    muallif: direct.muallif, bithoqoh: direct.bithoqoh, info: direct.info,
+                    backendLocator: locator, backendSearchPath: direct.backendSearchPath
+                )
+                copy.catId = direct.catId
+                copy.pdfCs = direct.pdfCs
+                copy.orderIndex = direct.orderIndex
+                copy.totalLines = direct.totalLines
+                return copy
+            }
+        }
         let workLocator = TextLocator(backend: locator.backend, workKey: locator.workKey,
             position: locator.backend == .sefaria ? .canonicalRef(locator.workKey) : .legacyLine(0))
         let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: workLocator)

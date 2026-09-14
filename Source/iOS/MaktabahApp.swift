@@ -137,6 +137,14 @@ struct MaktabahApp: App {
                             }
                         }
                     }
+                    .onChange(of: scenePhase) { _, newPhase in
+                        if newPhase == .background {
+                            // Release Tantivy file locks, mmap regions, and any
+                            // background worker threads before suspension. Engines
+                            // reopen lazily on next search use.
+                            OtzariaTantivySearchRepository.shared.closeAllEngines()
+                        }
+                    }
             }
         }
     }
@@ -162,7 +170,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         CloudKitSyncManager.shared.fetchChanges()
         completionHandler(.newData)
     }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        OtzariaTantivySearchRepository.shared.closeAllEngines()
+    }
     func applicationWillTerminate(_ application: UIApplication) {
+        OtzariaTantivySearchRepository.shared.closeAllEngines()
         CloudKitCoreManager.shared.syncWorker()
     }
 }

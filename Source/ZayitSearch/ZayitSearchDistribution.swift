@@ -469,10 +469,17 @@ private extension ZayitSearchArtifactService {
         progress: @escaping @Sendable (Int64) -> Void
     ) throws {
         let destination = root.appendingPathComponent(part.destinationPath)
-        guard destination.standardizedFileURL.path.hasPrefix(root.standardizedFileURL.path + "/") else {
+        guard OtzariaSearchArtifactPolicy.validateSafeRelativePath(part.destinationPath) else {
             throw ZayitSearchDistributionError.unsafePath(part.destinationPath)
         }
+        let resolvedRoot = root.resolvingSymlinksInPath().path + "/"
         try FileManager.default.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true)
+        let resolvedDest = destination.deletingLastPathComponent()
+            .resolvingSymlinksInPath()
+            .appendingPathComponent(destination.lastPathComponent).path
+        guard resolvedDest.hasPrefix(resolvedRoot) else {
+            throw ZayitSearchDistributionError.unsafePath(part.destinationPath)
+        }
         do {
             try OtzariaZstdStreamExtractor().extractPart(
                 archiveURL: archive,

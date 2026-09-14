@@ -57,7 +57,7 @@ class BookTOCViewModel {
                     tocNodes = tree
                     let allNodes = flattenNodes(tree)
                     tocRanges = allNodes.map { TOCRange(start: $0.id, end: $0.id, node: $0) }
-                    nodeIdCache = Dictionary(uniqueKeysWithValues: allNodes.map { ($0.id, $0) })
+                    nodeIdCache = Self.buildNodeIdCache(allNodes)
                     onTOCLoaded?(tree)
                 } catch { print("Failed to load backend TOC: \(error)") }
                 onTOCLoadingStateChanged?(false)
@@ -203,6 +203,26 @@ class BookTOCViewModel {
             }
         }
         return nil
+    }
+
+    /// Build the id→node lookup safely. Two TOC nodes may legitimately share
+    /// the same navigation-target locator (hence the same surrogate ID from
+    /// LegacyIdentityRegistry). When duplicates exist, keep the deepest-level
+    /// node so `findNodeById` returns the most specific entry.
+    private static func buildNodeIdCache(_ nodes: [TOCNode]) -> [Int: TOCNode] {
+        var cache: [Int: TOCNode] = [:]
+        cache.reserveCapacity(nodes.count)
+        for node in nodes {
+            if let existing = cache[node.id] {
+                // Keep the deeper (more specific) node.
+                if node.level > existing.level {
+                    cache[node.id] = node
+                }
+            } else {
+                cache[node.id] = node
+            }
+        }
+        return cache
     }
 
     func cleanUp() {

@@ -157,7 +157,14 @@ struct SearchModeView: View {
 
         SearchResultsSorter.sort(&filtered, by: sortKey, ascending: sortAscending)
 
-        return SearchResultsListView(results: filtered) { item in
+        return SearchResultsListView(
+            results: filtered,
+            isLoadingMore: viewModel.isLoadingMoreBackendResults,
+            hasMore: viewModel.hasMoreBackendResults,
+            onLoadMore: {
+                viewModel.loadNextBackendPage()
+            }
+        ) { item in
             handleSelection(item, viewModel: viewModel)
         }
         .searchable(

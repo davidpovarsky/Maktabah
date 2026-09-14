@@ -22,12 +22,25 @@ protocol CopyableResult {
 
 extension CopyableResult {
     func formatForClipboard() -> String {
-        let pageArab = String(page).convertToArabicDigits()
-        let partArab = String(part).convertToArabicDigits()
-        if page != -1, part != -1 {
-            return "\(bookTitle) - ج: \(partArab) • ص: \(pageArab)\n\(attributedText.string)\n\n"
+        let isArabic = bookTitle.range(of: "\\p{Arabic}", options: .regularExpression) != nil
+        if isArabic {
+            let pageArab = String(page).convertToArabicDigits()
+            let partArab = String(part).convertToArabicDigits()
+            if page != -1, part != -1 {
+                return "\(bookTitle) - ج: \(partArab) • ص: \(pageArab)\n\(attributedText.string)\n\n"
+            }
+            return "\(bookTitle)\n\(attributedText.string)\n\n"
         }
-
+        var locationParts: [String] = []
+        let prefersHebrew = LibraryPresentationPolicy.prefersHebrew()
+        let volLabel = prefersHebrew ? "כרך:" : "vol."
+        let pageLabel = prefersHebrew ? "עמ':" : "p."
+        if part > 0 { locationParts.append("\(volLabel) \(part)") }
+        if page > 0 { locationParts.append("\(pageLabel) \(page)") }
+        let location = locationParts.joined(separator: " • ")
+        if !location.isEmpty {
+            return "\(bookTitle) - \(location)\n\(attributedText.string)\n\n"
+        }
         return "\(bookTitle)\n\(attributedText.string)\n\n"
     }
 }

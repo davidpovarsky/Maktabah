@@ -88,6 +88,14 @@ require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("a6827f6aae074a7e8a
 require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("indices/segment.fast"), "nested .fast file rejected")
 require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("../escape"), "path traversal accepted")
 require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("C:/escape"), "drive path accepted")
+// Regression coverage for safe path policy
+require(OtzariaSearchArtifactPolicy.validateSafeRelativePath(".managed.json"), ".managed.json dotfile rejected")
+require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("segment/.managed.json"), "nested .managed.json rejected")
+require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("."), "current directory component '.' accepted")
+require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath(".."), "parent directory component '..' accepted")
+require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("../x"), "../x traversal accepted")
+require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("a/../x"), "a/../x traversal accepted")
+require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("/absolute/path"), "absolute path accepted")
 require(
     OtzariaSearchArtifactPolicy.requiredInstallCapacity(
         manifest: manifest(), alreadyDownloadedBytes: 100, existingFinalBytes: 999

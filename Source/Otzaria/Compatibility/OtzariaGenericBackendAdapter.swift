@@ -27,7 +27,7 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         func node(_ category: CategoryData) -> LibraryCatalogNode {
             let categoryChildren = (children[category.id] ?? []).map(node)
             let bookChildren = (groupedBooks[category.id] ?? []).map { book -> LibraryCatalogNode in
-                let locator = TextLocator(backend: .otzaria, workKey: "book:\(book.id)", position: .legacyLine(0))
+                let locator = book.backendLocator ?? TextLocator(backend: .otzaria, workKey: "book:\(book.id)", position: .legacyLine(0))
                 let work = LibraryWork(locator: locator, title: book.book, heTitle: nil,
                     categories: [category.name], description: book.bithoqoh)
                 return .init(id: locator.persistenceKey, kind: .work, title: book.book,
@@ -45,8 +45,17 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
         #if os(iOS)
         guard locator.backend == .otzaria,
-              let bookID = Int(locator.workKey.replacingOccurrences(of: "book:", with: "")),
               case .legacyLine(let line) = locator.position else { throw LibraryBackendError.invalidLocator }
+        let bookID: Int?
+        if locator.workKey.hasPrefix("book:"),
+           let parsed = Int(locator.workKey.dropFirst("book:".count)) {
+            bookID = parsed
+        } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: locator.workKey, expectedBookId: 0) {
+            bookID = resolved.id
+        } else {
+            bookID = nil
+        }
+        guard let bookID else { throw LibraryBackendError.invalidLocator }
         let content = line == 0
             ? OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookID)
             : OtzariaMaktabahBridge.shared.getContent(bookId: bookID, contentId: line)
@@ -74,8 +83,17 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
 
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
         #if os(iOS)
-        guard let id = Int(work.locator.workKey.replacingOccurrences(of: "book:", with: "")),
-              let book = try OtzariaMaktabahBridge.shared.fetchBook(byId: id) else { return [] }
+        let bookID: Int?
+        if work.locator.workKey.hasPrefix("book:"),
+           let parsed = Int(work.locator.workKey.dropFirst("book:".count)) {
+            bookID = parsed
+        } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: work.locator.workKey, expectedBookId: 0) {
+            bookID = resolved.id
+        } else {
+            bookID = nil
+        }
+        guard let bookID,
+              let book = try OtzariaMaktabahBridge.shared.fetchBook(byId: bookID) else { return [] }
         return OtzariaMaktabahBridge.shared.getTOCEntries(for: book).map { entry in
             let locator = TextLocator(backend: .otzaria, workKey: work.locator.workKey,
                 position: .legacyLine(entry.id))

@@ -534,7 +534,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             context.coordinator.decorationSignature = decorationSignature
             context.coordinator.decoratedAttributedString = decorated
             context.coordinator.searchRanges = searchRanges
-            context.coordinator.selectedDisplayedRange = nil
+            context.coordinator.cancelPendingHighlight()
             context.coordinator.replaceTextStorage(
                 in: textView,
                 with: decorated,
@@ -675,33 +675,76 @@ struct iOSIbarotTextView: UIViewRepresentable {
             if preserveOffset { textView.setContentOffset(priorOffset, animated: false) }
         }
 
+        private var pendingDisplayedRange: NSRange?
+        private var isHighlightUpdateScheduled = false
+        private var isUpdatingSegmentHighlight = false
+
+        func cancelPendingHighlight() {
+            pendingDisplayedRange = nil
+            selectedDisplayedRange = nil
+        }
+
         func updateSegmentHighlight(in textView: UITextView, displayedRange: NSRange?) {
-            guard selectedDisplayedRange != displayedRange else { return }
-            textView.textStorage.beginEditing()
-            if let oldRange = selectedDisplayedRange,
-               NSMaxRange(oldRange) <= textView.textStorage.length,
-               let decoratedAttributedString {
-                textView.textStorage.removeAttribute(.backgroundColor, range: oldRange)
-                decoratedAttributedString.enumerateAttribute(.backgroundColor, in: oldRange) { value, range, _ in
-                    if let value {
-                        textView.textStorage.addAttribute(.backgroundColor, value: value, range: range)
+            pendingDisplayedRange = displayedRange
+            guard !isHighlightUpdateScheduled else { return }
+            isHighlightUpdateScheduled = true
+
+            DispatchQueue.main.async { [weak self, weak textView] in
+                guard let self, let textView else { return }
+                self.isHighlightUpdateScheduled = false
+                self.applySegmentHighlight(in: textView, targetRange: self.pendingDisplayedRange)
+            }
+        }
+
+        private func applySegmentHighlight(in textView: UITextView, targetRange: NSRange?) {
+            guard !isUpdatingSegmentHighlight else { return }
+            guard selectedDisplayedRange != targetRange else { return }
+            isUpdatingSegmentHighlight = true
+            defer { isUpdatingSegmentHighlight = false }
+
+            let storage = textView.textStorage
+            let storageLength = storage.length
+            guard let decorated = decoratedAttributedString else {
+                selectedDisplayedRange = nil
+                return
+            }
+            let decoratedLength = decorated.length
+
+            func isValidRange(_ r: NSRange) -> Bool {
+                r.location != NSNotFound
+                    && r.location >= 0
+                    && r.length > 0
+                    && r.length <= storageLength
+                    && r.location <= storageLength - r.length
+                    && r.length <= decoratedLength
+                    && r.location <= decoratedLength - r.length
+            }
+
+            storage.beginEditing()
+
+            // 1. Restore previous highlight range using pristine attributes from decoratedAttributedString
+            if let oldRange = selectedDisplayedRange, isValidRange(oldRange) {
+                storage.removeAttribute(.backgroundColor, range: oldRange)
+                decorated.enumerateAttribute(.backgroundColor, in: oldRange) { value, attrRange, _ in
+                    if let value, isValidRange(attrRange) {
+                        storage.addAttribute(.backgroundColor, value: value, range: attrRange)
                     }
                 }
             }
-            if let displayedRange,
-               displayedRange.location >= 0,
-               displayedRange.length > 0,
-               NSMaxRange(displayedRange) <= textView.textStorage.length {
-                textView.textStorage.addAttribute(
+
+            // 2. Apply new highlight
+            if let newRange = targetRange, isValidRange(newRange) {
+                storage.addAttribute(
                     .backgroundColor,
                     value: UIColor.systemBlue.withAlphaComponent(0.14),
-                    range: displayedRange
+                    range: newRange
                 )
-                selectedDisplayedRange = displayedRange
+                selectedDisplayedRange = newRange
             } else {
                 selectedDisplayedRange = nil
             }
-            textView.textStorage.endEditing()
+
+            storage.endEditing()
         }
 
         @objc func handleTextTap(_ recognizer: UITapGestureRecognizer) {
