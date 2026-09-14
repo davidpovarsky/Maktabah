@@ -5,8 +5,18 @@ enum MaktabahBackendAdapter {
     /// Whether the active backend provides its own catalog/text path instead of
     /// Maktabah's native SQLite data.  Replaces the former ``usesGenericModels``
     /// which hard-coded ``selected == .sefaria``.
-    static var usesGenericModels: Bool {
-        !BackendCoordinator.shared.usesNativeMaktabahDataPath
+    nonisolated static var usesGenericModels: Bool {
+        if Thread.isMainThread {
+            return MainActor.assumeIsolated {
+                !BackendCoordinator.shared.usesNativeMaktabahDataPath
+            }
+        } else {
+            return DispatchQueue.main.sync {
+                MainActor.assumeIsolated {
+                    !BackendCoordinator.shared.usesNativeMaktabahDataPath
+                }
+            }
+        }
     }
 
     static func loadLibraryIfNeeded() async throws -> (roots: [CategoryData], books: [Int: BooksData])? {
