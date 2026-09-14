@@ -191,7 +191,7 @@ struct UnifiedSearchWorkspaceView: View {
         }
     }
 
-    private var isSefaria: Bool { backendCoordinator.activeBackendID == .sefaria }
+    private var isSefaria: Bool { !backendCoordinator.usesNativeMaktabahDataPath }
 
     private var availableScopes: [UnifiedSearchScope] {
         isSefaria ? [.exact, .advanced] : UnifiedSearchScope.allCases
@@ -393,9 +393,10 @@ struct UnifiedSearchWorkspaceView: View {
     private var statusText: String {
         if isSefaria {
             let model = navigationManager.searchViewModel
-            if model.isSearching { return "מחפש ב־Sefaria…" }
+            let backendName = backendCoordinator.activeBackendID.displayName
+            if model.isSearching { return "מחפש ב־\(backendName)…" }
             if !model.results.isEmpty { return "\(model.results.count) מתוך \(model.totalTables) תוצאות" }
-            return model.selectedBookIds.isEmpty ? "Sefaria" : "סינון ל־\(model.selectedBookIds.count) ספרים"
+            return model.selectedBookIds.isEmpty ? backendName : "סינון ל־\(model.selectedBookIds.count) ספרים"
         }
         if scope == .zayit {
             if let error = zayitSession.model.errorMessage { return error }
@@ -500,6 +501,9 @@ struct UnifiedSearchWorkspaceView: View {
     }
 
     private func open(_ result: UnifiedSearchResult) {
+        #if canImport(UIKit)
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        #endif
         switch result.payload {
         case .library(let item, _): openLibrary(item, result.highlight)
         case .zayit(let hit): openZayit(hit, result.highlight)

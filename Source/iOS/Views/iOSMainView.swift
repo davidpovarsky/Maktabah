@@ -48,6 +48,16 @@ enum iOSTab: Int, CaseIterable, Identifiable {
         case .history: .history
         }
     }
+
+    init(appMode: AppMode) {
+        switch appMode {
+        case .viewer: self = .viewer
+        case .search: self = .textSearch
+        case .narrator: self = .author
+        case .annotations: self = .annotations
+        case .history: self = .history
+        }
+    }
 }
 
 // MARK: - Main View

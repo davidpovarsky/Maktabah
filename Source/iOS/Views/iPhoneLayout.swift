@@ -60,6 +60,12 @@ struct iPhoneLayout: View {
             savedSelectedTab = newValue
             bManager.switchToMode(newValue.appMode)
         }
+        .onChange(of: bManager.currentMode) { _, newMode in
+            let matchingTab = iOSTab(appMode: newMode)
+            if selectedTab != matchingTab {
+                selectedTab = matchingTab
+            }
+        }
     }
 
     // MARK: - Tab Contents

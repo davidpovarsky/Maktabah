@@ -112,6 +112,11 @@ struct iPadLayout: View {
                 transitionSidebar(to: .search)
             }
         }
+        .onChange(of: bManager.currentMode) { _, newMode in
+            if newMode == .viewer {
+                prepareReaderDetail()
+            }
+        }
     }
 
     private var sidebarContent: some View {
