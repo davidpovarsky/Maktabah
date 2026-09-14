@@ -715,7 +715,7 @@ final class SearchViewModel: ViewModelBase {
                     state = .error(error.localizedDescription)
                 }
             }
-            if self.searchWork == task {
+            if self.backendSearchGeneration == generation {
                 self.searchWork = nil
             }
         }
@@ -768,7 +768,7 @@ final class SearchViewModel: ViewModelBase {
                     isLoadingMoreBackendResults = false
                 }
             }
-            if self.loadMoreBackendWork == task {
+            if self.backendSearchGeneration == generation {
                 self.loadMoreBackendWork = nil
             }
         }
