@@ -62,7 +62,7 @@ struct Annotation {
     let bkId: Int             // book id
     let contentId: Int        // BookContent.id
     var range: NSRange        // NSRange berbasis UTF-16 (NSString)
-    let rangeDiacritics: NSRange
+    var rangeDiacritics: NSRange
     var colorHex: String      // "#RRGGBB"
     var type: AnnotationMode          // "highlight" atau "underline"
     var note: String?         // catatan opsional
