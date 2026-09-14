@@ -43,10 +43,10 @@ struct SearchResultRow: View {
         if isHebrewBackend {
             var parts: [String] = []
             if item.part > 0 {
-                parts.append(String(format: NSLocalizedString("search.result.volume", default: "כרך %d", comment: ""), item.part))
+                parts.append(String(format: NSLocalizedString("search.result.volume", value: "כרך %d", comment: ""), item.part))
             }
             if item.page > 0 {
-                parts.append(String(format: NSLocalizedString("search.result.page", default: "עמ' %d", comment: ""), item.page))
+                parts.append(String(format: NSLocalizedString("search.result.page", value: "עמ' %d", comment: ""), item.page))
             }
             return parts.joined(separator: " • ")
         } else {
