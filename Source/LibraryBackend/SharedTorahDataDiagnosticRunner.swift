@@ -315,7 +315,11 @@ enum SharedTorahDataDiagnosticRunner {
                 searchText: scenario.searchQuery,
                 recordHistory: false
             )
-            let openedReader = await waitForReader(in: navigation, targetID: targetID)
+            let openedReader = await waitForReader(
+                in: navigation,
+                targetID: targetID,
+                targetLocator: hit.locator
+            )
             let readerExact = openedReader?.backendRenderModel?.renderedSegments.contains {
                 $0.locator == hit.locator
             } == true
@@ -323,10 +327,10 @@ enum SharedTorahDataDiagnosticRunner {
                 component: "Search selection → Reader",
                 input: hit.locator.persistenceKey,
                 expected: "selection opens Reader mode at the exact result",
-                actual: "mode=\(navigation.currentMode); bookID=\(navigation.selectedBook?.id ?? 0); contentID=\(openedReader?.currentContentId ?? 0); exact=\(readerExact)",
+                actual: "mode=\(navigation.currentMode); bookID=\(navigation.selectedBook?.id ?? 0); requestedID=\(navigation.selectedContentId ?? 0); readerUnitID=\(openedReader?.currentContentId ?? 0); exact=\(readerExact)",
                 passed: navigation.currentMode == .viewer
                     && navigation.selectedBook?.id == canonicalBookID
-                    && openedReader?.currentContentId == targetID
+                    && navigation.selectedContentId == targetID
                     && readerExact,
                 backend: backend,
                 locale: locale,
@@ -610,13 +614,17 @@ enum SharedTorahDataDiagnosticRunner {
 
     private static func waitForReader(
         in navigation: iOSNavigationManager,
-        targetID: Int
+        targetID: Int,
+        targetLocator: TextLocator
     ) async -> ReaderViewModel? {
         for _ in 0..<150 {
             if let activeID = navigation.activeTabId,
                let reader = navigation.openTabs.first(where: { $0.id == activeID })?.viewModel,
                reader.state == .loaded,
-               reader.currentContentId == targetID {
+               reader.currentContentId == targetID
+                    || reader.backendRenderModel?.renderedSegments.contains(where: {
+                        $0.locator == targetLocator
+                    }) == true {
                 return reader
             }
             try? await Task.sleep(for: .milliseconds(100))
