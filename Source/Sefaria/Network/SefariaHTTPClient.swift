@@ -6,6 +6,7 @@ import FoundationNetworking
 actor SefariaHTTPClient {
     private let session: URLSession
     private let decoder: JSONDecoder
+    private let maximumAttempts = 3
 
     init(session: URLSession = .shared) {
         self.session = session
@@ -63,10 +64,34 @@ actor SefariaHTTPClient {
     }
 
     private func send<T: Decodable>(_ type: T.Type, request: URLRequest) async throws -> T {
-        let (data, response) = try await session.data(for: request)
-        try validate(response)
-        do { return try decoder.decode(type, from: data) }
-        catch { throw LibraryBackendError.invalidResponse(String(describing: error)) }
+        var attempt = 1
+        while true {
+            do {
+                let (data, response) = try await session.data(for: request)
+                try validate(response)
+                do { return try decoder.decode(type, from: data) }
+                catch { throw LibraryBackendError.invalidResponse(String(describing: error)) }
+            } catch {
+                guard attempt < maximumAttempts, Self.isTransient(error) else { throw error }
+                try await Task.sleep(nanoseconds: UInt64(attempt) * 500_000_000)
+                attempt += 1
+            }
+        }
+    }
+
+    private nonisolated static func isTransient(_ error: Error) -> Bool {
+        if let backendError = error as? LibraryBackendError,
+           case .httpStatus(let status) = backendError {
+            return status == 429 || status == 500 || status == 502 || status == 503 || status == 504
+        }
+        guard let urlError = error as? URLError else { return false }
+        switch urlError.code {
+        case .timedOut, .networkConnectionLost, .cannotConnectToHost,
+             .dnsLookupFailed, .notConnectedToInternet:
+            return true
+        default:
+            return false
+        }
     }
 
     private func validate(_ response: URLResponse) throws {

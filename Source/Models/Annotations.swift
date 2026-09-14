@@ -257,7 +257,7 @@ enum CrossBackendAnnotationResolver {
         }
     }
 
-    private static func normalizedRange(of needle: String, in text: String) -> NSRange {
+    static func normalizedRange(of needle: String, in text: String) -> NSRange {
         let normalizedNeedle = normalized(needle).text
         guard !normalizedNeedle.isEmpty else { return NSRange(location: NSNotFound, length: 0) }
         let haystack = normalized(text)

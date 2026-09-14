@@ -58,11 +58,16 @@ enum SharedTorahDataDiagnosticRunner {
 
         do {
             BackendComposition.registerAll()
+            AppConfig.setupAnnotationsAndResults()
+            guard AnnotationManager.shared.db != nil else {
+                throw LibraryBackendError.invalidResponse("annotation database was not initialized")
+            }
             if backend == .otzaria {
                 guard try OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible() else {
                     throw LibraryBackendError.invalidResponse("installed Otzaria database was not restored")
                 }
             }
+            try prepareCrossBackendIdentityIndex()
             BackendCoordinator.shared.select(backend)
             let scenario = try await scenario(for: backend, locale: requestedLocale)
             await diagnoseReader(scenario, backend: backend, locale: requestedLocale, report: &report)
@@ -441,25 +446,14 @@ enum SharedTorahDataDiagnosticRunner {
     }
 
     private static func annotationTarget(for backend: BackendID) async throws -> AnnotationTarget {
-        if (try? OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()) == true,
-           let books = try? OtzariaMaktabahBridge.shared.fetchAllBooks() {
-            CrossBackendBookIdentityIndex.shared.prepare(
-                otzariaBooks: books.map { (id: $0.id, title: $0.book) }
-            )
-        }
-
         let locator: TextLocator
         switch backend {
         case .otzaria:
-            let page = try await BackendCoordinator.shared.search(.init(
-                query: "בראשית ברא",
-                offset: 0,
-                limit: 25
-            ))
-            guard let genesis = page.hits.first(where: { $0.locator.workKey == "book:1" }) else {
-                throw LibraryBackendError.invalidResponse("Otzaria Genesis annotation target was not found")
-            }
-            locator = genesis.locator
+            locator = TextLocator(
+                backend: .otzaria,
+                workKey: "book:1",
+                position: .legacyLine(2)
+            )
         case .sefaria:
             let work = LibraryWork(
                 locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis")),
@@ -481,8 +475,13 @@ enum SharedTorahDataDiagnosticRunner {
         guard full.length > 0 else {
             throw LibraryBackendError.invalidResponse("annotation target text is empty")
         }
-        let provisional = NSRange(location: 0, length: min(16, full.length))
-        let range = full.rangeOfComposedCharacterSequences(for: provisional)
+        let range = CrossBackendAnnotationResolver.normalizedRange(
+            of: "בראשית ברא",
+            in: text
+        )
+        guard range.location != NSNotFound else {
+            throw LibraryBackendError.invalidResponse("annotation target has no shared Genesis phrase")
+        }
         return AnnotationTarget(
             locator: segment.locator,
             bookID: canonicalBookID(for: segment.locator),
@@ -490,6 +489,32 @@ enum SharedTorahDataDiagnosticRunner {
             text: text,
             range: range
         )
+    }
+
+    private static func prepareCrossBackendIdentityIndex() throws {
+        guard try OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible() else {
+            throw LibraryBackendError.invalidResponse("installed Otzaria database was not restored")
+        }
+        let books = try OtzariaMaktabahBridge.shared.fetchAllBooks()
+        CrossBackendBookIdentityIndex.shared.prepare(
+            otzariaBooks: books.map { (id: $0.id, title: $0.book) }
+        )
+
+        // The normal Sefaria library load registers every work from the catalog.
+        // This diagnostic opens Genesis directly, so register the same catalog
+        // identity before exercising Search -> Reader and annotations.
+        let genesis = LibraryWork(
+            locator: TextLocator(
+                backend: .sefaria,
+                workKey: "Genesis",
+                position: .canonicalRef("Genesis")
+            ),
+            title: "Genesis",
+            heTitle: "בראשית",
+            categories: ["Tanakh", "Torah"],
+            description: nil
+        )
+        _ = CrossBackendBookIdentityIndex.shared.canonicalID(for: genesis)
     }
 
     private static func createDiagnosticAnnotations(
@@ -512,7 +537,7 @@ enum SharedTorahDataDiagnosticRunner {
             page: 1,
             part: 1,
             diacriticsText: nil,
-            showHarakat: false,
+            showHarakat: true,
             mode: .highlight,
             backendLocator: target.locator
         )
@@ -528,7 +553,7 @@ enum SharedTorahDataDiagnosticRunner {
             page: 1,
             part: 1,
             diacriticsText: nil,
-            showHarakat: false,
+            showHarakat: true,
             mode: .underline,
             backendLocator: target.locator
         )
