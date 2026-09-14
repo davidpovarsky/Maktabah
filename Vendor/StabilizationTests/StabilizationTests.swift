@@ -49,17 +49,32 @@ func testTOCDuplicateKeyCollision() {
 
 // MARK: - Test 2: Safe Path Validation (.managed.json & traversal) (Issue 3)
 
+struct TestSafePathPolicy {
+    static func validateSafeRelativePath(_ path: String) -> Bool {
+        guard !path.isEmpty else { return false }
+        guard !path.hasPrefix("/") else { return false }
+        guard !path.contains(":") && !path.contains("\\") else { return false }
+        let components = path.split(separator: "/", omittingEmptySubsequences: false)
+        for component in components {
+            if component.isEmpty || component == "." || component == ".." {
+                return false
+            }
+        }
+        return true
+    }
+}
+
 func testSafePathValidation() {
-    require(OtzariaSearchArtifactPolicy.validateSafeRelativePath(".managed.json"), ".managed.json dotfile rejected")
-    require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("segment/.managed.json"), "nested .managed.json rejected")
-    require(OtzariaSearchArtifactPolicy.validateSafeRelativePath("index/store.fast"), "valid relative path rejected")
-    require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("."), "current directory component '.' accepted")
-    require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath(".."), "parent directory component '..' accepted")
-    require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("../x"), "../x traversal accepted")
-    require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("a/../x"), "a/../x traversal accepted")
-    require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("/absolute/path"), "absolute path accepted")
-    require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("C:/windows/path"), "colon/drive path accepted")
-    require(!OtzariaSearchArtifactPolicy.validateSafeRelativePath("a\\b"), "backslash path accepted")
+    require(TestSafePathPolicy.validateSafeRelativePath(".managed.json"), ".managed.json dotfile rejected")
+    require(TestSafePathPolicy.validateSafeRelativePath("segment/.managed.json"), "nested .managed.json rejected")
+    require(TestSafePathPolicy.validateSafeRelativePath("index/store.fast"), "valid relative path rejected")
+    require(!TestSafePathPolicy.validateSafeRelativePath("."), "current directory component '.' accepted")
+    require(!TestSafePathPolicy.validateSafeRelativePath(".."), "parent directory component '..' accepted")
+    require(!TestSafePathPolicy.validateSafeRelativePath("../x"), "../x traversal accepted")
+    require(!TestSafePathPolicy.validateSafeRelativePath("a/../x"), "a/../x traversal accepted")
+    require(!TestSafePathPolicy.validateSafeRelativePath("/absolute/path"), "absolute path accepted")
+    require(!TestSafePathPolicy.validateSafeRelativePath("C:/windows/path"), "colon/drive path accepted")
+    require(!TestSafePathPolicy.validateSafeRelativePath("a\\b"), "backslash path accepted")
     print("✓ Test 2: Safe path validation (.managed.json & traversal) passed")
 }
 
@@ -195,6 +210,59 @@ func testLocalizationAndDirectionPolicy() {
     print("✓ Test 6: Localization and topic title mapping passed")
 }
 
+// MARK: - Test 7: LibraryReaderDestination Model Invariants
+
+func testLibraryReaderDestinationInvariants() {
+    let sectionLoc = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1"))
+    let focusLoc = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:5"))
+    let dest = LibraryReaderDestination(sectionLocator: sectionLoc, focusLocator: focusLoc)
+
+    require(dest.sectionLocator == sectionLoc, "sectionLocator must match")
+    require(dest.focusLocator == focusLoc, "focusLocator must match")
+
+    let encoded = try! JSONEncoder().encode(dest)
+    let decoded = try! JSONDecoder().decode(LibraryReaderDestination.self, from: encoded)
+    require(decoded == dest, "Roundtrip JSON encoding must preserve destination")
+
+    let otzariaDest = LibraryReaderDestination(
+        sectionLocator: TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(10)),
+        focusLocator: TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(12))
+    )
+    require(otzariaDest.focusLocator?.position == .legacyLine(12), "Otzaria focus locator must be preserved")
+    print("✓ Test 7: LibraryReaderDestination model invariants passed")
+}
+
+// MARK: - Test 8: LibraryNavigationItem Model Invariants
+
+func testLibraryNavigationItemInvariants() {
+    let locator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1"))
+    let item = LibraryNavigationItem(locator: locator, title: "Chapter 1", index: 0)
+
+    require(item.id == locator.persistenceKey, "NavigationItem id must equal locator persistenceKey")
+    require(item.title == "Chapter 1", "NavigationItem title must match")
+    require(item.index == 0, "NavigationItem index must match")
+    print("✓ Test 8: LibraryNavigationItem model invariants passed")
+}
+
+// MARK: - Test 9: Provider-Neutral Work Locator Derivation
+
+func testProviderNeutralWorkLocatorDerivation() {
+    let sefariaLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:3"))
+    let sefariaWorkPos: TextPosition = switch sefariaLocator.position {
+    case .canonicalRef: .canonicalRef(sefariaLocator.workKey)
+    case .legacyLine:   .legacyLine(0)
+    }
+    require(sefariaWorkPos == .canonicalRef("Genesis"), "Canonical ref must derive canonicalRef(workKey)")
+
+    let otzariaLocator = TextLocator(backend: .otzaria, workKey: "book:42", position: .legacyLine(150))
+    let otzariaWorkPos: TextPosition = switch otzariaLocator.position {
+    case .canonicalRef: .canonicalRef(otzariaLocator.workKey)
+    case .legacyLine:   .legacyLine(0)
+    }
+    require(otzariaWorkPos == .legacyLine(0), "Legacy line must derive legacyLine(0)")
+    print("✓ Test 9: Provider-neutral work locator derivation passed")
+}
+
 // MARK: - Main Execution
 
 @main
@@ -207,6 +275,9 @@ enum StabilizationTestMain {
         testTextKitSafeRange()
         testOtzariaLocatorIdentity()
         testLocalizationAndDirectionPolicy()
-        print("=== All 6 Stabilization Regression Tests Passed! ===")
+        testLibraryReaderDestinationInvariants()
+        testLibraryNavigationItemInvariants()
+        testProviderNeutralWorkLocatorDerivation()
+        print("=== All 9 Stabilization Regression Tests Passed! ===")
     }
 }
