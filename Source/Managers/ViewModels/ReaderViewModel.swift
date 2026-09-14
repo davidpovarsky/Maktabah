@@ -192,7 +192,9 @@ class ReaderViewModel: ViewModelBase {
     // MARK: - Private Properties
 
     private var _currentID: Int?
-    private var backendSection: LibraryTextSection?
+    private(set) var backendSection: LibraryTextSection?
+    var currentDestination: LibraryReaderDestination?
+    var navigationItems: [LibraryNavigationItem] = []
     private var backendLoadTask: Task<Void, Never>?
 
     private var currentID: Int? {
@@ -277,7 +279,18 @@ class ReaderViewModel: ViewModelBase {
         }
     }
 
-    private func loadBackendContent(_ locator: TextLocator) {
+    func loadBackendContent(_ destination: LibraryReaderDestination) {
+        currentDestination = destination
+        loadBackendContent(destination.sectionLocator)
+        if let focus = destination.focusLocator {
+            selectedSegmentLocator = focus
+        }
+    }
+
+    func loadBackendContent(_ locator: TextLocator) {
+        if currentDestination?.sectionLocator != locator {
+            currentDestination = LibraryReaderDestination(sectionLocator: locator, focusLocator: nil)
+        }
         backendLoadTask?.cancel()
         state = .loading
         let expectedBookKey = locator.workKey
@@ -296,7 +309,24 @@ class ReaderViewModel: ViewModelBase {
                 let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
                 if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
                 updateContentState(with: content)
+                if let focusLocator = currentDestination?.focusLocator {
+                    selectedSegmentLocator = focusLocator
+                }
                 state = .loaded
+                if let workLocator = currentBook?.backendLocator, navigationItems.isEmpty {
+                    let work = LibraryWork(
+                        locator: workLocator,
+                        title: workLocator.workKey,
+                        heTitle: currentBook?.book,
+                        categories: [],
+                        description: nil
+                    )
+                    Task { [weak self] in
+                        if let items = try? await BackendCoordinator.shared.navigationItems(for: work) {
+                            self?.navigationItems = items
+                        }
+                    }
+                }
             } catch is CancellationError {
                 return
             } catch LibraryBackendError.staleRequest {
@@ -507,7 +537,7 @@ class ReaderViewModel: ViewModelBase {
 
         do {
             try bookConnection.connect(archive: book.archive)
-            if !isOtzariaReaderEnabled,
+            if book.backendLocator == nil,
                AppConfig.isUsingBundleMode,
                !BookArchiveIntegrator.shared.isBookIntegrated(book)
             {
@@ -698,9 +728,6 @@ class ReaderViewModel: ViewModelBase {
 
     func updateNavigationLimits() {
         guard currentBook?.backendLocator == nil else {
-            totalParts = 1
-            minPageInPart = backendSection?.previous == nil ? 1 : 0
-            maxPageInPart = backendSection?.next == nil ? 1 : 2
             return
         }
         guard let part = currentPart, let book = currentBook else { return }
@@ -1015,9 +1042,9 @@ extension ReaderViewModel {
     }
 
     func handleBookIntegrated(_ notification: Notification) {
-        guard !isOtzariaReaderEnabled,
-              let bookId = notification.object as? Int,
+        guard let bookId = notification.object as? Int,
               let currentBook,
+              currentBook.backendLocator == nil,
               currentBook.id == bookId,
               !BookArchiveIntegrator.shared.isBookIntegrated(currentBook)
         else { return }

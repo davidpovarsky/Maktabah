@@ -86,7 +86,7 @@ struct iOSReaderBottomToolbarView: View {
             .accessibilityLabel(String(localized: "Annotations"))
             .help(String(localized: "Annotations"))
 
-            if OtzariaBackendActivation.isActive {
+            if !viewModel.otzariaAvailableUnitModes.isEmpty {
                 Divider()
 
                 Menu {
