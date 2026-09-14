@@ -151,7 +151,7 @@ final class CrossBackendBookIdentityIndex: @unchecked Sendable {
     func prepare(otzariaBooks: [(id: Int, title: String)]) {
         var candidates: [String: [Int]] = [:]
         for book in otzariaBooks {
-            candidates[Self.normalizedTitle(book.book), default: []].append(book.id)
+            candidates[Self.normalizedTitle(book.title), default: []].append(book.id)
         }
         let unique = candidates.compactMapValues { ids in
             ids.count == 1 ? ids[0] : nil
