@@ -5,7 +5,7 @@ enum MaktabahBackendAdapter {
     /// Whether the active backend provides its own catalog/text path instead of
     /// Maktabah's native SQLite data.  Replaces the former ``usesGenericModels``
     /// which hard-coded ``selected == .sefaria``.
-    nonisolated static var usesGenericModels: Bool {
+    static var usesGenericModels: Bool {
         !BackendCoordinator.shared.usesNativeMaktabahDataPath
     }
 
