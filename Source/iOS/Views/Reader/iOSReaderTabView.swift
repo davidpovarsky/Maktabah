@@ -31,6 +31,13 @@ struct iOSReaderTabView: View {
         textViewState.isDarkMode
     }
 
+    private func bookTitleFont(for book: BooksData) -> Font {
+        if book.backendLocator != nil {
+            return .headline
+        }
+        return book.book.containsArabicCharacters ? ReaderViewModel.kfgqpc : .headline
+    }
+
     var body: some View {
         if bManager.openTabs.count > 0,
            let activeTab = bManager.openTabs.first(where: { $0.id == bManager.activeTabId })
@@ -55,7 +62,7 @@ struct iOSReaderTabView: View {
                 {
                     ToolbarItem(placement: .principal) {
                         Text(activeTab.book.book)
-                            .font(ReaderViewModel.kfgqpc)
+                            .font(bookTitleFont(for: activeTab.book))
                             .foregroundStyle(isDarkMode ? .white : .black)
                     }
                 }

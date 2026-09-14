@@ -62,7 +62,7 @@ struct TOCNodeRow: View {
             // Berikan indentasi di sebelah kanan berdasarkan level (RTL: leading = kanan)
             .padding(.leading, CGFloat(max(0, item.level - 1)) * 24)
             .id(ObjectIdentifier(item))
-            .environment(\.layoutDirection, .rightToLeft)
+            .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
             
             // Rekursif untuk menampilkan sub-bab di bawahnya jika sedang diekspansi
             if isExpanded.wrappedValue, !item.children.isEmpty {
@@ -78,12 +78,20 @@ struct TOCNodeRow: View {
         }
     }
 
+    private var isArabic: Bool {
+        item.bab.containsArabicCharacters
+    }
+
+    private var isRTL: Bool {
+        item.bab.isParagraphRTL
+    }
+
     var nodeLabel: some View {
         Button(action: {
             onSelect(item.id)
         }) {
             Text(item.bab)
-                .font(ReaderViewModel.kfgqpcTitle)
+                .font(isArabic ? ReaderViewModel.kfgqpcTitle : .headline)
                 .foregroundColor(
                     item.id == selectedId ? .accentColor : .primary
                 )

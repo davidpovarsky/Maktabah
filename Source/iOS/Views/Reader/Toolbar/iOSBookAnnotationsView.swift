@@ -37,7 +37,7 @@ struct iOSBookAnnotationsView: View {
                 }) {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(ann.context)
-                            .font(ReaderViewModel.kfgqpcTitle)
+                            .font(ann.context.containsArabicCharacters ? ReaderViewModel.kfgqpcTitle : .headline)
                             .lineLimit(2)
                             .truncationMode(.middle)
 

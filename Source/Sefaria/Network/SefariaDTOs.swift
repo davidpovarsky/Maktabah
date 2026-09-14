@@ -99,10 +99,23 @@ struct SefariaSearchResponseDTO: Decodable, Sendable {
     struct Hits: Decodable, Sendable {
         struct Total: Decodable, Sendable {
             let value: Int
+
+            enum CodingKeys: String, CodingKey {
+                case value
+            }
+
             init(from decoder: Decoder) throws {
-                let value = try decoder.singleValueContainer()
-                if let integer = try? value.decode(Int.self) { self.value = integer }
-                else { self.value = try value.decode([String: Int].self)["value"] ?? 0 }
+                if let single = try? decoder.singleValueContainer(),
+                   let integer = try? single.decode(Int.self) {
+                    self.value = integer
+                    return
+                }
+                if let container = try? decoder.container(keyedBy: CodingKeys.self),
+                   let integer = try? container.decodeIfPresent(Int.self, forKey: .value) {
+                    self.value = integer
+                    return
+                }
+                self.value = 0
             }
         }
         let total: Total

@@ -33,7 +33,7 @@ struct iOSReaderTabsPopoverView: View {
                                 .frame(width: 10, height: 10)
                         }
                         Text(tab.book.book)
-                            .font(ReaderViewModel.kfgqpcTitle)
+                            .font(tab.book.book.containsArabicCharacters ? ReaderViewModel.kfgqpcTitle : .headline)
                             .lineLimit(1)
                             .foregroundColor(
                                 bManager.activeTabId == tab.id

@@ -69,7 +69,7 @@ struct BookRowView: View {
         Button(action: action) {
             HStack {
                 Text(book.book)
-                    .font(ReaderViewModel.kfgqpcList)
+                    .font(book.book.containsArabicCharacters ? ReaderViewModel.kfgqpcList : .headline)
                     .foregroundColor(.primary)
                 Spacer()
                 Button {

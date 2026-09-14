@@ -147,7 +147,11 @@ class ListContentView: UIView, UIContentView {
             chevronIcon.isHidden = !config.root
 
             label.text = config.text
-            label.font = config.font
+            if config.text.containsArabicCharacters {
+                label.font = config.font
+            } else {
+                label.font = UIFont.systemFont(ofSize: config.font.pointSize, weight: .regular)
+            }
             label.textColor = config.isDownloaded ? .secondaryLabel : .label
             label.numberOfLines = 1
 

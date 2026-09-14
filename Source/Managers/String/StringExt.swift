@@ -855,6 +855,16 @@ extension Character {
 }
 
 extension StringProtocol {
+    var containsArabicCharacters: Bool {
+        unicodeScalars.contains { scalar in
+            (0x0600...0x06FF).contains(scalar.value) ||
+            (0x0750...0x077F).contains(scalar.value) ||
+            (0x08A0...0x08FF).contains(scalar.value) ||
+            (0xFB50...0xFDFF).contains(scalar.value) ||
+            (0xFE70...0xFEFF).contains(scalar.value)
+        }
+    }
+
     /// Checks the first strong letter of the text/paragraph to determine if it is RTL (Arabic, Hebrew, etc.).
     /// Returns `true` if RTL or empty/neutral, and `false` if LTR.
     var isParagraphRTL: Bool {

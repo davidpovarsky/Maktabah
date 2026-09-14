@@ -82,8 +82,31 @@ struct UnifiedSearchWorkspaceView: View {
         Group {
             switch contentState {
             case .results:
-                List(results) { result in resultButton(result) }
-                    .listStyle(.plain)
+                List {
+                    ForEach(Array(results.enumerated()), id: \.element.id) { index, result in
+                        resultButton(result)
+                            .onAppear {
+                                if isSefaria {
+                                    let model = navigationManager.searchViewModel
+                                    if index >= max(0, results.count - 10),
+                                       model.hasMoreBackendResults,
+                                       !model.isLoadingMoreBackendResults {
+                                        model.loadNextBackendPage()
+                                    }
+                                }
+                            }
+                    }
+
+                    if isSefaria && navigationManager.searchViewModel.isLoadingMoreBackendResults {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                                .padding(.vertical, 8)
+                            Spacer()
+                        }
+                    }
+                }
+                .listStyle(.plain)
             case .loading:
                 VStack(spacing: 12) {
                     ProgressView()

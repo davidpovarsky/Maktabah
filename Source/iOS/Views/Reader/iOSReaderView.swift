@@ -253,21 +253,7 @@ struct iOSReaderView: View {
                 viewModel: viewModel,
                 navigationManager: bManager
             )
-            .presentationDetents([.medium, .large])
             .inspectorColumnWidth(min: 320, ideal: 400, max: 500)
-        }
-        .onChange(of: viewModel.readerInspectorVisible) { _, isVisible in
-            if ipad {
-                if isVisible {
-                    if columnVisibility?.wrappedValue == .all {
-                        columnVisibility?.wrappedValue = .detailOnly
-                    }
-                } else {
-                    if columnVisibility?.wrappedValue == .detailOnly {
-                        columnVisibility?.wrappedValue = .all
-                    }
-                }
-            }
         }
     }
 }

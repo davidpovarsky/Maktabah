@@ -231,7 +231,7 @@ struct BookCard: View {
         Button(action: action) {
             HStack(spacing: 8) {
                 Text(book.book)
-                    .font(ReaderViewModel.kfgqpcList)
+                    .font(book.book.containsArabicCharacters ? ReaderViewModel.kfgqpcList : .headline)
                     .foregroundColor(.primary)
                     .lineLimit(1)
 

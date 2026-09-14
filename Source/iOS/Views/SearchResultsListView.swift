@@ -60,7 +60,7 @@ struct SearchResultRow: View {
             HStack {
                 if showsBookTitle {
                     Text(item.bookTitle)
-                        .font(ReaderViewModel.kfgqpcTitle)
+                        .font(isHebrewBackend ? .headline : ReaderViewModel.kfgqpcTitle)
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.leading)
 
@@ -74,7 +74,7 @@ struct SearchResultRow: View {
             }
 
             Text(AttributedString(item.attributedText))
-                .font(ReaderViewModel.kfgqpc)
+                .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
                 .lineLimit(3)
                 .foregroundColor(.primary)
                 .multilineTextAlignment(.leading)
