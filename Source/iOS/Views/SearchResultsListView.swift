@@ -38,8 +38,11 @@ struct SearchResultRow: View {
     let item: SearchResultItem
     var showsBookTitle: Bool = true
 
+    private var isHebrewBackend: Bool {
+        item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+    }
+
     private var locationText: String {
-        let isHebrewBackend = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
         if isHebrewBackend {
             var parts: [String] = []
             if item.part > 0 {
@@ -60,7 +63,7 @@ struct SearchResultRow: View {
             HStack {
                 if showsBookTitle {
                     Text(item.bookTitle)
-                        .font(isHebrewBackend ? .headline : ReaderViewModel.kfgqpcTitle)
+                        .font(isHebrewBackend || !item.bookTitle.containsArabicCharacters ? .headline : ReaderViewModel.kfgqpcTitle)
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.leading)
 
@@ -74,7 +77,7 @@ struct SearchResultRow: View {
             }
 
             Text(AttributedString(item.attributedText))
-                .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
+                .font(isHebrewBackend || !item.attributedText.string.containsArabicCharacters ? .body : ReaderViewModel.kfgqpc)
                 .lineLimit(3)
                 .foregroundColor(.primary)
                 .multilineTextAlignment(.leading)
