@@ -46,28 +46,34 @@ final class MaktabahTorahInspectorSession {
         sefariaLocator: TextLocator?,
         otzariaLine: OtzariaLineAnchor?
     ) -> TorahInspectorSelection? {
-        switch coordinator.activeBackendID {
-        case .sefaria:
-            guard let locator = sefariaLocator,
-                  locator.backend == .sefaria,
-                  case .canonicalRef(let reference) = locator.position else { return nil }
-            remember(locator, for: reference)
-            return TorahInspectorSelection(providerID: BackendID.sefaria.rawValue, canonicalRef: reference, preferredSegmentRef: reference)
-        case .otzaria:
-            guard let line = otzariaLine else { return nil }
-            let locator = TextLocator(
-                backend: .otzaria,
-                workKey: "book:\(line.bookId)",
-                position: .legacyLine(line.lineIndex)
-            )
-            let reference = Self.reference(for: locator)
-            remember(locator, for: reference)
-            return TorahInspectorSelection(
-                providerID: BackendID.otzaria.rawValue,
-                canonicalRef: reference,
-                preferredSegmentRef: reference
-            )
+        if let locator = sefariaLocator {
+            switch locator.position {
+            case .canonicalRef(let reference):
+                remember(locator, for: reference)
+                return TorahInspectorSelection(providerID: locator.backend.rawValue, canonicalRef: reference, preferredSegmentRef: reference)
+            case .legacyLine:
+                let reference = Self.reference(for: locator)
+                remember(locator, for: reference)
+                return TorahInspectorSelection(
+                    providerID: locator.backend.rawValue,
+                    canonicalRef: reference,
+                    preferredSegmentRef: reference
+                )
+            }
         }
+        guard let line = otzariaLine else { return nil }
+        let locator = TextLocator(
+            backend: .otzaria,
+            workKey: "book:\(line.bookId)",
+            position: .legacyLine(line.lineIndex)
+        )
+        let reference = Self.reference(for: locator)
+        remember(locator, for: reference)
+        return TorahInspectorSelection(
+            providerID: BackendID.otzaria.rawValue,
+            canonicalRef: reference,
+            preferredSegmentRef: reference
+        )
     }
 
     func locator(for selection: TorahInspectorSelection) -> TextLocator? {

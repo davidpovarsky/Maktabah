@@ -1,6 +1,7 @@
 import Foundation
 
 #if os(iOS)
+@available(*, deprecated, message: "Character index mapping is now handled provider-neutrally by LibraryReaderRenderModel.")
 enum OtzariaTextViewLineSelectionAdapter {
     static func sourceCharacterIndex(
         forDisplayedIndex displayedIndex: Int,
