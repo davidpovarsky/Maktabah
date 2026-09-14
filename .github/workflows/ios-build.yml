@@ -302,8 +302,10 @@ jobs:
             else
               xcrun simctl launch "$UDID" "$BUNDLE_ID" -AppleLanguages "($language)" -AppleLocale "$locale"
             fi
-            sleep 3
+            sleep 8
             xcrun simctl io "$UDID" screenshot "build/ipad-bootstrap-screenshots/$output"
+            mkdir -p build/logs/crashes
+            cp -R ~/Library/Logs/DiagnosticReports/* build/logs/crashes/ 2>/dev/null || true
             xcrun simctl terminate "$UDID" "$BUNDLE_ID" || true
           }
 
