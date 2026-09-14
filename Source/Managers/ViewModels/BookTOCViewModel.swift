@@ -172,6 +172,11 @@ class BookTOCViewModel {
         nodeIdCache[id]
     }
 
+    func findNode(for locator: TextLocator) -> TOCNode? {
+        let allNodes = flattenNodes(tocNodes)
+        return allNodes.first { $0.backendLocator == locator }
+    }
+
     /// Mencari path lengkap dari root ke node terdalam yang mencakup contentId.
     /// Menggunakan tocRanges (endID yang sudah benar) lalu pathToNode untuk full path.
     func deepestPath(forContentId contentId: Int) -> [TOCNode]? {

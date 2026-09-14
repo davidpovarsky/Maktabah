@@ -796,7 +796,21 @@ class ReaderViewModel: ViewModelBase {
     func didSelectTOCNode(id: Int) {
         searchText = ""
         targetAnnotation = nil
+        if let node = tocViewModel.findNodeById(id), let locator = node.backendLocator {
+            loadBackendContent(locator)
+            return
+        }
         fetchContentById(id)
+    }
+
+    func didSelectTOCNode(_ node: TOCNode) {
+        searchText = ""
+        targetAnnotation = nil
+        if let locator = node.backendLocator {
+            loadBackendContent(locator)
+            return
+        }
+        fetchContentById(node.id)
     }
 
     func didSelectSearch(query: String, contentId: Int) {
