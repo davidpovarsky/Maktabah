@@ -131,6 +131,13 @@ final class BackendCoordinator: ObservableObject {
         return try await perform { try await provider.tableOfContents(for: work) }
     }
 
+    func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
+        guard let provider = registrations[activeBackendID]?.navigation else {
+            return []
+        }
+        return try await perform { try await provider.navigationItems(for: work) }
+    }
+
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         guard let provider = registrations[activeBackendID]?.search else {
             throw LibraryBackendError.capabilityUnavailable

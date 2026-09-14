@@ -65,6 +65,28 @@ struct TextLocator: Codable, Hashable, Sendable {
     }
 }
 
+/// A canonical reader destination: load the section, optionally focus on a
+/// specific segment within it.  Used by TOC, search-hit-to-reader routing,
+/// and history restoration.
+struct LibraryReaderDestination: Codable, Hashable, Sendable {
+    /// The section to load (e.g., "Genesis 1" or a reading-unit locator).
+    let sectionLocator: TextLocator
+    /// An optional segment within the section to highlight/scroll to
+    /// (e.g., "Genesis 1:3" or a specific line index).
+    let focusLocator: TextLocator?
+}
+
+/// A navigable unit within a work, supplied by the backend provider.
+/// The bottom-bar navigator uses these to show a picker/stepper of
+/// chapters, folios, or reading-units instead of the legacy part/page sliders.
+struct LibraryNavigationItem: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let title: String
+    let index: Int
+
+    var id: String { locator.persistenceKey }
+}
+
 struct LibraryWork: Codable, Hashable, Identifiable, Sendable {
     let locator: TextLocator
     let title: String

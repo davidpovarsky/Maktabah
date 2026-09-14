@@ -2,14 +2,15 @@ import Foundation
 
 @MainActor
 enum MaktabahBackendAdapter {
+    /// Whether the active backend provides its own catalog/text path instead of
+    /// Maktabah's native SQLite data.  Replaces the former ``usesGenericModels``
+    /// which hard-coded ``selected == .sefaria``.
     nonisolated static var usesGenericModels: Bool {
-        let selected = UserDefaults.standard.string(forKey: BackendCoordinator.selectionDefaultsKey)
-            .flatMap(BackendID.init(rawValue:)) ?? .otzaria
-        return selected == .sefaria
+        !BackendCoordinator.shared.usesNativeMaktabahDataPath
     }
 
     static func loadLibraryIfNeeded() async throws -> (roots: [CategoryData], books: [Int: BooksData])? {
-        guard usesGenericModels else { return nil }
+        guard !BackendCoordinator.shared.usesNativeMaktabahDataPath else { return nil }
         if (try? OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()) == true,
            let otzariaBooks = try? OtzariaMaktabahBridge.shared.fetchAllBooks() {
             CrossBackendBookIdentityIndex.shared.prepare(
@@ -63,8 +64,12 @@ enum MaktabahBackendAdapter {
     }
 
     static func searchItem(from hit: LibrarySearchHit) -> SearchResultItem {
+        let workPosition: TextPosition = switch hit.locator.position {
+        case .canonicalRef: .canonicalRef(hit.locator.workKey)
+        case .legacyLine:   .legacyLine(0)
+        }
         let workLocator = TextLocator(backend: hit.locator.backend, workKey: hit.locator.workKey,
-            position: hit.locator.backend == .sefaria ? .canonicalRef(hit.locator.workKey) : .legacyLine(0))
+            position: workPosition)
         let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: workLocator)
             ?? LegacyIdentityRegistry.shared.id(for: workLocator)
         let resultID = LegacyIdentityRegistry.shared.id(for: hit.locator)
@@ -110,19 +115,31 @@ enum MaktabahBackendAdapter {
                 return copy
             }
         }
+        let workPosition: TextPosition = switch locator.position {
+        case .canonicalRef: .canonicalRef(locator.workKey)
+        case .legacyLine:   .legacyLine(0)
+        }
         let workLocator = TextLocator(backend: locator.backend, workKey: locator.workKey,
-            position: locator.backend == .sefaria ? .canonicalRef(locator.workKey) : .legacyLine(0))
+            position: workPosition)
         let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: workLocator)
             ?? LegacyIdentityRegistry.shared.id(for: workLocator)
-        guard let original = manager.getBook([id]).first else { return nil }
-        let copy = BooksData(id: original.id, book: original.book, archive: original.archive,
-            muallif: original.muallif, bithoqoh: original.bithoqoh, info: original.info,
-            backendLocator: locator)
-        copy.catId = original.catId
-        copy.backendSearchPath = original.backendSearchPath
-        copy.pdfCs = original.pdfCs
-        copy.orderIndex = original.orderIndex
-        copy.totalLines = original.totalLines
-        return copy
+        if let original = manager.getBook([id]).first {
+            let copy = BooksData(id: original.id, book: original.book, archive: original.archive,
+                muallif: original.muallif, bithoqoh: original.bithoqoh, info: original.info,
+                backendLocator: locator)
+            copy.catId = original.catId
+            copy.backendSearchPath = original.backendSearchPath
+            copy.pdfCs = original.pdfCs
+            copy.orderIndex = original.orderIndex
+            copy.totalLines = original.totalLines
+            return copy
+        }
+        // Cold catalog miss: Library catalog hasn't been loaded yet (e.g. user
+        // went to Search before opening Library tab).  Synthesise a minimal
+        // BooksData so the reader can still open the locator.
+        let title = LegacyIdentityRegistry.shared.title(for: workLocator) ?? locator.workKey
+        let synthetic = BooksData(id: id, book: title, archive: 0, muallif: 0,
+            bithoqoh: "", info: locator.workKey, backendLocator: locator)
+        return synthetic
     }
 }

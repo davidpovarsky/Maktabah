@@ -56,6 +56,16 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
             bookID = nil
         }
         guard let bookID else { throw LibraryBackendError.invalidLocator }
+        
+        let mode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
+        if let unit = line == 0
+            ? OtzariaMaktabahBridge.shared.getFirstReadingUnit(bookId: bookID, mode: mode)
+            : OtzariaMaktabahBridge.shared.getReadingUnit(bookId: bookID, containingLineIndex: line, mode: mode) {
+            let previous = OtzariaMaktabahBridge.shared.getPreviousReadingUnit(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode)
+            let next = OtzariaMaktabahBridge.shared.getNextReadingUnit(bookId: bookID, afterLineIndex: unit.startLineIndex, mode: mode)
+            return OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
+        }
+        
         let content = line == 0
             ? OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookID)
             : OtzariaMaktabahBridge.shared.getContent(bookId: bookID, contentId: line)
@@ -94,11 +104,29 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         }
         guard let bookID,
               let book = try OtzariaMaktabahBridge.shared.fetchBook(byId: bookID) else { return [] }
-        return OtzariaMaktabahBridge.shared.getTOCEntries(for: book).map { entry in
+        let entries = OtzariaMaktabahBridge.shared.getTOCEntries(for: book)
+        let entryIds = Set(entries.map { $0.entryId })
+        
+        var childrenByParentId: [Int: [TOC]] = [:]
+        var rootEntries: [TOC] = []
+        
+        for entry in entries {
+            if let parentId = entry.parentId, entryIds.contains(parentId) {
+                childrenByParentId[parentId, default: []].append(entry)
+            } else {
+                rootEntries.append(entry)
+            }
+        }
+        
+        func buildNode(for entry: TOC) -> LibraryTOCNode {
+            let childEntries = childrenByParentId[entry.entryId] ?? []
+            let children = childEntries.map { buildNode(for: $0) }
             let locator = TextLocator(backend: .otzaria, workKey: work.locator.workKey,
                 position: .legacyLine(entry.id))
-            return LibraryTOCNode(locator: locator, title: entry.bab, children: [])
+            return LibraryTOCNode(locator: locator, title: entry.bab, children: children)
         }
+        
+        return rootEntries.map { buildNode(for: $0) }
         #else
         return []
         #endif

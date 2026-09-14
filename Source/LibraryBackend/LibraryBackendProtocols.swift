@@ -11,6 +11,13 @@ protocol LibraryTextProviding: Sendable {
 protocol LibraryNavigationProviding: Sendable {
     func normalizedLocator(for input: String) async throws -> TextLocator
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode]
+    /// Returns a flat ordered list of navigable units within a work (e.g.,
+    /// chapters, folios, reading-units).  Used by the bottom-bar navigator.
+    func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem]
+}
+
+extension LibraryNavigationProviding {
+    func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] { [] }
 }
 
 protocol LibrarySearchProviding: Sendable {

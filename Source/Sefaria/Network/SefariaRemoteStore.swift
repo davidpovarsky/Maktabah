@@ -36,6 +36,9 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         }
         let cacheName = "section-\(Data(ref.utf8).base64EncodedString().replacingOccurrences(of: "/", with: "_"))"
         if let cached: SefariaTextsV3DTO = await cache.decode(cacheName) {
+            if cached.sectionRef != ref {
+                return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(cached.sectionRef)))
+            }
             return map(cached, origin: .diskCache).asLibrarySection()
         }
         let url = try configuration.apiURL(pathPrefix: "/api/v3/texts/", pathComponent: ref, queryItems: [
@@ -46,6 +49,9 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         ])
         let dto = try await client.get(SefariaTextsV3DTO.self, url: url)
         try await cache.encode(dto, as: cacheName)
+        if dto.sectionRef != ref {
+            return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(dto.sectionRef)))
+        }
         return map(dto, origin: .remote).asLibrarySection()
     }
 
