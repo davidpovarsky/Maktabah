@@ -415,20 +415,25 @@ final class OtzariaMaktabahBridge {
     }
 
     func resolveBook(stableKey: String, expectedBookId: Int) throws -> BooksData? {
+        let normalizedKey = stableKey.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanPath = normalizedKey.hasPrefix("/") ? String(normalizedKey.dropFirst()) : normalizedKey
+        let parsedId = normalizedKey.hasPrefix("book:")
+            ? Int(normalizedKey.dropFirst("book:".count))
+            : Int(normalizedKey)
+        let effectiveExpected = expectedBookId > 0 ? expectedBookId : parsedId
+
         let resolvedID: Int? = try withDatabase { database in
             let schema = try OtzariaBookSchemaCompatibility.projection(in: database)
             let rows = try database.fetch(query: """
                 SELECT b.id
                 FROM book b
                 WHERE NULLIF(TRIM(\(schema.filePath)), '') = ?
+                   OR LTRIM(NULLIF(TRIM(\(schema.filePath)), ''), '/') = ?
                    OR 'book:' || b.id = ?
+                   OR b.id = ?
                 LIMIT 2
-            """, parameters: [stableKey, stableKey]) { row in row.int(at: 0) }
+            """, parameters: [normalizedKey, cleanPath, "book:\(effectiveExpected ?? -1)", effectiveExpected ?? -1]) { row in row.int(at: 0) }
             guard rows.count == 1 else { return nil }
-            // A real canonical source path is authoritative across database
-            // rebuilds where numeric IDs may change. Only the documented
-            // `book:<id>` fallback remains tied to the original numeric ID.
-            let effectiveExpected = expectedBookId > 0 ? expectedBookId : (stableKey.hasPrefix("book:") ? Int(stableKey.dropFirst("book:".count)) : nil)
             if let effectiveExpected, rows[0] != effectiveExpected { return nil }
             return rows[0]
         }

@@ -50,6 +50,8 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         if locator.workKey.hasPrefix("book:"),
            let parsed = Int(locator.workKey.dropFirst("book:".count)) {
             bookID = parsed
+        } else if let parsed = Int(locator.workKey) {
+            bookID = parsed
         } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: locator.workKey, expectedBookId: 0) {
             bookID = resolved.id
         } else {
@@ -107,6 +109,8 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         let bookID: Int?
         if work.locator.workKey.hasPrefix("book:"),
            let parsed = Int(work.locator.workKey.dropFirst("book:".count)) {
+            bookID = parsed
+        } else if let parsed = Int(work.locator.workKey) {
             bookID = parsed
         } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: work.locator.workKey, expectedBookId: 0) {
             bookID = resolved.id

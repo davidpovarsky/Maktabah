@@ -167,4 +167,38 @@ func runNavigationAndPackageTests() throws {
     try expect(leafItems[1].title == "Section 2", "second leaf title")
     try expect(leafItems[2].title == "Chapter 2", "third leaf title (flat node)")
     try expect(leafItems.map(\.index) == [0, 1, 2], "sequential indices")
+
+    // Bug F regression test: Section with ref == sectionRef and count == 1 generates segment ref with offset
+    let singleCommentarySection = SefariaSection(
+        ref: "Rashbam on Genesis 1:1",
+        heRef: "רשב\"ם על בראשית א׳:א׳",
+        indexTitle: "Rashbam on Genesis",
+        sectionRef: "Rashbam on Genesis 1:1",
+        heSectionRef: "רשב\"ם על בראשית א׳:א׳",
+        next: nil,
+        prev: nil,
+        versions: [
+            SefariaVersion(
+                versionTitle: "Rashbam",
+                language: "he",
+                actualLanguage: "he",
+                versionSource: nil,
+                license: nil,
+                versionNotes: nil,
+                priority: nil,
+                isPrimary: true,
+                isSource: true,
+                direction: "rtl",
+                text: .array([.string("בשלמא")])
+            )
+        ],
+        linksBySegment: [[]],
+        origin: .remote
+    )
+    let mappedSection = singleCommentarySection.asLibrarySection()
+    try expect(mappedSection.segments.count == 1, "one segment in section")
+    try expect(mappedSection.segments[0].locator.position == .canonicalRef("Rashbam on Genesis 1:1:1"),
+        "single segment section derives segment ref with offset when ref == sectionRef")
+    try expect(mappedSection.segments[0].heRef == "רשב\"ם על בראשית א׳:א׳:1",
+        "single segment section derives segment heRef with offset when ref == sectionRef")
 }

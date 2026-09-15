@@ -96,7 +96,7 @@ enum MaktabahBackendAdapter {
         if locator.backend == .otzaria {
             let numericId = locator.workKey.hasPrefix("book:")
                 ? Int(locator.workKey.dropFirst("book:".count))
-                : nil
+                : Int(locator.workKey)
             if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(
                 stableKey: locator.workKey,
                 expectedBookId: numericId ?? 0

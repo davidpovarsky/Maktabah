@@ -135,9 +135,10 @@ struct SefariaSection: Codable, Hashable, Sendable {
         let primary = source?.text?.segmentStrings ?? []
         let translated = translation?.text?.segmentStrings ?? []
         let count = max(primary.count, translated.count)
+        let isSegmentLevelRef = count == 1 && ref != sectionRef
         let segments = (0..<count).map { index in
-            let segmentRef = count == 1 ? ref : SefariaRef.segmentRef(sectionRef: sectionRef, offset: index + 1)
-            let segmentHeRef = count == 1
+            let segmentRef = isSegmentLevelRef ? ref : SefariaRef.segmentRef(sectionRef: sectionRef, offset: index + 1)
+            let segmentHeRef = isSegmentLevelRef
                 ? heRef
                 : heRef.map { "\($0):\(index + 1)" }
             return LibraryTextSegment(
