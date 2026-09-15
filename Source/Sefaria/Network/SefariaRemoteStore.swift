@@ -96,6 +96,25 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         )
     }
 
+    func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
+        let toc = try await tableOfContents(for: work)
+        var items: [LibraryNavigationItem] = []
+        func collectLeaves(_ nodes: [LibraryTOCNode]) {
+            for node in nodes {
+                if node.children.isEmpty {
+                    items.append(LibraryNavigationItem(
+                        locator: node.locator,
+                        title: node.title,
+                        index: items.count
+                    ))
+                } else {
+                    collectLeaves(node.children)
+                }
+            }
+        }
+        collectLeaves(toc)
+        return items
+    }
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         let url = try configuration.apiURL(path: "/api/search-wrapper")
         let response = try await client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(

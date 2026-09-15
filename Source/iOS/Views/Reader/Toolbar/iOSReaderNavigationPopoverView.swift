@@ -15,11 +15,14 @@ struct iOSReaderNavigationPopoverView: View {
     // Feedback and local slider states
     @State private var localPart: Double = 1
     @State private var localPage: Double = 1
+    @State private var localNav: Double = 0
     @State private var isSlidingPart = false
     @State private var isSlidingPage = false
+    @State private var isSlidingNav = false
 
     @State private var partJumpSubject = PassthroughSubject<Int, Never>()
     @State private var pageJumpSubject = PassthroughSubject<Int, Never>()
+    @State private var navJumpSubject = PassthroughSubject<Int, Never>()
 
     var body: some View {
         VStack(spacing: 20) {
@@ -49,6 +52,42 @@ struct iOSReaderNavigationPopoverView: View {
                             .font(.title2)
                     }
                     .disabled(viewModel.backendSection?.next == nil)
+                }
+
+                // Section slider — maps to the complete backend navigation model
+                if viewModel.navigationItems.count > 1 {
+                    VStack(spacing: 8) {
+                        if isSlidingNav {
+                            Text(viewModel.navigationItems[Int(localNav)].title)
+                                .font(.headline)
+                                .foregroundColor(.accentColor)
+                                .lineLimit(1)
+                        }
+
+                        Slider(
+                            value: $localNav,
+                            in: 0...Double(viewModel.navigationItems.count - 1),
+                            step: 1
+                        ) { editing in
+                            isSlidingNav = editing
+                            if !editing {
+                                viewModel.navigateToNavigationItem(at: Int(localNav))
+                            }
+                        }
+
+                        HStack {
+                            Text(viewModel.navigationItems.first?.title ?? "")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                            Spacer()
+                            Text(viewModel.navigationItems.last?.title ?? "")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                        }
+                    }
+                    .environment(\.layoutDirection, .rightToLeft)
                 }
             } else {
                 if viewModel.totalParts > 1 {
@@ -140,6 +179,9 @@ struct iOSReaderNavigationPopoverView: View {
         .onAppear {
             localPart = Double(max(1, viewModel.currentPart ?? 1))
             localPage = Double(max(1, viewModel.currentPage ?? 1))
+            if let idx = viewModel.currentNavigationIndex {
+                localNav = Double(idx)
+            }
         }
         .onChange(of: viewModel.currentPart) { _, newValue in
             if !isSlidingPart {
@@ -176,6 +218,11 @@ struct iOSReaderNavigationPopoverView: View {
             )
         ) { value in
             viewModel.jumpToPage(value)
+        }
+        .onChange(of: viewModel.backendSection?.locator) { _, _ in
+            if !isSlidingNav, let idx = viewModel.currentNavigationIndex {
+                localNav = Double(idx)
+            }
         }
     }
 }

@@ -206,6 +206,20 @@ class ReaderViewModel: ViewModelBase {
     private(set) var backendSection: LibraryTextSection?
     var currentDestination: LibraryReaderDestination?
     var navigationItems: [LibraryNavigationItem] = []
+
+    /// Index of the current section within ``navigationItems``, or nil when
+    /// the current section doesn't match any item.
+    var currentNavigationIndex: Int? {
+        guard let sectionLocator = backendSection?.locator else { return nil }
+        return navigationItems.firstIndex { $0.locator == sectionLocator }
+    }
+
+    /// Navigate to a specific position in the ``navigationItems`` list (used by the bottom-bar slider).
+    func navigateToNavigationItem(at index: Int) {
+        guard index >= 0, index < navigationItems.count else { return }
+        loadBackendContent(navigationItems[index].locator)
+    }
+
     private var backendLoadTask: Task<Void, Never>?
 
     private var currentID: Int? {

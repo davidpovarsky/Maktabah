@@ -34,6 +34,17 @@ class TOCNode: Identifiable {
         self.entryId = toc.entryId
         self.parentId = toc.parentId
     }
+
+    /// Backend initializer — preserves title verbatim without Arabic digit conversion.
+    /// Used for Sefaria/Otzaria TOC entries whose titles must remain as-is.
+    init(backendTitle: String, level: Int, sub: Int, id: Int, parentId: Int? = nil, entryId: Int? = nil) {
+        self.bab = backendTitle
+        self.level = level
+        self.sub = sub
+        self.id = id
+        self.entryId = entryId ?? id
+        self.parentId = parentId
+    }
 }
 
 struct TOC {

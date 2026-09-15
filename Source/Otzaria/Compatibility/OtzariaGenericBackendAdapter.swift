@@ -73,9 +73,20 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         let current = TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(content.id))
         let previous = OtzariaMaktabahBridge.shared.getPreviousContent(bookId: bookID, before: content.id)
         let next = OtzariaMaktabahBridge.shared.getNextContent(bookId: bookID, after: content.id)
+        // Split into per-paragraph segments for granular selection when reading units are unavailable.
+        let paragraphs = content.nash.components(separatedBy: "\n").enumerated().compactMap { offset, text -> LibraryTextSegment? in
+            let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !trimmed.isEmpty else { return nil }
+            let segLocator = TextLocator(backend: .otzaria, workKey: locator.workKey,
+                position: .legacyLine(content.id + offset))
+            return .init(locator: segLocator, heRef: content.heRef, primaryText: trimmed, translation: nil)
+        }
+        let segments = paragraphs.isEmpty
+            ? [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
+            : paragraphs
         return LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
             heRef: content.heRef,
-            segments: [.init(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)],
+            segments: segments,
             previous: previous.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
             next: next.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
             versions: [], links: [], origin: .offline)
@@ -130,6 +141,26 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         #else
         return []
         #endif
+    }
+
+    func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
+        let toc = try await tableOfContents(for: work)
+        var items: [LibraryNavigationItem] = []
+        func collectLeaves(_ nodes: [LibraryTOCNode]) {
+            for node in nodes {
+                if node.children.isEmpty {
+                    items.append(LibraryNavigationItem(
+                        locator: node.locator,
+                        title: node.title,
+                        index: items.count
+                    ))
+                } else {
+                    collectLeaves(node.children)
+                }
+            }
+        }
+        collectLeaves(toc)
+        return items
     }
 
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {

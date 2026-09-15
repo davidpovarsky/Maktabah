@@ -49,7 +49,7 @@ class BookTOCViewModel {
                     let nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
-                        let node = TOCNode(from: TOC(bab: item.title, level: level, sub: 0, id: id))
+                        let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
                         node.backendLocator = item.locator
                         node.children = item.children.map { convert($0, level: level + 1) }
                         return node

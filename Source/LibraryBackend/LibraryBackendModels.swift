@@ -302,9 +302,14 @@ extension String {
         replacingOccurrences(of: #"(?i)<br\s*/?>"#, with: "\n", options: .regularExpression)
             .replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
             .replacingOccurrences(of: "&nbsp;", with: " ")
+            .replacingOccurrences(of: "&thinsp;", with: "\u{2009}")
+            .replacingOccurrences(of: "&#8201;", with: "\u{2009}")
+            .replacingOccurrences(of: "&ensp;", with: "\u{2002}")
+            .replacingOccurrences(of: "&emsp;", with: "\u{2003}")
             .replacingOccurrences(of: "&amp;", with: "&")
             .replacingOccurrences(of: "&lt;", with: "<")
             .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&quot;", with: "\"")
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
