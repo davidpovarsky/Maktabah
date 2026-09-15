@@ -321,10 +321,11 @@ private extension iOSMainView {
 
             let bookId = linked?.0 ?? 1
             let lineIndex = linked?.1 ?? 1
-            let bookTitle = (try? OtzariaMaktabahBridge.shared.withDatabase { database in
-                try database.fetch(query: "SELECT name FROM book WHERE id = \(bookId) LIMIT 1") { row in
+            let bookTitle: String = (try? OtzariaMaktabahBridge.shared.withDatabase { database -> String in
+                let rows = try database.fetch(query: "SELECT name FROM book WHERE id = \(bookId) LIMIT 1") { row in
                     row.string(at: 0)
-                }.first
+                }
+                return rows.first ?? "ספר"
             }) ?? "ספר"
 
             let locator = TextLocator(
