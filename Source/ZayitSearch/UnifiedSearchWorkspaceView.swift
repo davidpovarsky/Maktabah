@@ -151,6 +151,12 @@ struct UnifiedSearchWorkspaceView: View {
             ForEach(availableScopes) { item in Text(item.title).tag(item) }
         }
         .onSubmit(of: .search, runSearch)
+        .onAppear {
+            if query.isEmpty && !navigationManager.searchViewModel.query.isEmpty {
+                query = navigationManager.searchViewModel.query
+                runSearch()
+            }
+        }
         .safeAreaInset(edge: .top) {
             VStack(spacing: 8) {
                 if scope == .advanced {

@@ -255,6 +255,80 @@ private extension iOSMainView {
                 navigationManager.switchToMode(.search)
             }
 
+        case "searchResults":
+            let query = "בראשית"
+            navigationManager.searchViewModel.query = query
+            selectedTab = .textSearch
+            navigationManager.switchToMode(.search)
+            columnVisibility = .all
+            if backend == .sefaria {
+                await navigationManager.searchViewModel.startSearch()
+            }
+            try? await Task.sleep(for: .milliseconds(1500))
+
+        case "searchOpen":
+            let query = "בראשית"
+            selectedTab = .textSearch
+            navigationManager.switchToMode(.search)
+            columnVisibility = .all
+            if backend == .sefaria {
+                navigationManager.searchViewModel.query = query
+                await navigationManager.searchViewModel.startSearch()
+                try? await Task.sleep(for: .milliseconds(1500))
+                if let first = navigationManager.searchViewModel.results.first,
+                   let book = navigationManager.searchViewModel.resolveBook(from: first) {
+                    let targetContentId = first.backendLocator != nil ? first.bookId : first.page
+                    navigationManager.openBook(book, initialContentId: targetContentId, searchText: query, recordHistory: false)
+                    navigationManager.switchToMode(.viewer)
+                }
+            } else {
+                _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
+                if let page = try? await BackendCoordinator.shared.search(.init(query: query, offset: 0, limit: 10)),
+                   let hit = page.hits.first {
+                    let targetID = LegacyIdentityRegistry.shared.id(for: hit.locator)
+                    let canonicalID = CrossBackendBookIdentityIndex.shared.canonicalID(for: hit.locator) ?? 1
+                    let book = BooksData(id: canonicalID, book: hit.displayRef, archive: 0, muallif: 0, backendLocator: hit.locator)
+                    navigationManager.openBook(book, initialContentId: targetID, searchText: query, recordHistory: false)
+                    navigationManager.switchToMode(.viewer)
+                }
+            }
+
+        case "annotationsList":
+            _ = await prepareSmokeAnnotation(for: backend)
+            selectedTab = .annotations
+            navigationManager.switchToMode(.annotations)
+            columnVisibility = .all
+            await navigationManager.annotationViewModel.loadAnnotations()
+
+        case "annotationsSearch":
+            _ = await prepareSmokeAnnotation(for: backend)
+            selectedTab = .annotations
+            navigationManager.switchToMode(.annotations)
+            columnVisibility = .all
+            await navigationManager.annotationViewModel.loadAnnotations()
+            navigationManager.annotationViewModel.searchText = "בדיקת סימולטור"
+            navigationManager.annotationViewModel.applyFilter()
+
+        case "annotationsOpen":
+            if let target = await prepareSmokeAnnotation(for: backend) {
+                selectedTab = .viewer
+                navigationManager.switchToMode(.viewer)
+                columnVisibility = .all
+                navigationManager.openBook(target.0, initialContentId: target.1, targetAnnotation: target.2, recordHistory: false)
+            }
+
+        case "settings":
+            selectedTab = .viewer
+            navigationManager.switchToMode(.viewer)
+            showSettings = true
+
+        case "engineSwitch":
+            let otherBackend: BackendID = (backend == .otzaria) ? .sefaria : .otzaria
+            BackendCoordinator.shared.commit(otherBackend)
+            selectedTab = .viewer
+            navigationManager.switchToMode(.viewer)
+            columnVisibility = .all
+
         default:
             break
         }
@@ -376,6 +450,57 @@ private extension iOSMainView {
                     }
                 }
             }
+        }
+    }
+
+    @discardableResult
+    func prepareSmokeAnnotation(for backend: BackendID) async -> (BooksData, Int, Annotation)? {
+        if backend == .otzaria {
+            _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
+        }
+        let locator: TextLocator
+        let bkId: Int
+        let contentId: Int
+        let bookTitle: String
+
+        if backend == .otzaria {
+            bkId = 103
+            contentId = 2034
+            locator = TextLocator(backend: .otzaria, workKey: "book:103", position: .legacyLine(2034))
+            bookTitle = "ברכות"
+        } else {
+            bkId = 1
+            contentId = -53
+            locator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+            bookTitle = "Genesis"
+        }
+
+        let coordinator = AnnotationCoordinator()
+        let manager = AnnotationManager.shared
+        let noteText = "בדיקת סימולטור: הערה ב\(bookTitle)"
+        let targetText = backend == .otzaria ? "השותה מים לצמאו" : "בראשית ברא אלהים"
+
+        do {
+            var highlight = try coordinator.saveHighlight(
+                text: targetText,
+                range: NSRange(location: 0, length: min(targetText.utf16.count, 10)),
+                color: .systemYellow,
+                bkId: bkId,
+                contentId: contentId,
+                page: 1,
+                part: 1,
+                diacriticsText: nil,
+                showHarakat: true,
+                mode: .highlight,
+                backendLocator: locator
+            )
+            highlight.note = noteText
+            highlight.tags = ["בדיקות סימולטור"]
+            try manager.updateAnnotation(highlight)
+            let book = BooksData(id: bkId, book: bookTitle, archive: 0, muallif: 0, backendLocator: locator)
+            return (book, contentId, highlight)
+        } catch {
+            return nil
         }
     }
 }
