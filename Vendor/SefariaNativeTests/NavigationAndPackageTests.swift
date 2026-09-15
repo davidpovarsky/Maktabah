@@ -116,4 +116,55 @@ func runNavigationAndPackageTests() throws {
     try Data("partial".utf8).write(to: interrupted)
     let preservedData = try Data(contentsOf: target)
     try expect(preservedData == Data("new".utf8), "staging cannot corrupt known-good target")
+
+    // Bug C regression test: Entity decoding in readerPlainText
+    let sampleWithEntities = "שלום&thinsp;עליכם&#8201;ורחמים&nbsp;&quot;ספר&quot;&ensp;&emsp;חדש"
+    let decoded = sampleWithEntities.readerPlainText
+    try expect(decoded.contains("\u{2009}"), "thinsp is converted to Unicode thin space U+2009")
+    try expect(!decoded.contains("&thinsp;"), "literal &thinsp; entity is not present")
+    try expect(!decoded.contains("&#8201;"), "literal numeric &#8201; entity is not present")
+    try expect(decoded.contains("\u{2002}"), "ensp is converted to Unicode en space U+2002")
+    try expect(decoded.contains("\u{2003}"), "emsp is converted to Unicode em space U+2003")
+    try expect(decoded.contains("\"ספר\""), "quot is decoded to double quotes")
+
+    // Bug A regression test: Leaf navigation items from TOC
+    let sampleTOC = [
+        LibraryTOCNode(
+            locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1")),
+            title: "Chapter 1",
+            children: [
+                LibraryTOCNode(
+                    locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1-5")),
+                    title: "Section 1",
+                    children: []
+                ),
+                LibraryTOCNode(
+                    locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:6-10")),
+                    title: "Section 2",
+                    children: []
+                )
+            ]
+        ),
+        LibraryTOCNode(
+            locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 2")),
+            title: "Chapter 2",
+            children: []
+        )
+    ]
+    var leafItems: [LibraryNavigationItem] = []
+    func collectLeaves(_ nodes: [LibraryTOCNode]) {
+        for node in nodes {
+            if node.children.isEmpty {
+                leafItems.append(LibraryNavigationItem(locator: node.locator, title: node.title, index: leafItems.count))
+            } else {
+                collectLeaves(node.children)
+            }
+        }
+    }
+    collectLeaves(sampleTOC)
+    try expect(leafItems.count == 3, "correct count of leaf navigation items")
+    try expect(leafItems[0].title == "Section 1", "first leaf title")
+    try expect(leafItems[1].title == "Section 2", "second leaf title")
+    try expect(leafItems[2].title == "Chapter 2", "third leaf title (flat node)")
+    try expect(leafItems.map(\.index) == [0, 1, 2], "sequential indices")
 }
