@@ -128,6 +128,11 @@ struct iOSMainView: View {
                 DonationManager.shared.checkAndPromptIOSSheet()
             }
         }
+        #if DEBUG
+        .task {
+            await performSmokeAutomationIfNeeded()
+        }
+        #endif
     }
 }
 
@@ -186,3 +191,180 @@ struct iOSMainView_Previews: PreviewProvider {
             }
     }
 }
+
+// MARK: - Smoke Test Automation
+
+#if DEBUG
+private extension iOSMainView {
+    enum SmokeInspectorMode {
+        case none
+        case inspector
+        case commentatorTab
+    }
+
+    func performSmokeAutomationIfNeeded() async {
+        let args = ProcessInfo.processInfo.arguments
+        guard let scenarioIndex = args.firstIndex(of: "-smokeScenario"),
+              scenarioIndex + 1 < args.count else {
+            return
+        }
+        let scenario = args[scenarioIndex + 1]
+
+        // Allow SwiftUI initial layout to finish
+        try? await Task.sleep(for: .milliseconds(700))
+
+        let backend = BackendCoordinator.shared.activeBackendID
+
+        switch scenario {
+        case "catalog":
+            selectedTab = .viewer
+            navigationManager.switchToMode(.viewer)
+            columnVisibility = .all
+
+        case "reader":
+            selectedTab = .viewer
+            columnVisibility = .all
+            await openSmokeBook(for: backend, inspectorMode: .none)
+
+        case "inspector":
+            selectedTab = .viewer
+            columnVisibility = .all
+            await openSmokeBook(for: backend, inspectorMode: .inspector)
+
+        case "commentator":
+            selectedTab = .viewer
+            columnVisibility = .all
+            await openSmokeBook(for: backend, inspectorMode: .commentatorTab)
+
+        case "search":
+            if BackendCoordinator.shared.capabilities.contains(.search) {
+                selectedTab = .textSearch
+                navigationManager.switchToMode(.search)
+            } else {
+                selectedTab = .search
+                navigationManager.switchToMode(.search)
+            }
+
+        default:
+            break
+        }
+    }
+
+    func openSmokeBook(for backend: BackendID, inspectorMode: SmokeInspectorMode) async {
+        switch backend {
+        case .sefaria:
+            let genesisLocator = TextLocator(
+                backend: .sefaria,
+                workKey: "Genesis",
+                position: .canonicalRef("Genesis 1:1")
+            )
+            let canonicalID = CrossBackendBookIdentityIndex.shared.canonicalID(for: genesisLocator) ?? 1
+            let targetID = LegacyIdentityRegistry.shared.id(for: genesisLocator)
+            let book = BooksData(
+                id: canonicalID,
+                book: "Genesis",
+                archive: 0,
+                muallif: 0,
+                backendLocator: genesisLocator
+            )
+            navigationManager.openBook(book, initialContentId: targetID, recordHistory: false)
+
+            var loadedTab: iOSNavigationManager.ReaderTab?
+            for _ in 0..<60 {
+                if let tab = navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId }),
+                   tab.viewModel.backendRenderModel != nil || !tab.viewModel.contentText.isEmpty {
+                    loadedTab = tab
+                    break
+                }
+                try? await Task.sleep(for: .milliseconds(100))
+            }
+
+            guard let activeTab = loadedTab else { return }
+
+            if inspectorMode != .none {
+                try? await Task.sleep(for: .milliseconds(500))
+                activeTab.viewModel.selectedSegmentLocator = genesisLocator
+                activeTab.viewModel.readerInspectorVisible = true
+
+                if inspectorMode == .commentatorTab {
+                    try? await Task.sleep(for: .milliseconds(1000))
+                    if let sources = try? await BackendCoordinator.shared.links(for: genesisLocator),
+                       let firstSource = sources.first {
+                        navigationManager.openTorahInspectorLocationInNewTab(firstSource.locator)
+                    }
+                }
+            }
+
+        case .otzaria:
+            let linked = try? OtzariaMaktabahBridge.shared.withDatabase { database in
+                try database.fetch(query: """
+                    SELECT l.sourceBookId, sourceLine.lineIndex
+                    FROM link l
+                    JOIN line sourceLine ON sourceLine.id = l.sourceLineId
+                    ORDER BY l.id
+                    LIMIT 1
+                """) { row in
+                    (row.int(at: 0), row.int(at: 1))
+                }.first
+            }
+
+            let bookId = linked?.0 ?? 1
+            let lineIndex = linked?.1 ?? 1
+
+            let bookTitle = (try? OtzariaMaktabahBridge.shared.withDatabase { db in
+                try db.fetch(query: "SELECT name FROM book WHERE id = ? LIMIT 1", bindings: [bookId]) { $0.string(at: 0) }.first
+            }) ?? "בראשית"
+
+            let locator = TextLocator(
+                backend: .otzaria,
+                workKey: "book:\(bookId)",
+                position: .legacyLine(lineIndex)
+            )
+
+            let book = BooksData(
+                id: bookId,
+                book: bookTitle,
+                archive: 0,
+                muallif: 0,
+                backendLocator: locator
+            )
+
+            navigationManager.openBook(book, initialContentId: lineIndex, recordHistory: false)
+
+            var loadedTab: iOSNavigationManager.ReaderTab?
+            for _ in 0..<60 {
+                if let tab = navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId }),
+                   tab.viewModel.backendRenderModel != nil || !tab.viewModel.contentText.isEmpty {
+                    loadedTab = tab
+                    break
+                }
+                try? await Task.sleep(for: .milliseconds(100))
+            }
+
+            guard let activeTab = loadedTab else { return }
+
+            if inspectorMode != .none {
+                try? await Task.sleep(for: .milliseconds(500))
+                activeTab.viewModel.selectedSegmentLocator = locator
+                if let anchor = OtzariaMaktabahBridge.shared.lineAnchor(
+                    bookId: bookId,
+                    contentId: activeTab.viewModel.currentContentId,
+                    characterIndex: 0
+                ) {
+                    activeTab.viewModel.otzariaSelectedLineAnchor = anchor
+                }
+                activeTab.viewModel.readerInspectorVisible = true
+
+                if inspectorMode == .commentatorTab {
+                    try? await Task.sleep(for: .milliseconds(1000))
+                    if let sources = try? await BackendCoordinator.shared.links(for: locator),
+                       let firstSource = sources.first {
+                        navigationManager.openTorahInspectorLocationInNewTab(firstSource.locator)
+                    }
+                }
+            }
+        }
+    }
+}
+#endif
+

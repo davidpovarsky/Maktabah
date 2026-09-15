@@ -117,6 +117,11 @@ struct iPadLayout: View {
                 prepareReaderDetail()
             }
         }
+        .onChange(of: selectedTab) { _, newTab in
+            if path.first != newTab && (newTab != .textSearch || detailMode != .textSearch) {
+                transitionSidebar(to: newTab)
+            }
+        }
     }
 
     private var sidebarContent: some View {

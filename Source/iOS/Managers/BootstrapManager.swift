@@ -51,6 +51,13 @@ final class iOSBootstrapManager {
         guard !didPrepare else { return }
         didPrepare = true
 
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-smokeBypassBootstrap") {
+            finishSetup()
+            return
+        }
+        #endif
+
         if backendCoordinator.committedBackendID == .sefaria {
             finishSetup()
             return
