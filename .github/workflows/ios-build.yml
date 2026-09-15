@@ -270,6 +270,7 @@ jobs:
             -derivedDataPath build/DerivedData \
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
+            OTZARIA_DEFAULT_DATA_PROFILE=miniTest10 \
             -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             2>&1 | tee build/logs/build-simulator.log

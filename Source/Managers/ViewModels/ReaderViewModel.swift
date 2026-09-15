@@ -160,6 +160,17 @@ class ReaderViewModel: ViewModelBase {
         if let otzariaReference = otzariaCurrentReferencePage() {
             return otzariaReference
         }
+        if let section = backendSection {
+            if let displayRef = section.displayRef, !displayRef.isEmpty {
+                return displayRef
+            }
+            if let heRef = section.heRef, !heRef.isEmpty {
+                return heRef
+            }
+        }
+        if let currentBook, currentBook.backendLocator != nil {
+            return currentBook.book
+        }
         if let currentPage {
             let pageArb = String(currentPage).convertToArabicDigits()
             if let currentPart, currentPart != -1 {

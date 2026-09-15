@@ -42,6 +42,12 @@ echo "Booting simulator $UDID..."
 xcrun simctl boot "$UDID"
 xcrun simctl bootstatus "$UDID" -b
 
+echo "Configuring OtzariaDefaultDataProfile in $APP/Info.plist..."
+/usr/libexec/PlistBuddy -c 'Set :OtzariaDefaultDataProfile miniTest10' "$APP/Info.plist" 2>/dev/null || \
+/usr/libexec/PlistBuddy -c 'Add :OtzariaDefaultDataProfile string miniTest10' "$APP/Info.plist" 2>/dev/null || true
+
+export SIMCTL_CHILD_OTZARIA_DATA_PROFILE="miniTest10"
+
 echo "Installing $APP on simulator..."
 xcrun simctl install "$UDID" "$APP"
 CONTAINER="$(xcrun simctl get_app_container "$UDID" "$BUNDLE_ID" data 2>/dev/null || echo "")"
@@ -51,12 +57,14 @@ capture_screen() {
   local output="$1"
   local lang="$2"
   local locale="$3"
+  local wait_seconds="${CAPTURE_WAIT_SECONDS:-10}"
   shift 3
   local extra_args=("$@")
 
-  echo "--> [SCREENSHOT] $output (lang: $lang, locale: $locale, args: ${extra_args[*]:-none})"
-  xcrun simctl launch "$UDID" "$BUNDLE_ID" -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}" >/dev/null 2>&1 || true
-  sleep 9
+  echo "--> [SCREENSHOT] $output (lang: $lang, locale: $locale, wait: ${wait_seconds}s, args: ${extra_args[*]:-none})"
+  SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}" >/dev/null 2>&1 || true
+  sleep "$wait_seconds"
   xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$output" >/dev/null 2>&1 || echo "Warning: failed to capture $output"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
   sleep 1
@@ -84,11 +92,12 @@ if [ -n "$CONTAINER" ]; then
   rm -f "$INSTALL" "$RESTORE"
 
   LAUNCH_INSTALL="$(SIMCTL_CHILD_GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}" \
+    SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=install \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_INSTALL_SEARCH=1 \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_REQUIRE_RESUME=0 \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$INSTALL" \
-    xcrun simctl launch "$UDID" "$BUNDLE_ID" 2>&1 || true)"
+    xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 2>&1 || true)"
   echo "Install launched: $LAUNCH_INSTALL"
   INSTALL_PID="$(echo "$LAUNCH_INSTALL" | grep -o '[0-9]\+' | tail -1)"
 
@@ -111,11 +120,12 @@ if [ -n "$CONTAINER" ]; then
   echo ""
   echo "=== [PHASE 3: Otzaria miniTest10 Restore] ==="
   LAUNCH_RESTORE="$(SIMCTL_CHILD_GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}" \
+    SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=restore \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_INSTALL_SEARCH=1 \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$RESTORE" \
     SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_PRIOR_REPORT="$INSTALL" \
-    xcrun simctl launch "$UDID" "$BUNDLE_ID" 2>&1 || true)"
+    xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 2>&1 || true)"
   echo "Restore launched: $LAUNCH_RESTORE"
 
   waited=0
@@ -147,11 +157,12 @@ if [ -n "$CONTAINER" ]; then
     xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 
     echo "Running diagnostic: backend=$backend lang=$lang locale=$locale phase=${phase:-none}"
+    SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
     SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC="$backend" \
     SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC_LOCALE="$lang" \
     SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC_RESULT="$report" \
     SIMCTL_CHILD_SHARED_TORAH_DIAGNOSTIC_ANNOTATION_PHASE="$phase" \
-      xcrun simctl launch "$UDID" "$BUNDLE_ID" -AppleLanguages "($lang)" -AppleLocale "$locale" >/dev/null 2>&1 || true
+      xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" >/dev/null 2>&1 || true
 
     local waited=0
     while [ "$waited" -lt 120 ]; do
@@ -182,11 +193,11 @@ xcrun simctl spawn "$UDID" defaults write "$BUNDLE_ID" activeLibraryBackend.v1 o
 
 capture_screen "otzaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBypassBootstrap
 capture_screen "otzaria-he-reader.png" he he_IL -smokeScenario reader -smokeBypassBootstrap
-capture_screen "otzaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBypassBootstrap
-capture_screen "otzaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBypassBootstrap
 capture_screen "otzaria-en-catalog.png" en en_US -smokeScenario catalog -smokeBypassBootstrap
 capture_screen "otzaria-en-reader.png" en en_US -smokeScenario reader -smokeBypassBootstrap
-capture_screen "otzaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBypassBootstrap
 capture_screen "otzaria-search.png" he he_IL -smokeScenario search -smokeBypassBootstrap
 
 # ==============================================================================
@@ -198,11 +209,11 @@ xcrun simctl spawn "$UDID" defaults write "$BUNDLE_ID" activeLibraryBackend.v1 s
 
 capture_screen "sefaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBypassBootstrap
 capture_screen "sefaria-he-reader.png" he he_IL -smokeScenario reader -smokeBypassBootstrap
-capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBypassBootstrap
-capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBypassBootstrap
 capture_screen "sefaria-en-catalog.png" en en_US -smokeScenario catalog -smokeBypassBootstrap
 capture_screen "sefaria-en-reader.png" en en_US -smokeScenario reader -smokeBypassBootstrap
-capture_screen "sefaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBypassBootstrap
 capture_screen "sefaria-search.png" he he_IL -smokeScenario search -smokeBypassBootstrap
 
 # ==============================================================================
