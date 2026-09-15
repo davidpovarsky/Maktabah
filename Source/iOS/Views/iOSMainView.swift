@@ -298,22 +298,20 @@ private extension iOSMainView {
         case .otzaria:
             let linked = try? OtzariaMaktabahBridge.shared.withDatabase { database in
                 try database.fetch(query: """
-                    SELECT l.sourceBookId, sourceLine.lineIndex
+                    SELECT l.sourceBookId, sourceLine.lineIndex, b.name
                     FROM link l
                     JOIN line sourceLine ON sourceLine.id = l.sourceLineId
+                    JOIN book b ON b.id = l.sourceBookId
                     ORDER BY l.id
                     LIMIT 1
                 """) { row in
-                    (row.int(at: 0), row.int(at: 1))
+                    (row.int(at: 0), row.int(at: 1), row.string(at: 2))
                 }.first
             }
 
             let bookId = linked?.0 ?? 1
             let lineIndex = linked?.1 ?? 1
-
-            let bookTitle = (try? OtzariaMaktabahBridge.shared.withDatabase { db in
-                try db.fetch(query: "SELECT name FROM book WHERE id = ? LIMIT 1", bindings: [bookId]) { $0.string(at: 0) }.first
-            }) ?? "בראשית"
+            let bookTitle = linked?.2 ?? "בראשית"
 
             let locator = TextLocator(
                 backend: .otzaria,
