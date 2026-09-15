@@ -172,9 +172,8 @@ func runNavigationAndPackageTests() throws {
     let singleCommentarySection = SefariaSection(
         ref: "Rashbam on Genesis 1:1",
         heRef: "רשב\"ם על בראשית א׳:א׳",
-        indexTitle: "Rashbam on Genesis",
         sectionRef: "Rashbam on Genesis 1:1",
-        heSectionRef: "רשב\"ם על בראשית א׳:א׳",
+        indexTitle: "Rashbam on Genesis",
         next: nil,
         prev: nil,
         versions: [
@@ -197,7 +196,7 @@ func runNavigationAndPackageTests() throws {
     )
     let mappedSection = singleCommentarySection.asLibrarySection()
     try expect(mappedSection.segments.count == 1, "one segment in section")
-    try expect(mappedSection.segments[0].locator.position == .canonicalRef("Rashbam on Genesis 1:1:1"),
+    try expect(mappedSection.segments[0].locator == TextLocator(backend: .sefaria, workKey: "Rashbam on Genesis", position: .canonicalRef("Rashbam on Genesis 1:1:1")),
         "single segment section derives segment ref with offset when ref == sectionRef")
     try expect(mappedSection.segments[0].heRef == "רשב\"ם על בראשית א׳:א׳:1",
         "single segment section derives segment heRef with offset when ref == sectionRef")
