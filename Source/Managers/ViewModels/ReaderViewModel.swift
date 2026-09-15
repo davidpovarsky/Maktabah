@@ -161,8 +161,8 @@ class ReaderViewModel: ViewModelBase {
             return otzariaReference
         }
         if let section = backendSection {
-            if let displayRef = section.displayRef, !displayRef.isEmpty {
-                return displayRef
+            if !section.displayRef.isEmpty {
+                return section.displayRef
             }
             if let heRef = section.heRef, !heRef.isEmpty {
                 return heRef
