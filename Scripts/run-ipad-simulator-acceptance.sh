@@ -191,14 +191,14 @@ echo ""
 echo "=== [PHASE 5: Otzaria iPad Interactive Screenshots] ==="
 xcrun simctl spawn "$UDID" defaults write "$BUNDLE_ID" activeLibraryBackend.v1 otzaria
 
-capture_screen "otzaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBypassBootstrap
-capture_screen "otzaria-he-reader.png" he he_IL -smokeScenario reader -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBypassBootstrap
-capture_screen "otzaria-en-catalog.png" en en_US -smokeScenario catalog -smokeBypassBootstrap
-capture_screen "otzaria-en-reader.png" en en_US -smokeScenario reader -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBypassBootstrap
-capture_screen "otzaria-search.png" he he_IL -smokeScenario search -smokeBypassBootstrap
+capture_screen "otzaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBackend otzaria -smokeBypassBootstrap
+capture_screen "otzaria-he-reader.png" he he_IL -smokeScenario reader -smokeBackend otzaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBackend otzaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBackend otzaria -smokeBypassBootstrap
+capture_screen "otzaria-en-catalog.png" en en_US -smokeScenario catalog -smokeBackend otzaria -smokeBypassBootstrap
+capture_screen "otzaria-en-reader.png" en en_US -smokeScenario reader -smokeBackend otzaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBackend otzaria -smokeBypassBootstrap
+capture_screen "otzaria-search.png" he he_IL -smokeScenario search -smokeBackend otzaria -smokeBypassBootstrap
 
 # ==============================================================================
 # PHASE 6: Sefaria Interactive iPad Pro Screenshots
@@ -207,14 +207,14 @@ echo ""
 echo "=== [PHASE 6: Sefaria iPad Interactive Screenshots] ==="
 xcrun simctl spawn "$UDID" defaults write "$BUNDLE_ID" activeLibraryBackend.v1 sefaria
 
-capture_screen "sefaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBypassBootstrap
-capture_screen "sefaria-he-reader.png" he he_IL -smokeScenario reader -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBypassBootstrap
-capture_screen "sefaria-en-catalog.png" en en_US -smokeScenario catalog -smokeBypassBootstrap
-capture_screen "sefaria-en-reader.png" en en_US -smokeScenario reader -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBypassBootstrap
-capture_screen "sefaria-search.png" he he_IL -smokeScenario search -smokeBypassBootstrap
+capture_screen "sefaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "sefaria-he-reader.png" he he_IL -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "sefaria-en-catalog.png" en en_US -smokeScenario catalog -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "sefaria-en-reader.png" en en_US -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "sefaria-search.png" he he_IL -smokeScenario search -smokeBackend sefaria -smokeBypassBootstrap
 
 # ==============================================================================
 # PHASE 7: Crash Log Collection & Diagnostic Matrix Output

@@ -210,6 +210,16 @@ private extension iOSMainView {
         }
         let scenario = args[scenarioIndex + 1]
 
+        if let backendArgIndex = args.firstIndex(of: "-smokeBackend"),
+           backendArgIndex + 1 < args.count,
+           let requestedBackend = BackendID(rawValue: args[backendArgIndex + 1]) {
+            BackendCoordinator.shared.commit(requestedBackend)
+        }
+
+        if BackendCoordinator.shared.activeBackendID == .otzaria {
+            _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
+        }
+
         // Allow SwiftUI initial layout to finish
         try? await Task.sleep(for: .milliseconds(700))
 
@@ -296,22 +306,26 @@ private extension iOSMainView {
             }
 
         case .otzaria:
+            _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
             let linked = try? OtzariaMaktabahBridge.shared.withDatabase { database in
                 try database.fetch(query: """
-                    SELECT l.sourceBookId, sourceLine.lineIndex, b.name
+                    SELECT l.sourceBookId, sourceLine.lineIndex
                     FROM link l
                     JOIN line sourceLine ON sourceLine.id = l.sourceLineId
-                    JOIN book b ON b.id = l.sourceBookId
                     ORDER BY l.id
                     LIMIT 1
                 """) { row in
-                    (row.int(at: 0), row.int(at: 1), row.string(at: 2))
+                    (row.int(at: 0), row.int(at: 1))
                 }.first
             }
 
             let bookId = linked?.0 ?? 1
             let lineIndex = linked?.1 ?? 1
-            let bookTitle = linked?.2 ?? "בראשית"
+            let bookTitle = (try? OtzariaMaktabahBridge.shared.withDatabase { database in
+                try database.fetch(query: "SELECT name FROM book WHERE id = \(bookId) LIMIT 1") { row in
+                    row.string(at: 0)
+                }.first
+            }) ?? "ספר"
 
             let locator = TextLocator(
                 backend: .otzaria,

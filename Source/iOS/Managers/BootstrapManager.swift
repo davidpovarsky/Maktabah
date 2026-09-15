@@ -53,6 +53,7 @@ final class iOSBootstrapManager {
 
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-smokeBypassBootstrap") {
+            _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
             finishSetup()
             return
         }

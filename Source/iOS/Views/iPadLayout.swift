@@ -122,6 +122,11 @@ struct iPadLayout: View {
                 transitionSidebar(to: newTab)
             }
         }
+        .onAppear {
+            if path.isEmpty && selectedTab == .viewer {
+                transitionSidebar(to: .viewer)
+            }
+        }
     }
 
     private var sidebarContent: some View {
