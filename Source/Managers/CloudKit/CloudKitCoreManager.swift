@@ -33,10 +33,53 @@ final class CloudKitCoreManager {
 
     private init() {
         zoneId = CKRecordZone.ID(zoneName: "AnnotationsZone", ownerName: CKCurrentUserDefaultName)
+        guard Self.hasContainerEntitlement(Self.containerIdentifier) else {
+            let message = "CloudKit container is unavailable or unentitled: \(Self.containerIdentifier)"
+            container = nil
+            privateDatabase = nil
+            configurationError = message
+            #if DEBUG
+            print("CloudKit configuration notice: \(message)")
+            #endif
+            return
+        }
         let resolvedContainer = CKContainer(identifier: Self.containerIdentifier)
         container = resolvedContainer
         privateDatabase = resolvedContainer.privateCloudDatabase
         configurationError = nil
+    }
+
+    private static func hasContainerEntitlement(_ identifier: String) -> Bool {
+        #if targetEnvironment(simulator)
+        if ProcessInfo.processInfo.arguments.contains("-enableSimulatorCloudKit") {
+            return true
+        }
+        return false
+        #else
+        if let url = Bundle.main.url(forResource: "embedded", withExtension: "mobileprovision"),
+           let data = try? Data(contentsOf: url) {
+            guard let string = String(data: data, encoding: .ascii),
+                  let start = string.range(of: "<plist"),
+                  let end = string.range(of: "</plist>") else {
+                return false
+            }
+            let plistString = String(string[start.lowerBound..<end.upperBound])
+            guard let plistData = plistString.data(using: .utf8),
+                  let plist = try? PropertyListSerialization.propertyList(from: plistData, format: nil) as? [String: Any],
+                  let entitlements = plist["Entitlements"] as? [String: Any] else {
+                return false
+            }
+
+            if let containers = entitlements["com.apple.developer.icloud-container-identifiers"] as? [String] {
+                return containers.contains(identifier)
+            }
+            if let singleContainer = entitlements["com.apple.developer.icloud-container-identifiers"] as? String {
+                return singleContainer == identifier
+            }
+            return false
+        }
+        return true
+        #endif
     }
 
     func setSyncing(_ syncing: Bool, completion: (() -> Void)? = nil) {
