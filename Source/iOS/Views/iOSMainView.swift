@@ -323,7 +323,7 @@ private extension iOSMainView {
             let lineIndex = linked?.1 ?? 1
             let bookTitle: String = (try? OtzariaMaktabahBridge.shared.withDatabase { database -> String in
                 let rows = try database.fetch(query: "SELECT name FROM book WHERE id = \(bookId) LIMIT 1") { row in
-                    row.string(at: 0)
+                    row.string(at: 0) ?? "ספר"
                 }
                 return rows.first ?? "ספר"
             }) ?? "ספר"
