@@ -4,17 +4,38 @@
 //
 
 import SwiftUI
+import UIKit
 import AnchoredPopup
 
 /// Floating anchored inspection card for book metadata
 struct iOSBookInfoCardView: View {
     let book: BooksData
-    let popupId: String
+    var popupId: String? = nil
+
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.anchoredPopupDismiss) private var dismissPopup
 
     @State private var selectedSegment: BookInfoSegment = .bithoqoh
     @State private var fullBookInfo: BooksData?
     @State private var author: Muallif?
-    @Environment(\.anchoredPopupDismiss) private var dismissPopup
+
+    private var cardWidth: CGFloat {
+        if horizontalSizeClass == .regular {
+            return 430
+        } else {
+            let screenWidth = UIScreen.main.bounds.width
+            return min(340, max(280, screenWidth - 32))
+        }
+    }
+
+    private var cardHeight: CGFloat {
+        if horizontalSizeClass == .regular {
+            return 430
+        } else {
+            let screenHeight = UIScreen.main.bounds.height
+            return min(420, max(320, screenHeight - 120))
+        }
+    }
 
     private var currentText: String {
         switch selectedSegment {
@@ -37,34 +58,40 @@ struct iOSBookInfoCardView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Header: Title and Close button
-            HStack(alignment: .center, spacing: 8) {
-                Text(book.book)
-                    .font(.headline)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                    .environment(\.layoutDirection, .rightToLeft)
+            // Header: Title, Author and Material Circular Close button
+            HStack(alignment: .center, spacing: 12) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(book.book)
+                        .font(.title2.bold())
+                        .lineLimit(1)
+                        .environment(\.layoutDirection, .rightToLeft)
 
-                Spacer()
+                    Text(author?.namaLengkap.isEmpty == false ? author!.namaLengkap : String(localized: "Book Information"))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .environment(\.layoutDirection, .rightToLeft)
+                }
+
+                Spacer(minLength: 8)
 
                 Button {
-                    if let dismissPopup {
-                        dismissPopup()
-                    } else {
-                        AnchoredPopup.launchShrinkingAnimation(id: popupId)
-                    }
+                    dismissPopup?()
                 } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 20))
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.secondary)
+                    Image(systemName: "xmark")
+                        .font(.headline)
+                        .frame(width: 36, height: 36)
+                        .background(
+                            .thinMaterial,
+                            in: Circle()
+                        )
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(Text("Close"))
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 14)
-            .padding(.bottom, 10)
+            .padding(22)
+
+            Divider()
 
             // Segmented Picker
             Picker("Book Info", selection: $selectedSegment) {
@@ -73,12 +100,10 @@ struct iOSBookInfoCardView: View {
                 }
             }
             .pickerStyle(.segmented)
-            .padding(.horizontal, 14)
-            .padding(.bottom, 10)
+            .padding(.horizontal, 18)
+            .padding(.vertical, 12)
 
-            Divider()
-
-            // Content
+            // Content: fills remaining height
             if currentText.isEmpty {
                 VStack {
                     Spacer()
@@ -92,17 +117,29 @@ struct iOSBookInfoCardView: View {
                 AnchoredReadOnlyTextView(text: currentText)
             }
         }
-        .frame(width: 340, height: 420)
+        .frame(width: cardWidth, height: cardHeight)
         .background(
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .fill(Color(uiColor: .systemBackground))
-                .shadow(color: Color.black.opacity(0.18), radius: 20, x: 0, y: 10)
+            RoundedRectangle(cornerRadius: 28, style: .continuous)
+                .fill(.regularMaterial)
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.primary.opacity(0.08), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 28, style: .continuous)
+                .stroke(
+                    Color.primary.opacity(0.08),
+                    lineWidth: 1
+                )
         )
-        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .clipShape(
+            RoundedRectangle(
+                cornerRadius: 28,
+                style: .continuous
+            )
+        )
+        .shadow(
+            color: .black.opacity(0.18),
+            radius: 30,
+            y: 14
+        )
         .onAppear {
             loadBookInfo()
         }
@@ -133,7 +170,7 @@ private struct AnchoredReadOnlyTextView: UIViewRepresentable {
         textView.isScrollEnabled = true
         textView.backgroundColor = .clear
         textView.textContainerInset = UIEdgeInsets(
-            top: 10, left: 14, bottom: 14, right: 14
+            top: 8, left: 18, bottom: 18, right: 18
         )
         textView.textAlignment = .right
         textView.font = font
@@ -157,9 +194,10 @@ struct BookInfoToolbarAnchorButton: View {
     let book: BooksData
 
     var body: some View {
-        Button(action: {
-            AnchoredPopup.launchGrowingAnimation(id: "book_info_\(book.id)")
-        }) {
+        Button {
+            // No manual popup launch here.
+            // The anchor modifier owns opening.
+        } label: {
             Label("BookInfo", systemImage: "info.circle")
         }
         .bookInfoAnchoredPopup(book: book)
@@ -174,13 +212,23 @@ extension View {
         let popupId = "book_info_\(book.id)"
         return self
             .useAsPopupAnchor(id: popupId) {
-                iOSBookInfoCardView(book: book, popupId: popupId)
+                iOSBookInfoCardView(
+                    book: book,
+                    popupId: popupId
+                )
             } customize: {
-                $0.position(.anchorRelative(.bottomTrailing, keepInScreenBounds: true))
-                    .openOnTap(false)
+                $0
+                    .displayMode(.sheet)
+                    .position(.auto)
+                    .animation(
+                        .spring(
+                            response: 0.48,
+                            dampingFraction: 0.78
+                        )
+                    )
                     .closeOnTap(false)
                     .closeOnTapOutside(true)
-                    .background(.blur(radius: 4))
+                    .background(.blur(radius: 8))
             }
     }
 }
