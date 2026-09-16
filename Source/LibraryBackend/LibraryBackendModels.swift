@@ -416,6 +416,72 @@ struct LibrarySearchPage: Codable, Hashable, Sendable {
     let nextOffset: Int?
 }
 
+/// Encapsulates generic backend pagination continuation state, truthful monotonic totals,
+/// and protection against non-advancing offset loops.
+public struct BackendPaginationState: Sendable, Equatable {
+    public private(set) var nextOffset: Int?
+    public private(set) var totalResults: Int
+    public private(set) var loadedCount: Int
+    public private(set) var lastRequestedOffset: Int?
+
+    public init(
+        nextOffset: Int? = nil,
+        totalResults: Int = 0,
+        loadedCount: Int = 0,
+        lastRequestedOffset: Int? = nil
+    ) {
+        self.nextOffset = nextOffset
+        self.totalResults = totalResults
+        self.loadedCount = loadedCount
+        self.lastRequestedOffset = lastRequestedOffset
+    }
+
+    /// `nextOffset` is the authoritative continuation signal, validated against non-advancing loops.
+    public var hasMore: Bool {
+        guard let next = nextOffset, next > 0 else { return false }
+        if let last = lastRequestedOffset, next <= last { return false }
+        return true
+    }
+
+    /// Resets state for a new search generation.
+    public mutating func reset() {
+        nextOffset = nil
+        totalResults = 0
+        loadedCount = 0
+        lastRequestedOffset = nil
+    }
+
+    /// Applies the first page of results from the backend.
+    public mutating func applyInitialPage(pageTotal: Int, nextOffset: Int?, count: Int) {
+        self.lastRequestedOffset = 0
+        self.loadedCount = count
+        self.nextOffset = nextOffset
+        let lowerBound = count + (nextOffset != nil ? 1 : 0)
+        self.totalResults = max(pageTotal, lowerBound)
+    }
+
+    /// Records that the next page request has been initiated at `offset`.
+    public mutating func willRequestNextPage(offset: Int) {
+        self.lastRequestedOffset = offset
+    }
+
+    /// Applies a subsequent page of results from the backend.
+    public mutating func applyNextPage(pageTotal: Int, nextOffset: Int?, count: Int) {
+        self.loadedCount += count
+
+        // Loop protection: if the backend returned a non-advancing offset, terminate safely.
+        if let next = nextOffset, let last = lastRequestedOffset, next <= last {
+            self.nextOffset = nil
+        } else {
+            self.nextOffset = nextOffset
+        }
+
+        // Monotonic total: totals never shrink on later pages, and lower bound respects loaded count.
+        let lowerBound = self.loadedCount + (self.nextOffset != nil ? 1 : 0)
+        self.totalResults = max(self.totalResults, max(pageTotal, lowerBound))
+    }
+}
+
 enum LibraryBackendError: LocalizedError, Equatable, Sendable {
     case capabilityUnavailable
     case staleRequest

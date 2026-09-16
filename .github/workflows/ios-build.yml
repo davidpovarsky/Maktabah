@@ -234,6 +234,10 @@ jobs:
             Source/Sefaria/Domain/SefariaModels.swift \
             Source/Sefaria/Domain/SefariaNavigationParser.swift \
             Source/Sefaria/Network/SefariaDTOs.swift \
+            Source/Sefaria/Network/SefariaNetworkConfiguration.swift \
+            Source/Sefaria/Network/SefariaHTTPClient.swift \
+            Source/Sefaria/Cache/SefariaDiskCache.swift \
+            Source/Sefaria/Network/SefariaRemoteStore.swift \
             Source/Sefaria/Offline/SefariaExportModels.swift \
             Source/Sefaria/Downloads/SefariaPackagePolicy.swift \
             Source/Otzaria/Core/String+OtzariaText.swift \
@@ -241,6 +245,7 @@ jobs:
             Source/Otzaria/Reading/OtzariaLineAnchor.swift \
             Source/Otzaria/Reading/OtzariaReadingUnit.swift \
             Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift \
+            Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift \
             Vendor/SefariaNativeTests/TestSupport.swift \
             Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
             Vendor/SefariaNativeTests/DecodingTests.swift \

@@ -1,6 +1,6 @@
 import Foundation
 
-func runDecodingTests() throws {
+func runDecodingTests() async throws {
     let decoder = JSONDecoder()
     let genesis = try decoder.decode(SefariaTextsV3DTO.self, from: fixture("texts-genesis.json"))
     let section = SefariaSection(ref: genesis.ref, heRef: genesis.heRef, sectionRef: genesis.sectionRef,
@@ -41,7 +41,7 @@ func runDecodingTests() throws {
 
     try runReaderRenderModelTests()
     try runSearchContractMappingTests()
-    try runSearchSemanticsAndFilterTests()
+    try await runSearchSemanticsAndFilterTests()
     try runNestedOfflineDecodingTests()
     try runHeterogeneousLinksDecodingTests()
     try runFlexibleVersionPriorityTests()
@@ -188,57 +188,77 @@ private func runSearchContractMappingTests() throws {
     try expect(decodedOr.searchMode == .or, "searchMode round-trip or")
 }
 
-private func runSearchSemanticsAndFilterTests() throws {
-    // 1. Query tokenization and search term extraction with quotes, abbreviations and whitespace
-    func extractTerms(from query: String) -> [String] {
-        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return [] }
-        let protected = trimmed.replacingOccurrences(
-            of: #"(\S)"(\S)"#,
-            with: "$1\u{05F4}$2",
-            options: .regularExpression
-        )
-        var terms: [String] = []
-        var inQuotes = false
-        var current = ""
-        for char in protected {
-            if char == "\"" {
-                if inQuotes {
-                    let term = current.trimmingCharacters(in: .whitespacesAndNewlines)
-                    if !term.isEmpty { terms.append(term) }
-                    current = ""
-                    inQuotes = false
-                } else {
-                    let term = current.trimmingCharacters(in: .whitespacesAndNewlines)
-                    if !term.isEmpty {
-                        terms.append(contentsOf: term.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty })
-                    }
-                    current = ""
-                    inQuotes = true
-                }
-            } else {
-                current.append(char)
-            }
-        }
-        let remainder = current.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !remainder.isEmpty {
-            if inQuotes {
-                terms.append(remainder)
-            } else {
-                terms.append(contentsOf: remainder.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty })
-            }
-        }
-        return terms
+final class MockSearchURLProtocol: URLProtocol, @unchecked Sendable {
+    nonisolated(unsafe) static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
+
+    override class func canInit(with request: URLRequest) -> Bool {
+        return true
     }
 
-    let t1 = extractTerms(from: "משה אהרן")
-    try expect(t1 == ["משה", "אהרן"], "extractTerms standard multi-word query")
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        return request
+    }
 
-    let t2 = extractTerms(from: "\"משה אהרן\" דוד")
-    try expect(t2 == ["משה אהרן", "דוד"], "extractTerms quoted phrase and term")
+    override func startLoading() {
+        guard let handler = Self.requestHandler else {
+            client?.urlProtocol(self, didFailWithError: URLError(.badServerResponse))
+            return
+        }
+        do {
+            let (response, data) = try handler(request)
+            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            client?.urlProtocol(self, didLoad: data)
+            client?.urlProtocolDidFinishLoading(self)
+        } catch {
+            client?.urlProtocol(self, didFailWithError: error)
+        }
+    }
 
-    let t3 = extractTerms(from: "רש\"י ברכות")
-    try expect(t3 == ["רש\u{05F4}י", "ברכות"], "extractTerms protects internal gershayim in abbreviations")
+    override func stopLoading() {}
+}
+
+private struct SefariaSearchBodyDTOForTest: Decodable {
+    let query: String
+    let start: Int
+    let size: Int
+    let filters: [String]
+    let filterFields: [String]?
+    enum CodingKeys: String, CodingKey {
+        case query, start, size, filters
+        case filterFields = "filter_fields"
+    }
+}
+
+private func makeCannedSearchResponse(hits: [(ref: String, title: String, snippet: String, score: Double)], total: Int) -> Data {
+    let hitsArray: [[String: Any]] = hits.map { h in
+        [
+            "_score": h.score,
+            "_source": [
+                "ref": h.ref,
+                "title": h.title,
+                "exact": h.snippet
+            ]
+        ]
+    }
+    let dict: [String: Any] = [
+        "hits": [
+            "total": ["value": total],
+            "hits": hitsArray
+        ]
+    ]
+    return try! JSONSerialization.data(withJSONObject: dict)
+}
+
+private func runSearchSemanticsAndFilterTests() async throws {
+    // 1. Query tokenization and search term extraction with production SefariaRemoteStore
+    let t1 = SefariaRemoteStore.extractSearchTerms(from: "משה אהרן")
+    try expect(t1 == ["משה", "אהרן"], "extractSearchTerms standard multi-word query")
+
+    let t2 = SefariaRemoteStore.extractSearchTerms(from: "\"משה אהרן\" דוד")
+    try expect(t2 == ["משה אהרן", "דוד"], "extractSearchTerms quoted phrase and term")
+
+    let t3 = SefariaRemoteStore.extractSearchTerms(from: "רש\"י ברכות")
+    try expect(t3 == ["רש\u{05F4}י", "ברכות"], "extractSearchTerms protects internal gershayim in abbreviations")
 
     // 2. Filter preservation across all search modes in SefariaSearchBody
     let filters = ["Tanakh/Torah/Exodus"]
@@ -258,56 +278,198 @@ private func runSearchSemanticsAndFilterTests() throws {
         }
     }
 
-    // 3. Overlap-heavy OR pagination test
-    // Page 1 Term A: R1, R2, R3, R4
-    // Page 1 Term B: R1, R2, R3, R4 (100% overlap)
-    // Page 2 Term A: R5, R6
-    // Page 2 Term B: R7, R8
-    let termAPage1 = ["R1", "R2", "R3", "R4"]
-    let termBPage1 = ["R1", "R2", "R3", "R4"]
-    let termAPage2 = ["R5", "R6"]
-    let termBPage2 = ["R7", "R8"]
+    // 3. Generic BackendPaginationState testing (production state machine)
+    // Scenario from prompt:
+    // Page 1: 100 hits, total 102, nextOffset 100
+    // Page 2: 100 hits, total 102, nextOffset 200
+    // In old code, results.count (200) < total (102) became false, stopping pagination prematurely.
+    // In BackendPaginationState, nextOffset is authoritative and total updates monotonically.
+    var pagState = BackendPaginationState()
+    pagState.applyInitialPage(pageTotal: 102, nextOffset: 100, count: 100)
+    try expect(pagState.loadedCount == 100, "pagination page 1 loadedCount == 100")
+    try expect(pagState.totalResults == 102, "pagination page 1 totalResults == 102")
+    try expect(pagState.hasMore == true, "pagination page 1 hasMore == true")
 
-    var uniqueMap: [String: Int] = [:]
-    for r in (termAPage1 + termBPage1) { uniqueMap[r] = 1 }
-    try expect(uniqueMap.count == 4, "page 1 produces exactly 4 unique hits after deduplication")
-    // Because terms have more (total 6 each), the OR stream must NOT terminate
-    let anyHasMore = true
-    let nextOffset = anyHasMore ? 4 : nil
-    try expect(nextOffset == 4, "OR stream nextOffset continues despite full page 1 overlap")
+    pagState.willRequestNextPage(offset: 100)
+    pagState.applyNextPage(pageTotal: 102, nextOffset: 200, count: 100)
+    try expect(pagState.loadedCount == 200, "pagination page 2 loadedCount == 200")
+    try expect(pagState.totalResults >= 201, "pagination page 2 monotonic total updated >= 201")
+    try expect(pagState.hasMore == true, "pagination page 2 hasMore remains true despite results.count > initial estimate")
 
-    for r in (termAPage2 + termBPage2) { uniqueMap[r] = 1 }
-    try expect(uniqueMap.count == 8, "subsequent OR fetch exposes R5, R6, R7, R8")
-    let allKeys = Set(uniqueMap.keys)
-    try expect(allKeys == Set(["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8"]), "all 8 unique hits exposed")
+    // Loop protection: backend returns non-advancing offset (200 <= lastRequested 200)
+    pagState.willRequestNextPage(offset: 200)
+    pagState.applyNextPage(pageTotal: 102, nextOffset: 200, count: 0)
+    try expect(pagState.nextOffset == nil, "non-advancing offset safely terminated to nil")
+    try expect(pagState.hasMore == false, "non-advancing offset hasMore becomes false")
 
-    // OR total is not double counted
-    let maxTermTotal = max(6, 6)
-    let truthfulOrTotal = max(uniqueMap.count, maxTermTotal)
-    try expect(truthfulOrTotal == 8, "OR total reflects deduplicated count (8), not sum of terms (12)")
+    // 4. Production OtzariaGenericBackendAdapter.resolveBookIds
+    let otzariaIds = OtzariaGenericBackendAdapter.resolveBookIds(from: ["book:42", "otzaria:100", "b50", "77", "", "   "])
+    try expect(otzariaIds == Set([42, 100, 50, 77]), "OtzariaGenericBackendAdapter.resolveBookIds resolves canonical book IDs")
 
-    // 4. CONTAINS (boolean AND) set intersection test
-    // Terms must both occur in the segment regardless of order/distance
-    let termAHits = Set(["Seg1", "Seg2", "Seg3", "Seg5"])
-    let termBHits = Set(["Seg2", "Seg3", "Seg4", "Seg6"])
-    let intersected = termAHits.intersection(termBHits)
-    try expect(intersected == Set(["Seg2", "Seg3"]), "contains intersection requires both terms")
+    // Setup mock HTTP environment for real SefariaRemoteStore tests
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockSearchURLProtocol.self]
+    let mockSession = URLSession(configuration: config)
+    let mockClient = SefariaHTTPClient(session: mockSession)
+    let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent("sefaria-tests-\(UUID().uuidString)")
+    let testCache = SefariaDiskCache(directory: tempDir)
+    let remoteStore = SefariaRemoteStore(configuration: .production, client: mockClient, cache: testCache)
 
-    // 5. Otzaria book filter identifier resolution test
-    func resolveOtzariaBookId(_ filter: String) -> Int? {
-        let trimmed = filter.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.hasPrefix("book:"), let id = Int(trimmed.dropFirst("book:".count)), id > 0 { return id }
-        if trimmed.hasPrefix("otzaria:"), let id = Int(trimmed.dropFirst("otzaria:".count)), id > 0 { return id }
-        if trimmed.hasPrefix("b"), let id = Int(trimmed.dropFirst(1)), id > 0 { return id }
-        if let id = Int(trimmed), id > 0 { return id }
-        return nil
+    // 5. Real SefariaRemoteStore: Overlap-heavy OR pagination test
+    // Query: "משה אהרן" (OR mode)
+    // Page 1:
+    // Term "משה" returns [R1, R2, R3, R4] (total 6)
+    // Term "אהרן" returns [R1, R2, R3, R4] (total 6) (100% overlap)
+    // Page 2 (offset 4):
+    // Term "משה" returns [R5, R6] (total 6)
+    // Term "אהרן" returns [R7, R8] (total 6)
+    MockSearchURLProtocol.requestHandler = { request in
+        guard let url = request.url else { throw URLError(.badURL) }
+        let httpResp = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
+        if url.path.hasSuffix("/api/index") {
+            return (httpResp, Data("[]".utf8))
+        }
+        guard let bodyData = request.httpBody else {
+            return (httpResp, Data("{}".utf8))
+        }
+        let body = try JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData)
+        if body.query == "משה" {
+            if body.start == 0 {
+                let data = makeCannedSearchResponse(hits: [
+                    ("Genesis 1:1", "Genesis", "R1", 10.0),
+                    ("Genesis 1:2", "Genesis", "R2", 9.0),
+                    ("Genesis 1:3", "Genesis", "R3", 8.0),
+                    ("Genesis 1:4", "Genesis", "R4", 7.0)
+                ], total: 6)
+                return (httpResp, data)
+            } else {
+                let data = makeCannedSearchResponse(hits: [
+                    ("Exodus 1:1", "Exodus", "R5", 6.0),
+                    ("Exodus 1:2", "Exodus", "R6", 5.0)
+                ], total: 6)
+                return (httpResp, data)
+            }
+        } else if body.query == "אהרן" {
+            if body.start == 0 {
+                let data = makeCannedSearchResponse(hits: [
+                    ("Genesis 1:1", "Genesis", "R1", 10.0),
+                    ("Genesis 1:2", "Genesis", "R2", 9.0),
+                    ("Genesis 1:3", "Genesis", "R3", 8.0),
+                    ("Genesis 1:4", "Genesis", "R4", 7.0)
+                ], total: 6)
+                return (httpResp, data)
+            } else {
+                let data = makeCannedSearchResponse(hits: [
+                    ("Leviticus 1:1", "Leviticus", "R7", 4.0),
+                    ("Leviticus 1:2", "Leviticus", "R8", 3.0)
+                ], total: 6)
+                return (httpResp, data)
+            }
+        }
+        return (httpResp, makeCannedSearchResponse(hits: [], total: 0))
     }
 
-    try expect(resolveOtzariaBookId("book:42") == 42, "resolves book:42")
-    try expect(resolveOtzariaBookId("otzaria:100") == 100, "resolves otzaria:100")
-    try expect(resolveOtzariaBookId("b50") == 50, "resolves b50")
-    try expect(resolveOtzariaBookId("77") == 77, "resolves numeric 77")
-    try expect(resolveOtzariaBookId("") == nil, "empty filter returns nil")
+    var orOptions = LibrarySearchOptions()
+    orOptions.searchMode = .or
+    let orPage1 = try await remoteStore.search(LibrarySearchRequest(
+        query: "משה אהרן",
+        offset: 0,
+        limit: 4,
+        options: orOptions
+    ))
+
+    try expect(orPage1.hits.count == 4, "OR page 1 produces 4 unique hits after deduplication")
+    try expect(orPage1.nextOffset == 4, "OR page 1 nextOffset continues despite full overlap")
+    try expect(orPage1.total == 6, "OR page 1 total reflects truthful deduplicated lower bound (6), not sum of terms (12)")
+
+    let orPage2 = try await remoteStore.search(LibrarySearchRequest(
+        query: "משה אהרן",
+        offset: 4,
+        limit: 4,
+        options: orOptions
+    ))
+
+    let page2Snippets = Set(orPage2.hits.map(\.snippet))
+    try expect(page2Snippets == Set(["R5", "R6", "R7", "R8"]), "OR page 2 exposes all remaining unique results (R5-R8)")
+    try expect(orPage2.total == 8, "OR total updates truthfully to 8 after all streams exhausted")
+
+    // 6. Real SefariaRemoteStore: Late-intersection CONTAINS test with Filter Preservation
+    // Query: "חסד אמת" with filters: ["Tanakh/Torah"]
+    // Batch 1 (start 0):
+    // Term "חסד" returns Seg1..Seg2 (total 4)
+    // Term "אמת" returns Seg5..Seg6 (total 4)
+    // No intersection in batch 1!
+    // Batch 2 (start 2):
+    // Term "חסד" returns Seg9..Seg10 (total 4)
+    // Term "אמת" returns Seg9..Seg10 (total 4)
+    // Intersection found in batch 2!
+    var capturedFilters: [[String]] = []
+    MockSearchURLProtocol.requestHandler = { request in
+        guard let url = request.url else { throw URLError(.badURL) }
+        let httpResp = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
+        if url.path.hasSuffix("/api/index") { return (httpResp, Data("[]".utf8)) }
+        guard let bodyData = request.httpBody else { return (httpResp, Data("{}".utf8)) }
+        let body = try JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData)
+        capturedFilters.append(body.filters)
+        if body.query == "חסד" {
+            if body.start == 0 {
+                return (httpResp, makeCannedSearchResponse(hits: [
+                    ("Genesis 2:1", "Genesis", "Seg1", 10.0),
+                    ("Genesis 2:2", "Genesis", "Seg2", 9.0)
+                ], total: 4))
+            } else {
+                return (httpResp, makeCannedSearchResponse(hits: [
+                    ("Genesis 2:3", "Genesis", "Seg9", 8.0),
+                    ("Genesis 2:4", "Genesis", "Seg10", 7.0)
+                ], total: 4))
+            }
+        } else if body.query == "אמת" {
+            if body.start == 0 {
+                return (httpResp, makeCannedSearchResponse(hits: [
+                    ("Genesis 3:1", "Genesis", "Seg5", 10.0),
+                    ("Genesis 3:2", "Genesis", "Seg6", 9.0)
+                ], total: 4))
+            } else {
+                return (httpResp, makeCannedSearchResponse(hits: [
+                    ("Genesis 2:3", "Genesis", "Seg9", 8.0),
+                    ("Genesis 2:4", "Genesis", "Seg10", 7.0)
+                ], total: 4))
+            }
+        }
+        return (httpResp, makeCannedSearchResponse(hits: [], total: 0))
+    }
+
+    var containsOptions = LibrarySearchOptions()
+    containsOptions.searchMode = .contains
+    let containsRequest = LibrarySearchRequest(
+        query: "חסד אמת",
+        offset: 0,
+        limit: 2,
+        filters: ["Tanakh/Torah"],
+        options: containsOptions
+    )
+    let containsPage = try await remoteStore.search(containsRequest)
+
+    try expect(containsPage.hits.map(\.snippet) == ["Seg9", "Seg10"], "CONTAINS finds late intersection beyond first batch")
+    try expect(!capturedFilters.isEmpty && capturedFilters.allSatisfy { $0 == ["Tanakh/Torah"] }, "filters preserved on every term sub-request")
+    try expect(containsPage.total == 2, "CONTAINS total reflects exact count after streams exhausted")
+
+    // 7. Session Invalidation on Query Change
+    // Searching for a new query starts fresh
+    var freshQueryStart = -1
+    MockSearchURLProtocol.requestHandler = { request in
+        guard let url = request.url else { throw URLError(.badURL) }
+        let httpResp = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
+        if url.path.hasSuffix("/api/index") { return (httpResp, Data("[]".utf8)) }
+        guard let bodyData = request.httpBody else { return (httpResp, Data("{}".utf8)) }
+        let body = try JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData)
+        if freshQueryStart == -1 { freshQueryStart = body.start }
+        return (httpResp, makeCannedSearchResponse(hits: [], total: 0))
+    }
+    _ = try await remoteStore.search(LibrarySearchRequest(query: "שלום עליכם", offset: 0, limit: 10, options: orOptions))
+    try expect(freshQueryStart == 0, "new query resets session start offset to 0")
+
+    try? FileManager.default.removeItem(at: tempDir)
 }
 
 private func runNestedOfflineDecodingTests() throws {

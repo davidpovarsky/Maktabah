@@ -37,12 +37,11 @@ final class SearchViewModel: ViewModelBase {
     private(set) var completedRowsInTable: Int = 0
     private(set) var selectedBookIds: Set<Int> = []
     var backendSearchOptions = LibrarySearchOptions()
-    private(set) var backendNextOffset: Int? = nil
-    private(set) var backendTotalResults: Int = 0
+    private(set) var paginationState = BackendPaginationState()
+    var backendNextOffset: Int? { paginationState.nextOffset }
+    var backendTotalResults: Int { paginationState.totalResults }
     private(set) var isLoadingMoreBackendResults: Bool = false
-    var hasMoreBackendResults: Bool {
-        backendNextOffset != nil && results.count < backendTotalResults
-    }
+    var hasMoreBackendResults: Bool { paginationState.hasMore }
     private var backendSearchGeneration: UInt64 = 0
     private var loadMoreBackendWork: Task<Void, Never>?
     let backendPageSize = 100
@@ -690,8 +689,7 @@ final class SearchViewModel: ViewModelBase {
         isSearching = true
         isPaused = false
         results = []
-        backendNextOffset = nil
-        backendTotalResults = 0
+        paginationState.reset()
         isLoadingMoreBackendResults = false
         totalTables = 0
         completedTables = 0
@@ -718,9 +716,8 @@ final class SearchViewModel: ViewModelBase {
                 guard self.backendSearchGeneration == generation else { return }
 
                 results = page.hits.map(MaktabahBackendAdapter.searchItem)
-                backendTotalResults = page.total
-                backendNextOffset = page.nextOffset
-                totalTables = max(page.total, 1)
+                paginationState.applyInitialPage(pageTotal: page.total, nextOffset: page.nextOffset, count: results.count)
+                totalTables = max(paginationState.totalResults, 1)
                 completedTables = results.count
                 isSearching = false
                 #if os(macOS)
@@ -753,10 +750,10 @@ final class SearchViewModel: ViewModelBase {
     func loadNextBackendPage() {
         guard !isSearching,
               !isLoadingMoreBackendResults,
-              let offset = backendNextOffset,
-              offset > 0,
-              results.count < backendTotalResults else { return }
+              paginationState.hasMore,
+              let offset = paginationState.nextOffset else { return }
 
+        paginationState.willRequestNextPage(offset: offset)
         isLoadingMoreBackendResults = true
         let generation = backendSearchGeneration
         let requestQuery = query
@@ -782,7 +779,8 @@ final class SearchViewModel: ViewModelBase {
 
                 let newItems = page.hits.map(MaktabahBackendAdapter.searchItem)
                 results.append(contentsOf: newItems)
-                backendNextOffset = page.nextOffset
+                paginationState.applyNextPage(pageTotal: page.total, nextOffset: page.nextOffset, count: newItems.count)
+                totalTables = max(paginationState.totalResults, 1)
                 completedTables = results.count
                 isLoadingMoreBackendResults = false
             } catch is CancellationError {
@@ -822,8 +820,7 @@ final class SearchViewModel: ViewModelBase {
     func clearResults() {
         stopSearch()
         results.removeAll()
-        backendNextOffset = nil
-        backendTotalResults = 0
+        paginationState.reset()
         #if os(iOS)
         resultKitabFilter = ""
         #endif

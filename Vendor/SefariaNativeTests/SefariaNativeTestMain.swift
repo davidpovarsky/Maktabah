@@ -5,7 +5,7 @@ enum SefariaNativeTestMain {
     static func main() async {
         do {
             try runLocatorAndRefTests()
-            try runDecodingTests()
+            try await runDecodingTests()
             try runNavigationAndPackageTests()
             try runLegacyIdentityRegistryTests()
             try await runBackendCoordinatorTests()

@@ -7,6 +7,8 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     private let client: SefariaHTTPClient
     private let cache: SefariaDiskCache
     private var knownTitles: Set<String> = []
+    private var activeSession: BooleanSearchSession?
+    private var activeSessionKey: BooleanSearchSessionKey?
 
     init(
         configuration: SefariaNetworkConfiguration = .production,
@@ -124,6 +126,8 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             return try await searchContains(terms: terms, request: request)
         }
 
+        invalidateSearchSession()
+
         let url = try configuration.apiURL(path: "/api/search-wrapper")
         let response = try await client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
             query: request.query,
@@ -141,7 +145,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next)
     }
 
-    static func extractSearchTerms(from query: String) -> [String] {
+    nonisolated static func extractSearchTerms(from query: String) -> [String] {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return [] }
 
@@ -188,36 +192,80 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return terms
     }
 
-    private struct TermStreamState {
+    private struct BooleanSearchSessionKey: Equatable {
+        let query: String
+        let searchMode: LibrarySearchMode
+        let matchMode: LibrarySearchMatchMode
+        let filters: [String]
+        let sortOrder: LibrarySearchSortOrder
+        let reverseSort: Bool
+
+        init(request: LibrarySearchRequest) {
+            self.query = request.query
+            self.searchMode = request.options.searchMode
+            self.matchMode = request.options.matchMode
+            self.filters = request.filters
+            self.sortOrder = request.options.sortOrder
+            self.reverseSort = request.options.reverseSort
+        }
+    }
+
+    private final class TermStreamState {
         let term: String
-        var nextStart: Int = 0
+        var nextRemoteStart: Int = 0
         var total: Int = 0
-        var hasMore: Bool = true
+        var hasMoreRemote: Bool = true
         var hitsByLocator: [String: LibrarySearchHit] = [:]
         var orderedLocators: [String] = []
+
+        init(term: String) {
+            self.term = term
+        }
+    }
+
+    private final class BooleanSearchSession {
+        let key: BooleanSearchSessionKey
+        let streams: [TermStreamState]
+        var uniqueHitsMap: [String: LibrarySearchHit] = [:]
+
+        init(key: BooleanSearchSessionKey, terms: [String]) {
+            self.key = key
+            self.streams = terms.map { TermStreamState(term: $0) }
+        }
     }
 
     private func searchOr(terms: [String], request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
         try Task.checkCancellation()
 
-        var streams = terms.map { TermStreamState(term: $0) }
-        var uniqueHitsMap: [String: LibrarySearchHit] = [:]
+        let key = BooleanSearchSessionKey(request: request)
+        let session: BooleanSearchSession
+        if let existing = activeSession, activeSessionKey == key {
+            session = existing
+        } else {
+            session = BooleanSearchSession(key: key, terms: terms)
+            activeSession = session
+            activeSessionKey = key
+        }
+
         let targetCount = request.offset + request.limit
         let batchSize = max(request.limit, 25)
-        let maxBatches = 6
+        let maxBatchesPerCall = 15
 
         typealias BatchResult = (termIndex: Int, rawHits: [SefariaSearchResponseDTO.Hit], total: Int)
+        var iterations = 0
 
-        for _ in 0..<maxBatches {
+        while session.streams.contains(where: { $0.hasMoreRemote }) {
             try Task.checkCancellation()
-            let activeIndices = streams.indices.filter { streams[$0].hasMore }
+            let activeIndices = session.streams.indices.filter { session.streams[$0].hasMoreRemote }
             guard !activeIndices.isEmpty else { break }
+
+            iterations += 1
 
             let batchResults = try await withThrowingTaskGroup(of: BatchResult.self) { group in
                 for idx in activeIndices {
-                    let term = streams[idx].term
-                    let start = streams[idx].nextStart
+                    let term = session.streams[idx].term
+                    let start = session.streams[idx].nextRemoteStart
                     let filters = request.filters
                     var termOptions = request.options
                     termOptions.searchMode = .phrase
@@ -250,30 +298,38 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 let idx = result.termIndex
                 let rawHits = result.rawHits
                 let total = result.total
-                streams[idx].total = total
-                streams[idx].nextStart += rawHits.count
-                if rawHits.isEmpty || streams[idx].nextStart >= total {
-                    streams[idx].hasMore = false
+                let stream = session.streams[idx]
+                stream.total = total
+                stream.nextRemoteStart += rawHits.count
+                if rawHits.isEmpty || stream.nextRemoteStart >= total {
+                    stream.hasMoreRemote = false
                 }
                 let hits = mapSearchHits(rawHits)
                 for hit in hits {
-                    let key = hit.locator.persistenceKey
-                    if let existing = uniqueHitsMap[key] {
+                    let locatorKey = hit.locator.persistenceKey
+                    if let existing = session.uniqueHitsMap[locatorKey] {
                         if (hit.score ?? 0) > (existing.score ?? 0) {
-                            uniqueHitsMap[key] = hit
+                            session.uniqueHitsMap[locatorKey] = hit
                         }
                     } else {
-                        uniqueHitsMap[key] = hit
+                        session.uniqueHitsMap[locatorKey] = hit
                     }
                 }
             }
 
-            if uniqueHitsMap.count >= targetCount {
+            let hasReachedTarget = session.uniqueHitsMap.count >= targetCount
+            let hasAtLeastOneForOffset = session.uniqueHitsMap.count > request.offset
+            let allStreamsExhausted = !session.streams.contains(where: { $0.hasMoreRemote })
+
+            if allStreamsExhausted || hasReachedTarget {
+                break
+            }
+            if iterations >= maxBatchesPerCall && hasAtLeastOneForOffset {
                 break
             }
         }
 
-        let sortedHits = uniqueHitsMap.values.sorted { a, b in
+        let sortedHits = session.uniqueHitsMap.values.sorted { a, b in
             let sa = a.score ?? 0
             let sb = b.score ?? 0
             if sa != sb {
@@ -283,11 +339,11 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         }
 
         let slice = Array(sortedHits.dropFirst(min(request.offset, sortedHits.count)).prefix(request.limit))
-        let anyStreamHasMore = streams.contains { $0.hasMore }
-        let hasMoreHits = (request.offset + slice.count < sortedHits.count) || anyStreamHasMore
-        let nextOffset = hasMoreHits ? request.offset + slice.count : nil
+        let anyStreamHasMore = session.streams.contains { $0.hasMoreRemote }
+        let hasMoreHits = (sortedHits.count > request.offset + slice.count) || anyStreamHasMore
+        let nextOffset = (hasMoreHits && !slice.isEmpty) ? request.offset + slice.count : nil
 
-        let maxTermTotal = streams.map(\.total).max() ?? sortedHits.count
+        let maxTermTotal = session.streams.map(\.total).max() ?? sortedHits.count
         let total = anyStreamHasMore
             ? max(sortedHits.count + (hasMoreHits ? 1 : 0), maxTermTotal)
             : sortedHits.count
@@ -299,23 +355,35 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
         try Task.checkCancellation()
 
-        var streams = terms.map { TermStreamState(term: $0) }
+        let key = BooleanSearchSessionKey(request: request)
+        let session: BooleanSearchSession
+        if let existing = activeSession, activeSessionKey == key {
+            session = existing
+        } else {
+            session = BooleanSearchSession(key: key, terms: terms)
+            activeSession = session
+            activeSessionKey = key
+        }
+
         let targetCount = request.offset + request.limit
         let batchSize = max(request.limit, 25)
-        let maxBatches = 6
+        let maxBatchesPerCall = 15
 
         typealias BatchResult = (termIndex: Int, rawHits: [SefariaSearchResponseDTO.Hit], total: Int)
         var candidateKeys: [String] = []
+        var iterations = 0
 
-        for _ in 0..<maxBatches {
+        while session.streams.contains(where: { $0.hasMoreRemote }) {
             try Task.checkCancellation()
-            let activeIndices = streams.indices.filter { streams[$0].hasMore }
+            let activeIndices = session.streams.indices.filter { session.streams[$0].hasMoreRemote }
             guard !activeIndices.isEmpty else { break }
+
+            iterations += 1
 
             let batchResults = try await withThrowingTaskGroup(of: BatchResult.self) { group in
                 for idx in activeIndices {
-                    let term = streams[idx].term
-                    let start = streams[idx].nextStart
+                    let term = session.streams[idx].term
+                    let start = session.streams[idx].nextRemoteStart
                     let filters = request.filters
                     var termOptions = request.options
                     termOptions.searchMode = .phrase
@@ -348,37 +416,51 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 let idx = result.termIndex
                 let rawHits = result.rawHits
                 let total = result.total
-                streams[idx].total = total
-                streams[idx].nextStart += rawHits.count
-                if rawHits.isEmpty || streams[idx].nextStart >= total {
-                    streams[idx].hasMore = false
+                let stream = session.streams[idx]
+                stream.total = total
+                stream.nextRemoteStart += rawHits.count
+                if rawHits.isEmpty || stream.nextRemoteStart >= total {
+                    stream.hasMoreRemote = false
                 }
                 let hits = mapSearchHits(rawHits)
                 for hit in hits {
-                    let key = hit.locator.persistenceKey
-                    if streams[idx].hitsByLocator[key] == nil {
-                        streams[idx].orderedLocators.append(key)
-                        streams[idx].hitsByLocator[key] = hit
+                    let locatorKey = hit.locator.persistenceKey
+                    if stream.hitsByLocator[locatorKey] == nil {
+                        stream.orderedLocators.append(locatorKey)
+                        stream.hitsByLocator[locatorKey] = hit
                     }
                 }
             }
 
-            guard !streams.isEmpty else { break }
-            candidateKeys = streams[0].orderedLocators.filter { key in
-                streams.dropFirst().allSatisfy { $0.hitsByLocator[key] != nil }
+            guard !session.streams.isEmpty else { break }
+            candidateKeys = session.streams[0].orderedLocators.filter { key in
+                session.streams.dropFirst().allSatisfy { $0.hitsByLocator[key] != nil }
             }
 
-            if candidateKeys.count >= targetCount {
+            let hasReachedTarget = candidateKeys.count >= targetCount
+            let hasAtLeastOneForOffset = candidateKeys.count > request.offset
+            let allStreamsExhausted = !session.streams.contains(where: { $0.hasMoreRemote })
+
+            if allStreamsExhausted || hasReachedTarget {
                 break
+            }
+            if iterations >= maxBatchesPerCall && hasAtLeastOneForOffset {
+                break
+            }
+        }
+
+        if !session.streams.isEmpty {
+            candidateKeys = session.streams[0].orderedLocators.filter { key in
+                session.streams.dropFirst().allSatisfy { $0.hitsByLocator[key] != nil }
             }
         }
 
         var commonHits: [LibrarySearchHit] = []
         for key in candidateKeys {
-            guard let first = streams[0].hitsByLocator[key] else { continue }
+            guard let first = session.streams[0].hitsByLocator[key] else { continue }
             var totalScore: Double = 0
             var scoreCount = 0
-            for stream in streams {
+            for stream in session.streams {
                 if let h = stream.hitsByLocator[key], let s = h.score {
                     totalScore += s
                     scoreCount += 1
@@ -404,17 +486,17 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         }
 
         let slice = Array(commonHits.dropFirst(min(request.offset, commonHits.count)).prefix(request.limit))
-        let anyStreamHasMore = streams.contains { $0.hasMore }
+        let anyStreamHasMore = session.streams.contains { $0.hasMoreRemote }
         let hasMoreCandidates = (commonHits.count > request.offset + slice.count) || anyStreamHasMore
-        let nextOffset = hasMoreCandidates ? request.offset + slice.count : nil
+        let nextOffset = (hasMoreCandidates && !slice.isEmpty) ? request.offset + slice.count : nil
 
-        let minTermTotal = streams.map(\.total).min() ?? commonHits.count
         let total = anyStreamHasMore
-            ? max(commonHits.count + (hasMoreCandidates ? 1 : 0), minTermTotal)
+            ? max(commonHits.count + (hasMoreCandidates ? 1 : 0), request.offset + slice.count + (hasMoreCandidates ? 1 : 0))
             : commonHits.count
 
         return LibrarySearchPage(hits: slice, total: total, nextOffset: nextOffset)
     }
+
 
     private func mapSearchHits(_ rawHits: [SefariaSearchResponseDTO.Hit]) -> [LibrarySearchHit] {
         rawHits.compactMap { hit -> LibrarySearchHit? in
@@ -494,7 +576,15 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return SefariaRelationshipMapper.topics(rows)
     }
 
-    func clearTransientState() { knownTitles.removeAll() }
+    func invalidateSearchSession() {
+        activeSession = nil
+        activeSessionKey = nil
+    }
+
+    func clearTransientState() {
+        knownTitles.removeAll()
+        invalidateSearchSession()
+    }
 
     private func map(_ dto: SefariaTextsV3DTO, origin: LibraryTextSection.Origin) -> SefariaSection {
         SefariaSection(ref: dto.ref, heRef: dto.heRef, sectionRef: dto.sectionRef,
