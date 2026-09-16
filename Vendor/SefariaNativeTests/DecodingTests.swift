@@ -221,12 +221,36 @@ private struct SefariaSearchBodyDTOForTest: Decodable {
     let query: String
     let start: Int
     let size: Int
-    let filters: [String]
+    let filters: [String]?
     let filterFields: [String]?
     enum CodingKeys: String, CodingKey {
         case query, start, size, filters
         case filterFields = "filter_fields"
     }
+}
+
+private func extractBodyData(from request: URLRequest) -> Data? {
+    if let data = request.httpBody {
+        return data
+    }
+    guard let stream = request.httpBodyStream else {
+        return nil
+    }
+    stream.open()
+    defer { stream.close() }
+    var data = Data()
+    let bufferSize = 4096
+    let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+    defer { buffer.deallocate() }
+    while true {
+        let bytesRead = stream.read(buffer, maxLength: bufferSize)
+        if bytesRead > 0 {
+            data.append(buffer, count: bytesRead)
+        } else {
+            break
+        }
+    }
+    return data.isEmpty ? nil : data
 }
 
 private func makeCannedSearchResponse(hits: [(ref: String, title: String, snippet: String, score: Double)], total: Int) -> Data {
@@ -326,13 +350,13 @@ private func runSearchSemanticsAndFilterTests() async throws {
     MockSearchURLProtocol.requestHandler = { request in
         guard let url = request.url else { throw URLError(.badURL) }
         let httpResp = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
-        if url.path.hasSuffix("/api/index") {
+        if url.path.contains("/api/index") {
             return (httpResp, Data("[]".utf8))
         }
-        guard let bodyData = request.httpBody else {
-            return (httpResp, Data("{}".utf8))
+        guard let bodyData = extractBodyData(from: request),
+              let body = try? JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData) else {
+            return (httpResp, makeCannedSearchResponse(hits: [], total: 0))
         }
-        let body = try JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData)
         if body.query == "משה" {
             if body.start == 0 {
                 let data = makeCannedSearchResponse(hits: [
@@ -407,10 +431,14 @@ private func runSearchSemanticsAndFilterTests() async throws {
     MockSearchURLProtocol.requestHandler = { request in
         guard let url = request.url else { throw URLError(.badURL) }
         let httpResp = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
-        if url.path.hasSuffix("/api/index") { return (httpResp, Data("[]".utf8)) }
-        guard let bodyData = request.httpBody else { return (httpResp, Data("{}".utf8)) }
-        let body = try JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData)
-        capturedFilters.append(body.filters)
+        if url.path.contains("/api/index") { return (httpResp, Data("[]".utf8)) }
+        guard let bodyData = extractBodyData(from: request),
+              let body = try? JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData) else {
+            return (httpResp, makeCannedSearchResponse(hits: [], total: 0))
+        }
+        if let filters = body.filters {
+            capturedFilters.append(filters)
+        }
         if body.query == "חסד" {
             if body.start == 0 {
                 return (httpResp, makeCannedSearchResponse(hits: [
@@ -460,9 +488,11 @@ private func runSearchSemanticsAndFilterTests() async throws {
     MockSearchURLProtocol.requestHandler = { request in
         guard let url = request.url else { throw URLError(.badURL) }
         let httpResp = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
-        if url.path.hasSuffix("/api/index") { return (httpResp, Data("[]".utf8)) }
-        guard let bodyData = request.httpBody else { return (httpResp, Data("{}".utf8)) }
-        let body = try JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData)
+        if url.path.contains("/api/index") { return (httpResp, Data("[]".utf8)) }
+        guard let bodyData = extractBodyData(from: request),
+              let body = try? JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData) else {
+            return (httpResp, makeCannedSearchResponse(hits: [], total: 0))
+        }
         if freshQueryStart == -1 { freshQueryStart = body.start }
         return (httpResp, makeCannedSearchResponse(hits: [], total: 0))
     }
