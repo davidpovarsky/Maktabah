@@ -422,24 +422,26 @@ public struct BackendPaginationState: Sendable, Equatable {
     public private(set) var nextOffset: Int?
     public private(set) var totalResults: Int
     public private(set) var loadedCount: Int
-    public private(set) var lastRequestedOffset: Int?
+    public private(set) var lastCommittedOffset: Int?
+
+    public var lastRequestedOffset: Int? { lastCommittedOffset }
 
     public init(
         nextOffset: Int? = nil,
         totalResults: Int = 0,
         loadedCount: Int = 0,
-        lastRequestedOffset: Int? = nil
+        lastCommittedOffset: Int? = nil
     ) {
         self.nextOffset = nextOffset
         self.totalResults = totalResults
         self.loadedCount = loadedCount
-        self.lastRequestedOffset = lastRequestedOffset
+        self.lastCommittedOffset = lastCommittedOffset
     }
 
     /// `nextOffset` is the authoritative continuation signal, validated against non-advancing loops.
     public var hasMore: Bool {
         guard let next = nextOffset, next > 0 else { return false }
-        if let last = lastRequestedOffset, next <= last { return false }
+        if let last = lastCommittedOffset, next <= last { return false }
         return true
     }
 
@@ -448,37 +450,42 @@ public struct BackendPaginationState: Sendable, Equatable {
         nextOffset = nil
         totalResults = 0
         loadedCount = 0
-        lastRequestedOffset = nil
+        lastCommittedOffset = nil
     }
 
     /// Applies the first page of results from the backend.
     public mutating func applyInitialPage(pageTotal: Int, nextOffset: Int?, count: Int) {
-        self.lastRequestedOffset = 0
+        self.lastCommittedOffset = 0
         self.loadedCount = count
-        self.nextOffset = nextOffset
-        let lowerBound = count + (nextOffset != nil ? 1 : 0)
+        if let next = nextOffset, next > 0 {
+            self.nextOffset = next
+        } else {
+            self.nextOffset = nil
+        }
+        let lowerBound = count + (self.nextOffset != nil ? 1 : 0)
         self.totalResults = max(pageTotal, lowerBound)
     }
 
-    /// Records that the next page request has been initiated at `offset`.
-    public mutating func willRequestNextPage(offset: Int) {
-        self.lastRequestedOffset = offset
-    }
-
-    /// Applies a subsequent page of results from the backend.
-    public mutating func applyNextPage(pageTotal: Int, nextOffset: Int?, count: Int) {
+    /// Applies a subsequent page of results from the backend, validating continuation against the requested offset.
+    public mutating func applyNextPage(requestedOffset: Int, pageTotal: Int, nextOffset: Int?, count: Int) {
+        self.lastCommittedOffset = requestedOffset
         self.loadedCount += count
 
         // Loop protection: if the backend returned a non-advancing offset, terminate safely.
-        if let next = nextOffset, let last = lastRequestedOffset, next <= last {
-            self.nextOffset = nil
+        if let next = nextOffset, next > requestedOffset {
+            self.nextOffset = next
         } else {
-            self.nextOffset = nextOffset
+            self.nextOffset = nil
         }
 
         // Monotonic total: totals never shrink on later pages, and lower bound respects loaded count.
         let lowerBound = self.loadedCount + (self.nextOffset != nil ? 1 : 0)
         self.totalResults = max(self.totalResults, max(pageTotal, lowerBound))
+    }
+
+    public mutating func applyNextPage(pageTotal: Int, nextOffset: Int?, count: Int) {
+        let req = self.nextOffset ?? 0
+        applyNextPage(requestedOffset: req, pageTotal: pageTotal, nextOffset: nextOffset, count: count)
     }
 }
 

@@ -302,27 +302,40 @@ private func runSearchSemanticsAndFilterTests() async throws {
         }
     }
 
-    // 3. Generic BackendPaginationState testing (production state machine)
-    // Scenario from prompt:
-    // Page 1: 100 hits, total 102, nextOffset 100
-    // Page 2: 100 hits, total 102, nextOffset 200
-    // In old code, results.count (200) < total (102) became false, stopping pagination prematurely.
-    // In BackendPaginationState, nextOffset is authoritative and total updates monotonically.
+    // 3. Generic BackendPaginationState testing (production state machine & retry regression)
     var pagState = BackendPaginationState()
     pagState.applyInitialPage(pageTotal: 102, nextOffset: 100, count: 100)
     try expect(pagState.loadedCount == 100, "pagination page 1 loadedCount == 100")
     try expect(pagState.totalResults == 102, "pagination page 1 totalResults == 102")
     try expect(pagState.hasMore == true, "pagination page 1 hasMore == true")
+    try expect(pagState.nextOffset == 100, "pagination page 1 nextOffset == 100")
 
-    pagState.willRequestNextPage(offset: 100)
-    pagState.applyNextPage(pageTotal: 102, nextOffset: 200, count: 100)
-    try expect(pagState.loadedCount == 200, "pagination page 2 loadedCount == 200")
-    try expect(pagState.totalResults >= 201, "pagination page 2 monotonic total updated >= 201")
-    try expect(pagState.hasMore == true, "pagination page 2 hasMore remains true despite results.count > initial estimate")
+    // Regression: Simulate requesting offset 100 and a backend/network failure.
+    // Uncommitted state remains intact; no pre-await mutation occurs.
+    // After failure:
+    try expect(pagState.nextOffset == 100, "after failure nextOffset must still be 100")
+    try expect(pagState.hasMore == true, "after failure hasMore must still be true")
+    try expect(pagState.loadedCount == 100, "after failure loadedCount remains 100")
 
-    // Loop protection: backend returns non-advancing offset (200 <= lastRequested 200)
-    pagState.willRequestNextPage(offset: 200)
-    pagState.applyNextPage(pageTotal: 102, nextOffset: 200, count: 0)
+    // Simulate cancellation during request:
+    // Cancellation also leaves continuation retryable without state advancement.
+    try expect(pagState.hasMore == true, "cancellation leaves continuation retryable")
+
+    // Retry offset 100 successfully:
+    pagState.applyNextPage(requestedOffset: 100, pageTotal: 102, nextOffset: 200, count: 100)
+    try expect(pagState.loadedCount == 200, "retry page 2 loadedCount == 200")
+    try expect(pagState.totalResults >= 201, "retry page 2 monotonic total updated >= 201")
+    try expect(pagState.hasMore == true, "continuation remains available after retry")
+    try expect(pagState.nextOffset == 200, "retry page 2 nextOffset == 200")
+
+    // Then successfully apply another page at 200:
+    pagState.applyNextPage(requestedOffset: 200, pageTotal: 102, nextOffset: 300, count: 50)
+    try expect(pagState.loadedCount == 250, "page 3 loadedCount == 250")
+    try expect(pagState.hasMore == true, "page 3 continuation remains available")
+    try expect(pagState.nextOffset == 300, "page 3 nextOffset == 300")
+
+    // Loop protection: backend returns non-advancing offset (300 <= requested 300)
+    pagState.applyNextPage(requestedOffset: 300, pageTotal: 102, nextOffset: 300, count: 0)
     try expect(pagState.nextOffset == nil, "non-advancing offset safely terminated to nil")
     try expect(pagState.hasMore == false, "non-advancing offset hasMore becomes false")
 

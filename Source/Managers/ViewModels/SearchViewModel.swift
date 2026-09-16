@@ -753,7 +753,6 @@ final class SearchViewModel: ViewModelBase {
               paginationState.hasMore,
               let offset = paginationState.nextOffset else { return }
 
-        paginationState.willRequestNextPage(offset: offset)
         isLoadingMoreBackendResults = true
         let generation = backendSearchGeneration
         let requestQuery = query
@@ -779,7 +778,7 @@ final class SearchViewModel: ViewModelBase {
 
                 let newItems = page.hits.map(MaktabahBackendAdapter.searchItem)
                 results.append(contentsOf: newItems)
-                paginationState.applyNextPage(pageTotal: page.total, nextOffset: page.nextOffset, count: newItems.count)
+                paginationState.applyNextPage(requestedOffset: offset, pageTotal: page.total, nextOffset: page.nextOffset, count: newItems.count)
                 totalTables = max(paginationState.totalResults, 1)
                 completedTables = results.count
                 isLoadingMoreBackendResults = false

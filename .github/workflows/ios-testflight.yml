@@ -192,21 +192,31 @@ jobs:
       - name: Test corrected backend selection and Sefaria identity contracts
         run: |
           xcrun swiftc \
+            -DTESTING \
             Source/LibraryBackend/LibraryBackendModels.swift \
-            Source/LibraryBackend/LibraryBackendProtocols.swift \
             Source/LibraryBackend/BackendCoordinator.swift \
-            Source/LibraryBackend/LegacyIdentityRegistry.swift \
             Source/Sefaria/Domain/SefariaModels.swift \
+            Source/Sefaria/Domain/SefariaRef.swift \
             Source/Sefaria/Domain/SefariaNavigationParser.swift \
             Source/Sefaria/Network/SefariaDTOs.swift \
+            Source/Sefaria/Network/SefariaNetworkConfiguration.swift \
+            Source/Sefaria/Network/SefariaHTTPClient.swift \
+            Source/Sefaria/Cache/SefariaDiskCache.swift \
+            Source/Sefaria/Network/SefariaRemoteStore.swift \
             Source/Sefaria/Offline/SefariaExportModels.swift \
             Source/Sefaria/Downloads/SefariaPackagePolicy.swift \
+            Source/Otzaria/Core/String+OtzariaText.swift \
+            Source/Otzaria/Domain/OtzariaModels.swift \
+            Source/Otzaria/Reading/OtzariaLineAnchor.swift \
+            Source/Otzaria/Reading/OtzariaReadingUnit.swift \
+            Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift \
+            Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift \
             Vendor/SefariaNativeTests/TestSupport.swift \
             Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
             Vendor/SefariaNativeTests/DecodingTests.swift \
             Vendor/SefariaNativeTests/NavigationAndPackageTests.swift \
-            Vendor/SefariaNativeTests/BackendCoordinatorTests.swift \
             Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift \
+            Vendor/SefariaNativeTests/BackendCoordinatorTests.swift \
             Vendor/SefariaNativeTests/SefariaNativeTestMain.swift \
             -o "$RUNNER_TEMP/sefaria-native-tests"
           "$RUNNER_TEMP/sefaria-native-tests"
