@@ -12,29 +12,57 @@ struct iOSBookInfoCardView: View {
     let book: BooksData
     var popupId: String? = nil
 
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.anchoredPopupDismiss) private var dismissPopup
 
     @State private var selectedSegment: BookInfoSegment = .bithoqoh
     @State private var fullBookInfo: BooksData?
     @State private var author: Muallif?
 
-    private var cardWidth: CGFloat {
-        if horizontalSizeClass == .regular {
-            return 430
-        } else {
-            let screenWidth = UIScreen.main.bounds.width
-            return min(340, max(280, screenWidth - 32))
+    private var availableWindowSize: CGSize {
+        let bounds = currentWindowBounds
+        if bounds.width > 0 && bounds.height > 0 {
+            return bounds.size
         }
+        return CGSize(width: 430, height: 430)
+    }
+
+    private var cardWidth: CGFloat {
+        let availableWidth = availableWindowSize.width
+        return min(430, max(260, availableWidth - 32))
     }
 
     private var cardHeight: CGFloat {
-        if horizontalSizeClass == .regular {
-            return 430
-        } else {
-            let screenHeight = UIScreen.main.bounds.height
-            return min(420, max(320, screenHeight - 120))
+        let availableHeight = availableWindowSize.height
+        let insets = currentSafeAreaInsets
+        let verticalMargins = max(64, insets.top + insets.bottom + 24)
+        return min(430, max(280, availableHeight - verticalMargins))
+    }
+
+    private var currentWindowBounds: CGRect {
+        let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        let activeScene = scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first
+
+        if let scene = activeScene {
+            if let window = scene.windows.first(where: { $0.isKeyWindow }) ?? scene.windows.first {
+                return window.bounds
+            }
+            let bounds = scene.coordinateSpace.bounds
+            if bounds.width > 0 && bounds.height > 0 {
+                return bounds
+            }
         }
+        return .zero
+    }
+
+    private var currentSafeAreaInsets: UIEdgeInsets {
+        let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        let activeScene = scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first
+
+        if let scene = activeScene,
+           let window = scene.windows.first(where: { $0.isKeyWindow }) ?? scene.windows.first {
+            return window.safeAreaInsets
+        }
+        return .zero
     }
 
     private var currentText: String {
@@ -219,7 +247,7 @@ extension View {
                 )
             } customize: {
                 $0
-                    .displayMode(.sheet)
+                    .displayMode(.window)
                     .position(.auto)
                     .animation(
                         .spring(
