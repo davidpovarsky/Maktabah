@@ -1298,6 +1298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B30000000000000000000001 /* AnchoredPopup in Frameworks */,
 				A30000000000000000000001 /* TorahInspectorCore in Frameworks */,
 				A30000000000000000000002 /* TorahInspectorUI in Frameworks */,
 				CEF000000000000000000005 /* ZIPFoundation in Frameworks */,
@@ -2230,6 +2231,7 @@
 			);
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
+				B20000000000000000000001 /* AnchoredPopup */,
 				A20000000000000000000001 /* TorahInspectorCore */,
 				A20000000000000000000002 /* TorahInspectorUI */,
 				CEF000000000000000000002 /* ZIPFoundation */,
