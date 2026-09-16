@@ -116,14 +116,12 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return items
     }
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
-        if request.options.searchMode == .or {
-            let terms = request.query
-                .components(separatedBy: .whitespacesAndNewlines)
-                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-                .filter { !$0.isEmpty }
-            if terms.count > 1 {
-                return try await searchOr(terms: terms, request: request)
-            }
+        let terms = Self.extractSearchTerms(from: request.query)
+        if request.options.searchMode == .or && terms.count > 1 {
+            return try await searchOr(terms: terms, request: request)
+        }
+        if request.options.searchMode == .contains && terms.count > 1 {
+            return try await searchContains(terms: terms, request: request)
         }
 
         let url = try configuration.apiURL(path: "/api/search-wrapper")
@@ -143,55 +141,279 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next)
     }
 
+    static func extractSearchTerms(from query: String) -> [String] {
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return [] }
+
+        // Protect internal quotes between letters (Hebrew gershayim abbreviations like רש"י)
+        let protected = trimmed.replacingOccurrences(
+            of: #"(\S)"(\S)"#,
+            with: "$1\u{05F4}$2",
+            options: .regularExpression
+        )
+
+        var terms: [String] = []
+        var inQuotes = false
+        var current = ""
+
+        for char in protected {
+            if char == "\"" {
+                if inQuotes {
+                    let term = current.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !term.isEmpty {
+                        terms.append(term)
+                    }
+                    current = ""
+                    inQuotes = false
+                } else {
+                    let term = current.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !term.isEmpty {
+                        terms.append(contentsOf: term.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty })
+                    }
+                    current = ""
+                    inQuotes = true
+                }
+            } else {
+                current.append(char)
+            }
+        }
+        let remainder = current.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !remainder.isEmpty {
+            if inQuotes {
+                terms.append(remainder)
+            } else {
+                terms.append(contentsOf: remainder.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty })
+            }
+        }
+        return terms
+    }
+
+    private struct TermStreamState {
+        let term: String
+        var nextStart: Int = 0
+        var total: Int = 0
+        var hasMore: Bool = true
+        var hitsByLocator: [String: LibrarySearchHit] = [:]
+        var orderedLocators: [String] = []
+    }
+
     private func searchOr(terms: [String], request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
-        var allHits: [LibrarySearchHit] = []
-        var totalEstimate = 0
+        try Task.checkCancellation()
 
-        try await withThrowingTaskGroup(of: SefariaSearchResponseDTO.self) { group in
-            for term in terms {
-                group.addTask {
+        var streams = terms.map { TermStreamState(term: $0) }
+        var uniqueHitsMap: [String: LibrarySearchHit] = [:]
+        let targetCount = request.offset + request.limit
+        let batchSize = max(request.limit, 25)
+        let maxBatches = 6
+
+        typealias BatchResult = (termIndex: Int, rawHits: [SefariaSearchResponseDTO.Hit], total: Int)
+
+        for _ in 0..<maxBatches {
+            try Task.checkCancellation()
+            let activeIndices = streams.indices.filter { streams[$0].hasMore }
+            guard !activeIndices.isEmpty else { break }
+
+            let batchResults = try await withThrowingTaskGroup(of: BatchResult.self) { group in
+                for idx in activeIndices {
+                    let term = streams[idx].term
+                    let start = streams[idx].nextStart
+                    let filters = request.filters
                     var termOptions = request.options
                     termOptions.searchMode = .phrase
                     termOptions.wordDistance = 0
-                    let url = try self.configuration.apiURL(path: "/api/search-wrapper")
-                    return try await self.client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
-                        query: term,
-                        start: 0,
-                        size: request.offset + request.limit,
-                        filters: request.filters,
-                        options: termOptions
-                    ))
+                    let apiURL = try self.configuration.apiURL(path: "/api/search-wrapper")
+
+                    group.addTask {
+                        let response = try await self.client.post(
+                            SefariaSearchResponseDTO.self,
+                            url: apiURL,
+                            body: SefariaSearchBody(
+                                query: term,
+                                start: start,
+                                size: batchSize,
+                                filters: filters,
+                                options: termOptions
+                            )
+                        )
+                        return (termIndex: idx, rawHits: response.hits.hits, total: response.hits.total.value)
+                    }
+                }
+                var results: [BatchResult] = []
+                for try await item in group {
+                    results.append(item)
+                }
+                return results
+            }
+
+            for result in batchResults {
+                let idx = result.termIndex
+                let rawHits = result.rawHits
+                let total = result.total
+                streams[idx].total = total
+                streams[idx].nextStart += rawHits.count
+                if rawHits.isEmpty || streams[idx].nextStart >= total {
+                    streams[idx].hasMore = false
+                }
+                let hits = mapSearchHits(rawHits)
+                for hit in hits {
+                    let key = hit.locator.persistenceKey
+                    if let existing = uniqueHitsMap[key] {
+                        if (hit.score ?? 0) > (existing.score ?? 0) {
+                            uniqueHitsMap[key] = hit
+                        }
+                    } else {
+                        uniqueHitsMap[key] = hit
+                    }
                 }
             }
 
-            for try await response in group {
-                totalEstimate += response.hits.total.value
-                let hits = self.mapSearchHits(response.hits.hits)
-                allHits.append(contentsOf: hits)
+            if uniqueHitsMap.count >= targetCount {
+                break
             }
         }
 
-        var uniqueHitsMap: [String: LibrarySearchHit] = [:]
-        for hit in allHits {
-            let key = hit.locator.persistenceKey
-            if let existing = uniqueHitsMap[key] {
-                if (hit.score ?? 0) > (existing.score ?? 0) {
-                    uniqueHitsMap[key] = hit
-                }
-            } else {
-                uniqueHitsMap[key] = hit
+        let sortedHits = uniqueHitsMap.values.sorted { a, b in
+            let sa = a.score ?? 0
+            let sb = b.score ?? 0
+            if sa != sb {
+                return sa > sb
             }
-        }
-
-        let sortedHits = uniqueHitsMap.values.sorted {
-            ($0.score ?? 0) > ($1.score ?? 0)
+            return a.locator.persistenceKey < b.locator.persistenceKey
         }
 
         let slice = Array(sortedHits.dropFirst(min(request.offset, sortedHits.count)).prefix(request.limit))
-        let total = max(totalEstimate, sortedHits.count)
-        let next = request.offset + slice.count < sortedHits.count ? request.offset + slice.count : nil
-        return LibrarySearchPage(hits: slice, total: total, nextOffset: next)
+        let anyStreamHasMore = streams.contains { $0.hasMore }
+        let hasMoreHits = (request.offset + slice.count < sortedHits.count) || anyStreamHasMore
+        let nextOffset = hasMoreHits ? request.offset + slice.count : nil
+
+        let maxTermTotal = streams.map(\.total).max() ?? sortedHits.count
+        let total = anyStreamHasMore
+            ? max(sortedHits.count + (hasMoreHits ? 1 : 0), maxTermTotal)
+            : sortedHits.count
+
+        return LibrarySearchPage(hits: slice, total: total, nextOffset: nextOffset)
+    }
+
+    private func searchContains(terms: [String], request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
+        try Task.checkCancellation()
+
+        var streams = terms.map { TermStreamState(term: $0) }
+        let targetCount = request.offset + request.limit
+        let batchSize = max(request.limit, 25)
+        let maxBatches = 6
+
+        typealias BatchResult = (termIndex: Int, rawHits: [SefariaSearchResponseDTO.Hit], total: Int)
+        var candidateKeys: [String] = []
+
+        for _ in 0..<maxBatches {
+            try Task.checkCancellation()
+            let activeIndices = streams.indices.filter { streams[$0].hasMore }
+            guard !activeIndices.isEmpty else { break }
+
+            let batchResults = try await withThrowingTaskGroup(of: BatchResult.self) { group in
+                for idx in activeIndices {
+                    let term = streams[idx].term
+                    let start = streams[idx].nextStart
+                    let filters = request.filters
+                    var termOptions = request.options
+                    termOptions.searchMode = .phrase
+                    termOptions.wordDistance = 0
+                    let apiURL = try self.configuration.apiURL(path: "/api/search-wrapper")
+
+                    group.addTask {
+                        let response = try await self.client.post(
+                            SefariaSearchResponseDTO.self,
+                            url: apiURL,
+                            body: SefariaSearchBody(
+                                query: term,
+                                start: start,
+                                size: batchSize,
+                                filters: filters,
+                                options: termOptions
+                            )
+                        )
+                        return (termIndex: idx, rawHits: response.hits.hits, total: response.hits.total.value)
+                    }
+                }
+                var results: [BatchResult] = []
+                for try await item in group {
+                    results.append(item)
+                }
+                return results
+            }
+
+            for result in batchResults {
+                let idx = result.termIndex
+                let rawHits = result.rawHits
+                let total = result.total
+                streams[idx].total = total
+                streams[idx].nextStart += rawHits.count
+                if rawHits.isEmpty || streams[idx].nextStart >= total {
+                    streams[idx].hasMore = false
+                }
+                let hits = mapSearchHits(rawHits)
+                for hit in hits {
+                    let key = hit.locator.persistenceKey
+                    if streams[idx].hitsByLocator[key] == nil {
+                        streams[idx].orderedLocators.append(key)
+                        streams[idx].hitsByLocator[key] = hit
+                    }
+                }
+            }
+
+            guard !streams.isEmpty else { break }
+            candidateKeys = streams[0].orderedLocators.filter { key in
+                streams.dropFirst().allSatisfy { $0.hitsByLocator[key] != nil }
+            }
+
+            if candidateKeys.count >= targetCount {
+                break
+            }
+        }
+
+        var commonHits: [LibrarySearchHit] = []
+        for key in candidateKeys {
+            guard let first = streams[0].hitsByLocator[key] else { continue }
+            var totalScore: Double = 0
+            var scoreCount = 0
+            for stream in streams {
+                if let h = stream.hitsByLocator[key], let s = h.score {
+                    totalScore += s
+                    scoreCount += 1
+                }
+            }
+            let combinedScore = scoreCount > 0 ? totalScore / Double(scoreCount) : nil
+            commonHits.append(LibrarySearchHit(
+                locator: first.locator,
+                displayRef: first.displayRef,
+                heRef: first.heRef,
+                snippet: first.snippet,
+                score: combinedScore
+            ))
+        }
+
+        commonHits.sort { a, b in
+            let sa = a.score ?? 0
+            let sb = b.score ?? 0
+            if sa != sb {
+                return sa > sb
+            }
+            return a.locator.persistenceKey < b.locator.persistenceKey
+        }
+
+        let slice = Array(commonHits.dropFirst(min(request.offset, commonHits.count)).prefix(request.limit))
+        let anyStreamHasMore = streams.contains { $0.hasMore }
+        let hasMoreCandidates = (commonHits.count > request.offset + slice.count) || anyStreamHasMore
+        let nextOffset = hasMoreCandidates ? request.offset + slice.count : nil
+
+        let minTermTotal = streams.map(\.total).min() ?? commonHits.count
+        let total = anyStreamHasMore
+            ? max(commonHits.count + (hasMoreCandidates ? 1 : 0), minTermTotal)
+            : commonHits.count
+
+        return LibrarySearchPage(hits: slice, total: total, nextOffset: nextOffset)
     }
 
     private func mapSearchHits(_ rawHits: [SefariaSearchResponseDTO.Hit]) -> [LibrarySearchHit] {

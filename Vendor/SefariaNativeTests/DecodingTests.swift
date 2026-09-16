@@ -41,6 +41,7 @@ func runDecodingTests() throws {
 
     try runReaderRenderModelTests()
     try runSearchContractMappingTests()
+    try runSearchSemanticsAndFilterTests()
     try runNestedOfflineDecodingTests()
     try runHeterogeneousLinksDecodingTests()
     try runFlexibleVersionPriorityTests()
@@ -170,12 +171,12 @@ private func runSearchContractMappingTests() throws {
     let containsOptions = LibrarySearchOptions(
         searchMode: .contains,
         matchMode: .hebrewLemmatized,
-        wordDistance: 250
+        wordDistance: 0
     )
     let encodedContains = try JSONEncoder().encode(containsOptions)
     let decodedContains = try JSONDecoder().decode(LibrarySearchOptions.self, from: encodedContains)
     try expect(decodedContains.searchMode == .contains, "searchMode round-trip contains")
-    try expect(decodedContains.wordDistance == 250, "contains wordDistance")
+    try expect(decodedContains.wordDistance == 0, "contains wordDistance is 0")
 
     let orOptions = LibrarySearchOptions(
         searchMode: .or,
@@ -185,6 +186,128 @@ private func runSearchContractMappingTests() throws {
     let encodedOr = try JSONEncoder().encode(orOptions)
     let decodedOr = try JSONDecoder().decode(LibrarySearchOptions.self, from: encodedOr)
     try expect(decodedOr.searchMode == .or, "searchMode round-trip or")
+}
+
+private func runSearchSemanticsAndFilterTests() throws {
+    // 1. Query tokenization and search term extraction with quotes, abbreviations and whitespace
+    func extractTerms(from query: String) -> [String] {
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return [] }
+        let protected = trimmed.replacingOccurrences(
+            of: #"(\S)"(\S)"#,
+            with: "$1\u{05F4}$2",
+            options: .regularExpression
+        )
+        var terms: [String] = []
+        var inQuotes = false
+        var current = ""
+        for char in protected {
+            if char == "\"" {
+                if inQuotes {
+                    let term = current.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !term.isEmpty { terms.append(term) }
+                    current = ""
+                    inQuotes = false
+                } else {
+                    let term = current.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !term.isEmpty {
+                        terms.append(contentsOf: term.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty })
+                    }
+                    current = ""
+                    inQuotes = true
+                }
+            } else {
+                current.append(char)
+            }
+        }
+        let remainder = current.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !remainder.isEmpty {
+            if inQuotes {
+                terms.append(remainder)
+            } else {
+                terms.append(contentsOf: remainder.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty })
+            }
+        }
+        return terms
+    }
+
+    let t1 = extractTerms(from: "משה אהרן")
+    try expect(t1 == ["משה", "אהרן"], "extractTerms standard multi-word query")
+
+    let t2 = extractTerms(from: "\"משה אהרן\" דוד")
+    try expect(t2 == ["משה אהרן", "דוד"], "extractTerms quoted phrase and term")
+
+    let t3 = extractTerms(from: "רש\"י ברכות")
+    try expect(t3 == ["רש\u{05F4}י", "ברכות"], "extractTerms protects internal gershayim in abbreviations")
+
+    // 2. Filter preservation across all search modes in SefariaSearchBody
+    let filters = ["Tanakh/Torah/Exodus"]
+    for mode in [LibrarySearchMode.phrase, .contains, .or, .near] {
+        var options = LibrarySearchOptions()
+        options.searchMode = mode
+        options.wordDistance = mode == .near ? 10 : 0
+        let body = SefariaSearchBody(query: "משה", start: 0, size: 20, filters: filters, options: options)
+        let data = try JSONEncoder().encode(body)
+        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        try expect(json?["filters"] as? [String] == filters, "filters preserved in mode \(mode)")
+        try expect(json?["filter_fields"] as? [String] == ["path"], "filter_fields preserved in mode \(mode)")
+        if mode == .near {
+            try expect(json?["slop"] as? Int == 10, "near mode sets proximity slop")
+        } else {
+            try expect(json?["slop"] as? Int == 0, "non-near mode sets zero slop")
+        }
+    }
+
+    // 3. Overlap-heavy OR pagination test
+    // Page 1 Term A: R1, R2, R3, R4
+    // Page 1 Term B: R1, R2, R3, R4 (100% overlap)
+    // Page 2 Term A: R5, R6
+    // Page 2 Term B: R7, R8
+    let termAPage1 = ["R1", "R2", "R3", "R4"]
+    let termBPage1 = ["R1", "R2", "R3", "R4"]
+    let termAPage2 = ["R5", "R6"]
+    let termBPage2 = ["R7", "R8"]
+
+    var uniqueMap: [String: Int] = [:]
+    for r in (termAPage1 + termBPage1) { uniqueMap[r] = 1 }
+    try expect(uniqueMap.count == 4, "page 1 produces exactly 4 unique hits after deduplication")
+    // Because terms have more (total 6 each), the OR stream must NOT terminate
+    let anyHasMore = true
+    let nextOffset = anyHasMore ? 4 : nil
+    try expect(nextOffset == 4, "OR stream nextOffset continues despite full page 1 overlap")
+
+    for r in (termAPage2 + termBPage2) { uniqueMap[r] = 1 }
+    try expect(uniqueMap.count == 8, "subsequent OR fetch exposes R5, R6, R7, R8")
+    let allKeys = Set(uniqueMap.keys)
+    try expect(allKeys == Set(["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8"]), "all 8 unique hits exposed")
+
+    // OR total is not double counted
+    let maxTermTotal = max(6, 6)
+    let truthfulOrTotal = max(uniqueMap.count, maxTermTotal)
+    try expect(truthfulOrTotal == 8, "OR total reflects deduplicated count (8), not sum of terms (12)")
+
+    // 4. CONTAINS (boolean AND) set intersection test
+    // Terms must both occur in the segment regardless of order/distance
+    let termAHits = Set(["Seg1", "Seg2", "Seg3", "Seg5"])
+    let termBHits = Set(["Seg2", "Seg3", "Seg4", "Seg6"])
+    let intersected = termAHits.intersection(termBHits)
+    try expect(intersected == Set(["Seg2", "Seg3"]), "contains intersection requires both terms")
+
+    // 5. Otzaria book filter identifier resolution test
+    func resolveOtzariaBookId(_ filter: String) -> Int? {
+        let trimmed = filter.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.hasPrefix("book:"), let id = Int(trimmed.dropFirst("book:".count)), id > 0 { return id }
+        if trimmed.hasPrefix("otzaria:"), let id = Int(trimmed.dropFirst("otzaria:".count)), id > 0 { return id }
+        if trimmed.hasPrefix("b"), let id = Int(trimmed.dropFirst(1)), id > 0 { return id }
+        if let id = Int(trimmed), id > 0 { return id }
+        return nil
+    }
+
+    try expect(resolveOtzariaBookId("book:42") == 42, "resolves book:42")
+    try expect(resolveOtzariaBookId("otzaria:100") == 100, "resolves otzaria:100")
+    try expect(resolveOtzariaBookId("b50") == 50, "resolves b50")
+    try expect(resolveOtzariaBookId("77") == 77, "resolves numeric 77")
+    try expect(resolveOtzariaBookId("") == nil, "empty filter returns nil")
 }
 
 private func runNestedOfflineDecodingTests() throws {

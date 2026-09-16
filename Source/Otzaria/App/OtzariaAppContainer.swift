@@ -560,6 +560,7 @@ final class OtzariaMaktabahBridge {
     func search(
         query: String,
         selectedBookIds: Set<Int>? = nil,
+        offset: Int = 0,
         limit: Int? = 200,
         mode: SearchMode = .phrase,
         nearDistance: Int = 10
@@ -623,6 +624,7 @@ final class OtzariaMaktabahBridge {
         var ftsParameters: [Any] = [matchQuery]
         let ftsBookFilter = bookFilterSQL(parameters: &ftsParameters)
         ftsParameters.append(maxResults)
+        ftsParameters.append(max(0, offset))
         let ftsSQL = """
             SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), l.content, b.title
             FROM line_fts_with_nikud f
@@ -630,7 +632,7 @@ final class OtzariaMaktabahBridge {
             JOIN book b ON b.id = l.bookId
             WHERE line_fts_with_nikud MATCH ?\(ftsBookFilter)
             ORDER BY rank
-            LIMIT ?
+            LIMIT ? OFFSET ?
         """
 
         if let rows = try? db.fetch(query: ftsSQL, parameters: ftsParameters, mapping: { row in
@@ -648,13 +650,14 @@ final class OtzariaMaktabahBridge {
         let likeCondition = likeClauses.joined(separator: joiner)
         let likeBookFilter = bookFilterSQL(parameters: &likeParameters)
         likeParameters.append(maxResults)
+        likeParameters.append(max(0, offset))
         let likeSQL = """
             SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), l.content, b.title
             FROM line l
             JOIN book b ON b.id = l.bookId
             WHERE (\(likeCondition))\(likeBookFilter)
             ORDER BY l.bookId, l.lineIndex
-            LIMIT ?
+            LIMIT ? OFFSET ?
         """
 
         let rows = (try? db.fetch(query: likeSQL, parameters: likeParameters, mapping: { row in

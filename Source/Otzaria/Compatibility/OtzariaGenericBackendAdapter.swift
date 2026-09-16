@@ -167,6 +167,30 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         return items
     }
 
+    static func resolveBookIds(from filters: [String]) -> Set<Int> {
+        var ids = Set<Int>()
+        for filter in filters {
+            let trimmed = filter.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !trimmed.isEmpty else { continue }
+            if trimmed.hasPrefix("book:"), let id = Int(trimmed.dropFirst("book:".count)), id > 0 {
+                ids.insert(id)
+            } else if trimmed.hasPrefix("otzaria:"), let id = Int(trimmed.dropFirst("otzaria:".count)), id > 0 {
+                ids.insert(id)
+            } else if trimmed.hasPrefix("b"), let id = Int(trimmed.dropFirst(1)), id > 0 {
+                ids.insert(id)
+            } else if let id = Int(trimmed), id > 0 {
+                ids.insert(id)
+            } else {
+                #if os(iOS)
+                if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: trimmed, expectedBookId: 0) {
+                    ids.insert(resolved.id)
+                }
+                #endif
+            }
+        }
+        return ids
+    }
+
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         #if os(iOS)
         let mode: SearchMode = switch request.options.searchMode {
@@ -175,20 +199,39 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         case .or: .or
         case .near: .near
         }
+
+        let selectedBookIds: Set<Int>?
+        if request.filters.isEmpty {
+            selectedBookIds = nil
+        } else {
+            let resolved = Self.resolveBookIds(from: request.filters)
+            if resolved.isEmpty {
+                return .init(hits: [], total: 0, nextOffset: nil)
+            }
+            selectedBookIds = resolved
+        }
+
+        let fetchLimit = request.limit + 1
         let results = OtzariaMaktabahBridge.shared.search(
             query: request.query,
-            limit: request.offset + request.limit,
+            selectedBookIds: selectedBookIds,
+            offset: request.offset,
+            limit: fetchLimit,
             mode: mode,
             nearDistance: max(1, request.options.wordDistance)
         )
-        let slice = results.dropFirst(min(request.offset, results.count)).prefix(request.limit)
-        let hits = slice.map { item -> LibrarySearchHit in
+        let hasMore = results.count > request.limit
+        let hitsSlice = hasMore ? Array(results.prefix(request.limit)) : results
+        let hits = hitsSlice.map { item -> LibrarySearchHit in
             let locator = TextLocator(backend: .otzaria, workKey: "book:\(item.bookId)", position: .legacyLine(item.page))
             return .init(locator: locator, displayRef: item.bookTitle, heRef: nil,
                 snippet: item.attributedText.string, score: nil)
         }
-        return .init(hits: hits, total: results.count,
-            nextOffset: request.offset + hits.count < results.count ? request.offset + hits.count : nil)
+        let nextOffset = hasMore ? request.offset + hits.count : nil
+        let total = hasMore
+            ? max(request.offset + results.count + 1, request.offset + hits.count + 1)
+            : request.offset + results.count
+        return .init(hits: hits, total: total, nextOffset: nextOffset)
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif

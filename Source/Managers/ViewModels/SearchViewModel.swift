@@ -671,7 +671,7 @@ final class SearchViewModel: ViewModelBase {
             options.wordDistance = max(1, nearDistance)
         case .contains:
             options.matchMode = .hebrewLemmatized
-            options.wordDistance = 250
+            options.wordDistance = 0
         case .or:
             options.matchMode = .hebrewLemmatized
             options.wordDistance = 0
