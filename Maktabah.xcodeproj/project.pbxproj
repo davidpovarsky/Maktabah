@@ -2801,6 +2801,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */,
 				A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */,
 				A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */,
 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
