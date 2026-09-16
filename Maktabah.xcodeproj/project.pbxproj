@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
+		B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */; };
 		A30000000000000000000001 /* TorahInspectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000001 /* TorahInspectorCore */; };
 		A30000000000000000000002 /* TorahInspectorUI in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000002 /* TorahInspectorUI */; };
 		A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */; };
@@ -1972,6 +1974,7 @@
 				F3B60E242FC7CC6E00A9EF58 /* Toolbar */,
 				F36382682FA7BFB40006636C /* iOSAnnotationEditorSheet.swift */,
 				F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */,
+				B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */,
 				F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */,
 				F30577752FA463B1005732C6 /* iOSReaderView.swift */,
 			);
@@ -2274,6 +2277,7 @@
 			);
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
+				B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */,
 				A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */,
 				CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
@@ -3787,6 +3791,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/AnchoredPopup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
+			};
+		};
 		A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
@@ -3838,6 +3850,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B20000000000000000000001 /* AnchoredPopup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */;
+			productName = AnchoredPopup;
+		};
 		A20000000000000000000001 /* TorahInspectorCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */;

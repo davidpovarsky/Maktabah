@@ -16,7 +16,6 @@ struct iOSReaderView: View {
     @State private var showingOptions = false
     @State private var showingSearch = false
     @State private var showingAnnotationsList = false
-    @State private var showingBookInfo = false
     @State private var showingAnnotationActionSheet = false
     @State private var tappedAnnotationId: Int64?
     @State private var showingEditNoteAlert = false
@@ -155,13 +154,7 @@ struct iOSReaderView: View {
             CustomToolbarSpacer(placement: .topBarTrailing)
 
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {
-                    showingBookInfo = true
-                }) {
-                    Label("BookInfo", systemImage: "info.circle")
-                }
-                .accessibilityLabel(String(localized: "Book Information"))
-                .help(String(localized: "Book Information"))
+                BookInfoToolbarAnchorButton(book: book)
             }
 
             ToolbarItemGroup(placement: .bottomBar) {
@@ -188,9 +181,6 @@ struct iOSReaderView: View {
         .sheet(isPresented: $showingTabsList) {
             iOSReaderTabsPopoverView(isPresented: $showingTabsList)
 
-        }
-        .sheet(isPresented: $showingBookInfo) {
-            iOSBookInfoView(book: book)
         }
         .sheet(isPresented: $showingTOC) {
             iOSTOCView(
