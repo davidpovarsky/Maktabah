@@ -116,6 +116,16 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return items
     }
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        if request.options.searchMode == .or {
+            let terms = request.query
+                .components(separatedBy: .whitespacesAndNewlines)
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .filter { !$0.isEmpty }
+            if terms.count > 1 {
+                return try await searchOr(terms: terms, request: request)
+            }
+        }
+
         let url = try configuration.apiURL(path: "/api/search-wrapper")
         let response = try await client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
             query: request.query,
@@ -125,7 +135,68 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             options: request.options
         ))
         if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
-        let hits = response.hits.hits.compactMap { hit -> LibrarySearchHit? in
+        let hits = mapSearchHits(response.hits.hits)
+        let receivedCount = response.hits.hits.count
+        let next = receivedCount > 0 && request.offset + receivedCount < response.hits.total.value
+            ? request.offset + receivedCount
+            : nil
+        return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next)
+    }
+
+    private func searchOr(terms: [String], request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
+        var allHits: [LibrarySearchHit] = []
+        var totalEstimate = 0
+
+        try await withThrowingTaskGroup(of: (hits: [LibrarySearchHit], total: Int).self) { group in
+            for term in terms {
+                group.addTask {
+                    var termOptions = request.options
+                    termOptions.searchMode = .phrase
+                    termOptions.wordDistance = 0
+                    let url = try self.configuration.apiURL(path: "/api/search-wrapper")
+                    let response = try await self.client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
+                        query: term,
+                        start: 0,
+                        size: request.offset + request.limit,
+                        filters: request.filters,
+                        options: termOptions
+                    ))
+                    let hits = self.mapSearchHits(response.hits.hits)
+                    return (hits, response.hits.total.value)
+                }
+            }
+
+            for try await result in group {
+                totalEstimate += result.total
+                allHits.append(contentsOf: result.hits)
+            }
+        }
+
+        var uniqueHitsMap: [String: LibrarySearchHit] = [:]
+        for hit in allHits {
+            let key = hit.locator.persistenceKey
+            if let existing = uniqueHitsMap[key] {
+                if (hit.score ?? 0) > (existing.score ?? 0) {
+                    uniqueHitsMap[key] = hit
+                }
+            } else {
+                uniqueHitsMap[key] = hit
+            }
+        }
+
+        let sortedHits = uniqueHitsMap.values.sorted {
+            ($0.score ?? 0) > ($1.score ?? 0)
+        }
+
+        let slice = Array(sortedHits.dropFirst(min(request.offset, sortedHits.count)).prefix(request.limit))
+        let total = max(totalEstimate, sortedHits.count)
+        let next = request.offset + slice.count < sortedHits.count ? request.offset + slice.count : nil
+        return LibrarySearchPage(hits: slice, total: total, nextOffset: next)
+    }
+
+    private func mapSearchHits(_ rawHits: [SefariaSearchResponseDTO.Hit]) -> [LibrarySearchHit] {
+        rawHits.compactMap { hit -> LibrarySearchHit? in
             guard let work = SefariaRef.workKey(from: hit.source.ref, knownTitles: Array(knownTitles))
                 ?? hit.source.title else { return nil }
             let snippet = hit.highlight?.values.first?.first
@@ -141,11 +212,6 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 score: hit.score
             )
         }
-        let receivedCount = response.hits.hits.count
-        let next = receivedCount > 0 && request.offset + receivedCount < response.hits.total.value
-            ? request.offset + receivedCount
-            : nil
-        return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next)
     }
 
     func versions(for workKey: String) async throws -> [TextVersionMetadata] {

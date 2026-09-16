@@ -6,6 +6,7 @@ struct SearchResultsListView: View {
     var isLoadingMore: Bool = false
     var hasMore: Bool = false
     var onLoadMore: (() -> Void)? = nil
+    var onSearchInBook: ((SearchResultItem) -> Void)? = nil
     let onSelect: (SearchResultItem) -> Void
 
     var body: some View {
@@ -31,7 +32,9 @@ struct SearchResultsListView: View {
                     }
                     ShareLink(item: [item.bookTitle, item.attributedText.string]
                         .filter { !$0.isEmpty }.joined(separator: "\n"))
-                    Button("Search in book", systemImage: "magnifyingglass") { onSelect(item) }
+                    if let onSearchInBook {
+                        Button("Search in book", systemImage: "magnifyingglass") { onSearchInBook(item) }
+                    }
                 } preview: {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(item.bookTitle).font(.headline)

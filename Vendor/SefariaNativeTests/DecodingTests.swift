@@ -166,6 +166,25 @@ private func runSearchContractMappingTests() throws {
         && exact?["sort_fields"] as? [String] == ["comp_date"]
         && exact?["sort_reverse"] as? Bool == true,
         "Sefaria chronological sort contract")
+
+    let containsOptions = LibrarySearchOptions(
+        searchMode: .contains,
+        matchMode: .hebrewLemmatized,
+        wordDistance: 250
+    )
+    let encodedContains = try JSONEncoder().encode(containsOptions)
+    let decodedContains = try JSONDecoder().decode(LibrarySearchOptions.self, from: encodedContains)
+    try expect(decodedContains.searchMode == .contains, "searchMode round-trip contains")
+    try expect(decodedContains.wordDistance == 250, "contains wordDistance")
+
+    let orOptions = LibrarySearchOptions(
+        searchMode: .or,
+        matchMode: .hebrewLemmatized,
+        wordDistance: 0
+    )
+    let encodedOr = try JSONEncoder().encode(orOptions)
+    let decodedOr = try JSONDecoder().decode(LibrarySearchOptions.self, from: encodedOr)
+    try expect(decodedOr.searchMode == .or, "searchMode round-trip or")
 }
 
 private func runNestedOfflineDecodingTests() throws {

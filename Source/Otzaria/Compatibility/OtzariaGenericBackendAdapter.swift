@@ -169,7 +169,18 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
 
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         #if os(iOS)
-        let results = OtzariaMaktabahBridge.shared.search(query: request.query, limit: request.offset + request.limit)
+        let mode: SearchMode = switch request.options.searchMode {
+        case .phrase: .phrase
+        case .contains: .contains
+        case .or: .or
+        case .near: .near
+        }
+        let results = OtzariaMaktabahBridge.shared.search(
+            query: request.query,
+            limit: request.offset + request.limit,
+            mode: mode,
+            nearDistance: max(1, request.options.wordDistance)
+        )
         let slice = results.dropFirst(min(request.offset, results.count)).prefix(request.limit)
         let hits = slice.map { item -> LibrarySearchHit in
             let locator = TextLocator(backend: .otzaria, workKey: "book:\(item.bookId)", position: .legacyLine(item.page))

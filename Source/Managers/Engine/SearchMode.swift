@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SearchMode: Int, CaseIterable, Identifiable {
+enum SearchMode: Int, CaseIterable, Identifiable, Codable, Sendable {
     case phrase
     case contains
     case or
@@ -21,6 +21,15 @@ enum SearchMode: Int, CaseIterable, Identifiable {
         case .contains: "checklist.checked"
         case .or: "checklist"
         case .near: "text.word.spacing"
+        }
+    }
+
+    var librarySearchMode: LibrarySearchMode {
+        switch self {
+        case .phrase: .phrase
+        case .contains: .contains
+        case .or: .or
+        case .near: .near
         }
     }
 }

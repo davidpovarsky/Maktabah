@@ -662,14 +662,19 @@ final class SearchViewModel: ViewModelBase {
 
     func effectiveBackendSearchOptions() -> LibrarySearchOptions {
         var options = backendSearchOptions
+        options.searchMode = searchMode.librarySearchMode
         switch searchMode {
         case .phrase:
             options.matchMode = .exact
             options.wordDistance = 0
         case .near:
             options.wordDistance = max(1, nearDistance)
-        case .contains, .or:
+        case .contains:
             options.matchMode = .hebrewLemmatized
+            options.wordDistance = 250
+        case .or:
+            options.matchMode = .hebrewLemmatized
+            options.wordDistance = 0
         }
         return options
     }

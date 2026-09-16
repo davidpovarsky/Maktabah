@@ -369,6 +369,15 @@ struct LibrarySearchRequest: Codable, Hashable, Sendable {
     var options = LibrarySearchOptions()
 }
 
+enum LibrarySearchMode: String, Codable, CaseIterable, Identifiable, Sendable {
+    case phrase
+    case contains
+    case or
+    case near
+
+    var id: Self { self }
+}
+
 enum LibrarySearchMatchMode: String, Codable, CaseIterable, Identifiable, Sendable {
     case exact
     case hebrewLemmatized
@@ -385,6 +394,7 @@ enum LibrarySearchSortOrder: String, Codable, CaseIterable, Identifiable, Sendab
 }
 
 struct LibrarySearchOptions: Codable, Hashable, Sendable {
+    var searchMode: LibrarySearchMode = .phrase
     var matchMode: LibrarySearchMatchMode = .hebrewLemmatized
     var wordDistance: Int = 10
     var sortOrder: LibrarySearchSortOrder = .relevance

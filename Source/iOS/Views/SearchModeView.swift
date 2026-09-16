@@ -165,6 +165,9 @@ struct SearchModeView: View {
             hasMore: viewModel.hasMoreBackendResults,
             onLoadMore: {
                 viewModel.loadNextBackendPage()
+            },
+            onSearchInBook: { item in
+                handleSearchInBook(item, viewModel: viewModel)
             }
         ) { item in
             handleSelection(item, viewModel: viewModel)
@@ -217,6 +220,32 @@ struct SearchModeView: View {
                     )
                 }
             }
+        }
+    }
+
+    private func handleSearchInBook(_ item: SearchResultItem, viewModel: SearchViewModel) {
+        let resolvedBookId: Int?
+        if let book = viewModel.resolveBook(from: item) {
+            resolvedBookId = book.id
+        } else if item.bookId > 0 {
+            resolvedBookId = item.bookId
+        } else {
+            let table: String
+            if item.tableName.hasPrefix("otzaria:") {
+                table = String(item.tableName.dropFirst("otzaria:".count))
+            } else if item.tableName.hasPrefix("b") {
+                table = String(item.tableName.dropFirst())
+            } else {
+                table = item.tableName
+            }
+            resolvedBookId = Int(table)
+        }
+
+        guard let bookId = resolvedBookId, bookId > 0 else { return }
+        viewModel.setSelectedBooks([bookId])
+        viewModel.resultKitabFilter = ""
+        Task {
+            await viewModel.startSearch()
         }
     }
 
