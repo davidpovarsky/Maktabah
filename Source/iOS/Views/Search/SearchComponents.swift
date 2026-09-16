@@ -340,6 +340,7 @@ struct SearchToolbar: ToolbarContent {
     var conditionalLeadingButton: Bool = true
     var showSortMenu: Bool = false
     var showSaveMenu: Bool = false
+    var canSaveResults: Bool = true
     var sortKey: SearchSortKey = .bookTitle
     var sortAscending: Bool = true
     var onSortChange: ((SearchSortKey, Bool) -> Void)?
@@ -398,7 +399,7 @@ struct SearchToolbar: ToolbarContent {
                     }
                 }
 
-                if !viewModel.results.isEmpty {
+                if !viewModel.results.isEmpty && canSaveResults {
                     Button(action: { onSaveResults?() }) {
                         Label("Save Results", systemImage: "pencil.line")
                     }

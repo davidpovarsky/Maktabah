@@ -14,6 +14,41 @@ struct SearchResultsListView: View {
                 Button(action: { onSelect(item) }) {
                     SearchResultRow(item: item, showsBookTitle: showsBookTitle)
                 }
+                .contextMenu {
+                    Button("Open", systemImage: "book") { onSelect(item) }
+                    Button("Copy", systemImage: "doc.on.doc") {
+                        #if canImport(UIKit)
+                        UIPasteboard.general.string = item.attributedText.string
+                        #endif
+                    }
+                    Button("Copy with source", systemImage: "text.quote") {
+                        let source = item.bookTitle
+                        let body = item.attributedText.string
+                        let combined = [body, source].filter { !$0.isEmpty }.joined(separator: "\n")
+                        #if canImport(UIKit)
+                        UIPasteboard.general.string = combined
+                        #endif
+                    }
+                    ShareLink(item: [item.bookTitle, item.attributedText.string]
+                        .filter { !$0.isEmpty }.joined(separator: "\n"))
+                    Button("Search in book", systemImage: "magnifyingglass") { onSelect(item) }
+                } preview: {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(item.bookTitle).font(.headline)
+                        let loc = SearchResultRow.locationText(for: item)
+                        if !loc.isEmpty {
+                            Text(loc).font(.caption).foregroundStyle(.secondary)
+                        }
+                        if !item.attributedText.string.isEmpty {
+                            let hebrewBackend = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+                            Text(AttributedString(item.attributedText))
+                                .font(hebrewBackend ? .body : ReaderViewModel.kfgqpc)
+                                .multilineTextAlignment(.leading)
+                        }
+                    }
+                    .padding()
+                    .frame(width: 360, alignment: .leading)
+                }
                 .onAppear {
                     if index >= max(0, results.count - 10), hasMore, !isLoadingMore {
                         onLoadMore?()
@@ -42,8 +77,9 @@ struct SearchResultRow: View {
         item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
     }
 
-    private var locationText: String {
-        if isHebrewBackend {
+    static func locationText(for item: SearchResultItem) -> String {
+        let isHebrew = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+        if isHebrew {
             var parts: [String] = []
             if item.part > 0 {
                 parts.append(String(format: NSLocalizedString("search.result.volume", value: "כרך %d", comment: ""), item.part))
@@ -56,6 +92,10 @@ struct SearchResultRow: View {
             return "ص: \(item.page)".convertToArabicDigits() +
                 " -" + "ج: \(item.part)".convertToArabicDigits()
         }
+    }
+
+    private var locationText: String {
+        Self.locationText(for: item)
     }
 
     var body: some View {

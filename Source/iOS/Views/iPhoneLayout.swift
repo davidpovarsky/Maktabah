@@ -23,8 +23,8 @@ struct iPhoneLayout: View {
             }
 
             if BackendCoordinator.shared.capabilities.contains(.search) {
-                Tab(iOSTab.textSearch.title, systemImage: iOSTab.textSearch.icon, value: .textSearch) {
-                    textSearchTabContent
+                Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
+                    searchTabContent
                 }
             }
 
@@ -45,20 +45,28 @@ struct iPhoneLayout: View {
             iOSAddFavoriteSheet(viewModel: HistoryViewModel.shared)
         }
         .onAppear {
-            if (savedSelectedTab == .textSearch || savedSelectedTab == .zayitSearch) && !BackendCoordinator.shared.capabilities.contains(.search) {
-                selectedTab = .viewer
+            if savedSelectedTab == .textSearch || savedSelectedTab == .zayitSearch {
+                selectedTab = .search
+                savedSelectedTab = .search
             } else {
-                selectedTab = savedSelectedTab == .zayitSearch ? .textSearch : savedSelectedTab
+                selectedTab = savedSelectedTab.canonical
+            }
+            if selectedTab == .search && !BackendCoordinator.shared.capabilities.contains(.search) {
+                selectedTab = .viewer
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
-            if selectedTab == .textSearch && !BackendCoordinator.shared.capabilities.contains(.search) {
+            if selectedTab == .search && !BackendCoordinator.shared.capabilities.contains(.search) {
                 selectedTab = .viewer
             }
         }
         .onChange(of: selectedTab) { _, newValue in
-            savedSelectedTab = newValue
-            bManager.switchToMode(newValue.appMode)
+            let canonical = newValue.canonical
+            savedSelectedTab = canonical
+            if selectedTab != canonical {
+                selectedTab = canonical
+            }
+            bManager.switchToMode(canonical.appMode)
         }
         .onChange(of: bManager.currentMode) { _, newMode in
             let matchingTab = iOSTab(appMode: newMode)
@@ -86,32 +94,6 @@ struct iPhoneLayout: View {
             placement: .toolbar,
             prompt: String(localized: "Search Library")
         )
-    }
-
-    @ViewBuilder
-    private var textSearchTabContent: some View {
-        NavigationStack {
-            UnifiedSearchWorkspaceView(
-                openLibrary: { item, descriptor in
-                    guard let book = bManager.searchViewModel.resolveBook(from: item) else { return }
-                    let targetContentId = item.backendLocator != nil ? item.bookId : item.page
-                    bManager.openBook(
-                        book,
-                        initialContentId: targetContentId,
-                        searchText: descriptor.readerFallback
-                    )
-                },
-                openZayit: { hit, _ in
-                    ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
-                }
-            )
-            .navigationTitle(iOSTab.textSearch.title)
-            .adaptiveReaderPush(
-                item: $bManager.selectedBook,
-                manager: bManager
-            )
-            .toolbarGeneral(showSettings: $showSettings)
-        }
     }
 
     @ViewBuilder

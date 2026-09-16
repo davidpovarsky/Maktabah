@@ -1,24 +1,33 @@
 import SwiftUI
 
 enum iOSTab: Int, CaseIterable, Identifiable {
-    case viewer
-    case textSearch
-    case zayitSearch
-    case search
-    case author
-    case annotations
-    case history
+    case viewer = 0
+    case textSearch = 1
+    case zayitSearch = 2
+    case search = 3
+    case author = 4
+    case annotations = 5
+    case history = 6
+
+    static var allCases: [iOSTab] {
+        [.viewer, .search, .author, .annotations, .history]
+    }
 
     var id: Int {
         rawValue
     }
 
+    var canonical: iOSTab {
+        switch self {
+        case .textSearch, .zayitSearch: .search
+        default: self
+        }
+    }
+
     var title: String {
         switch self {
         case .viewer: "Library".localized
-        case .textSearch: "חיפוש טקסטים"
-        case .zayitSearch: "Zayit Search"
-        case .search: "Search".localized
+        case .search, .textSearch, .zayitSearch: "Search".localized
         case .author: "Narrators".localized
         case .annotations: "Annotations".localized
         case .history: "History".localized
@@ -28,9 +37,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
     var icon: String {
         switch self {
         case .viewer: "books.vertical.fill"
-        case .textSearch: "text.magnifyingglass"
-        case .zayitSearch: "text.page.badge.magnifyingglass"
-        case .search: "magnifyingglass"
+        case .search, .textSearch, .zayitSearch: "magnifyingglass"
         case .author: "person.text.rectangle.fill"
         case .annotations: "quote.closing"
         case .history: "clock.fill"
@@ -40,9 +47,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
     var appMode: AppMode {
         switch self {
         case .viewer: .viewer
-        case .textSearch: .search
-        case .zayitSearch: .search
-        case .search: .search
+        case .search, .textSearch, .zayitSearch: .search
         case .author: .narrator
         case .annotations: .annotations
         case .history: .history
@@ -52,7 +57,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
     init(appMode: AppMode) {
         switch appMode {
         case .viewer: self = .viewer
-        case .search: self = .textSearch
+        case .search: self = .search
         case .narrator: self = .author
         case .annotations: self = .annotations
         case .history: self = .history
@@ -247,18 +252,13 @@ private extension iOSMainView {
             await openSmokeBook(for: backend, inspectorMode: .commentatorTab)
 
         case "search":
-            if BackendCoordinator.shared.capabilities.contains(.search) {
-                selectedTab = .textSearch
-                navigationManager.switchToMode(.search)
-            } else {
-                selectedTab = .search
-                navigationManager.switchToMode(.search)
-            }
+            selectedTab = .search
+            navigationManager.switchToMode(.search)
 
         case "searchResults":
             let query = "בראשית"
             navigationManager.searchViewModel.query = query
-            selectedTab = .textSearch
+            selectedTab = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
             if backend == .sefaria {
@@ -268,7 +268,7 @@ private extension iOSMainView {
 
         case "searchOpen":
             let query = "בראשית"
-            selectedTab = .textSearch
+            selectedTab = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
             if backend == .sefaria {

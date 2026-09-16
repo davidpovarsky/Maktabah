@@ -8,8 +8,7 @@ import SwiftUI
 struct iPadLayout: View {
     private enum DetailMode {
         case reader
-        case textSearch
-        case zayitSearch
+        case search
     }
 
     @Bindable var bManager: iOSNavigationManager
@@ -53,14 +52,13 @@ struct iPadLayout: View {
     }
 
     private func searchPrompt(for tab: iOSTab) -> String {
-        switch tab {
+        switch tab.canonical {
         case .viewer: String(localized: "Search Library")
-        case .textSearch: String(localized: "Search Texts")
-        case .zayitSearch: String(localized: "Search Zayit Index")
         case .search: String(localized: "Filter Books to Search")
         case .author: String(localized: "Search Narrators")
         case .annotations: String(localized: "Search Annotations")
         case .history: String(localized: "Search History & Favorites")
+        default: String(localized: "Filter Books to Search")
         }
     }
 
@@ -108,8 +106,8 @@ struct iPadLayout: View {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
         }
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
-            if detailMode == .textSearch && !BackendCoordinator.shared.capabilities.contains(.search) {
-                transitionSidebar(to: .search)
+            if detailMode == .search && !BackendCoordinator.shared.capabilities.contains(.search) {
+                transitionSidebar(to: .viewer)
             }
         }
         .onChange(of: bManager.currentMode) { _, newMode in
@@ -118,8 +116,10 @@ struct iPadLayout: View {
             }
         }
         .onChange(of: selectedTab) { _, newTab in
-            if path.first != newTab && (newTab != .textSearch || detailMode != .textSearch) {
-                transitionSidebar(to: newTab)
+            let canonical = newTab.canonical
+            let alreadyInDetail = (canonical == .search && detailMode == .search)
+            if path.first != canonical && !alreadyInDetail {
+                transitionSidebar(to: canonical)
             }
         }
         .onAppear {
@@ -133,12 +133,12 @@ struct iPadLayout: View {
         ThemeList(isGrouped: true) {
             Section {
                 let visibleTabs = iOSTab.allCases.filter { tab in
-                    if tab == .history || tab == .zayitSearch { return false }
-                    if tab == .textSearch && !BackendCoordinator.shared.capabilities.contains(.search) { return false }
+                    if tab == .history { return false }
+                    if tab == .search && !BackendCoordinator.shared.capabilities.contains(.search) { return false }
                     return true
                 }
                 ForEach(visibleTabs) { tab in
-                    if tab == .textSearch {
+                    if tab == .search {
                         Button {
                             transitionSidebar(to: tab)
                         } label: {
@@ -237,47 +237,10 @@ struct iPadLayout: View {
         switch detailMode {
         case .reader:
             iOSReaderTabView(columnVisibility: $columnVisibility)
-        case .textSearch:
+        case .search:
             NavigationStack {
-                UnifiedSearchWorkspaceView(
-                    openLibrary: { item, descriptor in
-                        guard let book = bManager.searchViewModel.resolveBook(from: item) else { return }
-                        let targetContentId = item.backendLocator != nil ? item.bookId : item.page
-                        bManager.openBook(
-                            book,
-                            initialContentId: targetContentId,
-                            searchText: descriptor.readerFallback
-                        )
-                        showingOtzariaReader = true
-                    },
-                    openZayit: { hit, _ in
-                        if ZayitSearchReaderNavigationAdapter.open(hit, using: bManager) {
-                            showingOtzariaReader = true
-                        }
-                    }
-                )
-                .navigationDestination(isPresented: $showingOtzariaReader) {
-                    iOSReaderTabView(columnVisibility: $columnVisibility)
-                }
-            }
-        case .zayitSearch:
-            NavigationStack {
-                ZayitSearchView(
-                    existingSeforimDB: {
-                        ZayitSearchExistingDatabaseProvider.currentURL
-                    },
-                    openResult: { hit in
-                        if ZayitSearchReaderNavigationAdapter.open(
-                            hit,
-                            using: bManager
-                        ) {
-                            showingZayitReader = true
-                        }
-                    }
-                )
-                .navigationDestination(isPresented: $showingZayitReader) {
-                    iOSReaderTabView(columnVisibility: $columnVisibility)
-                }
+                SearchModeView()
+                    .navigationTitle(iOSTab.search.title)
             }
         }
     }
@@ -285,12 +248,11 @@ struct iPadLayout: View {
     @ViewBuilder
     private func destinationView(for tab: iOSTab) -> some View {
         @Bindable var libraryVM = bManager.libraryViewModel
-        @Bindable var searchVM = bManager.searchViewModel
         @Bindable var authorVM = bManager.authorViewModel
         @Bindable var annotationVM = bManager.annotationViewModel
 
         Group {
-            switch tab {
+            switch tab.canonical {
             case .viewer:
                 iOSLibraryView()
                     .searchable(
@@ -298,19 +260,9 @@ struct iPadLayout: View {
                         placement: .navigationBarDrawer(displayMode: .always),
                         prompt: searchPrompt(for: tab).localized
                     )
-            case .textSearch:
-                // Text Search is presented in the split view's detail column.
-                EmptyView()
-            case .zayitSearch:
-                // Zayit Search is presented in the split view's detail column.
-                EmptyView()
             case .search:
-                SearchModeView()
-                    .searchable(
-                        text: $searchVM.filterText,
-                        placement: .navigationBarDrawer(displayMode: .always),
-                        prompt: searchPrompt(for: tab).localized
-                    )
+                // Search is presented in the split view's detail column.
+                EmptyView()
             case .author:
                 AuthorModeView(onOpenBook: { book in
                     bManager.openBook(book)
@@ -334,19 +286,22 @@ struct iPadLayout: View {
                     }
             case .history:
                 EmptyView()
+            default:
+                EmptyView()
             }
         }
-        .navigationTitle(tab.title)
+        .navigationTitle(tab.canonical.title)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
-            if tab != .zayitSearch && tab != .textSearch {
+            let canonical = tab.canonical
+            if canonical != .search {
                 detailMode = .reader
                 showingZayitReader = false
                 showingOtzariaReader = false
             }
-            if selectedTab != tab {
-                selectedTab = tab
-                bManager.switchToMode(tab.appMode)
+            if selectedTab != canonical {
+                selectedTab = canonical
+                bManager.switchToMode(canonical.appMode)
             }
         }
     }
@@ -359,19 +314,20 @@ struct iPadLayout: View {
         // Every sidebar transition clears the complete author/detail route in
         // one transaction. This prevents value-less nested NavigationLinks
         // from surviving after the selected section changes.
+        let canonical = tab.canonical
         path.removeAll()
         showingZayitReader = false
         showingOtzariaReader = false
         sidebarSearchText = ""
         bManager.authorViewModel.currentRowi = nil
         bManager.authorViewModel.searchText = ""
-        selectedTab = tab
-        bManager.switchToMode(tab.appMode)
-        if tab == .textSearch {
-            detailMode = .textSearch
+        selectedTab = canonical
+        bManager.switchToMode(canonical.appMode)
+        if canonical == .search {
+            detailMode = .search
         } else {
             detailMode = .reader
-            path = [tab]
+            path = [canonical]
         }
     }
 

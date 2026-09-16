@@ -47,6 +47,12 @@ final class SearchViewModel: ViewModelBase {
     private var loadMoreBackendWork: Task<Void, Never>?
     let backendPageSize = 100
 
+    #if os(iOS)
+    var sortKey: SearchSortKey = .bookTitle
+    var sortAscending: Bool = true
+    var resultKitabFilter: String = ""
+    #endif
+
     #if os(macOS)
     @Published var state: ViewModelState = .loading
     #elseif os(iOS)
@@ -654,6 +660,20 @@ final class SearchViewModel: ViewModelBase {
         }
     }
 
+    func effectiveBackendSearchOptions() -> LibrarySearchOptions {
+        var options = backendSearchOptions
+        switch searchMode {
+        case .phrase:
+            options.matchMode = .exact
+            options.wordDistance = 0
+        case .near:
+            options.wordDistance = max(1, nearDistance)
+        case .contains, .or:
+            options.matchMode = .hebrewLemmatized
+        }
+        return options
+    }
+
     @MainActor
     private func startBackendSearch() async {
         searchWork?.cancel()
@@ -678,6 +698,7 @@ final class SearchViewModel: ViewModelBase {
             let book = ldm.booksById[bookID]
             return book?.backendSearchPath ?? book?.backendLocator?.workKey
         }
+        let options = effectiveBackendSearchOptions()
         let task = Task { @MainActor [weak self] in
             guard let self else { return }
             do {
@@ -686,7 +707,7 @@ final class SearchViewModel: ViewModelBase {
                     offset: 0,
                     limit: backendPageSize,
                     filters: backendFilters,
-                    options: backendSearchOptions
+                    options: options
                 ))
                 try Task.checkCancellation()
                 guard self.backendSearchGeneration == generation else { return }
@@ -738,6 +759,7 @@ final class SearchViewModel: ViewModelBase {
             let book = ldm.booksById[bookID]
             return book?.backendSearchPath ?? book?.backendLocator?.workKey
         }
+        let options = effectiveBackendSearchOptions()
 
         loadMoreBackendWork?.cancel()
         let task = Task { @MainActor [weak self] in
@@ -748,7 +770,7 @@ final class SearchViewModel: ViewModelBase {
                     offset: offset,
                     limit: backendPageSize,
                     filters: backendFilters,
-                    options: backendSearchOptions
+                    options: options
                 ))
                 try Task.checkCancellation()
                 guard self.backendSearchGeneration == generation else { return }
@@ -797,6 +819,9 @@ final class SearchViewModel: ViewModelBase {
         results.removeAll()
         backendNextOffset = nil
         backendTotalResults = 0
+        #if os(iOS)
+        resultKitabFilter = ""
+        #endif
     }
 
     func sortResults(by key: SearchSortKey, ascending: Bool) {

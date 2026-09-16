@@ -6,12 +6,13 @@ struct SearchModeView: View {
     @State private var showingSaveResults = false
     @State private var showingSavedResults = false
     @FocusState private var isSearchFieldFocused: Bool
-    @State private var kitabFilter: String = ""
-    @State private var sortKey: SearchSortKey = .bookTitle
-    @State private var sortAscending: Bool = true
     @State private var ftsManager = FtsMigrationManager.shared
     @State private var showFtsMigrationOverlay = false
     @AppStorage("hideFtsMigrationBanner") private var hideFtsMigrationBanner = false
+
+    private var canSaveResults: Bool {
+        BackendCoordinator.shared.usesNativeMaktabahDataPath && navigationManager.searchViewModel.results.contains { Int($0.archive) != nil }
+    }
 
     var body: some View {
         @Bindable var viewModel = navigationManager.searchViewModel
@@ -42,11 +43,12 @@ struct SearchModeView: View {
                     },
                     showSortMenu: true,
                     showSaveMenu: true,
-                    sortKey: sortKey,
-                    sortAscending: sortAscending,
+                    canSaveResults: canSaveResults,
+                    sortKey: viewModel.sortKey,
+                    sortAscending: viewModel.sortAscending,
                     onSortChange: { key, ascending in
-                        sortKey = key
-                        sortAscending = ascending
+                        viewModel.sortKey = key
+                        viewModel.sortAscending = ascending
                     },
                     onSaveResults: { showingSaveResults = true },
                     onSavedResults: { showingSavedResults = true }
@@ -145,17 +147,17 @@ struct SearchModeView: View {
     }
 
     private func searchResultsView(viewModel: SearchViewModel) -> some View {
-        var filtered: [SearchResultItem] = kitabFilter.isEmpty
+        var filtered: [SearchResultItem] = viewModel.resultKitabFilter.isEmpty
             ? viewModel.results
             : viewModel.results.filter {
                 $0.bookTitle
                     .normalizeArabic(false)
                     .contains(
-                        kitabFilter.normalizeArabic(false)
+                        viewModel.resultKitabFilter.normalizeArabic(false)
                 )
             }
 
-        SearchResultsSorter.sort(&filtered, by: sortKey, ascending: sortAscending)
+        SearchResultsSorter.sort(&filtered, by: viewModel.sortKey, ascending: viewModel.sortAscending)
 
         return SearchResultsListView(
             results: filtered,
@@ -168,13 +170,10 @@ struct SearchModeView: View {
             handleSelection(item, viewModel: viewModel)
         }
         .searchable(
-            text: $kitabFilter,
+            text: Bindable(viewModel).resultKitabFilter,
             placement: .toolbar,
             prompt: .filterByBooks
         )
-        .onChange(of: viewModel.results) { _, _ in
-            kitabFilter = ""
-        }
     }
 
     private func handleSelection(_ item: SearchResultItem, viewModel: SearchViewModel) {
