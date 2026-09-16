@@ -195,8 +195,9 @@ struct BookInfoToolbarAnchorButton: View {
 
     var body: some View {
         Button {
-            // No manual popup launch here.
-            // The anchor modifier owns opening.
+            AnchoredPopup.launchGrowingAnimation(
+                id: "book_info_\(book.id)"
+            )
         } label: {
             Label("BookInfo", systemImage: "info.circle")
         }
@@ -226,6 +227,7 @@ extension View {
                             dampingFraction: 0.78
                         )
                     )
+                    .openOnTap(false)
                     .closeOnTap(false)
                     .closeOnTapOutside(true)
                     .background(.blur(radius: 8))
