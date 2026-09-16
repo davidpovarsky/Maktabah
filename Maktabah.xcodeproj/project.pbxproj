@@ -818,6 +818,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoAnchoredCard.swift; sourceTree = "<group>"; };
 		A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/MaktabahTorahInspectorAdapter.swift; sourceTree = "<group>"; };
 		A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaInspectorRelationshipsProvider.swift; sourceTree = "<group>"; };
 		CE0000000000000000000001 /* LibraryBackendModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendModels.swift; sourceTree = "<group>"; };
