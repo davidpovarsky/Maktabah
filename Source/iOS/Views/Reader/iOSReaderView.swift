@@ -22,6 +22,7 @@ struct iOSReaderView: View {
     @State private var editingNoteText = ""
     @State private var showingNavigation = false
     @State private var showingTabsList = false
+    @State private var showingBookInfo = false
     @State private var isReading = false
 
     init(book: BooksData,
@@ -109,6 +110,16 @@ struct iOSReaderView: View {
         .ignoresSafeArea(edges: .vertical)
         .legacyVisibleToolbarBackgrounds()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .blur(radius: showingBookInfo ? 8 : 0)
+        .overlay {
+            if showingBookInfo {
+                Color.black.opacity(isDarkMode ? 0.3 : 0.15)
+                    .ignoresSafeArea()
+                    .allowsHitTesting(false)
+                    .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: showingBookInfo)
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .navigationTitle(bManager.openTabs.count > 1 ? "" : book.book)
         .navigationBarTitleDisplayMode(.inline)
@@ -154,7 +165,18 @@ struct iOSReaderView: View {
             CustomToolbarSpacer(placement: .topBarTrailing)
 
             ToolbarItem(placement: .topBarTrailing) {
-                BookInfoToolbarAnchorButton(book: book)
+                Button {
+                    showingBookInfo = true
+                } label: {
+                    Label("BookInfo", systemImage: "info.circle")
+                }
+                .accessibilityLabel(String(localized: "Book Information"))
+                .help(String(localized: "Book Information"))
+                .popover(isPresented: $showingBookInfo) {
+                    iOSBookInfoCardView(book: book)
+                        .presentationCompactAdaptation(.popover)
+                        .preferredColorScheme(isDarkMode ? .dark : .light)
+                }
             }
 
             ToolbarItemGroup(placement: .bottomBar) {
