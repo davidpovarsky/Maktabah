@@ -148,28 +148,27 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         var allHits: [LibrarySearchHit] = []
         var totalEstimate = 0
 
-        try await withThrowingTaskGroup(of: (hits: [LibrarySearchHit], total: Int).self) { group in
+        try await withThrowingTaskGroup(of: SefariaSearchResponseDTO.self) { group in
             for term in terms {
                 group.addTask {
                     var termOptions = request.options
                     termOptions.searchMode = .phrase
                     termOptions.wordDistance = 0
                     let url = try self.configuration.apiURL(path: "/api/search-wrapper")
-                    let response = try await self.client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
+                    return try await self.client.post(SefariaSearchResponseDTO.self, url: url, body: SefariaSearchBody(
                         query: term,
                         start: 0,
                         size: request.offset + request.limit,
                         filters: request.filters,
                         options: termOptions
                     ))
-                    let hits = self.mapSearchHits(response.hits.hits)
-                    return (hits, response.hits.total.value)
                 }
             }
 
-            for try await result in group {
-                totalEstimate += result.total
-                allHits.append(contentsOf: result.hits)
+            for try await response in group {
+                totalEstimate += response.hits.total.value
+                let hits = self.mapSearchHits(response.hits.hits)
+                allHits.append(contentsOf: hits)
             }
         }
 
