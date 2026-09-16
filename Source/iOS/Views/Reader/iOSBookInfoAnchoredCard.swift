@@ -98,8 +98,8 @@ struct iOSBookInfoCardView: View {
         }
         .frame(
             idealWidth: 430,
-            idealHeight: 430,
             maxWidth: 430,
+            idealHeight: 430,
             maxHeight: 430
         )
         .presentationBackground(.regularMaterial)
