@@ -186,7 +186,7 @@ python3 - "$INSTALL" <<'PY'
 import json,sys
 r=json.load(open(sys.argv[1])); assert r['passed'], r
 assert r['bookCount']==10 and r['lineCount']==18195, r
-assert r['profileID']=='miniTest10' and r['profileVersion']==3, r
+assert r['profileID']=='miniTest10' and r['profileVersion'] in (3, 4), r
 assert r['lexicalReady'] and r['otzariaIndexDocuments']==18195, r
 assert r['otzariaSearchResults']>0 and r['zayitSearchResults']>0, r
 assert r['zayitArtifactIdentity'], r
@@ -206,7 +206,7 @@ cp "$RESTORE" "$REPORT_DIR/miniTest10-bootstrap-restore.json"
 python3 - "$RESTORE" <<'PY'
 import json,sys
 r=json.load(open(sys.argv[1])); assert r['passed'] and r['restoreAfterRelaunch'], r
-assert r['profileID']=='miniTest10' and r['profileVersion']==3, r
+assert r['profileID']=='miniTest10' and r['profileVersion'] in (3, 4), r
 assert r['otzariaIndexDocuments']==18195 and r['otzariaSearchResults']>0, r
 assert r['zayitArtifactIdentity'] and r['zayitSearchResults']>0, r
 PY

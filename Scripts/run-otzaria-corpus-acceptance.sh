@@ -61,19 +61,25 @@ test -d "$APP"
 BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
 xcrun simctl install "$UDID" "$APP"
 CONTAINER="$(xcrun simctl get_app_container "$UDID" "$BUNDLE_ID" data)"
+SHARED_CONTAINER="$(xcrun simctl get_app_container "$UDID" "group.com.davidpovarsky.itorah" groups 2>/dev/null || true)"
 EMBEDDED_PROFILE_ID="$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$APP/Info.plist" 2>/dev/null || true)"
 case "$EMBEDDED_PROFILE_ID" in
   ""|production|'$('*)
-    INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/TantivySearchIndex"
+    INDEX_SUBPATH="Otzaria/TantivySearchIndex"
     ;;
   *)
     if [[ ! "$EMBEDDED_PROFILE_ID" =~ ^[A-Za-z0-9._-]+$ ]]; then
       echo "invalid embedded Otzaria data profile ID: $EMBEDDED_PROFILE_ID" >&2
       exit 1
     fi
-    INDEX_ROOT="$CONTAINER/Library/Application Support/Otzaria/Profiles/$EMBEDDED_PROFILE_ID/otzariaSearch"
+    INDEX_SUBPATH="Otzaria/Profiles/$EMBEDDED_PROFILE_ID/otzariaSearch"
     ;;
 esac
+INDEX_ROOT="$CONTAINER/Library/Application Support/$INDEX_SUBPATH"
+SHARED_INDEX_ROOT=""
+if [ -n "$SHARED_CONTAINER" ] && [ -d "$SHARED_CONTAINER" ]; then
+  SHARED_INDEX_ROOT="$SHARED_CONTAINER/$INDEX_SUBPATH"
+fi
 cp "$DATABASE" "$CONTAINER/Documents/otzaria-corpus.db"
 RESULT="$CONTAINER/Documents/otzaria-corpus-acceptance.json"
 STARTED_AT="$(date +%s)"
@@ -89,10 +95,14 @@ if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES:-}" ]; then
       fi
     }
     while true; do
+      SAMPLE_TARGET="$INDEX_ROOT"
+      if [ ! -d "$SAMPLE_TARGET" ] && [ -n "$SHARED_INDEX_ROOT" ] && [ -d "$SHARED_INDEX_ROOT" ]; then
+        SAMPLE_TARGET="$SHARED_INDEX_ROOT"
+      fi
       printf '{"epoch":%s,"databaseBytes":%s,"indexRootBytes":%s,"workspaceBytes":%s}\n' \
         "$(date +%s)" \
         "$(stat -f %z "$CONTAINER/Documents/otzaria-corpus.db")" \
-        "$(directory_bytes "$INDEX_ROOT")" \
+        "$(directory_bytes "$SAMPLE_TARGET")" \
         "$(directory_bytes "$GITHUB_WORKSPACE")" \
         >> "$OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES"
       sleep 30
@@ -104,6 +114,7 @@ fi
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_DATABASE="$CONTAINER/Documents/otzaria-corpus.db" \
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_RESULT="$RESULT" \
 SIMCTL_CHILD_OTZARIA_CORPUS_ACCEPTANCE_EXPECTED_BOOKS="$EXPECTED" \
+SIMCTL_CHILD_OTZARIA_SHARED_ROOT_OVERRIDE="$CONTAINER/Library/Application Support" \
   xcrun simctl launch "$UDID" "$BUNDLE_ID"
 
 WAIT_ROUNDS="${OTZARIA_CORPUS_ACCEPTANCE_WAIT_ROUNDS:-720}"
@@ -114,6 +125,9 @@ for _ in $(seq 1 "$WAIT_ROUNDS"); do
     fi
     if [ -n "$SAMPLER_PID" ]; then kill "$SAMPLER_PID" >/dev/null 2>&1 || true; wait "$SAMPLER_PID" 2>/dev/null || true; fi
     if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE:-}" ]; then
+      if [ ! -d "$INDEX_ROOT" ] && [ -n "$SHARED_INDEX_ROOT" ] && [ -d "$SHARED_INDEX_ROOT" ]; then
+        INDEX_ROOT="$SHARED_INDEX_ROOT"
+      fi
       INDEX_PATH="$(find "$INDEX_ROOT" -mindepth 1 -maxdepth 1 -type d ! -name '*.building' ! -name '*.previous' ! -name '*.installing' | head -1)"
       test -n "$INDEX_PATH"
       printf '%s\n' "$INDEX_PATH" > "$OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE"

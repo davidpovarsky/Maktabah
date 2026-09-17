@@ -305,7 +305,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/miniTest10/otzaria
-          key: ${{ runner.os }}-mini-otzaria-v3-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/OtzariaSearchEngine/**', 'Scripts/package-otzaria-search-artifact.py') }}
+          key: ${{ runner.os }}-mini-otzaria-v4-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/OtzariaSearchEngine/**', 'Scripts/package-otzaria-search-artifact.py') }}
 
       - name: Build the actual Otzaria index and package it
         if: steps.release-check.outputs.reused != 'true' && steps.otzaria-artifact-cache.outputs.cache-hit != 'true'
@@ -337,7 +337,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/miniTest10/zayit
-          key: ${{ runner.os }}-mini-zayit-v3-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/ZayitSearchPort/**', 'Scripts/package-zayit-search-artifact.py') }}
+          key: ${{ runner.os }}-mini-zayit-v4-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/ZayitSearchPort/**', 'Scripts/package-zayit-search-artifact.py') }}
 
       - name: Build the actual Zayit index, query it, and package it
         if: steps.release-check.outputs.reused != 'true' && steps.zayit-artifact-cache.outputs.cache-hit != 'true'
