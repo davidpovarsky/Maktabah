@@ -10,6 +10,8 @@ struct SearchModeView: View {
     @State private var showFtsMigrationOverlay = false
     @AppStorage("hideFtsMigrationBanner") private var hideFtsMigrationBanner = false
 
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
     private var canSaveResults: Bool {
         BackendCoordinator.shared.usesNativeMaktabahDataPath && navigationManager.unifiedSearchSession.results.contains { Int($0.archive) != nil }
     }
@@ -18,179 +20,195 @@ struct SearchModeView: View {
         @Bindable var session = navigationManager.unifiedSearchSession
         @Bindable var viewModel = navigationManager.searchViewModel
 
-        filterAndInputView(session: session, viewModel: viewModel)
-            .overlay {
-                if !session.results.isEmpty {
-                    searchResultsView(session: session)
-                        .transition(.move(edge: .bottom))
-                }
-            }
-            .safeAreaInset(edge: .bottom, content: {
-                UnifiedSearchProgressView(session: session)
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .bottom).combined(with: .opacity),
-                        removal: .move(edge: .bottom).combined(with: .opacity)
-                    ))
-            })
-            .navigationBarTitleDisplayMode(session.results.isEmpty ? .automatic : .inline)
-            .toolbar {
-                UnifiedSearchToolbar(
-                    session: session,
-                    onLeadingAction: {
-                        session.clearResults()
-                        session.query = ""
-                    },
-                    showSortMenu: true,
-                    showSaveMenu: true,
-                    canSaveResults: canSaveResults,
-                    onSaveResults: { showingSaveResults = true },
-                    onSavedResults: { showingSavedResults = true }
-                )
-            }
-            .sheet(isPresented: $session.showsAdvancedOptions) {
-                UnifiedSearchAdvancedOptionsSheet(session: session)
-            }
-            .sheet(isPresented: $session.showsBookFilterSheet) {
-                NavigationStack {
-                    SearchFilterUIKitView(
-                        viewModel: viewModel,
-                        displayedCategories: viewModel.displayedCategories,
-                        updateTrigger: viewModel.updateTrigger,
-                        onTap: {}
-                    )
-                    .themeTint()
-                    .navigationTitle("סינון לפי ספרים")
-                    .searchable(text: $viewModel.filterText, prompt: "חיפוש ספר")
-                    .toolbar {
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("אישור") {
-                                session.showsBookFilterSheet = false
-                            }
-                        }
-                        ToolbarItem(placement: .destructiveAction) {
-                            if !session.selectedBookIds.isEmpty {
-                                Button("נקה הכל") {
-                                    session.clearFilter()
-                                }
-                            }
+        VStack(spacing: 0) {
+            if !isSearching {
+                SearchInputBar(
+                    text: Bindable(session).query,
+                    isFocused: _isSearchFieldFocused,
+                    onSubmit: {
+                        Task {
+                            viewModel.addToHistory(session.query)
+                            session.runSearch()
+                            isSearchFieldFocused = false
                         }
                     }
-                }
-            }
-            .sheet(isPresented: $session.showsSearchDataSheet) {
-                NavigationStack {
-                    SearchDataView()
-                }
-            }
-            .sheet(isPresented: $showingSaveResults) {
-                iOSResultWriterView(
-                    results: session.results,
-                    query: session.query,
-                    searchMode: session.scope == .exact ? .phrase : (session.scope == .fuzzy ? .contains : .near),
-                    searchViewModel: viewModel
                 )
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .background(Color.appBackground)
             }
-            .sheet(isPresented: $showingSavedResults) {
-                iOSSavedResultsView()
-            }
-            .animation(.easeInOut(duration: 0.5), value: session.results.isEmpty)
-            .animation(.interpolatingSpring(stiffness: 300, damping: 20),
-                       value: session.isSearching)
-            .onAppear {
-                session.searchViewModel = viewModel
-                if session.selectedBookIds != viewModel.selectedBookIds {
-                    session.selectedBookIds = viewModel.selectedBookIds
-                }
-                if BackendCoordinator.shared.usesNativeMaktabahDataPath {
-                    ftsManager.checkNeedsMigration()
-                }
-            }
-            .onChange(of: viewModel.selectedBookIds) { _, newIds in
-                if session.selectedBookIds != newIds {
-                    session.selectedBookIds = newIds
-                }
-            }
-            .onChange(of: session.selectedBookIds) { _, newIds in
-                if viewModel.selectedBookIds != newIds {
-                    viewModel.setSelectedBooks(newIds)
-                }
-            }
-            .overlay {
-                if showFtsMigrationOverlay {
-                    Color.appBackground
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            // blocking tap, do nothing or dismiss if not migrating?
-                            // let's do nothing to force user to use Cancel button
-                        }
-                        .zIndex(10)
 
-                    FtsMigrationProgressView(
-                        onCancel: {
-                            showFtsMigrationOverlay = false
-                        },
-                        onUpdate: {
-                            try await ftsManager.performMigration()
-                            await MainActor.run { showFtsMigrationOverlay = false }
-                        }
-                    )
-                    .zIndex(11)
-                    .transition(AnyTransition.opacity.combined(with: .scale))
+            ZStack(alignment: .top) {
+                if !session.results.isEmpty {
+                    searchResultsView(session: session)
+                } else if horizontalSizeClass == .regular {
+                    searchRegularEmptyState(session: session, viewModel: viewModel)
+                } else {
+                    compactFilterView(viewModel: viewModel)
                 }
-            }
-            .animation(.easeInOut, value: showFtsMigrationOverlay)
-    }
 
-    // MARK: - Sub-views
-
-    private func filterAndInputView(session: UnifiedSearchSessionController, viewModel: SearchViewModel) -> some View {
-        ZStack(alignment: .bottom) {
-            SearchFilterUIKitView(
-                viewModel: viewModel,
-                displayedCategories: viewModel.displayedCategories,
-                updateTrigger: viewModel.updateTrigger,
-                onTap: { isSearchFieldFocused = false }
-            )
-            .themeTint()
-            .ignoresSafeArea(edges: .vertical)
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                ftsMigrationBanner()
-            }
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                if !isSearching {
-                    SearchInputBar(
-                        text: Bindable(session).query,
-                        isFocused: _isSearchFieldFocused,
-                        onSubmit: {
-                            Task {
-                                viewModel.addToHistory(session.query)
-                                session.runSearch()
-                                isSearchFieldFocused = false
-                            }
-                        }
-                    )
-                }
-            }
-            .overlay(alignment: .bottom) {
-                if !isSearching {
+                if !isSearching && isSearchFieldFocused {
                     UnifiedSearchHistoryOverlay(
                         session: session,
                         searchViewModel: viewModel,
-                        inputBarHeight: 75,
+                        inputBarHeight: 0,
                         isVisible: .init(
                             get: { isSearchFieldFocused },
                             set: { isSearchFieldFocused = $0 ?? false }
                         )
                     )
                     .hideTabBarWhenKeyboardShown()
-                    .zIndex(2)
+                    .zIndex(10)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .safeAreaInset(edge: .bottom, content: {
+            UnifiedSearchProgressView(session: session)
+                .transition(.asymmetric(
+                    insertion: .move(edge: .bottom).combined(with: .opacity),
+                    removal: .move(edge: .bottom).combined(with: .opacity)
+                ))
+        })
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            ftsMigrationBanner()
+        }
+        .navigationBarTitleDisplayMode(session.results.isEmpty ? .automatic : .inline)
+        .toolbar {
+            UnifiedSearchToolbar(
+                session: session,
+                onLeadingAction: {
+                    session.clearResults()
+                    session.query = ""
+                },
+                showSortMenu: true,
+                showSaveMenu: true,
+                canSaveResults: canSaveResults,
+                onSaveResults: { showingSaveResults = true },
+                onSavedResults: { showingSavedResults = true }
+            )
+        }
+        .sheet(isPresented: $session.showsAdvancedOptions) {
+            UnifiedSearchAdvancedOptionsSheet(session: session)
+        }
+        .sheet(isPresented: $session.showsBookFilterSheet) {
+            NavigationStack {
+                SearchFilterUIKitView(
+                    viewModel: viewModel,
+                    displayedCategories: viewModel.displayedCategories,
+                    updateTrigger: viewModel.updateTrigger,
+                    onTap: {}
+                )
+                .themeTint()
+                .navigationTitle("סינון לפי ספרים")
+                .searchable(text: $viewModel.filterText, prompt: "חיפוש ספר")
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("אישור") {
+                            session.showsBookFilterSheet = false
+                        }
+                    }
+                    ToolbarItem(placement: .destructiveAction) {
+                        if !session.selectedBookIds.isEmpty {
+                            Button("נקה הכל") {
+                                session.clearFilter()
+                            }
+                        }
+                    }
                 }
             }
         }
+        .sheet(isPresented: $session.showsSearchDataSheet) {
+            NavigationStack {
+                SearchDataView()
+            }
+        }
+        .sheet(isPresented: $showingSaveResults) {
+            iOSResultWriterView(
+                results: session.results,
+                query: session.query,
+                searchMode: session.scope == .exact ? .phrase : (session.scope == .fuzzy ? .contains : .near),
+                searchViewModel: viewModel
+            )
+        }
+        .sheet(isPresented: $showingSavedResults) {
+            iOSSavedResultsView()
+        }
+        .animation(.easeInOut(duration: 0.5), value: session.results.isEmpty)
+        .animation(.interpolatingSpring(stiffness: 300, damping: 20),
+                   value: session.isSearching)
+        .onAppear {
+            session.searchViewModel = viewModel
+            if session.selectedBookIds != viewModel.selectedBookIds {
+                session.selectedBookIds = viewModel.selectedBookIds
+            }
+            if BackendCoordinator.shared.usesNativeMaktabahDataPath {
+                ftsManager.checkNeedsMigration()
+            }
+        }
+        .onChange(of: viewModel.selectedBookIds) { _, newIds in
+            if session.selectedBookIds != newIds {
+                session.selectedBookIds = newIds
+            }
+        }
+        .onChange(of: session.selectedBookIds) { _, newIds in
+            if viewModel.selectedBookIds != newIds {
+                viewModel.setSelectedBooks(newIds)
+            }
+        }
+        .overlay {
+            if showFtsMigrationOverlay {
+                Color.appBackground
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                    }
+                    .zIndex(10)
+
+                FtsMigrationProgressView(
+                    onCancel: {
+                        showFtsMigrationOverlay = false
+                    },
+                    onUpdate: {
+                        try await ftsManager.performMigration()
+                        await MainActor.run { showFtsMigrationOverlay = false }
+                    }
+                )
+                .zIndex(11)
+                .transition(AnyTransition.opacity.combined(with: .scale))
+            }
+        }
+        .animation(.easeInOut, value: showFtsMigrationOverlay)
+    }
+
+    // MARK: - Sub-views
+
+    private func compactFilterView(viewModel: SearchViewModel) -> some View {
+        SearchFilterUIKitView(
+            viewModel: viewModel,
+            displayedCategories: viewModel.displayedCategories,
+            updateTrigger: viewModel.updateTrigger,
+            onTap: { isSearchFieldFocused = false }
+        )
+        .themeTint()
+        .ignoresSafeArea(edges: .bottom)
+    }
+
+    private func searchRegularEmptyState(session: UnifiedSearchSessionController, viewModel: SearchViewModel) -> some View {
+        ContentUnavailableView {
+            Label("חיפוש בספרים", systemImage: "magnifyingglass")
+        } description: {
+            if session.selectedBookIds.isEmpty {
+                Text("בחר ספרים בסרגל הצד או הקלד מילות חיפוש בשדה למעלה")
+            } else {
+                Text("נבחרו \(session.selectedBookIds.count) ספרים לחיפוש. הקלד מילות חיפוש בשדה למעלה ולחץ Enter.")
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.appBackground)
     }
 
     private func searchResultsView(session: UnifiedSearchSessionController) -> some View {
-        var filtered: [SearchResultItem] = session.resultKitabFilter.isEmpty
+        let filtered: [SearchResultItem] = session.resultKitabFilter.isEmpty
             ? session.results
             : session.results.filter {
                 $0.bookTitle
@@ -199,8 +217,6 @@ struct SearchModeView: View {
                         session.resultKitabFilter.normalizeArabic(false)
                 )
             }
-
-        SearchResultsSorter.sort(&filtered, by: session.sortKey, ascending: session.sortAscending)
 
         return SearchResultsListView(
             results: filtered,

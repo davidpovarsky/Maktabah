@@ -46,6 +46,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     private let indexingService = OtzariaSearchIndexingService.shared
     private let artifactService = OtzariaSearchArtifactService.shared
     private var currentTask: Task<Void, Never>?
+    private var searchGeneration: Int = 0
 
     func refreshStatus() {
         guard !isIndexing, !isInstallingArtifact else { return }
@@ -318,64 +319,16 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         }
     }
 
-    func search() {
-        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { clear(); return }
-        guard let path = OtzariaMaktabahBridge.shared.databasePath else {
-            errorMessage = OtzariaSearchError.databaseNotSelected.localizedDescription
-            status = .unavailable
-            return
-        }
-
-        if !selectedBookIds.isEmpty {
-            isSearching = true
-            errorMessage = nil
-            hasMore = false
-            let ftsMode: SearchMode
-            switch mode {
-            case .exact: ftsMode = .phrase
-            case .advanced: ftsMode = .near
-            case .fuzzy: ftsMode = .contains
-            }
-            let dist = distance > 0 ? distance : 10
-            let bookIds = selectedBookIds
-            Task.detached(priority: .userInitiated) {
-                let items = OtzariaMaktabahBridge.shared.search(
-                    query: trimmed,
-                    selectedBookIds: bookIds,
-                    offset: 0,
-                    limit: 100,
-                    mode: ftsMode,
-                    nearDistance: dist
-                )
-                await MainActor.run {
-                    self.enginePage = nil
-                    self.results = items
-                    self.hasMore = items.count == 100
-                    self.isSearching = false
-                }
-            }
-            return
-        }
-
-        let finalURL = OtzariaSearchIndexManager.shared.indexURL(for: path)
-        guard FileManager.default.fileExists(atPath: finalURL.path) else {
-            status = .notBuilt
-            errorMessage = OtzariaDatabaseAccessController.shared.source == .managedInternal
-                ? "האינדקס אינו מוכן. הורד והתקן חבילת חיפוש תואמת לפני החיפוש."
-                : "האינדקס אינו מוכן. בנה או המשך את אינדקס אוצריא לפני החיפוש."
-            return
-        }
-
-        isSearching = true
-        errorMessage = nil
-        hasMore = false
-        let request = OtzariaSearchRequest(
-            query: trimmed,
+    private func makeSearchRequest(query: String, offset: Int = 0, limit: Int = 100) -> OtzariaSearchRequest {
+        let sortedIds = selectedBookIds.sorted()
+        let facets = sortedIds.isEmpty ? ["/"] : sortedIds.map { "/book/\($0)" }
+        let bookIds = sortedIds.isEmpty ? nil : sortedIds
+        return OtzariaSearchRequest(
+            query: query,
             mode: mode,
-            facets: ["/"],
-            limit: 100,
-            offset: 0,
+            facets: facets,
+            limit: limit,
+            offset: offset,
             order: order,
             distance: distance,
             negativeQuery: negativeQuery,
@@ -392,21 +345,53 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
             negativeSearchOptions: negativeSearchOptions,
             matchNikud: matchNikud,
             matchTaamim: matchTaamim,
-            grouping: grouping
+            grouping: grouping,
+            bookIds: bookIds
         )
+    }
 
-        Task.detached(priority: .userInitiated) { [repository] in
+    func search() {
+        searchGeneration += 1
+        let generation = searchGeneration
+        currentTask?.cancel()
+
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { clear(); return }
+        guard let path = OtzariaMaktabahBridge.shared.databasePath else {
+            errorMessage = OtzariaSearchError.databaseNotSelected.localizedDescription
+            status = .unavailable
+            return
+        }
+
+        let finalURL = OtzariaSearchIndexManager.shared.indexURL(for: path)
+        guard FileManager.default.fileExists(atPath: finalURL.path) else {
+            status = .notBuilt
+            errorMessage = OtzariaDatabaseAccessController.shared.source == .managedInternal
+                ? "האינדקס אינו מוכן. הורד והתקן חבילת חיפוש תואמת לפני החיפוש."
+                : "האינדקס אינו מוכן. בנה או המשך את אינדקס אוצריא לפני החיפוש."
+            return
+        }
+
+        isSearching = true
+        errorMessage = nil
+        hasMore = false
+        let request = makeSearchRequest(query: trimmed, offset: 0, limit: 100)
+
+        currentTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
                 let page = try repository.search(databasePath: path, request: request)
                 let items = repository.navigationItems(from: page)
                 await MainActor.run {
+                    guard self.searchGeneration == generation else { return }
                     self.enginePage = page
                     self.results = items
                     self.hasMore = page.truncated
                     self.isSearching = false
                 }
             } catch {
+                if Task.isCancelled { return }
                 await MainActor.run {
+                    guard self.searchGeneration == generation else { return }
                     self.errorMessage = error.localizedDescription
                     self.enginePage = nil
                     self.results = []
@@ -418,37 +403,40 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     }
 
     func loadNextPage() {
-        guard !selectedBookIds.isEmpty, hasMore, !isLoadingMore else { return }
-        isLoadingMore = true
+        guard hasMore, !isLoadingMore else { return }
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { isLoadingMore = false; return }
-        let currentOffset = results.count
-        let ftsMode: SearchMode
-        switch mode {
-        case .exact: ftsMode = .phrase
-        case .advanced: ftsMode = .near
-        case .fuzzy: ftsMode = .contains
-        }
-        let dist = distance > 0 ? distance : 10
-        let bookIds = selectedBookIds
-        Task.detached(priority: .userInitiated) {
-            let items = OtzariaMaktabahBridge.shared.search(
-                query: trimmed,
-                selectedBookIds: bookIds,
-                offset: currentOffset,
-                limit: 100,
-                mode: ftsMode,
-                nearDistance: dist
-            )
-            await MainActor.run {
-                self.results.append(contentsOf: items)
-                self.hasMore = items.count == 100
-                self.isLoadingMore = false
+        guard !trimmed.isEmpty else { return }
+        guard let path = OtzariaMaktabahBridge.shared.databasePath else { return }
+
+        isLoadingMore = true
+        let generation = searchGeneration
+        let offset = results.count
+        let request = makeSearchRequest(query: trimmed, offset: offset, limit: 100)
+
+        Task.detached(priority: .userInitiated) { [repository] in
+            do {
+                let page = try repository.search(databasePath: path, request: request)
+                let items = repository.navigationItems(from: page)
+                await MainActor.run {
+                    guard self.searchGeneration == generation else { return }
+                    self.enginePage = page
+                    self.results.append(contentsOf: items)
+                    self.hasMore = page.truncated
+                    self.isLoadingMore = false
+                }
+            } catch {
+                if Task.isCancelled { return }
+                await MainActor.run {
+                    guard self.searchGeneration == generation else { return }
+                    self.isLoadingMore = false
+                }
             }
         }
     }
 
     func clear() {
+        searchGeneration += 1
+        currentTask?.cancel()
         query = ""
         results = []
         enginePage = nil

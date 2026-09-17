@@ -18,7 +18,16 @@ enum OtzariaSearchMode: String, CaseIterable, Identifiable, Codable, Sendable {
     var engineValue: String { rawValue }
 }
 
-enum OtzariaSearchOrder: String, Codable, Sendable {
+enum OtzariaSearchOrder: String, CaseIterable, Identifiable, Codable, Sendable {
     case catalogue
     case relevance
+
+    var id: String { rawValue }
+
+    var label: String {
+        switch self {
+        case .catalogue: return "סדר קטלוגי"
+        case .relevance: return "רלוונטיות"
+        }
+    }
 }

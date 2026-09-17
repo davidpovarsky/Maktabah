@@ -64,40 +64,44 @@ struct iPadLayout: View {
 
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            NavigationStack(path: $path) {
-                sidebarContent
-                    .navigationTitle("Home")
-                    .navigationBarTitleDisplayMode(.large)
-                    .listStyle(.insetGrouped)
-                    .searchable(
-                        text: $sidebarSearchText,
-                        placement: .navigationBarDrawer(displayMode: .always),
-                        prompt: "Search Favorites & History".localized
-                    )
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button {
-                                showSettings = true
-                            } label: {
-                                Image(systemName: "gear")
+            if detailMode == .search {
+                searchSidebarContent
+            } else {
+                NavigationStack(path: $path) {
+                    sidebarContent
+                        .navigationTitle("Home")
+                        .navigationBarTitleDisplayMode(.large)
+                        .listStyle(.insetGrouped)
+                        .searchable(
+                            text: $sidebarSearchText,
+                            placement: .navigationBarDrawer(displayMode: .always),
+                            prompt: "Search Favorites & History".localized
+                        )
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button {
+                                    showSettings = true
+                                } label: {
+                                    Image(systemName: "gear")
+                                }
+                                .accessibilityLabel(String(localized: "Settings"))
+                                .help(String(localized: "Settings"))
                             }
-                            .accessibilityLabel(String(localized: "Settings"))
-                            .help(String(localized: "Settings"))
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button(action: { showingAddFavorites = true }) {
-                                Image(systemName: "plus")
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button(action: { showingAddFavorites = true }) {
+                                    Image(systemName: "plus")
+                                }
+                                .accessibilityLabel(
+                                    String(localized: "Add Favorite")
+                                )
+                                .help(String(localized: "Add Favorite"))
                             }
-                            .accessibilityLabel(
-                                String(localized: "Add Favorite")
-                            )
-                            .help(String(localized: "Add Favorite"))
                         }
-                    }
-                    .withActiveIntegrationStates()
-                    .navigationDestination(for: iOSTab.self) { tab in
-                        destinationView(for: tab)
-                    }
+                        .withActiveIntegrationStates()
+                        .navigationDestination(for: iOSTab.self) { tab in
+                            destinationView(for: tab)
+                        }
+                }
             }
         } detail: {
             detailContent
@@ -122,9 +126,22 @@ struct iPadLayout: View {
                 transitionSidebar(to: canonical)
             }
         }
+        .onChange(of: bManager.searchViewModel.selectedBookIds) { _, newIds in
+            if bManager.unifiedSearchSession.selectedBookIds != newIds {
+                bManager.unifiedSearchSession.selectedBookIds = newIds
+            }
+        }
+        .onChange(of: bManager.unifiedSearchSession.selectedBookIds) { _, newIds in
+            if bManager.searchViewModel.selectedBookIds != newIds {
+                bManager.searchViewModel.setSelectedBooks(newIds)
+            }
+        }
         .onAppear {
             if path.isEmpty && selectedTab == .viewer {
                 transitionSidebar(to: .viewer)
+            }
+            if bManager.unifiedSearchSession.selectedBookIds != bManager.searchViewModel.selectedBookIds {
+                bManager.unifiedSearchSession.selectedBookIds = bManager.searchViewModel.selectedBookIds
             }
         }
     }
@@ -233,6 +250,46 @@ struct iPadLayout: View {
     }
 
     @ViewBuilder
+    private var searchSidebarContent: some View {
+        NavigationStack {
+            SearchFilterUIKitView(
+                viewModel: bManager.searchViewModel,
+                displayedCategories: bManager.searchViewModel.displayedCategories,
+                updateTrigger: bManager.searchViewModel.updateTrigger,
+                onTap: {}
+            )
+            .themeTint()
+            .navigationTitle("סינון לפי ספרים")
+            .navigationBarTitleDisplayMode(.inline)
+            .searchable(
+                text: $bManager.searchViewModel.filterText,
+                placement: .navigationBarDrawer(displayMode: .always),
+                prompt: "חיפוש ספר"
+            )
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        transitionSidebar(to: .viewer)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "chevron.backward")
+                            Text("ראשי")
+                        }
+                    }
+                    .accessibilityLabel("חזרה לראשי")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    if !bManager.unifiedSearchSession.selectedBookIds.isEmpty {
+                        Button("נקה הכל") {
+                            bManager.unifiedSearchSession.clearFilter()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
     private var detailContent: some View {
         switch detailMode {
         case .reader:
@@ -325,6 +382,7 @@ struct iPadLayout: View {
         bManager.switchToMode(canonical.appMode)
         if canonical == .search {
             detailMode = .search
+            bManager.searchViewModel.setSelectedBooks(bManager.unifiedSearchSession.selectedBookIds)
         } else {
             detailMode = .reader
             path = [canonical]

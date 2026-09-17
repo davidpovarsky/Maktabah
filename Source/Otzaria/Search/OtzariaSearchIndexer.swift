@@ -266,6 +266,7 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                 // `book.isBaseBook` SQLite column; no title/category heuristic
                 // is used. Authors come only from book_author -> author.
                 if book.isBaseBook { extraFacets.append("/base") }
+                extraFacets.append("/book/\(book.id)")
                 let sourceIdentity = self.sourceIdentity(
                     book: book,
                     ordinal: ordinal,

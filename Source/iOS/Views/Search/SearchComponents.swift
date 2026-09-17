@@ -243,52 +243,107 @@ struct SearchInputBar: View {
 // MARK: - Search Help View
 
 struct SearchHelpView: View {
+    var isSefaria: Bool? = nil
+
     var body: some View {
         ThemeScrollView {
-            ThemeVStack(alignment: .leading, spacing: 12) {
-                Label(.searchOptionsHelp, systemImage: "play")
+            ThemeVStack(alignment: .leading, spacing: 14) {
+                Label("עזרה לאפשרויות חיפוש", systemImage: "questionmark.circle")
                     .font(.headline)
                     .padding(.bottom, 4)
 
-                VStack(alignment: .leading, spacing: 4) {
-                    Label(.exactSearchTitle, systemImage: "text.quote")
-                        .font(.subheadline).bold()
-                    Text(NSLocalizedString("exactSearchDesc", comment: ""))
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
+                if isSefaria != true {
+                    otzariaModesHelp
                 }
 
-                Divider()
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Label(.separateWordsSearchTitle, systemImage: "checklist.checked")
-                        .font(.subheadline).bold()
-                    Text("separateWordsSearchDesc")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
+                if isSefaria == nil {
+                    Divider()
                 }
 
-                Divider()
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Label("anyWordsSearchTitle", systemImage: "checklist")
-                        .font(.subheadline).bold()
-                    Text("anyWordsSearchDesc")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                }
-
-                Divider()
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Label("nearSearchTitle", systemImage: "text.word.spacing")
-                        .font(.subheadline).bold()
-                    Text("nearSearchDesc")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
+                if isSefaria != false {
+                    sefariaModesHelp
                 }
             }
             .padding()
+        }
+        .environment(\.layoutDirection, .rightToLeft)
+    }
+
+    private var otzariaModesHelp: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            if isSefaria == nil {
+                Text("מצבי חיפוש באוצריא")
+                    .font(.subheadline)
+                    .bold()
+                    .foregroundColor(.secondary)
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Label("מדויק", systemImage: "text.quote")
+                    .font(.subheadline).bold()
+                Text("איתור ביטוי או מילים ברצף המדויק כפי שנכתבו. זהו מצב החיפוש המהיר ביותר.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
+
+            Divider()
+
+            VStack(alignment: .leading, spacing: 4) {
+                Label("מתקדם", systemImage: "slider.horizontal.3")
+                    .font(.subheadline).bold()
+                Text("חיפוש רב-עוצמה הכולל מרחק בין מילים, החרגת מילים, קידומות וסיומות דקדוקיות, כתיב מלא וחסר, ארמית, ומילים חלופיות.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
+
+            Divider()
+
+            VStack(alignment: .leading, spacing: 4) {
+                Label("מקורב", systemImage: "character.bubble")
+                    .font(.subheadline).bold()
+                Text("איתור מילים גם כאשר קיימות שגיאות כתיב קלות או שינויי אותיות (מרחק עריכה).")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
+
+            Divider()
+
+            VStack(alignment: .leading, spacing: 4) {
+                Label("זית", systemImage: "sparkles")
+                    .font(.subheadline).bold()
+                Text("חיפוש סמנטי והקשרי מהיר לאיתור מקורות לפי משמעות ונושא.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+
+    private var sefariaModesHelp: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            if isSefaria == nil {
+                Text("מצבי חיפוש בספריא")
+                    .font(.subheadline)
+                    .bold()
+                    .foregroundColor(.secondary)
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Label("מדויק", systemImage: "text.quote")
+                    .font(.subheadline).bold()
+                Text("חיפוש מילים או ביטויים בדיוק כפי שהוזנו.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
+
+            Divider()
+
+            VStack(alignment: .leading, spacing: 4) {
+                Label("למטיזציה (מתקדם)", systemImage: "character.book.closed")
+                    .font(.subheadline).bold()
+                Text("חיפוש חכם המזהה שורשים, הטיות דקדוקיות וצורות מילים שונות לפי מילון ספריא, עם אפשרות להגדרת מרחק מילים.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
         }
     }
 }
@@ -674,8 +729,8 @@ struct UnifiedSearchHistoryOverlay: View {
                     .foregroundStyle(.foreground)
             }
             .popover(isPresented: $showingHelp) {
-                SearchHelpView()
-                    .frame(width: 300, height: 450)
+                SearchHelpView(isSefaria: session.isSefaria)
+                    .frame(width: 320, height: 460)
                     .presentationCompactAdaptation(.popover)
             }
         }
@@ -799,26 +854,55 @@ struct UnifiedSearchToolbar: ToolbarContent {
 
     @ViewBuilder
     private var sortMenu: some View {
-        Menu {
-            ForEach(SearchSortKey.allCases, id: \.self) { key in
+        if session.isSefaria {
+            Menu {
                 Button {
-                    if session.sortKey == key {
-                        session.sortAscending.toggle()
-                    } else {
-                        session.sortKey = key
-                        session.sortAscending = true
-                    }
+                    session.sefariaSortOrder = .relevance
+                    session.runSearch()
                 } label: {
-                    Label(
-                        key.label,
-                        systemImage: session.sortKey == key
-                            ? (session.sortAscending ? "chevron.up" : "chevron.down")
-                            : ""
-                    )
+                    Label("רלוונטיות", systemImage: session.sefariaSortOrder == .relevance ? "checkmark" : "")
                 }
+                Button {
+                    session.sefariaSortOrder = .canonical
+                    session.runSearch()
+                } label: {
+                    Label("סדר קנוני", systemImage: session.sefariaSortOrder == .canonical ? "checkmark" : "")
+                }
+                Button {
+                    session.sefariaSortOrder = .chronological
+                    session.runSearch()
+                } label: {
+                    Label("כרונולוגי", systemImage: session.sefariaSortOrder == .chronological ? "checkmark" : "")
+                }
+
+                Divider()
+
+                Button {
+                    session.sefariaReverseSort.toggle()
+                    session.runSearch()
+                } label: {
+                    Label("סדר הפוך", systemImage: session.sefariaReverseSort ? "checkmark.square" : "square")
+                }
+            } label: {
+                Label("מיון", systemImage: "arrow.up.arrow.down")
             }
-        } label: {
-            Label("Sort By", systemImage: "arrow.up.arrow.down")
+        } else if session.scope != .zayit {
+            Menu {
+                Button {
+                    session.otzariaOrder = .catalogue
+                    session.runSearch()
+                } label: {
+                    Label("סדר קטלוגי", systemImage: session.otzariaOrder == .catalogue ? "checkmark" : "")
+                }
+                Button {
+                    session.otzariaOrder = .relevance
+                    session.runSearch()
+                } label: {
+                    Label("רלוונטיות", systemImage: session.otzariaOrder == .relevance ? "checkmark" : "")
+                }
+            } label: {
+                Label("מיון", systemImage: "arrow.up.arrow.down")
+            }
         }
     }
 }

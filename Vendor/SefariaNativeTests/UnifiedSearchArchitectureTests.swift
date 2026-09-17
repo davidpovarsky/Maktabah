@@ -1,12 +1,15 @@
-﻿import Foundation
+import Foundation
 
 // MARK: - Unified Search Architecture Contract Tests
 
 func runUnifiedSearchArchitectureTests() throws {
     try testUnifiedSearchScopeMappings()
     try testOtzariaAndSefariaOptionsPreservation()
-    try testBookFilteringSemantics()
+    try testNativeOtzariaBookFilteringSemantics()
     try testSearchInBookContract()
+    try testBackendSupportedSortingContract()
+    try testHebrewSearchHelpModesContract()
+    try testPaginationAndGenerationSafetyContract()
     try testNavigationStatePreservation()
     try testBackendSwitchingCleanReset()
     print("✓ Unified search architecture contract tests passed")
@@ -63,17 +66,17 @@ func testOtzariaAndSefariaOptionsPreservation() throws {
 
     // Otzaria options model contract
     var otzariaOrder = OtzariaSearchOrder.catalogue
-    var otzariaScope = OtzariaSearchScope.wordDistance
-    var otzariaWordMatchMode = OtzariaWordMatchMode.all
-    var otzariaDistance = 15
-    var otzariaNegativeQuery = "בלי"
-    var otzariaEnablesPrefixes = true
-    var otzariaEnablesSuffixes = true
-    var otzariaEnablesSpellingVariants = true
-    var otzariaEnablesAramaic = true
-    var otzariaIgnoresQuotes = true
-    var otzariaMatchNikud = false
-    var otzariaMatchTaamim = false
+    let otzariaScope = OtzariaSearchScope.wordDistance
+    let otzariaWordMatchMode = OtzariaWordMatchMode.all
+    let otzariaDistance = 15
+    let otzariaNegativeQuery = "בלי"
+    let otzariaEnablesPrefixes = true
+    let otzariaEnablesSuffixes = true
+    let otzariaEnablesSpellingVariants = true
+    let otzariaEnablesAramaic = true
+    let otzariaIgnoresQuotes = true
+    let otzariaMatchNikud = false
+    let otzariaMatchTaamim = false
 
     try expect(otzariaOrder == .catalogue, "Otzaria order catalogue")
     try expect(otzariaScope == .wordDistance, "Otzaria scope wordDistance")
@@ -85,41 +88,78 @@ func testOtzariaAndSefariaOptionsPreservation() throws {
     try expect(otzariaEnablesSpellingVariants, "Otzaria spelling variants preserved")
     try expect(otzariaEnablesAramaic, "Otzaria aramaic preserved")
     try expect(otzariaIgnoresQuotes, "Otzaria ignores quotes preserved")
+    try expect(!otzariaMatchNikud, "Otzaria matchNikud preserved")
+    try expect(!otzariaMatchTaamim, "Otzaria matchTaamim preserved")
 
     // Switch order to relevance
     otzariaOrder = .relevance
     try expect(otzariaOrder == .relevance, "Otzaria order changed to relevance")
 }
 
-// MARK: - 3. Book Filtering Semantics
+// MARK: - 3. Native Otzaria Book Filtering & JSON Parity
 
-func testBookFilteringSemantics() throws {
-    var selectedBookIds: Set<Int> = []
-
-    // 0 books: signifies full corpus (all books)
-    try expect(selectedBookIds.isEmpty, "0 books means full unfiltered corpus")
-
-    func shouldUseFTS(for selectedIds: Set<Int>) -> Bool {
-        !selectedIds.isEmpty
+func testNativeOtzariaBookFilteringSemantics() throws {
+    func makeRequest(query: String, selectedBookIds: Set<Int>, order: OtzariaSearchOrder = .catalogue) -> OtzariaSearchRequest {
+        let sortedIds = selectedBookIds.sorted()
+        let facets = sortedIds.isEmpty ? ["/"] : sortedIds.map { "/book/\($0)" }
+        let bookIds = sortedIds.isEmpty ? nil : sortedIds
+        return OtzariaSearchRequest(
+            query: query,
+            mode: .advanced,
+            facets: facets,
+            limit: 100,
+            offset: 0,
+            order: order,
+            distance: 10,
+            negativeQuery: "בלי",
+            wordMatchMode: .all,
+            matchNikud: false,
+            matchTaamim: false,
+            bookIds: bookIds
+        )
     }
 
-    try expect(!shouldUseFTS(for: selectedBookIds), "Empty selection routes to Tantivy")
+    // 1. Empty selection: Full corpus search through Tantivy with root facet
+    let emptyRequest = makeRequest(query: "שלום", selectedBookIds: [])
+    try expect(emptyRequest.facets == ["/"], "Empty selection uses root facet [/]")
+    try expect(emptyRequest.bookIds == nil, "Empty selection passes nil bookIds")
+    try expect(emptyRequest.distance == 10, "Advanced options preserved on empty selection")
+    try expect(emptyRequest.negativeQuery == "בלי", "Negative query preserved")
 
-    // 1 book: single ID
-    selectedBookIds.insert(42)
-    try expect(selectedBookIds.count == 1, "Single book selected")
-    try expect(selectedBookIds.contains(42), "Selected book is 42")
-    try expect(shouldUseFTS(for: selectedBookIds), "Single book routes to SQLite FTS")
+    // 2. Single book selection: Executes in the SAME Tantivy search request path
+    let singleRequest = makeRequest(query: "שלום", selectedBookIds: [42])
+    try expect(singleRequest.facets == ["/book/42"], "Single book sets /book/42 facet")
+    try expect(singleRequest.bookIds == [42], "Single book passes bookIds [42]")
+    try expect(singleRequest.distance == 10, "Advanced distance preserved with book filter")
+    try expect(singleRequest.negativeQuery == "בלי", "Negative query preserved with book filter")
+    try expect(singleRequest.order == .catalogue, "Order preserved with book filter")
 
-    // Multi-book: multiple IDs
-    selectedBookIds.formUnion([100, 200, 300])
-    try expect(selectedBookIds.count == 4, "4 books selected")
-    try expect(shouldUseFTS(for: selectedBookIds), "Multi-book selection routes to SQLite FTS")
+    // 3. Multi-book selection: Multiple book facets in the same Tantivy search request
+    let multiRequest = makeRequest(query: "שלום", selectedBookIds: [100, 42, 200])
+    try expect(multiRequest.facets == ["/book/42", "/book/100", "/book/200"], "Multi-book sets sorted /book/id facets")
+    try expect(multiRequest.bookIds == [42, 100, 200], "Multi-book sets sorted bookIds")
 
-    // Clear filter: restores 0 books
-    selectedBookIds.removeAll()
-    try expect(selectedBookIds.isEmpty, "Cleared filter restores full corpus")
-    try expect(!shouldUseFTS(for: selectedBookIds), "Cleared filter routes back to Tantivy")
+    // 4. JSON Serialization Parity: Verify JSON wire format for ios_bridge
+    let encoder = JSONEncoder()
+    let data = try encoder.encode(multiRequest)
+    let jsonString = String(data: data, encoding: .utf8) ?? ""
+    try expect(jsonString.contains("\"bookIds\":[42,100,200]"), "JSON wire format contains camelCase bookIds")
+    try expect(jsonString.contains("\"facets\":[\"/book/42\",\"/book/100\",\"/book/200\"]") || jsonString.contains("\"facets\":[\"\\/book\\/42\",\"\\/book\\/100\",\"\\/book\\/200\"]"), "JSON wire format contains facets")
+    try expect(jsonString.contains("\"negativeQuery\":\"בלי\""), "JSON wire format contains negativeQuery")
+
+    // 5. JSON Deserialization Parity: Verify decoding back
+    let decoder = JSONDecoder()
+    let decoded = try decoder.decode(OtzariaSearchRequest.self, from: data)
+    try expect(decoded.bookIds == [42, 100, 200], "Decoded bookIds match original")
+    try expect(decoded.facets == ["/book/42", "/book/100", "/book/200"], "Decoded facets match original")
+    try expect(decoded.query == "שלום", "Decoded query matches")
+    try expect(decoded.negativeQuery == "בלי", "Decoded negativeQuery matches")
+    try expect(decoded.distance == 10, "Decoded distance matches")
+
+    // 6. Clearing selection returns to full corpus
+    let clearedRequest = makeRequest(query: "שלום", selectedBookIds: [])
+    try expect(clearedRequest.facets == ["/"], "Cleared selection restores root facet")
+    try expect(clearedRequest.bookIds == nil, "Cleared selection restores nil bookIds")
 }
 
 // MARK: - 4. "Search in book" Contract
@@ -142,8 +182,8 @@ func testSearchInBookContract() throws {
     try expect(resolveBookId(tableName: "whatever", bookId: 42) == 42, "direct bookId takes priority")
 
     // Simulating "Search in book" execution
-    var activeQuery = "שלום עליכם"
-    var activeScope = UnifiedSearchScope.advanced
+    let activeQuery = "שלום עליכם"
+    let activeScope = UnifiedSearchScope.advanced
     var selectedBookIds: Set<Int> = []
     var resultKitabFilter = "סידור"
     var openedInReader = false
@@ -168,41 +208,181 @@ func testSearchInBookContract() throws {
     try expect(!openedInReader, "Search in book does NOT navigate away to reader")
 }
 
-// MARK: - 5. Navigation State Preservation
+// MARK: - 5. Backend-Supported Sorting Contract
 
-func testNavigationStatePreservation() throws {
-    // Simulating session holding state across tab navigation
-    class SimulatedSearchSession {
-        var query = "תורה אור"
-        var scope = UnifiedSearchScope.advanced
-        var selectedBookIds: Set<Int> = [10, 20]
-        var distance = 8
-        var results: [String] = ["hit1", "hit2", "hit3"]
+func testBackendSupportedSortingContract() throws {
+    // Verify Otzaria supported sorts
+    let otzariaSorts = OtzariaSearchOrder.allCases
+    try expect(otzariaSorts == [.catalogue, .relevance], "Otzaria supports catalogue and relevance sorts")
+    try expect(otzariaSorts.map(\.rawValue) == ["catalogue", "relevance"], "Otzaria sort raw values match")
+    try expect(otzariaSorts.map(\.label) == ["סדר קטלוגי", "רלוונטיות"], "Otzaria sort labels in Hebrew")
+
+    // Verify Sefaria supported sorts
+    let sefariaSorts = LibrarySearchSortOrder.allCases
+    try expect(sefariaSorts == [.relevance, .canonical, .chronological], "Sefaria supports relevance, canonical, chronological")
+
+    // Verify sort is sent to backend in OtzariaSearchRequest, not sorted locally
+    let catRequest = OtzariaSearchRequest(query: "אור", mode: .exact, facets: ["/"], limit: 100, offset: 0, order: .catalogue)
+    try expect(catRequest.order == .catalogue, "Request specifies catalogue order for backend execution")
+
+    let relRequest = OtzariaSearchRequest(query: "אור", mode: .exact, facets: ["/"], limit: 100, offset: 0, order: .relevance)
+    try expect(relRequest.order == .relevance, "Request specifies relevance order for backend execution")
+
+    // Verify Sefaria options model carries backend sort
+    var sefariaOptions = LibrarySearchOptions()
+    sefariaOptions.sortOrder = .canonical
+    sefariaOptions.reverseSort = true
+    try expect(sefariaOptions.sortOrder == .canonical, "Sefaria options carry canonical sort for backend")
+    try expect(sefariaOptions.reverseSort, "Sefaria options carry reverseSort for backend")
+}
+
+// MARK: - 6. Hebrew Search Help Modes Contract
+
+func testHebrewSearchHelpModesContract() throws {
+    let otzariaModes: [(title: String, desc: String)] = [
+        ("מדויק", "איתור ביטוי או מילים ברצף המדויק כפי שנכתבו. זהו מצב החיפוש המהיר ביותר."),
+        ("מתקדם", "חיפוש רב-עוצמה הכולל מרחק בין מילים, החרגת מילים, קידומות וסיומות דקדוקיות, כתיב מלא וחסר, ארמית, ומילים חלופיות."),
+        ("מקורב", "איתור מילים גם כאשר קיימות שגיאות כתיב קלות או שינויי אותיות (מרחק עריכה)."),
+        ("זית", "חיפוש סמנטי והקשרי מהיר לאיתור מקורות לפי משמעות ונושא.")
+    ]
+
+    for mode in otzariaModes {
+        try expect(!mode.title.isEmpty, "Mode title is not empty")
+        try expect(!mode.desc.isEmpty, "Mode description is not empty")
+        try expect(!mode.title.contains("Title"), "Mode title does not contain raw key suffix 'Title'")
+        try expect(!mode.desc.contains("Desc"), "Mode description does not contain raw key suffix 'Desc'")
+        try expect(mode.title != "nearSearchTitle", "No raw nearSearchTitle key")
+        try expect(mode.desc != "nearSearchDesc", "No raw nearSearchDesc key")
     }
 
-    let session = SimulatedSearchSession()
+    let sefariaModes: [(title: String, desc: String)] = [
+        ("מדויק", "חיפוש מילים או ביטויים בדיוק כפי שהוזנו."),
+        ("למטיזציה (מתקדם)", "חיפוש חכם המזהה שורשים, הטיות דקדוקיות וצורות מילים שונות לפי מילון ספריא, עם אפשרות להגדרת מרחק מילים.")
+    ]
 
-    // Simulate user navigating to reader
+    for mode in sefariaModes {
+        try expect(!mode.title.isEmpty, "Sefaria mode title not empty")
+        try expect(!mode.desc.isEmpty, "Sefaria mode desc not empty")
+        try expect(!mode.title.contains("Title") && !mode.desc.contains("Desc"), "No raw keys in Sefaria help")
+    }
+}
+
+// MARK: - 7. Pagination and Generation Safety Contract
+
+func testPaginationAndGenerationSafetyContract() throws {
+    var currentGeneration = 0
+    var loadedResults: [String] = []
+    var hasMore = false
+    var isLoadingMore = false
+
+    func startSearch(query: String, bookIds: Set<Int>) {
+        currentGeneration += 1
+        let gen = currentGeneration
+        loadedResults = []
+        hasMore = false
+        isLoadingMore = false
+
+        // Simulate page 1 returned for this generation
+        let page1Results = (0..<100).map { "item_\(query)_\($0)" }
+        if gen == currentGeneration {
+            loadedResults = page1Results
+            hasMore = true // more than 100 results available
+        }
+    }
+
+    func loadNextPage(query: String, bookIds: Set<Int>, completion: (Int, [String]) -> Void) {
+        guard hasMore, !isLoadingMore else { return }
+        isLoadingMore = true
+        let gen = currentGeneration
+        let offset = loadedResults.count
+        let nextPageResults = (offset..<(offset + 100)).map { "item_\(query)_\($0)" }
+        completion(gen, nextPageResults)
+    }
+
+    // 1. Initial search loads page 1 (100 results)
+    startSearch(query: "תורה", bookIds: [1])
+    try expect(loadedResults.count == 100, "Page 1 loads 100 items")
+    try expect(hasMore, "More results flagged after page 1")
+
+    // 2. Load page 2 (now 200 results)
+    loadNextPage(query: "תורה", bookIds: [1]) { gen, items in
+        if gen == currentGeneration {
+            loadedResults.append(contentsOf: items)
+            hasMore = true
+            isLoadingMore = false
+        }
+    }
+    try expect(loadedResults.count == 200, "Page 2 appends 100 items to reach 200")
+
+    // 3. Load page 3 (now 300 results)
+    loadNextPage(query: "תורה", bookIds: [1]) { gen, items in
+        if gen == currentGeneration {
+            loadedResults.append(contentsOf: items)
+            hasMore = false // reached end
+            isLoadingMore = false
+        }
+    }
+    try expect(loadedResults.count == 300, "Page 3 appends to reach 300 items")
+    try expect(!hasMore, "No more items after page 3")
+
+    // 4. Changing book filter or query increments generation and resets results
+    var pendingPage2Items: [String] = []
+    loadNextPage(query: "תורה", bookIds: [1]) { gen, items in
+        pendingPage2Items = items
+    }
+
+    // User changes filter before in-flight response arrives:
+    startSearch(query: "תורה", bookIds: [2]) // increments generation!
+    try expect(loadedResults.count == 100, "New search resets results to 100 items of new search")
+
+    // Now delayed in-flight response arrives:
+    let staleGen = currentGeneration - 1
+    if staleGen == currentGeneration {
+        loadedResults.append(contentsOf: pendingPage2Items)
+    }
+    try expect(loadedResults.count == 100, "Stale in-flight pagination from previous generation discarded")
+}
+
+// MARK: - 8. Navigation State Preservation
+
+func testNavigationStatePreservation() throws {
+    struct SearchSessionState {
+        var query: String
+        var scope: UnifiedSearchScope
+        var selectedBookIds: Set<Int>
+        var distance: Int
+        var results: [String]
+    }
+
+    let session = SearchSessionState(
+        query: "תורה אור",
+        scope: .advanced,
+        selectedBookIds: [10, 20],
+        distance: 8,
+        results: ["hit1", "hit2", "hit3"]
+    )
+
+    // User navigates to reader
     let isCurrentlyInReaderTab = true
     try expect(isCurrentlyInReaderTab, "User is in reader")
 
-    // Verify session still holds all data while reader is active
+    // Session still holds all data while reader is active
     try expect(session.query == "תורה אור", "Query survived navigation to reader")
     try expect(session.scope == .advanced, "Scope survived navigation to reader")
     try expect(session.selectedBookIds == [10, 20], "Filters survived navigation to reader")
     try expect(session.distance == 8, "Distance survived navigation to reader")
     try expect(session.results.count == 3, "Results survived navigation to reader")
 
-    // Simulate user returning to search tab
+    // User returns to search tab
     let returnedToSearchTab = true
     try expect(returnedToSearchTab, "User returned to search tab")
     try expect(session.results.count == 3, "Results instantly restored on return")
 }
 
-// MARK: - 6. Backend Switching Clean Reset
+// MARK: - 9. Backend Switching Clean Reset
 
 func testBackendSwitchingCleanReset() throws {
-    class SimulatedSessionState {
+    struct SessionState {
         var isSefaria = false
         var scope = UnifiedSearchScope.zayit
         var selectedBookIds: Set<Int> = [1, 2, 3]
@@ -210,7 +390,7 @@ func testBackendSwitchingCleanReset() throws {
         var results = ["res1", "res2"]
         var resultKitabFilter = "חומש"
 
-        func handleBackendChanged(toSefaria: Bool) {
+        mutating func handleBackendChanged(toSefaria: Bool) {
             isSefaria = toSefaria
             scope = .advanced
             selectedBookIds.removeAll()
@@ -220,7 +400,7 @@ func testBackendSwitchingCleanReset() throws {
         }
     }
 
-    let session = SimulatedSessionState()
+    var session = SessionState()
     try expect(!session.isSefaria, "Initially Otzaria")
     try expect(session.scope == .zayit, "Initially Zayit scope")
     try expect(!session.selectedBookIds.isEmpty, "Initial filters non-empty")

@@ -78,6 +78,8 @@ struct BridgeSearchRequest {
     #[serde(default)]
     word_match_mode: String,
     word_match_count: Option<u32>,
+    #[serde(default)]
+    book_ids: Vec<u64>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -437,10 +439,28 @@ fn bridge_compatibility(value: IndexCompatibility) -> BridgeCompatibility {
     }
 }
 
+fn resolve_facets(mut facets: Vec<String>, book_ids: &[u64]) -> Vec<String> {
+    if book_ids.is_empty() {
+        return facets;
+    }
+    let book_facets: Vec<String> = book_ids.iter().map(|id| format!("/book/{id}")).collect();
+    if facets.is_empty() || facets == vec!["/".to_string()] {
+        book_facets
+    } else {
+        for bf in book_facets {
+            if !facets.contains(&bf) {
+                facets.push(bf);
+            }
+        }
+        facets
+    }
+}
+
 fn run_search(
     engine: &SearchEngine,
-    request: BridgeSearchRequest,
+    mut request: BridgeSearchRequest,
 ) -> Result<BridgeSearchPage, String> {
+    request.facets = resolve_facets(request.facets, &request.book_ids);
     let selected_grouping = grouping(request.grouping.as_deref())?;
     let result = match request.mode.as_str() {
         "fuzzy" => engine.search_and_count_fuzzy(
@@ -494,7 +514,8 @@ fn run_search(
         .map_err(|error| format!("{error:#}"))
 }
 
-fn run_book_counts(engine: &SearchEngine, request: BridgeSearchRequest) -> Result<Value, String> {
+fn run_book_counts(engine: &SearchEngine, mut request: BridgeSearchRequest) -> Result<Value, String> {
+    request.facets = resolve_facets(request.facets, &request.book_ids);
     let result = match request.mode.as_str() {
         "fuzzy" => engine.count_by_book_fuzzy_with_status(
             request.query,

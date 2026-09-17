@@ -28,8 +28,6 @@ final class UnifiedSearchSessionController {
 
     // MARK: - Presentation State
 
-    var sortKey: SearchSortKey = .bookTitle
-    var sortAscending: Bool = true
     var resultKitabFilter: String = ""
 
     // MARK: - Sheet / Disclosure Toggles
