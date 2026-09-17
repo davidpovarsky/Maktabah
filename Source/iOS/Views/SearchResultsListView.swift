@@ -81,6 +81,9 @@ struct SearchResultRow: View {
     }
 
     static func locationText(for item: SearchResultItem) -> String {
+        if let locationDisplayText = item.locationDisplayText, !locationDisplayText.isEmpty {
+            return locationDisplayText
+        }
         let isHebrew = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
         if isHebrew {
             var parts: [String] = []
@@ -92,6 +95,9 @@ struct SearchResultRow: View {
             }
             return parts.joined(separator: " • ")
         } else {
+            if item.page <= 0 && item.part <= 0 {
+                return ""
+            }
             return "ص: \(item.page)".convertToArabicDigits() +
                 " -" + "ج: \(item.part)".convertToArabicDigits()
         }
@@ -110,13 +116,17 @@ struct SearchResultRow: View {
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.leading)
 
-                    Divider()
-                        .frame(maxHeight: 18)
+                    if !locationText.isEmpty {
+                        Divider()
+                            .frame(maxHeight: 18)
+                    }
                 }
 
-                Text(locationText)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                if !locationText.isEmpty {
+                    Text(locationText)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
 
             Text(AttributedString(item.attributedText))

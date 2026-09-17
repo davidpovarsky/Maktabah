@@ -209,6 +209,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     let part: Int
     let attributedText: NSAttributedString
     let backendLocator: TextLocator?
+    let locationDisplayText: String?
 
     enum CodingKeys: String, CodingKey {
         case archive
@@ -219,6 +220,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         case part
         case attributedText
         case backendLocator
+        case locationDisplayText
     }
 
     init(
@@ -229,7 +231,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         page: Int,
         part: Int,
         attributedText: NSAttributedString,
-        backendLocator: TextLocator? = nil
+        backendLocator: TextLocator? = nil,
+        locationDisplayText: String? = nil
     ) {
         self.archive = archive
         self.tableName = tableName
@@ -239,6 +242,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         self.part = part
         self.attributedText = attributedText
         self.backendLocator = backendLocator
+        self.locationDisplayText = locationDisplayText
     }
 
     func encode(to encoder: Encoder) throws {
@@ -258,6 +262,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
 
         try container.encode(data, forKey: .attributedText)
         try container.encodeIfPresent(backendLocator, forKey: .backendLocator)
+        try container.encodeIfPresent(locationDisplayText, forKey: .locationDisplayText)
     }
 
     init(from decoder: Decoder) throws {
@@ -270,6 +275,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         page = try container.decode(Int.self, forKey: .page)
         part = try container.decode(Int.self, forKey: .part)
         backendLocator = try container.decodeIfPresent(TextLocator.self, forKey: .backendLocator)
+        locationDisplayText = try container.decodeIfPresent(String.self, forKey: .locationDisplayText)
 
         let data = try container.decode(Data.self, forKey: .attributedText)
 
@@ -302,6 +308,9 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     func formatForClipboard() -> String {
         let isHebrewBackend = backendLocator != nil || archive == "Otzaria" || archive == "Sefaria"
         if isHebrewBackend {
+            if let locationDisplayText, !locationDisplayText.isEmpty {
+                return "\(bookTitle) - \(locationDisplayText)\n\(attributedText.string)\n\n"
+            }
             var locationParts: [String] = []
             if part > 0 { locationParts.append("כרך: \(part)") }
             if page > 0 { locationParts.append("עמ': \(page)") }

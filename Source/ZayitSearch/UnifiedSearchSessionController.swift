@@ -119,6 +119,10 @@ final class UnifiedSearchSessionController {
         isSefaria ? [.exact, .advanced] : UnifiedSearchScope.allCases
     }
 
+    var hasConfigurableOptions: Bool {
+        scope == .advanced
+    }
+
     var packageMissing: Bool {
         if isSefaria { return false }
         if scope == .zayit { return zayitSession.state != .ready }

@@ -238,3 +238,126 @@ struct SearchFilterUIKitView: UIViewControllerRepresentable {
         }
     }
 }
+
+// MARK: - Search Filter Modal View
+
+struct SearchFilterModalView: UIViewControllerRepresentable {
+    @Bindable var session: UnifiedSearchSessionController
+    @Bindable var viewModel: SearchViewModel
+    @Environment(\.dismiss) private var dismiss
+
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let filterVC = iOSSearchFilterViewController()
+        filterVC.title = "סינון לפי ספרים"
+        filterVC.selectedBookIds = session.selectedBookIds
+        filterVC.onSelectionChanged = { ids in
+            session.selectedBookIds = ids
+            viewModel.setSelectedBooks(ids)
+            context.coordinator.updateToolbar(in: filterVC)
+        }
+        filterVC.applyCategories(viewModel.displayedCategories)
+
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "חיפוש ספר"
+        searchController.searchResultsUpdater = context.coordinator
+        filterVC.navigationItem.searchController = searchController
+        filterVC.navigationItem.hidesSearchBarWhenScrolling = false
+        filterVC.definesPresentationContext = true
+
+        let navController = UINavigationController(rootViewController: filterVC)
+        context.coordinator.filterVC = filterVC
+        context.coordinator.navController = navController
+        context.coordinator.session = session
+        context.coordinator.viewModel = viewModel
+        context.coordinator.dismiss = { [weak navController] in
+            navController?.dismiss(animated: true)
+        }
+        context.coordinator.updateToolbar(in: filterVC)
+
+        return navController
+    }
+
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
+        context.coordinator.session = session
+        context.coordinator.viewModel = viewModel
+        guard let filterVC = context.coordinator.filterVC else { return }
+
+        let structureChanged = context.coordinator.hasChanged(trigger: viewModel.updateTrigger)
+        if structureChanged {
+            filterVC.selectedBookIds = session.selectedBookIds
+            filterVC.applyCategories(viewModel.displayedCategories)
+            context.coordinator.updateToolbar(in: filterVC)
+        } else if filterVC.selectedBookIds != session.selectedBookIds {
+            filterVC.selectedBookIds = session.selectedBookIds
+            context.coordinator.updateToolbar(in: filterVC)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+
+    class Coordinator: NSObject, UISearchResultsUpdating {
+        weak var filterVC: iOSSearchFilterViewController?
+        weak var navController: UINavigationController?
+        var session: UnifiedSearchSessionController?
+        var viewModel: SearchViewModel?
+        var dismiss: (() -> Void)?
+        var lastTrigger: Int = -1
+
+        func hasChanged(trigger: Int) -> Bool {
+            if trigger != lastTrigger {
+                lastTrigger = trigger
+                return true
+            }
+            return false
+        }
+
+        func updateSearchResults(for searchController: UISearchController) {
+            let text = searchController.searchBar.text ?? ""
+            if viewModel?.filterText != text {
+                viewModel?.filterText = text
+            }
+        }
+
+        func updateToolbar(in vc: iOSSearchFilterViewController) {
+            let doneButton = UIBarButtonItem(
+                title: "אישור",
+                style: .done,
+                target: self,
+                action: #selector(handleDone)
+            )
+            vc.navigationItem.rightBarButtonItem = doneButton
+
+            if !(session?.selectedBookIds.isEmpty ?? true) {
+                let clearButton = UIBarButtonItem(
+                    title: "נקה הכל",
+                    style: .plain,
+                    target: self,
+                    action: #selector(handleClear)
+                )
+                clearButton.tintColor = .systemRed
+                vc.navigationItem.leftBarButtonItem = clearButton
+            } else {
+                vc.navigationItem.leftBarButtonItem = nil
+            }
+        }
+
+        @objc func handleDone() {
+            session?.showsBookFilterSheet = false
+            dismiss?()
+        }
+
+        @objc func handleClear() {
+            session?.clearFilter()
+            viewModel?.setSelectedBooks([])
+            if let filterVC {
+                filterVC.selectedBookIds = []
+                updateToolbar(in: filterVC)
+                let snapshot = filterVC.dataSource.snapshot()
+                filterVC.reconfigureItems(snapshot.itemIdentifiers)
+            }
+        }
+    }
+}

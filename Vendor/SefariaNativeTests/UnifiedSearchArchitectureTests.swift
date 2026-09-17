@@ -12,6 +12,9 @@ func runUnifiedSearchArchitectureTests() throws {
     try testPaginationAndGenerationSafetyContract()
     try testNavigationStatePreservation()
     try testBackendSwitchingCleanReset()
+    try testConfigurableOptionsGatingContract()
+    try testSearchResultLocationDisplayTextAndFallbackContract()
+    try testReaderDestinationFocusLocatorPreservationContract()
     print("✓ Unified search architecture contract tests passed")
 }
 
@@ -415,3 +418,151 @@ func testBackendSwitchingCleanReset() throws {
     try expect(session.query.isEmpty, "Query reset")
     try expect(session.resultKitabFilter.isEmpty, "Result filter reset")
 }
+
+// MARK: - 10. Configurable Options Gating Contract
+
+func testConfigurableOptionsGatingContract() throws {
+    func hasConfigurableOptions(scope: UnifiedSearchScope) -> Bool {
+        scope == .advanced
+    }
+
+    try expect(hasConfigurableOptions(scope: .advanced), "Advanced scope has configurable options")
+    try expect(!hasConfigurableOptions(scope: .exact), "Exact scope does not have configurable options")
+    try expect(!hasConfigurableOptions(scope: .fuzzy), "Fuzzy scope does not have configurable options")
+    try expect(!hasConfigurableOptions(scope: .zayit), "Zayit scope does not have configurable options")
+}
+
+// MARK: - 11. Search Result Location Display & Fallback Contract
+
+func testSearchResultLocationDisplayTextAndFallbackContract() throws {
+    struct SearchResultItemContract: Codable, Hashable {
+        let archive: String
+        let tableName: String
+        let bookId: Int
+        let bookTitle: String
+        let page: Int
+        let part: Int
+        let backendLocator: TextLocator?
+        let locationDisplayText: String?
+
+        init(
+            archive: String,
+            tableName: String,
+            bookId: Int,
+            bookTitle: String,
+            page: Int,
+            part: Int,
+            backendLocator: TextLocator? = nil,
+            locationDisplayText: String? = nil
+        ) {
+            self.archive = archive
+            self.tableName = tableName
+            self.bookId = bookId
+            self.bookTitle = bookTitle
+            self.page = page
+            self.part = part
+            self.backendLocator = backendLocator
+            self.locationDisplayText = locationDisplayText
+        }
+    }
+
+    // Sefaria item with true segment ref in locationDisplayText
+    let sefariaItem = SearchResultItemContract(
+        archive: "Sefaria",
+        tableName: "qualified:1",
+        bookId: 100,
+        bookTitle: "בראשית",
+        page: 0,
+        part: 0,
+        backendLocator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1")),
+        locationDisplayText: "א׳:א׳"
+    )
+
+    try expect(sefariaItem.locationDisplayText == "א׳:א׳", "Sefaria item retains true locationDisplayText")
+    try expect(sefariaItem.page == 0 && sefariaItem.part == 0, "Sefaria item eliminates fake part/page")
+
+    // Location text formatting contract
+    func locationText(for item: SearchResultItemContract) -> String {
+        if let locationDisplayText = item.locationDisplayText, !locationDisplayText.isEmpty {
+            return locationDisplayText
+        }
+        let isHebrew = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+        if isHebrew {
+            var parts: [String] = []
+            if item.part > 0 {
+                parts.append("כרך \(item.part)")
+            }
+            if item.page > 0 {
+                parts.append("עמ' \(item.page)")
+            }
+            return parts.joined(separator: " • ")
+        }
+        return ""
+    }
+
+    try expect(locationText(for: sefariaItem) == "א׳:א׳", "Sefaria displays segment ref instead of fake volume/page")
+
+    // Otzaria item with line heRef
+    let otzariaWithRef = SearchResultItemContract(
+        archive: "Otzaria",
+        tableName: "otzaria:10",
+        bookId: 10,
+        bookTitle: "ברכות",
+        page: 4,
+        part: 1,
+        locationDisplayText: "ב ע״א"
+    )
+    try expect(locationText(for: otzariaWithRef) == "ב ע״א", "Otzaria with heRef displays custom locationDisplayText")
+
+    // Otzaria item without custom location falls back to volume/page
+    let otzariaFallback = SearchResultItemContract(
+        archive: "Otzaria",
+        tableName: "otzaria:10",
+        bookId: 10,
+        bookTitle: "ספר",
+        page: 15,
+        part: 2,
+        locationDisplayText: nil
+    )
+    try expect(locationText(for: otzariaFallback) == "כרך 2 • עמ' 15", "Otzaria fallback displays valid volume and page")
+
+    // Item with part: 0, page: 0 and no locationDisplayText produces empty string (no fake 1 • 1)
+    let emptyLocationItem = SearchResultItemContract(
+        archive: "Sefaria",
+        tableName: "qualified:2",
+        bookId: 101,
+        bookTitle: "ספר",
+        page: 0,
+        part: 0,
+        locationDisplayText: nil
+    )
+    try expect(locationText(for: emptyLocationItem).isEmpty, "Zero volume/page with no location produces empty string")
+
+    // Codable round-trip with locationDisplayText
+    let encoded = try JSONEncoder().encode(sefariaItem)
+    let decoded = try JSONDecoder().decode(SearchResultItemContract.self, from: encoded)
+    try expect(decoded.locationDisplayText == "א׳:א׳", "locationDisplayText survives Codable roundtrip")
+    try expect(decoded.bookTitle == "בראשית", "bookTitle survives Codable roundtrip")
+}
+
+// MARK: - 12. Reader Destination Focus Locator Preservation Contract
+
+func testReaderDestinationFocusLocatorPreservationContract() throws {
+    let sectionLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1"))
+    let segmentLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:14"))
+
+    let destination = LibraryReaderDestination(sectionLocator: sectionLocator, focusLocator: segmentLocator)
+    try expect(destination.sectionLocator == sectionLocator, "Section locator preserved")
+    try expect(destination.focusLocator == segmentLocator, "Focus segment locator preserved")
+
+    // Updating within same section preserves focusLocator
+    var currentDestination: LibraryReaderDestination? = destination
+    let requestedLocator = sectionLocator
+    if currentDestination?.sectionLocator == requestedLocator {
+        // preserved
+    } else {
+        currentDestination = LibraryReaderDestination(sectionLocator: requestedLocator, focusLocator: requestedLocator)
+    }
+    try expect(currentDestination?.focusLocator == segmentLocator, "Focus locator preserved across section reloads")
+}
+

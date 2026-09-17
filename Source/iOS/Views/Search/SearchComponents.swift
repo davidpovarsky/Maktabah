@@ -5,6 +5,7 @@ import SwiftUI
 struct SearchHistoryOverlay: View {
     @Environment(\.isSearching) var isSearching
     @Environment(\.dismissSearch) var dismissSearch
+    var session: UnifiedSearchSessionController? = nil
     @Bindable var viewModel: SearchViewModel
     @State var inputBarHeight: CGFloat = 0
     @Binding var isVisible: Bool?
@@ -15,7 +16,12 @@ struct SearchHistoryOverlay: View {
     @ScaledMetric(relativeTo: .body) private var distanceFieldHeight: CGFloat = 28
 
     private var shouldShow: Bool {
-        isVisible == true || isDistanceFocused ||
+        if let session {
+            return isVisible == true || isDistanceFocused ||
+            (isSearching && isVisible == nil &&
+             !session.isSearching && session.results.isEmpty)
+        }
+        return isVisible == true || isDistanceFocused ||
         (isSearching && isVisible == nil &&
          !viewModel.isSearching && viewModel.results.isEmpty)
     }
@@ -83,11 +89,18 @@ struct SearchHistoryOverlay: View {
                 ForEach(Array(viewModel.searchHistory.enumerated()), id: \.element) { index, historyQuery in
                     VStack(spacing: 0) {
                         Button(action: {
-                            Task {
-                                viewModel.query = historyQuery
+                            if let session {
+                                session.query = historyQuery
                                 viewModel.addToHistory(historyQuery)
-                                await viewModel.startSearch()
+                                session.runSearch()
                                 isVisible = false
+                            } else {
+                                Task {
+                                    viewModel.query = historyQuery
+                                    viewModel.addToHistory(historyQuery)
+                                    await viewModel.startSearch()
+                                    isVisible = false
+                                }
                             }
                         }) {
                             HStack {
@@ -106,7 +119,7 @@ struct SearchHistoryOverlay: View {
                         }
                         Divider()
                     }
-                    .transition(.move(edge: .trailing).combined(with: .opacity))  // ← di dalam
+                    .transition(.move(edge: .trailing).combined(with: .opacity))
                     .animation(
                         .easeOut(duration: 0.2).delay(Double(index) * 0.04),
                         value: viewModel.searchHistory
@@ -119,7 +132,91 @@ struct SearchHistoryOverlay: View {
         .environment(\.layoutDirection, .rightToLeft)
     }
 
+    @ViewBuilder
     private var inputControls: some View {
+        if let session {
+            unifiedInputControls(session: session)
+        } else {
+            legacyInputControls
+        }
+    }
+
+    private func unifiedInputControls(session: UnifiedSearchSessionController) -> some View {
+        HStack(spacing: 12) {
+            Picker("Scope", selection: Binding(
+                get: { session.scope },
+                set: { session.scope = $0 }
+            )) {
+                ForEach(session.availableScopes) { scope in
+                    Text(scope.title).tag(scope)
+                }
+            }
+            .controlSize(.regular)
+            .pickerStyle(.segmented)
+            .frame(maxWidth: .infinity)
+
+            if session.hasConfigurableOptions {
+                if !session.isSefaria {
+                    TextField("10", value: Binding(
+                        get: { session.otzariaDistance },
+                        set: { session.otzariaDistance = $0 }
+                    ), format: .number)
+                        .focused($isDistanceFocused)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
+                        .background(Color.appCellBackground)
+                        .cornerRadius(6)
+                        .overlay(RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+                        .transition(.move(edge: .trailing).combined(with: .opacity))
+                } else {
+                    TextField("10", value: Binding(
+                        get: { session.sefariaWordDistance },
+                        set: { session.sefariaWordDistance = $0 }
+                    ), format: .number)
+                        .focused($isDistanceFocused)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
+                        .background(Color.appCellBackground)
+                        .cornerRadius(6)
+                        .overlay(RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+                        .transition(.move(edge: .trailing).combined(with: .opacity))
+                }
+
+                Button(action: { session.showsAdvancedOptions.toggle() }) {
+                    Image(systemName: "slider.horizontal.3")
+                        .foregroundStyle(.tint)
+                }
+                .accessibilityLabel("Advanced Options")
+            }
+
+            Spacer()
+
+            Button(action: { showingHelp = true }) {
+                Label("Help", systemImage: "questionmark")
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(.foreground)
+            }
+            .popover(isPresented: $showingHelp) {
+                SearchHelpView(isSefaria: session.isSefaria)
+                    .frame(width: 320, height: 460)
+                    .presentationCompactAdaptation(.popover)
+            }
+        }
+        .animation(
+            .easeInOut(duration: 0.25)
+            .delay(0.25),
+            value: session.scope
+        )
+        .prominentButtonStyleIfAvailable()
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+    }
+
+    private var legacyInputControls: some View {
         HStack(spacing: 12) {
             Picker("Mode", selection: $viewModel.searchMode) {
                 Image(systemName: SearchMode.imageNameForMode(.phrase))
@@ -561,189 +658,6 @@ struct SearchProgressView: View {
     }
 }
 
-// MARK: - Unified Search History Overlay
-
-struct UnifiedSearchHistoryOverlay: View {
-    @Environment(\.isSearching) var isSearching
-    @Bindable var session: UnifiedSearchSessionController
-    @Bindable var searchViewModel: SearchViewModel
-    @State var inputBarHeight: CGFloat = 0
-    @Binding var isVisible: Bool?
-    @State private var showingHelp: Bool = false
-    @State private var isShowing = false
-    @FocusState private var isDistanceFocused: Bool
-    @ScaledMetric(relativeTo: .body) private var distanceFieldWidth: CGFloat = 44
-    @ScaledMetric(relativeTo: .body) private var distanceFieldHeight: CGFloat = 28
-
-    private var shouldShow: Bool {
-        isVisible == true || isDistanceFocused ||
-        (isSearching && isVisible == nil &&
-         !session.isSearching && session.results.isEmpty)
-    }
-
-    var body: some View {
-        Group {
-            if isShowing {
-                VStack(spacing: 0) {
-                    if !searchViewModel.searchHistory.isEmpty {
-                        historyHeader
-                        historyList
-                    }
-                    inputControls
-                }
-                .fixedSize(horizontal: false, vertical: true)
-                .background(Color.appBackground)
-                .cornerRadius(12)
-                .shadow(radius: 10)
-                .padding(.horizontal)
-                .padding(.vertical, inputBarHeight)
-                .transition(.asymmetric(
-                    insertion: .move(edge: .bottom).combined(with: .opacity),
-                    removal: .move(edge: .bottom).combined(with: .opacity)
-                ))
-                .readInputBarHeight()
-            }
-        }
-        .animation(
-            .interpolatingSpring(stiffness: 250, damping: 24),
-            value: isShowing
-        )
-        .onChange(of: shouldShow) { _, newValue in
-            isShowing = newValue
-        }
-        .onAppear {
-            withAnimation(.interpolatingSpring(stiffness: 250, damping: 24)) {
-                isShowing = shouldShow
-            }
-        }
-    }
-
-    private var historyHeader: some View {
-        HStack {
-            Button("Clear All") {
-                withAnimation(.easeOut(duration: 0.25)) {
-                    searchViewModel.searchHistory.forEach { searchViewModel.removeFromHistory($0) }
-                }
-            }
-            .font(.caption)
-
-            Spacer()
-
-            Text("History")
-                .font(.caption)
-                .foregroundColor(.secondary)
-        }
-        .padding(.horizontal)
-        .padding(.vertical, 8)
-        .background(Color.appSecondaryBackground)
-    }
-
-    private var historyList: some View {
-        ScrollView {
-            LazyVStack(spacing: 0) {
-                ForEach(Array(searchViewModel.searchHistory.enumerated()), id: \.element) { index, historyQuery in
-                    VStack(spacing: 0) {
-                        Button(action: {
-                            session.query = historyQuery
-                            searchViewModel.addToHistory(historyQuery)
-                            session.runSearch()
-                            isVisible = false
-                        }) {
-                            HStack {
-                                Image(systemName: "clock.arrow.circlepath")
-                                    .foregroundColor(.secondary)
-                                Text(historyQuery)
-                                    .foregroundColor(.primary)
-                                Spacer()
-                                Image(systemName: "arrow.up.left")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                            .contentShape(Rectangle())
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                        }
-                        Divider()
-                    }
-                    .transition(.move(edge: .trailing).combined(with: .opacity))
-                    .animation(
-                        .easeOut(duration: 0.2).delay(Double(index) * 0.04),
-                        value: searchViewModel.searchHistory
-                    )
-                }
-            }
-        }
-        .frame(maxHeight: 260)
-        .background(Color.appBackground)
-        .environment(\.layoutDirection, .rightToLeft)
-    }
-
-    private var inputControls: some View {
-        HStack(spacing: 12) {
-            Picker("Scope", selection: $session.scope) {
-                ForEach(session.availableScopes) { scope in
-                    Text(scope.title).tag(scope)
-                }
-            }
-            .controlSize(.regular)
-            .pickerStyle(.segmented)
-            .frame(maxWidth: .infinity)
-
-            if session.scope == .advanced {
-                if !session.isSefaria {
-                    TextField("10", value: $session.otzariaDistance, format: .number)
-                        .focused($isDistanceFocused)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
-                        .background(Color.appCellBackground)
-                        .cornerRadius(6)
-                        .overlay(RoundedRectangle(cornerRadius: 6)
-                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
-                        .transition(.move(edge: .trailing).combined(with: .opacity))
-                } else {
-                    TextField("10", value: $session.sefariaWordDistance, format: .number)
-                        .focused($isDistanceFocused)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
-                        .background(Color.appCellBackground)
-                        .cornerRadius(6)
-                        .overlay(RoundedRectangle(cornerRadius: 6)
-                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
-                        .transition(.move(edge: .trailing).combined(with: .opacity))
-                }
-
-                Button(action: { session.showsAdvancedOptions.toggle() }) {
-                    Image(systemName: "slider.horizontal.3")
-                        .foregroundStyle(.tint)
-                }
-                .accessibilityLabel("Advanced Options")
-            }
-
-            Spacer()
-
-            Button(action: { showingHelp = true }) {
-                Label("Help", systemImage: "questionmark")
-                    .labelStyle(.iconOnly)
-                    .foregroundStyle(.foreground)
-            }
-            .popover(isPresented: $showingHelp) {
-                SearchHelpView(isSefaria: session.isSefaria)
-                    .frame(width: 320, height: 460)
-                    .presentationCompactAdaptation(.popover)
-            }
-        }
-        .animation(
-            .easeInOut(duration: 0.25)
-            .delay(0.25),
-            value: session.scope
-        )
-        .prominentButtonStyleIfAvailable()
-        .padding(.horizontal)
-        .padding(.vertical, 8)
-    }
-}
 
 // MARK: - Unified Search Toolbar
 
@@ -811,11 +725,13 @@ struct UnifiedSearchToolbar: ToolbarContent {
                 .help("Start Search")
             }
 
-            Button(action: { session.showsAdvancedOptions.toggle() }) {
-                Image(systemName: "slider.horizontal.3")
+            if session.hasConfigurableOptions {
+                Button(action: { session.showsAdvancedOptions.toggle() }) {
+                    Image(systemName: "slider.horizontal.3")
+                }
+                .accessibilityLabel("Search Options")
+                .help("Search Options")
             }
-            .accessibilityLabel("Search Options")
-            .help("Search Options")
 
             if showSortMenu, !session.results.isEmpty {
                 sortMenu
@@ -940,9 +856,9 @@ struct UnifiedSearchProgressView: View {
     }
 }
 
-// MARK: - Unified Search Advanced Options Sheet
-
-struct UnifiedSearchAdvancedOptionsSheet: View {
+// MARK: - Search Advanced Options View
+ 
+struct SearchAdvancedOptionsView: View {
     @Bindable var session: UnifiedSearchSessionController
     @Environment(\.dismiss) private var dismiss
 
@@ -1031,4 +947,7 @@ struct UnifiedSearchAdvancedOptionsSheet: View {
         }
     }
 }
+
+typealias UnifiedSearchAdvancedOptionsSheet = SearchAdvancedOptionsView
+
 

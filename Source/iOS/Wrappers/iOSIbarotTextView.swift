@@ -604,13 +604,36 @@ struct iOSIbarotTextView: UIViewRepresentable {
             context.coordinator.processedAnnotationId = nil
         }
         
-        if shouldTriggerSearchAnimation, !searchRanges.isEmpty, let firstRange = searchRanges.first {
+        let targetRangeToScroll: NSRange?
+        let rangesToPopup: [NSRange]
+
+        if let segment = displayedSelectedRange {
+            let intersecting = searchRanges.filter { NSIntersectionRange(segment, $0).length > 0 }
+            if let match = intersecting.first {
+                targetRangeToScroll = match
+                rangesToPopup = intersecting
+            } else {
+                targetRangeToScroll = segment
+                rangesToPopup = searchRanges
+            }
+        } else if let firstRange = searchRanges.first {
+            targetRangeToScroll = firstRange
+            rangesToPopup = searchRanges
+        } else {
+            targetRangeToScroll = nil
+            rangesToPopup = []
+        }
+
+        if (shouldTriggerSearchAnimation || (contentIdChanged && displayedSelectedRange != nil)),
+           let targetRange = targetRangeToScroll {
             DispatchQueue.main.async { [weak textView] in
-                textView?.scrollRangeToVisible(firstRange)
-                Task { [weak textView] in
-                    await Task.yield()
-                    await Task.yield()
-                    textView?.popupText(for: searchRanges)
+                textView?.scrollRangeToVisible(targetRange)
+                if !rangesToPopup.isEmpty {
+                    Task { [weak textView] in
+                        await Task.yield()
+                        await Task.yield()
+                        textView?.popupText(for: rangesToPopup)
+                    }
                 }
             }
         }

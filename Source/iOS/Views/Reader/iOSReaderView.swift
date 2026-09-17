@@ -82,9 +82,7 @@ struct iOSReaderView: View {
             searchMode: viewModel.searchMode,
             nearDistance: viewModel.nearDistance,
             targetAnnotation: viewModel.targetAnnotation,
-            selectedSegmentRange: viewModel.readerInspectorVisible
-                ? viewModel.selectedSegmentRange
-                : nil,
+            selectedSegmentRange: viewModel.selectedSegmentRange,
             isMultiLanguage: viewModel.usesNaturalReaderTextDirection,
             isImported: viewModel.backendRenderModel == nil && book.isImported,
             viewModel: viewModel,

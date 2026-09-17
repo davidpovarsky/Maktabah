@@ -616,7 +616,8 @@ final class OtzariaMaktabahBridge {
                     bookTitle: row.5,
                     page: row.2,
                     part: 1,
-                    attributedText: highlighted
+                    attributedText: highlighted,
+                    locationDisplayText: row.3.isEmpty ? nil : row.3
                 )
             }
         }

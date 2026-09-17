@@ -300,21 +300,27 @@ class ReaderViewModel: ViewModelBase {
                     target = recent.locator
                 }
             }
-            loadBackendContent(target)
+            loadBackendContent(LibraryReaderDestination(sectionLocator: target, focusLocator: target))
         }
     }
 
     func loadBackendContent(_ destination: LibraryReaderDestination) {
         currentDestination = destination
-        loadBackendContent(destination.sectionLocator)
-        if let focus = destination.focusLocator {
-            selectedSegmentLocator = focus
-        }
+        loadBackendContentInternal(locator: destination.sectionLocator, focusLocator: destination.focusLocator)
     }
 
     func loadBackendContent(_ locator: TextLocator) {
-        if currentDestination?.sectionLocator != locator {
-            currentDestination = LibraryReaderDestination(sectionLocator: locator, focusLocator: nil)
+        if let current = currentDestination, current.sectionLocator == locator {
+            loadBackendContentInternal(locator: locator, focusLocator: current.focusLocator)
+        } else {
+            loadBackendContentInternal(locator: locator, focusLocator: locator)
+        }
+    }
+
+    private func loadBackendContentInternal(locator: TextLocator, focusLocator: TextLocator?) {
+        currentDestination = LibraryReaderDestination(sectionLocator: locator, focusLocator: focusLocator)
+        if let focusLocator {
+            selectedSegmentLocator = focusLocator
         }
         backendLoadTask?.cancel()
         state = .loading

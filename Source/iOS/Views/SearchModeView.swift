@@ -48,9 +48,9 @@ struct SearchModeView: View {
                 }
 
                 if !isSearching && isSearchFieldFocused {
-                    UnifiedSearchHistoryOverlay(
+                    SearchHistoryOverlay(
                         session: session,
-                        searchViewModel: viewModel,
+                        viewModel: viewModel,
                         inputBarHeight: 0,
                         isVisible: .init(
                             get: { isSearchFieldFocused },
@@ -88,35 +88,13 @@ struct SearchModeView: View {
                 onSavedResults: { showingSavedResults = true }
             )
         }
-        .sheet(isPresented: $session.showsAdvancedOptions) {
-            UnifiedSearchAdvancedOptionsSheet(session: session)
+        .popover(isPresented: $session.showsAdvancedOptions) {
+            SearchAdvancedOptionsView(session: session)
+                .frame(minWidth: 320, idealWidth: 360, minHeight: 400, idealHeight: 520)
+                .presentationCompactAdaptation(.popover)
         }
         .sheet(isPresented: $session.showsBookFilterSheet) {
-            NavigationStack {
-                SearchFilterUIKitView(
-                    viewModel: viewModel,
-                    displayedCategories: viewModel.displayedCategories,
-                    updateTrigger: viewModel.updateTrigger,
-                    onTap: {}
-                )
-                .themeTint()
-                .navigationTitle("סינון לפי ספרים")
-                .searchable(text: $viewModel.filterText, prompt: "חיפוש ספר")
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("אישור") {
-                            session.showsBookFilterSheet = false
-                        }
-                    }
-                    ToolbarItem(placement: .destructiveAction) {
-                        if !session.selectedBookIds.isEmpty {
-                            Button("נקה הכל") {
-                                session.clearFilter()
-                            }
-                        }
-                    }
-                }
-            }
+            SearchFilterModalView(session: session, viewModel: viewModel)
         }
         .sheet(isPresented: $session.showsSearchDataSheet) {
             NavigationStack {

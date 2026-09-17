@@ -83,13 +83,79 @@ enum MaktabahBackendAdapter {
         let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: workLocator)
             ?? LegacyIdentityRegistry.shared.id(for: workLocator)
         let resultID = LegacyIdentityRegistry.shared.id(for: hit.locator)
-        let displayRef = LibraryPresentationPolicy.prefersHebrew()
-            ? (hit.heRef ?? hit.displayRef)
-            : hit.displayRef
-        return SearchResultItem(archive: hit.locator.backend.displayName,
-            tableName: "qualified:\(id)", bookId: resultID, bookTitle: displayRef,
-            page: 1, part: 1, attributedText: NSAttributedString(string: hit.snippet),
-            backendLocator: hit.locator)
+
+        var bookTitle: String
+        var locationDisplayText: String? = nil
+        var page = 0
+        var part = 0
+
+        if hit.locator.backend == .sefaria {
+            let engWork = hit.locator.workKey
+            let engLocation: String? = if hit.displayRef.hasPrefix(engWork) {
+                hit.displayRef.dropFirst(engWork.count).trimmingCharacters(in: .whitespaces)
+            } else {
+                nil
+            }
+
+            if LibraryPresentationPolicy.prefersHebrew(), let heRef = hit.heRef {
+                if let registeredTitle = LegacyIdentityRegistry.shared.title(for: workLocator),
+                   heRef.hasPrefix(registeredTitle) {
+                    bookTitle = registeredTitle
+                    let loc = heRef.dropFirst(registeredTitle.count).trimmingCharacters(in: .whitespaces)
+                    locationDisplayText = loc.isEmpty ? engLocation : loc
+                } else if let colonIndex = heRef.lastIndex(of: ":") {
+                    let isTalmud = (engLocation?.contains("a") == true || engLocation?.contains("b") == true)
+                    let prefixBeforeColon = heRef[..<colonIndex]
+                    if let lastSpace = prefixBeforeColon.lastIndex(of: " ") {
+                        let potentialTitleIndex: String.Index
+                        if isTalmud {
+                            let beforeLast = prefixBeforeColon[..<lastSpace]
+                            potentialTitleIndex = beforeLast.lastIndex(of: " ") ?? lastSpace
+                        } else {
+                            potentialTitleIndex = lastSpace
+                        }
+                        let titleCandidate = String(heRef[..<potentialTitleIndex]).trimmingCharacters(in: .whitespaces)
+                        let locCandidate = String(heRef[potentialTitleIndex...]).trimmingCharacters(in: .whitespaces)
+                        if !titleCandidate.isEmpty {
+                            bookTitle = titleCandidate
+                            locationDisplayText = locCandidate
+                        } else {
+                            bookTitle = heRef
+                            locationDisplayText = engLocation
+                        }
+                    } else {
+                        bookTitle = heRef
+                        locationDisplayText = engLocation
+                    }
+                } else {
+                    bookTitle = heRef
+                    locationDisplayText = engLocation
+                }
+            } else {
+                bookTitle = engWork
+                locationDisplayText = (engLocation?.isEmpty == false) ? engLocation : nil
+            }
+            page = 0
+            part = 0
+        } else {
+            bookTitle = LibraryPresentationPolicy.prefersHebrew()
+                ? (hit.heRef ?? hit.displayRef)
+                : hit.displayRef
+            page = 1
+            part = 1
+        }
+
+        return SearchResultItem(
+            archive: hit.locator.backend.displayName,
+            tableName: "qualified:\(id)",
+            bookId: resultID,
+            bookTitle: bookTitle,
+            page: page,
+            part: part,
+            attributedText: NSAttributedString(string: hit.snippet),
+            backendLocator: hit.locator,
+            locationDisplayText: locationDisplayText
+        )
     }
 
     static func resolveBook(for locator: TextLocator, in manager: LibraryDataManager) -> BooksData? {
