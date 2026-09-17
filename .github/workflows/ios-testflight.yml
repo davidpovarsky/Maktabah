@@ -212,12 +212,17 @@ jobs:
             Source/Otzaria/Reading/OtzariaReadingUnit.swift \
             Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift \
             Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift \
+            Source/Managers/Engine/SearchMode.swift \
+            Source/Otzaria/Search/OtzariaSearchMode.swift \
+            Source/Otzaria/Search/OtzariaSearchModels.swift \
+            Source/ZayitSearch/UnifiedSearchScope.swift \
             Vendor/SefariaNativeTests/TestSupport.swift \
             Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
             Vendor/SefariaNativeTests/DecodingTests.swift \
             Vendor/SefariaNativeTests/NavigationAndPackageTests.swift \
             Vendor/SefariaNativeTests/LegacyIdentityRegistryTests.swift \
             Vendor/SefariaNativeTests/BackendCoordinatorTests.swift \
+            Vendor/SefariaNativeTests/UnifiedSearchArchitectureTests.swift \
             Vendor/SefariaNativeTests/SefariaNativeTestMain.swift \
             -o "$RUNNER_TEMP/sefaria-native-tests"
           "$RUNNER_TEMP/sefaria-native-tests"
