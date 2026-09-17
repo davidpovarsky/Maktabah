@@ -33,6 +33,7 @@ class iOSNavigationManager {
 
     var libraryViewModel = LibraryViewModel()
     var searchViewModel = SearchViewModel()
+    var unifiedSearchSession = UnifiedSearchSessionController()
     var authorViewModel = NarratorViewModel()
     var annotationViewModel = AnnotationViewModel()
 
@@ -42,6 +43,7 @@ class iOSNavigationManager {
     private var observerTokens: [NotificationToken] = []
 
     init() {
+        unifiedSearchSession.searchViewModel = searchViewModel
         setupObservers()
     }
 
@@ -97,6 +99,18 @@ class iOSNavigationManager {
                         guard let self else { return }
                         handleBookIdMigrated(oldId: oldId, newId: newId)
                     }
+                }
+            )
+        )
+
+        observerTokens.append(
+            NotificationToken(
+                token: NotificationCenter.default.addObserver(
+                    forName: .activeLibraryBackendDidChange,
+                    object: nil,
+                    queue: .main
+                ) { [weak self] _ in
+                    self?.unifiedSearchSession.handleBackendChanged()
                 }
             )
         )
