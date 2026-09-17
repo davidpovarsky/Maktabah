@@ -478,3 +478,29 @@ final class UnifiedSearchSessionController {
         return otzariaDistance > 0 ? otzariaDistance : 10
     }
 }
+
+// MARK: - Option Enum Extensions
+
+extension OtzariaSearchOrder: CaseIterable, Identifiable {
+    public static var allCases: [OtzariaSearchOrder] { [.catalogue, .relevance] }
+    public var id: String { rawValue }
+    var label: String {
+        switch self {
+        case .catalogue: return "לפי סדר הקטלוג"
+        case .relevance: return "רלוונטיות"
+        }
+    }
+}
+
+extension OtzariaWordMatchMode: Identifiable {
+    public var id: String { rawValue }
+    var label: String {
+        switch self {
+        case .all: return "כל המילים"
+        case .anyWord: return "כל מילה שהיא"
+        case .mostWords: return "רוב המילים"
+        case .atLeast: return "לפחות X מילים"
+        }
+    }
+}
+

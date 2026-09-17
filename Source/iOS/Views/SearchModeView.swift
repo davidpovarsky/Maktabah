@@ -11,66 +11,108 @@ struct SearchModeView: View {
     @AppStorage("hideFtsMigrationBanner") private var hideFtsMigrationBanner = false
 
     private var canSaveResults: Bool {
-        BackendCoordinator.shared.usesNativeMaktabahDataPath && navigationManager.searchViewModel.results.contains { Int($0.archive) != nil }
+        BackendCoordinator.shared.usesNativeMaktabahDataPath && navigationManager.unifiedSearchSession.results.contains { Int($0.archive) != nil }
     }
 
     var body: some View {
+        @Bindable var session = navigationManager.unifiedSearchSession
         @Bindable var viewModel = navigationManager.searchViewModel
-        filterAndInputView(viewModel: viewModel)
+
+        filterAndInputView(session: session, viewModel: viewModel)
             .overlay {
-                if !viewModel.results.isEmpty {
-                    searchResultsView(viewModel: viewModel)
+                if !session.results.isEmpty {
+                    searchResultsView(session: session)
                         .transition(.move(edge: .bottom))
                 }
             }
             .safeAreaInset(edge: .bottom, content: {
-                SearchProgressView(
-                    viewModel: viewModel,
-                    showTablesProgress: true
-                )
-                .transition(.asymmetric(
-                    insertion: .move(edge: .bottom).combined(with: .opacity),
-                    removal: .move(edge: .bottom).combined(with: .opacity)
-                ))
+                UnifiedSearchProgressView(session: session)
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .bottom).combined(with: .opacity),
+                        removal: .move(edge: .bottom).combined(with: .opacity)
+                    ))
             })
-            .navigationBarTitleDisplayMode(viewModel.results.isEmpty ? .automatic : .inline)
+            .navigationBarTitleDisplayMode(session.results.isEmpty ? .automatic : .inline)
             .toolbar {
-                SearchToolbar(
-                    viewModel: viewModel,
+                UnifiedSearchToolbar(
+                    session: session,
                     onLeadingAction: {
-                        viewModel.clearResults()
-                        viewModel.query = ""
+                        session.clearResults()
+                        session.query = ""
                     },
                     showSortMenu: true,
                     showSaveMenu: true,
                     canSaveResults: canSaveResults,
-                    sortKey: viewModel.sortKey,
-                    sortAscending: viewModel.sortAscending,
-                    onSortChange: { key, ascending in
-                        viewModel.sortKey = key
-                        viewModel.sortAscending = ascending
-                    },
                     onSaveResults: { showingSaveResults = true },
                     onSavedResults: { showingSavedResults = true }
                 )
             }
+            .sheet(isPresented: $session.showsAdvancedOptions) {
+                UnifiedSearchAdvancedOptionsSheet(session: session)
+            }
+            .sheet(isPresented: $session.showsBookFilterSheet) {
+                NavigationStack {
+                    SearchFilterUIKitView(
+                        viewModel: viewModel,
+                        displayedCategories: viewModel.displayedCategories,
+                        updateTrigger: viewModel.updateTrigger,
+                        onTap: {}
+                    )
+                    .themeTint()
+                    .navigationTitle("סינון לפי ספרים")
+                    .searchable(text: $viewModel.filterText, prompt: "חיפוש ספר")
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("אישור") {
+                                session.showsBookFilterSheet = false
+                            }
+                        }
+                        ToolbarItem(placement: .destructiveAction) {
+                            if !session.selectedBookIds.isEmpty {
+                                Button("נקה הכל") {
+                                    session.clearFilter()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .sheet(isPresented: $session.showsSearchDataSheet) {
+                NavigationStack {
+                    SearchDataView()
+                }
+            }
             .sheet(isPresented: $showingSaveResults) {
                 iOSResultWriterView(
-                    results: viewModel.results,
-                    query: viewModel.query,
-                    searchMode: viewModel.searchMode,
+                    results: session.results,
+                    query: session.query,
+                    searchMode: session.scope == .exact ? .phrase : (session.scope == .fuzzy ? .contains : .near),
                     searchViewModel: viewModel
                 )
             }
             .sheet(isPresented: $showingSavedResults) {
                 iOSSavedResultsView()
             }
-            .animation(.easeInOut(duration: 0.5), value: viewModel.results.isEmpty)
+            .animation(.easeInOut(duration: 0.5), value: session.results.isEmpty)
             .animation(.interpolatingSpring(stiffness: 300, damping: 20),
-                       value: viewModel.isSearching)
+                       value: session.isSearching)
             .onAppear {
+                session.searchViewModel = viewModel
+                if session.selectedBookIds != viewModel.selectedBookIds {
+                    session.selectedBookIds = viewModel.selectedBookIds
+                }
                 if BackendCoordinator.shared.usesNativeMaktabahDataPath {
                     ftsManager.checkNeedsMigration()
+                }
+            }
+            .onChange(of: viewModel.selectedBookIds) { _, newIds in
+                if session.selectedBookIds != newIds {
+                    session.selectedBookIds = newIds
+                }
+            }
+            .onChange(of: session.selectedBookIds) { _, newIds in
+                if viewModel.selectedBookIds != newIds {
+                    viewModel.setSelectedBooks(newIds)
                 }
             }
             .overlay {
@@ -101,7 +143,7 @@ struct SearchModeView: View {
 
     // MARK: - Sub-views
 
-    private func filterAndInputView(viewModel: SearchViewModel) -> some View {
+    private func filterAndInputView(session: UnifiedSearchSessionController, viewModel: SearchViewModel) -> some View {
         ZStack(alignment: .bottom) {
             SearchFilterUIKitView(
                 viewModel: viewModel,
@@ -117,12 +159,12 @@ struct SearchModeView: View {
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 if !isSearching {
                     SearchInputBar(
-                        viewModel: viewModel,
+                        text: Bindable(session).query,
                         isFocused: _isSearchFieldFocused,
                         onSubmit: {
                             Task {
-                                viewModel.addToHistory(viewModel.query)
-                                await viewModel.startSearch()
+                                viewModel.addToHistory(session.query)
+                                session.runSearch()
                                 isSearchFieldFocused = false
                             }
                         }
@@ -131,8 +173,9 @@ struct SearchModeView: View {
             }
             .overlay(alignment: .bottom) {
                 if !isSearching {
-                    SearchHistoryOverlay(
-                        viewModel: viewModel,
+                    UnifiedSearchHistoryOverlay(
+                        session: session,
+                        searchViewModel: viewModel,
                         inputBarHeight: 75,
                         isVisible: .init(
                             get: { isSearchFieldFocused },
@@ -146,107 +189,37 @@ struct SearchModeView: View {
         }
     }
 
-    private func searchResultsView(viewModel: SearchViewModel) -> some View {
-        var filtered: [SearchResultItem] = viewModel.resultKitabFilter.isEmpty
-            ? viewModel.results
-            : viewModel.results.filter {
+    private func searchResultsView(session: UnifiedSearchSessionController) -> some View {
+        var filtered: [SearchResultItem] = session.resultKitabFilter.isEmpty
+            ? session.results
+            : session.results.filter {
                 $0.bookTitle
                     .normalizeArabic(false)
                     .contains(
-                        viewModel.resultKitabFilter.normalizeArabic(false)
+                        session.resultKitabFilter.normalizeArabic(false)
                 )
             }
 
-        SearchResultsSorter.sort(&filtered, by: viewModel.sortKey, ascending: viewModel.sortAscending)
+        SearchResultsSorter.sort(&filtered, by: session.sortKey, ascending: session.sortAscending)
 
         return SearchResultsListView(
             results: filtered,
-            isLoadingMore: viewModel.isLoadingMoreBackendResults,
-            hasMore: viewModel.hasMoreBackendResults,
+            isLoadingMore: session.isLoadingMore,
+            hasMore: session.hasMore,
             onLoadMore: {
-                viewModel.loadNextBackendPage()
+                session.loadNextPage()
             },
             onSearchInBook: { item in
-                handleSearchInBook(item, viewModel: viewModel)
+                session.searchInBook(item)
             }
         ) { item in
-            handleSelection(item, viewModel: viewModel)
+            session.openResult(item, using: navigationManager)
         }
         .searchable(
-            text: Bindable(viewModel).resultKitabFilter,
+            text: Bindable(session).resultKitabFilter,
             placement: .toolbar,
             prompt: .filterByBooks
         )
-    }
-
-    private func handleSelection(_ item: SearchResultItem, viewModel: SearchViewModel) {
-        if let book = viewModel.resolveBook(from: item) {
-            let shouldRecord = UserDefaults.standard.recordSearchHistory
-            let targetContentId = item.backendLocator != nil ? item.bookId : item.page
-            navigationManager.openBook(
-                book,
-                initialContentId: targetContentId,
-                searchText: navigationManager.searchViewModel.query,
-                searchMode: navigationManager.searchViewModel.searchMode,
-                nearDistance: navigationManager.searchViewModel.nearDistance,
-                recordHistory: shouldRecord
-            )
-            return
-        }
-        Task {
-            let table: String
-            let contentId: Int
-            if item.tableName.hasPrefix("otzaria:") {
-                table = String(item.tableName.dropFirst("otzaria:".count))
-                contentId = item.page
-            } else if item.tableName.hasPrefix("b") {
-                table = String(item.tableName.dropFirst())
-                contentId = item.bookId
-            } else {
-                table = item.tableName
-                contentId = item.bookId
-            }
-
-            if let tableInt = Int(table), let bookData = LibraryDataManager.shared.getBook([tableInt]).first {
-                let shouldRecord = UserDefaults.standard.recordSearchHistory
-                await MainActor.run {
-                    navigationManager.openBook(
-                        bookData,
-                        initialContentId: contentId,
-                        searchText: navigationManager.searchViewModel.query,
-                        searchMode: navigationManager.searchViewModel.searchMode,
-                        nearDistance: navigationManager.searchViewModel.nearDistance,
-                        recordHistory: shouldRecord
-                    )
-                }
-            }
-        }
-    }
-
-    private func handleSearchInBook(_ item: SearchResultItem, viewModel: SearchViewModel) {
-        let resolvedBookId: Int?
-        if let book = viewModel.resolveBook(from: item) {
-            resolvedBookId = book.id
-        } else if item.bookId > 0 {
-            resolvedBookId = item.bookId
-        } else {
-            let table: String
-            if item.tableName.hasPrefix("otzaria:") {
-                table = String(item.tableName.dropFirst("otzaria:".count))
-            } else if item.tableName.hasPrefix("b") {
-                table = String(item.tableName.dropFirst())
-            } else {
-                table = item.tableName
-            }
-            resolvedBookId = Int(table)
-        }
-
-        guard let bookId = resolvedBookId, bookId > 0 else { return }
-        viewModel.setSelectedBooks([bookId])
-        viewModel.resultKitabFilter = ""
-        Task {
-            await viewModel.startSearch()
-        }
     }
 
     @ViewBuilder
