@@ -20,6 +20,7 @@
 		CE1000000000000000000005 /* BackendComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000005 /* BackendComposition.swift */; };
 		CE1000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000006 /* LegacyIdentityRegistry.swift */; };
 		CE1000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000007 /* MaktabahBackendAdapter.swift */; };
+		CE1000000000000000000022 /* MaktabahSearchSnippetFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000022 /* MaktabahSearchSnippetFormatter.swift */; };
 		CE1000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000008 /* OfflineLibraryManagementView.swift */; };
 		CE1000000000000000000009 /* SefariaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000009 /* SefariaModels.swift */; };
 		CE100000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000A /* SefariaNetworkConfiguration.swift */; };
@@ -46,6 +47,7 @@
 		CE2000000000000000000005 /* BackendComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000005 /* BackendComposition.swift */; };
 		CE2000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000006 /* LegacyIdentityRegistry.swift */; };
 		CE2000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000007 /* MaktabahBackendAdapter.swift */; };
+		CE2000000000000000000022 /* MaktabahSearchSnippetFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000022 /* MaktabahSearchSnippetFormatter.swift */; };
 		CE2000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000008 /* OfflineLibraryManagementView.swift */; };
 		CE2000000000000000000009 /* SefariaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000009 /* SefariaModels.swift */; };
 		CE200000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000A /* SefariaNetworkConfiguration.swift */; };
@@ -72,6 +74,7 @@
 		CE3000000000000000000005 /* BackendComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000005 /* BackendComposition.swift */; };
 		CE3000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000006 /* LegacyIdentityRegistry.swift */; };
 		CE3000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000007 /* MaktabahBackendAdapter.swift */; };
+		CE3000000000000000000022 /* MaktabahSearchSnippetFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000022 /* MaktabahSearchSnippetFormatter.swift */; };
 		CE3000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000008 /* OfflineLibraryManagementView.swift */; };
 		CE3000000000000000000009 /* SefariaModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000009 /* SefariaModels.swift */; };
 		CE300000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000000A /* SefariaNetworkConfiguration.swift */; };
@@ -831,6 +834,7 @@
 		CE0000000000000000000005 /* BackendComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendComposition.swift; sourceTree = "<group>"; };
 		CE0000000000000000000006 /* LegacyIdentityRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyIdentityRegistry.swift; sourceTree = "<group>"; };
 		CE0000000000000000000007 /* MaktabahBackendAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaktabahBackendAdapter.swift; sourceTree = "<group>"; };
+		CE0000000000000000000022 /* MaktabahSearchSnippetFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaktabahSearchSnippetFormatter.swift; sourceTree = "<group>"; };
 		CE0000000000000000000008 /* OfflineLibraryManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineLibraryManagementView.swift; sourceTree = "<group>"; };
 		CE0000000000000000000009 /* SefariaModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain/SefariaModels.swift; sourceTree = "<group>"; };
 		CE000000000000000000000A /* SefariaNetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network/SefariaNetworkConfiguration.swift; sourceTree = "<group>"; };
@@ -1325,6 +1329,7 @@
 				CE0000000000000000000005 /* BackendComposition.swift */,
 				CE0000000000000000000006 /* LegacyIdentityRegistry.swift */,
 				CE0000000000000000000007 /* MaktabahBackendAdapter.swift */,
+				CE0000000000000000000022 /* MaktabahSearchSnippetFormatter.swift */,
 				CE0000000000000000000008 /* OfflineLibraryManagementView.swift */,
 				CE0000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift */,
 			);
@@ -2421,6 +2426,7 @@
 				CE1000000000000000000005 /* BackendComposition.swift in Sources */,
 				CE1000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */,
 				CE1000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */,
+				CE1000000000000000000022 /* MaktabahSearchSnippetFormatter.swift in Sources */,
 				CE1000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */,
 				CE1000000000000000000009 /* SefariaModels.swift in Sources */,
 				CE100000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
@@ -2618,6 +2624,7 @@
 				CE2000000000000000000005 /* BackendComposition.swift in Sources */,
 				CE2000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */,
 				CE2000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */,
+				CE2000000000000000000022 /* MaktabahSearchSnippetFormatter.swift in Sources */,
 				CE2000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */,
 				CE2000000000000000000009 /* SefariaModels.swift in Sources */,
 				CE200000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
@@ -2820,6 +2827,7 @@
 				CE3000000000000000000005 /* BackendComposition.swift in Sources */,
 				CE3000000000000000000006 /* LegacyIdentityRegistry.swift in Sources */,
 				CE3000000000000000000007 /* MaktabahBackendAdapter.swift in Sources */,
+				CE3000000000000000000022 /* MaktabahSearchSnippetFormatter.swift in Sources */,
 				CE3000000000000000000008 /* OfflineLibraryManagementView.swift in Sources */,
 				CE3000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift in Sources */,
 				CE3000000000000000000009 /* SefariaModels.swift in Sources */,
