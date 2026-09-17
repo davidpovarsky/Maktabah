@@ -27,6 +27,9 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     @Published var isSearching = false
     @Published var isIndexing = false
     @Published var isInstallingArtifact = false
+    @Published var selectedBookIds: Set<Int> = []
+    @Published var hasMore = false
+    @Published var isLoadingMore = false
     @Published var status: OtzariaSearchIndexStatus = .unavailable
     @Published var errorMessage: String?
     @Published var indexStatusDetail: String?
@@ -323,6 +326,38 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
             status = .unavailable
             return
         }
+
+        if !selectedBookIds.isEmpty {
+            isSearching = true
+            errorMessage = nil
+            hasMore = false
+            let ftsMode: SearchMode
+            switch mode {
+            case .exact: ftsMode = .phrase
+            case .advanced: ftsMode = .near
+            case .fuzzy: ftsMode = .contains
+            }
+            let dist = distance > 0 ? distance : 10
+            let bookIds = selectedBookIds
+            Task.detached(priority: .userInitiated) {
+                let items = OtzariaMaktabahBridge.shared.search(
+                    query: trimmed,
+                    selectedBookIds: bookIds,
+                    offset: 0,
+                    limit: 100,
+                    mode: ftsMode,
+                    nearDistance: dist
+                )
+                await MainActor.run {
+                    self.enginePage = nil
+                    self.results = items
+                    self.hasMore = items.count == 100
+                    self.isSearching = false
+                }
+            }
+            return
+        }
+
         let finalURL = OtzariaSearchIndexManager.shared.indexURL(for: path)
         guard FileManager.default.fileExists(atPath: finalURL.path) else {
             status = .notBuilt
@@ -334,6 +369,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
         isSearching = true
         errorMessage = nil
+        hasMore = false
         let request = OtzariaSearchRequest(
             query: trimmed,
             mode: mode,
@@ -366,6 +402,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 await MainActor.run {
                     self.enginePage = page
                     self.results = items
+                    self.hasMore = page.truncated
                     self.isSearching = false
                 }
             } catch {
@@ -373,8 +410,40 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     self.errorMessage = error.localizedDescription
                     self.enginePage = nil
                     self.results = []
+                    self.hasMore = false
                     self.isSearching = false
                 }
+            }
+        }
+    }
+
+    func loadNextPage() {
+        guard !selectedBookIds.isEmpty, hasMore, !isLoadingMore else { return }
+        isLoadingMore = true
+        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { isLoadingMore = false; return }
+        let currentOffset = results.count
+        let ftsMode: SearchMode
+        switch mode {
+        case .exact: ftsMode = .phrase
+        case .advanced: ftsMode = .near
+        case .fuzzy: ftsMode = .contains
+        }
+        let dist = distance > 0 ? distance : 10
+        let bookIds = selectedBookIds
+        Task.detached(priority: .userInitiated) {
+            let items = OtzariaMaktabahBridge.shared.search(
+                query: trimmed,
+                selectedBookIds: bookIds,
+                offset: currentOffset,
+                limit: 100,
+                mode: ftsMode,
+                nearDistance: dist
+            )
+            await MainActor.run {
+                self.results.append(contentsOf: items)
+                self.hasMore = items.count == 100
+                self.isLoadingMore = false
             }
         }
     }
@@ -384,6 +453,8 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         results = []
         enginePage = nil
         errorMessage = nil
+        hasMore = false
+        isLoadingMore = false
     }
 
     func indexLogCopyText() -> String {

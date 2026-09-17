@@ -8,6 +8,7 @@ final class ZayitSearchViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var configured = false
+    @Published var filters = ZayitSearchFilters()
 
     private let repository: ZayitSearchRepository
     private var generation = 0
@@ -38,7 +39,7 @@ final class ZayitSearchViewModel: ObservableObject {
         await repository.reset()
     }
 
-    func runSearch() {
+    func runSearch(filters: ZayitSearchFilters? = nil) {
         generation += 1
         let currentGeneration = generation
         let trimmedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -47,6 +48,7 @@ final class ZayitSearchViewModel: ObservableObject {
             return
         }
 
+        let effectiveFilters = filters ?? self.filters
         isLoading = true
         Task {
             do {
@@ -55,7 +57,7 @@ final class ZayitSearchViewModel: ObservableObject {
                     near: matchMode.nearValue,
                     offset: 0,
                     limit: 50,
-                    filters: .init()
+                    filters: effectiveFilters
                 )
                 guard currentGeneration == generation else { return }
                 hits = page.hits
