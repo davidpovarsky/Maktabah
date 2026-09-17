@@ -477,17 +477,6 @@ final class UnifiedSearchSessionController {
 
 // MARK: - Option Enum Extensions
 
-extension OtzariaSearchOrder: CaseIterable, Identifiable {
-    public static var allCases: [OtzariaSearchOrder] { [.catalogue, .relevance] }
-    public var id: String { rawValue }
-    var label: String {
-        switch self {
-        case .catalogue: return "לפי סדר הקטלוג"
-        case .relevance: return "רלוונטיות"
-        }
-    }
-}
-
 extension OtzariaWordMatchMode: Identifiable {
     public var id: String { rawValue }
     var label: String {
