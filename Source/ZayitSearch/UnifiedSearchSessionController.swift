@@ -395,10 +395,8 @@ final class UnifiedSearchSessionController {
             return MaktabahBackendAdapter.resolveBook(for: locator, in: LibraryDataManager.shared)
         }
         return OtzariaSearchResultResolver.resolveBook(
-            tableName: item.tableName,
-            bookId: item.bookId,
-            bookTitle: item.bookTitle,
-            in: LibraryDataManager.shared
+            from: item,
+            libraryDataManager: LibraryDataManager.shared
         )
     }
 
