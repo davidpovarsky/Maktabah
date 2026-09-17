@@ -9,6 +9,7 @@ enum SefariaNativeTestMain {
             try runNavigationAndPackageTests()
             try runLegacyIdentityRegistryTests()
             try await runBackendCoordinatorTests()
+            try runUnifiedSearchArchitectureTests()
             print("Sefaria native contract tests passed")
         } catch {
             fatalError("Sefaria native contract tests failed: \(error)")
