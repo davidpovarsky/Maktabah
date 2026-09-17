@@ -130,6 +130,7 @@ for _ in $(seq 1 "$WAIT_ROUNDS"); do
       fi
       INDEX_PATH="$(find "$INDEX_ROOT" -mindepth 1 -maxdepth 1 -type d ! -name '*.building' ! -name '*.previous' ! -name '*.installing' | head -1)"
       test -n "$INDEX_PATH"
+      find "$INDEX_PATH" -name ".managed.json" -delete 2>/dev/null || true
       printf '%s\n' "$INDEX_PATH" > "$OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE"
     fi
     if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_DURATION_FILE:-}" ]; then

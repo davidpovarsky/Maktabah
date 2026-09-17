@@ -320,6 +320,7 @@ jobs:
           set -euo pipefail
           bash Scripts/run-otzaria-corpus-acceptance.sh "$(pwd)/build/miniTest10/database/miniTest10-seforim.db" 10
           INDEX="$(cat build/miniTest10/logs/otzaria-index-path.txt)"
+          find "$INDEX" -name ".managed.json" -delete 2>/dev/null || true
           PEAK="$(python3 -c 'import json; print(max(r["databaseBytes"]+r["indexRootBytes"] for r in map(json.loads,open("build/miniTest10/logs/otzaria-disk.jsonl"))))')"
           python3 Scripts/package-otzaria-search-artifact.py \
             --index "$INDEX" --database build/miniTest10/database/miniTest10-seforim.db \
