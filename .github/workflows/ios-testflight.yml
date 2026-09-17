@@ -194,9 +194,10 @@ jobs:
           xcrun swiftc \
             -DTESTING \
             Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/LibraryBackend/LibraryBackendProtocols.swift \
             Source/LibraryBackend/BackendCoordinator.swift \
+            Source/LibraryBackend/LegacyIdentityRegistry.swift \
             Source/Sefaria/Domain/SefariaModels.swift \
-            Source/Sefaria/Domain/SefariaRef.swift \
             Source/Sefaria/Domain/SefariaNavigationParser.swift \
             Source/Sefaria/Network/SefariaDTOs.swift \
             Source/Sefaria/Network/SefariaNetworkConfiguration.swift \
