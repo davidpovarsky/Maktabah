@@ -926,7 +926,7 @@ struct UnifiedSearchAdvancedOptionsSheet: View {
                 }
             }
 
-            if session.otzariaWordMatchMode == .count {
+            if session.otzariaWordMatchMode == .atLeast {
                 Stepper("מספר מילים להתאמה: \(session.otzariaWordMatchCount)", value: $session.otzariaWordMatchCount, in: 1...20)
             }
         }
