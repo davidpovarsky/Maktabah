@@ -36,6 +36,8 @@ struct SearchModeView: View {
                 .padding(.horizontal)
                 .padding(.vertical, 8)
                 .background(Color.appBackground)
+
+                UnifiedSearchInputControls(session: session)
             }
 
             ZStack(alignment: .top) {
@@ -87,11 +89,6 @@ struct SearchModeView: View {
                 onSaveResults: { showingSaveResults = true },
                 onSavedResults: { showingSavedResults = true }
             )
-        }
-        .popover(isPresented: $session.showsAdvancedOptions) {
-            SearchAdvancedOptionsView(session: session)
-                .frame(minWidth: 320, idealWidth: 360, minHeight: 400, idealHeight: 520)
-                .presentationCompactAdaptation(.popover)
         }
         .sheet(isPresented: $session.showsBookFilterSheet) {
             SearchFilterModalView(session: session, viewModel: viewModel)

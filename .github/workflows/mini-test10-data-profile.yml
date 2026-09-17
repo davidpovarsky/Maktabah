@@ -19,7 +19,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: mini-test10-data-profile-v3
+  group: mini-test10-data-profile-v4
   cancel-in-progress: false
 
 jobs:
@@ -28,8 +28,8 @@ jobs:
     timeout-minutes: 240
     env:
       PROFILE_ID: miniTest10
-      PROFILE_VERSION: "3"
-      PROFILE_TAG: otzaria-miniTest10-v3
+      PROFILE_VERSION: "4"
+      PROFILE_TAG: otzaria-miniTest10-v4
       SOURCE_TAG: v23-20260829032606
       SOURCE_ASSET_SHA256: c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662
       SOURCE_DATABASE_SHA256: 7e2cff76086f07c85ee30470948b458d99ddb36b84dae5c4e5b57ad5f2562501
@@ -385,7 +385,7 @@ jobs:
               echo "Tag $PROFILE_TAG already exists without the expected release" >&2
               exit 1
             }
-            gh release create "$PROFILE_TAG" --target "$GITHUB_SHA" --title 'Otzaria miniTest10 data profile v3' \
+            gh release create "$PROFILE_TAG" --target "$GITHUB_SHA" --title 'Otzaria miniTest10 data profile v4' \
               --notes 'Immutable ten-book test corpus with Otzaria and Zayit indexes built from the same canonical database.'
             gh release upload "$PROFILE_TAG" \
               build/miniTest10/database/miniTest10-seforim.db.zst \

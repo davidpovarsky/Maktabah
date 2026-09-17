@@ -109,7 +109,8 @@ enum OtzariaCorpusAcceptanceRunner {
             let checks: [(OtzariaSearchIndexer.BookRow, String)] = [
                 (base, "/base"),
                 (author, "/author/\(sanitizeFacet(author.authorNames[0]))"),
-                (category, plan.categoryPaths[category.categoryId]!)
+                (category, plan.categoryPaths[category.categoryId]!),
+                (usable[0], "/book/\(usable[0].id)")
             ]
             for (book, facet) in checks {
                 let query = try sampleQuery(databasePath: databasePath, bookID: book.id)

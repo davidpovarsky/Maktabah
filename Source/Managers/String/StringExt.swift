@@ -1228,6 +1228,15 @@ extension String {
     var localized: String {
         return NSLocalizedString(self, comment: "")
     }
+
+    func findMatchingRanges(keywords: [String]) -> [NSRange] {
+        let hasHebrew = self.containsHebrewCharacters || keywords.contains(where: { $0.containsHebrewCharacters })
+        if hasHebrew {
+            return findHebrewMatchingRanges(keywords: keywords)
+        } else {
+            return findArabicMatchingRanges(keywords: keywords)
+        }
+    }
 }
 
 // MARK: - Lucene Arabic Light10 Stemmer

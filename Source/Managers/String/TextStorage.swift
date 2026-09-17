@@ -17,12 +17,22 @@ extension NSMutableAttributedString {
         searchText: String,
         mode: SearchMode?,
         baseColor: PlatformColor,
-        nearDistance: Int = 10
+        nearDistance: Int = 10,
+        highlightTerms: [String]? = nil
     ) -> [NSRange] {
         let searchMode = mode ?? (searchText.uppercased().contains("NEAR") ? .near : .contains)
 
-        let searchTerms = FtsQueryParser.extractKeywords(query: searchText, mode: searchMode)
+        var searchTerms = FtsQueryParser.extractKeywords(query: searchText, mode: searchMode)
             .map { $0.replacingHonorificPhrasesIfSupported().text }
+
+        if let highlightTerms, !highlightTerms.isEmpty {
+            for term in highlightTerms {
+                let trimmed = term.trimmingCharacters(in: .whitespacesAndNewlines)
+                if !trimmed.isEmpty && !searchTerms.contains(trimmed) {
+                    searchTerms.append(trimmed)
+                }
+            }
+        }
 
         guard !searchTerms.isEmpty else { return [] }
 
@@ -36,8 +46,11 @@ extension NSMutableAttributedString {
 
         var ranges: [NSRange]
 
-        // Hanya highlight keyword yang merupakan bagian dari valid cluster jika mode NEAR
-        if searchMode == .near, searchTerms.count > 1 {
+        let isHebrew = string.containsHebrewCharacters || searchTerms.contains(where: { $0.containsHebrewCharacters })
+
+        if isHebrew {
+            ranges = string.findHebrewMatchingRanges(keywords: searchTerms)
+        } else if searchMode == .near, searchTerms.count > 1 {
             let rangesWithIndex = string.findArabicMatchingRangesWithIndex(keywords: searchTerms)
             ranges = string.filterRangesForNearMode(rangesWithIndex: rangesWithIndex, keywordsCount: searchTerms.count, nearDistance: nearDistance)
         } else {

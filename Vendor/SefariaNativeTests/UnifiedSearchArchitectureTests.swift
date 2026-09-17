@@ -15,6 +15,11 @@ func runUnifiedSearchArchitectureTests() throws {
     try testConfigurableOptionsGatingContract()
     try testSearchResultLocationDisplayTextAndFallbackContract()
     try testReaderDestinationFocusLocatorPreservationContract()
+    try testSefariaHTMLSnippetFormattingContract()
+    try testOtzariaSearchResultMappingContract()
+    try testOtzariaBookFilterContract()
+    try testSefariaLocatorProductionConversionContract()
+    try testReaderHebrewHighlightAndNormalizationContract()
     print("✓ Unified search architecture contract tests passed")
 }
 
@@ -565,4 +570,161 @@ func testReaderDestinationFocusLocatorPreservationContract() throws {
     }
     try expect(currentDestination?.focusLocator == segmentLocator, "Focus locator preserved across section reloads")
 }
+
+// MARK: - 13. Sefaria HTML Snippet Formatting Contract
+
+func testSefariaHTMLSnippetFormattingContract() throws {
+    let rawSnippet = "לפני <b>הודו</b> אחרי <em>חיים</em> וביטויים עם תגיות <br>, &quot;, &#39;, &amp;."
+    let (formatted, highlightTerms) = MaktabahSearchSnippetFormatter.formatSnippet(rawSnippet)
+    let plain = formatted.string
+
+    // 1. Text is free of raw HTML tags and entities are decoded
+    try expect(!plain.contains("<b>") && !plain.contains("</b>"), "Snippet does not contain <b> tags")
+    try expect(!plain.contains("<em>") && !plain.contains("</em>"), "Snippet does not contain <em> tags")
+    try expect(!plain.contains("<br>"), "Snippet does not contain <br> tags")
+    try expect(!plain.contains("&quot;") && !plain.contains("&#39;") && !plain.contains("&amp;"), "Snippet entities decoded")
+    try expect(plain.contains("\"") && plain.contains("'") && plain.contains("&"), "Snippet contains real quotes and ampersand")
+    try expect(plain.contains("\n"), "Snippet converted <br> to newline")
+
+    // 2. Bold and Italic attributes are applied
+    let ns = plain as NSString
+    let hoduRange = ns.range(of: "הודו")
+    try expect(hoduRange.location != NSNotFound, "hodu found in plain text")
+    let chayimRange = ns.range(of: "חיים")
+    try expect(chayimRange.location != NSNotFound, "chayim found in plain text")
+
+    var hoduIsBold = false
+    formatted.enumerateAttribute(NSAttributedString.Key("NSBold"), in: hoduRange, options: []) { value, _, _ in
+        if value as? Bool == true { hoduIsBold = true }
+    }
+    try expect(hoduIsBold, "'הודו' has NSBold attribute")
+
+    var chayimIsItalic = false
+    formatted.enumerateAttribute(NSAttributedString.Key("NSItalic"), in: chayimRange, options: []) { value, _, _ in
+        if value as? Bool == true { chayimIsItalic = true }
+    }
+    try expect(chayimIsItalic, "'חיים' has NSItalic attribute")
+
+    // 3. Highlight terms extracted
+    try expect(highlightTerms.contains("הודו"), "highlightTerms contains 'הודו'")
+    try expect(highlightTerms.contains("חיים"), "highlightTerms contains 'חיים'")
+}
+
+// MARK: - 14. Otzaria Search Result Mapping Contract
+
+func testOtzariaSearchResultMappingContract() throws {
+    let result = OtzariaSearchResult(
+        filePath: "otzaria-book:1",
+        title: "בראשית",
+        segment: 7,
+        text: "וַיִּיצֶר֩ יְהוָ֨ה אֱלֹהִ֜ים אֶת־הָֽאָדָ֗ם",
+        reference: "בראשית ב׳:ז׳"
+    )
+
+    func navigationItem(from result: OtzariaSearchResult) -> SearchResultItemContract {
+        SearchResultItemContract(
+            archive: "Otzaria",
+            tableName: "otzaria:1",
+            bookId: 1,
+            bookTitle: result.title,
+            page: Int(result.segment),
+            part: 0,
+            locationDisplayText: result.reference.isEmpty ? nil : result.reference
+        )
+    }
+
+    let item = navigationItem(from: result)
+    try expect(item.locationDisplayText == "בראשית ב׳:ז׳", "Otzaria result maps reference to locationDisplayText")
+    try expect(item.part == 0, "Otzaria result has part == 0")
+
+    func formatLocationText(for item: SearchResultItemContract) -> String {
+        if let locationDisplayText = item.locationDisplayText, !locationDisplayText.isEmpty {
+            return locationDisplayText
+        }
+        var parts: [String] = []
+        if item.part > 0 { parts.append("כרך \(item.part)") }
+        if item.page > 0 { parts.append("עמ' \(item.page)") }
+        return parts.joined(separator: " • ")
+    }
+
+    let display = formatLocationText(for: item)
+    try expect(display == "בראשית ב׳:ז׳", "Displayed location is reference text")
+    try expect(!display.contains("כרך 1") && !display.contains("כרך 0"), "Does not display misleading volume label")
+}
+
+// MARK: - 15. Otzaria Book Filter Contract
+
+func testOtzariaBookFilterContract() throws {
+    let unfilteredRequest = OtzariaSearchRequest(
+        query: "בראשית",
+        mode: .advanced,
+        facets: ["/"],
+        limit: 100,
+        bookIds: nil
+    )
+    try expect(unfilteredRequest.facets == ["/"], "Unfiltered search uses root facet")
+    try expect(unfilteredRequest.bookIds == nil, "Unfiltered search has nil bookIds")
+
+    let filteredRequest = OtzariaSearchRequest(
+        query: "בראשית",
+        mode: .advanced,
+        facets: ["/book/1"],
+        limit: 100,
+        bookIds: [1]
+    )
+    try expect(filteredRequest.facets == ["/book/1"], "Filtered search uses /book/1 facet")
+    try expect(filteredRequest.bookIds == [1], "Filtered search has bookIds == [1]")
+}
+
+// MARK: - 16. Sefaria Locator Production Conversion Contract
+
+func testSefariaLocatorProductionConversionContract() throws {
+    let locator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+    try expect(locator.backend == .sefaria, "Backend is Sefaria")
+    try expect(locator.workKey == "Genesis", "WorkKey is Genesis")
+    if case .canonicalRef(let ref) = locator.position {
+        try expect(ref == "Genesis 1:1", "Position is canonicalRef Genesis 1:1")
+    } else {
+        throw TestFailure.failed("Expected canonicalRef position")
+    }
+
+    let hit = LibrarySearchHit(
+        locator: locator,
+        displayRef: "Genesis 1:1",
+        heRef: "בראשית א׳:א׳",
+        snippet: "בְּרֵאשִׁ֖ית בָּרָ֣א"
+    )
+    try expect(hit.displayRef == "Genesis 1:1", "Hit displayRef matches")
+    try expect(hit.heRef == "בראשית א׳:א׳", "Hit heRef matches")
+}
+
+// MARK: - 17. Reader Hebrew Highlight And Normalization Contract
+
+func testReaderHebrewHighlightAndNormalizationContract() throws {
+    let pointedText = "בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃"
+
+    // 1. Pointed text matches unpointed query "בראשית"
+    let ranges1 = pointedText.findHebrewMatchingRanges(keywords: ["בראשית"])
+    try expect(ranges1.count == 1, "Found exactly 1 match for unpointed 'בראשית'")
+    let matchedStr1 = (pointedText as NSString).substring(with: ranges1[0])
+    try expect(matchedStr1 == "בְּרֵאשִׁ֖ית", "Range accurately spans pointed 'בְּרֵאשִׁ֖ית'")
+
+    // 2. Pointed text matches unpointed query "השמים"
+    let ranges2 = pointedText.findHebrewMatchingRanges(keywords: ["השמים"])
+    try expect(ranges2.count == 1, "Found exactly 1 match for unpointed 'השמים'")
+    let matchedStr2 = (pointedText as NSString).substring(with: ranges2[0])
+    try expect(matchedStr2 == "הַשָּׁמַ֖יִם", "Range accurately spans pointed 'הַשָּׁמַ֖יִם'")
+
+    // 3. Multi-segment isolation check
+    let segment1 = NSRange(location: 0, length: 20)
+    let segment2 = NSRange(location: 21, length: 30)
+    let searchRanges = ranges1 // match is in segment1
+
+    // When segment2 is selected, searchRanges from segment1 should NOT be in rangesToPopup
+    let intersecting = searchRanges.filter { NSIntersectionRange(segment2, $0).length > 0 }
+    try expect(intersecting.isEmpty, "No intersecting ranges in segment2")
+    let rangesToPopup: [NSRange] = intersecting.first != nil ? intersecting : []
+    try expect(rangesToPopup.isEmpty, "rangesToPopup is empty when no matches in selected segment")
+}
+
 

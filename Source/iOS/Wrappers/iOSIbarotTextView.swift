@@ -334,6 +334,7 @@ fileprivate struct DecorationSignature: Hashable {
     let searchMode: String
     let nearDistance: Int
     let clickableAnnotations: Bool
+    let highlightTerms: [String]?
 }
 
 /// SwiftUI Wrapper for iOSCustomIbarotTextView
@@ -498,7 +499,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
             searchText: searchText,
             searchMode: searchMode.map { String(describing: $0) } ?? "",
             nearDistance: nearDistance,
-            clickableAnnotations: state.clickableAnnotation
+            clickableAnnotations: state.clickableAnnotation,
+            highlightTerms: viewModel.highlightTerms
         )
         let decorationsChanged = context.coordinator.decorationSignature != decorationSignature
         var searchRanges = context.coordinator.searchRanges
@@ -522,13 +524,15 @@ struct iOSIbarotTextView: UIViewRepresentable {
                     decorated.addAttribute(.link, value: url, range: range)
                 }
             }
-            searchRanges = searchText.isEmpty ? [] : decorated.highlightSearchText(
+            let hasSearch = !searchText.isEmpty || (viewModel.highlightTerms?.isEmpty == false)
+            searchRanges = !hasSearch ? [] : decorated.highlightSearchText(
                 searchText: searchText,
                 mode: searchMode,
                 baseColor: .highlightText,
-                nearDistance: nearDistance
+                nearDistance: nearDistance,
+                highlightTerms: viewModel.highlightTerms
             )
-            shouldTriggerSearchAnimation = !searchText.isEmpty
+            shouldTriggerSearchAnimation = hasSearch
                 && (context.coordinator.processedSearchText != searchText || contentIdChanged)
             context.coordinator.processedSearchText = searchText.isEmpty ? nil : searchText
             context.coordinator.decorationSignature = decorationSignature
@@ -614,7 +618,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 rangesToPopup = intersecting
             } else {
                 targetRangeToScroll = segment
-                rangesToPopup = searchRanges
+                rangesToPopup = []
             }
         } else if let firstRange = searchRanges.first {
             targetRangeToScroll = firstRange

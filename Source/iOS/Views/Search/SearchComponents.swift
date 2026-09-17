@@ -134,86 +134,9 @@ struct SearchHistoryOverlay: View {
 
     @ViewBuilder
     private var inputControls: some View {
-        if let session {
-            unifiedInputControls(session: session)
-        } else {
+        if session == nil {
             legacyInputControls
         }
-    }
-
-    private func unifiedInputControls(session: UnifiedSearchSessionController) -> some View {
-        HStack(spacing: 12) {
-            Picker("Scope", selection: Binding(
-                get: { session.scope },
-                set: { session.scope = $0 }
-            )) {
-                ForEach(session.availableScopes) { scope in
-                    Text(scope.title).tag(scope)
-                }
-            }
-            .controlSize(.regular)
-            .pickerStyle(.segmented)
-            .frame(maxWidth: .infinity)
-
-            if session.hasConfigurableOptions {
-                if !session.isSefaria {
-                    TextField("10", value: Binding(
-                        get: { session.otzariaDistance },
-                        set: { session.otzariaDistance = $0 }
-                    ), format: .number)
-                        .focused($isDistanceFocused)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
-                        .background(Color.appCellBackground)
-                        .cornerRadius(6)
-                        .overlay(RoundedRectangle(cornerRadius: 6)
-                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
-                        .transition(.move(edge: .trailing).combined(with: .opacity))
-                } else {
-                    TextField("10", value: Binding(
-                        get: { session.sefariaWordDistance },
-                        set: { session.sefariaWordDistance = $0 }
-                    ), format: .number)
-                        .focused($isDistanceFocused)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
-                        .background(Color.appCellBackground)
-                        .cornerRadius(6)
-                        .overlay(RoundedRectangle(cornerRadius: 6)
-                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
-                        .transition(.move(edge: .trailing).combined(with: .opacity))
-                }
-
-                Button(action: { session.showsAdvancedOptions.toggle() }) {
-                    Image(systemName: "slider.horizontal.3")
-                        .foregroundStyle(.tint)
-                }
-                .accessibilityLabel("Advanced Options")
-            }
-
-            Spacer()
-
-            Button(action: { showingHelp = true }) {
-                Label("Help", systemImage: "questionmark")
-                    .labelStyle(.iconOnly)
-                    .foregroundStyle(.foreground)
-            }
-            .popover(isPresented: $showingHelp) {
-                SearchHelpView(isSefaria: session.isSefaria)
-                    .frame(width: 320, height: 460)
-                    .presentationCompactAdaptation(.popover)
-            }
-        }
-        .animation(
-            .easeInOut(duration: 0.25)
-            .delay(0.25),
-            value: session.scope
-        )
-        .prominentButtonStyleIfAvailable()
-        .padding(.horizontal)
-        .padding(.vertical, 8)
     }
 
     private var legacyInputControls: some View {
@@ -266,6 +189,123 @@ struct SearchHistoryOverlay: View {
         .prominentButtonStyleIfAvailable()
         .padding(.horizontal)
         .padding(.vertical, 8)
+    }
+}
+
+// MARK: - Unified Search Controls
+
+struct UnifiedSearchAdvancedOptionsButton: View {
+    @Bindable var session: UnifiedSearchSessionController
+    @State private var isPresented = false
+
+    var body: some View {
+        Button(action: {
+            isPresented = true
+            session.showsAdvancedOptions = true
+        }) {
+            Image(systemName: "slider.horizontal.3")
+                .foregroundStyle(.tint)
+        }
+        .accessibilityLabel("Advanced Options")
+        .help("Advanced Options")
+        .popover(isPresented: $isPresented) {
+            SearchAdvancedOptionsView(session: session)
+                .frame(
+                    minWidth: 320,
+                    idealWidth: 360,
+                    minHeight: 400,
+                    idealHeight: 520
+                )
+                .presentationCompactAdaptation(.popover)
+        }
+        .onChange(of: isPresented) { _, newValue in
+            session.showsAdvancedOptions = newValue
+        }
+        .onChange(of: session.showsAdvancedOptions) { _, newValue in
+            if isPresented != newValue {
+                isPresented = newValue
+            }
+        }
+    }
+}
+
+struct UnifiedSearchInputControls: View {
+    @Bindable var session: UnifiedSearchSessionController
+    @State private var showingHelp: Bool = false
+    @FocusState private var isDistanceFocused: Bool
+    @ScaledMetric(relativeTo: .body) private var distanceFieldWidth: CGFloat = 44
+    @ScaledMetric(relativeTo: .body) private var distanceFieldHeight: CGFloat = 28
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Picker("Scope", selection: Binding(
+                get: { session.scope },
+                set: { session.scope = $0 }
+            )) {
+                ForEach(session.availableScopes) { scope in
+                    Text(scope.title).tag(scope)
+                }
+            }
+            .controlSize(.regular)
+            .pickerStyle(.segmented)
+            .frame(maxWidth: .infinity)
+
+            if session.hasConfigurableOptions {
+                if !session.isSefaria {
+                    TextField("10", value: Binding(
+                        get: { session.otzariaDistance },
+                        set: { session.otzariaDistance = $0 }
+                    ), format: .number)
+                        .focused($isDistanceFocused)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
+                        .background(Color.appCellBackground)
+                        .cornerRadius(6)
+                        .overlay(RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+                        .transition(.move(edge: .trailing).combined(with: .opacity))
+                } else {
+                    TextField("10", value: Binding(
+                        get: { session.sefariaWordDistance },
+                        set: { session.sefariaWordDistance = $0 }
+                    ), format: .number)
+                        .focused($isDistanceFocused)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .frame(width: distanceFieldWidth, height: distanceFieldHeight)
+                        .background(Color.appCellBackground)
+                        .cornerRadius(6)
+                        .overlay(RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+                        .transition(.move(edge: .trailing).combined(with: .opacity))
+                }
+
+                UnifiedSearchAdvancedOptionsButton(session: session)
+            }
+
+            Spacer()
+
+            Button(action: { showingHelp = true }) {
+                Label("Help", systemImage: "questionmark")
+                    .labelStyle(.iconOnly)
+                    .foregroundStyle(.foreground)
+            }
+            .popover(isPresented: $showingHelp) {
+                SearchHelpView(isSefaria: session.isSefaria)
+                    .frame(width: 320, height: 460)
+                    .presentationCompactAdaptation(.popover)
+            }
+        }
+        .animation(
+            .easeInOut(duration: 0.25)
+            .delay(0.25),
+            value: session.scope
+        )
+        .prominentButtonStyleIfAvailable()
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(Color.appBackground)
     }
 }
 
@@ -726,11 +766,7 @@ struct UnifiedSearchToolbar: ToolbarContent {
             }
 
             if session.hasConfigurableOptions {
-                Button(action: { session.showsAdvancedOptions.toggle() }) {
-                    Image(systemName: "slider.horizontal.3")
-                }
-                .accessibilityLabel("Search Options")
-                .help("Search Options")
+                UnifiedSearchAdvancedOptionsButton(session: session)
             }
 
             if showSortMenu, !session.results.isEmpty {

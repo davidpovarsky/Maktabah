@@ -357,7 +357,8 @@ final class UnifiedSearchSessionController {
                 searchText: query,
                 searchMode: mode,
                 nearDistance: dist,
-                recordHistory: shouldRecord
+                recordHistory: shouldRecord,
+                highlightTerms: item.highlightTerms
             )
             return
         }
@@ -385,7 +386,8 @@ final class UnifiedSearchSessionController {
                         searchText: self.query,
                         searchMode: self.searchModeForReader,
                         nearDistance: self.nearDistanceForReader,
-                        recordHistory: shouldRecord
+                        recordHistory: shouldRecord,
+                        highlightTerms: item.highlightTerms
                     )
                 }
             }

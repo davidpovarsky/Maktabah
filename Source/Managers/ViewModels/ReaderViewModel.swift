@@ -104,6 +104,7 @@ class ReaderViewModel: ViewModelBase {
     }
 
     var searchText: String = ""
+    var highlightTerms: [String]? = nil
     var searchMode: SearchMode?
     var nearDistance: Int = UserDefaults.standard.searchNearDistance {
         didSet {

@@ -19,8 +19,8 @@ class DataProfileTests(unittest.TestCase):
         self.assertEqual(profile["sourceDatabase"]["releaseID"], seed["source"]["releaseID"])
         self.assertEqual(profile["sourceDatabase"]["assetID"], seed["source"]["assetID"])
         self.assertEqual(profile["sourceDatabase"]["sourceAssetSHA256"], seed["source"]["assetSHA256"])
-        self.assertEqual(profile["profileVersion"], 3)
-        self.assertTrue(profile["releaseBaseURL"].endswith("/otzaria-miniTest10-v3"))
+        self.assertEqual(profile["profileVersion"], 4)
+        self.assertTrue(profile["releaseBaseURL"].endswith("/otzaria-miniTest10-v4"))
         self.assertEqual(profile["sharedLexicalDatabase"]["releaseTag"], "v0.3.0")
         self.assertEqual(profile["sharedLexicalDatabase"]["bytes"], 57122816)
 

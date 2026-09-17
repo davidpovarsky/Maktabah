@@ -210,6 +210,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     let attributedText: NSAttributedString
     let backendLocator: TextLocator?
     let locationDisplayText: String?
+    let highlightTerms: [String]?
 
     enum CodingKeys: String, CodingKey {
         case archive
@@ -221,6 +222,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         case attributedText
         case backendLocator
         case locationDisplayText
+        case highlightTerms
     }
 
     init(
@@ -232,7 +234,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         part: Int,
         attributedText: NSAttributedString,
         backendLocator: TextLocator? = nil,
-        locationDisplayText: String? = nil
+        locationDisplayText: String? = nil,
+        highlightTerms: [String]? = nil
     ) {
         self.archive = archive
         self.tableName = tableName
@@ -243,6 +246,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         self.attributedText = attributedText
         self.backendLocator = backendLocator
         self.locationDisplayText = locationDisplayText
+        self.highlightTerms = highlightTerms
     }
 
     func encode(to encoder: Encoder) throws {
@@ -263,6 +267,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         try container.encode(data, forKey: .attributedText)
         try container.encodeIfPresent(backendLocator, forKey: .backendLocator)
         try container.encodeIfPresent(locationDisplayText, forKey: .locationDisplayText)
+        try container.encodeIfPresent(highlightTerms, forKey: .highlightTerms)
     }
 
     init(from decoder: Decoder) throws {
@@ -276,6 +281,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         part = try container.decode(Int.self, forKey: .part)
         backendLocator = try container.decodeIfPresent(TextLocator.self, forKey: .backendLocator)
         locationDisplayText = try container.decodeIfPresent(String.self, forKey: .locationDisplayText)
+        highlightTerms = try container.decodeIfPresent([String].self, forKey: .highlightTerms)
 
         let data = try container.decode(Data.self, forKey: .attributedText)
 

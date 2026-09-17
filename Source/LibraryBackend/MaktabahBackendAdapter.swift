@@ -145,6 +145,8 @@ enum MaktabahBackendAdapter {
             part = 1
         }
 
+        let (formattedSnippet, highlightTerms) = MaktabahSearchSnippetFormatter.formatSnippet(hit.snippet)
+
         return SearchResultItem(
             archive: hit.locator.backend.displayName,
             tableName: "qualified:\(id)",
@@ -152,9 +154,10 @@ enum MaktabahBackendAdapter {
             bookTitle: bookTitle,
             page: page,
             part: part,
-            attributedText: NSAttributedString(string: hit.snippet),
+            attributedText: formattedSnippet,
             backendLocator: hit.locator,
-            locationDisplayText: locationDisplayText
+            locationDisplayText: locationDisplayText,
+            highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms
         )
     }
 

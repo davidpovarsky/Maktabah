@@ -144,14 +144,17 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
 
     func navigationItems(from page: OtzariaSearchPage) -> [SearchResultItem] {
         page.results.map { result in
-            SearchResultItem(
+            let (attrText, highlightTerms) = highlightedText(from: result.text)
+            return SearchResultItem(
                 archive: "Otzaria",
                 tableName: "otzaria:\(bookId(from: result.filePath) ?? 0)",
                 bookId: bookId(from: result.filePath) ?? 0,
                 bookTitle: result.title,
                 page: Int(result.segment),
-                part: 1,
-                attributedText: highlightedText(from: result.text)
+                part: 0,
+                attributedText: attrText,
+                locationDisplayText: result.reference.isEmpty ? nil : result.reference,
+                highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms
             )
         }
     }
@@ -161,9 +164,10 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         return Int(filePath.dropFirst("otzaria-book:".count))
     }
 
-    private func highlightedText(from html: String) -> NSAttributedString {
+    private func highlightedText(from html: String) -> (NSAttributedString, [String]) {
         let mutable = NSMutableAttributedString(string: "")
         var remaining = html
+        var terms: [String] = []
         let openTag = "<font color=red>"
         let closeTag = "</font>"
 
@@ -175,10 +179,16 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
             remaining = String(remaining[openRange.upperBound...])
             guard let closeRange = remaining.range(of: closeTag, options: [.caseInsensitive]) else { break }
             let highlighted = String(remaining[..<closeRange.lowerBound])
+            let plainHighlighted = OtzariaSearchSnippetRenderer.plainText(fromHTML: highlighted)
             mutable.append(NSAttributedString(
-                string: OtzariaSearchSnippetRenderer.plainText(fromHTML: highlighted),
+                string: plainHighlighted,
                 attributes: highlightAttributes()
             ))
+            let words = plainHighlighted
+                .components(separatedBy: CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters))
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .filter { !$0.isEmpty }
+            terms.append(contentsOf: words)
             remaining = String(remaining[closeRange.upperBound...])
         }
 
@@ -186,20 +196,23 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
             mutable.append(NSAttributedString(string: OtzariaSearchSnippetRenderer.plainText(fromHTML: remaining)))
         }
 
+        var seen = Set<String>()
+        let uniqueTerms = terms.filter { seen.insert($0).inserted }
+
         if mutable.length == 0 {
-            return NSAttributedString(string: OtzariaSearchSnippetRenderer.plainText(fromHTML: html))
+            return (NSAttributedString(string: OtzariaSearchSnippetRenderer.plainText(fromHTML: html)), uniqueTerms)
         }
-        return mutable
+        return (mutable, uniqueTerms)
     }
 
     private func highlightAttributes() -> [NSAttributedString.Key: Any] {
-        #if canImport(UIKit)
-        return [
-            .foregroundColor: UIColor.systemRed,
-            .font: UIFont.boldSystemFont(ofSize: 17)
+        var attrs: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key("NSBold"): true
         ]
-        #else
-        return [:]
+        #if canImport(UIKit)
+        attrs[.foregroundColor] = UIColor.systemRed
+        attrs[.font] = UIFont.boldSystemFont(ofSize: 17)
         #endif
+        return attrs
     }
 }
