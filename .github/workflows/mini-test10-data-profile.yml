@@ -357,6 +357,7 @@ jobs:
           "$QUERY" build/miniTest10/database/miniTest10-seforim.db "$RUNNER_TEMP/miniTest10/lexical.db" \
             "$RUNNER_TEMP/miniTest10/zayit-index" 'בראשית' > build/miniTest10/logs/zayit-query.json
           python3 -c 'import json; assert json.load(open("build/miniTest10/logs/zayit-query.json"))["hits"]'
+          find "$RUNNER_TEMP/miniTest10/zayit-index" -name ".managed.json" -delete 2>/dev/null || true
           PEAK="$(du -sk "$RUNNER_TEMP/miniTest10/zayit-index" | awk '{print $1*1024}')"
           python3 Scripts/package-zayit-search-artifact.py \
             --index "$RUNNER_TEMP/miniTest10/zayit-index" --output build/miniTest10/zayit \
