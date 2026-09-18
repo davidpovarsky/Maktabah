@@ -439,38 +439,38 @@ func testConfigurableOptionsGatingContract() throws {
 
 // MARK: - 11. Search Result Location Display & Fallback Contract
 
-func testSearchResultLocationDisplayTextAndFallbackContract() throws {
-    struct SearchResultItemContract: Codable, Hashable {
-        let archive: String
-        let tableName: String
-        let bookId: Int
-        let bookTitle: String
-        let page: Int
-        let part: Int
-        let backendLocator: TextLocator?
-        let locationDisplayText: String?
+struct SearchResultItemContract: Codable, Hashable {
+    let archive: String
+    let tableName: String
+    let bookId: Int
+    let bookTitle: String
+    let page: Int
+    let part: Int
+    let backendLocator: TextLocator?
+    let locationDisplayText: String?
 
-        init(
-            archive: String,
-            tableName: String,
-            bookId: Int,
-            bookTitle: String,
-            page: Int,
-            part: Int,
-            backendLocator: TextLocator? = nil,
-            locationDisplayText: String? = nil
-        ) {
-            self.archive = archive
-            self.tableName = tableName
-            self.bookId = bookId
-            self.bookTitle = bookTitle
-            self.page = page
-            self.part = part
-            self.backendLocator = backendLocator
-            self.locationDisplayText = locationDisplayText
-        }
+    init(
+        archive: String,
+        tableName: String,
+        bookId: Int,
+        bookTitle: String,
+        page: Int,
+        part: Int,
+        backendLocator: TextLocator? = nil,
+        locationDisplayText: String? = nil
+    ) {
+        self.archive = archive
+        self.tableName = tableName
+        self.bookId = bookId
+        self.bookTitle = bookTitle
+        self.page = page
+        self.part = part
+        self.backendLocator = backendLocator
+        self.locationDisplayText = locationDisplayText
     }
+}
 
+func testSearchResultLocationDisplayTextAndFallbackContract() throws {
     // Sefaria item with true segment ref in locationDisplayText
     let sefariaItem = SearchResultItemContract(
         archive: "Sefaria",
@@ -613,15 +613,19 @@ func testSefariaHTMLSnippetFormattingContract() throws {
 // MARK: - 14. Otzaria Search Result Mapping Contract
 
 func testOtzariaSearchResultMappingContract() throws {
-    let result = OtzariaSearchResult(
-        filePath: "otzaria-book:1",
+    let result = OtzariaEngineSearchResult(
         title: "בראשית",
-        segment: 7,
+        reference: "בראשית ב׳:ז׳",
         text: "וַיִּיצֶר֩ יְהוָ֨ה אֱלֹהִ֜ים אֶת־הָֽאָדָ֗ם",
-        reference: "בראשית ב׳:ז׳"
+        id: 1,
+        segment: 7,
+        isPdf: false,
+        filePath: "otzaria-book:1",
+        mergedCount: 0,
+        merged: []
     )
 
-    func navigationItem(from result: OtzariaSearchResult) -> SearchResultItemContract {
+    func navigationItem(from result: OtzariaEngineSearchResult) -> SearchResultItemContract {
         SearchResultItemContract(
             archive: "Otzaria",
             tableName: "otzaria:1",
@@ -692,7 +696,8 @@ func testSefariaLocatorProductionConversionContract() throws {
         locator: locator,
         displayRef: "Genesis 1:1",
         heRef: "בראשית א׳:א׳",
-        snippet: "בְּרֵאשִׁ֖ית בָּרָ֣א"
+        snippet: "בְּרֵאשִׁ֖ית בָּרָ֣א",
+        score: 1.0
     )
     try expect(hit.displayRef == "Genesis 1:1", "Hit displayRef matches")
     try expect(hit.heRef == "בראשית א׳:א׳", "Hit heRef matches")
@@ -719,6 +724,7 @@ func testReaderHebrewHighlightAndNormalizationContract() throws {
     let segment1 = NSRange(location: 0, length: 20)
     let segment2 = NSRange(location: 21, length: 30)
     let searchRanges = ranges1 // match is in segment1
+    try expect(NSIntersectionRange(segment1, searchRanges[0]).length > 0, "Match is within segment1 bounds")
 
     // When segment2 is selected, searchRanges from segment1 should NOT be in rangesToPopup
     let intersecting = searchRanges.filter { NSIntersectionRange(segment2, $0).length > 0 }
