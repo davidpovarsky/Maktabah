@@ -38,45 +38,64 @@ struct iOSReaderTabView: View {
         return book.book.containsArabicCharacters ? ReaderViewModel.kfgqpc : .headline
     }
 
+    private var activeTab: iOSNavigationManager.ReaderTab? {
+        bManager.openTabs.first(where: { $0.id == bManager.activeTabId }) ?? bManager.openTabs.first
+    }
+
     var body: some View {
-        if bManager.openTabs.count > 0,
-           let activeTab = bManager.openTabs.first(where: { $0.id == bManager.activeTabId })
-               ?? bManager.openTabs.first
-        {
-            iOSReaderView(
-                book: activeTab.book,
-                viewModel: activeTab.viewModel,
-                initialContentId: activeTab.initialContentId,
-                columnVisibility: $columnVisibility
-            )
-            .id(activeTab.id)
-            .toolbar {
-                if bManager.openTabs.count > 1 {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        ReaderTabsView(isDarkMode: isDarkMode)
+        Group {
+            if let activeTab {
+                iOSReaderView(
+                    book: activeTab.book,
+                    viewModel: activeTab.viewModel,
+                    initialContentId: activeTab.initialContentId,
+                    columnVisibility: $columnVisibility
+                )
+                .id(activeTab.id)
+                .toolbar {
+                    if bManager.openTabs.count > 1 {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            ReaderTabsView(isDarkMode: isDarkMode)
+                        }
+                    }
+
+                    if bManager.openTabs.count == 1 {
+                        ToolbarItem(placement: .principal) {
+                            Text(activeTab.book.book)
+                                .font(bookTitleFont(for: activeTab.book))
+                                .foregroundStyle(isDarkMode ? .white : .black)
+                        }
                     }
                 }
-
-                if bManager.openTabs.count == 1,
-                    let activeTab = bManager.openTabs.first
-                {
-                    ToolbarItem(placement: .principal) {
-                        Text(activeTab.book.book)
-                            .font(bookTitleFont(for: activeTab.book))
-                            .foregroundStyle(isDarkMode ? .white : .black)
+            } else {
+                ThemeView {
+                    VStack(spacing: 16) {
+                        Image(systemName: "book.closed")
+                            .font(.system(size: 64))
+                            .foregroundColor(.secondary)
+                        Text("Select a book to read")
+                            .font(.title3)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
-        } else {
-            ThemeView {
-                VStack(spacing: 16) {
-                    Image(systemName: "book.closed")
-                        .font(.system(size: 64))
-                        .foregroundColor(.secondary)
-                    Text("Select a book to read")
-                        .font(.title3)
-                        .foregroundColor(.secondary)
+        }
+        .inspector(isPresented: Binding(
+            get: { activeTab?.viewModel.readerInspectorVisible ?? false },
+            set: { newValue in
+                if newValue {
+                    activeTab?.viewModel.readerInspectorVisible = true
+                } else {
+                    activeTab?.viewModel.closeReaderInspector()
                 }
+            }
+        )) {
+            if let activeTab {
+                OtzariaReaderSourcesInspectorHost(
+                    viewModel: activeTab.viewModel,
+                    navigationManager: bManager
+                )
+                .inspectorColumnWidth(min: 320, ideal: 400, max: 500)
             }
         }
     }

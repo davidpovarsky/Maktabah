@@ -105,8 +105,8 @@ final class MaktabahTorahInspectorSession {
                 type: source.type,
                 collectiveTitle: source.collectiveTitle,
                 hebrewCollectiveTitle: source.heCollectiveTitle,
-                hebrewText: source.primaryText,
-                englishText: source.translation,
+                hebrewText: source.primaryText?.readerPlainText,
+                englishText: source.translation?.readerPlainText,
                 versionTitle: source.versionTitle,
                 hebrewVersionTitle: source.heVersionTitle,
                 license: source.license,
@@ -140,7 +140,7 @@ final class MaktabahTorahInspectorSession {
             return TorahTextSegment(
                 canonicalRef: reference,
                 hebrewRef: preferredMode == .translation ? nil : segment.heRef,
-                text: text,
+                text: text.readerPlainText,
                 ordinal: index + 1
             )
         }

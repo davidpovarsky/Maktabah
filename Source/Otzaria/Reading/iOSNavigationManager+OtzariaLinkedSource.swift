@@ -31,7 +31,8 @@ extension iOSNavigationManager {
                 for: locator,
                 in: LibraryDataManager.shared
             ) else { return }
-            openBookInNewTab(book, initialContentId: nil)
+            let initialContentId = LegacyIdentityRegistry.shared.id(for: locator)
+            openBookInNewTab(book, initialContentId: initialContentId)
         }
     }
 
