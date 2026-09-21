@@ -21,7 +21,6 @@ class iOSCustomIbarotTextView: UITextView {
     }
 
     private func setupView() {
-        textLayoutManager?.delegate = self
         isEditable = false
         isSelectable = true
         textAlignment = .natural
@@ -186,7 +185,7 @@ class iOSCustomIbarotTextView: UITextView {
     }
 
     private func displayedRange(forStoredRange range: NSRange) -> NSRange {
-        currentRenderResult?.remapDisplayedRange(range) ?? range
+        currentRenderResult?.displayedRange(forSourceRange: range) ?? range
     }
 }
 
@@ -335,6 +334,7 @@ fileprivate struct DecorationSignature: Hashable {
     let nearDistance: Int
     let clickableAnnotations: Bool
     let highlightTerms: [String]?
+    let selectedSegmentRange: NSRange?
 }
 
 /// SwiftUI Wrapper for iOSCustomIbarotTextView
@@ -500,7 +500,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
             searchMode: searchMode.map { String(describing: $0) } ?? "",
             nearDistance: nearDistance,
             clickableAnnotations: state.clickableAnnotation,
-            highlightTerms: viewModel.highlightTerms
+            highlightTerms: viewModel.highlightTerms,
+            selectedSegmentRange: selectedSegmentRange
         )
         let decorationsChanged = context.coordinator.decorationSignature != decorationSignature
         var searchRanges = context.coordinator.searchRanges
@@ -512,7 +513,9 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 annotations,
                 to: decorated,
                 showHarakat: state.showHarakat,
-                replacementEvents: renderResult.replacementEvents
+                replacementEvents: renderResult.replacementEvents,
+                harakatEvents: renderResult.harakatEvents,
+                cleaningEvents: renderResult.cleaningEvents
             )
             if state.clickableAnnotation {
                 decorated.enumerateAttribute(
@@ -534,11 +537,25 @@ struct iOSIbarotTextView: UIViewRepresentable {
             )
             shouldTriggerSearchAnimation = hasSearch
                 && (context.coordinator.processedSearchText != searchText || contentIdChanged)
+
+            if let selectedSegmentRange {
+                let displayedSelected = renderResult.displayedRange(forSourceRange: selectedSegmentRange)
+                if displayedSelected.location != NSNotFound,
+                   displayedSelected.location >= 0,
+                   displayedSelected.length > 0,
+                   displayedSelected.location + displayedSelected.length <= decorated.length {
+                    decorated.addAttribute(
+                        .backgroundColor,
+                        value: UIColor.systemBlue.withAlphaComponent(0.14),
+                        range: displayedSelected
+                    )
+                }
+            }
+
             context.coordinator.processedSearchText = searchText.isEmpty ? nil : searchText
             context.coordinator.decorationSignature = decorationSignature
             context.coordinator.decoratedAttributedString = decorated
             context.coordinator.searchRanges = searchRanges
-            context.coordinator.cancelPendingHighlight()
             context.coordinator.replaceTextStorage(
                 in: textView,
                 with: decorated,
@@ -550,14 +567,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
             textView.layoutIfNeeded()
         }
 
-        let displayedSelectedRange = selectedSegmentRange.map {
-            renderResult.remapDisplayedRange(ReaderTextIndexMapper.displayedRange(
-                forSourceRange: $0,
-                sourceText: text,
-                showHarakat: state.showHarakat
-            ))
+        let displayedSelectedRange: NSRange? = selectedSegmentRange.flatMap { range in
+            let mapped = renderResult.displayedRange(forSourceRange: range)
+            return (mapped.location != NSNotFound && mapped.length > 0) ? mapped : nil
         }
-        context.coordinator.updateSegmentHighlight(in: textView, displayedRange: displayedSelectedRange)
 
         if contentIdChanged {
         textView.selectedRange = NSRange(location: 0, length: 0)
@@ -665,7 +678,6 @@ struct iOSIbarotTextView: UIViewRepresentable {
         var decoratedAttributedString: NSAttributedString?
         fileprivate var renderSignature: RenderSignature?
         fileprivate var decorationSignature: DecorationSignature?
-        var selectedDisplayedRange: NSRange?
         var searchRanges: [NSRange] = []
         var restoredContentId: Int?
         var lastHighlightedContentId: Int?
@@ -702,78 +714,6 @@ struct iOSIbarotTextView: UIViewRepresentable {
             if preserveOffset { textView.setContentOffset(priorOffset, animated: false) }
         }
 
-        private var pendingDisplayedRange: NSRange?
-        private var isHighlightUpdateScheduled = false
-        private var isUpdatingSegmentHighlight = false
-
-        func cancelPendingHighlight() {
-            pendingDisplayedRange = nil
-            selectedDisplayedRange = nil
-        }
-
-        func updateSegmentHighlight(in textView: UITextView, displayedRange: NSRange?) {
-            pendingDisplayedRange = displayedRange
-            guard !isHighlightUpdateScheduled else { return }
-            isHighlightUpdateScheduled = true
-
-            DispatchQueue.main.async { [weak self, weak textView] in
-                guard let self, let textView else { return }
-                self.isHighlightUpdateScheduled = false
-                self.applySegmentHighlight(in: textView, targetRange: self.pendingDisplayedRange)
-            }
-        }
-
-        private func applySegmentHighlight(in textView: UITextView, targetRange: NSRange?) {
-            guard !isUpdatingSegmentHighlight else { return }
-            guard selectedDisplayedRange != targetRange else { return }
-            isUpdatingSegmentHighlight = true
-            defer { isUpdatingSegmentHighlight = false }
-
-            let storage = textView.textStorage
-            let storageLength = storage.length
-            guard let decorated = decoratedAttributedString else {
-                selectedDisplayedRange = nil
-                return
-            }
-            let decoratedLength = decorated.length
-
-            func isValidRange(_ r: NSRange) -> Bool {
-                r.location != NSNotFound
-                    && r.location >= 0
-                    && r.length > 0
-                    && r.length <= storageLength
-                    && r.location <= storageLength - r.length
-                    && r.length <= decoratedLength
-                    && r.location <= decoratedLength - r.length
-            }
-
-            storage.beginEditing()
-
-            // 1. Restore previous highlight range using pristine attributes from decoratedAttributedString
-            if let oldRange = selectedDisplayedRange, isValidRange(oldRange) {
-                storage.removeAttribute(.backgroundColor, range: oldRange)
-                decorated.enumerateAttribute(.backgroundColor, in: oldRange) { value, attrRange, _ in
-                    if let value, isValidRange(attrRange) {
-                        storage.addAttribute(.backgroundColor, value: value, range: attrRange)
-                    }
-                }
-            }
-
-            // 2. Apply new highlight
-            if let newRange = targetRange, isValidRange(newRange) {
-                storage.addAttribute(
-                    .backgroundColor,
-                    value: UIColor.systemBlue.withAlphaComponent(0.14),
-                    range: newRange
-                )
-                selectedDisplayedRange = newRange
-            } else {
-                selectedDisplayedRange = nil
-            }
-
-            storage.endEditing()
-        }
-
         @objc func handleTextTap(_ recognizer: UITapGestureRecognizer) {
             guard recognizer.state == .ended,
                   recognizer.numberOfTouches == 1,
@@ -795,15 +735,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 }
 
                 let sourceIndex = self.currentRenderResult?
-                    .remapSourceRange(NSRange(location: characterIndex, length: 0))
-                    .location ?? characterIndex
-                self.parent.onTapTextCharacterIndex?(
-                    ReaderTextIndexMapper.sourceCharacterIndex(
-                        forDisplayedIndex: sourceIndex,
-                        sourceText: self.parent.text,
-                        showHarakat: TextViewState.shared.showHarakat
-                    )
-                )
+                    .sourceCharacterIndex(forDisplayedIndex: characterIndex) ?? characterIndex
+                self.parent.onTapTextCharacterIndex?(sourceIndex)
             }
         }
 
@@ -838,19 +771,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         private func characterIndex(in textView: UITextView, at point: CGPoint) -> Int? {
             guard textView.bounds.contains(point) else { return nil }
-
-            let layoutManager = textView.layoutManager
-            let textContainer = textView.textContainer
-            var location = point
-            location.x -= textView.textContainerInset.left
-            location.y -= textView.textContainerInset.top
-
-            let glyphIndex = layoutManager.glyphIndex(for: location, in: textContainer)
-            guard glyphIndex < layoutManager.numberOfGlyphs else { return nil }
-
-            let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            guard characterIndex >= 0, characterIndex <= textView.textStorage.length else { return nil }
-            return characterIndex
+            guard let closestPosition = textView.closestPosition(to: point) else { return nil }
+            let index = textView.offset(from: textView.beginningOfDocument, to: closestPosition)
+            guard index >= 0, index <= textView.textStorage.length else { return nil }
+            return index
         }
 
         // MARK: - Pull-to-Navigate Scroll Detection

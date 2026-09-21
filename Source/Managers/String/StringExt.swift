@@ -44,7 +44,27 @@ extension String {
         String(unicodeScalars.filter { !$0.isArabicHarakat })
     }
 
-    func cleanedTextWithRanges(mapping ranges: [NSRange]? = nil) -> (result: CleanedTextResult, footnoteRanges: [NSRange], mappedRanges: [NSRange]?) {
+    func removingHarakatWithEvents() -> (text: String, events: [TextDeltaEvent]) {
+        var result = ""
+        result.reserveCapacity(self.count)
+        var events: [TextDeltaEvent] = []
+        var oldOffset = 0
+        var currentDelta = 0
+
+        for scalar in unicodeScalars {
+            let scalarLength = scalar.utf16.count
+            if scalar.isArabicHarakat {
+                currentDelta -= scalarLength
+                events.append(TextDeltaEvent(oldOffset: oldOffset + scalarLength, delta: currentDelta))
+            } else {
+                result.unicodeScalars.append(scalar)
+            }
+            oldOffset += scalarLength
+        }
+        return (result, events)
+    }
+
+    func cleanedTextWithRanges(mapping ranges: [NSRange]? = nil) -> (result: CleanedTextResult, footnoteRanges: [NSRange], mappedRanges: [NSRange]?, cleaningEvents: [TextDeltaEvent]) {
         var finalString = ""
         finalString.reserveCapacity(self.count)
 
@@ -56,11 +76,7 @@ extension String {
         let replL = replacementL
         let replR = replacementR
 
-        struct DeltaEvent {
-            let oldOffset: Int
-            let delta: Int
-        }
-        var events: [DeltaEvent] = []
+        var events: [TextDeltaEvent] = []
         var oldUtf16Offset = 0
         var currentDelta = 0
 
@@ -82,7 +98,7 @@ extension String {
 
                 let nextCharLen = String(self[nextIndex]).utf16.count
                 if nextDelta != currentDelta {
-                    events.append(DeltaEvent(oldOffset: oldUtf16Offset + charLen + nextCharLen, delta: nextDelta))
+                    events.append(TextDeltaEvent(oldOffset: oldUtf16Offset + charLen + nextCharLen, delta: nextDelta))
                     currentDelta = nextDelta
                 }
                 oldUtf16Offset += charLen + nextCharLen
@@ -112,7 +128,7 @@ extension String {
             }
 
             if nextDelta != currentDelta {
-                events.append(DeltaEvent(oldOffset: oldUtf16Offset + charLen, delta: nextDelta))
+                events.append(TextDeltaEvent(oldOffset: oldUtf16Offset + charLen, delta: nextDelta))
                 currentDelta = nextDelta
             }
             oldUtf16Offset += charLen
@@ -124,28 +140,8 @@ extension String {
 
         var mapped: [NSRange]? = nil
         if let ranges = ranges {
-            mapped = ranges.map { range -> NSRange in
-                var locDelta = 0
-                for event in events {
-                    if range.location >= event.oldOffset {
-                        locDelta = event.delta
-                    } else {
-                        break
-                    }
-                }
-                let newLocation = range.location + locDelta
-
-                var endDelta = 0
-                for event in events {
-                    if range.location + range.length >= event.oldOffset {
-                        endDelta = event.delta
-                    } else {
-                        break
-                    }
-                }
-                let newLength = range.length + (endDelta - locDelta)
-
-                return NSRange(location: max(0, newLocation), length: max(0, newLength))
+            mapped = ranges.map { range in
+                TextDeltaEvent.mapRange(range, with: events)
             }
         }
 
@@ -155,7 +151,8 @@ extension String {
                 coloredRanges: coloredRanges
             ),
             footnoteRanges: structural.footnote,
-            mappedRanges: mapped
+            mappedRanges: mapped,
+            cleaningEvents: events
         )
     }
 

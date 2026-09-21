@@ -249,14 +249,83 @@ struct LibraryReaderCapabilities: Codable, Hashable, Sendable {
     var supportsTranslation: Bool { availableModes.contains(.translation) }
 }
 
+public struct TextDeltaEvent: Codable, Hashable, Sendable {
+    public let oldOffset: Int
+    public let delta: Int
+
+    public init(oldOffset: Int, delta: Int) {
+        self.oldOffset = oldOffset
+        self.delta = delta
+    }
+
+    public static func mapRange(_ range: NSRange, with events: [TextDeltaEvent]) -> NSRange {
+        guard !events.isEmpty else { return range }
+        var locDelta = 0
+        for event in events {
+            if range.location >= event.oldOffset {
+                locDelta = event.delta
+            } else {
+                break
+            }
+        }
+        let newLocation = range.location + locDelta
+
+        var endDelta = 0
+        let rangeEnd = range.location + range.length
+        for event in events {
+            if rangeEnd >= event.oldOffset {
+                endDelta = event.delta
+            } else {
+                break
+            }
+        }
+        let newEnd = rangeEnd + endDelta
+        let newLength = max(0, newEnd - newLocation)
+        return NSRange(location: max(0, newLocation), length: newLength)
+    }
+
+    public static func reverseMapOffset(_ displayedOffset: Int, with events: [TextDeltaEvent]) -> Int {
+        var currentDelta = 0
+        for event in events {
+            let newPoint = event.oldOffset + event.delta
+            if displayedOffset < newPoint {
+                let oldPoint = event.oldOffset + currentDelta
+                if displayedOffset >= oldPoint {
+                    return max(0, event.oldOffset - 1)
+                }
+                break
+            }
+            currentDelta = event.delta
+        }
+        return max(0, displayedOffset - currentDelta)
+    }
+}
+
 struct LibraryRenderedSegment: Codable, Hashable, Identifiable, Sendable {
     let rangeLocation: Int
     let rangeLength: Int
+    let visualRangeLocation: Int
+    let visualRangeLength: Int
     let segment: LibraryTextSegment
 
     var id: String { segment.id }
     var range: NSRange { NSRange(location: rangeLocation, length: rangeLength) }
+    var visualRange: NSRange { NSRange(location: visualRangeLocation, length: visualRangeLength) }
     var locator: TextLocator { segment.locator }
+
+    init(
+        rangeLocation: Int,
+        rangeLength: Int,
+        visualRangeLocation: Int? = nil,
+        visualRangeLength: Int? = nil,
+        segment: LibraryTextSegment
+    ) {
+        self.rangeLocation = rangeLocation
+        self.rangeLength = rangeLength
+        self.visualRangeLocation = visualRangeLocation ?? rangeLocation
+        self.visualRangeLength = visualRangeLength ?? rangeLength
+        self.segment = segment
+    }
 
     func contains(characterIndex: Int) -> Bool {
         characterIndex >= rangeLocation && characterIndex < rangeLocation + rangeLength
@@ -316,10 +385,34 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
             guard !block.isEmpty else { continue }
             if !output.isEmpty { output += "\n\n" }
             let location = (output as NSString).length
-            output += block
+            let fullLength = (block as NSString).length
+            let blockNSString = block as NSString
+            var leadTrim = 0
+            while leadTrim < fullLength {
+                let unichar = blockNSString.character(at: leadTrim)
+                if unichar == 0x202A || unichar == 0x202B || unichar == 0x202C {
+                    leadTrim += 1
+                } else {
+                    break
+                }
+            }
+            var trailTrim = 0
+            while (fullLength - trailTrim - 1) >= leadTrim {
+                let unichar = blockNSString.character(at: fullLength - trailTrim - 1)
+                if unichar == 0x202A || unichar == 0x202B || unichar == 0x202C {
+                    trailTrim += 1
+                } else {
+                    break
+                }
+            }
+            let visualLocation = location + leadTrim
+            let visualLength = max(0, fullLength - leadTrim - trailTrim)
+
             mappings.append(LibraryRenderedSegment(
                 rangeLocation: location,
-                rangeLength: (block as NSString).length,
+                rangeLength: fullLength,
+                visualRangeLocation: visualLocation,
+                visualRangeLength: visualLength,
                 segment: segment
             ))
         }

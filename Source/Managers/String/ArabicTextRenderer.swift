@@ -17,6 +17,36 @@ struct ArabicRenderResult {
     let attributedString: NSAttributedString
     let replacementEvents: [HonorificReplacementEvent]
     let footnoteRanges: [NSRange]
+    let harakatEvents: [TextDeltaEvent]
+    let cleaningEvents: [TextDeltaEvent]
+
+    init(
+        sourceText: String,
+        attributedString: NSAttributedString,
+        replacementEvents: [HonorificReplacementEvent],
+        footnoteRanges: [NSRange],
+        harakatEvents: [TextDeltaEvent] = [],
+        cleaningEvents: [TextDeltaEvent] = []
+    ) {
+        self.sourceText = sourceText
+        self.attributedString = attributedString
+        self.replacementEvents = replacementEvents
+        self.footnoteRanges = footnoteRanges
+        self.harakatEvents = harakatEvents
+        self.cleaningEvents = cleaningEvents
+    }
+
+    func displayedRange(forSourceRange range: NSRange) -> NSRange {
+        let afterHarakat = TextDeltaEvent.mapRange(range, with: harakatEvents)
+        let afterCleaning = TextDeltaEvent.mapRange(afterHarakat, with: cleaningEvents)
+        return remapDisplayedRange(afterCleaning)
+    }
+
+    func sourceCharacterIndex(forDisplayedIndex displayedIndex: Int) -> Int {
+        let afterHonorific = sourceOffset(forDisplayedOffset: displayedIndex, affinity: .leading)
+        let afterCleaning = TextDeltaEvent.reverseMapOffset(afterHonorific, with: cleaningEvents)
+        return TextDeltaEvent.reverseMapOffset(afterCleaning, with: harakatEvents)
+    }
 
     func remapDisplayedRange(_ range: NSRange) -> NSRange {
         guard !replacementEvents.isEmpty else { return range }
@@ -27,10 +57,8 @@ struct ArabicRenderResult {
     }
 
     func remapSourceRange(_ range: NSRange) -> NSRange {
-        guard !replacementEvents.isEmpty else { return range }
-
-        let start = sourceOffset(forDisplayedOffset: range.location, affinity: .leading)
-        let end = sourceOffset(forDisplayedOffset: range.location + range.length, affinity: .trailing)
+        let start = sourceCharacterIndex(forDisplayedIndex: range.location)
+        let end = sourceCharacterIndex(forDisplayedIndex: range.location + range.length)
         return NSRange(location: start, length: max(0, end - start))
     }
 
@@ -122,17 +150,20 @@ class ArabicTextRenderer {
             processed = cached
         } else {
             let textWithArabicDigits = text.convertToArabicDigits(isMultilingual: isMultiLanguage)
-            let processedText = showHarakat ? textWithArabicDigits : textWithArabicDigits.removingHarakat()
+            let (harakatText, harakatEvents) = showHarakat
+                ? (textWithArabicDigits, [TextDeltaEvent]())
+                : textWithArabicDigits.removingHarakatWithEvents()
 
             // Strip <span data-type="title"> tags for imported books and collect header ranges
             let (cleanedText, importedHeaderRanges) = isImported
-                ? processedText.stripSpanTagsWithRanges()
-                : (processedText, [NSRange]())
+                ? harakatText.stripSpanTagsWithRanges()
+                : (harakatText, [NSRange]())
 
             let cleanedResultAndMappedRanges = cleanedText.cleanedTextWithRanges(mapping: importedHeaderRanges)
             let cleanedResult = cleanedResultAndMappedRanges.result
             let footnoteRanges = cleanedResultAndMappedRanges.footnoteRanges
             let mappedImportedHeaderRanges = cleanedResultAndMappedRanges.mappedRanges ?? []
+            let cleaningEvents = cleanedResultAndMappedRanges.cleaningEvents
             let replacementResult = cleanedResult.text.replacingHonorificPhrasesIfSupported()
 
             let remappedColoredRanges = cleanedResult.coloredRanges.map {
@@ -146,13 +177,15 @@ class ArabicTextRenderer {
             }
 
             processed = ProcessedArabicContent(
-                sourceText: cleanedResult.text,
+                sourceText: text,
                 displayText: replacementResult.text,
                 coloredRanges: remappedColoredRanges + replacementResult.replacementDisplayRanges,
                 footnoteRanges: remappedFootnoteRanges,
                 replacementEvents: replacementResult.events,
                 importedHeaderRanges: remappedImportedHeaderRanges,
-                ligatureRanges: replacementResult.replacementDisplayRanges
+                ligatureRanges: replacementResult.replacementDisplayRanges,
+                harakatEvents: harakatEvents,
+                cleaningEvents: cleaningEvents
             )
 
             if let bookId, let contentId {
@@ -170,7 +203,9 @@ class ArabicTextRenderer {
             sourceText: processed.sourceText,
             attributedString: attributedString,
             replacementEvents: processed.replacementEvents,
-            footnoteRanges: processed.footnoteRanges
+            footnoteRanges: processed.footnoteRanges,
+            harakatEvents: processed.harakatEvents,
+            cleaningEvents: processed.cleaningEvents
         )
     }
 
@@ -178,7 +213,9 @@ class ArabicTextRenderer {
         _ annotations: [Annotation],
         to textStorage: NSMutableAttributedString,
         showHarakat: Bool,
-        replacementEvents: [HonorificReplacementEvent] = []
+        replacementEvents: [HonorificReplacementEvent] = [],
+        harakatEvents: [TextDeltaEvent] = [],
+        cleaningEvents: [TextDeltaEvent] = []
     ) {
         textStorage.beginEditing()
         defer { textStorage.endEditing() }
@@ -187,12 +224,14 @@ class ArabicTextRenderer {
             sourceText: textStorage.string,
             attributedString: NSAttributedString(string: textStorage.string),
             replacementEvents: replacementEvents,
-            footnoteRanges: []
+            footnoteRanges: [],
+            harakatEvents: harakatEvents,
+            cleaningEvents: cleaningEvents
         )
 
         for ann in annotations {
             let sourceRange = showHarakat ? ann.rangeDiacritics : ann.range
-            let range = renderResult.remapDisplayedRange(sourceRange)
+            let range = renderResult.displayedRange(forSourceRange: sourceRange)
             guard range.location + range.length <= textStorage.length else { continue }
 
             applyAnnotation(ann, at: range, to: textStorage)

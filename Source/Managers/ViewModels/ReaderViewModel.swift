@@ -691,8 +691,8 @@ class ReaderViewModel: ViewModelBase {
     }
 
     var selectedSegmentRange: NSRange? {
-        if let range = backendRenderModel?.renderedSegment(for: selectedSegmentLocator)?.range {
-            return range
+        if let visualRange = backendRenderModel?.renderedSegment(for: selectedSegmentLocator)?.visualRange {
+            return visualRange
         }
         return otzariaSelectedLineAnchor?.range
     }
