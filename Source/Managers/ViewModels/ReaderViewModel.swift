@@ -212,7 +212,22 @@ class ReaderViewModel: ViewModelBase {
     /// the current section doesn't match any item.
     var currentNavigationIndex: Int? {
         guard let sectionLocator = backendSection?.locator else { return nil }
-        return navigationItems.firstIndex { $0.locator == sectionLocator }
+        if let exact = navigationItems.firstIndex(where: { $0.locator == sectionLocator }) {
+            return exact
+        }
+        if case .canonicalRef(let sectionRef) = sectionLocator.position {
+            if let match = navigationItems.firstIndex(where: { item in
+                if case .canonicalRef(let itemRef) = item.locator.position {
+                    return itemRef == sectionRef ||
+                           sectionRef.hasPrefix(itemRef) ||
+                           itemRef.hasPrefix(sectionRef)
+                }
+                return false
+            }) {
+                return match
+            }
+        }
+        return nil
     }
 
     /// Navigate to a specific position in the ``navigationItems`` list (used by the bottom-bar slider).
@@ -274,6 +289,9 @@ class ReaderViewModel: ViewModelBase {
     }
 
     func loadTOC(book: BooksData) {
+        tocViewModel.onStructureChanged = { [weak self] items in
+            self?.navigationItems = items
+        }
         tocViewModel.loadTOC(book: book)
     }
 

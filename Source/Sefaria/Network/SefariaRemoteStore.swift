@@ -2,7 +2,7 @@ import Foundation
 
 actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     LibraryNavigationProviding, LibrarySearchProviding, LibraryMetadataProviding,
-    LibraryRelationshipsProviding {
+    LibraryRelationshipsProviding, LibraryWorkMetadataProviding {
     private let configuration: SefariaNetworkConfiguration
     private let client: SefariaHTTPClient
     private let cache: SefariaDiskCache
@@ -69,7 +69,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return TextLocator(backend: .sefaria, workKey: work, position: .canonicalRef(ref))
     }
 
-    func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
+    func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
         let indexURL = try configuration.apiURL(
             pathPrefix: "/api/v2/raw/index/",
             pathComponent: work.locator.workKey
@@ -82,20 +82,17 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         async let shapeRequest = client.get([SefariaShapeDTO].self, url: shapeURL)
         let index = try await indexRequest
         let shapes = try? await shapeRequest
-        if let shapes, !shapes.isEmpty {
-            return SefariaNavigationParser.nodes(
-                shapes: shapes,
-                schema: index.schema,
-                alternateStructures: index.alternateStructures,
-                indexTitle: index.title
-            )
-        }
-        return SefariaNavigationParser.nodes(
+        return SefariaNavigationParser.structures(
+            shapes: shapes,
             schema: index.schema,
             alternateStructures: index.alternateStructures,
-            indexTitle: index.title,
-            baseRef: index.title
+            indexTitle: index.title
         )
+    }
+
+    func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
+        let structs = try await navigationStructures(for: work)
+        return structs.first?.nodes ?? []
     }
 
     func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
@@ -116,6 +113,15 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         }
         collectLeaves(toc)
         return items
+    }
+
+    func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata? {
+        let indexURL = try configuration.apiURL(
+            pathPrefix: "/api/v2/raw/index/",
+            pathComponent: workKey
+        )
+        let index = try await client.get(SefariaIndexDTO.self, url: indexURL)
+        return index.asWorkMetadata(workKey: workKey)
     }
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         let terms = Self.extractSearchTerms(from: request.query)

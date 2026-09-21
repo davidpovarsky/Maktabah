@@ -20,6 +20,7 @@ struct BackendCapabilities: OptionSet, Codable, Sendable {
     static let versions = Self(rawValue: 1 << 6)
     static let offlineLibrary = Self(rawValue: 1 << 7)
     static let offlineSearch = Self(rawValue: 1 << 8)
+    static let workMetadata = Self(rawValue: 1 << 9)
 }
 
 enum TextPosition: Codable, Hashable, Sendable {
@@ -118,6 +119,54 @@ struct LibraryTOCNode: Codable, Hashable, Identifiable, Sendable {
     let title: String
     let children: [LibraryTOCNode]
     var id: String { locator.persistenceKey }
+}
+
+struct LibraryNavigationStructure: Codable, Hashable, Identifiable, Sendable {
+    let id: String
+    let title: String
+    let nodes: [LibraryTOCNode]
+}
+
+struct LibraryMetadataField: Codable, Hashable, Identifiable, Sendable {
+    let key: String
+    let label: String
+    let value: String
+
+    var id: String { key }
+
+    init(key: String, label: String, value: String) {
+        self.key = key
+        self.label = label
+        self.value = value
+    }
+}
+
+struct LibraryWorkMetadata: Codable, Hashable, Sendable {
+    let workKey: String
+    let title: String
+    let heTitle: String?
+    let authors: [String]
+    let description: String?
+    let categories: [String]
+    let factualFields: [LibraryMetadataField]
+
+    init(
+        workKey: String,
+        title: String,
+        heTitle: String? = nil,
+        authors: [String] = [],
+        description: String? = nil,
+        categories: [String] = [],
+        factualFields: [LibraryMetadataField] = []
+    ) {
+        self.workKey = workKey
+        self.title = title
+        self.heTitle = heTitle
+        self.authors = authors
+        self.description = description
+        self.categories = categories
+        self.factualFields = factualFields
+    }
 }
 
 struct TextVersionMetadata: Codable, Hashable, Sendable {

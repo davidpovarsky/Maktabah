@@ -14,10 +14,16 @@ protocol LibraryNavigationProviding: Sendable {
     /// Returns a flat ordered list of navigable units within a work (e.g.,
     /// chapters, folios, reading-units).  Used by the bottom-bar navigator.
     func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem]
+    func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure]
 }
 
 extension LibraryNavigationProviding {
     func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] { [] }
+    func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
+        let nodes = try await tableOfContents(for: work)
+        guard !nodes.isEmpty else { return [] }
+        return [LibraryNavigationStructure(id: "default", title: "תוכן העניינים", nodes: nodes)]
+    }
 }
 
 protocol LibrarySearchProviding: Sendable {
@@ -31,6 +37,10 @@ protocol LibraryAuthorsProviding: Sendable {
 protocol LibraryMetadataProviding: Sendable {
     func versions(for workKey: String) async throws -> [TextVersionMetadata]
     func related(to locator: TextLocator) async throws -> [TextLocator]
+}
+
+protocol LibraryWorkMetadataProviding: Sendable {
+    func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata?
 }
 
 protocol LibraryRelationshipsProviding: Sendable {
@@ -58,12 +68,45 @@ struct LibraryBackendRegistration: Sendable {
     let search: (any LibrarySearchProviding)?
     let authors: (any LibraryAuthorsProviding)?
     let metadata: (any LibraryMetadataProviding)?
+    let workMetadata: (any LibraryWorkMetadataProviding)?
     let relationships: (any LibraryRelationshipsProviding)?
     let offline: (any OfflineLibraryProviding)?
     /// Existing Maktabah/Otzaria models remain the most compatible presentation path.
     /// Backends that return only neutral models opt into the narrow compatibility bridge.
     let usesNativeMaktabahDataPath: Bool
     let invalidateTransientState: @Sendable () async -> Void
+
+    init(
+        id: BackendID,
+        sourceDescription: String,
+        capabilities: BackendCapabilities,
+        catalog: (any LibraryCatalogProviding)? = nil,
+        text: (any LibraryTextProviding)? = nil,
+        navigation: (any LibraryNavigationProviding)? = nil,
+        search: (any LibrarySearchProviding)? = nil,
+        authors: (any LibraryAuthorsProviding)? = nil,
+        metadata: (any LibraryMetadataProviding)? = nil,
+        workMetadata: (any LibraryWorkMetadataProviding)? = nil,
+        relationships: (any LibraryRelationshipsProviding)? = nil,
+        offline: (any OfflineLibraryProviding)? = nil,
+        usesNativeMaktabahDataPath: Bool,
+        invalidateTransientState: @escaping @Sendable () async -> Void
+    ) {
+        self.id = id
+        self.sourceDescription = sourceDescription
+        self.capabilities = capabilities
+        self.catalog = catalog
+        self.text = text
+        self.navigation = navigation
+        self.search = search
+        self.authors = authors
+        self.metadata = metadata
+        self.workMetadata = workMetadata
+        self.relationships = relationships
+        self.offline = offline
+        self.usesNativeMaktabahDataPath = usesNativeMaktabahDataPath
+        self.invalidateTransientState = invalidateTransientState
+    }
 }
 
 struct OfflinePackage: Codable, Hashable, Identifiable, Sendable {

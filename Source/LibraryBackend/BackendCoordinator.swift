@@ -131,11 +131,26 @@ final class BackendCoordinator: ObservableObject {
         return try await perform { try await provider.tableOfContents(for: work) }
     }
 
+    func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
+        guard work.locator.backend == activeBackendID,
+              let provider = registrations[activeBackendID]?.navigation else {
+            throw LibraryBackendError.capabilityUnavailable
+        }
+        return try await perform { try await provider.navigationStructures(for: work) }
+    }
+
     func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
         guard let provider = registrations[activeBackendID]?.navigation else {
             return []
         }
         return try await perform { try await provider.navigationItems(for: work) }
+    }
+
+    func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata? {
+        guard let provider = registrations[activeBackendID]?.workMetadata else {
+            return nil
+        }
+        return try await perform { try await provider.workMetadata(for: workKey) }
     }
 
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {

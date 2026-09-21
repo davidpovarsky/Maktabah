@@ -24,12 +24,15 @@ class BookTOCViewModel {
 
     // State
     var tocNodes: [TOCNode] = []
+    var navigationStructures: [LibraryNavigationStructure] = []
+    var selectedStructureID: String = ""
     private(set) var tocRanges: [TOCRange] = []
     private var nodeIdCache: [Int: TOCNode] = [:]
 
     // Callbacks
     var onTOCLoadingStateChanged: ((Bool) -> Void)?
     var onTOCLoaded: (([TOCNode]) -> Void)?
+    var onStructureChanged: (([LibraryNavigationItem]) -> Void)?
 
     private var loadingTask: Task<Void, Never>?
 
@@ -46,7 +49,11 @@ class BookTOCViewModel {
                 do {
                     let work = LibraryWork(locator: locator, title: locator.workKey,
                         heTitle: book.book, categories: [], description: nil)
-                    let nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
+                    let structures = try await BackendCoordinator.shared.navigationStructures(for: work)
+                    navigationStructures = structures
+                    let activeStructure = structures.first
+                    selectedStructureID = activeStructure?.id ?? ""
+                    let nodes = activeStructure?.nodes ?? (try await BackendCoordinator.shared.tableOfContents(for: work))
                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
@@ -59,6 +66,10 @@ class BookTOCViewModel {
                     let allNodes = flattenNodes(tree)
                     tocRanges = allNodes.map { TOCRange(start: $0.id, end: $0.id, node: $0) }
                     nodeIdCache = Self.buildNodeIdCache(allNodes)
+                    let items = flatNavigationItems(for: selectedStructureID)
+                    if !items.isEmpty {
+                        onStructureChanged?(items)
+                    }
                     onTOCLoaded?(tree)
                 } catch { print("Failed to load backend TOC: \(error)") }
                 onTOCLoadingStateChanged?(false)
@@ -117,6 +128,46 @@ class BookTOCViewModel {
                 print("Failed to load TOC: \(error)")
             }
         }
+    }
+
+    func selectStructure(id: String) {
+        guard selectedStructureID != id,
+              let structure = navigationStructures.first(where: { $0.id == id }) else { return }
+        selectedStructureID = id
+        func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
+            let id = LegacyIdentityRegistry.shared.id(for: item.locator)
+            let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
+            node.backendLocator = item.locator
+            node.children = item.children.map { convert($0, level: level + 1) }
+            return node
+        }
+        let tree = structure.nodes.map { convert($0, level: 1) }
+        tocNodes = tree
+        let allNodes = flattenNodes(tree)
+        tocRanges = allNodes.map { TOCRange(start: $0.id, end: $0.id, node: $0) }
+        nodeIdCache = Self.buildNodeIdCache(allNodes)
+        let items = flatNavigationItems(for: id)
+        onStructureChanged?(items)
+    }
+
+    func flatNavigationItems(for structureID: String) -> [LibraryNavigationItem] {
+        guard let structure = navigationStructures.first(where: { $0.id == structureID }) else { return [] }
+        var items: [LibraryNavigationItem] = []
+        func collectLeaves(_ nodes: [LibraryTOCNode]) {
+            for node in nodes {
+                if node.children.isEmpty {
+                    items.append(LibraryNavigationItem(
+                        locator: node.locator,
+                        title: node.title,
+                        index: items.count
+                    ))
+                } else {
+                    collectLeaves(node.children)
+                }
+            }
+        }
+        collectLeaves(structure.nodes)
+        return items
     }
 
     private func flattenNodes(_ roots: [TOCNode]) -> [TOCNode] {

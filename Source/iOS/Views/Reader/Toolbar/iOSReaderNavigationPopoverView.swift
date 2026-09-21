@@ -56,9 +56,10 @@ struct iOSReaderNavigationPopoverView: View {
 
                 // Section slider — maps to the complete backend navigation model
                 if viewModel.navigationItems.count > 1 {
+                    let safeIdx = min(max(0, Int(localNav)), viewModel.navigationItems.count - 1)
                     VStack(spacing: 8) {
                         if isSlidingNav {
-                            Text(viewModel.navigationItems[Int(localNav)].title)
+                            Text(viewModel.navigationItems[safeIdx].title)
                                 .font(.headline)
                                 .foregroundColor(.accentColor)
                                 .lineLimit(1)
@@ -71,7 +72,8 @@ struct iOSReaderNavigationPopoverView: View {
                         ) { editing in
                             isSlidingNav = editing
                             if !editing {
-                                viewModel.navigateToNavigationItem(at: Int(localNav))
+                                let commitIdx = min(max(0, Int(localNav)), viewModel.navigationItems.count - 1)
+                                viewModel.navigateToNavigationItem(at: commitIdx)
                             }
                         }
 
@@ -222,6 +224,17 @@ struct iOSReaderNavigationPopoverView: View {
         .onChange(of: viewModel.backendSection?.locator) { _, _ in
             if !isSlidingNav, let idx = viewModel.currentNavigationIndex {
                 localNav = Double(idx)
+            }
+        }
+        .onChange(of: viewModel.navigationItems) { _, newItems in
+            if !newItems.isEmpty {
+                if let idx = viewModel.currentNavigationIndex {
+                    localNav = Double(min(max(0, idx), newItems.count - 1))
+                } else {
+                    localNav = min(localNav, Double(newItems.count - 1))
+                }
+            } else {
+                localNav = 0
             }
         }
     }
