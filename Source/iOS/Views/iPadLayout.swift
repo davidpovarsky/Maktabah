@@ -40,6 +40,7 @@ struct iPadLayout: View {
             }
         }
         .themeTint()
+        .background(Color.appBackground.ignoresSafeArea())
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
         }
@@ -103,9 +104,14 @@ struct iPadLayout: View {
                 placement: .toolbar,
                 prompt: String(localized: "Search Library")
             )
+            .toolbarBackground(Color.appBackground, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .background(Color.appBackground)
         } detail: {
             iOSReaderTabView(columnVisibility: $columnVisibility)
+                .background(Color.appBackground)
         }
+        .background(Color.appBackground.ignoresSafeArea())
     }
 
     @ViewBuilder
@@ -118,19 +124,26 @@ struct iPadLayout: View {
                     .navigationTitle(iOSTab.search.title)
                     .toolbarGeneral(showSettings: $showSettings)
             }
+            .toolbarBackground(Color.appBackground, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .background(Color.appBackground)
         }
+        .background(Color.appBackground.ignoresSafeArea())
     }
 
     @ViewBuilder
     private var searchSidebarContent: some View {
         NavigationStack {
-            SearchFilterUIKitView(
-                viewModel: bManager.searchViewModel,
-                displayedCategories: bManager.searchViewModel.displayedCategories,
-                updateTrigger: bManager.searchViewModel.updateTrigger,
-                onTap: {}
-            )
-            .themeTint()
+            ZStack {
+                Color.appBackground.ignoresSafeArea()
+                SearchFilterUIKitView(
+                    viewModel: bManager.searchViewModel,
+                    displayedCategories: bManager.searchViewModel.displayedCategories,
+                    updateTrigger: bManager.searchViewModel.updateTrigger,
+                    onTap: {}
+                )
+                .themeTint()
+            }
             .navigationTitle("סינון לפי ספרים")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(
@@ -138,6 +151,8 @@ struct iPadLayout: View {
                 placement: .navigationBarDrawer(displayMode: .always),
                 prompt: "חיפוש ספר"
             )
+            .toolbarBackground(Color.appBackground, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if !bManager.unifiedSearchSession.selectedBookIds.isEmpty {
@@ -148,6 +163,7 @@ struct iPadLayout: View {
                 }
             }
         }
+        .background(Color.appBackground)
     }
 
     @ViewBuilder
@@ -164,6 +180,9 @@ struct iPadLayout: View {
             placement: .toolbar,
             prompt: String(localized: "Search Narrators")
         )
+        .toolbarBackground(Color.appBackground, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .background(Color.appBackground)
     }
 
     @ViewBuilder
@@ -183,6 +202,9 @@ struct iPadLayout: View {
                 Text(scope.title).tag(scope)
             }
         }
+        .toolbarBackground(Color.appBackground, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .background(Color.appBackground)
     }
 
     @ViewBuilder
@@ -217,5 +239,8 @@ struct iPadLayout: View {
             placement: .toolbar,
             prompt: String(localized: "Search History & Favorites")
         )
+        .toolbarBackground(Color.appBackground, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .background(Color.appBackground)
     }
 }

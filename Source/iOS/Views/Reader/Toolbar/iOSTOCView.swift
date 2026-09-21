@@ -48,57 +48,66 @@ struct iOSTOCView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                if tocViewModel.navigationStructures.count > 1 {
-                    Picker("Structure", selection: Binding(
-                        get: { tocViewModel.selectedStructureID },
-                        set: { newID in
-                            tocViewModel.selectStructure(id: newID)
-                        }
-                    )) {
-                        ForEach(tocViewModel.navigationStructures) { structItem in
-                            Text(structItem.title).tag(structItem.id)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                }
+            ZStack {
+                Color.appBackground.ignoresSafeArea()
 
-                ScrollViewReader { proxy in
-                    ThemeList(isGrouped: true) {
-                        ForEach(identifiableNodes) { item in
-                            TOCNodeRow(
-                                item: item,
-                                selectedId: selectedId,
-                                onSelect: onSelect,
-                                expandedPaths: $expandedPaths
-                            )
-                        }
-                    }
-                    .searchable(text: $searchText, prompt: "Search Contents")
-                    .navigationTitle("Table of Contents")
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button("Close") {
-                                dismiss()
+                VStack(spacing: 0) {
+                    if tocViewModel.navigationStructures.count > 1 {
+                        Picker("Structure", selection: Binding(
+                            get: { tocViewModel.selectedStructureID },
+                            set: { newID in
+                                tocViewModel.selectStructure(id: newID)
+                            }
+                        )) {
+                            ForEach(tocViewModel.navigationStructures) { structItem in
+                                Text(structItem.title).tag(structItem.id)
                             }
                         }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .background(Color.appBackground)
                     }
-                    .onAppear {
-                        computeExpandedPaths()
-                        if let selectedId = selectedId {
-                            Task {
-                                try await Task.sleep(for: .seconds(0.5))
-                                withAnimation {
-                                    proxy.scrollTo(selectedId, anchor: .center)
+
+                    ScrollViewReader { proxy in
+                        ThemeList(isGrouped: true) {
+                            ForEach(identifiableNodes) { item in
+                                TOCNodeRow(
+                                    item: item,
+                                    selectedId: selectedId,
+                                    onSelect: onSelect,
+                                    expandedPaths: $expandedPaths
+                                )
+                            }
+                        }
+                        .searchable(text: $searchText, prompt: "Search Contents")
+                        .navigationTitle("Table of Contents")
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                Button("Close") {
+                                    dismiss()
+                                }
+                            }
+                        }
+                        .onAppear {
+                            computeExpandedPaths()
+                            if let selectedId = selectedId {
+                                Task {
+                                    try await Task.sleep(for: .seconds(0.5))
+                                    withAnimation {
+                                        proxy.scrollTo(selectedId, anchor: .center)
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            .toolbarBackground(Color.appBackground, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
+        .presentationBackground(Color.appBackground)
+        .themeTint()
     }
 }
 
