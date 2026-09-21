@@ -202,7 +202,6 @@ struct UnifiedSearchAdvancedOptionsButton: View {
     var body: some View {
         Button(action: {
             isPresented = true
-            session.showsAdvancedOptions = true
         }) {
             Image(systemName: "slider.horizontal.3")
                 .foregroundStyle(.tint)
@@ -220,18 +219,11 @@ struct UnifiedSearchAdvancedOptionsButton: View {
                 .presentationCompactAdaptation(.popover)
                 .presentationBackground(Color.appBackground)
         }
-        .onChange(of: isPresented) { _, newValue in
-            session.showsAdvancedOptions = newValue
-        }
-        .onChange(of: session.showsAdvancedOptions) { _, newValue in
-            if isPresented != newValue {
-                isPresented = newValue
-            }
-        }
     }
 }
 
 struct UnifiedSearchInputControls: View {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Bindable var session: UnifiedSearchSessionController
     @State private var showingHelp: Bool = false
     @FocusState private var isDistanceFocused: Bool
@@ -283,7 +275,9 @@ struct UnifiedSearchInputControls: View {
                         .transition(.move(edge: .trailing).combined(with: .opacity))
                 }
 
-                UnifiedSearchAdvancedOptionsButton(session: session)
+                if horizontalSizeClass == .compact {
+                    UnifiedSearchAdvancedOptionsButton(session: session)
+                }
             }
 
             Spacer()
