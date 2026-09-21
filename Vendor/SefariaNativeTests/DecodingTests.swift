@@ -33,7 +33,28 @@ func runDecodingTests() async throws {
 
     let directTitleTopics = try decoder.decode([SefariaRelationshipTopicDTO].self, from: Data(#"[{"topic":"shabbat","title":{"en":"Shabbat","he":"שבת"}}]"#.utf8))
     let mappedDirectTopics = SefariaRelationshipMapper.topics(directTitleTopics)
-    try expect(mappedDirectTopics.count == 1 && mappedDirectTopics[0].titleHe == "שבת" && mappedDirectTopics[0].titleEn == "Shabbat", "direct topic title mapping")
+    try expect(mappedDirectTopics.count == 1 && mappedDirectTopics[0].titleHe == "שבת" && mappedDirectTopics[0].titleEn == "שבת", "direct topic title mapping")
+
+    let indexData = Data(#"""
+    {
+      "title": "Mishneh Torah, Kings and Wars",
+      "heTitle": "משנה תורה, הלכות מלכים ומלחמות",
+      "categories": ["Halakhah", "Mishneh Torah", "Sefer Shoftim"],
+      "authors": ["Maimonides"],
+      "enDesc": "Laws of kings and their wars",
+      "heDesc": "הלכות מלכים ומלחמותיהם",
+      "compDate": "c.1180 CE",
+      "compPlace": "Egypt",
+      "era": "RI"
+    }
+    """#.utf8)
+    let indexDTO = try decoder.decode(SefariaIndexDTO.self, from: indexData)
+    let workMeta = indexDTO.asWorkMetadata(workKey: "Mishneh Torah, Kings and Wars")
+    try expect(workMeta.authors == ["Maimonides"], "work metadata authors")
+    try expect(workMeta.heTitle == "משנה תורה, הלכות מלכים ומלחמות", "work metadata Hebrew title")
+    try expect(workMeta.description == "הלכות מלכים ומלחמותיהם", "work metadata Hebrew description")
+    try expect(workMeta.factualFields.contains { $0.label == "זמן חיבור" && $0.value == "c.1180 CE" }, "work metadata compDate")
+
     do {
         _ = try decoder.decode(SefariaTextsV3DTO.self, from: Data("{bad".utf8))
         throw TestFailure.failed("malformed response was accepted")

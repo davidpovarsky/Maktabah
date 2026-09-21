@@ -18,10 +18,17 @@ The profile is built from the pinned Otzaria v23 database and pinned lexical
 release `v0.3.0`, and retains canonical book, line, category, TOC, link, author,
 topic, version, and related IDs. Its database and both Tantivy indexes are
 published by the manual `Build miniTest10 Data Profile` workflow in the immutable
-`otzaria-miniTest10-v3` release. All three manifests carry `profileID=miniTest10`
-and `profileVersion=3`; production metadata without those optional fields is
-interpreted as `production/1` for backward compatibility. Historical v1/v2 remain
+`otzaria-miniTest10-v4` release. All three manifests carry `profileID=miniTest10`
+and `profileVersion=4`; production metadata without those optional fields is
+interpreted as `production/1` for backward compatibility. Historical v1/v2/v3 remain
 untouched.
+
+In addition to core lexical and reading data, this profile and the underlying Maktabah architecture support:
+- Clean multi-structure navigation separating primary structures (chapters/folios) and alternate structures (`alt_structs` such as Parashot and Aliyot).
+- Dynamic native `Picker` in the Table of Contents for switching navigation structures without flattening or synthetic concatenation.
+- Bidirectional bottom slider synchronization with the active navigation structure and bounds clamping.
+- Backend-neutral `LibraryWorkMetadata` contract providing localized Hebrew metadata, real author/category/factual fields, and system font rendering for Otzaria and Sefaria books.
+- Native iPad top-level `TabView` matching iPhone tabs, preserving contextual `NavigationSplitView` columns inside Library and Search tabs.
 
 Non-production data is isolated below `Application Support/Otzaria/Profiles/<profile>/` and matching cache namespaces. The shared `lexical.db` remains corpus-independent and is validated by its existing version, size, and SHA-256 contract.
 

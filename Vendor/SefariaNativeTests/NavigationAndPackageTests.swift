@@ -63,12 +63,22 @@ func runNavigationAndPackageTests() throws {
         .object(["nodeType": .string("ArrayMapNode"), "refs": .array([.string("Genesis 6:9-11:32")]),
             "key": .string("Noach")])
     ])])]
-    let withAlternatives = SefariaNavigationParser.nodes(schema: ordinary,
+    let structures = SefariaNavigationParser.structures(schema: ordinary,
         alternateStructures: alternatives, indexTitle: "Genesis", baseRef: "Genesis")
-    try expect(withAlternatives.contains { $0.locator.position == .canonicalRef("Genesis 1:1-6:8") },
+    try expect(structures.count == 2, "structures separated into primary and alternate")
+    try expect(structures[0].id == "primary", "primary structure ID")
+    try expect(structures[1].id == "Parasha", "alternate structure ID")
+    let altNodes = structures[1].nodes
+    try expect(altNodes.contains { $0.locator.position == .canonicalRef("Genesis 1:1-6:8") },
         "alternate wholeRef navigation")
-    try expect(withAlternatives.contains { $0.locator.position == .canonicalRef("Genesis 6:9-11:32") },
+    try expect(altNodes.contains { $0.locator.position == .canonicalRef("Genesis 6:9-11:32") },
         "alternate refs navigation")
+    let primaryOnly = SefariaNavigationParser.nodes(schema: ordinary,
+        alternateStructures: alternatives, indexTitle: "Genesis", baseRef: "Genesis")
+    try expect(!primaryOnly.contains { $0.locator.position == .canonicalRef("Genesis 1:1-6:8") },
+        "nodes does not contaminate primary structure with alternate structures")
+    let hebrewChapters = SefariaNavigationParser.nodes(schema: ordinary, indexTitle: "Genesis", baseRef: "Genesis", prefersHebrew: true)
+    try expect(hebrewChapters.map(\.title) == ["פרק א׳", "פרק ב׳"], "Hebrew chapter titles")
 
     let offsetSchema: SefariaJSONValue = .object([
         "lengths": .array([.number(2)]), "addressTypes": .array([.string("Integer")]),
