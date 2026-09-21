@@ -108,16 +108,6 @@ struct iOSReaderView: View {
         .ignoresSafeArea(edges: .vertical)
         .legacyVisibleToolbarBackgrounds()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .blur(radius: showingBookInfo ? 8 : 0)
-        .overlay {
-            if showingBookInfo {
-                Color.black.opacity(isDarkMode ? 0.3 : 0.15)
-                    .ignoresSafeArea()
-                    .allowsHitTesting(false)
-                    .transition(.opacity)
-            }
-        }
-        .animation(.easeInOut(duration: 0.2), value: showingBookInfo)
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .navigationTitle(bManager.openTabs.count > 1 ? "" : book.book)
         .navigationBarTitleDisplayMode(.inline)
@@ -248,22 +238,6 @@ struct iOSReaderView: View {
                 )
                 .presentationDetents([.medium, .large])
             }
-        }
-        .inspector(isPresented: Binding(
-            get: { viewModel.readerInspectorVisible },
-            set: { newValue in
-                if newValue {
-                    viewModel.readerInspectorVisible = true
-                } else {
-                    viewModel.closeReaderInspector()
-                }
-            }
-        )) {
-            OtzariaReaderSourcesInspectorHost(
-                viewModel: viewModel,
-                navigationManager: bManager
-            )
-            .inspectorColumnWidth(min: 320, ideal: 400, max: 500)
         }
     }
 }

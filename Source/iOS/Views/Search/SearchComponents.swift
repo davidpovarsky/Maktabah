@@ -179,6 +179,7 @@ struct SearchHistoryOverlay: View {
                 SearchHelpView()
                     .frame(width: 300, height: 450)
                     .presentationCompactAdaptation(.popover)
+                    .presentationBackground(Color.appBackground)
             }
         }
         .animation(
@@ -217,6 +218,7 @@ struct UnifiedSearchAdvancedOptionsButton: View {
                     idealHeight: 520
                 )
                 .presentationCompactAdaptation(.popover)
+                .presentationBackground(Color.appBackground)
         }
         .onChange(of: isPresented) { _, newValue in
             session.showsAdvancedOptions = newValue
@@ -295,6 +297,7 @@ struct UnifiedSearchInputControls: View {
                 SearchHelpView(isSefaria: session.isSefaria)
                     .frame(width: 320, height: 460)
                     .presentationCompactAdaptation(.popover)
+                    .presentationBackground(Color.appBackground)
             }
         }
         .animation(

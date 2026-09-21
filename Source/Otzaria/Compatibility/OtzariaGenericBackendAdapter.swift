@@ -3,7 +3,8 @@ import Foundation
 /// Generic facade over the existing, lock-protected Otzaria bridge. It intentionally
 /// leaves Maktabah's established Otzaria presentation path in place.
 struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProviding,
-    LibrarySearchProviding, LibraryNavigationProviding, LibraryAuthorsProviding, @unchecked Sendable {
+    LibrarySearchProviding, LibraryNavigationProviding, LibraryAuthorsProviding,
+    LibraryWorkMetadataProviding, @unchecked Sendable {
 
     func authors() async throws -> [LibraryAuthor] {
         #if os(iOS)
@@ -232,6 +233,26 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
             ? max(request.offset + results.count + 1, request.offset + hits.count + 1)
             : request.offset + results.count
         return .init(hits: hits, total: total, nextOffset: nextOffset)
+        #else
+        throw LibraryBackendError.capabilityUnavailable
+        #endif
+    }
+
+    func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata? {
+        #if os(iOS)
+        let bookID: Int?
+        if workKey.hasPrefix("book:"),
+           let parsed = Int(workKey.dropFirst("book:".count)) {
+            bookID = parsed
+        } else if let parsed = Int(workKey) {
+            bookID = parsed
+        } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: workKey, expectedBookId: 0) {
+            bookID = resolved.id
+        } else {
+            bookID = nil
+        }
+        guard let bookID else { return nil }
+        return OtzariaMaktabahBridge.shared.workMetadata(for: bookID)
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif

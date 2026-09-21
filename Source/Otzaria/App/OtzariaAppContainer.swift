@@ -488,6 +488,83 @@ final class OtzariaMaktabahBridge {
         }
     }
 
+    func workMetadata(for bookId: Int) -> LibraryWorkMetadata? {
+        lock.lock()
+        defer { lock.unlock() }
+        guard let db = try? requireDatabase() else { return nil }
+        guard let schema = try? OtzariaBookSchemaCompatibility.projection(in: db) else { return nil }
+
+        return try? db.fetch(query: """
+            SELECT b.title,
+                   COALESCE(b.heShortDesc, ''),
+                   COALESCE(\(schema.filePath), ''),
+                   COALESCE(s.name, ''),
+                   COALESCE(\(schema.fileType), ''),
+                   COALESCE(\(schema.volume), ''),
+                   COALESCE(\(schema.pages), ''),
+                   COALESCE(b.totalLines, 0),
+                   COALESCE((
+                       SELECT group_concat(a.name, ', ')
+                       FROM book_author ba
+                       JOIN author a ON a.id = ba.authorId
+                       WHERE ba.bookId = b.id
+                   ), ''),
+                   COALESCE((
+                       SELECT c.title
+                       FROM category c
+                       WHERE c.id = b.categoryId
+                   ), '')
+            FROM book b
+            LEFT JOIN source s ON s.id = b.sourceId
+            WHERE b.id = ?
+            LIMIT 1
+        """, parameters: [bookId], mapping: { row -> LibraryWorkMetadata in
+            let title = row.string(at: 0) ?? ""
+            let shortDescription = row.string(at: 1) ?? ""
+            let sourceName = row.string(at: 3) ?? ""
+            let fileType = row.string(at: 4) ?? ""
+            let volume = row.string(at: 5) ?? ""
+            let pages = row.string(at: 6) ?? ""
+            let totalLines = row.int(at: 7)
+            let authorsString = row.string(at: 8) ?? ""
+            let categoryName = row.string(at: 9) ?? ""
+
+            let authorsList = authorsString.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
+            var fields: [LibraryMetadataField] = []
+            if !authorsString.isEmpty {
+                fields.append(LibraryMetadataField(key: "authors", label: "מחבר", value: authorsString))
+            }
+            if !categoryName.isEmpty {
+                fields.append(LibraryMetadataField(key: "category", label: "קטגוריה", value: categoryName))
+            }
+            if !sourceName.isEmpty {
+                fields.append(LibraryMetadataField(key: "source", label: "מקור", value: sourceName))
+            }
+            if !volume.isEmpty {
+                fields.append(LibraryMetadataField(key: "volume", label: "כרך", value: volume))
+            }
+            if !pages.isEmpty {
+                fields.append(LibraryMetadataField(key: "pages", label: "עמודים", value: pages))
+            }
+            if totalLines > 0 {
+                fields.append(LibraryMetadataField(key: "lines", label: "שורות", value: "\(totalLines)"))
+            }
+            if !fileType.isEmpty {
+                fields.append(LibraryMetadataField(key: "fileType", label: "סוג קובץ", value: fileType))
+            }
+
+            return LibraryWorkMetadata(
+                workKey: "book:\(bookId)",
+                title: title,
+                heTitle: title,
+                authors: authorsList,
+                description: shortDescription.isEmpty ? nil : shortDescription,
+                categories: categoryName.isEmpty ? [] : [categoryName],
+                factualFields: fields
+            )
+        }).first
+    }
+
     func getContent(bookId: Int, contentId: Int) -> BookContent? {
         getReadingUnit(
             bookId: bookId,

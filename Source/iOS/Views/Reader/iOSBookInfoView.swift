@@ -25,12 +25,27 @@ enum BookInfoSegment: Int, CaseIterable, Identifiable {
 
 struct iOSBookInfoView: View {
     let book: BooksData
+    @State private var workMetadata: LibraryWorkMetadata?
+    @State private var unifiedSegment: UnifiedBookInfoSegment = .details
     @State private var selectedSegment: BookInfoSegment = .bithoqoh
     @State private var fullBookInfo: BooksData?
     @State private var author: Muallif?
     @Environment(\.dismiss) private var dismiss
 
+    private var isUnified: Bool {
+        workMetadata != nil || book.backendLocator != nil
+    }
+
     private var currentText: String {
+        if isUnified {
+            guard let meta = workMetadata else { return "" }
+            switch unifiedSegment {
+            case .details:
+                return meta.factualFields.map { "\($0.label): \($0.value)" }.joined(separator: "\n\n")
+            case .description:
+                return meta.description ?? ""
+            }
+        }
         switch selectedSegment {
         case .bithoqoh:
             return fullBookInfo?.bithoqoh ?? book.bithoqoh
@@ -52,29 +67,43 @@ struct iOSBookInfoView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                Picker("Book Info", selection: $selectedSegment) {
-                    ForEach(BookInfoSegment.allCases) { segment in
-                        Text(segment.title).tag(segment)
+                if isUnified {
+                    Picker("Book Info", selection: $unifiedSegment) {
+                        ForEach(UnifiedBookInfoSegment.allCases) { segment in
+                            Text(segment.title).tag(segment)
+                        }
                     }
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                } else {
+                    Picker("Book Info", selection: $selectedSegment) {
+                        ForEach(BookInfoSegment.allCases) { segment in
+                            Text(segment.title).tag(segment)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
                 }
-                .pickerStyle(.segmented)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
 
                 if currentText.isEmpty {
                     VStack {
                         Spacer()
-                        Text(.noMetadata)
+                        Text(isUnified ? "אין מידע נוסף" : .noMetadata)
                             .foregroundColor(.secondary)
                             .font(.subheadline)
                         Spacer()
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    ReadOnlyTextView(text: currentText)
+                    ReadOnlyTextView(
+                        text: currentText,
+                        font: isUnified ? .systemFont(ofSize: 17) : .arabicFont(size: 22)
+                    )
                 }
             }
-            .navigationTitle("Book Info")
+            .navigationTitle(isUnified ? (workMetadata?.heTitle ?? workMetadata?.title ?? book.book) : "Book Info")
             .background(Color.appBackground)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -91,22 +120,35 @@ struct iOSBookInfoView: View {
     }
 
     private func loadBookInfo() {
-        let dm = LibraryDataManager.shared
-        author = DatabaseManager.shared.getAuthor(book.muallif)
-        fullBookInfo = dm.getBook([book.id]).first ?? book
+        let workKey = book.backendLocator?.workKey ?? "book:\(book.id)"
+        Task {
+            if let meta = try? await BackendCoordinator.shared.workMetadata(for: workKey) {
+                await MainActor.run {
+                    self.workMetadata = meta
+                }
+                return
+            }
+            if book.backendLocator == nil {
+                await MainActor.run {
+                    let dm = LibraryDataManager.shared
+                    author = DatabaseManager.shared.getAuthor(book.muallif)
+                    fullBookInfo = dm.getBook([book.id]).first ?? book
 
-        dm.loadBookInfo(book.id) {
-            if let updatedBook = dm.getBook([book.id]).first {
-                fullBookInfo = updatedBook
+                    dm.loadBookInfo(book.id) {
+                        if let updatedBook = dm.getBook([book.id]).first {
+                            fullBookInfo = updatedBook
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-/// Lightweight read-only text view using TextKit for zero-lag Arabic text rendering
+/// Lightweight read-only text view using TextKit for zero-lag text rendering
 private struct ReadOnlyTextView: UIViewRepresentable {
     let text: String
-    var font: UIFont = .arabicFont(size: 22)
+    var font: UIFont = .systemFont(ofSize: 17)
 
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
