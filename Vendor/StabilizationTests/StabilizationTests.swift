@@ -263,6 +263,145 @@ func testProviderNeutralWorkLocatorDerivation() {
     print("✓ Test 9: Provider-neutral work locator derivation passed")
 }
 
+// MARK: - Test 10: Rendered Segment Visual Range Excludes Bidi Controls
+
+func testRenderedSegmentVisualRangeExcludesBidiControls() {
+    let loc1 = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+    let seg1 = LibraryTextSegment(locator: loc1, heRef: "בראשית א:א", primaryText: "בְּרֵאשִׁית בָּרָא", translation: "In the beginning")
+    let loc2 = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:2"))
+    let seg2 = LibraryTextSegment(locator: loc2, heRef: "בראשית א:ב", primaryText: "וְהָאָרֶץ הָיְתָה תֹהוּ", translation: "And the earth was")
+
+    let section = LibraryTextSection(
+        locator: loc1,
+        displayRef: "Genesis 1",
+        heRef: "בראשית א",
+        segments: [seg1, seg2],
+        previous: nil,
+        next: nil,
+        versions: [TextVersionMetadata(title: "Primary", language: "he", actualLanguage: "he", sourceURL: nil, license: nil, notes: nil, isPrimary: true)],
+        links: [],
+        origin: .remote
+    )
+
+    let model = LibraryReaderRenderModel(section: section, preferredMode: .source)
+    require(model.renderedSegments.count == 2, "Model must have 2 rendered segments")
+
+    let first = model.renderedSegments[0]
+    // The block is wrapped in RTL bidi control: \u{202B} ... \u{202C}
+    // Total length = 1 (U+202B) + text length + 1 (U+202C)
+    require(first.rangeLength > first.visualRangeLength, "Full range must include bidi controls, visual range must exclude them")
+    require(first.visualRangeLocation == first.rangeLocation + 1, "visualRangeLocation must start after opening bidi control")
+    require(first.visualRangeLength == first.rangeLength - 2, "visualRangeLength must be 2 characters shorter than rangeLength")
+
+    // Hit testing contains check must include full range
+    require(first.contains(characterIndex: first.rangeLocation), "Hit testing must match first character of block")
+    require(first.contains(characterIndex: first.visualRangeLocation), "Hit testing must match visual content")
+    require(first.contains(characterIndex: first.rangeLocation + first.rangeLength - 1), "Hit testing must match closing control")
+    require(!first.contains(characterIndex: first.rangeLocation + first.rangeLength), "Hit testing must not match past segment")
+
+    print("✓ Test 10: Rendered segment visual range bidi exclusion passed")
+}
+
+// MARK: - Test 11: TextDeltaEvent Bidirectional Range Mapping
+
+func testTextDeltaEventRangeMapping() {
+    // Simulate events: at old offset 5, 2 characters removed (delta -2)
+    // at old offset 15, 3 characters inserted (delta +1)
+    let events = [
+        TextDeltaEvent(oldOffset: 5, delta: -2),
+        TextDeltaEvent(oldOffset: 15, delta: 1)
+    ]
+
+    // Range before any event: (location 1, length 3) -> unaffected
+    let r1 = NSRange(location: 1, length: 3)
+    let m1 = TextDeltaEvent.mapRange(r1, with: events)
+    require(m1.location == 1 && m1.length == 3, "Range before events must not shift")
+
+    // Range after first event: (location 6, length 4) -> shifted by -2
+    let r2 = NSRange(location: 6, length: 4)
+    let m2 = TextDeltaEvent.mapRange(r2, with: events)
+    require(m2.location == 4 && m2.length == 4, "Range after deletion must shift backwards")
+
+    // Range after second event: (location 16, length 4) -> shifted by +1
+    let r3 = NSRange(location: 16, length: 4)
+    let m3 = TextDeltaEvent.mapRange(r3, with: events)
+    require(m3.location == 17 && m3.length == 4, "Range after insertion must shift forward")
+
+    // Reverse mapping
+    let rev1 = TextDeltaEvent.reverseMapOffset(1, with: events)
+    require(rev1 == 1, "Reverse offset before event must match")
+
+    let rev2 = TextDeltaEvent.reverseMapOffset(4, with: events)
+    require(rev2 == 6, "Reverse offset after deletion must map back to original index")
+
+    let rev3 = TextDeltaEvent.reverseMapOffset(17, with: events)
+    require(rev3 == 16, "Reverse offset after insertion must map back to original index")
+
+    print("✓ Test 11: TextDeltaEvent bidirectional range mapping passed")
+}
+
+// MARK: - Test 12: Render Generation Identity and Stale Selection Rejection
+
+func testRenderGenerationIdentityAndSelectionInvalidation() {
+    let locGen1 = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+    let seg1 = LibraryTextSegment(locator: locGen1, heRef: "בראשית א:א", primaryText: "בְּרֵאשִׁית", translation: nil)
+    let section1 = LibraryTextSection(
+        locator: locGen1, displayRef: "Genesis 1", heRef: nil, segments: [seg1], previous: nil, next: nil,
+        versions: [TextVersionMetadata(title: "v1", language: "he", actualLanguage: "he", sourceURL: nil, license: nil, notes: nil, isPrimary: true)],
+        links: [],
+        origin: .remote
+    )
+    let model1 = LibraryReaderRenderModel(section: section1, preferredMode: .source)
+
+    let locGen2 = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 2:1"))
+    let seg2 = LibraryTextSegment(locator: locGen2, heRef: "בראשית ב:א", primaryText: "וַיְכֻלּוּ", translation: nil)
+    let section2 = LibraryTextSection(
+        locator: locGen2, displayRef: "Genesis 2", heRef: nil, segments: [seg2], previous: nil, next: nil,
+        versions: [TextVersionMetadata(title: "v1", language: "he", actualLanguage: "he", sourceURL: nil, license: nil, notes: nil, isPrimary: true)],
+        links: [],
+        origin: .remote
+    )
+    let model2 = LibraryReaderRenderModel(section: section2, preferredMode: .source)
+
+    // Model 2 queried with Model 1 locator must return nil (prevents cross-generation stale highlight)
+    require(model2.renderedSegment(for: locGen1) == nil, "Model 2 must reject locator from Model 1")
+    require(model2.renderedSegment(for: locGen2) != nil, "Model 2 must find its own segment")
+    require(model1.renderedSegment(for: locGen2) == nil, "Model 1 must reject locator from Model 2")
+
+    print("✓ Test 12: Render generation identity and selection rejection passed")
+}
+
+// MARK: - Test 13: Sefaria WorkKey Resolution From Canonical Reference
+
+func testSefariaWorkKeyResolutionFromCanonicalReference() {
+    let knownTitles = ["Genesis", "Exodus", "Rashi on Genesis", "Berakhot"]
+
+    let ref1 = "Genesis 1:1"
+    let work1 = SefariaRef.workKey(from: ref1, knownTitles: knownTitles)
+    require(work1 == "Genesis", "WorkKey for Genesis 1:1 must resolve to Genesis")
+
+    let ref2 = "Rashi on Genesis 1:1:1"
+    let work2 = SefariaRef.workKey(from: ref2, knownTitles: knownTitles)
+    require(work2 == "Rashi on Genesis", "WorkKey for commentary must resolve to longest matching title")
+
+    let ref3 = "Berakhot 2a:1"
+    let work3 = SefariaRef.workKey(from: ref3, knownTitles: knownTitles)
+    require(work3 == "Berakhot", "WorkKey for Talmud ref must resolve to Berakhot")
+
+    // Fallback regex pattern when catalog is cold
+    let pattern = #"\s+\d+.*$"#
+    if let match = ref1.range(of: pattern, options: .regularExpression) {
+        let fallback = String(ref1[..<match.lowerBound])
+        require(fallback == "Genesis", "Regex fallback must resolve Genesis")
+    }
+    if let match = ref3.range(of: pattern, options: .regularExpression) {
+        let fallback = String(ref3[..<match.lowerBound])
+        require(fallback == "Berakhot", "Regex fallback must resolve Berakhot")
+    }
+
+    print("✓ Test 13: Sefaria workKey resolution from canonical reference passed")
+}
+
 // MARK: - Main Execution
 
 @main
@@ -278,6 +417,10 @@ enum StabilizationTestMain {
         testLibraryReaderDestinationInvariants()
         testLibraryNavigationItemInvariants()
         testProviderNeutralWorkLocatorDerivation()
-        print("=== All 9 Stabilization Regression Tests Passed! ===")
+        testRenderedSegmentVisualRangeExcludesBidiControls()
+        testTextDeltaEventRangeMapping()
+        testRenderGenerationIdentityAndSelectionInvalidation()
+        testSefariaWorkKeyResolutionFromCanonicalReference()
+        print("=== All 13 Stabilization Regression Tests Passed! ===")
     }
 }
