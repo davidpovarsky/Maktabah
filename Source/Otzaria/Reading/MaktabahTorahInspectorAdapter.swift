@@ -222,7 +222,16 @@ final class MaktabahTorahInspectorSession {
         if let remembered = locatorsByReference["\(providerID):\(reference)"] { return remembered }
         switch BackendID(rawValue: providerID) {
         case .sefaria:
-            return TextLocator(backend: .sefaria, workKey: reference, position: .canonicalRef(reference))
+            let knownTitles = LibraryDataManager.shared.booksById.values.map(\.book)
+            let workKey: String
+            if let resolved = SefariaRef.workKey(from: reference, knownTitles: knownTitles) {
+                workKey = resolved
+            } else if let match = reference.range(of: #"\s+\d+.*$"#, options: .regularExpression) {
+                workKey = String(reference[..<match.lowerBound])
+            } else {
+                workKey = reference
+            }
+            return TextLocator(backend: .sefaria, workKey: workKey, position: .canonicalRef(reference))
         case .otzaria:
             let parts = reference.split(separator: ":", omittingEmptySubsequences: false)
             guard parts.count == 4, parts[0] == "otzaria", parts[1] == "v1",

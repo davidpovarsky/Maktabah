@@ -40,6 +40,14 @@ class iOSNavigationManager {
     var openTabs: [ReaderTab] = []
     var activeTabId: UUID?
 
+    var activeTab: ReaderTab? {
+        openTabs.first(where: { $0.id == activeTabId }) ?? openTabs.first
+    }
+
+    var activeReaderViewModel: ReaderViewModel? {
+        activeTab?.viewModel
+    }
+
     private var observerTokens: [NotificationToken] = []
 
     init() {

@@ -27,11 +27,23 @@ extension iOSNavigationManager {
                     ?? (try? OtzariaMaktabahBridge.shared.fetchBook(byId: bookID)) else { return }
             openBookInNewTab(book, initialContentId: lineIndex)
         case .sefaria:
+            var targetLocator = locator
+            if case .canonicalRef(let ref) = locator.position {
+                if locator.workKey == ref || locator.workKey.isEmpty {
+                    let knownTitles = LibraryDataManager.shared.booksById.values.map(\.book)
+                    if let resolvedWork = SefariaRef.workKey(from: ref, knownTitles: knownTitles) {
+                        targetLocator = TextLocator(backend: .sefaria, workKey: resolvedWork, position: .canonicalRef(ref))
+                    } else if let match = ref.range(of: #"\s+\d+.*$"#, options: .regularExpression) {
+                        let work = String(ref[..<match.lowerBound])
+                        targetLocator = TextLocator(backend: .sefaria, workKey: work, position: .canonicalRef(ref))
+                    }
+                }
+            }
             guard let book = MaktabahBackendAdapter.resolveBook(
-                for: locator,
+                for: targetLocator,
                 in: LibraryDataManager.shared
             ) else { return }
-            let initialContentId = LegacyIdentityRegistry.shared.id(for: locator)
+            let initialContentId = LegacyIdentityRegistry.shared.id(for: targetLocator)
             openBookInNewTab(book, initialContentId: initialContentId)
         }
     }

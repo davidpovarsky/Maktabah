@@ -80,24 +80,6 @@ struct iOSReaderTabView: View {
                 }
             }
         }
-        .inspector(isPresented: Binding(
-            get: { activeTab?.viewModel.readerInspectorVisible ?? false },
-            set: { newValue in
-                if newValue {
-                    activeTab?.viewModel.readerInspectorVisible = true
-                } else {
-                    activeTab?.viewModel.closeReaderInspector()
-                }
-            }
-        )) {
-            if let activeTab {
-                OtzariaReaderSourcesInspectorHost(
-                    viewModel: activeTab.viewModel,
-                    navigationManager: bManager
-                )
-                .inspectorColumnWidth(min: 320, ideal: 400, max: 500)
-            }
-        }
     }
 }
 

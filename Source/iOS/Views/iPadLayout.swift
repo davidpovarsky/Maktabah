@@ -112,6 +112,24 @@ struct iPadLayout: View {
                 .background(Color.appBackground)
         }
         .background(Color.appBackground.ignoresSafeArea())
+        .inspector(isPresented: Binding(
+            get: { bManager.activeReaderViewModel?.readerInspectorVisible ?? false },
+            set: { newValue in
+                if newValue {
+                    bManager.activeReaderViewModel?.readerInspectorVisible = true
+                } else {
+                    bManager.activeReaderViewModel?.closeReaderInspector()
+                }
+            }
+        )) {
+            if let activeReaderViewModel = bManager.activeReaderViewModel {
+                OtzariaReaderSourcesInspectorHost(
+                    viewModel: activeReaderViewModel,
+                    navigationManager: bManager
+                )
+                .inspectorColumnWidth(min: 320, ideal: 400, max: 500)
+            }
+        }
     }
 
     @ViewBuilder
