@@ -161,9 +161,8 @@ enum SefariaNavigationParser {
             return children.compactMap { value in
                 guard case .object(let child) = value else { return nil }
                 let key = string(child["key"]) ?? schemaTitle(child, language: "en") ?? indexTitle
-                let title = (prefersHebrew ? schemaTitle(child, language: "he") : nil)
+                let title = schemaTitle(child, language: "he")
                     ?? schemaTitle(child, language: "en")
-                    ?? schemaTitle(child, language: "he")
                     ?? key
                 let ref = nodeReference(child, baseRef: baseRef, key: key)
                 return LibraryTOCNode(
@@ -208,9 +207,8 @@ enum SefariaNavigationParser {
             return values.enumerated().map { offset, child in
                 if case .object(let object) = child,
                    let childRef = string(object["title"]) ?? string(object["book"]) ?? string(object["section"]) {
-                    let childTitle = (prefersHebrew ? string(object["heTitle"]) : nil)
+                    let childTitle = string(object["heTitle"])
                         ?? string(object["title"])
-                        ?? string(object["heTitle"])
                         ?? childRef
                     return LibraryTOCNode(
                         locator: locator(indexTitle: indexTitle, ref: childRef),
@@ -417,7 +415,7 @@ enum SefariaNavigationParser {
         if prefersHebrew {
             return "פרק \(hebrewNumeral(from: number))"
         } else {
-            return "Chapter \(number)"
+            return String(number)
         }
     }
 
