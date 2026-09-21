@@ -53,7 +53,12 @@ class BookTOCViewModel {
                     navigationStructures = structures
                     let activeStructure = structures.first
                     selectedStructureID = activeStructure?.id ?? ""
-                    let nodes = activeStructure?.nodes ?? (try await BackendCoordinator.shared.tableOfContents(for: work))
+                    let nodes: [LibraryTOCNode]
+                    if let activeNodes = activeStructure?.nodes {
+                        nodes = activeNodes
+                    } else {
+                        nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
+                    }
                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
