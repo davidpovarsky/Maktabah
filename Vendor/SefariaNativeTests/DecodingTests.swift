@@ -33,7 +33,7 @@ func runDecodingTests() async throws {
 
     let directTitleTopics = try decoder.decode([SefariaRelationshipTopicDTO].self, from: Data(#"[{"topic":"shabbat","title":{"en":"Shabbat","he":"שבת"}}]"#.utf8))
     let mappedDirectTopics = SefariaRelationshipMapper.topics(directTitleTopics)
-    try expect(mappedDirectTopics.count == 1 && mappedDirectTopics[0].titleHe == "שבת" && mappedDirectTopics[0].titleEn == "שבת", "direct topic title mapping")
+    try expect(mappedDirectTopics.count == 1 && mappedDirectTopics[0].titleHe == "שבת" && mappedDirectTopics[0].titleEn == "Shabbat", "direct topic title mapping")
 
     let indexData = Data(#"""
     {
