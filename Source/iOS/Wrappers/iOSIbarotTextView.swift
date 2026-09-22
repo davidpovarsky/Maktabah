@@ -616,6 +616,11 @@ struct iOSIbarotTextView: UIViewRepresentable {
             context.coordinator.processedAnnotationId = nil
         }
         
+        let displayedSelectedRange: NSRange? = selectedSegmentRange.flatMap { range in
+            let mapped = renderResult.displayedRange(forSourceRange: range)
+            return (mapped.location != NSNotFound && mapped.length > 0) ? mapped : nil
+        }
+
         let targetRangeToScroll: NSRange?
         let rangesToPopup: [NSRange]
 
