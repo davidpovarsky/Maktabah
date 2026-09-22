@@ -385,6 +385,7 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
             guard !block.isEmpty else { continue }
             if !output.isEmpty { output += "\n\n" }
             let location = (output as NSString).length
+            output += block
             let fullLength = (block as NSString).length
             let blockNSString = block as NSString
             var leadTrim = 0

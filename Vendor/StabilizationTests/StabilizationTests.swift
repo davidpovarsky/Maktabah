@@ -285,13 +285,26 @@ func testRenderedSegmentVisualRangeExcludesBidiControls() {
 
     let model = LibraryReaderRenderModel(section: section, preferredMode: .source)
     require(model.renderedSegments.count == 2, "Model must have 2 rendered segments")
+    require(!model.text.isEmpty, "Model text must not be empty (regression check: output += block)")
+    require(model.text.contains("בְּרֵאשִׁית בָּרָא"), "Model text must contain first segment text")
+    require(model.text.contains("וְהָאָרֶץ הָיְתָה תֹהוּ"), "Model text must contain second segment text")
 
     let first = model.renderedSegments[0]
+    let second = model.renderedSegments[1]
     // The block is wrapped in RTL bidi control: \u{202B} ... \u{202C}
     // Total length = 1 (U+202B) + text length + 1 (U+202C)
     require(first.rangeLength > first.visualRangeLength, "Full range must include bidi controls, visual range must exclude them")
     require(first.visualRangeLocation == first.rangeLocation + 1, "visualRangeLocation must start after opening bidi control")
     require(first.visualRangeLength == first.rangeLength - 2, "visualRangeLength must be 2 characters shorter than rangeLength")
+
+    // Assert second segment is placed after first segment plus separator
+    require(second.rangeLocation >= first.rangeLocation + first.rangeLength + 2, "Second segment must follow first segment and newline separator in model.text")
+
+    // Assert exact substring extraction from model.text matches visual range
+    let firstVisualText = (model.text as NSString).substring(with: first.visualRange)
+    require(firstVisualText == "בְּרֵאשִׁית בָּרָא", "Visual range extracted from model.text must be exact unadorned Hebrew text")
+    let secondVisualText = (model.text as NSString).substring(with: second.visualRange)
+    require(secondVisualText == "וְהָאָרֶץ הָיְתָה תֹהוּ", "Second visual range extracted from model.text must be exact unadorned Hebrew text")
 
     // Hit testing contains check must include full range
     require(first.contains(characterIndex: first.rangeLocation), "Hit testing must match first character of block")
@@ -299,7 +312,7 @@ func testRenderedSegmentVisualRangeExcludesBidiControls() {
     require(first.contains(characterIndex: first.rangeLocation + first.rangeLength - 1), "Hit testing must match closing control")
     require(!first.contains(characterIndex: first.rangeLocation + first.rangeLength), "Hit testing must not match past segment")
 
-    print("✓ Test 10: Rendered segment visual range bidi exclusion passed")
+    print("✓ Test 10: Rendered segment visual range bidi exclusion and model.text output passed")
 }
 
 // MARK: - Test 11: TextDeltaEvent Bidirectional Range Mapping
