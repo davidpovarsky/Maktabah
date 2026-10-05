@@ -1,5 +1,54 @@
 import Foundation
 
+struct OtzariaStorageCapacityFailure: Equatable, Sendable {
+    let requiredBytes: Int64?
+    let availableBytes: Int64?
+
+    var missingBytes: Int64? {
+        guard let requiredBytes, let availableBytes else { return nil }
+        return max(0, requiredBytes - availableBytes)
+    }
+}
+
+protocol OtzariaStorageCapacityError: Error {
+    var storageCapacityFailure: OtzariaStorageCapacityFailure? { get }
+}
+
+enum OtzariaStorageErrorNormalizer {
+    private static let cocoaErrorDomain = "NSCocoaErrorDomain"
+    private static let posixErrorDomain = "NSPOSIXErrorDomain"
+    private static let fileWriteOutOfSpaceCode = 640
+    private static let noSpaceLeftOnDeviceCode = 28
+
+    static func failure(
+        for error: Error,
+        fallbackAvailableBytes: Int64? = nil
+    ) -> OtzariaStorageCapacityFailure? {
+        if let capacityError = error as? OtzariaStorageCapacityError,
+           let failure = capacityError.storageCapacityFailure {
+            return OtzariaStorageCapacityFailure(
+                requiredBytes: failure.requiredBytes,
+                availableBytes: failure.availableBytes ?? fallbackAvailableBytes.map { max(0, $0) }
+            )
+        }
+
+        let nsError = error as NSError
+        if let underlying = nsError.userInfo[NSUnderlyingErrorKey] as? Error,
+           let failure = failure(for: underlying, fallbackAvailableBytes: fallbackAvailableBytes) {
+            return failure
+        }
+
+        let isOutOfSpace =
+            (nsError.domain == cocoaErrorDomain && nsError.code == fileWriteOutOfSpaceCode) ||
+            (nsError.domain == posixErrorDomain && nsError.code == noSpaceLeftOnDeviceCode)
+        guard isOutOfSpace else { return nil }
+        return OtzariaStorageCapacityFailure(
+            requiredBytes: nil,
+            availableBytes: fallbackAvailableBytes.map { max(0, $0) }
+        )
+    }
+}
+
 struct OtzariaLibraryRelease: Codable, Equatable, Sendable {
     static let repository = "Otzaria/SeforimLibrary"
     static let databaseAssetName = "seforim.db.zst"
@@ -211,5 +260,15 @@ enum OtzariaDatabaseBootstrapError: LocalizedError, Sendable {
 
     private static func format(_ bytes: Int64) -> String {
         ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
+    }
+}
+
+extension OtzariaDatabaseBootstrapError: OtzariaStorageCapacityError {
+    var storageCapacityFailure: OtzariaStorageCapacityFailure? {
+        guard case let .insufficientDiskSpace(required, available) = self else { return nil }
+        return OtzariaStorageCapacityFailure(
+            requiredBytes: max(0, required),
+            availableBytes: max(0, available)
+        )
     }
 }

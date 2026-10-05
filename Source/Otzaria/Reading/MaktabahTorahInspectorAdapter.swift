@@ -84,8 +84,12 @@ final class MaktabahTorahInspectorSession {
         let locator = try activeLocator(for: reference, providerID: providerID)
         switch locator.backend {
         case .sefaria:
-            let section = try await coordinator.section(at: locator)
-            return try map(section, requestedReference: reference)
+            do {
+                let section = try await coordinator.section(at: locator)
+                return try map(section, requestedReference: reference)
+            } catch LibraryBackendError.unavailableOffline {
+                throw TorahError.storage(String(localized: "This source is unavailable offline."))
+            }
         case .otzaria:
             return try mapOtzariaDocument(locator: locator, requestedReference: reference)
         }

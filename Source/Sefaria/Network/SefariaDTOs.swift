@@ -126,6 +126,8 @@ struct SefariaSearchResponseDTO: Decodable, Sendable {
             let ref: String
             let heRef: String?
             let title: String?
+            let indexTitle: String?
+            let path: String?
             let version: String?
             let lang: String?
             let content: String?
@@ -133,7 +135,8 @@ struct SefariaSearchResponseDTO: Decodable, Sendable {
             let naiveLemmatizer: String?
 
             enum CodingKeys: String, CodingKey {
-                case ref, heRef, title, version, lang, content, exact
+                case ref, heRef, title, path, version, lang, content, exact
+                case indexTitle = "index_title"
                 case naiveLemmatizer = "naive_lemmatizer"
             }
         }

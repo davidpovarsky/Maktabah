@@ -706,10 +706,11 @@ final class SearchViewModel: ViewModelBase {
         totalRowsInTable = 0
 
         let requestQuery = query
-        let backendFilters = selectedBookIds.compactMap { bookID in
-            let book = ldm.booksById[bookID]
-            return book?.backendSearchPath ?? book?.backendLocator?.workKey
-        }
+        let selectedBooks = selectedBookIds.compactMap { ldm.booksById[$0] }
+        let scopedBooks = selectedBooks.filter { $0.backendLocator != nil }
+        let scopeWorkKeys = scopedBooks.compactMap(\.backendLocator?.workKey)
+        let candidateFilters = scopedBooks.compactMap(\.backendSearchPath).filter { !$0.isEmpty }
+        let backendFilters = candidateFilters.count == scopedBooks.count ? candidateFilters : []
         let options = effectiveBackendSearchOptions()
         let task = Task { @MainActor [weak self] in
             guard let self else { return }
@@ -719,6 +720,7 @@ final class SearchViewModel: ViewModelBase {
                     offset: 0,
                     limit: backendPageSize,
                     filters: backendFilters,
+                    scopeWorkKeys: scopeWorkKeys,
                     options: options
                 ))
                 try Task.checkCancellation()
@@ -765,10 +767,11 @@ final class SearchViewModel: ViewModelBase {
         isLoadingMoreBackendResults = true
         let generation = backendSearchGeneration
         let requestQuery = query
-        let backendFilters = selectedBookIds.compactMap { bookID in
-            let book = ldm.booksById[bookID]
-            return book?.backendSearchPath ?? book?.backendLocator?.workKey
-        }
+        let selectedBooks = selectedBookIds.compactMap { ldm.booksById[$0] }
+        let scopedBooks = selectedBooks.filter { $0.backendLocator != nil }
+        let scopeWorkKeys = scopedBooks.compactMap(\.backendLocator?.workKey)
+        let candidateFilters = scopedBooks.compactMap(\.backendSearchPath).filter { !$0.isEmpty }
+        let backendFilters = candidateFilters.count == scopedBooks.count ? candidateFilters : []
         let options = effectiveBackendSearchOptions()
 
         loadMoreBackendWork?.cancel()
@@ -780,6 +783,7 @@ final class SearchViewModel: ViewModelBase {
                     offset: offset,
                     limit: backendPageSize,
                     filters: backendFilters,
+                    scopeWorkKeys: scopeWorkKeys,
                     options: options
                 ))
                 try Task.checkCancellation()

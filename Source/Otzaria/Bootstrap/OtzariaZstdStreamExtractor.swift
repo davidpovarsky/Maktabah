@@ -155,6 +155,9 @@ private extension OtzariaZstdStreamExtractor {
                             do {
                                 try outputHandle.write(contentsOf: outputData.prefix(produced))
                             } catch {
+                                if OtzariaStorageErrorNormalizer.failure(for: error) != nil {
+                                    throw error
+                                }
                                 throw OtzariaDatabaseBootstrapError.extractionWriteFailed(
                                     error.localizedDescription
                                 )
@@ -179,6 +182,9 @@ private extension OtzariaZstdStreamExtractor {
         } catch is CancellationError {
             throw OtzariaDatabaseBootstrapError.cancelled
         } catch {
+            if OtzariaStorageErrorNormalizer.failure(for: error) != nil {
+                throw error
+            }
             throw OtzariaDatabaseBootstrapError.extractionWriteFailed(error.localizedDescription)
         }
 

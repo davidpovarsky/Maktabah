@@ -198,6 +198,8 @@ class iOSNavigationManager {
             if activeTabId == tab.id {
                 tab.viewModel.saveCurrentState()
             }
+            tab.viewModel.closeReaderInspector()
+            tab.viewModel.clearSearchHighlight()
         }
         openTabs.removeAll()
         activeTabId = nil
@@ -208,6 +210,7 @@ class iOSNavigationManager {
     func selectTab(id: UUID) {
         if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId }) {
             currentTab.viewModel.saveCurrentState()
+            if activeId != id { currentTab.viewModel.closeReaderInspector() }
         }
         activeTabId = id
         if let nextTab = openTabs.first(where: { $0.id == id }) {
@@ -488,6 +491,7 @@ class iOSNavigationManager {
 
         if let activeId = activeTabId, let currentTab = openTabs.first(where: { $0.id == activeId }) {
             currentTab.viewModel.saveCurrentState()
+            if currentTab.book.id != book.id { currentTab.viewModel.closeReaderInspector() }
         }
 
         if let existingTabIndex = openTabs.firstIndex(where: { $0.book.id == book.id }) {

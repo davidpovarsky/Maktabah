@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+extension OtzariaSearchError: OtzariaStorageCapacityError {
+    var storageCapacityFailure: OtzariaStorageCapacityFailure? {
+        guard case let .insufficientStorage(required, available) = self else { return nil }
+        return OtzariaStorageCapacityFailure(
+            requiredBytes: Int64(clamping: required),
+            availableBytes: Int64(clamping: available)
+        )
+    }
+}
+
 // MARK: - Bootstrap
 
 @MainActor
@@ -245,9 +255,7 @@ final class iOSBootstrapManager {
     }
 
     private func presentBootstrapError(_ error: OtzariaDatabaseBootstrapError) {
-        if case let .insufficientDiskSpace(required, available) = error {
-            presentInsufficientSpace(required: required, available: available)
-        } else {
+        if !presentStorageErrorIfNeeded(error) {
             presentError(
                 title: String(localized: "bootstrap.error.install.title"),
                 detail: String(localized: "bootstrap.error.install.detail")
@@ -256,13 +264,7 @@ final class iOSBootstrapManager {
     }
 
     private func presentInstallError(_ error: Error) {
-        if let error = error as? OtzariaSearchArtifactError,
-           case let .insufficientStorage(required, available) = error {
-            presentInsufficientSpace(required: required, available: available)
-        } else if let error = error as? ZayitSearchDistributionError,
-                  case let .insufficientStorage(required, available) = error {
-            presentInsufficientSpace(required: required, available: available)
-        } else {
+        if !presentStorageErrorIfNeeded(error) {
             presentError(
                 title: String(localized: "bootstrap.error.install.title"),
                 detail: String(localized: "bootstrap.error.install.detail")
@@ -270,17 +272,62 @@ final class iOSBootstrapManager {
         }
     }
 
+    @discardableResult
+    private func presentStorageErrorIfNeeded(_ error: Error) -> Bool {
+        guard let failure = OtzariaStorageErrorNormalizer.failure(
+            for: error,
+            fallbackAvailableBytes: currentAvailableStorageBytes()
+        ) else { return false }
+        presentInsufficientSpace(failure)
+        return true
+    }
+
     private func presentInsufficientSpace(required: Int64, available: Int64) {
+        presentInsufficientSpace(OtzariaStorageCapacityFailure(
+            requiredBytes: max(0, required),
+            availableBytes: max(0, available)
+        ))
+    }
+
+    private func presentInsufficientSpace(_ failure: OtzariaStorageCapacityFailure) {
         let formatter = ByteCountFormatter()
         formatter.countStyle = .file
-        let requiredText = formatter.string(fromByteCount: required)
-        let availableText = formatter.string(fromByteCount: available)
-        let format = String(localized: "bootstrap.error.space.detail")
+        let detail: String
+        if let required = failure.requiredBytes,
+           let available = failure.availableBytes,
+           let missing = failure.missingBytes {
+            let format = String(localized: "bootstrap.error.space.detail")
+            detail = String(
+                format: format,
+                locale: .current,
+                formatter.string(fromByteCount: required),
+                formatter.string(fromByteCount: available),
+                formatter.string(fromByteCount: missing)
+            )
+        } else if let available = failure.availableBytes {
+            let format = String(localized: "bootstrap.error.space.detail.availableOnly")
+            detail = String(
+                format: format,
+                locale: .current,
+                formatter.string(fromByteCount: available)
+            )
+        } else {
+            detail = String(localized: "bootstrap.error.space.detail.unknown")
+        }
         presentError(
             title: String(localized: "bootstrap.error.space.title"),
-            detail: String(format: format, locale: .current, requiredText, availableText),
+            detail: detail,
             guidance: String(localized: "bootstrap.error.space.guidance")
         )
+    }
+
+    private func currentAvailableStorageBytes() -> Int64? {
+        guard let storage = try? OtzariaDatabaseStorage() else { return nil }
+        for url in [storage.downloadsRoot, storage.otzariaRoot, storage.appSupportRoot] {
+            let available = storage.availableCapacity(at: url)
+            if available > 0 { return available }
+        }
+        return nil
     }
 
     private func presentError(title: String, detail: String, guidance: String? = nil) {

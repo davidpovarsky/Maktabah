@@ -214,15 +214,29 @@
     "bootstrap.error.space.detail": {
       "extractionState": "manual",
       "localizations": {
-        "en": { "stringUnit": { "state": "translated", "value": "Otzaria needs about %1$@ to install. %2$@ is currently available." } },
-        "he": { "stringUnit": { "state": "translated", "value": "להתקנת ספריית אוצריא נדרשים כ־%1$@, ובמכשיר פנויים כ־%2$@." } }
+        "en": { "stringUnit": { "state": "translated", "value": "Otzaria needs about %1$@ to install. %2$@ is currently available, so about %3$@ more is needed." } },
+        "he": { "stringUnit": { "state": "translated", "value": "להתקנת ספריית אוצריא נדרשים כ־%1$@. במכשיר פנויים כ־%2$@, ולכן חסרים כ־%3$@." } }
+      }
+    },
+    "bootstrap.error.space.detail.availableOnly": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The operation ran out of storage. About %1$@ is currently available." } },
+        "he": { "stringUnit": { "state": "translated", "value": "המקום הפנוי אזל במהלך הפעולה. כעת פנויים במכשיר כ־%1$@." } }
+      }
+    },
+    "bootstrap.error.space.detail.unknown": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The operation ran out of storage." } },
+        "he": { "stringUnit": { "state": "translated", "value": "המקום הפנוי במכשיר אזל במהלך הפעולה." } }
       }
     },
     "bootstrap.error.space.guidance": {
       "extractionState": "manual",
       "localizations": {
-        "en": { "stringUnit": { "state": "translated", "value": "Free up space and try again, choose an existing database, or continue with the library only." } },
-        "he": { "stringUnit": { "state": "translated", "value": "אפשר לפנות מקום ולנסות שוב, לבחור מסד נתונים קיים, או להמשיך עם הספרייה בלבד." } }
+        "en": { "stringUnit": { "state": "translated", "value": "Free up space and try again, choose an existing database, or continue with the library only. A partial download is kept when it is safe to resume." } },
+        "he": { "stringUnit": { "state": "translated", "value": "אפשר לפנות מקום ולנסות שוב, לבחור מסד נתונים קיים, או להמשיך עם הספרייה בלבד. הורדה חלקית נשמרת כאשר ניתן להמשיך אותה בבטחה." } }
       }
     },
     "bootstrap.error.space.title": {
@@ -11417,6 +11431,8 @@
     "The library source changed before the request completed.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "The library source changed before the request completed." } }, "he": { "stringUnit": { "state": "translated", "value": "מקור הספרייה השתנה לפני השלמת הבקשה." } } } },
     "The saved text location is invalid.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "The saved text location is invalid." } }, "he": { "stringUnit": { "state": "translated", "value": "מיקום הטקסט השמור אינו תקין." } } } },
     "This text is not downloaded and the network is unavailable.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "This text is not downloaded and the network is unavailable." } }, "he": { "stringUnit": { "state": "translated", "value": "טקסט זה לא הורד והרשת אינה זמינה." } } } },
+    "This source is unavailable offline.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "This source is unavailable offline." } }, "he": { "stringUnit": { "state": "translated", "value": "מקור זה אינו זמין במצב לא מקוון." } } } },
+    "Clear Search Highlights": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Clear Search Highlights" } }, "he": { "stringUnit": { "state": "translated", "value": "נקה הדגשות חיפוש" } } } },
     "Sefaria offline schema %@ requires an app update (supported: %@).": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Sefaria offline schema %@ requires an app update (supported: %@)." } }, "he": { "stringUnit": { "state": "translated", "value": "סכמת Sefaria הלא־מקוונת %@ דורשת עדכון של היישום (נתמך: %@)." } } } },
     "Invalid server response: %@": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Invalid server response: %@" } }, "he": { "stringUnit": { "state": "translated", "value": "תגובת שרת לא תקינה: %@" } } } },
     "The server returned HTTP %lld.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "The server returned HTTP %lld." } }, "he": { "stringUnit": { "state": "translated", "value": "השרת החזיר HTTP %lld." } } } },

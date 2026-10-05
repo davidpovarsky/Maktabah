@@ -545,7 +545,45 @@ private func runSearchSemanticsAndFilterTests() async throws {
     try expect(!capturedFilters.isEmpty && capturedFilters.allSatisfy { $0 == ["Tanakh/Torah"] }, "filters preserved on every term sub-request")
     try expect(containsPage.total == 2, "CONTAINS total reflects exact count after streams exhausted")
 
-    // 7. Session Invalidation on Query Change
+    // 7. In-book fallback when a work has no trusted backend path
+    var fallbackSentFilters: [String]?
+    MockSearchURLProtocol.requestHandler = { request in
+        guard let url = request.url else { throw URLError(.badURL) }
+        let response = HTTPURLResponse(
+            url: url,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: ["Content-Type": "application/json"]
+        )!
+        if url.path.contains("/api/index") { return (response, Data("[]".utf8)) }
+        guard let bodyData = extractBodyData(from: request),
+              let body = try? JSONDecoder().decode(SefariaSearchBodyDTOForTest.self, from: bodyData) else {
+            return (response, makeCannedSearchResponse(hits: [], total: 0))
+        }
+        fallbackSentFilters = body.filters
+        return (response, makeCannedSearchResponse(hits: [
+            ("Exodus 1:1", "Exodus", "outside scope", 12),
+            ("Genesis 1:1", "Genesis", "inside one", 11),
+            ("Genesis 1:2", "Genesis", "inside two", 10)
+        ], total: 3))
+    }
+    let scopedPage = try await remoteStore.search(LibrarySearchRequest(
+        query: "creation",
+        offset: 0,
+        limit: 10,
+        filters: [],
+        scopeWorkKeys: ["Genesis"]
+    ))
+    try expect(fallbackSentFilters == nil || fallbackSentFilters?.isEmpty == true,
+        "untrusted in-book path is not sent as a false backend filter")
+    try expect(scopedPage.hits.map(\.locator.workKey) == ["Genesis", "Genesis"],
+        "in-book fallback filters mixed remote results by stable work identity")
+    try expect(
+        scopedPage.hits.first?.locator.position == .canonicalRef("Genesis 1:1"),
+        "in-book result retains its exact segment locator"
+    )
+
+    // 8. Session Invalidation on Query Change
     // Searching for a new query starts fresh
     var freshQueryStart = -1
     MockSearchURLProtocol.requestHandler = { request in

@@ -65,3 +65,37 @@ actor SefariaHybridStore: LibraryTextProviding {
         Task(priority: .utility) { [weak self] in _ = try? await self?.section(at: locator) }
     }
 }
+
+actor SefariaHybridRelationshipsStore: LibraryRelationshipsProviding {
+    private let offline: SefariaOfflineStore
+    private let remote: SefariaRemoteStore
+
+    init(offline: SefariaOfflineStore, remote: SefariaRemoteStore) {
+        self.offline = offline
+        self.remote = remote
+    }
+
+    func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
+        let installed = await offline.contains(workKey: locator.workKey)
+        if installed {
+            do {
+                if let local = try await offline.relatedSources(at: locator) { return local }
+            } catch LibraryBackendError.unavailableOffline {
+                // The requested linked work may not belong to this local archive.
+            }
+        }
+        do {
+            return try await remote.links(for: locator)
+        } catch LibraryBackendError.unavailableOffline {
+            throw LibraryBackendError.unavailableOffline
+        }
+    }
+
+    func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
+        do {
+            return try await remote.topics(for: locator)
+        } catch LibraryBackendError.unavailableOffline {
+            throw LibraryBackendError.unavailableOffline
+        }
+    }
+}

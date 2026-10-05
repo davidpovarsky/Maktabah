@@ -70,6 +70,35 @@ capture_screen() {
   sleep 1
 }
 
+set_orientation() {
+  local orientation="$1"
+  echo "Setting simulator orientation to $orientation"
+  xcrun simctl io "$UDID" orientation "$orientation"
+  sleep 2
+}
+
+require_screenshot() {
+  local name="$1"
+  local expected_orientation="$2"
+  local path="$SCREENSHOT_DIR/$name"
+  if [ ! -s "$path" ] || [ "$(stat -f '%z' "$path")" -le 10000 ]; then
+    echo "Missing or empty required screenshot: $name" >&2
+    return 1
+  fi
+  local width height
+  width="$(sips -g pixelWidth "$path" 2>/dev/null | awk '/pixelWidth/ {print $2}')"
+  height="$(sips -g pixelHeight "$path" 2>/dev/null | awk '/pixelHeight/ {print $2}')"
+  if [ "$expected_orientation" = landscape ] && [ "$width" -le "$height" ]; then
+    echo "Expected landscape screenshot but got ${width}x${height}: $name" >&2
+    return 1
+  fi
+  if [ "$expected_orientation" = portrait ] && [ "$height" -le "$width" ]; then
+    echo "Expected portrait screenshot but got ${width}x${height}: $name" >&2
+    return 1
+  fi
+  echo "Verified $name (${width}x${height})"
+}
+
 # ==============================================================================
 # PHASE 1: Bootstrap UI Screenshots (First launch / Setup)
 # ==============================================================================
@@ -228,6 +257,15 @@ capture_screen "sefaria-en-reader.png" en en_US -smokeScenario reader -smokeBack
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-search.png" he he_IL -smokeScenario search -smokeBackend sefaria -smokeBypassBootstrap
 
+# Capture the same full-height tab shell in landscape, including Reader,
+# Inspector, and an open search surface. These are required acceptance assets.
+set_orientation landscapeLeft
+capture_screen "sefaria-he-reader-landscape.png" he he_IL -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector-landscape.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=10 capture_screen "sefaria-he-search-open-landscape.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "otzaria-he-reader-landscape.png" he he_IL -smokeScenario reader -smokeBackend otzaria -smokeBypassBootstrap
+set_orientation portrait
+
 # ==============================================================================
 # PHASE 7: Crash Log Collection & Diagnostic Matrix Output
 # ==============================================================================
@@ -273,6 +311,21 @@ echo ""
 echo "=== [CAPTURED SCREENSHOTS] ==="
 ls -lh "$SCREENSHOT_DIR"
 echo "Total screenshots captured: $(find "$SCREENSHOT_DIR" -name '*.png' -size +10k | wc -l | tr -d ' ')"
+
+echo ""
+echo "=== [IPAD LAYOUT ACCEPTANCE] ==="
+if grep -q 'TabView(selection: \$selectedTab)' "$ROOT/Source/iOS/Views/iPadLayout.swift"; then
+  echo "The iPad root still uses TabView as its layout container" >&2
+  exit 1
+fi
+grep -q 'accessibilityIdentifier("MaktabahTopTabSelector")' "$ROOT/Source/iOS/Views/iPadLayout.swift"
+require_screenshot "sefaria-he-reader.png" portrait
+require_screenshot "sefaria-he-inspector.png" portrait
+require_screenshot "sefaria-he-search-open.png" portrait
+require_screenshot "sefaria-he-reader-landscape.png" landscape
+require_screenshot "sefaria-he-inspector-landscape.png" landscape
+require_screenshot "sefaria-he-search-open-landscape.png" landscape
+require_screenshot "otzaria-he-reader-landscape.png" landscape
 
 echo "iPad Simulator acceptance sequence completed."
 exit 0

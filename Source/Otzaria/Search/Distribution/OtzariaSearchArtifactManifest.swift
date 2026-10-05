@@ -172,3 +172,13 @@ enum OtzariaSearchArtifactError: LocalizedError, Equatable, Sendable {
         ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
     }
 }
+
+extension OtzariaSearchArtifactError: OtzariaStorageCapacityError {
+    var storageCapacityFailure: OtzariaStorageCapacityFailure? {
+        guard case let .insufficientStorage(required, available) = self else { return nil }
+        return OtzariaStorageCapacityFailure(
+            requiredBytes: max(0, required),
+            availableBytes: max(0, available)
+        )
+    }
+}

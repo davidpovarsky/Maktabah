@@ -101,6 +101,9 @@ struct iOSReaderView: View {
             onTapTextCharacterIndex: { index in
                 viewModel.didTapReaderText(at: index)
             },
+            onManualScrollAwayFromSearchResult: {
+                viewModel.clearSearchHighlight()
+            },
             onNavigateNext: { viewModel.goToNextPage() },
             onNavigatePrev: { viewModel.goToPrevPage() }
         )
@@ -183,8 +186,8 @@ struct iOSReaderView: View {
             viewModel.saveCurrentState()
         }
         .sheet(isPresented: $showingSearch) {
-            iOSBookSearchView(book: book, onSelect: { contentId, query in
-                viewModel.didSelectSearch(query: query, contentId: contentId)
+            iOSBookSearchView(book: book, onSelect: { result, query in
+                viewModel.didSelectSearch(result: result, query: query)
                 showingSearch = false
             }, viewModel: viewModel.searchViewModel)
         }

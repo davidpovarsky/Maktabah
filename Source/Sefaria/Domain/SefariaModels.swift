@@ -7,6 +7,10 @@ enum SefariaCatalogIdentity {
         }.joined(separator: "/")
         return "sefaria/category/\(encodedPath)"
     }
+
+    static func searchPath(parentPath: [String], title: String) -> String {
+        (parentPath + [title]).joined(separator: "/")
+    }
 }
 
 enum SefariaJSONValue: Codable, Hashable, Sendable {
@@ -223,6 +227,39 @@ enum SefariaRef {
     }
 
     static func sectionMatches(_ lhs: String, _ rhs: String) -> Bool {
-        lhs == rhs || lhs.hasPrefix(rhs + ":") || rhs.hasPrefix(lhs + ":")
+        let lhs = canonicalInput(lhs)
+        let rhs = canonicalInput(rhs)
+        return lhs == rhs || lhs.hasPrefix(rhs + ":") || rhs.hasPrefix(lhs + ":")
+    }
+
+    static func sectionAncestors(of input: String) -> [String] {
+        var current = canonicalInput(input)
+        var result = [current]
+        while let range = current.range(
+            of: #":[0-9]+[ab]?(?:-[^:\s]+)?$"#,
+            options: [.regularExpression, .caseInsensitive]
+        ) {
+            current.removeSubrange(range)
+            result.append(current)
+        }
+        return result
+    }
+
+    static func inferredWorkKey(from input: String) -> String {
+        let canonical = canonicalInput(input)
+        guard let range = canonical.range(
+            of: #"\s+[0-9]+[ab]?(?::[0-9]+[ab]?)*(?:-\S+)?$"#,
+            options: [.regularExpression, .caseInsensitive]
+        ) else { return canonical }
+        return String(canonical[..<range.lowerBound])
+    }
+
+    static func segmentOffset(in input: String, relativeTo sectionRef: String) -> Int? {
+        let input = canonicalInput(input)
+        let section = canonicalInput(sectionRef)
+        guard input.hasPrefix(section + ":") else { return nil }
+        let suffix = input.dropFirst(section.count + 1)
+        guard !suffix.contains(":"), let first = suffix.split(separator: "-").first else { return nil }
+        return Int(first)
     }
 }

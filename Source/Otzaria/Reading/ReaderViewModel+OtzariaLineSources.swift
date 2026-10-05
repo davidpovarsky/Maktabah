@@ -24,6 +24,7 @@ extension ReaderViewModel {
     }
 
     func clearOtzariaLineSelectionForContentChange() {
+        readerInspectorVisible = false
         selectedSegmentLocator = nil
         otzariaSelectedLineAnchor = nil
         otzariaLinkedSources = []

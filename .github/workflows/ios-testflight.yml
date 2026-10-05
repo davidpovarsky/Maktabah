@@ -39,7 +39,7 @@ jobs:
   build-sign-and-upload:
     name: Build, Sign, and Deliver ChavrusaText (${{ inputs.data_profile }})
     runs-on: macos-26
-    timeout-minutes: 120
+    timeout-minutes: 210
 
     steps:
       - name: Checkout repository
@@ -188,6 +188,19 @@ jobs:
 
       - name: Verify Xcode integration
         run: python3 Scripts/CI/verify-otzaria-xcode-project.py
+
+      - name: Test stabilization and Otzaria storage policies
+        run: |
+          bash Scripts/run-stabilization-tests.sh
+          xcrun swiftc \
+            Source/Otzaria/DataProfiles/OtzariaDataProfile.swift \
+            Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift \
+            Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
+            Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift \
+            Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift \
+            Vendor/OtzariaBootstrapTests/main.swift \
+            -o "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
+          "$RUNNER_TEMP/otzaria-bootstrap-policy-tests"
 
       - name: Test corrected backend selection and Sefaria identity contracts
         run: |
@@ -708,6 +721,28 @@ jobs:
             -t ios \
             --apiKey "$ASC_KEY_ID" \
             --apiIssuer "$ASC_ISSUER_ID"
+
+      - name: Wait for Apple TestFlight processing
+        if: ${{ inputs.upload_to_testflight }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          result="$BUILD_DIR/logs/testflight-processing.json"
+          "$RUNNER_TEMP/asc-venv/bin/python" Scripts/CI/wait-for-testflight-build.py \
+            --key-path "$ASC_KEY_PATH" \
+            --key-id "$ASC_KEY_ID" \
+            --issuer-id "$ASC_ISSUER_ID" \
+            --bundle-id "$APP_BUNDLE_ID" \
+            --version "1.0.0" \
+            --build-number "$BUILD_NUMBER" \
+            --timeout-seconds 5400 \
+            --interval-seconds 30 \
+            --output "$result"
+          cat "$result"
+          echo "### TestFlight processing" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat "$result" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload signed IPA and build logs
         if: success() || (failure() && env.IPA_PATH != '')
