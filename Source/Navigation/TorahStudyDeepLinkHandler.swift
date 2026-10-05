@@ -28,15 +28,54 @@ final class TorahStudyDeepLinkHandler: ObservableObject {
     }
 
     private func openSource(link: TorahStudyDeepLink, navigationState: OtzariaIntegratedNavigationState?) -> Bool {
-        // If work key corresponds to Otzaria book, attempt navigation
-        if let nav = navigationState {
-            let workKey = link.locator.workKey
-            // Find book by title or id
-            if let book = nav.selectedBook, book.name == workKey {
-                // Already open in the right book, just refresh reader
+        let workKey = link.locator.workKey
+        let lineIndex = Int(link.locator.positionValue)
+
+        // Parse expected book ID if workKey encodes book:ID or direct integer
+        let expectedBookId: Int
+        if workKey.hasPrefix("book:"), let parsed = Int(workKey.dropFirst("book:".count)) {
+            expectedBookId = parsed
+        } else if let parsed = Int(workKey) {
+            expectedBookId = parsed
+        } else {
+            expectedBookId = 0
+        }
+
+        #if os(iOS)
+        let resolvedBook: BooksData?
+        if let book = try? OtzariaDatabaseManagerAdapter.resolveBook(stableKey: workKey, expectedBookId: expectedBookId) {
+            resolvedBook = book
+        } else if expectedBookId > 0, let book = try? OtzariaDatabaseManagerAdapter.fetchBook(byId: expectedBookId) {
+            resolvedBook = book
+        } else {
+            resolvedBook = nil
+        }
+
+        if let book = resolvedBook {
+            if let nav = navigationState {
+                if let line = lineIndex {
+                    nav.selectedLineID = line
+                }
                 nav.readerToken = UUID()
-                return true
             }
+
+            let terms = link.highlightText != nil ? [link.highlightText!] : nil
+            iOSNavigationManager.shared.openBook(
+                book,
+                initialContentId: lineIndex,
+                searchText: link.highlightText,
+                highlightTerms: terms
+            )
+            statusMessage = "Navigated to \(book.name)" + (lineIndex != nil ? " line \(lineIndex!)" : "")
+            return true
+        }
+        #endif
+
+        if let nav = navigationState {
+            if let line = lineIndex {
+                nav.selectedLineID = line
+            }
+            nav.readerToken = UUID()
         }
         statusMessage = "Opened Torah passage: \(link.workTitle ?? link.locator.workKey)"
         return true
