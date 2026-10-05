@@ -122,6 +122,16 @@ enum ZayitSearchDistributionError: LocalizedError, Sendable {
     }
 }
 
+extension ZayitSearchDistributionError: OtzariaStorageCapacityError {
+    var storageCapacityFailure: OtzariaStorageCapacityFailure? {
+        guard case let .insufficientStorage(required, available) = self else { return nil }
+        return OtzariaStorageCapacityFailure(
+            requiredBytes: max(0, required),
+            availableBytes: max(0, available)
+        )
+    }
+}
+
 struct ZayitSearchArtifactStorage: Sendable {
     static let reserveBytes: Int64 = 1_073_741_824
     let root: URL
@@ -491,6 +501,9 @@ private extension ZayitSearchArtifactService {
                 progress(Int64(Double(part.uncompressedBytes) * fraction))
             }
         } catch {
+            if OtzariaStorageErrorNormalizer.failure(for: error) != nil {
+                throw error
+            }
             throw ZayitSearchDistributionError.extractionFailed(error.localizedDescription)
         }
     }

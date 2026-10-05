@@ -494,7 +494,7 @@ private final class OtzariaDownloadRoundDelegate: NSObject, URLSessionDataDelega
             try fileHandle?.close()
         } catch {
             if terminalError == nil {
-                terminalError = OtzariaDatabaseBootstrapError.extractionWriteFailed(error.localizedDescription)
+                terminalError = error
             }
         }
         fileHandle = nil

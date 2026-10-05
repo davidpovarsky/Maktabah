@@ -41,12 +41,17 @@ trap cleanup EXIT
 echo "Booting simulator $UDID..."
 xcrun simctl boot "$UDID"
 xcrun simctl bootstatus "$UDID" -b
+command -v idb >/dev/null 2>&1 || {
+  echo "IDB is required to rotate the iPad Simulator during acceptance." >&2
+  exit 69
+}
 
 echo "Configuring OtzariaDefaultDataProfile in $APP/Info.plist..."
 /usr/libexec/PlistBuddy -c 'Set :OtzariaDefaultDataProfile miniTest10' "$APP/Info.plist" 2>/dev/null || \
 /usr/libexec/PlistBuddy -c 'Add :OtzariaDefaultDataProfile string miniTest10' "$APP/Info.plist" 2>/dev/null || true
 
 export SIMCTL_CHILD_OTZARIA_DATA_PROFILE="miniTest10"
+CURRENT_ORIENTATION="portrait"
 
 echo "Installing $APP on simulator..."
 xcrun simctl install "$UDID" "$APP"
@@ -64,11 +69,97 @@ capture_screen() {
   echo "--> [SCREENSHOT] $output (lang: $lang, locale: $locale, wait: ${wait_seconds}s, args: ${extra_args[*]:-none})"
   SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
   xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}" >/dev/null 2>&1 || true
+  if [ "$CURRENT_ORIENTATION" != "portrait" ]; then
+    rotate_simulator "$CURRENT_ORIENTATION"
+  fi
   sleep "$wait_seconds"
   xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$output" >/dev/null 2>&1 || echo "Warning: failed to capture $output"
+  normalize_screenshot_orientation "$SCREENSHOT_DIR/$output" "$CURRENT_ORIENTATION"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
   sleep 1
 }
+
+rotate_simulator() {
+  local orientation="$1"
+  local idb_orientation
+  case "$orientation" in
+    portrait) idb_orientation="PORTRAIT" ;;
+    portraitUpsideDown) idb_orientation="PORTRAIT_UPSIDE_DOWN" ;;
+    landscapeLeft) idb_orientation="LANDSCAPE_LEFT" ;;
+    landscapeRight) idb_orientation="LANDSCAPE_RIGHT" ;;
+    *) echo "Unsupported simulator orientation: $orientation" >&2; return 64 ;;
+  esac
+  echo "Setting simulator orientation to $orientation"
+  idb ui rotate "$idb_orientation" --udid "$UDID" || {
+    echo "IDB failed to rotate simulator $UDID to $idb_orientation." >&2
+    exit 1
+  }
+  sleep 2
+}
+
+normalize_screenshot_orientation() {
+  local path="$1"
+  local orientation="$2"
+  local degrees
+  case "$orientation" in
+    portrait) return 0 ;;
+    portraitUpsideDown) degrees=180 ;;
+    landscapeLeft) degrees=90 ;;
+    landscapeRight) degrees=-90 ;;
+    *) echo "Unsupported screenshot orientation: $orientation" >&2; return 64 ;;
+  esac
+
+  # Xcode 26's headless simctl capture keeps the native portrait framebuffer
+  # dimensions after an HID rotation. Rotate the encoded PNG so the artifact
+  # matches the interface orientation the app actually rendered.
+  local oriented_path="${path%.png}.oriented.png"
+  if ! sips -r "$degrees" "$path" --out "$oriented_path" >/dev/null; then
+    echo "Failed to normalize screenshot orientation: $path" >&2
+    return 1
+  fi
+  mv "$oriented_path" "$path"
+}
+
+set_orientation() {
+  CURRENT_ORIENTATION="$1"
+  echo "Next captures will use simulator orientation $CURRENT_ORIENTATION"
+}
+
+require_screenshot() {
+  local name="$1"
+  local expected_orientation="$2"
+  local path="$SCREENSHOT_DIR/$name"
+  if [ ! -s "$path" ] || [ "$(stat -f '%z' "$path")" -le 10000 ]; then
+    echo "Missing or empty required screenshot: $name" >&2
+    return 1
+  fi
+  local width height
+  width="$(sips -g pixelWidth "$path" 2>/dev/null | awk '/pixelWidth/ {print $2}')"
+  height="$(sips -g pixelHeight "$path" 2>/dev/null | awk '/pixelHeight/ {print $2}')"
+  if [ "$expected_orientation" = landscape ] && [ "$width" -le "$height" ]; then
+    echo "Expected landscape screenshot but got ${width}x${height}: $name" >&2
+    return 1
+  fi
+  if [ "$expected_orientation" = portrait ] && [ "$height" -le "$width" ]; then
+    echo "Expected portrait screenshot but got ${width}x${height}: $name" >&2
+    return 1
+  fi
+  echo "Verified $name (${width}x${height})"
+}
+
+echo ""
+echo "=== [PHASE 0: Interface Orientation Probe] ==="
+SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
+xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap >/dev/null 2>&1 || true
+rotate_simulator landscapeLeft
+xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/orientation-probe-landscape.png" >/dev/null 2>&1 || true
+normalize_screenshot_orientation "$SCREENSHOT_DIR/orientation-probe-landscape.png" landscapeLeft
+if ! require_screenshot "orientation-probe-landscape.png" landscape; then
+  echo "IDB UI orientation probe or screenshot normalization failed." >&2
+  exit 1
+fi
+rotate_simulator portrait
+xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 
 # ==============================================================================
 # PHASE 1: Bootstrap UI Screenshots (First launch / Setup)
@@ -228,6 +319,15 @@ capture_screen "sefaria-en-reader.png" en en_US -smokeScenario reader -smokeBack
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-search.png" he he_IL -smokeScenario search -smokeBackend sefaria -smokeBypassBootstrap
 
+# Capture the same full-height tab shell in landscape, including Reader,
+# Inspector, and an open search surface. These are required acceptance assets.
+set_orientation landscapeLeft
+capture_screen "sefaria-he-reader-landscape.png" he he_IL -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector-landscape.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=10 capture_screen "sefaria-he-search-open-landscape.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "otzaria-he-reader-landscape.png" he he_IL -smokeScenario reader -smokeBackend otzaria -smokeBypassBootstrap
+set_orientation portrait
+
 # ==============================================================================
 # PHASE 7: Crash Log Collection & Diagnostic Matrix Output
 # ==============================================================================
@@ -235,13 +335,15 @@ echo ""
 echo "=== [PHASE 7: Diagnostic Collection & Summary] ==="
 cp -R ~/Library/Logs/DiagnosticReports/* "$CRASH_DIR/" 2>/dev/null || true
 
-python3 - "$REPORT_DIR" <<'PY'
+diagnostic_failed=0
+python3 - "$REPORT_DIR" <<'PY' || diagnostic_failed=1
 import json, pathlib, sys
 
 root = pathlib.Path(sys.argv[1])
 reports = sorted(root.glob("shared-torah-*.json"))
 if not reports:
-    print("Notice: No shared-torah diagnostic reports found in", root)
+    print("No shared-torah diagnostic reports found in", root, file=sys.stderr)
+    raise SystemExit(1)
 else:
     print("\n" + "="*84)
     print("             SHARED TORAH DATA DIAGNOSTIC MATRIX SUMMARY")
@@ -267,12 +369,38 @@ else:
     print("="*84)
     print(f"Diagnostic Matrix Total: {passed_count}/{total} passed")
     print("="*84 + "\n")
+    if passed_count != total:
+        raise SystemExit(1)
 PY
 
 echo ""
 echo "=== [CAPTURED SCREENSHOTS] ==="
 ls -lh "$SCREENSHOT_DIR"
 echo "Total screenshots captured: $(find "$SCREENSHOT_DIR" -name '*.png' -size +10k | wc -l | tr -d ' ')"
+
+echo ""
+echo "=== [IPAD LAYOUT ACCEPTANCE] ==="
+if grep -q 'TabView(selection: \$selectedTab)' "$ROOT/Source/iOS/Views/iPadLayout.swift"; then
+  echo "The iPad root still uses TabView as its layout container" >&2
+  exit 1
+fi
+acceptance_failed="$diagnostic_failed"
+if ! grep -q 'accessibilityIdentifier("MaktabahTopTabSelector")' "$ROOT/Source/iOS/Views/iPadLayout.swift"; then
+  echo "Missing the compact iPad top tab selector accessibility identifier" >&2
+  acceptance_failed=1
+fi
+require_screenshot "sefaria-he-reader.png" portrait || acceptance_failed=1
+require_screenshot "sefaria-he-inspector.png" portrait || acceptance_failed=1
+require_screenshot "sefaria-he-search-open.png" portrait || acceptance_failed=1
+require_screenshot "sefaria-he-reader-landscape.png" landscape || acceptance_failed=1
+require_screenshot "sefaria-he-inspector-landscape.png" landscape || acceptance_failed=1
+require_screenshot "sefaria-he-search-open-landscape.png" landscape || acceptance_failed=1
+require_screenshot "otzaria-he-reader-landscape.png" landscape || acceptance_failed=1
+
+if [ "$acceptance_failed" -ne 0 ]; then
+  echo "iPad Simulator acceptance failed." >&2
+  exit 1
+fi
 
 echo "iPad Simulator acceptance sequence completed."
 exit 0

@@ -355,6 +355,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
     var onAddAnnotation: ((NSRange, AnnotationMode, String, UIColor) -> Void)?
     var onTapAnnotation: ((Int64) -> Void)?
     var onTapTextCharacterIndex: ((Int) -> Void)?
+    var onManualScrollAwayFromSearchResult: (() -> Void)? = nil
 
     // Pull-to-navigate callbacks
     var onNavigateNext: (() -> Void)?
@@ -684,6 +685,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
         var processedSearchText: String?
         var processedAnnotationId: Int64?
         private var lastSelectionChangeDate: Date?
+        private var manualDragStartOffset: CGFloat?
+        private var didClearSearchForCurrentDrag = false
 
         // Pull-to-navigate state
         weak var topIndicator: PullNavigationIndicatorView?
@@ -779,7 +782,22 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         // MARK: - Pull-to-Navigate Scroll Detection
 
+        func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+            manualDragStartOffset = scrollView.contentOffset.y
+            didClearSearchForCurrentDrag = false
+        }
+
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            if !didClearSearchForCurrentDrag,
+               ReaderSearchHighlightPolicy.shouldClearAfterManualScroll(
+                   startOffsetY: manualDragStartOffset.map(Double.init),
+                   currentOffsetY: Double(scrollView.contentOffset.y),
+                   viewportHeight: Double(scrollView.bounds.height),
+                   hasActiveHighlight: parent.viewModel.hasActiveSearchHighlight
+               ) {
+                didClearSearchForCurrentDrag = true
+                parent.onManualScrollAwayFromSearchResult?()
+            }
             let offsetY = scrollView.contentOffset.y
             let contentHeight = scrollView.contentSize.height
             let boundsHeight = scrollView.bounds.height
@@ -854,6 +872,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
             defer {
+                if !decelerate { manualDragStartOffset = nil }
                 hasTriggeredHaptic = false
                 activePullDirection = nil
                 topIndicator?.reset()
@@ -868,6 +887,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
             case .next:
                 parent.onNavigateNext?()
             }
+        }
+
+        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            manualDragStartOffset = nil
         }
 
         func textView(

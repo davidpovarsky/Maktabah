@@ -6,6 +6,7 @@ enum OtzariaBootstrapPolicyHarness {
         try testReleaseParsingFailures()
         try testResumeIdentityAndValidators()
         testHTTPResumeResponses()
+        testStorageCapacityNormalization()
         print("Otzaria bootstrap release and resume policy tests passed")
     }
 
@@ -153,6 +154,32 @@ enum OtzariaBootstrapPolicyHarness {
         )
         expect(OtzariaDownloadPolicy.parseContentRange("bytes 0-9/10")?.total == 10, "range parse")
         expect(OtzariaDownloadPolicy.parseContentRange("junk bytes 0-9/10") == nil, "anchored range parse")
+    }
+
+    private static func testStorageCapacityNormalization() {
+        let exact = OtzariaStorageErrorNormalizer.failure(
+            for: OtzariaDatabaseBootstrapError.insufficientDiskSpace(
+                required: 8_500_000_000,
+                available: 1_200_000_000
+            )
+        )
+        expect(exact?.requiredBytes == 8_500_000_000, "storage required bytes")
+        expect(exact?.availableBytes == 1_200_000_000, "storage available bytes")
+        expect(exact?.missingBytes == 7_300_000_000, "storage missing bytes")
+
+        let posix = NSError(domain: "NSPOSIXErrorDomain", code: 28)
+        let wrapped = NSError(
+            domain: "example.wrapper",
+            code: 1,
+            userInfo: [NSUnderlyingErrorKey: posix]
+        )
+        let lateFailure = OtzariaStorageErrorNormalizer.failure(
+            for: wrapped,
+            fallbackAvailableBytes: 750_000_000
+        )
+        expect(lateFailure?.requiredBytes == nil, "late storage required bytes unavailable")
+        expect(lateFailure?.availableBytes == 750_000_000, "late storage available bytes")
+        expect(lateFailure?.missingBytes == nil, "late storage missing bytes unavailable")
     }
 
     private static func sampleRelease(id: Int64, assetID: Int64, size: Int64) -> OtzariaLibraryRelease {

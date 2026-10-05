@@ -9,12 +9,16 @@ import SwiftUI
 
 struct iOSBookSearchView: View {
     let book: BooksData
-    let onSelect: (Int, String) -> Void
+    let onSelect: (SearchResultItem, String) -> Void
     @Environment(\.dismiss) private var dismiss
 
     @Bindable var viewModel: SearchViewModel
     @State private var ftsManager = FtsMigrationManager.shared
     @State private var showFtsMigrationOverlay = false
+
+    private var usesNativeFTS: Bool {
+        BackendCoordinator.shared.usesNativeMaktabahDataPath
+    }
 
     var body: some View {
         NavigationStack {
@@ -29,7 +33,7 @@ struct iOSBookSearchView: View {
                         viewModel.loadNextBackendPage()
                     }
                 ) { item in
-                    onSelect(item.bookId, viewModel.query)
+                    onSelect(item, viewModel.query)
                 }
             }
             .navigationTitle(book.book)
@@ -45,7 +49,11 @@ struct iOSBookSearchView: View {
             }
             .onAppear {
                 viewModel.setSelectedBooks([book.id])
-                ftsManager.checkNeedsMigration()
+                if usesNativeFTS {
+                    ftsManager.checkNeedsMigration()
+                } else {
+                    showFtsMigrationOverlay = false
+                }
             }
             .safeAreaInset(edge: .top) {
                 ftsMigrationBanner()
@@ -94,7 +102,7 @@ struct iOSBookSearchView: View {
 
     @ViewBuilder
     private func ftsMigrationBanner() -> some View {
-        if ftsManager.needsMigration {
+        if usesNativeFTS, ftsManager.needsMigration {
             VStack(spacing: 8) {
                 HStack {
                     Image(systemName: "sparkles")

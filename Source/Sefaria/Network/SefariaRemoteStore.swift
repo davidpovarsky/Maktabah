@@ -130,6 +130,9 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         return index.asWorkMetadata(workKey: workKey)
     }
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        if !request.scopeWorkKeys.isEmpty, request.filters.isEmpty {
+            return try await searchWithinWorksFallback(request)
+        }
         let terms = Self.extractSearchTerms(from: request.query)
         if request.options.searchMode == .or && terms.count > 1 {
             return try await searchOr(terms: terms, request: request)
@@ -155,6 +158,44 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             ? request.offset + receivedCount
             : nil
         return LibrarySearchPage(hits: hits, total: response.hits.total.value, nextOffset: next)
+    }
+
+    private func searchWithinWorksFallback(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        let requestedWorks = Set(request.scopeWorkKeys)
+        var remoteOffset = 0
+        var remoteExhausted = false
+        var matches: [LibrarySearchHit] = []
+        var seen = Set<String>()
+        let targetCount = request.offset + request.limit
+        let batchSize = max(100, request.limit)
+
+        while matches.count < targetCount, !remoteExhausted {
+            try Task.checkCancellation()
+            let page = try await search(LibrarySearchRequest(
+                query: request.query,
+                offset: remoteOffset,
+                limit: batchSize,
+                filters: [],
+                scopeWorkKeys: [],
+                options: request.options
+            ))
+            for hit in page.hits where requestedWorks.contains(hit.locator.workKey) {
+                if seen.insert(hit.locator.persistenceKey).inserted { matches.append(hit) }
+            }
+            guard let next = page.nextOffset, next > remoteOffset else {
+                remoteExhausted = true
+                break
+            }
+            remoteOffset = next
+        }
+
+        let slice = Array(matches.dropFirst(min(request.offset, matches.count)).prefix(request.limit))
+        let hasMore = matches.count > request.offset + slice.count || !remoteExhausted
+        let nextOffset = hasMore && !slice.isEmpty ? request.offset + slice.count : nil
+        let total = remoteExhausted
+            ? matches.count
+            : max(matches.count + 1, request.offset + slice.count + (hasMore ? 1 : 0))
+        return LibrarySearchPage(hits: slice, total: total, nextOffset: nextOffset)
     }
 
     nonisolated static func extractSearchTerms(from query: String) -> [String] {
@@ -513,6 +554,8 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     private func mapSearchHits(_ rawHits: [SefariaSearchResponseDTO.Hit]) -> [LibrarySearchHit] {
         rawHits.compactMap { hit -> LibrarySearchHit? in
             guard let work = SefariaRef.workKey(from: hit.source.ref, knownTitles: Array(knownTitles))
+                ?? hit.source.indexTitle
+                ?? hit.source.path?.split(separator: "/").last.map(String.init)
                 ?? hit.source.title else { return nil }
             let snippet = hit.highlight?.values.first?.first
                 ?? hit.source.content
@@ -614,8 +657,9 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     private static func mapCatalog(_ entry: SefariaTOCEntryDTO, parentPath: [String]) -> LibraryCatalogNode {
         if let title = entry.title {
             let locator = TextLocator(backend: .sefaria, workKey: title, position: .canonicalRef(title))
-            let work = LibraryWork(locator: locator, title: title, heTitle: entry.heTitle,
+            var work = LibraryWork(locator: locator, title: title, heTitle: entry.heTitle,
                 categories: parentPath, description: nil)
+            work.searchPath = SefariaCatalogIdentity.searchPath(parentPath: parentPath, title: title)
             return LibraryCatalogNode(id: locator.persistenceKey, kind: .work, title: title,
                 heTitle: entry.heTitle, work: work, children: [])
         }

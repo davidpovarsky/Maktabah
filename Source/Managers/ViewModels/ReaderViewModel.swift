@@ -106,6 +106,7 @@ class ReaderViewModel: ViewModelBase {
     var searchText: String = ""
     var highlightTerms: [String]? = nil
     var searchMode: SearchMode?
+    var searchHighlightFocusLocator: TextLocator?
     var nearDistance: Int = UserDefaults.standard.searchNearDistance {
         didSet {
             UserDefaults.standard.searchNearDistance = nearDistance
@@ -293,9 +294,11 @@ class ReaderViewModel: ViewModelBase {
         backendLoadTask = Task { @MainActor [weak self] in
             guard let self else { return }
             var target = locator
+            var hasExplicitLocator = false
             if let initialContentId {
                 if let initialLocator = LegacyIdentityRegistry.shared.locator(for: initialContentId) {
                     target = initialLocator
+                    hasExplicitLocator = true
                 } else if locator.backend == .otzaria {
                     target = TextLocator(backend: locator.backend, workKey: locator.workKey, position: .legacyLine(initialContentId))
                 }
@@ -310,7 +313,10 @@ class ReaderViewModel: ViewModelBase {
                     )
                 }
             }
-            if LibraryReadingUnitPolicy.isWorkRoot(target) {
+            if LibraryReadingUnitPolicy.requiresBoundedResolution(
+                target,
+                hasExplicitLocator: hasExplicitLocator
+            ) {
                 let work = LibraryWork(locator: locator, title: locator.workKey,
                     heTitle: book.book, categories: [], description: nil)
                 do {
@@ -852,7 +858,7 @@ class ReaderViewModel: ViewModelBase {
     }
 
     func didSelectTOCNode(id: Int) {
-        searchText = ""
+        clearSearchHighlight()
         targetAnnotation = nil
         if let node = tocViewModel.findNodeById(id), let locator = node.backendLocator {
             loadBackendContent(locator)
@@ -862,7 +868,7 @@ class ReaderViewModel: ViewModelBase {
     }
 
     func didSelectTOCNode(_ node: TOCNode) {
-        searchText = ""
+        clearSearchHighlight()
         targetAnnotation = nil
         if let locator = node.backendLocator {
             loadBackendContent(locator)
@@ -873,9 +879,40 @@ class ReaderViewModel: ViewModelBase {
 
     func didSelectSearch(query: String, contentId: Int) {
         searchText = query
+        highlightTerms = nil
+        searchHighlightFocusLocator = nil
         searchMode = searchViewModel.searchMode
         nearDistance = searchViewModel.nearDistance
         fetchContentById(contentId)
+    }
+
+    func didSelectSearch(result: SearchResultItem, query: String) {
+        searchText = query
+        highlightTerms = result.highlightTerms
+        searchMode = searchViewModel.searchMode
+        nearDistance = searchViewModel.nearDistance
+        targetAnnotation = nil
+        searchHighlightFocusLocator = result.backendLocator
+        if let locator = result.backendLocator {
+            loadBackendContent(LibraryReaderDestination(sectionLocator: locator, focusLocator: locator))
+        } else {
+            fetchContentById(result.bookId)
+        }
+    }
+
+    var hasActiveSearchHighlight: Bool {
+        !searchText.isEmpty || highlightTerms?.isEmpty == false
+    }
+
+    func clearSearchHighlight() {
+        ReaderSearchHighlightPolicy.clear(
+            searchText: &searchText,
+            highlightTerms: &highlightTerms,
+            focusLocator: &searchHighlightFocusLocator,
+            selectedLocator: &selectedSegmentLocator,
+            inspectorIsVisible: readerInspectorVisible
+        )
+        searchMode = nil
     }
 
     func didSelectAnnotation(_ ann: Annotation) {

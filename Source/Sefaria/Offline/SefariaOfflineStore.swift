@@ -50,6 +50,24 @@ actor SefariaOfflineStore: LibraryTextProviding {
         return try loadAllMetadata(title: workKey, from: directory)
     }
 
+    func relatedSources(at locator: TextLocator) throws -> [LibraryRelatedSource]? {
+        guard locator.backend == .sefaria, case .canonicalRef(let requestedRef) = locator.position else {
+            throw LibraryBackendError.invalidLocator
+        }
+        let directory = try expandedBook(title: locator.workKey)
+        let metadata = try findMetadata(for: requestedRef, title: locator.workKey, in: directory)
+        guard let links = metadata.links else { return nil }
+        let knownTitles = Set(try loadAllMetadata(title: locator.workKey, from: directory).map(\.indexTitle))
+            .union([locator.workKey])
+        let sources = SefariaOfflineRelationshipMapper.sources(
+            linksBySegment: links,
+            requestedRef: requestedRef,
+            sectionRef: metadata.sectionRef,
+            knownTitles: knownTitles
+        )
+        return sources.isEmpty ? nil : sources
+    }
+
     func clearTransientState() {
         archiveByTitle.removeAll()
         metadataByBook.removeAll()
@@ -108,10 +126,9 @@ actor SefariaOfflineStore: LibraryTextProviding {
             all = try loadAllMetadata(title: title, from: directory)
             metadataByBook[title] = all
         }
-        guard let result = all.first(where: {
-            requestedRef == $0.ref || requestedRef == $0.sectionRef
-                || requestedRef.hasPrefix($0.sectionRef + ":")
-        }) else { throw LibraryBackendError.unavailableOffline }
+        guard let result = SefariaOfflineMetadataResolver.metadata(for: requestedRef, in: all) else {
+            throw LibraryBackendError.unavailableOffline
+        }
         return result
     }
 

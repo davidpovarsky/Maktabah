@@ -14,23 +14,58 @@ actor SefariaOfflineNavigationStore: LibraryNavigationProviding, LibraryWorkMeta
     }
 
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
-        SefariaOfflineNavigationBuilder.nodes(
-            metadata: try await offline.navigationMetadata(for: work.locator.workKey),
-            workKey: work.locator.workKey
-        )
+        let structures = try await navigationStructures(for: work)
+        return structures.first(where: { $0.id == "primary" })?.nodes ?? structures.first?.nodes ?? []
     }
 
     func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
         let nodes = try await tableOfContents(for: work)
-        return nodes.enumerated().map {
-            LibraryNavigationItem(locator: $0.element.locator, title: $0.element.title, index: $0.offset)
+        var items: [LibraryNavigationItem] = []
+        func collectLeaves(_ values: [LibraryTOCNode]) {
+            for node in values {
+                if node.children.isEmpty {
+                    items.append(LibraryNavigationItem(locator: node.locator, title: node.title, index: items.count))
+                } else {
+                    collectLeaves(node.children)
+                }
+            }
         }
+        collectLeaves(nodes)
+        return items
     }
 
     func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
-        let nodes = try await tableOfContents(for: work)
-        guard !nodes.isEmpty else { throw LibraryBackendError.corruptData("downloaded work has no navigation units") }
-        return [LibraryNavigationStructure(id: "primary", title: String(localized: "Table of Contents"), nodes: nodes)]
+        let index = try await offline.index(for: work.locator.workKey)
+        var structures = SefariaNavigationParser.structures(
+            schema: index.schema,
+            alternateStructures: index.alternateStructures,
+            indexTitle: index.title,
+            baseRef: index.title
+        )
+        let metadataNodes = SefariaOfflineNavigationBuilder.nodes(
+            metadata: try await offline.navigationMetadata(for: work.locator.workKey),
+            workKey: work.locator.workKey
+        )
+        if let primaryIndex = structures.firstIndex(where: { $0.id == "primary" }),
+           structures[primaryIndex].nodes.isEmpty,
+           !metadataNodes.isEmpty {
+            structures[primaryIndex] = LibraryNavigationStructure(
+                id: "primary",
+                title: structures[primaryIndex].title,
+                nodes: metadataNodes
+            )
+        }
+        if structures.isEmpty, !metadataNodes.isEmpty {
+            structures = [LibraryNavigationStructure(
+                id: "primary",
+                title: String(localized: "Table of Contents"),
+                nodes: metadataNodes
+            )]
+        }
+        guard structures.contains(where: { !$0.nodes.isEmpty }) else {
+            throw LibraryBackendError.corruptData("downloaded work has no navigation units")
+        }
+        return structures.filter { !$0.nodes.isEmpty }
     }
 
     func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata? {

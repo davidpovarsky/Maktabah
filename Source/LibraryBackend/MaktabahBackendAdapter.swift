@@ -39,7 +39,7 @@ enum MaktabahBackendAdapter {
                 let book = BooksData(id: id, book: title, archive: 0, muallif: 0,
                     bithoqoh: work.description ?? "", info: work.title)
                 book.backendLocator = work.locator
-                book.backendSearchPath = (work.categories + [work.title]).joined(separator: "/")
+                book.backendSearchPath = work.searchPath
                 book.catId = parentID
                 books[id] = book
                 return book

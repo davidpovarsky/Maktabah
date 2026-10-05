@@ -106,6 +106,10 @@ enum LibraryReadingUnitPolicy {
         return first.locator
     }
 
+    static func requiresBoundedResolution(_ locator: TextLocator, hasExplicitLocator: Bool) -> Bool {
+        isWorkRoot(locator) && !hasExplicitLocator
+    }
+
     static func preferringRecent(_ locator: TextLocator, recentLocator: TextLocator?) -> TextLocator {
         guard isWorkRoot(locator), let recentLocator,
               recentLocator.backend == locator.backend,
@@ -121,6 +125,9 @@ struct LibraryWork: Codable, Hashable, Identifiable, Sendable {
     let heTitle: String?
     let categories: [String]
     let description: String?
+    /// Backend-authored path used for scoped search. This must come from the
+    /// backend catalog rather than localized presentation category labels.
+    var searchPath: String? = nil
 
     var id: String { locator.persistenceKey }
 }
@@ -536,7 +543,37 @@ struct LibrarySearchRequest: Codable, Hashable, Sendable {
     let offset: Int
     let limit: Int
     var filters: [String] = []
+    /// Canonical work identities for backends that need a safe unfiltered
+    /// fallback when no authoritative server-side filter is available.
+    var scopeWorkKeys: [String] = []
     var options = LibrarySearchOptions()
+}
+
+enum ReaderSearchHighlightPolicy {
+    static func clear(
+        searchText: inout String,
+        highlightTerms: inout [String]?,
+        focusLocator: inout TextLocator?,
+        selectedLocator: inout TextLocator?,
+        inspectorIsVisible: Bool
+    ) {
+        searchText = ""
+        highlightTerms = nil
+        if !inspectorIsVisible, selectedLocator == focusLocator {
+            selectedLocator = nil
+        }
+        focusLocator = nil
+    }
+
+    static func shouldClearAfterManualScroll(
+        startOffsetY: Double?,
+        currentOffsetY: Double,
+        viewportHeight: Double,
+        hasActiveHighlight: Bool
+    ) -> Bool {
+        guard hasActiveHighlight, let startOffsetY else { return false }
+        return abs(currentOffsetY - startOffsetY) >= max(96, viewportHeight * 0.2)
+    }
 }
 
 enum LibrarySearchMode: String, Codable, CaseIterable, Identifiable, Sendable {

@@ -9,6 +9,7 @@ final class SefariaBackend {
     let packages: SefariaPackageManager
     let hybrid: SefariaHybridStore
     let navigation: SefariaHybridNavigationStore
+    let relationships: SefariaHybridRelationshipsStore
     let catalog: SefariaHybridCatalogStore
 
     private init() {
@@ -28,6 +29,7 @@ final class SefariaBackend {
         self.offline = offline
         self.packages = packages
         self.navigation = navigation
+        self.relationships = SefariaHybridRelationshipsStore(offline: offline, remote: remote)
         self.catalog = SefariaHybridCatalogStore(remote: remote, packages: packages)
         self.hybrid = SefariaHybridStore(offline: offline, remote: remote, navigation: navigation)
     }
@@ -48,7 +50,7 @@ final class SefariaBackend {
             authors: nil,
             metadata: remote,
             workMetadata: navigation,
-            relationships: remote,
+            relationships: relationships,
             offline: packages,
             offlineWorks: packages,
             usesNativeMaktabahDataPath: false,

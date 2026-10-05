@@ -55,6 +55,16 @@ struct iOSReaderBottomToolbarView: View {
         .accessibilityLabel(String(localized: "Search"))
         .help(String(localized: "Search"))
 
+        if viewModel.hasActiveSearchHighlight {
+            Button(action: {
+                viewModel.clearSearchHighlight()
+            }) {
+                Image(systemName: "xmark.circle")
+            }
+            .accessibilityLabel(String(localized: "Clear Search Highlights"))
+            .help(String(localized: "Clear Search Highlights"))
+        }
+
         Menu {
             Button(action: {
                 DispatchQueue.main.async {
@@ -117,8 +127,8 @@ struct iOSReaderBottomToolbarView: View {
             if let book = viewModel.currentBook {
                 iOSBookSearchView(
                     book: book,
-                    onSelect: { contentId, query in
-                        viewModel.didSelectSearch(query: query, contentId: contentId)
+                    onSelect: { result, query in
+                        viewModel.didSelectSearch(result: result, query: query)
                         showingSearch = false
                     },
                     viewModel: viewModel.searchViewModel

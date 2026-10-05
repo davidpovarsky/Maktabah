@@ -292,6 +292,13 @@ jobs:
           test -f "$APP/dictionary.json"
           test -f "$APP/Acronyms.json"
           tar -C "$(dirname "$APP")" -cf build/artifacts/Maktabah-simulator-app.tar "$(basename "$APP")"
+      - name: Install IDB simulator orientation driver
+        run: |
+          if ! brew list idb >/dev/null 2>&1; then
+            brew tap facebook/fb
+            brew trust facebook/fb
+            brew install facebook/fb/idb
+          fi
       - name: Run iPad Pro acceptance and capture comprehensive screenshots
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

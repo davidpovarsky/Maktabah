@@ -115,6 +115,9 @@ struct OtzariaSearchArtifactInstaller: Sendable {
                         )
                     }
                 } catch {
+                    if OtzariaStorageErrorNormalizer.failure(for: error) != nil {
+                        throw error
+                    }
                     throw OtzariaSearchArtifactError.extractionFailed(error.localizedDescription)
                 }
                 extracted += part.uncompressedBytes
@@ -166,6 +169,9 @@ struct OtzariaSearchArtifactInstaller: Sendable {
             throw error
         } catch {
             try? fileManager.removeItem(at: stagingURL)
+            if OtzariaStorageErrorNormalizer.failure(for: error) != nil {
+                throw error
+            }
             throw OtzariaSearchArtifactError.validationFailed(error.localizedDescription)
         }
     }
@@ -213,6 +219,9 @@ struct OtzariaSearchArtifactInstaller: Sendable {
                         progress(base + Int64(Double(part.uncompressedBytes) * fraction), artifact.manifest.lexicalArtifact.extractedBytes)
                     }
                 } catch {
+                    if OtzariaStorageErrorNormalizer.failure(for: error) != nil {
+                        throw error
+                    }
                     throw OtzariaSearchArtifactError.extractionFailed(error.localizedDescription)
                 }
                 extracted += part.uncompressedBytes

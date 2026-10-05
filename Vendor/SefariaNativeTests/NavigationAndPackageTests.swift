@@ -36,6 +36,13 @@ func runNavigationAndPackageTests() async throws {
     try expect(firstRepeatedLeaf != secondRepeatedLeaf, "category identity includes full path")
     try expect(firstRepeatedLeaf == SefariaCatalogIdentity.categoryID(path: ["Tanakh", "Commentary"]),
         "category identity is deterministic")
+    try expect(
+        SefariaCatalogIdentity.searchPath(
+            parentPath: ["Tanakh", "Commentary", "Rashi", "Torah"],
+            title: "Rashi on Genesis"
+        ) == "Tanakh/Commentary/Rashi/Torah/Rashi on Genesis",
+        "catalog search path retains the exact backend hierarchy"
+    )
     let index = try JSONDecoder().decode(SefariaIndexDTO.self, from: fixture("index-complex.json"))
     let nodes = SefariaNavigationParser.nodes(schema: index.schema, indexTitle: index.title, baseRef: index.title)
     try expect(nodes.count == 2, "complex root nodes")
@@ -63,6 +70,17 @@ func runNavigationAndPackageTests() async throws {
     let resolvedGenesisRoot = try LibraryReadingUnitPolicy.resolve(genesisRoot, navigationItems: ordinaryItems)
     try expect(resolvedGenesisRoot.position == .canonicalRef("Genesis 1"),
         "ordinary work root resolves to the first bounded chapter")
+    try expect(LibraryReadingUnitPolicy.requiresBoundedResolution(genesisRoot, hasExplicitLocator: false),
+        "an implicit work root requires bounded-unit resolution")
+    let explicitOtzariaLineZero = TextLocator(
+        backend: .otzaria,
+        workKey: "book:1",
+        position: .legacyLine(0)
+    )
+    try expect(
+        !LibraryReadingUnitPolicy.requiresBoundedResolution(explicitOtzariaLineZero, hasExplicitLocator: true),
+        "an explicit Otzaria line-zero search result remains the exact reader target"
+    )
     let savedGenesis = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 2"))
     let restoredGenesis = LibraryReadingUnitPolicy.preferringRecent(genesisRoot, recentLocator: savedGenesis)
     let resolvedSavedGenesis = try LibraryReadingUnitPolicy.resolve(restoredGenesis, navigationItems: ordinaryItems)
@@ -147,6 +165,120 @@ func runNavigationAndPackageTests() async throws {
         alternateStructures: alternatives, indexTitle: "Genesis", baseRef: "Genesis")
     try expect(!primaryOnly.contains { $0.locator.position == .canonicalRef("Genesis 1:1-6:8") },
         "nodes does not contaminate primary structure with alternate structures")
+
+    let exportedIndexData = Data(#"""
+    {
+      "title":"Genesis",
+      "schema":{"content_counts":[2],"addressTypes":["Integer"]},
+      "alts":{"Parasha":{"nodes":[
+        {"nodeType":"ArrayMapNode","wholeRef":"Genesis 1:1-6:8","key":"Bereshit","addressTypes":["Aliyah"],"refs":["Genesis 1:1-2:3","Genesis 2:4-3:21"]},
+        {"nodeType":"ArrayMapNode","refs":["Genesis 6:9-11:32"],"key":"Noach"}
+      ]}}
+    }
+    """#.utf8)
+    let liveIndexData = Data(#"""
+    {
+      "title":"Genesis",
+      "schema":{"content_counts":[2],"addressTypes":["Integer"]},
+      "alt_structs":{"Parasha":{"nodes":[
+        {"nodeType":"ArrayMapNode","wholeRef":"Genesis 1:1-6:8","key":"Bereshit","addressTypes":["Aliyah"],"refs":["Genesis 1:1-2:3","Genesis 2:4-3:21"]},
+        {"nodeType":"ArrayMapNode","refs":["Genesis 6:9-11:32"],"key":"Noach"}
+      ]}}
+    }
+    """#.utf8)
+    let exportedIndex = try JSONDecoder().decode(SefariaOfflineIndexDTO.self, from: exportedIndexData)
+    let liveIndex = try JSONDecoder().decode(SefariaIndexDTO.self, from: liveIndexData)
+    try expect(exportedIndex.alternateStructures == liveIndex.alternateStructures,
+        "offline export alts decodes with parity to live alt_structs")
+    let exportedStructures = SefariaNavigationParser.structures(
+        schema: exportedIndex.schema,
+        alternateStructures: exportedIndex.alternateStructures,
+        indexTitle: exportedIndex.title,
+        baseRef: exportedIndex.title
+    )
+    let liveStructures = SefariaNavigationParser.structures(
+        schema: liveIndex.schema,
+        alternateStructures: liveIndex.alternateStructures,
+        indexTitle: liveIndex.title,
+        baseRef: liveIndex.title
+    )
+    try expect(exportedStructures.map(\.id) == liveStructures.map(\.id),
+        "offline and online navigation expose the same structures")
+    try expect(exportedStructures[1].nodes.map(\.locator) == liveStructures[1].nodes.map(\.locator),
+        "offline and online alternate structures expose the same locators")
+    try expect(exportedStructures[1].nodes.first?.children.map(\.locator) == [
+        TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1-2:3")),
+        TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 2:4-3:21"))
+    ], "offline Parasha structure retains Aliyah child references")
+    let legacyOfflineIndex = try JSONDecoder().decode(
+        SefariaOfflineIndexDTO.self,
+        from: Data(#"{"title":"Genesis","schema":{"content_counts":[1]}}"#.utf8)
+    )
+    try expect(legacyOfflineIndex.alternateStructures == nil && legacyOfflineIndex.versions.isEmpty,
+        "older offline index metadata remains decodable without alternate structures")
+
+    let metadataCandidates = try JSONDecoder().decode(
+        [SefariaOfflineMetadataDTO].self,
+        from: Data(#"""
+        [
+          {"ref":"Genesis 1","sectionRef":"Genesis 1","indexTitle":"Genesis"},
+          {"ref":"Genesis 10","sectionRef":"Genesis 10","indexTitle":"Genesis"},
+          {"ref":"Rashi on Genesis 1:1","sectionRef":"Rashi on Genesis 1:1","indexTitle":"Rashi on Genesis"}
+        ]
+        """#.utf8)
+    )
+    try expect(
+        SefariaOfflineMetadataResolver.metadata(for: "Genesis 1:2", in: metadataCandidates)?.sectionRef
+            == "Genesis 1",
+        "offline metadata resolves a segment to its exact section"
+    )
+    try expect(
+        SefariaOfflineMetadataResolver.metadata(for: "Genesis 10:2", in: metadataCandidates)?.sectionRef
+            == "Genesis 10",
+        "offline metadata does not confuse Genesis 1 with Genesis 10"
+    )
+    try expect(
+        SefariaOfflineMetadataResolver.metadata(for: "Genesis 1:1-6:8", in: metadataCandidates)?.sectionRef
+            == "Genesis 1",
+        "offline alternate-structure ranges resolve to their first local section"
+    )
+    try expect(
+        SefariaOfflineMetadataResolver.metadata(
+            for: "Rashi on Genesis 1:1:3",
+            in: metadataCandidates
+        )?.sectionRef == "Rashi on Genesis 1:1",
+        "offline metadata resolves multi-level commentary references"
+    )
+    try expect(!SefariaRef.sectionMatches("Genesis 1", "Genesis 10"),
+        "section matching observes address boundaries")
+
+    let offlineLinksFixture = try JSONDecoder().decode(
+        SefariaOfflineMetadataDTO.self,
+        from: fixture("offline-metadata.json")
+    )
+    let offlineSources = SefariaOfflineRelationshipMapper.sources(
+        linksBySegment: offlineLinksFixture.links ?? [],
+        requestedRef: "Genesis 1:1",
+        sectionRef: "Genesis 1",
+        knownTitles: ["Genesis", "Rashi on Genesis"]
+    )
+    try expect(offlineSources.count == 1, "offline metadata supplies inspector relationships")
+    try expect(
+        offlineSources.first?.locator == TextLocator(
+            backend: .sefaria,
+            workKey: "Rashi on Genesis",
+            position: .canonicalRef("Rashi on Genesis 1:1:1")
+        ),
+        "offline inspector relationship preserves its exact linked locator"
+    )
+    try expect(metadataCandidates.first?.links == nil,
+        "offline metadata without exported links remains distinguishable for remote fallback")
+    try expect(SefariaOfflineRelationshipMapper.sources(
+        linksBySegment: [],
+        requestedRef: "Genesis 1:1",
+        sectionRef: "Genesis 1",
+        knownTitles: ["Genesis"]
+    ).isEmpty, "missing offline relationship data is empty rather than a corrupt-text failure")
     let hebrewChapters = SefariaNavigationParser.nodes(schema: ordinary, indexTitle: "Genesis", baseRef: "Genesis", prefersHebrew: true)
     try expect(hebrewChapters.map(\.title) == ["פרק א׳", "פרק ב׳"], "Hebrew chapter titles")
 

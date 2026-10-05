@@ -243,7 +243,112 @@ struct SefariaOfflineIndexDTO: Codable, Sendable {
     let enDesc: String?
     let heDesc: String?
     let schema: SefariaJSONValue
+    let alternateStructures: [String: SefariaJSONValue]?
     let versions: [SefariaVersion]
+
+    private enum CodingKeys: String, CodingKey {
+        case title, heTitle, categories, heCategories, enDesc, heDesc, schema, versions
+        case alternateStructures = "alt_structs"
+        case exportAlternateStructures = "alts"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        title = try values.decode(String.self, forKey: .title)
+        heTitle = try values.decodeIfPresent(String.self, forKey: .heTitle)
+        categories = try values.decodeIfPresent([String].self, forKey: .categories)
+        heCategories = try values.decodeIfPresent([String].self, forKey: .heCategories)
+        enDesc = try values.decodeIfPresent(String.self, forKey: .enDesc)
+        heDesc = try values.decodeIfPresent(String.self, forKey: .heDesc)
+        schema = try values.decodeIfPresent(SefariaJSONValue.self, forKey: .schema) ?? .null
+        alternateStructures = try values.decodeIfPresent(
+            [String: SefariaJSONValue].self,
+            forKey: .alternateStructures
+        ) ?? values.decodeIfPresent(
+            [String: SefariaJSONValue].self,
+            forKey: .exportAlternateStructures
+        )
+        versions = try values.decodeIfPresent([SefariaVersion].self, forKey: .versions) ?? []
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(title, forKey: .title)
+        try values.encodeIfPresent(heTitle, forKey: .heTitle)
+        try values.encodeIfPresent(categories, forKey: .categories)
+        try values.encodeIfPresent(heCategories, forKey: .heCategories)
+        try values.encodeIfPresent(enDesc, forKey: .enDesc)
+        try values.encodeIfPresent(heDesc, forKey: .heDesc)
+        try values.encode(schema, forKey: .schema)
+        try values.encodeIfPresent(alternateStructures, forKey: .alternateStructures)
+        try values.encode(versions, forKey: .versions)
+    }
+}
+
+enum SefariaOfflineMetadataResolver {
+    static func metadata(
+        for requestedRef: String,
+        in values: [SefariaOfflineMetadataDTO]
+    ) -> SefariaOfflineMetadataDTO? {
+        let candidates = SefariaRef.sectionAncestors(of: requestedRef)
+        let ranks = Dictionary(uniqueKeysWithValues: candidates.enumerated().map { ($0.element, $0.offset) })
+        return values.compactMap { metadata -> (Int, Int, SefariaOfflineMetadataDTO)? in
+            let sectionRef = SefariaRef.canonicalInput(metadata.sectionRef)
+            let documentRef = SefariaRef.canonicalInput(metadata.ref)
+            let rank = min(ranks[sectionRef] ?? .max, ranks[documentRef] ?? .max)
+            guard rank != .max else {
+                return nil
+            }
+            return (rank, -sectionRef.count, metadata)
+        }.min { lhs, rhs in
+            lhs.0 != rhs.0 ? lhs.0 < rhs.0 : lhs.1 < rhs.1
+        }?.2
+    }
+}
+
+enum SefariaOfflineRelationshipMapper {
+    static func sources(
+        linksBySegment: [[SefariaLink]],
+        requestedRef: String,
+        sectionRef: String,
+        knownTitles: Set<String>
+    ) -> [LibraryRelatedSource] {
+        let requested = SefariaRef.canonicalInput(requestedRef)
+        let rows: [SefariaLink]
+        if let offset = SefariaRef.segmentOffset(in: requested, relativeTo: sectionRef),
+           linksBySegment.indices.contains(offset - 1) {
+            rows = linksBySegment[offset - 1]
+        } else {
+            rows = linksBySegment.flatMap { $0 }
+        }
+
+        var seen = Set<String>()
+        return rows.compactMap { link in
+            if let anchor = link.anchorRef,
+               !SefariaRef.sectionMatches(requested, anchor) {
+                return nil
+            }
+            guard let reference = link.sourceRef ?? link.ref else { return nil }
+            let workKey = SefariaRef.workKey(from: reference, knownTitles: Array(knownTitles))
+                ?? SefariaRef.inferredWorkKey(from: reference)
+            let source = LibraryRelatedSource(
+                locator: TextLocator(backend: .sefaria, workKey: workKey, position: .canonicalRef(reference)),
+                displayRef: reference,
+                heRef: link.heRef,
+                category: link.category ?? "Other",
+                type: link.type ?? "link",
+                collectiveTitle: nil,
+                heCollectiveTitle: nil,
+                primaryText: nil,
+                translation: nil,
+                versionTitle: nil,
+                heVersionTitle: nil,
+                license: nil
+            )
+            guard seen.insert(source.id).inserted else { return nil }
+            return source
+        }
+    }
 }
 
 enum SefariaOfflineNavigationBuilder {
