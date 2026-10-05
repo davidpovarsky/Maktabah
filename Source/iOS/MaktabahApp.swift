@@ -137,6 +137,9 @@ struct MaktabahApp: App {
                             }
                         }
                     }
+                    .onOpenURL { url in
+                        _ = TorahStudyDeepLinkHandler.shared.handle(url: url, navigationState: otzariaNavigation)
+                    }
                     .onChange(of: scenePhase) { _, newPhase in
                         if newPhase == .background {
                             // Release Tantivy file locks, mmap regions, and any
