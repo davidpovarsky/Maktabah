@@ -52,21 +52,29 @@ final class TorahStudyDeepLinkHandler: ObservableObject {
         }
 
         if let book = resolvedBook {
+            let lineSuffix = lineIndex != nil ? " line \(lineIndex!)" : ""
             if let nav = navigationState {
+                let otzariaBook = OtzariaBook(
+                    id: book.id,
+                    title: book.book,
+                    categoryId: book.catId ?? 0,
+                    orderIndex: book.orderIndex ?? 0,
+                    totalLines: book.totalLines ?? 0,
+                    shortDescription: book.bithoqoh,
+                    filePath: book.info,
+                    fileType: nil,
+                    isBaseBook: false,
+                    hasTeamim: false,
+                    hasNekudot: false,
+                    hasLinks: false
+                )
+                nav.openBook(otzariaBook)
                 if let line = lineIndex {
                     nav.selectedLineID = line
                 }
                 nav.readerToken = UUID()
             }
-
-            let terms = link.highlightText != nil ? [link.highlightText!] : nil
-            iOSNavigationManager.shared.openBook(
-                book,
-                initialContentId: lineIndex,
-                searchText: link.highlightText,
-                highlightTerms: terms
-            )
-            statusMessage = "Navigated to \(book.name)" + (lineIndex != nil ? " line \(lineIndex!)" : "")
+            statusMessage = "Navigated to \(book.book)\(lineSuffix)"
             return true
         }
         #endif

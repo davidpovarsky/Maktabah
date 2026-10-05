@@ -638,6 +638,7 @@
 		F305778E2FA463B1005732C6 /* ViewOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777D2FA463B1005732C6 /* ViewOptionsView.swift */; };
 		F305778F2FA463B1005732C6 /* iOSIbarotTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577812FA463B1005732C6 /* iOSIbarotTextView.swift */; };
 		F30577902FA463B1005732C6 /* iOSNavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577722FA463B1005732C6 /* iOSNavigationManager.swift */; };
+		F30578052FA463B1005732C6 /* TorahStudyDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30578062FA463B1005732C6 /* TorahStudyDeepLink.swift */; };
 		F30578002FA463B1005732C6 /* TorahStudyDeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30578012FA463B1005732C6 /* TorahStudyDeepLinkHandler.swift */; };
 		F30577922FA463B1005732C6 /* BookListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577802FA463B1005732C6 /* BookListWrapper.swift */; };
 		F30577932FA4982A005732C6 /* TextViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB8A452F2867A200732FC9 /* TextViewState.swift */; };
@@ -1192,6 +1193,7 @@
 		F300A2EB2F2DCE860095015E /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
 		F305776F2FA46222005732C6 /* Maktabah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maktabah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30577722FA463B1005732C6 /* iOSNavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSNavigationManager.swift; sourceTree = "<group>"; };
+		F30578062FA463B1005732C6 /* TorahStudyDeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorahStudyDeepLink.swift; sourceTree = "<group>"; };
 		F30578012FA463B1005732C6 /* TorahStudyDeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorahStudyDeepLinkHandler.swift; sourceTree = "<group>"; };
 		F30577752FA463B1005732C6 /* iOSReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderView.swift; sourceTree = "<group>"; };
 		F30577772FA463B1005732C6 /* AnnotationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationListView.swift; sourceTree = "<group>"; };
@@ -2082,6 +2084,7 @@
 		F30578022FA463B1005732C6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F30578062FA463B1005732C6 /* TorahStudyDeepLink.swift */,
 				F30578012FA463B1005732C6 /* TorahStudyDeepLinkHandler.swift */,
 			);
 			path = Navigation;
@@ -3119,6 +3122,7 @@
 				F32BA47B300EDD14002EA1F6 /* SettingsViewModel.swift in Sources */,
 				F30577442FA46222005732C6 /* TarjamahDataManager.swift in Sources */,
 				CFAA7B20E067D5BB75E4EB23 /* MaktabahApp.swift in Sources */,
+				F30578052FA463B1005732C6 /* TorahStudyDeepLink.swift in Sources */,
 				F30578002FA463B1005732C6 /* TorahStudyDeepLinkHandler.swift in Sources */,
 				F363825D2FA702D10006636C /* iPadLayout.swift in Sources */,
 				FDB5242B5960EB1507BD74A6 /* iOSHistoryView.swift in Sources */,
