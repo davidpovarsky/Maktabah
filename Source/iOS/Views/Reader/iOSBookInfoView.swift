@@ -90,7 +90,13 @@ struct iOSBookInfoView: View {
                 if currentText.isEmpty {
                     VStack {
                         Spacer()
-                        Text(isUnified ? "אין מידע נוסף" : .noMetadata)
+                        Group {
+                            if isUnified {
+                                Text("No additional information")
+                            } else {
+                                Text(.noMetadata)
+                            }
+                        }
                             .foregroundColor(.secondary)
                             .font(.subheadline)
                         Spacer()
@@ -103,7 +109,9 @@ struct iOSBookInfoView: View {
                     )
                 }
             }
-            .navigationTitle(isUnified ? (workMetadata?.heTitle ?? workMetadata?.title ?? book.book) : "Book Info")
+            .navigationTitle(isUnified
+                ? workMetadata.map { LibraryPresentationPolicy.workTitle(title: $0.title, heTitle: $0.heTitle) } ?? book.book
+                : String(localized: "Book Info"))
             .background(Color.appBackground)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

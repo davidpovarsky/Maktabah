@@ -22,6 +22,7 @@ enum BackendComposition {
             workMetadata: otzaria,
             relationships: otzariaRelationships,
             offline: nil,
+            offlineWorks: nil,
             usesNativeMaktabahDataPath: true,
             invalidateTransientState: {}
         ))

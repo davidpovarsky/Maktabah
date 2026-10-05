@@ -21,6 +21,7 @@ final class OfflineLibraryManagementViewModel: ObservableObject {
                 packages = try await provider.packages(forceRefresh: force)
                 installed = await provider.installedPackageIDs()
                 selected = installed
+                await LibraryOfflineAvailabilityController.shared.refresh()
             } catch { errorMessage = error.localizedDescription }
         }
     }
@@ -45,6 +46,7 @@ final class OfflineLibraryManagementViewModel: ObservableObject {
                     }
                 }
                 installed = await provider.installedPackageIDs()
+                await LibraryOfflineAvailabilityController.shared.refresh()
             } catch is CancellationError {
                 errorMessage = nil
             } catch { errorMessage = error.localizedDescription }
@@ -71,6 +73,7 @@ final class OfflineLibraryManagementViewModel: ObservableObject {
                     Task { @MainActor in self?.progress = update }
                 }
                 updateSummary = try await provider.availableUpdates()
+                await LibraryOfflineAvailabilityController.shared.refresh()
             } catch is CancellationError {
                 errorMessage = nil
             } catch { errorMessage = error.localizedDescription }
@@ -112,7 +115,7 @@ struct OfflineLibraryManagementView: View {
                         HStack {
                             Image(systemName: model.selected.contains(package.id) ? "checkmark.circle.fill" : "circle")
                             VStack(alignment: .leading) {
-                                Text(package.heTitle ?? package.title)
+                                Text(LibraryPresentationPolicy.workTitle(title: package.title, heTitle: package.heTitle))
                                 Text(ByteCountFormatter.string(fromByteCount: package.compressedSize, countStyle: .file))
                                     .font(.caption).foregroundStyle(.secondary)
                             }

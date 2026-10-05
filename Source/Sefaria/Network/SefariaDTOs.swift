@@ -363,25 +363,26 @@ struct SefariaIndexDTO: Decodable, Sendable {
 
         var fields: [LibraryMetadataField] = []
         if !authorList.isEmpty {
-            fields.append(LibraryMetadataField(key: "authors", label: "מחבר", value: authorList.joined(separator: ", ")))
+            fields.append(LibraryMetadataField(key: "authors", label: NSLocalizedString("Author", comment: ""), value: authorList.joined(separator: ", ")))
         }
-        if !categories.isEmpty {
-            fields.append(LibraryMetadataField(key: "categories", label: "קטגוריה", value: categories.joined(separator: " > ")))
+        let displayCategories = LibraryPresentationPolicy.prefersHebrew() ? (heCategories ?? categories) : categories
+        if !displayCategories.isEmpty {
+            fields.append(LibraryMetadataField(key: "categories", label: NSLocalizedString("Category", comment: ""), value: displayCategories.joined(separator: " > ")))
         }
         if let compDateStr {
-            fields.append(LibraryMetadataField(key: "compDate", label: "זמן חיבור", value: compDateStr))
+            fields.append(LibraryMetadataField(key: "compDate", label: NSLocalizedString("Composition Date", comment: ""), value: compDateStr))
         }
         if let compPlaceStr {
-            fields.append(LibraryMetadataField(key: "compPlace", label: "מקום חיבור", value: compPlaceStr))
+            fields.append(LibraryMetadataField(key: "compPlace", label: NSLocalizedString("Composition Place", comment: ""), value: compPlaceStr))
         }
         if let pubDateStr {
-            fields.append(LibraryMetadataField(key: "pubDate", label: "שנת דפוס", value: pubDateStr))
+            fields.append(LibraryMetadataField(key: "pubDate", label: NSLocalizedString("Publication Date", comment: ""), value: pubDateStr))
         }
         if let pubPlaceStr {
-            fields.append(LibraryMetadataField(key: "pubPlace", label: "מקום דפוס", value: pubPlaceStr))
+            fields.append(LibraryMetadataField(key: "pubPlace", label: NSLocalizedString("Publication Place", comment: ""), value: pubPlaceStr))
         }
         if let eraStr {
-            fields.append(LibraryMetadataField(key: "era", label: "תקופה", value: eraStr))
+            fields.append(LibraryMetadataField(key: "era", label: NSLocalizedString("Era", comment: ""), value: eraStr))
         }
 
         return LibraryWorkMetadata(
@@ -389,8 +390,8 @@ struct SefariaIndexDTO: Decodable, Sendable {
             title: title,
             heTitle: heTitle,
             authors: authorList,
-            description: heDesc ?? enDesc,
-            categories: categories,
+            description: LibraryPresentationPolicy.prefersHebrew() ? (heDesc ?? enDesc) : (enDesc ?? heDesc),
+            categories: displayCategories,
             factualFields: fields
         )
     }

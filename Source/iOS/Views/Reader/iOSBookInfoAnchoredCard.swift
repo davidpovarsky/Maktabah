@@ -14,8 +14,8 @@ enum UnifiedBookInfoSegment: Int, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .details: "פרטים"
-        case .description: "תיאור"
+        case .details: String(localized: "Details")
+        case .description: String(localized: "Description")
         }
     }
 }
@@ -65,7 +65,8 @@ struct iOSBookInfoCardView: View {
     }
 
     private var displayTitle: String {
-        workMetadata?.heTitle ?? workMetadata?.title ?? book.book
+        guard let metadata = workMetadata else { return book.book }
+        return LibraryPresentationPolicy.workTitle(title: metadata.title, heTitle: metadata.heTitle)
     }
 
     private var displaySubtitle: String {
@@ -75,7 +76,7 @@ struct iOSBookInfoCardView: View {
         if let authorName = author?.namaLengkap, !authorName.isEmpty {
             return authorName
         }
-        return isUnified ? "מידע על הספר" : String(localized: "Book Information")
+        return String(localized: "Book Information")
     }
 
     var body: some View {
@@ -86,13 +87,17 @@ struct iOSBookInfoCardView: View {
                     Text(displayTitle)
                         .font(.title2.bold())
                         .lineLimit(1)
-                        .environment(\.layoutDirection, .rightToLeft)
+                        .environment(\.layoutDirection,
+                            LibraryPresentationPolicy.interfaceDirection(presentedText: displayTitle) == .rightToLeft
+                                ? .rightToLeft : .leftToRight)
 
                     Text(displaySubtitle)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
-                        .environment(\.layoutDirection, .rightToLeft)
+                        .environment(\.layoutDirection,
+                            LibraryPresentationPolicy.interfaceDirection(presentedText: displaySubtitle) == .rightToLeft
+                                ? .rightToLeft : .leftToRight)
                 }
 
                 Spacer(minLength: 8)
@@ -140,7 +145,13 @@ struct iOSBookInfoCardView: View {
             if currentText.isEmpty {
                 VStack {
                     Spacer()
-                    Text(isUnified ? "אין מידע נוסף" : .noMetadata)
+                    Group {
+                        if isUnified {
+                            Text("No additional information")
+                        } else {
+                            Text(.noMetadata)
+                        }
+                    }
                         .foregroundColor(.secondary)
                         .font(.subheadline)
                     Spacer()

@@ -28,7 +28,9 @@ struct SettingsView: View {
             #endif
         }
         .onAppear {
-            ftsManager.checkNeedsMigration()
+            if backendCoordinator.usesNativeMaktabahDataPath {
+                ftsManager.checkNeedsMigration()
+            }
         }
     }
     
@@ -67,13 +69,17 @@ extension SettingsView {
     private var macOSForm: some View {
         Form {
             librarySourceSection
-            databaseModeSection
-            searchIndexSection
-            libraryStorageSection
+            if backendCoordinator.usesNativeMaktabahDataPath {
+                databaseModeSection
+                searchIndexSection
+                libraryStorageSection
+            }
             annotationsSection
             searchSection
-            downloadsSection
-            if shouldShowUpdatesSection { updatesSection }
+            if backendCoordinator.usesNativeMaktabahDataPath {
+                downloadsSection
+                if shouldShowUpdatesSection { updatesSection }
+            }
         }
         .formStyle(.grouped)
         .controlSize(.large)
@@ -95,12 +101,14 @@ extension SettingsView {
         Form {
             librarySourceSection
                 .listRowBackground(Color.appCellBackground)
-            databaseModeSection
-                .listRowBackground(Color.appCellBackground)
-            searchIndexSection
-                .listRowBackground(Color.appCellBackground)
-            libraryStorageSection
-                .listRowBackground(Color.appCellBackground)
+            if backendCoordinator.usesNativeMaktabahDataPath {
+                databaseModeSection
+                    .listRowBackground(Color.appCellBackground)
+                searchIndexSection
+                    .listRowBackground(Color.appCellBackground)
+                libraryStorageSection
+                    .listRowBackground(Color.appCellBackground)
+            }
             annotationsSection
                 .listRowBackground(Color.appCellBackground)
             searchSection
@@ -110,19 +118,22 @@ extension SettingsView {
             zayitCreditsSection
                 .listRowBackground(Color.appCellBackground)
 
-            if AppConfig.isUsingBundleMode,
+            if backendCoordinator.usesNativeMaktabahDataPath,
+               AppConfig.isUsingBundleMode,
                viewModel.hasPendingVacuum || viewModel.isVacuuming {
                 optimizationSection
                     .listRowBackground(Color.appCellBackground)
             }
 
-            if shouldShowUpdatesSection {
+            if backendCoordinator.usesNativeMaktabahDataPath, shouldShowUpdatesSection {
                 updatesSection
                     .listRowBackground(Color.appCellBackground)
             }
 
-            downloadsSection
-                .listRowBackground(Color.appCellBackground)
+            if backendCoordinator.usesNativeMaktabahDataPath {
+                downloadsSection
+                    .listRowBackground(Color.appCellBackground)
+            }
         }
         .formStyle(.grouped)
         .controlSize(.large)

@@ -162,26 +162,21 @@ class ReaderViewModel: ViewModelBase {
             return otzariaReference
         }
         if let section = backendSection {
-            if !section.displayRef.isEmpty {
-                return section.displayRef
-            }
-            if let heRef = section.heRef, !heRef.isEmpty {
-                return heRef
-            }
+            return LibraryPresentationPolicy.reference(displayRef: section.displayRef, heRef: section.heRef)
         }
         if let currentBook, currentBook.backendLocator != nil {
             return currentBook.book
         }
         if let currentPage {
-            let pageArb = String(currentPage).convertToArabicDigits()
+            let page = LibraryPresentationPolicy.localizedNumber(currentPage)
             if let currentPart, currentPart != -1 {
-                let partArb = String(currentPart).convertToArabicDigits()
-                return "ص \(pageArb) ・ ج \(partArb)"
+                let part = LibraryPresentationPolicy.localizedNumber(currentPart)
+                return "\(String(localized: "Page")) \(page) · \(String(localized: "Part")) \(part)"
             } else {
-                return "ص \(pageArb)"
+                return "\(String(localized: "Page")) \(page)"
             }
         } else {
-            return "صفحة"
+            return String(localized: "Page")
         }
     }
 
@@ -218,9 +213,7 @@ class ReaderViewModel: ViewModelBase {
         if case .canonicalRef(let sectionRef) = sectionLocator.position {
             if let match = navigationItems.firstIndex(where: { item in
                 if case .canonicalRef(let itemRef) = item.locator.position {
-                    return itemRef == sectionRef ||
-                           sectionRef.hasPrefix(itemRef) ||
-                           itemRef.hasPrefix(sectionRef)
+                    return SefariaRef.sectionMatches(sectionRef, itemRef)
                 }
                 return false
             }) {
@@ -307,18 +300,33 @@ class ReaderViewModel: ViewModelBase {
                     target = TextLocator(backend: locator.backend, workKey: locator.workKey, position: .legacyLine(initialContentId))
                 }
             } else {
-                let isWorkRoot: Bool
-                switch locator.position {
-                case .canonicalRef(let ref): isWorkRoot = ref == locator.workKey
-                case .legacyLine(let line): isWorkRoot = line == 0
-                }
-                if isWorkRoot,
+                if LibraryReadingUnitPolicy.isWorkRoot(locator),
                    let recent = await QualifiedLocatorStore.shared.entries().first(where: {
                        $0.locator.backend == locator.backend && $0.locator.workKey == locator.workKey
                    }) {
-                    target = recent.locator
+                    target = LibraryReadingUnitPolicy.preferringRecent(
+                        target,
+                        recentLocator: recent.locator
+                    )
                 }
             }
+            if LibraryReadingUnitPolicy.isWorkRoot(target) {
+                let work = LibraryWork(locator: locator, title: locator.workKey,
+                    heTitle: book.book, categories: [], description: nil)
+                do {
+                    let items = try await BackendCoordinator.shared.navigationItems(for: work)
+                    navigationItems = items
+                    target = try LibraryReadingUnitPolicy.resolve(target, navigationItems: items)
+                } catch is CancellationError {
+                    return
+                } catch {
+                    backendLoadTask = nil
+                    contentText = error.localizedDescription
+                    state = .error(error.localizedDescription)
+                    return
+                }
+            }
+            backendLoadTask = nil
             loadBackendContent(LibraryReaderDestination(sectionLocator: target, focusLocator: target))
         }
     }
@@ -753,15 +761,15 @@ class ReaderViewModel: ViewModelBase {
             windowSubtitle = otzariaReference
             onWindowTitleChanged?(title, otzariaReference)
         } else if let page {
-            let pageArb = String(page).convertToArabicDigits()
+            let localizedPage = LibraryPresentationPolicy.localizedNumber(page)
             if let part {
-                let partArb = String(part).convertToArabicDigits()
-                let subtitle = "\(muallif?.nama ?? "") ・ الصفحة \(pageArb) ・ الجزء \(partArb)"
+                let localizedPart = LibraryPresentationPolicy.localizedNumber(part)
+                let subtitle = "\(muallif?.nama ?? "") · \(String(localized: "Page")) \(localizedPage) · \(String(localized: "Part")) \(localizedPart)"
                 windowTitle = title
                 windowSubtitle = subtitle
                 onWindowTitleChanged?(title, subtitle)
             } else {
-                let subtitle = "\(muallif?.nama ?? "") ・ الصفحة \(pageArb)"
+                let subtitle = "\(muallif?.nama ?? "") · \(String(localized: "Page")) \(localizedPage)"
                 windowTitle = title
                 windowSubtitle = subtitle
                 onWindowTitleChanged?(title, subtitle)
@@ -915,10 +923,10 @@ class ReaderViewModel: ViewModelBase {
     func getCopyPageInfo() -> String {
         var pageParts: [String] = []
         if let page = currentPage {
-            pageParts.append("ص \(page)".convertToArabicDigits())
+            pageParts.append("\(String(localized: "Page")) \(LibraryPresentationPolicy.localizedNumber(page))")
         }
         if let part = currentPart, part != -1 {
-            pageParts.append("ج \(part)".convertToArabicDigits())
+            pageParts.append("\(String(localized: "Part")) \(LibraryPresentationPolicy.localizedNumber(part))")
         }
         return pageParts.joined(separator: " - ")
     }

@@ -8,6 +8,8 @@ final class SefariaBackend {
     let offline: SefariaOfflineStore
     let packages: SefariaPackageManager
     let hybrid: SefariaHybridStore
+    let navigation: SefariaHybridNavigationStore
+    let catalog: SefariaHybridCatalogStore
 
     private init() {
         let client = SefariaHTTPClient()
@@ -15,10 +17,19 @@ final class SefariaBackend {
         let remote = SefariaRemoteStore(client: client)
         let offline = SefariaOfflineStore(paths: paths)
         let updates = SefariaUpdateManager(configuration: .production, client: client, paths: paths)
+        let packages = SefariaPackageManager(client: client, paths: paths, updates: updates)
+        let localNavigation = SefariaOfflineNavigationStore(offline: offline)
+        let navigation = SefariaHybridNavigationStore(
+            isInstalled: { workKey in await offline.contains(workKey: workKey) },
+            local: localNavigation,
+            remote: remote
+        )
         self.remote = remote
         self.offline = offline
-        self.packages = SefariaPackageManager(client: client, paths: paths, updates: updates)
-        self.hybrid = SefariaHybridStore(offline: offline, remote: remote)
+        self.packages = packages
+        self.navigation = navigation
+        self.catalog = SefariaHybridCatalogStore(remote: remote, packages: packages)
+        self.hybrid = SefariaHybridStore(offline: offline, remote: remote, navigation: navigation)
     }
 
     func register() {
@@ -28,17 +39,18 @@ final class SefariaBackend {
     func register(with coordinator: BackendCoordinator) {
         coordinator.register(LibraryBackendRegistration(
             id: .sefaria,
-            sourceDescription: "Read from Sefaria downloads first, with cloud fallback when needed.",
+            sourceDescription: String(localized: "Read from Sefaria downloads first, with cloud fallback when needed."),
             capabilities: [.catalog, .reading, .navigation, .search, .links, .versions, .offlineLibrary, .workMetadata],
-            catalog: remote,
+            catalog: catalog,
             text: hybrid,
-            navigation: remote,
+            navigation: navigation,
             search: remote,
             authors: nil,
             metadata: remote,
-            workMetadata: remote,
+            workMetadata: navigation,
             relationships: remote,
             offline: packages,
+            offlineWorks: packages,
             usesNativeMaktabahDataPath: false,
             invalidateTransientState: { [remote = self.remote, offline = self.offline,
                 hybrid = self.hybrid, packages = self.packages] in

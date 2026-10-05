@@ -32,9 +32,7 @@ enum MaktabahBackendAdapter {
 
         func convert(_ node: LibraryCatalogNode, level: Int, parentID: Int?) -> Any {
             if let work = node.work {
-                let title = LibraryPresentationPolicy.prefersHebrew()
-                    ? (work.heTitle ?? work.title)
-                    : work.title
+                let title = LibraryPresentationPolicy.workTitle(title: work.title, heTitle: work.heTitle)
                 let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: work)
                     ?? LegacyIdentityRegistry.shared.id(for: work.locator, title: title)
                 CrossBackendBookIdentityIndex.shared.register(work, canonicalID: id)
@@ -49,7 +47,13 @@ enum MaktabahBackendAdapter {
             let categoryLocator = TextLocator(backend: BackendCoordinator.shared.activeBackendID,
                 workKey: "category:\(node.id)", position: .legacyLine(0))
             let id = LegacyIdentityRegistry.shared.id(for: categoryLocator)
-            let category = CategoryData(id: id, name: node.heTitle ?? node.title, level: level, order: 0, parentId: parentID)
+            let category = CategoryData(
+                id: id,
+                name: LibraryPresentationPolicy.categoryTitle(title: node.title, heTitle: node.heTitle),
+                level: level,
+                order: 0,
+                parentId: parentID
+            )
             category.children = node.children.map { convert($0, level: level + 1, parentID: id) }
             return category
         }

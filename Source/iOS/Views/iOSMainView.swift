@@ -54,6 +54,14 @@ enum iOSTab: Int, CaseIterable, Identifiable {
         }
     }
 
+    func isAvailable(for capabilities: BackendCapabilities) -> Bool {
+        switch canonical {
+        case .search: capabilities.contains(.search)
+        case .author: capabilities.contains(.authors)
+        default: true
+        }
+    }
+
     init(appMode: AppMode) {
         switch appMode {
         case .viewer: self = .viewer

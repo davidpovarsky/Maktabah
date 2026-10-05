@@ -15,6 +15,7 @@ struct iPhoneLayout: View {
     @Binding var showSettings: Bool
     @State private var showingAddFavorites = false
     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
+    @StateObject private var backendCoordinator = BackendCoordinator.shared
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -22,14 +23,16 @@ struct iPhoneLayout: View {
                 viewerTabContent
             }
 
-            if BackendCoordinator.shared.capabilities.contains(.search) {
+            if iOSTab.search.isAvailable(for: backendCoordinator.activeCapabilities) {
                 Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
                     searchTabContent
                 }
             }
 
-            Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
-                authorTabContent
+            if iOSTab.author.isAvailable(for: backendCoordinator.activeCapabilities) {
+                Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
+                    authorTabContent
+                }
             }
 
             Tab(iOSTab.annotations.title, systemImage: iOSTab.annotations.icon, value: .annotations) {
@@ -51,13 +54,15 @@ struct iPhoneLayout: View {
             } else {
                 selectedTab = savedSelectedTab.canonical
             }
-            if selectedTab == .search && !BackendCoordinator.shared.capabilities.contains(.search) {
+            if !selectedTab.isAvailable(for: backendCoordinator.activeCapabilities) {
                 selectedTab = .viewer
+                savedSelectedTab = .viewer
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
-            if selectedTab == .search && !BackendCoordinator.shared.capabilities.contains(.search) {
+            if !selectedTab.isAvailable(for: backendCoordinator.activeCapabilities) {
                 selectedTab = .viewer
+                savedSelectedTab = .viewer
             }
         }
         .onChange(of: selectedTab) { _, newValue in

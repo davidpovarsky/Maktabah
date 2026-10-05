@@ -1,11 +1,12 @@
 import Foundation
 import ZIPFoundation
 
-actor SefariaPackageManager: OfflineLibraryProviding {
+actor SefariaPackageManager: OfflineLibraryProviding, OfflineWorkProviding {
     private let configuration: SefariaNetworkConfiguration
     private let client: SefariaHTTPClient
     private let paths: SefariaOfflinePaths
     private let updates: SefariaUpdateManager
+    private let bundles: SefariaBundleDownloadService
     private var activeInstall: Task<Void, Error>?
     private var didCleanupStaging = false
 
@@ -19,6 +20,7 @@ actor SefariaPackageManager: OfflineLibraryProviding {
         self.client = client
         self.paths = paths
         self.updates = updates ?? SefariaUpdateManager(configuration: configuration, client: client, paths: paths)
+        self.bundles = SefariaBundleDownloadService(configuration: configuration, client: client, paths: paths)
     }
 
     func packages(forceRefresh: Bool) async throws -> [OfflinePackage] {
@@ -38,6 +40,43 @@ actor SefariaPackageManager: OfflineLibraryProviding {
 
     func installedPackageIDs() -> Set<String> { Set(loadState().packages.keys) }
 
+    func installedWorkKeys() -> Set<String> {
+        var state = loadState()
+        var repaired = false
+        var validStandalone = Set<String>()
+        for title in Array(state.standaloneWorks.keys) {
+            guard let work = state.standaloneWorks[title] else { continue }
+            let archive = paths.standaloneWorks.appendingPathComponent(work.archiveFilename)
+            if isValidBookArchive(archive, expectedTitle: title) {
+                validStandalone.insert(title)
+            } else {
+                state.standaloneWorks.removeValue(forKey: title)
+                repaired = true
+            }
+        }
+        var validPackages: [String: Set<String>] = [:]
+        for (id, var package) in Array(state.packages) {
+            let directory = paths.packages.appendingPathComponent(
+                SefariaOfflinePaths.safeComponent(id), isDirectory: true
+            )
+            let valid = validatedBookTitles(in: directory)
+            let declared = package.titleUpdates.map { Set($0.keys) } ?? []
+            let repairedTitles = declared.isEmpty ? valid : declared.intersection(valid)
+            if repairedTitles != declared {
+                let previous = package.titleUpdates ?? [:]
+                package.titleUpdates = Dictionary(uniqueKeysWithValues: repairedTitles.map { ($0, previous[$0] ?? "") })
+                state.packages[id] = package
+                repaired = true
+            }
+            validPackages[id] = valid
+        }
+        if repaired { try? saveState(state) }
+        return state.installedWorkKeys(
+            validStandaloneWorkKeys: validStandalone,
+            validPackageWorkKeys: validPackages
+        )
+    }
+
     func install(
         packageIDs: Set<String>,
         progress: @escaping @Sendable (OfflineInstallProgress) -> Void
@@ -45,6 +84,18 @@ actor SefariaPackageManager: OfflineLibraryProviding {
         cleanupStagingIfNeeded()
         guard activeInstall == nil else { throw LibraryBackendError.invalidResponse("an install is already running") }
         let task = Task { try await performInstall(packageIDs: packageIDs, progress: progress) }
+        activeInstall = task
+        defer { activeInstall = nil }
+        try await task.value
+    }
+
+    func install(
+        workKeys: Set<String>,
+        progress: @escaping @Sendable (OfflineInstallProgress) -> Void
+    ) async throws {
+        cleanupStagingIfNeeded()
+        guard activeInstall == nil else { throw LibraryBackendError.invalidResponse("an install is already running") }
+        let task = Task { try await performWorkInstall(workKeys: workKeys, progress: progress) }
         activeInstall = task
         defer { activeInstall = nil }
         try await task.value
@@ -67,12 +118,42 @@ actor SefariaPackageManager: OfflineLibraryProviding {
         await updates.cancel()
     }
 
+    func cancelWorkInstall() async { await cancelInstall() }
+
     func remove(packageIDs: Set<String>) throws {
         var state = loadState()
         for id in packageIDs {
             let target = paths.packages.appendingPathComponent(SefariaOfflinePaths.safeComponent(id), isDirectory: true)
             if FileManager.default.fileExists(atPath: target.path) { try FileManager.default.removeItem(at: target) }
             state.packages.removeValue(forKey: id)
+        }
+        try saveState(state)
+        removeOrphanedExpandedBooks()
+    }
+
+    func remove(workKeys: Set<String>) throws {
+        var state = loadState()
+        let manager = FileManager.default
+        for title in workKeys {
+            if let standalone = state.standaloneWorks.removeValue(forKey: title) {
+                let archive = paths.standaloneWorks.appendingPathComponent(standalone.archiveFilename)
+                if manager.fileExists(atPath: archive.path) { try manager.removeItem(at: archive) }
+            }
+            for id in Array(state.packages.keys) {
+                guard var package = state.packages[id] else { continue }
+                let packageDirectory = paths.packages.appendingPathComponent(
+                    SefariaOfflinePaths.safeComponent(id), isDirectory: true
+                )
+                for archive in bookArchives(in: packageDirectory)
+                    where archive.deletingPathExtension().lastPathComponent == title {
+                    try manager.removeItem(at: archive)
+                }
+                var excluded = package.excludedTitles ?? []
+                excluded.insert(title)
+                package.excludedTitles = excluded
+                package.titleUpdates?.removeValue(forKey: title)
+                state.packages[id] = package
+            }
         }
         try saveState(state)
         removeOrphanedExpandedBooks()
@@ -146,10 +227,74 @@ actor SefariaPackageManager: OfflineLibraryProviding {
             try SefariaFileTransaction.atomicReplace(payload, target: target)
             state.packages[package.id] = .init(id: package.id, installedAt: Date(),
                 schemaVersion: SefariaExportContract.currentSchema, bundlePaths: bundlePaths,
-                titleUpdates: titleUpdates)
+                titleUpdates: titleUpdates, excludedTitles: [])
             try saveState(state)
             progress(.init(phase: .finished, packageID: package.id, completedBytes: package.compressedSize, totalBytes: package.compressedSize))
         }
+    }
+
+    private func performWorkInstall(
+        workKeys: Set<String>,
+        progress: @escaping @Sendable (OfflineInstallProgress) -> Void
+    ) async throws {
+        guard !workKeys.isEmpty else { return }
+        let downloaded = try await bundles.download(workKeys: workKeys, progress: progress)
+        defer { try? FileManager.default.removeItem(at: downloaded.transaction) }
+        var archivesByTitle: [String: URL] = [:]
+        for archive in downloaded.bookArchives {
+            let title = archive.deletingPathExtension().lastPathComponent
+            guard archivesByTitle.updateValue(archive, forKey: title) == nil else {
+                throw LibraryBackendError.corruptData("bundle contains duplicate archive for \(title)")
+            }
+        }
+        let missing = workKeys.subtracting(archivesByTitle.keys)
+        guard missing.isEmpty else {
+            throw LibraryBackendError.corruptData("bundle omitted requested works: \(missing.sorted().joined(separator: ", "))")
+        }
+
+        progress(.init(phase: .installing, packageID: nil, completedBytes: downloaded.downloadSize,
+            totalBytes: downloaded.downloadSize))
+        let manager = FileManager.default
+        let staged = downloaded.transaction.appendingPathComponent("standalone-next", isDirectory: true)
+        try manager.createDirectory(at: staged, withIntermediateDirectories: true)
+        if manager.fileExists(atPath: paths.standaloneWorks.path) {
+            for existing in try manager.contentsOfDirectory(at: paths.standaloneWorks,
+                includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+                try manager.copyItem(at: existing, to: staged.appendingPathComponent(existing.lastPathComponent))
+            }
+        }
+        for title in workKeys {
+            guard let archive = archivesByTitle[title] else { continue }
+            let target = staged.appendingPathComponent(paths.standaloneArchive(for: title).lastPathComponent)
+            if manager.fileExists(atPath: target.path) { try manager.removeItem(at: target) }
+            try manager.copyItem(at: archive, to: target)
+            try SefariaArchiveValidator.validateBookArchive(target, expectedTitle: title)
+        }
+
+        let timestamps = try await updates.snapshot(for: workKeys)
+        try manager.createDirectory(at: paths.schemaRoot, withIntermediateDirectories: true)
+        try SefariaFileTransaction.atomicReplace(staged, target: paths.standaloneWorks)
+
+        var state = loadState()
+        let committedFilenames = Dictionary(uniqueKeysWithValues: workKeys.map {
+            ($0, paths.standaloneArchive(for: $0).lastPathComponent)
+        })
+        try state.recordStandaloneInstall(
+            workKeys: workKeys,
+            committedArchiveFilenames: committedFilenames,
+            timestamps: timestamps
+        )
+        for title in workKeys {
+            for id in Array(state.packages.keys) {
+                guard var package = state.packages[id] else { continue }
+                package.excludedTitles?.remove(title)
+                state.packages[id] = package
+            }
+        }
+        try saveState(state)
+        removeOrphanedExpandedBooks()
+        progress(.init(phase: .finished, packageID: nil, completedBytes: downloaded.downloadSize,
+            totalBytes: downloaded.downloadSize))
     }
 
     private func loadState() -> SefariaInstalledState {
@@ -188,6 +333,29 @@ actor SefariaPackageManager: OfflineLibraryProviding {
         throw lastError ?? LibraryBackendError.invalidResponse("bundle download failed")
     }
     private func removeOrphanedExpandedBooks() { try? FileManager.default.removeItem(at: paths.expandedBooks) }
+
+    private func validatedBookTitles(in directory: URL) -> Set<String> {
+        Set(bookArchives(in: directory).compactMap { url in
+            let title = url.deletingPathExtension().lastPathComponent
+            return isValidBookArchive(url, expectedTitle: title) ? title : nil
+        })
+    }
+
+    private func isValidBookArchive(_ url: URL, expectedTitle: String) -> Bool {
+        guard FileManager.default.fileExists(atPath: url.path) else { return false }
+        do {
+            try SefariaArchiveValidator.validateBookArchive(url, expectedTitle: expectedTitle)
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    private func bookArchives(in directory: URL) -> [URL] {
+        guard let walker = FileManager.default.enumerator(at: directory,
+            includingPropertiesForKeys: [.isRegularFileKey], options: [.skipsHiddenFiles]) else { return [] }
+        return walker.compactMap { $0 as? URL }.filter { $0.pathExtension.lowercased() == "zip" }
+    }
 
     private func availableCapacity(at url: URL) -> Int64 {
         (try? url.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])

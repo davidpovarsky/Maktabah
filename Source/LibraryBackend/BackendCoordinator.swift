@@ -3,6 +3,7 @@ import Foundation
 
 extension Notification.Name {
     static let activeLibraryBackendDidChange = Notification.Name("activeLibraryBackendDidChange")
+    static let libraryBackendDataDidReload = Notification.Name("libraryBackendDataDidReload")
     static let libraryBackendConfigurationRequested = Notification.Name("libraryBackendConfigurationRequested")
 }
 
@@ -93,7 +94,6 @@ final class BackendCoordinator: ObservableObject {
             }
         }
         NotificationCenter.default.post(name: .activeLibraryBackendDidChange, object: backendID)
-        NotificationCenter.default.post(name: .libraryFolderChanged, object: nil)
     }
 
     /// Compatibility entry point for callers whose selection is immediately usable.
@@ -200,6 +200,10 @@ final class BackendCoordinator: ObservableObject {
 
     func offlineProvider() -> (any OfflineLibraryProviding)? {
         registrations[activeBackendID]?.offline
+    }
+
+    func offlineWorkProvider() -> (any OfflineWorkProviding)? {
+        registrations[activeBackendID]?.offlineWorks
     }
 
     private func validate(_ requestGeneration: UInt64) throws {

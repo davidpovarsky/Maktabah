@@ -195,6 +195,7 @@ jobs:
             -DTESTING \
             Source/LibraryBackend/LibraryBackendModels.swift \
             Source/LibraryBackend/LibraryBackendProtocols.swift \
+            Source/LibraryBackend/LibraryPresentationPolicy+Display.swift \
             Source/LibraryBackend/BackendCoordinator.swift \
             Source/LibraryBackend/LegacyIdentityRegistry.swift \
             Source/LibraryBackend/MaktabahSearchSnippetFormatter.swift \
@@ -205,6 +206,7 @@ jobs:
             Source/Sefaria/Network/SefariaHTTPClient.swift \
             Source/Sefaria/Cache/SefariaDiskCache.swift \
             Source/Sefaria/Network/SefariaRemoteStore.swift \
+            Source/Sefaria/Reading/SefariaHybridNavigationStore.swift \
             Source/Sefaria/Offline/SefariaExportModels.swift \
             Source/Sefaria/Downloads/SefariaPackagePolicy.swift \
             Source/Otzaria/Core/String+OtzariaText.swift \

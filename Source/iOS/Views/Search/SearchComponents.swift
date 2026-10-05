@@ -382,7 +382,7 @@ struct SearchHelpView: View {
     var body: some View {
         ThemeScrollView {
             ThemeVStack(alignment: .leading, spacing: 14) {
-                Label("עזרה לאפשרויות חיפוש", systemImage: "questionmark.circle")
+                Label(String(localized: "search.optionsHelpTitle"), systemImage: "questionmark.circle")
                     .font(.headline)
                     .padding(.bottom, 4)
 
@@ -400,22 +400,23 @@ struct SearchHelpView: View {
             }
             .padding()
         }
-        .environment(\.layoutDirection, .rightToLeft)
+        .environment(\.layoutDirection,
+            LibraryPresentationPolicy.interfaceDirection() == .rightToLeft ? .rightToLeft : .leftToRight)
     }
 
     private var otzariaModesHelp: some View {
         VStack(alignment: .leading, spacing: 12) {
             if isSefaria == nil {
-                Text("מצבי חיפוש באוצריא")
+                Text(String(localized: "Otzaria Search Modes"))
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(.secondary)
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                Label("מדויק", systemImage: "text.quote")
+                Label(String(localized: "Exact"), systemImage: "text.quote")
                     .font(.subheadline).bold()
-                Text("איתור ביטוי או מילים ברצף המדויק כפי שנכתבו. זהו מצב החיפוש המהיר ביותר.")
+                Text(String(localized: "Find a phrase or words in the exact order entered. This is the fastest search mode."))
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
@@ -423,9 +424,9 @@ struct SearchHelpView: View {
             Divider()
 
             VStack(alignment: .leading, spacing: 4) {
-                Label("מתקדם", systemImage: "slider.horizontal.3")
+                Label(String(localized: "Advanced"), systemImage: "slider.horizontal.3")
                     .font(.subheadline).bold()
-                Text("חיפוש רב-עוצמה הכולל מרחק בין מילים, החרגת מילים, קידומות וסיומות דקדוקיות, כתיב מלא וחסר, ארמית, ומילים חלופיות.")
+                Text(String(localized: "Powerful search with word distance, exclusions, grammatical prefixes and suffixes, spelling variants, Aramaic, and alternative words."))
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
@@ -433,9 +434,9 @@ struct SearchHelpView: View {
             Divider()
 
             VStack(alignment: .leading, spacing: 4) {
-                Label("מקורב", systemImage: "character.bubble")
+                Label(String(localized: "Fuzzy"), systemImage: "character.bubble")
                     .font(.subheadline).bold()
-                Text("איתור מילים גם כאשר קיימות שגיאות כתיב קלות או שינויי אותיות (מרחק עריכה).")
+                Text(String(localized: "Find words despite minor spelling errors or letter changes."))
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
@@ -443,9 +444,9 @@ struct SearchHelpView: View {
             Divider()
 
             VStack(alignment: .leading, spacing: 4) {
-                Label("זית", systemImage: "sparkles")
+                Label(String(localized: "Zayit"), systemImage: "sparkles")
                     .font(.subheadline).bold()
-                Text("חיפוש סמנטי והקשרי מהיר לאיתור מקורות לפי משמעות ונושא.")
+                Text(String(localized: "Fast semantic search for sources by meaning and topic."))
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
@@ -455,16 +456,16 @@ struct SearchHelpView: View {
     private var sefariaModesHelp: some View {
         VStack(alignment: .leading, spacing: 12) {
             if isSefaria == nil {
-                Text("מצבי חיפוש בספריא")
+                Text(String(localized: "Sefaria Search Modes"))
                     .font(.subheadline)
                     .bold()
                     .foregroundColor(.secondary)
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                Label("מדויק", systemImage: "text.quote")
+                Label(String(localized: "Exact"), systemImage: "text.quote")
                     .font(.subheadline).bold()
-                Text("חיפוש מילים או ביטויים בדיוק כפי שהוזנו.")
+                Text(String(localized: "Search for words or phrases exactly as entered."))
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
@@ -472,9 +473,9 @@ struct SearchHelpView: View {
             Divider()
 
             VStack(alignment: .leading, spacing: 4) {
-                Label("למטיזציה (מתקדם)", systemImage: "character.book.closed")
+                Label(String(localized: "Lemmatized (Advanced)"), systemImage: "character.book.closed")
                     .font(.subheadline).bold()
-                Text("חיפוש חכם המזהה שורשים, הטיות דקדוקיות וצורות מילים שונות לפי מילון ספריא, עם אפשרות להגדרת מרחק מילים.")
+                Text(String(localized: "Smart search that recognizes roots, grammatical forms, and variants using Sefaria's dictionary, with configurable word distance."))
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
@@ -516,7 +517,7 @@ struct HideTabBarWhenKeyboardShown: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .toolbarVisibility(isKeyboardVisible ? .hidden : .visible, for: .tabBar)
+            .platformTabBarVisibility(hiddenOnPhone: isKeyboardVisible)
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
                 isKeyboardVisible = true
             }
@@ -809,19 +810,19 @@ struct UnifiedSearchToolbar: ToolbarContent {
                     session.sefariaSortOrder = .relevance
                     session.runSearch()
                 } label: {
-                    Label("רלוונטיות", systemImage: session.sefariaSortOrder == .relevance ? "checkmark" : "")
+                    Label("Relevance", systemImage: session.sefariaSortOrder == .relevance ? "checkmark" : "")
                 }
                 Button {
                     session.sefariaSortOrder = .canonical
                     session.runSearch()
                 } label: {
-                    Label("סדר קנוני", systemImage: session.sefariaSortOrder == .canonical ? "checkmark" : "")
+                    Label("Canonical Order", systemImage: session.sefariaSortOrder == .canonical ? "checkmark" : "")
                 }
                 Button {
                     session.sefariaSortOrder = .chronological
                     session.runSearch()
                 } label: {
-                    Label("כרונולוגי", systemImage: session.sefariaSortOrder == .chronological ? "checkmark" : "")
+                    Label("Chronological", systemImage: session.sefariaSortOrder == .chronological ? "checkmark" : "")
                 }
 
                 Divider()
@@ -830,10 +831,10 @@ struct UnifiedSearchToolbar: ToolbarContent {
                     session.sefariaReverseSort.toggle()
                     session.runSearch()
                 } label: {
-                    Label("סדר הפוך", systemImage: session.sefariaReverseSort ? "checkmark.square" : "square")
+                    Label("Reverse Order", systemImage: session.sefariaReverseSort ? "checkmark.square" : "square")
                 }
             } label: {
-                Label("מיון", systemImage: "arrow.up.arrow.down")
+                Label("Sort By", systemImage: "arrow.up.arrow.down")
             }
         } else if session.scope != .zayit {
             Menu {
@@ -841,16 +842,16 @@ struct UnifiedSearchToolbar: ToolbarContent {
                     session.otzariaOrder = .catalogue
                     session.runSearch()
                 } label: {
-                    Label("סדר קטלוגי", systemImage: session.otzariaOrder == .catalogue ? "checkmark" : "")
+                    Label("Canonical Order", systemImage: session.otzariaOrder == .catalogue ? "checkmark" : "")
                 }
                 Button {
                     session.otzariaOrder = .relevance
                     session.runSearch()
                 } label: {
-                    Label("רלוונטיות", systemImage: session.otzariaOrder == .relevance ? "checkmark" : "")
+                    Label("Relevance", systemImage: session.otzariaOrder == .relevance ? "checkmark" : "")
                 }
             } label: {
-                Label("מיון", systemImage: "arrow.up.arrow.down")
+                Label("Sort By", systemImage: "arrow.up.arrow.down")
             }
         }
     }
@@ -904,11 +905,11 @@ struct SearchAdvancedOptionsView: View {
                     otzariaOptionsSection
                 }
             }
-            .navigationTitle("אפשרויות חיפוש")
+            .navigationTitle(String(localized: "Search Options"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("סיום") {
+                    Button(String(localized: "Done")) {
                         dismiss()
                     }
                 }
@@ -918,65 +919,65 @@ struct SearchAdvancedOptionsView: View {
 
     @ViewBuilder
     private var sefariaOptionsSection: some View {
-        Section(header: Text("הגדרות ספריא")) {
-            Picker("מצב התאמה", selection: $session.sefariaMatchMode) {
-                Text("מדויק").tag(LibrarySearchMatchMode.exact)
-                Text("למטיזציה (הטיות דקדוקיות)").tag(LibrarySearchMatchMode.hebrewLemmatized)
+        Section(header: Text(String(localized: "Sefaria Settings"))) {
+            Picker(String(localized: "Match Mode"), selection: $session.sefariaMatchMode) {
+                Text(String(localized: "Exact")).tag(LibrarySearchMatchMode.exact)
+                Text(String(localized: "Lemmatized (Grammatical Forms)")).tag(LibrarySearchMatchMode.hebrewLemmatized)
             }
 
-            Stepper("מרחק מילים מקסימלי: \(session.sefariaWordDistance)", value: $session.sefariaWordDistance, in: 0...50)
+            Stepper("\(String(localized: "Maximum Word Distance")): \(session.sefariaWordDistance)", value: $session.sefariaWordDistance, in: 0...50)
 
-            Picker("סדר תוצאות", selection: $session.sefariaSortOrder) {
-                Text("רלוונטיות").tag(LibrarySearchSortOrder.relevance)
-                Text("סדר קנוני").tag(LibrarySearchSortOrder.canonical)
-                Text("כרונולוגי").tag(LibrarySearchSortOrder.chronological)
+            Picker(String(localized: "Result Order"), selection: $session.sefariaSortOrder) {
+                Text(String(localized: "Relevance")).tag(LibrarySearchSortOrder.relevance)
+                Text(String(localized: "Canonical Order")).tag(LibrarySearchSortOrder.canonical)
+                Text(String(localized: "Chronological")).tag(LibrarySearchSortOrder.chronological)
             }
 
-            Toggle("סדר הפוך", isOn: $session.sefariaReverseSort)
+            Toggle(String(localized: "Reverse Order"), isOn: $session.sefariaReverseSort)
         }
     }
 
     @ViewBuilder
     private var otzariaOptionsSection: some View {
-        Section(header: Text("סדר ומיון")) {
-            Picker("סדר תוצאות", selection: $session.otzariaOrder) {
+        Section(header: Text(String(localized: "Order and Sorting"))) {
+            Picker(String(localized: "Result Order"), selection: $session.otzariaOrder) {
                 ForEach(OtzariaSearchOrder.allCases, id: \.self) { order in
                     Text(order.label).tag(order)
                 }
             }
         }
 
-        Section(header: Text("החרגת מילים")) {
-            TextField("מילים להחרגה", text: $session.otzariaNegativeQuery)
+        Section(header: Text(String(localized: "Excluded Words"))) {
+            TextField(String(localized: "Words to Exclude"), text: $session.otzariaNegativeQuery)
         }
 
-        Section(header: Text("מרחק והתאמה")) {
-            Stepper("מרחק מילים: \(session.otzariaDistance)", value: $session.otzariaDistance, in: 0...50)
+        Section(header: Text(String(localized: "Distance and Matching"))) {
+            Stepper("\(String(localized: "Word Distance")): \(session.otzariaDistance)", value: $session.otzariaDistance, in: 0...50)
 
-            Picker("אופן התאמת מילים", selection: $session.otzariaWordMatchMode) {
+            Picker(String(localized: "Word Matching"), selection: $session.otzariaWordMatchMode) {
                 ForEach(OtzariaWordMatchMode.allCases, id: \.self) { mode in
                     Text(mode.label).tag(mode)
                 }
             }
 
             if session.otzariaWordMatchMode == .atLeast {
-                Stepper("מספר מילים להתאמה: \(session.otzariaWordMatchCount)", value: $session.otzariaWordMatchCount, in: 1...20)
+                Stepper("\(String(localized: "Words to Match")): \(session.otzariaWordMatchCount)", value: $session.otzariaWordMatchCount, in: 1...20)
             }
         }
 
-        Section(header: Text("מורפולוגיה ודקדוק")) {
-            Toggle("קידומות", isOn: $session.otzariaEnablesPrefixes)
-            Toggle("סיומות", isOn: $session.otzariaEnablesSuffixes)
-            Toggle("כתיב מלא / חסר", isOn: $session.otzariaEnablesSpellingVariants)
-            Toggle("ארמית (תרגום וסיומות)", isOn: $session.otzariaEnablesAramaic)
-            Toggle("התעלם מגרשיים / ראשי תיבות", isOn: $session.otzariaIgnoresQuotes)
-            Toggle("התאמת ניקוד", isOn: $session.otzariaMatchNikud)
-            Toggle("התאמת טעמים", isOn: $session.otzariaMatchTaamim)
+        Section(header: Text(String(localized: "Morphology and Grammar"))) {
+            Toggle(String(localized: "Prefixes"), isOn: $session.otzariaEnablesPrefixes)
+            Toggle(String(localized: "Suffixes"), isOn: $session.otzariaEnablesSuffixes)
+            Toggle(String(localized: "Spelling Variants"), isOn: $session.otzariaEnablesSpellingVariants)
+            Toggle(String(localized: "Aramaic (Translation and Suffixes)"), isOn: $session.otzariaEnablesAramaic)
+            Toggle(String(localized: "Ignore Quotation Marks and Acronyms"), isOn: $session.otzariaIgnoresQuotes)
+            Toggle(String(localized: "Match Vowels"), isOn: $session.otzariaMatchNikud)
+            Toggle(String(localized: "Match Cantillation"), isOn: $session.otzariaMatchTaamim)
         }
 
-        Section(header: Text("הגדרות מתקדמות נוספות")) {
-            TextField("ריווח מותאם אישית", text: $session.otzariaCustomSpacingText)
-            TextField("מילים חלופיות", text: $session.otzariaAlternativeWordsText)
+        Section(header: Text(String(localized: "Additional Advanced Settings"))) {
+            TextField(String(localized: "Custom Spacing"), text: $session.otzariaCustomSpacingText)
+            TextField(String(localized: "Alternative Words"), text: $session.otzariaAlternativeWordsText)
         }
     }
 }

@@ -221,4 +221,8 @@ enum SefariaRef {
     static func talmudAddress(offset: Int) -> String {
         "\(offset / 2 + 2)\(offset.isMultiple(of: 2) ? "a" : "b")"
     }
+
+    static func sectionMatches(_ lhs: String, _ rhs: String) -> Bool {
+        lhs == rhs || lhs.hasPrefix(rhs + ":") || rhs.hasPrefix(lhs + ":")
+    }
 }

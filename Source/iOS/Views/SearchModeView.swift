@@ -170,12 +170,12 @@ struct SearchModeView: View {
 
     private func searchRegularEmptyState(session: UnifiedSearchSessionController, viewModel: SearchViewModel) -> some View {
         ContentUnavailableView {
-            Label("חיפוש בספרים", systemImage: "magnifyingglass")
+            Label(String(localized: "Search Books"), systemImage: "magnifyingglass")
         } description: {
             if session.selectedBookIds.isEmpty {
-                Text("בחר ספרים בסרגל הצד או הקלד מילות חיפוש בשדה למעלה")
+                Text(String(localized: "Select books in the sidebar or enter search terms above."))
             } else {
-                Text("נבחרו \(session.selectedBookIds.count) ספרים לחיפוש. הקלד מילות חיפוש בשדה למעלה ולחץ Enter.")
+                Text(String(format: String(localized: "%lld books selected. Enter search terms above and press Return."), Int64(session.selectedBookIds.count)))
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

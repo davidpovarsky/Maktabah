@@ -69,6 +69,18 @@ struct iOSTOCView: View {
                         .background(Color.appBackground)
                     }
 
+                    if let failure = tocViewModel.loadFailure {
+                        ContentUnavailableView(
+                            String(localized: "Table of Contents Unavailable"),
+                            systemImage: "exclamationmark.triangle",
+                            description: Text(failure.message)
+                        )
+                    } else if identifiableNodes.isEmpty {
+                        ContentUnavailableView(
+                            String(localized: "No Table of Contents"),
+                            systemImage: "list.bullet.rectangle"
+                        )
+                    } else {
                     ScrollViewReader { proxy in
                         ThemeList(isGrouped: true) {
                             ForEach(identifiableNodes) { item in
@@ -100,6 +112,7 @@ struct iOSTOCView: View {
                                 }
                             }
                         }
+                    }
                     }
                 }
             }

@@ -111,7 +111,7 @@ struct iOSReaderView: View {
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .navigationTitle(bManager.openTabs.count > 1 ? "" : book.book)
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar(.hidden, for: .tabBar)
+        .platformTabBarVisibility(hiddenOnPhone: true)
         .if(!MaktabahApp.isIpad) { view in
             view.toolbarVisibility(
                 isReading ? .hidden : .visible,

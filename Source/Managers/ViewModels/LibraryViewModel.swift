@@ -141,7 +141,19 @@ final class LibraryViewModel: ViewModelBase {
 
     func isBookDownloaded(_ book: BooksData) -> Bool {
         if let isDownloaded = OtzariaLibraryPolicy.isBookDownloaded(book) { return isDownloaded }
+        if let locator = book.backendLocator {
+            return LibraryOfflineAvailabilityController.shared.isInstalled(
+                workKey: locator.workKey,
+                backendID: locator.backend
+            )
+        }
         return BookArchiveIntegrator.shared.isBookIntegrated(book)
+    }
+
+    @MainActor
+    var supportsDownloadedFilter: Bool {
+        OtzariaLibraryImportActions.isEnabled || AppConfig.isUsingBundleMode
+            || LibraryOfflineAvailabilityController.shared.supportsWorkOfflineManagement
     }
 
     // MARK: - Data Preparation (Unified)
@@ -168,6 +180,7 @@ final class LibraryViewModel: ViewModelBase {
     private func load() async {
         state = .loading
         await dataManager.loadData()
+        await LibraryOfflineAvailabilityController.shared.refresh()
         rootCategories = dataManager.allRootCategories
         if viewMode == .author {
             _authorHierarchy = dataManager.buildAuthorHierarchy()
@@ -199,7 +212,7 @@ final class LibraryViewModel: ViewModelBase {
         case .downloaded:
             showOnlyDownloaded = true
             isFlatMode = false
-            filtered = dataManager.filterIntegrated()
+            filtered = downloadedCategories(from: dataManager.allRootCategories)
 
         case .favorites:
             showOnlyDownloaded = false
@@ -256,7 +269,7 @@ final class LibraryViewModel: ViewModelBase {
         }
 
         if showOnlyDownloaded, !isFlatMode {
-            base = dataManager.filterIntegrated(base: base)
+            base = downloadedCategories(from: base)
         }
 
         if searchQuery.isEmpty {
@@ -472,8 +485,14 @@ final class LibraryViewModel: ViewModelBase {
         let books = selectedDeleteBooks
         guard !books.isEmpty else { return }
         Task { [weak self] in
-            for book in books {
-                try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+            if let provider = await BackendCoordinator.shared.offlineWorkProvider() {
+                let workKeys = Set(books.compactMap { $0.backendLocator?.workKey })
+                try? await provider.remove(workKeys: workKeys)
+                await LibraryOfflineAvailabilityController.shared.refresh()
+            } else {
+                for book in books {
+                    try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+                }
             }
             self?.exitSelectionMode()
             onFinished()
@@ -494,7 +513,13 @@ final class LibraryViewModel: ViewModelBase {
 
     func deleteSingleBook(_ book: BooksData) async {
         if OtzariaLibraryPolicy.shouldSkipSingleBookDeletion() { return }
-        try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+        if let provider = await BackendCoordinator.shared.offlineWorkProvider(),
+           let workKey = book.backendLocator?.workKey {
+            try? await provider.remove(workKeys: [workKey])
+            await LibraryOfflineAvailabilityController.shared.refresh()
+        } else {
+            try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+        }
     }
 
     func importOfflineBook(from url: URL, metadata: BookMetadata, authorRow: [String: Any]?) async {
@@ -524,7 +549,13 @@ final class LibraryViewModel: ViewModelBase {
         bulkDownloadTask?.cancel()
         bulkDownloadTask = nil
         isBulkDownloading = false
-        Task { await BookDownloadManager.shared.cancelAllDownloads() }
+        Task {
+            if let provider = await BackendCoordinator.shared.offlineWorkProvider() {
+                await provider.cancelWorkInstall()
+            } else {
+                await BookDownloadManager.shared.cancelAllDownloads()
+            }
+        }
     }
 
     @MainActor
@@ -544,10 +575,57 @@ final class LibraryViewModel: ViewModelBase {
         progressState.detail = "0 / \(books.count)"
         progressState.progress = 0
 
+        if let provider = BackendCoordinator.shared.offlineWorkProvider() {
+            let workKeys = Set(books.compactMap { $0.backendLocator?.workKey })
+            bulkDownloadTask = Task { [weak self] in
+                do {
+                    try await provider.install(workKeys: workKeys) { update in
+                        Task { @MainActor in
+                            progressState.message = update.phase.rawValue.capitalized
+                            progressState.detail = update.totalBytes > 0
+                                ? ByteCountFormatter.string(fromByteCount: update.completedBytes, countStyle: .file)
+                                : ""
+                            progressState.progress = update.totalBytes > 0
+                                ? Double(update.completedBytes) / Double(update.totalBytes) : 0
+                        }
+                    }
+                    await LibraryOfflineAvailabilityController.shared.refresh()
+                    await MainActor.run {
+                        self?.isBulkDownloading = false
+                        self?.updateDisplayedCategories()
+                        onFinished(nil)
+                    }
+                } catch is CancellationError {
+                    await MainActor.run { self?.isBulkDownloading = false; onFinished(nil) }
+                } catch {
+                    await MainActor.run { self?.isBulkDownloading = false; onFinished(error.localizedDescription) }
+                }
+            }
+            return
+        }
+
         bulkDownloadTask = Task { [weak self] in
             guard let self else { return }
             await runBulkDownload(books: books, progressState: progressState, onFinished: onFinished)
         }
+    }
+
+    private func downloadedCategories(from roots: [CategoryData]) -> [CategoryData] {
+        if !LibraryOfflineAvailabilityController.shared.supportsWorkOfflineManagement {
+            return dataManager.filterIntegrated(base: roots)
+        }
+        func prune(_ category: CategoryData) -> CategoryData? {
+            let copy = CategoryData(id: category.id, name: category.name, level: category.level,
+                order: category.order, parentId: category.parentId)
+            copy.isChecked = category.isChecked
+            copy.children = category.children.compactMap { child in
+                if let book = child as? BooksData { return isBookDownloaded(book) ? book : nil }
+                if let nested = child as? CategoryData { return prune(nested) }
+                return nil
+            }
+            return copy.children.isEmpty ? nil : copy
+        }
+        return roots.compactMap(prune)
     }
 
     @MainActor
@@ -715,6 +793,24 @@ final class LibraryViewModel: ViewModelBase {
                 await refreshLibrary()
                 reloadTask = nil
             }
+        }
+        addObserver(
+            forName: .activeLibraryBackendDidChange, object: nil, queue: .current
+        ) { [weak self] _ in
+            guard let self else { return }
+            reloadTask?.cancel()
+            reloadTask = Task { @MainActor [weak self] in
+                guard let self, !Task.isCancelled else { return }
+                LibraryOfflineAvailabilityController.shared.resetForBackendChange()
+                await refreshLibrary()
+                NotificationCenter.default.post(name: .libraryBackendDataDidReload, object: nil)
+                reloadTask = nil
+            }
+        }
+        addObserver(
+            forName: .libraryOfflineAvailabilityDidChange, object: nil, queue: .main
+        ) { [weak self] _ in
+            self?.updateDisplayedCategories()
         }
     }
 

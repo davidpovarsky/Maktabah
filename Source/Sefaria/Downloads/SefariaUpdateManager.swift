@@ -2,27 +2,28 @@ import Foundation
 import ZIPFoundation
 
 actor SefariaUpdateManager {
-    private struct BundleRequest: Encodable, Sendable { let books: [String] }
-    private struct BundleResponse: Decodable, Sendable {
-        let bundleArray: [String]
-        let downloadSize: Int64
+    private enum Destination: Hashable, Sendable {
+        case package(String)
+        case standalone
     }
     private struct PendingUpdate {
         let manifest: SefariaLastUpdatedManifest
         let titles: Set<String>
         let packages: Set<String>
-        let destinations: [String: Set<String>]
+        let destinations: [String: Set<Destination>]
     }
 
     private let configuration: SefariaNetworkConfiguration
     private let client: SefariaHTTPClient
     private let paths: SefariaOfflinePaths
+    private let bundles: SefariaBundleDownloadService
     private var cancelled = false
 
     init(configuration: SefariaNetworkConfiguration, client: SefariaHTTPClient, paths: SefariaOfflinePaths) {
         self.configuration = configuration
         self.client = client
         self.paths = paths
+        self.bundles = SefariaBundleDownloadService(configuration: configuration, client: client, paths: paths)
     }
 
     func availableUpdates() async throws -> OfflineUpdateSummary {
@@ -45,36 +46,16 @@ actor SefariaUpdateManager {
         guard !pending.titles.isEmpty else { return }
         try checkCancellation()
         progress(.init(phase: .preparing, packageID: nil, completedBytes: 0, totalBytes: 0))
-        let makeBundleURL = try configuration.readonlyURL(path: "/makeBundle", queryItems: [
-            URLQueryItem(name: "schema_version", value: SefariaExportContract.currentSchema)
-        ])
-        let response = try await requestBundle(url: makeBundleURL, books: pending.titles.sorted())
-        let transaction = paths.staging.appendingPathComponent("update-\(UUID().uuidString)", isDirectory: true)
-        let payload = transaction.appendingPathComponent("payload", isDirectory: true)
-        try FileManager.default.createDirectory(at: payload, withIntermediateDirectories: true)
-        defer { try? FileManager.default.removeItem(at: transaction) }
-
-        var completed: Int64 = 0
-        for (index, path) in response.bundleArray.enumerated() {
-            try checkCancellation()
-            let url = try remoteBundleURL(path)
-            let (temporary, http) = try await client.download(url: url)
-            let archive = transaction.appendingPathComponent("bundle-\(index).zip")
-            try FileManager.default.moveItem(at: temporary, to: archive)
-            try SefariaArchiveValidator.validate(archive)
-            try FileManager.default.unzipItem(at: archive, to: payload)
-            completed += max(0, http.expectedContentLength)
-            progress(.init(phase: .downloading, packageID: nil, completedBytes: completed,
-                totalBytes: response.downloadSize))
-        }
-        let updatedBooks = try SefariaArchiveValidator.bookArchives(in: payload)
+        let downloaded = try await bundles.download(workKeys: pending.titles, progress: progress)
+        defer { try? FileManager.default.removeItem(at: downloaded.transaction) }
+        let updatedBooks = downloaded.bookArchives
         try checkCancellation()
-        progress(.init(phase: .installing, packageID: nil, completedBytes: completed,
-            totalBytes: response.downloadSize))
+        progress(.init(phase: .installing, packageID: nil, completedBytes: downloaded.downloadSize,
+            totalBytes: downloaded.downloadSize))
         let installedTitles = try replaceInstalledBooks(with: updatedBooks, destinations: pending.destinations)
         try updateState(manifest: pending.manifest, titles: installedTitles, destinations: pending.destinations)
-        progress(.init(phase: .finished, packageID: nil, completedBytes: response.downloadSize,
-            totalBytes: response.downloadSize))
+        progress(.init(phase: .finished, packageID: nil, completedBytes: downloaded.downloadSize,
+            totalBytes: downloaded.downloadSize))
     }
 
     func cancel() { cancelled = true }
@@ -89,10 +70,15 @@ actor SefariaUpdateManager {
         let packageManifest = try await fetchPackages()
         var changed = Set<String>()
         var affected = Set<String>()
-        var destinations: [String: Set<String>] = [:]
-        for (id, packageState) in state.packages {
-            guard let package = packageManifest.first(where: { $0.en == id }) else { continue }
-            let desired = package.indexes.map { Set($0) } ?? Set(manifest.titles.keys)
+        var destinations: [String: Set<Destination>] = [:]
+        for id in state.packages.keys {
+            guard let packageState = state.packages[id],
+                  let package = packageManifest.first(where: { $0.en == id }) else { continue }
+            let desired = state.desiredWorkKeys(
+                forPackageID: id,
+                packageIndexTitles: package.indexes,
+                manifestWorkKeys: Set(manifest.titles.keys)
+            )
             let installedUpdates = packageState.titleUpdates ?? [:]
             let packageChanges = desired.filter { title in
                 guard let remote = manifest.titles[title] else { return false }
@@ -101,8 +87,13 @@ actor SefariaUpdateManager {
             if !packageChanges.isEmpty {
                 changed.formUnion(packageChanges)
                 affected.insert(id)
-                for title in packageChanges { destinations[title, default: []].insert(id) }
+                for title in packageChanges { destinations[title, default: []].insert(.package(id)) }
             }
+        }
+        for (title, standalone) in state.standaloneWorks {
+            guard let remote = manifest.titles[title], standalone.lastUpdated != remote else { continue }
+            changed.insert(title)
+            destinations[title, default: []].insert(.standalone)
         }
         return PendingUpdate(manifest: manifest, titles: changed, packages: affected,
             destinations: destinations)
@@ -120,44 +111,31 @@ actor SefariaUpdateManager {
             url: configuration.readonlyURL(path: path))
     }
 
-    private func requestBundle(url: URL, books: [String]) async throws -> BundleResponse {
-        while true {
-            try checkCancellation()
-            let (data, response) = try await client.postData(url: url, body: BundleRequest(books: books))
-            if response.statusCode == 202 {
-                try await Task.sleep(nanoseconds: 3_000_000_000)
-                continue
-            }
-            do { return try JSONDecoder().decode(BundleResponse.self, from: data) }
-            catch { throw LibraryBackendError.invalidResponse("invalid makeBundle response: \(error)") }
-        }
-    }
-
-    private func remoteBundleURL(_ path: String) throws -> URL {
-        if let absolute = URL(string: path), absolute.scheme != nil { return absolute }
-        return try configuration.readonlyURL(path: path)
-    }
-
     private func replaceInstalledBooks(
         with updates: [URL],
-        destinations: [String: Set<String>]
+        destinations: [String: Set<Destination>]
     ) throws -> Set<String> {
         let manager = FileManager.default
-        guard let walker = manager.enumerator(at: paths.packages, includingPropertiesForKeys: nil) else {
-            throw LibraryBackendError.unavailableOffline
-        }
         var installedByName: [String: [URL]] = [:]
-        for case let url as URL in walker where url.pathExtension.lowercased() == "zip" {
-            installedByName[url.lastPathComponent, default: []].append(url)
+        if let walker = manager.enumerator(at: paths.packages, includingPropertiesForKeys: nil) {
+            for case let url as URL in walker where url.pathExtension.lowercased() == "zip" {
+                installedByName[url.lastPathComponent, default: []].append(url)
+            }
         }
         var installed = Set<String>()
         for update in updates {
             let title = update.deletingPathExtension().lastPathComponent
             var targets = installedByName[update.lastPathComponent] ?? []
-            for packageID in destinations[title] ?? [] {
-                let target = paths.packages.appendingPathComponent(
-                    SefariaOfflinePaths.safeComponent(packageID), isDirectory: true
-                ).appendingPathComponent(update.lastPathComponent)
+            for destination in destinations[title] ?? [] {
+                let target: URL
+                switch destination {
+                case .package(let packageID):
+                    target = paths.packages.appendingPathComponent(
+                        SefariaOfflinePaths.safeComponent(packageID), isDirectory: true
+                    ).appendingPathComponent(update.lastPathComponent)
+                case .standalone:
+                    target = paths.standaloneArchive(for: title)
+                }
                 if !targets.contains(target) { targets.append(target) }
             }
             for target in targets {
@@ -180,17 +158,26 @@ actor SefariaUpdateManager {
     private func updateState(
         manifest: SefariaLastUpdatedManifest,
         titles: Set<String>,
-        destinations: [String: Set<String>]
+        destinations: [String: Set<Destination>]
     ) throws {
         var state = loadState()
-        for id in state.packages.keys {
+        for id in Array(state.packages.keys) {
             guard var package = state.packages[id] else { continue }
             var timestamps = package.titleUpdates ?? [:]
-            for title in titles where destinations[title]?.contains(id) == true {
+            for title in titles where destinations[title]?.contains(.package(id)) == true {
                 timestamps[title] = manifest.titles[title]
             }
             package.titleUpdates = timestamps
             state.packages[id] = package
+        }
+        for title in titles where destinations[title]?.contains(.standalone) == true {
+            guard let existing = state.standaloneWorks[title] else { continue }
+            state.standaloneWorks[title] = .init(
+                title: title,
+                installedAt: existing.installedAt,
+                lastUpdated: manifest.titles[title],
+                archiveFilename: paths.standaloneArchive(for: title).lastPathComponent
+            )
         }
         try saveState(state)
     }

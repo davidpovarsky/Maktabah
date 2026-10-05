@@ -20,12 +20,26 @@ struct TOCRange {
 @Observable
 #endif
 class BookTOCViewModel {
+    enum LoadFailure: Equatable {
+        case unavailableOffline
+        case corruptData
+        case backend
+
+        var message: String {
+            switch self {
+            case .unavailableOffline: String(localized: "The table of contents is unavailable offline.")
+            case .corruptData: String(localized: "The downloaded table of contents is damaged.")
+            case .backend: String(localized: "The table of contents could not be loaded.")
+            }
+        }
+    }
     private let tocLoader: TOCLoaderRefCount
 
     // State
     var tocNodes: [TOCNode] = []
     var navigationStructures: [LibraryNavigationStructure] = []
     var selectedStructureID: String = ""
+    var loadFailure: LoadFailure?
     private(set) var tocRanges: [TOCRange] = []
     private var nodeIdCache: [Int: TOCNode] = [:]
 
@@ -42,6 +56,7 @@ class BookTOCViewModel {
 
     func loadTOC(book: BooksData) {
         loadingTask?.cancel()
+        loadFailure = nil
         if let locator = book.backendLocator {
             loadingTask = Task { @MainActor [weak self] in
                 guard let self else { return }
@@ -76,7 +91,16 @@ class BookTOCViewModel {
                         onStructureChanged?(items)
                     }
                     onTOCLoaded?(tree)
-                } catch { print("Failed to load backend TOC: \(error)") }
+                } catch {
+                    if case LibraryBackendError.unavailableOffline = error {
+                        loadFailure = .unavailableOffline
+                    } else if case LibraryBackendError.corruptData(_) = error {
+                        loadFailure = .corruptData
+                    } else {
+                        loadFailure = .backend
+                    }
+                    print("Failed to load backend TOC: \(error)")
+                }
                 onTOCLoadingStateChanged?(false)
             }
             return

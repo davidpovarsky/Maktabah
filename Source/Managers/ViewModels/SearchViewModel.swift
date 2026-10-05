@@ -217,8 +217,17 @@ final class SearchViewModel: ViewModelBase {
                 selectedBookIds.removeAll()
                 query = ""
                 state = .loading
-                ldm.resetState()
-                await ldm.reloadAllData()
+                #if os(iOS)
+                displayedCategories = []
+                #endif
+            }
+        }
+
+        addObserver(
+            forName: .libraryBackendDataDidReload, object: nil, queue: .current
+        ) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
                 await ldm.buildArchive()
                 #if os(iOS)
                 updateDisplayedCategories()

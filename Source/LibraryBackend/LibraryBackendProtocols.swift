@@ -22,7 +22,11 @@ extension LibraryNavigationProviding {
     func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
         let nodes = try await tableOfContents(for: work)
         guard !nodes.isEmpty else { return [] }
-        return [LibraryNavigationStructure(id: "default", title: "תוכן העניינים", nodes: nodes)]
+        return [LibraryNavigationStructure(
+            id: "default",
+            title: NSLocalizedString("Table of Contents", comment: ""),
+            nodes: nodes
+        )]
     }
 }
 
@@ -58,6 +62,20 @@ protocol OfflineLibraryProviding: Sendable {
     func cancelInstall() async
 }
 
+protocol OfflineWorkProviding: Sendable {
+    func installedWorkKeys() async -> Set<String>
+    func install(
+        workKeys: Set<String>,
+        progress: @escaping @Sendable (OfflineInstallProgress) -> Void
+    ) async throws
+    func remove(workKeys: Set<String>) async throws
+    func cancelWorkInstall() async
+}
+
+extension OfflineWorkProviding {
+    func cancelWorkInstall() async {}
+}
+
 struct LibraryBackendRegistration: Sendable {
     let id: BackendID
     let sourceDescription: String
@@ -71,6 +89,7 @@ struct LibraryBackendRegistration: Sendable {
     let workMetadata: (any LibraryWorkMetadataProviding)?
     let relationships: (any LibraryRelationshipsProviding)?
     let offline: (any OfflineLibraryProviding)?
+    let offlineWorks: (any OfflineWorkProviding)?
     /// Existing Maktabah/Otzaria models remain the most compatible presentation path.
     /// Backends that return only neutral models opt into the narrow compatibility bridge.
     let usesNativeMaktabahDataPath: Bool
@@ -89,6 +108,7 @@ struct LibraryBackendRegistration: Sendable {
         workMetadata: (any LibraryWorkMetadataProviding)? = nil,
         relationships: (any LibraryRelationshipsProviding)? = nil,
         offline: (any OfflineLibraryProviding)? = nil,
+        offlineWorks: (any OfflineWorkProviding)? = nil,
         usesNativeMaktabahDataPath: Bool,
         invalidateTransientState: @escaping @Sendable () async -> Void
     ) {
@@ -104,6 +124,7 @@ struct LibraryBackendRegistration: Sendable {
         self.workMetadata = workMetadata
         self.relationships = relationships
         self.offline = offline
+        self.offlineWorks = offlineWorks
         self.usesNativeMaktabahDataPath = usesNativeMaktabahDataPath
         self.invalidateTransientState = invalidateTransientState
     }

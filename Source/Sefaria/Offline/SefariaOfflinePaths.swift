@@ -4,6 +4,7 @@ struct SefariaOfflinePaths: Sendable {
     let root: URL
     var schemaRoot: URL { root.appendingPathComponent("schema-\(SefariaExportContract.currentSchema)", isDirectory: true) }
     var packages: URL { schemaRoot.appendingPathComponent("packages", isDirectory: true) }
+    var standaloneWorks: URL { schemaRoot.appendingPathComponent("standalone-works", isDirectory: true) }
     var expandedBooks: URL { schemaRoot.appendingPathComponent("expanded", isDirectory: true) }
     var staging: URL { root.appendingPathComponent("staging", isDirectory: true) }
     var state: URL { root.appendingPathComponent("installed-state.json") }
@@ -18,5 +19,9 @@ struct SefariaOfflinePaths: Sendable {
         Data(value.utf8).base64EncodedString()
             .replacingOccurrences(of: "/", with: "_")
             .replacingOccurrences(of: "+", with: "-")
+    }
+
+    func standaloneArchive(for workKey: String) -> URL {
+        standaloneWorks.appendingPathComponent("\(Self.safeComponent(workKey)).zip")
     }
 }

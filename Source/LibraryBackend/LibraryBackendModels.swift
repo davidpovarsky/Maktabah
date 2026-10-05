@@ -88,6 +88,33 @@ struct LibraryNavigationItem: Codable, Hashable, Identifiable, Sendable {
     var id: String { locator.persistenceKey }
 }
 
+enum LibraryReadingUnitPolicy {
+    static func isWorkRoot(_ locator: TextLocator) -> Bool {
+        switch locator.position {
+        case .canonicalRef(let ref):
+            return ref == locator.workKey
+        case .legacyLine(let line):
+            return line == 0
+        }
+    }
+
+    static func resolve(_ locator: TextLocator, navigationItems: [LibraryNavigationItem]) throws -> TextLocator {
+        guard isWorkRoot(locator) else { return locator }
+        guard let first = navigationItems.first(where: { !isWorkRoot($0.locator) }) else {
+            throw LibraryBackendError.invalidResponse("work root has no bounded reading unit")
+        }
+        return first.locator
+    }
+
+    static func preferringRecent(_ locator: TextLocator, recentLocator: TextLocator?) -> TextLocator {
+        guard isWorkRoot(locator), let recentLocator,
+              recentLocator.backend == locator.backend,
+              recentLocator.workKey == locator.workKey,
+              !isWorkRoot(recentLocator) else { return locator }
+        return recentLocator
+    }
+}
+
 struct LibraryWork: Codable, Hashable, Identifiable, Sendable {
     let locator: TextLocator
     let title: String
@@ -645,17 +672,28 @@ enum LibraryBackendError: LocalizedError, Equatable, Sendable {
 
     var errorDescription: String? {
         switch self {
-        case .capabilityUnavailable: return "This library source does not provide that capability."
-        case .staleRequest: return "The library source changed before the request completed."
-        case .invalidLocator: return "The saved text location is invalid."
-        case .unavailableOffline: return "This text is not downloaded and the network is unavailable."
+        case .capabilityUnavailable:
+            return NSLocalizedString("This library source does not provide that capability.", comment: "")
+        case .staleRequest:
+            return NSLocalizedString("The library source changed before the request completed.", comment: "")
+        case .invalidLocator:
+            return NSLocalizedString("The saved text location is invalid.", comment: "")
+        case .unavailableOffline:
+            return NSLocalizedString("This text is not downloaded and the network is unavailable.", comment: "")
         case .unsupportedSchema(let found, let supported):
-            return "Sefaria offline schema \(found) requires an app update (supported: \(supported.joined(separator: ", ")))."
-        case .invalidResponse(let reason): return "Invalid server response: \(reason)"
-        case .httpStatus(let status): return "The server returned HTTP \(status)."
-        case .corruptData(let reason): return "Downloaded library data is corrupt: \(reason)"
+            return String(format: NSLocalizedString(
+                "Sefaria offline schema %@ requires an app update (supported: %@).", comment: ""
+            ), found, supported.joined(separator: ", "))
+        case .invalidResponse(let reason):
+            return String(format: NSLocalizedString("Invalid server response: %@", comment: ""), reason)
+        case .httpStatus(let status):
+            return String(format: NSLocalizedString("The server returned HTTP %lld.", comment: ""), Int64(status))
+        case .corruptData(let reason):
+            return String(format: NSLocalizedString("Downloaded library data is corrupt: %@", comment: ""), reason)
         case .insufficientDiskSpace(let required, let available):
-            return "Not enough free space (requires \(required) bytes; \(available) available)."
+            return String(format: NSLocalizedString(
+                "Not enough free space (requires %lld bytes; %lld available).", comment: ""
+            ), required, available)
         }
     }
 }

@@ -14,6 +14,7 @@ struct iPadLayout: View {
     @State private var showingAddFavorites = false
     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
     @StateObject private var historyViewModel = HistoryViewModel.shared
+    @StateObject private var backendCoordinator = BackendCoordinator.shared
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -21,14 +22,16 @@ struct iPadLayout: View {
                 viewerTabContent
             }
 
-            if BackendCoordinator.shared.capabilities.contains(.search) {
+            if iOSTab.search.isAvailable(for: backendCoordinator.activeCapabilities) {
                 Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
                     searchTabContent
                 }
             }
 
-            Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
-                authorTabContent
+            if iOSTab.author.isAvailable(for: backendCoordinator.activeCapabilities) {
+                Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
+                    authorTabContent
+                }
             }
 
             Tab(iOSTab.annotations.title, systemImage: iOSTab.annotations.icon, value: .annotations) {
@@ -51,16 +54,18 @@ struct iPadLayout: View {
             } else {
                 selectedTab = savedSelectedTab.canonical
             }
-            if selectedTab == .search && !BackendCoordinator.shared.capabilities.contains(.search) {
+            if !selectedTab.isAvailable(for: backendCoordinator.activeCapabilities) {
                 selectedTab = .viewer
+                savedSelectedTab = .viewer
             }
             if bManager.unifiedSearchSession.selectedBookIds != bManager.searchViewModel.selectedBookIds {
                 bManager.unifiedSearchSession.selectedBookIds = bManager.searchViewModel.selectedBookIds
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in
-            if selectedTab == .search && !BackendCoordinator.shared.capabilities.contains(.search) {
+            if !selectedTab.isAvailable(for: backendCoordinator.activeCapabilities) {
                 selectedTab = .viewer
+                savedSelectedTab = .viewer
             }
         }
         .onChange(of: selectedTab) { _, newValue in
@@ -162,19 +167,19 @@ struct iPadLayout: View {
                 )
                 .themeTint()
             }
-            .navigationTitle("סינון לפי ספרים")
+            .navigationTitle(String(localized: "search.filterByBooksTitle"))
             .navigationBarTitleDisplayMode(.inline)
             .searchable(
                 text: $bManager.searchViewModel.filterText,
                 placement: .navigationBarDrawer(displayMode: .always),
-                prompt: "חיפוש ספר"
+                prompt: String(localized: "Search Book")
             )
             .toolbarBackground(Color.appBackground, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if !bManager.unifiedSearchSession.selectedBookIds.isEmpty {
-                        Button("נקה הכל") {
+                        Button(String(localized: "Clear All")) {
                             bManager.unifiedSearchSession.clearFilter()
                         }
                     }

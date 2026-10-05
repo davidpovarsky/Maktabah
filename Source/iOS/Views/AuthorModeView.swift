@@ -76,8 +76,8 @@ struct iOSRowiReaderView: View {
                 .pickerStyle(.segmented)
             }
         }
-        .toolbar(.hidden, for: .tabBar)
-        .navigationTitle(viewModel.currentRowi?.isoName ?? "الراوي")
+        .platformTabBarVisibility(hiddenOnPhone: true)
+        .navigationTitle(viewModel.currentRowi?.isoName ?? String(localized: "Narrator"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

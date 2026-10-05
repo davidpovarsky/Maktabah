@@ -1,6 +1,36 @@
 import Foundation
 
-func runNavigationAndPackageTests() throws {
+private actor FixtureHybridNavigation: LibraryNavigationProviding, LibraryWorkMetadataProviding {
+    let items: [LibraryNavigationItem]
+    let fails: Bool
+
+    init(items: [LibraryNavigationItem], fails: Bool = false) {
+        self.items = items
+        self.fails = fails
+    }
+
+    func normalizedLocator(for input: String) throws -> TextLocator {
+        if fails { throw LibraryBackendError.unavailableOffline }
+        return items.first?.locator ?? TextLocator(backend: .sefaria, workKey: input, position: .canonicalRef(input))
+    }
+
+    func tableOfContents(for work: LibraryWork) throws -> [LibraryTOCNode] {
+        if fails { throw LibraryBackendError.unavailableOffline }
+        return items.map { LibraryTOCNode(locator: $0.locator, title: $0.title, children: []) }
+    }
+
+    func navigationItems(for work: LibraryWork) throws -> [LibraryNavigationItem] {
+        if fails { throw LibraryBackendError.unavailableOffline }
+        return items
+    }
+
+    func workMetadata(for workKey: String) throws -> LibraryWorkMetadata? {
+        if fails { throw LibraryBackendError.unavailableOffline }
+        return LibraryWorkMetadata(workKey: workKey, title: workKey)
+    }
+}
+
+func runNavigationAndPackageTests() async throws {
     let firstRepeatedLeaf = SefariaCatalogIdentity.categoryID(path: ["Tanakh", "Commentary"])
     let secondRepeatedLeaf = SefariaCatalogIdentity.categoryID(path: ["Talmud", "Commentary"])
     try expect(firstRepeatedLeaf != secondRepeatedLeaf, "category identity includes full path")
@@ -25,6 +55,46 @@ func runNavigationAndPackageTests() throws {
     ])
     let dapim = SefariaNavigationParser.nodes(schema: bavli, indexTitle: "Berakhot", baseRef: "Berakhot")
     try expect(dapim.map(\.title) == ["2a", "2b"], "Bavli daf/amud navigation")
+
+    let ordinaryItems = chapters.enumerated().map {
+        LibraryNavigationItem(locator: $0.element.locator, title: $0.element.title, index: $0.offset)
+    }
+    let genesisRoot = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis"))
+    let resolvedGenesisRoot = try LibraryReadingUnitPolicy.resolve(genesisRoot, navigationItems: ordinaryItems)
+    try expect(resolvedGenesisRoot.position == .canonicalRef("Genesis 1"),
+        "ordinary work root resolves to the first bounded chapter")
+    let savedGenesis = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 2"))
+    let restoredGenesis = LibraryReadingUnitPolicy.preferringRecent(genesisRoot, recentLocator: savedGenesis)
+    let resolvedSavedGenesis = try LibraryReadingUnitPolicy.resolve(restoredGenesis, navigationItems: ordinaryItems)
+    try expect(resolvedSavedGenesis == savedGenesis,
+        "a saved recent section beats the first-section fallback")
+
+    let complexItems = [LibraryNavigationItem(locator: nodes[0].locator, title: nodes[0].title, index: 0)]
+    let complexRoot = TextLocator(backend: .sefaria, workKey: "Pesach Haggadah",
+        position: .canonicalRef("Pesach Haggadah"))
+    let resolvedComplexRoot = try LibraryReadingUnitPolicy.resolve(complexRoot, navigationItems: complexItems)
+    try expect(resolvedComplexRoot.position == .canonicalRef("Pesach Haggadah, Kadesh"),
+        "complex work root resolves to its first bounded node")
+
+    let bavliItems = dapim.enumerated().map {
+        LibraryNavigationItem(locator: $0.element.locator, title: $0.element.title, index: $0.offset)
+    }
+    let bavliRoot = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot"))
+    let resolvedBavliRoot = try LibraryReadingUnitPolicy.resolve(bavliRoot, navigationItems: bavliItems)
+    try expect(resolvedBavliRoot.position == .canonicalRef("Berakhot 2a"), "Bavli root resolves to daf 2a")
+
+    let localProvider = FixtureHybridNavigation(items: ordinaryItems)
+    let unavailableRemote = FixtureHybridNavigation(items: [], fails: true)
+    let hybridNavigation = SefariaHybridNavigationStore(
+        isInstalled: { $0 == "Genesis" },
+        local: localProvider,
+        remote: unavailableRemote
+    )
+    let offlineItems = try await hybridNavigation.navigationItems(for: LibraryWork(
+        locator: genesisRoot, title: "Genesis", heTitle: nil, categories: [], description: nil
+    ))
+    try expect(offlineItems == ordinaryItems,
+        "hybrid navigation serves local metadata when the remote provider is unavailable")
 
     let deepShape = SefariaShapeDTO(isComplex: false, heTitle: nil, title: "Deep Work", length: nil,
         chapters: .array([

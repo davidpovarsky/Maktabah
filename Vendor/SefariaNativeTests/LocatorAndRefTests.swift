@@ -16,4 +16,8 @@ func runLocatorAndRefTests() throws {
         "complex URL ref")
     try expect(SefariaRef.talmudAddress(offset: 0) == "2a" && SefariaRef.talmudAddress(offset: 1) == "2b",
         "Talmud address sequence")
+    try expect(SefariaRef.sectionMatches("Genesis 1", "Genesis 1:9"),
+        "segment belongs to its exact section")
+    try expect(!SefariaRef.sectionMatches("Genesis 1", "Genesis 10"),
+        "section matching does not confuse chapter 1 with chapter 10")
 }

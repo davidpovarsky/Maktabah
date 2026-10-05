@@ -24,6 +24,10 @@ struct iOSReaderNavigationPopoverView: View {
     @State private var pageJumpSubject = PassthroughSubject<Int, Never>()
     @State private var navJumpSubject = PassthroughSubject<Int, Never>()
 
+    private var interfaceDirection: LayoutDirection {
+        LibraryPresentationPolicy.interfaceDirection() == .rightToLeft ? .rightToLeft : .leftToRight
+    }
+
     var body: some View {
         VStack(spacing: 20) {
             if viewModel.currentBook?.backendLocator != nil {
@@ -38,7 +42,9 @@ struct iOSReaderNavigationPopoverView: View {
                     }
                     .disabled(viewModel.backendSection?.previous == nil)
                     
-                    Text(viewModel.backendSection?.displayRef ?? viewModel.backendSection?.heRef ?? "")
+                    Text(viewModel.backendSection.map {
+                        LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)
+                    } ?? "")
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
@@ -89,23 +95,23 @@ struct iOSReaderNavigationPopoverView: View {
                                 .lineLimit(1)
                         }
                     }
-                    .environment(\.layoutDirection, .rightToLeft)
+                    .environment(\.layoutDirection, interfaceDirection)
                 }
             } else {
                 if viewModel.totalParts > 1 {
                     VStack(spacing: 8) {
                         if isSlidingPart {
-                            Text("الجزء: \(Int(localPart))".convertToArabicDigits())
+                            Text("\(String(localized: "Part")): \(LibraryPresentationPolicy.localizedNumber(Int(localPart)))")
                                 .font(.headline)
                                 .foregroundColor(.accentColor)
                         } else {
-                            Text("الجزء")
+                            Text(String(localized: "Part"))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
 
                         HStack {
-                            Text("١".convertToArabicDigits())
+                            Text(LibraryPresentationPolicy.localizedNumber(1))
                                 .font(.caption2)
                                 .foregroundColor(.secondary)
 
@@ -120,32 +126,28 @@ struct iOSReaderNavigationPopoverView: View {
                                 }
                             }
 
-                            Text("\(viewModel.totalParts)".convertToArabicDigits())
+                            Text(LibraryPresentationPolicy.localizedNumber(viewModel.totalParts))
                                 .font(.caption2)
                                 .foregroundColor(.secondary)
                         }
                     }
-                    .environment(\.layoutDirection, .rightToLeft)
+                    .environment(\.layoutDirection, interfaceDirection)
                 }
 
                 if viewModel.maxPageInPart > viewModel.minPageInPart {
                     VStack(spacing: 8) {
                         if isSlidingPage {
-                            Text(
-                                "الصفحة: \(Int(localPage))".convertToArabicDigits()
-                            )
+                            Text("\(String(localized: "Page")): \(LibraryPresentationPolicy.localizedNumber(Int(localPage)))")
                             .font(.headline)
                             .foregroundColor(.accentColor)
                         } else {
-                            Text("الصفحة")
+                            Text(String(localized: "Page"))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
 
                         HStack {
-                            Text(
-                                "\(viewModel.minPageInPart)".convertToArabicDigits()
-                            )
+                            Text(LibraryPresentationPolicy.localizedNumber(viewModel.minPageInPart))
                             .font(.caption2)
                             .foregroundColor(.secondary)
 
@@ -162,14 +164,12 @@ struct iOSReaderNavigationPopoverView: View {
                                 }
                             }
 
-                            Text(
-                                "\(viewModel.maxPageInPart)".convertToArabicDigits()
-                            )
+                            Text(LibraryPresentationPolicy.localizedNumber(viewModel.maxPageInPart))
                             .font(.caption2)
                             .foregroundColor(.secondary)
                         }
                     }
-                    .environment(\.layoutDirection, .rightToLeft)
+                    .environment(\.layoutDirection, interfaceDirection)
                 }
             }
         }

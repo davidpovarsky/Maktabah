@@ -6531,6 +6531,23 @@
         }
       }
     },
+    "Narrator": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Narrator"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מסרן"
+          }
+        }
+      }
+    },
     "Narrators": {
       "extractionState": "manual",
       "localizations": {
@@ -11220,7 +11237,191 @@
           }
         }
       }
-    }
+    },
+    "Offline Library": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Offline Library" } },
+        "he": { "stringUnit": { "state": "translated", "value": "ספרייה לא מקוונת" } }
+      }
+    },
+    "Apply": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Apply" } },
+        "he": { "stringUnit": { "state": "translated", "value": "החל" } }
+      }
+    },
+    "Check for Updates": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Check for Updates" } },
+        "he": { "stringUnit": { "state": "translated", "value": "בדוק עדכונים" } }
+      }
+    },
+    "Update Downloaded Library": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Update Downloaded Library" } },
+        "he": { "stringUnit": { "state": "translated", "value": "עדכן את הספרייה שהורדה" } }
+      }
+    },
+    "Authors are not available for this library source": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Authors are not available for this library source" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מחברים אינם זמינים במקור ספרייה זה" } }
+      }
+    },
+    "Details": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Details" } },
+        "he": { "stringUnit": { "state": "translated", "value": "פרטים" } }
+      }
+    },
+    "Description": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Description" } },
+        "he": { "stringUnit": { "state": "translated", "value": "תיאור" } }
+      }
+    },
+    "No additional information": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "No additional information" } },
+        "he": { "stringUnit": { "state": "translated", "value": "אין מידע נוסף" } }
+      }
+    },
+    "Composition Date": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Composition Date" } },
+        "he": { "stringUnit": { "state": "translated", "value": "זמן חיבור" } }
+      }
+    },
+    "Composition Place": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Composition Place" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מקום חיבור" } }
+      }
+    },
+    "Publication Date": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Publication Date" } },
+        "he": { "stringUnit": { "state": "translated", "value": "שנת דפוס" } }
+      }
+    },
+    "Publication Place": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Publication Place" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מקום דפוס" } }
+      }
+    },
+    "Era": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Era" } },
+        "he": { "stringUnit": { "state": "translated", "value": "תקופה" } }
+      }
+    },
+    "Read from Sefaria downloads first, with cloud fallback when needed.": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Read from Sefaria downloads first, with cloud fallback when needed." } },
+        "he": { "stringUnit": { "state": "translated", "value": "קריאה תחילה מהורדות ספריא, עם גיבוי מהענן לפי הצורך." } }
+      }
+    },
+    "Table of Contents Unavailable": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Table of Contents Unavailable" } },
+        "he": { "stringUnit": { "state": "translated", "value": "תוכן העניינים אינו זמין" } }
+      }
+    },
+    "The table of contents is unavailable offline.": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The table of contents is unavailable offline." } },
+        "he": { "stringUnit": { "state": "translated", "value": "תוכן העניינים אינו זמין ללא חיבור לרשת." } }
+      }
+    },
+    "The downloaded table of contents is damaged.": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The downloaded table of contents is damaged." } },
+        "he": { "stringUnit": { "state": "translated", "value": "תוכן העניינים שהורד פגום." } }
+      }
+    },
+    "The table of contents could not be loaded.": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "The table of contents could not be loaded." } },
+        "he": { "stringUnit": { "state": "translated", "value": "לא ניתן לטעון את תוכן העניינים." } }
+      }
+    },
+    "No Table of Contents": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "No Table of Contents" } },
+        "he": { "stringUnit": { "state": "translated", "value": "אין תוכן עניינים" } }
+      }
+    },
+    "Structure": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Structure" } },
+        "he": { "stringUnit": { "state": "translated", "value": "מבנה" } }
+      }
+    },
+    "Progress": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Progress" } },
+        "he": { "stringUnit": { "state": "translated", "value": "התקדמות" } }
+      }
+    },
+    "Sefaria Packages": {
+      "extractionState": "manual", "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Sefaria Packages" } },
+        "he": { "stringUnit": { "state": "translated", "value": "חבילות ספריא" } }
+      }
+    },
+    "search.filterByBooksTitle": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Filter by Books" } }, "he": { "stringUnit": { "state": "translated", "value": "סינון לפי ספרים" } } } },
+    "Select books in the sidebar or enter search terms above.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Select books in the sidebar or enter search terms above." } }, "he": { "stringUnit": { "state": "translated", "value": "בחר ספרים בסרגל הצד או הקלד מילות חיפוש בשדה למעלה." } } } },
+    "%lld books selected. Enter search terms above and press Return.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "%lld books selected. Enter search terms above and press Return." } }, "he": { "stringUnit": { "state": "translated", "value": "נבחרו %lld ספרים לחיפוש. הקלד מילות חיפוש בשדה למעלה ולחץ Enter." } } } },
+    "search.optionsHelpTitle": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Search Options Help" } }, "he": { "stringUnit": { "state": "translated", "value": "עזרה לאפשרויות חיפוש" } } } },
+    "Otzaria Search Modes": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Otzaria Search Modes" } }, "he": { "stringUnit": { "state": "translated", "value": "מצבי חיפוש באוצריא" } } } },
+    "Find a phrase or words in the exact order entered. This is the fastest search mode.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Find a phrase or words in the exact order entered. This is the fastest search mode." } }, "he": { "stringUnit": { "state": "translated", "value": "איתור ביטוי או מילים ברצף המדויק כפי שנכתבו. זהו מצב החיפוש המהיר ביותר." } } } },
+    "Advanced": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Advanced" } }, "he": { "stringUnit": { "state": "translated", "value": "מתקדם" } } } },
+    "Powerful search with word distance, exclusions, grammatical prefixes and suffixes, spelling variants, Aramaic, and alternative words.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Powerful search with word distance, exclusions, grammatical prefixes and suffixes, spelling variants, Aramaic, and alternative words." } }, "he": { "stringUnit": { "state": "translated", "value": "חיפוש רב־עוצמה הכולל מרחק בין מילים, החרגות, קידומות וסיומות, כתיב מלא וחסר, ארמית ומילים חלופיות." } } } },
+    "Fuzzy": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Fuzzy" } }, "he": { "stringUnit": { "state": "translated", "value": "מקורב" } } } },
+    "Find words despite minor spelling errors or letter changes.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Find words despite minor spelling errors or letter changes." } }, "he": { "stringUnit": { "state": "translated", "value": "איתור מילים גם כאשר קיימות שגיאות כתיב קלות או שינויי אותיות." } } } },
+    "Zayit": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Zayit" } }, "he": { "stringUnit": { "state": "translated", "value": "זית" } } } },
+    "Fast semantic search for sources by meaning and topic.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Fast semantic search for sources by meaning and topic." } }, "he": { "stringUnit": { "state": "translated", "value": "חיפוש סמנטי מהיר לאיתור מקורות לפי משמעות ונושא." } } } },
+    "Sefaria Search Modes": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Sefaria Search Modes" } }, "he": { "stringUnit": { "state": "translated", "value": "מצבי חיפוש בספריא" } } } },
+    "Search for words or phrases exactly as entered.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Search for words or phrases exactly as entered." } }, "he": { "stringUnit": { "state": "translated", "value": "חיפוש מילים או ביטויים בדיוק כפי שהוזנו." } } } },
+    "Lemmatized (Advanced)": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Lemmatized (Advanced)" } }, "he": { "stringUnit": { "state": "translated", "value": "למטיזציה (מתקדם)" } } } },
+    "Smart search that recognizes roots, grammatical forms, and variants using Sefaria's dictionary, with configurable word distance.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Smart search that recognizes roots, grammatical forms, and variants using Sefaria's dictionary, with configurable word distance." } }, "he": { "stringUnit": { "state": "translated", "value": "חיפוש חכם המזהה שורשים, הטיות וצורות מילים שונות לפי מילון ספריא, עם מרחק מילים ניתן להגדרה." } } } },
+    "Sefaria Settings": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Sefaria Settings" } }, "he": { "stringUnit": { "state": "translated", "value": "הגדרות ספריא" } } } },
+    "Match Mode": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Match Mode" } }, "he": { "stringUnit": { "state": "translated", "value": "מצב התאמה" } } } },
+    "Lemmatized (Grammatical Forms)": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Lemmatized (Grammatical Forms)" } }, "he": { "stringUnit": { "state": "translated", "value": "למטיזציה (הטיות דקדוקיות)" } } } },
+    "Maximum Word Distance": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Maximum Word Distance" } }, "he": { "stringUnit": { "state": "translated", "value": "מרחק מילים מקסימלי" } } } },
+    "Result Order": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Result Order" } }, "he": { "stringUnit": { "state": "translated", "value": "סדר תוצאות" } } } },
+    "Relevance": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Relevance" } }, "he": { "stringUnit": { "state": "translated", "value": "רלוונטיות" } } } },
+    "Canonical Order": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Canonical Order" } }, "he": { "stringUnit": { "state": "translated", "value": "סדר קנוני" } } } },
+    "Chronological": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Chronological" } }, "he": { "stringUnit": { "state": "translated", "value": "כרונולוגי" } } } },
+    "Reverse Order": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Reverse Order" } }, "he": { "stringUnit": { "state": "translated", "value": "סדר הפוך" } } } },
+    "Order and Sorting": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Order and Sorting" } }, "he": { "stringUnit": { "state": "translated", "value": "סדר ומיון" } } } },
+    "Excluded Words": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Excluded Words" } }, "he": { "stringUnit": { "state": "translated", "value": "החרגת מילים" } } } },
+    "Words to Exclude": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Words to Exclude" } }, "he": { "stringUnit": { "state": "translated", "value": "מילים להחרגה" } } } },
+    "Distance and Matching": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Distance and Matching" } }, "he": { "stringUnit": { "state": "translated", "value": "מרחק והתאמה" } } } },
+    "Word Distance": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Word Distance" } }, "he": { "stringUnit": { "state": "translated", "value": "מרחק מילים" } } } },
+    "Word Matching": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Word Matching" } }, "he": { "stringUnit": { "state": "translated", "value": "אופן התאמת מילים" } } } },
+    "Words to Match": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Words to Match" } }, "he": { "stringUnit": { "state": "translated", "value": "מספר מילים להתאמה" } } } },
+    "Morphology and Grammar": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Morphology and Grammar" } }, "he": { "stringUnit": { "state": "translated", "value": "מורפולוגיה ודקדוק" } } } },
+    "Prefixes": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Prefixes" } }, "he": { "stringUnit": { "state": "translated", "value": "קידומות" } } } },
+    "Suffixes": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Suffixes" } }, "he": { "stringUnit": { "state": "translated", "value": "סיומות" } } } },
+    "Spelling Variants": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Spelling Variants" } }, "he": { "stringUnit": { "state": "translated", "value": "כתיב מלא או חסר" } } } },
+    "Aramaic (Translation and Suffixes)": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Aramaic (Translation and Suffixes)" } }, "he": { "stringUnit": { "state": "translated", "value": "ארמית (תרגום וסיומות)" } } } },
+    "Ignore Quotation Marks and Acronyms": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Ignore Quotation Marks and Acronyms" } }, "he": { "stringUnit": { "state": "translated", "value": "התעלם מגרשיים ומראשי תיבות" } } } },
+    "Match Vowels": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Match Vowels" } }, "he": { "stringUnit": { "state": "translated", "value": "התאמת ניקוד" } } } },
+    "Match Cantillation": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Match Cantillation" } }, "he": { "stringUnit": { "state": "translated", "value": "התאמת טעמים" } } } },
+    "Additional Advanced Settings": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Additional Advanced Settings" } }, "he": { "stringUnit": { "state": "translated", "value": "הגדרות מתקדמות נוספות" } } } },
+    "Custom Spacing": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Custom Spacing" } }, "he": { "stringUnit": { "state": "translated", "value": "ריווח מותאם אישית" } } } },
+    "Alternative Words": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Alternative Words" } }, "he": { "stringUnit": { "state": "translated", "value": "מילים חלופיות" } } } },
+    "This library source does not provide that capability.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "This library source does not provide that capability." } }, "he": { "stringUnit": { "state": "translated", "value": "מקור ספרייה זה אינו מספק יכולת זו." } } } },
+    "The library source changed before the request completed.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "The library source changed before the request completed." } }, "he": { "stringUnit": { "state": "translated", "value": "מקור הספרייה השתנה לפני השלמת הבקשה." } } } },
+    "The saved text location is invalid.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "The saved text location is invalid." } }, "he": { "stringUnit": { "state": "translated", "value": "מיקום הטקסט השמור אינו תקין." } } } },
+    "This text is not downloaded and the network is unavailable.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "This text is not downloaded and the network is unavailable." } }, "he": { "stringUnit": { "state": "translated", "value": "טקסט זה לא הורד והרשת אינה זמינה." } } } },
+    "Sefaria offline schema %@ requires an app update (supported: %@).": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Sefaria offline schema %@ requires an app update (supported: %@)." } }, "he": { "stringUnit": { "state": "translated", "value": "סכמת Sefaria הלא־מקוונת %@ דורשת עדכון של היישום (נתמך: %@)." } } } },
+    "Invalid server response: %@": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Invalid server response: %@" } }, "he": { "stringUnit": { "state": "translated", "value": "תגובת שרת לא תקינה: %@" } } } },
+    "The server returned HTTP %lld.": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "The server returned HTTP %lld." } }, "he": { "stringUnit": { "state": "translated", "value": "השרת החזיר HTTP %lld." } } } },
+    "Downloaded library data is corrupt: %@": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Downloaded library data is corrupt: %@" } }, "he": { "stringUnit": { "state": "translated", "value": "נתוני הספרייה שהורדו פגומים: %@" } } } },
+    "Not enough free space (requires %lld bytes; %lld available).": { "extractionState": "manual", "localizations": { "en": { "stringUnit": { "state": "translated", "value": "Not enough free space (requires %lld bytes; %lld available)." } }, "he": { "stringUnit": { "state": "translated", "value": "אין די מקום פנוי (נדרשים %lld בתים; זמינים %lld)." } } } }
   },
   "version": "1.0"
 }

@@ -1,13 +1,10 @@
 import SwiftUI
 import UIKit
-import UniformTypeIdentifiers
 
 // MARK: - SwiftUI View
 
 struct iOSLibraryView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
-    @State private var showingOtzariaImporter = false
-    @State private var otzariaImportError: String?
 
     var body: some View {
         @Bindable var viewModel = navigationManager.libraryViewModel
@@ -22,11 +19,6 @@ struct iOSLibraryView: View {
             set: { if !$0 { viewModel.singleBookToDelete = nil } }
         )
 
-        let otzariaErrorBinding = Binding<Bool>(
-            get: { otzariaImportError != nil },
-            set: { if !$0 { otzariaImportError = nil } }
-        )
-
         mainZStack(viewModel: viewModel)
             .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: navigationManager.activeIntegrationStates.count)
             .onChange(of: viewModel.selectedBookIds) { _, _ in
@@ -37,13 +29,6 @@ struct iOSLibraryView: View {
             }
             .toolbar {
                 toolbarContent(viewModel: viewModel)
-            }
-            .fileImporter(
-                isPresented: $showingOtzariaImporter,
-                allowedContentTypes: [.database, .data, .item],
-                allowsMultipleSelection: false
-            ) { result in
-                handleOtzariaImport(result, viewModel: viewModel)
             }
             .sheet(isPresented: $viewModel.showingImportSheet) {
                 NavigationStack {
@@ -67,11 +52,6 @@ struct iOSLibraryView: View {
                 Button(String(localized: "OK"), role: .cancel) {}
             } message: {
                 Text(viewModel.importErrorMessage ?? "")
-            }
-            .alert(String(localized: "Otzaria Database Error"), isPresented: otzariaErrorBinding) {
-                Button(String(localized: "OK"), role: .cancel) {}
-            } message: {
-                Text(otzariaImportError ?? "")
             }
             .alert(String(localized: "Delete Download"), isPresented: $viewModel.showingDeleteConfirmation) {
                 Button(String(localized: "Delete"), role: .destructive) {
@@ -173,7 +153,7 @@ struct iOSLibraryView: View {
         }
 
         ToolbarItem(placement: .topBarTrailing) {
-            if !OtzariaLibraryImportActions.isEnabled && AppConfig.isUsingBundleMode {
+            if viewModel.supportsDownloadedFilter {
                 downloadedFilterToggle(viewModel: viewModel)
             }
         }
@@ -219,21 +199,7 @@ struct iOSLibraryView: View {
     @ViewBuilder
     private func optionsMenu(viewModel: LibraryViewModel) -> some View {
         Menu {
-            Button {
-                showingOtzariaImporter = true
-            } label: {
-                Label(String(localized: "Choose Otzaria Database"), systemImage: "externaldrive")
-            }
-
-            if OtzariaLibraryImportActions.isEnabled {
-                Button(role: .destructive) {
-                    OtzariaLibraryImportActions.disconnectDatabase(viewModel: viewModel)
-                } label: {
-                    Label(String(localized: "Disconnect Otzaria Database"), systemImage: "xmark.circle")
-                }
-            } else {
-                Divider()
-
+            if !OtzariaLibraryImportActions.isEnabled {
                 Button {
                     viewModel.enterSelectionMode()
                 } label: {
@@ -262,17 +228,6 @@ struct iOSLibraryView: View {
         }
         .accessibilityLabel(String(localized: "Library Options"))
         .help(String(localized: "Library Options"))
-    }
-
-    private func handleOtzariaImport(_ result: Result<[URL], Error>, viewModel: LibraryViewModel) {
-        do {
-            try OtzariaLibraryImportActions.installDatabase(
-                from: result,
-                viewModel: viewModel
-            )
-        } catch {
-            otzariaImportError = error.localizedDescription
-        }
     }
 
     private func startSelectedDownloads(using viewModel: LibraryViewModel) {

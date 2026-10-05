@@ -3,17 +3,30 @@ import Foundation
 actor SefariaHybridStore: LibraryTextProviding {
     private let offline: SefariaOfflineStore
     private let remote: SefariaRemoteStore
+    private let navigation: any LibraryNavigationProviding
     private var memoryCache: [String: LibraryTextSection] = [:]
     private var cacheOrder: [String] = []
     private let cacheLimit: Int
 
-    init(offline: SefariaOfflineStore, remote: SefariaRemoteStore, cacheLimit: Int = 12) {
+    init(
+        offline: SefariaOfflineStore,
+        remote: SefariaRemoteStore,
+        navigation: any LibraryNavigationProviding,
+        cacheLimit: Int = 12
+    ) {
         self.offline = offline
         self.remote = remote
+        self.navigation = navigation
         self.cacheLimit = cacheLimit
     }
 
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
+        if LibraryReadingUnitPolicy.isWorkRoot(locator) {
+            let work = LibraryWork(locator: locator, title: locator.workKey, heTitle: nil,
+                categories: [], description: nil)
+            let items = try await navigation.navigationItems(for: work)
+            return try await section(at: LibraryReadingUnitPolicy.resolve(locator, navigationItems: items))
+        }
         if let cached = memoryCache[locator.persistenceKey] { return cached }
         do {
             let local = try await offline.section(at: locator)
@@ -49,6 +62,6 @@ actor SefariaHybridStore: LibraryTextProviding {
 
     private func prefetch(_ locator: TextLocator?) {
         guard let locator, memoryCache[locator.persistenceKey] == nil else { return }
-        Task(priority: .utility) { [remote] in _ = try? await remote.section(at: locator) }
+        Task(priority: .utility) { [weak self] in _ = try? await self?.section(at: locator) }
     }
 }

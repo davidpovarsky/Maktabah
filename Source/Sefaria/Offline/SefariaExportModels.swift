@@ -61,9 +61,86 @@ struct SefariaInstalledState: Codable, Sendable {
         let schemaVersion: String
         let bundlePaths: [String]
         var titleUpdates: [String: String]? = nil
+        var excludedTitles: Set<String>? = nil
     }
-    var schemaVersion = 1
+    struct StandaloneWorkState: Codable, Sendable {
+        let title: String
+        let installedAt: Date
+        let lastUpdated: String?
+        let archiveFilename: String
+    }
+
+    var schemaVersion = 2
     var packages: [String: PackageState] = [:]
+    var standaloneWorks: [String: StandaloneWorkState] = [:]
+
+    private enum CodingKeys: String, CodingKey { case schemaVersion, packages, standaloneWorks }
+
+    init(
+        schemaVersion: Int = 2,
+        packages: [String: PackageState] = [:],
+        standaloneWorks: [String: StandaloneWorkState] = [:]
+    ) {
+        self.schemaVersion = schemaVersion
+        self.packages = packages
+        self.standaloneWorks = standaloneWorks
+    }
+
+    func installedWorkKeys(
+        validStandaloneWorkKeys: Set<String>? = nil,
+        validPackageWorkKeys: [String: Set<String>]? = nil
+    ) -> Set<String> {
+        let standalone = validStandaloneWorkKeys.map { Set(standaloneWorks.keys).intersection($0) }
+            ?? Set(standaloneWorks.keys)
+        return packages.reduce(into: standalone) { result, entry in
+            let (id, package) = entry
+            let declared = package.titleUpdates.map { Set($0.keys) } ?? []
+            let valid = validPackageWorkKeys?[id]
+            let available = valid.map { declared.isEmpty ? $0 : declared.intersection($0) } ?? declared
+            result.formUnion(available.subtracting(package.excludedTitles ?? []))
+        }
+    }
+
+    func desiredWorkKeys(
+        forPackageID id: String,
+        packageIndexTitles: [String]?,
+        manifestWorkKeys: Set<String>
+    ) -> Set<String> {
+        let desired = packageIndexTitles.map(Set.init) ?? manifestWorkKeys
+        return desired.subtracting(packages[id]?.excludedTitles ?? [])
+    }
+
+    mutating func recordStandaloneInstall(
+        workKeys: Set<String>,
+        committedArchiveFilenames: [String: String],
+        timestamps: [String: String],
+        installedAt: Date = Date()
+    ) throws {
+        guard workKeys.isSubset(of: committedArchiveFilenames.keys) else {
+            throw LibraryBackendError.corruptData("standalone install files were not committed")
+        }
+        var next = standaloneWorks
+        for title in workKeys {
+            guard let filename = committedArchiveFilenames[title] else { continue }
+            next[title] = .init(title: title, installedAt: installedAt,
+                lastUpdated: timestamps[title], archiveFilename: filename)
+        }
+        standaloneWorks = next
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try values.decodeIfPresent(Int.self, forKey: .schemaVersion) ?? 1
+        packages = try values.decodeIfPresent([String: PackageState].self, forKey: .packages) ?? [:]
+        standaloneWorks = try values.decodeIfPresent([String: StandaloneWorkState].self, forKey: .standaloneWorks) ?? [:]
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(2, forKey: .schemaVersion)
+        try values.encode(packages, forKey: .packages)
+        try values.encode(standaloneWorks, forKey: .standaloneWorks)
+    }
 }
 
 struct SefariaOfflineMetadataDTO: Codable, Sendable {
@@ -160,6 +237,60 @@ struct SefariaOfflineMetadataDTO: Codable, Sendable {
 
 struct SefariaOfflineIndexDTO: Codable, Sendable {
     let title: String
+    let heTitle: String?
+    let categories: [String]?
+    let heCategories: [String]?
+    let enDesc: String?
+    let heDesc: String?
     let schema: SefariaJSONValue
     let versions: [SefariaVersion]
+}
+
+enum SefariaOfflineNavigationBuilder {
+    static func nodes(
+        metadata: [SefariaOfflineMetadataDTO],
+        workKey: String,
+        localeIdentifier: String? = Locale.preferredLanguages.first
+    ) -> [LibraryTOCNode] {
+        var seen = Set<String>()
+        return ordered(metadata).compactMap { entry in
+            let ref = entry.sectionRef.isEmpty ? entry.ref : entry.sectionRef
+            guard ref != workKey else { return nil }
+            let locator = TextLocator(backend: .sefaria, workKey: workKey, position: .canonicalRef(ref))
+            guard seen.insert(locator.persistenceKey).inserted else { return nil }
+            return LibraryTOCNode(
+                locator: locator,
+                title: LibraryPresentationPolicy.reference(
+                    displayRef: ref,
+                    heRef: entry.heRef,
+                    localeIdentifier: localeIdentifier
+                ),
+                children: []
+            )
+        }
+    }
+
+    private static func ordered(_ metadata: [SefariaOfflineMetadataDTO]) -> [SefariaOfflineMetadataDTO] {
+        var byRef: [String: SefariaOfflineMetadataDTO] = [:]
+        for entry in metadata { byRef[entry.sectionRef] = entry }
+        var remaining = Set(byRef.keys)
+        var result: [SefariaOfflineMetadataDTO] = []
+
+        while !remaining.isEmpty {
+            let start = remaining.compactMap { byRef[$0] }.filter {
+                guard let previous = $0.prev else { return true }
+                return !remaining.contains(previous)
+            }.min { $0.sectionRef.localizedStandardCompare($1.sectionRef) == .orderedAscending }
+                ?? remaining.compactMap { byRef[$0] }.min {
+                    $0.sectionRef.localizedStandardCompare($1.sectionRef) == .orderedAscending
+                }
+            guard var current = start else { break }
+            while remaining.remove(current.sectionRef) != nil {
+                result.append(current)
+                guard let next = current.next, let following = byRef[next], remaining.contains(next) else { break }
+                current = following
+            }
+        }
+        return result
+    }
 }

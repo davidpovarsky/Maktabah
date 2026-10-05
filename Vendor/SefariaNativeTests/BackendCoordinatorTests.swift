@@ -1,5 +1,12 @@
 import Foundation
 
+private final class NotificationCounter: @unchecked Sendable {
+    private let lock = NSLock()
+    private var value = 0
+    func increment() { lock.withLock { value += 1 } }
+    var count: Int { lock.withLock { value } }
+}
+
 private actor FixtureCatalog: LibraryCatalogProviding {
     let delay: UInt64
     let title: String
@@ -50,9 +57,23 @@ func runBackendCoordinatorTests() async throws {
         "unfinished Otzaria configuration returns to chooser on relaunch")
     coordinator.cancelConfiguration()
     try expect(coordinator.pendingBackendID == nil, "pending selection cancels")
+    let activeNotifications = NotificationCounter()
+    let folderNotifications = NotificationCounter()
+    let activeToken = NotificationCenter.default.addObserver(
+        forName: .activeLibraryBackendDidChange, object: nil, queue: nil
+    ) { _ in activeNotifications.increment() }
+    let folderToken = NotificationCenter.default.addObserver(
+        forName: .libraryFolderChanged, object: nil, queue: nil
+    ) { _ in folderNotifications.increment() }
+    defer {
+        NotificationCenter.default.removeObserver(activeToken)
+        NotificationCenter.default.removeObserver(folderToken)
+    }
     let stale = Task { try await coordinator.catalog() }
     try await Task.sleep(nanoseconds: 20_000_000)
     coordinator.select(.sefaria)
+    try expect(activeNotifications.count == 1, "backend commit posts exactly one backend-change notification")
+    try expect(folderNotifications.count == 0, "backend commit does not impersonate a library-folder change")
     do {
         _ = try await stale.value
         throw TestFailure.failed("stale source result leaked")

@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 func runDecodingTests() async throws {
     let decoder = JSONDecoder()
@@ -21,6 +24,14 @@ func runDecodingTests() async throws {
         "search response to canonical ref")
     let offline = try decoder.decode(SefariaOfflineMetadataDTO.self, from: fixture("offline-metadata.json"))
     try expect(offline.links?.first?.first?.type == "commentary", "offline links")
+    let localNavigation = SefariaOfflineNavigationBuilder.nodes(
+        metadata: offline.flattenedSections,
+        workKey: offline.indexTitle,
+        localeIdentifier: "en-US"
+    )
+    try expect(!localNavigation.isEmpty, "offline export metadata builds local navigation items")
+    try expect(localNavigation.allSatisfy { !LibraryReadingUnitPolicy.isWorkRoot($0.locator) },
+        "offline navigation contains bounded reading units")
 
     let richLinks = try decoder.decode([SefariaRelationshipLinkDTO].self, from: Data(#"[{"sourceRef":"Rashi on Genesis 1:1:1","sourceHeRef":"רש״י","category":"Commentary","type":"commentary","collectiveTitle":{"en":"Rashi","he":"רש״י"},"he":"פירוש","heVersionTitle":"מקראות","heLicense":"CC-BY-SA","indexTitle":"Rashi on Genesis"}]"#.utf8))
     let richLink = SefariaRelationshipMapper.source(richLinks[0], knownTitles: [])
@@ -52,8 +63,10 @@ func runDecodingTests() async throws {
     let workMeta = indexDTO.asWorkMetadata(workKey: "Mishneh Torah, Kings and Wars")
     try expect(workMeta.authors == ["Maimonides"], "work metadata authors")
     try expect(workMeta.heTitle == "משנה תורה, הלכות מלכים ומלחמות", "work metadata Hebrew title")
-    try expect(workMeta.description == "הלכות מלכים ומלחמותיהם", "work metadata Hebrew description")
-    try expect(workMeta.factualFields.contains { $0.label == "זמן חיבור" && $0.value == "c.1180 CE" }, "work metadata compDate")
+    try expect(workMeta.description == "Laws of kings and their wars" || workMeta.description == "הלכות מלכים ומלחמותיהם",
+        "work metadata description follows the active locale")
+    try expect(workMeta.factualFields.contains { $0.key == "compDate" && $0.value == "c.1180 CE" },
+        "work metadata compDate")
 
     do {
         _ = try decoder.decode(SefariaTextsV3DTO.self, from: Data("{bad".utf8))
@@ -114,6 +127,22 @@ private func runPresentationPolicyTests() throws {
         "missing translation falls back to source")
     try expect(LibraryPresentationPolicy.text(source: "מקור", translation: "Translation", mode: .translation) == "Translation",
         "translation mode selects available translation")
+    try expect(LibraryPresentationPolicy.workTitle(title: "Genesis", heTitle: "בראשית",
+        localeIdentifier: "en-US") == "Genesis", "English locale presents the canonical English title")
+    try expect(LibraryPresentationPolicy.workTitle(title: "Genesis", heTitle: "בראשית",
+        localeIdentifier: "he-IL") == "בראשית", "Hebrew locale presents the Hebrew title")
+    try expect(LibraryPresentationPolicy.categoryTitle(title: "Torah", heTitle: "תורה",
+        localeIdentifier: "en-US") == "Torah", "English locale presents the English category")
+    try expect(LibraryPresentationPolicy.categoryTitle(title: "Torah", heTitle: "תורה",
+        localeIdentifier: "he-IL") == "תורה", "Hebrew locale presents the Hebrew category")
+    try expect(LibraryPresentationPolicy.reference(displayRef: "Genesis 1", heRef: "בראשית א׳",
+        localeIdentifier: "he-IL") == "בראשית א׳", "Hebrew locale presents the Hebrew reference")
+    try expect(LibraryPresentationPolicy.interfaceDirection(presentedText: "Genesis",
+        localeIdentifier: "he-IL") == .rightToLeft, "Hebrew interface remains RTL")
+    try expect(LibraryPresentationPolicy.interfaceDirection(presentedText: "Genesis",
+        localeIdentifier: "en-US") == .leftToRight, "English interface remains LTR")
+    try expect(SefariaHTTPClient.userFacing(URLError(.notConnectedToInternet)) as? LibraryBackendError
+        == .unavailableOffline, "network-only data reports an explicit offline-unavailable error")
 }
 
 private func runReaderRenderModelTests() throws {
@@ -209,7 +238,7 @@ private func runSearchContractMappingTests() throws {
     try expect(decodedOr.searchMode == .or, "searchMode round-trip or")
 }
 
-final class MockSearchURLProtocol: URLProtocol, @unchecked Sendable {
+final class MockSearchURLProtocol: URLProtocol {
     nonisolated(unsafe) static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
 
     override class func canInit(with request: URLRequest) -> Bool {
@@ -576,6 +605,46 @@ private func runNestedOfflineDecodingTests() throws {
     let decoded = try JSONDecoder().decode(SefariaInstalledState.self, from: JSONEncoder().encode(installed))
     try expect(decoded.packages["fixture"]?.bundlePaths == ["bundle-1.zip", "bundle-2.zip"],
         "multi-bundle installed state round-trips atomically")
+
+    let legacyState = try JSONDecoder().decode(SefariaInstalledState.self, from: Data(#"""
+    {"schemaVersion":1,"packages":{}}
+    """#.utf8))
+    try expect(legacyState.standaloneWorks.isEmpty, "legacy installed state decodes without standalone works")
+
+    let availability = SefariaInstalledState(
+        packages: [
+            "fixture": .init(id: "fixture", installedAt: Date(timeIntervalSince1970: 1), schemaVersion: "7",
+                bundlePaths: [], titleUpdates: ["Genesis": "1", "Exodus": "1"], excludedTitles: ["Exodus"])
+        ],
+        standaloneWorks: [
+            "Berakhot": .init(title: "Berakhot", installedAt: Date(timeIntervalSince1970: 1),
+                lastUpdated: "1", archiveFilename: "berakhot.zip")
+        ]
+    )
+    try expect(availability.installedWorkKeys() == ["Genesis", "Berakhot"],
+        "installed work keys union packages and standalone works while honoring exclusions")
+    try expect(availability.installedWorkKeys(validStandaloneWorkKeys: [],
+        validPackageWorkKeys: ["fixture": ["Genesis", "Exodus"]]) == ["Genesis"],
+        "availability excludes missing standalone archives")
+    try expect(availability.desiredWorkKeys(forPackageID: "fixture",
+        packageIndexTitles: ["Genesis", "Exodus"], manifestWorkKeys: ["Genesis", "Exodus"])
+        == ["Genesis"], "update calculation does not re-add an explicitly excluded work")
+
+    var transactionState = SefariaInstalledState()
+    do {
+        try transactionState.recordStandaloneInstall(
+            workKeys: ["Genesis"], committedArchiveFilenames: [:], timestamps: ["Genesis": "1"]
+        )
+        throw TestFailure.failed("standalone state committed before its archive")
+    } catch LibraryBackendError.corruptData {}
+    try expect(transactionState.standaloneWorks.isEmpty,
+        "failed selective transaction leaves installed state unchanged")
+    try transactionState.recordStandaloneInstall(
+        workKeys: ["Genesis"], committedArchiveFilenames: ["Genesis": "genesis.zip"],
+        timestamps: ["Genesis": "1"], installedAt: Date(timeIntervalSince1970: 2)
+    )
+    try expect(transactionState.standaloneWorks["Genesis"]?.archiveFilename == "genesis.zip",
+        "selective state commits after the archive transaction is declared complete")
 }
 
 private func runHeterogeneousLinksDecodingTests() throws {

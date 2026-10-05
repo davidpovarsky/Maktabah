@@ -36,6 +36,12 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         guard locator.backend == .sefaria, case .canonicalRef(let ref) = locator.position else {
             throw LibraryBackendError.invalidLocator
         }
+        if LibraryReadingUnitPolicy.isWorkRoot(locator) {
+            let work = LibraryWork(locator: locator, title: locator.workKey, heTitle: nil,
+                categories: [], description: nil)
+            let items = try await navigationItems(for: work)
+            return try await section(at: LibraryReadingUnitPolicy.resolve(locator, navigationItems: items))
+        }
         let cacheName = "section-\(Data(ref.utf8).base64EncodedString().replacingOccurrences(of: "/", with: "_"))"
         if let cached: SefariaTextsV3DTO = await cache.decode(cacheName) {
             if cached.sectionRef != ref {

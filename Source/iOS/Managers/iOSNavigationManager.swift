@@ -118,7 +118,11 @@ class iOSNavigationManager {
                     object: nil,
                     queue: .main
                 ) { [weak self] _ in
-                    self?.unifiedSearchSession.handleBackendChanged()
+                    guard let self else { return }
+                    self.clearAllTabs()
+                    self.clearPendingBookIntegration()
+                    self.alertMessage = nil
+                    self.unifiedSearchSession.handleBackendChanged()
                 }
             )
         )
@@ -253,6 +257,42 @@ class iOSNavigationManager {
             state.detail = ""
             state.progress = 0
 
+            if let provider = BackendCoordinator.shared.offlineWorkProvider(),
+               let locator = book.backendLocator,
+               locator.backend == BackendCoordinator.shared.activeBackendID {
+                Task {
+                    do {
+                        try await provider.install(workKeys: [locator.workKey]) { update in
+                            Task { @MainActor in
+                                state.message = update.phase.rawValue.capitalized
+                                state.detail = update.totalBytes > 0
+                                    ? ByteCountFormatter.string(fromByteCount: update.completedBytes, countStyle: .file)
+                                    : ""
+                                state.progress = update.totalBytes > 0
+                                    ? Double(update.completedBytes) / Double(update.totalBytes) : 0
+                            }
+                        }
+                        await LibraryOfflineAvailabilityController.shared.refresh()
+                        await MainActor.run {
+                            self.libraryViewModel.updateDisplayedCategories()
+                            self.presentReader(book, initialContentId: initialContentId)
+                            self.activeIntegrationStates.removeAll { $0.id == state.id }
+                        }
+                    } catch is CancellationError {
+                        await MainActor.run { self.activeIntegrationStates.removeAll { $0.id == state.id } }
+                    } catch {
+                        await MainActor.run {
+                            self.activeIntegrationStates.removeAll { $0.id == state.id }
+                            self.alertMessage = AlertMessage(
+                                title: String(localized: "Download Failed"),
+                                message: error.localizedDescription
+                            )
+                        }
+                    }
+                }
+                return
+            }
+
             Task {
                 do {
                     try await BookArchiveIntegrator.shared.ensureBookIntegrated(
@@ -294,6 +334,9 @@ class iOSNavigationManager {
             libraryViewModel.exitSelectionMode()
         }
         activeIntegrationStates.removeAll { $0.id == state.id }
+        if BackendCoordinator.shared.offlineWorkProvider() != nil {
+            Task { await BackendCoordinator.shared.offlineWorkProvider()?.cancelWorkInstall() }
+        }
     }
 
     private func openBookAsync(_ book: BooksData, initialContentId: Int?, searchText: String? = nil, searchMode: SearchMode? = nil, nearDistance: Int = 10, targetAnnotation: Annotation? = nil, recordHistory: Bool = true, highlightTerms: [String]? = nil) async {

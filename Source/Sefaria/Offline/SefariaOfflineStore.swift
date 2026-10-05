@@ -38,12 +38,24 @@ actor SefariaOfflineStore: LibraryTextProviding {
         (try? bookArchive(title: workKey)) != nil
     }
 
+    func index(for workKey: String) throws -> SefariaOfflineIndexDTO {
+        let directory = try expandedBook(title: workKey)
+        let url = directory.appendingPathComponent("\(workKey)_index.json")
+        do { return try JSONDecoder().decode(SefariaOfflineIndexDTO.self, from: Data(contentsOf: url)) }
+        catch { throw LibraryBackendError.corruptData("invalid index metadata for \(workKey): \(error)") }
+    }
+
+    func navigationMetadata(for workKey: String) throws -> [SefariaOfflineMetadataDTO] {
+        let directory = try expandedBook(title: workKey)
+        return try loadAllMetadata(title: workKey, from: directory)
+    }
+
     func clearTransientState() {
         archiveByTitle.removeAll()
         metadataByBook.removeAll()
     }
 
-    private func expandedBook(title: String) throws -> URL {
+    func expandedBook(title: String) throws -> URL {
         let manager = FileManager.default
         let target = paths.expandedBooks.appendingPathComponent(SefariaOfflinePaths.safeComponent(title), isDirectory: true)
         if isValidExpandedBook(target, title: title) { return target }
@@ -67,16 +79,19 @@ actor SefariaOfflineStore: LibraryTextProviding {
 
     private func bookArchive(title: String) throws -> URL {
         if let cached = archiveByTitle[title], FileManager.default.fileExists(atPath: cached.path) { return cached }
-        guard let walker = FileManager.default.enumerator(
-            at: paths.packages,
-            includingPropertiesForKeys: [.isRegularFileKey],
-            options: [.skipsHiddenFiles, .skipsPackageDescendants]
-        ) else { throw LibraryBackendError.unavailableOffline }
-        for case let url as URL in walker
-            where url.pathExtension.lowercased() == "zip"
-                && url.deletingPathExtension().lastPathComponent == title {
-            archiveByTitle[title] = url
-            return url
+        for root in [paths.standaloneWorks, paths.packages] {
+            guard let walker = FileManager.default.enumerator(
+                at: root,
+                includingPropertiesForKeys: [.isRegularFileKey],
+                options: [.skipsHiddenFiles, .skipsPackageDescendants]
+            ) else { continue }
+            for case let url as URL in walker
+                where url.pathExtension.lowercased() == "zip"
+                    && (url.deletingPathExtension().lastPathComponent == title
+                        || url.lastPathComponent == paths.standaloneArchive(for: title).lastPathComponent) {
+                archiveByTitle[title] = url
+                return url
+            }
         }
         throw LibraryBackendError.unavailableOffline
     }
@@ -90,14 +105,7 @@ actor SefariaOfflineStore: LibraryTextProviding {
         if let cached = metadataByBook[title] {
             all = cached
         } else {
-            let files = (try? FileManager.default.contentsOfDirectory(at: directory,
-                includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])) ?? []
-            let decoder = JSONDecoder()
-            all = files.filter { $0.lastPathComponent.hasSuffix(".metadata.json") }.flatMap { url -> [SefariaOfflineMetadataDTO] in
-                guard let data = try? Data(contentsOf: url),
-                      let document = try? decoder.decode(SefariaOfflineMetadataDTO.self, from: data) else { return [] }
-                return document.flattenedSections
-            }
+            all = try loadAllMetadata(title: title, from: directory)
             metadataByBook[title] = all
         }
         guard let result = all.first(where: {
@@ -105,6 +113,19 @@ actor SefariaOfflineStore: LibraryTextProviding {
                 || requestedRef.hasPrefix($0.sectionRef + ":")
         }) else { throw LibraryBackendError.unavailableOffline }
         return result
+    }
+
+    private func loadAllMetadata(title: String, from directory: URL) throws -> [SefariaOfflineMetadataDTO] {
+        let files = try FileManager.default.contentsOfDirectory(at: directory,
+            includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+        let decoder = JSONDecoder()
+        let documents = try files.filter { $0.lastPathComponent.hasSuffix(".metadata.json") }.map { url in
+            do { return try decoder.decode(SefariaOfflineMetadataDTO.self, from: Data(contentsOf: url)) }
+            catch { throw LibraryBackendError.corruptData("invalid navigation metadata for \(title): \(error)") }
+        }
+        let flattened = documents.flatMap(\.flattenedSections)
+        guard !flattened.isEmpty else { throw LibraryBackendError.corruptData("no navigation metadata for \(title)") }
+        return flattened
     }
 
     private func loadVersions(
