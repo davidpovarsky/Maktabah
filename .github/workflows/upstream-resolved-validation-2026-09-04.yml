@@ -13,6 +13,7 @@ on:
       - Scripts/**
 
 permissions:
+  actions: read
   contents: read
 
 env:
@@ -26,21 +27,61 @@ jobs:
     runs-on: macos-26
     timeout-minutes: 180
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Confirm merge ancestry
         run: |
           set -euo pipefail
           git merge-base --is-ancestor f239428739996d71a9e9696cb931f8ce35a83161 HEAD
           git merge-base --is-ancestor 06158e767ee765f2451461a34d18feeeccc79fa5 HEAD
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Select Xcode 26
         run: bash Scripts/CI/select-xcode-26.sh
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: dtolnay/rust-toolchain@stable
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build pinned Otzaria search XCFramework
         run: |
           set -euo pipefail
@@ -50,18 +91,42 @@ jobs:
           cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
           bash Scripts/CI/ensure-otzaria-upstream-checkout.sh --verify-only
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build Zayit search XCFramework
         run: |
           set -euo pipefail
           bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
           bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Verify Xcode integration
         run: |
           set -euo pipefail
           python3 Scripts/CI/verify-otzaria-xcode-project.py
           xcodebuild -list -project "$PROJECT_PATH"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Resolve Swift packages
         run: |
           set -euo pipefail
@@ -71,6 +136,14 @@ jobs:
             -scheme "$SCHEME" \
             -clonedSourcePackagesDirPath build/SourcePackages
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build iOS Simulator
         run: |
           set -o pipefail
@@ -96,12 +169,28 @@ jobs:
           test -f "$APP/Acronyms.json"
           test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$APP/Info.plist")" = production
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Native Otzaria bootstrap smoke test
         run: |
           set -euo pipefail
           APP="$GITHUB_WORKSPACE/build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
           bash Scripts/run-otzaria-native-bootstrap-acceptance.sh "$APP" --dictionary-only
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build unsigned iOS device app
         run: |
           set -o pipefail
@@ -132,6 +221,14 @@ jobs:
             exit 1
           fi
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build macOS Direct
         run: |
           set -o pipefail
@@ -147,6 +244,14 @@ jobs:
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             2>&1 | tee build/logs/build-macos.log
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Final structural invariants
         run: |
           set -euo pipefail
@@ -159,6 +264,15 @@ jobs:
           grep -q 'heRef' 'Source/Models/DataModel.swift'
           grep -q '"he"' Source/Localizable.xcstrings
 
+      - name: Live Activity · refresh
+        if: always()
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
