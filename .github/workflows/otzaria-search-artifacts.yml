@@ -36,6 +36,7 @@ on:
         default: false
 
 permissions:
+  actions: read
   contents: write
 
 concurrency:
@@ -47,7 +48,23 @@ jobs:
     runs-on: macos-26
     timeout-minutes: 720
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: actions/checkout@v4
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Select Xcode 26 and verify committed identity
         env:
           GH_TOKEN: ${{ github.token }}
@@ -58,7 +75,23 @@ jobs:
           df -h "$RUNNER_TEMP" "$GITHUB_WORKSPACE"
           AVAILABLE_KIB="$(df -Pk "$RUNNER_TEMP" | awk 'NR==2 {print $4}')"
           test "$AVAILABLE_KIB" -ge $((35 * 1024 * 1024))
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: dtolnay/rust-toolchain@stable
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Cache build dependencies
         uses: actions/cache@v4
         with:
@@ -69,6 +102,14 @@ jobs:
             ~/Library/org.swift.swiftpm
             build/SourcePackages
           key: ${{ runner.os }}-${{ runner.arch }}-otzaria-search-artifact-v1-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build pinned engines and simulator app
         run: |
           bash Vendor/OtzariaSearchEngine/build_xcframework.sh
@@ -84,6 +125,15 @@ jobs:
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
+      - name: Live Activity · refresh
+        if: ${{ inputs.existing_release_tag != '' }}
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Restore existing published package
         if: ${{ inputs.existing_release_tag != '' }}
         env:
@@ -106,12 +156,29 @@ jobs:
               assert hashlib.sha256(path.read_bytes()).hexdigest() == part["sha256"], path
           PY
           printf '%s\n' "$RELEASE_TAG" > build/logs/otzaria-search-release-tag.txt
+      - name: Live Activity · refresh
+        if: ${{ inputs.existing_release_tag != '' && inputs.repair_manifest_layout }}
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Repair extracted-file metadata while reusing package bytes
         if: ${{ inputs.existing_release_tag != '' && inputs.repair_manifest_layout }}
         run: |
           python3 Scripts/repair-otzaria-search-artifact-manifest.py \
             --manifest build/otzaria-artifact/otzaria-search-manifest.json \
             --metrics build/otzaria-artifact/otzaria-search-build-metrics.json
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Resolve and download official corpus/resources
         env:
           GH_TOKEN: ${{ github.token }}
@@ -143,6 +210,15 @@ jobs:
           assert digest.hexdigest() == source["databaseSHA256"]
           PY
           fi
+      - name: Live Activity · refresh
+        if: ${{ inputs.existing_release_tag == '' }}
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build the full lexical index once and record disk samples
         if: ${{ inputs.existing_release_tag == '' }}
         env:
@@ -154,6 +230,15 @@ jobs:
           OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES: ${{ github.workspace }}/build/logs/otzaria-disk-samples.jsonl
           OTZARIA_CORPUS_ACCEPTANCE_WAIT_ROUNDS: "7200"
         run: bash Scripts/run-otzaria-corpus-acceptance.sh "$RUNNER_TEMP/seforim.db"
+      - name: Live Activity · refresh
+        if: ${{ inputs.existing_release_tag == '' }}
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Package deterministic streaming parts and manifest
         if: ${{ inputs.existing_release_tag == '' }}
         run: |
@@ -171,6 +256,15 @@ jobs:
             --peak-build-bytes "$PEAK" \
             --build-duration-seconds "$DURATION"
           python3 -m json.tool build/otzaria-artifact/otzaria-search-manifest.json >/dev/null
+      - name: Live Activity · refresh
+        if: ${{ inputs.publish_release && (inputs.existing_release_tag == '' || inputs.repair_manifest_layout) }}
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Publish durable development-data release
         if: ${{ inputs.publish_release && (inputs.existing_release_tag == '' || inputs.repair_manifest_layout) }}
         env:
@@ -186,6 +280,14 @@ jobs:
             gh release upload "$TAG" build/otzaria-artifact/* --clobber
           fi
           printf '%s\n' "$TAG" > build/logs/otzaria-search-release-tag.txt
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Prove package portability and relaunch without indexing
         env:
           GH_TOKEN: ${{ github.token }}
@@ -205,6 +307,15 @@ jobs:
             build/otzaria-artifact \
             "$RELEASE_BASE_URL" \
             "$RELEASES_JSON"
+      - name: Live Activity · refresh
+        if: always()
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -215,6 +326,15 @@ jobs:
             build/otzaria-artifact/otzaria-search-build-metrics.json
           compression-level: 0
           if-no-files-found: warn
+      - name: Live Activity · refresh
+        if: always()
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Confirm package data was not added to git
         if: always()
         run: |
