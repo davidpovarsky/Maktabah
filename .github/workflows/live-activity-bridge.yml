@@ -1,0 +1,55 @@
+name: Live Activity Bridge
+
+on:
+  workflow_run:
+    workflows:
+      - "Apply ChavrusaText CloudKit Schema"
+      - "CodeQL Advanced"
+      - "iOS Build Data Profile IPA"
+      - "iOS Build"
+      - "Build Signed ChavrusaText iOS IPA and Upload to TestFlight"
+      - "Build miniTest10 Data Profile"
+      - "Build Otzaria Search Artifacts"
+      - "Otzaria Search Gates"
+      - "Jules PR Review"
+      - "Release Maktabah"
+      - "Swift Playgrounds Shared UI POC"
+      - "Upstream merge diagnostic 2026-09-04"
+      - "Upstream semantic merge and validation 2026-09-04"
+      - "Upstream resolved fast validation 2026-09-04"
+      - "Upstream resolved full validation 2026-09-04"
+      - "Build Zayit Demo Data"
+      - "Build Zayit Production Search Data"
+      - "Zayit Search Gates"
+    types:
+      - requested
+      - in_progress
+      - completed
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: live-activity-bridge-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
+jobs:
+  bridge:
+    name: Bridge
+    if: ${{ github.event.workflow_run.name != 'Live Activity Bridge' && !startsWith(github.event.workflow_run.name, 'Live Activity Bridge') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Live Activity · lifecycle
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: ${{ github.event.action == 'completed' && 'final' || 'start' }}
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
+          source_repository: ${{ github.event.workflow_run.repository.full_name || github.repository }}
+          source_run_id: ${{ github.event.workflow_run.id }}
+          source_run_attempt: ${{ github.event.workflow_run.run_attempt }}
+          source_branch: ${{ github.event.workflow_run.head_branch }}
