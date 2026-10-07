@@ -6,6 +6,7 @@ on:
       - codex/upstream-main-sync-2026-09-04-mergework
 
 permissions:
+  actions: read
   contents: write
 
 jobs:
@@ -13,12 +14,28 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Check out clean target branch
         uses: actions/checkout@v4
         with:
           ref: codex/upstream-main-sync-2026-09-04
           fetch-depth: 0
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Capture exact merge conflicts and index stages
         shell: bash
         run: |
