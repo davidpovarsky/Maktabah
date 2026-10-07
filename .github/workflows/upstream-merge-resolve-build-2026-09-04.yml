@@ -10,6 +10,7 @@ on:
       - .github/workflows/upstream-merge-resolve-build-2026-09-04.yml
 
 permissions:
+  actions: read
   contents: write
 
 jobs:
@@ -23,12 +24,28 @@ jobs:
       SOURCE_SHA: f239428739996d71a9e9696cb931f8ce35a83161
       WORKER_URL: ${{ secrets.WORKER_URL }}
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Check out merge tooling
         uses: actions/checkout@v4
         with:
           ref: codex/upstream-main-sync-2026-09-04-mergework
           fetch-depth: 0
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Preserve resolver and reset to clean target
         shell: bash
         run: |
@@ -39,6 +56,14 @@ jobs:
           git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
           test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Fetch exact upstream main and begin true merge
         shell: bash
         run: |
@@ -56,6 +81,14 @@ jobs:
           test "$status" -eq 1
           test "$(git diff --name-only --diff-filter=U | wc -l | tr -d ' ')" = "27"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Resolve conflicts semantically
         shell: bash
         run: |
@@ -154,6 +187,14 @@ jobs:
           test -f .git/MERGE_HEAD
           test "$(cat .git/MERGE_HEAD)" = "$UPSTREAM_SHA"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Commit true two-parent merge and push test branch
         id: merge_commit
         shell: bash
@@ -175,12 +216,28 @@ jobs:
           git push --force origin "HEAD:refs/heads/$RESOLVED_BRANCH"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Inspect Xcode project and schemes
         shell: bash
         run: |
           set -euo pipefail
           xcodebuild -list -project Maktabah.xcodeproj
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build iOS Simulator
         shell: bash
         run: |
@@ -199,6 +256,14 @@ jobs:
             WORKER_URL="$WORKER_URL" \
             | tee /tmp/ios-build.log
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Native Otzaria bootstrap smoke test
         shell: bash
         run: |
@@ -207,6 +272,14 @@ jobs:
           test -n "$app"
           bash Scripts/run-otzaria-native-bootstrap-acceptance.sh "$(cd "$(dirname "$app")" && pwd)/$(basename "$app")" --dictionary-only
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build macOS Direct
         shell: bash
         run: |
@@ -224,6 +297,14 @@ jobs:
             WORKER_URL="$WORKER_URL" \
             | tee /tmp/macos-build.log
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Final structural verification
         shell: bash
         run: |
