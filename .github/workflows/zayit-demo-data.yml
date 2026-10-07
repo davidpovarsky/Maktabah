@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
 
 jobs:
@@ -13,17 +14,49 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Checkout selected branch
         uses: actions/checkout@v4
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
         with:
           workspaces: Vendor/ZayitSearchPort/Rust
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Create complete compatible SQLite fixtures
         run: |
           set -euo pipefail
@@ -231,6 +264,14 @@ jobs:
           lexical.close()
           PY
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Validate Otzaria-compatible schema and content
         run: |
           set -euo pipefail
@@ -250,6 +291,14 @@ jobs:
           db.close()
           PY
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build demo Zayit search index
         run: |
           set -euo pipefail
@@ -259,6 +308,14 @@ jobs:
             "$PWD/build/zayit-demo/ZayitSearchData/seforim.db" \
             "$PWD/build/zayit-demo/ZayitSearchData/zayit-search-index"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Verify bundle and Rust search smoke tests
         run: |
           set -euo pipefail
@@ -273,6 +330,14 @@ jobs:
 
           find build/zayit-demo/ZayitSearchData -maxdepth 3 -type f -print
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Create download ZIP
         run: |
           set -euo pipefail
@@ -280,6 +345,14 @@ jobs:
           zip -r ZayitSearchData-Demo.zip ZayitSearchData
           test -s ZayitSearchData-Demo.zip
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Upload demo data artifact
         uses: actions/upload-artifact@v4
         with:
