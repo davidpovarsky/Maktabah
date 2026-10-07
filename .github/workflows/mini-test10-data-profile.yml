@@ -16,6 +16,7 @@ on:
         default: true
 
 permissions:
+  actions: read
   contents: write
 
 concurrency:
@@ -40,7 +41,23 @@ jobs:
       LEXICAL_BYTES: "57122816"
       RUST_TOOLCHAIN: 1.98.1
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Select Xcode and install deterministic tooling
         run: |
           set -euo pipefail
@@ -50,9 +67,25 @@ jobs:
           "$RUNNER_TEMP/miniTest10-python/bin/python" -m pip install --disable-pip-version-check zstandard==0.23.0
           echo "$RUNNER_TEMP/miniTest10-python/bin" >> "$GITHUB_PATH"
           mkdir -p build/miniTest10/{database,otzaria,zayit,logs} "$RUNNER_TEMP/miniTest10"
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
         with:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Download and authenticate the pinned official database
         env:
           GH_TOKEN: ${{ github.token }}
@@ -63,6 +96,14 @@ jobs:
           test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db.zst" | cut -d' ' -f1)" = "$SOURCE_ASSET_SHA256"
           zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/miniTest10/seforim.db.zst" -o "$RUNNER_TEMP/miniTest10/seforim.db"
           test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db" | cut -d' ' -f1)" = "$SOURCE_DATABASE_SHA256"
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build the canonical ten-book database twice
         run: |
           set -euo pipefail
@@ -82,6 +123,14 @@ jobs:
             --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
             --database build/miniTest10/database/miniTest10-seforim.db \
             --archive build/miniTest10/database/miniTest10-seforim.db.zst
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Resolve pinned lexical resource and synthetic mini release identity
         env:
           GH_TOKEN: ${{ github.token }}
@@ -106,6 +155,14 @@ jobs:
             --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
             --archive build/miniTest10/database/miniTest10-seforim.db.zst \
             --output build/miniTest10/logs/source-profile-release.json
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build pinned engines and simulator app
         run: |
           set -euo pipefail
@@ -121,6 +178,14 @@ jobs:
           test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$MINI_APP/Info.plist")" = "$PROFILE_ID"
           test "$(xcodebuild -showBuildSettings -project Maktabah.xcodeproj -scheme Maktabah-iOS -configuration Release \
             | awk '/ OTZARIA_DEFAULT_DATA_PROFILE = / { print $3; exit }')" = production
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build unsigned mini-default iOS device app and verify bundle
         run: |
           set -euo pipefail
@@ -135,6 +200,14 @@ jobs:
           test ! -e "$DEVICE_APP/seforim.db"
           test ! -e "$DEVICE_APP/lexical.db"
           rm -rf -- build/MiniTest10DeviceBuild
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build the actual Otzaria index and package it
         env:
           OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD: "1"
@@ -157,6 +230,14 @@ jobs:
             --output build/miniTest10/otzaria --peak-build-bytes "$PEAK" \
             --build-duration-seconds "$(cat build/miniTest10/logs/otzaria-duration.txt)" \
             --data-profile "$PROFILE_ID" --data-profile-version "$PROFILE_VERSION"
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build the actual Zayit index, query it, and package it
         env:
           ZAYIT_DATABASE_RELEASE_TAG: v23-20260829032606
@@ -178,6 +259,14 @@ jobs:
             --index "$RUNNER_TEMP/miniTest10/zayit-index" --output build/miniTest10/zayit \
             --lexical-version "$LEXICAL_TAG" --lexical-sha256 "$LEXICAL_SHA256" --lexical-bytes "$LEXICAL_BYTES" \
             --peak-build-bytes "$PEAK" --data-profile "$PROFILE_ID" --data-profile-version "$PROFILE_VERSION"
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Prove both indexes use the identical canonical database
         run: |
           python3 Scripts/verify-mini-test10-profile.py \
@@ -186,6 +275,15 @@ jobs:
             --archive build/miniTest10/database/miniTest10-seforim.db.zst \
             --otzaria-manifest build/miniTest10/otzaria/otzaria-search-manifest.json \
             --zayit-manifest build/miniTest10/zayit/zayit-search-manifest.json
+      - name: Live Activity · refresh
+        if: ${{ inputs.publish_release }}
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Publish or verify the immutable profile release
         if: ${{ inputs.publish_release }}
         env:
@@ -236,6 +334,15 @@ jobs:
             git fetch origin "refs/tags/$PROFILE_TAG:refs/tags/$PROFILE_TAG"
             test "$(git rev-list -n 1 "$PROFILE_TAG")" = "$GITHUB_SHA"
           fi
+      - name: Live Activity · refresh
+        if: ${{ inputs.publish_release }}
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Simulator install, mini bootstrap, relaunch, and Otzaria search smoke
         if: ${{ inputs.publish_release }}
         env:
@@ -249,6 +356,15 @@ jobs:
             "$(pwd)/build/miniTest10/database/miniTest10-seforim.db" \
             "$(pwd)/build/miniTest10/otzaria/otzaria-search-manifest.json" \
             "$(pwd)/build/miniTest10/otzaria"
+      - name: Live Activity · refresh
+        if: always()
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
@@ -260,6 +376,15 @@ jobs:
             build/miniTest10/zayit/*.json
           compression-level: 0
           if-no-files-found: warn
+      - name: Live Activity · refresh
+        if: always()
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Confirm generated data was not added to git
         if: always()
         run: |
