@@ -12,10 +12,19 @@ jobs:
   review:
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       pull-requests: write
       contents: read
       statuses: write
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Jules PR Reviewer
         uses: bismillah-100/jules-pr-reviewer@main
         with:
