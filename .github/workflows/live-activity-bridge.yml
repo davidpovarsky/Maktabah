@@ -22,7 +22,6 @@ on:
       - "Build Zayit Production Search Data"
       - "Zayit Search Gates"
     types:
-      - requested
       - in_progress
       - completed
 
