@@ -351,6 +351,12 @@ struct OtzariaIndexFingerprint: Codable, Equatable, Sendable {
     let modificationTime: TimeInterval
 }
 
+struct OtzariaHighlightPattern: Codable, Equatable, Sendable {
+    let combinedPattern: String
+    let wordPatterns: [String]
+    let wordBoundaryEligible: [Bool]
+}
+
 struct OtzariaSemanticArtifactIdentity: Codable, Equatable, Sendable {
     let modelID: String
     let modelSHA256: String
@@ -439,6 +445,9 @@ enum OtzariaSearchIndexStatus: Equatable, Sendable {
     case notBuilt
     case checkingPackage
     case packageAvailable(downloadBytes: Int64, requiredBytes: Int64, availableBytes: Int64)
+    case updateAvailable(downloadBytes: Int64, artifactIdentity: String)
+    case repairRequired(String)
+    case incompatible(String)
     case downloadingPackage(completedBytes: Int64, totalBytes: Int64)
     case installingPackage(completedBytes: Int64, totalBytes: Int64)
     case packageUnavailable(String)
@@ -456,6 +465,10 @@ enum OtzariaSearchIndexStatus: Equatable, Sendable {
         case .checkingPackage: return "בודק זמינות חבילת חיפוש…"
         case .packageAvailable(let download, let required, let available):
             return "חבילת חיפוש זמינה · הורדה \(Self.bytes(download)) · נדרש \(Self.bytes(required)) · פנוי \(Self.bytes(available))"
+        case .updateAvailable(let download, _):
+            return "קיים עדכון לאינדקס · הורדה \(Self.bytes(download))"
+        case .repairRequired(let reason): return "נדרש תיקון לאינדקס: \(reason)"
+        case .incompatible(let reason): return "האינדקס אינו תואם: \(reason)"
         case .downloadingPackage(let completed, let total):
             return "מוריד חבילת חיפוש \(Self.bytes(completed))/\(Self.bytes(total))"
         case .installingPackage(let completed, let total):

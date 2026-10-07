@@ -25,10 +25,6 @@ struct iPhoneLayout: View {
                 otzariaTextSearchTabContent
             }
 
-            Tab(iOSTab.zayitSearch.title, systemImage: iOSTab.zayitSearch.icon, value: .zayitSearch) {
-                zayitSearchTabContent
-            }
-
             Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search, role: .search) {
                 searchTabContent
             }
@@ -50,7 +46,7 @@ struct iPhoneLayout: View {
             iOSAddFavoriteSheet(viewModel: HistoryViewModel.shared)
         }
         .onAppear {
-            selectedTab = savedSelectedTab
+            selectedTab = savedSelectedTab == .zayitSearch ? .otzariaTextSearch : savedSelectedTab
         }
         .onChange(of: selectedTab) { _, newValue in
             savedSelectedTab = newValue
@@ -81,32 +77,21 @@ struct iPhoneLayout: View {
     @ViewBuilder
     private var otzariaTextSearchTabContent: some View {
         NavigationStack {
-            OtzariaTextSearchView()
+            UnifiedSearchWorkspaceView(
+                openOtzaria: { item, descriptor in
+                    guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
+                    bManager.openBook(book, initialContentId: item.page, searchText: descriptor.readerFallback)
+                },
+                openZayit: { hit, _ in
+                    ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
+                }
+            )
                 .navigationTitle(iOSTab.otzariaTextSearch.title)
                 .adaptiveReaderPush(
                     item: $bManager.selectedBook,
                     manager: bManager
                 )
                 .toolbarGeneral(showSettings: $showSettings)
-        }
-    }
-
-    @ViewBuilder
-    private var zayitSearchTabContent: some View {
-        NavigationStack {
-            ZayitSearchView(
-                existingSeforimDB: {
-                    ZayitSearchExistingDatabaseProvider.currentURL
-                },
-                openResult: { hit in
-                    ZayitSearchReaderNavigationAdapter.open(hit, using: bManager)
-                }
-            )
-            .adaptiveReaderPush(
-                item: $bManager.selectedBook,
-                manager: bManager
-            )
-            .toolbarGeneral(showSettings: $showSettings)
         }
     }
 

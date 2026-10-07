@@ -33,6 +33,19 @@ final class ZayitSearchSessionController: ObservableObject {
         state = .restoring
 
         do {
+            if let database = existingSeforimDB,
+               let lexical = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL,
+               let storage = try? ZayitSearchArtifactStorage(),
+               case .ready = await ZayitSearchArtifactService.shared.status(databaseURL: database) {
+                let paths = try ZayitSearchDataValidator.managedPaths(
+                    seforimDB: database,
+                    lexicalDB: lexical,
+                    indexDirectory: storage.finalIndex
+                )
+                try await model.configure(paths: paths)
+                state = .ready
+                return
+            }
             guard let folder = try folderAccess.restoreAndActivate() else {
                 state = .notConfigured
                 return

@@ -400,6 +400,26 @@ final class OtzariaMaktabahBridge {
         }.first
     }
 
+    func resolveBook(stableKey: String, expectedBookId: Int) throws -> BooksData? {
+        let resolvedID: Int? = try withDatabase { database in
+            let schema = try OtzariaBookSchemaCompatibility.projection(in: database)
+            let rows = try database.fetch(query: """
+                SELECT b.id
+                FROM book b
+                WHERE COALESCE(NULLIF(TRIM(\(schema.filePath)), ''), 'book:' || b.id) = ?
+                LIMIT 2
+            """, parameters: [stableKey]) { row in row.int(at: 0) }
+            guard rows.count == 1 else { return nil }
+            // A real canonical source path is authoritative across database
+            // rebuilds where numeric IDs may change. Only the documented
+            // `book:<id>` fallback remains tied to the original numeric ID.
+            if stableKey.hasPrefix("book:"), rows[0] != expectedBookId { return nil }
+            return rows[0]
+        }
+        guard let resolvedID else { return nil }
+        return try fetchBook(byId: resolvedID)
+    }
+
     func fetchBookInfo(for book: BooksData) {
         lock.lock()
         defer { lock.unlock() }

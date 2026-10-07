@@ -1,5 +1,11 @@
 import Foundation
 
+enum OtzariaManagedDiscoveryDisposition: Equatable, Sendable {
+    case available
+    case updateAvailable
+    case repairRequired
+}
+
 enum OtzariaSearchArtifactPolicy {
     static let safetyReserve: Int64 = 1_073_741_824
 
@@ -14,6 +20,32 @@ enum OtzariaSearchArtifactPolicy {
         return !components.isEmpty && components.allSatisfy { !$0.isEmpty && $0 != "." && $0 != ".." }
     }
 
+    static func managedIdentityMatchesCanonicalData(
+        _ identity: OtzariaIndexBuildIdentity,
+        currentDatabase: OtzariaIndexFingerprint,
+        build: OtzariaSearchEngineBuildInfo
+    ) -> Bool {
+        identity.database.fileSize == currentDatabase.fileSize
+            && identity.upstreamCommit == build.upstreamCommit
+            && identity.engineVersion == build.engineVersion
+            && identity.indexSchemaVersion == build.indexSchemaVersion
+            && identity.defaultGenerationOrder == build.defaultGenerationOrder
+            && identity.adapterVersion == build.adapterVersion
+            && identity.resourceHashes == build.resourceHashes
+        // Container path, mtime, and semantic sidecar registration are not
+        // part of the canonical lexical artifact identity.
+    }
+
+    static func managedDiscoveryDisposition(
+        trustedArtifactIdentity: String?,
+        availableArtifactIdentity: String
+    ) -> OtzariaManagedDiscoveryDisposition {
+        guard let trustedArtifactIdentity else { return .available }
+        return trustedArtifactIdentity == availableArtifactIdentity
+            ? .repairRequired
+            : .updateAvailable
+    }
+
     static func requiredInstallCapacity(
         manifest: OtzariaSearchArtifactManifest,
         alreadyDownloadedBytes: Int64,
@@ -22,7 +54,10 @@ enum OtzariaSearchArtifactPolicy {
         // `availableCapacity` already excludes the existing trusted index. Its
         // atomic rename to `.previous` consumes no additional file data.
         _ = existingFinalBytes
-        let remaining = max(0, manifest.lexicalArtifact.packagedBytes - alreadyDownloadedBytes)
+        // The installer streams one independently compressed part at a time,
+        // verifies and extracts it, then deletes it before downloading the next.
+        let largestPart = manifest.lexicalArtifact.parts.map(\.packagedBytes).max() ?? 0
+        let remaining = max(0, largestPart - min(alreadyDownloadedBytes, largestPart))
         return saturatedSum([
             remaining,
             manifest.lexicalArtifact.extractedBytes,

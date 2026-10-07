@@ -44,6 +44,15 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: Vendor/ZayitSearchPort/Rust
+      - name: Test Swift presentation models and HTML sanitizer
+        run: |
+          swiftc \
+            Vendor/ZayitSearchPort/Swift/ZayitSearchModels.swift \
+            Source/ZayitSearch/UnifiedSearchPresentationPolicy.swift \
+            Source/ZayitSearch/ZayitInstallCapacityPolicy.swift \
+            Vendor/ZayitSearchPort/SwiftTests/main.swift \
+            -o "$RUNNER_TEMP/zayit-swift-tests"
+          "$RUNNER_TEMP/zayit-swift-tests"
       - name: Build XCFramework for device and simulator
         run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
       - name: Verify XCFramework slices

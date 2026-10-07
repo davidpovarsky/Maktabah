@@ -106,21 +106,17 @@ struct iPadLayout: View {
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
         }
+        .environment(\.layoutDirection, .rightToLeft)
     }
 
     @ViewBuilder
     private var sidebarContent: some View {
         ThemeList(isGrouped: true) {
             Section {
-                ForEach(iOSTab.allCases.filter { $0 != .history }) { tab in
-                    if tab == .zayitSearch || tab == .otzariaTextSearch {
+                ForEach(iOSTab.allCases.filter { $0 != .history && $0 != .zayitSearch }) { tab in
+                    if tab == .otzariaTextSearch {
                         Button {
-                            path.removeAll()
-                            selectedTab = tab
-                            bManager.switchToMode(.search)
-                            showingZayitReader = false
-                            showingOtzariaReader = false
-                            detailMode = tab == .zayitSearch ? .zayitSearch : .otzariaTextSearch
+                            transitionSidebar(to: tab)
                         } label: {
                             Label(tab.title, systemImage: tab.icon)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -130,9 +126,14 @@ struct iPadLayout: View {
                         .foregroundStyle(.primary)
                         .accessibilityLabel(Text(tab.title))
                     } else {
-                        NavigationLink(value: tab) {
+                        Button {
+                            selectSidebar(tab)
+                        } label: {
                             Label(tab.title, systemImage: tab.icon)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
                         .foregroundStyle(.primary)
                     }
                 }
@@ -146,6 +147,7 @@ struct iPadLayout: View {
                             isFavorite: true,
                             viewModel: historyViewModel
                         ) {
+                            prepareReaderDetail()
                             let lastId = historyViewModel.entriesByBookId[
                                 book.id
                             ]?.lastContentId
@@ -173,6 +175,7 @@ struct iPadLayout: View {
                                 .contains(book.id),
                             viewModel: historyViewModel
                         ) {
+                            prepareReaderDetail()
                             let lastId = historyViewModel.entriesByBookId[
                                 book.id
                             ]?.lastContentId
@@ -200,15 +203,22 @@ struct iPadLayout: View {
             iOSReaderTabView(columnVisibility: $columnVisibility)
         case .otzariaTextSearch:
             NavigationStack {
-                OtzariaTextSearchView { item, query in
-                    guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
-                    bManager.openBook(
-                        book,
-                        initialContentId: item.page,
-                        searchText: query
-                    )
-                    showingOtzariaReader = true
-                }
+                UnifiedSearchWorkspaceView(
+                    openOtzaria: { item, descriptor in
+                        guard let book = LibraryDataManager.shared.getBook([item.bookId]).first else { return }
+                        bManager.openBook(
+                            book,
+                            initialContentId: item.page,
+                            searchText: descriptor.readerFallback
+                        )
+                        showingOtzariaReader = true
+                    },
+                    openZayit: { hit, _ in
+                        if ZayitSearchReaderNavigationAdapter.open(hit, using: bManager) {
+                            showingOtzariaReader = true
+                        }
+                    }
+                )
                 .navigationDestination(isPresented: $showingOtzariaReader) {
                     iOSReaderTabView(columnVisibility: $columnVisibility)
                 }
@@ -302,5 +312,36 @@ struct iPadLayout: View {
                 bManager.switchToMode(tab.appMode)
             }
         }
+    }
+
+    private func selectSidebar(_ tab: iOSTab) {
+        transitionSidebar(to: tab)
+    }
+
+    private func transitionSidebar(to tab: iOSTab) {
+        // Every sidebar transition clears the complete author/detail route in
+        // one transaction. This prevents value-less nested NavigationLinks
+        // from surviving after the selected section changes.
+        path.removeAll()
+        showingZayitReader = false
+        showingOtzariaReader = false
+        sidebarSearchText = ""
+        bManager.authorViewModel.currentRowi = nil
+        bManager.authorViewModel.searchText = ""
+        selectedTab = tab
+        bManager.switchToMode(tab.appMode)
+        if tab == .otzariaTextSearch {
+            detailMode = .otzariaTextSearch
+        } else {
+            detailMode = .reader
+            path = [tab]
+        }
+    }
+
+    private func prepareReaderDetail() {
+        bManager.authorViewModel.currentRowi = nil
+        showingZayitReader = false
+        showingOtzariaReader = false
+        detailMode = .reader
     }
 }

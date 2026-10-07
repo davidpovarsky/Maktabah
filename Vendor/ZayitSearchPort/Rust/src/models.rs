@@ -29,10 +29,13 @@ pub struct SearchRequest {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LineHit {
     pub book_id: i64,
+    pub stable_book_key: String,
     pub book_title: String,
     pub line_id: i64,
     pub line_index: i32,
+    pub reference: String,
     pub snippet_html: String,
+    pub matched_terms: Vec<String>,
     pub score: f32,
     pub is_base_book: bool,
 }

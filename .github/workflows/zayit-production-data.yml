@@ -1,0 +1,239 @@
+name: Build Zayit Production Search Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_commit:
+        description: Exact Maktabah commit containing the builder/schema
+        required: true
+        type: string
+      publish_release:
+        description: Publish the verified package as GitHub Release assets
+        required: true
+        type: boolean
+        default: true
+  push:
+    branches:
+      - codex/search-data-unification-parity
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zayit-production-data-${{ github.event_name == 'push' && github.sha || inputs.source_commit }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[zayit-production]') }}
+    name: Build, validate, and publish production Zayit data
+    permissions:
+      contents: write
+    runs-on: ${{ vars.ZAYIT_PRODUCTION_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 720
+    env:
+      DATABASE_TAG: v22-20260821152805
+      DATABASE_BYTES: "7874232320"
+      DATABASE_COMPRESSED_BYTES: "1549816972"
+      DATABASE_ASSET_SHA256: 10775581965f9dde2ddc5335adbb4ee5882238f3f876f1ec1e7d471ca05265b7
+      DATABASE_SHA256: 5084546e5feb88e3247ed91dad3aa44d07704094a1c9f429d2d3b9a059aa8fc8
+      LEXICAL_TAG: v0.3.0
+      LEXICAL_BYTES: "57122816"
+      LEXICAL_SHA256: b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f
+      SOURCE_COMMIT: ${{ github.event_name == 'push' && github.sha || inputs.source_commit }}
+    steps:
+      - name: Checkout the exact requested commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_COMMIT }}
+      - name: Verify checkout identity
+        run: test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install tools and inspect capacity
+        run: |
+          set -euo pipefail
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL
+          sudo apt-get update
+          sudo apt-get install -y zstd sqlite3
+          mkdir -p build/zayit-production build/logs "$RUNNER_TEMP/zayit-source"
+          df -Pk "$RUNNER_TEMP" "$GITHUB_WORKSPACE" | tee build/logs/disk-start.txt
+      - name: Download and authenticate official v22 database and lexical data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release download "$DATABASE_TAG" --repo Otzaria/SeforimLibrary --pattern seforim.db.zst --dir "$RUNNER_TEMP/zayit-source"
+          test "$(stat -c %s "$RUNNER_TEMP/zayit-source/seforim.db.zst")" = "$DATABASE_COMPRESSED_BYTES"
+          test "$(sha256sum "$RUNNER_TEMP/zayit-source/seforim.db.zst" | cut -d' ' -f1)" = "$DATABASE_ASSET_SHA256"
+          gh release download "$LEXICAL_TAG" --repo Otzaria/SeforimMagicIndexer --pattern lexical.db --dir "$RUNNER_TEMP/zayit-source"
+          test "$(stat -c %s "$RUNNER_TEMP/zayit-source/lexical.db")" = "$LEXICAL_BYTES"
+          test "$(sha256sum "$RUNNER_TEMP/zayit-source/lexical.db" | cut -d' ' -f1)" = "$LEXICAL_SHA256"
+          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/zayit-source/seforim.db.zst" -o "$RUNNER_TEMP/zayit-source/seforim.db"
+          rm "$RUNNER_TEMP/zayit-source/seforim.db.zst"
+          test "$(stat -c %s "$RUNNER_TEMP/zayit-source/seforim.db")" = "$DATABASE_BYTES"
+          test "$(sha256sum "$RUNNER_TEMP/zayit-source/seforim.db" | cut -d' ' -f1)" = "$DATABASE_SHA256"
+          sqlite3 "$RUNNER_TEMP/zayit-source/seforim.db" 'PRAGMA quick_check;' | grep -qx ok
+      - name: Build and validate ten-book smoke index
+        env:
+          ZAYIT_INDEX_MAX_BOOKS: "10"
+          ZAYIT_DATABASE_RELEASE_TAG: ${{ env.DATABASE_TAG }}
+          ZAYIT_DATABASE_ASSET_SHA256: ${{ env.DATABASE_ASSET_SHA256 }}
+          ZAYIT_BUILDER_COMMIT: ${{ env.SOURCE_COMMIT }}
+          ZAYIT_UPSTREAM_COMMIT: c53ea7b1a034c206f6c96c86188941c64b69ad2a
+          ZAYIT_GENERATED_UNIX_SECONDS: "0"
+        run: |
+          set -euo pipefail
+          cargo fmt --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml -- --check
+          cargo test --release --locked --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml
+          cargo build --release --locked --manifest-path Vendor/ZayitSearchPort/Rust/Cargo.toml --bins
+          mkdir -p "$RUNNER_TEMP/zayit-tools"
+          cp Vendor/ZayitSearchPort/Rust/target/release/zayit-index-builder "$RUNNER_TEMP/zayit-tools/"
+          cp Vendor/ZayitSearchPort/Rust/target/release/zayit-query "$RUNNER_TEMP/zayit-tools/"
+          rm -rf Vendor/ZayitSearchPort/Rust/target
+          "$RUNNER_TEMP/zayit-tools/zayit-index-builder" "$RUNNER_TEMP/zayit-source/seforim.db" "$RUNNER_TEMP/zayit-smoke-index"
+          test -s "$RUNNER_TEMP/zayit-smoke-index/meta.json"
+          SMOKE_QUERY="$(sqlite3 "$RUNNER_TEMP/zayit-source/seforim.db" "SELECT content FROM line WHERE length(content)>20 ORDER BY bookId,lineIndex LIMIT 1;" | sed -E 's/<[^>]+>/ /g' | awk '{for(i=1;i<=NF;i++) if(length($i)>=4){print $i; exit}}')"
+          test -n "$SMOKE_QUERY"
+          "$RUNNER_TEMP/zayit-tools/zayit-query" "$RUNNER_TEMP/zayit-source/seforim.db" "$RUNNER_TEMP/zayit-source/lexical.db" "$RUNNER_TEMP/zayit-smoke-index" "$SMOKE_QUERY" > build/logs/zayit-smoke-query.json
+          python3 - <<'PY'
+          import json, pathlib
+          data=json.loads((pathlib.Path(__import__('os').environ['RUNNER_TEMP'])/'zayit-smoke-index/zayit-index-metadata.json').read_text())
+          assert data['schema_version']==2 and data['books_indexed']==10 and data['index_documents']>0
+          PY
+          rm -rf "$RUNNER_TEMP/zayit-smoke-index"
+      - name: Require safe capacity for the production build
+        run: |
+          set -euo pipefail
+          AVAILABLE_KIB="$(df -Pk "$RUNNER_TEMP" | awk 'NR==2 {print $4}')"
+          REQUIRED_KIB=$((8 * 1024 * 1024))
+          printf 'availableKiB=%s requiredRemainingKiB=%s\n' "$AVAILABLE_KIB" "$REQUIRED_KIB" | tee build/logs/capacity-plan.txt
+          test "$AVAILABLE_KIB" -ge "$REQUIRED_KIB" || { echo 'Insufficient remaining capacity after exact cleanup and smoke build.'; exit 1; }
+      - name: Build the full index and sample peak workspace usage
+        env:
+          ZAYIT_DATABASE_RELEASE_TAG: ${{ env.DATABASE_TAG }}
+          ZAYIT_DATABASE_ASSET_SHA256: ${{ env.DATABASE_ASSET_SHA256 }}
+          ZAYIT_BUILDER_COMMIT: ${{ env.SOURCE_COMMIT }}
+          ZAYIT_UPSTREAM_COMMIT: c53ea7b1a034c206f6c96c86188941c64b69ad2a
+          ZAYIT_GENERATED_UNIX_SECONDS: "0"
+        run: |
+          set -euo pipefail
+          : > build/logs/zayit-disk-samples.txt
+          (while kill -0 "$PPID" 2>/dev/null; do du -sb "$RUNNER_TEMP/zayit-source" "$RUNNER_TEMP/zayit-production-index" 2>/dev/null | awk '{s+=$1} END {print s+0}'; sleep 30; done) > build/logs/zayit-disk-samples.txt &
+          SAMPLER=$!
+          trap 'kill "$SAMPLER" 2>/dev/null || true' EXIT
+          "$RUNNER_TEMP/zayit-tools/zayit-index-builder" "$RUNNER_TEMP/zayit-source/seforim.db" "$RUNNER_TEMP/zayit-production-index"
+          kill "$SAMPLER" 2>/dev/null || true
+          wait "$SAMPLER" 2>/dev/null || true
+          trap - EXIT
+          test -s "$RUNNER_TEMP/zayit-production-index/meta.json"
+          "$RUNNER_TEMP/zayit-tools/zayit-query" "$RUNNER_TEMP/zayit-source/seforim.db" "$RUNNER_TEMP/zayit-source/lexical.db" "$RUNNER_TEMP/zayit-production-index" 'לחתוך צנון בסכין בשרי' > build/logs/zayit-production-golden.json
+          python3 - <<'PY'
+          import json
+          data=json.load(open('build/logs/zayit-production-golden.json'))
+          assert data.get('hits'), 'golden query returned no hits'
+          assert all(hit.get('stable_book_key') for hit in data['hits'])
+          PY
+          PEAK="$(sort -nr build/logs/zayit-disk-samples.txt | head -1)"
+          test "${PEAK:-0}" -gt 0
+          printf '%s\n' "$PEAK" > build/logs/zayit-peak-bytes.txt
+          rm "$RUNNER_TEMP/zayit-source/seforim.db"
+          df -Pk "$RUNNER_TEMP" | tee build/logs/disk-before-packaging.txt
+      - name: Package deterministic streaming parts and validate metadata
+        run: |
+          python3 Scripts/package-zayit-search-artifact.py --index "$RUNNER_TEMP/zayit-production-index" --output build/zayit-production --lexical-version "$LEXICAL_TAG" --lexical-sha256 "$LEXICAL_SHA256" --lexical-bytes "$LEXICAL_BYTES" --peak-build-bytes "$(cat build/logs/zayit-peak-bytes.txt)"
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('build/zayit-production'); manifest=json.loads((root/'zayit-search-manifest.json').read_text())
+          assert manifest['requiredDatabase']['canonicalSHA256']==__import__('os').environ['DATABASE_SHA256']
+          for part in manifest['parts']:
+              path=root/part['assetName']; assert path.stat().st_size==part['packagedBytes']; assert path.stat().st_size < 1900*1024*1024
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==part['sha256']
+          PY
+      - name: Publish idempotent release
+        if: ${{ github.event_name == 'push' || inputs.publish_release }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          IDENTITY="$(python3 -c 'import json; print(json.load(open("build/zayit-production/zayit-search-manifest.json"))["artifactIdentity"])')"
+          TAG="zayit-search-data-${DATABASE_TAG}-${IDENTITY:0:12}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release download "$TAG" --pattern zayit-search-manifest.json --dir build/existing
+            cmp build/existing/zayit-search-manifest.json build/zayit-production/zayit-search-manifest.json
+          else
+            gh release create "$TAG" --title "Zayit search data $DATABASE_TAG" --notes "Production Zayit index for $DATABASE_TAG. Artifact identity: $IDENTITY"
+            gh release upload "$TAG" build/zayit-production/*
+          fi
+          printf '%s\n' "$TAG" > build/logs/zayit-release-tag.txt
+      - name: Independently download and validate the published release
+        if: ${{ github.event_name == 'push' || inputs.publish_release }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="$(cat build/logs/zayit-release-tag.txt)"
+          cp build/zayit-production/zayit-search-manifest.json build/logs/published-manifest.json
+          rm -rf "$RUNNER_TEMP/zayit-production-index" build/zayit-production/*.zst
+          mkdir -p "$RUNNER_TEMP/release-download" "$RUNNER_TEMP/zayit-release-index"
+          gh release download "$TAG" --pattern zayit-search-manifest.json --dir "$RUNNER_TEMP/release-download"
+          cmp build/logs/published-manifest.json "$RUNNER_TEMP/release-download/zayit-search-manifest.json"
+          python3 - <<'PY' > "$RUNNER_TEMP/release-parts.tsv"
+          import json
+          m=json.load(open('build/logs/published-manifest.json'))
+          for p in m['parts']:
+              print('\t'.join(str(p[k]) for k in ['assetName','sha256','packagedBytes','destinationPath','destinationOffset','uncompressedBytes']))
+          PY
+          while IFS=$'\t' read -r NAME SHA SIZE DEST OFFSET UNCOMPRESSED; do
+            gh release download "$TAG" --pattern "$NAME" --dir "$RUNNER_TEMP/release-download"
+            PART="$RUNNER_TEMP/release-download/$NAME"
+            test "$(stat -c %s "$PART")" = "$SIZE"
+            test "$(sha256sum "$PART" | cut -d' ' -f1)" = "$SHA"
+            OUT="$RUNNER_TEMP/zayit-release-index/$DEST"
+            mkdir -p "$(dirname "$OUT")"
+            CURRENT=0; test ! -e "$OUT" || CURRENT="$(stat -c %s "$OUT")"
+            test "$CURRENT" = "$OFFSET"
+            zstd -d --no-progress -c "$PART" >> "$OUT"
+            test "$(stat -c %s "$OUT")" = $((OFFSET + UNCOMPRESSED))
+            rm "$PART"
+          done < "$RUNNER_TEMP/release-parts.tsv"
+          gh release download "$DATABASE_TAG" --repo Otzaria/SeforimLibrary --pattern seforim.db.zst --dir "$RUNNER_TEMP/release-download"
+          test "$(sha256sum "$RUNNER_TEMP/release-download/seforim.db.zst" | cut -d' ' -f1)" = "$DATABASE_ASSET_SHA256"
+          zstd -d --long=31 --no-progress "$RUNNER_TEMP/release-download/seforim.db.zst" -o "$RUNNER_TEMP/release-download/seforim.db"
+          rm "$RUNNER_TEMP/release-download/seforim.db.zst"
+          "$RUNNER_TEMP/zayit-tools/zayit-query" "$RUNNER_TEMP/release-download/seforim.db" "$RUNNER_TEMP/zayit-source/lexical.db" "$RUNNER_TEMP/zayit-release-index" 'לחתוך צנון בסכין בשרי' > build/logs/zayit-release-golden.json
+          python3 - <<'PY'
+          import json
+          manifest=json.load(open('build/logs/published-manifest.json'))
+          result=json.load(open('build/logs/zayit-release-golden.json'))
+          assert manifest['requiredDatabase']['releaseTag']=='v22-20260821152805'
+          assert manifest['requiredDatabase']['canonicalSHA256']=='5084546e5feb88e3247ed91dad3aa44d07704094a1c9f429d2d3b9a059aa8fc8'
+          assert manifest['engine']['indexSchemaVersion']==2
+          assert result.get('hits')
+          PY
+          df -Pk "$RUNNER_TEMP" | tee build/logs/disk-after-release-verification.txt
+      - name: Write build summary
+        if: always()
+        run: |
+          if test -f build/zayit-production/zayit-search-build-metrics.json; then
+            python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          m=json.load(open('build/zayit-production/zayit-search-build-metrics.json'))
+          print('## Zayit production data')
+          for key in ['artifactIdentity','databaseBytes','books','lines','documents','splitLines','indexBytes','compressedBytes','peakBuildWorkspaceBytes']:
+              print(f'- {key}: `{m[key]}`')
+          PY
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zayit-production-diagnostics
+          path: |
+            build/logs
+            build/zayit-production/zayit-search-manifest.json
+            build/zayit-production/zayit-search-build-metrics.json
+          compression-level: 0
+          if-no-files-found: warn
+      - name: Confirm data packages were not added to git
+        if: always()
+        run: |
+          test -z "$(git status --short --untracked-files=no)"
+          test -z "$(git ls-files '*.db' '*.db.zst' 'build/zayit-production/*')"

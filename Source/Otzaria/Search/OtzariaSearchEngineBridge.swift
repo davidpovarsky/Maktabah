@@ -314,6 +314,24 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
         }
     }
 
+    static func highlightPattern(for request: OtzariaSearchRequest) throws -> OtzariaHighlightPattern? {
+        struct Payload: Encodable {
+            let operation = "highlightPattern"
+            let input: String
+            let distance: UInt32
+            let customSpacing: [String: String]
+            let alternativeWords: [String: [String]]
+            let searchOptions: [String: [String: Bool]]
+        }
+        return try helper(Payload(
+            input: request.query,
+            distance: UInt32(max(0, request.distance)),
+            customSpacing: request.customSpacing,
+            alternativeWords: request.alternativeWords,
+            searchOptions: request.searchOptions
+        ))
+    }
+
     private static func sha256(_ url: URL) throws -> String {
         let handle = try FileHandle(forReadingFrom: url)
         defer { try? handle.close() }

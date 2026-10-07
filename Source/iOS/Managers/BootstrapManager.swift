@@ -78,11 +78,12 @@ final class iOSBootstrapManager {
                     Task { @MainActor in
                         guard let self, self.managedDownloadGeneration == generation else { return }
                         self.coreDownloadState.phase = .downloading
-                        self.coreDownloadState.progress = update.fraction
+                        self.coreDownloadState.progress = update.fraction * 0.25
                         self.coreDownloadState.detail = update.detail
                     }
                 }
                 guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
+                try await installRecommendedSearchData(generation: generation)
                 finishSetup()
             } catch let error as OtzariaDatabaseBootstrapError {
                 guard managedDownloadGeneration == generation else { return }
@@ -111,11 +112,62 @@ final class iOSBootstrapManager {
     func cancelManagedDownload() {
         managedDownloadGeneration = UUID()
         OtzariaBootstrapAdapter.cancelManagedDatabaseDownload()
+        Task {
+            await OtzariaSearchArtifactService.shared.cancel()
+            await ZayitSearchArtifactService.shared.cancel()
+        }
         managedDownloadTask?.cancel()
         managedDownloadTask = nil
         coreDownloadState.phase = .confirmation
         coreDownloadState.progress = 0
         coreDownloadState.detail = ""
+    }
+
+    func continueWithLibraryOnly() {
+        if OtzariaMaktabahBridge.shared.isEnabled {
+            finishSetup()
+        } else {
+            coreDownloadState.phase = .error("Install or choose the required Seforim database first.")
+        }
+    }
+
+    private func installRecommendedSearchData(generation: UUID) async throws {
+        coreDownloadState.detail = "Installing shared lexical data…"
+        _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: true)
+        coreDownloadState.progress = 0.35
+        guard managedDownloadGeneration == generation,
+              let databasePath = OtzariaMaktabahBridge.shared.databasePath,
+              let databaseURL = OtzariaMaktabahBridge.shared.databaseURL,
+              let lexicalURL = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL else {
+            throw CancellationError()
+        }
+
+        _ = try await OtzariaSearchArtifactService.shared.install(databasePath: databasePath) { [weak self] update in
+            Task { @MainActor in
+                guard let self, self.managedDownloadGeneration == generation else { return }
+                let fraction = update.totalBytes > 0
+                    ? Double(update.completedBytes) / Double(update.totalBytes) : 0
+                self.coreDownloadState.progress = 0.35 + min(1, fraction) * 0.35
+                self.coreDownloadState.detail = "Installing Otzaria search data…"
+            }
+        }
+
+        try await ZayitSearchArtifactService.shared.install(
+            databaseURL: databaseURL,
+            lexicalDatabaseURL: lexicalURL
+        ) { [weak self] state in
+            Task { @MainActor in
+                guard let self, self.managedDownloadGeneration == generation else { return }
+                switch state {
+                case .downloading(let completed, let total), .installing(let completed, let total):
+                    let fraction = total > 0 ? Double(completed) / Double(total) : 0
+                    self.coreDownloadState.progress = 0.70 + min(1, fraction) * 0.30
+                default: break
+                }
+                self.coreDownloadState.detail = "Installing Zayit search data…"
+            }
+        }
+        coreDownloadState.progress = 1
     }
 
     private func finishSetup() {

@@ -82,12 +82,13 @@ impl ZayitSearchEngine {
         for (score, addr) in top.into_iter().skip(request.offset) {
             let doc = searcher.doc::<tantivy::schema::TantivyDocument>(addr)?;
             let book_id = i64v(&doc, fields.book_id);
+            let stable_book_key = textv(&doc, fields.stable_book_key);
             let line_id = i64v(&doc, fields.line_id);
             let line_index = i64v(&doc, fields.line_index) as i32;
             let title = textv(&doc, fields.book_title);
             let is_base = i64v(&doc, fields.is_base_book) == 1;
             let order = i64v(&doc, fields.order_index);
-            let raw = load_line_text(&conn, line_id).unwrap_or_default();
+            let (raw, reference) = load_line(&conn, line_id).unwrap_or_default();
             let snippet = build_snippet(&raw, &highlight_terms, &highlight_terms, 220);
             let factor = if is_base {
                 1.0 + ((120 - order).max(0) as f32 / 60.0)
@@ -96,10 +97,13 @@ impl ZayitSearchEngine {
             };
             hits.push(LineHit {
                 book_id,
+                stable_book_key,
                 book_title: title,
                 line_id,
                 line_index,
+                reference,
                 snippet_html: snippet,
+                matched_terms: highlight_terms.clone(),
                 score: score * factor,
                 is_base_book: is_base,
             });
@@ -326,6 +330,7 @@ pub fn validate_paths(paths: &DataPaths) -> Result<ValidationReport> {
 struct Fields {
     kind: Field,
     book_id: Field,
+    stable_book_key: Field,
     category_id: Field,
     ancestor_category_ids: Field,
     book_title: Field,
@@ -341,6 +346,7 @@ impl Fields {
         Ok(Self {
             kind: s.get_field("type")?,
             book_id: s.get_field("book_id")?,
+            stable_book_key: s.get_field("stable_book_key")?,
             category_id: s.get_field("category_id")?,
             ancestor_category_ids: s.get_field("ancestor_category_ids")?,
             book_title: s.get_field("book_title")?,
@@ -362,14 +368,21 @@ fn textv(d: &tantivy::schema::TantivyDocument, f: Field) -> String {
         .unwrap_or_default()
         .into()
 }
-fn load_line_text(c: &Connection, id: i64) -> Result<String> {
+fn load_line(c: &Connection, id: i64) -> Result<(String, String)> {
+    if let Ok(value) = c.query_row(
+        "SELECT content, COALESCE(heRef, '') FROM line WHERE id=?1",
+        [id],
+        |row| Ok((row.get(0)?, row.get(1)?)),
+    ) {
+        return Ok(value);
+    }
     for sql in [
         "SELECT content FROM line WHERE id=?1",
         "SELECT content FROM lines WHERE id=?1",
         "SELECT text FROM line WHERE id=?1",
     ] {
         if let Ok(v) = c.query_row(sql, [id], |r| r.get(0)) {
-            return Ok(v);
+            return Ok((v, String::new()));
         }
     }
     anyhow::bail!("line text not found")

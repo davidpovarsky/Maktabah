@@ -21,6 +21,7 @@ actor OtzariaSearchArtifactService {
         let storage = try OtzariaSearchArtifactStorage()
         try storage.prepare()
         let workspace = storage.workspaceURL(artifactIdentity: artifact.manifest.artifactIdentity)
+        await downloader.prepareStreamingWorkspace(manifest: artifact.manifest, workspaceURL: workspace)
         let downloaded = await downloader.existingBytes(
             manifest: artifact.manifest,
             workspaceURL: workspace
@@ -53,21 +54,30 @@ actor OtzariaSearchArtifactService {
         let artifact = availability.artifact
         let storage = try OtzariaSearchArtifactStorage()
         let workspace = storage.workspaceURL(artifactIdentity: artifact.manifest.artifactIdentity)
+        let partDownloader = downloader
         progress(.init(stage: .downloading, completedBytes: availability.downloadedBytes,
                        totalBytes: artifact.manifest.lexicalArtifact.packagedBytes))
-        let parts = try await downloader.downloadAndVerify(
+        let count = try await installer.installStreaming(
             artifact: artifact,
-            workspaceURL: workspace
-        ) { completed, total in
-            progress(.init(stage: .downloading, completedBytes: completed, totalBytes: total))
-        }
-        progress(.init(stage: .verifying, completedBytes: artifact.manifest.lexicalArtifact.packagedBytes,
-                       totalBytes: artifact.manifest.lexicalArtifact.packagedBytes))
-        let count = try installer.install(
-            artifact: artifact,
-            downloadedParts: parts,
             databasePath: databasePath,
-            storage: storage
+            storage: storage,
+            downloadPart: { part in
+                let base = artifact.manifest.lexicalArtifact.parts
+                    .prefix { $0.assetName != part.assetName }
+                    .reduce(Int64(0)) { $0 + $1.packagedBytes }
+                let url = try await partDownloader.downloadAndVerifyPart(
+                    artifact: artifact,
+                    part: part,
+                    workspaceURL: workspace
+                ) { received in
+                    progress(.init(
+                        stage: .downloading,
+                        completedBytes: base + received,
+                        totalBytes: artifact.manifest.lexicalArtifact.packagedBytes
+                    ))
+                }
+                return url
+            }
         ) { completed, total in
             progress(.init(stage: .extracting, completedBytes: completed, totalBytes: total))
         }

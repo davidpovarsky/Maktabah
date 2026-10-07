@@ -99,10 +99,10 @@ jobs:
         with:
           path: Vendor/OtzariaSearchEngine/ios_bridge/target
           key: ${{ runner.os }}-${{ runner.arch }}-otzaria-bridge-v2-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**') }}
-      - name: Verify pin, resources and upstream drift
+      - name: Verify selected pin and resources
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --latest --check --skip-validation
+        run: python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --check --skip-validation
       - name: Verify bridge formatting
         run: cargo fmt --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml -- --check
       - name: Verify C, Swift and Rust API parity

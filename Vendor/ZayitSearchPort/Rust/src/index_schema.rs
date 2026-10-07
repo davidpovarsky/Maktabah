@@ -4,6 +4,7 @@ pub const FIELD_TYPE: &str = "type";
 pub const TYPE_LINE: &str = "line";
 pub const TYPE_BOOK_TITLE: &str = "book_title";
 pub const FIELD_BOOK_ID: &str = "book_id";
+pub const FIELD_STABLE_BOOK_KEY: &str = "stable_book_key";
 pub const FIELD_CATEGORY_ID: &str = "category_id";
 pub const FIELD_ANCESTOR_CATEGORY_IDS: &str = "ancestor_category_ids";
 pub const FIELD_BOOK_TITLE: &str = "book_title";
@@ -19,6 +20,7 @@ pub fn expected_schema() -> Schema {
     let mut b = Schema::builder();
     b.add_text_field(FIELD_TYPE, STRING);
     b.add_i64_field(FIELD_BOOK_ID, INDEXED | STORED | FAST);
+    b.add_text_field(FIELD_STABLE_BOOK_KEY, STRING | STORED);
     b.add_i64_field(FIELD_CATEGORY_ID, INDEXED | STORED | FAST);
     b.add_i64_field(FIELD_ANCESTOR_CATEGORY_IDS, INDEXED | FAST);
     b.add_text_field(FIELD_BOOK_TITLE, STORED);

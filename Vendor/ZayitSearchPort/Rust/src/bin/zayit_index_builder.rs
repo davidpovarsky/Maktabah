@@ -5,6 +5,7 @@ use maktabah_zayit_search::{
 use regex::Regex;
 use rusqlite::{Connection, OpenFlags};
 use serde::Serialize;
+use sha2::{Digest, Sha256};
 use std::{
     collections::HashMap,
     env, fs, io,
@@ -32,9 +33,12 @@ const WINDOWS_WRITE_RETRY_DELAY: Duration = Duration::from_millis(100);
 #[derive(Debug, Serialize)]
 struct IndexMetadata {
     format: &'static str,
+    manifest_schema_version: u32,
     schema_version: u32,
     created_unix_seconds: u64,
-    source_db_path: String,
+    database_release_tag: String,
+    database_compressed_asset_sha256: String,
+    database_sha256: String,
     source_db_size: u64,
     source_db_modified_unix_seconds: u64,
     books_indexed: u64,
@@ -44,6 +48,12 @@ struct IndexMetadata {
     chunks_created: u64,
     title_documents: u64,
     builder_version: &'static str,
+    builder_commit: String,
+    zayit_upstream_commit: String,
+    tantivy_version: &'static str,
+    stable_book_identity: &'static str,
+    stable_book_identity_fallback: &'static str,
+    index_bytes: u64,
 }
 
 #[derive(Debug)]
@@ -53,6 +63,7 @@ struct BookRow {
     title: String,
     order_index: i64,
     is_base_book: bool,
+    stable_book_key: String,
 }
 
 #[derive(Clone, Debug)]
@@ -174,6 +185,7 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
 
     let f_type = schema.get_field(FIELD_TYPE)?;
     let f_book_id = schema.get_field(FIELD_BOOK_ID)?;
+    let f_stable_book_key = schema.get_field(FIELD_STABLE_BOOK_KEY)?;
     let f_category_id = schema.get_field(FIELD_CATEGORY_ID)?;
     let f_ancestor_ids = schema.get_field(FIELD_ANCESTOR_CATEGORY_IDS)?;
     let f_book_title = schema.get_field(FIELD_BOOK_TITLE)?;
@@ -214,6 +226,7 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
                 .add_document(doc!(
                     f_type => TYPE_BOOK_TITLE,
                     f_book_id => book.id,
+                    f_stable_book_key => book.stable_book_key.clone(),
                     f_category_id => book.category_id,
                     f_book_title => book.title.clone(),
                     f_title => normalize_hebrew(&term),
@@ -279,6 +292,7 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
                 let mut document = doc!(
                     f_type => TYPE_LINE,
                     f_book_id => book.id,
+                    f_stable_book_key => book.stable_book_key.clone(),
                     f_category_id => book.category_id,
                     f_book_title => book.title.clone(),
                     f_line_id => line_id,
@@ -332,20 +346,22 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
     writer.wait_merging_threads()?;
 
     let source_meta = fs::metadata(db_path)?;
-    let modified = source_meta
-        .modified()
-        .unwrap_or(SystemTime::UNIX_EPOCH)
-        .duration_since(UNIX_EPOCH)
-        .unwrap_or_default()
-        .as_secs();
-    let created = SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs();
+    let created = env::var("ZAYIT_GENERATED_UNIX_SECONDS")
+        .ok()
+        .and_then(|value| value.parse().ok())
+        .unwrap_or(SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs());
+    let database_sha256 = sha256_file(db_path)?;
+    let index_bytes = directory_bytes(output_dir)?;
     let metadata = IndexMetadata {
         format: "maktabah-zayit-search-tantivy",
-        schema_version: 1,
+        manifest_schema_version: 1,
+        schema_version: 2,
         created_unix_seconds: created,
-        source_db_path: db_path.display().to_string(),
+        database_release_tag: env_value("ZAYIT_DATABASE_RELEASE_TAG"),
+        database_compressed_asset_sha256: env_value("ZAYIT_DATABASE_ASSET_SHA256"),
+        database_sha256,
         source_db_size: source_meta.len(),
-        source_db_modified_unix_seconds: modified,
+        source_db_modified_unix_seconds: 0,
         books_indexed: books.len() as u64,
         lines_indexed,
         index_documents,
@@ -353,6 +369,12 @@ fn build_index(db_path: &Path, output_dir: &Path) -> Result<()> {
         chunks_created,
         title_documents,
         builder_version: env!("CARGO_PKG_VERSION"),
+        builder_commit: env_value("ZAYIT_BUILDER_COMMIT"),
+        zayit_upstream_commit: env_value("ZAYIT_UPSTREAM_COMMIT"),
+        tantivy_version: "0.22",
+        stable_book_identity: "book.filePath",
+        stable_book_identity_fallback: "book:<numeric-id> (only when filePath is absent/empty)",
+        index_bytes,
     };
     fs::write(
         output_dir.join("zayit-index-metadata.json"),
@@ -410,9 +432,18 @@ fn category_ancestors(category_id: i64, parents: &HashMap<i64, Option<i64>>) -> 
 }
 
 fn load_books(conn: &Connection) -> Result<Vec<BookRow>> {
-    let mut stmt = conn.prepare(
-        "SELECT id, categoryId, title, COALESCE(orderIndex,999), COALESCE(isBaseBook,0) FROM book ORDER BY COALESCE(orderIndex,999), id"
-    )?;
+    let has_file_path = table_columns(conn, "book")?
+        .iter()
+        .any(|column| column == "filePath");
+    let stable_expression = if has_file_path {
+        "COALESCE(NULLIF(TRIM(filePath), ''), 'book:' || id)"
+    } else {
+        "'book:' || id"
+    };
+    let sql = format!(
+        "SELECT id, categoryId, title, COALESCE(orderIndex,999), COALESCE(isBaseBook,0), {stable_expression} FROM book ORDER BY COALESCE(orderIndex,999), id"
+    );
+    let mut stmt = conn.prepare(&sql)?;
     let rows = stmt.query_map([], |r| {
         Ok(BookRow {
             id: r.get(0)?,
@@ -420,10 +451,43 @@ fn load_books(conn: &Connection) -> Result<Vec<BookRow>> {
             title: r.get(2)?,
             order_index: r.get(3)?,
             is_base_book: r.get::<_, i64>(4)? == 1,
+            stable_book_key: r.get(5)?,
         })
     })?;
     rows.collect::<rusqlite::Result<Vec<_>>>()
         .map_err(Into::into)
+}
+
+fn table_columns(conn: &Connection, table: &str) -> Result<Vec<String>> {
+    let mut statement = conn.prepare(&format!("PRAGMA table_info({table})"))?;
+    let rows = statement.query_map([], |row| row.get::<_, String>(1))?;
+    rows.collect::<rusqlite::Result<Vec<_>>>()
+        .map_err(Into::into)
+}
+
+fn env_value(name: &str) -> String {
+    env::var(name).unwrap_or_else(|_| "unknown".to_owned())
+}
+
+fn sha256_file(path: &Path) -> Result<String> {
+    let mut file = fs::File::open(path)?;
+    let mut digest = Sha256::new();
+    io::copy(&mut file, &mut digest)?;
+    Ok(format!("{:x}", digest.finalize()))
+}
+
+fn directory_bytes(path: &Path) -> Result<u64> {
+    let mut total = 0u64;
+    for entry in fs::read_dir(path)? {
+        let entry = entry?;
+        let metadata = entry.metadata()?;
+        total += if metadata.is_dir() {
+            directory_bytes(&entry.path())?
+        } else {
+            metadata.len()
+        };
+    }
+    Ok(total)
 }
 
 fn table_exists(conn: &Connection, name: &str) -> bool {
