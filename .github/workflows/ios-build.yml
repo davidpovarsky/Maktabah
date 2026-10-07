@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
 
 env:
@@ -19,9 +20,25 @@ jobs:
     timeout-minutes: 90
 
     steps:
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Select Xcode 26
         run: |
           set -euo pipefail
@@ -39,6 +56,15 @@ jobs:
           xcodebuild -version
           xcodebuild -showsdks
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Cache Otzaria search engine
         id: cache-otzaria-search-engine
         if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
@@ -52,10 +78,28 @@ jobs:
             ~/.cargo/git
           key: ${{ runner.os }}-otzaria-search-${{ hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs', 'Vendor/OtzariaSearchEngine/include/otzaria_search_engine.h', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != '' && steps.cache-otzaria-search-engine.outputs.cache-hit != 'true'
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Install Rust toolchain
         if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != '' && steps.cache-otzaria-search-engine.outputs.cache-hit != 'true'
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != '' && steps.cache-otzaria-search-engine.outputs.cache-hit != 'true'
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build Otzaria Tantivy search engine
         if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != '' && steps.cache-otzaria-search-engine.outputs.cache-hit != 'true'
         run: |
@@ -64,16 +108,43 @@ jobs:
           chmod +x Vendor/OtzariaSearchEngine/build_xcframework.sh
           Vendor/OtzariaSearchEngine/build_xcframework.sh 2>&1 | tee build/logs/build-otzaria-search-engine.log
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Verify Otzaria search engine framework
         if: hashFiles('Vendor/OtzariaSearchEngine/build_xcframework.sh') != ''
         run: |
           set -euo pipefail
           test -d Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Install Rust toolchain for Zayit Search
         if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Cache Zayit Search engine
         id: cache-zayit-search-engine
         if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
@@ -86,6 +157,15 @@ jobs:
             ~/.cargo/git
           key: ${{ runner.os }}-zayit-search-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != '' && steps.cache-zayit-search-engine.outputs.cache-hit != 'true'
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build Zayit Search XCFramework
         if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != '' && steps.cache-zayit-search-engine.outputs.cache-hit != 'true'
         run: |
@@ -93,12 +173,29 @@ jobs:
           mkdir -p build/logs
           bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh 2>&1 | tee build/logs/build-zayit-search-engine.log
 
+      - name: Live Activity · refresh
+        if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Verify Zayit Search XCFramework
         if: hashFiles('Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') != ''
         run: |
           set -euo pipefail
           test -d Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Cache Swift package dependencies
         uses: actions/cache@v4
         with:
@@ -109,12 +206,28 @@ jobs:
             build/DerivedData-iphoneos/SourcePackages
           key: ${{ runner.os }}-swiftpm-${{ hashFiles('Maktabah.xcodeproj/project.pbxproj') }}
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Cache Ruby gems
         uses: actions/cache@v4
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-ruby-gems-xcodeproj-v1
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Add isolated search sources to iOS target
         run: |
           set -euo pipefail
@@ -168,10 +281,26 @@ jobs:
 
           ruby Vendor/ZayitSearchPort/Scripts/configure-xcode.rb
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: List schemes
         run: |
           xcodebuild -list -project "$PROJECT_PATH"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Resolve packages
         run: |
           set -o pipefail
@@ -179,6 +308,14 @@ jobs:
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" 2>&1 | tee build/logs/resolve-packages.log
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build simulator app without signing
         run: |
           set -o pipefail
@@ -199,6 +336,14 @@ jobs:
             | tee build/logs/verify-simulator-frameworks.log
           ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "${PRODUCT_NAME}-simulator-app.zip"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Launch simulator app and verify it stays alive
         run: |
           set -euo pipefail
@@ -248,6 +393,14 @@ jobs:
           xcrun simctl terminate "$SIMULATOR_UDID" "$BUNDLE_ID"
           xcrun simctl shutdown "$SIMULATOR_UDID"
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Upload simulator app artifact
         uses: actions/upload-artifact@v4
         with:
@@ -255,6 +408,14 @@ jobs:
           path: Maktabah-simulator-app.zip
           if-no-files-found: error
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Build unsigned device IPA for inspection
         run: |
           set -o pipefail
@@ -286,6 +447,14 @@ jobs:
             exit 1
           fi
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Upload generated Xcode project for verification
         uses: actions/upload-artifact@v4
         with:
@@ -293,6 +462,14 @@ jobs:
           path: Maktabah.xcodeproj/project.pbxproj
           if-no-files-found: error
 
+      - name: Live Activity · refresh
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Upload unsigned IPA artifact
         uses: actions/upload-artifact@v4
         with:
@@ -300,6 +477,15 @@ jobs:
           path: Maktabah-unsigned.ipa
           if-no-files-found: error
 
+      - name: Live Activity · refresh
+        if: always()
+        uses: davidpovarsky/github-automation/live-refresh@main
+        continue-on-error: true
+        with:
+          event: refresh
+          device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
+          token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
+          github_token: ${{ github.token }}
       - name: Upload build logs
         if: always()
         uses: actions/upload-artifact@v4
