@@ -86,6 +86,7 @@ struct iOSReaderWorkspaceView: View {
 
     @State private var contentsColumnVisibility: NavigationSplitViewVisibility = .detailOnly
     @State private var preferredCompactColumn: NavigationSplitViewColumn = .detail
+    @State private var compactReaderIsPresented = true
     @State private var panelWidth = Self.defaultPanelWidth
     @State private var dragStartWidth: CGFloat?
     @State private var showPanelSheet = false
@@ -121,6 +122,7 @@ struct iOSReaderWorkspaceView: View {
         self._preferredCompactColumn = State(
             initialValue: scenario == "readerTOC" ? .sidebar : .detail
         )
+        self._compactReaderIsPresented = State(initialValue: scenario != "readerTOC")
         self._floatingPanelState = State(
             initialValue: scenario == "studyFloatingFull" ? .full : .hidden
         )
@@ -173,22 +175,13 @@ struct iOSReaderWorkspaceView: View {
     }
 
     var body: some View {
-        NavigationSplitView(
-            columnVisibility: $contentsColumnVisibility,
-            preferredCompactColumn: $preferredCompactColumn
-        ) {
-            iOSTOCView(
-                tocViewModel: viewModel.tocViewModel,
-                selectedId: selectedTOCNode?.id,
-                bookTitle: book.book,
-                onClose: closeContents,
-                embedsNavigationStack: false,
-                onSelect: selectTOCNode
-            )
-        } detail: {
-            workspaceDetail
+        Group {
+            if useWideLayout {
+                splitWorkspace
+            } else {
+                compactWorkspace
+            }
         }
-        .navigationSplitViewStyle(.balanced)
         .onAppear { updatePanelPresentation(animated: false) }
         .task {
             if runsCompactTOCTransitionSmoke {
@@ -227,6 +220,41 @@ struct iOSReaderWorkspaceView: View {
         }
         .sheet(isPresented: $showPanelSheet, onDismiss: compactPanelDidDismiss) {
             compactStudyPanel
+        }
+    }
+
+    private var splitWorkspace: some View {
+        NavigationSplitView(
+            columnVisibility: $contentsColumnVisibility,
+            preferredCompactColumn: $preferredCompactColumn
+        ) {
+            iOSTOCView(
+                tocViewModel: viewModel.tocViewModel,
+                selectedId: selectedTOCNode?.id,
+                bookTitle: book.book,
+                onClose: closeContents,
+                embedsNavigationStack: false,
+                onSelect: selectTOCNode
+            )
+        } detail: {
+            workspaceDetail
+        }
+        .navigationSplitViewStyle(.balanced)
+    }
+
+    private var compactWorkspace: some View {
+        NavigationStack {
+            iOSTOCView(
+                tocViewModel: viewModel.tocViewModel,
+                selectedId: selectedTOCNode?.id,
+                bookTitle: book.book,
+                onClose: closeContents,
+                embedsNavigationStack: false,
+                onSelect: selectTOCNode
+            )
+            .navigationDestination(isPresented: $compactReaderIsPresented) {
+                readerSurface
+            }
         }
     }
 
@@ -449,6 +477,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func presentContents() {
+        if !useWideLayout {
+            preferredCompactColumn = .sidebar
+            compactReaderIsPresented = false
+            return
+        }
         preferredCompactColumn = .sidebar
         DispatchQueue.main.async {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
@@ -458,6 +491,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func closeContents() {
+        if !useWideLayout {
+            preferredCompactColumn = .detail
+            compactReaderIsPresented = true
+            return
+        }
         withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
             preferredCompactColumn = .detail
             contentsColumnVisibility = .detailOnly
