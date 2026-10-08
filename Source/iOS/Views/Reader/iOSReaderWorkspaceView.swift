@@ -39,7 +39,7 @@ struct PanelToggleIcon: View {
     }
 }
 
-struct StudyContentFloatingPanelLayout: FloatingPanelLayout {
+final class StudyContentFloatingPanelLayout: FloatingPanelLayout {
     let position: FloatingPanelPosition = .bottom
     let initialState: FloatingPanelState = .hidden
     let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [

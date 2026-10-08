@@ -56,7 +56,7 @@ final class MaktabahTorahInspectorSession {
         },
         notesFetcher: { [weak self] selection in
             guard let self else { throw TorahError.missingProvider }
-            return self.notes(for: selection)
+            return await self.notes(for: selection)
         }
     )
 
