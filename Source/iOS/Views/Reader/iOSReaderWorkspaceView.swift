@@ -448,9 +448,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func presentContents() {
-        withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
-            preferredCompactColumn = .sidebar
-            contentsColumnVisibility = .all
+        preferredCompactColumn = .sidebar
+        DispatchQueue.main.async {
+            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
+                contentsColumnVisibility = .all
+            }
         }
     }
 
