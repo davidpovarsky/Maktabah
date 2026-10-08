@@ -93,8 +93,8 @@ struct iOSReaderWorkspaceView: View {
     @State private var floatingPanelState: FloatingPanelState? = .hidden
     @State private var selectedTool: TorahStudyTool = .commentaries
     @State private var inspectorSession: MaktabahTorahInspectorSession
+    @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
-    @State private var notesDidChange: TorahInspectorHostActions.NotesDidChange?
 
     init(
         book: BooksData,
@@ -346,16 +346,17 @@ struct iOSReaderWorkspaceView: View {
             inspectorSession: $inspectorSession,
             selectedTool: $selectedTool,
             showsCloseButton: showsCloseButton,
-            onAddNote: { selection, completion in
-                addNote(for: selection, completion: completion)
+            onAddNote: { selection, _ in
+                addNote(for: selection)
             },
-            onOpenNote: { note, _, completion in
-                openNote(note, completion: completion)
+            onOpenNote: { note, _, _ in
+                openNote(note)
             },
             onDeleteNote: { note, _, completion in
                 deleteNote(note, completion: completion)
             }
         )
+        .id("\(BackendCoordinator.shared.generation):\(viewModel.currentReaderTextMode.rawValue):\(inspectorContentID)")
         .sheet(isPresented: annotationEditorBinding) {
             annotationEditor
         }
@@ -402,7 +403,6 @@ struct iOSReaderWorkspaceView: View {
             set: { isPresented in
                 if !isPresented {
                     editingAnnotation = nil
-                    notesDidChange = nil
                 }
             }
         )
@@ -481,8 +481,7 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func addNote(
-        for selection: TorahInspectorSelection,
-        completion: @escaping TorahInspectorHostActions.NotesDidChange
+        for selection: TorahInspectorSelection
     ) {
         guard let selectedRange = viewModel.selectedSegmentRange,
               selectedRange.location != NSNotFound,
@@ -496,7 +495,6 @@ struct iOSReaderWorkspaceView: View {
                 color: UIColor(named: "HighlightText") ?? .systemYellow
             )
             guard let annotation = viewModel.findBestAnnotation(for: selectedRange) else { return }
-            notesDidChange = completion
             editingAnnotation = annotation
         } catch {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
@@ -505,18 +503,16 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func openNote(
-        _ note: TorahInspectorNote,
-        completion: @escaping TorahInspectorHostActions.NotesDidChange
+        _ note: TorahInspectorNote
     ) {
         guard let id = Int64(note.id),
               let annotation = viewModel.currentAnnotations.first(where: { $0.id == id }) else { return }
-        notesDidChange = completion
         editingAnnotation = annotation
     }
 
     private func deleteNote(
         _ note: TorahInspectorNote,
-        completion: @escaping TorahInspectorHostActions.NotesDidChange
+        completion: TorahInspectorHostActions.NotesDidChange
     ) {
         guard let id = Int64(note.id) else { return }
         do {
@@ -528,9 +524,10 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func finishEditingAnnotation() {
-        let completion = notesDidChange
         editingAnnotation = nil
-        notesDidChange = nil
-        completion?()
+        if let selection = inspectorSession.selection(for: viewModel) {
+            inspectorSession.repository.invalidateNotes(for: selection)
+        }
+        inspectorContentID = UUID()
     }
 }

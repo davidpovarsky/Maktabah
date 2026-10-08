@@ -354,7 +354,6 @@ private extension iOSMainView {
         let text = activeTab.viewModel.contentText as NSString
         guard text.length > 0 else { return }
         let range = NSRange(location: 0, length: min(24, text.length))
-        activeTab.viewModel.selectedSegmentRange = range
         do {
             try activeTab.viewModel.addAnnotation(
                 in: range,
