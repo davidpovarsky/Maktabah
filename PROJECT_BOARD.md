@@ -36,6 +36,10 @@ Use Markdown checkboxes where useful:
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
+- [x] Preserve the intended Reader/TOC column and sequence Study-to-TOC transitions in compact layouts
+  - Implemented: 2026-10-08
+  - Notes: A collapsed `NavigationSplitView` must bind `preferredCompactColumn` in addition to `columnVisibility`. When TOC is requested from the Study sheet, defer the column transition until the sheet's dismissal callback (with a short fallback) so the two presentations never overlap.
+
 Example:
 
 - [x] Example improvement

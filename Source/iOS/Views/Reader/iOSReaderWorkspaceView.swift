@@ -85,11 +85,14 @@ struct iOSReaderWorkspaceView: View {
     @Environment(\.layoutDirection) private var layoutDirection
 
     @State private var contentsColumnVisibility: NavigationSplitViewVisibility = .detailOnly
+    @State private var preferredCompactColumn: NavigationSplitViewColumn = .detail
     @State private var panelWidth = Self.defaultPanelWidth
     @State private var dragStartWidth: CGFloat?
     @State private var showPanelSheet = false
     @State private var compactPanelDetent: PresentationDetent = .medium
     @State private var runsCompactTOCTransitionSmoke = false
+    @State private var runsFloatingFullSmoke = false
+    @State private var pendingCompactContentsOpen = false
     @State private var floatingPanelState: FloatingPanelState? = .hidden
     @State private var selectedTool: TorahStudyTool = .commentaries
     @State private var inspectorSession: MaktabahTorahInspectorSession
@@ -115,6 +118,9 @@ struct iOSReaderWorkspaceView: View {
                 ? .all
                 : .detailOnly
         )
+        self._preferredCompactColumn = State(
+            initialValue: scenario == "readerTOC" ? .sidebar : .detail
+        )
         self._floatingPanelState = State(
             initialValue: scenario == "studyFloatingFull" ? .full : .hidden
         )
@@ -123,6 +129,7 @@ struct iOSReaderWorkspaceView: View {
         )
         self._compactPanelDetent = State(initialValue: scenario == "studyCompactLarge" ? .large : .medium)
         self._runsCompactTOCTransitionSmoke = State(initialValue: scenario == "compactStudyToTOC")
+        self._runsFloatingFullSmoke = State(initialValue: scenario == "studyFloatingFull")
         self._inspectorSession = State(initialValue: MaktabahTorahInspectorSession(viewModel: viewModel))
     }
 
@@ -166,7 +173,10 @@ struct iOSReaderWorkspaceView: View {
     }
 
     var body: some View {
-        NavigationSplitView(columnVisibility: $contentsColumnVisibility) {
+        NavigationSplitView(
+            columnVisibility: $contentsColumnVisibility,
+            preferredCompactColumn: $preferredCompactColumn
+        ) {
             iOSTOCView(
                 tocViewModel: viewModel.tocViewModel,
                 selectedId: selectedTOCNode?.id,
@@ -180,10 +190,18 @@ struct iOSReaderWorkspaceView: View {
         .navigationSplitViewStyle(.balanced)
         .onAppear { updatePanelPresentation(animated: false) }
         .task {
-            guard runsCompactTOCTransitionSmoke else { return }
-            runsCompactTOCTransitionSmoke = false
-            try? await Task.sleep(for: .seconds(1))
-            openContents()
+            if runsCompactTOCTransitionSmoke {
+                runsCompactTOCTransitionSmoke = false
+                try? await Task.sleep(for: .seconds(1))
+                openContents()
+            }
+            if runsFloatingFullSmoke {
+                runsFloatingFullSmoke = false
+                try? await Task.sleep(for: .seconds(1))
+                withAnimation(.spring(response: 0.42, dampingFraction: 0.90, blendDuration: 0.08)) {
+                    floatingPanelState = .full
+                }
+            }
         }
         .onChange(of: viewModel.readerInspectorVisible) { _, _ in
             updatePanelPresentation()
@@ -409,23 +427,31 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func openContents() {
-        if !useWideLayout, showPanel {
-            showPanelSheet = false
+        if !useWideLayout, showPanelSheet || showPanel {
+            pendingCompactContentsOpen = true
             viewModel.closeReaderInspector()
-            DispatchQueue.main.async {
-                withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
-                    contentsColumnVisibility = .all
+            showPanelSheet = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if pendingCompactContentsOpen {
+                    pendingCompactContentsOpen = false
+                    presentContents()
                 }
             }
             return
         }
+        presentContents()
+    }
+
+    private func presentContents() {
         withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
+            preferredCompactColumn = .sidebar
             contentsColumnVisibility = .all
         }
     }
 
     private func closeContents() {
         withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
+            preferredCompactColumn = .detail
             contentsColumnVisibility = .detailOnly
         }
     }
@@ -475,6 +501,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func compactPanelDidDismiss() {
+        if pendingCompactContentsOpen {
+            pendingCompactContentsOpen = false
+            presentContents()
+            return
+        }
         if !useWideLayout, showPanel {
             viewModel.closeReaderInspector()
         }
