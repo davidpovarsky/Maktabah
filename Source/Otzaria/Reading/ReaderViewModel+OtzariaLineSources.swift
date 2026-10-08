@@ -37,6 +37,11 @@ extension ReaderViewModel {
     func didTapReaderText(at characterIndex: Int) {
         if let mapping = backendRenderModel?.renderedSegment(at: characterIndex) {
             guard mapping.locator.backend == BackendCoordinator.shared.activeBackendID else { return }
+            if readerInspectorVisible,
+               selectedSegmentLocator?.persistenceKey == mapping.locator.persistenceKey {
+                closeReaderInspector()
+                return
+            }
             selectedSegmentLocator = mapping.locator
             otzariaSelectedLineAnchor = nil
             readerInspectorVisible = true
@@ -61,12 +66,20 @@ extension ReaderViewModel {
             return
         }
 
-        otzariaSelectedLineAnchor = anchor
-        selectedSegmentLocator = TextLocator(
+
+        let locator = TextLocator(
             backend: .otzaria,
             workKey: "book:\(anchor.bookId)",
             position: .legacyLine(anchor.lineIndex)
         )
+        if readerInspectorVisible,
+           selectedSegmentLocator?.persistenceKey == locator.persistenceKey {
+            closeReaderInspector()
+            return
+        }
+
+        otzariaSelectedLineAnchor = anchor
+        selectedSegmentLocator = locator
         readerInspectorVisible = true
         otzariaSourcesIsLoading = true
         otzariaSourcesError = nil

@@ -157,7 +157,11 @@ extension View {
         navigationDestination(item: item) { book in
             let tab = manager.openTabs.first(where: { $0.book.id == book.id && $0.id == manager.activeTabId })
                    ?? manager.openTabs.first(where: { $0.book.id == book.id })
-            iOSReaderView(book: book, viewModel: tab?.viewModel, initialContentId: manager.selectedContentId)
+            iOSReaderWorkspaceView(
+                book: book,
+                viewModel: tab?.viewModel ?? ReaderViewModel(book: book),
+                initialContentId: manager.selectedContentId
+            )
         }
     }
 
@@ -244,15 +248,18 @@ private extension iOSMainView {
             navigationManager.switchToMode(.viewer)
             columnVisibility = .all
 
-        case "reader":
+        case "reader", "readerTOC":
             selectedTab = .viewer
             columnVisibility = .all
             await openSmokeBook(for: backend, inspectorMode: .none)
 
-        case "inspector":
+        case "inspector", "studyCommentaries", "studyFloating", "studyFloatingFull", "studyLinks", "studyNotes", "studyCompactLarge", "compactStudyToTOC":
             selectedTab = .viewer
-            columnVisibility = .all
+            columnVisibility = ["studyCommentaries", "studyLinks", "studyNotes"].contains(scenario) ? .detailOnly : .all
             await openSmokeBook(for: backend, inspectorMode: .inspector)
+            if scenario == "studyNotes" {
+                addSmokeStudyNote()
+            }
 
         case "commentator":
             selectedTab = .viewer
@@ -339,6 +346,28 @@ private extension iOSMainView {
 
         default:
             break
+        }
+    }
+
+    func addSmokeStudyNote() {
+        guard let activeTab = navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId }) else { return }
+        let text = activeTab.viewModel.contentText as NSString
+        guard text.length > 0 else { return }
+        let range = NSRange(location: 0, length: min(24, text.length))
+        activeTab.viewModel.selectedSegmentRange = range
+        do {
+            try activeTab.viewModel.addAnnotation(
+                in: range,
+                mode: .highlight,
+                sourceText: text.substring(with: range),
+                color: UIColor(named: "HighlightText") ?? .systemYellow
+            )
+            guard var annotation = activeTab.viewModel.findBestAnnotation(for: range) else { return }
+            annotation.note = "הערת לימוד לדוגמה"
+            annotation.tags = ["עיון"]
+            try activeTab.viewModel.updateAnnotation(annotation)
+        } catch {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
     }
 

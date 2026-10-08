@@ -7,24 +7,38 @@ final class MaktabahTorahInspectorSession {
     private let coordinator: BackendCoordinator
     private let otzaria: OtzariaMaktabahBridge
     private let preferredMode: LibraryReaderTextMode
+    private weak var readerViewModel: ReaderViewModel?
     private var locatorsByReference: [String: TextLocator] = [:]
 
     convenience init() {
-        self.init(preferredMode: UserDefaults.standard.libraryReaderTextMode)
+        self.init(
+            coordinator: .shared,
+            preferredMode: UserDefaults.standard.libraryReaderTextMode
+        )
     }
 
-    convenience init(preferredMode: LibraryReaderTextMode) {
-        self.init(coordinator: .shared, otzaria: .shared, preferredMode: preferredMode)
+    convenience init(
+        viewModel: ReaderViewModel,
+        preferredMode: LibraryReaderTextMode = UserDefaults.standard.libraryReaderTextMode
+    ) {
+        self.init(
+            coordinator: .shared,
+            otzaria: .shared,
+            preferredMode: preferredMode,
+            viewModel: viewModel
+        )
     }
 
     init(
         coordinator: BackendCoordinator,
         otzaria: OtzariaMaktabahBridge = .shared,
-        preferredMode: LibraryReaderTextMode = UserDefaults.standard.libraryReaderTextMode
+        preferredMode: LibraryReaderTextMode = UserDefaults.standard.libraryReaderTextMode,
+        viewModel: ReaderViewModel? = nil
     ) {
         self.coordinator = coordinator
         self.otzaria = otzaria
         self.preferredMode = preferredMode
+        self.readerViewModel = viewModel
     }
 
     lazy var repository = TorahInspectorRepository(
@@ -39,6 +53,10 @@ final class MaktabahTorahInspectorSession {
         topicsFetcher: { [weak self] reference, providerID in
             guard let self else { throw TorahError.missingProvider }
             return try await self.topics(for: reference, providerID: providerID)
+        },
+        notesFetcher: { [weak self] selection in
+            guard let self else { throw TorahError.missingProvider }
+            return self.notes(for: selection)
         }
     )
 
@@ -123,6 +141,28 @@ final class MaktabahTorahInspectorSession {
         let locator = try activeLocator(for: reference, providerID: providerID)
         return try await coordinator.topics(for: locator).map {
             TorahLinkedTopic(slug: $0.slug, titleHe: $0.titleHe, titleEn: $0.titleEn)
+        }
+    }
+
+    private func notes(for selection: TorahInspectorSelection) -> [TorahInspectorNote] {
+        guard let viewModel = readerViewModel,
+              let selectedLocator = locator(for: selection),
+              selectedLocator.backend == coordinator.activeBackendID else { return [] }
+        let selectedRange = viewModel.selectedSegmentRange
+        return viewModel.currentAnnotations.compactMap { annotation in
+            let hasMatchingLocator = annotation.backendLocator?.persistenceKey == selectedLocator.persistenceKey
+            let overlapsSelectedRange = selectedRange.map {
+                NSIntersectionRange(annotation.range, $0).length > 0
+            } ?? false
+            guard hasMatchingLocator || overlapsSelectedRange,
+                  let noteBody = annotation.note?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !noteBody.isEmpty else { return nil }
+            return TorahInspectorNote(
+                id: annotation.id.map(String.init) ?? "\(annotation.createdAt)",
+                selectedText: annotation.context,
+                note: noteBody,
+                tag: annotation.tags.first
+            )
         }
     }
 

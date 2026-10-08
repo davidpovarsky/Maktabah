@@ -29,12 +29,17 @@ RUNTIME="$(xcrun simctl list runtimes -j | python3 -c 'import json,sys; values=[
 
 echo "Creating iPad Pro 13-inch simulator (Device: $DEVICE_TYPE, Runtime: $RUNTIME)..."
 UDID="$(xcrun simctl create 'Maktabah Acceptance iPad' "$DEVICE_TYPE" "$RUNTIME")"
+IPAD_UDID="$UDID"
+IPHONE_UDID=""
 
 cleanup() {
-  echo "Terminating and cleaning up simulator $UDID..."
-  xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
-  xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
-  xcrun simctl delete "$UDID" >/dev/null 2>&1 || true
+  for device in "$IPAD_UDID" "$IPHONE_UDID"; do
+    [ -n "$device" ] || continue
+    echo "Terminating and cleaning up simulator $device..."
+    xcrun simctl terminate "$device" "$BUNDLE_ID" >/dev/null 2>&1 || true
+    xcrun simctl shutdown "$device" >/dev/null 2>&1 || true
+    xcrun simctl delete "$device" >/dev/null 2>&1 || true
+  done
 }
 trap cleanup EXIT
 
@@ -318,6 +323,12 @@ capture_screen "sefaria-en-catalog.png" en en_US -smokeScenario catalog -smokeBa
 capture_screen "sefaria-en-reader.png" en en_US -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-en-inspector.png" en en_US -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-search.png" he he_IL -smokeScenario search -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "workspace-reader-toc-portrait.png" he he_IL -smokeScenario readerTOC -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-commentaries-portrait.png" he he_IL -smokeScenario studyCommentaries -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-links-portrait.png" he he_IL -smokeScenario studyLinks -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-notes-portrait.png" he he_IL -smokeScenario studyNotes -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-half-portrait.png" he he_IL -smokeScenario studyFloating -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-full-portrait.png" he he_IL -smokeScenario studyFloatingFull -smokeBackend sefaria -smokeBypassBootstrap
 
 # Capture the same full-height tab shell in landscape, including Reader,
 # Inspector, and an open search surface. These are required acceptance assets.
@@ -326,7 +337,32 @@ capture_screen "sefaria-he-reader-landscape.png" he he_IL -smokeScenario reader 
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector-landscape.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=10 capture_screen "sefaria-he-search-open-landscape.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "otzaria-he-reader-landscape.png" he he_IL -smokeScenario reader -smokeBackend otzaria -smokeBypassBootstrap
+capture_screen "workspace-reader-toc-landscape.png" he he_IL -smokeScenario readerTOC -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-commentaries-landscape.png" he he_IL -smokeScenario studyCommentaries -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-links-landscape.png" he he_IL -smokeScenario studyLinks -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-notes-landscape.png" he he_IL -smokeScenario studyNotes -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-half-landscape.png" he he_IL -smokeScenario studyFloating -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-full-landscape.png" he he_IL -smokeScenario studyFloatingFull -smokeBackend sefaria -smokeBypassBootstrap
 set_orientation portrait
+
+# ==============================================================================
+# PHASE 6B: Compact iPhone Reader Workspace Screenshots
+# ==============================================================================
+echo ""
+echo "=== [PHASE 6B: Compact iPhone Reader Workspace Screenshots] ==="
+xcrun simctl terminate "$IPAD_UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
+PHONE_DEVICE_TYPE="$(xcrun simctl list devicetypes -j | python3 -c 'import json,sys; values=json.load(sys.stdin)["devicetypes"]; preferred=[item for item in values if item["name"] == "iPhone 17 Pro"]; candidates=preferred or [item for item in values if item["name"].startswith("iPhone") and "Pro" in item["name"]]; print(candidates[0]["identifier"])')"
+IPHONE_UDID="$(xcrun simctl create 'Maktabah Acceptance iPhone' "$PHONE_DEVICE_TYPE" "$RUNTIME")"
+UDID="$IPHONE_UDID"
+xcrun simctl boot "$UDID"
+xcrun simctl bootstatus "$UDID" -b
+xcrun simctl install "$UDID" "$APP"
+xcrun simctl spawn "$UDID" defaults write "$BUNDLE_ID" activeLibraryBackend.v1 sefaria
+capture_screen "compact-reader.png" he he_IL -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "compact-study-medium.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "compact-study-large.png" he he_IL -smokeScenario studyCompactLarge -smokeBackend sefaria -smokeBypassBootstrap
+capture_screen "compact-toc.png" he he_IL -smokeScenario readerTOC -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "compact-study-to-toc.png" he he_IL -smokeScenario compactStudyToTOC -smokeBackend sefaria -smokeBypassBootstrap
 
 # ==============================================================================
 # PHASE 7: Crash Log Collection & Diagnostic Matrix Output
@@ -380,13 +416,13 @@ echo "Total screenshots captured: $(find "$SCREENSHOT_DIR" -name '*.png' -size +
 
 echo ""
 echo "=== [IPAD LAYOUT ACCEPTANCE] ==="
-if grep -q 'TabView(selection: \$selectedTab)' "$ROOT/Source/iOS/Views/iPadLayout.swift"; then
-  echo "The iPad root still uses TabView as its layout container" >&2
-  exit 1
-fi
 acceptance_failed="$diagnostic_failed"
-if ! grep -q 'accessibilityIdentifier("MaktabahTopTabSelector")' "$ROOT/Source/iOS/Views/iPadLayout.swift"; then
-  echo "Missing the compact iPad top tab selector accessibility identifier" >&2
+if ! grep -q 'TabView(selection: \$selectedTab)' "$ROOT/Source/iOS/Views/iPadLayout.swift"; then
+  echo "The iPad root must use the native TabView layout container" >&2
+  acceptance_failed=1
+fi
+if grep -q 'MaktabahTopTabSelector\|Picker(.*segmented' "$ROOT/Source/iOS/Views/iPadLayout.swift"; then
+  echo "The obsolete segmented app-tab selector is still present" >&2
   acceptance_failed=1
 fi
 require_screenshot "sefaria-he-reader.png" portrait || acceptance_failed=1
@@ -396,6 +432,23 @@ require_screenshot "sefaria-he-reader-landscape.png" landscape || acceptance_fai
 require_screenshot "sefaria-he-inspector-landscape.png" landscape || acceptance_failed=1
 require_screenshot "sefaria-he-search-open-landscape.png" landscape || acceptance_failed=1
 require_screenshot "otzaria-he-reader-landscape.png" landscape || acceptance_failed=1
+require_screenshot "workspace-reader-toc-portrait.png" portrait || acceptance_failed=1
+require_screenshot "workspace-study-commentaries-portrait.png" portrait || acceptance_failed=1
+require_screenshot "workspace-study-links-portrait.png" portrait || acceptance_failed=1
+require_screenshot "workspace-study-notes-portrait.png" portrait || acceptance_failed=1
+require_screenshot "workspace-floating-half-portrait.png" portrait || acceptance_failed=1
+require_screenshot "workspace-floating-full-portrait.png" portrait || acceptance_failed=1
+require_screenshot "workspace-reader-toc-landscape.png" landscape || acceptance_failed=1
+require_screenshot "workspace-study-commentaries-landscape.png" landscape || acceptance_failed=1
+require_screenshot "workspace-study-links-landscape.png" landscape || acceptance_failed=1
+require_screenshot "workspace-study-notes-landscape.png" landscape || acceptance_failed=1
+require_screenshot "workspace-floating-half-landscape.png" landscape || acceptance_failed=1
+require_screenshot "workspace-floating-full-landscape.png" landscape || acceptance_failed=1
+require_screenshot "compact-reader.png" portrait || acceptance_failed=1
+require_screenshot "compact-study-medium.png" portrait || acceptance_failed=1
+require_screenshot "compact-study-large.png" portrait || acceptance_failed=1
+require_screenshot "compact-toc.png" portrait || acceptance_failed=1
+require_screenshot "compact-study-to-toc.png" portrait || acceptance_failed=1
 
 if [ "$acceptance_failed" -ne 0 ]; then
   echo "iPad Simulator acceptance failed." >&2

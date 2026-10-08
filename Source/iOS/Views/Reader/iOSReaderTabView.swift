@@ -1,41 +1,11 @@
 import SwiftUI
-import Combine
 
 struct iOSReaderTabView: View {
     @Environment(iOSNavigationManager.self) var bManager
     @Binding var columnVisibility: NavigationSplitViewVisibility
-    @State private var showingBookInfo = false
-    @State private var textViewState = TextViewState.shared
 
     init(columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all)) {
         self._columnVisibility = columnVisibility
-    }
-
-    var backgroundColor: Color {
-        let colors: [Color] = [
-            .white,
-            .bgSepia,
-            .bgSepiaDark,
-            .bgGray,
-            .black,
-        ]
-        let index = textViewState.backgroundColorIndex
-
-        if index >= 0, index < colors.count {
-            return colors[index]
-        }
-        return Color(UIColor.systemBackground)
-    }
-
-    var isDarkMode: Bool {
-        textViewState.isDarkMode
-    }
-
-    private func bookTitleFont(for book: BooksData) -> Font {
-        if book.backendLocator != nil {
-            return .headline
-        }
-        return book.book.containsArabicCharacters ? ReaderViewModel.kfgqpc : .headline
     }
 
     private var activeTab: iOSNavigationManager.ReaderTab? {
@@ -45,25 +15,17 @@ struct iOSReaderTabView: View {
     var body: some View {
         Group {
             if let activeTab {
-                iOSReaderView(
+                iOSReaderWorkspaceView(
                     book: activeTab.book,
                     viewModel: activeTab.viewModel,
                     initialContentId: activeTab.initialContentId,
-                    columnVisibility: $columnVisibility
+                    libraryColumnVisibility: $columnVisibility
                 )
                 .id(activeTab.id)
                 .toolbar {
                     if bManager.openTabs.count > 1 {
                         ToolbarItem(placement: .topBarTrailing) {
-                            ReaderTabsView(isDarkMode: isDarkMode)
-                        }
-                    }
-
-                    if bManager.openTabs.count == 1 {
-                        ToolbarItem(placement: .principal) {
-                            Text(activeTab.book.book)
-                                .font(bookTitleFont(for: activeTab.book))
-                                .foregroundStyle(isDarkMode ? .white : .black)
+                            ReaderTabsView(isDarkMode: TextViewState.shared.isDarkMode)
                         }
                     }
                 }

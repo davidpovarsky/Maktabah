@@ -10,15 +10,25 @@ import SwiftUI
 struct iOSTOCView: View {
     let tocViewModel: BookTOCViewModel
     let selectedId: Int?
+    let bookTitle: String?
+    let onClose: (() -> Void)?
     let onSelect: (Int) -> Void
 
     @State private var searchText = ""
     @State private var expandedPaths: Set<ObjectIdentifier> = []
     @Environment(\.dismiss) private var dismiss
 
-    init(tocViewModel: BookTOCViewModel, selectedId: Int?, onSelect: @escaping (Int) -> Void) {
+    init(
+        tocViewModel: BookTOCViewModel,
+        selectedId: Int?,
+        bookTitle: String? = nil,
+        onClose: (() -> Void)? = nil,
+        onSelect: @escaping (Int) -> Void
+    ) {
         self.tocViewModel = tocViewModel
         self.selectedId = selectedId
+        self.bookTitle = bookTitle
+        self.onClose = onClose
         self.onSelect = onSelect
     }
 
@@ -82,7 +92,7 @@ struct iOSTOCView: View {
                         )
                     } else {
                     ScrollViewReader { proxy in
-                        ThemeList(isGrouped: true) {
+                        ThemeList(isGrouped: false) {
                             ForEach(identifiableNodes) { item in
                                 TOCNodeRow(
                                     item: item,
@@ -92,12 +102,32 @@ struct iOSTOCView: View {
                                 )
                             }
                         }
-                        .searchable(text: $searchText, prompt: "Search Contents")
-                        .navigationTitle("Table of Contents")
+                        .searchable(text: $searchText, prompt: String(localized: "Search Contents"))
+                        .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
-                                Button("Close") {
-                                    dismiss()
+                                Button {
+                                    if let onClose {
+                                        onClose()
+                                    } else {
+                                        dismiss()
+                                    }
+                                } label: {
+                                    ContentsToggleIcon(isOpen: true)
+                                }
+                                .accessibilityLabel(String(localized: "Close Table of Contents"))
+                                .help(String(localized: "Close Table of Contents"))
+                            }
+                            ToolbarItem(placement: .principal) {
+                                VStack(spacing: 1) {
+                                    Text(String(localized: "Table of Contents"))
+                                        .font(.headline)
+                                    if let bookTitle, !bookTitle.isEmpty {
+                                        Text(bookTitle)
+                                            .font(.caption2)
+                                            .foregroundStyle(.secondary)
+                                            .lineLimit(1)
+                                    }
                                 }
                             }
                         }
@@ -121,6 +151,9 @@ struct iOSTOCView: View {
         }
         .presentationBackground(Color.appBackground)
         .themeTint()
+        .listStyle(.plain)
+        .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
+        .environment(\.layoutDirection, .rightToLeft)
     }
 }
 

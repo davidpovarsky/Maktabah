@@ -9735,6 +9735,42 @@
         }
       }
     },
+    "Close Study Tools": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Close Study Tools" } },
+        "he": { "stringUnit": { "state": "translated", "value": "סגירת כלי לימוד" } }
+      }
+    },
+    "Close Table of Contents": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Close Table of Contents" } },
+        "he": { "stringUnit": { "state": "translated", "value": "סגירת תוכן העניינים" } }
+      }
+    },
+    "Drag to resize. Double-tap to reset.": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Drag to resize. Double-tap to reset." } },
+        "he": { "stringUnit": { "state": "translated", "value": "יש לגרור לשינוי הגודל. הקשה כפולה מאפסת." } }
+      }
+    },
+    "Open Study Tools": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Open Study Tools" } },
+        "he": { "stringUnit": { "state": "translated", "value": "פתיחת כלי לימוד" } }
+      }
+    },
+    "Open Table of Contents": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Open Table of Contents" } },
+        "he": { "stringUnit": { "state": "translated", "value": "פתיחת תוכן העניינים" } }
+      }
+    },
+    "Resize Study Tools": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Resize Study Tools" } },
+        "he": { "stringUnit": { "state": "translated", "value": "שינוי גודל כלי הלימוד" } }
+      }
+    },
     "Table of Contents": {
       "localizations": {
         "ar": {

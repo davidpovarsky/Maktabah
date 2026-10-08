@@ -17,25 +17,33 @@ struct iPadLayout: View {
     @StateObject private var backendCoordinator = BackendCoordinator.shared
 
     var body: some View {
-        Group {
-            switch selectedTab.canonical {
-            case .viewer:
+        TabView(selection: $selectedTab) {
+            Tab(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon, value: .viewer) {
                 viewerTabContent
-            case .search, .textSearch, .zayitSearch:
-                searchTabContent
-            case .author:
-                authorTabContent
-            case .annotations:
+            }
+
+            if iOSTab.search.isAvailable(for: backendCoordinator.activeCapabilities) {
+                Tab(iOSTab.search.title, systemImage: iOSTab.search.icon, value: .search) {
+                    searchTabContent
+                }
+            }
+
+            if iOSTab.author.isAvailable(for: backendCoordinator.activeCapabilities) {
+                Tab(iOSTab.author.title, systemImage: iOSTab.author.icon, value: .author) {
+                    authorTabContent
+                }
+            }
+
+            Tab(iOSTab.annotations.title, systemImage: iOSTab.annotations.icon, value: .annotations) {
                 annotationsTabContent
-            case .history:
+            }
+
+            Tab(iOSTab.history.title, systemImage: iOSTab.history.icon, value: .history) {
                 historyTabContent
             }
         }
         .themeTint()
         .background(Color.appBackground.ignoresSafeArea())
-        .safeAreaInset(edge: .top, spacing: 0) {
-            topTabSelector
-        }
         .sheet(isPresented: $showingAddFavorites) {
             iOSAddFavoriteSheet(viewModel: historyViewModel)
         }
@@ -86,25 +94,6 @@ struct iPadLayout: View {
         }
     }
 
-    private var availableTabs: [iOSTab] {
-        iOSTab.allCases.filter { $0.isAvailable(for: backendCoordinator.activeCapabilities) }
-    }
-
-    private var topTabSelector: some View {
-        Picker(String(localized: "Navigation"), selection: $selectedTab) {
-            ForEach(availableTabs) { tab in
-                Label(tab.title, systemImage: tab.icon)
-                    .tag(tab)
-            }
-        }
-        .pickerStyle(.segmented)
-        .accessibilityIdentifier("MaktabahTopTabSelector")
-        .frame(maxWidth: 680)
-        .padding(.horizontal)
-        .padding(.vertical, 6)
-        .background(.bar)
-    }
-
     // MARK: - Tab Contents
 
     @ViewBuilder
@@ -128,24 +117,6 @@ struct iPadLayout: View {
                 .background(Color.appBackground)
         }
         .background(Color.appBackground.ignoresSafeArea())
-        .inspector(isPresented: Binding(
-            get: { bManager.activeReaderViewModel?.readerInspectorVisible ?? false },
-            set: { newValue in
-                if newValue {
-                    bManager.activeReaderViewModel?.readerInspectorVisible = true
-                } else {
-                    bManager.activeReaderViewModel?.closeReaderInspector()
-                }
-            }
-        )) {
-            if let activeReaderViewModel = bManager.activeReaderViewModel {
-                OtzariaReaderSourcesInspectorHost(
-                    viewModel: activeReaderViewModel,
-                    navigationManager: bManager
-                )
-                .inspectorColumnWidth(min: 320, ideal: 400, max: 500)
-            }
-        }
     }
 
     @ViewBuilder

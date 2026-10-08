@@ -9,6 +9,7 @@ import SwiftUI
 
 struct iOSReaderBottomToolbarView: View {
     @Bindable var viewModel: ReaderViewModel
+    var onShowTableOfContents: (() -> Void)? = nil
     @State private var textViewState = TextViewState.shared
     @State private var showingNavigation = false
     @State private var showingOptions = false
@@ -78,7 +79,11 @@ struct iOSReaderBottomToolbarView: View {
 
             Button(action: {
                 DispatchQueue.main.async {
-                    showingTOC = true
+                    if let onShowTableOfContents {
+                        onShowTableOfContents()
+                    } else {
+                        showingTOC = true
+                    }
                 }
             }) {
                 Label("Table of Contents", systemImage: "list.bullet")
@@ -135,7 +140,10 @@ struct iOSReaderBottomToolbarView: View {
                 )
             }
         }
-        .sheet(isPresented: $showingTOC) {
+        .sheet(isPresented: Binding(
+            get: { onShowTableOfContents == nil && showingTOC },
+            set: { showingTOC = $0 }
+        )) {
             iOSTOCView(
                 tocViewModel: viewModel.tocViewModel,
                 selectedId: viewModel.tocViewModel.findNodeById(

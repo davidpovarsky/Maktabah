@@ -3,6 +3,7 @@ import SwiftUI
 struct iOSReaderView: View {
     let book: BooksData
     let initialContentId: Int?
+    let onShowTableOfContents: (() -> Void)?
     private let columnVisibility: Binding<NavigationSplitViewVisibility>?
     var ipad: Bool {
         MaktabahApp.isIpad
@@ -12,7 +13,6 @@ struct iOSReaderView: View {
     @State private var textViewState = TextViewState.shared
     @Environment(iOSNavigationManager.self) var bManager
 
-    @State private var showingTOC = false
     @State private var showingOptions = false
     @State private var showingSearch = false
     @State private var showingAnnotationsList = false
@@ -28,11 +28,13 @@ struct iOSReaderView: View {
     init(book: BooksData,
          viewModel: ReaderViewModel? = nil,
          initialContentId: Int? = nil,
-         columnVisibility: Binding<NavigationSplitViewVisibility>? = nil)
+         columnVisibility: Binding<NavigationSplitViewVisibility>? = nil,
+         onShowTableOfContents: (() -> Void)? = nil)
     {
         self.book = book
         self.initialContentId = initialContentId
         self.columnVisibility = columnVisibility
+        self.onShowTableOfContents = onShowTableOfContents
         self.viewModel = viewModel ?? ReaderViewModel(book: book)
     }
 
@@ -171,7 +173,10 @@ struct iOSReaderView: View {
             }
 
             ToolbarItemGroup(placement: .bottomBar) {
-                iOSReaderBottomToolbarView(viewModel: viewModel)
+                iOSReaderBottomToolbarView(
+                    viewModel: viewModel,
+                    onShowTableOfContents: onShowTableOfContents
+                )
             }
         }
         .onChange(of: initialContentId) { _, newValue in
@@ -194,16 +199,6 @@ struct iOSReaderView: View {
         .sheet(isPresented: $showingTabsList) {
             iOSReaderTabsPopoverView(isPresented: $showingTabsList)
 
-        }
-        .sheet(isPresented: $showingTOC) {
-            iOSTOCView(
-                tocViewModel: viewModel.tocViewModel,
-                selectedId: viewModel.tocViewModel.findNode(forContentId: viewModel.currentContentId)?.id,
-                onSelect: { id in
-                    viewModel.didSelectTOCNode(id: id)
-                    showingTOC = false
-                }
-            )
         }
         .sheet(isPresented: $showingAnnotationsList) {
             iOSBookAnnotationsView(

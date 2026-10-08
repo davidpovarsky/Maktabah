@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
+		C30000000000000000000001 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = C20000000000000000000001 /* FloatingPanel */; };
+		C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40000000000000000000002 /* iOSReaderWorkspaceView.swift */; };
 		B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */; };
 		A30000000000000000000001 /* TorahInspectorCore in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000001 /* TorahInspectorCore */; };
 		A30000000000000000000002 /* TorahInspectorUI in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000002 /* TorahInspectorUI */; };
@@ -1253,6 +1255,7 @@
 		F38FF42F2FA82034003E7B71 /* iOSRowiSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiSidebarView.swift; sourceTree = "<group>"; };
 		F38FF4312FA82059003E7B71 /* iOSRowiHierarchicalCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRowiHierarchicalCollectionViewController.swift; sourceTree = "<group>"; };
 		F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderTabView.swift; sourceTree = "<group>"; };
+		C40000000000000000000002 /* iOSReaderWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderWorkspaceView.swift; sourceTree = "<group>"; };
 		F3902E8B2F9EE1CA004BA5D1 /* AnnotationTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTagVC.swift; sourceTree = "<group>"; };
 		F3902EAE2F9EE1CB004BA5D1 /* TagMergePopoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMergePopoverVC.swift; sourceTree = "<group>"; };
 		F3A20B132FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCoreUpdateProgressOverlayView.swift; sourceTree = "<group>"; };
@@ -1333,6 +1336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B30000000000000000000001 /* AnchoredPopup in Frameworks */,
+				C30000000000000000000001 /* FloatingPanel in Frameworks */,
 				A30000000000000000000001 /* TorahInspectorCore in Frameworks */,
 				A30000000000000000000002 /* TorahInspectorUI in Frameworks */,
 				CEF000000000000000000005 /* ZIPFoundation in Frameworks */,
@@ -2021,6 +2025,7 @@
 				F38FF42D2FA817D9003E7B71 /* iOSBookInfoView.swift */,
 				B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */,
 				F38FF4352FA89EEE003E7B71 /* iOSReaderTabView.swift */,
+				C40000000000000000000002 /* iOSReaderWorkspaceView.swift */,
 				F30577752FA463B1005732C6 /* iOSReaderView.swift */,
 			);
 			path = Reader;
@@ -2276,6 +2281,7 @@
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
 				B20000000000000000000001 /* AnchoredPopup */,
+				C20000000000000000000001 /* FloatingPanel */,
 				A20000000000000000000001 /* TorahInspectorCore */,
 				A20000000000000000000002 /* TorahInspectorUI */,
 				CEF000000000000000000002 /* ZIPFoundation */,
@@ -2325,6 +2331,7 @@
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			packageReferences = (
 				B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */,
+				C10000000000000000000001 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */,
 				CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				4B88322D2F7EB3A7004C6213 /* XCRemoteSwiftPackageReference "zstd" */,
@@ -2863,6 +2870,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */,
+				C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */,
 				A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */,
 				A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */,
 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
@@ -3871,12 +3879,20 @@
 				minimumVersion = 1.2.2;
 			};
 		};
+		C10000000000000000000001 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.3;
+			};
+		};
 		A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
 			requirement = {
 				kind = revision;
-				revision = b8f71e084bcaa1c60a8e3583034328830aa27fb5;
+				revision = c4626aa8c2d178fca65a4c8ea2a11846ac54ea58;
 			};
 		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
@@ -3926,6 +3942,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */;
 			productName = AnchoredPopup;
+		};
+		C20000000000000000000001 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C10000000000000000000001 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 		A20000000000000000000001 /* TorahInspectorCore */ = {
 			isa = XCSwiftPackageProductDependency;
