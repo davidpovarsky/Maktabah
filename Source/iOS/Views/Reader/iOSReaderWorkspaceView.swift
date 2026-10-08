@@ -243,18 +243,16 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var compactWorkspace: some View {
-        NavigationStack {
-            iOSTOCView(
-                tocViewModel: viewModel.tocViewModel,
-                selectedId: selectedTOCNode?.id,
-                bookTitle: book.book,
-                onClose: closeContents,
-                embedsNavigationStack: false,
-                onSelect: selectTOCNode
-            )
-            .navigationDestination(isPresented: $compactReaderIsPresented) {
-                readerSurface
-            }
+        iOSTOCView(
+            tocViewModel: viewModel.tocViewModel,
+            selectedId: selectedTOCNode?.id,
+            bookTitle: book.book,
+            onClose: closeContents,
+            embedsNavigationStack: false,
+            onSelect: selectTOCNode
+        )
+        .navigationDestination(isPresented: $compactReaderIsPresented) {
+            readerSurface
         }
     }
 
