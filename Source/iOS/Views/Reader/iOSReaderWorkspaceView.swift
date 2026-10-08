@@ -191,9 +191,13 @@ struct iOSReaderWorkspaceView: View {
         .onAppear { updatePanelPresentation(animated: false) }
         .task {
             if runsCompactTOCTransitionSmoke {
+                for _ in 0..<50 where !showPanelSheet {
+                    try? await Task.sleep(for: .milliseconds(200))
+                }
                 runsCompactTOCTransitionSmoke = false
-                try? await Task.sleep(for: .seconds(1))
-                openContents()
+                if showPanelSheet {
+                    openContents()
+                }
             }
             if runsFloatingFullSmoke {
                 runsFloatingFullSmoke = false
@@ -427,15 +431,16 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func openContents() {
-        if !useWideLayout, showPanelSheet || showPanel {
+        if !useWideLayout, showPanelSheet {
             pendingCompactContentsOpen = true
             viewModel.closeReaderInspector()
             showPanelSheet = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if pendingCompactContentsOpen {
-                    pendingCompactContentsOpen = false
-                    presentContents()
-                }
+            return
+        }
+        if !useWideLayout, showPanel {
+            viewModel.closeReaderInspector()
+            DispatchQueue.main.async {
+                presentContents()
             }
             return
         }
