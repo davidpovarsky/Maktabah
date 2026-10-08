@@ -525,7 +525,10 @@ struct iOSReaderWorkspaceView: View {
 
     private func finishEditingAnnotation() {
         editingAnnotation = nil
-        if let selection = inspectorSession.selection(for: viewModel) {
+        if let selection = inspectorSession.selection(
+            sefariaLocator: viewModel.selectedSegmentLocator,
+            otzariaLine: viewModel.otzariaSelectedLineAnchor
+        ) {
             inspectorSession.repository.invalidateNotes(for: selection)
         }
         inspectorContentID = UUID()
