@@ -182,6 +182,7 @@ struct iOSReaderWorkspaceView: View {
                 selectedId: selectedTOCNode?.id,
                 bookTitle: book.book,
                 onClose: closeContents,
+                embedsNavigationStack: false,
                 onSelect: selectTOCNode
             )
         } detail: {

@@ -12,6 +12,7 @@ struct iOSTOCView: View {
     let selectedId: Int?
     let bookTitle: String?
     let onClose: (() -> Void)?
+    let embedsNavigationStack: Bool
     let onSelect: (Int) -> Void
 
     @State private var searchText = ""
@@ -23,12 +24,14 @@ struct iOSTOCView: View {
         selectedId: Int?,
         bookTitle: String? = nil,
         onClose: (() -> Void)? = nil,
+        embedsNavigationStack: Bool = true,
         onSelect: @escaping (Int) -> Void
     ) {
         self.tocViewModel = tocViewModel
         self.selectedId = selectedId
         self.bookTitle = bookTitle
         self.onClose = onClose
+        self.embedsNavigationStack = embedsNavigationStack
         self.onSelect = onSelect
     }
 
@@ -57,7 +60,21 @@ struct iOSTOCView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        Group {
+            if embedsNavigationStack {
+                NavigationStack { contents }
+            } else {
+                contents
+            }
+        }
+        .presentationBackground(Color.appBackground)
+        .themeTint()
+        .listStyle(.plain)
+        .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
+        .environment(\.layoutDirection, .rightToLeft)
+    }
+
+    private var contents: some View {
             ZStack {
                 Color.appBackground.ignoresSafeArea()
 
@@ -148,12 +165,6 @@ struct iOSTOCView: View {
             }
             .toolbarBackground(Color.appBackground, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
-        }
-        .presentationBackground(Color.appBackground)
-        .themeTint()
-        .listStyle(.plain)
-        .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
-        .environment(\.layoutDirection, .rightToLeft)
     }
 }
 
