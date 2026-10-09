@@ -38,7 +38,7 @@ Completed items that are still useful to retain because they document an importa
 
 - [x] Preserve the intended Reader/TOC column and sequence Study-to-TOC transitions in compact layouts
   - Implemented: 2026-10-08
-  - Notes: A collapsed `NavigationSplitView` must bind `preferredCompactColumn` in addition to `columnVisibility`. When TOC is requested from the Study sheet, defer the column transition until the sheet's dismissal callback so the two presentations never overlap; screenshot scenarios must first observe the sheet's presented state before exercising that transition.
+  - Notes: A collapsed `NavigationSplitView` must bind `preferredCompactColumn` in addition to `columnVisibility`. On iOS 26, changing those bindings after a sheet dismissal may not visually replace the compact column, so the workspace also advances a compact-only identity revision to rebuild the split view with the requested preferred column. When TOC is requested from the Study sheet, defer that transition until the sheet's dismissal callback so the two presentations never overlap; screenshot scenarios must first observe the sheet's presented state before exercising it.
 
 Example:
 
