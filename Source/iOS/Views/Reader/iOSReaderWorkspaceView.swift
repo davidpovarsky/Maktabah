@@ -464,8 +464,6 @@ struct iOSReaderWorkspaceView: View {
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
                 compactContentsRequested = true
-                preferredCompactColumn = .sidebar
-                contentsColumnVisibility = .all
             }
             return
         }
@@ -481,8 +479,6 @@ struct iOSReaderWorkspaceView: View {
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                 compactContentsRequested = false
-                preferredCompactColumn = .detail
-                contentsColumnVisibility = .detailOnly
             }
             return
         }
