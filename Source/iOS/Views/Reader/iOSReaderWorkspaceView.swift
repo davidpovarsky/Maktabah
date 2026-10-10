@@ -87,6 +87,7 @@ struct iOSReaderWorkspaceView: View {
     @State private var contentsColumnVisibility: NavigationSplitViewVisibility = .detailOnly
     @State private var preferredCompactColumn: NavigationSplitViewColumn = .detail
     @State private var compactContentsRequested = false
+    @State private var compactUsesContentsFallback = false
     @State private var panelWidth = Self.defaultPanelWidth
     @State private var dragStartWidth: CGFloat?
     @State private var showPanelSheet = false
@@ -175,7 +176,13 @@ struct iOSReaderWorkspaceView: View {
     }
 
     var body: some View {
-        splitWorkspace
+        Group {
+            if !useWideLayout, compactUsesContentsFallback {
+                tocColumn
+            } else {
+                splitWorkspace
+            }
+        }
         .onAppear { updatePanelPresentation(animated: false) }
         .task {
             if runsCompactTOCTransitionSmoke {
@@ -464,6 +471,7 @@ struct iOSReaderWorkspaceView: View {
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
                 compactContentsRequested = true
+                compactUsesContentsFallback = true
             }
             return
         }
@@ -479,6 +487,7 @@ struct iOSReaderWorkspaceView: View {
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                 compactContentsRequested = false
+                compactUsesContentsFallback = false
             }
             return
         }
