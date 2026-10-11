@@ -382,7 +382,7 @@ final class MaktabahTorahInspectorSession {
     }
 
     private static func unitReference(for unit: OtzariaReadingUnit) -> String {
-        "otzaria:unit:v1:\(unit.bookId):\(unit.startLineIndex):\(unit.endLineIndex):\(unit.mode.storageValue)"
+        "otzaria:unit:v1:\(unit.bookId):\(unit.id):\(unit.startLineIndex):\(unit.endLineIndex)"
     }
 
     private static func otzariaBookID(from workKey: String) -> Int? {

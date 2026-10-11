@@ -366,7 +366,7 @@ enum SefariaOfflineNavigationBuilder {
         localeIdentifier: String? = Locale.preferredLanguages.first
     ) -> [LibraryTOCNode] {
         var seen = Set<String>()
-        return ordered(metadata).compactMap { entry in
+        return ordered(metadata).compactMap { entry -> LibraryTOCNode? in
             let ref = entry.sectionRef.isEmpty ? entry.ref : entry.sectionRef
             guard ref != workKey else { return nil }
             let locator = TextLocator(backend: .sefaria, workKey: workKey, position: .canonicalRef(ref))
