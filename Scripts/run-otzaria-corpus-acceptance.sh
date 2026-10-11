@@ -99,11 +99,13 @@ if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES:-}" ]; then
       if [ ! -d "$SAMPLE_TARGET" ] && [ -n "$SHARED_INDEX_ROOT" ] && [ -d "$SHARED_INDEX_ROOT" ]; then
         SAMPLE_TARGET="$SHARED_INDEX_ROOT"
       fi
+      DATABASE_BYTES="$(stat -f %z "$CONTAINER/Documents/otzaria-corpus.db")"
+      INDEX_BYTES="$(directory_bytes "$SAMPLE_TARGET")"
       printf '{"epoch":%s,"databaseBytes":%s,"indexRootBytes":%s,"workspaceBytes":%s}\n' \
         "$(date +%s)" \
-        "$(stat -f %z "$CONTAINER/Documents/otzaria-corpus.db")" \
-        "$(directory_bytes "$SAMPLE_TARGET")" \
-        "$(directory_bytes "$GITHUB_WORKSPACE")" \
+        "$DATABASE_BYTES" \
+        "$INDEX_BYTES" \
+        "$((DATABASE_BYTES + INDEX_BYTES))" \
         >> "$OTZARIA_CORPUS_ACCEPTANCE_METRICS_SAMPLES"
       sleep 30
     done

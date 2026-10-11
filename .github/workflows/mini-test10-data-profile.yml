@@ -544,7 +544,24 @@ jobs:
           bash Scripts/run-otzaria-corpus-acceptance.sh "$(pwd)/build/miniTest10/database/miniTest10-seforim.db" 10
           INDEX="$(cat build/miniTest10/logs/otzaria-index-path.txt)"
           find "$INDEX" -name ".managed.json" -delete 2>/dev/null || true
-          PEAK="$(python3 -c 'import json; print(max(r["databaseBytes"]+r["indexRootBytes"] for r in map(json.loads,open("build/miniTest10/logs/otzaria-disk.jsonl"))))')"
+          PEAK="$(python3 - "$INDEX" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          database = Path('build/miniTest10/database/miniTest10-seforim.db')
+          index = Path(sys.argv[1])
+          final_bytes = database.stat().st_size + sum(
+              path.stat().st_size for path in index.rglob('*') if path.is_file()
+          )
+          samples = []
+          for line in Path('build/miniTest10/logs/otzaria-disk.jsonl').read_text().splitlines():
+              if line.strip():
+                  row = json.loads(line)
+                  samples.append(row['databaseBytes'] + row['indexRootBytes'])
+          print(max([final_bytes, *samples]))
+          PY
+          )"
           python3 Scripts/package-otzaria-search-artifact.py \
             --index "$INDEX" --database build/miniTest10/database/miniTest10-seforim.db \
             --release-json build/miniTest10/logs/source-profile-release.json \
