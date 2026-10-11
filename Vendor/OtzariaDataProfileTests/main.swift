@@ -12,7 +12,7 @@ let bundled = try JSONDecoder().decode(
 )
 try bundled.validate()
 require(bundled.profileID == mini && bundled.bookIDs.count == 10, "bundled mini profile is invalid")
-require(bundled.profileVersion == 2, "bundled mini profile version is not canonical v2")
+require(bundled.profileVersion == 5, "bundled mini profile version is not canonical v5")
 require(bundled.sharedLexicalDatabase.releaseTag == "v0.3.0", "lexical release is not pinned")
 
 require(
@@ -56,19 +56,19 @@ require(
 )
 require(
     OtzariaDataProfileCompatibility.matches(
-        profileID: mini, profileVersion: 2, activeID: mini, activeVersion: 2
+        profileID: mini, profileVersion: 5, activeID: mini, activeVersion: 5
     ),
     "same miniTest10 profile did not survive relaunch validation"
 )
 require(
     !OtzariaDataProfileCompatibility.matches(
-        profileID: mini, profileVersion: 2, activeID: production, activeVersion: 1
+        profileID: mini, profileVersion: 5, activeID: production, activeVersion: 1
     ),
     "miniTest10 metadata leaked into production"
 )
 require(
     !OtzariaDataProfileCompatibility.matches(
-        profileID: mini, profileVersion: 1, activeID: mini, activeVersion: 2
+        profileID: mini, profileVersion: 4, activeID: mini, activeVersion: 5
     ),
     "mismatched profile version was accepted"
 )

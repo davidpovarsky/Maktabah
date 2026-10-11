@@ -514,7 +514,10 @@ fn run_search(
         .map_err(|error| format!("{error:#}"))
 }
 
-fn run_book_counts(engine: &SearchEngine, mut request: BridgeSearchRequest) -> Result<Value, String> {
+fn run_book_counts(
+    engine: &SearchEngine,
+    mut request: BridgeSearchRequest,
+) -> Result<Value, String> {
     request.facets = resolve_facets(request.facets, &request.book_ids);
     let result = match request.mode.as_str() {
         "fuzzy" => engine.count_by_book_fuzzy_with_status(
