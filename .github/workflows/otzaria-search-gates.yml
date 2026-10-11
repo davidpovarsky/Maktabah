@@ -294,6 +294,7 @@ jobs:
         run: |
           xcrun swiftc \
             Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/LibraryBackend/LibraryPresentationPolicy+Display.swift \
             Source/LibraryBackend/LibraryBackendProtocols.swift \
             Source/LibraryBackend/BackendCoordinator.swift \
             Source/LibraryBackend/LegacyIdentityRegistry.swift \

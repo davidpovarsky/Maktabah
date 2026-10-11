@@ -6,12 +6,27 @@
 import Foundation
 import SQLite3
 
-enum SQLiteError: Error {
+enum SQLiteError: LocalizedError {
     case connectionFailed(String)
     case prepareFailed(String)
     case executionFailed(String)
     case notFound
     case bindFailed(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .connectionFailed(let message):
+            "SQLite connection failed: \(message)"
+        case .prepareFailed(let message):
+            "SQLite statement preparation failed: \(message)"
+        case .executionFailed(let message):
+            "SQLite statement execution failed: \(message)"
+        case .notFound:
+            "SQLite record was not found."
+        case .bindFailed(let message):
+            "SQLite parameter binding failed: \(message)"
+        }
+    }
 }
 
 struct SQLiteRow {

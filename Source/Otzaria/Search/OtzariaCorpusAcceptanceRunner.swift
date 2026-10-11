@@ -194,10 +194,19 @@ enum OtzariaCorpusAcceptanceRunner {
             path: databasePath,
             flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
         )
+        let capabilities = try OtzariaDatabaseCapabilities(database: db)
+        let content = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
+        let decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
         let lines = try db.fetch(
-            query: "SELECT COALESCE(content, '') FROM line WHERE bookId = ? AND length(content) > 8 ORDER BY lineIndex LIMIT 25",
+            query: """
+                SELECT \(content.expression)
+                FROM line l \(content.join)
+                WHERE l.bookId = ?
+                ORDER BY l.lineIndex
+                LIMIT 100
+            """,
             parameters: [bookID]
-        ) { $0.string(at: 0) ?? "" }
+        ) { try decoder.decode(row: $0, at: 0) }
         for line in lines {
             if let word = try OtzariaSearchEngineBridge.splitQueryWords(line)
                 .first(where: { $0.count >= 3 }) {

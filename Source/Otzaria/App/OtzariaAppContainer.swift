@@ -589,11 +589,16 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         guard let db = try? requireDatabase() else { return nil }
+        guard let capabilities = try? OtzariaDatabaseCapabilities(database: db),
+              let decoder = try? OtzariaLineContentDecoder(database: db, capabilities: capabilities) else {
+            return nil
+        }
+        let content = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
 
         let sql = """
-            SELECT id, lineIndex, content, heRef
-            FROM line
-            WHERE bookId = ? AND \(whereClause)
+            SELECT l.id, l.lineIndex, \(content.expression), l.heRef
+            FROM line l \(content.join)
+            WHERE l.bookId = ? AND \(whereClause)
             \(orderClause)
             LIMIT 1
         """
@@ -603,7 +608,7 @@ final class OtzariaMaktabahBridge {
 
         return try? db.fetch(query: sql, parameters: allParameters) { row -> BookContent in
             let lineIndex = row.int(at: 1)
-            let content = (row.string(at: 2) ?? "").otsariaPlainText
+            let content = try decoder.decode(row: row, at: 2).otsariaPlainText
             let ref = row.string(at: 3) ?? ""
             return BookContent(id: lineIndex, nash: content, page: lineIndex, part: 1, heRef: ref.isEmpty ? nil : ref)
         }.first
@@ -645,6 +650,11 @@ final class OtzariaMaktabahBridge {
         lock.lock()
         defer { lock.unlock() }
         guard let db = try? requireDatabase() else { return [] }
+        guard let capabilities = try? OtzariaDatabaseCapabilities(database: db),
+              let decoder = try? OtzariaLineContentDecoder(database: db, capabilities: capabilities) else {
+            return []
+        }
+        let content = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
 
         let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !normalizedQuery.isEmpty else { return [] }
@@ -704,9 +714,10 @@ final class OtzariaMaktabahBridge {
         ftsParameters.append(maxResults)
         ftsParameters.append(max(0, offset))
         let ftsSQL = """
-            SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), l.content, b.title
+            SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), \(content.expression), b.title
             FROM line_fts_with_nikud f
             JOIN line l ON l.id = f.rowid
+            \(content.join)
             JOIN book b ON b.id = l.bookId
             WHERE line_fts_with_nikud MATCH ?\(ftsBookFilter)
             ORDER BY rank
@@ -714,15 +725,19 @@ final class OtzariaMaktabahBridge {
         """
 
         if let rows = try? db.fetch(query: ftsSQL, parameters: ftsParameters, mapping: { row in
-            (row.int(at: 0), row.int(at: 1), row.int(at: 2), row.string(at: 3) ?? "", row.string(at: 4) ?? "", row.string(at: 5) ?? "")
+            (row.int(at: 0), row.int(at: 1), row.int(at: 2), row.string(at: 3) ?? "", try decoder.decode(row: row, at: 4), row.string(at: 5) ?? "")
         }), !rows.isEmpty {
             return mapRows(rows)
         }
 
+        // Schema 6 stores zstd-compressed line bodies and is searched by the
+        // native Otzaria index. SQL LIKE cannot inspect those blobs safely.
+        guard !capabilities.hasSplitLineContent else { return [] }
+
         var likeParameters: [Any] = []
         let likeClauses = terms.map { term -> String in
             likeParameters.append("%\(term)%")
-            return "l.content LIKE ?"
+            return "\(content.expression) LIKE ?"
         }
         let joiner = mode == .or ? " OR " : " AND "
         let likeCondition = likeClauses.joined(separator: joiner)
@@ -730,8 +745,8 @@ final class OtzariaMaktabahBridge {
         likeParameters.append(maxResults)
         likeParameters.append(max(0, offset))
         let likeSQL = """
-            SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), l.content, b.title
-            FROM line l
+            SELECT l.id, l.bookId, l.lineIndex, COALESCE(l.heRef, ''), \(content.expression), b.title
+            FROM line l \(content.join)
             JOIN book b ON b.id = l.bookId
             WHERE (\(likeCondition))\(likeBookFilter)
             ORDER BY l.bookId, l.lineIndex
@@ -739,7 +754,7 @@ final class OtzariaMaktabahBridge {
         """
 
         let rows = (try? db.fetch(query: likeSQL, parameters: likeParameters, mapping: { row in
-            (row.int(at: 0), row.int(at: 1), row.int(at: 2), row.string(at: 3) ?? "", row.string(at: 4) ?? "", row.string(at: 5) ?? "")
+            (row.int(at: 0), row.int(at: 1), row.int(at: 2), row.string(at: 3) ?? "", try decoder.decode(row: row, at: 4), row.string(at: 5) ?? "")
         })) ?? []
         return mapRows(rows)
     }

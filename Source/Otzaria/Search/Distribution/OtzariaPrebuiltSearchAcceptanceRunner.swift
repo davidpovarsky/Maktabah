@@ -288,9 +288,17 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
             path: databasePath,
             flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
         )
+        let capabilities = try OtzariaDatabaseCapabilities(database: database)
+        let content = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
+        let decoder = try OtzariaLineContentDecoder(database: database, capabilities: capabilities)
         let lines = try database.fetch(
-            query: "SELECT COALESCE(content, '') FROM line WHERE length(content) > 12 ORDER BY bookId, lineIndex LIMIT 100"
-        ) { $0.string(at: 0) ?? "" }
+            query: """
+                SELECT \(content.expression)
+                FROM line l \(content.join)
+                ORDER BY l.bookId, l.lineIndex
+                LIMIT 250
+            """
+        ) { try decoder.decode(row: $0, at: 0) }
         for line in lines {
             if let word = try OtzariaSearchEngineBridge.splitQueryWords(line).first(where: { $0.count >= 4 }) {
                 return word
