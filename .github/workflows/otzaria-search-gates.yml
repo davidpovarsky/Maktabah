@@ -64,6 +64,7 @@ jobs:
   lexical-artifact:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts && inputs.verify_release_tag != 'miniTest10' }}
     permissions:
+      actions: read
       contents: write
     uses: ./.github/workflows/otzaria-search-artifacts.yml
     with:
@@ -74,6 +75,7 @@ jobs:
   mini-profile:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_search_artifacts && inputs.verify_release_tag == 'miniTest10' }}
     permissions:
+      actions: read
       contents: write
     uses: ./.github/workflows/mini-test10-data-profile.yml
     with:
