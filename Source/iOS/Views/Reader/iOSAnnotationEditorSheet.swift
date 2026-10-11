@@ -61,17 +61,17 @@ struct iOSAnnotationEditorSheet: View {
                         .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
                 }
 
-                ThemeSection {
-                    Button(role: .destructive, action: {
-                        if let id = annotation.id {
-                            onDelete(id)
-                        }
-                        dismiss()
-                    }) {
-                        HStack {
-                            Spacer()
-                            Text("Delete Annotation")
-                            Spacer()
+                if let annotationID = annotation.id {
+                    ThemeSection {
+                        Button(role: .destructive, action: {
+                            onDelete(annotationID)
+                            dismiss()
+                        }) {
+                            HStack {
+                                Spacer()
+                                Text("Delete Annotation")
+                                Spacer()
+                            }
                         }
                     }
                 }

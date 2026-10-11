@@ -141,12 +141,15 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
         let db = try SQLiteDatabase(path: databasePath, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
         let authors = (try? loadAuthorsByBook(db: db)) ?? [:]
         let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
+        let capabilities = try OtzariaDatabaseCapabilities(database: db)
+        let content = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
         let books = try db.fetch(query: """
             SELECT b.id, b.title, COALESCE(b.categoryId, 0),
                    COALESCE((SELECT COUNT(*) FROM line lc WHERE lc.bookId = b.id), COALESCE(b.totalLines, 0)),
                    COALESCE(b.orderIndex, b.id), COALESCE(\(schema.fileType), 'txt'),
                    COALESCE(b.isBaseBook, 0),
-                   COALESCE((SELECT SUM(length(CAST(l.content AS BLOB))) FROM line l WHERE l.bookId = b.id), 0)
+                   COALESCE((SELECT SUM(length(CAST(\(content.expression) AS BLOB)))
+                             FROM line l \(content.join) WHERE l.bookId = b.id), 0)
             FROM book b
             WHERE \(schema.eligiblePredicate)
             ORDER BY COALESCE(b.categoryId, 0), COALESCE(b.orderIndex, b.id), b.title, b.id
@@ -228,6 +231,9 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
         var liveEngine: OtzariaSearchEngineBridge?
         do {
             let db = try SQLiteDatabase(path: databasePath, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+            let capabilities = try OtzariaDatabaseCapabilities(database: db)
+            let contentDecoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
+            let contentProjection = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
             let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
             liveEngine = engine
             try engine.setBulkIndexing(true)
@@ -297,7 +303,12 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                     activeSourceIdentity = nil
                     continue
                 }
-                let lines = try loadLines(bookId: book.id, db: db)
+                let lines = try loadLines(
+                    bookId: book.id,
+                    db: db,
+                    projection: contentProjection,
+                    decoder: contentDecoder
+                )
                 let measuredBytes = UInt64(lines.reduce(0) { $0 + $1.content.utf8.count })
                 let oversized = OtzariaSearchIndexingPolicy.isOversized(
                     documents: book.totalLines,
@@ -608,14 +619,20 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
         )
     }
 
-    private func loadLines(bookId: Int, db: SQLiteDatabase) throws -> [TextLine] {
+    private func loadLines(
+        bookId: Int,
+        db: SQLiteDatabase,
+        projection: OtzariaLineContentProjection,
+        decoder: OtzariaLineContentDecoder
+    ) throws -> [TextLine] {
         try db.fetch(query: """
-            SELECT lineIndex, COALESCE(content, ''), COALESCE(heRef, '')
-            FROM line WHERE bookId = ? ORDER BY lineIndex
+            SELECT l.lineIndex, \(projection.expression), COALESCE(l.heRef, '')
+            FROM line l \(projection.join)
+            WHERE l.bookId = ? ORDER BY l.lineIndex
         """, parameters: [bookId]) { row in
             TextLine(
                 lineIndex: row.int(at: 0),
-                content: row.string(at: 1) ?? "",
+                content: try decoder.decode(row: row, at: 1),
                 reference: row.string(at: 2) ?? ""
             )
         }

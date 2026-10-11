@@ -1,5 +1,23 @@
 import Foundation
 
+@_silgen_name("ZSTD_createCCtx")
+func ZSTD_createCCtx() -> OpaquePointer?
+
+@_silgen_name("ZSTD_freeCCtx") @discardableResult
+func ZSTD_freeCCtx(_ context: OpaquePointer?) -> Int
+
+@_silgen_name("ZSTD_compress_usingDict")
+func ZSTD_compress_usingDict(
+    _ context: OpaquePointer?,
+    _ destination: UnsafeMutableRawPointer?,
+    _ destinationCapacity: Int,
+    _ source: UnsafeRawPointer?,
+    _ sourceSize: Int,
+    _ dictionary: UnsafeRawPointer?,
+    _ dictionarySize: Int,
+    _ compressionLevel: Int32
+) -> Int
+
 enum AppConfig {
     static var appSupportDir: URL?
 }
@@ -78,6 +96,37 @@ func compress(_ source: Data, to url: URL) throws {
     try output.write(to: url)
 }
 
+func compress(_ source: Data, dictionary: Data) throws -> Data {
+    guard let context = ZSTD_createCCtx() else { fatalError("ZSTD_createCCtx failed") }
+    defer { ZSTD_freeCCtx(context) }
+    var output = Data(count: ZSTD_compressBound(source.count))
+    let written = output.withUnsafeMutableBytes { destination in
+        source.withUnsafeBytes { input in
+            dictionary.withUnsafeBytes { dictionaryBytes in
+                ZSTD_compress_usingDict(
+                    context,
+                    destination.baseAddress,
+                    destination.count,
+                    input.baseAddress,
+                    input.count,
+                    dictionaryBytes.baseAddress,
+                    dictionaryBytes.count,
+                    5
+                )
+            }
+        }
+    }
+    guard ZSTD_isError(written) == 0 else {
+        fatalError(String(cString: ZSTD_getErrorName(written)))
+    }
+    output.count = written
+    return output
+}
+
+func hex(_ data: Data) -> String {
+    data.map { String(format: "%02x", $0) }.joined()
+}
+
 func databaseMarker(at url: URL) throws -> String {
     let database = try SQLiteDatabase(path: url.path)
     return try database.fetch(query: "SELECT title FROM book ORDER BY id LIMIT 1") {
@@ -140,6 +189,44 @@ expect(legacyProjection.filePath == "b.filePath", "legacy path column")
 expect(legacyProjection.eligiblePredicate.contains("fileType"), "legacy link filtering")
 let legacyTOCProjection = OtzariaTOCSchemaCompatibility.projection(columns: ["id", "lineId", "lineIndex"])
 expect(legacyTOCProjection.resolvedLineIndex == "COALESCE(te.lineIndex, ln.lineIndex)", "legacy TOC lineIndex fallback")
+
+let schemaSixURL = root.appendingPathComponent("schema-six.sqlite")
+let schemaSix = try SQLiteDatabase(path: schemaSixURL.path)
+try schemaSix.execute(query: "CREATE TABLE line (id INTEGER PRIMARY KEY, bookId INTEGER, lineIndex INTEGER)")
+try schemaSix.execute(query: "CREATE TABLE line_content (id INTEGER PRIMARY KEY, content BLOB)")
+try schemaSix.execute(query: "CREATE TABLE zstd_dict (id INTEGER PRIMARY KEY, dict BLOB NOT NULL)")
+try schemaSix.execute(query: "CREATE TABLE book_version (id INTEGER PRIMARY KEY, bookId INTEGER NOT NULL)")
+try schemaSix.execute(query: "CREATE TABLE version_line (versionId INTEGER NOT NULL, lineId INTEGER NOT NULL, content BLOB, PRIMARY KEY(versionId, lineId))")
+try schemaSix.execute(query: "CREATE TABLE schema_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
+try schemaSix.execute(query: "INSERT INTO schema_meta VALUES ('db_schema_version', '6')")
+let dictionary = Data(String(repeating: "schema six dictionary content ", count: 8).utf8)
+let expectedLine = "schema six \u{05D1}\u{05E8}\u{05D0}\u{05E9}\u{05D9}\u{05EA} line content"
+let compressedLine = try compress(Data(expectedLine.utf8), dictionary: dictionary)
+let expectedVersionLine = "schema six alternate version content"
+let compressedVersionLine = try compress(Data(expectedVersionLine.utf8), dictionary: dictionary)
+try schemaSix.execute(query: "INSERT INTO zstd_dict VALUES (1, X'\(hex(dictionary))')")
+try schemaSix.execute(query: "INSERT INTO line VALUES (1, 1, 0)")
+try schemaSix.execute(query: "INSERT INTO line_content VALUES (1, X'\(hex(compressedLine))')")
+try schemaSix.execute(query: "INSERT INTO book_version VALUES (1, 1)")
+try schemaSix.execute(query: "INSERT INTO version_line VALUES (1, 1, X'\(hex(compressedVersionLine))')")
+let schemaSixCapabilities = try OtzariaDatabaseCapabilities(database: schemaSix)
+expect(schemaSixCapabilities.hasSplitLineContent, "schema-6 split content capability")
+expect(schemaSixCapabilities.hasVersions, "schema-6 version tables capability")
+expect(schemaSixCapabilities.schemaMetadata["db_schema_version"] == "6", "schema-6 metadata")
+let schemaSixProjection = OtzariaLineContentCompatibility.projection(capabilities: schemaSixCapabilities)
+expect(schemaSixProjection.join.contains("line_content"), "schema-6 line-content join")
+let schemaSixDecoder = try OtzariaLineContentDecoder(
+    database: schemaSix,
+    capabilities: schemaSixCapabilities
+)
+let decodedLine = try schemaSix.fetch(query: "SELECT content FROM line_content WHERE id=1") {
+    try schemaSixDecoder.decode(row: $0, at: 0)
+}.first
+expect(decodedLine == expectedLine, "schema-6 dictionary line decoding")
+let decodedVersionLine = try schemaSix.fetch(query: "SELECT content FROM version_line WHERE versionId=1 AND lineId=1") {
+    try schemaSixDecoder.decode(row: $0, at: 0)
+}.first
+expect(decodedVersionLine == expectedVersionLine, "schema-6 dictionary version-line decoding")
 
 let sourceURL = root.appendingPathComponent("valid.sqlite")
 let source = try makeSQLite(at: sourceURL, includeAllTables: true, marker: "first")

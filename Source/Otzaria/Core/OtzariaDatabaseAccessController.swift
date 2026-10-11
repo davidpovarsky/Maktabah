@@ -258,10 +258,11 @@ final class OtzariaDatabaseAccessController {
             let attributes = try FileManager.default.attributesOfItem(atPath: databaseURL.path)
             let actualSize = (attributes[.size] as? NSNumber)?.int64Value ?? -1
             let active = OtzariaDataProfileRegistry.activeIdentity
-            let expectedAsset = OtzariaDataProfileRegistry.activeProfile?.databaseAssetName
-                ?? OtzariaLibraryRelease.databaseAssetName
+            let profileAsset = OtzariaDataProfileRegistry.activeProfile?.databaseAssetName
+            let assetMatches = profileAsset.map { manifest.assetName == $0 }
+                ?? OtzariaLibraryRelease.isProductionDatabaseAssetName(manifest.assetName)
             guard manifest.repository == OtzariaLibraryRelease.repository,
-                  manifest.assetName == expectedAsset,
+                  assetMatches,
                   manifest.effectiveProfileID == active.id,
                   manifest.effectiveProfileVersion == active.version,
                   manifest.databaseFileSize > 0,

@@ -66,9 +66,19 @@ struct OtzariaLibraryReleaseClient: Sendable {
         guard payload.id > 0, !payload.tagName.isEmpty else {
             throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("missing release ID or tag")
         }
-        guard let asset = payload.assets.first(where: {
+        let schemaAssets = payload.assets.compactMap { asset -> (Int, AssetPayload)? in
+            guard let version = OtzariaLibraryRelease.schemaVersion(inAssetName: asset.name) else {
+                return nil
+            }
+            return (version, asset)
+        }
+        let asset = schemaAssets.max {
+            if $0.0 != $1.0 { return $0.0 < $1.0 }
+            return $0.1.name < $1.1.name
+        }?.1 ?? payload.assets.first(where: {
             $0.name == OtzariaLibraryRelease.databaseAssetName
-        }) else {
+        })
+        guard let asset else {
             throw OtzariaDatabaseBootstrapError.databaseAssetMissing
         }
         guard asset.id > 0, asset.size > 0, asset.browserDownloadURL.scheme == "https" else {
@@ -76,9 +86,10 @@ struct OtzariaLibraryReleaseClient: Sendable {
                 "the database asset is missing its ID, HTTPS URL, or size"
             )
         }
-        if let digest = asset.digest,
-           digest.lowercased().hasPrefix("sha256:"),
-           (digest.count != 71 || !digest.dropFirst(7).allSatisfy({ $0.isHexDigit })) {
+        guard let digest = asset.digest,
+              digest.lowercased().hasPrefix("sha256:"),
+              digest.count == 71,
+              digest.dropFirst(7).allSatisfy({ $0.isHexDigit }) else {
             throw OtzariaDatabaseBootstrapError.invalidAssetMetadata("malformed SHA-256 digest")
         }
 
@@ -90,7 +101,7 @@ struct OtzariaLibraryReleaseClient: Sendable {
                 name: asset.name,
                 downloadURL: asset.browserDownloadURL,
                 compressedSize: asset.size,
-                digest: asset.digest,
+                digest: digest,
                 updatedAt: asset.updatedAt
             )
         )

@@ -38,6 +38,13 @@ func runDecodingTests() async throws {
     try expect(richLink?.locator.workKey == "Rashi on Genesis", "rich link target identity")
     try expect(richLink?.category == "Commentary" && richLink?.primaryText == "פירוש", "rich link fields")
 
+    let anchoredLink = try decoder.decode(
+        SefariaRelationshipLinkDTO.self,
+        from: Data(#"{"sourceRef":"Rashi on Genesis 1:1:1","anchorRef":"Genesis 1:1-2","anchorRefExpanded":["Genesis 1:1","Genesis 1:2"]}"#.utf8)
+    )
+    try expect(anchoredLink.anchorRefExpanded == ["Genesis 1:1", "Genesis 1:2"],
+        "section-related anchor expansion is retained")
+
     let richTopics = try decoder.decode([SefariaRelationshipTopicDTO].self, from: Data(#"[{"topic":"creation","descriptions":{"en":{"title":"Creation"},"he":{"title":"בריאה"}}},{"topic":"creation"}]"#.utf8))
     let topics = SefariaRelationshipMapper.topics(richTopics)
     try expect(topics.count == 1 && topics[0].titleHe == "בריאה", "rich topic mapping and deduplication")
@@ -402,7 +409,71 @@ private func runSearchSemanticsAndFilterTests() async throws {
     let testCache = SefariaDiskCache(directory: tempDir)
     let remoteStore = SefariaRemoteStore(configuration: .production, client: mockClient, cache: testCache)
 
-    // 5. Real SefariaRemoteStore: Overlap-heavy OR pagination test
+    // 5. Catalog and section-related requests remain bounded across repeated use.
+    var catalogRequestCount = 0
+    var relatedRequestCount = 0
+    MockSearchURLProtocol.requestHandler = { request in
+        guard let url = request.url else { throw URLError(.badURL) }
+        let response = HTTPURLResponse(
+            url: url,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: ["Content-Type": "application/json"]
+        )!
+        if url.path == "/api/index" {
+            catalogRequestCount += 1
+            return (response, Data(#"[{"category":"Tanakh","heCategory":"תנ״ך","contents":[]}]"#.utf8))
+        }
+        if url.path.contains("/api/related/Genesis%201") || url.path.contains("/api/related/Genesis 1") {
+            relatedRequestCount += 1
+            return (response, Data(#"""
+            {
+                "links": [
+                    {
+                        "sourceRef": "Rashi on Genesis 1:1:1",
+                        "index_title": "Rashi on Genesis",
+                        "anchorRef": "Genesis 1:1",
+                        "anchorRefExpanded": ["Genesis 1:1"]
+                    },
+                    {
+                        "sourceRef": "Rashi on Genesis 1:2:1",
+                        "index_title": "Rashi on Genesis",
+                        "anchorRef": "Genesis 1:2",
+                        "anchorRefExpanded": ["Genesis 1:2"]
+                    },
+                    {"malformed": true}
+                ]
+            }
+            """#.utf8))
+        }
+        throw URLError(.badURL)
+    }
+    for _ in 0..<5 {
+        _ = try await remoteStore.catalog(forceRefresh: false)
+    }
+    try expect(catalogRequestCount == 1,
+        "five catalog opens issue one network request and reuse the durable cache")
+
+    let genesisOneOne = TextLocator(
+        backend: .sefaria,
+        workKey: "Genesis",
+        position: .canonicalRef("Genesis 1:1")
+    )
+    let genesisOneTwo = TextLocator(
+        backend: .sefaria,
+        workKey: "Genesis",
+        position: .canonicalRef("Genesis 1:2")
+    )
+    let oneOneLinks = try await remoteStore.links(for: genesisOneOne)
+    let oneTwoLinks = try await remoteStore.links(for: genesisOneTwo)
+    try expect(relatedRequestCount == 1,
+        "two segment lookups in one section issue one related request")
+    try expect(oneOneLinks.map(\.displayRef) == ["Rashi on Genesis 1:1:1"],
+        "section-related rows are filtered to the exact first segment")
+    try expect(oneTwoLinks.map(\.displayRef) == ["Rashi on Genesis 1:2:1"],
+        "section-related rows are filtered to the exact second segment")
+
+    // 6. Real SefariaRemoteStore: Overlap-heavy OR pagination test
     // Query: "משה אהרן" (OR mode)
     // Page 1:
     // Term "משה" returns [R1, R2, R3, R4] (total 6)
@@ -480,7 +551,7 @@ private func runSearchSemanticsAndFilterTests() async throws {
     try expect(page2Snippets == Set(["R5", "R6", "R7", "R8"]), "OR page 2 exposes all remaining unique results (R5-R8)")
     try expect(orPage2.total == 8, "OR total updates truthfully to 8 after all streams exhausted")
 
-    // 6. Real SefariaRemoteStore: Late-intersection CONTAINS test with Filter Preservation
+    // 7. Real SefariaRemoteStore: Late-intersection CONTAINS test with Filter Preservation
     // Query: "חסד אמת" with filters: ["Tanakh/Torah"]
     // Batch 1 (start 0):
     // Term "חסד" returns Seg1..Seg2 (total 4)
@@ -545,7 +616,7 @@ private func runSearchSemanticsAndFilterTests() async throws {
     try expect(!capturedFilters.isEmpty && capturedFilters.allSatisfy { $0 == ["Tanakh/Torah"] }, "filters preserved on every term sub-request")
     try expect(containsPage.total == 2, "CONTAINS total reflects exact count after streams exhausted")
 
-    // 7. In-book fallback when a work has no trusted backend path
+    // 8. In-book fallback when a work has no trusted backend path
     var fallbackSentFilters: [String]?
     MockSearchURLProtocol.requestHandler = { request in
         guard let url = request.url else { throw URLError(.badURL) }
@@ -583,7 +654,7 @@ private func runSearchSemanticsAndFilterTests() async throws {
         "in-book result retains its exact segment locator"
     )
 
-    // 8. Session Invalidation on Query Change
+    // 9. Session Invalidation on Query Change
     // Searching for a new query starts fresh
     var freshQueryStart = -1
     MockSearchURLProtocol.requestHandler = { request in

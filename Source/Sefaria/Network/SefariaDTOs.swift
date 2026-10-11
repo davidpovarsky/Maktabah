@@ -197,10 +197,13 @@ struct SefariaRelationshipLinkDTO: Hashable, Sendable {
     let heLicense: String?
     let license: String?
     let indexTitle: String?
+    let anchorRef: String?
+    let anchorRefExpanded: [String]
 
     private enum CodingKeys: String, CodingKey {
         case sourceRef, sourceHeRef, ref, heRef, category, type, collectiveTitle
         case he, text, versionTitle, heVersionTitle, heLicense, license
+        case anchorRef, anchorRefExpanded
         case indexTitle = "index_title"
         case indexTitleCamel = "indexTitle"
     }
@@ -224,6 +227,10 @@ extension SefariaRelationshipLinkDTO: Decodable {
         license = try values.decodeIfPresent(String.self, forKey: .license)
         indexTitle = try values.decodeIfPresent(String.self, forKey: .indexTitle)
             ?? values.decodeIfPresent(String.self, forKey: .indexTitleCamel)
+        anchorRef = try values.decodeIfPresent(String.self, forKey: .anchorRef)
+        anchorRefExpanded = (try? values.decode([String].self, forKey: .anchorRefExpanded))
+            ?? (try? values.decode(String.self, forKey: .anchorRefExpanded)).map { [$0] }
+            ?? []
     }
 }
 

@@ -34,21 +34,20 @@ struct OtzariaAuthorsModeView: View {
                             )
                             .id(author.id)
                         } label: {
-                            VStack(alignment: .trailing, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 4) {
                                 Text(author.name)
                                     .font(.headline)
-                                    .multilineTextAlignment(.trailing)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
 
                                 Text("\(author.bookCount) ספרים")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-                                    .multilineTextAlignment(.trailing)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .contentShape(Rectangle())
-                            .environment(\.layoutDirection, .rightToLeft)
                         }
                         .listRowInsets(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                     }
@@ -64,7 +63,6 @@ struct OtzariaAuthorsModeView: View {
         }
         .navigationTitle("מחברים")
         .navigationBarTitleDisplayMode(.inline)
-        .environment(\.layoutDirection, .rightToLeft)
         .task {
             await viewModel.loadAuthors()
         }
@@ -97,24 +95,23 @@ private struct OtzariaAuthorBooksView: View {
                             navigationManager.openBook(book)
                         }
                     } label: {
-                        VStack(alignment: .trailing, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 4) {
                             Text(book.book)
                                 .font(.headline)
-                                .multilineTextAlignment(.trailing)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
 
                             if !book.info.isEmpty {
                                 Text(book.info)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                                     .lineLimit(2)
-                                    .multilineTextAlignment(.trailing)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .contentShape(Rectangle())
-                        .environment(\.layoutDirection, .rightToLeft)
                     }
                     .buttonStyle(.plain)
                     .listRowInsets(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
@@ -124,7 +121,6 @@ private struct OtzariaAuthorBooksView: View {
         }
         .navigationTitle(author.name)
         .navigationBarTitleDisplayMode(.inline)
-        .environment(\.layoutDirection, .rightToLeft)
         .task(id: author.id) {
             isLoading = true
             books = []

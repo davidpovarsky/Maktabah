@@ -9,6 +9,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
     @Binding var inspectorSession: MaktabahTorahInspectorSession
     @Binding var selectedTool: TorahStudyTool
     let showsCloseButton: Bool
+    let chrome: TorahInspectorChrome
     let onAddNote: ((TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
     let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
     let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
@@ -25,7 +26,8 @@ struct OtzariaReaderSourcesInspectorHost: View {
             TorahInspectorUI.TorahInspectorView(
                 repository: inspectorSession.repository,
                 selection: selection,
-                entryMode: .segmentRelationships,
+                entryMode: .relationships,
+                chrome: chrome,
                 selectedTool: $selectedTool,
                 onClose: {
                     viewModel.closeReaderInspector()

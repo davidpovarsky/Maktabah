@@ -7,6 +7,10 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     private let client: SefariaHTTPClient
     private let cache: SefariaDiskCache
     private var knownTitles: Set<String> = []
+    private var catalogTask: Task<[SefariaTOCEntryDTO], Error>?
+    private var sectionRefByReference: [String: String] = [:]
+    private var relatedRowsBySection: [String: [SefariaRelationshipLinkDTO]] = [:]
+    private var relatedTasksBySection: [String: Task<[SefariaRelationshipLinkDTO], Error>] = [:]
     private var activeSession: BooleanSearchSession?
     private var activeSessionKey: BooleanSearchSessionKey?
 
@@ -25,8 +29,21 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             rememberTitles(cached)
             return cached.map { Self.mapCatalog($0, parentPath: []) }
         }
-        let url = try configuration.apiURL(path: "/api/index")
-        let dto = try await client.get([SefariaTOCEntryDTO].self, url: url)
+        let dto: [SefariaTOCEntryDTO]
+        if let catalogTask {
+            dto = try await catalogTask.value
+        } else {
+            let url = try configuration.apiURL(path: "/api/index")
+            let task = Task { try await client.get([SefariaTOCEntryDTO].self, url: url) }
+            catalogTask = task
+            do {
+                dto = try await task.value
+                catalogTask = nil
+            } catch {
+                catalogTask = nil
+                throw error
+            }
+        }
         try await cache.encode(dto, as: "catalog.json")
         rememberTitles(dto)
         return dto.map { Self.mapCatalog($0, parentPath: []) }
@@ -44,6 +61,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         }
         let cacheName = "section-\(Data(ref.utf8).base64EncodedString().replacingOccurrences(of: "/", with: "_"))"
         if let cached: SefariaTextsV3DTO = await cache.decode(cacheName) {
+            rememberSectionReferences(cached)
             if cached.sectionRef != ref {
                 return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(cached.sectionRef)))
             }
@@ -57,6 +75,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         ])
         let dto = try await client.get(SefariaTextsV3DTO.self, url: url)
         try await cache.encode(dto, as: cacheName)
+        rememberSectionReferences(dto)
         if dto.sectionRef != ref {
             return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(dto.sectionRef)))
         }
@@ -592,26 +611,15 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         guard locator.backend == .sefaria, case .canonicalRef(let ref) = locator.position else {
             throw LibraryBackendError.invalidLocator
         }
-        let url = try configuration.apiURL(
-            pathPrefix: "/api/links/",
-            pathComponent: ref,
-            queryItems: [URLQueryItem(name: "with_text", value: "1")]
-        )
-        // Decode rows independently: one malformed row is logged and skipped
-        // rather than failing the entire relationship list.
-        let rawArray = try await client.get([SefariaJSONValue].self, url: url)
-        let decoder = JSONDecoder()
+        let requestedRef = SefariaRef.canonicalInput(ref)
+        let sectionRef = relationshipSectionRef(for: requestedRef, workKey: locator.workKey)
+        let rows = try await relationshipRows(for: sectionRef)
         var results: [LibraryRelatedSource] = []
-        for (index, raw) in rawArray.enumerated() {
-            guard case .object = raw else { continue }
-            do {
-                let data = try JSONEncoder().encode(raw)
-                let row = try decoder.decode(SefariaRelationshipLinkDTO.self, from: data)
-                if let source = SefariaRelationshipMapper.source(row, knownTitles: knownTitles) {
-                    results.append(source)
-                }
-            } catch {
-                print("[Sefaria] links row \(index) for '\(ref)' rejected: \(error)")
+        var seen = Set<String>()
+        for row in rows where relationship(row, includes: requestedRef, sectionRef: sectionRef) {
+            if let source = SefariaRelationshipMapper.source(row, knownTitles: knownTitles),
+               seen.insert(source.id).inserted {
+                results.append(source)
             }
         }
         return results
@@ -638,7 +646,97 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
 
     func clearTransientState() {
         knownTitles.removeAll()
+        sectionRefByReference.removeAll()
+        relatedRowsBySection.removeAll()
+        relatedTasksBySection.values.forEach { $0.cancel() }
+        relatedTasksBySection.removeAll()
+        catalogTask?.cancel()
+        catalogTask = nil
         invalidateSearchSession()
+    }
+
+    private func rememberSectionReferences(_ dto: SefariaTextsV3DTO) {
+        let canonicalSection = SefariaRef.canonicalInput(dto.sectionRef)
+        sectionRefByReference[SefariaRef.canonicalInput(dto.ref)] = canonicalSection
+        sectionRefByReference[canonicalSection] = canonicalSection
+        for segment in map(dto, origin: .diskCache).asLibrarySection().segments {
+            if case .canonicalRef(let reference) = segment.locator.position {
+                sectionRefByReference[SefariaRef.canonicalInput(reference)] = canonicalSection
+            }
+        }
+    }
+
+    private func relationshipSectionRef(for requestedRef: String, workKey: String) -> String {
+        if let known = sectionRefByReference[requestedRef] { return known }
+        let suffix = requestedRef.hasPrefix(workKey + " ")
+            ? String(requestedRef.dropFirst(workKey.count + 1))
+            : ""
+        let addressDepth = suffix.split(separator: ":").count
+        let workUsuallyAddsCommentDepth = workKey.localizedCaseInsensitiveContains(" on ")
+        if addressDepth > (workUsuallyAddsCommentDepth ? 2 : 1),
+           let parent = SefariaRef.sectionAncestors(of: requestedRef).dropFirst().first {
+            return parent
+        }
+        return requestedRef
+    }
+
+    private func relationshipRows(for sectionRef: String) async throws -> [SefariaRelationshipLinkDTO] {
+        if let cached = relatedRowsBySection[sectionRef] { return cached }
+        if let task = relatedTasksBySection[sectionRef] { return try await task.value }
+        let task = Task { try await loadRelationshipRows(for: sectionRef) }
+        relatedTasksBySection[sectionRef] = task
+        do {
+            let rows = try await task.value
+            relatedRowsBySection[sectionRef] = rows
+            relatedTasksBySection.removeValue(forKey: sectionRef)
+            return rows
+        } catch {
+            relatedTasksBySection.removeValue(forKey: sectionRef)
+            throw error
+        }
+    }
+
+    private func loadRelationshipRows(
+        for sectionRef: String
+    ) async throws -> [SefariaRelationshipLinkDTO] {
+        let cacheName = "related-\(Data(sectionRef.utf8).base64EncodedString().replacingOccurrences(of: "/", with: "_"))"
+        let document: SefariaJSONValue
+        if let disk: SefariaJSONValue = await cache.decode(cacheName) {
+            document = disk
+        } else {
+            let url = try configuration.apiURL(pathPrefix: "/api/related/", pathComponent: sectionRef)
+            document = try await client.get(SefariaJSONValue.self, url: url)
+            try await cache.encode(document, as: cacheName)
+        }
+        guard case .object(let object) = document,
+              case .array(let rawRows)? = object["links"] else {
+            throw LibraryBackendError.invalidResponse("related response has no links array")
+        }
+        let decoder = JSONDecoder()
+        var rows: [SefariaRelationshipLinkDTO] = []
+        for (index, raw) in rawRows.enumerated() {
+            do {
+                rows.append(try decoder.decode(
+                    SefariaRelationshipLinkDTO.self,
+                    from: JSONEncoder().encode(raw)
+                ))
+            } catch {
+                print("[Sefaria] related row \(index) for '\(sectionRef)' rejected: \(error)")
+            }
+        }
+        return rows
+    }
+
+    private func relationship(
+        _ row: SefariaRelationshipLinkDTO,
+        includes requestedRef: String,
+        sectionRef: String
+    ) -> Bool {
+        guard requestedRef != sectionRef else { return true }
+        let anchors = row.anchorRefExpanded.isEmpty
+            ? [row.anchorRef].compactMap { $0 }
+            : row.anchorRefExpanded
+        return anchors.contains { SefariaRef.anchorReference($0, contains: requestedRef) }
     }
 
     private func map(_ dto: SefariaTextsV3DTO, origin: LibraryTextSection.Origin) -> SefariaSection {

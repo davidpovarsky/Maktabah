@@ -19,17 +19,23 @@ enum OtzariaBootstrapPolicyHarness {
             {"id": 1, "name": "lines_snapshot.db.zst", "browser_download_url": "https://example.test/lines", "size": 10, "digest": null},
             {"id": 2, "name": "patch-1.db.zst", "browser_download_url": "https://example.test/patch", "size": 20, "digest": null},
             {"id": 3, "name": "seforim.db.buildstate", "browser_download_url": "https://example.test/state", "size": 30, "digest": null},
-            {"id": 99, "name": "seforim.db.zst", "browser_download_url": "https://example.test/seforim", "size": 123456, "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "updated_at": "2026-08-17T00:00:00Z"}
+            {"id": 98, "name": "seforim-schema4.db.zst", "browser_download_url": "https://example.test/schema4", "size": 120000, "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+            {"id": 99, "name": "seforim.db.zst", "browser_download_url": "https://example.test/seforim", "size": 123456, "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+            {"id": 100, "name": "seforim-schema6.db.zst", "browser_download_url": "https://example.test/schema6", "size": 234567, "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "updated_at": "2026-10-10T00:00:00Z"}
           ]
         }
         """#
         let release = try OtzariaLibraryReleaseClient.parseLatestRelease(data: Data(json.utf8))
         expect(release.id == 42, "release ID")
         expect(release.tag == "v-test", "release tag")
-        expect(release.asset.id == 99, "exact asset ID")
-        expect(release.asset.name == "seforim.db.zst", "exact asset name")
-        expect(release.asset.compressedSize == 123456, "asset size")
-        expect(release.expectedSHA256 == String(repeating: "a", count: 64), "digest")
+        expect(release.asset.id == 100, "highest schema asset ID")
+        expect(release.asset.name == "seforim-schema6.db.zst", "highest schema asset name")
+        expect(release.asset.compressedSize == 234567, "asset size")
+        expect(release.expectedSHA256 == String(repeating: "c", count: 64), "digest")
+
+        let legacyJSON = #"{"id":43,"tag_name":"legacy","assets":[{"id":101,"name":"seforim.db.zst","browser_download_url":"https://example.test/legacy","size":99,"digest":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}]}"#
+        let legacy = try OtzariaLibraryReleaseClient.parseLatestRelease(data: Data(legacyJSON.utf8))
+        expect(legacy.asset.name == "seforim.db.zst", "legacy asset fallback")
     }
 
     private static func testReleaseParsingFailures() throws {
@@ -43,6 +49,10 @@ enum OtzariaBootstrapPolicyHarness {
         }
         try expectThrows("malformed SHA") {
             let json = #"{"id":1,"tag_name":"v1","assets":[{"id":2,"name":"seforim.db.zst","browser_download_url":"https://example.test/db","size":10,"digest":"sha256:nope"}]}"#
+            _ = try OtzariaLibraryReleaseClient.parseLatestRelease(data: Data(json.utf8))
+        }
+        try expectThrows("missing SHA") {
+            let json = #"{"id":1,"tag_name":"v1","assets":[{"id":2,"name":"seforim-schema6.db.zst","browser_download_url":"https://example.test/db","size":10,"digest":null}]}"#
             _ = try OtzariaLibraryReleaseClient.parseLatestRelease(data: Data(json.utf8))
         }
     }

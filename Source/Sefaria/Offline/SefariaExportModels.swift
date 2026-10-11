@@ -324,9 +324,17 @@ enum SefariaOfflineRelationshipMapper {
 
         var seen = Set<String>()
         return rows.compactMap { link in
-            if let anchor = link.anchorRef,
-               !SefariaRef.sectionMatches(requested, anchor) {
-                return nil
+            if requested != SefariaRef.canonicalInput(sectionRef) {
+                let anchors: [String]
+                if let expanded = link.anchorRefExpanded, !expanded.isEmpty {
+                    anchors = expanded
+                } else {
+                    anchors = [link.anchorRef].compactMap { $0 }
+                }
+                if !anchors.isEmpty,
+                   !anchors.contains(where: { SefariaRef.anchorReference($0, contains: requested) }) {
+                    return nil
+                }
             }
             guard let reference = link.sourceRef ?? link.ref else { return nil }
             let workKey = SefariaRef.workKey(from: reference, knownTitles: Array(knownTitles))

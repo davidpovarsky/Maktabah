@@ -187,6 +187,7 @@ struct SefariaLink: Codable, Hashable, Sendable {
     let category: String?
     let type: String?
     let anchorRef: String?
+    let anchorRefExpanded: [String]?
     let sourceRef: String?
 }
 
@@ -261,5 +262,35 @@ enum SefariaRef {
         let suffix = input.dropFirst(section.count + 1)
         guard !suffix.contains(":"), let first = suffix.split(separator: "-").first else { return nil }
         return Int(first)
+    }
+
+    static func anchorReference(_ anchor: String, contains requestedRef: String) -> Bool {
+        let anchor = canonicalInput(anchor)
+        let requested = canonicalInput(requestedRef)
+        if anchor == requested { return true }
+        guard let dash = anchor.lastIndex(of: "-") else { return false }
+        let startText = String(anchor[..<dash])
+        let endText = String(anchor[anchor.index(after: dash)...])
+        guard let start = finalNumericAddress(startText),
+              let requestedAddress = finalNumericAddress(requested) else { return false }
+        let end: (prefix: String, value: Int)
+        if let value = Int(endText) {
+            end = (start.prefix, value)
+        } else if let fullEnd = finalNumericAddress(endText) {
+            end = fullEnd
+        } else {
+            return false
+        }
+        guard start.prefix == requestedAddress.prefix,
+              end.prefix == requestedAddress.prefix else { return false }
+        return requestedAddress.value >= min(start.value, end.value)
+            && requestedAddress.value <= max(start.value, end.value)
+    }
+
+    private static func finalNumericAddress(_ input: String) -> (prefix: String, value: Int)? {
+        let canonical = canonicalInput(input)
+        guard let range = canonical.range(of: #"[0-9]+$"#, options: .regularExpression),
+              let value = Int(canonical[range]) else { return nil }
+        return (String(canonical[..<range.lowerBound]), value)
     }
 }

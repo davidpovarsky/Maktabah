@@ -51,8 +51,7 @@ struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @un
                 containingLineIndex: lineIndex,
                 mode: OtzariaMaktabahBridge.shared.currentReadingUnitMode
               ),
-              let anchor = unit.lineAnchors.first(where: { $0.lineIndex == lineIndex })
-                ?? unit.lineAnchors.first else {
+              let anchor = unit.lineAnchors.first(where: { $0.lineIndex == lineIndex }) else {
             throw LibraryBackendError.invalidLocator
         }
         let sources = OtzariaMaktabahBridge.shared.getLinksForLine(anchor).map(Self.map)

@@ -10,11 +10,15 @@ final class OtzariaSQLiteBookTextRepository: OtzariaBookTextRepository {
 
     func lines(bookId: Int, startingAtLineIndex: Int, limit: Int) async throws -> [OtzariaBookLine] {
         try await database.read { db in
+            let capabilities = try OtzariaDatabaseCapabilities(database: db)
+            let content = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
+            let decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
             let statement = try OtzariaSQLiteStatement(database: db, sql: """
-                SELECT id, bookId, lineIndex, content, heRef
-                FROM line
-                WHERE bookId = ? AND lineIndex >= ?
-                ORDER BY lineIndex
+                SELECT l.id, l.bookId, l.lineIndex, \(content.expression), l.heRef
+                FROM line l
+                \(content.join)
+                WHERE l.bookId = ? AND l.lineIndex >= ?
+                ORDER BY l.lineIndex
                 LIMIT ?
             """)
             try statement.bind(bookId, at: 1)
@@ -28,7 +32,7 @@ final class OtzariaSQLiteBookTextRepository: OtzariaBookTextRepository {
                         id: statement.columnInt(0),
                         bookId: statement.columnInt(1),
                         lineIndex: statement.columnInt(2),
-                        content: statement.columnString(3) ?? "",
+                        content: try decoder.decode(statement: statement, at: 3),
                         heRef: statement.columnString(4)
                     )
                 )

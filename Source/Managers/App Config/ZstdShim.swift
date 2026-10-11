@@ -27,6 +27,9 @@ struct ZSTD_outBuffer {
 @_silgen_name("ZSTD_getFrameContentSize")
 func ZSTD_getFrameContentSize(_ src: UnsafeRawPointer?, _ srcSize: Int) -> UInt64
 
+@_silgen_name("ZSTD_getDictID_fromFrame")
+func ZSTD_getDictID_fromFrame(_ src: UnsafeRawPointer?, _ srcSize: Int) -> UInt32
+
 @_silgen_name("ZSTD_decompress")
 func ZSTD_decompress(
     _ dst: UnsafeMutableRawPointer?,
@@ -95,4 +98,23 @@ func ZSTD_decompressDCtx(
     _ dstCapacity: Int,
     _ src: UnsafeRawPointer?,
     _ srcSize: Int
+) -> Int
+
+@_silgen_name("ZSTD_createDDict")
+func ZSTD_createDDict(_ dictionary: UnsafeRawPointer?, _ dictionarySize: Int) -> OpaquePointer?
+
+@_silgen_name("ZSTD_freeDDict") @discardableResult
+func ZSTD_freeDDict(_ dictionary: OpaquePointer?) -> Int
+
+@_silgen_name("ZSTD_getDictID_fromDDict")
+func ZSTD_getDictID_fromDDict(_ dictionary: OpaquePointer?) -> UInt32
+
+@_silgen_name("ZSTD_decompress_usingDDict")
+func ZSTD_decompress_usingDDict(
+    _ context: OpaquePointer?,
+    _ destination: UnsafeMutableRawPointer?,
+    _ destinationCapacity: Int,
+    _ source: UnsafeRawPointer?,
+    _ sourceSize: Int,
+    _ dictionary: OpaquePointer?
 ) -> Int

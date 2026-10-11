@@ -62,6 +62,11 @@ final class OtzariaSQLiteStatement {
         return String(cString: UnsafeRawPointer(pointer).assumingMemoryBound(to: CChar.self))
     }
 
+    func columnData(_ index: Int32) -> Data? {
+        guard let pointer = sqlite3_column_blob(statement, index) else { return nil }
+        return Data(bytes: pointer, count: Int(sqlite3_column_bytes(statement, index)))
+    }
+
     func columnType(_ index: Int32) -> Int32 {
         sqlite3_column_type(statement, index)
     }

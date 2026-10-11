@@ -51,7 +51,22 @@ enum OtzariaStorageErrorNormalizer {
 
 struct OtzariaLibraryRelease: Codable, Equatable, Sendable {
     static let repository = "Otzaria/SeforimLibrary"
+    /// Compatibility name used by older releases and existing test profiles.
     static let databaseAssetName = "seforim.db.zst"
+
+    static func schemaVersion(inAssetName name: String) -> Int? {
+        let prefix = "seforim-schema"
+        let suffix = ".db.zst"
+        guard name.hasPrefix(prefix), name.hasSuffix(suffix) else { return nil }
+        let start = name.index(name.startIndex, offsetBy: prefix.count)
+        let end = name.index(name.endIndex, offsetBy: -suffix.count)
+        guard start < end else { return nil }
+        return Int(name[start..<end])
+    }
+
+    static func isProductionDatabaseAssetName(_ name: String) -> Bool {
+        name == databaseAssetName || schemaVersion(inAssetName: name) != nil
+    }
 
     let id: Int64
     let tag: String
@@ -229,7 +244,7 @@ enum OtzariaDatabaseBootstrapError: LocalizedError, Sendable {
         case .releaseLookupFailed(let message):
             return "Could not connect to the Otzaria library release: \(message)"
         case .databaseAssetMissing:
-            return "The latest Otzaria release does not contain seforim.db.zst."
+            return "The latest Otzaria release does not contain a supported seforim database asset."
         case .invalidAssetMetadata(let message):
             return "The Otzaria release metadata is invalid: \(message)"
         case .insufficientDiskSpace(let required, let available):

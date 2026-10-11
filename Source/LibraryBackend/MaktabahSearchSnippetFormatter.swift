@@ -77,6 +77,9 @@ public enum MaktabahSearchSnippetFormatter {
     
     public static func attributes(isBold: Bool, isItalic: Bool) -> [NSAttributedString.Key: Any] {
         var attrs: [NSAttributedString.Key: Any] = [:]
+        if isBold || isItalic {
+            attrs[NSAttributedString.Key("MaktabahSearchHighlight")] = true
+        }
         if isBold {
             attrs[NSAttributedString.Key("NSBold")] = true
         }
@@ -84,6 +87,7 @@ public enum MaktabahSearchSnippetFormatter {
             attrs[NSAttributedString.Key("NSItalic")] = true
         }
         #if canImport(UIKit)
+        if isBold || isItalic { attrs[.foregroundColor] = UIColor.systemRed }
         var traits: UIFontDescriptor.SymbolicTraits = []
         if isBold { traits.insert(.traitBold) }
         if isItalic { traits.insert(.traitItalic) }
@@ -96,6 +100,7 @@ public enum MaktabahSearchSnippetFormatter {
             }
         }
         #elseif canImport(AppKit)
+        if isBold || isItalic { attrs[.foregroundColor] = NSColor.systemRed }
         if isBold {
             attrs[.font] = NSFont.boldSystemFont(ofSize: 15)
         }

@@ -30,7 +30,7 @@ final class SefariaBackend {
         self.packages = packages
         self.navigation = navigation
         self.relationships = SefariaHybridRelationshipsStore(offline: offline, remote: remote)
-        self.catalog = SefariaHybridCatalogStore(remote: remote, packages: packages)
+        self.catalog = SefariaHybridCatalogStore(remote: remote, packages: packages, offline: offline)
         self.hybrid = SefariaHybridStore(offline: offline, remote: remote, navigation: navigation)
     }
 

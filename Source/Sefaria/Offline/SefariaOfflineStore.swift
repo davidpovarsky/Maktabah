@@ -50,13 +50,18 @@ actor SefariaOfflineStore: LibraryTextProviding {
         return try loadAllMetadata(title: workKey, from: directory)
     }
 
-    func relatedSources(at locator: TextLocator) throws -> [LibraryRelatedSource]? {
+    enum RelationshipAvailability: Sendable {
+        case missing
+        case available([LibraryRelatedSource])
+    }
+
+    func relationshipAvailability(at locator: TextLocator) throws -> RelationshipAvailability {
         guard locator.backend == .sefaria, case .canonicalRef(let requestedRef) = locator.position else {
             throw LibraryBackendError.invalidLocator
         }
         let directory = try expandedBook(title: locator.workKey)
         let metadata = try findMetadata(for: requestedRef, title: locator.workKey, in: directory)
-        guard let links = metadata.links else { return nil }
+        guard let links = metadata.links else { return .missing }
         let knownTitles = Set(try loadAllMetadata(title: locator.workKey, from: directory).map(\.indexTitle))
             .union([locator.workKey])
         let sources = SefariaOfflineRelationshipMapper.sources(
@@ -65,7 +70,7 @@ actor SefariaOfflineStore: LibraryTextProviding {
             sectionRef: metadata.sectionRef,
             knownTitles: knownTitles
         )
-        return sources.isEmpty ? nil : sources
+        return .available(sources)
     }
 
     func clearTransientState() {

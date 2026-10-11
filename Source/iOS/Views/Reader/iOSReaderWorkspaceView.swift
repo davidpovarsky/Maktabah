@@ -73,7 +73,6 @@ struct iOSReaderWorkspaceView: View {
     private static let minimumPanelWidth: CGFloat = 300
     private static let maximumPanelWidth: CGFloat = 520
     private static let defaultPanelWidth: CGFloat = 390
-    private static let contentTopInset: CGFloat = 38
 
     let book: BooksData
     let viewModel: ReaderViewModel
@@ -100,6 +99,7 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorSession: MaktabahTorahInspectorSession
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
+    @State private var noteErrorMessage: String?
 
     init(
         book: BooksData,
@@ -222,6 +222,17 @@ struct iOSReaderWorkspaceView: View {
         .sheet(isPresented: $showPanelSheet, onDismiss: compactPanelDidDismiss) {
             compactStudyPanel
         }
+        .alert(
+            String(localized: "Cannot Add Note"),
+            isPresented: Binding(
+                get: { noteErrorMessage != nil },
+                set: { if !$0 { noteErrorMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) { noteErrorMessage = nil }
+        } message: {
+            Text(noteErrorMessage ?? "")
+        }
     }
 
     private var splitWorkspace: some View {
@@ -245,6 +256,7 @@ struct iOSReaderWorkspaceView: View {
             embedsNavigationStack: false,
             onSelect: selectTOCNode
         )
+        .toolbar(removing: .sidebarToggle)
     }
 
     @ViewBuilder
@@ -273,16 +285,6 @@ struct iOSReaderWorkspaceView: View {
             onShowTableOfContents: openContents
         )
         .toolbar {
-            if !contentsIsOpen {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: openContents) {
-                        ContentsToggleIcon(isOpen: false)
-                    }
-                    .accessibilityLabel(String(localized: "Open Table of Contents"))
-                    .help(String(localized: "Open Table of Contents"))
-                }
-            }
-
             ToolbarItem(placement: .principal) {
                 VStack(spacing: 1) {
                     Text(readerHeaderTitle)
@@ -299,7 +301,6 @@ struct iOSReaderWorkspaceView: View {
                 Button(action: toggleStudyPanel) {
                     PanelToggleIcon(isOpen: showPanel)
                 }
-                .disabled(viewModel.selectedSegmentLocator == nil && !showPanel)
                 .accessibilityLabel(showPanel ? Text("Close Study Tools") : Text("Open Study Tools"))
                 .help(showPanel ? Text("Close Study Tools") : Text("Open Study Tools"))
             }
@@ -309,8 +310,7 @@ struct iOSReaderWorkspaceView: View {
     private var floatingWorkspace: some View {
         readerSurface
             .floatingPanel { _ in
-                inspectorPanel(showsCloseButton: true)
-                    .padding(.top, Self.contentTopInset)
+                inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
             }
             .floatingPanelState($floatingPanelState)
             .floatingPanelLayout(StudyContentFloatingPanelLayout())
@@ -333,15 +333,10 @@ struct iOSReaderWorkspaceView: View {
             if showPanel {
                 panelResizeHandle(allowedMaximum: allowedMaximum)
                     .transition(.opacity)
-                inspectorPanel(showsCloseButton: true)
+                inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
                     .environment(\.layoutDirection, layoutDirection)
                     .frame(width: actualPanelWidth)
-                    .scaleEffect(0.999)
-                    .transition(
-                        .offset(x: 24, y: -12)
-                            .combined(with: .scale(scale: 0.94))
-                            .combined(with: .opacity)
-                    )
+                    .transition(.opacity)
                     .clipped()
                     .allowsHitTesting(showPanel)
             }
@@ -381,13 +376,17 @@ struct iOSReaderWorkspaceView: View {
             .accessibilityHint(String(localized: "Drag to resize. Double-tap to reset."))
     }
 
-    private func inspectorPanel(showsCloseButton: Bool) -> some View {
+    private func inspectorPanel(
+        showsCloseButton: Bool,
+        chrome: TorahInspectorChrome
+    ) -> some View {
         OtzariaReaderSourcesInspectorHost(
             viewModel: viewModel,
             navigationManager: navigationManager,
             inspectorSession: $inspectorSession,
             selectedTool: $selectedTool,
             showsCloseButton: showsCloseButton,
+            chrome: chrome,
             onAddNote: { selection, _ in
                 addNote(for: selection)
             },
@@ -405,17 +404,7 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var compactStudyPanel: some View {
-        NavigationStack {
-            inspectorPanel(showsCloseButton: false)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button(String(localized: "Close")) {
-                            viewModel.closeReaderInspector()
-                            showPanelSheet = false
-                        }
-                    }
-                }
-        }
+        inspectorPanel(showsCloseButton: true, chrome: .embeddedSheet)
         .presentationDetents([.medium, .large], selection: $compactPanelDetent)
         .presentationDragIndicator(.visible)
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
@@ -428,7 +417,15 @@ struct iOSReaderWorkspaceView: View {
                 annotation: editingAnnotation,
                 onSave: { updated in
                     defer { finishEditingAnnotation() }
-                    try? viewModel.updateAnnotation(updated)
+                    do {
+                        if updated.id == nil {
+                            try viewModel.persistNewAnnotation(updated)
+                        } else {
+                            try viewModel.updateAnnotation(updated)
+                        }
+                    } catch {
+                        noteErrorMessage = error.localizedDescription
+                    }
                 },
                 onDelete: { id in
                     defer { finishEditingAnnotation() }
@@ -505,7 +502,7 @@ struct iOSReaderWorkspaceView: View {
     private func toggleStudyPanel() {
         if showPanel {
             viewModel.closeReaderInspector()
-        } else if viewModel.selectedSegmentLocator != nil {
+        } else {
             viewModel.readerInspectorVisible = true
         }
     }
@@ -557,20 +554,21 @@ struct iOSReaderWorkspaceView: View {
     ) {
         guard let selectedRange = viewModel.selectedSegmentRange,
               selectedRange.location != NSNotFound,
-              NSMaxRange(selectedRange) <= (viewModel.contentText as NSString).length else { return }
-        let selectedText = (viewModel.contentText as NSString).substring(with: selectedRange)
-        do {
-            try viewModel.addAnnotation(
-                in: selectedRange,
-                mode: .highlight,
-                sourceText: selectedText,
-                color: UIColor(named: "HighlightText") ?? .systemYellow
-            )
-            guard let annotation = viewModel.findBestAnnotation(for: selectedRange) else { return }
-            editingAnnotation = annotation
-        } catch {
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
+              NSMaxRange(selectedRange) <= (viewModel.contentText as NSString).length else {
+            noteErrorMessage = String(localized: "Select text in the reader before adding a note.")
+            return
         }
+        let selectedText = (viewModel.contentText as NSString).substring(with: selectedRange)
+        guard let draft = viewModel.makeAnnotationDraft(
+            in: selectedRange,
+            mode: .highlight,
+            sourceText: selectedText,
+            color: UIColor(named: "HighlightText") ?? .systemYellow
+        ) else {
+            noteErrorMessage = String(localized: "This text cannot be annotated right now.")
+            return
+        }
+        editingAnnotation = draft
         _ = selection
     }
 

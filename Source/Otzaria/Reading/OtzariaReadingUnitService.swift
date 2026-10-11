@@ -36,6 +36,8 @@ final class OtzariaReadingUnitService {
     private let db: SQLiteDatabase
     private var indexCache: [Int: BookIndex] = [:]
     private var summariesCache: [String: [UnitSummary]] = [:]
+    private var contentCapabilities: OtzariaDatabaseCapabilities?
+    private var contentDecoder: OtzariaLineContentDecoder?
 
     init(database: SQLiteDatabase) {
         self.db = database
@@ -312,6 +314,7 @@ final class OtzariaReadingUnitService {
     private func sourceLines(for summary: UnitSummary) throws -> [SourceLine] {
         let start = Date()
         let lines: [SourceLine]
+        let access = try lineContentAccess()
 
         if let tocEntryId = summary.tocEntryId {
             let entryIds: [Int]
@@ -324,11 +327,14 @@ final class OtzariaReadingUnitService {
             lines = try sourceLines(bookId: summary.bookId, tocEntryIds: entryIds)
         } else {
             lines = try db.fetch(query: """
-                SELECT id, lineIndex, content, heRef
-                FROM line
-                WHERE bookId = ? AND lineIndex = ?
+                SELECT l.id, l.lineIndex, \(access.projection.expression), l.heRef
+                FROM line l
+                \(access.projection.join)
+                WHERE l.bookId = ? AND l.lineIndex = ?
                 LIMIT 1
-            """, parameters: [summary.bookId, summary.startLineIndex], mapping: mapSourceLine)
+            """, parameters: [summary.bookId, summary.startLineIndex]) { row in
+                try mapSourceLine(row, decoder: access.decoder)
+            }
         }
 
         log("sourceLines bookId=\(summary.bookId) tocEntryId=\(summary.tocEntryId.map(String.init) ?? "nil") start=\(summary.startLineIndex) count=\(lines.count) durationMs=\(elapsedMs(start))")
@@ -338,6 +344,7 @@ final class OtzariaReadingUnitService {
     private func sourceLines(bookId: Int, tocEntryIds: [Int]) throws -> [SourceLine] {
         guard !tocEntryIds.isEmpty else { return [] }
         var allLines: [SourceLine] = []
+        let access = try lineContentAccess()
 
         for chunkStart in stride(from: 0, to: tocEntryIds.count, by: 900) {
             let chunk = Array(tocEntryIds[chunkStart..<min(chunkStart + 900, tocEntryIds.count)])
@@ -346,13 +353,16 @@ final class OtzariaReadingUnitService {
             parameters.append(contentsOf: chunk)
 
             let lines = try db.fetch(query: """
-                SELECT DISTINCT l.id, l.lineIndex, l.content, l.heRef
+                SELECT DISTINCT l.id, l.lineIndex, \(access.projection.expression), l.heRef
                 FROM line_toc lt
                 JOIN line l ON l.id = lt.lineId
+                \(access.projection.join)
                 WHERE l.bookId = ?
                 AND lt.tocEntryId IN (\(placeholders))
                 ORDER BY l.lineIndex
-            """, parameters: parameters, mapping: mapSourceLine)
+            """, parameters: parameters) { row in
+                try mapSourceLine(row, decoder: access.decoder)
+            }
             allLines.append(contentsOf: lines)
         }
 
@@ -361,8 +371,37 @@ final class OtzariaReadingUnitService {
             .sorted { $0.lineIndex < $1.lineIndex }
     }
 
-    private func mapSourceLine(_ row: SQLiteRow) -> SourceLine {
-        SourceLine(id: row.int(at: 0), lineIndex: row.int(at: 1), html: row.string(at: 2) ?? "", heRef: row.string(at: 3))
+    private func mapSourceLine(_ row: SQLiteRow, decoder: OtzariaLineContentDecoder) throws -> SourceLine {
+        SourceLine(
+            id: row.int(at: 0),
+            lineIndex: row.int(at: 1),
+            html: try decoder.decode(row: row, at: 2),
+            heRef: row.string(at: 3)
+        )
+    }
+
+    private func lineContentAccess() throws -> (
+        projection: OtzariaLineContentProjection,
+        decoder: OtzariaLineContentDecoder
+    ) {
+        let capabilities: OtzariaDatabaseCapabilities
+        if let cached = contentCapabilities {
+            capabilities = cached
+        } else {
+            capabilities = try OtzariaDatabaseCapabilities(database: db)
+            contentCapabilities = capabilities
+        }
+        let decoder: OtzariaLineContentDecoder
+        if let cached = contentDecoder {
+            decoder = cached
+        } else {
+            decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
+            contentDecoder = decoder
+        }
+        return (
+            OtzariaLineContentCompatibility.projection(capabilities: capabilities),
+            decoder
+        )
     }
 
     private func bookIndex(bookId: Int) throws -> BookIndex {

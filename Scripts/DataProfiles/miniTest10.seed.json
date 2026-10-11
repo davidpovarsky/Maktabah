@@ -1,16 +1,16 @@
 {
   "profileID": "miniTest10",
-  "profileVersion": 4,
+  "profileVersion": 5,
   "source": {
     "repository": "Otzaria/SeforimLibrary",
-    "releaseTag": "v23-20260829032606",
-    "releaseID": 378882475,
-    "assetID": 534804935,
-    "assetName": "seforim.db.zst",
-    "assetBytes": 1373487294,
-    "assetSHA256": "c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662",
-    "databaseBytes": 7657865216,
-    "databaseSHA256": "7e2cff76086f07c85ee30470948b458d99ddb36b84dae5c4e5b57ad5f2562501"
+    "releaseTag": "v32-20261010190601",
+    "releaseID": 409213893,
+    "assetID": 629048655,
+    "assetName": "seforim-schema6.db.zst",
+    "assetBytes": 1850679582,
+    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
+    "databaseBytes": 3821240320,
+    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
   },
   "bookIDs": [1, 28, 40, 103, 382, 3152, 3163, 3276, 3764, 3891],
   "goldenQueries": [

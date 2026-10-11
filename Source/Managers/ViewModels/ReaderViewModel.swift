@@ -1069,6 +1069,39 @@ class ReaderViewModel: ViewModelBase {
         loadAnnotations()
     }
 
+    func makeAnnotationDraft(
+        in range: NSRange,
+        mode: AnnotationMode,
+        sourceText: String,
+        color: PlatformColor
+    ) -> Annotation? {
+        guard let book = currentBook else { return nil }
+        let locator = backendRenderModel?.renderedSegment(at: range.location)?.locator
+            ?? annotationLocator(for: book)
+        if let locator {
+            LegacyIdentityRegistry.shared.register(title: book.book, for: locator)
+        }
+        return annotationCoordinator.makeAnnotation(
+            text: sourceText,
+            range: range,
+            color: color,
+            bkId: book.id,
+            contentId: currentContentId,
+            page: currentPage ?? 0,
+            part: currentPart ?? 0,
+            diacriticsText: diacriticsText,
+            showHarakat: showHarakat,
+            mode: mode,
+            backendLocator: locator
+        )
+    }
+
+    func persistNewAnnotation(_ annotation: Annotation) throws {
+        precondition(annotation.id == nil, "Only unsaved annotation drafts may be inserted")
+        _ = try annotationManager.addAnnotation(annotation)
+        loadAnnotations()
+    }
+
     private func annotationLocator(for book: BooksData) -> TextLocator? {
         if let locator = backendSection?.locator ?? book.backendLocator { return locator }
         return TextLocator(

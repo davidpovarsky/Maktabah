@@ -13,6 +13,13 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
             let categories = try Self.categoryMap(in: db)
             let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
             let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
+            let capabilities = try OtzariaDatabaseCapabilities(database: db)
+            let content = OtzariaLineContentCompatibility.projection(
+                capabilities: capabilities,
+                lineAlias: "ln",
+                contentAlias: "linked_content"
+            )
+            let decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
             let statement = try OtzariaSQLiteStatement(database: db, sql: """
                 WITH resolved AS (
                     SELECT
@@ -35,9 +42,10 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
                     b.categoryId AS linkedCategoryId,
                     b.orderIndex AS linkedBookOrderIndex,
                     ln.heRef,
-                    ln.content
+                    \(content.expression)
                 FROM resolved r
                 JOIN line ln ON ln.id = r.linkedLineId
+                \(content.join)
                 JOIN book b ON b.id = r.linkedBookId
                 GROUP BY r.connectionType, r.linkedLineId, r.linkedBookId
                 ORDER BY
@@ -75,7 +83,7 @@ final class OtzariaSQLiteSourceRepository: OtzariaSourceRepository {
                         linkedCategoryPath: resolver.path(for: linkedCategoryId),
                         linkedBookOrderIndex: statement.columnType(8) == SQLITE_NULL ? nil : statement.columnInt(8),
                         heRef: statement.columnString(9),
-                        content: statement.columnString(10) ?? ""
+                        content: try decoder.decode(statement: statement, at: 10)
                     )
                 )
             }

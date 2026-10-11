@@ -36,21 +36,7 @@ struct SearchResultsListView: View {
                         Button("Search in book", systemImage: "magnifyingglass") { onSearchInBook(item) }
                     }
                 } preview: {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(item.bookTitle).font(.headline)
-                        let loc = SearchResultRow.locationText(for: item)
-                        if !loc.isEmpty {
-                            Text(loc).font(.caption).foregroundStyle(.secondary)
-                        }
-                        if !item.attributedText.string.isEmpty {
-                            let hebrewBackend = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
-                            Text(AttributedString(item.attributedText))
-                                .font(hebrewBackend ? .body : ReaderViewModel.kfgqpc)
-                                .multilineTextAlignment(.leading)
-                        }
-                    }
-                    .padding()
-                    .frame(width: 360, alignment: .leading)
+                    SearchResultContextPreview(item: item)
                 }
                 .onAppear {
                     if index >= max(0, results.count - 10), hasMore, !isLoadingMore {
@@ -69,6 +55,78 @@ struct SearchResultsListView: View {
             }
         }
         .listStyle(.plain)
+    }
+}
+
+private struct SearchResultContextPreview: View {
+    let item: SearchResultItem
+    @State private var fullText: String?
+    @State private var previewError: String?
+    @State private var isLoading = false
+    @State private var retryToken = 0
+
+    private var isHebrewBackend: Bool {
+        item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+    }
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(item.bookTitle).font(.headline)
+                let location = SearchResultRow.locationText(for: item)
+                if !location.isEmpty {
+                    Text(location).font(.caption).foregroundStyle(.secondary)
+                }
+                if let fullText, !fullText.isEmpty {
+                    Text(fullText)
+                        .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
+                        .multilineTextAlignment(.leading)
+                        .textSelection(.enabled)
+                } else if isLoading {
+                    ProgressView("Loading full text…")
+                        .frame(maxWidth: .infinity, minHeight: 160)
+                } else if let previewError {
+                    ContentUnavailableView {
+                        Label("Full Text Unavailable", systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text(previewError)
+                    } actions: {
+                        Button("Retry") { retryToken += 1 }
+                    }
+                } else if !item.attributedText.string.isEmpty {
+                    Text(AttributedString(item.attributedText))
+                        .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
+                        .multilineTextAlignment(.leading)
+                } else {
+                    ProgressView()
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .frame(minWidth: 420, idealWidth: 520, maxWidth: 600, minHeight: 240, idealHeight: 520)
+        .task(id: "\(item.backendLocator?.persistenceKey ?? "local"):\(retryToken)") {
+            guard let locator = item.backendLocator else { return }
+            isLoading = true
+            previewError = nil
+            do {
+                let section = try await BackendCoordinator.shared.section(at: locator)
+                try Task.checkCancellation()
+                fullText = section.segments.compactMap { segment in
+                    let primary = segment.primaryText?.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let translation = segment.translation?.trimmingCharacters(in: .whitespacesAndNewlines)
+                    return [primary, translation].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: "\n")
+                }.filter { !$0.isEmpty }.joined(separator: "\n\n")
+                if fullText?.isEmpty != false {
+                    previewError = String(localized: "The full text for this result is empty.")
+                }
+            } catch is CancellationError {
+                return
+            } catch {
+                previewError = error.localizedDescription
+            }
+            isLoading = false
+        }
     }
 }
 

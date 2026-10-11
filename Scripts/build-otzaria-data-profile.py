@@ -34,6 +34,12 @@ class MiniDatabaseBuilder:
         self.source.row_factory = sqlite3.Row
         self.output = sqlite3.connect(output)
         self.output.execute("PRAGMA foreign_keys=OFF")
+        self.source_tables = {
+            str(row[0])
+            for row in self.source.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"
+            )
+        }
 
     def close(self) -> None:
         self.source.close()
@@ -42,7 +48,7 @@ class MiniDatabaseBuilder:
     def scalar_set(self, query: str, parameters: Sequence[object] = ()) -> set[int]:
         return {int(row[0]) for row in self.source.execute(query, parameters)}
 
-    def resolve_book_closure(self) -> tuple[int, ...]:
+    def resolve_books(self) -> tuple[int, ...]:
         selected = set(self.requested_books)
         missing = selected - self.scalar_set(
             f"SELECT id FROM book WHERE id IN ({placeholders(self.requested_books)})",
@@ -50,23 +56,9 @@ class MiniDatabaseBuilder:
         )
         if missing:
             raise RuntimeError(f"requested book IDs do not exist: {sorted(missing)}")
-
-        while True:
-            current = tuple(sorted(selected))
-            dependencies = self.scalar_set(
-                f"""
-                SELECT baseBookId FROM book_base_text WHERE bookId IN ({placeholders(current)})
-                UNION
-                SELECT bookId FROM default_commentator WHERE commentatorBookId IN ({placeholders(current)})
-                UNION
-                SELECT bookId FROM default_targum WHERE targumBookId IN ({placeholders(current)})
-                """,
-                current + current + current,
-            )
-            expanded = selected | dependencies
-            if expanded == selected:
-                return tuple(sorted(selected))
-            selected = expanded
+        if len(selected) != 10:
+            raise RuntimeError(f"miniTest10 requires exactly 10 unique books, got {len(selected)}")
+        return tuple(sorted(selected))
 
     def create_tables(self) -> None:
         rows = self.source.execute(
@@ -83,7 +75,11 @@ class MiniDatabaseBuilder:
             self.output.execute(row["sql"])
 
     def copy(self, table: str, where: str = "1", parameters: Sequence[object] = ()) -> int:
+        if table not in self.source_tables:
+            return 0
         columns = [row[1] for row in self.source.execute(f'PRAGMA table_info("{table}")')]
+        if not columns:
+            return 0
         quoted = ",".join(f'"{column}"' for column in columns)
         insert = f'INSERT INTO "{table}" ({quoted}) VALUES ({placeholders(columns)})'
         cursor = self.source.execute(f'SELECT {quoted} FROM "{table}" WHERE {where}', parameters)
@@ -94,12 +90,13 @@ class MiniDatabaseBuilder:
         return count
 
     def build(self) -> dict[str, object]:
-        books = self.resolve_book_closure()
+        books = self.resolve_books()
         book_in = placeholders(books)
         self.create_tables()
         counts: dict[str, int] = {}
 
         counts["schema_meta"] = self.copy("schema_meta")
+        counts["db_meta"] = self.copy("db_meta")
         counts["book"] = self.copy("book", f"id IN ({book_in})", books)
 
         category_ids = self.scalar_set(
@@ -123,9 +120,14 @@ class MiniDatabaseBuilder:
         counts["source"] = self.copy(
             "source", f"id IN (SELECT sourceId FROM book WHERE id IN ({book_in}))", books
         )
-        for table in ("book_acronym", "book_author", "book_base_text", "book_generation",
+        for table in ("book_acronym", "book_author", "book_generation",
                       "book_has_links", "book_pub_date", "book_pub_place", "book_topic"):
             counts[table] = self.copy(table, f"bookId IN ({book_in})", books)
+        counts["book_base_text"] = self.copy(
+            "book_base_text",
+            f"bookId IN ({book_in}) AND baseBookId IN ({book_in})",
+            books + books,
+        )
 
         counts["author"] = self.copy(
             "author", f"id IN (SELECT authorId FROM book_author WHERE bookId IN ({book_in}))", books
@@ -145,6 +147,14 @@ class MiniDatabaseBuilder:
         counts["book_version"] = self.copy("book_version", f"bookId IN ({book_in})", books)
 
         counts["line"] = self.copy("line", f"bookId IN ({book_in})", books)
+        counts["line_content"] = self.copy(
+            "line_content", f"id IN (SELECT id FROM line WHERE bookId IN ({book_in}))", books
+        )
+        counts["line_ref"] = self.copy("line_ref", f"bookId IN ({book_in})", books)
+        counts["line_dh"] = self.copy("line_dh", f"bookId IN ({book_in})", books)
+        # Dictionary IDs are encoded in zstd frames. Keeping every small dictionary
+        # makes the subset independently decodable without guessing which IDs occur.
+        counts["zstd_dict"] = self.copy("zstd_dict")
         counts["tocEntry"] = self.copy("tocEntry", f"bookId IN ({book_in})", books)
         counts["alt_toc_structure"] = self.copy(
             "alt_toc_structure", f"bookId IN ({book_in})", books
@@ -181,7 +191,7 @@ class MiniDatabaseBuilder:
         if link_values:
             link_in = placeholders(link_values)
             counts["link"] = self.copy("link", f"id IN ({link_in})", link_values)
-            for table in ("link_anchor", "link_coverage", "link_range"):
+            for table in ("link_anchor", "link_coverage", "link_range", "link_suppressed_side"):
                 counts[table] = self.copy(table, f"linkId IN ({link_in})", link_values)
             counts["connection_type"] = self.copy(
                 "connection_type",
@@ -189,7 +199,10 @@ class MiniDatabaseBuilder:
                 link_values,
             )
         else:
-            for table in ("link", "link_anchor", "link_coverage", "link_range", "connection_type"):
+            for table in (
+                "link", "link_anchor", "link_coverage", "link_range",
+                "link_suppressed_side", "connection_type",
+            ):
                 counts[table] = 0
 
         counts["default_commentator"] = self.copy(
@@ -211,6 +224,10 @@ class MiniDatabaseBuilder:
 
         self.output.commit()
         self.recreate_indexes_and_fts()
+        source_user_version = int(self.source.execute("PRAGMA user_version").fetchone()[0])
+        source_application_id = int(self.source.execute("PRAGMA application_id").fetchone()[0])
+        self.output.execute(f"PRAGMA user_version={source_user_version}")
+        self.output.execute(f"PRAGMA application_id={source_application_id}")
         self.output.execute("PRAGMA foreign_keys=ON")
         foreign_key_errors = self.output.execute("PRAGMA foreign_key_check").fetchall()
         if foreign_key_errors:
@@ -224,7 +241,18 @@ class MiniDatabaseBuilder:
         self.output.execute("VACUUM")
         self.output.execute("PRAGMA optimize")
         self.output.commit()
-        return {"bookIDs": list(books), "counts": counts, "integrityCheck": integrity}
+        if len(actual_books) != 10:
+            raise RuntimeError(f"miniTest10 must contain exactly 10 books, got {len(actual_books)}")
+        return {
+            "bookIDs": list(books),
+            "counts": counts,
+            "integrityCheck": integrity,
+            "schema": {
+                "userVersion": source_user_version,
+                "applicationID": source_application_id,
+                "tables": sorted(self.source_tables),
+            },
+        }
 
     def recreate_indexes_and_fts(self) -> None:
         rows = self.source.execute(

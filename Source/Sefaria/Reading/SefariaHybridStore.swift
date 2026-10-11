@@ -79,7 +79,10 @@ actor SefariaHybridRelationshipsStore: LibraryRelationshipsProviding {
         let installed = await offline.contains(workKey: locator.workKey)
         if installed {
             do {
-                if let local = try await offline.relatedSources(at: locator) { return local }
+                switch try await offline.relationshipAvailability(at: locator) {
+                case .available(let local): return local
+                case .missing: break
+                }
             } catch LibraryBackendError.unavailableOffline {
                 // The requested linked work may not belong to this local archive.
             }

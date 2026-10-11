@@ -93,6 +93,40 @@ class AnnotationCoordinator {
         mode: AnnotationMode = .highlight,
         backendLocator: TextLocator? = nil
     ) throws -> Annotation {
+        var ann = makeAnnotation(
+            text: text,
+            range: range,
+            color: color,
+            bkId: bkId,
+            contentId: contentId,
+            page: page,
+            part: part,
+            diacriticsText: diacriticsText,
+            showHarakat: showHarakat,
+            mode: mode,
+            backendLocator: backendLocator
+        )
+
+        ann.id = try manager.addAnnotation(ann)
+        if let id = ann.id, let saved = manager.loadAnnotationById(id) {
+            return saved
+        }
+        return ann
+    }
+
+    func makeAnnotation(
+        text: String,
+        range: NSRange,
+        color: PlatformColor,
+        bkId: Int,
+        contentId: Int,
+        page: Int,
+        part: Int,
+        diacriticsText: String?,
+        showHarakat: Bool,
+        mode: AnnotationMode = .highlight,
+        backendLocator: TextLocator? = nil
+    ) -> Annotation {
         let calculator = ArabicRangeCalculator()
         let ranges = calculator.calculateRanges(
             for: range,
@@ -104,7 +138,7 @@ class AnnotationCoordinator {
 
         let hex = color.hexString()
 
-        var ann = Annotation(
+        return Annotation(
             id: nil,
             bkId: bkId,
             contentId: contentId,
@@ -121,12 +155,6 @@ class AnnotationCoordinator {
             partArb: String(part).convertToArabicDigits(),
             backendLocator: backendLocator
         )
-
-        ann.id = try manager.addAnnotation(ann)
-        if let id = ann.id, let saved = manager.loadAnnotationById(id) {
-            return saved
-        }
-        return ann
     }
 
     // Similar methods for underline, note, delete...

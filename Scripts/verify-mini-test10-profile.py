@@ -32,7 +32,7 @@ def main() -> None:
     profile = json.loads(args.profile.read_text(encoding="utf-8"))
     db_hash = sha256(args.database)
     archive_hash = sha256(args.archive)
-    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] in (3, 4)
+    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] == 5
     assert profile["sharedLexicalDatabase"] == {
         "bytes": 57122816,
         "releaseTag": "v0.3.0",
@@ -47,16 +47,23 @@ def main() -> None:
     with sqlite3.connect(args.database) as database:
         books = [row[0] for row in database.execute("SELECT id FROM book ORDER BY id")]
         lines = database.execute("SELECT COUNT(*) FROM line").fetchone()[0]
+        line_content = database.execute("SELECT COUNT(*) FROM line_content").fetchone()[0]
         links = database.execute("SELECT COUNT(*) FROM link").fetchone()[0]
+        link_coverage = database.execute("SELECT COUNT(*) FROM link_coverage").fetchone()[0]
+        suppressed_sides = database.execute("SELECT COUNT(*) FROM link_suppressed_side").fetchone()[0]
+        dictionaries = database.execute("SELECT COUNT(*) FROM zstd_dict").fetchone()[0]
+        schema_meta = dict(database.execute("SELECT key, value FROM schema_meta"))
         foreign_keys = database.execute("PRAGMA foreign_key_check").fetchall()
         integrity = database.execute("PRAGMA integrity_check").fetchone()[0]
     assert books == EXPECTED_BOOKS
-    assert lines == 18195 and links == 4834
+    assert lines == 18879 and line_content == lines and links == 4851
+    assert link_coverage == 1608 and suppressed_sides == 526 and dictionaries == 1
+    assert schema_meta.get("db_schema_version") == "6" and schema_meta.get("db_version") == "32"
     assert not foreign_keys and integrity == "ok"
 
     if args.otzaria_manifest:
         manifest = json.loads(args.otzaria_manifest.read_text())
-        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] in (3, 4)
+        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 5
         assert manifest["sourceDatabase"]["databaseSHA256"] == db_hash
         assert manifest["sourceDatabase"]["databaseBytes"] == args.database.stat().st_size
         assert manifest["sourceDatabase"]["bookCount"] == 10
@@ -72,7 +79,7 @@ def main() -> None:
         assert lexical["sha256"] == profile["sharedLexicalDatabase"]["sha256"]
     if args.zayit_manifest:
         manifest = json.loads(args.zayit_manifest.read_text())
-        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] in (3, 4)
+        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 5
         assert manifest["requiredDatabase"]["canonicalSHA256"] == db_hash
         assert manifest["requiredDatabase"]["compressedAssetSHA256"] == archive_hash
         assert manifest["requiredDatabase"]["bytes"] == args.database.stat().st_size
@@ -90,7 +97,11 @@ def main() -> None:
         "compressedSHA256": archive_hash,
         "bookIDs": EXPECTED_BOOKS,
         "lines": lines,
+        "lineContent": line_content,
         "links": links,
+        "linkCoverage": link_coverage,
+        "suppressedSides": suppressed_sides,
+        "zstdDictionaries": dictionaries,
         "integrity": integrity,
     }, sort_keys=True))
 

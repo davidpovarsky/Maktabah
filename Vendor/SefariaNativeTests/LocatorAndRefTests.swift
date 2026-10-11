@@ -20,6 +20,12 @@ func runLocatorAndRefTests() throws {
         "segment belongs to its exact section")
     try expect(!SefariaRef.sectionMatches("Genesis 1", "Genesis 10"),
         "section matching does not confuse chapter 1 with chapter 10")
+    try expect(SefariaRef.anchorReference("Genesis 1:1-3", contains: "Genesis 1:2"),
+        "same-section relationship range contains an interior segment")
+    try expect(!SefariaRef.anchorReference("Genesis 1:1", contains: "Genesis 1:10"),
+        "relationship anchor 1 does not expand to segment 10")
+    try expect(!SefariaRef.anchorReference("Genesis 1:1-3", contains: "Genesis 10:2"),
+        "relationship range does not cross chapter prefixes")
 
     var searchText = "creation"
     var highlightTerms: [String]? = ["creation"]

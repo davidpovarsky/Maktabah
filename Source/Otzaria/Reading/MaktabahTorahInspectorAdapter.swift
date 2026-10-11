@@ -9,6 +9,7 @@ final class MaktabahTorahInspectorSession {
     private let preferredMode: LibraryReaderTextMode
     private weak var readerViewModel: ReaderViewModel?
     private var locatorsByReference: [String: TextLocator] = [:]
+    private var otzariaUnitsByReference: [String: OtzariaReadingUnit] = [:]
 
     convenience init() {
         self.init(
@@ -65,37 +66,93 @@ final class MaktabahTorahInspectorSession {
         otzariaLine: OtzariaLineAnchor?
     ) -> TorahInspectorSelection? {
         if let locator = sefariaLocator {
-            switch locator.position {
-            case .canonicalRef(let reference):
-                remember(locator, for: reference)
-                return TorahInspectorSelection(providerID: locator.backend.rawValue, canonicalRef: reference, preferredSegmentRef: reference)
-            case .legacyLine:
-                let reference = Self.reference(for: locator)
-                remember(locator, for: reference)
-                return TorahInspectorSelection(
-                    providerID: locator.backend.rawValue,
-                    canonicalRef: reference,
-                    preferredSegmentRef: reference
-                )
-            }
+            let reference = Self.reference(for: locator)
+            let sectionLocator = readerViewModel?.backendSection?.locator ?? locator
+            let sectionReference = Self.reference(for: sectionLocator)
+            remember(locator, for: reference)
+            remember(sectionLocator, for: sectionReference)
+            return TorahInspectorSelection(
+                providerID: locator.backend.rawValue,
+                canonicalRef: sectionReference,
+                preferredSegmentRef: reference,
+                scope: .segment
+            )
         }
-        guard let line = otzariaLine else { return nil }
-        let locator = TextLocator(
-            backend: .otzaria,
-            workKey: "book:\(line.bookId)",
-            position: .legacyLine(line.lineIndex)
-        )
-        let reference = Self.reference(for: locator)
-        remember(locator, for: reference)
-        return TorahInspectorSelection(
-            providerID: BackendID.otzaria.rawValue,
-            canonicalRef: reference,
-            preferredSegmentRef: reference
-        )
+        if let line = otzariaLine,
+           let unit = otzaria.getReadingUnit(
+            bookId: line.bookId,
+            containingLineIndex: line.lineIndex,
+            mode: otzaria.currentReadingUnitMode
+           ) {
+            return otzariaSelection(unit: unit, selectedLineIndex: line.lineIndex)
+        }
+        return currentUnitSelection()
     }
 
     func locator(for selection: TorahInspectorSelection) -> TextLocator? {
-        locator(for: selection.canonicalRef, providerID: selection.providerID)
+        locator(
+            for: selection.preferredSegmentRef ?? selection.canonicalRef,
+            providerID: selection.providerID
+        )
+    }
+
+    private func currentUnitSelection() -> TorahInspectorSelection? {
+        guard let viewModel = readerViewModel else { return nil }
+        if coordinator.activeBackendID == .sefaria,
+           let locator = viewModel.backendSection?.locator {
+            let reference = Self.reference(for: locator)
+            remember(locator, for: reference)
+            return TorahInspectorSelection(
+                providerID: BackendID.sefaria.rawValue,
+                canonicalRef: reference,
+                scope: .section
+            )
+        }
+        guard coordinator.activeBackendID == .otzaria,
+              let bookID = viewModel.currentBook?.id,
+              let unit = otzaria.cachedReadingUnit(
+                bookId: bookID,
+                contentId: viewModel.currentContentId
+              ) ?? otzaria.getReadingUnit(
+                bookId: bookID,
+                containingLineIndex: viewModel.currentContentId,
+                mode: otzaria.currentReadingUnitMode
+              ) else { return nil }
+        return otzariaSelection(unit: unit, selectedLineIndex: nil)
+    }
+
+    private func otzariaSelection(
+        unit: OtzariaReadingUnit,
+        selectedLineIndex: Int?
+    ) -> TorahInspectorSelection {
+        let sectionLocator = TextLocator(
+            backend: .otzaria,
+            workKey: "book:\(unit.bookId)",
+            position: .legacyLine(unit.startLineIndex)
+        )
+        let sectionReference = Self.unitReference(for: unit)
+        remember(sectionLocator, for: sectionReference)
+        remember(unit, for: sectionReference)
+        guard let selectedLineIndex else {
+            return TorahInspectorSelection(
+                providerID: BackendID.otzaria.rawValue,
+                canonicalRef: sectionReference,
+                scope: .section
+            )
+        }
+        let selectedLocator = TextLocator(
+            backend: .otzaria,
+            workKey: "book:\(unit.bookId)",
+            position: .legacyLine(selectedLineIndex)
+        )
+        let selectedReference = Self.reference(for: selectedLocator)
+        remember(selectedLocator, for: selectedReference)
+        return TorahInspectorSelection(
+            providerID: BackendID.otzaria.rawValue,
+            canonicalRef: sectionReference,
+            preferredSegmentRef: selectedReference,
+            scope: .segment
+        )
     }
 
     private func document(for reference: String, providerID: String?) async throws -> TorahTextDocument {
@@ -115,7 +172,13 @@ final class MaktabahTorahInspectorSession {
 
     private func links(for reference: String, providerID: String?) async throws -> [TorahLinkedSource] {
         let locator = try activeLocator(for: reference, providerID: providerID)
-        let sources = try await coordinator.links(for: locator)
+        let sources: [LibraryRelatedSource]
+        if locator.backend == .otzaria,
+           let unit = otzariaUnitsByReference[cacheKey(providerID: locator.backend.rawValue, reference: reference)] {
+            sources = otzaria.getLinksForReadingUnit(unit).map(OtzariaInspectorRelationshipsProvider.map)
+        } else {
+            sources = try await coordinator.links(for: locator)
+        }
         return sources.map { source in
             let sourceReference = Self.reference(for: source.locator)
             remember(source.locator, for: sourceReference)
@@ -263,7 +326,9 @@ final class MaktabahTorahInspectorSession {
     }
 
     private func locator(for reference: String, providerID: String) -> TextLocator? {
-        if let remembered = locatorsByReference["\(providerID):\(reference)"] { return remembered }
+        if let remembered = locatorsByReference[cacheKey(providerID: providerID, reference: reference)] {
+            return remembered
+        }
         switch BackendID(rawValue: providerID) {
         case .sefaria:
             let knownTitles = LibraryDataManager.shared.booksById.values.map(\.book)
@@ -291,7 +356,18 @@ final class MaktabahTorahInspectorSession {
     }
 
     private func remember(_ locator: TextLocator, for reference: String) {
-        locatorsByReference["\(locator.backend.rawValue):\(reference)"] = locator
+        locatorsByReference[cacheKey(providerID: locator.backend.rawValue, reference: reference)] = locator
+    }
+
+    private func remember(_ unit: OtzariaReadingUnit, for reference: String) {
+        otzariaUnitsByReference[cacheKey(
+            providerID: BackendID.otzaria.rawValue,
+            reference: reference
+        )] = unit
+    }
+
+    private func cacheKey(providerID: String, reference: String) -> String {
+        "\(providerID):\(reference)"
     }
 
     private static func reference(for locator: TextLocator) -> String {
@@ -303,6 +379,10 @@ final class MaktabahTorahInspectorSession {
         default:
             return locator.persistenceKey
         }
+    }
+
+    private static func unitReference(for unit: OtzariaReadingUnit) -> String {
+        "otzaria:unit:v1:\(unit.bookId):\(unit.startLineIndex):\(unit.endLineIndex):\(unit.mode.storageValue)"
     }
 
     private static func otzariaBookID(from workKey: String) -> Int? {

@@ -331,6 +331,9 @@ jobs:
             Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift \
             Source/Otzaria/Bootstrap/OtzariaZstdStreamExtractor.swift \
             Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift \
+            Source/Otzaria/Core/OtzariaSQLiteError.swift \
+            Source/Otzaria/Core/OtzariaSQLiteStatement.swift \
+            Source/Otzaria/Data/OtzariaSchema.swift \
             Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift \
             Source/Otzaria/Core/OtzariaSecurityScopedAccess.swift \
             Source/Otzaria/Core/OtzariaSecurityScopedBookmarkStore.swift \

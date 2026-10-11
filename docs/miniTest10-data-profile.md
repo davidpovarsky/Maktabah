@@ -14,13 +14,14 @@ iPad launch select the mini profile without injected process state. Explicit
 arguments and environment variables still take precedence. There is intentionally
 no production Settings control.
 
-The profile is built from the pinned Otzaria v23 database and pinned lexical
-release `v0.3.0`, and retains canonical book, line, category, TOC, link, author,
-topic, version, and related IDs. Its database and both Tantivy indexes are
+The profile is built from the pinned Otzaria v32 schema-6 database and pinned
+lexical release `v0.3.0`. It retains canonical book, line, compressed line-content
+and zstd-dictionary data, category, primary and alternate TOC, link range/coverage/
+suppression data, author, topic, version, and related IDs. Its database and both Tantivy indexes are
 published by the manual `Build miniTest10 Data Profile` workflow in the immutable
-`otzaria-miniTest10-v4` release. All three manifests carry `profileID=miniTest10`
-and `profileVersion=4`; production metadata without those optional fields is
-interpreted as `production/1` for backward compatibility. Historical v1/v2/v3 remain
+`otzaria-miniTest10-v5` release. All three manifests carry `profileID=miniTest10`
+and `profileVersion=5`; production metadata without those optional fields is
+interpreted as `production/1` for backward compatibility. Historical v1–v4 remain
 untouched.
 
 In addition to core lexical and reading data, this profile and the underlying Maktabah architecture support:

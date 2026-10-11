@@ -605,6 +605,16 @@ func testSefariaHTMLSnippetFormattingContract() throws {
     }
     try expect(chayimIsItalic, "'חיים' has NSItalic attribute")
 
+    var hoduIsRedHighlight = false
+    formatted.enumerateAttribute(
+        NSAttributedString.Key("MaktabahSearchHighlight"),
+        in: hoduRange,
+        options: []
+    ) { value, _, _ in
+        if value as? Bool == true { hoduIsRedHighlight = true }
+    }
+    try expect(hoduIsRedHighlight, "Sefaria match carries the shared red-highlight marker")
+
     // 3. Highlight terms extracted
     try expect(highlightTerms.contains("הודו"), "highlightTerms contains 'הודו'")
     try expect(highlightTerms.contains("חיים"), "highlightTerms contains 'חיים'")

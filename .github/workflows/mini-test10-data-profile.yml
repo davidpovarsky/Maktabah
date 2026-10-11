@@ -20,7 +20,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: mini-test10-data-profile-v4
+  group: mini-test10-data-profile-v5
   cancel-in-progress: false
 
 jobs:
@@ -29,12 +29,13 @@ jobs:
     timeout-minutes: 240
     env:
       PROFILE_ID: miniTest10
-      PROFILE_VERSION: "4"
-      PROFILE_TAG: otzaria-miniTest10-v4
-      SOURCE_TAG: v23-20260829032606
-      SOURCE_ASSET_SHA256: c022f253655e0c09aaa69d1f420fcfc8731b77d113f0294f10b8c9e96805a662
-      SOURCE_DATABASE_SHA256: 7e2cff76086f07c85ee30470948b458d99ddb36b84dae5c4e5b57ad5f2562501
-      MINI_DATABASE_SHA256: 26060dd7d9d9c6892986882418b61f861963b9c75aca72905c77e02aed3eaea4
+      PROFILE_VERSION: "5"
+      PROFILE_TAG: otzaria-miniTest10-v5
+      SOURCE_TAG: v32-20261010190601
+      SOURCE_ASSET_NAME: seforim-schema6.db.zst
+      SOURCE_ASSET_SHA256: 6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44
+      SOURCE_DATABASE_SHA256: 2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765
+      MINI_DATABASE_SHA256: 8e0b65976703bb79f3789f77f65519b2e991829c09fed4f59b6ba7b93eaad253
       DATA_BUILDER_REVISION: 5a3298fcec02fb2560a1a746b831530c72485053
       LEXICAL_TAG: v0.3.0
       LEXICAL_SHA256: b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f
@@ -156,7 +157,7 @@ jobs:
           path: |
             build/miniTest10/database/miniTest10-seforim.db
             build/miniTest10/database/miniTest10-seforim.db.zst
-          key: ${{ runner.os }}-mini-database-v3-${{ env.SOURCE_TAG }}-${{ env.MINI_DATABASE_SHA256 }}-${{ hashFiles('Scripts/DataProfiles/miniTest10.seed.json', 'Scripts/build-otzaria-data-profile.py') }}
+          key: ${{ runner.os }}-mini-database-v5-${{ env.SOURCE_TAG }}-${{ env.MINI_DATABASE_SHA256 }}-${{ hashFiles('Scripts/DataProfiles/miniTest10.seed.json', 'Scripts/build-otzaria-data-profile.py') }}
 
       - name: Live Activity · refresh
         if: steps.release-check.outputs.reused != 'true' && steps.db-cache.outputs.cache-hit == 'true'
@@ -197,9 +198,9 @@ jobs:
         run: |
           set -euo pipefail
           gh api "repos/Otzaria/SeforimLibrary/releases/tags/$SOURCE_TAG" > build/miniTest10/logs/source-official-release.json
-          gh release download "$SOURCE_TAG" --repo Otzaria/SeforimLibrary --pattern seforim.db.zst --dir "$RUNNER_TEMP/miniTest10"
-          test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db.zst" | cut -d' ' -f1)" = "$SOURCE_ASSET_SHA256"
-          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/miniTest10/seforim.db.zst" -o "$RUNNER_TEMP/miniTest10/seforim.db"
+          gh release download "$SOURCE_TAG" --repo Otzaria/SeforimLibrary --pattern "$SOURCE_ASSET_NAME" --dir "$RUNNER_TEMP/miniTest10"
+          test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/$SOURCE_ASSET_NAME" | cut -d' ' -f1)" = "$SOURCE_ASSET_SHA256"
+          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/miniTest10/$SOURCE_ASSET_NAME" -o "$RUNNER_TEMP/miniTest10/seforim.db"
           test "$(shasum -a 256 "$RUNNER_TEMP/miniTest10/seforim.db" | cut -d' ' -f1)" = "$SOURCE_DATABASE_SHA256"
 
       - name: Live Activity · refresh
@@ -231,6 +232,11 @@ jobs:
             --profile Source/Otzaria/DataProfiles/miniTest10.profile.json \
             --database build/miniTest10/database/miniTest10-seforim.db \
             --archive build/miniTest10/database/miniTest10-seforim.db.zst
+          python3 Scripts/verify-otzaria-mini-parity.py \
+            --source "$RUNNER_TEMP/miniTest10/seforim.db" \
+            --mini build/miniTest10/database/miniTest10-seforim.db \
+            --seed Scripts/DataProfiles/miniTest10.seed.json \
+            | tee build/miniTest10/logs/database-parity.json
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -513,7 +519,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/miniTest10/otzaria
-          key: ${{ runner.os }}-mini-otzaria-v4-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/OtzariaSearchEngine/**', 'Scripts/package-otzaria-search-artifact.py') }}
+          key: ${{ runner.os }}-mini-otzaria-v5-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/OtzariaSearchEngine/**', 'Scripts/package-otzaria-search-artifact.py') }}
 
       - name: Live Activity · refresh
         if: steps.release-check.outputs.reused != 'true' && steps.otzaria-artifact-cache.outputs.cache-hit != 'true'
@@ -564,7 +570,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/miniTest10/zayit
-          key: ${{ runner.os }}-mini-zayit-v4-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/ZayitSearchPort/**', 'Scripts/package-zayit-search-artifact.py') }}
+          key: ${{ runner.os }}-mini-zayit-v5-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/ZayitSearchPort/**', 'Scripts/package-zayit-search-artifact.py') }}
 
       - name: Live Activity · refresh
         if: steps.release-check.outputs.reused != 'true' && steps.zayit-artifact-cache.outputs.cache-hit != 'true'
@@ -578,7 +584,7 @@ jobs:
       - name: Build the actual Zayit index, query it, and package it
         if: steps.release-check.outputs.reused != 'true' && steps.zayit-artifact-cache.outputs.cache-hit != 'true'
         env:
-          ZAYIT_DATABASE_RELEASE_TAG: v23-20260829032606
+          ZAYIT_DATABASE_RELEASE_TAG: v32-20261010190601
           ZAYIT_BUILDER_COMMIT: ${{ env.DATA_BUILDER_REVISION }}
           ZAYIT_UPSTREAM_COMMIT: c53ea7b1a034c206f6c96c86188941c64b69ad2a
           ZAYIT_GENERATED_UNIX_SECONDS: "0"
@@ -639,7 +645,7 @@ jobs:
               echo "Tag $PROFILE_TAG already exists without the expected release" >&2
               exit 1
             }
-            gh release create "$PROFILE_TAG" --target "$GITHUB_SHA" --title 'Otzaria miniTest10 data profile v4' \
+            gh release create "$PROFILE_TAG" --target "$GITHUB_SHA" --title 'Otzaria miniTest10 data profile v5' \
               --notes 'Immutable ten-book test corpus with Otzaria and Zayit indexes built from the same canonical database.'
             gh release upload "$PROFILE_TAG" \
               build/miniTest10/database/miniTest10-seforim.db.zst \
