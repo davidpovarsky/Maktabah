@@ -68,16 +68,42 @@ capture_screen() {
   local lang="$2"
   local locale="$3"
   local wait_seconds="${CAPTURE_WAIT_SECONDS:-10}"
+  local ready_file="${SMOKE_READY_FILE:-}"
+  local settle_seconds="${SMOKE_SETTLE_SECONDS:-1}"
   shift 3
   local extra_args=("$@")
 
   echo "--> [SCREENSHOT] $output (lang: $lang, locale: $locale, wait: ${wait_seconds}s, args: ${extra_args[*]:-none})"
+  if [ -n "$ready_file" ]; then
+    rm -f "$ready_file"
+  fi
   SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
+  SIMCTL_CHILD_MAKTABAH_SMOKE_READY_FILE="$ready_file" \
   xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}" >/dev/null 2>&1 || true
   if [ "$CURRENT_ORIENTATION" != "portrait" ]; then
     rotate_simulator "$CURRENT_ORIENTATION"
   fi
-  sleep "$wait_seconds"
+  if [ -n "$ready_file" ]; then
+    local waited=0
+    while [ ! -s "$ready_file" ] && [ "$waited" -lt "$wait_seconds" ]; do
+      sleep 1
+      waited=$((waited + 1))
+    done
+    if [ ! -s "$ready_file" ]; then
+      echo "Smoke scenario did not become ready within ${wait_seconds}s: $output" >&2
+      xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
+      return 1
+    fi
+    if ! grep -qx 'success' "$ready_file"; then
+      echo "Smoke scenario reported failure: $output" >&2
+      cat "$ready_file" >&2
+      xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
+      return 1
+    fi
+    sleep "$settle_seconds"
+  else
+    sleep "$wait_seconds"
+  fi
   xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$output" >/dev/null 2>&1 || echo "Warning: failed to capture $output"
   normalize_screenshot_orientation "$SCREENSHOT_DIR/$output" "$CURRENT_ORIENTATION"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
@@ -291,8 +317,8 @@ capture_screen "otzaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBa
 capture_screen "otzaria-he-reader.png" he he_IL -smokeScenario reader -smokeBackend otzaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBackend otzaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "otzaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBackend otzaria -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=10 capture_screen "otzaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend otzaria -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=10 capture_screen "otzaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend otzaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/otzaria-search-results.ready" SMOKE_SETTLE_SECONDS=2 CAPTURE_WAIT_SECONDS=30 capture_screen "otzaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend otzaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/otzaria-search-open.ready" SMOKE_SETTLE_SECONDS=8 CAPTURE_WAIT_SECONDS=30 capture_screen "otzaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend otzaria -smokeBypassBootstrap
 capture_screen "otzaria-he-annotations-list.png" he he_IL -smokeScenario annotationsList -smokeBackend otzaria -smokeBypassBootstrap
 capture_screen "otzaria-he-annotations-search.png" he he_IL -smokeScenario annotationsSearch -smokeBackend otzaria -smokeBypassBootstrap
 capture_screen "otzaria-he-annotations-open.png" he he_IL -smokeScenario annotationsOpen -smokeBackend otzaria -smokeBypassBootstrap
@@ -314,9 +340,9 @@ capture_screen "sefaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBa
 capture_screen "sefaria-he-reader.png" he he_IL -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBackend sefaria -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=10 capture_screen "sefaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend sefaria -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-search-preview.png" he he_IL -smokeScenario searchPreview -smokeBackend sefaria -smokeBypassBootstrap
-CAPTURE_WAIT_SECONDS=10 capture_screen "sefaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-results.ready" SMOKE_SETTLE_SECONDS=2 CAPTURE_WAIT_SECONDS=30 capture_screen "sefaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend sefaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-preview.ready" SMOKE_SETTLE_SECONDS=5 CAPTURE_WAIT_SECONDS=30 capture_screen "sefaria-he-search-preview.png" he he_IL -smokeScenario searchPreview -smokeBackend sefaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-open.ready" SMOKE_SETTLE_SECONDS=8 CAPTURE_WAIT_SECONDS=30 capture_screen "sefaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-he-annotations-list.png" he he_IL -smokeScenario annotationsList -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-he-annotations-open.png" he he_IL -smokeScenario annotationsOpen -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-to-otzaria-switch.png" he he_IL -smokeScenario engineSwitch -smokeBackend sefaria -smokeBypassBootstrap

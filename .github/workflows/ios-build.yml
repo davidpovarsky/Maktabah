@@ -900,7 +900,11 @@ jobs:
           import json
           report = json.load(open("build/logs/otzaria-native-bootstrap-acceptance.json"))
           release = json.load(open("build/logs/otzaria-latest-release.json"))
-          assets = [asset for asset in release["assets"] if asset["name"] == "seforim.db.zst"]
+          assert report["profileID"] == "production" and report["profileVersion"] == 1
+          assets = [
+              asset for asset in release["assets"]
+              if asset["id"] == report["assetID"] and asset["name"] == report["assetName"]
+          ]
           assert len(assets) == 1
           asset = assets[0]
           assert report["releaseID"] == release["id"]

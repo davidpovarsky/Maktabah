@@ -113,8 +113,8 @@ struct SearchResultContextPreview: View {
                 let section = try await BackendCoordinator.shared.section(at: locator)
                 try Task.checkCancellation()
                 fullText = section.segments.compactMap { segment in
-                    let primary = segment.primaryText.trimmingCharacters(in: .whitespacesAndNewlines)
-                    let translation = segment.translation?.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let primary = segment.primaryText.readerPlainText
+                    let translation = segment.translation?.readerPlainText
                     return [primary, translation].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: "\n")
                 }.filter { !$0.isEmpty }.joined(separator: "\n\n")
                 if fullText?.isEmpty != false {

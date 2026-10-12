@@ -10,6 +10,7 @@ APP="$1"
 MODE="${2:-}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REPORT_DIR="${OTZARIA_NATIVE_BOOTSTRAP_REPORT_DIR:-$ROOT/build/logs}"
+DATA_PROFILE="${OTZARIA_NATIVE_BOOTSTRAP_DATA_PROFILE:-production}"
 test -d "$APP"
 BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" 2>/dev/null || echo "com.davidpovarsky.chavrusatext")"
 case "$APP" in /*) ;; *) echo "app path must be absolute" >&2; exit 64 ;; esac
@@ -96,7 +97,8 @@ if [ "$MODE" = "--dictionary-only" ]; then
   rm -f "$RESULT"
   SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=dictionary \
   SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$RESULT" \
-    xcrun simctl launch "$UDID" "$BUNDLE_ID"
+  SIMCTL_CHILD_OTZARIA_DATA_PROFILE="$DATA_PROFILE" \
+    xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile "$DATA_PROFILE"
   wait_for_report "$RESULT" 600
   cp "$RESULT" "$REPORT_DIR/otzaria-dictionary-acceptance.json"
   cat "$RESULT"
@@ -120,7 +122,8 @@ cancel_started="$(date +%s)"
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=cancel \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$CANCEL_REPORT" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_CANCEL_BYTES=67108864 \
-  xcrun simctl launch "$UDID" "$BUNDLE_ID"
+SIMCTL_CHILD_OTZARIA_DATA_PROFILE="$DATA_PROFILE" \
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile "$DATA_PROFILE"
 wait_for_report "$CANCEL_REPORT" 1800
 # Copy before validating so a failed phase still publishes its report.
 cp "$CANCEL_REPORT" "$REPORT_DIR/otzaria-native-bootstrap-cancel.json"
@@ -131,7 +134,8 @@ echo "cancel_phase_seconds=$(($(date +%s) - cancel_started))"
 install_started="$(date +%s)"
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=install \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$INSTALL_REPORT" \
-  xcrun simctl launch "$UDID" "$BUNDLE_ID"
+SIMCTL_CHILD_OTZARIA_DATA_PROFILE="$DATA_PROFILE" \
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile "$DATA_PROFILE"
 wait_for_report "$INSTALL_REPORT" 10800
 cp "$INSTALL_REPORT" "$REPORT_DIR/otzaria-native-bootstrap-install.json"
 validate_passed "$INSTALL_REPORT"
@@ -142,7 +146,8 @@ restore_started="$(date +%s)"
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE=restore \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_RESULT="$FINAL_REPORT" \
 SIMCTL_CHILD_OTZARIA_NATIVE_BOOTSTRAP_PRIOR_REPORT="$INSTALL_REPORT" \
-  xcrun simctl launch "$UDID" "$BUNDLE_ID"
+SIMCTL_CHILD_OTZARIA_DATA_PROFILE="$DATA_PROFILE" \
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile "$DATA_PROFILE"
 wait_for_report "$FINAL_REPORT" 600
 cp "$FINAL_REPORT" "$REPORT_DIR/otzaria-native-bootstrap-acceptance.json"
 cat "$FINAL_REPORT"

@@ -241,6 +241,10 @@ private extension iOSMainView {
             return
         }
         let scenario = args[scenarioIndex + 1]
+        var smokeSucceeded = true
+        defer {
+            writeSmokeAutomationResult(scenario: scenario, succeeded: smokeSucceeded)
+        }
 
         if let backendArgIndex = args.firstIndex(of: "-smokeBackend"),
            backendArgIndex + 1 < args.count,
@@ -291,7 +295,7 @@ private extension iOSMainView {
             navigationManager.switchToMode(.search)
             columnVisibility = .all
             try? await Task.sleep(for: .milliseconds(500))
-            _ = await prepareSmokeSearch(query: query)
+            smokeSucceeded = await prepareSmokeSearch(query: query) != nil
 
         case "searchPreview":
             let query = "בראשית"
@@ -300,6 +304,7 @@ private extension iOSMainView {
             columnVisibility = .all
             try? await Task.sleep(for: .milliseconds(500))
             smokeSearchPreviewItem = await prepareSmokeSearch(query: query)
+            smokeSucceeded = smokeSearchPreviewItem != nil
 
         case "searchOpen":
             let query = "בראשית"
@@ -310,6 +315,8 @@ private extension iOSMainView {
             if let first = await prepareSmokeSearch(query: query) {
                 navigationManager.unifiedSearchSession.openResult(first, using: navigationManager)
                 navigationManager.switchToMode(.viewer)
+            } else {
+                smokeSucceeded = false
             }
 
         case "annotationsList":
@@ -351,6 +358,13 @@ private extension iOSMainView {
         default:
             break
         }
+    }
+
+    func writeSmokeAutomationResult(scenario: String, succeeded: Bool) {
+        guard let path = ProcessInfo.processInfo.environment["MAKTABAH_SMOKE_READY_FILE"],
+              !path.isEmpty else { return }
+        let value = succeeded ? "success\n\(scenario)\n" : "failure\n\(scenario)\n"
+        try? Data(value.utf8).write(to: URL(fileURLWithPath: path), options: .atomic)
     }
 
     func prepareSmokeSearch(query: String) async -> SearchResultItem? {

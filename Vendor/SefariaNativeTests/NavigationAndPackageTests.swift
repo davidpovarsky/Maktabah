@@ -338,6 +338,10 @@ func runNavigationAndPackageTests() async throws {
     try expect(decoded.contains("\u{2002}"), "ensp is converted to Unicode en space U+2002")
     try expect(decoded.contains("\u{2003}"), "emsp is converted to Unicode em space U+2003")
     try expect(decoded.contains("\"ספר\""), "quot is decoded to double quotes")
+    try expect(
+        "פסוק{p}פתוחה{s}סתומה".readerPlainText == "פסוק\nפתוחה\nסתומה",
+        "Sefaria paragraph markers become plain-text line breaks"
+    )
 
     // Bug A regression test: Leaf navigation items from TOC
     let sampleTOC = [
