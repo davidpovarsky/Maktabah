@@ -150,6 +150,37 @@ struct OtzariaDownloadResumeMetadata: Codable, Equatable, Sendable {
         if let lastModified, !lastModified.isEmpty { return lastModified }
         return nil
     }
+
+    func resumableProductionRelease(localSize: Int64) -> OtzariaLibraryRelease? {
+        let expectedPathPrefix = "/Otzaria/SeforimLibrary/releases/download/"
+        guard repository == OtzariaLibraryRelease.repository,
+              releaseID > 0,
+              !releaseTag.isEmpty,
+              assetID > 0,
+              OtzariaLibraryRelease.isProductionDatabaseAssetName(assetName),
+              browserDownloadURL.scheme?.lowercased() == "https",
+              browserDownloadURL.host?.lowercased() == "github.com",
+              browserDownloadURL.path.hasPrefix(expectedPathPrefix),
+              expectedCompressedSize > 0,
+              localSize > 0,
+              localSize < expectedCompressedSize,
+              resumeValidator != nil else { return nil }
+
+        let release = OtzariaLibraryRelease(
+            id: releaseID,
+            tag: releaseTag,
+            asset: .init(
+                id: assetID,
+                name: assetName,
+                downloadURL: browserDownloadURL,
+                compressedSize: expectedCompressedSize,
+                digest: digest,
+                updatedAt: nil
+            )
+        )
+        guard release.expectedSHA256 != nil else { return nil }
+        return release
+    }
 }
 
 struct OtzariaDatabaseInstallationManifest: Codable, Equatable, Sendable {

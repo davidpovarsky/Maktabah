@@ -84,6 +84,30 @@ enum OtzariaBootstrapPolicyHarness {
             "Last-Modified resume"
         )
 
+        let productionRelease = OtzariaLibraryRelease(
+            id: 30,
+            tag: "v30",
+            asset: .init(
+                id: 40,
+                name: "seforim-schema6.db.zst",
+                downloadURL: URL(string: "https://github.com/Otzaria/SeforimLibrary/releases/download/v30/seforim-schema6.db.zst")!,
+                compressedSize: 2_000,
+                digest: "sha256:" + String(repeating: "a", count: 64),
+                updatedAt: nil
+            )
+        )
+        var cached = OtzariaDownloadResumeMetadata(release: productionRelease, downloadedBytes: 400)
+        cached.etag = "\"production-representation\""
+        expect(
+            cached.resumableProductionRelease(localSize: 400) == productionRelease,
+            "validated production sidecar reconstructs a release when lookup is unavailable"
+        )
+        cached.etag = nil
+        expect(
+            cached.resumableProductionRelease(localSize: 400) == nil,
+            "cached production release requires a resume validator"
+        )
+
         let changedRelease = sampleRelease(id: 11, assetID: 21, size: 1_000)
         expect(
             OtzariaDownloadPolicy.reusableOffset(

@@ -27,10 +27,25 @@ actor OtzariaDatabaseBootstrapService {
             fraction: 0.01,
             detail: String(localized: "bootstrap.status.connecting")
         ))
-        let release = try await releaseClient.fetchLatestRelease()
         let storage = try OtzariaDatabaseStorage()
         currentStorage = storage
         try storage.prepareDirectories()
+        let release: OtzariaLibraryRelease
+        do {
+            release = try await releaseClient.fetchLatestRelease()
+        } catch {
+            guard OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
+                  let cached = try OtzariaDatabaseDownloader.resumableProductionRelease(
+                      workspaceURL: storage.downloadsRoot
+                  ) else {
+                throw error
+            }
+            print(
+                "[OtzariaBootstrap] release lookup unavailable; resuming validated cached " +
+                "release tag=\(cached.tag) assetId=\(cached.asset.id)"
+            )
+            release = cached
+        }
 
         let existingPart = OtzariaDatabaseDownloader.existingPartialSize(
             workspaceURL: storage.downloadsRoot,

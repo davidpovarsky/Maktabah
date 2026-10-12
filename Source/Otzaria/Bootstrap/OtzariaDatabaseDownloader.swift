@@ -217,6 +217,13 @@ actor OtzariaDatabaseDownloader {
             localSize: fileSize(at: partURL)
         )
     }
+
+    static func resumableProductionRelease(workspaceURL: URL) throws -> OtzariaLibraryRelease? {
+        let partURL = workspaceURL.appendingPathComponent(Self.partFileName)
+        let sidecarURL = workspaceURL.appendingPathComponent(Self.sidecarFileName)
+        guard let metadata = try loadMetadata(from: sidecarURL) else { return nil }
+        return metadata.resumableProductionRelease(localSize: fileSize(at: partURL))
+    }
 }
 
 extension OtzariaDatabaseDownloader {
