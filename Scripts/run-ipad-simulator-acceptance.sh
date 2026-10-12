@@ -33,9 +33,14 @@ echo "Creating iPad Pro 13-inch simulator (Device: $DEVICE_TYPE, Runtime: $RUNTI
 UDID="$(xcrun simctl create 'Maktabah Acceptance iPad' "$DEVICE_TYPE" "$RUNTIME")"
 IPAD_UDID="$UDID"
 IPHONE_UDID=""
+ACCEPTANCE_COMPLETE=0
 
 cleanup() {
   local exit_code=$?
+  if [ "$ACCEPTANCE_COMPLETE" -ne 1 ] && [ "$exit_code" -eq 0 ]; then
+    echo "Acceptance exited before reaching the completion sentinel." >&2
+    exit_code=1
+  fi
   trap - EXIT
   set +e
   for device in "$IPAD_UDID" "$IPHONE_UDID"; do
@@ -78,9 +83,8 @@ capture_screen() {
   local ready_file="${SMOKE_READY_FILE:-}"
   local settle_seconds="${SMOKE_SETTLE_SECONDS:-1}"
   shift 3
-  local extra_args=("$@")
 
-  echo "--> [SCREENSHOT] $output (lang: $lang, locale: $locale, wait: ${wait_seconds}s, args: ${extra_args[*]:-none})"
+  echo "--> [SCREENSHOT] $output (lang: $lang, locale: $locale, wait: ${wait_seconds}s, args: ${*:-none})"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
   sleep 1
   if [ -n "$ready_file" ]; then
@@ -88,7 +92,7 @@ capture_screen() {
   fi
   SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
   SIMCTL_CHILD_MAKTABAH_SMOKE_READY_FILE="$ready_file" \
-  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}"
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "$@"
   if [ "$CURRENT_ORIENTATION" != "portrait" ]; then
     rotate_simulator "$CURRENT_ORIENTATION"
   fi
@@ -847,4 +851,5 @@ if [ "$acceptance_failed" -ne 0 ]; then
 fi
 
 echo "iPad Simulator acceptance sequence completed."
+ACCEPTANCE_COMPLETE=1
 exit 0
