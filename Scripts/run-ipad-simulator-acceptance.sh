@@ -267,8 +267,10 @@ run_split_geometry_flow() {
   capture_split_frames fixed-split-all-he
 
   launch_interactive_scenario readerDetail sefaria en en_US
-  ui_wait_id reader-toc-toggle 45
-  ui_tap_id reader-toc-toggle
+  ui_wait_id reader-more-menu 45
+  ui_tap_id reader-more-menu
+  idb ui wait "Table of Contents" --match-key AXLabel --timeout 30 --json --udid "$UDID"
+  ui_tap_label "Table of Contents"
   ui_wait_id toc-column 30
   capture_split_frames fixed-split-double-en
   ui_tap_id toc-close
