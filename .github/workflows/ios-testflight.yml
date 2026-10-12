@@ -32,7 +32,7 @@ env:
   APP_BUNDLE_ID: com.davidpovarsky.chavrusatext
   TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
   DATA_PROFILE: ${{ inputs.data_profile }}
-  MINI_PROFILE_TAG: otzaria-miniTest10-v5
+  MINI_PROFILE_TAG: otzaria-miniTest10-v6
   BUILD_DIR: ${{ github.workspace }}/build/signed-ios
   CARGO_TERM_COLOR: always
 
@@ -291,10 +291,10 @@ jobs:
           from pathlib import Path
           profile = json.loads(Path('Source/Otzaria/DataProfiles/miniTest10.profile.json').read_text())
           assert profile['profileID'] == 'miniTest10'
-          assert profile['profileVersion'] == 5
+          assert profile['profileVersion'] == 6
           assert len(profile['bookIDs']) == 10
           assert profile['databaseAssetName'] == 'miniTest10-seforim.db.zst'
-          assert profile['releaseBaseURL'].endswith('/otzaria-miniTest10-v5')
+          assert profile['releaseBaseURL'].endswith('/otzaria-miniTest10-v6')
           PY
               ;;
             *)

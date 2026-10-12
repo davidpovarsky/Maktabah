@@ -40,6 +40,10 @@ Use Markdown checkboxes where useful:
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
+- [x] Publish miniTest10 only after enabling GitHub immutable releases
+  - Implemented: 2026-10-12
+  - Notes: Repository release immutability applies only to future releases. Bump the canonical profile version/tag when enabling it, and pass all assets directly to `gh release create` so GitHub can upload them while the release is a draft and lock the tag and assets atomically on publication.
+
 - [x] Make native bootstrap resume and search screenshots deterministic
   - Implemented: 2026-10-12
   - Notes: A production download may be resumable even when a later unauthenticated GitHub release lookup is rate-limited. Resume only from an app-owned sidecar whose repository, GitHub HTTPS asset URL, production asset name, size, SHA-256, partial file, and strong validator all pass validation. Simulator search evidence now waits for an explicit success marker from the production search controller instead of relying on a fixed sleep.
