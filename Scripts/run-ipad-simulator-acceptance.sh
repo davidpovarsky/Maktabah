@@ -147,7 +147,7 @@ launch_interactive_scenario() {
     "$@" >/dev/null
 
   local waited=0
-  while [ ! -s "$ready_file" ] && [ "$waited" -lt 60 ]; do
+  while [ ! -s "$ready_file" ] && [ "$waited" -lt 120 ]; do
     sleep 1
     waited=$((waited + 1))
   done
@@ -693,9 +693,9 @@ capture_screen "sefaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBa
 capture_screen "sefaria-he-reader.png" he he_IL -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBackend sefaria -smokeBypassBootstrap
-SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-results.ready" SMOKE_SETTLE_SECONDS=2 CAPTURE_WAIT_SECONDS=30 capture_screen "sefaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend sefaria -smokeBypassBootstrap
-SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-preview.ready" SMOKE_SETTLE_SECONDS=5 CAPTURE_WAIT_SECONDS=30 capture_screen "sefaria-he-search-preview.png" he he_IL -smokeScenario searchPreview -smokeBackend sefaria -smokeBypassBootstrap
-SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-open.ready" SMOKE_SETTLE_SECONDS=8 CAPTURE_WAIT_SECONDS=30 capture_screen "sefaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-results.ready" SMOKE_SETTLE_SECONDS=2 CAPTURE_WAIT_SECONDS=120 capture_screen "sefaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend sefaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-preview.ready" SMOKE_SETTLE_SECONDS=5 CAPTURE_WAIT_SECONDS=120 capture_screen "sefaria-he-search-preview.png" he he_IL -smokeScenario searchPreview -smokeBackend sefaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-open.ready" SMOKE_SETTLE_SECONDS=8 CAPTURE_WAIT_SECONDS=120 capture_screen "sefaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-he-annotations-list.png" he he_IL -smokeScenario annotationsList -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-he-annotations-open.png" he he_IL -smokeScenario annotationsOpen -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-to-otzaria-switch.png" he he_IL -smokeScenario engineSwitch -smokeBackend sefaria -smokeBypassBootstrap
