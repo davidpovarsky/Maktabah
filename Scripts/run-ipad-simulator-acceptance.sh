@@ -315,6 +315,7 @@ capture_screen "sefaria-he-reader.png" he he_IL -smokeScenario reader -smokeBack
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=10 capture_screen "sefaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend sefaria -smokeBypassBootstrap
+CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-search-preview.png" he he_IL -smokeScenario searchPreview -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=10 capture_screen "sefaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-he-annotations-list.png" he he_IL -smokeScenario annotationsList -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-he-annotations-open.png" he he_IL -smokeScenario annotationsOpen -smokeBackend sefaria -smokeBypassBootstrap
@@ -427,6 +428,8 @@ if grep -q 'MaktabahTopTabSelector\|Picker(.*segmented' "$ROOT/Source/iOS/Views/
 fi
 require_screenshot "sefaria-he-reader.png" portrait || acceptance_failed=1
 require_screenshot "sefaria-he-inspector.png" portrait || acceptance_failed=1
+require_screenshot "sefaria-he-search-results.png" portrait || acceptance_failed=1
+require_screenshot "sefaria-he-search-preview.png" portrait || acceptance_failed=1
 require_screenshot "sefaria-he-search-open.png" portrait || acceptance_failed=1
 require_screenshot "sefaria-he-reader-landscape.png" landscape || acceptance_failed=1
 require_screenshot "sefaria-he-inspector-landscape.png" landscape || acceptance_failed=1

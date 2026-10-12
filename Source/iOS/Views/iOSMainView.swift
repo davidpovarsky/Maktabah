@@ -82,6 +82,9 @@ struct iOSMainView: View {
     @State private var selectedTab: iOSTab = .viewer
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showSettings = false
+    #if DEBUG
+    @State private var smokeSearchPreviewItem: SearchResultItem?
+    #endif
     @ObservedObject private var donationManager = DonationManager.shared
 
     var body: some View {
@@ -142,6 +145,18 @@ struct iOSMainView: View {
             }
         }
         #if DEBUG
+        .overlay {
+            if let item = smokeSearchPreviewItem {
+                ZStack {
+                    Color.black.opacity(0.12)
+                        .ignoresSafeArea()
+                    SearchResultContextPreview(item: item)
+                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+                        .shadow(radius: 24)
+                        .padding(32)
+                }
+            }
+        }
         .task {
             await performSmokeAutomationIfNeeded()
         }
@@ -272,40 +287,29 @@ private extension iOSMainView {
 
         case "searchResults":
             let query = "בראשית"
-            navigationManager.searchViewModel.query = query
             selectedTab = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
-            if backend == .sefaria {
-                await navigationManager.searchViewModel.startSearch()
-            }
-            try? await Task.sleep(for: .milliseconds(1500))
+            try? await Task.sleep(for: .milliseconds(500))
+            _ = await prepareSmokeSearch(query: query)
+
+        case "searchPreview":
+            let query = "בראשית"
+            selectedTab = .search
+            navigationManager.switchToMode(.search)
+            columnVisibility = .all
+            try? await Task.sleep(for: .milliseconds(500))
+            smokeSearchPreviewItem = await prepareSmokeSearch(query: query)
 
         case "searchOpen":
             let query = "בראשית"
             selectedTab = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
-            if backend == .sefaria {
-                navigationManager.searchViewModel.query = query
-                await navigationManager.searchViewModel.startSearch()
-                try? await Task.sleep(for: .milliseconds(1500))
-                if let first = navigationManager.searchViewModel.results.first,
-                   let book = navigationManager.searchViewModel.resolveBook(from: first) {
-                    let targetContentId = first.backendLocator != nil ? first.bookId : first.page
-                    navigationManager.openBook(book, initialContentId: targetContentId, searchText: query, recordHistory: false)
-                    navigationManager.switchToMode(.viewer)
-                }
-            } else {
-                _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
-                if let page = try? await BackendCoordinator.shared.search(.init(query: query, offset: 0, limit: 10)),
-                   let hit = page.hits.first {
-                    let targetID = LegacyIdentityRegistry.shared.id(for: hit.locator)
-                    let canonicalID = CrossBackendBookIdentityIndex.shared.canonicalID(for: hit.locator) ?? 1
-                    let book = BooksData(id: canonicalID, book: hit.displayRef, archive: 0, muallif: 0, backendLocator: hit.locator)
-                    navigationManager.openBook(book, initialContentId: targetID, searchText: query, recordHistory: false)
-                    navigationManager.switchToMode(.viewer)
-                }
+            try? await Task.sleep(for: .milliseconds(500))
+            if let first = await prepareSmokeSearch(query: query) {
+                navigationManager.unifiedSearchSession.openResult(first, using: navigationManager)
+                navigationManager.switchToMode(.viewer)
             }
 
         case "annotationsList":
@@ -347,6 +351,26 @@ private extension iOSMainView {
         default:
             break
         }
+    }
+
+    func prepareSmokeSearch(query: String) async -> SearchResultItem? {
+        let session = navigationManager.unifiedSearchSession
+        session.searchViewModel = navigationManager.searchViewModel
+        session.handleBackendChanged()
+        session.scope = .advanced
+        session.query = query
+        session.runSearch()
+
+        for _ in 0..<80 {
+            if let first = session.results.first {
+                return first
+            }
+            if session.hasSubmitted, !session.isSearching, session.errorMessage != nil {
+                return nil
+            }
+            try? await Task.sleep(for: .milliseconds(250))
+        }
+        return session.results.first
     }
 
     func addSmokeStudyNote() {

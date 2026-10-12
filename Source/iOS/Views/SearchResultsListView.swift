@@ -58,7 +58,7 @@ struct SearchResultsListView: View {
     }
 }
 
-private struct SearchResultContextPreview: View {
+struct SearchResultContextPreview: View {
     let item: SearchResultItem
     @State private var fullText: String?
     @State private var previewError: String?
