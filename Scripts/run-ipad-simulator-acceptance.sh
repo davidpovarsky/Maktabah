@@ -35,6 +35,9 @@ IPAD_UDID="$UDID"
 IPHONE_UDID=""
 
 cleanup() {
+  local exit_code=$?
+  trap - EXIT
+  set +e
   for device in "$IPAD_UDID" "$IPHONE_UDID"; do
     [ -n "$device" ] || continue
     echo "Terminating and cleaning up simulator $device..."
@@ -42,6 +45,7 @@ cleanup() {
     xcrun simctl shutdown "$device" >/dev/null 2>&1 || true
     xcrun simctl delete "$device" >/dev/null 2>&1 || true
   done
+  exit "$exit_code"
 }
 trap cleanup EXIT
 
@@ -77,12 +81,14 @@ capture_screen() {
   local extra_args=("$@")
 
   echo "--> [SCREENSHOT] $output (lang: $lang, locale: $locale, wait: ${wait_seconds}s, args: ${extra_args[*]:-none})"
+  xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
+  sleep 1
   if [ -n "$ready_file" ]; then
     rm -f "$ready_file"
   fi
   SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
   SIMCTL_CHILD_MAKTABAH_SMOKE_READY_FILE="$ready_file" \
-  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}" >/dev/null
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}"
   if [ "$CURRENT_ORIENTATION" != "portrait" ]; then
     rotate_simulator "$CURRENT_ORIENTATION"
   fi
@@ -533,6 +539,7 @@ if ! require_screenshot "orientation-probe-landscape.png" landscape; then
 fi
 rotate_simulator portrait
 xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
+sleep 1
 
 # ==============================================================================
 # PHASE 1: Bootstrap UI Screenshots (First launch / Setup)
