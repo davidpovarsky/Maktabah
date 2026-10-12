@@ -279,7 +279,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
                 report.dictionaryConfigured &&
                 (!report.searchArtifactsRequested || (
                     report.lexicalReady &&
-                    report.otzariaIndexDocuments == 18_195 &&
+                    report.otzariaIndexDocuments == 18_879 &&
                     report.otzariaSearchResults > 0 &&
                     report.zayitArtifactIdentity != nil &&
                     report.zayitSearchResults > 0
@@ -333,7 +333,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
                 report.bookCount > 0 &&
                 report.lineCount > 0 &&
                 (!report.searchArtifactsRequested || (
-                    report.otzariaIndexDocuments == 18_195 &&
+                    report.otzariaIndexDocuments == 18_879 &&
                     report.otzariaSearchResults > 0 &&
                     report.zayitArtifactIdentity != nil &&
                     report.zayitSearchResults > 0
