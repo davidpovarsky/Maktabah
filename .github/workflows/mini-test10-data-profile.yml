@@ -712,9 +712,10 @@ jobs:
           name: miniTest10-data-profile-reports
           path: |
             build/miniTest10/logs
+            build/miniTest10/database/miniTest10-seforim.db.zst
             build/miniTest10/database/*.provenance.json
-            build/miniTest10/otzaria/*.json
-            build/miniTest10/zayit/*.json
+            build/miniTest10/otzaria/*
+            build/miniTest10/zayit/*
           compression-level: 0
           if-no-files-found: warn
 
