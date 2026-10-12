@@ -516,6 +516,36 @@ struct LibraryRelatedSource: Codable, Hashable, Identifiable, Sendable {
     let license: String?
     let anchorRefs: [String]
 
+    init(
+        locator: TextLocator,
+        displayRef: String,
+        heRef: String?,
+        category: String,
+        type: String,
+        collectiveTitle: String?,
+        heCollectiveTitle: String?,
+        primaryText: String?,
+        translation: String?,
+        versionTitle: String?,
+        heVersionTitle: String?,
+        license: String?,
+        anchorRefs: [String] = []
+    ) {
+        self.locator = locator
+        self.displayRef = displayRef
+        self.heRef = heRef
+        self.category = category
+        self.type = type
+        self.collectiveTitle = collectiveTitle
+        self.heCollectiveTitle = heCollectiveTitle
+        self.primaryText = primaryText
+        self.translation = translation
+        self.versionTitle = versionTitle
+        self.heVersionTitle = heVersionTitle
+        self.license = license
+        self.anchorRefs = anchorRefs
+    }
+
     var id: String {
         "\(locator.persistenceKey)|\(type)|\(category)|\(versionTitle ?? "")|\(anchorRefs.joined(separator: ","))"
     }
