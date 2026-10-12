@@ -6,6 +6,8 @@
 # Commentators, Search, and captures all UI states across Hebrew & English.
 #
 
+set -euo pipefail
+
 if [ "$#" -lt 1 ]; then
   echo "usage: $0 /absolute/path/to/Maktabah.app" >&2
   exit 64
@@ -52,8 +54,9 @@ command -v idb >/dev/null 2>&1 || {
 }
 
 echo "Configuring OtzariaDefaultDataProfile in $APP/Info.plist..."
-/usr/libexec/PlistBuddy -c 'Set :OtzariaDefaultDataProfile miniTest10' "$APP/Info.plist" 2>/dev/null || \
-/usr/libexec/PlistBuddy -c 'Add :OtzariaDefaultDataProfile string miniTest10' "$APP/Info.plist" 2>/dev/null || true
+if ! /usr/libexec/PlistBuddy -c 'Set :OtzariaDefaultDataProfile miniTest10' "$APP/Info.plist" 2>/dev/null; then
+  /usr/libexec/PlistBuddy -c 'Add :OtzariaDefaultDataProfile string miniTest10' "$APP/Info.plist"
+fi
 
 export SIMCTL_CHILD_OTZARIA_DATA_PROFILE="miniTest10"
 CURRENT_ORIENTATION="portrait"
@@ -79,7 +82,7 @@ capture_screen() {
   fi
   SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
   SIMCTL_CHILD_MAKTABAH_SMOKE_READY_FILE="$ready_file" \
-  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}" >/dev/null 2>&1 || true
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -AppleLanguages "($lang)" -AppleLocale "$locale" "${extra_args[@]}" >/dev/null
   if [ "$CURRENT_ORIENTATION" != "portrait" ]; then
     rotate_simulator "$CURRENT_ORIENTATION"
   fi
@@ -152,6 +155,21 @@ ui_wait_id() {
   idb ui wait "$identifier" --match-key AXUniqueId --timeout "$timeout" --json --udid "$UDID"
 }
 
+ui_wait_absent_id() {
+  local identifier="$1"
+  local timeout="${2:-30}"
+  local waited=0
+  while [ "$waited" -lt "$timeout" ]; do
+    if ! idb ui describe "$identifier" --match-key AXUniqueId --udid "$UDID" >/dev/null 2>&1; then
+      return 0
+    fi
+    sleep 1
+    waited=$((waited + 1))
+  done
+  echo "Accessibility element remained visible after ${timeout}s: $identifier" >&2
+  return 1
+}
+
 ui_tap_id() {
   local identifier="$1"
   idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID"
@@ -200,6 +218,7 @@ run_real_search_preview() {
 import json, sys
 def item(path):
     value = json.load(open(path))
+    if isinstance(value, dict) and 'elements' in value: value = value['elements']
     if isinstance(value, list): value = value[0]
     return value
 row, preview = item(sys.argv[1]), item(sys.argv[2])
@@ -319,7 +338,9 @@ selected = frame('fixed-study-side-en','torah-inspector-selected-segment')
 tools = frame('fixed-study-side-en','torah-inspector-tools')
 assert selected['y'] + selected['height'] <= tools['y'] + 2, (selected, tools)
 def one(path):
-    value=json.loads(path.read_text()); return value[0] if isinstance(value,list) else value
+    value=json.loads(path.read_text())
+    if isinstance(value, dict) and 'elements' in value: value=value['elements']
+    return value[0] if isinstance(value,list) else value
 before, after = one(root/'viewport-before-study-toggles.json'), one(root/'viewport-after-study-toggles.json')
 pattern=r'source=(\d+);offset=([-0-9.]+);object=(-?\d+)'
 b, a = re.search(pattern, str(before.get('help',''))), re.search(pattern, str(after.get('help','')))
@@ -338,10 +359,14 @@ run_source_gesture_flow() {
   idb ui describe torah-inspector-source- \
     --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
     > "$REPORT_DIR/source-before-gestures.json"
-  read -r source_x source_y < <(python3 - "$REPORT_DIR/source-before-gestures.json" <<'PY'
+  IFS='|' read -r source_x source_y source_work < <(python3 - "$REPORT_DIR/source-before-gestures.json" <<'PY'
 import json, sys
-value=json.load(open(sys.argv[1])); value=value[0] if isinstance(value,list) else value
-f=value['frame']; print(round(f['x']+f['width']/2), round(f['y']+f['height']/2))
+value=json.load(open(sys.argv[1]))
+if isinstance(value, dict) and 'elements' in value: value=value['elements']
+value=value[0] if isinstance(value,list) else value
+identifier=value['AXUniqueId']
+work=identifier.split(':', 1)[1].split('|', 1)[0]
+f=value['frame']; print(f"{round(f['x']+f['width']/2)}|{round(f['y']+f['height']/2)}|{work}")
 PY
   )
   idb ui tap "$source_x" "$source_y" --udid "$UDID"
@@ -351,7 +376,18 @@ PY
   idb ui tap "$source_x" "$source_y" --udid "$UDID"
   idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
   idb ui multi-tap "$source_x" "$source_y" --count 2 --pause 0.08 --udid "$UDID"
-  ui_wait_id reader-text 45
+  ui_wait_absent_id torah-inspector-panel 45
+  ui_wait_id reader-header-title 45
+  idb ui describe reader-header-title \
+    --match-key AXUniqueId --key AXUniqueId --key AXLabel --udid "$UDID" \
+    > "$REPORT_DIR/source-double-tap-reader-header.json"
+  python3 - "$REPORT_DIR/source-double-tap-reader-header.json" "$source_work" <<'PY'
+import json, sys
+value=json.load(open(sys.argv[1]))
+if isinstance(value, dict) and 'elements' in value: value=value['elements']
+if isinstance(value, list): value=value[0]
+assert str(value.get('AXLabel', '')).strip() == sys.argv[2].strip(), (value, sys.argv[2])
+PY
   capture_current_ui fixed-real-source-double-tap-reader.png
 }
 
@@ -408,6 +444,7 @@ run_invalid_note_save_flow() {
   python3 - "$REPORT_DIR/invalid-note-preserved-text.json" "$value" <<'PY'
 import json, sys
 value = json.load(open(sys.argv[1]))
+if isinstance(value, dict) and 'elements' in value: value = value['elements']
 if isinstance(value, list): value = value[0]
 assert sys.argv[2] in str(value.get('AXValue', '')), value
 PY
@@ -486,9 +523,9 @@ require_screenshot() {
 echo ""
 echo "=== [PHASE 0: Interface Orientation Probe] ==="
 SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
-xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap >/dev/null 2>&1 || true
+xcrun simctl launch "$UDID" "$BUNDLE_ID" -OtzariaDataProfile miniTest10 -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap >/dev/null
 rotate_simulator landscapeLeft
-xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/orientation-probe-landscape.png" >/dev/null 2>&1 || true
+xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/orientation-probe-landscape.png" >/dev/null
 normalize_screenshot_orientation "$SCREENSHOT_DIR/orientation-probe-landscape.png" landscapeLeft
 if ! require_screenshot "orientation-probe-landscape.png" landscape; then
   echo "IDB UI orientation probe or screenshot normalization failed." >&2

@@ -157,6 +157,7 @@ struct SearchResultContextPreview: View {
         }
         .frame(maxWidth: .infinity, minHeight: 180, alignment: .leading)
         .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
         .task(id: "\(item.backendLocator?.persistenceKey ?? "local"):\(retryToken)") {
             guard let locator = item.backendLocator else { return }

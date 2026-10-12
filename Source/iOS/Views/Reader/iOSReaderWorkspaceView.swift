@@ -252,6 +252,7 @@ struct iOSReaderWorkspaceView: View {
                 readerSurface
             }
         }
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-workspace")
     }
 
@@ -263,6 +264,7 @@ struct iOSReaderWorkspaceView: View {
             columnVisibility: $libraryColumnVisibility,
             onShowTableOfContents: openContents
         )
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -270,10 +272,12 @@ struct iOSReaderWorkspaceView: View {
                     Text(readerHeaderTitle)
                         .font(.headline)
                         .lineLimit(1)
+                        .accessibilityIdentifier("reader-header-title")
                     Text(viewModel.statusSubtitle)
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
+                        .accessibilityIdentifier("reader-header-subtitle")
                 }
             }
 

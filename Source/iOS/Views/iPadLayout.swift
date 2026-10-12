@@ -116,9 +116,11 @@ struct iPadLayout: View {
             .toolbarBackground(Color.appBackground, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .background(Color.appBackground)
+            .accessibilityElement(children: .contain)
             .accessibilityIdentifier("library-column")
         } content: {
             activeReaderTableOfContents
+                .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("toc-column")
         } detail: {
             iOSReaderTabView(
@@ -126,6 +128,7 @@ struct iPadLayout: View {
                 preferredCompactColumn: $preferredLibraryCompactColumn
             )
                 .background(Color.appBackground)
+                .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("reader-detail-column")
         }
         .navigationSplitViewStyle(.balanced)

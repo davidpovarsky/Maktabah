@@ -40,6 +40,10 @@ Use Markdown checkboxes where useful:
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
+- [x] Make production UI acceptance fail closed
+  - Implemented: 2026-10-13
+  - Notes: IDB `describe` responses wrap a matched element under an `elements` key, while `describe-all` returns a list. The acceptance runner now handles both shapes, uses distinct container accessibility elements, and exits on failed gestures, waits, geometry checks, or assertions instead of allowing a green workflow with swallowed UI failures.
+
 - [x] Consolidate the iPad reader into one native three-column split
   - Implemented: 2026-10-12
   - Notes: The Library tab now owns one `NavigationSplitView` with Library/TOC/Reader columns. Study remains an adaptive presentation inside Reader detail, and TextKit restores a source-character viewport anchor after width reflow.

@@ -3892,7 +3892,7 @@
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
 			requirement = {
 				kind = revision;
-				revision = eaa495d6e79b8e55d8cc2e3629e0e18ffe164df3;
+			revision = e8aefc626350c8ee0df9daf8d7de7e1dcd0ea418;
 			};
 		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
