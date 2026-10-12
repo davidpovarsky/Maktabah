@@ -616,7 +616,10 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         let rows = try await relationshipRows(for: sectionRef)
         var results: [LibraryRelatedSource] = []
         var seen = Set<String>()
-        for row in rows where relationship(row, includes: requestedRef, sectionRef: sectionRef) {
+        let matchingRows = rows
+            .filter { relationship($0, includes: requestedRef, sectionRef: sectionRef) }
+            .sorted { relationshipSpecificity($0) < relationshipSpecificity($1) }
+        for row in matchingRows {
             if let source = SefariaRelationshipMapper.source(row, knownTitles: knownTitles),
                seen.insert(source.id).inserted {
                 results.append(source)
@@ -737,6 +740,13 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             ? [row.anchorRef].compactMap { $0 }
             : row.anchorRefExpanded
         return anchors.contains { SefariaRef.anchorReference($0, contains: requestedRef) }
+    }
+
+    /// Sefaria can return book-wide essays before links anchored to the exact
+    /// segment. Exact/small anchors are the useful default for Inspector cards
+    /// and also preserve deterministic linked-source navigation.
+    private func relationshipSpecificity(_ row: SefariaRelationshipLinkDTO) -> Int {
+        row.anchorRefExpanded.isEmpty ? 1 : row.anchorRefExpanded.count
     }
 
     private func map(_ dto: SefariaTextsV3DTO, origin: LibraryTextSection.Origin) -> SefariaSection {

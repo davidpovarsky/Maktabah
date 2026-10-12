@@ -190,6 +190,7 @@ struct SefariaRelationshipLinkDTO: Hashable, Sendable {
     let category: String?
     let type: String?
     let collectiveTitle: SefariaLocalizedTitleDTO?
+    let displayedText: SefariaLocalizedTitleDTO?
     let he: String?
     let text: String?
     let versionTitle: String?
@@ -201,7 +202,7 @@ struct SefariaRelationshipLinkDTO: Hashable, Sendable {
     let anchorRefExpanded: [String]
 
     private enum CodingKeys: String, CodingKey {
-        case sourceRef, sourceHeRef, ref, heRef, category, type, collectiveTitle
+        case sourceRef, sourceHeRef, ref, heRef, category, type, collectiveTitle, displayedText
         case he, text, versionTitle, heVersionTitle, heLicense, license
         case anchorRef, anchorRefExpanded
         case indexTitle = "index_title"
@@ -219,6 +220,7 @@ extension SefariaRelationshipLinkDTO: Decodable {
         category = try values.decodeIfPresent(String.self, forKey: .category)
         type = try values.decodeIfPresent(String.self, forKey: .type)
         collectiveTitle = try values.decodeIfPresent(SefariaLocalizedTitleDTO.self, forKey: .collectiveTitle)
+        displayedText = try values.decodeIfPresent(SefariaLocalizedTitleDTO.self, forKey: .displayedText)
         he = (try values.decodeIfPresent(SefariaFlexString.self, forKey: .he))?.stringValue
         text = (try values.decodeIfPresent(SefariaFlexString.self, forKey: .text))?.stringValue
         versionTitle = try values.decodeIfPresent(String.self, forKey: .versionTitle)
@@ -261,8 +263,8 @@ enum SefariaRelationshipMapper {
             type: row.type?.nonEmpty ?? "link",
             collectiveTitle: row.collectiveTitle?.en?.nonEmpty,
             heCollectiveTitle: row.collectiveTitle?.he?.nonEmpty,
-            primaryText: row.he?.nonEmpty,
-            translation: row.text?.nonEmpty,
+            primaryText: row.he?.nonEmpty ?? row.displayedText?.he?.nonEmpty,
+            translation: row.text?.nonEmpty ?? row.displayedText?.en?.nonEmpty,
             versionTitle: row.versionTitle?.nonEmpty,
             heVersionTitle: row.heVersionTitle?.nonEmpty,
             license: (row.heLicense ?? row.license)?.nonEmpty

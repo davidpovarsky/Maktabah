@@ -430,6 +430,12 @@ private func runSearchSemanticsAndFilterTests() async throws {
             {
                 "links": [
                     {
+                        "sourceRef": "A Broad Essay 1-2",
+                        "anchorRef": "Genesis 1:1-2",
+                        "anchorRefExpanded": ["Genesis 1:1", "Genesis 1:2"],
+                        "displayedText": {"en": "Broad essay", "he": "×ž××ž×¨ ×›×œ×œ×™"}
+                    },
+                    {
                         "sourceRef": "Rashi on Genesis 1:1:1",
                         "index_title": "Rashi on Genesis",
                         "anchorRef": "Genesis 1:1",
@@ -468,10 +474,13 @@ private func runSearchSemanticsAndFilterTests() async throws {
     let oneTwoLinks = try await remoteStore.links(for: genesisOneTwo)
     try expect(relatedRequestCount == 1,
         "two segment lookups in one section issue one related request")
-    try expect(oneOneLinks.map(\.displayRef) == ["Rashi on Genesis 1:1:1"],
-        "section-related rows are filtered to the exact first segment")
-    try expect(oneTwoLinks.map(\.displayRef) == ["Rashi on Genesis 1:2:1"],
-        "section-related rows are filtered to the exact second segment")
+    try expect(oneOneLinks.first?.displayRef == "Rashi on Genesis 1:1:1",
+        "exact segment relationship sorts before a broad range")
+    try expect(oneTwoLinks.first?.displayRef == "Rashi on Genesis 1:2:1",
+        "exact second-segment relationship sorts before a broad range")
+    try expect(oneOneLinks.last?.translation == "Broad essay"
+        && !(oneOneLinks.last?.primaryText ?? "").isEmpty,
+        "displayedText supplies relationship snippets without extra requests")
 
     // 6. Real SefariaRemoteStore: Overlap-heavy OR pagination test
     // Query: "משה אהרן" (OR mode)

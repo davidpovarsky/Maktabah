@@ -194,13 +194,6 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
 
     func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         #if os(iOS)
-        let mode: SearchMode = switch request.options.searchMode {
-        case .phrase: .phrase
-        case .contains: .contains
-        case .or: .or
-        case .near: .near
-        }
-
         let selectedBookIds: Set<Int>?
         if request.filters.isEmpty {
             selectedBookIds = nil
@@ -210,6 +203,64 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
                 return .init(hits: [], total: 0, nextOffset: nil)
             }
             selectedBookIds = resolved
+        }
+
+        if let databasePath = OtzariaMaktabahBridge.shared.databasePath {
+            let indexURL = OtzariaSearchIndexManager.shared.indexURL(for: databasePath)
+            if FileManager.default.fileExists(atPath: indexURL.path) {
+                let sortedBookIDs = selectedBookIds?.sorted()
+                let facets = sortedBookIDs?.map { "/book/\($0)" } ?? ["/"]
+                let mode: OtzariaSearchMode = request.options.matchMode == .exact
+                    ? .exact
+                    : .advanced
+                let order: OtzariaSearchOrder = request.options.sortOrder == .canonical
+                    ? .catalogue
+                    : .relevance
+                let page = try OtzariaTantivySearchRepository.shared.search(
+                    databasePath: databasePath,
+                    request: OtzariaSearchRequest(
+                        query: request.query,
+                        mode: mode,
+                        facets: facets,
+                        limit: request.limit,
+                        offset: request.offset,
+                        order: order,
+                        distance: request.options.searchMode == .near
+                            ? max(1, request.options.wordDistance)
+                            : 0,
+                        wordMatchMode: request.options.searchMode == .or ? .anyWord : .all,
+                        bookIds: sortedBookIDs
+                    )
+                )
+                let items = OtzariaTantivySearchRepository.shared.navigationItems(from: page)
+                let hits = items.map { item in
+                    LibrarySearchHit(
+                        locator: TextLocator(
+                            backend: .otzaria,
+                            workKey: "book:\(item.bookId)",
+                            position: .legacyLine(item.page)
+                        ),
+                        displayRef: item.locationDisplayText ?? item.bookTitle,
+                        heRef: item.locationDisplayText,
+                        snippet: item.attributedText.string,
+                        score: nil
+                    )
+                }
+                let consumed = request.offset + hits.count
+                let total = Int(page.totalCount)
+                return .init(
+                    hits: hits,
+                    total: total,
+                    nextOffset: page.truncated || consumed < total ? consumed : nil
+                )
+            }
+        }
+
+        let mode: SearchMode = switch request.options.searchMode {
+        case .phrase: .phrase
+        case .contains: .contains
+        case .or: .or
+        case .near: .near
         }
 
         let fetchLimit = request.limit + 1
