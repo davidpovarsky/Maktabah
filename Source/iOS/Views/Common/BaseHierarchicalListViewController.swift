@@ -62,7 +62,7 @@ class BaseHierarchicalListViewController<ItemType: Hashable & Sendable>: UIViewC
             ? .systemGroupedBackground : .appBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInsetAdjustmentBehavior = .automatic
-        collectionView.semanticContentAttribute = .forceLeftToRight
+        collectionView.semanticContentAttribute = .unspecified
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([

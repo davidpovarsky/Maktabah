@@ -514,8 +514,11 @@ struct LibraryRelatedSource: Codable, Hashable, Identifiable, Sendable {
     let versionTitle: String?
     let heVersionTitle: String?
     let license: String?
+    let anchorRefs: [String]
 
-    var id: String { "\(locator.persistenceKey)|\(type)|\(category)" }
+    var id: String {
+        "\(locator.persistenceKey)|\(type)|\(category)|\(versionTitle ?? "")|\(anchorRefs.joined(separator: ","))"
+    }
 }
 
 struct LibraryRelatedTopic: Codable, Hashable, Identifiable, Sendable {
@@ -615,7 +618,11 @@ struct LibrarySearchHit: Codable, Hashable, Identifiable, Sendable {
     let heRef: String?
     let snippet: String
     let score: Double?
-    var id: String { locator.persistenceKey }
+    var versionTitle: String? = nil
+    var language: String? = nil
+    var id: String {
+        "\(locator.persistenceKey)|\(versionTitle ?? "")|\(language ?? "")"
+    }
 }
 
 struct LibrarySearchPage: Codable, Hashable, Sendable {

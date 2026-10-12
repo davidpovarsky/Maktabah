@@ -71,7 +71,6 @@ struct iOSTOCView: View {
         .themeTint()
         .listStyle(.plain)
         .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
-        .environment(\.layoutDirection, .rightToLeft)
     }
 
     private var contents: some View {
@@ -133,6 +132,7 @@ struct iOSTOCView: View {
                                     ContentsToggleIcon(isOpen: true)
                                 }
                                 .accessibilityLabel(String(localized: "Close Table of Contents"))
+                                .accessibilityIdentifier("toc-close")
                                 .help(String(localized: "Close Table of Contents"))
                             }
                             ToolbarItem(placement: .principal) {

@@ -217,6 +217,14 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     let backendLocator: TextLocator?
     let locationDisplayText: String?
     let highlightTerms: [String]?
+    let versionTitle: String?
+    let resultLanguage: String?
+
+    var stableID: String {
+        let locator = backendLocator?.persistenceKey
+            ?? "legacy:\(archive):\(tableName):\(bookId):\(part):\(page)"
+        return "\(locator)|\(versionTitle ?? "")|\(resultLanguage ?? "")"
+    }
 
     enum CodingKeys: String, CodingKey {
         case archive
@@ -229,6 +237,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         case backendLocator
         case locationDisplayText
         case highlightTerms
+        case versionTitle
+        case resultLanguage
     }
 
     init(
@@ -241,7 +251,9 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         attributedText: NSAttributedString,
         backendLocator: TextLocator? = nil,
         locationDisplayText: String? = nil,
-        highlightTerms: [String]? = nil
+        highlightTerms: [String]? = nil,
+        versionTitle: String? = nil,
+        resultLanguage: String? = nil
     ) {
         self.archive = archive
         self.tableName = tableName
@@ -253,6 +265,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         self.backendLocator = backendLocator
         self.locationDisplayText = locationDisplayText
         self.highlightTerms = highlightTerms
+        self.versionTitle = versionTitle
+        self.resultLanguage = resultLanguage
     }
 
     func encode(to encoder: Encoder) throws {
@@ -274,6 +288,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         try container.encodeIfPresent(backendLocator, forKey: .backendLocator)
         try container.encodeIfPresent(locationDisplayText, forKey: .locationDisplayText)
         try container.encodeIfPresent(highlightTerms, forKey: .highlightTerms)
+        try container.encodeIfPresent(versionTitle, forKey: .versionTitle)
+        try container.encodeIfPresent(resultLanguage, forKey: .resultLanguage)
     }
 
     init(from decoder: Decoder) throws {
@@ -288,6 +304,8 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
         backendLocator = try container.decodeIfPresent(TextLocator.self, forKey: .backendLocator)
         locationDisplayText = try container.decodeIfPresent(String.self, forKey: .locationDisplayText)
         highlightTerms = try container.decodeIfPresent([String].self, forKey: .highlightTerms)
+        versionTitle = try container.decodeIfPresent(String.self, forKey: .versionTitle)
+        resultLanguage = try container.decodeIfPresent(String.self, forKey: .resultLanguage)
 
         let data = try container.decode(Data.self, forKey: .attributedText)
 
@@ -314,7 +332,7 @@ struct SearchResultItem: Codable, CopyableResult, Hashable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(backendLocator?.persistenceKey ?? "legacy:\(bookId)")
+        hasher.combine(stableID)
     }
 
     func formatForClipboard() -> String {

@@ -351,7 +351,10 @@ enum SefariaOfflineRelationshipMapper {
                 translation: nil,
                 versionTitle: nil,
                 heVersionTitle: nil,
-                license: nil
+                license: nil,
+                anchorRefs: (link.anchorRefExpanded?.isEmpty == false)
+                    ? (link.anchorRefExpanded ?? [])
+                    : [link.anchorRef].compactMap { $0 }
             )
             guard seen.insert(source.id).inserted else { return nil }
             return source

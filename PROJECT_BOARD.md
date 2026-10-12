@@ -40,6 +40,14 @@ Use Markdown checkboxes where useful:
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
+- [x] Consolidate the iPad reader into one native three-column split
+  - Implemented: 2026-10-12
+  - Notes: The Library tab now owns one `NavigationSplitView` with Library/TOC/Reader columns. Study remains an adaptive presentation inside Reader detail, and TextKit restores a source-character viewport anchor after width reflow.
+
+- [x] Keep the Sefaria catalog as durable offline-critical metadata
+  - Implemented: 2026-10-12
+  - Notes: The last-known-good catalog snapshot is written atomically under Application Support with schema/timestamp metadata, rendered immediately on later launches, and refreshed in the background after its TTL.
+
 - [x] Publish miniTest10 only after enabling GitHub immutable releases
   - Implemented: 2026-10-12
   - Notes: Repository release immutability applies only to future releases. Bump the canonical profile version/tag when enabling it, and pass all assets directly to `gh release create` so GitHub can upload them while the release is a draft and lock the tag and assets atomically on publication.

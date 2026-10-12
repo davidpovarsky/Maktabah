@@ -37,6 +37,7 @@ struct OtzariaAuthorsModeView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(author.name)
                                     .font(.headline)
+                                    .environment(\.layoutDirection, author.name.isParagraphRTL ? .rightToLeft : .leftToRight)
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -98,12 +99,14 @@ private struct OtzariaAuthorBooksView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(book.book)
                                 .font(.headline)
+                                .environment(\.layoutDirection, book.book.isParagraphRTL ? .rightToLeft : .leftToRight)
                                 .multilineTextAlignment(.leading)
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
                             if !book.info.isEmpty {
                                 Text(book.info)
                                     .font(.caption)
+                                    .environment(\.layoutDirection, book.info.isParagraphRTL ? .rightToLeft : .leftToRight)
                                     .foregroundStyle(.secondary)
                                     .lineLimit(2)
                                     .multilineTextAlignment(.leading)

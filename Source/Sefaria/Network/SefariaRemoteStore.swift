@@ -199,7 +199,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 options: request.options
             ))
             for hit in page.hits where requestedWorks.contains(hit.locator.workKey) {
-                if seen.insert(hit.locator.persistenceKey).inserted { matches.append(hit) }
+                if seen.insert(hit.id).inserted { matches.append(hit) }
             }
             guard let next = page.nextOffset, next > remoteOffset else {
                 remoteExhausted = true
@@ -378,7 +378,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 }
                 let hits = mapSearchHits(rawHits)
                 for hit in hits {
-                    let locatorKey = hit.locator.persistenceKey
+                    let locatorKey = hit.id
                     if let existing = session.uniqueHitsMap[locatorKey] {
                         if (hit.score ?? 0) > (existing.score ?? 0) {
                             session.uniqueHitsMap[locatorKey] = hit
@@ -496,7 +496,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 }
                 let hits = mapSearchHits(rawHits)
                 for hit in hits {
-                    let locatorKey = hit.locator.persistenceKey
+                    let locatorKey = hit.id
                     if stream.hitsByLocator[locatorKey] == nil {
                         stream.orderedLocators.append(locatorKey)
                         stream.hitsByLocator[locatorKey] = hit
@@ -586,7 +586,9 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 displayRef: hit.source.ref,
                 heRef: hit.source.heRef,
                 snippet: snippet,
-                score: hit.score
+                score: hit.score,
+                versionTitle: hit.source.version,
+                language: hit.source.lang
             )
         }
     }

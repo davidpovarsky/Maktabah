@@ -3,9 +3,14 @@ import SwiftUI
 struct iOSReaderTabView: View {
     @Environment(iOSNavigationManager.self) var bManager
     @Binding var columnVisibility: NavigationSplitViewVisibility
+    @Binding var preferredCompactColumn: NavigationSplitViewColumn
 
-    init(columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all)) {
+    init(
+        columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all),
+        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail)
+    ) {
         self._columnVisibility = columnVisibility
+        self._preferredCompactColumn = preferredCompactColumn
     }
 
     private var activeTab: iOSNavigationManager.ReaderTab? {
@@ -19,7 +24,8 @@ struct iOSReaderTabView: View {
                     book: activeTab.book,
                     viewModel: activeTab.viewModel,
                     initialContentId: activeTab.initialContentId,
-                    libraryColumnVisibility: $columnVisibility
+                    libraryColumnVisibility: $columnVisibility,
+                    preferredCompactColumn: $preferredCompactColumn
                 )
                 .id(activeTab.id)
                 .toolbar {

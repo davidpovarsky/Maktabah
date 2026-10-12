@@ -161,7 +161,9 @@ enum MaktabahBackendAdapter {
             attributedText: formattedSnippet,
             backendLocator: hit.locator,
             locationDisplayText: locationDisplayText,
-            highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms
+            highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms,
+            versionTitle: hit.versionTitle,
+            resultLanguage: hit.language
         )
     }
 

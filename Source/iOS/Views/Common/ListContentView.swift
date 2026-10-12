@@ -51,14 +51,10 @@ class ListContentView: UIView, UIContentView {
     /// Callback ketika checkbox diklik.
     var onCheckboxTap: CheckboxTapHandler?
 
-    override var effectiveUserInterfaceLayoutDirection: UIUserInterfaceLayoutDirection {
-        .leftToRight
-    }
-
     init(_ configuration: ListContentConfiguration) {
         self.appliedConfiguration = configuration
         super.init(frame: .zero)
-        semanticContentAttribute = .forceLeftToRight
+        semanticContentAttribute = .unspecified
         setupViews()
         apply(configuration)
     }
@@ -72,7 +68,7 @@ class ListContentView: UIView, UIContentView {
         leadingStack.alignment = .center
         leadingStack.spacing = ListLayoutMetrics.imageGap
         leadingStack.translatesAutoresizingMaskIntoConstraints = false
-        leadingStack.semanticContentAttribute = .forceLeftToRight
+        leadingStack.semanticContentAttribute = .unspecified
 
         // Main stack: leading + label + chevron
         let mainStack = UIStackView(arrangedSubviews: [label, leadingStack])
@@ -80,13 +76,13 @@ class ListContentView: UIView, UIContentView {
         mainStack.alignment = .center
         mainStack.spacing = ListLayoutMetrics.imageGap
         mainStack.translatesAutoresizingMaskIntoConstraints = false
-        mainStack.semanticContentAttribute = .forceLeftToRight
+        mainStack.semanticContentAttribute = .unspecified
 
         mainStack.addArrangedSubview(chevronIcon)
 
         // Label mengisi sisa ruang, perataan kanan
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        label.textAlignment = .right
+        label.textAlignment = .natural
 
         // Definisikan ukuran statis menggunakan pusat metrics
         leadingIcon.setContentHuggingPriority(.required, for: .horizontal)
@@ -154,6 +150,9 @@ class ListContentView: UIView, UIContentView {
             }
             label.textColor = config.isDownloaded ? .secondaryLabel : .label
             label.numberOfLines = 1
+            label.semanticContentAttribute = config.text.isParagraphRTL
+                ? .forceRightToLeft
+                : .forceLeftToRight
 
             switch config.leadingAccessory {
             case .none:
@@ -193,13 +192,12 @@ class ListContentView: UIView, UIContentView {
                 checkboxButton.tintColor = tintColor
             }
 
-            chevronIcon.image = UIImage(systemName: "chevron.left")?
+            chevronIcon.image = UIImage(systemName: config.isExpanded ? "chevron.down" : "chevron.forward")?
                 .withConfiguration(UIImage.SymbolConfiguration(pointSize: 13, weight: .bold))
             chevronIcon.tintColor = .tintColor
             chevronIcon.contentMode = .scaleAspectFit
 
-            let angle: CGFloat = config.isExpanded ? -.pi / 2 : 0
-            chevronIcon.transform = CGAffineTransform(rotationAngle: angle)
+            chevronIcon.transform = .identity
 
             layoutIfNeeded()
         }

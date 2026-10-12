@@ -8,12 +8,37 @@ struct SearchResultsListView: View {
     var onLoadMore: (() -> Void)? = nil
     var onSearchInBook: ((SearchResultItem) -> Void)? = nil
     let onSelect: (SearchResultItem) -> Void
+    @State private var expandedResultIDs: Set<String> = []
 
     var body: some View {
         ThemeList(isGrouped: false) {
-            ForEach(Array(results.enumerated()), id: \.offset) { index, item in
-                Button(action: { onSelect(item) }) {
-                    SearchResultRow(item: item, showsBookTitle: showsBookTitle)
+            ForEach(Array(results.enumerated()), id: \.element.stableID) { index, item in
+                VStack(alignment: .leading, spacing: 0) {
+                    Button {
+                        withAnimation(.snappy(duration: 0.28, extraBounce: 0)) {
+                            if expandedResultIDs.remove(item.stableID) == nil {
+                                expandedResultIDs.insert(item.stableID)
+                            }
+                        }
+                    } label: {
+                        HStack(alignment: .center, spacing: 10) {
+                            SearchResultRow(item: item, showsBookTitle: showsBookTitle)
+                            Image(systemName: expandedResultIDs.contains(item.stableID) ? "chevron.up" : "chevron.down")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(String(localized: "Preview full search result"))
+                    .accessibilityValue(expandedResultIDs.contains(item.stableID) ? "Expanded" : "Collapsed")
+                    .accessibilityIdentifier("search-result-preview-toggle-\(item.stableID)")
+
+                    if expandedResultIDs.contains(item.stableID) {
+                        SearchResultContextPreview(item: item) {
+                            onSelect(item)
+                        }
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
                 }
                 .contextMenu {
                     Button("Open", systemImage: "book") { onSelect(item) }
@@ -35,8 +60,6 @@ struct SearchResultsListView: View {
                     if let onSearchInBook {
                         Button("Search in book", systemImage: "magnifyingglass") { onSearchInBook(item) }
                     }
-                } preview: {
-                    SearchResultContextPreview(item: item)
                 }
                 .onAppear {
                     if index >= max(0, results.count - 10), hasMore, !isLoadingMore {
@@ -60,7 +83,8 @@ struct SearchResultsListView: View {
 
 struct SearchResultContextPreview: View {
     let item: SearchResultItem
-    @State private var fullText: String?
+    var onOpen: (() -> Void)? = nil
+    @State private var fullSegments: [SearchPreviewSegment] = []
     @State private var previewError: String?
     @State private var isLoading = false
     @State private var retryToken = 0
@@ -77,11 +101,28 @@ struct SearchResultContextPreview: View {
                 if !location.isEmpty {
                     Text(location).font(.caption).foregroundStyle(.secondary)
                 }
-                if let fullText, !fullText.isEmpty {
-                    Text(fullText)
-                        .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
-                        .multilineTextAlignment(.leading)
-                        .textSelection(.enabled)
+                if !fullSegments.isEmpty {
+                    LazyVStack(alignment: .leading, spacing: 14) {
+                        ForEach(fullSegments) { segment in
+                            VStack(alignment: .leading, spacing: 6) {
+                                if !segment.primary.isEmpty {
+                                    Text(segment.primary)
+                                        .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
+                                        .multilineTextAlignment(.leading)
+                                        .environment(\.layoutDirection, segment.primary.isParagraphRTL ? .rightToLeft : .leftToRight)
+                                }
+                                if let translation = segment.translation, !translation.isEmpty {
+                                    Text(translation)
+                                        .font(.body)
+                                        .multilineTextAlignment(.leading)
+                                        .environment(\.layoutDirection, translation.isParagraphRTL ? .rightToLeft : .leftToRight)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    .textSelection(.enabled)
                 } else if isLoading {
                     ProgressView("Loading full text…")
                         .frame(maxWidth: .infinity, minHeight: 160)
@@ -100,11 +141,23 @@ struct SearchResultContextPreview: View {
                 } else {
                     ProgressView()
                 }
+
+                if let onOpen {
+                    Button(action: onOpen) {
+                        Label("Open", systemImage: "book")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("search-result-open-\(item.stableID)")
+                    .padding(.top, 8)
+                }
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(minWidth: 420, idealWidth: 520, maxWidth: 600, minHeight: 240, idealHeight: 520)
+        .frame(maxWidth: .infinity, minHeight: 180, alignment: .leading)
+        .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
         .task(id: "\(item.backendLocator?.persistenceKey ?? "local"):\(retryToken)") {
             guard let locator = item.backendLocator else { return }
             isLoading = true
@@ -112,12 +165,17 @@ struct SearchResultContextPreview: View {
             do {
                 let section = try await BackendCoordinator.shared.section(at: locator)
                 try Task.checkCancellation()
-                fullText = section.segments.compactMap { segment in
+                fullSegments = section.segments.compactMap { segment in
                     let primary = segment.primaryText.readerPlainText
                     let translation = segment.translation?.readerPlainText
-                    return [primary, translation].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: "\n")
-                }.filter { !$0.isEmpty }.joined(separator: "\n\n")
-                if fullText?.isEmpty != false {
+                    guard !primary.isEmpty || translation?.isEmpty == false else { return nil }
+                    return SearchPreviewSegment(
+                        id: segment.locator.persistenceKey,
+                        primary: primary,
+                        translation: translation
+                    )
+                }
+                if fullSegments.isEmpty {
                     previewError = String(localized: "The full text for this result is empty.")
                 }
             } catch is CancellationError {
@@ -128,6 +186,12 @@ struct SearchResultContextPreview: View {
             isLoading = false
         }
     }
+}
+
+private struct SearchPreviewSegment: Identifiable {
+    let id: String
+    let primary: String
+    let translation: String?
 }
 
 struct SearchResultRow: View {
@@ -184,6 +248,16 @@ struct SearchResultRow: View {
                     Text(locationText)
                         .font(.caption)
                         .foregroundColor(.secondary)
+                }
+
+                if let versionTitle = item.versionTitle, !versionTitle.isEmpty {
+                    Text(versionTitle)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(Color.secondary.opacity(0.08), in: Capsule())
                 }
             }
 

@@ -218,20 +218,12 @@ struct iOSReaderView: View {
                 iOSAnnotationEditorSheet(
                     annotation: ann,
                     onSave: { updatedAnn in
-                        do {
-                            try viewModel.updateAnnotation(updatedAnn)
-                            UINotificationFeedbackGenerator().notificationOccurred(.success)
-                        } catch {
-                            UINotificationFeedbackGenerator().notificationOccurred(.error)
-                        }
+                        try viewModel.updateAnnotation(updatedAnn)
+                        UINotificationFeedbackGenerator().notificationOccurred(.success)
                     },
                     onDelete: { idToDelete in
-                        do {
-                            try viewModel.deleteAnnotation(id: idToDelete)
-                            UINotificationFeedbackGenerator().notificationOccurred(.warning)
-                        } catch {
-                            UINotificationFeedbackGenerator().notificationOccurred(.error)
-                        }
+                        try viewModel.deleteAnnotation(id: idToDelete)
+                        UINotificationFeedbackGenerator().notificationOccurred(.warning)
                     }
                 )
                 .presentationDetents([.medium, .large])

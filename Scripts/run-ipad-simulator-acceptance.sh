@@ -110,6 +110,311 @@ capture_screen() {
   sleep 1
 }
 
+# Launches the real application into a deterministic data state, then drives
+# production controls through the simulator accessibility system. Launch args
+# may prepare data/navigation, but never press controls or persist notes.
+launch_interactive_scenario() {
+  local scenario="$1"
+  local backend="$2"
+  local lang="$3"
+  local locale="$4"
+  shift 4
+  local ready_file="$CONTAINER/Documents/real-ui-${scenario}-${backend}.ready"
+  rm -f "$ready_file"
+  xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
+  SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
+  SIMCTL_CHILD_MAKTABAH_SMOKE_READY_FILE="$ready_file" \
+  xcrun simctl launch "$UDID" "$BUNDLE_ID" \
+    -OtzariaDataProfile miniTest10 \
+    -AppleLanguages "($lang)" \
+    -AppleLocale "$locale" \
+    -smokeScenario "$scenario" \
+    -smokeBackend "$backend" \
+    -smokeBypassBootstrap \
+    "$@" >/dev/null
+
+  local waited=0
+  while [ ! -s "$ready_file" ] && [ "$waited" -lt 60 ]; do
+    sleep 1
+    waited=$((waited + 1))
+  done
+  if [ ! -s "$ready_file" ] || ! grep -qx 'success' "$ready_file"; then
+    echo "Interactive scenario failed to reach prepared state: $scenario/$backend" >&2
+    [ -f "$ready_file" ] && cat "$ready_file" >&2
+    return 1
+  fi
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+}
+
+ui_wait_id() {
+  local identifier="$1"
+  local timeout="${2:-30}"
+  idb ui wait "$identifier" --match-key AXUniqueId --timeout "$timeout" --json --udid "$UDID"
+}
+
+ui_tap_id() {
+  local identifier="$1"
+  idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+}
+
+ui_tap_label() {
+  local label="$1"
+  idb ui tap "$label" --match-key AXLabel --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+}
+
+ui_set_value_id() {
+  local identifier="$1"
+  local value="$2"
+  idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+}
+
+capture_current_ui() {
+  local name="$1"
+  xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$name" >/dev/null
+  normalize_screenshot_orientation "$SCREENSHOT_DIR/$name" "$CURRENT_ORIENTATION"
+  idb ui describe-all \
+    --key AXUniqueId --key AXLabel --key AXValue --key frame \
+    --udid "$UDID" > "$REPORT_DIR/${name%.png}-accessibility.json"
+}
+
+run_real_search_preview() {
+  echo "--> [REAL UI] Search result row expansion"
+  launch_interactive_scenario searchPreview sefaria he he_IL
+  ui_wait_id search-result-preview-toggle- 45
+  idb ui describe search-result-preview-toggle- \
+    --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
+    > "$REPORT_DIR/search-result-row-before.json"
+  ui_tap_id search-result-preview-toggle-
+  ui_wait_id search-result-expanded-preview- 45
+  idb ui describe search-result-expanded-preview- \
+    --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
+    > "$REPORT_DIR/search-result-preview-expanded.json"
+  capture_current_ui fixed-real-sefaria-search-preview.png
+  python3 - \
+    "$REPORT_DIR/search-result-row-before.json" \
+    "$REPORT_DIR/search-result-preview-expanded.json" \
+    "$REPORT_DIR/fixed-real-sefaria-search-preview-accessibility.json" <<'PY'
+import json, sys
+def item(path):
+    value = json.load(open(path))
+    if isinstance(value, list): value = value[0]
+    return value
+row, preview = item(sys.argv[1]), item(sys.argv[2])
+rw = float(row['frame']['width'])
+pw = float(preview['frame']['width'])
+assert pw >= rw * 0.90, (rw, pw)
+tree = json.load(open(sys.argv[3]))
+tree = tree if isinstance(tree, list) else [tree]
+labels = [str(x.get('AXLabel','')) for x in tree]
+assert any(any('\u0590' <= c <= '\u05ff' for c in label) for label in labels), labels
+assert any(sum('a' <= c.lower() <= 'z' for c in label) >= 40 for label in labels), labels
+print(json.dumps({'rowWidth': rw, 'previewWidth': pw, 'ratio': pw / rw, 'bilingual': True}))
+PY
+}
+
+capture_split_frames() {
+  local name="$1"
+  idb ui describe-all \
+    --key AXUniqueId --key AXLabel --key frame \
+    --udid "$UDID" > "$REPORT_DIR/$name.json"
+  capture_current_ui "$name.png"
+}
+
+run_split_geometry_flow() {
+  echo "--> [REAL UI] Native all/double/detail split geometry"
+  launch_interactive_scenario reader sefaria en en_US
+  ui_wait_id library-column 45
+  ui_wait_id toc-column 30
+  ui_wait_id reader-detail-column 30
+  capture_split_frames fixed-split-all-en
+
+  launch_interactive_scenario reader sefaria he he_IL
+  ui_wait_id library-column 45
+  ui_wait_id toc-column 30
+  ui_wait_id reader-detail-column 30
+  capture_split_frames fixed-split-all-he
+
+  launch_interactive_scenario readerDetail sefaria en en_US
+  ui_wait_id reader-toc-toggle 45
+  ui_tap_id reader-toc-toggle
+  ui_wait_id toc-column 30
+  capture_split_frames fixed-split-double-en
+  ui_tap_id toc-close
+  ui_wait_id reader-detail-column 30
+  capture_split_frames fixed-split-detail-en
+
+  python3 - "$REPORT_DIR" <<'PY'
+import json, pathlib, sys
+root = pathlib.Path(sys.argv[1])
+def elements(name):
+    value = json.loads((root / f'{name}.json').read_text())
+    return value if isinstance(value, list) else [value]
+def frame(name, marker):
+    matches = [x for x in elements(name) if marker in str(x.get('AXUniqueId', ''))]
+    visible = [x['frame'] for x in matches if x.get('frame', {}).get('width', 0) > 1]
+    assert len(visible) == 1, (name, marker, visible)
+    return visible[0]
+en = [frame('fixed-split-all-en', x) for x in ('library-column','toc-column','reader-detail-column')]
+he = [frame('fixed-split-all-he', x) for x in ('library-column','toc-column','reader-detail-column')]
+assert en[0]['x'] < en[1]['x'] < en[2]['x'], en
+assert he[0]['x'] > he[1]['x'] > he[2]['x'], he
+double = [frame('fixed-split-double-en', x) for x in ('toc-column','reader-detail-column')]
+assert double[0]['x'] < double[1]['x'], double
+detail = frame('fixed-split-detail-en', 'reader-detail-column')
+assert detail['width'] > double[1]['width'], (detail, double[1])
+print(json.dumps({'allEnglish': en, 'allHebrew': he, 'doubleEnglish': double, 'detailEnglish': detail}))
+PY
+}
+
+run_panel_geometry_and_scroll_flow() {
+  echo "--> [REAL UI] Study side, floating mode, and viewport anchoring"
+  launch_interactive_scenario studyCommentaries sefaria he he_IL
+  ui_wait_id torah-inspector-panel 45
+  ui_wait_id reader-surface 30
+  capture_split_frames fixed-study-side-he
+
+  launch_interactive_scenario studyCommentaries sefaria en en_US
+  ui_wait_id torah-inspector-panel 45
+  ui_wait_id reader-surface 30
+  capture_split_frames fixed-study-side-en
+
+  launch_interactive_scenario inspector sefaria en en_US
+  ui_wait_id torah-inspector-panel 45
+  capture_split_frames fixed-study-floating-half-en
+
+  launch_interactive_scenario readerDetail sefaria en en_US
+  ui_wait_id reader-text 45
+  for _ in 1 2 3 4 5 6; do
+    idb ui scroll up reader-text --match-key AXUniqueId --udid "$UDID"
+  done
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  idb ui describe reader-text \
+    --match-key AXUniqueId --key AXUniqueId --key help --key frame --udid "$UDID" \
+    > "$REPORT_DIR/viewport-before-study-toggles.json"
+  for _ in 1 2 3 4 5 6 7 8 9 10; do
+    ui_tap_id reader-study-toggle
+  done
+  idb ui describe reader-text \
+    --match-key AXUniqueId --key AXUniqueId --key help --key frame --udid "$UDID" \
+    > "$REPORT_DIR/viewport-after-study-toggles.json"
+
+  python3 - "$REPORT_DIR" <<'PY'
+import json, pathlib, re, sys
+root = pathlib.Path(sys.argv[1])
+def items(name):
+    value = json.loads((root / f'{name}.json').read_text())
+    return value if isinstance(value, list) else [value]
+def frame(name, marker):
+    values = [x['frame'] for x in items(name) if marker in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1]
+    assert len(values) == 1, (name, marker, values)
+    return values[0]
+he_reader, he_panel = frame('fixed-study-side-he','reader-surface'), frame('fixed-study-side-he','torah-inspector-panel')
+en_reader, en_panel = frame('fixed-study-side-en','reader-surface'), frame('fixed-study-side-en','torah-inspector-panel')
+assert he_panel['x'] < he_reader['x'], (he_reader, he_panel)
+assert en_panel['x'] > en_reader['x'], (en_reader, en_panel)
+selected = frame('fixed-study-side-en','torah-inspector-selected-segment')
+tools = frame('fixed-study-side-en','torah-inspector-tools')
+assert selected['y'] + selected['height'] <= tools['y'] + 2, (selected, tools)
+def one(path):
+    value=json.loads(path.read_text()); return value[0] if isinstance(value,list) else value
+before, after = one(root/'viewport-before-study-toggles.json'), one(root/'viewport-after-study-toggles.json')
+pattern=r'source=(\d+);offset=([-0-9.]+);object=(-?\d+)'
+b, a = re.search(pattern, str(before.get('help',''))), re.search(pattern, str(after.get('help','')))
+assert b and a, (before, after)
+assert b.group(1) == a.group(1), (b.groups(), a.groups())
+assert b.group(3) == a.group(3), (b.groups(), a.groups())
+assert abs(float(b.group(2)) - float(a.group(2))) <= 4.0, (b.groups(), a.groups())
+print(json.dumps({'hebrew': [he_reader,he_panel], 'english':[en_reader,en_panel], 'selectedAboveTools':[selected,tools], 'viewportBefore':b.groups(), 'viewportAfter':a.groups()}))
+PY
+}
+
+run_source_gesture_flow() {
+  echo "--> [REAL UI] Linked-source single tap and double tap"
+  launch_interactive_scenario studyLinks sefaria en en_US
+  ui_wait_id torah-inspector-source- 45
+  idb ui describe torah-inspector-source- \
+    --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
+    > "$REPORT_DIR/source-before-gestures.json"
+  read -r source_x source_y < <(python3 - "$REPORT_DIR/source-before-gestures.json" <<'PY'
+import json, sys
+value=json.load(open(sys.argv[1])); value=value[0] if isinstance(value,list) else value
+f=value['frame']; print(round(f['x']+f['width']/2), round(f['y']+f['height']/2))
+PY
+  )
+  idb ui tap "$source_x" "$source_y" --udid "$UDID"
+  ui_wait_id torah-inspector-source-expanded- 45
+  capture_current_ui fixed-real-source-single-tap-expanded.png
+
+  idb ui tap "$source_x" "$source_y" --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  idb ui multi-tap "$source_x" "$source_y" --count 2 --pause 0.08 --udid "$UDID"
+  ui_wait_id reader-text 45
+  capture_current_ui fixed-real-source-double-tap-reader.png
+}
+
+run_real_note_flow() {
+  local backend="$1"
+  local note="real-ui-${backend}-note"
+  local updated="${note}-updated"
+  echo "--> [REAL UI] Note add/save/relaunch/edit/delete ($backend)"
+  launch_interactive_scenario studyNotes "$backend" en en_US
+  ui_wait_id torah-inspector-add-note 45
+  ui_tap_id torah-inspector-add-note
+  ui_wait_id annotation-note-text 30
+  ui_set_value_id annotation-note-text "$note"
+  ui_tap_id annotation-save
+  idb ui wait "$note" --timeout 30 --json --udid "$UDID"
+  capture_current_ui "fixed-real-${backend}-note-saved.png"
+
+  xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null
+  launch_interactive_scenario studyNotes "$backend" en en_US
+  idb ui wait "$note" --timeout 45 --json --udid "$UDID"
+  capture_current_ui "fixed-real-${backend}-note-relaunch.png"
+
+  ui_tap_label "$note"
+  ui_wait_id annotation-note-text 30
+  ui_set_value_id annotation-note-text "$updated"
+  ui_tap_id annotation-save
+  idb ui wait "$updated" --timeout 30 --json --udid "$UDID"
+  ui_tap_label "$updated"
+  ui_wait_id annotation-delete 30
+  ui_tap_id annotation-delete
+  ui_wait_id torah-inspector-add-note 30
+  if idb ui describe "$updated" --match-key AXLabel --udid "$UDID" >/dev/null 2>&1; then
+    echo "Deleted note is still exposed in the inspector: $backend" >&2
+    return 1
+  fi
+  capture_current_ui "fixed-real-${backend}-note-deleted.png"
+}
+
+run_invalid_note_save_flow() {
+  local value="text-must-survive-validation-error"
+  echo "--> [REAL UI] Invalid/stale note save preserves editor text"
+  launch_interactive_scenario studyNotes sefaria en en_US -smokeInvalidateNoteOnSave
+  ui_wait_id torah-inspector-add-note 45
+  ui_tap_id torah-inspector-add-note
+  ui_wait_id annotation-note-text 30
+  ui_set_value_id annotation-note-text "$value"
+  ui_tap_id annotation-save
+  idb ui wait "Could Not Save Annotation" --timeout 30 --json --udid "$UDID"
+  idb ui tap OK --udid "$UDID"
+  ui_wait_id annotation-note-text 10
+  idb ui describe annotation-note-text \
+    --match-key AXUniqueId --key AXValue --key AXUniqueId --udid "$UDID" \
+    > "$REPORT_DIR/invalid-note-preserved-text.json"
+  python3 - "$REPORT_DIR/invalid-note-preserved-text.json" "$value" <<'PY'
+import json, sys
+value = json.load(open(sys.argv[1]))
+if isinstance(value, list): value = value[0]
+assert sys.argv[2] in str(value.get('AXValue', '')), value
+PY
+  capture_current_ui fixed-real-invalid-note-editor-preserved.png
+  ui_tap_id annotation-cancel
+}
+
 rotate_simulator() {
   local orientation="$1"
   local idb_orientation
@@ -371,6 +676,19 @@ CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-notes-landscape.png" he 
 CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-half-landscape.png" he he_IL -smokeScenario studyFloating -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-full-landscape.png" he he_IL -smokeScenario studyFloatingFull -smokeBackend sefaria -smokeBypassBootstrap
 set_orientation portrait
+
+# ==============================================================================
+# PHASE 6A: Production UI interaction acceptance (IDB accessibility actions)
+# ==============================================================================
+echo ""
+echo "=== [PHASE 6A: Real UI interactions and geometry] ==="
+run_split_geometry_flow
+run_panel_geometry_and_scroll_flow
+run_source_gesture_flow
+run_real_search_preview
+run_real_note_flow sefaria
+run_real_note_flow otzaria
+run_invalid_note_save_flow
 
 # ==============================================================================
 # PHASE 6B: Compact iPhone Reader Workspace Screenshots

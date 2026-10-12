@@ -12,6 +12,7 @@ struct iPadLayout: View {
     @Binding var showSettings: Bool
 
     @State private var showingAddFavorites = false
+    @State private var preferredLibraryCompactColumn: NavigationSplitViewColumn = .detail
     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
     @StateObject private var historyViewModel = HistoryViewModel.shared
     @StateObject private var backendCoordinator = BackendCoordinator.shared
@@ -98,7 +99,10 @@ struct iPadLayout: View {
 
     @ViewBuilder
     private var viewerTabContent: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
+        NavigationSplitView(
+            columnVisibility: $columnVisibility,
+            preferredCompactColumn: $preferredLibraryCompactColumn
+        ) {
             NavigationStack {
                 iOSLibraryView()
                     .navigationTitle(iOSTab.viewer.title)
@@ -112,11 +116,68 @@ struct iPadLayout: View {
             .toolbarBackground(Color.appBackground, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .background(Color.appBackground)
+            .accessibilityIdentifier("library-column")
+        } content: {
+            activeReaderTableOfContents
+                .accessibilityIdentifier("toc-column")
         } detail: {
-            iOSReaderTabView(columnVisibility: $columnVisibility)
+            iOSReaderTabView(
+                columnVisibility: $columnVisibility,
+                preferredCompactColumn: $preferredLibraryCompactColumn
+            )
                 .background(Color.appBackground)
+                .accessibilityIdentifier("reader-detail-column")
         }
+        .navigationSplitViewStyle(.balanced)
         .background(Color.appBackground.ignoresSafeArea())
+    }
+
+    @ViewBuilder
+    private var activeReaderTableOfContents: some View {
+        if let tab = activeReaderTab {
+            iOSTOCView(
+                tocViewModel: tab.viewModel.tocViewModel,
+                selectedId: selectedTOCNode(for: tab.viewModel)?.id,
+                bookTitle: tab.book.book,
+                onClose: closeTableOfContents,
+                embedsNavigationStack: false,
+                onSelect: tab.viewModel.didSelectTOCNode
+            )
+            .toolbar(removing: .sidebarToggle)
+        } else {
+            NavigationStack {
+                ContentUnavailableView(
+                    String(localized: "No Table of Contents"),
+                    systemImage: "list.bullet.rectangle",
+                    description: Text("Select a book to read")
+                )
+                .navigationTitle(String(localized: "Table of Contents"))
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
+            .toolbar(removing: .sidebarToggle)
+            .background(Color.appBackground)
+        }
+    }
+
+    private var activeReaderTab: iOSNavigationManager.ReaderTab? {
+        bManager.openTabs.first(where: { $0.id == bManager.activeTabId })
+            ?? bManager.openTabs.first
+    }
+
+    private func selectedTOCNode(for viewModel: ReaderViewModel) -> TOCNode? {
+        if let locator = viewModel.backendSection?.locator,
+           let node = viewModel.tocViewModel.findNode(for: locator) {
+            return node
+        }
+        return viewModel.tocViewModel.findNode(forContentId: viewModel.currentContentId)
+    }
+
+    private func closeTableOfContents() {
+        preferredLibraryCompactColumn = .detail
+        withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
+            columnVisibility = .detailOnly
+        }
     }
 
     @ViewBuilder

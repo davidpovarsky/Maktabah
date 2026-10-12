@@ -45,7 +45,7 @@ struct TOCNodeRow: View {
                             }
                         }
                     }) {
-                        Image(systemName: isExpanded.wrappedValue ? "chevron.down" : "chevron.left")
+                        Image(systemName: isExpanded.wrappedValue ? "chevron.down" : "chevron.forward")
                             .foregroundColor(.secondary)
                             .font(.system(size: 14, weight: .semibold))
                             // Berikan frame statis pada gambar agar ukurannya konsisten
@@ -62,7 +62,6 @@ struct TOCNodeRow: View {
             // Berikan indentasi di sebelah kanan berdasarkan level (RTL: leading = kanan)
             .padding(.leading, CGFloat(max(0, item.level - 1)) * 24)
             .id(ObjectIdentifier(item))
-            .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
             
             // Rekursif untuk menampilkan sub-bab di bawahnya jika sedang diekspansi
             if isExpanded.wrappedValue, !item.children.isEmpty {
@@ -82,16 +81,13 @@ struct TOCNodeRow: View {
         item.bab.containsArabicCharacters
     }
 
-    private var isRTL: Bool {
-        item.bab.isParagraphRTL
-    }
-
     var nodeLabel: some View {
         Button(action: {
             onSelect(item.id)
         }) {
             Text(item.bab)
                 .font(isArabic ? ReaderViewModel.kfgqpcTitle : .headline)
+                .environment(\.layoutDirection, item.bab.isParagraphRTL ? .rightToLeft : .leftToRight)
                 .foregroundColor(
                     item.id == selectedId ? .accentColor : .primary
                 )

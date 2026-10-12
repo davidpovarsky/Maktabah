@@ -96,7 +96,8 @@ struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @un
             translation: nil,
             versionTitle: nil,
             heVersionTitle: nil,
-            license: nil
+            license: nil,
+            anchorRefs: [source.heRef].compactMap { $0 }
         )
     }
 

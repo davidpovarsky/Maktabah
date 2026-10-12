@@ -8,6 +8,23 @@ class iOSCustomIbarotTextView: UITextView {
 
     var currentRenderResult: ArabicRenderResult?
 
+    private struct ViewportAnchor {
+        let sourceCharacterIndex: Int
+        let verticalOffset: CGFloat
+    }
+
+    private var pendingViewportAnchor: ViewportAnchor?
+
+    override var bounds: CGRect {
+        willSet {
+            guard bounds.width > 0,
+                  abs(newValue.width - bounds.width) > 0.5,
+                  !isDragging,
+                  !isDecelerating else { return }
+            pendingViewportAnchor = captureViewportAnchor()
+        }
+    }
+
     let state = TextViewState.shared
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -38,6 +55,81 @@ class iOSCustomIbarotTextView: UITextView {
 
         // Font setup defaults
         font = state.currentFont
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        restorePendingViewportAnchor()
+    }
+
+    private func captureViewportAnchor() -> ViewportAnchor? {
+        guard textStorage.length > 0 else { return nil }
+        layoutManager.ensureLayout(for: textContainer)
+
+        let point = CGPoint(
+            x: textContainerInset.left + textContainer.lineFragmentPadding + 1,
+            y: contentOffset.y + adjustedContentInset.top + 1
+        )
+        let containerPoint = CGPoint(
+            x: point.x - textContainerInset.left,
+            y: point.y - textContainerInset.top
+        )
+        let glyphIndex = min(
+            layoutManager.glyphIndex(for: containerPoint, in: textContainer),
+            max(0, layoutManager.numberOfGlyphs - 1)
+        )
+        let characterIndex = min(
+            layoutManager.characterIndexForGlyph(at: glyphIndex),
+            max(0, textStorage.length - 1)
+        )
+        let glyphRect = layoutManager.boundingRect(
+            forGlyphRange: NSRange(location: glyphIndex, length: 1),
+            in: textContainer
+        )
+        let verticalOffset = glyphRect.minY + textContainerInset.top - contentOffset.y
+        let sourceIndex = currentRenderResult?
+            .sourceCharacterIndex(forDisplayedIndex: characterIndex) ?? characterIndex
+        return ViewportAnchor(sourceCharacterIndex: sourceIndex, verticalOffset: verticalOffset)
+    }
+
+    private func restorePendingViewportAnchor() {
+        guard let anchor = pendingViewportAnchor, textStorage.length > 0 else { return }
+        pendingViewportAnchor = nil
+        layoutManager.ensureLayout(for: textContainer)
+
+        let displayedRange = currentRenderResult?.displayedRange(
+            forSourceRange: NSRange(location: anchor.sourceCharacterIndex, length: 1)
+        ) ?? NSRange(location: anchor.sourceCharacterIndex, length: 1)
+        guard displayedRange.location != NSNotFound,
+              displayedRange.location < textStorage.length else { return }
+
+        let glyphRange = layoutManager.glyphRange(
+            forCharacterRange: NSRange(location: displayedRange.location, length: 1),
+            actualCharacterRange: nil
+        )
+        guard glyphRange.location < layoutManager.numberOfGlyphs else { return }
+        let glyphRect = layoutManager.boundingRect(
+            forGlyphRange: NSRange(location: glyphRange.location, length: 1),
+            in: textContainer
+        )
+        let proposedY = glyphRect.minY + textContainerInset.top - anchor.verticalOffset
+        let minimumY = -adjustedContentInset.top
+        let maximumY = max(
+            minimumY,
+            contentSize.height - bounds.height + adjustedContentInset.bottom
+        )
+        setContentOffset(
+            CGPoint(x: contentOffset.x, y: min(max(proposedY, minimumY), maximumY)),
+            animated: false
+        )
+        updateViewportAccessibilityMetadata()
+    }
+
+    func updateViewportAccessibilityMetadata() {
+        #if DEBUG
+        guard let anchor = captureViewportAnchor() else { return }
+        accessibilityHint = "source=\(anchor.sourceCharacterIndex);offset=\(anchor.verticalOffset);object=\(ObjectIdentifier(self).hashValue)"
+        #endif
     }
 
     // MARK: - Actions for UIMenuController (Pre-iOS 16)
@@ -372,6 +464,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         container.clipsToBounds = true
 
         let textView = iOSCustomIbarotTextView()
+        textView.accessibilityIdentifier = "reader-text"
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = context.coordinator
         textView.alwaysBounceVertical = true
@@ -788,6 +881,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
 
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            (scrollView as? iOSCustomIbarotTextView)?.updateViewportAccessibilityMetadata()
             if !didClearSearchForCurrentDrag,
                ReaderSearchHighlightPolicy.shouldClearAfterManualScroll(
                    startOffsetY: manualDragStartOffset.map(Double.init),

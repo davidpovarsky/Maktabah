@@ -78,13 +78,12 @@ struct iOSReaderWorkspaceView: View {
     let viewModel: ReaderViewModel
     let initialContentId: Int?
     @Binding private var libraryColumnVisibility: NavigationSplitViewVisibility
+    @Binding private var preferredCompactColumn: NavigationSplitViewColumn
 
     @Environment(iOSNavigationManager.self) private var navigationManager
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.layoutDirection) private var layoutDirection
 
-    @State private var contentsColumnVisibility: NavigationSplitViewVisibility = .detailOnly
-    @State private var preferredCompactColumn: NavigationSplitViewColumn = .detail
     @State private var compactContentsRequested = false
     @State private var compactUsesContentsFallback = false
     @State private var panelWidth = Self.defaultPanelWidth
@@ -105,7 +104,8 @@ struct iOSReaderWorkspaceView: View {
         book: BooksData,
         viewModel: ReaderViewModel,
         initialContentId: Int? = nil,
-        libraryColumnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.detailOnly)
+        libraryColumnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.detailOnly),
+        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail)
     ) {
         let arguments = ProcessInfo.processInfo.arguments
         let scenario = arguments.firstIndex(of: "-smokeScenario").flatMap { index in
@@ -115,14 +115,7 @@ struct iOSReaderWorkspaceView: View {
         self.viewModel = viewModel
         self.initialContentId = initialContentId
         self._libraryColumnVisibility = libraryColumnVisibility
-        self._contentsColumnVisibility = State(
-            initialValue: ["readerTOC", "studyFloating", "studyFloatingFull"].contains(scenario)
-                ? .all
-                : .detailOnly
-        )
-        self._preferredCompactColumn = State(
-            initialValue: scenario == "readerTOC" ? .sidebar : .detail
-        )
+        self._preferredCompactColumn = preferredCompactColumn
         self._compactContentsRequested = State(initialValue: scenario == "readerTOC")
         self._floatingPanelState = State(
             initialValue: scenario == "studyFloatingFull" ? .full : .hidden
@@ -141,11 +134,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var librarySidebarIsOpen: Bool {
-        libraryColumnVisibility != .detailOnly
+        libraryColumnVisibility == .all
     }
 
     private var contentsIsOpen: Bool {
-        contentsColumnVisibility != .detailOnly
+        libraryColumnVisibility != .detailOnly
     }
 
     private var shouldPresentPanelInContent: Bool {
@@ -180,7 +173,7 @@ struct iOSReaderWorkspaceView: View {
             if !useWideLayout, compactUsesContentsFallback {
                 tocColumn
             } else {
-                splitWorkspace
+                workspaceDetail
             }
         }
         .onAppear { updatePanelPresentation(animated: false) }
@@ -203,9 +196,6 @@ struct iOSReaderWorkspaceView: View {
             }
         }
         .onChange(of: viewModel.readerInspectorVisible) { _, _ in
-            updatePanelPresentation()
-        }
-        .onChange(of: contentsColumnVisibility) { _, _ in
             updatePanelPresentation()
         }
         .onChange(of: libraryColumnVisibility) { _, _ in
@@ -235,18 +225,6 @@ struct iOSReaderWorkspaceView: View {
         }
     }
 
-    private var splitWorkspace: some View {
-        NavigationSplitView(
-            columnVisibility: $contentsColumnVisibility,
-            preferredCompactColumn: $preferredCompactColumn
-        ) {
-            tocColumn
-        } detail: {
-            workspaceDetail
-        }
-        .navigationSplitViewStyle(.balanced)
-    }
-
     private var tocColumn: some View {
         iOSTOCView(
             tocViewModel: viewModel.tocViewModel,
@@ -261,19 +239,20 @@ struct iOSReaderWorkspaceView: View {
 
     @ViewBuilder
     private var workspaceDetail: some View {
-        if useWideLayout {
-            GeometryReader { geometry in
+        GeometryReader { geometry in
+            if useWideLayout {
                 if shouldPresentPanelInContent {
                     floatingWorkspace
                 } else {
                     wideWorkspace(totalWidth: geometry.size.width)
                 }
+            } else if compactContentsRequested {
+                tocColumn
+            } else {
+                readerSurface
             }
-        } else if compactContentsRequested {
-            tocColumn
-        } else {
-            readerSurface
         }
+        .accessibilityIdentifier("reader-workspace")
     }
 
     private var readerSurface: some View {
@@ -284,6 +263,7 @@ struct iOSReaderWorkspaceView: View {
             columnVisibility: $libraryColumnVisibility,
             onShowTableOfContents: openContents
         )
+        .accessibilityIdentifier("reader-surface")
         .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack(spacing: 1) {
@@ -302,6 +282,7 @@ struct iOSReaderWorkspaceView: View {
                     PanelToggleIcon(isOpen: showPanel)
                 }
                 .accessibilityLabel(showPanel ? Text("Close Study Tools") : Text("Open Study Tools"))
+                .accessibilityIdentifier("reader-study-toggle")
                 .help(showPanel ? Text("Close Study Tools") : Text("Open Study Tools"))
             }
         }
@@ -341,7 +322,6 @@ struct iOSReaderWorkspaceView: View {
                     .allowsHitTesting(showPanel)
             }
         }
-        .environment(\.layoutDirection, .leftToRight)
         .animation(.snappy(duration: 0.42, extraBounce: 0), value: showPanel)
     }
 
@@ -360,8 +340,11 @@ struct iOSReaderWorkspaceView: View {
                     .onChanged { value in
                         let start = dragStartWidth ?? panelWidth
                         if dragStartWidth == nil { dragStartWidth = start }
+                        let directionalTranslation = layoutDirection == .rightToLeft
+                            ? value.translation.width
+                            : -value.translation.width
                         panelWidth = min(
-                            max(start - value.translation.width, Self.minimumPanelWidth),
+                            max(start + directionalTranslation, Self.minimumPanelWidth),
                             allowedMaximum
                         )
                     }
@@ -373,6 +356,7 @@ struct iOSReaderWorkspaceView: View {
                 }
             }
             .accessibilityLabel(String(localized: "Resize Study Tools"))
+            .accessibilityIdentifier("reader-study-resize-handle")
             .accessibilityHint(String(localized: "Drag to resize. Double-tap to reset."))
     }
 
@@ -416,20 +400,16 @@ struct iOSReaderWorkspaceView: View {
             iOSAnnotationEditorSheet(
                 annotation: editingAnnotation,
                 onSave: { updated in
-                    defer { finishEditingAnnotation() }
-                    do {
-                        if updated.id == nil {
-                            try viewModel.persistNewAnnotation(updated)
-                        } else {
-                            try viewModel.updateAnnotation(updated)
-                        }
-                    } catch {
-                        noteErrorMessage = error.localizedDescription
+                    if updated.id == nil {
+                        try viewModel.persistNewAnnotation(updated)
+                    } else {
+                        try viewModel.updateAnnotation(updated)
                     }
+                    finishEditingAnnotation()
                 },
                 onDelete: { id in
-                    defer { finishEditingAnnotation() }
-                    try? viewModel.deleteAnnotation(id: id)
+                    try viewModel.deleteAnnotation(id: id)
+                    finishEditingAnnotation()
                 }
             )
             .presentationDetents([.medium, .large])
@@ -475,7 +455,7 @@ struct iOSReaderWorkspaceView: View {
         preferredCompactColumn = .sidebar
         DispatchQueue.main.async {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
-                contentsColumnVisibility = .all
+                libraryColumnVisibility = .doubleColumn
             }
         }
     }
@@ -490,7 +470,7 @@ struct iOSReaderWorkspaceView: View {
         }
         withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
             preferredCompactColumn = .detail
-            contentsColumnVisibility = .detailOnly
+            libraryColumnVisibility = .detailOnly
         }
     }
 
@@ -558,17 +538,23 @@ struct iOSReaderWorkspaceView: View {
             noteErrorMessage = String(localized: "Select text in the reader before adding a note.")
             return
         }
-        let selectedText = (viewModel.contentText as NSString).substring(with: selectedRange)
-        guard let draft = viewModel.makeAnnotationDraft(
-            in: selectedRange,
-            mode: .highlight,
-            sourceText: selectedText,
-            color: UIColor(named: "HighlightText") ?? .systemYellow
-        ) else {
-            noteErrorMessage = String(localized: "This text cannot be annotated right now.")
-            return
+        do {
+            editingAnnotation = try viewModel.makeAnnotationDraft(
+                in: selectedRange,
+                mode: .highlight,
+                sourceText: viewModel.contentText,
+                color: UIColor(named: "HighlightText") ?? .systemYellow
+            )
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("-smokeInvalidateNoteOnSave") {
+                // Deliberately simulate a stale editor after a content change so
+                // UI acceptance can exercise the production save validation.
+                viewModel.currentContentId &+= 1
+            }
+            #endif
+        } catch {
+            noteErrorMessage = error.localizedDescription
         }
-        editingAnnotation = draft
         _ = selection
     }
 

@@ -89,6 +89,7 @@ struct iOSReaderBottomToolbarView: View {
                 Label("Table of Contents", systemImage: "list.bullet")
             }
             .accessibilityLabel(String(localized: "Table of Contents"))
+            .accessibilityIdentifier("reader-toc-toggle")
             .help(String(localized: "Table of Contents"))
 
             Button(action: {

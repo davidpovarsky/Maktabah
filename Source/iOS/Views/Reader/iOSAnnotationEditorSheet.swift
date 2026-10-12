@@ -4,13 +4,14 @@ struct iOSAnnotationEditorSheet: View {
     @Environment(\.dismiss) private var dismiss
 
     @State var annotation: Annotation
-    let onSave: (Annotation) -> Void
-    let onDelete: (Int64) -> Void
+    let onSave: (Annotation) throws -> Void
+    let onDelete: (Int64) throws -> Void
 
     @State private var noteText: String = ""
     @State private var selectedColorHex: String = ""
     @State private var isUnderline: Bool = false
     @State private var tagsText: String = ""
+    @State private var operationErrorMessage: String?
 
     let defaultColors: [UIColor] = [
         UIColor(named: "HighlightText") ?? .yellow,
@@ -27,6 +28,7 @@ struct iOSAnnotationEditorSheet: View {
                 ThemeSection("Note") {
                     iOSAutoDirectionTextView(text: $noteText)
                         .frame(minHeight: 100)
+                        .accessibilityIdentifier("annotation-note-text")
                 }
 
                 ThemeSection("Style") {
@@ -64,8 +66,12 @@ struct iOSAnnotationEditorSheet: View {
                 if let annotationID = annotation.id {
                     ThemeSection {
                         Button(role: .destructive, action: {
-                            onDelete(annotationID)
-                            dismiss()
+                            do {
+                                try onDelete(annotationID)
+                                dismiss()
+                            } catch {
+                                operationErrorMessage = error.localizedDescription
+                            }
                         }) {
                             HStack {
                                 Spacer()
@@ -73,6 +79,7 @@ struct iOSAnnotationEditorSheet: View {
                                 Spacer()
                             }
                         }
+                        .accessibilityIdentifier("annotation-delete")
                     }
                 }
             }
@@ -83,11 +90,13 @@ struct iOSAnnotationEditorSheet: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .accessibilityIdentifier("annotation-cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         saveAnnotation()
                     }
+                    .accessibilityIdentifier("annotation-save")
                 }
             }
             .onAppear {
@@ -95,6 +104,17 @@ struct iOSAnnotationEditorSheet: View {
                 selectedColorHex = annotation.colorHex
                 isUnderline = annotation.type == .underline
                 tagsText = annotation.tags.joined(separator: ", ")
+            }
+            .alert(
+                String(localized: "Could Not Save Annotation"),
+                isPresented: Binding(
+                    get: { operationErrorMessage != nil },
+                    set: { if !$0 { operationErrorMessage = nil } }
+                )
+            ) {
+                Button("OK", role: .cancel) { operationErrorMessage = nil }
+            } message: {
+                Text(operationErrorMessage ?? "")
             }
         }
     }
@@ -110,8 +130,12 @@ struct iOSAnnotationEditorSheet: View {
             .split(separator: ",")
             .compactMap { let t = String($0).trimmingCharacters(in: .whitespacesAndNewlines); return t.isEmpty ? nil : t }
 
-        onSave(updated)
-        dismiss()
+        do {
+            try onSave(updated)
+            dismiss()
+        } catch {
+            operationErrorMessage = error.localizedDescription
+        }
     }
 }
 

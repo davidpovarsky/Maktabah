@@ -7,6 +7,20 @@
 
 import Foundation
 
+enum AnnotationCreationError: LocalizedError, Equatable {
+    case missingBook
+    case invalidRange(location: Int, length: Int, sourceLength: Int)
+
+    var errorDescription: String? {
+        switch self {
+        case .missingBook:
+            String(localized: "No book is open for annotation.")
+        case .invalidRange:
+            String(localized: "The selected text is no longer available. Select it again and retry.")
+        }
+    }
+}
+
 class AnnotationCoordinator {
     private let manager = AnnotationManager.shared
 
@@ -93,7 +107,7 @@ class AnnotationCoordinator {
         mode: AnnotationMode = .highlight,
         backendLocator: TextLocator? = nil
     ) throws -> Annotation {
-        var ann = makeAnnotation(
+        var ann = try makeAnnotation(
             text: text,
             range: range,
             color: color,
@@ -126,7 +140,18 @@ class AnnotationCoordinator {
         showHarakat: Bool,
         mode: AnnotationMode = .highlight,
         backendLocator: TextLocator? = nil
-    ) -> Annotation {
+    ) throws -> Annotation {
+        let sourceLength = (text as NSString).length
+        guard range.location != NSNotFound,
+              range.length > 0,
+              range.location <= sourceLength,
+              range.length <= sourceLength - range.location else {
+            throw AnnotationCreationError.invalidRange(
+                location: range.location,
+                length: range.length,
+                sourceLength: sourceLength
+            )
+        }
         let calculator = ArabicRangeCalculator()
         let ranges = calculator.calculateRanges(
             for: range,

@@ -195,6 +195,10 @@ final class MaktabahTorahInspectorSession {
                 versionTitle: source.versionTitle,
                 hebrewVersionTitle: source.heVersionTitle,
                 license: source.license,
+                canonicalBookID: "\(source.locator.backend.rawValue):\(source.locator.workKey)",
+                anchorRefs: source.anchorRefs,
+                relationshipKind: Self.relationshipKind(category: source.category, type: source.type),
+                semanticCategory: Self.semanticCategory(category: source.category, type: source.type),
                 rawProviderPayload: source.locator.persistenceKey
             )
         }
@@ -214,10 +218,13 @@ final class MaktabahTorahInspectorSession {
         let selectedRange = viewModel.selectedSegmentRange
         return viewModel.currentAnnotations.compactMap { annotation in
             let hasMatchingLocator = annotation.backendLocator?.persistenceKey == selectedLocator.persistenceKey
+            let isInsideSelectedUnit = annotation.backendLocator.map {
+                contains($0, in: selection)
+            } ?? false
             let overlapsSelectedRange = selectedRange.map {
                 NSIntersectionRange(annotation.range, $0).length > 0
             } ?? false
-            guard hasMatchingLocator || overlapsSelectedRange,
+            guard hasMatchingLocator || isInsideSelectedUnit || overlapsSelectedRange,
                   let noteBody = annotation.note?.trimmingCharacters(in: .whitespacesAndNewlines),
                   !noteBody.isEmpty else { return nil }
             return TorahInspectorNote(
@@ -226,6 +233,29 @@ final class MaktabahTorahInspectorSession {
                 note: noteBody,
                 tag: annotation.tags.first
             )
+        }
+    }
+
+    private func contains(
+        _ locator: TextLocator,
+        in selection: TorahInspectorSelection
+    ) -> Bool {
+        guard selection.scope == .section,
+              locator.backend.rawValue == selection.providerID else { return false }
+        switch (locator.backend, locator.position) {
+        case (.otzaria, .legacyLine(let lineIndex)):
+            guard let unit = otzariaUnitsByReference[cacheKey(
+                providerID: selection.providerID,
+                reference: selection.canonicalRef
+            )] else { return false }
+            return locator.workKey == "book:\(unit.bookId)"
+                && (unit.startLineIndex...unit.endLineIndex).contains(lineIndex)
+        case (.sefaria, .canonicalRef(let reference)):
+            let section = SefariaRef.canonicalInput(selection.canonicalRef)
+            let candidate = SefariaRef.canonicalInput(reference)
+            return candidate == section || candidate.hasPrefix(section + ":")
+        default:
+            return false
         }
     }
 
@@ -388,6 +418,29 @@ final class MaktabahTorahInspectorSession {
     private static func otzariaBookID(from workKey: String) -> Int? {
         guard workKey.hasPrefix("book:") else { return nil }
         return Int(workKey.dropFirst("book:".count))
+    }
+
+    private static func relationshipKind(
+        category: String,
+        type: String
+    ) -> TorahRelationshipKind {
+        let tokens = "\(category) \(type)".lowercased()
+        return tokens.contains("commentary") ? .commentary : .link
+    }
+
+    private static func semanticCategory(
+        category: String,
+        type: String
+    ) -> TorahSourceCategory {
+        let tokens = "\(category) \(type)".lowercased()
+        if tokens.contains("quoting commentary") { return .quotingCommentary }
+        if tokens.contains("commentary") { return .commentary }
+        if tokens.contains("tanakh") { return .tanakh }
+        if tokens.contains("talmud") { return .talmud }
+        if tokens.contains("midrash") { return .midrash }
+        if tokens.contains("targum") { return .targum }
+        if tokens.contains("halakh") { return .halakhah }
+        return .other
     }
 }
 #endif

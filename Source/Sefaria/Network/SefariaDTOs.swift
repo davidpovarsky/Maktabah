@@ -267,7 +267,10 @@ enum SefariaRelationshipMapper {
             translation: row.text?.nonEmpty ?? row.displayedText?.en?.nonEmpty,
             versionTitle: row.versionTitle?.nonEmpty,
             heVersionTitle: row.heVersionTitle?.nonEmpty,
-            license: (row.heLicense ?? row.license)?.nonEmpty
+            license: (row.heLicense ?? row.license)?.nonEmpty,
+            anchorRefs: row.anchorRefExpanded.isEmpty
+                ? [row.anchorRef].compactMap { $0?.nonEmpty }
+                : row.anchorRefExpanded
         )
     }
 

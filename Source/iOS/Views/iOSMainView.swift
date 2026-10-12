@@ -82,9 +82,6 @@ struct iOSMainView: View {
     @State private var selectedTab: iOSTab = .viewer
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showSettings = false
-    #if DEBUG
-    @State private var smokeSearchPreviewItem: SearchResultItem?
-    #endif
     @ObservedObject private var donationManager = DonationManager.shared
 
     var body: some View {
@@ -145,18 +142,6 @@ struct iOSMainView: View {
             }
         }
         #if DEBUG
-        .overlay {
-            if let item = smokeSearchPreviewItem {
-                ZStack {
-                    Color.black.opacity(0.12)
-                        .ignoresSafeArea()
-                    SearchResultContextPreview(item: item)
-                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
-                        .shadow(radius: 24)
-                        .padding(32)
-                }
-            }
-        }
         .task {
             await performSmokeAutomationIfNeeded()
         }
@@ -267,18 +252,15 @@ private extension iOSMainView {
             navigationManager.switchToMode(.viewer)
             columnVisibility = .all
 
-        case "reader", "readerTOC":
+        case "reader", "readerTOC", "readerDetail":
             selectedTab = .viewer
-            columnVisibility = .all
+            columnVisibility = scenario == "readerDetail" ? .detailOnly : .all
             await openSmokeBook(for: backend, inspectorMode: .none)
 
         case "inspector", "studyCommentaries", "studyFloating", "studyFloatingFull", "studyLinks", "studyNotes", "studyCompactLarge", "compactStudyToTOC":
             selectedTab = .viewer
             columnVisibility = ["studyCommentaries", "studyLinks", "studyNotes"].contains(scenario) ? .detailOnly : .all
             await openSmokeBook(for: backend, inspectorMode: .inspector)
-            if scenario == "studyNotes" {
-                addSmokeStudyNote()
-            }
 
         case "commentator":
             selectedTab = .viewer
@@ -303,8 +285,9 @@ private extension iOSMainView {
             navigationManager.switchToMode(.search)
             columnVisibility = .all
             try? await Task.sleep(for: .milliseconds(500))
-            smokeSearchPreviewItem = await prepareSmokeSearch(query: query)
-            smokeSucceeded = smokeSearchPreviewItem != nil
+            // Prepare the real result list only. Acceptance automation must tap
+            // an actual row to expand its preview; no overlay is injected here.
+            smokeSucceeded = await prepareSmokeSearch(query: query) != nil
 
         case "searchOpen":
             let query = "בראשית"
@@ -385,27 +368,6 @@ private extension iOSMainView {
             try? await Task.sleep(for: .milliseconds(250))
         }
         return session.results.first
-    }
-
-    func addSmokeStudyNote() {
-        guard let activeTab = navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId }) else { return }
-        let text = activeTab.viewModel.contentText as NSString
-        guard text.length > 0 else { return }
-        let range = NSRange(location: 0, length: min(24, text.length))
-        do {
-            try activeTab.viewModel.addAnnotation(
-                in: range,
-                mode: .highlight,
-                sourceText: text.substring(with: range),
-                color: UIColor(named: "HighlightText") ?? .systemYellow
-            )
-            guard var annotation = activeTab.viewModel.findBestAnnotation(for: range) else { return }
-            annotation.note = "הערת לימוד לדוגמה"
-            annotation.tags = ["עיון"]
-            try activeTab.viewModel.updateAnnotation(annotation)
-        } catch {
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-        }
     }
 
     func openSmokeBook(for backend: BackendID, inspectorMode: SmokeInspectorMode) async {
