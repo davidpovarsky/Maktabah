@@ -340,7 +340,11 @@ func runNavigationAndPackageTests() async throws {
     try expect(decoded.contains("\"ספר\""), "quot is decoded to double quotes")
     try expect(
         "פסוק{p}פתוחה{s}סתומה".readerPlainText == "פסוק\nפתוחה\nסתומה",
-        "Sefaria paragraph markers become plain-text line breaks"
+        "Latin Sefaria paragraph markers become plain-text line breaks"
+    )
+    try expect(
+        "פסוק{פ}פתוחה{ס}סתומה".readerPlainText == "פסוק\nפתוחה\nסתומה",
+        "Hebrew Sefaria paragraph markers become plain-text line breaks"
     )
 
     // Bug A regression test: Leaf navigation items from TOC
