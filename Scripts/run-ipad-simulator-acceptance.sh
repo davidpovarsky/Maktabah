@@ -223,6 +223,19 @@ ui_set_value_id() {
   return 1
 }
 
+ui_scroll_up_id() {
+  local identifier="$1"
+  local attempt
+  for attempt in 1 2 3 4 5; do
+    if idb ui scroll up "$identifier" --match-key AXUniqueId --udid "$UDID"; then
+      return 0
+    fi
+    sleep 1
+  done
+  echo "Could not scroll accessibility identifier after 5 attempts: $identifier" >&2
+  return 1
+}
+
 capture_current_ui() {
   local name="$1"
   xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$name" >/dev/null
@@ -343,7 +356,7 @@ run_panel_geometry_and_scroll_flow() {
   launch_interactive_scenario readerDetail sefaria en en_US
   ui_wait_id reader-text 45
   for _ in 1 2 3 4 5 6; do
-    idb ui scroll up reader-text --match-key AXUniqueId --udid "$UDID"
+    ui_scroll_up_id reader-text
   done
   idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
   idb ui describe reader-text \
@@ -472,7 +485,7 @@ run_invalid_note_save_flow() {
   ui_set_value_id annotation-note-text "$value"
   ui_tap_id annotation-save
   idb ui wait "Could Not Save Annotation" --timeout 30 --json --udid "$UDID"
-  idb ui tap OK --udid "$UDID"
+  ui_tap_label "OK"
   ui_wait_id annotation-note-text 10
   idb ui describe annotation-note-text \
     --match-key AXUniqueId --key AXValue --key AXUniqueId --udid "$UDID" \
