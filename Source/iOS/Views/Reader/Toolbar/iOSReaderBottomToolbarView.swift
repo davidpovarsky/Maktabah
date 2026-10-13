@@ -79,10 +79,10 @@ struct iOSReaderBottomToolbarView: View {
             .help(String(localized: "Text Options"))
 
             Button(action: {
-                DispatchQueue.main.async {
-                    if let onShowTableOfContents {
-                        onShowTableOfContents()
-                    } else {
+                if let onShowTableOfContents {
+                    onShowTableOfContents()
+                } else {
+                    DispatchQueue.main.async {
                         showingTOC = true
                     }
                 }

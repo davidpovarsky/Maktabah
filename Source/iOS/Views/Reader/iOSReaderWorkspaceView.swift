@@ -262,7 +262,7 @@ struct iOSReaderWorkspaceView: View {
             viewModel: viewModel,
             initialContentId: initialContentId,
             columnVisibility: $libraryColumnVisibility,
-            onShowTableOfContents: toggleContents
+            onShowTableOfContents: openContents
         )
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
@@ -446,17 +446,6 @@ struct iOSReaderWorkspaceView: View {
             return
         }
         presentContents()
-    }
-
-    private func toggleContents() {
-        if libraryColumnVisibility == .detailOnly {
-            openContents()
-        } else {
-            preferredCompactColumn = .detail
-            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
-                libraryColumnVisibility = .detailOnly
-            }
-        }
     }
 
     private func presentContents() {

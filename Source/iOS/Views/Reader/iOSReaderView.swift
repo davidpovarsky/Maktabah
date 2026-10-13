@@ -60,6 +60,14 @@ struct iOSReaderView: View {
         return columnVisibility.wrappedValue != .detailOnly
     }
 
+    private func toggleTableOfContents() {
+        if tableOfContentsIsPresented {
+            columnVisibility?.wrappedValue = .detailOnly
+        } else {
+            onShowTableOfContents?()
+        }
+    }
+
     var backgroundColor: Color {
         let colors: [Color] = [
             .white,
@@ -180,7 +188,7 @@ struct iOSReaderView: View {
             ToolbarItemGroup(placement: .bottomBar) {
                 iOSReaderBottomToolbarView(
                     viewModel: viewModel,
-                    onShowTableOfContents: onShowTableOfContents,
+                    onShowTableOfContents: toggleTableOfContents,
                     tableOfContentsIsPresented: tableOfContentsIsPresented
                 )
             }
