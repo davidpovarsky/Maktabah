@@ -45,6 +45,7 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
             )
             cell.contentConfiguration = config
             cell.accessories = []
+            cell.accessibilityIdentifier = "library-column-landmark-\(category.id)"
 
             // Wire up checkbox tap handler for selection mode
             if isSelectionMode, let listContentView = cell.contentView as? ListContentView {
@@ -99,6 +100,7 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
             )
             cell.contentConfiguration = config
             cell.accessories = []
+            cell.accessibilityIdentifier = "library-column-landmark-\(book.id)"
 
             // Wire up checkbox tap handler for selection mode
             if isSelectionMode, let listContentView = cell.contentView as? ListContentView {

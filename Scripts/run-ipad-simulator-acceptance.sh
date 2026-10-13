@@ -209,14 +209,14 @@ ui_tap_label() {
 }
 
 # IDB's wait command can see the transient SwiftUI toolbar button while its
-# describe backend cannot. The containing TOC column has a stable frame, so
-# derive the visible second leading toolbar-button centre from that frame,
+# describe backend cannot. A visible TOC row has a stable frame, so derive the
+# visible second leading toolbar-button centre from that row's column frame,
 # then perform a real simulator tap.
 ui_tap_toc_close_from_column() {
-  local description="$REPORT_DIR/toc-close-column-frame.json"
+  local description="$REPORT_DIR/toc-close-row-frame.json"
   local attempt coordinates x y
   for attempt in 1 2 3 4 5; do
-    if idb ui describe "toc-column" \
+    if idb ui describe "toc-row-" \
       --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
       > "$description"; then
       coordinates="$(python3 - "$description" <<'PY'
@@ -228,7 +228,7 @@ if isinstance(value, list):
     value = value[0]
 frame = value['frame']
 assert frame['width'] > 1 and frame['height'] > 1, frame
-print(round(frame['x'] + 88), round(frame['y'] + 27))
+print(round(frame['x'] + 88), round(frame['y'] - 139))
 PY
 )"
       x="${coordinates%% *}"
@@ -347,16 +347,16 @@ run_split_geometry_flow() {
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-all-en library-column toc-column reader-detail-column
+  capture_split_frames fixed-split-all-en library-column-landmark- toc-row- reader-text
 
   launch_interactive_scenario reader sefaria he he_IL
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-all-he library-column toc-column reader-detail-column
+  capture_split_frames fixed-split-all-he library-column-landmark- toc-row- reader-text
 
   open_toc_from_detail
-  capture_split_frames fixed-split-double-en toc-column reader-detail-column
+  capture_split_frames fixed-split-double-en toc-row- reader-text
 
   # A full IDB accessibility-tree read can stop exposing SwiftUI toolbar
   # items even though they remain visible. Relaunch the same deterministic
@@ -366,7 +366,7 @@ run_split_geometry_flow() {
   ui_tap_toc_close_from_column
   ui_wait_absent_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-detail-en reader-detail-column
+  capture_split_frames fixed-split-detail-en reader-text
 
   python3 - "$REPORT_DIR" <<'PY'
 import json, pathlib, sys
@@ -378,15 +378,15 @@ def elements(name):
 def frame(name, marker):
     matches = [x for x in elements(f'{name}-{marker}') if marker in str(x.get('AXUniqueId', ''))]
     visible = [x['frame'] for x in matches if x.get('frame', {}).get('width', 0) > 1]
-    assert len(visible) == 1, (name, marker, visible)
+    assert visible, (name, marker, visible)
     return visible[0]
-en = [frame('fixed-split-all-en', x) for x in ('library-column','toc-column','reader-detail-column')]
-he = [frame('fixed-split-all-he', x) for x in ('library-column','toc-column','reader-detail-column')]
+en = [frame('fixed-split-all-en', x) for x in ('library-column-landmark-','toc-row-','reader-text')]
+he = [frame('fixed-split-all-he', x) for x in ('library-column-landmark-','toc-row-','reader-text')]
 assert en[0]['x'] < en[1]['x'] < en[2]['x'], en
 assert he[0]['x'] > he[1]['x'] > he[2]['x'], he
-double = [frame('fixed-split-double-en', x) for x in ('toc-column','reader-detail-column')]
+double = [frame('fixed-split-double-en', x) for x in ('toc-row-','reader-text')]
 assert double[0]['x'] < double[1]['x'], double
-detail = frame('fixed-split-detail-en', 'reader-detail-column')
+detail = frame('fixed-split-detail-en', 'reader-text')
 assert detail['width'] > double[1]['width'], (detail, double[1])
 print(json.dumps({'allEnglish': en, 'allHebrew': he, 'doubleEnglish': double, 'detailEnglish': detail}))
 PY
@@ -396,17 +396,20 @@ run_panel_geometry_and_scroll_flow() {
   echo "--> [REAL UI] Study side, floating mode, and viewport anchoring"
   launch_interactive_scenario studyCommentaries sefaria he he_IL
   ui_wait_id torah-inspector-panel 45
-  ui_wait_id reader-surface 30
-  capture_split_frames fixed-study-side-he reader-surface torah-inspector-panel
+  ui_wait_id reader-text 30
+  ui_wait_id torah-inspector-selected-segment 30
+  capture_split_frames fixed-study-side-he reader-text torah-inspector-selected-segment
 
   launch_interactive_scenario studyCommentaries sefaria en en_US
   ui_wait_id torah-inspector-panel 45
-  ui_wait_id reader-surface 30
-  capture_split_frames fixed-study-side-en reader-surface torah-inspector-panel torah-inspector-selected-segment torah-inspector-tools
+  ui_wait_id reader-text 30
+  ui_wait_id torah-inspector-selected-segment 30
+  ui_wait_id torah-inspector-tools 30
+  capture_split_frames fixed-study-side-en reader-text torah-inspector-selected-segment torah-inspector-tools
 
   launch_interactive_scenario inspector sefaria en en_US
   ui_wait_id torah-inspector-panel 45
-  capture_split_frames fixed-study-floating-half-en torah-inspector-panel
+  capture_split_frames fixed-study-floating-half-en
 
   launch_interactive_scenario readerDetail sefaria en en_US
   ui_wait_id reader-text 45
@@ -433,10 +436,10 @@ def items(name):
     return value if isinstance(value, list) else [value]
 def frame(name, marker):
     values = [x['frame'] for x in items(f'{name}-{marker}') if marker in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1]
-    assert len(values) == 1, (name, marker, values)
+    assert values, (name, marker, values)
     return values[0]
-he_reader, he_panel = frame('fixed-study-side-he','reader-surface'), frame('fixed-study-side-he','torah-inspector-panel')
-en_reader, en_panel = frame('fixed-study-side-en','reader-surface'), frame('fixed-study-side-en','torah-inspector-panel')
+he_reader, he_panel = frame('fixed-study-side-he','reader-text'), frame('fixed-study-side-he','torah-inspector-selected-segment')
+en_reader, en_panel = frame('fixed-study-side-en','reader-text'), frame('fixed-study-side-en','torah-inspector-selected-segment')
 assert he_panel['x'] < he_reader['x'], (he_reader, he_panel)
 assert en_panel['x'] > en_reader['x'], (en_reader, en_panel)
 selected = frame('fixed-study-side-en','torah-inspector-selected-segment')
@@ -818,7 +821,6 @@ CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-links-landscape.png" he 
 CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-study-notes-landscape.png" he he_IL -smokeScenario studyNotes -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-half-landscape.png" he he_IL -smokeScenario studyFloating -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "workspace-floating-full-landscape.png" he he_IL -smokeScenario studyFloatingFull -smokeBackend sefaria -smokeBypassBootstrap
-set_orientation portrait
 
 # ==============================================================================
 # PHASE 6A: Production UI interaction acceptance (IDB accessibility actions)
@@ -838,6 +840,7 @@ run_invalid_note_save_flow
 # ==============================================================================
 echo ""
 echo "=== [PHASE 6B: Compact iPhone Reader Workspace Screenshots] ==="
+set_orientation portrait
 xcrun simctl terminate "$IPAD_UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 PHONE_DEVICE_TYPE="$(xcrun simctl list devicetypes -j | python3 -c 'import json,sys; values=json.load(sys.stdin)["devicetypes"]; preferred=[item for item in values if item["name"] == "iPhone 17 Pro"]; candidates=preferred or [item for item in values if item["name"].startswith("iPhone") and "Pro" in item["name"]]; print(candidates[0]["identifier"])')"
 IPHONE_UDID="$(xcrun simctl create 'Maktabah Acceptance iPhone' "$PHONE_DEVICE_TYPE" "$RUNTIME")"

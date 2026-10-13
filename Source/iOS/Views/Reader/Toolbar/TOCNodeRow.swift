@@ -92,6 +92,7 @@ struct TOCNodeRow: View {
                     item.id == selectedId ? .accentColor : .primary
                 )
         }
+        .accessibilityIdentifier("toc-row-\(item.id)")
     }
 }
 
