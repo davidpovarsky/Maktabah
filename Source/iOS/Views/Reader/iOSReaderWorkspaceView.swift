@@ -452,7 +452,10 @@ struct iOSReaderWorkspaceView: View {
         if libraryColumnVisibility == .detailOnly {
             openContents()
         } else {
-            closeContents()
+            preferredCompactColumn = .detail
+            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
+                libraryColumnVisibility = .detailOnly
+            }
         }
     }
 
