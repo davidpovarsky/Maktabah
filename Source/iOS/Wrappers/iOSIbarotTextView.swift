@@ -129,8 +129,28 @@ class iOSCustomIbarotTextView: UITextView {
         #if DEBUG
         guard let anchor = captureViewportAnchor() else { return }
         accessibilityHint = "source=\(anchor.sourceCharacterIndex);offset=\(anchor.verticalOffset);object=\(ObjectIdentifier(self).hashValue)"
+        writeAcceptanceViewportReport(anchor)
         #endif
     }
+
+    #if DEBUG
+    private func writeAcceptanceViewportReport(_ anchor: ViewportAnchor) {
+        guard let readyPath = ProcessInfo.processInfo.environment["MAKTABAH_SMOKE_READY_FILE"],
+              !readyPath.isEmpty else { return }
+        let report: [String: Any] = [
+            "source": anchor.sourceCharacterIndex,
+            "offset": Double(anchor.verticalOffset),
+            "object": ObjectIdentifier(self).hashValue,
+            "capturedAt": Date().timeIntervalSince1970,
+        ]
+        do {
+            let data = try JSONSerialization.data(withJSONObject: report, options: [.sortedKeys])
+            try data.write(to: URL(fileURLWithPath: readyPath + ".viewport.json"), options: .atomic)
+        } catch {
+            assertionFailure("Could not write viewport acceptance report: \(error)")
+        }
+    }
+    #endif
 
     // MARK: - Actions for UIMenuController (Pre-iOS 16)
 

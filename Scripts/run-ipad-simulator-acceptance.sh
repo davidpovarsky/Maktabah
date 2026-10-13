@@ -133,7 +133,7 @@ launch_interactive_scenario() {
   local locale="$4"
   shift 4
   local ready_file="$CONTAINER/Documents/real-ui-${scenario}-${backend}.ready"
-  rm -f "$ready_file"
+  rm -f "$ready_file" "$ready_file.viewport.json"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
   SIMCTL_CHILD_OTZARIA_DATA_PROFILE=miniTest10 \
   SIMCTL_CHILD_MAKTABAH_SMOKE_READY_FILE="$ready_file" \
@@ -213,20 +213,20 @@ ui_tap_label() {
 # visible second leading toolbar-button centre from that row's column frame,
 # then perform a real simulator tap.
 ui_tap_toc_close_from_column() {
-  local description="$REPORT_DIR/toc-close-row-frame.json"
+  local description="$REPORT_DIR/toc-close-layout.json"
   local attempt coordinates x y
   for attempt in 1 2 3 4 5; do
-    if idb ui describe "toc-row-" \
-      --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
+    if idb ui describe-all \
+      --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
       > "$description"; then
       coordinates="$(python3 - "$description" <<'PY'
 import json, sys
 value = json.load(open(sys.argv[1]))
-if isinstance(value, dict) and 'elements' in value:
-    value = value['elements']
-if isinstance(value, list):
-    value = value[0]
-frame = value['frame']
+if isinstance(value, dict) and 'elements' in value: value = value['elements']
+items = value if isinstance(value, list) else [value]
+rows = [item for item in items if str(item.get('AXUniqueId', '')).startswith('toc-row-')]
+assert rows, items
+frame = min(rows, key=lambda item: item['frame']['y'])['frame']
 assert frame['width'] > 1 and frame['height'] > 1, frame
 print(round(frame['x'] + 88), round(frame['y'] - 139))
 PY
@@ -277,7 +277,7 @@ capture_current_ui() {
   xcrun simctl io "$UDID" screenshot "$SCREENSHOT_DIR/$name" >/dev/null
   normalize_screenshot_orientation "$SCREENSHOT_DIR/$name" "$CURRENT_ORIENTATION"
   idb ui describe-all \
-    --key AXUniqueId --key AXLabel --key AXValue --key frame \
+    --key AXUniqueId --key AXLabel --key AXValue --key help --key frame \
     --udid "$UDID" > "$REPORT_DIR/${name%.png}-accessibility.json"
 }
 
@@ -319,16 +319,9 @@ PY
 
 capture_split_frames() {
   local name="$1"
-  shift
   idb ui describe-all \
-    --key AXUniqueId --key AXLabel --key frame \
+    --key AXUniqueId --key AXLabel --key AXValue --key help --key frame \
     --udid "$UDID" > "$REPORT_DIR/$name.json"
-  local marker
-  for marker in "$@"; do
-    idb ui describe "$marker" \
-      --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame \
-      --udid "$UDID" > "$REPORT_DIR/$name-$marker.json"
-  done
   capture_current_ui "$name.png"
 }
 
@@ -347,16 +340,16 @@ run_split_geometry_flow() {
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-all-en library-column-landmark- toc-row- reader-text
+  capture_split_frames fixed-split-all-en
 
   launch_interactive_scenario reader sefaria he he_IL
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-all-he library-column-landmark- toc-row- reader-text
+  capture_split_frames fixed-split-all-he
 
   open_toc_from_detail
-  capture_split_frames fixed-split-double-en toc-row- reader-text
+  capture_split_frames fixed-split-double-en
 
   # A full IDB accessibility-tree read can stop exposing SwiftUI toolbar
   # items even though they remain visible. Relaunch the same deterministic
@@ -366,27 +359,45 @@ run_split_geometry_flow() {
   ui_tap_toc_close_from_column
   ui_wait_absent_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-detail-en reader-text
+  capture_split_frames fixed-split-detail-en
 
   python3 - "$REPORT_DIR" <<'PY'
 import json, pathlib, sys
+from collections import Counter
 root = pathlib.Path(sys.argv[1])
 def elements(name):
     value = json.loads((root / f'{name}.json').read_text())
     if isinstance(value, dict) and 'elements' in value: value = value['elements']
     return value if isinstance(value, list) else [value]
-def frame(name, marker):
-    matches = [x for x in elements(f'{name}-{marker}') if marker in str(x.get('AXUniqueId', ''))]
-    visible = [x['frame'] for x in matches if x.get('frame', {}).get('width', 0) > 1]
-    assert visible, (name, marker, visible)
-    return visible[0]
-en = [frame('fixed-split-all-en', x) for x in ('library-column-landmark-','toc-row-','reader-text')]
-he = [frame('fixed-split-all-he', x) for x in ('library-column-landmark-','toc-row-','reader-text')]
-assert en[0]['x'] < en[1]['x'] < en[2]['x'], en
-assert he[0]['x'] > he[1]['x'] > he[2]['x'], he
-double = [frame('fixed-split-double-en', x) for x in ('toc-row-','reader-text')]
-assert double[0]['x'] < double[1]['x'], double
-detail = frame('fixed-split-detail-en', 'reader-text')
+def library_landmark(name):
+    candidates = [item['frame'] for item in elements(name)
+                  if 140 <= item.get('frame', {}).get('width', 0) <= 152
+                  and 20 <= item.get('frame', {}).get('height', 0) <= 28
+                  and 240 <= item.get('frame', {}).get('y', 0) <= 930]
+    assert len(candidates) >= 8, (name, candidates)
+    x = Counter(round(frame['x'], 1) for frame in candidates).most_common(1)[0][0]
+    return next(frame for frame in candidates if round(frame['x'], 1) == x)
+def toc_landmark(name):
+    rows = [item['frame'] for item in elements(name)
+            if str(item.get('AXUniqueId', '')).startswith('toc-row-')
+            and item.get('frame', {}).get('width', 0) > 1]
+    assert rows, name
+    return min(rows, key=lambda frame: frame['y'])
+def reader_header(name):
+    headers = [item['frame'] for item in elements(name)
+               if abs(item.get('frame', {}).get('y', -100) - 86) <= 2
+               and abs(item.get('frame', {}).get('height', 0) - 54) <= 2
+               and item.get('frame', {}).get('width', 0) > 300]
+    assert headers, name
+    return max(headers, key=lambda frame: frame['width'])
+def center(frame): return frame['x'] + frame['width'] / 2
+en = [library_landmark('fixed-split-all-en'), toc_landmark('fixed-split-all-en'), reader_header('fixed-split-all-en')]
+he = [library_landmark('fixed-split-all-he'), toc_landmark('fixed-split-all-he'), reader_header('fixed-split-all-he')]
+assert center(en[0]) < center(en[1]) < center(en[2]), en
+assert center(he[0]) > center(he[1]) > center(he[2]), he
+double = [toc_landmark('fixed-split-double-en'), reader_header('fixed-split-double-en')]
+assert center(double[0]) < center(double[1]), double
+detail = reader_header('fixed-split-detail-en')
 assert detail['width'] > double[1]['width'], (detail, double[1])
 print(json.dumps({'allEnglish': en, 'allHebrew': he, 'doubleEnglish': double, 'detailEnglish': detail}))
 PY
@@ -398,14 +409,14 @@ run_panel_geometry_and_scroll_flow() {
   ui_wait_id torah-inspector-panel 45
   ui_wait_id reader-text 30
   ui_wait_id torah-inspector-selected-segment 30
-  capture_split_frames fixed-study-side-he reader-text torah-inspector-selected-segment
+  capture_split_frames fixed-study-side-he
 
   launch_interactive_scenario studyCommentaries sefaria en en_US
   ui_wait_id torah-inspector-panel 45
   ui_wait_id reader-text 30
   ui_wait_id torah-inspector-selected-segment 30
   ui_wait_id torah-inspector-tools 30
-  capture_split_frames fixed-study-side-en reader-text torah-inspector-selected-segment torah-inspector-tools
+  capture_split_frames fixed-study-side-en
 
   launch_interactive_scenario inspector sefaria en en_US
   ui_wait_id torah-inspector-panel 45
@@ -417,15 +428,34 @@ run_panel_geometry_and_scroll_flow() {
     ui_scroll_up_id reader-text
   done
   idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
-  idb ui describe reader-text \
-    --match-key AXUniqueId --key AXUniqueId --key help --key frame --udid "$UDID" \
-    > "$REPORT_DIR/viewport-before-study-toggles.json"
+  viewport_report="$CONTAINER/Documents/real-ui-readerDetail-sefaria.ready.viewport.json"
+  waited=0
+  while [ ! -s "$viewport_report" ] && [ "$waited" -lt 30 ]; do
+    sleep 1
+    waited=$((waited + 1))
+  done
+  [ -s "$viewport_report" ] || { echo "Viewport metadata report was not written" >&2; return 1; }
+  cp "$viewport_report" "$REPORT_DIR/viewport-before-study-toggles.json"
+  before_viewport_payload="$(cat "$viewport_report")"
+  idb ui describe-all \
+    --key AXUniqueId --key AXLabel --key AXValue --key frame --udid "$UDID" \
+    > "$REPORT_DIR/viewport-before-visible.json"
   for _ in 1 2 3 4 5 6 7 8 9 10; do
     ui_tap_id reader-study-toggle
   done
-  idb ui describe reader-text \
-    --match-key AXUniqueId --key AXUniqueId --key help --key frame --udid "$UDID" \
-    > "$REPORT_DIR/viewport-after-study-toggles.json"
+  waited=0
+  while [ "$(cat "$viewport_report" 2>/dev/null || true)" = "$before_viewport_payload" ] && [ "$waited" -lt 30 ]; do
+    sleep 1
+    waited=$((waited + 1))
+  done
+  [ "$(cat "$viewport_report" 2>/dev/null || true)" != "$before_viewport_payload" ] || {
+    echo "Viewport metadata did not update after Study toggles" >&2
+    return 1
+  }
+  cp "$viewport_report" "$REPORT_DIR/viewport-after-study-toggles.json"
+  idb ui describe-all \
+    --key AXUniqueId --key AXLabel --key AXValue --key frame --udid "$UDID" \
+    > "$REPORT_DIR/viewport-after-visible.json"
 
   python3 - "$REPORT_DIR" <<'PY'
 import json, pathlib, re, sys
@@ -435,11 +465,17 @@ def items(name):
     if isinstance(value, dict) and 'elements' in value: value = value['elements']
     return value if isinstance(value, list) else [value]
 def frame(name, marker):
-    values = [x['frame'] for x in items(f'{name}-{marker}') if marker in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1]
+    values = [x['frame'] for x in items(name) if marker in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1]
     assert values, (name, marker, values)
     return values[0]
-he_reader, he_panel = frame('fixed-study-side-he','reader-text'), frame('fixed-study-side-he','torah-inspector-selected-segment')
-en_reader, en_panel = frame('fixed-study-side-en','reader-text'), frame('fixed-study-side-en','torah-inspector-selected-segment')
+def reader_content(name):
+    values = [x['frame'] for x in items(name)
+              if len(str(x.get('AXValue') or '')) >= 40
+              and x.get('frame',{}).get('width',0) > 100]
+    assert values, name
+    return values[0]
+he_reader, he_panel = reader_content('fixed-study-side-he'), frame('fixed-study-side-he','torah-inspector-selected-segment')
+en_reader, en_panel = reader_content('fixed-study-side-en'), frame('fixed-study-side-en','torah-inspector-selected-segment')
 assert he_panel['x'] < he_reader['x'], (he_reader, he_panel)
 assert en_panel['x'] > en_reader['x'], (en_reader, en_panel)
 selected = frame('fixed-study-side-en','torah-inspector-selected-segment')
@@ -448,15 +484,21 @@ assert selected['y'] + selected['height'] <= tools['y'] + 2, (selected, tools)
 def one(path):
     value=json.loads(path.read_text())
     if isinstance(value, dict) and 'elements' in value: value=value['elements']
-    return value[0] if isinstance(value,list) else value
-before, after = one(root/'viewport-before-study-toggles.json'), one(root/'viewport-after-study-toggles.json')
-pattern=r'source=(\d+);offset=([-0-9.]+);object=(-?\d+)'
-b, a = re.search(pattern, str(before.get('help',''))), re.search(pattern, str(after.get('help','')))
-assert b and a, (before, after)
-assert b.group(1) == a.group(1), (b.groups(), a.groups())
-assert b.group(3) == a.group(3), (b.groups(), a.groups())
-assert abs(float(b.group(2)) - float(a.group(2))) <= 4.0, (b.groups(), a.groups())
-print(json.dumps({'hebrew': [he_reader,he_panel], 'english':[en_reader,en_panel], 'selectedAboveTools':[selected,tools], 'viewportBefore':b.groups(), 'viewportAfter':a.groups()}))
+    return value if isinstance(value,list) else [value]
+before = json.loads((root/'viewport-before-study-toggles.json').read_text())
+after = json.loads((root/'viewport-after-study-toggles.json').read_text())
+before_items, after_items = one(root/'viewport-before-visible.json'), one(root/'viewport-after-visible.json')
+def visible_text(values):
+    matches=[item for item in values if len(str(item.get('AXValue') or '')) >= 40
+             and -10 <= item.get('frame',{}).get('y',-1000) <= 958]
+    assert matches, values
+    return min(matches, key=lambda item:item['frame']['y']).get('AXValue')
+assert before['source'] == after['source'], (before, after)
+assert before['object'] == after['object'], (before, after)
+assert abs(float(before['offset']) - float(after['offset'])) <= 4.0, (before, after)
+assert float(after['capturedAt']) > float(before['capturedAt']), (before, after)
+assert visible_text(before_items) == visible_text(after_items), (visible_text(before_items), visible_text(after_items))
+print(json.dumps({'hebrew': [he_reader,he_panel], 'english':[en_reader,en_panel], 'selectedAboveTools':[selected,tools], 'viewportBefore':before, 'viewportAfter':after, 'visibleTextStable': True}))
 PY
 }
 
