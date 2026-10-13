@@ -219,7 +219,7 @@ ui_tap_exact_label_frame() {
     if idb ui describe-all \
       --key AXLabel --key AXUniqueId --key frame --udid "$UDID" \
       > "$description"; then
-      coordinates="$(python3 - "$description" "$label" <<'PY'
+      coordinates="$(python3 - "$description" "$label" "$CURRENT_ORIENTATION" <<'PY'
 import json, sys
 value = json.load(open(sys.argv[1]))
 if isinstance(value, dict) and 'elements' in value: value = value['elements']
@@ -230,7 +230,22 @@ matches = [item for item in items
            and item.get('frame', {}).get('height', 0) > 1]
 assert matches, items
 frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
-print(round(frame['x'] + frame['width'] / 2), round(frame['y'] + frame['height'] / 2))
+x = frame['x'] + frame['width'] / 2
+y = frame['y'] + frame['height'] / 2
+screen = max(
+    (item.get('frame', {}) for item in items),
+    key=lambda candidate: candidate.get('width', 0) * candidate.get('height', 0)
+)
+orientation = sys.argv[3]
+# Xcode 26 headless keeps HID in the native portrait coordinate space after
+# rotation even though accessibility frames follow the rendered orientation.
+if orientation == 'landscapeLeft':
+    x, y = y, screen['width'] - x
+elif orientation == 'landscapeRight':
+    x, y = screen['height'] - y, x
+elif orientation == 'portraitUpsideDown':
+    x, y = screen['width'] - x, screen['height'] - y
+print(round(x), round(y))
 PY
 )" || true
       if [ -n "$coordinates" ]; then
@@ -514,17 +529,35 @@ run_source_gesture_flow() {
   echo "--> [REAL UI] Linked-source single tap and double tap"
   launch_interactive_scenario studyLinks sefaria en en_US
   ui_wait_id torah-inspector-source- 45
-  idb ui describe torah-inspector-source- \
-    --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
+  idb ui describe-all \
+    --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
     > "$REPORT_DIR/source-before-gestures.json"
-  IFS='|' read -r source_x source_y source_work < <(python3 - "$REPORT_DIR/source-before-gestures.json" <<'PY'
+  IFS='|' read -r source_x source_y source_work < <(python3 - \
+    "$REPORT_DIR/source-before-gestures.json" "$CURRENT_ORIENTATION" <<'PY'
 import json, sys
 value=json.load(open(sys.argv[1]))
 if isinstance(value, dict) and 'elements' in value: value=value['elements']
-value=value[0] if isinstance(value,list) else value
+items=value if isinstance(value,list) else [value]
+matches=[item for item in items
+         if str(item.get('AXUniqueId','')).startswith('torah-inspector-source-')
+         and item.get('frame',{}).get('width',0)>1
+         and item.get('frame',{}).get('height',0)>1]
+assert matches, items
+value=min(matches, key=lambda item:item['frame']['y'])
 identifier=value['AXUniqueId']
 work=identifier.split(':', 1)[1].split('|', 1)[0]
-f=value['frame']; print(f"{round(f['x']+f['width']/2)}|{round(f['y']+f['height']/2)}|{work}")
+f=value['frame']
+x=f['x']+f['width']/2; y=f['y']+f['height']/2
+screen=max((item.get('frame',{}) for item in items),
+           key=lambda candidate:candidate.get('width',0)*candidate.get('height',0))
+orientation=sys.argv[2]
+if orientation == 'landscapeLeft':
+    x,y=y,screen['width']-x
+elif orientation == 'landscapeRight':
+    x,y=screen['height']-y,x
+elif orientation == 'portraitUpsideDown':
+    x,y=screen['width']-x,screen['height']-y
+print(f"{round(x)}|{round(y)}|{work}")
 PY
   )
   idb ui tap "$source_x" "$source_y" --udid "$UDID"
