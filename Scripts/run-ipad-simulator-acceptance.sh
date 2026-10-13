@@ -208,17 +208,15 @@ ui_tap_label() {
   return 1
 }
 
-# Toolbar items hosted by NavigationSplitView can retain a stable on-screen
-# frame while SwiftUI replaces their accessibility object during a column
-# transition. Resolve the current accessibility frame, then perform the real
-# simulator tap at its centre so IDB does not need to hold that transient AX
-# object between lookup and write.
-ui_tap_id_frame_center() {
-  local identifier="$1"
-  local description="$REPORT_DIR/tap-${identifier}-frame.json"
+# IDB's wait command can see the transient SwiftUI toolbar button while its
+# describe backend cannot. The containing TOC column has a stable frame, so
+# derive the visible second leading toolbar-button centre from that frame,
+# then perform a real simulator tap.
+ui_tap_toc_close_from_column() {
+  local description="$REPORT_DIR/toc-close-column-frame.json"
   local attempt coordinates x y
   for attempt in 1 2 3 4 5; do
-    if idb ui describe "$identifier" \
+    if idb ui describe "toc-column" \
       --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
       > "$description"; then
       coordinates="$(python3 - "$description" <<'PY'
@@ -230,7 +228,7 @@ if isinstance(value, list):
     value = value[0]
 frame = value['frame']
 assert frame['width'] > 1 and frame['height'] > 1, frame
-print(frame['x'] + frame['width'] / 2, frame['y'] + frame['height'] / 2)
+print(round(frame['x'] + 88), round(frame['y'] + 27))
 PY
 )"
       x="${coordinates%% *}"
@@ -242,7 +240,7 @@ PY
     fi
     sleep 1
   done
-  echo "Could not tap accessibility frame centre after 5 attempts: $identifier" >&2
+  echo "Could not tap the TOC close control from its stable column frame" >&2
   return 1
 }
 
@@ -321,9 +319,16 @@ PY
 
 capture_split_frames() {
   local name="$1"
+  shift
   idb ui describe-all \
     --key AXUniqueId --key AXLabel --key frame \
     --udid "$UDID" > "$REPORT_DIR/$name.json"
+  local marker
+  for marker in "$@"; do
+    idb ui describe "$marker" \
+      --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame \
+      --udid "$UDID" > "$REPORT_DIR/$name-$marker.json"
+  done
   capture_current_ui "$name.png"
 }
 
@@ -342,35 +347,36 @@ run_split_geometry_flow() {
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-all-en
+  capture_split_frames fixed-split-all-en library-column toc-column reader-detail-column
 
   launch_interactive_scenario reader sefaria he he_IL
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-all-he
+  capture_split_frames fixed-split-all-he library-column toc-column reader-detail-column
 
   open_toc_from_detail
-  capture_split_frames fixed-split-double-en
+  capture_split_frames fixed-split-double-en toc-column reader-detail-column
 
   # A full IDB accessibility-tree read can stop exposing SwiftUI toolbar
   # items even though they remain visible. Relaunch the same deterministic
   # state and exercise the close control before capturing the detail state.
   open_toc_from_detail
   ui_wait_id toc-close 30
-  ui_tap_id_frame_center toc-close
+  ui_tap_toc_close_from_column
   ui_wait_absent_id toc-column 30
   ui_wait_id reader-detail-column 30
-  capture_split_frames fixed-split-detail-en
+  capture_split_frames fixed-split-detail-en reader-detail-column
 
   python3 - "$REPORT_DIR" <<'PY'
 import json, pathlib, sys
 root = pathlib.Path(sys.argv[1])
 def elements(name):
     value = json.loads((root / f'{name}.json').read_text())
+    if isinstance(value, dict) and 'elements' in value: value = value['elements']
     return value if isinstance(value, list) else [value]
 def frame(name, marker):
-    matches = [x for x in elements(name) if marker in str(x.get('AXUniqueId', ''))]
+    matches = [x for x in elements(f'{name}-{marker}') if marker in str(x.get('AXUniqueId', ''))]
     visible = [x['frame'] for x in matches if x.get('frame', {}).get('width', 0) > 1]
     assert len(visible) == 1, (name, marker, visible)
     return visible[0]
@@ -391,16 +397,16 @@ run_panel_geometry_and_scroll_flow() {
   launch_interactive_scenario studyCommentaries sefaria he he_IL
   ui_wait_id torah-inspector-panel 45
   ui_wait_id reader-surface 30
-  capture_split_frames fixed-study-side-he
+  capture_split_frames fixed-study-side-he reader-surface torah-inspector-panel
 
   launch_interactive_scenario studyCommentaries sefaria en en_US
   ui_wait_id torah-inspector-panel 45
   ui_wait_id reader-surface 30
-  capture_split_frames fixed-study-side-en
+  capture_split_frames fixed-study-side-en reader-surface torah-inspector-panel torah-inspector-selected-segment torah-inspector-tools
 
   launch_interactive_scenario inspector sefaria en en_US
   ui_wait_id torah-inspector-panel 45
-  capture_split_frames fixed-study-floating-half-en
+  capture_split_frames fixed-study-floating-half-en torah-inspector-panel
 
   launch_interactive_scenario readerDetail sefaria en en_US
   ui_wait_id reader-text 45
@@ -423,9 +429,10 @@ import json, pathlib, re, sys
 root = pathlib.Path(sys.argv[1])
 def items(name):
     value = json.loads((root / f'{name}.json').read_text())
+    if isinstance(value, dict) and 'elements' in value: value = value['elements']
     return value if isinstance(value, list) else [value]
 def frame(name, marker):
-    values = [x['frame'] for x in items(name) if marker in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1]
+    values = [x['frame'] for x in items(f'{name}-{marker}') if marker in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1]
     assert len(values) == 1, (name, marker, values)
     return values[0]
 he_reader, he_panel = frame('fixed-study-side-he','reader-surface'), frame('fixed-study-side-he','torah-inspector-panel')
