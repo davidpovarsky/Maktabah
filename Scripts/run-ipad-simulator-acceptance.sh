@@ -280,10 +280,57 @@ ui_set_value_id() {
 
 ui_scroll_up_id() {
   local identifier="$1"
-  local attempt
+  local attempt description coordinates x_start y_start x_end y_end
+  description="$REPORT_DIR/scroll-${identifier//[^[:alnum:]]/-}-layout.json"
   for attempt in 1 2 3 4 5; do
-    if idb ui scroll up "$identifier" --match-key AXUniqueId --udid "$UDID"; then
-      return 0
+    if idb ui describe-all \
+      --key AXUniqueId --key AXValue --key frame --udid "$UDID" > "$description"; then
+      coordinates="$(python3 - "$description" "$identifier" "$CURRENT_ORIENTATION" <<'PY'
+import json, sys
+value = json.load(open(sys.argv[1]))
+if isinstance(value, dict) and 'elements' in value: value = value['elements']
+items = value if isinstance(value, list) else [value]
+matches = [item for item in items
+           if sys.argv[2] in str(item.get('AXUniqueId', ''))
+           and item.get('frame', {}).get('width', 0) > 1
+           and item.get('frame', {}).get('height', 0) > 1]
+if not matches:
+    matches = [item for item in items
+               if len(str(item.get('AXValue') or '')) >= 40
+               and item.get('frame', {}).get('width', 0) > 100]
+assert matches, items
+screen = max(
+    (item.get('frame', {}) for item in items),
+    key=lambda candidate: candidate.get('width', 0) * candidate.get('height', 0)
+)
+frame = max(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
+x_start = x_end = min(max(frame['x'] + frame['width'] * 0.55, 80), screen['width'] - 80)
+y_start = screen['height'] * 0.78
+y_end = screen['height'] * 0.28
+orientation = sys.argv[3]
+def hid(x, y):
+    if orientation == 'landscapeLeft':
+        return y, screen['width'] - x
+    if orientation == 'landscapeRight':
+        return screen['height'] - y, x
+    if orientation == 'portraitUpsideDown':
+        return screen['width'] - x, screen['height'] - y
+    return x, y
+x_start, y_start = hid(x_start, y_start)
+x_end, y_end = hid(x_end, y_end)
+print(round(x_start), round(y_start), round(x_end), round(y_end))
+PY
+)" || true
+      if [ -n "$coordinates" ]; then
+        read -r x_start y_start x_end y_end <<EOF
+$coordinates
+EOF
+        if idb ui swipe "$x_start" "$y_start" "$x_end" "$y_end" \
+          --duration 0.45 --udid "$UDID"; then
+          idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+          return 0
+        fi
+      fi
     fi
     sleep 1
   done
