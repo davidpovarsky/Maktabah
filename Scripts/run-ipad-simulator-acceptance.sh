@@ -327,6 +327,15 @@ capture_split_frames() {
   capture_current_ui "$name.png"
 }
 
+open_toc_from_detail() {
+  launch_interactive_scenario readerDetail sefaria en en_US
+  ui_wait_id reader-more-menu 45
+  ui_tap_id reader-more-menu
+  idb ui wait "Table of Contents" --match-key AXLabel --timeout 30 --json --udid "$UDID"
+  ui_tap_label "Table of Contents"
+  ui_wait_id toc-column 30
+}
+
 run_split_geometry_flow() {
   echo "--> [REAL UI] Native all/double/detail split geometry"
   launch_interactive_scenario reader sefaria en en_US
@@ -341,14 +350,16 @@ run_split_geometry_flow() {
   ui_wait_id reader-detail-column 30
   capture_split_frames fixed-split-all-he
 
-  launch_interactive_scenario readerDetail sefaria en en_US
-  ui_wait_id reader-more-menu 45
-  ui_tap_id reader-more-menu
-  idb ui wait "Table of Contents" --match-key AXLabel --timeout 30 --json --udid "$UDID"
-  ui_tap_label "Table of Contents"
-  ui_wait_id toc-column 30
+  open_toc_from_detail
   capture_split_frames fixed-split-double-en
+
+  # A full IDB accessibility-tree read can stop exposing SwiftUI toolbar
+  # items even though they remain visible. Relaunch the same deterministic
+  # state and exercise the close control before capturing the detail state.
+  open_toc_from_detail
+  ui_wait_id toc-close 30
   ui_tap_id_frame_center toc-close
+  ui_wait_absent_id toc-column 30
   ui_wait_id reader-detail-column 30
   capture_split_frames fixed-split-detail-en
 
