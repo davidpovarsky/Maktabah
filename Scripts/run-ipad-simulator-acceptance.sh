@@ -208,6 +208,46 @@ ui_tap_label() {
   return 1
 }
 
+# Menu items can be present long enough for an accessibility wait while their
+# bridge object is replaced before IDB performs the write. Resolve the visible
+# frame from one full-tree snapshot and deliver the touch directly instead.
+ui_tap_exact_label_frame() {
+  local label="$1"
+  local description="$2"
+  local attempt coordinates x y
+  for attempt in 1 2 3 4 5; do
+    if idb ui describe-all \
+      --key AXLabel --key AXUniqueId --key frame --udid "$UDID" \
+      > "$description"; then
+      coordinates="$(python3 - "$description" "$label" <<'PY'
+import json, sys
+value = json.load(open(sys.argv[1]))
+if isinstance(value, dict) and 'elements' in value: value = value['elements']
+items = value if isinstance(value, list) else [value]
+matches = [item for item in items
+           if str(item.get('AXLabel', '')).strip() == sys.argv[2]
+           and item.get('frame', {}).get('width', 0) > 1
+           and item.get('frame', {}).get('height', 0) > 1]
+assert matches, items
+frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
+print(round(frame['x'] + frame['width'] / 2), round(frame['y'] + frame['height'] / 2))
+PY
+)" || true
+      if [ -n "$coordinates" ]; then
+        x="${coordinates%% *}"
+        y="${coordinates#* }"
+        if idb ui tap "$x" "$y" --udid "$UDID"; then
+          idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+          return 0
+        fi
+      fi
+    fi
+    sleep 1
+  done
+  echo "Could not tap exact accessibility label frame: $label" >&2
+  return 1
+}
+
 ui_set_value_id() {
   local identifier="$1"
   local value="$2"
@@ -322,7 +362,9 @@ run_split_geometry_flow() {
   ui_wait_id reader-more-menu 30
   ui_tap_id reader-more-menu
   idb ui wait "Close Table of Contents" --match-key AXLabel --timeout 30 --json --udid "$UDID"
-  ui_tap_label "Close Table of Contents"
+  ui_tap_exact_label_frame \
+    "Close Table of Contents" \
+    "$REPORT_DIR/toc-close-menu-layout.json"
   ui_wait_absent_id toc-column 30
   ui_wait_id reader-detail-column 30
   capture_split_frames fixed-split-detail-en
