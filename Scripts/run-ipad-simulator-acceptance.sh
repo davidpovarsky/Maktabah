@@ -182,21 +182,45 @@ ui_wait_absent_id() {
 
 ui_tap_id() {
   local identifier="$1"
-  idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID"
-  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  local attempt
+  for attempt in 1 2 3 4 5; do
+    if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID"; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+      return 0
+    fi
+    sleep 1
+  done
+  echo "Could not tap accessibility identifier after 5 attempts: $identifier" >&2
+  return 1
 }
 
 ui_tap_label() {
   local label="$1"
-  idb ui tap "$label" --match-key AXLabel --udid "$UDID"
-  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  local attempt
+  for attempt in 1 2 3 4 5; do
+    if idb ui tap "$label" --match-key AXLabel --udid "$UDID"; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+      return 0
+    fi
+    sleep 1
+  done
+  echo "Could not tap accessibility label after 5 attempts: $label" >&2
+  return 1
 }
 
 ui_set_value_id() {
   local identifier="$1"
   local value="$2"
-  idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID"
-  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  local attempt
+  for attempt in 1 2 3 4 5; do
+    if idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID"; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+      return 0
+    fi
+    sleep 1
+  done
+  echo "Could not set accessibility value after 5 attempts: $identifier" >&2
+  return 1
 }
 
 capture_current_ui() {
