@@ -10,6 +10,7 @@ import SwiftUI
 struct iOSReaderBottomToolbarView: View {
     @Bindable var viewModel: ReaderViewModel
     var onShowTableOfContents: (() -> Void)? = nil
+    var tableOfContentsIsPresented = false
     @State private var textViewState = TextViewState.shared
     @State private var showingNavigation = false
     @State private var showingOptions = false
@@ -88,7 +89,11 @@ struct iOSReaderBottomToolbarView: View {
             }) {
                 Label("Table of Contents", systemImage: "list.bullet")
             }
-            .accessibilityLabel(String(localized: "Table of Contents"))
+            .accessibilityLabel(
+                tableOfContentsIsPresented
+                    ? String(localized: "Close Table of Contents")
+                    : String(localized: "Table of Contents")
+            )
             .accessibilityIdentifier("reader-toc-toggle")
             .help(String(localized: "Table of Contents"))
 

@@ -208,42 +208,6 @@ ui_tap_label() {
   return 1
 }
 
-# IDB's wait command can see the transient SwiftUI toolbar button while its
-# describe backend cannot. A visible TOC row has a stable frame, so derive the
-# visible second leading toolbar-button centre from that row's column frame,
-# then perform a real simulator tap.
-ui_tap_toc_close_from_column() {
-  local description="$REPORT_DIR/toc-close-layout.json"
-  local attempt coordinates x y
-  for attempt in 1 2 3 4 5; do
-    if idb ui describe-all \
-      --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
-      > "$description"; then
-      coordinates="$(python3 - "$description" <<'PY'
-import json, sys
-value = json.load(open(sys.argv[1]))
-if isinstance(value, dict) and 'elements' in value: value = value['elements']
-items = value if isinstance(value, list) else [value]
-rows = [item for item in items if str(item.get('AXUniqueId', '')).startswith('toc-row-')]
-assert rows, items
-frame = min(rows, key=lambda item: item['frame']['y'])['frame']
-assert frame['width'] > 1 and frame['height'] > 1, frame
-print(round(frame['x'] + 88), round(frame['y'] - 139))
-PY
-)"
-      x="${coordinates%% *}"
-      y="${coordinates#* }"
-      if idb ui tap "$x" "$y" --udid "$UDID"; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
-        return 0
-      fi
-    fi
-    sleep 1
-  done
-  echo "Could not tap the TOC close control from its stable column frame" >&2
-  return 1
-}
-
 ui_set_value_id() {
   local identifier="$1"
   local value="$2"
@@ -351,12 +315,14 @@ run_split_geometry_flow() {
   open_toc_from_detail
   capture_split_frames fixed-split-double-en
 
-  # A full IDB accessibility-tree read can stop exposing SwiftUI toolbar
-  # items even though they remain visible. Relaunch the same deterministic
-  # state and exercise the close control before capturing the detail state.
+  # Exercise the same real reader action used to open the supplementary
+  # column. When the TOC is visible it is exposed as an unambiguous close
+  # action, avoiding reliance on transient SwiftUI toolbar geometry.
   open_toc_from_detail
-  ui_wait_id toc-close 30
-  ui_tap_toc_close_from_column
+  ui_wait_id reader-more-menu 30
+  ui_tap_id reader-more-menu
+  idb ui wait "Close Table of Contents" --match-key AXLabel --timeout 30 --json --udid "$UDID"
+  ui_tap_label "Close Table of Contents"
   ui_wait_absent_id toc-column 30
   ui_wait_id reader-detail-column 30
   capture_split_frames fixed-split-detail-en

@@ -55,6 +55,11 @@ struct iOSReaderView: View {
         columnVisibility?.wrappedValue = .all
     }
 
+    private var tableOfContentsIsPresented: Bool {
+        guard let columnVisibility else { return false }
+        return columnVisibility.wrappedValue != .detailOnly
+    }
+
     var backgroundColor: Color {
         let colors: [Color] = [
             .white,
@@ -175,7 +180,8 @@ struct iOSReaderView: View {
             ToolbarItemGroup(placement: .bottomBar) {
                 iOSReaderBottomToolbarView(
                     viewModel: viewModel,
-                    onShowTableOfContents: onShowTableOfContents
+                    onShowTableOfContents: onShowTableOfContents,
+                    tableOfContentsIsPresented: tableOfContentsIsPresented
                 )
             }
         }
