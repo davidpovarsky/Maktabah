@@ -208,6 +208,44 @@ ui_tap_label() {
   return 1
 }
 
+# Toolbar items hosted by NavigationSplitView can retain a stable on-screen
+# frame while SwiftUI replaces their accessibility object during a column
+# transition. Resolve the current accessibility frame, then perform the real
+# simulator tap at its centre so IDB does not need to hold that transient AX
+# object between lookup and write.
+ui_tap_id_frame_center() {
+  local identifier="$1"
+  local description="$REPORT_DIR/tap-${identifier}-frame.json"
+  local attempt coordinates x y
+  for attempt in 1 2 3 4 5; do
+    if idb ui describe "$identifier" \
+      --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
+      > "$description"; then
+      coordinates="$(python3 - "$description" <<'PY'
+import json, sys
+value = json.load(open(sys.argv[1]))
+if isinstance(value, dict) and 'elements' in value:
+    value = value['elements']
+if isinstance(value, list):
+    value = value[0]
+frame = value['frame']
+assert frame['width'] > 1 and frame['height'] > 1, frame
+print(frame['x'] + frame['width'] / 2, frame['y'] + frame['height'] / 2)
+PY
+)"
+      x="${coordinates%% *}"
+      y="${coordinates#* }"
+      if idb ui tap "$x" "$y" --udid "$UDID"; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+        return 0
+      fi
+    fi
+    sleep 1
+  done
+  echo "Could not tap accessibility frame centre after 5 attempts: $identifier" >&2
+  return 1
+}
+
 ui_set_value_id() {
   local identifier="$1"
   local value="$2"
@@ -310,7 +348,7 @@ run_split_geometry_flow() {
   ui_tap_label "Table of Contents"
   ui_wait_id toc-column 30
   capture_split_frames fixed-split-double-en
-  ui_tap_id toc-close
+  ui_tap_id_frame_center toc-close
   ui_wait_id reader-detail-column 30
   capture_split_frames fixed-split-detail-en
 
