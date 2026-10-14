@@ -538,17 +538,24 @@ def frame(name, marker):
     values = [x['frame'] for x in items(name) if marker in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1]
     assert values, (name, marker, values)
     return values[0]
+def selected_segment(name):
+    values = [x['frame'] for x in items(name)
+              if (str(x.get('AXUniqueId','')).startswith('torah-inspector-selected-segment')
+                  or str(x.get('AXLabel','')).strip() in ('Selected Segment', '\u05e7\u05d8\u05e2 \u05e0\u05d1\u05d7\u05e8'))
+              and x.get('frame',{}).get('width',0)>1]
+    assert values, (name, 'selected segment', values)
+    return values[0]
 def reader_content(name):
     values = [x['frame'] for x in items(name)
               if len(str(x.get('AXValue') or '')) >= 40
               and x.get('frame',{}).get('width',0) > 100]
     assert values, name
     return values[0]
-he_reader, he_panel = reader_content('fixed-study-side-he'), frame('fixed-study-side-he','torah-inspector-selected-segment')
-en_reader, en_panel = reader_content('fixed-study-side-en'), frame('fixed-study-side-en','torah-inspector-selected-segment')
+he_reader, he_panel = reader_content('fixed-study-side-he'), selected_segment('fixed-study-side-he')
+en_reader, en_panel = reader_content('fixed-study-side-en'), selected_segment('fixed-study-side-en')
 assert he_panel['x'] < he_reader['x'], (he_reader, he_panel)
 assert en_panel['x'] > en_reader['x'], (en_reader, en_panel)
-selected = frame('fixed-study-side-en','torah-inspector-selected-segment')
+selected = selected_segment('fixed-study-side-en')
 tools = frame('fixed-study-side-en','torah-inspector-tools')
 assert selected['y'] + selected['height'] <= tools['y'] + 2, (selected, tools)
 def one(path):
