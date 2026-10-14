@@ -123,6 +123,20 @@ capture_screen() {
   sleep 1
 }
 
+capture_screen_with_retry() {
+  local output="$1"
+  local attempt
+  for attempt in 1 2; do
+    if capture_screen "$@"; then
+      return 0
+    fi
+    echo "Retrying transient smoke scenario ($attempt/2): $output" >&2
+    sleep 5
+  done
+  echo "Smoke scenario failed after 2 attempts: $output" >&2
+  return 1
+}
+
 # Launches the real application into a deterministic data state, then drives
 # production controls through the simulator accessibility system. Launch args
 # may prepare data/navigation, but never press controls or persist notes.
@@ -958,7 +972,7 @@ capture_screen "sefaria-he-catalog.png" he he_IL -smokeScenario catalog -smokeBa
 capture_screen "sefaria-he-reader.png" he he_IL -smokeScenario reader -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-inspector.png" he he_IL -smokeScenario inspector -smokeBackend sefaria -smokeBypassBootstrap
 CAPTURE_WAIT_SECONDS=15 capture_screen "sefaria-he-commentator.png" he he_IL -smokeScenario commentator -smokeBackend sefaria -smokeBypassBootstrap
-SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-results.ready" SMOKE_SETTLE_SECONDS=2 CAPTURE_WAIT_SECONDS=120 capture_screen "sefaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend sefaria -smokeBypassBootstrap
+SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-results.ready" SMOKE_SETTLE_SECONDS=2 CAPTURE_WAIT_SECONDS=120 capture_screen_with_retry "sefaria-he-search-results.png" he he_IL -smokeScenario searchResults -smokeBackend sefaria -smokeBypassBootstrap
 SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-preview.ready" SMOKE_SETTLE_SECONDS=5 CAPTURE_WAIT_SECONDS=120 capture_screen "sefaria-he-search-preview.png" he he_IL -smokeScenario searchPreview -smokeBackend sefaria -smokeBypassBootstrap
 SMOKE_READY_FILE="$CONTAINER/Documents/sefaria-search-open.ready" SMOKE_SETTLE_SECONDS=8 CAPTURE_WAIT_SECONDS=120 capture_screen "sefaria-he-search-open.png" he he_IL -smokeScenario searchOpen -smokeBackend sefaria -smokeBypassBootstrap
 capture_screen "sefaria-he-annotations-list.png" he he_IL -smokeScenario annotationsList -smokeBackend sefaria -smokeBypassBootstrap
