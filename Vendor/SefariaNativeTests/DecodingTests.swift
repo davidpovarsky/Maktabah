@@ -680,7 +680,45 @@ private func runSearchSemanticsAndFilterTests() async throws {
     _ = try await remoteStore.search(LibrarySearchRequest(query: "שלום עליכם", offset: 0, limit: 10, options: orOptions))
     try expect(freshQueryStart == 0, "new query resets session start offset to 0")
 
+    // 10. A usable search response must not wait for optional catalog hydration.
+    let nonBlockingCacheDir = FileManager.default.temporaryDirectory
+        .appendingPathComponent("sefaria-search-nonblocking-\(UUID().uuidString)")
+    let nonBlockingStore = SefariaRemoteStore(
+        configuration: .production,
+        client: mockClient,
+        cache: SefariaDiskCache(directory: nonBlockingCacheDir)
+    )
+    MockSearchURLProtocol.requestHandler = { request in
+        guard let url = request.url else { throw URLError(.badURL) }
+        let response = HTTPURLResponse(
+            url: url,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: ["Content-Type": "application/json"]
+        )!
+        if url.path.contains("/api/index") {
+            Thread.sleep(forTimeInterval: 3)
+            return (response, Data("[]".utf8))
+        }
+        return (response, makeCannedSearchResponse(
+            hits: [("Genesis 1:1", "Genesis", "non-blocking result", 10)],
+            total: 1
+        ))
+    }
+    let searchStartedAt = Date()
+    let nonBlockingPage = try await nonBlockingStore.search(LibrarySearchRequest(
+        query: "creation",
+        offset: 0,
+        limit: 10
+    ))
+    let searchElapsed = Date().timeIntervalSince(searchStartedAt)
+    try expect(nonBlockingPage.hits.count == 1, "search returns mapped hits without catalog hydration")
+    let searchDidNotWaitForCatalog = searchElapsed < 1.5
+    _ = try await nonBlockingStore.catalog(forceRefresh: false)
+
     try? FileManager.default.removeItem(at: tempDir)
+    try? FileManager.default.removeItem(at: nonBlockingCacheDir)
+    try expect(searchDidNotWaitForCatalog, "search does not block on slow catalog hydration")
 }
 
 private func runNestedOfflineDecodingTests() throws {

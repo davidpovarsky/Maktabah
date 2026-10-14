@@ -170,8 +170,8 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             filters: request.filters,
             options: request.options
         ))
-        if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
         let hits = mapSearchHits(response.hits.hits)
+        hydrateCatalogInBackgroundIfNeeded()
         let receivedCount = response.hits.hits.count
         let next = receivedCount > 0 && request.offset + receivedCount < response.hits.total.value
             ? request.offset + receivedCount
@@ -307,7 +307,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     }
 
     private func searchOr(terms: [String], request: LibrarySearchRequest) async throws -> LibrarySearchPage {
-        if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
+        hydrateCatalogInBackgroundIfNeeded()
         try Task.checkCancellation()
 
         let key = BooleanSearchSessionKey(request: request)
@@ -424,7 +424,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     }
 
     private func searchContains(terms: [String], request: LibrarySearchRequest) async throws -> LibrarySearchPage {
-        if knownTitles.isEmpty { _ = try? await catalog(forceRefresh: false) }
+        hydrateCatalogInBackgroundIfNeeded()
         try Task.checkCancellation()
 
         let key = BooleanSearchSessionKey(request: request)
@@ -591,6 +591,13 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
                 language: hit.source.lang
             )
         }
+    }
+
+    private func hydrateCatalogInBackgroundIfNeeded() {
+        guard knownTitles.isEmpty else { return }
+        // Search hits already carry an index title/path. Catalog hydration improves
+        // later reference parsing, but must not delay an otherwise successful search.
+        Task { _ = try? await self.catalog(forceRefresh: false) }
     }
 
     func versions(for workKey: String) async throws -> [TextVersionMetadata] {
