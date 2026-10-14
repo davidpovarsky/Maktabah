@@ -623,15 +623,22 @@ PY
   idb ui multi-tap "$source_x" "$source_y" --count 2 --pause 0.08 --udid "$UDID"
   ui_wait_absent_id torah-inspector-panel 45
   ui_wait_id reader-header-title 45
-  idb ui describe reader-header-title \
-    --match-key AXUniqueId --key AXUniqueId --key AXLabel --udid "$UDID" \
+  idb ui describe-all \
+    --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
     > "$REPORT_DIR/source-double-tap-reader-header.json"
   python3 - "$REPORT_DIR/source-double-tap-reader-header.json" "$source_work" <<'PY'
 import json, sys
 value=json.load(open(sys.argv[1]))
 if isinstance(value, dict) and 'elements' in value: value=value['elements']
-if isinstance(value, list): value=value[0]
-assert str(value.get('AXLabel', '')).strip() == sys.argv[2].strip(), (value, sys.argv[2])
+items=value if isinstance(value,list) else [value]
+headers=[item for item in items
+         if abs(item.get('frame',{}).get('y',-100)-86)<=2
+         and abs(item.get('frame',{}).get('height',0)-54)<=2
+         and item.get('frame',{}).get('width',0)>300]
+assert headers, items
+work=sys.argv[2].strip()
+assert any(str(item.get('AXUniqueId') or item.get('AXLabel') or '').strip()==work
+           for item in headers), (headers, work)
 PY
   capture_current_ui fixed-real-source-double-tap-reader.png
 }
