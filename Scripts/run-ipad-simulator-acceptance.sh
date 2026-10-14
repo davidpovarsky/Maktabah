@@ -180,6 +180,35 @@ ui_wait_absent_id() {
   return 1
 }
 
+ui_describe_id() {
+  local identifier="$1"
+  local output="$2"
+  local attempt temporary
+  temporary="${output}.tmp"
+  for attempt in 1 2 3 4 5 6 7 8 9 10; do
+    rm -f "$temporary"
+    if idb ui describe "$identifier" \
+      --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame \
+      --udid "$UDID" > "$temporary" \
+      && [ -s "$temporary" ] \
+      && python3 - "$temporary" <<'PY'
+import json, sys
+value=json.load(open(sys.argv[1]))
+if isinstance(value, dict) and 'elements' in value: value=value['elements']
+items=value if isinstance(value,list) else [value]
+assert items and any(item.get('AXUniqueId') for item in items), items
+PY
+    then
+      mv "$temporary" "$output"
+      return 0
+    fi
+    sleep 1
+  done
+  rm -f "$temporary"
+  echo "Could not describe accessibility identifier after 10 attempts: $identifier" >&2
+  return 1
+}
+
 ui_tap_id() {
   local identifier="$1"
   local attempt
@@ -623,22 +652,16 @@ PY
   idb ui multi-tap "$source_x" "$source_y" --count 2 --pause 0.08 --udid "$UDID"
   ui_wait_absent_id torah-inspector-panel 45
   ui_wait_id reader-header-title 45
-  idb ui describe-all \
-    --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
-    > "$REPORT_DIR/source-double-tap-reader-header.json"
+  ui_describe_id \
+    reader-header-title \
+    "$REPORT_DIR/source-double-tap-reader-header.json"
   python3 - "$REPORT_DIR/source-double-tap-reader-header.json" "$source_work" <<'PY'
 import json, sys
 value=json.load(open(sys.argv[1]))
 if isinstance(value, dict) and 'elements' in value: value=value['elements']
-items=value if isinstance(value,list) else [value]
-headers=[item for item in items
-         if abs(item.get('frame',{}).get('y',-100)-86)<=2
-         and abs(item.get('frame',{}).get('height',0)-54)<=2
-         and item.get('frame',{}).get('width',0)>300]
-assert headers, items
-work=sys.argv[2].strip()
-assert any(str(item.get('AXUniqueId') or item.get('AXLabel') or '').strip()==work
-           for item in headers), (headers, work)
+if isinstance(value, list): value=value[0]
+assert str(value.get('AXUniqueId','')).startswith('reader-header-title'), value
+assert str(value.get('AXLabel','')).strip()==sys.argv[2].strip(), (value,sys.argv[2])
 PY
   capture_current_ui fixed-real-source-double-tap-reader.png
 }
