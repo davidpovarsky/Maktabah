@@ -227,8 +227,13 @@ private extension iOSMainView {
         }
         let scenario = args[scenarioIndex + 1]
         var smokeSucceeded = true
+        var smokeFailureDetail: String?
         defer {
-            writeSmokeAutomationResult(scenario: scenario, succeeded: smokeSucceeded)
+            writeSmokeAutomationResult(
+                scenario: scenario,
+                succeeded: smokeSucceeded,
+                failureDetail: smokeFailureDetail
+            )
         }
 
         if let backendArgIndex = args.firstIndex(of: "-smokeBackend"),
@@ -260,7 +265,9 @@ private extension iOSMainView {
             smokeSucceeded = await runSyntheticLibrarySnapshotRegression()
 
         case "backendSwitchRegression":
-            smokeSucceeded = await runBackendSwitchSnapshotRegression()
+            let result = await runBackendSwitchSnapshotRegression()
+            smokeSucceeded = result.succeeded
+            smokeFailureDetail = result.failureDetail
 
         case "reader", "readerTOC", "readerDetail":
             selectedTab = .viewer
@@ -353,10 +360,15 @@ private extension iOSMainView {
         }
     }
 
-    func writeSmokeAutomationResult(scenario: String, succeeded: Bool) {
+    func writeSmokeAutomationResult(
+        scenario: String,
+        succeeded: Bool,
+        failureDetail: String? = nil
+    ) {
         guard let path = ProcessInfo.processInfo.environment["MAKTABAH_SMOKE_READY_FILE"],
               !path.isEmpty else { return }
-        let value = succeeded ? "success\n\(scenario)\n" : "failure\n\(scenario)\n"
+        let detail = failureDetail.map { "\($0)\n" } ?? ""
+        let value = succeeded ? "success\n\(scenario)\n" : "failure\n\(scenario)\n\(detail)"
         try? Data(value.utf8).write(to: URL(fileURLWithPath: path), options: .atomic)
     }
 
@@ -426,17 +438,31 @@ private extension iOSMainView {
     }
 
     @MainActor
-    func runBackendSwitchSnapshotRegression() async -> Bool {
+    func runBackendSwitchSnapshotRegression() async -> (succeeded: Bool, failureDetail: String?) {
+        let model = navigationManager.libraryViewModel
         for backend in [BackendID.otzaria, .sefaria, .otzaria, .sefaria] {
             BackendCoordinator.shared.commit(backend)
-            await navigationManager.libraryViewModel.refreshLibrary()
-            let model = navigationManager.libraryViewModel
-            guard model.loadedBackendID == backend,
-                  model.loadedBackendGeneration == BackendCoordinator.shared.generation,
-                  validateLibrarySnapshotUsingUIKit(model.rootCategories),
-                  validateCanonicalBookIndex(model.rootCategories) else { return false }
+            if let reloadTask = model.reloadTask {
+                await reloadTask.value
+            }
+            if model.loadedBackendID != backend
+                || model.loadedBackendGeneration != BackendCoordinator.shared.generation {
+                await model.refreshLibrary()
+            }
+
+            let contextIsValid = model.loadedBackendID == backend
+                && model.loadedBackendGeneration == BackendCoordinator.shared.generation
+            guard contextIsValid else {
+                return (false, "backend=\(backend.rawValue) context=\(String(describing: model.loadedBackendID))/\(String(describing: model.loadedBackendGeneration)) expectedGeneration=\(BackendCoordinator.shared.generation)")
+            }
+            guard validateLibrarySnapshotUsingUIKit(model.rootCategories) else {
+                return (false, "backend=\(backend.rawValue) UIKitSnapshot roots=\(model.rootCategories.count)")
+            }
+            guard validateCanonicalBookIndex(model.rootCategories) else {
+                return (false, "backend=\(backend.rawValue) canonicalIndex roots=\(model.rootCategories.count) indexedBooks=\(LibraryDataManager.shared.booksById.count)")
+            }
         }
-        return true
+        return (true, nil)
     }
 
     func countLibraryItems(in categories: [CategoryData]) -> Int {
