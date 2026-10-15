@@ -65,7 +65,7 @@ final class MaktabahTorahInspectorSession {
         sefariaLocator: TextLocator?,
         otzariaLine: OtzariaLineAnchor?
     ) -> TorahInspectorSelection? {
-        if let locator = sefariaLocator {
+        if let locator = sefariaLocator, readerViewModel?.selectedSegmentRange != nil {
             let reference = Self.reference(for: locator)
             let sectionLocator = readerViewModel?.backendSection?.locator ?? locator
             let sectionReference = Self.reference(for: sectionLocator)
@@ -173,9 +173,23 @@ final class MaktabahTorahInspectorSession {
     private func links(for reference: String, providerID: String?) async throws -> [TorahLinkedSource] {
         let locator = try activeLocator(for: reference, providerID: providerID)
         let sources: [LibraryRelatedSource]
-        if locator.backend == .otzaria,
-           let unit = otzariaUnitsByReference[cacheKey(providerID: locator.backend.rawValue, reference: reference)] {
-            sources = otzaria.getLinksForReadingUnit(unit).map(OtzariaInspectorRelationshipsProvider.map)
+        if locator.backend == .otzaria {
+            let unit: OtzariaReadingUnit?
+            if let cached = otzariaUnitsByReference[cacheKey(providerID: locator.backend.rawValue, reference: reference)] {
+                unit = cached
+            } else if let bookID = Self.otzariaBookID(from: locator.workKey),
+                      case .legacyLine(let lineIndex) = locator.position {
+                unit = otzaria.cachedReadingUnit(bookId: bookID, contentId: lineIndex)
+                    ?? otzaria.getReadingUnit(bookId: bookID, containingLineIndex: lineIndex, mode: otzaria.currentReadingUnitMode)
+            } else {
+                unit = nil
+            }
+            if let unit {
+                remember(unit, for: reference)
+                sources = try otzaria.getLinksForReadingUnit(unit).map(OtzariaInspectorRelationshipsProvider.map)
+            } else {
+                sources = try await coordinator.links(for: locator)
+            }
         } else {
             sources = try await coordinator.links(for: locator)
         }
@@ -199,7 +213,10 @@ final class MaktabahTorahInspectorSession {
                 anchorRefs: source.anchorRefs,
                 relationshipKind: Self.relationshipKind(category: source.category, type: source.type),
                 semanticCategory: Self.semanticCategory(category: source.category, type: source.type),
-                rawProviderPayload: source.locator.persistenceKey
+                rawProviderPayload: source.locator.persistenceKey,
+                commentatorID: source.collectiveTitle ?? source.heCollectiveTitle,
+                commentatorName: source.heCollectiveTitle ?? source.collectiveTitle,
+                workTitle: source.heRef ?? source.versionTitle
             )
         }
     }
@@ -274,9 +291,10 @@ final class MaktabahTorahInspectorSession {
             guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
             let reference = Self.reference(for: segment.locator)
             remember(segment.locator, for: reference)
+            let heRef = preferredMode == .translation ? nil : (segment.heRef?.isEmpty == false ? segment.heRef : "שורה \(index + 1)")
             return TorahTextSegment(
                 canonicalRef: reference,
-                hebrewRef: preferredMode == .translation ? nil : segment.heRef,
+                hebrewRef: heRef,
                 text: text.readerPlainText,
                 ordinal: index + 1
             )
@@ -425,6 +443,7 @@ final class MaktabahTorahInspectorSession {
         type: String
     ) -> TorahRelationshipKind {
         let tokens = "\(category) \(type)".lowercased()
+        if tokens.contains("quoting commentary") { return .quotingCommentary }
         return tokens.contains("commentary") ? .commentary : .link
     }
 

@@ -2,14 +2,14 @@ import Foundation
 
 extension OtzariaMaktabahBridge {
     func getLinksForLine(_ line: OtzariaLineAnchor) -> [OtzariaLinkedSource] {
-        getLinks(
+        (try? getLinks(
             bookID: line.bookId,
             sourceLineIndices: [line.lineIndex]
-        )
+        )) ?? []
     }
 
-    func getLinksForReadingUnit(_ unit: OtzariaReadingUnit) -> [OtzariaLinkedSource] {
-        getLinks(
+    func getLinksForReadingUnit(_ unit: OtzariaReadingUnit) throws -> [OtzariaLinkedSource] {
+        try getLinks(
             bookID: unit.bookId,
             sourceLineIndices: unit.sourceLineIndices
         )
@@ -19,7 +19,7 @@ extension OtzariaMaktabahBridge {
     /// unit's exact line indexes (not MIN...MAX), includes forward and inverse
     /// relationships, range coverage, and per-side suppression, and never opens
     /// one SQLite connection per line.
-    private func getLinks(bookID: Int, sourceLineIndices: [Int]) -> [OtzariaLinkedSource] {
+    private func getLinks(bookID: Int, sourceLineIndices: [Int]) throws -> [OtzariaLinkedSource] {
         let uniqueIndexes = Array(Set(sourceLineIndices)).sorted()
         guard !uniqueIndexes.isEmpty else { return [] }
 
@@ -184,7 +184,7 @@ extension OtzariaMaktabahBridge {
                 "[OtzariaMaktabahBridge] getLinks error bookId=\(bookID) "
                     + "lineCount=\(uniqueIndexes.count) error=\(error.localizedDescription)"
             )
-            return []
+            throw error
         }
     }
 
