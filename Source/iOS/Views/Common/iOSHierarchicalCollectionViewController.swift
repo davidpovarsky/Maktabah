@@ -39,6 +39,19 @@ enum LibraryItem: Hashable, @unchecked Sendable {
     }
 }
 
+// These model conformances remain canonical-ID based for existing non-tree UI
+// consumers. LibraryItem deliberately does not use them: diffable identity is
+// the stable LibraryTreeItemIdentifier for each presentation occurrence.
+extension CategoryData: Hashable {
+    public static func == (lhs: CategoryData, rhs: CategoryData) -> Bool { lhs.id == rhs.id }
+    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
+}
+
+extension BooksData: Hashable {
+    public static func == (lhs: BooksData, rhs: BooksData) -> Bool { lhs.id == rhs.id }
+    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
+}
+
 // MARK: - Controller
 class iOSHierarchicalCollectionViewController: BaseHierarchicalListViewController<LibraryItem> {
 
