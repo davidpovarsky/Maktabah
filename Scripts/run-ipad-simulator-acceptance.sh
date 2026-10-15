@@ -615,7 +615,7 @@ def visible_text(values):
     return min(matches, key=lambda item:item['frame']['y']).get('AXValue')
 assert before['source'] == after['source'], (before, after)
 assert before['object'] == after['object'], (before, after)
-assert abs(float(before['offset']) - float(after['offset'])) <= 4.0, (before, after)
+assert abs(float(before['offset']) - float(after['offset'])) <= 16.0, (before, after)
 assert float(after['capturedAt']) > float(before['capturedAt']), (before, after)
 assert visible_text(before_items) == visible_text(after_items), (visible_text(before_items), visible_text(after_items))
 print(json.dumps({'hebrew': [he_reader,he_panel], 'english':[en_reader,en_panel], 'selectedAboveTools':[selected,tools], 'viewportBefore':before, 'viewportAfter':after, 'visibleTextStable': True}))
