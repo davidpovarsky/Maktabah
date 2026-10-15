@@ -41,7 +41,7 @@ struct SearchResultsListView: View {
 
     private func canonicalKey(for item: SearchResultItem) -> String {
         if let locator = item.backendLocator {
-            return "\(locator.backend.rawValue):\(locator.workKey):\(locator.position.persistenceKey)"
+            return locator.persistenceKey
         }
         return "\(item.archive):\(item.tableName):\(item.bookId):\(item.part):\(item.page)"
     }
