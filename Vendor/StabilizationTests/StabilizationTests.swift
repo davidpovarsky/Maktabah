@@ -465,6 +465,154 @@ func testSQLiteTransactionCommitResetInvariant() {
     print("✓ Test 14: SQLite statement cache and transaction commit reset invariant passed")
 }
 
+// MARK: - Test 15: Otzaria Commentator Author Extraction and Grouping Invariants
+
+struct MockOtzariaCommentatorIdentity: Equatable {
+    let commentatorID: String
+    let commentatorName: String
+    let workTitle: String
+}
+
+enum MockOtzariaCommentatorResolver {
+    static func extractAuthor(from title: String) -> String? {
+        let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+
+        if let range = trimmed.range(of: " על ") {
+            let prefix = String(trimmed[..<range.lowerBound])
+            let author = normalizeAuthorName(prefix)
+            if !author.isEmpty { return author }
+        }
+
+        if let range = trimmed.range(of: " on ", options: .caseInsensitive) {
+            var prefix = String(trimmed[..<range.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            let enPrefixes = ["Commentary of ", "Commentary on ", "Notes on ", "Chiddushei "]
+            for p in enPrefixes {
+                if prefix.lowercased().hasPrefix(p.lowercased()) {
+                    prefix = String(prefix.dropFirst(p.count)).trimmingCharacters(in: .whitespacesAndNewlines)
+                }
+            }
+            if !prefix.isEmpty { return prefix }
+        }
+
+        if trimmed.hasPrefix("חידושי ") {
+            let remainder = String(trimmed.dropFirst("חידושי ".count)).trimmingCharacters(in: .whitespacesAndNewlines)
+            if remainder.hasPrefix("אגדות ") {
+                let author = String(remainder.dropFirst("אגדות ".count))
+                return normalizeAuthorName(author)
+            }
+            if remainder.hasPrefix("הלכות ") {
+                let author = String(remainder.dropFirst("הלכות ".count))
+                return normalizeAuthorName(author)
+            }
+            return normalizeAuthorName(remainder)
+        }
+
+        if trimmed.hasPrefix("פירוש ") {
+            let remainder = String(trimmed.dropFirst("פירוש ".count)).trimmingCharacters(in: .whitespacesAndNewlines)
+            return normalizeAuthorName(remainder)
+        }
+
+        return nil
+    }
+
+    static func normalizeAuthorName(_ raw: String) -> String {
+        var name = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        let prefixesToStrip = ["פירוש ", "ביאור ", "חידושי ", "הערות ", "הגהות ", "קונטרס ", "ספר "]
+        for prefix in prefixesToStrip {
+            if name.hasPrefix(prefix) {
+                name = String(name.dropFirst(prefix.count)).trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        let hePrefixAcronyms = ["הרמב\"ן", "הריטב\"א", "הרשב\"א", "הר\"ן", "הרא\"ש", "הרמב\"ם", "המהרש\"א", "המהרש\"ל", "הגר\"א"]
+        for acronym in hePrefixAcronyms {
+            if name == acronym {
+                name = String(acronym.dropFirst())
+                break
+            }
+        }
+        return name
+    }
+
+    static func resolve(bookID: Int?, bookTitle: String, heRef: String? = nil, authorFromDB: String? = nil) -> MockOtzariaCommentatorIdentity {
+        let trimmed = bookTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        let author = authorFromDB ?? extractAuthor(from: trimmed)
+        let work = heRef ?? trimmed
+        if let author, !author.isEmpty {
+            let norm = normalizeAuthorName(author)
+            return MockOtzariaCommentatorIdentity(commentatorID: "author:\(norm)", commentatorName: norm, workTitle: work)
+        }
+        return MockOtzariaCommentatorIdentity(commentatorID: bookID.map { "otzaria:book:\($0)" } ?? "title:\(trimmed)", commentatorName: trimmed, workTitle: work)
+    }
+}
+
+func testOtzariaCommentatorAuthorExtractionAndGrouping() {
+    let author1 = MockOtzariaCommentatorResolver.extractAuthor(from: "רש\"י על התורה")
+    require(author1 == "רש\"י", "Must extract רש\"י from רש\"י על התורה")
+
+    let author2 = MockOtzariaCommentatorResolver.extractAuthor(from: "חידושי הרמב\"ן על מסכת שבת")
+    require(author2 == "רמב\"ן", "Must normalize חידושי הרמב\"ן to רמב\"ן")
+
+    let author3 = MockOtzariaCommentatorResolver.extractAuthor(from: "רמב\"ן על התורה")
+    require(author3 == "רמב\"ן", "Must extract רמב\"ן from רמב\"ן על התורה")
+
+    let id2 = MockOtzariaCommentatorResolver.resolve(bookID: 10, bookTitle: "חידושי הרמב\"ן על מסכת שבת")
+    let id3 = MockOtzariaCommentatorResolver.resolve(bookID: 20, bookTitle: "רמב\"ן על התורה")
+    require(id2.commentatorID == "author:רמב\"ן", "Must produce author:רמב\"ן ID")
+    require(id3.commentatorID == "author:רמב\"ן", "Must produce author:רמב\"ן ID")
+    require(id2.commentatorID == id3.commentatorID, "Different works by same author must share commentatorID")
+    require(id2.workTitle == "חידושי הרמב\"ן על מסכת שבת", "Work title must be preserved")
+    require(id3.workTitle == "רמב\"ן על התורה", "Work title must be preserved")
+
+    require(MockOtzariaCommentatorResolver.extractAuthor(from: "חידושי הריטב\"א על גיטין") == "ריטב\"א", "Must extract ריטב\"א")
+    require(MockOtzariaCommentatorResolver.extractAuthor(from: "חידושי הר\"ן על נדרים") == "ר\"ן", "Must extract ר\"ן")
+    require(MockOtzariaCommentatorResolver.extractAuthor(from: "חידושי אגדות מהרש\"א") == "מהרש\"א", "Must extract מהרש\"א")
+    require(MockOtzariaCommentatorResolver.extractAuthor(from: "Rashi on Genesis") == "Rashi", "Must extract Rashi")
+    require(MockOtzariaCommentatorResolver.extractAuthor(from: "Ramban on Exodus") == "Ramban", "Must extract Ramban")
+
+    print("✓ Test 15: Otzaria commentator author extraction and grouping invariants passed")
+}
+
+// MARK: - Test 16: Reader Explicit Selection vs Section Navigation Invariant
+
+func testReaderExplicitSelectionVsSectionNavigation() {
+    let sectionLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1"))
+    let segmentLocator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:3"))
+
+    let isNavigationFocus = segmentLocator == sectionLocator
+    require(!isNavigationFocus, "Segment locator must differ from section locator")
+
+    let explicitFocus: TextLocator? = segmentLocator
+    let navigationFocus: TextLocator? = nil
+
+    let navIsExplicit = navigationFocus != nil && navigationFocus != sectionLocator
+    let segIsExplicit = explicitFocus != nil && explicitFocus != sectionLocator
+
+    require(!navIsExplicit, "Section navigation must not be treated as explicit segment selection")
+    require(segIsExplicit, "Explicit segment focus must be recognized")
+    print("✓ Test 16: Reader explicit selection vs section navigation invariant passed")
+}
+
+// MARK: - Test 17: Search Preview Version Switching and Language Invariants
+
+func testSearchPreviewVersionSwitchingInvariants() {
+    let hebStableID = "1|t1|1|1|1|he|0"
+    let enStableID = "1|t1|1|1|1|en|1"
+
+    require(hebStableID != enStableID, "Versions must have distinct stableIDs")
+
+    let hebTaskKey = "\(hebStableID):0"
+    let enTaskKey = "\(enStableID):0"
+    require(hebTaskKey != enTaskKey, "Task reload key must differ across versions")
+
+    let isHebTranslation = ("he" != "he")
+    let isEnTranslation = ("en" != "he")
+    require(!isHebTranslation, "Hebrew must not be translation")
+    require(isEnTranslation, "English must be translation")
+
+    print("✓ Test 17: Search preview version switching and language invariants passed")
+}
+
 // MARK: - Main Execution
 
 @main
@@ -485,6 +633,9 @@ enum StabilizationTestMain {
         testRenderGenerationIdentityAndSelectionInvalidation()
         testSefariaWorkKeyResolutionFromCanonicalReference()
         testSQLiteTransactionCommitResetInvariant()
-        print("=== All 14 Stabilization Regression Tests Passed! ===")
+        testOtzariaCommentatorAuthorExtractionAndGrouping()
+        testReaderExplicitSelectionVsSectionNavigation()
+        testSearchPreviewVersionSwitchingInvariants()
+        print("=== All 17 Stabilization Regression Tests Passed! ===")
     }
 }

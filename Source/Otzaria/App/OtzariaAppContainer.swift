@@ -378,6 +378,22 @@ final class OtzariaMaktabahBridge {
         return result
     }
 
+    func authorName(forBookId bookId: Int) -> String? {
+        lock.lock()
+        defer { lock.unlock() }
+        guard let db = try? requireDatabase() else { return nil }
+        return try? db.fetch(query: """
+            SELECT a.name
+            FROM book_author ba
+            JOIN author a ON a.id = ba.authorId
+            WHERE ba.bookId = ?
+            ORDER BY a.name
+            LIMIT 1
+        """, parameters: [bookId]) { row in
+            row.string(at: 0)
+        }.first.flatMap { $0 }
+    }
+
     func fetchBook(byId bookId: Int) throws -> BooksData? {
         lock.lock()
         defer { lock.unlock() }

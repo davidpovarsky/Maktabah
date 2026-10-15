@@ -101,7 +101,11 @@ final class UnifiedSearchSessionController {
                     self.cacheZayitHits(hits)
                     self.results = self.mapZayitHits(hits)
                     self.isSearching = self.zayitSession.model.isLoading
-                    self.errorMessage = self.zayitSession.model.errorMessage
+                    if let modelError = self.zayitSession.model.errorMessage, !modelError.isEmpty {
+                        self.errorMessage = modelError
+                    } else if case .failed(let sessionError) = self.zayitSession.state {
+                        self.errorMessage = sessionError
+                    }
                     self.hasMore = false
                     self.isLoadingMore = false
                 }
@@ -216,6 +220,22 @@ final class UnifiedSearchSessionController {
 
         Task {
             await zayitSession.restoreIfNeeded(existingSeforimDB: ZayitSearchExistingDatabaseProvider.currentURL)
+            if case .failed(let error) = zayitSession.state {
+                await MainActor.run {
+                    self.isSearching = false
+                    self.errorMessage = error
+                }
+                return
+            }
+            guard zayitSession.state == .ready else {
+                await MainActor.run {
+                    self.isSearching = false
+                    if self.packageMissing {
+                        self.errorMessage = String(localized: "Zayit index package is not installed.", defaultValue: "חבילת אינדקס זית אינה מותקנת.")
+                    }
+                }
+                return
+            }
             zayitSession.model.query = query
             let filters = ZayitSearchFilters(bookIds: selectedBookIds.map { Int64($0) })
             zayitSession.model.runSearch(filters: filters)

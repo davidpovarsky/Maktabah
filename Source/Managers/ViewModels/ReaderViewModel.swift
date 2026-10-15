@@ -333,7 +333,7 @@ class ReaderViewModel: ViewModelBase {
                 }
             }
             backendLoadTask = nil
-            loadBackendContent(LibraryReaderDestination(sectionLocator: target, focusLocator: target))
+            loadBackendContent(LibraryReaderDestination(sectionLocator: target, focusLocator: nil))
         }
     }
 
@@ -346,15 +346,17 @@ class ReaderViewModel: ViewModelBase {
         if let current = currentDestination, current.sectionLocator == locator {
             loadBackendContentInternal(locator: locator, focusLocator: current.focusLocator)
         } else {
-            loadBackendContentInternal(locator: locator, focusLocator: locator)
+            loadBackendContentInternal(locator: locator, focusLocator: nil)
         }
     }
 
     private func loadBackendContentInternal(locator: TextLocator, focusLocator: TextLocator?) {
-        currentDestination = LibraryReaderDestination(sectionLocator: locator, focusLocator: focusLocator)
-        if let focusLocator {
-            selectedSegmentLocator = focusLocator
-        }
+        let isExplicitSegmentFocus = focusLocator != nil && focusLocator != locator
+        currentDestination = LibraryReaderDestination(
+            sectionLocator: locator,
+            focusLocator: isExplicitSegmentFocus ? focusLocator : nil
+        )
+        selectedSegmentLocator = isExplicitSegmentFocus ? focusLocator : nil
         backendLoadTask?.cancel()
         state = .loading
         let expectedBookKey = locator.workKey
@@ -373,8 +375,10 @@ class ReaderViewModel: ViewModelBase {
                 let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
                 if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
                 updateContentState(with: content)
-                if let focusLocator = currentDestination?.focusLocator {
-                    selectedSegmentLocator = focusLocator
+                if isExplicitSegmentFocus, let focus = currentDestination?.focusLocator {
+                    selectedSegmentLocator = focus
+                } else {
+                    selectedSegmentLocator = nil
                 }
                 state = .loaded
                 if let workLocator = currentBook?.backendLocator, navigationItems.isEmpty {

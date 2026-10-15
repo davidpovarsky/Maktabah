@@ -64,6 +64,7 @@ final class ZayitSearchViewModel: ObservableObject {
                 errorMessage = nil
             } catch {
                 guard currentGeneration == generation else { return }
+                hits = []
                 errorMessage = error.localizedDescription
             }
             guard currentGeneration == generation else { return }

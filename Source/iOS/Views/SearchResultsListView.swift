@@ -89,6 +89,7 @@ struct SearchResultsListView: View {
                         SearchResultContextPreview(item: item) {
                             onSelect(item)
                         }
+                        .id(item.stableID)
                         .transition(.opacity.combined(with: .move(edge: .top)))
                     }
                 }
@@ -154,9 +155,14 @@ struct SearchResultContextPreview: View {
             VStack(alignment: .leading, spacing: 8) {
                 if !fullSegments.isEmpty {
                     LazyVStack(alignment: .leading, spacing: 14) {
+                        let isTranslationVersion = (item.resultLanguage != nil && item.resultLanguage != "he")
                         ForEach(fullSegments) { segment in
-                            let showPrimary = readerMode == .source || readerMode == .both || (readerMode == .translation && (segment.translation == nil || segment.translation!.isEmpty))
-                            let showTranslation = (readerMode == .translation || readerMode == .both || (readerMode == .source && segment.primary.isEmpty)) && segment.translation != nil && !segment.translation!.isEmpty
+                            let showPrimary = isTranslationVersion
+                                ? (segment.translation == nil || segment.translation!.isEmpty)
+                                : (readerMode == .source || readerMode == .both || (readerMode == .translation && (segment.translation == nil || segment.translation!.isEmpty)))
+                            let showTranslation = isTranslationVersion
+                                ? (segment.translation != nil && !segment.translation!.isEmpty)
+                                : ((readerMode == .translation || readerMode == .both || (readerMode == .source && segment.primary.isEmpty)) && segment.translation != nil && !segment.translation!.isEmpty)
 
                             VStack(alignment: .leading, spacing: 6) {
                                 if showPrimary && !segment.primary.isEmpty {
@@ -213,7 +219,7 @@ struct SearchResultContextPreview: View {
         .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
-        .task(id: "\(item.backendLocator?.persistenceKey ?? "local"):\(retryToken)") {
+        .task(id: "\(item.stableID):\(retryToken)") {
             guard let locator = item.backendLocator else {
                 if item.attributedText.string.isEmpty {
                     previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
