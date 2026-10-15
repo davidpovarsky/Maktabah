@@ -167,6 +167,7 @@ final class LibraryViewModel: ViewModelBase {
         setBaseCategories(rootCategories, reload: false)
     }
 
+    @MainActor
     func loadLibrary() async {
         let coordinator = BackendCoordinator.shared
         if hasLoadedLibrary,
@@ -175,6 +176,7 @@ final class LibraryViewModel: ViewModelBase {
         await load()
     }
 
+    @MainActor
     func refreshLibrary() async {
         libraryLoadGeneration &+= 1
         let refreshGeneration = libraryLoadGeneration
@@ -193,6 +195,7 @@ final class LibraryViewModel: ViewModelBase {
         await load()
     }
 
+    @MainActor
     private func load() async {
         libraryLoadGeneration &+= 1
         let requestGeneration = libraryLoadGeneration
