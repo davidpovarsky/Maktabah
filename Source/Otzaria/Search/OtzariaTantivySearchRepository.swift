@@ -145,14 +145,21 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func navigationItems(from page: OtzariaSearchPage) -> [SearchResultItem] {
         page.results.map { result in
             let (attrText, highlightTerms) = highlightedText(from: result.text)
+            let bkid = bookId(from: result.filePath) ?? 0
+            let locator = TextLocator(
+                backend: .otzaria,
+                workKey: "book:\(bkid)",
+                position: .legacyLine(Int(result.segment))
+            )
             return SearchResultItem(
                 archive: "Otzaria",
-                tableName: "otzaria:\(bookId(from: result.filePath) ?? 0)",
-                bookId: bookId(from: result.filePath) ?? 0,
+                tableName: "otzaria:\(bkid)",
+                bookId: bkid,
                 bookTitle: result.title,
                 page: Int(result.segment),
                 part: 0,
                 attributedText: attrText,
+                backendLocator: locator,
                 locationDisplayText: result.reference.isEmpty ? nil : result.reference,
                 highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms
             )

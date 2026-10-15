@@ -341,14 +341,14 @@ final class UnifiedSearchSessionController {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         #endif
 
-        if scope == .zayit, let hit = zayitHits[Int64(item.bookId)] ?? zayitHits.values.first(where: { $0.lineIndex == item.page && $0.bookTitle == item.bookTitle }) {
+        if scope == .zayit, let hit = zayitHits.values.first(where: { $0.bookId == Int64(item.bookId) && $0.lineIndex == item.page }) ?? zayitHits.values.first(where: { $0.bookTitle == item.bookTitle && $0.lineIndex == item.page }) {
             ZayitSearchReaderNavigationAdapter.open(hit, using: manager)
             return
         }
 
         if let book = resolveBook(from: item) {
             let shouldRecord = UserDefaults.standard.recordSearchHistory
-            let targetContentId = item.backendLocator != nil ? item.bookId : item.page
+            let targetContentId = item.page
             let mode = searchModeForReader
             let dist = nearDistanceForReader
             manager.openBook(
@@ -450,6 +450,11 @@ final class UnifiedSearchSessionController {
                 #endif
                 attr.append(NSAttributedString(string: segment.text, attributes: attrs))
             }
+            let locator = TextLocator(
+                backend: .otzaria,
+                workKey: "book:\(hit.bookId)",
+                position: .legacyLine(hit.lineIndex)
+            )
             return SearchResultItem(
                 archive: "Zayit",
                 tableName: "zayit:\(hit.stableBookKey)",
@@ -457,7 +462,10 @@ final class UnifiedSearchSessionController {
                 bookTitle: hit.bookTitle,
                 page: hit.lineIndex,
                 part: 1,
-                attributedText: attr
+                attributedText: attr,
+                backendLocator: locator,
+                locationDisplayText: hit.reference.isEmpty ? nil : hit.reference,
+                highlightTerms: hit.matchedTerms
             )
         }
     }

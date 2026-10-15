@@ -219,6 +219,10 @@ extension BookConnection {
     func getContent(bkid: String, contentId: Int, quran: Bool = false)
         -> BookContent?
     {
+        if OtzariaBookConnectionAdapter.isEnabled, Int(bkid) != nil {
+            return OtzariaBookConnectionAdapter.getContent(bkid: bkid, contentId: contentId)
+        }
+
         guard let db else { return nil }
 
         if let cached = getCached(bkId: bkid, idContent: contentId) {

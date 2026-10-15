@@ -696,6 +696,11 @@ final class OtzariaMaktabahBridge {
                     snippet = cleaned.snippetAround(keywords: terms, contextLength: 60)
                     highlighted = snippet.highlightedAttributedText(keywords: terms)
                 }
+                let locator = TextLocator(
+                    backend: .otzaria,
+                    workKey: "book:\(row.1)",
+                    position: .legacyLine(row.2)
+                )
                 return SearchResultItem(
                     archive: "Otzaria",
                     tableName: "otzaria:\(row.1)",
@@ -704,7 +709,9 @@ final class OtzariaMaktabahBridge {
                     page: row.2,
                     part: 1,
                     attributedText: highlighted,
-                    locationDisplayText: row.3.isEmpty ? nil : row.3
+                    backendLocator: locator,
+                    locationDisplayText: row.3.isEmpty ? nil : row.3,
+                    highlightTerms: terms
                 )
             }
         }

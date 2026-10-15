@@ -1,5 +1,14 @@
 import SwiftUI
 
+struct SearchResultGroup: Identifiable {
+    let id: String
+    var versions: [SearchResultItem]
+
+    var primaryItem: SearchResultItem {
+        versions.first!
+    }
+}
+
 struct SearchResultsListView: View {
     let results: [SearchResultItem]
     var showsBookTitle: Bool = true
@@ -8,32 +17,75 @@ struct SearchResultsListView: View {
     var onLoadMore: (() -> Void)? = nil
     var onSearchInBook: ((SearchResultItem) -> Void)? = nil
     let onSelect: (SearchResultItem) -> Void
+
     @State private var expandedResultIDs: Set<String> = []
+    @State private var selectedVersionIndex: [String: Int] = [:]
+
+    private var groupedResults: [SearchResultGroup] {
+        var groups: [SearchResultGroup] = []
+        var indexByKey: [String: Int] = [:]
+
+        for item in results {
+            let key = canonicalKey(for: item)
+            if let idx = indexByKey[key] {
+                if !groups[idx].versions.contains(where: { $0.stableID == item.stableID }) {
+                    groups[idx].versions.append(item)
+                }
+            } else {
+                indexByKey[key] = groups.count
+                groups.append(SearchResultGroup(id: key, versions: [item]))
+            }
+        }
+        return groups
+    }
+
+    private func canonicalKey(for item: SearchResultItem) -> String {
+        if let locator = item.backendLocator {
+            return "\(locator.backend.rawValue):\(locator.workKey):\(locator.position.persistenceKey)"
+        }
+        return "\(item.archive):\(item.tableName):\(item.bookId):\(item.part):\(item.page)"
+    }
 
     var body: some View {
         ThemeList(isGrouped: false) {
-            ForEach(Array(results.enumerated()), id: \.element.stableID) { index, item in
+            let groups = groupedResults
+            ForEach(Array(groups.enumerated()), id: \.element.id) { index, group in
+                let activeIdx = selectedVersionIndex[group.id] ?? 0
+                let item = group.versions.indices.contains(activeIdx) ? group.versions[activeIdx] : group.primaryItem
+                let isExpanded = expandedResultIDs.contains(group.id)
+
                 VStack(alignment: .leading, spacing: 0) {
                     Button {
                         withAnimation(.snappy(duration: 0.28, extraBounce: 0)) {
-                            if expandedResultIDs.remove(item.stableID) == nil {
-                                expandedResultIDs.insert(item.stableID)
+                            if expandedResultIDs.remove(group.id) == nil {
+                                expandedResultIDs.insert(group.id)
                             }
                         }
                     } label: {
-                        HStack(alignment: .center, spacing: 10) {
-                            SearchResultRow(item: item, showsBookTitle: showsBookTitle)
-                            Image(systemName: expandedResultIDs.contains(item.stableID) ? "chevron.up" : "chevron.down")
+                        HStack(alignment: .top, spacing: 10) {
+                            SearchResultRow(
+                                item: item,
+                                showsBookTitle: showsBookTitle,
+                                isExpanded: isExpanded,
+                                versionCount: group.versions.count,
+                                selectedVersionIndex: Binding(
+                                    get: { selectedVersionIndex[group.id] ?? 0 },
+                                    set: { selectedVersionIndex[group.id] = $0 }
+                                ),
+                                versions: group.versions
+                            )
+                            Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                                 .font(.caption.weight(.semibold))
                                 .foregroundStyle(.secondary)
+                                .padding(.top, 4)
                         }
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(String(localized: "Preview full search result"))
-                    .accessibilityValue(expandedResultIDs.contains(item.stableID) ? "Expanded" : "Collapsed")
+                    .accessibilityValue(isExpanded ? "Expanded" : "Collapsed")
                     .accessibilityIdentifier("search-result-preview-toggle-\(item.stableID)")
 
-                    if expandedResultIDs.contains(item.stableID) {
+                    if isExpanded {
                         SearchResultContextPreview(item: item) {
                             onSelect(item)
                         }
@@ -41,13 +93,13 @@ struct SearchResultsListView: View {
                     }
                 }
                 .contextMenu {
-                    Button("Open", systemImage: "book") { onSelect(item) }
-                    Button("Copy", systemImage: "doc.on.doc") {
+                    Button(String(localized: "Open", defaultValue: "פתח"), systemImage: "book") { onSelect(item) }
+                    Button(String(localized: "Copy", defaultValue: "העתק"), systemImage: "doc.on.doc") {
                         #if canImport(UIKit)
                         UIPasteboard.general.string = item.attributedText.string
                         #endif
                     }
-                    Button("Copy with source", systemImage: "text.quote") {
+                    Button(String(localized: "Copy with source", defaultValue: "העתק עם מקור"), systemImage: "text.quote") {
                         let source = item.bookTitle
                         let body = item.attributedText.string
                         let combined = [body, source].filter { !$0.isEmpty }.joined(separator: "\n")
@@ -58,11 +110,11 @@ struct SearchResultsListView: View {
                     ShareLink(item: [item.bookTitle, item.attributedText.string]
                         .filter { !$0.isEmpty }.joined(separator: "\n"))
                     if let onSearchInBook {
-                        Button("Search in book", systemImage: "magnifyingglass") { onSearchInBook(item) }
+                        Button(String(localized: "Search in book", defaultValue: "חפש בספר"), systemImage: "magnifyingglass") { onSearchInBook(item) }
                     }
                 }
                 .onAppear {
-                    if index >= max(0, results.count - 10), hasMore, !isLoadingMore {
+                    if index >= max(0, groups.count - 10), hasMore, !isLoadingMore {
                         onLoadMore?()
                     }
                 }
@@ -90,28 +142,30 @@ struct SearchResultContextPreview: View {
     @State private var retryToken = 0
 
     private var isHebrewBackend: Bool {
-        item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+        item.archive == "Otzaria" || item.archive == "Sefaria" || item.archive == "Zayit" || item.backendLocator != nil
+    }
+
+    private var readerMode: LibraryReaderTextMode {
+        TextViewState.shared.readerTextMode
     }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                Text(item.bookTitle).font(.headline)
-                let location = SearchResultRow.locationText(for: item)
-                if !location.isEmpty {
-                    Text(location).font(.caption).foregroundStyle(.secondary)
-                }
                 if !fullSegments.isEmpty {
                     LazyVStack(alignment: .leading, spacing: 14) {
                         ForEach(fullSegments) { segment in
+                            let showPrimary = readerMode == .source || readerMode == .both || (readerMode == .translation && (segment.translation == nil || segment.translation!.isEmpty))
+                            let showTranslation = (readerMode == .translation || readerMode == .both || (readerMode == .source && segment.primary.isEmpty)) && segment.translation != nil && !segment.translation!.isEmpty
+
                             VStack(alignment: .leading, spacing: 6) {
-                                if !segment.primary.isEmpty {
+                                if showPrimary && !segment.primary.isEmpty {
                                     Text(segment.primary)
                                         .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
                                         .multilineTextAlignment(.leading)
                                         .environment(\.layoutDirection, segment.primary.isParagraphRTL ? .rightToLeft : .leftToRight)
                                 }
-                                if let translation = segment.translation, !translation.isEmpty {
+                                if showTranslation, let translation = segment.translation, !translation.isEmpty {
                                     Text(translation)
                                         .font(.body)
                                         .multilineTextAlignment(.leading)
@@ -124,15 +178,15 @@ struct SearchResultContextPreview: View {
                     }
                     .textSelection(.enabled)
                 } else if isLoading {
-                    ProgressView("Loading full text…")
+                    ProgressView(String(localized: "Loading full text…", defaultValue: "טוען טקסט מלא…"))
                         .frame(maxWidth: .infinity, minHeight: 160)
                 } else if let previewError {
                     ContentUnavailableView {
-                        Label("Full Text Unavailable", systemImage: "exclamationmark.triangle")
+                        Label(String(localized: "Full Text Unavailable", defaultValue: "הטקסט המלא אינו זמין"), systemImage: "exclamationmark.triangle")
                     } description: {
                         Text(previewError)
                     } actions: {
-                        Button("Retry") { retryToken += 1 }
+                        Button(String(localized: "Retry", defaultValue: "נסה שוב")) { retryToken += 1 }
                     }
                 } else if !item.attributedText.string.isEmpty {
                     Text(AttributedString(item.attributedText))
@@ -144,7 +198,7 @@ struct SearchResultContextPreview: View {
 
                 if let onOpen {
                     Button(action: onOpen) {
-                        Label("Open", systemImage: "book")
+                        Label(String(localized: "Open", defaultValue: "פתח"), systemImage: "book")
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
@@ -160,7 +214,12 @@ struct SearchResultContextPreview: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
         .task(id: "\(item.backendLocator?.persistenceKey ?? "local"):\(retryToken)") {
-            guard let locator = item.backendLocator else { return }
+            guard let locator = item.backendLocator else {
+                if item.attributedText.string.isEmpty {
+                    previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
+                }
+                return
+            }
             isLoading = true
             previewError = nil
             do {
@@ -177,7 +236,7 @@ struct SearchResultContextPreview: View {
                     )
                 }
                 if fullSegments.isEmpty {
-                    previewError = String(localized: "The full text for this result is empty.")
+                    previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
                 }
             } catch is CancellationError {
                 return
@@ -198,16 +257,20 @@ private struct SearchPreviewSegment: Identifiable {
 struct SearchResultRow: View {
     let item: SearchResultItem
     var showsBookTitle: Bool = true
+    var isExpanded: Bool = false
+    var versionCount: Int = 1
+    var selectedVersionIndex: Binding<Int>? = nil
+    var versions: [SearchResultItem] = []
 
     private var isHebrewBackend: Bool {
-        item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+        item.archive == "Otzaria" || item.archive == "Sefaria" || item.archive == "Zayit" || item.backendLocator != nil
     }
 
     static func locationText(for item: SearchResultItem) -> String {
         if let locationDisplayText = item.locationDisplayText, !locationDisplayText.isEmpty {
             return locationDisplayText
         }
-        let isHebrew = item.archive == "Otzaria" || item.archive == "Sefaria" || item.backendLocator != nil
+        let isHebrew = item.archive == "Otzaria" || item.archive == "Sefaria" || item.archive == "Zayit" || item.backendLocator != nil
         if isHebrew {
             var parts: [String] = []
             if item.part > 0 {
@@ -232,7 +295,7 @@ struct SearchResultRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            HStack {
+            HStack(alignment: .center, spacing: 6) {
                 if showsBookTitle {
                     Text(item.bookTitle)
                         .font(isHebrewBackend || !item.bookTitle.containsArabicCharacters ? .headline : ReaderViewModel.kfgqpcTitle)
@@ -251,7 +314,34 @@ struct SearchResultRow: View {
                         .foregroundColor(.secondary)
                 }
 
-                if let versionTitle = item.versionTitle, !versionTitle.isEmpty {
+                if versionCount > 1, let selectedBinding = selectedVersionIndex {
+                    Menu {
+                        ForEach(Array(versions.enumerated()), id: \.offset) { idx, v in
+                            Button {
+                                selectedBinding.wrappedValue = idx
+                            } label: {
+                                HStack {
+                                    Text(v.versionTitle ?? v.resultLanguage ?? "Version \(idx + 1)")
+                                    if idx == selectedBinding.wrappedValue {
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                            }
+                        }
+                    } label: {
+                        HStack(spacing: 3) {
+                            Text(item.versionTitle ?? item.resultLanguage ?? "גרסה")
+                            Text("(\(versionCount))")
+                                .foregroundStyle(.secondary)
+                            Image(systemName: "chevron.up.chevron.down")
+                                .font(.caption2)
+                        }
+                        .font(.caption2)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(Color.secondary.opacity(0.12), in: Capsule())
+                    }
+                } else if let versionTitle = item.versionTitle, !versionTitle.isEmpty {
                     Text(versionTitle)
                         .font(.caption2)
                         .foregroundStyle(.secondary)
@@ -262,12 +352,14 @@ struct SearchResultRow: View {
                 }
             }
 
-            Text(AttributedString(item.attributedText))
-                .font(isHebrewBackend || !item.attributedText.string.containsArabicCharacters ? .body : ReaderViewModel.kfgqpc)
-                .lineLimit(3)
-                .foregroundColor(.primary)
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if !isExpanded {
+                Text(AttributedString(item.attributedText))
+                    .font(isHebrewBackend || !item.attributedText.string.containsArabicCharacters ? .body : ReaderViewModel.kfgqpc)
+                    .lineLimit(3)
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
@@ -307,4 +399,3 @@ struct SearchResultRow: View {
     
     return SearchResultsListView(results: items, onSelect: { _ in })
 }
-
