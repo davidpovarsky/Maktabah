@@ -365,6 +365,45 @@ controller.clearSelection(deleteManagedInternalDatabase: true)
 let restoredAfterRemoval = try controller.restoreIfNeeded()
 expect(restoredAfterRemoval == nil, "no database returns to bootstrap confirmation")
 
+// Regression test for F07: SQLite transaction commit and rollback reliability across cycles
+do {
+    let testDbURL = root.appendingPathComponent("test_transactions.sqlite")
+    let testDb = try SQLiteDatabase(path: testDbURL.path)
+    try testDb.execute(query: "CREATE TABLE annotations (id INTEGER PRIMARY KEY, note TEXT, tag TEXT)")
+
+    for i in 1...30 {
+        try testDb.withTransaction {
+            try testDb.execute(query: "INSERT INTO annotations (id, note, tag) VALUES (?, ?, ?)", parameters: [i, "note_\(i)", "tag_\(i)"])
+            let results = try testDb.fetch(query: "SELECT id, note, tag FROM annotations WHERE id = ?", parameters: [i]) { stmt in
+                Int(sqlite3_column_int64(stmt, 0))
+            }
+            expect(results.first == i, "fetched annotation id matches")
+            try testDb.execute(query: "UPDATE annotations SET note = ? WHERE id = ?", parameters: ["updated_\(i)", i])
+        }
+    }
+
+    let count = try testDb.fetch(query: "SELECT COUNT(*) FROM annotations") { stmt in
+        Int(sqlite3_column_int64(stmt, 0))
+    }.first ?? 0
+    expect(count == 30, "all 30 transaction cycles committed successfully")
+
+    do {
+        try testDb.withTransaction {
+            try testDb.execute(query: "INSERT INTO annotations (id, note, tag) VALUES (?, ?, ?)", parameters: [999, "should_rollback", "tag"])
+            struct SimulatedRollbackError: Error {}
+            throw SimulatedRollbackError()
+        }
+    } catch {
+        // Expected rollback
+    }
+
+    let rolledBackCount = try testDb.fetch(query: "SELECT COUNT(*) FROM annotations WHERE id = 999") { stmt in
+        Int(sqlite3_column_int64(stmt, 0))
+    }.first ?? 0
+    expect(rolledBackCount == 0, "transaction rollback cleaned up uncommitted statements")
+}
+
 print("Otzaria zstd, SQLite validation, and atomic installer tests passed")
 }
 }
+

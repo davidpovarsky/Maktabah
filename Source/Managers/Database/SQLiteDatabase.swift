@@ -99,6 +99,13 @@ class SQLiteDatabase {
         sqlite3_close(dbPointer)
     }
 
+    private func _resetAllCachedStatements() {
+        for stmt in statementCache.values {
+            sqlite3_reset(stmt)
+            sqlite3_clear_bindings(stmt)
+        }
+    }
+
     func transaction(_ block: () throws -> Void) throws {
         lock.lock()
         defer { lock.unlock() }
@@ -115,8 +122,10 @@ class SQLiteDatabase {
             try _executeNoLock(query: "SAVEPOINT \(savepointName);")
             do {
                 try block()
+                _resetAllCachedStatements()
                 try _executeNoLock(query: "RELEASE SAVEPOINT \(savepointName);")
             } catch {
+                _resetAllCachedStatements()
                 try? _executeNoLock(query: "ROLLBACK TO SAVEPOINT \(savepointName);")
                 try? _executeNoLock(query: "RELEASE SAVEPOINT \(savepointName);")
                 throw error
@@ -125,8 +134,10 @@ class SQLiteDatabase {
             try _executeNoLock(query: "BEGIN TRANSACTION;")
             do {
                 try block()
+                _resetAllCachedStatements()
                 try _executeNoLock(query: "COMMIT;")
             } catch {
+                _resetAllCachedStatements()
                 try? _executeNoLock(query: "ROLLBACK;")
                 throw error
             }
@@ -180,6 +191,10 @@ class SQLiteDatabase {
         }
 
         try bind(parameters: parameters, to: stmt)
+        defer {
+            sqlite3_reset(stmt)
+            sqlite3_clear_bindings(stmt)
+        }
 
         if sqlite3_step(stmt) != SQLITE_DONE {
             let error = String(cString: sqlite3_errmsg(dbPointer))
@@ -220,6 +235,10 @@ class SQLiteDatabase {
         }
 
         try bind(parameters: parameters, to: stmt)
+        defer {
+            sqlite3_reset(stmt)
+            sqlite3_clear_bindings(stmt)
+        }
 
         var results: [T] = []
         let row = SQLiteRow(stmt: stmt)

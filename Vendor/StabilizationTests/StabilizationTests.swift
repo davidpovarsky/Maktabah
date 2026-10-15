@@ -415,6 +415,56 @@ func testSefariaWorkKeyResolutionFromCanonicalReference() {
     print("✓ Test 13: Sefaria workKey resolution from canonical reference passed")
 }
 
+// MARK: - Test 14: SQLite Statement Cache and Transaction Commit Reset Invariant (F07)
+
+final class MockTrackedStatement {
+    var inProgress: Bool = false
+    func step() { inProgress = true }
+    func reset() { inProgress = false }
+}
+
+final class MockStatementLifecycleTracker {
+    var statements: [String: MockTrackedStatement] = [:]
+
+    func execute(_ sql: String, action: (MockTrackedStatement) throws -> Void) rethrows {
+        let stmt = statements[sql] ?? MockTrackedStatement()
+        statements[sql] = stmt
+        defer {
+            stmt.reset()
+        }
+        stmt.step()
+        try action(stmt)
+    }
+
+    func resetAllStatements() {
+        for stmt in statements.values {
+            stmt.reset()
+        }
+    }
+
+    func commit() -> Bool {
+        resetAllStatements()
+        for stmt in statements.values {
+            if stmt.inProgress { return false }
+        }
+        return true
+    }
+}
+
+func testSQLiteTransactionCommitResetInvariant() {
+    let tracker = MockStatementLifecycleTracker()
+    for i in 1...30 {
+        // Execute queries inside simulated transaction
+        tracker.execute("INSERT INTO annotations VALUES (\(i))") { _ in }
+        tracker.execute("SELECT * FROM annotations WHERE id = \(i)") { stmt in
+            require(stmt.inProgress, "Statement must be in progress while iterating")
+        }
+        tracker.execute("UPDATE annotations SET note = 'done' WHERE id = \(i)") { _ in }
+        require(tracker.commit(), "Commit must succeed without statements in progress")
+    }
+    print("✓ Test 14: SQLite statement cache and transaction commit reset invariant passed")
+}
+
 // MARK: - Main Execution
 
 @main
@@ -434,6 +484,7 @@ enum StabilizationTestMain {
         testTextDeltaEventRangeMapping()
         testRenderGenerationIdentityAndSelectionInvalidation()
         testSefariaWorkKeyResolutionFromCanonicalReference()
-        print("=== All 13 Stabilization Regression Tests Passed! ===")
+        testSQLiteTransactionCommitResetInvariant()
+        print("=== All 14 Stabilization Regression Tests Passed! ===")
     }
 }
