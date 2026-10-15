@@ -251,6 +251,16 @@ private extension iOSMainView {
             selectedTab = .viewer
             navigationManager.switchToMode(.viewer)
             columnVisibility = .all
+            await navigationManager.libraryViewModel.refreshLibrary()
+            smokeSucceeded = await validateLibrarySnapshotUsingUIKit(
+                navigationManager.libraryViewModel.rootCategories
+            ) && validateCanonicalBookIndex(navigationManager.libraryViewModel.rootCategories)
+
+        case "librarySnapshotRegression":
+            smokeSucceeded = await runSyntheticLibrarySnapshotRegression()
+
+        case "backendSwitchRegression":
+            smokeSucceeded = await runBackendSwitchSnapshotRegression()
 
         case "reader", "readerTOC", "readerDetail":
             selectedTab = .viewer
@@ -348,6 +358,125 @@ private extension iOSMainView {
               !path.isEmpty else { return }
         let value = succeeded ? "success\n\(scenario)\n" : "failure\n\(scenario)\n"
         try? Data(value.utf8).write(to: URL(fileURLWithPath: path), options: .atomic)
+    }
+
+    @MainActor
+    func validateLibrarySnapshotUsingUIKit(
+        _ categories: [CategoryData],
+        showLoadMore: Bool = false
+    ) -> Bool {
+        let controller = iOSLibraryViewController()
+        controller.showLoadMore = showLoadMore
+        controller.loadViewIfNeeded()
+        controller.applyCategories(categories)
+
+        let snapshot = controller.dataSource.snapshot(for: 0)
+        let expected = countLibraryItems(in: categories) + (showLoadMore ? 1 : 0)
+        return controller.lastSnapshotError == nil
+            && controller.lastAppliedItemCount == expected
+            && snapshot.items.count == expected
+            && Set(snapshot.items).count == expected
+    }
+
+    @MainActor
+    func runSyntheticLibrarySnapshotRegression() -> Bool {
+        let sharedLocator = TextLocator(
+            backend: .sefaria,
+            workKey: "Shared Work",
+            position: .canonicalRef("Shared Work")
+        )
+        let shared = BooksData(
+            id: 42,
+            book: "Shared Title",
+            archive: 0,
+            muallif: 0,
+            backendLocator: sharedLocator
+        )
+        let colliding = BooksData(
+            id: 42,
+            book: "Shared Title",
+            archive: 0,
+            muallif: 0,
+            backendLocator: TextLocator(
+                backend: .sefaria,
+                workKey: "Distinct Work",
+                position: .canonicalRef("Distinct Work")
+            )
+        )
+        let first = CategoryData(id: 7, name: "First Path", level: 1, order: 0)
+        first.children = [shared, colliding]
+        let second = CategoryData(id: 7, name: "Second Path", level: 1, order: 1)
+        second.children = [shared]
+
+        guard validateLibrarySnapshotUsingUIKit([first, second], showLoadMore: true),
+              validateLibrarySnapshotUsingUIKit([first]) else { return false }
+
+        let controller = iOSLibraryViewController()
+        controller.loadViewIfNeeded()
+        controller.applyCategories([first, second])
+        guard let firstCategory = controller.dataSource.snapshot(for: 0).rootItems.first else { return false }
+        controller.toggleCategory(firstCategory)
+        guard controller.dataSource.snapshot(for: 0).isExpanded(firstCategory) else { return false }
+
+        let invalid = CategoryData(id: 8, name: "Invalid", level: 1, order: 0)
+        invalid.children = [NSObject()]
+        controller.applyCategories([invalid])
+        return controller.lastSnapshotError != nil
+            && controller.collectionView.backgroundView?.accessibilityIdentifier == "library-catalog-recovery"
+    }
+
+    @MainActor
+    func runBackendSwitchSnapshotRegression() async -> Bool {
+        for backend in [BackendID.otzaria, .sefaria, .otzaria, .sefaria] {
+            BackendCoordinator.shared.commit(backend)
+            await navigationManager.libraryViewModel.refreshLibrary()
+            let model = navigationManager.libraryViewModel
+            guard model.loadedBackendID == backend,
+                  model.loadedBackendGeneration == BackendCoordinator.shared.generation,
+                  validateLibrarySnapshotUsingUIKit(model.rootCategories),
+                  validateCanonicalBookIndex(model.rootCategories) else { return false }
+        }
+        return true
+    }
+
+    func countLibraryItems(in categories: [CategoryData]) -> Int {
+        categories.reduce(into: 0) { count, category in
+            count += 1
+            for child in category.children {
+                if let subcategory = child as? CategoryData {
+                    count += countLibraryItems(in: [subcategory])
+                } else if child is BooksData {
+                    count += 1
+                }
+            }
+        }
+    }
+
+    func validateCanonicalBookIndex(_ categories: [CategoryData]) -> Bool {
+        var occurrences: [BooksData] = []
+        func collect(_ categories: [CategoryData]) {
+            for category in categories {
+                for child in category.children {
+                    if let subcategory = child as? CategoryData {
+                        collect([subcategory])
+                    } else if let book = child as? BooksData {
+                        occurrences.append(book)
+                    }
+                }
+            }
+        }
+        collect(categories)
+
+        let located = occurrences.compactMap(\.backendLocator)
+        guard !located.isEmpty else {
+            return Set(occurrences.map(\.id)).count == LibraryDataManager.shared.booksById.count
+        }
+        let uniqueLocators = Set(located.map { "\($0.backend.rawValue)|\($0.workKey)" })
+        let indexedLocators = Set(LibraryDataManager.shared.booksById.values.compactMap { book in
+            book.backendLocator.map { "\($0.backend.rawValue)|\($0.workKey)" }
+        })
+        return uniqueLocators == indexedLocators
+            && Set(LibraryDataManager.shared.booksById.keys).count == LibraryDataManager.shared.booksById.count
     }
 
     func prepareSmokeSearch(query: String) async -> SearchResultItem? {

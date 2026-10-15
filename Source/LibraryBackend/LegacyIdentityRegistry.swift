@@ -147,6 +147,7 @@ final class CrossBackendBookIdentityIndex: @unchecked Sendable {
     private let lock = NSLock()
     private var otzariaIDsByTitle: [String: Int] = [:]
     private var canonicalIDsByWork: [String: Int] = [:]
+    private var preparedCatalogWorkKeys: Set<String> = []
 
     func prepare(otzariaBooks: [(id: Int, title: String)]) {
         var candidates: [String: [Int]] = [:]
@@ -158,8 +159,46 @@ final class CrossBackendBookIdentityIndex: @unchecked Sendable {
         }
         lock.synchronized {
             otzariaIDsByTitle = unique
+            canonicalIDsByWork.removeAll(keepingCapacity: true)
+            preparedCatalogWorkKeys.removeAll(keepingCapacity: true)
             for book in otzariaBooks {
                 canonicalIDsByWork[Self.workKey(.otzaria, "book:\(book.id)")] = book.id
+            }
+        }
+    }
+
+    /// Precomputes cross-backend links in stable catalog order. Duplicate
+    /// occurrences of the same work are folded together; the first established
+    /// match retains its canonical ID while later competing work keys remain
+    /// source-qualified and receive their own legacy surrogate.
+    func prepare(catalogWorks: [LibraryWork]) {
+        var seenWorkKeys = Set<String>()
+        let uniqueWorks = catalogWorks.compactMap { work -> (key: String, work: LibraryWork)? in
+            let key = Self.workKey(work.locator.backend, work.locator.workKey)
+            guard seenWorkKeys.insert(key).inserted else { return nil }
+            return (key, work)
+        }
+
+        let proposed: [(key: String, canonicalID: Int)] = lock.synchronized {
+            uniqueWorks.compactMap { entry in
+                let matchedIDs = Set(
+                    [entry.work.heTitle, entry.work.title]
+                        .compactMap { $0 }
+                        .compactMap { otzariaIDsByTitle[Self.normalizedTitle($0)] }
+                )
+                guard matchedIDs.count == 1, let canonicalID = matchedIDs.first else { return nil }
+                return (entry.key, canonicalID)
+            }
+        }
+
+        var claimedCanonicalIDs = Set<Int>()
+        let unambiguous = proposed.filter { claimedCanonicalIDs.insert($0.canonicalID).inserted }
+
+        lock.synchronized {
+            canonicalIDsByWork = canonicalIDsByWork.filter { $0.key.hasPrefix("otzaria|") }
+            preparedCatalogWorkKeys = Set(uniqueWorks.map(\.key))
+            for match in unambiguous {
+                canonicalIDsByWork[match.key] = match.canonicalID
             }
         }
     }
@@ -172,9 +211,18 @@ final class CrossBackendBookIdentityIndex: @unchecked Sendable {
 
     func canonicalID(for work: LibraryWork) -> Int? {
         if let existing = canonicalID(for: work.locator) { return existing }
-        let candidates = [work.heTitle, work.title].compactMap { $0 }.map(Self.normalizedTitle)
-        let matched = lock.synchronized {
-            candidates.compactMap { otzariaIDsByTitle[$0] }.first
+        let key = Self.workKey(work.locator.backend, work.locator.workKey)
+        let candidates = Set([work.heTitle, work.title].compactMap { $0 }.map(Self.normalizedTitle))
+        let matched: Int? = lock.synchronized {
+            guard !preparedCatalogWorkKeys.contains(key) else { return nil }
+            let matchedIDs = Set(candidates.compactMap { otzariaIDsByTitle[$0] })
+            guard matchedIDs.count == 1, let candidate = matchedIDs.first else { return nil }
+            let alreadyClaimed = canonicalIDsByWork.contains { existingKey, existingID in
+                existingID == candidate
+                    && existingKey.hasPrefix("\(work.locator.backend.rawValue)|")
+                    && existingKey != key
+            }
+            return alreadyClaimed ? nil : candidate
         }
         if let matched { register(work, canonicalID: matched) }
         return matched

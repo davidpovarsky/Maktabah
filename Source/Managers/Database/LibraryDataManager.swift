@@ -20,8 +20,13 @@ class LibraryDataManager {
     private var _archivesBuiltFromFullData: Bool = false
         private var _authorsCache: [Int: Muallif] = [:]
     private var _isDataLoaded = false
+    private var _loadedBackendID: BackendID?
+    private var _loadedBackendGeneration: UInt64?
     private var _isAuthorsLoaded = false
     private var _loadingTask: Task<Void, Never>?
+    private var _loadingBackendID: BackendID?
+    private var _loadingBackendGeneration: UInt64?
+    private var _loadGeneration: UInt64 = 0
 
     var allRootCategories: [CategoryData] {
         lock.withLock { _allRootCategories }
@@ -47,28 +52,61 @@ class LibraryDataManager {
         lock.withLock { _isDataLoaded }
     }
 
+    var loadedBackendID: BackendID? {
+        lock.withLock { _loadedBackendID }
+    }
+
+    var loadedBackendGeneration: UInt64? {
+        lock.withLock { _loadedBackendGeneration }
+    }
+
     private init() {}
 
     func loadData() async {
+        let requestedContext = await MainActor.run {
+            (BackendCoordinator.shared.activeBackendID, BackendCoordinator.shared.generation)
+        }
+        let requestedBackend = requestedContext.0
+        let requestedBackendGeneration = requestedContext.1
         let taskToAwait: Task<Void, Never>? = lock.withLock {
-            if _isDataLoaded {
+            if _isDataLoaded,
+               _loadedBackendID == requestedBackend,
+               _loadedBackendGeneration == requestedBackendGeneration {
                 return nil
             }
-            if let existing = _loadingTask {
+            if let existing = _loadingTask,
+               _loadingBackendID == requestedBackend,
+               _loadingBackendGeneration == requestedBackendGeneration {
                 return existing
             }
+            _loadingTask?.cancel()
+            _loadGeneration &+= 1
+            let loadGeneration = _loadGeneration
             let newTask = Task { [self] in
                 do {
                     if let generic = try await MaktabahBackendAdapter.loadLibraryIfNeeded() {
+                        let contextIsCurrent = await MainActor.run {
+                            BackendCoordinator.shared.activeBackendID == requestedBackend
+                                && BackendCoordinator.shared.generation == requestedBackendGeneration
+                        }
                         lock.withLock {
+                            guard contextIsCurrent, _loadGeneration == loadGeneration else { return }
                             _allRootCategories = generic.roots
-                            _categoryMap = Dictionary(uniqueKeysWithValues: generic.roots.flatMap(Self.flattenCategories).map { ($0.id, $0) })
+                            _categoryMap = Self.categoryMapPreservingFirstOccurrence(generic.roots)
                             _booksById = generic.books
                             _archives = [:]
                             _archivesBuiltFromFullData = true
                             _isDataLoaded = true
+                            _loadedBackendID = requestedBackend
+                            _loadedBackendGeneration = requestedBackendGeneration
                         }
-                        lock.withLock { _loadingTask = nil }
+                        lock.withLock {
+                            if _loadGeneration == loadGeneration {
+                                _loadingTask = nil
+                                _loadingBackendID = nil
+                                _loadingBackendGeneration = nil
+                            }
+                        }
                         return
                     }
                     let results = try await Task.detached(priority: .userInitiated) { [self] in
@@ -81,7 +119,12 @@ class LibraryDataManager {
                         return (localRootCats, localCategoryMap, localBooksById)
                     }.value
 
+                    let contextIsCurrent = await MainActor.run {
+                        BackendCoordinator.shared.activeBackendID == requestedBackend
+                            && BackendCoordinator.shared.generation == requestedBackendGeneration
+                    }
                     lock.withLock {
+                        guard contextIsCurrent, _loadGeneration == loadGeneration else { return }
                         _allRootCategories = results.0
                         _categoryMap = results.1
                         _booksById = results.2
@@ -89,8 +132,15 @@ class LibraryDataManager {
 
                     await applyBundleDownloadMetadataIfNeeded()
 
+                    let finalContextIsCurrent = await MainActor.run {
+                        BackendCoordinator.shared.activeBackendID == requestedBackend
+                            && BackendCoordinator.shared.generation == requestedBackendGeneration
+                    }
                     lock.withLock {
+                        guard finalContextIsCurrent, _loadGeneration == loadGeneration else { return }
                         _isDataLoaded = true
+                        _loadedBackendID = requestedBackend
+                        _loadedBackendGeneration = requestedBackendGeneration
                     }
 
                     // Bangun integration cache di background setelah data siap.
@@ -104,10 +154,16 @@ class LibraryDataManager {
                 }
 
                 lock.withLock {
-                    _loadingTask = nil
+                    if _loadGeneration == loadGeneration {
+                        _loadingTask = nil
+                        _loadingBackendID = nil
+                        _loadingBackendGeneration = nil
+                    }
                 }
             }
             _loadingTask = newTask
+            _loadingBackendID = requestedBackend
+            _loadingBackendGeneration = requestedBackendGeneration
             return newTask
         }
 
@@ -118,7 +174,14 @@ class LibraryDataManager {
 
     func reloadAllData() async {
         lock.withLock {
+            _loadingTask?.cancel()
+            _loadingTask = nil
+            _loadingBackendID = nil
+            _loadingBackendGeneration = nil
+            _loadGeneration &+= 1
             _isDataLoaded = false
+            _loadedBackendID = nil
+            _loadedBackendGeneration = nil
             _archivesBuiltFromFullData = false
         }
         await loadData()
@@ -133,6 +196,14 @@ class LibraryDataManager {
 
     private static func flattenCategories(_ root: CategoryData) -> [CategoryData] {
         [root] + root.children.compactMap { $0 as? CategoryData }.flatMap(flattenCategories)
+    }
+
+    private static func categoryMapPreservingFirstOccurrence(_ roots: [CategoryData]) -> [Int: CategoryData] {
+        var result: [Int: CategoryData] = [:]
+        for category in roots.flatMap(flattenCategories) where result[category.id] == nil {
+            result[category.id] = category
+        }
+        return result
     }
 
     private func loadBooksAndIndex(for allCategories: [CategoryData]) throws
@@ -209,7 +280,12 @@ class LibraryDataManager {
         lock.withLock {
             _loadingTask?.cancel()
             _loadingTask = nil
+            _loadingBackendID = nil
+            _loadingBackendGeneration = nil
+            _loadGeneration &+= 1
             _isDataLoaded = false
+            _loadedBackendID = nil
+            _loadedBackendGeneration = nil
             _isAuthorsLoaded = false
             _allRootCategories.removeAll()
             _categoryMap.removeAll()

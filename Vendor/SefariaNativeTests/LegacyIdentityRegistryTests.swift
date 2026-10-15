@@ -43,6 +43,23 @@ func runLegacyIdentityRegistryTests() throws {
     try expect(compatibility.areEquivalent(otzariaLocator, sefariaLocator),
         "section locators from both backends resolve to one canonical book")
 
+    let competingGenesis = LibraryWork(
+        locator: TextLocator(backend: .sefaria, workKey: "Genesis Alternate", position: .canonicalRef("Genesis Alternate")),
+        title: "Genesis Alternate",
+        heTitle: "בְּרֵאשִׁית",
+        categories: ["Tanakh", "Alternate"],
+        description: nil
+    )
+    compatibility.prepare(catalogWorks: [genesisWork, competingGenesis])
+    try expect(compatibility.canonicalID(for: genesisWork) == 1,
+        "the first stable catalog match retains its canonical Otzaria numeric ID")
+    try expect(compatibility.canonicalID(for: competingGenesis) == nil,
+        "the competing work remains source-qualified instead of overwriting the canonical mapping")
+
+    compatibility.prepare(catalogWorks: [genesisWork, genesisWork])
+    try expect(compatibility.canonicalID(for: genesisWork) == 1,
+        "duplicate catalog occurrences of the same work retain one canonical identity")
+
     // Test HTML sanitization for annotation excerpts
     let rawHTML = "<span class=\"hebrew\">בראשית ברא</span><br/>אלהים &amp; שמים"
     let cleanText = rawHTML.readerPlainText

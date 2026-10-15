@@ -8,7 +8,7 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
 
     var onSelectionChanged: ((Set<Int>) -> Void)?
 
-    private var bookCache: [Int: [BooksData]] = [:] // key: category.id
+    private var bookCache: [ObjectIdentifier: [BooksData]] = [:]
     private var fullCategories: Set<Int> = [] // Cache untuk kategori yang semua bukunya terpilih
 
     override func viewDidLoad() {
@@ -25,10 +25,10 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
     // MARK: - Cell Registrations
 
     override func makeCategoryCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, CategoryData> {
-        UICollectionView.CellRegistration { [weak self] cell, _, category in
+        UICollectionView.CellRegistration { [weak self] cell, indexPath, category in
             guard let self else { return }
 
-            let isExpanded = expandedCategories.contains(category.id)
+            let isExpanded = isCategoryExpanded(at: indexPath)
 
             // Determine leading accessory: checkbox or folder icon
             let books = cachedBooks(for: category)
@@ -82,7 +82,7 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
                         if case .category = $0 { return true }
                         return false
                     }
-                    items.append(contentsOf: currentBooks.map { .book($0) })
+                    items.append(contentsOf: currentBooks.flatMap(snapshotItems(for:)))
                     reconfigureItems(items)
                 }
             }
@@ -123,7 +123,7 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
                         if case .category = $0 { return true }
                         return false
                     }
-                    items.append(.book(book))
+                    items.append(contentsOf: snapshotItems(for: book))
                     reconfigureItems(items)
                 }
             }
@@ -133,9 +133,10 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
     }
 
     func cachedBooks(for category: CategoryData) -> [BooksData] {
-        if let cached = bookCache[category.id] { return cached }
+        let key = ObjectIdentifier(category)
+        if let cached = bookCache[key] { return cached }
         let books = getAllBooks(in: category)
-        bookCache[category.id] = books
+        bookCache[key] = books
         return books
     }
 }
@@ -147,9 +148,9 @@ extension iOSSearchFilterViewController: UICollectionViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
 
         switch item {
-        case let .category(category):
-            toggleCategory(category)
-        case let .book(book):
+        case .category:
+            toggleCategory(item)
+        case let .book(_, book):
             if selectedBookIds.contains(book.id) { selectedBookIds.remove(book.id) }
             else { selectedBookIds.insert(book.id) }
             onSelectionChanged?(selectedBookIds)
@@ -158,7 +159,7 @@ extension iOSSearchFilterViewController: UICollectionViewDelegate {
                 if case .category = $0 { return true }
                 return false
             }
-            items.append(.book(book))
+            items.append(contentsOf: snapshotItems(for: book))
             reconfigureItems(items)
         case .loadMore:
             break

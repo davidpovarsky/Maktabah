@@ -21,30 +21,46 @@ enum MaktabahBackendAdapter {
 
     static func loadLibraryIfNeeded() async throws -> (roots: [CategoryData], books: [Int: BooksData])? {
         guard !BackendCoordinator.shared.usesNativeMaktabahDataPath else { return nil }
-        if (try? OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()) == true,
-           let otzariaBooks = try? OtzariaMaktabahBridge.shared.fetchAllBooks() {
-            CrossBackendBookIdentityIndex.shared.prepare(
-                otzariaBooks: otzariaBooks.map { (id: $0.id, title: $0.book) }
-            )
+        let otzariaBooks: [BooksData]
+        if (try? OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()) == true {
+            otzariaBooks = (try? OtzariaMaktabahBridge.shared.fetchAllBooks()) ?? []
+        } else {
+            otzariaBooks = []
         }
+        CrossBackendBookIdentityIndex.shared.prepare(
+            otzariaBooks: otzariaBooks.map { (id: $0.id, title: $0.book) }
+        )
         let nodes = try await BackendCoordinator.shared.catalog()
+        let backendID = BackendCoordinator.shared.activeBackendID
+        let catalogWorks = nodes.flatMap(Self.catalogWorks)
+        CrossBackendBookIdentityIndex.shared.prepare(catalogWorks: catalogWorks)
         var books: [Int: BooksData] = [:]
+
+        #if DEBUG
+        for collision in LibraryCatalogIntegrityAudit.collisions(in: nodes) {
+            let paths = collision.paths.map { $0.joined(separator: "/") }.joined(separator: " | ")
+            print("Catalog identity collision [\(collision.kind.rawValue)] \(collision.identifier) \(collision.title): \(paths)")
+        }
+        #endif
 
         func convert(_ node: LibraryCatalogNode, level: Int, parentID: Int?) -> Any {
             if let work = node.work {
                 let title = LibraryPresentationPolicy.workTitle(title: work.title, heTitle: work.heTitle)
-                let id = CrossBackendBookIdentityIndex.shared.canonicalID(for: work)
+                var id = CrossBackendBookIdentityIndex.shared.canonicalID(for: work)
                     ?? LegacyIdentityRegistry.shared.id(for: work.locator, title: title)
+                if let existing = books[id], !Self.isSameCanonicalWork(existing, work) {
+                    id = LegacyIdentityRegistry.shared.id(for: work.locator, title: title)
+                }
                 CrossBackendBookIdentityIndex.shared.register(work, canonicalID: id)
                 let book = BooksData(id: id, book: title, archive: 0, muallif: 0,
                     bithoqoh: work.description ?? "", info: work.title)
                 book.backendLocator = work.locator
                 book.backendSearchPath = work.searchPath
                 book.catId = parentID
-                books[id] = book
+                if books[id] == nil { books[id] = book }
                 return book
             }
-            let categoryLocator = TextLocator(backend: BackendCoordinator.shared.activeBackendID,
+            let categoryLocator = TextLocator(backend: backendID,
                 workKey: "category:\(node.id)", position: .legacyLine(0))
             let id = LegacyIdentityRegistry.shared.id(for: categoryLocator)
             let category = CategoryData(
@@ -59,6 +75,15 @@ enum MaktabahBackendAdapter {
         }
         let roots = nodes.compactMap { convert($0, level: 1, parentID: nil) as? CategoryData }
         return (roots, books)
+    }
+
+    private static func catalogWorks(_ node: LibraryCatalogNode) -> [LibraryWork] {
+        (node.work.map { [$0] } ?? []) + node.children.flatMap(catalogWorks)
+    }
+
+    private static func isSameCanonicalWork(_ book: BooksData, _ work: LibraryWork) -> Bool {
+        guard let locator = book.backendLocator else { return false }
+        return locator.backend == work.locator.backend && locator.workKey == work.locator.workKey
     }
 
     static func renderModel(

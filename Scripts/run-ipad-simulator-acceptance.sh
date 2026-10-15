@@ -936,6 +936,15 @@ if [ -n "$CONTAINER" ]; then
   run_torah_diag sefaria he he_IL verify-otzaria-seed-sefaria
   run_torah_diag sefaria en en_US
   run_torah_diag otzaria he he_IL verify-sefaria-seed-cleanup -cross-return
+
+  echo ""
+  echo "=== [PHASE 4A: UIKit Library Snapshot Regressions] ==="
+  SMOKE_READY_FILE="$CONTAINER/Documents/library-snapshot-regression.ready" \
+    CAPTURE_WAIT_SECONDS=30 capture_screen "library-snapshot-regression.png" he he_IL \
+      -smokeScenario librarySnapshotRegression -smokeBackend sefaria -smokeBypassBootstrap
+  SMOKE_READY_FILE="$CONTAINER/Documents/backend-switch-regression.ready" \
+    CAPTURE_WAIT_SECONDS=120 capture_screen "backend-switch-regression.png" he he_IL \
+      -smokeScenario backendSwitchRegression -smokeBackend otzaria -smokeBypassBootstrap
 fi
 
 # ==============================================================================

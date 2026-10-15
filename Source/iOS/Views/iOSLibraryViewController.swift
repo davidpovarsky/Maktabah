@@ -19,10 +19,10 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
     // MARK: - Cell Registrations
 
     override func makeCategoryCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, CategoryData> {
-        UICollectionView.CellRegistration { [weak self] cell, _, category in
+        UICollectionView.CellRegistration { [weak self] cell, indexPath, category in
             guard let self else { return }
 
-            let isExpanded = expandedCategories.contains(category.id)
+            let isExpanded = isCategoryExpanded(at: indexPath)
             let isSelectionMode = viewModel?.isSelectionMode == true
 
             let leadingAccessory: LeadingAccessoryType
@@ -57,7 +57,7 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
                         if case .category = $0 { return true }
                         return false
                     }
-                    items.append(contentsOf: getAllBooks(in: category).map { .book($0) })
+                    items.append(contentsOf: getAllBooks(in: category).flatMap(snapshotItems(for:)))
                     reconfigureItems(items)
                 }
             }
@@ -111,7 +111,7 @@ class iOSLibraryViewController: iOSHierarchicalCollectionViewController {
                         if case .category = $0 { return true }
                         return false
                     }
-                    items.append(.book(book))
+                    items.append(contentsOf: self.snapshotItems(for: book))
                     self.reconfigureItems(items)
                 }
             }
@@ -130,9 +130,9 @@ extension iOSLibraryViewController: UICollectionViewDelegate {
         // In selection mode, category row tap should still expand/collapse
         // Selection is handled via checkbox tap (onCheckboxTap)
         switch item {
-        case let .category(category):
-            toggleCategory(category)
-        case let .book(book):
+        case .category:
+            toggleCategory(item)
+        case let .book(_, book):
             if viewModel?.isSelectionMode == true {
                 viewModel?.toggleBookSelection(book)
                 onSelectionChanged?()
@@ -140,7 +140,7 @@ extension iOSLibraryViewController: UICollectionViewDelegate {
                     if case .category = $0 { return true }
                     return false
                 }
-                items.append(.book(book))
+                items.append(contentsOf: snapshotItems(for: book))
                 reconfigureItems(items)
             } else {
                 onBookSelected?(book)
@@ -157,7 +157,7 @@ extension iOSLibraryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
         guard let indexPath = indexPaths.first,
               let item = dataSource.itemIdentifier(for: indexPath),
-              case let .book(book) = item,
+              case let .book(_, book) = item,
               let viewModel = viewModel
         else {
             return nil

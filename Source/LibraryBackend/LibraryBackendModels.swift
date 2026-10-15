@@ -148,6 +148,66 @@ struct LibraryCatalogNode: Codable, Hashable, Identifiable, Sendable {
     let children: [LibraryCatalogNode]
 }
 
+struct LibraryCatalogIdentityCollision: Equatable, Sendable {
+    enum Kind: String, Sendable { case categoryIdentifier, workLocator }
+
+    let kind: Kind
+    let identifier: String
+    let title: String
+    let paths: [[String]]
+}
+
+enum LibraryCatalogIntegrityAudit {
+    static func collisions(in roots: [LibraryCatalogNode]) -> [LibraryCatalogIdentityCollision] {
+        struct Occurrence {
+            let kind: LibraryCatalogIdentityCollision.Kind
+            let identifier: String
+            let title: String
+            let path: [String]
+        }
+
+        var occurrences: [Occurrence] = []
+        func collect(_ nodes: [LibraryCatalogNode], parentPath: [String]) {
+            for node in nodes {
+                if let work = node.work {
+                    occurrences.append(.init(
+                        kind: .workLocator,
+                        identifier: work.locator.persistenceKey,
+                        title: work.title,
+                        path: parentPath
+                    ))
+                } else {
+                    let path = parentPath + [node.title]
+                    occurrences.append(.init(
+                        kind: .categoryIdentifier,
+                        identifier: node.id,
+                        title: node.title,
+                        path: path
+                    ))
+                    collect(node.children, parentPath: path)
+                }
+            }
+        }
+        collect(roots, parentPath: [])
+
+        return Dictionary(grouping: occurrences) { "\($0.kind.rawValue)|\($0.identifier)" }
+            .values
+            .filter { $0.count > 1 }
+            .map { group in
+                LibraryCatalogIdentityCollision(
+                    kind: group[0].kind,
+                    identifier: group[0].identifier,
+                    title: group[0].title,
+                    paths: group.map(\.path)
+                )
+            }
+            .sorted { lhs, rhs in
+                if lhs.kind.rawValue != rhs.kind.rawValue { return lhs.kind.rawValue < rhs.kind.rawValue }
+                return lhs.identifier < rhs.identifier
+            }
+    }
+}
+
 struct LibraryTOCNode: Codable, Hashable, Identifiable, Sendable {
     let locator: TextLocator
     let title: String

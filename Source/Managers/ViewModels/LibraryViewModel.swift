@@ -36,6 +36,9 @@ final class LibraryViewModel: ViewModelBase {
     var reloadTask: Task<Void, Never>?
     var availableUpdateCount: Int = 0
     private var historySelectionTask: Task<Void, Never>?
+    private var libraryLoadGeneration: UInt64 = 0
+    private(set) var loadedBackendID: BackendID?
+    private(set) var loadedBackendGeneration: UInt64?
 
     #if os(macOS)
     @Published var searchQuery: String = ""
@@ -165,22 +168,49 @@ final class LibraryViewModel: ViewModelBase {
     }
 
     func loadLibrary() async {
-        if hasLoadedLibrary { return }
+        let coordinator = BackendCoordinator.shared
+        if hasLoadedLibrary,
+           loadedBackendID == coordinator.activeBackendID,
+           loadedBackendGeneration == coordinator.generation { return }
         await load()
     }
 
     func refreshLibrary() async {
+        libraryLoadGeneration &+= 1
+        let refreshGeneration = libraryLoadGeneration
+        let backendID = BackendCoordinator.shared.activeBackendID
+        let backendGeneration = BackendCoordinator.shared.generation
         state = .loading
         hasLoadedLibrary = false
+        loadedBackendID = nil
+        loadedBackendGeneration = nil
         dataManager.resetState()
         await dataManager.reloadAllData()
+        guard !Task.isCancelled,
+              refreshGeneration == libraryLoadGeneration,
+              BackendCoordinator.shared.activeBackendID == backendID,
+              BackendCoordinator.shared.generation == backendGeneration else { return }
         await load()
     }
 
     private func load() async {
+        libraryLoadGeneration &+= 1
+        let requestGeneration = libraryLoadGeneration
+        let backendID = BackendCoordinator.shared.activeBackendID
+        let backendGeneration = BackendCoordinator.shared.generation
         state = .loading
         await dataManager.loadData()
+        guard !Task.isCancelled,
+              requestGeneration == libraryLoadGeneration,
+              BackendCoordinator.shared.activeBackendID == backendID,
+              BackendCoordinator.shared.generation == backendGeneration,
+              dataManager.loadedBackendID == backendID,
+              dataManager.loadedBackendGeneration == backendGeneration else { return }
         await LibraryOfflineAvailabilityController.shared.refresh()
+        guard !Task.isCancelled,
+              requestGeneration == libraryLoadGeneration,
+              BackendCoordinator.shared.activeBackendID == backendID,
+              BackendCoordinator.shared.generation == backendGeneration else { return }
         rootCategories = dataManager.allRootCategories
         if viewMode == .author {
             _authorHierarchy = dataManager.buildAuthorHierarchy()
@@ -195,6 +225,8 @@ final class LibraryViewModel: ViewModelBase {
         updateDisplayedCategories()
         state = .loaded
         hasLoadedLibrary = dataManager.isDataLoaded
+        loadedBackendID = backendID
+        loadedBackendGeneration = backendGeneration
     }
 
     // MARK: - Filtering (Unified)
@@ -803,6 +835,9 @@ final class LibraryViewModel: ViewModelBase {
                 guard let self, !Task.isCancelled else { return }
                 LibraryOfflineAvailabilityController.shared.resetForBackendChange()
                 await refreshLibrary()
+                guard !Task.isCancelled,
+                      loadedBackendID == BackendCoordinator.shared.activeBackendID,
+                      loadedBackendGeneration == BackendCoordinator.shared.generation else { return }
                 NotificationCenter.default.post(name: .libraryBackendDataDidReload, object: nil)
                 reloadTask = nil
             }

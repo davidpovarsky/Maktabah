@@ -43,6 +43,37 @@ func runNavigationAndPackageTests() async throws {
         ) == "Tanakh/Commentary/Rashi/Torah/Rashi on Genesis",
         "catalog search path retains the exact backend hierarchy"
     )
+
+    let repeatedLocator = TextLocator(
+        backend: .sefaria,
+        workKey: "Repeated Work",
+        position: .canonicalRef("Repeated Work")
+    )
+    let repeatedWork = LibraryWork(
+        locator: repeatedLocator,
+        title: "Repeated Work",
+        heTitle: "ספר חוזר",
+        categories: [],
+        description: nil
+    )
+    let repeatedLeaf = LibraryCatalogNode(
+        id: repeatedLocator.persistenceKey,
+        kind: .work,
+        title: repeatedWork.title,
+        heTitle: repeatedWork.heTitle,
+        work: repeatedWork,
+        children: []
+    )
+    let auditTree = [
+        LibraryCatalogNode(id: "colliding-category", kind: .category, title: "First", heTitle: nil,
+            work: nil, children: [repeatedLeaf]),
+        LibraryCatalogNode(id: "colliding-category", kind: .category, title: "Second", heTitle: nil,
+            work: nil, children: [repeatedLeaf]),
+    ]
+    let collisions = LibraryCatalogIntegrityAudit.collisions(in: auditTree)
+    try expect(collisions.count == 2, "catalog audit exposes category and work identity collisions")
+    try expect(collisions.first(where: { $0.kind == .workLocator })?.paths == [["First"], ["Second"]],
+        "catalog audit retains every display path for a repeated canonical work")
     let index = try JSONDecoder().decode(SefariaIndexDTO.self, from: fixture("index-complex.json"))
     let nodes = SefariaNavigationParser.nodes(schema: index.schema, indexTitle: index.title, baseRef: index.title)
     try expect(nodes.count == 2, "complex root nodes")
