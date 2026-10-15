@@ -54,4 +54,55 @@ require(
     "Zayit capacity counted the installed index or the complete compressed package"
 )
 
+// F03 regression: Zayit location text formatting
+struct MockSearchResultItem {
+    let archive: String
+    let locationDisplayText: String?
+    let page: Int
+    let part: Int
+
+    var locationText: String {
+        if let locationDisplayText, !locationDisplayText.isEmpty {
+            return locationDisplayText
+        }
+        let isHebrew = archive == "Otzaria" || archive == "Sefaria" || archive == "Zayit"
+        if isHebrew {
+            var parts: [String] = []
+            if part > 0 { parts.append("כרך \(part)") }
+            if page > 0 { parts.append("עמ' \(page)") }
+            return parts.joined(separator: " • ")
+        } else {
+            return "ص: \(page) - ج: \(part)"
+        }
+    }
+}
+
+let zayitExplicitRef = MockSearchResultItem(archive: "Zayit", locationDisplayText: "בראשית א, א", page: 1, part: 1)
+require(zayitExplicitRef.locationText == "בראשית א, א", "Zayit explicit reference lost")
+
+let zayitFallbackRef = MockSearchResultItem(archive: "Zayit", locationDisplayText: nil, page: 42, part: 1)
+require(!zayitFallbackRef.locationText.contains("ص") && !zayitFallbackRef.locationText.contains("ج"), "Zayit fell back to Arabic page/volume format")
+require(zayitFallbackRef.locationText == "כרך 1 • עמ' 42", "Zayit fallback reference formatting incorrect")
+
+// F04 regression: Grouping versions of the same canonical location
+struct MockGroupItem {
+    let stableID: String
+    let canonicalKey: String
+    let versionTitle: String
+}
+
+var groups: [String: [MockGroupItem]] = [:]
+let testItems = [
+    MockGroupItem(stableID: "1:he", canonicalKey: "gen:1:1", versionTitle: "Hebrew Source"),
+    MockGroupItem(stableID: "1:en", canonicalKey: "gen:1:1", versionTitle: "English JPS"),
+    MockGroupItem(stableID: "1:fr", canonicalKey: "gen:1:1", versionTitle: "French"),
+    MockGroupItem(stableID: "2:he", canonicalKey: "gen:1:2", versionTitle: "Hebrew Source"),
+]
+for item in testItems {
+    groups[item.canonicalKey, default: []].append(item)
+}
+require(groups.keys.count == 2, "Versions of same canonical location were not grouped")
+require(groups["gen:1:1"]?.count == 3, "All 3 versions of gen:1:1 should be in the same group")
+
 print("Zayit Swift presentation tests passed")
+

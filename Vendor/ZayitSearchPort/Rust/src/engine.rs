@@ -1,4 +1,5 @@
 use crate::{
+    line_decoder::LineDecoder,
     magic_dictionary_index::MagicDictionaryIndex,
     models::*,
     query_builder::{build_query_plan, ngrams4},
@@ -19,6 +20,7 @@ pub struct ZayitSearchEngine {
     index: Index,
     reader: tantivy::IndexReader,
     dictionary: Arc<MagicDictionaryIndex>,
+    line_decoder: Arc<LineDecoder>,
 }
 
 impl ZayitSearchEngine {
@@ -36,11 +38,15 @@ impl ZayitSearchEngine {
             .reload_policy(ReloadPolicy::Manual)
             .try_into()?;
         let dictionary = Arc::new(MagicDictionaryIndex::open(&paths.lexical_db)?);
+        let conn =
+            Connection::open_with_flags(&paths.seforim_db, OpenFlags::SQLITE_OPEN_READ_ONLY)?;
+        let line_decoder = Arc::new(LineDecoder::new(&conn)?);
         Ok(Self {
             paths,
             index,
             reader,
             dictionary,
+            line_decoder,
         })
     }
 
@@ -88,7 +94,13 @@ impl ZayitSearchEngine {
             let title = textv(&doc, fields.book_title);
             let is_base = i64v(&doc, fields.is_base_book) == 1;
             let order = i64v(&doc, fields.order_index);
-            let (raw, reference) = load_line(&conn, line_id).unwrap_or_default();
+            let (raw, reference) = match self.line_decoder.load_line(&conn, line_id) {
+                Ok(res) => res,
+                Err(err) => {
+                    eprintln!("Warning: failed to load line {line_id}: {err}");
+                    (String::new(), String::new())
+                }
+            };
             let snippet = build_snippet(&raw, &highlight_terms, &highlight_terms, 220);
             let factor = if is_base {
                 1.0 + ((120 - order).max(0) as f32 / 60.0)
@@ -367,23 +379,4 @@ fn textv(d: &tantivy::schema::TantivyDocument, f: Field) -> String {
         .and_then(|v| v.as_str())
         .unwrap_or_default()
         .into()
-}
-fn load_line(c: &Connection, id: i64) -> Result<(String, String)> {
-    if let Ok(value) = c.query_row(
-        "SELECT content, COALESCE(heRef, '') FROM line WHERE id=?1",
-        [id],
-        |row| Ok((row.get(0)?, row.get(1)?)),
-    ) {
-        return Ok(value);
-    }
-    for sql in [
-        "SELECT content FROM line WHERE id=?1",
-        "SELECT content FROM lines WHERE id=?1",
-        "SELECT text FROM line WHERE id=?1",
-    ] {
-        if let Ok(v) = c.query_row(sql, [id], |r| r.get(0)) {
-            return Ok((v, String::new()));
-        }
-    }
-    anyhow::bail!("line text not found")
 }

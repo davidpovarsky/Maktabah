@@ -1,6 +1,6 @@
 use anyhow::{bail, Context, Result};
 use maktabah_zayit_search::{
-    hebrew_text_utils::normalize_hebrew, index_schema::*, query_builder::ngrams4,
+    hebrew_text_utils::normalize_hebrew, index_schema::*, line_decoder::*, query_builder::ngrams4,
 };
 use regex::Regex;
 use rusqlite::{types::Value, Connection, OpenFlags};
@@ -29,7 +29,6 @@ const INDEX_WRITER_THREADS: usize = 1;
 const INDEX_WRITER_MEMORY_BUDGET: usize = 256_000_000;
 const WINDOWS_WRITE_RETRY_ATTEMPTS: usize = 50;
 const WINDOWS_WRITE_RETRY_DELAY: Duration = Duration::from_millis(100);
-const MAX_DECOMPRESSED_LINE_BYTES: usize = 16 * 1024 * 1024;
 
 #[derive(Debug, Serialize)]
 struct IndexMetadata {
@@ -465,13 +464,6 @@ fn load_books(conn: &Connection) -> Result<Vec<BookRow>> {
         .map_err(Into::into)
 }
 
-fn table_columns(conn: &Connection, table: &str) -> Result<Vec<String>> {
-    let mut statement = conn.prepare(&format!("PRAGMA table_info({table})"))?;
-    let rows = statement.query_map([], |row| row.get::<_, String>(1))?;
-    rows.collect::<rusqlite::Result<Vec<_>>>()
-        .map_err(Into::into)
-}
-
 fn env_value(name: &str) -> String {
     env::var(name).unwrap_or_else(|_| "unknown".to_owned())
 }
@@ -495,73 +487,6 @@ fn directory_bytes(path: &Path) -> Result<u64> {
         };
     }
     Ok(total)
-}
-
-fn table_exists(conn: &Connection, name: &str) -> bool {
-    conn.query_row(
-        "SELECT count(*) FROM sqlite_master WHERE type='table' AND name=?1",
-        [name],
-        |r| r.get::<_, i64>(0),
-    )
-    .map(|n| n == 1)
-    .unwrap_or(false)
-}
-
-struct LineContentSource {
-    sql: String,
-}
-
-fn line_content_source(conn: &Connection) -> Result<LineContentSource> {
-    let line_columns = table_columns(conn, "line")?;
-    if line_columns.iter().any(|column| column == "content") {
-        return Ok(LineContentSource {
-            sql: "SELECT id, lineIndex, content FROM line WHERE bookId=?1 ORDER BY lineIndex"
-                .to_owned(),
-        });
-    }
-    if !table_exists(conn, "line_content") {
-        bail!("seforim.db has neither line.content nor line_content");
-    }
-    Ok(LineContentSource {
-        sql: "SELECT l.id, l.lineIndex, lc.content FROM line l JOIN line_content lc ON lc.id=l.id WHERE l.bookId=?1 ORDER BY l.lineIndex".to_owned(),
-    })
-}
-
-fn load_zstd_dictionaries(conn: &Connection) -> Result<HashMap<u32, Vec<u8>>> {
-    if !table_exists(conn, "zstd_dict") {
-        return Ok(HashMap::new());
-    }
-    let mut statement = conn.prepare("SELECT dict FROM zstd_dict")?;
-    let rows = statement.query_map([], |row| row.get::<_, Vec<u8>>(0))?;
-    let mut dictionaries = HashMap::new();
-    for row in rows {
-        let dictionary = row?;
-        let id = zstd::zstd_safe::get_dict_id_from_dict(&dictionary)
-            .context("zstd_dict row has no dictionary ID")?
-            .get();
-        dictionaries.insert(id, dictionary);
-    }
-    Ok(dictionaries)
-}
-
-fn decode_line_content(value: Value, dictionaries: &HashMap<u32, Vec<u8>>) -> Result<String> {
-    match value {
-        Value::Null => Ok(String::new()),
-        Value::Text(text) => Ok(text),
-        Value::Blob(frame) => {
-            let decoded = if let Some(id) = zstd::zstd_safe::get_dict_id_from_frame(&frame) {
-                let dictionary = dictionaries
-                    .get(&id.get())
-                    .with_context(|| format!("missing zstd dictionary {}", id.get()))?;
-                let mut decompressor = zstd::bulk::Decompressor::with_dictionary(dictionary)?;
-                decompressor.decompress(&frame, MAX_DECOMPRESSED_LINE_BYTES)?
-            } else {
-                zstd::bulk::decompress(&frame, MAX_DECOMPRESSED_LINE_BYTES)?
-            };
-            String::from_utf8(decoded).context("decoded line content is not UTF-8")
-        }
-        other => bail!("unsupported SQLite line content type: {other:?}"),
-    }
 }
 
 fn load_title_terms(conn: &Connection, book_id: i64, title: &str) -> Result<Vec<String>> {

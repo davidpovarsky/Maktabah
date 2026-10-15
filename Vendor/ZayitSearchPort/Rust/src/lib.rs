@@ -2,6 +2,7 @@ pub mod engine;
 pub mod ffi;
 pub mod hebrew_text_utils;
 pub mod index_schema;
+pub mod line_decoder;
 pub mod magic_dictionary_index;
 pub mod models;
 pub mod query_builder;
