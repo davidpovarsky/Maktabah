@@ -431,8 +431,8 @@ screen = max(
 )
 frame = max(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
 x_start = x_end = min(max(frame['x'] + frame['width'] * 0.55, 80), screen['width'] - 80)
-y_start = screen['height'] * 0.78
-y_end = screen['height'] * 0.28
+y_start = screen['height'] * 0.65
+y_end = screen['height'] * 0.45
 orientation = sys.argv[3]
 def hid(x, y):
     if orientation == 'landscapeLeft':
@@ -453,7 +453,7 @@ $coordinates
 EOF
         if idb ui swipe "$x_start" "$y_start" "$x_end" "$y_end" \
           --duration 0.45 --udid "$UDID"; then
-          idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+          sleep 0.5
           return 0
         fi
       fi
@@ -644,9 +644,10 @@ run_panel_geometry_and_scroll_flow() {
 
   launch_interactive_scenario readerDetail sefaria en en_US
   ui_wait_id reader-text 45
-  for _ in 1 2 3 4 5 6; do
+  for _ in 1 2; do
     ui_scroll_up_id reader-text
   done
+  sleep 1
   idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   viewport_report="$CONTAINER/Documents/real-ui-readerDetail-sefaria.ready.viewport.json"
   waited=0
