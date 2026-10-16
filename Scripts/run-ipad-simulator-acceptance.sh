@@ -460,6 +460,7 @@ open_toc_from_detail() {
   idb ui wait "Table of Contents" --match-key AXLabel --timeout 30 --json --udid "$UDID"
   ui_tap_label "Table of Contents"
   ui_wait_id toc-column 30
+  ui_wait_id toc-row- 30
 }
 
 run_split_geometry_flow() {
@@ -467,12 +468,14 @@ run_split_geometry_flow() {
   launch_interactive_scenario reader sefaria en en_US
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
+  ui_wait_id toc-row- 30
   ui_wait_id reader-detail-column 30
   capture_split_frames fixed-split-all-en
 
   launch_interactive_scenario reader sefaria he he_IL
   ui_wait_id library-column 45
   ui_wait_id toc-column 30
+  ui_wait_id toc-row- 30
   ui_wait_id reader-detail-column 30
   capture_split_frames fixed-split-all-he
 
