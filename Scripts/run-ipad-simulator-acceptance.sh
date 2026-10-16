@@ -170,7 +170,7 @@ launch_interactive_scenario() {
     [ -f "$ready_file" ] && cat "$ready_file" >&2
     return 1
   fi
-  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
 }
 
 ui_wait_id() {
@@ -249,7 +249,7 @@ ui_tap_id() {
   local attempt
   for attempt in 1 2 3 4 5; do
     if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
       return 0
     fi
     local coords
@@ -279,7 +279,7 @@ PY
     if [ -n "$coords" ]; then
       read -r cx cy <<< "$coords"
       if idb ui tap "$cx" "$cy" --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
         return 0
       fi
     fi
@@ -294,7 +294,7 @@ ui_tap_label() {
   local attempt
   for attempt in 1 2 3 4 5; do
     if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
       return 0
     fi
     local coords
@@ -324,7 +324,7 @@ PY
     if [ -n "$coords" ]; then
       read -r cx cy <<< "$coords"
       if idb ui tap "$cx" "$cy" --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
         return 0
       fi
     fi
@@ -378,7 +378,7 @@ PY
         x="${coordinates%% *}"
         y="${coordinates#* }"
         if idb ui tap "$x" "$y" --udid "$UDID"; then
-          idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+          idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
           return 0
         fi
       fi
@@ -395,7 +395,7 @@ ui_set_value_id() {
   local attempt
   for attempt in 1 2 3 4 5; do
     if idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID"; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
       return 0
     fi
     sleep 1
@@ -453,7 +453,7 @@ $coordinates
 EOF
         if idb ui swipe "$x_start" "$y_start" "$x_end" "$y_end" \
           --duration 0.45 --udid "$UDID"; then
-          idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+          idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
           return 0
         fi
       fi
@@ -647,7 +647,7 @@ run_panel_geometry_and_scroll_flow() {
   for _ in 1 2 3 4 5 6; do
     ui_scroll_up_id reader-text
   done
-  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   viewport_report="$CONTAINER/Documents/real-ui-readerDetail-sefaria.ready.viewport.json"
   waited=0
   while [ ! -s "$viewport_report" ] && [ "$waited" -lt 30 ]; do
@@ -769,7 +769,7 @@ PY
   capture_current_ui fixed-real-source-single-tap-expanded.png
 
   idb ui tap "$source_x" "$source_y" --udid "$UDID"
-  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   idb ui multi-tap "$source_x" "$source_y" --count 2 --pause 0.08 --udid "$UDID"
   ui_wait_absent_id torah-inspector-panel 45
   ui_wait_id reader-header-title 45
@@ -815,7 +815,7 @@ run_real_note_flow() {
   ui_wait_id annotation-delete 30
   ui_tap_id annotation-delete
   ui_wait_id torah-inspector-add-note 30
-  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   if idb ui describe "$updated" --match-key AXLabel --udid "$UDID" >/dev/null 2>&1; then
     echo "Deleted note is still exposed in the inspector: $backend" >&2
     return 1
