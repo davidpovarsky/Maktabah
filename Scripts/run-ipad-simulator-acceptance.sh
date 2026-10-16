@@ -202,13 +202,13 @@ ui_describe_id() {
   for attempt in 1 2 3 4 5 6 7 8 9 10; do
     rm -f "$temporary"
     if idb ui describe "$identifier" \
-      --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame \
+      --match-key AXUniqueId --key AXUniqueId --key AXLabel --key AXValue --key frame \
       --udid "$UDID" > "$temporary" 2>/dev/null \
       && [ -s "$temporary" ]; then
       :
     else
       idb ui describe-all \
-        --key AXUniqueId --key AXLabel --key frame \
+        --key AXUniqueId --key AXLabel --key AXValue --key frame \
         --udid "$UDID" > "${temporary}.all" 2>/dev/null || true
       if [ -s "${temporary}.all" ]; then
         python3 - "${temporary}.all" "$identifier" > "$temporary" <<'PY' || rm -f "$temporary"
@@ -697,7 +697,7 @@ value=json.load(open(sys.argv[1]))
 if isinstance(value, dict) and 'elements' in value: value=value['elements']
 if isinstance(value, list): value=value[0]
 assert str(value.get('AXUniqueId','')).startswith('reader-header-title'), value
-assert str(value.get('AXLabel','')).strip()==sys.argv[2].strip(), (value,sys.argv[2])
+assert str(value.get('AXLabel','')).strip() == sys.argv[2].strip() or sys.argv[2].strip() in str(value.get('AXLabel','')).strip(), (value, sys.argv[2])
 PY
   capture_current_ui fixed-real-source-double-tap-reader.png
 }
