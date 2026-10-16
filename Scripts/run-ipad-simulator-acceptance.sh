@@ -475,15 +475,35 @@ run_real_search_preview() {
   echo "--> [REAL UI] Search result row expansion"
   launch_interactive_scenario searchPreview sefaria he he_IL
   ui_wait_id search-result-preview-toggle- 45
-  idb ui describe search-result-preview-toggle- \
-    --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
-    > "$REPORT_DIR/search-result-row-before.json"
+  ui_describe_id \
+    search-result-preview-toggle- \
+    "$REPORT_DIR/search-result-row-before.json"
   ui_tap_id search-result-preview-toggle-
   ui_wait_id search-result-expanded-preview- 45
-  idb ui describe search-result-expanded-preview- \
-    --match-key AXUniqueId --key AXUniqueId --key frame --udid "$UDID" \
-    > "$REPORT_DIR/search-result-preview-expanded.json"
-  capture_current_ui fixed-real-sefaria-search-preview.png
+  ui_describe_id \
+    search-result-expanded-preview- \
+    "$REPORT_DIR/search-result-preview-expanded.json"
+
+  local waited=0
+  while [ "$waited" -lt 30 ]; do
+    capture_current_ui fixed-real-sefaria-search-preview.png
+    if python3 - "$REPORT_DIR/fixed-real-sefaria-search-preview-accessibility.json" <<'PY' >/dev/null 2>&1
+import json, sys
+data = json.load(open(sys.argv[1]))
+items = data.get('elements') if isinstance(data, dict) else data
+items = items if isinstance(items, list) else [items]
+labels = [str(x.get('AXLabel', '')) + str(x.get('AXValue', '')) for x in items]
+has_he = any(any('\u0590' <= c <= '\u05ff' for c in l) for l in labels)
+has_en = any(sum('a' <= c.lower() <= 'z' for c in l) >= 40 for l in labels)
+assert has_he and has_en
+PY
+    then
+      break
+    fi
+    sleep 1
+    waited=$((waited + 1))
+  done
+
   python3 - \
     "$REPORT_DIR/search-result-row-before.json" \
     "$REPORT_DIR/search-result-preview-expanded.json" \
@@ -498,8 +518,9 @@ row, preview = item(sys.argv[1]), item(sys.argv[2])
 rw = float(row['frame']['width'])
 pw = float(preview['frame']['width'])
 assert pw >= rw * 0.90, (rw, pw)
-tree = json.load(open(sys.argv[3]))
-tree = tree if isinstance(tree, list) else [tree]
+data = json.load(open(sys.argv[3]))
+items = data.get('elements') if isinstance(data, dict) else data
+tree = items if isinstance(items, list) else [items]
 labels = [str(x.get('AXLabel','')) for x in tree]
 assert any(any('\u0590' <= c <= '\u05ff' for c in label) for label in labels), labels
 assert any(sum('a' <= c.lower() <= 'z' for c in label) >= 40 for label in labels), labels
@@ -811,9 +832,9 @@ run_invalid_note_save_flow() {
   idb ui wait "Could Not Save Annotation" --timeout 30 --json --udid "$UDID"
   ui_tap_label "OK"
   ui_wait_id annotation-note-text 10
-  idb ui describe annotation-note-text \
-    --match-key AXUniqueId --key AXValue --key AXUniqueId --udid "$UDID" \
-    > "$REPORT_DIR/invalid-note-preserved-text.json"
+  ui_describe_id \
+    annotation-note-text \
+    "$REPORT_DIR/invalid-note-preserved-text.json"
   python3 - "$REPORT_DIR/invalid-note-preserved-text.json" "$value" <<'PY'
 import json, sys
 value = json.load(open(sys.argv[1]))
