@@ -475,7 +475,7 @@ capture_current_ui() {
 
 run_real_search_preview() {
   echo "--> [REAL UI] Search result row expansion"
-  launch_interactive_scenario searchPreview sefaria he he_IL
+  launch_interactive_scenario searchPreview sefaria en en_US
   ui_wait_id search-result-preview-toggle- 45
   ui_describe_id \
     search-result-preview-toggle- \
@@ -815,6 +815,7 @@ run_real_note_flow() {
   ui_wait_id annotation-delete 30
   ui_tap_id annotation-delete
   ui_wait_id torah-inspector-add-note 30
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
   if idb ui describe "$updated" --match-key AXLabel --udid "$UDID" >/dev/null 2>&1; then
     echo "Deleted note is still exposed in the inspector: $backend" >&2
     return 1

@@ -301,6 +301,7 @@ private extension iOSMainView {
             selectedTab = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
+            TextViewState.shared.setReaderTextMode(.both)
             try? await Task.sleep(for: .milliseconds(500))
             // Prepare the real result list only. Acceptance automation must tap
             // an actual row to expand its preview; no overlay is injected here.
