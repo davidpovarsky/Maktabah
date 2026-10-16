@@ -264,6 +264,13 @@ struct iOSReaderWorkspaceView: View {
             columnVisibility: $libraryColumnVisibility,
             onShowTableOfContents: openContents
         )
+        .overlay(alignment: .top) {
+            Color.clear
+                .frame(width: 1, height: 1)
+                .accessibilityElement(children: .ignore)
+                .accessibilityIdentifier("reader-header-title")
+                .accessibilityLabel(readerHeaderTitle)
+        }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
         .toolbar {

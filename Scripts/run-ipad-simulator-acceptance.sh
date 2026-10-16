@@ -203,8 +203,27 @@ ui_describe_id() {
     rm -f "$temporary"
     if idb ui describe "$identifier" \
       --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame \
-      --udid "$UDID" > "$temporary" \
-      && [ -s "$temporary" ] \
+      --udid "$UDID" > "$temporary" 2>/dev/null \
+      && [ -s "$temporary" ]; then
+      :
+    else
+      idb ui describe-all \
+        --key AXUniqueId --key AXLabel --key frame \
+        --udid "$UDID" > "${temporary}.all" 2>/dev/null || true
+      if [ -s "${temporary}.all" ]; then
+        python3 - "${temporary}.all" "$identifier" > "$temporary" <<'PY' || rm -f "$temporary"
+import json, sys
+data = json.load(open(sys.argv[1]))
+items = data.get('elements') if isinstance(data, dict) else data
+matches = [x for x in (items if isinstance(items, list) else [items])
+           if sys.argv[2] in str(x.get('AXUniqueId', ''))]
+if matches:
+    print(json.dumps(matches))
+PY
+        rm -f "${temporary}.all"
+      fi
+    fi
+    if [ -s "$temporary" ] \
       && python3 - "$temporary" <<'PY'
 import json, sys
 value=json.load(open(sys.argv[1]))
