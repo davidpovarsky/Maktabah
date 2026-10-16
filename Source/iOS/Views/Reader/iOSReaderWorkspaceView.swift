@@ -99,7 +99,6 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
     @State private var noteErrorMessage: String?
-    @State private var pendingNotesDidChange: TorahInspectorHostActions.NotesDidChange?
 
     init(
         book: BooksData,
@@ -383,12 +382,11 @@ struct iOSReaderWorkspaceView: View {
             selectedTool: $selectedTool,
             showsCloseButton: showsCloseButton,
             chrome: chrome,
-            onAddNote: { selection, completion in
-                pendingNotesDidChange = completion
+            contentID: inspectorContentID,
+            onAddNote: { selection, _ in
                 addNote(for: selection)
             },
-            onOpenNote: { note, _, completion in
-                pendingNotesDidChange = completion
+            onOpenNote: { note, _, _ in
                 openNote(note)
             },
             onDeleteNote: { note, _, completion in
@@ -436,7 +434,6 @@ struct iOSReaderWorkspaceView: View {
             set: { isPresented in
                 if !isPresented {
                     editingAnnotation = nil
-                    pendingNotesDidChange = nil
                 }
             }
         )
@@ -608,9 +605,6 @@ struct iOSReaderWorkspaceView: View {
         ) {
             inspectorSession.repository.invalidateNotes(for: selection)
         }
-        let completion = pendingNotesDidChange
-        pendingNotesDidChange = nil
-        completion?()
         inspectorContentID = UUID()
     }
 }

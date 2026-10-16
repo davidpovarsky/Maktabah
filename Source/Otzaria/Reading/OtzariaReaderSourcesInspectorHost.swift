@@ -10,6 +10,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
     @Binding var selectedTool: TorahStudyTool
     let showsCloseButton: Bool
     let chrome: TorahInspectorChrome
+    var contentID: UUID = UUID()
     let onAddNote: ((TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
     let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
     let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
@@ -41,7 +42,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 onDeleteNote: onDeleteNote,
                 showsCloseButton: showsCloseButton
             )
-            .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue)")
+            .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue):\(contentID)")
             .onChange(of: backendCoordinator.generation) { _, _ in
                 inspectorSession = MaktabahTorahInspectorSession(viewModel: viewModel)
                 viewModel.closeReaderInspector()
