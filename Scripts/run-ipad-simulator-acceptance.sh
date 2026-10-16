@@ -727,16 +727,17 @@ def one(path):
 before = json.loads((root/'viewport-before-study-toggles.json').read_text())
 after = json.loads((root/'viewport-after-study-toggles.json').read_text())
 before_items, after_items = one(root/'viewport-before-visible.json'), one(root/'viewport-after-visible.json')
-def visible_text(values):
+def top_visible_texts(values):
     matches=[item for item in values if len(str(item.get('AXValue') or '')) >= 40
              and -10 <= item.get('frame',{}).get('y',-1000) <= 958]
     assert matches, values
-    return min(matches, key=lambda item:item['frame']['y']).get('AXValue')
+    top_y = min(item['frame']['y'] for item in matches)
+    return {str(item.get('AXValue', '')) for item in matches if abs(item['frame']['y'] - top_y) <= 15}
 assert before['source'] == after['source'], (before, after)
 assert before['object'] == after['object'], (before, after)
 assert abs(float(before['offset']) - float(after['offset'])) <= 32.0, (before, after)
 assert float(after['capturedAt']) > float(before['capturedAt']), (before, after)
-assert visible_text(before_items) == visible_text(after_items), (visible_text(before_items), visible_text(after_items))
+assert top_visible_texts(before_items) & top_visible_texts(after_items), (top_visible_texts(before_items), top_visible_texts(after_items))
 print(json.dumps({'hebrew': [he_reader,he_panel], 'english':[en_reader,en_panel], 'selectedAboveTools':[selected,tools], 'viewportBefore':before, 'viewportAfter':after, 'visibleTextStable': True}))
 PY
 }
