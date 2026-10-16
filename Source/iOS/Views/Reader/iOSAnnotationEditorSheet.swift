@@ -174,14 +174,6 @@ final class AccessibleAutoDirectionTextView: UITextView {
             }
         }
     }
-
-    override func accessibilitySetValue(_ value: Any?) {
-        super.accessibilitySetValue(value)
-        if let str = value as? String {
-            self.text = str
-            onTextChange?(str)
-        }
-    }
 }
 
 struct iOSAutoDirectionTextView: UIViewRepresentable {
