@@ -63,6 +63,29 @@ struct iOSAnnotationEditorSheet: View {
                         .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
                 }
 
+                ThemeSection {
+                    Button(action: saveAnnotation) {
+                        HStack {
+                            Spacer()
+                            Text("Save")
+                                .bold()
+                            Spacer()
+                        }
+                    }
+                    .accessibilityIdentifier("annotation-save")
+                    .accessibilityLabel("Save")
+
+                    Button(role: .cancel, action: { dismiss() }) {
+                        HStack {
+                            Spacer()
+                            Text("Cancel")
+                            Spacer()
+                        }
+                    }
+                    .accessibilityIdentifier("annotation-cancel")
+                    .accessibilityLabel("Cancel")
+                }
+
                 if let annotationID = annotation.id {
                     ThemeSection {
                         Button(role: .destructive, action: {
@@ -90,14 +113,14 @@ struct iOSAnnotationEditorSheet: View {
                     Button("Cancel") {
                         dismiss()
                     }
-                    .accessibilityIdentifier("annotation-cancel")
+                    .accessibilityIdentifier("annotation-cancel-toolbar")
                     .accessibilityLabel("Cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         saveAnnotation()
                     }
-                    .accessibilityIdentifier("annotation-save")
+                    .accessibilityIdentifier("annotation-save-toolbar")
                     .accessibilityLabel("Save")
                 }
             }
@@ -141,6 +164,26 @@ struct iOSAnnotationEditorSheet: View {
     }
 }
 
+final class AccessibleAutoDirectionTextView: UITextView {
+    var onTextChange: ((String) -> Void)?
+
+    override var text: String! {
+        didSet {
+            if oldValue != text {
+                onTextChange?(text ?? "")
+            }
+        }
+    }
+
+    override func accessibilitySetValue(_ value: Any?) {
+        super.accessibilitySetValue(value)
+        if let str = value as? String {
+            self.text = str
+            onTextChange?(str)
+        }
+    }
+}
+
 struct iOSAutoDirectionTextView: UIViewRepresentable {
     @Binding var text: String
 
@@ -148,19 +191,28 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
         Coordinator(self)
     }
 
-    func makeUIView(context: Context) -> UITextView {
-        let textView = UITextView()
+    func makeUIView(context: Context) -> AccessibleAutoDirectionTextView {
+        let textView = AccessibleAutoDirectionTextView()
         textView.delegate = context.coordinator
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.backgroundColor = .clear
         textView.textColor = .label
         textView.isScrollEnabled = true
         textView.text = text
+        textView.onTextChange = { newText in
+            context.coordinator.textDidChange(newText, in: textView)
+        }
+        NotificationCenter.default.addObserver(
+            context.coordinator,
+            selector: #selector(Coordinator.handleTextDidChangeNotification(_:)),
+            name: UITextView.textDidChangeNotification,
+            object: textView
+        )
         context.coordinator.updateParagraphAlignments(in: textView)
         return textView
     }
 
-    func updateUIView(_ uiView: UITextView, context: Context) {
+    func updateUIView(_ uiView: AccessibleAutoDirectionTextView, context: Context) {
         if uiView.text != text {
             uiView.text = text
             context.coordinator.updateParagraphAlignments(in: uiView)
@@ -175,7 +227,7 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
             self.parent = parent
         }
 
-        func textViewDidChange(_ textView: UITextView) {
+        func textDidChange(_ newText: String, in textView: UITextView) {
             guard !isUpdating else { return }
             isUpdating = true
 
@@ -183,8 +235,17 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
             updateParagraphAlignments(in: textView)
             textView.selectedRange = selectedRange
 
-            parent.text = textView.text
+            parent.text = newText
             isUpdating = false
+        }
+
+        @objc func handleTextDidChangeNotification(_ note: Notification) {
+            guard let textView = note.object as? UITextView else { return }
+            textDidChange(textView.text ?? "", in: textView)
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            textDidChange(textView.text ?? "", in: textView)
         }
 
         func updateParagraphAlignments(in textView: UITextView) {
@@ -194,5 +255,3 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
         }
     }
 }
-
-

@@ -274,7 +274,7 @@ matches = [x for x in items
            if (ident in str(x.get('AXUniqueId','')) or (label_fallback and label_fallback in str(x.get('AXLabel',''))))
            and x.get('frame',{}).get('width',0)>1 and x.get('frame',{}).get('height',0)>1]
 if matches:
-    f = matches[0]['frame']
+    f = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
     x = f['x'] + f['width']/2
     y = f['y'] + f['height']/2
     screen = max((item.get('frame',{}) for item in items), key=lambda c: c.get('width',0)*c.get('height',0))
