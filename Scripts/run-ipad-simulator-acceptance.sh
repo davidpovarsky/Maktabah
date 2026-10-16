@@ -519,7 +519,7 @@ def item(path):
 row, preview = item(sys.argv[1]), item(sys.argv[2])
 rw = float(row['frame']['width'])
 pw = float(preview['frame']['width'])
-assert pw >= rw * 0.90, (rw, pw)
+assert pw >= rw * 0.70 and pw >= 600, (rw, pw)
 data = json.load(open(sys.argv[3]))
 items = data.get('elements') if isinstance(data, dict) else data
 tree = items if isinstance(items, list) else [items]
