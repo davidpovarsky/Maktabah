@@ -246,9 +246,40 @@ ui_tap_id() {
   local identifier="$1"
   local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID"; then
+    if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
       idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
       return 0
+    fi
+    local coords
+    coords="$(python3 - "$UDID" "$identifier" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
+import json, subprocess, sys
+udid, ident, orientation = sys.argv[1], sys.argv[2], sys.argv[3]
+cmd = ["idb", "ui", "describe-all", "--key", "AXUniqueId", "--key", "frame", "--udid", udid]
+out = subprocess.check_output(cmd)
+data = json.loads(out)
+items = data.get('elements') if isinstance(data, dict) else data
+items = items if isinstance(items, list) else [items]
+matches = [x for x in items if ident in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1 and x.get('frame',{}).get('height',0)>1]
+if matches:
+    f = matches[0]['frame']
+    x = f['x'] + f['width']/2
+    y = f['y'] + f['height']/2
+    screen = max((item.get('frame',{}) for item in items), key=lambda c: c.get('width',0)*c.get('height',0))
+    if orientation == 'landscapeLeft':
+        x, y = y, screen['width'] - x
+    elif orientation == 'landscapeRight':
+        x, y = screen['height'] - y, x
+    elif orientation == 'portraitUpsideDown':
+        x, y = screen['width'] - x, screen['height'] - y
+    print(f"{round(x)} {round(y)}")
+PY
+)"
+    if [ -n "$coords" ]; then
+      read -r cx cy <<< "$coords"
+      if idb ui tap "$cx" "$cy" --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+        return 0
+      fi
     fi
     sleep 1
   done
@@ -260,9 +291,40 @@ ui_tap_label() {
   local label="$1"
   local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui tap "$label" --match-key AXLabel --udid "$UDID"; then
+    if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
       idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
       return 0
+    fi
+    local coords
+    coords="$(python3 - "$UDID" "$label" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
+import json, subprocess, sys
+udid, target, orientation = sys.argv[1], sys.argv[2], sys.argv[3]
+cmd = ["idb", "ui", "describe-all", "--key", "AXLabel", "--key", "frame", "--udid", udid]
+out = subprocess.check_output(cmd)
+data = json.loads(out)
+items = data.get('elements') if isinstance(data, dict) else data
+items = items if isinstance(items, list) else [items]
+matches = [x for x in items if target in str(x.get('AXLabel','')) and x.get('frame',{}).get('width',0)>1 and x.get('frame',{}).get('height',0)>1]
+if matches:
+    f = matches[0]['frame']
+    x = f['x'] + f['width']/2
+    y = f['y'] + f['height']/2
+    screen = max((item.get('frame',{}) for item in items), key=lambda c: c.get('width',0)*c.get('height',0))
+    if orientation == 'landscapeLeft':
+        x, y = y, screen['width'] - x
+    elif orientation == 'landscapeRight':
+        x, y = screen['height'] - y, x
+    elif orientation == 'portraitUpsideDown':
+        x, y = screen['width'] - x, screen['height'] - y
+    print(f"{round(x)} {round(y)}")
+PY
+)"
+    if [ -n "$coords" ]; then
+      read -r cx cy <<< "$coords"
+      if idb ui tap "$cx" "$cy" --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID"
+        return 0
+      fi
     fi
     sleep 1
   done
