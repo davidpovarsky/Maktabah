@@ -207,6 +207,7 @@ ui_describe_id() {
       && [ -s "$temporary" ]; then
       :
     else
+      rm -f "$temporary"
       idb ui describe-all \
         --key AXUniqueId --key AXLabel --key AXValue --key frame \
         --udid "$UDID" > "${temporary}.all" 2>/dev/null || true
@@ -216,7 +217,8 @@ import json, sys
 data = json.load(open(sys.argv[1]))
 items = data.get('elements') if isinstance(data, dict) else data
 matches = [x for x in (items if isinstance(items, list) else [items])
-           if sys.argv[2] in str(x.get('AXUniqueId', ''))]
+           if sys.argv[2] in str(x.get('AXUniqueId', ''))
+           or sys.argv[2] in str(x.get('AXLabel', ''))]
 if matches:
     print(json.dumps(matches))
 PY
@@ -224,12 +226,12 @@ PY
       fi
     fi
     if [ -s "$temporary" ] \
-      && python3 - "$temporary" <<'PY'
+      && python3 - "$temporary" <<'PY' 2>/dev/null
 import json, sys
 value=json.load(open(sys.argv[1]))
 if isinstance(value, dict) and 'elements' in value: value=value['elements']
 items=value if isinstance(value,list) else [value]
-assert items and any(item.get('AXUniqueId') for item in items), items
+assert items and any(item.get('AXUniqueId') or item.get('AXLabel') for item in items), items
 PY
     then
       mv "$temporary" "$output"

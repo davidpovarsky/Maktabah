@@ -217,6 +217,13 @@ struct SearchResultContextPreview: View {
         }
         .frame(maxWidth: .infinity, minHeight: 180, alignment: .leading)
         .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(alignment: .topLeading) {
+            Color.clear
+                .frame(maxWidth: .infinity, maxHeight: 1)
+                .accessibilityElement(children: .ignore)
+                .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
+                .accessibilityLabel(String(localized: "Expanded search preview", defaultValue: "תצוגה מקדימה מורחבת"))
+        }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
         .task(id: "\(item.stableID):\(retryToken)") {
