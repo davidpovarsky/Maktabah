@@ -12,7 +12,6 @@ struct iOSAnnotationEditorSheet: View {
     @State private var isUnderline: Bool = false
     @State private var tagsText: String = ""
     @State private var operationErrorMessage: String?
-    @State private var editorTextView: UITextView?
 
     let defaultColors: [UIColor] = [
         UIColor(named: "HighlightText") ?? .yellow,
@@ -27,8 +26,11 @@ struct iOSAnnotationEditorSheet: View {
         NavigationStack {
             ThemeForm {
                 ThemeSection("Note") {
-                    iOSAutoDirectionTextView(text: $noteText, onCreated: { self.editorTextView = $0 })
+                    let isRTL = noteText.isParagraphRTL
+                    TextEditor(text: $noteText)
                         .frame(minHeight: 100)
+                        .multilineTextAlignment(isRTL ? .trailing : .leading)
+                        .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
                         .accessibilityIdentifier("annotation-note-text")
                 }
 
@@ -147,8 +149,8 @@ struct iOSAnnotationEditorSheet: View {
 
     private func saveAnnotation() {
         var updated = annotation
-        let effectiveText = editorTextView?.text ?? noteText
-        updated.note = effectiveText.isEmpty ? nil : effectiveText
+        let trimmed = noteText.trimmingCharacters(in: .whitespacesAndNewlines)
+        updated.note = trimmed.isEmpty ? nil : noteText
         updated.colorHex = isUnderline ? UIColor.black.hexString() : selectedColorHex
         updated.type = isUnderline ? .underline : .highlight
 
@@ -162,103 +164,6 @@ struct iOSAnnotationEditorSheet: View {
             dismiss()
         } catch {
             operationErrorMessage = error.localizedDescription
-        }
-    }
-}
-
-final class AccessibleAutoDirectionTextView: UITextView {
-    var onTextChange: ((String) -> Void)?
-
-    override var text: String! {
-        get { super.text }
-        set {
-            super.text = newValue
-            onTextChange?(newValue ?? "")
-        }
-    }
-
-    override var accessibilityValue: String? {
-        get { super.text }
-        set {
-            super.text = newValue
-            super.accessibilityValue = newValue
-            onTextChange?(newValue ?? "")
-        }
-    }
-}
-
-struct iOSAutoDirectionTextView: UIViewRepresentable {
-    @Binding var text: String
-    var onCreated: ((UITextView) -> Void)? = nil
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    func makeUIView(context: Context) -> AccessibleAutoDirectionTextView {
-        let textView = AccessibleAutoDirectionTextView()
-        textView.delegate = context.coordinator
-        textView.font = UIFont.preferredFont(forTextStyle: .body)
-        textView.backgroundColor = .clear
-        textView.textColor = .label
-        textView.isScrollEnabled = true
-        textView.text = text
-        textView.onTextChange = { newText in
-            context.coordinator.textDidChange(newText, in: textView)
-        }
-        NotificationCenter.default.addObserver(
-            context.coordinator,
-            selector: #selector(Coordinator.handleTextDidChangeNotification(_:)),
-            name: UITextView.textDidChangeNotification,
-            object: textView
-        )
-        context.coordinator.updateParagraphAlignments(in: textView)
-        DispatchQueue.main.async {
-            onCreated?(textView)
-        }
-        return textView
-    }
-
-    func updateUIView(_ uiView: AccessibleAutoDirectionTextView, context: Context) {
-        if uiView.text != text {
-            uiView.text = text
-            context.coordinator.updateParagraphAlignments(in: uiView)
-        }
-    }
-
-    class Coordinator: NSObject, UITextViewDelegate {
-        var parent: iOSAutoDirectionTextView
-        var isUpdating = false
-
-        init(_ parent: iOSAutoDirectionTextView) {
-            self.parent = parent
-        }
-
-        func textDidChange(_ newText: String, in textView: UITextView) {
-            guard !isUpdating else { return }
-            isUpdating = true
-
-            let selectedRange = textView.selectedRange
-            updateParagraphAlignments(in: textView)
-            textView.selectedRange = selectedRange
-
-            parent.text = newText
-            isUpdating = false
-        }
-
-        @objc func handleTextDidChangeNotification(_ note: Notification) {
-            guard let textView = note.object as? UITextView else { return }
-            textDidChange(textView.text ?? "", in: textView)
-        }
-
-        func textViewDidChange(_ textView: UITextView) {
-            textDidChange(textView.text ?? "", in: textView)
-        }
-
-        func updateParagraphAlignments(in textView: UITextView) {
-            let font = textView.font ?? UIFont.preferredFont(forTextStyle: .body)
-            textView.typingAttributes[.font] = font
-            textView.textStorage.applyAutoDirectionAlignments(font: font)
         }
     }
 }
