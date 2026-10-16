@@ -12,6 +12,7 @@ struct iOSAnnotationEditorSheet: View {
     @State private var isUnderline: Bool = false
     @State private var tagsText: String = ""
     @State private var operationErrorMessage: String?
+    @State private var editorTextView: UITextView?
 
     let defaultColors: [UIColor] = [
         UIColor(named: "HighlightText") ?? .yellow,
@@ -26,7 +27,7 @@ struct iOSAnnotationEditorSheet: View {
         NavigationStack {
             ThemeForm {
                 ThemeSection("Note") {
-                    iOSAutoDirectionTextView(text: $noteText)
+                    iOSAutoDirectionTextView(text: $noteText, onCreated: { self.editorTextView = $0 })
                         .frame(minHeight: 100)
                         .accessibilityIdentifier("annotation-note-text")
                 }
@@ -146,7 +147,8 @@ struct iOSAnnotationEditorSheet: View {
 
     private func saveAnnotation() {
         var updated = annotation
-        updated.note = noteText.isEmpty ? nil : noteText
+        let effectiveText = editorTextView?.text ?? noteText
+        updated.note = effectiveText.isEmpty ? nil : effectiveText
         updated.colorHex = isUnderline ? UIColor.black.hexString() : selectedColorHex
         updated.type = isUnderline ? .underline : .highlight
 
@@ -168,16 +170,26 @@ final class AccessibleAutoDirectionTextView: UITextView {
     var onTextChange: ((String) -> Void)?
 
     override var text: String! {
-        didSet {
-            if oldValue != text {
-                onTextChange?(text ?? "")
-            }
+        get { super.text }
+        set {
+            super.text = newValue
+            onTextChange?(newValue ?? "")
+        }
+    }
+
+    override var accessibilityValue: String? {
+        get { super.text }
+        set {
+            super.text = newValue
+            super.accessibilityValue = newValue
+            onTextChange?(newValue ?? "")
         }
     }
 }
 
 struct iOSAutoDirectionTextView: UIViewRepresentable {
     @Binding var text: String
+    var onCreated: ((UITextView) -> Void)? = nil
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -201,6 +213,9 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
             object: textView
         )
         context.coordinator.updateParagraphAlignments(in: textView)
+        DispatchQueue.main.async {
+            onCreated?(textView)
+        }
         return textView
     }
 
