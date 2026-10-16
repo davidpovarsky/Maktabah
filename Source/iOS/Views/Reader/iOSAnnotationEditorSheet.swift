@@ -91,12 +91,14 @@ struct iOSAnnotationEditorSheet: View {
                         dismiss()
                     }
                     .accessibilityIdentifier("annotation-cancel")
+                    .accessibilityLabel("Cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         saveAnnotation()
                     }
                     .accessibilityIdentifier("annotation-save")
+                    .accessibilityLabel("Save")
                 }
             }
             .onAppear {

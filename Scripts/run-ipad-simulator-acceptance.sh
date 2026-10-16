@@ -247,21 +247,32 @@ PY
 ui_tap_id() {
   local identifier="$1"
   local attempt
+  local label_fallback=""
+  case "$identifier" in
+    annotation-save) label_fallback="Save" ;;
+    annotation-cancel) label_fallback="Cancel" ;;
+  esac
   for attempt in 1 2 3 4 5; do
     if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
       idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
       return 0
     fi
+    if [ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+      return 0
+    fi
     local coords
-    coords="$(python3 - "$UDID" "$identifier" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
+    coords="$(python3 - "$UDID" "$identifier" "$label_fallback" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
 import json, subprocess, sys
-udid, ident, orientation = sys.argv[1], sys.argv[2], sys.argv[3]
-cmd = ["idb", "ui", "describe-all", "--key", "AXUniqueId", "--key", "frame", "--udid", udid]
+udid, ident, label_fallback, orientation = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+cmd = ["idb", "ui", "describe-all", "--key", "AXUniqueId", "--key", "AXLabel", "--key", "frame", "--udid", udid]
 out = subprocess.check_output(cmd)
 data = json.loads(out)
 items = data.get('elements') if isinstance(data, dict) else data
 items = items if isinstance(items, list) else [items]
-matches = [x for x in items if ident in str(x.get('AXUniqueId','')) and x.get('frame',{}).get('width',0)>1 and x.get('frame',{}).get('height',0)>1]
+matches = [x for x in items
+           if (ident in str(x.get('AXUniqueId','')) or (label_fallback and label_fallback in str(x.get('AXLabel',''))))
+           and x.get('frame',{}).get('width',0)>1 and x.get('frame',{}).get('height',0)>1]
 if matches:
     f = matches[0]['frame']
     x = f['x'] + f['width']/2
