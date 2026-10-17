@@ -405,7 +405,19 @@ ui_set_value_id() {
   local value="$2"
   local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID"; then
+    if idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID" 2>/dev/null; then
+      local desc
+      desc="$(idb ui describe "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null || true)"
+      if [[ "$desc" == *"$value"* ]]; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+    fi
+    idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null || true
+    idb ui text "$value" --udid "$UDID" 2>/dev/null || true
+    local desc2
+    desc2="$(idb ui describe "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null || true)"
+    if [[ "$desc2" == *"$value"* ]]; then
       idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
       return 0
     fi

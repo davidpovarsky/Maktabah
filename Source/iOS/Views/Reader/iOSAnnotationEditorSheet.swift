@@ -146,9 +146,13 @@ struct iOSAnnotationEditorSheet: View {
 
     private func saveAnnotation() {
         var updated = annotation
-        let effectiveText = editorTextView?.text ?? noteText
-        let trimmed = effectiveText.trimmingCharacters(in: .whitespacesAndNewlines)
-        updated.note = trimmed.isEmpty ? nil : effectiveText
+        let editorText = editorTextView?.text ?? ""
+        let axText = editorTextView?.accessibilityValue ?? ""
+        let rawCandidate = !editorText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            ? editorText
+            : (!axText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? axText : noteText)
+        let trimmed = rawCandidate.trimmingCharacters(in: .whitespacesAndNewlines)
+        updated.note = trimmed.isEmpty ? nil : rawCandidate
         updated.colorHex = isUnderline ? UIColor.black.hexString() : selectedColorHex
         updated.type = isUnderline ? .underline : .highlight
 
@@ -169,21 +173,51 @@ struct iOSAnnotationEditorSheet: View {
 final class AccessibleAutoDirectionTextView: UITextView {
     var onTextChange: ((String) -> Void)?
 
+    private func applyNewValue(_ newValue: String?) {
+        let stringValue = newValue ?? ""
+        if super.text != stringValue {
+            super.text = stringValue
+        }
+        super.accessibilityValue = stringValue
+        onTextChange?(stringValue)
+    }
+
     override var text: String! {
         get { super.text }
         set {
-            super.text = newValue
-            onTextChange?(newValue ?? "")
+            applyNewValue(newValue)
         }
     }
 
     override var accessibilityValue: String? {
         get { super.text }
         set {
-            super.text = newValue
-            super.accessibilityValue = newValue
-            onTextChange?(newValue ?? "")
+            applyNewValue(newValue)
         }
+    }
+
+    @objc func accessibilitySetValue(_ value: Any?, forAttribute attribute: String) {
+        let str = (value as? String) ?? (value as? NSAttributedString)?.string
+        applyNewValue(str)
+    }
+
+    @objc func accessibilitySetValue(_ value: Any?) {
+        let str = (value as? String) ?? (value as? NSAttributedString)?.string
+        applyNewValue(str)
+    }
+
+    override func setValue(_ value: Any?, forKey key: String) {
+        if key == "accessibilityValue" || key == "value" || key == "text" {
+            let str = (value as? String) ?? (value as? NSAttributedString)?.string
+            applyNewValue(str)
+        } else {
+            super.setValue(value, forKey: key)
+        }
+    }
+
+    override func insertText(_ text: String) {
+        super.insertText(text)
+        applyNewValue(super.text)
     }
 }
 
@@ -199,6 +233,7 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
         let textView = AccessibleAutoDirectionTextView()
         textView.isAccessibilityElement = true
         textView.accessibilityIdentifier = "annotation-note-text"
+        textView.accessibilityLabel = "Note text"
         textView.delegate = context.coordinator
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.backgroundColor = .clear
@@ -215,6 +250,7 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
             object: textView
         )
         context.coordinator.updateParagraphAlignments(in: textView)
+        onCreated?(textView)
         DispatchQueue.main.async {
             onCreated?(textView)
         }
