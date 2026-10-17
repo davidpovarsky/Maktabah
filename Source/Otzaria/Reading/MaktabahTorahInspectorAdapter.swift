@@ -287,15 +287,18 @@ final class MaktabahTorahInspectorSession {
               let selectedLocator = locator(for: selection),
               selectedLocator.backend == coordinator.activeBackendID else { return [] }
         let selectedRange = viewModel.selectedSegmentRange
-        let candidateAnnotations: [Annotation]
-        if !viewModel.currentAnnotations.isEmpty {
-            candidateAnnotations = viewModel.currentAnnotations
-        } else if let bkId = viewModel.currentBook?.id {
-            let fromManager = AnnotationManager.shared.loadAnnotations(bkId: bkId)
-            candidateAnnotations = !fromManager.isEmpty ? fromManager : []
-        } else {
-            candidateAnnotations = []
+        var allByID: [Int64: Annotation] = [:]
+        for ann in viewModel.currentAnnotations {
+            if let id = ann.id { allByID[id] = ann }
         }
+        if let bkId = viewModel.currentBook?.id {
+            for ann in AnnotationManager.shared.loadAnnotations(bkId: bkId) {
+                if let id = ann.id, allByID[id] == nil {
+                    allByID[id] = ann
+                }
+            }
+        }
+        let candidateAnnotations = allByID.isEmpty ? viewModel.currentAnnotations : Array(allByID.values)
         return candidateAnnotations.compactMap { annotation in
             let hasMatchingLocator: Bool
             if let annLoc = annotation.backendLocator {

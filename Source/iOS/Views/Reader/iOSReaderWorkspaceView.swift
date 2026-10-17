@@ -99,7 +99,6 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
     @State private var noteErrorMessage: String?
-    @State private var activeNotesDidChange: TorahInspectorHostActions.NotesDidChange?
 
     init(
         book: BooksData,
@@ -212,6 +211,9 @@ struct iOSReaderWorkspaceView: View {
         }
         .sheet(isPresented: $showPanelSheet, onDismiss: compactPanelDidDismiss) {
             compactStudyPanel
+        }
+        .sheet(isPresented: annotationEditorBinding) {
+            annotationEditor
         }
         .alert(
             String(localized: "Cannot Add Note"),
@@ -384,12 +386,10 @@ struct iOSReaderWorkspaceView: View {
             showsCloseButton: showsCloseButton,
             chrome: chrome,
             contentID: inspectorContentID,
-            onAddNote: { selection, notesDidChange in
-                activeNotesDidChange = notesDidChange
+            onAddNote: { selection, _ in
                 addNote(for: selection)
             },
-            onOpenNote: { note, _, notesDidChange in
-                activeNotesDidChange = notesDidChange
+            onOpenNote: { note, _, _ in
                 openNote(note)
             },
             onDeleteNote: { note, _, completion in
@@ -397,9 +397,6 @@ struct iOSReaderWorkspaceView: View {
             }
         )
         .id("\(BackendCoordinator.shared.generation):\(viewModel.currentReaderTextMode.rawValue):\(inspectorContentID)")
-        .sheet(isPresented: annotationEditorBinding) {
-            annotationEditor
-        }
     }
 
     private var compactStudyPanel: some View {
@@ -437,7 +434,6 @@ struct iOSReaderWorkspaceView: View {
             set: { isPresented in
                 if !isPresented {
                     editingAnnotation = nil
-                    activeNotesDidChange = nil
                 }
             }
         )
@@ -612,9 +608,6 @@ struct iOSReaderWorkspaceView: View {
         ) {
             inspectorSession.repository.invalidateNotes(for: selection)
         }
-        let callback = activeNotesDidChange
-        activeNotesDidChange = nil
-        callback?()
         inspectorContentID = UUID()
     }
 }
