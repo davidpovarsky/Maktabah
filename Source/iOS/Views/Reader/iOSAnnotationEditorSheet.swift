@@ -130,6 +130,11 @@ struct iOSAnnotationEditorSheet: View {
                 isUnderline = annotation.type == .underline
                 tagsText = annotation.tags.joined(separator: ", ")
             }
+            .onDisappear {
+                if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
+                    AccessibleAutoDirectionTextView.activeInstance = nil
+                }
+            }
             .alert(
                 String(localized: "Could Not Save Annotation"),
                 isPresented: Binding(
@@ -146,8 +151,9 @@ struct iOSAnnotationEditorSheet: View {
 
     private func saveAnnotation() {
         var updated = annotation
-        let editorText = editorTextView?.text ?? ""
-        let axText = editorTextView?.accessibilityValue ?? ""
+        let activeView = AccessibleAutoDirectionTextView.activeInstance ?? editorTextView
+        let editorText = activeView?.text ?? ""
+        let axText = activeView?.accessibilityValue ?? ""
         let rawCandidate = !editorText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             ? editorText
             : (!axText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? axText : noteText)
@@ -171,6 +177,7 @@ struct iOSAnnotationEditorSheet: View {
 }
 
 final class AccessibleAutoDirectionTextView: UITextView {
+    static weak var activeInstance: AccessibleAutoDirectionTextView?
     var onTextChange: ((String) -> Void)?
 
     private func applyNewValue(_ newValue: String?) {
@@ -196,7 +203,20 @@ final class AccessibleAutoDirectionTextView: UITextView {
         }
     }
 
+    override var attributedText: NSAttributedString! {
+        get { super.attributedText }
+        set {
+            super.attributedText = newValue
+            applyNewValue(newValue?.string)
+        }
+    }
+
     @objc func accessibilitySetValue(_ value: Any?, forAttribute attribute: String) {
+        let str = (value as? String) ?? (value as? NSAttributedString)?.string
+        applyNewValue(str)
+    }
+
+    @objc func _accessibilitySetValue(_ value: Any?, forAttribute attribute: String) {
         let str = (value as? String) ?? (value as? NSAttributedString)?.string
         applyNewValue(str)
     }
@@ -231,6 +251,7 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> AccessibleAutoDirectionTextView {
         let textView = AccessibleAutoDirectionTextView()
+        AccessibleAutoDirectionTextView.activeInstance = textView
         textView.isAccessibilityElement = true
         textView.accessibilityIdentifier = "annotation-note-text"
         textView.accessibilityLabel = "Note text"
