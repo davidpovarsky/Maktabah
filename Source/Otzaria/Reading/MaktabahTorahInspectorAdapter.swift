@@ -317,6 +317,7 @@ final class MaktabahTorahInspectorSession {
             } ?? false
             let overlapsSelectedRange = selectedRange.map {
                 NSIntersectionRange(annotation.range, $0).length > 0
+                    || NSIntersectionRange(annotation.rangeDiacritics, $0).length > 0
             } ?? false
             guard hasMatchingLocator || isInsideSelectedUnit || overlapsSelectedRange,
                   let noteBody = annotation.note?.trimmingCharacters(in: .whitespacesAndNewlines),

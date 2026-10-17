@@ -129,11 +129,13 @@ struct iOSAnnotationEditorSheet: View {
                 selectedColorHex = annotation.colorHex
                 isUnderline = annotation.type == .underline
                 tagsText = annotation.tags.joined(separator: ", ")
+                AccessibleAutoDirectionTextView.lastEnteredText = annotation.note
             }
             .onDisappear {
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
                     AccessibleAutoDirectionTextView.activeInstance = nil
                 }
+                AccessibleAutoDirectionTextView.lastEnteredText = nil
             }
             .alert(
                 String(localized: "Could Not Save Annotation"),
@@ -154,9 +156,9 @@ struct iOSAnnotationEditorSheet: View {
         let activeView = AccessibleAutoDirectionTextView.activeInstance ?? editorTextView
         let editorText = activeView?.text ?? ""
         let axText = activeView?.accessibilityValue ?? ""
-        let rawCandidate = !editorText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            ? editorText
-            : (!axText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? axText : noteText)
+        let lastEntered = AccessibleAutoDirectionTextView.lastEnteredText ?? ""
+        let candidates = [editorText, axText, lastEntered, noteText]
+        let rawCandidate = candidates.first(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) ?? ""
         let trimmed = rawCandidate.trimmingCharacters(in: .whitespacesAndNewlines)
         updated.note = trimmed.isEmpty ? nil : rawCandidate
         updated.colorHex = isUnderline ? UIColor.black.hexString() : selectedColorHex
@@ -178,10 +180,14 @@ struct iOSAnnotationEditorSheet: View {
 
 final class AccessibleAutoDirectionTextView: UITextView {
     static weak var activeInstance: AccessibleAutoDirectionTextView?
+    static var lastEnteredText: String?
     var onTextChange: ((String) -> Void)?
 
     private func applyNewValue(_ newValue: String?) {
         let stringValue = newValue ?? ""
+        if !stringValue.isEmpty {
+            Self.lastEnteredText = stringValue
+        }
         if super.text != stringValue {
             super.text = stringValue
         }
@@ -279,9 +285,21 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: AccessibleAutoDirectionTextView, context: Context) {
+        context.coordinator.parent = self
         if uiView.text != text {
-            uiView.text = text
-            context.coordinator.updateParagraphAlignments(in: uiView)
+            if text.isEmpty && !uiView.text.isEmpty {
+                let current = uiView.text ?? ""
+                AccessibleAutoDirectionTextView.lastEnteredText = current
+                DispatchQueue.main.async {
+                    self.text = current
+                }
+            } else {
+                uiView.text = text
+                if !text.isEmpty {
+                    AccessibleAutoDirectionTextView.lastEnteredText = text
+                }
+                context.coordinator.updateParagraphAlignments(in: uiView)
+            }
         }
     }
 
