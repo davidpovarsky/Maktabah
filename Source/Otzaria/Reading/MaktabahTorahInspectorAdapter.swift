@@ -287,8 +287,23 @@ final class MaktabahTorahInspectorSession {
               let selectedLocator = locator(for: selection),
               selectedLocator.backend == coordinator.activeBackendID else { return [] }
         let selectedRange = viewModel.selectedSegmentRange
-        return viewModel.currentAnnotations.compactMap { annotation in
-            let hasMatchingLocator = annotation.backendLocator?.persistenceKey == selectedLocator.persistenceKey
+        let candidateAnnotations: [Annotation]
+        if !viewModel.currentAnnotations.isEmpty {
+            candidateAnnotations = viewModel.currentAnnotations
+        } else if let bkId = viewModel.currentBook?.id {
+            let fromManager = AnnotationManager.shared.loadAnnotations(bkId: bkId)
+            candidateAnnotations = !fromManager.isEmpty ? fromManager : []
+        } else {
+            candidateAnnotations = []
+        }
+        return candidateAnnotations.compactMap { annotation in
+            let hasMatchingLocator: Bool
+            if let annLoc = annotation.backendLocator {
+                hasMatchingLocator = annLoc.persistenceKey == selectedLocator.persistenceKey
+                    || (annLoc.backend == selectedLocator.backend && annLoc.workKey == selectedLocator.workKey && annLoc.position == selectedLocator.position)
+            } else {
+                hasMatchingLocator = false
+            }
             let isInsideSelectedUnit = annotation.backendLocator.map {
                 contains($0, in: selection)
             } ?? false

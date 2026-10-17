@@ -99,6 +99,7 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
     @State private var noteErrorMessage: String?
+    @State private var activeNotesDidChange: TorahInspectorHostActions.NotesDidChange?
 
     init(
         book: BooksData,
@@ -383,10 +384,12 @@ struct iOSReaderWorkspaceView: View {
             showsCloseButton: showsCloseButton,
             chrome: chrome,
             contentID: inspectorContentID,
-            onAddNote: { selection, _ in
+            onAddNote: { selection, notesDidChange in
+                activeNotesDidChange = notesDidChange
                 addNote(for: selection)
             },
-            onOpenNote: { note, _, _ in
+            onOpenNote: { note, _, notesDidChange in
+                activeNotesDidChange = notesDidChange
                 openNote(note)
             },
             onDeleteNote: { note, _, completion in
@@ -434,6 +437,7 @@ struct iOSReaderWorkspaceView: View {
             set: { isPresented in
                 if !isPresented {
                     editingAnnotation = nil
+                    activeNotesDidChange = nil
                 }
             }
         )
@@ -573,9 +577,12 @@ struct iOSReaderWorkspaceView: View {
     private func openNote(
         _ note: TorahInspectorNote
     ) {
-        guard let id = Int64(note.id),
-              let annotation = viewModel.currentAnnotations.first(where: { $0.id == id }) else { return }
-        editingAnnotation = annotation
+        guard let id = Int64(note.id) else { return }
+        if let annotation = viewModel.currentAnnotations.first(where: { $0.id == id }) {
+            editingAnnotation = annotation
+        } else if let annotation = AnnotationManager.shared.loadAnnotationById(id) {
+            editingAnnotation = annotation
+        }
     }
 
     private func deleteNote(
@@ -605,6 +612,9 @@ struct iOSReaderWorkspaceView: View {
         ) {
             inspectorSession.repository.invalidateNotes(for: selection)
         }
+        let callback = activeNotesDidChange
+        activeNotesDidChange = nil
+        callback?()
         inspectorContentID = UUID()
     }
 }
