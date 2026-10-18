@@ -314,12 +314,13 @@ final class MaktabahTorahInspectorSession {
         return candidateAnnotations.compactMap { annotation in
             let hasMatchingLocator: Bool
             if let annLoc = annotation.backendLocator {
+                let annRef = Self.reference(for: annLoc)
                 let matchesDirect = annLoc.persistenceKey == selectedLocator.persistenceKey
                     || (annLoc.backend == selectedLocator.backend && annLoc.workKey == selectedLocator.workKey && annLoc.position == selectedLocator.position)
                 let matchesPreferred = selection.preferredSegmentRef.map { pref in
-                    annLoc.position == .canonicalRef(pref) || annLoc.canonicalReference == pref
+                    annLoc.position == .canonicalRef(pref) || annRef == pref
                 } ?? false
-                let matchesCanonical = (annLoc.canonicalReference == selection.canonicalRef)
+                let matchesCanonical = (annRef == selection.canonicalRef)
                 hasMatchingLocator = matchesDirect || matchesPreferred || matchesCanonical
             } else {
                 hasMatchingLocator = false
