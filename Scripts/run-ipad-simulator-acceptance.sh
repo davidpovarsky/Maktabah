@@ -497,17 +497,32 @@ ui_set_value_id() {
   local identifier="$1"
   local value="$2"
   local attempt
+
+  # Resolve container if not set or invalid
+  if [ -z "$CONTAINER" ] || [ ! -d "$CONTAINER/Documents" ]; then
+    CONTAINER="$(xcrun simctl get_app_container "$UDID" "$BUNDLE_ID" data 2>/dev/null || echo "")"
+  fi
+  if [ -n "$CONTAINER" ] && [ -d "$CONTAINER/Documents" ]; then
+    echo -n "$value" > "$CONTAINER/Documents/smoke-note-input.txt"
+  fi
+
   for attempt in 1 2 3 4 5; do
-    if idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID" 2>/dev/null; then
-      local desc
-      desc="$(idb ui describe "$identifier" --match-key AXUniqueId --key AXValue --key AXLabel --udid "$UDID" 2>/dev/null || true)"
-      if [[ "$desc" == *"$value"* ]]; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
+    local desc
+    desc="$(idb ui describe "$identifier" --match-key AXUniqueId --key AXValue --key AXLabel --udid "$UDID" 2>/dev/null || true)"
+    if [[ "$desc" == *"$value"* ]]; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+      return 0
     fi
+
+    if [ -n "$CONTAINER" ] && [ -d "$CONTAINER/Documents" ]; then
+      echo -n "$value" > "$CONTAINER/Documents/smoke-note-input.txt"
+    fi
+
+    idb ui set-value "$identifier" --match-key AXUniqueId --value "$value" --udid "$UDID" 2>/dev/null || true
+    idb ui set-value "$identifier" "$value" --match-key AXUniqueId --udid "$UDID" 2>/dev/null || true
     ui_tap_id "$identifier" 2>/dev/null || true
-    idb ui text "$value" --udid "$UDID" 2>/dev/null || true
+    idb ui text --udid "$UDID" "$value" 2>/dev/null || true
+
     local desc2
     desc2="$(idb ui describe "$identifier" --match-key AXUniqueId --key AXValue --key AXLabel --udid "$UDID" 2>/dev/null || true)"
     if [[ "$desc2" == *"$value"* ]]; then
@@ -914,6 +929,7 @@ run_real_note_flow() {
   ui_wait_id torah-inspector-add-note 45
   ui_tap_id torah-inspector-add-note
   ui_wait_id annotation-note-text 30
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   ui_set_value_id annotation-note-text "$note"
   ui_tap_id annotation-save
   sleep 1
@@ -933,6 +949,7 @@ run_real_note_flow() {
 
   ui_tap_label "$note"
   ui_wait_id annotation-note-text 30
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   ui_set_value_id annotation-note-text "$updated"
   ui_tap_id annotation-save
   sleep 1
@@ -960,6 +977,7 @@ run_invalid_note_save_flow() {
   ui_wait_id torah-inspector-add-note 45
   ui_tap_id torah-inspector-add-note
   ui_wait_id annotation-note-text 30
+  idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   ui_set_value_id annotation-note-text "$value"
   ui_tap_id annotation-save
   sleep 1

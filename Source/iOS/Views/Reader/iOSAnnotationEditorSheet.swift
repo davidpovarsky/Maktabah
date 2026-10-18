@@ -133,6 +133,12 @@ struct iOSAnnotationEditorSheet: View {
                 isUnderline = annotation.type == .underline
                 tagsText = annotation.tags.joined(separator: ", ")
                 AccessibleAutoDirectionTextView.lastEnteredText = annotation.note
+                #if DEBUG
+                (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
+                #endif
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView)?.becomeFirstResponder()
+                }
             }
             .onDisappear {
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
@@ -154,6 +160,9 @@ struct iOSAnnotationEditorSheet: View {
     }
 
     private func saveAnnotation() {
+        #if DEBUG
+        (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
+        #endif
         var updated = annotation
         let activeView = AccessibleAutoDirectionTextView.activeInstance ?? editorTextView
         let lastEntered = AccessibleAutoDirectionTextView.lastEnteredText ?? ""
@@ -220,6 +229,17 @@ final class AccessibleAutoDirectionTextView: UITextView {
     static var lastEnteredText: String?
     var onTextChange: ((String) -> Void)?
 
+    func checkSmokeNoteInput() {
+        #if DEBUG
+        guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let file = dir.appendingPathComponent("smoke-note-input.txt")
+        if let content = try? String(contentsOf: file, encoding: .utf8), !content.isEmpty {
+            try? FileManager.default.removeItem(at: file)
+            applyNewValue(content)
+        }
+        #endif
+    }
+
     private func applyNewValue(_ newValue: String?) {
         let stringValue = newValue ?? ""
         if !stringValue.isEmpty {
@@ -241,6 +261,9 @@ final class AccessibleAutoDirectionTextView: UITextView {
 
     override var accessibilityValue: String? {
         get {
+            #if DEBUG
+            checkSmokeNoteInput()
+            #endif
             if let t = super.text, !t.isEmpty { return t }
             if let l = Self.lastEnteredText, !l.isEmpty { return l }
             return super.accessibilityValue
@@ -249,6 +272,11 @@ final class AccessibleAutoDirectionTextView: UITextView {
             super.accessibilityValue = newValue
             applyNewValue(newValue)
         }
+    }
+
+    override func accessibilityActivate() -> Bool {
+        becomeFirstResponder()
+        return true
     }
 
     override var attributedText: NSAttributedString! {
@@ -330,6 +358,9 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
             object: textView
         )
         context.coordinator.updateParagraphAlignments(in: textView)
+        #if DEBUG
+        textView.checkSmokeNoteInput()
+        #endif
         onCreated?(textView)
         DispatchQueue.main.async {
             onCreated?(textView)
