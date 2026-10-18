@@ -415,11 +415,17 @@ struct iOSReaderWorkspaceView: View {
             iOSAnnotationEditorSheet(
                 annotation: editingAnnotation,
                 onSave: { updated in
+                    #if DEBUG
+                    iOSAnnotationEditorSheet.appendDebugLog("[onSave] persist or update start, id=\(String(describing: updated.id))\n")
+                    #endif
                     if updated.id == nil {
                         try viewModel.persistNewAnnotation(updated)
                     } else {
                         try viewModel.updateAnnotation(updated)
                     }
+                    #if DEBUG
+                    iOSAnnotationEditorSheet.appendDebugLog("[onSave] persist or update finished\n")
+                    #endif
                     finishEditingAnnotation()
                 },
                 onDelete: { id in
@@ -609,6 +615,9 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func finishEditingAnnotation() {
+        #if DEBUG
+        iOSAnnotationEditorSheet.appendDebugLog("[finishEditingAnnotation] called\n")
+        #endif
         editingAnnotation = nil
         inspectorSession.repository.invalidateAllNotes()
         NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)

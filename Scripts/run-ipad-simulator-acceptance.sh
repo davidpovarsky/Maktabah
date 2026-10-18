@@ -259,65 +259,70 @@ ui_tap_id() {
       ;;
   esac
 
-  if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
-    local attempt
-    for attempt in 1 2 3 4 5; do
-      if idb ui tap "$target_ident" --match-key AXUniqueId --udid "$UDID" 2>/dev/null \
-        || ([ "$target_ident" != "$identifier" ] && idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null) \
-        || ([ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null); then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
-      sleep 1
-    done
-    echo "Could not tap accessibility identifier in portrait after 5 attempts: $identifier" >&2
-    return 1
-  fi
-
-  local description="$REPORT_DIR/tap-${identifier//[^[:alnum:]]/-}-layout.json"
-  local attempt coordinates x y
+  local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui describe-all \
-      --key AXUniqueId --key AXLabel --key frame --udid "$UDID" \
-      > "$description"; then
+    if idb ui tap "$target_ident" --match-key AXUniqueId --udid "$UDID" 2>/dev/null \
+      || ([ "$target_ident" != "$identifier" ] && idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null) \
+      || ([ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null); then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+      return 0
+    fi
+
+    local description="$REPORT_DIR/tap-${identifier//[^[:alnum:]]/-}-layout.json"
+    local coordinates x y
+    if idb ui describe "$target_ident" --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null \
+      || ([ "$target_ident" != "$identifier" ] && idb ui describe "$identifier" --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null) \
+      || idb ui describe-all --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null; then
       coordinates="$(python3 - "$description" "$target_ident" "$identifier" "$label_fallback" "$CURRENT_ORIENTATION" <<'PY'
 import json, sys
-value = json.load(open(sys.argv[1], encoding='utf-8', errors='replace'))
-if isinstance(value, dict) and 'elements' in value: value = value['elements']
-items = value if isinstance(value, list) else [value]
-target_ident, orig_ident, label_fallback, orientation = sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]
 
-matches = [item for item in items
-           if (target_ident in str(item.get('AXUniqueId', ''))
-               or orig_ident in str(item.get('AXUniqueId', ''))
-               or (label_fallback and str(item.get('AXLabel', '')).strip() == label_fallback))
-           and item.get('frame', {}).get('width', 0) > 1
-           and item.get('frame', {}).get('height', 0) > 1]
-assert matches, f"No matches found for {target_ident} / {orig_ident} / {label_fallback}"
-frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
-x = frame['x'] + frame['width'] / 2
-y = frame['y'] + frame['height'] / 2
-screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
-screen_w, screen_h = 1376, 1032
-if screens:
-    s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
-    screen_w = max(s.get('width', 1376), s.get('height', 1032))
-    screen_h = min(s.get('width', 1376), s.get('height', 1032))
+def extract_elements(val):
+    if isinstance(val, dict):
+        if 'elements' in val:
+            return val['elements']
+        return [val]
+    if isinstance(val, list):
+        return val
+    return []
 
-if orientation == 'landscapeLeft':
-    x, y = y, screen_w - x
-elif orientation == 'landscapeRight':
-    x, y = screen_h - y, x
-elif orientation == 'portraitUpsideDown':
-    x, y = screen_w - x, screen_h - y
-print(round(x), round(y))
+try:
+    value = json.load(open(sys.argv[1], encoding='utf-8', errors='replace'))
+    items = extract_elements(value)
+    target_ident, orig_ident, label_fallback, orientation = sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]
+
+    matches = [item for item in items
+               if (target_ident in str(item.get('AXUniqueId', ''))
+                   or orig_ident in str(item.get('AXUniqueId', ''))
+                   or (label_fallback and str(item.get('AXLabel', '')).strip() == label_fallback))
+               and item.get('frame', {}).get('width', 0) > 1
+               and item.get('frame', {}).get('height', 0) > 1]
+    if matches:
+        frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
+        x = frame['x'] + frame['width'] / 2
+        y = frame['y'] + frame['height'] / 2
+        screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
+        screen_w, screen_h = 1376, 1032
+        if screens:
+            s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
+            screen_w = max(s.get('width', 1376), s.get('height', 1032))
+            screen_h = min(s.get('width', 1376), s.get('height', 1032))
+
+        if orientation == 'landscapeLeft':
+            x, y = y, screen_w - x
+        elif orientation == 'landscapeRight':
+            x, y = screen_h - y, x
+        elif orientation == 'portraitUpsideDown':
+            x, y = screen_w - x, screen_h - y
+        print(round(x), round(y))
+except Exception:
+    pass
 PY
-)" || true
+)"
       if [ -n "$coordinates" ]; then
         x="${coordinates%% *}"
         y="${coordinates#* }"
         echo "[TAP] Tapping $identifier ($target_ident) at translated ($x, $y) [attempt $attempt]"
-        if idb ui tap "$x" "$y" --udid "$UDID"; then
+        if idb ui tap "$x" "$y" --udid "$UDID" 2>/dev/null; then
           idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
           return 0
         fi
@@ -331,61 +336,65 @@ PY
 
 ui_tap_label() {
   local label="$1"
-  if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
-    local attempt
-    for attempt in 1 2 3 4 5; do
-      if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
-      sleep 1
-    done
-    echo "Could not tap accessibility label in portrait after 5 attempts: $label" >&2
-    return 1
-  fi
-
-  local description="$REPORT_DIR/tap-label-${label//[^[:alnum:]]/-}-layout.json"
-  local attempt coordinates x y
+  local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui describe-all \
-      --key AXLabel --key AXUniqueId --key frame --udid "$UDID" \
-      > "$description"; then
+    if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+      return 0
+    fi
+
+    local description="$REPORT_DIR/tap-label-${label//[^[:alnum:]]/-}-layout.json"
+    local coordinates x y
+    if idb ui describe "$label" --match-key AXLabel --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null \
+      || idb ui describe-all --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null; then
       coordinates="$(python3 - "$description" "$label" "$CURRENT_ORIENTATION" <<'PY'
 import json, sys
-value = json.load(open(sys.argv[1], encoding='utf-8', errors='replace'))
-if isinstance(value, dict) and 'elements' in value: value = value['elements']
-items = value if isinstance(value, list) else [value]
-target, orientation = sys.argv[2], sys.argv[3]
 
-matches = [item for item in items
-           if target in str(item.get('AXLabel', ''))
-           and item.get('frame', {}).get('width', 0) > 1
-           and item.get('frame', {}).get('height', 0) > 1]
-assert matches, f"No matches found for label {target}"
-frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
-x = frame['x'] + frame['width'] / 2
-y = frame['y'] + frame['height'] / 2
-screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
-screen_w, screen_h = 1376, 1032
-if screens:
-    s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
-    screen_w = max(s.get('width', 1376), s.get('height', 1032))
-    screen_h = min(s.get('width', 1376), s.get('height', 1032))
+def extract_elements(val):
+    if isinstance(val, dict):
+        if 'elements' in val:
+            return val['elements']
+        return [val]
+    if isinstance(val, list):
+        return val
+    return []
 
-if orientation == 'landscapeLeft':
-    x, y = y, screen_w - x
-elif orientation == 'landscapeRight':
-    x, y = screen_h - y, x
-elif orientation == 'portraitUpsideDown':
-    x, y = screen_w - x, screen_h - y
-print(round(x), round(y))
+try:
+    value = json.load(open(sys.argv[1], encoding='utf-8', errors='replace'))
+    items = extract_elements(value)
+    target, orientation = sys.argv[2], sys.argv[3]
+
+    matches = [item for item in items
+               if target in str(item.get('AXLabel', ''))
+               and item.get('frame', {}).get('width', 0) > 1
+               and item.get('frame', {}).get('height', 0) > 1]
+    if matches:
+        frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
+        x = frame['x'] + frame['width'] / 2
+        y = frame['y'] + frame['height'] / 2
+        screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
+        screen_w, screen_h = 1376, 1032
+        if screens:
+            s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
+            screen_w = max(s.get('width', 1376), s.get('height', 1032))
+            screen_h = min(s.get('width', 1376), s.get('height', 1032))
+
+        if orientation == 'landscapeLeft':
+            x, y = y, screen_w - x
+        elif orientation == 'landscapeRight':
+            x, y = screen_h - y, x
+        elif orientation == 'portraitUpsideDown':
+            x, y = screen_w - x, screen_h - y
+        print(round(x), round(y))
+except Exception:
+    pass
 PY
-)" || true
+)"
       if [ -n "$coordinates" ]; then
         x="${coordinates%% *}"
         y="${coordinates#* }"
         echo "[TAP] Tapping label '$label' at translated ($x, $y) [attempt $attempt]"
-        if idb ui tap "$x" "$y" --udid "$UDID"; then
+        if idb ui tap "$x" "$y" --udid "$UDID" 2>/dev/null; then
           idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
           return 0
         fi
@@ -875,6 +884,13 @@ run_real_note_flow() {
   ui_wait_id annotation-note-text 30
   ui_set_value_id annotation-note-text "$note"
   ui_tap_id annotation-save
+  sleep 1
+  if [ -f "$CONTAINER/Documents/note-save-debug.log" ]; then
+    echo "--> [NOTE SAVE DEBUG] contents:"
+    cat "$CONTAINER/Documents/note-save-debug.log"
+  else
+    echo "--> [NOTE SAVE DEBUG] note-save-debug.log was not created"
+  fi
   idb ui wait "$note" --timeout 30 --json --udid "$UDID"
   capture_current_ui "fixed-real-${backend}-note-saved.png"
 
@@ -887,6 +903,11 @@ run_real_note_flow() {
   ui_wait_id annotation-note-text 30
   ui_set_value_id annotation-note-text "$updated"
   ui_tap_id annotation-save
+  sleep 1
+  if [ -f "$CONTAINER/Documents/note-save-debug.log" ]; then
+    echo "--> [NOTE SAVE DEBUG UPDATE] contents:"
+    cat "$CONTAINER/Documents/note-save-debug.log"
+  fi
   idb ui wait "$updated" --timeout 30 --json --udid "$UDID"
   ui_tap_label "$updated"
   ui_wait_id annotation-delete 30
@@ -909,6 +930,11 @@ run_invalid_note_save_flow() {
   ui_wait_id annotation-note-text 30
   ui_set_value_id annotation-note-text "$value"
   ui_tap_id annotation-save
+  sleep 1
+  if [ -f "$CONTAINER/Documents/note-save-debug.log" ]; then
+    echo "--> [NOTE SAVE DEBUG INVALID] contents:"
+    cat "$CONTAINER/Documents/note-save-debug.log"
+  fi
   idb ui wait "Could Not Save Annotation" --timeout 30 --json --udid "$UDID"
   ui_tap_label "OK"
   ui_wait_id annotation-note-text 10

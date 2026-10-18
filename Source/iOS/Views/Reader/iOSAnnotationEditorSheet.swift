@@ -179,13 +179,40 @@ struct iOSAnnotationEditorSheet: View {
             .split(separator: ",")
             .compactMap { let t = String($0).trimmingCharacters(in: .whitespacesAndNewlines); return t.isEmpty ? nil : t }
 
+        #if DEBUG
+        Self.appendDebugLog("[saveAnnotation] rawCandidate='\(rawCandidate)', trimmed='\(trimmed)', tags='\(updated.tags)', id=\(String(describing: updated.id))\n")
+        #endif
+
         do {
             try onSave(updated)
+            #if DEBUG
+            Self.appendDebugLog("[saveAnnotation] onSave succeeded\n")
+            #endif
             dismiss()
         } catch {
+            #if DEBUG
+            Self.appendDebugLog("[saveAnnotation] onSave threw error: \(error.localizedDescription)\n")
+            #endif
             operationErrorMessage = error.localizedDescription
         }
     }
+
+    #if DEBUG
+    static func appendDebugLog(_ message: String) {
+        guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileURL = dir.appendingPathComponent("note-save-debug.log")
+        guard let data = message.data(using: .utf8) else { return }
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            if let handle = try? FileHandle(forWritingTo: fileURL) {
+                handle.seekToEndOfFile()
+                handle.write(data)
+                try? handle.close()
+            }
+        } else {
+            try? data.write(to: fileURL)
+        }
+    }
+    #endif
 }
 
 final class AccessibleAutoDirectionTextView: UITextView {
