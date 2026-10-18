@@ -26,6 +26,7 @@ Useful technical discoveries, undocumented behavior, shortcuts, implementation t
 - Sefaria `/api/index` can list one canonical work under multiple category paths (currently `Ten Paths to God`, and intermittently `Celebrating Life; Finding Happiness in Unexpected Places`). Diffable identifiers must therefore describe a stable tree occurrence; `TextLocator`/canonical book IDs remain persistence identity and must not be used alone as UIKit item identifiers.
 - IDB `ui set-value` on iOS Simulator text views sets accessibility value via private `_accessibilitySetValue:(id)value`. In custom `UITextView` subclasses, declaring `@objc func _accessibilitySetValue(_ value: Any?) -> Bool` and reading fallback values ensures automated UI tests do not lose entered text when saving annotations.
 - In `TorahInspectorKit` study notes list, `TorahSegmentDetailView` must invalidate the repository note cache upon receiving `notesDidChange()` before reloading, and provide `accessibilityLabel(note.note)` on note row buttons so UI automation can discover and tap notes by text label.
+- When adding notes from Torah Inspector study tools, ensure the Add Note button is placed above the notes list to remain visible in the initial viewport without requiring scroll, and resolve the target range from the inspector selection / backend render model if the reader has not established an active text selection.
 
 ## Experiments / Investigations
 

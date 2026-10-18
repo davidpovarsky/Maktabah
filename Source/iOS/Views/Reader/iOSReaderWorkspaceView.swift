@@ -548,20 +548,25 @@ struct iOSReaderWorkspaceView: View {
     private func addNote(
         for selection: TorahInspectorSelection
     ) {
-        guard let selectedRange = viewModel.selectedSegmentRange,
-              selectedRange.location != NSNotFound,
-              NSMaxRange(selectedRange) <= (viewModel.contentText as NSString).length else {
+        let targetLocator = inspectorSession.locator(for: selection) ?? viewModel.selectedSegmentLocator
+        let resolvedRange = viewModel.selectedSegmentRange
+            ?? targetLocator.flatMap { viewModel.backendRenderModel?.renderedSegment(for: $0)?.visualRange }
+            ?? viewModel.otzariaSelectedLineAnchor?.range
+            ?? NSRange(location: 0, length: min((viewModel.contentText as NSString).length, 1))
+
+        guard resolvedRange.location != NSNotFound,
+              NSMaxRange(resolvedRange) <= (viewModel.contentText as NSString).length else {
             noteErrorMessage = String(localized: "Select text in the reader before adding a note.")
             return
         }
         do {
             var draft = try viewModel.makeAnnotationDraft(
-                in: selectedRange,
+                in: resolvedRange,
                 mode: .highlight,
                 sourceText: viewModel.contentText,
                 color: UIColor(named: "HighlightText") ?? .systemYellow
             )
-            if let locator = inspectorSession.locator(for: selection) {
+            if let locator = targetLocator {
                 draft.backendLocator = locator
             }
             #if DEBUG
