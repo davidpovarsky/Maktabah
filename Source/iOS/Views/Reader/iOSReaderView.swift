@@ -233,10 +233,12 @@ struct iOSReaderView: View {
                     annotation: ann,
                     onSave: { updatedAnn in
                         try viewModel.updateAnnotation(updatedAnn)
+                        NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
                         UINotificationFeedbackGenerator().notificationOccurred(.success)
                     },
                     onDelete: { idToDelete in
                         try viewModel.deleteAnnotation(id: idToDelete)
+                        NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
                         UINotificationFeedbackGenerator().notificationOccurred(.warning)
                     }
                 )

@@ -298,17 +298,29 @@ final class MaktabahTorahInspectorSession {
         }
         if let bkId = viewModel.currentBook?.id {
             for ann in AnnotationManager.shared.loadAnnotations(bkId: bkId) {
-                if let id = ann.id, allByID[id] == nil {
+                if let id = ann.id {
                     allByID[id] = ann
                 }
+            }
+        }
+        for ann in viewModel.currentAnnotations {
+            if let id = ann.id {
+                allByID[id] = ann
+            } else {
+                unpersisted.append(ann)
             }
         }
         let candidateAnnotations = Array(allByID.values) + unpersisted
         return candidateAnnotations.compactMap { annotation in
             let hasMatchingLocator: Bool
             if let annLoc = annotation.backendLocator {
-                hasMatchingLocator = annLoc.persistenceKey == selectedLocator.persistenceKey
+                let matchesDirect = annLoc.persistenceKey == selectedLocator.persistenceKey
                     || (annLoc.backend == selectedLocator.backend && annLoc.workKey == selectedLocator.workKey && annLoc.position == selectedLocator.position)
+                let matchesPreferred = selection.preferredSegmentRef.map { pref in
+                    annLoc.position == .canonicalRef(pref) || annLoc.canonicalReference == pref
+                } ?? false
+                let matchesCanonical = (annLoc.canonicalReference == selection.canonicalRef)
+                hasMatchingLocator = matchesDirect || matchesPreferred || matchesCanonical
             } else {
                 hasMatchingLocator = false
             }
@@ -324,7 +336,7 @@ final class MaktabahTorahInspectorSession {
                   !noteBody.isEmpty else { return nil }
             return TorahInspectorNote(
                 id: annotation.id.map(String.init) ?? "\(annotation.createdAt)",
-                selectedText: annotation.context,
+                selectedText: annotation.context.isEmpty ? (selection.preferredSegmentRef ?? selection.canonicalRef) : annotation.context,
                 note: noteBody,
                 tag: annotation.tags.first
             )
@@ -335,8 +347,7 @@ final class MaktabahTorahInspectorSession {
         _ locator: TextLocator,
         in selection: TorahInspectorSelection
     ) -> Bool {
-        guard selection.scope == .section,
-              locator.backend.rawValue == selection.providerID else { return false }
+        guard locator.backend.rawValue == selection.providerID else { return false }
         switch (locator.backend, locator.position) {
         case (.otzaria, .legacyLine(let lineIndex)):
             guard let unit = otzariaUnitsByReference[cacheKey(
@@ -349,6 +360,7 @@ final class MaktabahTorahInspectorSession {
             let section = SefariaRef.canonicalInput(selection.canonicalRef)
             let candidate = SefariaRef.canonicalInput(reference)
             return candidate == section || candidate.hasPrefix(section + ":")
+                || section == candidate || section.hasPrefix(candidate + ":")
         default:
             return false
         }

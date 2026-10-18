@@ -594,6 +594,7 @@ struct iOSReaderWorkspaceView: View {
             ) {
                 inspectorSession.repository.invalidateNotes(for: selection)
             }
+            NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
             completion()
         } catch {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
@@ -608,6 +609,7 @@ struct iOSReaderWorkspaceView: View {
         ) {
             inspectorSession.repository.invalidateNotes(for: selection)
         }
+        NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
         inspectorContentID = UUID()
     }
 }
