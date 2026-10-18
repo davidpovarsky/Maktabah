@@ -433,7 +433,6 @@ struct iOSReaderWorkspaceView: View {
                     finishEditingAnnotation()
                 }
             )
-            .presentationDetents([.medium, .large])
         }
     }
 

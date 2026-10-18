@@ -303,8 +303,12 @@ def extract_elements(val):
 
 try:
     value = json.load(open(sys.argv[1], encoding='utf-8', errors='replace'))
-    items = extract_elements(value)
+    items = [x for x in extract_elements(value) if 'PopoverDismissRegion' not in str(x.get('AXUniqueId', ''))]
     target_ident, orig_ident, label_fallback, orientation = sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]
+
+    screen_w, screen_h = 1376, 1032
+    if orientation.startswith('portrait'):
+        screen_w, screen_h = 1032, 1376
 
     matches = [item for item in items
                if (target_ident in str(item.get('AXUniqueId', ''))
@@ -316,12 +320,6 @@ try:
         frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
         x = frame['x'] + frame['width'] / 2
         y = frame['y'] + frame['height'] / 2
-        screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
-        screen_w, screen_h = 1376, 1032
-        if screens:
-            s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
-            screen_w = max(s.get('width', 1376), s.get('height', 1032))
-            screen_h = min(s.get('width', 1376), s.get('height', 1032))
 
         if orientation == 'landscapeLeft':
             x, y = y, screen_w - x
@@ -385,8 +383,12 @@ def extract_elements(val):
 
 try:
     value = json.load(open(sys.argv[1], encoding='utf-8', errors='replace'))
-    items = extract_elements(value)
+    items = [x for x in extract_elements(value) if 'PopoverDismissRegion' not in str(x.get('AXUniqueId', ''))]
     target, orientation = sys.argv[2], sys.argv[3]
+
+    screen_w, screen_h = 1376, 1032
+    if orientation.startswith('portrait'):
+        screen_w, screen_h = 1032, 1376
 
     matches = [item for item in items
                if target in str(item.get('AXLabel', ''))
@@ -396,12 +398,6 @@ try:
         frame = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
         x = frame['x'] + frame['width'] / 2
         y = frame['y'] + frame['height'] / 2
-        screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
-        screen_w, screen_h = 1376, 1032
-        if screens:
-            s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
-            screen_w = max(s.get('width', 1376), s.get('height', 1032))
-            screen_h = min(s.get('width', 1376), s.get('height', 1032))
 
         if orientation == 'landscapeLeft':
             x, y = y, screen_w - x
@@ -534,7 +530,7 @@ if not matches:
                and item.get('frame', {}).get('width', 0) > 100]
 assert matches, items
 screen = max(
-    (item.get('frame', {}) for item in items),
+    (item.get('frame', {}) for item in items if 'PopoverDismissRegion' not in str(item.get('AXUniqueId', ''))),
     key=lambda candidate: candidate.get('width', 0) * candidate.get('height', 0)
 )
 frame = max(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
@@ -862,7 +858,7 @@ identifier=value['AXUniqueId']
 work=identifier.split(':', 1)[1].split('|', 1)[0]
 f=value['frame']
 x=f['x']+f['width']/2; y=f['y']+f['height']/2
-screen=max((item.get('frame',{}) for item in items),
+screen=max((item.get('frame',{}) for item in items if 'PopoverDismissRegion' not in str(item.get('AXUniqueId',''))),
            key=lambda candidate:candidate.get('width',0)*candidate.get('height',0))
 orientation=sys.argv[2]
 if orientation == 'landscapeLeft':
