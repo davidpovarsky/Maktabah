@@ -99,6 +99,7 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
     @State private var noteErrorMessage: String?
+    @State private var pendingNotesDidChange: TorahInspectorHostActions.NotesDidChange?
 
     init(
         book: BooksData,
@@ -386,10 +387,12 @@ struct iOSReaderWorkspaceView: View {
             showsCloseButton: showsCloseButton,
             chrome: chrome,
             contentID: inspectorContentID,
-            onAddNote: { selection, _ in
+            onAddNote: { selection, completion in
+                pendingNotesDidChange = completion
                 addNote(for: selection)
             },
-            onOpenNote: { note, _, _ in
+            onOpenNote: { note, _, completion in
+                pendingNotesDidChange = completion
                 openNote(note)
             },
             onDeleteNote: { note, _, completion in
@@ -434,6 +437,7 @@ struct iOSReaderWorkspaceView: View {
             set: { isPresented in
                 if !isPresented {
                     editingAnnotation = nil
+                    pendingNotesDidChange = nil
                 }
             }
         )
@@ -551,12 +555,15 @@ struct iOSReaderWorkspaceView: View {
             return
         }
         do {
-            editingAnnotation = try viewModel.makeAnnotationDraft(
+            var draft = try viewModel.makeAnnotationDraft(
                 in: selectedRange,
                 mode: .highlight,
                 sourceText: viewModel.contentText,
                 color: UIColor(named: "HighlightText") ?? .systemYellow
             )
+            if draft.backendLocator == nil, let locator = inspectorSession.locator(for: selection) {
+                draft.backendLocator = locator
+            }
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("-smokeInvalidateNoteOnSave") {
                 // Deliberately simulate a stale editor after a content change so
@@ -564,10 +571,10 @@ struct iOSReaderWorkspaceView: View {
                 viewModel.currentContentId &+= 1
             }
             #endif
+            editingAnnotation = draft
         } catch {
             noteErrorMessage = error.localizedDescription
         }
-        _ = selection
     }
 
     private func openNote(
@@ -589,7 +596,12 @@ struct iOSReaderWorkspaceView: View {
         do {
             try viewModel.deleteAnnotation(id: id)
             inspectorSession.repository.invalidateAllNotes()
+            NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
             completion()
+            DispatchQueue.main.async {
+                completion()
+                NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
+            }
         } catch {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
@@ -598,5 +610,13 @@ struct iOSReaderWorkspaceView: View {
     private func finishEditingAnnotation() {
         editingAnnotation = nil
         inspectorSession.repository.invalidateAllNotes()
+        NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
+        let completion = pendingNotesDidChange
+        pendingNotesDidChange = nil
+        completion?()
+        DispatchQueue.main.async {
+            completion?()
+            NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
+        }
     }
 }
