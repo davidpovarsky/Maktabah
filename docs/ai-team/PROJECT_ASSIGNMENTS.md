@@ -31,7 +31,8 @@
 
 ---
 
-## 3. Approval Gates
+## 3. Mandatory Subagent Delegation & Approval Gates
+- **חובת האצלה:** הסוכן הראשי פועל כמתאם בלבד ומחויב להפעיל סוכני משנה (`invoke_subagent`). כל קוד מועבר לרוני לאימות.
 - **Release & Merges:** PR merges to `main`, TestFlight, or production indexing require explicit owner approval.
 - **Physical Device:** Tasks with physical iPad requirements remain open until verified on hardware.
 - **Asana Policy:** Autonomous updates and verified completion are authorized per `docs/ai-team/ASANA_POLICY.md`.
