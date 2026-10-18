@@ -253,13 +253,15 @@ ui_tap_id() {
     annotation-cancel) label_fallback="Cancel" ;;
   esac
   for attempt in 1 2 3 4 5; do
-    if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-      return 0
-    fi
-    if [ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-      return 0
+    if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
+      if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+      if [ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
     fi
     local coords
     coords="$(python3 - "$UDID" "$identifier" "$label_fallback" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
@@ -304,9 +306,11 @@ ui_tap_label() {
   local label="$1"
   local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-      return 0
+    if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
+      if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
     fi
     local coords
     coords="$(python3 - "$UDID" "$label" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
@@ -413,7 +417,7 @@ ui_set_value_id() {
         return 0
       fi
     fi
-    idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null || true
+    ui_tap_id "$identifier" 2>/dev/null || true
     idb ui text "$value" --udid "$UDID" 2>/dev/null || true
     local desc2
     desc2="$(idb ui describe "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null || true)"

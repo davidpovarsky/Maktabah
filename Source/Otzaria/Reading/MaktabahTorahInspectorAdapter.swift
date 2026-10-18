@@ -67,7 +67,6 @@ final class MaktabahTorahInspectorSession {
         otzariaLine: OtzariaLineAnchor?
     ) -> TorahInspectorSelection? {
         if let locator = sefariaLocator,
-           readerViewModel?.selectedSegmentRange != nil,
            let sectionLocator = readerViewModel?.backendSection?.locator,
            locator != sectionLocator {
             let reference = Self.reference(for: locator)

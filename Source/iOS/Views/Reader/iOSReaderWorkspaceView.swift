@@ -601,6 +601,7 @@ struct iOSReaderWorkspaceView: View {
         do {
             try viewModel.deleteAnnotation(id: id)
             inspectorSession.repository.invalidateAllNotes()
+            NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
             completion()
         } catch {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
@@ -610,6 +611,7 @@ struct iOSReaderWorkspaceView: View {
     private func finishEditingAnnotation() {
         editingAnnotation = nil
         inspectorSession.repository.invalidateAllNotes()
+        NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
         let completion = pendingNotesDidChange
         pendingNotesDidChange = nil
         completion?()
