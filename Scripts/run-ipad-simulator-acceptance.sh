@@ -966,6 +966,11 @@ run_real_note_flow() {
   ui_tap_id annotation-delete
   ui_wait_id torah-inspector-add-note 30
   idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+  local absent_waited=0
+  while idb ui describe "$updated" --match-key AXLabel --udid "$UDID" >/dev/null 2>&1 && [ "$absent_waited" -lt 15 ]; do
+    sleep 1
+    absent_waited=$((absent_waited + 1))
+  done
   if idb ui describe "$updated" --match-key AXLabel --udid "$UDID" >/dev/null 2>&1; then
     echo "Deleted note is still exposed in the inspector: $backend" >&2
     return 1

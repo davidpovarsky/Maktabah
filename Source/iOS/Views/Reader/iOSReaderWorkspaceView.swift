@@ -426,10 +426,14 @@ struct iOSReaderWorkspaceView: View {
                     #if DEBUG
                     iOSAnnotationEditorSheet.appendDebugLog("[onSave] persist or update finished\n")
                     #endif
+                    inspectorSession.repository.invalidateAllNotes()
+                    NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
                     finishEditingAnnotation()
                 },
                 onDelete: { id in
                     try viewModel.deleteAnnotation(id: id)
+                    inspectorSession.repository.invalidateAllNotes()
+                    NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
                     finishEditingAnnotation()
                 }
             )
