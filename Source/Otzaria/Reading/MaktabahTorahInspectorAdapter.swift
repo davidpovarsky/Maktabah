@@ -339,10 +339,12 @@ final class MaktabahTorahInspectorSession {
             let isInsideSelectedUnit = annLoc.map {
                 contains($0, in: selection)
             } ?? false
-            let overlapsSelectedRange = selectedRange.map {
+            let isSameBookOrBackend = (annLoc?.backend == selectedLocator.backend && annLoc?.workKey == selectedLocator.workKey)
+                || (annLoc == nil && annotation.bkId == viewModel.currentBook?.id)
+            let overlapsSelectedRange = isSameBookOrBackend && (selectedRange.map {
                 NSIntersectionRange(annotation.range, $0).length > 0
                     || NSIntersectionRange(annotation.rangeDiacritics, $0).length > 0
-            } ?? false
+            } ?? false)
             guard hasMatchingLocator || isInsideSelectedUnit || overlapsSelectedRange,
                   let noteBody = annotation.note?.trimmingCharacters(in: .whitespacesAndNewlines),
                   !noteBody.isEmpty else { return nil }

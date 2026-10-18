@@ -13,6 +13,7 @@ struct iOSAnnotationEditorSheet: View {
     @State private var tagsText: String = ""
     @State private var operationErrorMessage: String?
     @State private var editorTextView: UITextView?
+    @State private var hasInitialized: Bool = false
 
     let defaultColors: [UIColor] = [
         UIColor(named: "HighlightText") ?? .yellow,
@@ -125,6 +126,8 @@ struct iOSAnnotationEditorSheet: View {
                 }
             }
             .onAppear {
+                guard !hasInitialized else { return }
+                hasInitialized = true
                 noteText = annotation.note ?? ""
                 selectedColorHex = annotation.colorHex
                 isUnderline = annotation.type == .underline
@@ -153,15 +156,15 @@ struct iOSAnnotationEditorSheet: View {
     private func saveAnnotation() {
         var updated = annotation
         let activeView = AccessibleAutoDirectionTextView.activeInstance ?? editorTextView
+        let lastEntered = AccessibleAutoDirectionTextView.lastEnteredText ?? ""
         let editorText = activeView?.text ?? ""
         let axText = activeView?.accessibilityValue ?? ""
-        let lastEntered = AccessibleAutoDirectionTextView.lastEnteredText ?? ""
-        var candidates = [editorText, axText, lastEntered, noteText]
+        var candidates = [lastEntered, editorText, axText, noteText]
         if let active = activeView {
-            if let val = active.value(forKey: "accessibilityValue") as? String {
+            if let val = active.value(forKey: "text") as? String {
                 candidates.append(val)
             }
-            if let val = active.value(forKey: "text") as? String {
+            if let val = active.value(forKey: "accessibilityValue") as? String {
                 candidates.append(val)
             }
         }
@@ -309,19 +312,16 @@ struct iOSAutoDirectionTextView: UIViewRepresentable {
 
     func updateUIView(_ uiView: AccessibleAutoDirectionTextView, context: Context) {
         context.coordinator.parent = self
-        if uiView.text != text {
-            if text.isEmpty && !uiView.text.isEmpty {
-                let current = uiView.text ?? ""
-                AccessibleAutoDirectionTextView.lastEnteredText = current
-                DispatchQueue.main.async {
-                    self.text = current
-                }
-            } else {
+        if !text.isEmpty {
+            if uiView.text != text {
                 uiView.text = text
-                if !text.isEmpty {
-                    AccessibleAutoDirectionTextView.lastEnteredText = text
-                }
+                AccessibleAutoDirectionTextView.lastEnteredText = text
                 context.coordinator.updateParagraphAlignments(in: uiView)
+            }
+        } else if let current = uiView.text, !current.isEmpty {
+            AccessibleAutoDirectionTextView.lastEnteredText = current
+            DispatchQueue.main.async {
+                self.text = current
             }
         }
     }
