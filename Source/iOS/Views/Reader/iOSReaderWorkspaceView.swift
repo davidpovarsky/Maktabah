@@ -99,7 +99,6 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
     @State private var noteErrorMessage: String?
-    @State private var pendingNotesDidChange: TorahInspectorHostActions.NotesDidChange?
 
     init(
         book: BooksData,
@@ -387,12 +386,10 @@ struct iOSReaderWorkspaceView: View {
             showsCloseButton: showsCloseButton,
             chrome: chrome,
             contentID: inspectorContentID,
-            onAddNote: { selection, completion in
-                pendingNotesDidChange = completion
+            onAddNote: { selection, _ in
                 addNote(for: selection)
             },
-            onOpenNote: { note, _, completion in
-                pendingNotesDidChange = completion
+            onOpenNote: { note, _, _ in
                 openNote(note)
             },
             onDeleteNote: { note, _, completion in
@@ -437,7 +434,6 @@ struct iOSReaderWorkspaceView: View {
             set: { isPresented in
                 if !isPresented {
                     editingAnnotation = nil
-                    pendingNotesDidChange = nil
                 }
             }
         )
@@ -561,7 +557,7 @@ struct iOSReaderWorkspaceView: View {
                 sourceText: viewModel.contentText,
                 color: UIColor(named: "HighlightText") ?? .systemYellow
             )
-            if draft.backendLocator == nil, let locator = inspectorSession.locator(for: selection) {
+            if let locator = inspectorSession.locator(for: selection) {
                 draft.backendLocator = locator
             }
             #if DEBUG
@@ -598,10 +594,7 @@ struct iOSReaderWorkspaceView: View {
             inspectorSession.repository.invalidateAllNotes()
             NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
             completion()
-            DispatchQueue.main.async {
-                completion()
-                NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
-            }
+            inspectorContentID = UUID()
         } catch {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
@@ -611,12 +604,6 @@ struct iOSReaderWorkspaceView: View {
         editingAnnotation = nil
         inspectorSession.repository.invalidateAllNotes()
         NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
-        let completion = pendingNotesDidChange
-        pendingNotesDidChange = nil
-        completion?()
-        DispatchQueue.main.async {
-            completion?()
-            NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
-        }
+        inspectorContentID = UUID()
     }
 }
