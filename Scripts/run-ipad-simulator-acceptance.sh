@@ -247,61 +247,97 @@ PY
 ui_tap_id() {
   local identifier="$1"
   local attempt
+  local target_ident="$identifier"
   local label_fallback=""
   case "$identifier" in
     annotation-save)
+      target_ident="annotation-save-toolbar"
       label_fallback="Save"
-      if idb ui tap "annotation-save-toolbar" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
       ;;
     annotation-cancel)
+      target_ident="annotation-cancel-toolbar"
       label_fallback="Cancel"
-      if idb ui tap "annotation-cancel-toolbar" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
       ;;
   esac
   for attempt in 1 2 3 4 5; do
-    if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-      return 0
-    fi
-    if [ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-      return 0
+    if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
+      if idb ui tap "$target_ident" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+      if [ "$target_ident" != "$identifier" ] && idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+      if [ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
     fi
     local coords
-    coords="$(python3 - "$UDID" "$identifier" "$label_fallback" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
+    coords="$(python3 - "$UDID" "$target_ident" "$identifier" "$label_fallback" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
 import json, subprocess, sys
-udid, ident, label_fallback, orientation = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
-cmd = ["idb", "ui", "describe-all", "--key", "AXUniqueId", "--key", "AXLabel", "--key", "frame", "--udid", udid]
-out = subprocess.check_output(cmd)
-data = json.loads(out)
-items = data.get('elements') if isinstance(data, dict) else data
-items = items if isinstance(items, list) else [items]
+udid, target_ident, orig_ident, label_fallback, orientation = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]
+
+def get_items():
+    for query_id in [target_ident, orig_ident]:
+        try:
+            cmd = ["idb", "ui", "describe", query_id, "--match-key", "AXUniqueId", "--key", "AXUniqueId", "--key", "AXLabel", "--key", "frame", "--udid", udid]
+            out = subprocess.check_output(cmd)
+            data = json.loads(out.decode('utf-8', errors='replace'))
+            elem = data.get('elements') if isinstance(data, dict) else data
+            if elem:
+                items = elem if isinstance(elem, list) else [elem]
+                valid = [x for x in items if x.get('frame', {}).get('width', 0) > 1 and x.get('frame', {}).get('height', 0) > 1]
+                if valid:
+                    return valid
+        except Exception:
+            pass
+    try:
+        cmd = ["idb", "ui", "describe-all", "--key", "AXUniqueId", "--key", "AXLabel", "--key", "frame", "--udid", udid]
+        out = subprocess.check_output(cmd)
+        data = json.loads(out.decode('utf-8', errors='replace'))
+        elem = data.get('elements') if isinstance(data, dict) else data
+        return elem if isinstance(elem, list) else [elem]
+    except Exception:
+        return []
+
+items = get_items()
 matches = [x for x in items
-           if (ident in str(x.get('AXUniqueId','')) or (label_fallback and label_fallback in str(x.get('AXLabel',''))))
-           and x.get('frame',{}).get('width',0)>1 and x.get('frame',{}).get('height',0)>1]
+           if (target_ident in str(x.get('AXUniqueId', ''))
+               or orig_ident in str(x.get('AXUniqueId', ''))
+               or (label_fallback and str(x.get('AXLabel', '')).strip() == label_fallback))
+           and x.get('frame', {}).get('width', 0) > 1
+           and x.get('frame', {}).get('height', 0) > 1]
 if matches:
     f = min(matches, key=lambda item: item['frame']['width'] * item['frame']['height'])['frame']
-    x = f['x'] + f['width']/2
-    y = f['y'] + f['height']/2
-    screen = max((item.get('frame',{}) for item in items), key=lambda c: c.get('width',0)*c.get('height',0))
+    x = f['x'] + f['width'] / 2
+    y = f['y'] + f['height'] / 2
+    screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
+    screen_w, screen_h = 1376, 1032
+    if screens:
+        s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
+        screen_w = max(s.get('width', 1376), s.get('height', 1032))
+        screen_h = min(s.get('width', 1376), s.get('height', 1032))
     if orientation == 'landscapeLeft':
-        x, y = y, screen['width'] - x
+        x, y = y, screen_w - x
     elif orientation == 'landscapeRight':
-        x, y = screen['height'] - y, x
+        x, y = screen_h - y, x
     elif orientation == 'portraitUpsideDown':
-        x, y = screen['width'] - x, screen['height'] - y
+        x, y = screen_w - x, screen_h - y
     print(f"{round(x)} {round(y)}")
 PY
 )"
     if [ -n "$coords" ]; then
       read -r cx cy <<< "$coords"
       if idb ui tap "$cx" "$cy" --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+    fi
+    if [ "$CURRENT_ORIENTATION" != "portrait" ]; then
+      if idb ui tap "$target_ident" --match-key AXUniqueId --udid "$UDID" 2>/dev/null \
+        || idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
         idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
         return 0
       fi
@@ -316,37 +352,69 @@ ui_tap_label() {
   local label="$1"
   local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-      return 0
+    if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
+      if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
     fi
     local coords
     coords="$(python3 - "$UDID" "$label" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
 import json, subprocess, sys
 udid, target, orientation = sys.argv[1], sys.argv[2], sys.argv[3]
-cmd = ["idb", "ui", "describe-all", "--key", "AXLabel", "--key", "frame", "--udid", udid]
-out = subprocess.check_output(cmd)
-data = json.loads(out)
-items = data.get('elements') if isinstance(data, dict) else data
-items = items if isinstance(items, list) else [items]
-matches = [x for x in items if target in str(x.get('AXLabel','')) and x.get('frame',{}).get('width',0)>1 and x.get('frame',{}).get('height',0)>1]
+
+def get_items():
+    try:
+        cmd = ["idb", "ui", "describe", target, "--match-key", "AXLabel", "--key", "AXLabel", "--key", "frame", "--udid", udid]
+        out = subprocess.check_output(cmd)
+        data = json.loads(out.decode('utf-8', errors='replace'))
+        elem = data.get('elements') if isinstance(data, dict) else data
+        if elem:
+            items = elem if isinstance(elem, list) else [elem]
+            valid = [x for x in items if x.get('frame', {}).get('width', 0) > 1 and x.get('frame', {}).get('height', 0) > 1]
+            if valid:
+                return valid
+    except Exception:
+        pass
+    try:
+        cmd = ["idb", "ui", "describe-all", "--key", "AXLabel", "--key", "frame", "--udid", udid]
+        out = subprocess.check_output(cmd)
+        data = json.loads(out.decode('utf-8', errors='replace'))
+        elem = data.get('elements') if isinstance(data, dict) else data
+        return elem if isinstance(elem, list) else [elem]
+    except Exception:
+        return []
+
+items = get_items()
+matches = [x for x in items if target in str(x.get('AXLabel', '')) and x.get('frame', {}).get('width', 0) > 1 and x.get('frame', {}).get('height', 0) > 1]
 if matches:
     f = matches[0]['frame']
-    x = f['x'] + f['width']/2
-    y = f['y'] + f['height']/2
-    screen = max((item.get('frame',{}) for item in items), key=lambda c: c.get('width',0)*c.get('height',0))
+    x = f['x'] + f['width'] / 2
+    y = f['y'] + f['height'] / 2
+    screens = [x.get('frame', {}) for x in items if x.get('frame', {}).get('width', 0) >= 500]
+    screen_w, screen_h = 1376, 1032
+    if screens:
+        s = max(screens, key=lambda c: c.get('width', 0) * c.get('height', 0))
+        screen_w = max(s.get('width', 1376), s.get('height', 1032))
+        screen_h = min(s.get('width', 1376), s.get('height', 1032))
     if orientation == 'landscapeLeft':
-        x, y = y, screen['width'] - x
+        x, y = y, screen_w - x
     elif orientation == 'landscapeRight':
-        x, y = screen['height'] - y, x
+        x, y = screen_h - y, x
     elif orientation == 'portraitUpsideDown':
-        x, y = screen['width'] - x, screen['height'] - y
+        x, y = screen_w - x, screen_h - y
     print(f"{round(x)} {round(y)}")
 PY
 )"
     if [ -n "$coords" ]; then
       read -r cx cy <<< "$coords"
       if idb ui tap "$cx" "$cy" --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+    fi
+    if [ "$CURRENT_ORIENTATION" != "portrait" ]; then
+      if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
         idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
         return 0
       fi
