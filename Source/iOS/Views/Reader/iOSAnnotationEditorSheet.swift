@@ -29,7 +29,44 @@ struct iOSAnnotationEditorSheet: View {
             ThemeForm {
                 ThemeSection("Note") {
                     iOSAutoDirectionTextView(text: $noteText, onCreated: { self.editorTextView = $0 })
-                        .frame(minHeight: 100)
+                        .frame(minHeight: 80)
+                }
+
+                ThemeSection {
+                    Button(action: saveAnnotation) {
+                        HStack {
+                            Spacer()
+                            Text("Save")
+                                .bold()
+                            Spacer()
+                        }
+                    }
+                    .accessibilityIdentifier("annotation-save")
+                    .accessibilityLabel("Save")
+
+                    if let annotationID = annotation.id {
+                        Button(role: .destructive, action: {
+                            deleteAnnotation(annotationID)
+                        }) {
+                            HStack {
+                                Spacer()
+                                Text("Delete Annotation")
+                                Spacer()
+                            }
+                        }
+                        .accessibilityIdentifier("annotation-delete")
+                        .accessibilityLabel("Delete Annotation")
+                    }
+
+                    Button(role: .cancel, action: { dismiss() }) {
+                        HStack {
+                            Spacer()
+                            Text("Cancel")
+                            Spacer()
+                        }
+                    }
+                    .accessibilityIdentifier("annotation-cancel")
+                    .accessibilityLabel("Cancel")
                 }
 
                 ThemeSection("Style") {
@@ -63,45 +100,6 @@ struct iOSAnnotationEditorSheet: View {
                         .multilineTextAlignment(isRTL ? .trailing : .leading)
                         .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
                 }
-
-                ThemeSection {
-                    Button(action: saveAnnotation) {
-                        HStack {
-                            Spacer()
-                            Text("Save")
-                                .bold()
-                            Spacer()
-                        }
-                    }
-                    .accessibilityIdentifier("annotation-save")
-                    .accessibilityLabel("Save")
-
-                    Button(role: .cancel, action: { dismiss() }) {
-                        HStack {
-                            Spacer()
-                            Text("Cancel")
-                            Spacer()
-                        }
-                    }
-                    .accessibilityIdentifier("annotation-cancel")
-                    .accessibilityLabel("Cancel")
-                }
-
-                if let annotationID = annotation.id {
-                    ThemeSection {
-                        Button(role: .destructive, action: {
-                            deleteAnnotation(annotationID)
-                        }) {
-                            HStack {
-                                Spacer()
-                                Text("Delete Annotation")
-                                Spacer()
-                            }
-                        }
-                        .accessibilityIdentifier("annotation-delete")
-                        .accessibilityLabel("Delete Annotation")
-                    }
-                }
             }
             .navigationTitle("Edit Annotation")
             .navigationBarTitleDisplayMode(.inline)
@@ -114,7 +112,7 @@ struct iOSAnnotationEditorSheet: View {
                     .accessibilityLabel("Cancel")
                 }
                 if let annotationID = annotation.id {
-                    ToolbarItem(placement: .destructiveAction) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
                         Button(role: .destructive) {
                             deleteAnnotation(annotationID)
                         } label: {
