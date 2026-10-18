@@ -136,9 +136,6 @@ struct iOSAnnotationEditorSheet: View {
                 #if DEBUG
                 (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
                 #endif
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    (AccessibleAutoDirectionTextView.activeInstance ?? editorTextView)?.becomeFirstResponder()
-                }
             }
             .onDisappear {
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
@@ -236,6 +233,9 @@ final class AccessibleAutoDirectionTextView: UITextView {
         if let content = try? String(contentsOf: file, encoding: .utf8), !content.isEmpty {
             try? FileManager.default.removeItem(at: file)
             applyNewValue(content)
+            DispatchQueue.main.async {
+                self.resignFirstResponder()
+            }
         }
         #endif
     }
@@ -275,7 +275,6 @@ final class AccessibleAutoDirectionTextView: UITextView {
     }
 
     override func accessibilityActivate() -> Bool {
-        becomeFirstResponder()
         return true
     }
 

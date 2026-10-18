@@ -274,6 +274,9 @@ ui_tap_id() {
         return 0
       fi
     fi
+    if [ "$attempt" -ge 2 ]; then
+      idb ui tap "Hide keyboard" --match-key AXLabel --udid "$UDID" 2>/dev/null || true
+    fi
 
     local description="$REPORT_DIR/tap-${identifier//[^[:alnum:]]/-}-layout.json"
     local coordinates x y
