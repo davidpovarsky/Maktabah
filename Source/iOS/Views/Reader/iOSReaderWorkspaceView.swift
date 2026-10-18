@@ -588,13 +588,7 @@ struct iOSReaderWorkspaceView: View {
         guard let id = Int64(note.id) else { return }
         do {
             try viewModel.deleteAnnotation(id: id)
-            if let selection = inspectorSession.selection(
-                sefariaLocator: viewModel.selectedSegmentLocator,
-                otzariaLine: viewModel.otzariaSelectedLineAnchor
-            ) {
-                inspectorSession.repository.invalidateNotes(for: selection)
-            }
-            NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
+            inspectorSession.repository.invalidateAllNotes()
             completion()
         } catch {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
@@ -603,13 +597,6 @@ struct iOSReaderWorkspaceView: View {
 
     private func finishEditingAnnotation() {
         editingAnnotation = nil
-        if let selection = inspectorSession.selection(
-            sefariaLocator: viewModel.selectedSegmentLocator,
-            otzariaLine: viewModel.otzariaSelectedLineAnchor
-        ) {
-            inspectorSession.repository.invalidateNotes(for: selection)
-        }
-        NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
-        inspectorContentID = UUID()
+        inspectorSession.repository.invalidateAllNotes()
     }
 }
