@@ -249,19 +249,29 @@ ui_tap_id() {
   local attempt
   local label_fallback=""
   case "$identifier" in
-    annotation-save) label_fallback="Save" ;;
-    annotation-cancel) label_fallback="Cancel" ;;
+    annotation-save)
+      label_fallback="Save"
+      if idb ui tap "annotation-save-toolbar" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+      ;;
+    annotation-cancel)
+      label_fallback="Cancel"
+      if idb ui tap "annotation-cancel-toolbar" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
+      ;;
   esac
   for attempt in 1 2 3 4 5; do
-    if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
-      if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
-      if [ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
+    if idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+      return 0
+    fi
+    if [ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+      return 0
     fi
     local coords
     coords="$(python3 - "$UDID" "$identifier" "$label_fallback" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
@@ -306,11 +316,9 @@ ui_tap_label() {
   local label="$1"
   local attempt
   for attempt in 1 2 3 4 5; do
-    if [ "$CURRENT_ORIENTATION" = "portrait" ]; then
-      if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
-        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-        return 0
-      fi
+    if idb ui tap "$label" --match-key AXLabel --udid "$UDID" 2>/dev/null; then
+      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+      return 0
     fi
     local coords
     coords="$(python3 - "$UDID" "$label" "$CURRENT_ORIENTATION" <<'PY' 2>/dev/null || true
