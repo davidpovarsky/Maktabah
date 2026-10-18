@@ -11,9 +11,9 @@ struct OtzariaReaderSourcesInspectorHost: View {
     let showsCloseButton: Bool
     let chrome: TorahInspectorChrome
     var contentID: UUID = UUID()
-    let onAddNote: ((TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
-    let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
-    let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, TorahInspectorHostActions.NotesDidChange) -> Void)?
+    let onAddNote: ((TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
+    let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
+    let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
     @ObservedObject private var backendCoordinator = BackendCoordinator.shared
 
     var body: some View {
