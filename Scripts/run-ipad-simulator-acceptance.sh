@@ -257,6 +257,10 @@ ui_tap_id() {
       target_ident="annotation-cancel-toolbar"
       label_fallback="Cancel"
       ;;
+    annotation-delete)
+      target_ident="annotation-delete-toolbar"
+      label_fallback="Delete Annotation"
+      ;;
   esac
 
   local is_prefix=0
@@ -964,6 +968,12 @@ run_real_note_flow() {
   ui_tap_label "$updated"
   ui_wait_id annotation-delete 30
   ui_tap_id annotation-delete
+  ui_wait_absent_id annotation-note-text 15 || true
+  sleep 1
+  if [ -f "$CONTAINER/Documents/note-save-debug.log" ]; then
+    echo "--> [NOTE DELETE DEBUG] contents:"
+    cat "$CONTAINER/Documents/note-save-debug.log"
+  fi
   ui_wait_id torah-inspector-add-note 30
   idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
   local absent_waited=0

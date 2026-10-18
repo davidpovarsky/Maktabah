@@ -90,12 +90,7 @@ struct iOSAnnotationEditorSheet: View {
                 if let annotationID = annotation.id {
                     ThemeSection {
                         Button(role: .destructive, action: {
-                            do {
-                                try onDelete(annotationID)
-                                dismiss()
-                            } catch {
-                                operationErrorMessage = error.localizedDescription
-                            }
+                            deleteAnnotation(annotationID)
                         }) {
                             HStack {
                                 Spacer()
@@ -104,6 +99,7 @@ struct iOSAnnotationEditorSheet: View {
                             }
                         }
                         .accessibilityIdentifier("annotation-delete")
+                        .accessibilityLabel("Delete Annotation")
                     }
                 }
             }
@@ -116,6 +112,17 @@ struct iOSAnnotationEditorSheet: View {
                     }
                     .accessibilityIdentifier("annotation-cancel-toolbar")
                     .accessibilityLabel("Cancel")
+                }
+                if let annotationID = annotation.id {
+                    ToolbarItem(placement: .destructiveAction) {
+                        Button(role: .destructive) {
+                            deleteAnnotation(annotationID)
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                        .accessibilityIdentifier("annotation-delete-toolbar")
+                        .accessibilityLabel("Delete Annotation")
+                    }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
@@ -198,6 +205,24 @@ struct iOSAnnotationEditorSheet: View {
         } catch {
             #if DEBUG
             Self.appendDebugLog("[saveAnnotation] onSave threw error: \(error.localizedDescription)\n")
+            #endif
+            operationErrorMessage = error.localizedDescription
+        }
+    }
+
+    private func deleteAnnotation(_ id: Int64) {
+        #if DEBUG
+        Self.appendDebugLog("[deleteAnnotation] id=\(id)\n")
+        #endif
+        do {
+            try onDelete(id)
+            #if DEBUG
+            Self.appendDebugLog("[deleteAnnotation] onDelete succeeded\n")
+            #endif
+            dismiss()
+        } catch {
+            #if DEBUG
+            Self.appendDebugLog("[deleteAnnotation] onDelete threw error: \(error.localizedDescription)\n")
             #endif
             operationErrorMessage = error.localizedDescription
         }

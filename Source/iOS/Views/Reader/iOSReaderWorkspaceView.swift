@@ -431,7 +431,13 @@ struct iOSReaderWorkspaceView: View {
                     finishEditingAnnotation()
                 },
                 onDelete: { id in
+                    #if DEBUG
+                    iOSAnnotationEditorSheet.appendDebugLog("[onDelete] start id=\(id)\n")
+                    #endif
                     try viewModel.deleteAnnotation(id: id)
+                    #if DEBUG
+                    iOSAnnotationEditorSheet.appendDebugLog("[onDelete] deleteAnnotation succeeded\n")
+                    #endif
                     inspectorSession.repository.invalidateAllNotes()
                     NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
                     finishEditingAnnotation()
