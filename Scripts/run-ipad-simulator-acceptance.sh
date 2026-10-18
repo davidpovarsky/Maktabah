@@ -259,20 +259,36 @@ ui_tap_id() {
       ;;
   esac
 
+  local is_prefix=0
+  if [[ "$identifier" == *- ]]; then
+    is_prefix=1
+  fi
+
   local attempt
   for attempt in 1 2 3 4 5; do
-    if idb ui tap "$target_ident" --match-key AXUniqueId --udid "$UDID" 2>/dev/null \
-      || ([ "$target_ident" != "$identifier" ] && idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null) \
-      || ([ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null); then
-      idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
-      return 0
+    if [ "$is_prefix" -eq 0 ]; then
+      if idb ui tap "$target_ident" --match-key AXUniqueId --udid "$UDID" 2>/dev/null \
+        || ([ "$target_ident" != "$identifier" ] && idb ui tap "$identifier" --match-key AXUniqueId --udid "$UDID" 2>/dev/null) \
+        || ([ -n "$label_fallback" ] && idb ui tap "$label_fallback" --match-key AXLabel --udid "$UDID" 2>/dev/null); then
+        idb ui quiet 30 --bundle-id "$BUNDLE_ID" --udid "$UDID" || true
+        return 0
+      fi
     fi
 
     local description="$REPORT_DIR/tap-${identifier//[^[:alnum:]]/-}-layout.json"
     local coordinates x y
-    if idb ui describe "$target_ident" --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null \
-      || ([ "$target_ident" != "$identifier" ] && idb ui describe "$identifier" --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null) \
-      || idb ui describe-all --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null; then
+    rm -f "$description"
+    if [ "$is_prefix" -eq 0 ]; then
+      idb ui describe "$target_ident" --match-key AXUniqueId --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null || true
+      if [ ! -s "$description" ] || grep -q '"elements":[[:space:]]*\[\]' "$description"; then
+        rm -f "$description"
+      fi
+    fi
+    if [ ! -s "$description" ]; then
+      idb ui describe-all --key AXUniqueId --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null || true
+    fi
+
+    if [ -s "$description" ]; then
       coordinates="$(python3 - "$description" "$target_ident" "$identifier" "$label_fallback" "$CURRENT_ORIENTATION" <<'PY'
 import json, sys
 
@@ -345,8 +361,16 @@ ui_tap_label() {
 
     local description="$REPORT_DIR/tap-label-${label//[^[:alnum:]]/-}-layout.json"
     local coordinates x y
-    if idb ui describe "$label" --match-key AXLabel --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null \
-      || idb ui describe-all --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null; then
+    rm -f "$description"
+    idb ui describe "$label" --match-key AXLabel --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null || true
+    if [ ! -s "$description" ] || grep -q '"elements":[[:space:]]*\[\]' "$description"; then
+      rm -f "$description"
+    fi
+    if [ ! -s "$description" ]; then
+      idb ui describe-all --key AXLabel --key frame --udid "$UDID" > "$description" 2>/dev/null || true
+    fi
+
+    if [ -s "$description" ]; then
       coordinates="$(python3 - "$description" "$label" "$CURRENT_ORIENTATION" <<'PY'
 import json, sys
 
