@@ -24,6 +24,8 @@ Useful technical discoveries, undocumented behavior, shortcuts, implementation t
 - Sefaria's mobile relationship path fetches `/api/related/{sectionRef}` once and assigns rows to segments through `anchorRefExpanded`; an empty local `links` array is complete offline data and must not trigger a network fallback.
 - Current Sefaria `/api/related` rows may omit `text`/`he` and expose only `displayedText`; use that as the no-extra-request snippet fallback, and sort exact/small `anchorRefExpanded` sets ahead of book-wide relationships for deterministic linked-source navigation.
 - Sefaria `/api/index` can list one canonical work under multiple category paths (currently `Ten Paths to God`, and intermittently `Celebrating Life; Finding Happiness in Unexpected Places`). Diffable identifiers must therefore describe a stable tree occurrence; `TextLocator`/canonical book IDs remain persistence identity and must not be used alone as UIKit item identifiers.
+- IDB `ui set-value` on iOS Simulator text views sets accessibility value via private `_accessibilitySetValue:(id)value`. In custom `UITextView` subclasses, declaring `@objc func _accessibilitySetValue(_ value: Any?) -> Bool` and reading fallback values ensures automated UI tests do not lose entered text when saving annotations.
+- In `TorahInspectorKit` study notes list, `TorahSegmentDetailView` must invalidate the repository note cache upon receiving `notesDidChange()` before reloading, and provide `accessibilityLabel(note.note)` on note row buttons so UI automation can discover and tap notes by text label.
 
 ## Experiments / Investigations
 

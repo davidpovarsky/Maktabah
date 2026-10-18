@@ -303,6 +303,11 @@ final class MaktabahTorahInspectorSession {
                 }
             }
         }
+        for ann in AnnotationManager.shared.loadAnnotations() {
+            if let id = ann.id {
+                allByID[id] = ann
+            }
+        }
         for ann in viewModel.currentAnnotations {
             if let id = ann.id {
                 allByID[id] = ann
@@ -312,8 +317,12 @@ final class MaktabahTorahInspectorSession {
         }
         let candidateAnnotations = Array(allByID.values) + unpersisted
         return candidateAnnotations.compactMap { annotation in
+            let annLoc = annotation.backendLocator
+                ?? (annotation.bkId < 0 ? LegacyIdentityRegistry.shared.locator(for: annotation.bkId) : nil)
+                ?? (annotation.bkId == viewModel.currentBook?.id ? viewModel.currentBook?.backendLocator : nil)
+
             let hasMatchingLocator: Bool
-            if let annLoc = annotation.backendLocator {
+            if let annLoc {
                 let annRef = Self.reference(for: annLoc)
                 let matchesDirect = annLoc.persistenceKey == selectedLocator.persistenceKey
                     || (annLoc.backend == selectedLocator.backend && annLoc.workKey == selectedLocator.workKey && annLoc.position == selectedLocator.position)
@@ -321,11 +330,13 @@ final class MaktabahTorahInspectorSession {
                     annLoc.position == .canonicalRef(pref) || annRef == pref
                 } ?? false
                 let matchesCanonical = (annRef == selection.canonicalRef)
+                let matchesWorkKey = (annLoc.backend == selectedLocator.backend && annLoc.workKey == selectedLocator.workKey)
                 hasMatchingLocator = matchesDirect || matchesPreferred || matchesCanonical
+                    || (matchesWorkKey && selection.scope == .segment && (annRef == (selection.preferredSegmentRef ?? selection.canonicalRef)))
             } else {
                 hasMatchingLocator = false
             }
-            let isInsideSelectedUnit = annotation.backendLocator.map {
+            let isInsideSelectedUnit = annLoc.map {
                 contains($0, in: selection)
             } ?? false
             let overlapsSelectedRange = selectedRange.map {

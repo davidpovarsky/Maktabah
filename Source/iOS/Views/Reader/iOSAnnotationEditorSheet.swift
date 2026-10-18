@@ -135,7 +135,6 @@ struct iOSAnnotationEditorSheet: View {
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
                     AccessibleAutoDirectionTextView.activeInstance = nil
                 }
-                AccessibleAutoDirectionTextView.lastEnteredText = nil
             }
             .alert(
                 String(localized: "Could Not Save Annotation"),
@@ -157,7 +156,15 @@ struct iOSAnnotationEditorSheet: View {
         let editorText = activeView?.text ?? ""
         let axText = activeView?.accessibilityValue ?? ""
         let lastEntered = AccessibleAutoDirectionTextView.lastEnteredText ?? ""
-        let candidates = [editorText, axText, lastEntered, noteText]
+        var candidates = [editorText, axText, lastEntered, noteText]
+        if let active = activeView {
+            if let val = active.value(forKey: "accessibilityValue") as? String {
+                candidates.append(val)
+            }
+            if let val = active.value(forKey: "text") as? String {
+                candidates.append(val)
+            }
+        }
         let rawCandidate = candidates.first(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) ?? ""
         let trimmed = rawCandidate.trimmingCharacters(in: .whitespacesAndNewlines)
         updated.note = trimmed.isEmpty ? nil : rawCandidate
@@ -203,8 +210,13 @@ final class AccessibleAutoDirectionTextView: UITextView {
     }
 
     override var accessibilityValue: String? {
-        get { super.text }
+        get {
+            if let t = super.text, !t.isEmpty { return t }
+            if let l = Self.lastEnteredText, !l.isEmpty { return l }
+            return super.accessibilityValue
+        }
         set {
+            super.accessibilityValue = newValue
             applyNewValue(newValue)
         }
     }
@@ -217,17 +229,23 @@ final class AccessibleAutoDirectionTextView: UITextView {
         }
     }
 
-    @objc func accessibilitySetValue(_ value: Any?, forAttribute attribute: String) {
+    @objc func _accessibilitySetValue(_ value: Any?) -> Bool {
         let str = (value as? String) ?? (value as? NSAttributedString)?.string
         applyNewValue(str)
-    }
-
-    @objc func _accessibilitySetValue(_ value: Any?, forAttribute attribute: String) {
-        let str = (value as? String) ?? (value as? NSAttributedString)?.string
-        applyNewValue(str)
+        return true
     }
 
     @objc func accessibilitySetValue(_ value: Any?) {
+        let str = (value as? String) ?? (value as? NSAttributedString)?.string
+        applyNewValue(str)
+    }
+
+    @objc func accessibilitySetValue(_ value: Any?, forAttribute attribute: Any?) {
+        let str = (value as? String) ?? (value as? NSAttributedString)?.string
+        applyNewValue(str)
+    }
+
+    @objc func _accessibilitySetValue(_ value: Any?, forAttribute attribute: Any?) {
         let str = (value as? String) ?? (value as? NSAttributedString)?.string
         applyNewValue(str)
     }
@@ -243,6 +261,11 @@ final class AccessibleAutoDirectionTextView: UITextView {
 
     override func insertText(_ text: String) {
         super.insertText(text)
+        applyNewValue(super.text)
+    }
+
+    override func replace(_ range: UITextRange, withText text: String) {
+        super.replace(range, withText: text)
         applyNewValue(super.text)
     }
 }
