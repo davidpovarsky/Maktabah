@@ -588,7 +588,7 @@ private extension iOSMainView {
             let bookId = linked?.0 ?? 1
             let lineIndex = linked?.1 ?? 1
             let bookTitle: String = (try? OtzariaMaktabahBridge.shared.withDatabase { database -> String in
-                let rows = try database.fetch(query: "SELECT name FROM book WHERE id = \(bookId) LIMIT 1") { row in
+                let rows = try database.fetch(query: "SELECT title FROM book WHERE id = \(bookId) LIMIT 1") { row in
                     row.string(at: 0) ?? "ספר"
                 }
                 return rows.first ?? "ספר"
@@ -625,9 +625,9 @@ private extension iOSMainView {
             if inspectorMode != .none {
                 try? await Task.sleep(for: .milliseconds(500))
                 activeTab.viewModel.selectedSegmentLocator = locator
-                if let anchor = OtzariaMaktabahBridge.shared.lineAnchor(
+                if let anchor = await OtzariaMaktabahBridge.shared.lineAnchorAsync(
                     bookId: bookId,
-                    contentId: activeTab.viewModel.currentContentId,
+                    contentId: lineIndex,
                     characterIndex: 0
                 ) {
                     activeTab.viewModel.otzariaSelectedLineAnchor = anchor

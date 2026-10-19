@@ -88,17 +88,26 @@ extension OtzariaMaktabahBridge {
         OtzariaReadingUnitSideCache.shared.clear()
     }
 
+    private func resolvedLineIndex(from contentId: Int) -> Int {
+        if let loc = LegacyIdentityRegistry.shared.locator(for: contentId),
+           case .legacyLine(let line) = loc.position {
+            return line
+        }
+        return contentId
+    }
+
     func lineAnchor(bookId: Int, contentId: Int, characterIndex: Int) -> OtzariaLineAnchor? {
+        let lineIndex = resolvedLineIndex(from: contentId)
         let mode = currentReadingUnitMode
-        let unit = cachedReadingUnit(bookId: bookId, contentId: contentId, mode: mode)
-            ?? (Thread.isMainThread ? nil : getReadingUnit(bookId: bookId, containingLineIndex: contentId, mode: mode))
+        let unit = cachedReadingUnit(bookId: bookId, contentId: lineIndex, mode: mode)
+            ?? (Thread.isMainThread ? nil : getReadingUnit(bookId: bookId, containingLineIndex: lineIndex, mode: mode))
 
         if let unit {
             cacheReadingUnit(unit, mode: mode)
         }
 
         guard let unit, !unit.lineAnchors.isEmpty else {
-            OtzariaFileLogger.shared.log("[OtzariaMaktabahBridge] lineAnchor missing unit bookId=\(bookId) contentId=\(contentId) characterIndex=\(characterIndex)")
+            OtzariaFileLogger.shared.log("[OtzariaMaktabahBridge] lineAnchor missing unit bookId=\(bookId) contentId=\(contentId) lineIndex=\(lineIndex) characterIndex=\(characterIndex)")
             return nil
         }
 
@@ -113,16 +122,17 @@ extension OtzariaMaktabahBridge {
     }
 
     func lineAnchorAsync(bookId: Int, contentId: Int, characterIndex: Int) async -> OtzariaLineAnchor? {
-        if let direct = lineAnchor(bookId: bookId, contentId: contentId, characterIndex: characterIndex) {
+        let lineIndex = resolvedLineIndex(from: contentId)
+        if let direct = lineAnchor(bookId: bookId, contentId: lineIndex, characterIndex: characterIndex) {
             return direct
         }
         let mode = currentReadingUnitMode
         let unit = await Task.detached(priority: .userInitiated) { [weak self] () -> OtzariaReadingUnit? in
-            self?.getReadingUnit(bookId: bookId, containingLineIndex: contentId, mode: mode)
+            self?.getReadingUnit(bookId: bookId, containingLineIndex: lineIndex, mode: mode)
         }.value
         if let unit {
             cacheReadingUnit(unit, mode: mode)
-            return lineAnchor(bookId: bookId, contentId: contentId, characterIndex: characterIndex)
+            return lineAnchor(bookId: bookId, contentId: lineIndex, characterIndex: characterIndex)
         }
         return nil
     }

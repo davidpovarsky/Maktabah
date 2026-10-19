@@ -130,7 +130,13 @@ final class MaktabahTorahInspectorSession {
         }
         guard coordinator.activeBackendID == .otzaria,
               let bookID = viewModel.currentBook?.id else { return nil }
-        let currentLine = viewModel.currentContentId
+        let currentLine: Int = {
+            if let loc = LegacyIdentityRegistry.shared.locator(for: viewModel.currentContentId),
+               case .legacyLine(let line) = loc.position {
+                return line
+            }
+            return viewModel.currentContentId
+        }()
         if let unit = otzaria.cachedReadingUnit(
             bookId: bookID,
             contentId: currentLine,
