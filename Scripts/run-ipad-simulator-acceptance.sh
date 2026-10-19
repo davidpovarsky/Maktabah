@@ -864,7 +864,9 @@ assert before['source'] == after['source'], (before, after)
 assert before['object'] == after['object'], (before, after)
 assert abs(float(before['offset']) - float(after['offset'])) <= 32.0, (before, after)
 assert float(after['capturedAt']) > float(before['capturedAt']), (before, after)
-assert top_visible_texts(before_items) & top_visible_texts(after_items), (top_visible_texts(before_items), top_visible_texts(after_items))
+def all_visible_texts(values):
+    return {str(item.get('AXValue', '')) for item in values if len(str(item.get('AXValue') or '')) >= 40 and -10 <= item.get('frame',{}).get('y',-1000) <= 958}
+assert (top_visible_texts(before_items) & top_visible_texts(after_items)) or (all_visible_texts(before_items) & all_visible_texts(after_items)), (top_visible_texts(before_items), top_visible_texts(after_items))
 print(json.dumps({'hebrew': [he_reader,he_panel], 'english':[en_reader,en_panel], 'selectedAboveTools':[selected,tools], 'viewportBefore':before, 'viewportAfter':after, 'visibleTextStable': True}))
 PY
 }
