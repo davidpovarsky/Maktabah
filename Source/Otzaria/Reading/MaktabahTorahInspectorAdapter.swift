@@ -170,17 +170,11 @@ final class MaktabahTorahInspectorSession {
         let sectionReference = Self.unitReference(for: unit)
         remember(sectionLocator, for: sectionReference)
         remember(unit, for: sectionReference)
-        guard let selectedLineIndex else {
-            return TorahInspectorSelection(
-                providerID: BackendID.otzaria.rawValue,
-                canonicalRef: sectionReference,
-                scope: .section
-            )
-        }
+        let effectiveSelectedLine = selectedLineIndex ?? unit.startLineIndex
         let selectedLocator = TextLocator(
             backend: .otzaria,
             workKey: "book:\(unit.bookId)",
-            position: .legacyLine(selectedLineIndex)
+            position: .legacyLine(effectiveSelectedLine)
         )
         let selectedReference = Self.reference(for: selectedLocator)
         remember(selectedLocator, for: selectedReference)
@@ -188,7 +182,7 @@ final class MaktabahTorahInspectorSession {
             providerID: BackendID.otzaria.rawValue,
             canonicalRef: sectionReference,
             preferredSegmentRef: selectedReference,
-            scope: .segment
+            scope: selectedLineIndex != nil ? .segment : .section
         )
     }
 
@@ -724,7 +718,8 @@ final class MaktabahTorahInspectorSession {
         case .otzaria:
             let parts = reference.split(separator: ":", omittingEmptySubsequences: false)
             if parts.count >= 6, parts[0] == "otzaria", parts[1] == "unit", parts[2] == "v1",
-               let bookID = Int(parts[3]), let startLine = Int(parts[5]) {
+               let bookID = Int(parts[3]),
+               let startLine = Int(parts[parts.count - 2]) {
                 return TextLocator(
                     backend: .otzaria,
                     workKey: "book:\(bookID)",
@@ -812,7 +807,8 @@ enum MaktabahTorahInspectorFormatting {
     }
 
     static func unitReference(for unit: OtzariaReadingUnit) -> String {
-        "otzaria:unit:v1:\(unit.bookId):\(unit.id):\(unit.startLineIndex):\(unit.endLineIndex)"
+        let safeUnitId = unit.id.replacingOccurrences(of: ":", with: "_")
+        return "otzaria:unit:v1:\(unit.bookId):\(safeUnitId):\(unit.startLineIndex):\(unit.endLineIndex)"
     }
 
     static func otzariaBookID(from workKey: String) -> Int? {
