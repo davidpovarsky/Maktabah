@@ -64,8 +64,8 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         if let unit = line == 0
             ? OtzariaMaktabahBridge.shared.getFirstReadingUnit(bookId: bookID, mode: mode)
             : OtzariaMaktabahBridge.shared.getReadingUnit(bookId: bookID, containingLineIndex: line, mode: mode) {
-            let previous = OtzariaMaktabahBridge.shared.getPreviousReadingUnit(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode)
-            let next = OtzariaMaktabahBridge.shared.getNextReadingUnit(bookId: bookID, afterLineIndex: unit.startLineIndex, mode: mode)
+            let previous = OtzariaMaktabahBridge.shared.getPreviousReadingUnitDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode)
+            let next = OtzariaMaktabahBridge.shared.getNextReadingUnitDescriptor(bookId: bookID, afterLineIndex: unit.startLineIndex, mode: mode)
             return OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
         }
         

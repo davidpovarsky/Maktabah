@@ -3,8 +3,8 @@ import Foundation
 enum OtzariaInspectorDocumentMapper {
     static func section(
         from unit: OtzariaReadingUnit,
-        previous: OtzariaReadingUnit?,
-        next: OtzariaReadingUnit?
+        previousStartLineIndex: Int?,
+        nextStartLineIndex: Int?
     ) -> LibraryTextSection {
         let locator = lineLocator(bookID: unit.bookId, lineIndex: unit.startLineIndex)
         return LibraryTextSection(
@@ -19,8 +19,8 @@ enum OtzariaInspectorDocumentMapper {
                     translation: nil
                 )
             },
-            previous: previous.map { lineLocator(bookID: $0.bookId, lineIndex: $0.startLineIndex) },
-            next: next.map { lineLocator(bookID: $0.bookId, lineIndex: $0.startLineIndex) },
+            previous: previousStartLineIndex.map { lineLocator(bookID: unit.bookId, lineIndex: $0) },
+            next: nextStartLineIndex.map { lineLocator(bookID: unit.bookId, lineIndex: $0) },
             versions: [TextVersionMetadata(
                 title: "Otzaria local library",
                 language: "he",
@@ -32,6 +32,30 @@ enum OtzariaInspectorDocumentMapper {
             )],
             links: [],
             origin: .offline
+        )
+    }
+
+    static func section(
+        from unit: OtzariaReadingUnit,
+        previous: OtzariaReadingUnitDescriptor?,
+        next: OtzariaReadingUnitDescriptor?
+    ) -> LibraryTextSection {
+        section(
+            from: unit,
+            previousStartLineIndex: previous?.startLineIndex,
+            nextStartLineIndex: next?.startLineIndex
+        )
+    }
+
+    static func section(
+        from unit: OtzariaReadingUnit,
+        previous: OtzariaReadingUnit?,
+        next: OtzariaReadingUnit?
+    ) -> LibraryTextSection {
+        section(
+            from: unit,
+            previousStartLineIndex: previous?.startLineIndex,
+            nextStartLineIndex: next?.startLineIndex
         )
     }
 

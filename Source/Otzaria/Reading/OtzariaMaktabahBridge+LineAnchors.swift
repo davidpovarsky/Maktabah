@@ -1,44 +1,100 @@
 import Foundation
 
-private final class OtzariaReadingUnitSideCache {
+final class OtzariaReadingUnitSideCache {
     static let shared = OtzariaReadingUnitSideCache()
 
     private let lock = NSLock()
     private var units: [String: OtzariaReadingUnit] = [:]
+    private var lruKeys: [String] = []
+    private var currentCost: Int = 0
+    private var generation: Int = 0
+    private let capacity = 50
+    private let maxCost = 20 * 1024 * 1024 // 20 MB text limit
 
-    func set(_ unit: OtzariaReadingUnit) {
+    func set(_ unit: OtzariaReadingUnit, mode: OtzariaUnitMode) {
         lock.lock()
-        units[key(bookId: unit.bookId, contentId: unit.startLineIndex)] = unit
-        lock.unlock()
+        defer { lock.unlock() }
+
+        let primaryKey = key(generation: generation, bookId: unit.bookId, contentId: unit.startLineIndex, mode: mode)
+        let cost = unit.plainText.utf16.count + unit.html.utf16.count
+
+        if let old = units.removeValue(forKey: primaryKey) {
+            currentCost -= (old.plainText.utf16.count + old.html.utf16.count)
+        }
+        units[primaryKey] = unit
+        currentCost += cost
+        touch(primaryKey)
+
+        while lruKeys.count > capacity || currentCost > maxCost {
+            guard !lruKeys.isEmpty else { break }
+            let oldest = lruKeys.removeFirst()
+            if let evicted = units.removeValue(forKey: oldest) {
+                currentCost -= (evicted.plainText.utf16.count + evicted.html.utf16.count)
+            }
+        }
     }
 
-    func unit(bookId: Int, contentId: Int) -> OtzariaReadingUnit? {
+    func unit(bookId: Int, contentId: Int, mode: OtzariaUnitMode) -> OtzariaReadingUnit? {
         lock.lock()
-        let unit = units[key(bookId: bookId, contentId: contentId)]
-        lock.unlock()
-        return unit
+        defer { lock.unlock() }
+
+        let directKey = key(generation: generation, bookId: bookId, contentId: contentId, mode: mode)
+        if let direct = units[directKey], direct.mode == mode {
+            touch(directKey)
+            return direct
+        }
+
+        // Strict range check: only units matching current generation, bookId, and identical mode
+        for (k, cached) in units {
+            guard cached.bookId == bookId, cached.mode == mode else { continue }
+            if (cached.startLineIndex...cached.endLineIndex).contains(contentId) {
+                touch(k)
+                return cached
+            }
+        }
+        return nil
     }
 
-    private func key(bookId: Int, contentId: Int) -> String {
-        "\(bookId):\(contentId)"
+    func clear() {
+        lock.lock()
+        defer { lock.unlock() }
+        units.removeAll()
+        lruKeys.removeAll()
+        currentCost = 0
+        generation += 1
+    }
+
+    private func touch(_ key: String) {
+        lruKeys.removeAll { $0 == key }
+        lruKeys.append(key)
+    }
+
+    private func key(generation: Int, bookId: Int, contentId: Int, mode: OtzariaUnitMode) -> String {
+        "\(generation):\(bookId):\(contentId):\(mode.storageValue)"
     }
 }
 
 extension OtzariaMaktabahBridge {
-    func cacheReadingUnit(_ unit: OtzariaReadingUnit) {
-        OtzariaReadingUnitSideCache.shared.set(unit)
+    func cacheReadingUnit(_ unit: OtzariaReadingUnit, mode: OtzariaUnitMode? = nil) {
+        OtzariaReadingUnitSideCache.shared.set(unit, mode: mode ?? unit.mode)
     }
 
-    func cachedReadingUnit(bookId: Int, contentId: Int) -> OtzariaReadingUnit? {
-        OtzariaReadingUnitSideCache.shared.unit(bookId: bookId, contentId: contentId)
+    func cachedReadingUnit(bookId: Int, contentId: Int, mode: OtzariaUnitMode? = nil) -> OtzariaReadingUnit? {
+        let requestedMode = mode ?? currentReadingUnitMode
+        return OtzariaReadingUnitSideCache.shared.unit(bookId: bookId, contentId: contentId, mode: requestedMode)
+    }
+
+    func clearReadingUnitCache() {
+        OtzariaReadingUnitSideCache.shared.clear()
     }
 
     func lineAnchor(bookId: Int, contentId: Int, characterIndex: Int) -> OtzariaLineAnchor? {
-        let unit = cachedReadingUnit(bookId: bookId, contentId: contentId)
-            ?? getReadingUnit(bookId: bookId, containingLineIndex: contentId, mode: currentReadingUnitMode)
+        let mode = currentReadingUnitMode
+        let unit = cachedReadingUnit(bookId: bookId, contentId: contentId, mode: mode)
+            ?? getReadingUnit(bookId: bookId, containingLineIndex: contentId, mode: mode)
 
         if let unit {
-            cacheReadingUnit(unit)
+            cacheReadingUnit(unit, mode: mode)
         }
 
         guard let unit, !unit.lineAnchors.isEmpty else {

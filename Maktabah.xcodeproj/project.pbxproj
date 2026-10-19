@@ -217,6 +217,8 @@
 		0B7A00000000000000000031 /* OtzariaNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000031 /* OtzariaNavigationAdapter.swift */; };
 		0B7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift */; };
 		0B7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift */; };
+		0B7A00000000000000000034 /* OtzariaReadingUnitDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000034 /* OtzariaReadingUnitDescriptor.swift */; };
+		0B7A00000000000000000035 /* OtzariaPerformanceTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A00000000000000000035 /* OtzariaPerformanceTelemetry.swift */; };
 		14C0C3EA17AFDD276CAB339F /* ZayitSearchEngineBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9382027F83A96D4E29E81FC7 /* ZayitSearchEngineBridge.swift */; };
 		17149C0FF8EC6E101ED5C6F4 /* OtzariaSQLiteBookTextRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAA51437BCA65EBC070F97 /* OtzariaSQLiteBookTextRepository.swift */; };
 		171539BBE3B411357B49642B /* String+OtzariaText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D30038F013E5A765F1081 /* String+OtzariaText.swift */; };
@@ -962,6 +964,8 @@
 		0A7A00000000000000000031 /* OtzariaNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaNavigationAdapter.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaTextViewLineSelectionAdapter.swift; sourceTree = "<group>"; };
 		0A7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaReaderSourcesInspectorHost.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000034 /* OtzariaReadingUnitDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaReadingUnitDescriptor.swift; sourceTree = "<group>"; };
+		0A7A00000000000000000035 /* OtzariaPerformanceTelemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug/OtzariaPerformanceTelemetry.swift; sourceTree = "<group>"; };
 		108CA32B8C4BF9FDE81B0157 /* OtzariaTextViewLineSelectionAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaTextViewLineSelectionAdapter.swift; path = Source/Otzaria/Reading/OtzariaTextViewLineSelectionAdapter.swift; sourceTree = "<group>"; };
 		11A73125BE6E75CAD428665A /* OtzariaSQLiteStatement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtzariaSQLiteStatement.swift; path = Source/Otzaria/Core/OtzariaSQLiteStatement.swift; sourceTree = "<group>"; };
 		1D17400FB8C5FF831D04C712 /* MaktabahZayitSearch.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = MaktabahZayitSearch.xcframework; path = Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework; sourceTree = "<group>"; };
@@ -1465,6 +1469,8 @@
 				0A7A00000000000000000031 /* OtzariaNavigationAdapter.swift */,
 				0A7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift */,
 				0A7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift */,
+				0A7A00000000000000000034 /* OtzariaReadingUnitDescriptor.swift */,
+				0A7A00000000000000000035 /* OtzariaPerformanceTelemetry.swift */,
 				0A7A0000000000000000001D /* OtzariaStateViews.swift */,
 				0A7A0000000000000000001E /* OtzariaFileLogger.swift */,
 			);
@@ -2972,6 +2978,8 @@
 				0B7A00000000000000000031 /* OtzariaNavigationAdapter.swift in Sources */,
 				0B7A00000000000000000032 /* OtzariaTextViewLineSelectionAdapter.swift in Sources */,
 				0B7A00000000000000000033 /* OtzariaReaderSourcesInspectorHost.swift in Sources */,
+				0B7A00000000000000000034 /* OtzariaReadingUnitDescriptor.swift in Sources */,
+				0B7A00000000000000000035 /* OtzariaPerformanceTelemetry.swift in Sources */,
 				F3DD69E42FA4F77A00BFEA0F /* CoreDatabaseDownloader.swift in Sources */,
 				F3B60E2C2FC7FFA500A9EF58 /* iOSTOCView.swift in Sources */,
 				F31111912FC008F30024B638 /* ActiveIntegrationStatesView.swift in Sources */,
@@ -3892,7 +3900,7 @@
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
 			requirement = {
 				kind = revision;
-				revision = 0d4c3407182e18ca62c3280b3a04a2b905a51c93;
+				revision = 01f58803d1a41c9cb51183ec3cc486155a6c90cb;
 			};
 		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {

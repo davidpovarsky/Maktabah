@@ -4,14 +4,32 @@ extension OtzariaMaktabahBridge {
     func getLinksForLine(_ line: OtzariaLineAnchor) -> [OtzariaLinkedSource] {
         (try? getLinks(
             bookID: line.bookId,
-            sourceLineIndices: [line.lineIndex]
+            sourceLineIndices: [line.lineIndex],
+            includeContent: false
         )) ?? []
     }
 
     func getLinksForReadingUnit(_ unit: OtzariaReadingUnit) throws -> [OtzariaLinkedSource] {
         try getLinks(
             bookID: unit.bookId,
-            sourceLineIndices: unit.sourceLineIndices
+            sourceLineIndices: unit.sourceLineIndices,
+            includeContent: false
+        )
+    }
+
+    func getLinksMetadataForLineIndices(bookID: Int, sourceLineIndices: [Int]) throws -> [OtzariaLinkedSource] {
+        try getLinks(
+            bookID: bookID,
+            sourceLineIndices: sourceLineIndices,
+            includeContent: false
+        )
+    }
+
+    func getLinksMetadataForReadingUnit(_ unit: OtzariaReadingUnit) throws -> [OtzariaLinkedSource] {
+        try getLinks(
+            bookID: unit.bookId,
+            sourceLineIndices: unit.sourceLineIndices,
+            includeContent: false
         )
     }
 
@@ -19,7 +37,7 @@ extension OtzariaMaktabahBridge {
     /// unit's exact line indexes (not MIN...MAX), includes forward and inverse
     /// relationships, range coverage, and per-side suppression, and never opens
     /// one SQLite connection per line.
-    private func getLinks(bookID: Int, sourceLineIndices: [Int]) throws -> [OtzariaLinkedSource] {
+    private func getLinks(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = false) throws -> [OtzariaLinkedSource] {
         let uniqueIndexes = Array(Set(sourceLineIndices)).sorted()
         guard !uniqueIndexes.isEmpty else { return [] }
 
@@ -29,12 +47,12 @@ extension OtzariaMaktabahBridge {
                 let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
                 let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
                 let capabilities = try OtzariaDatabaseCapabilities(database: db)
-                let content = OtzariaLineContentCompatibility.projection(
+                let content = includeContent ? OtzariaLineContentCompatibility.projection(
                     capabilities: capabilities,
                     lineAlias: "linked_line",
                     contentAlias: "linked_content"
-                )
-                let decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
+                ) : nil
+                let decoder = includeContent ? try OtzariaLineContentDecoder(database: db, capabilities: capabilities) : nil
                 var byIdentity: [String: OtzariaLinkedSource] = [:]
 
                 // Each index appears in the forward and inverse arms. 400 keeps
@@ -142,11 +160,10 @@ extension OtzariaMaktabahBridge {
                                \(schema.filePath),
                                linked_book.categoryId,
                                linked_book.orderIndex,
-                               linked_line.heRef,
-                               \(content.expression)
+                               linked_line.heRef\(includeContent ? ", \(content?.expression ?? "")" : "")
                         FROM resolved
                         JOIN line linked_line ON linked_line.id = resolved.linkedLineId
-                        \(content.join)
+                        \(includeContent ? (content?.join ?? "") : "")
                         JOIN book linked_book ON linked_book.id = resolved.linkedBookId
                         ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId
                     """, parameters: parameters) { row in
@@ -163,7 +180,7 @@ extension OtzariaMaktabahBridge {
                             linkedCategoryPath: resolver.path(for: linkedCategoryID),
                             linkedBookOrderIndex: row.isNull(at: 8) ? nil : row.int(at: 8),
                             heRef: row.string(at: 9),
-                            content: try decoder.decode(row: row, at: 10)
+                            content: includeContent ? (try decoder?.decode(row: row, at: 10) ?? "") : ""
                         )
                     }
 
@@ -188,7 +205,104 @@ extension OtzariaMaktabahBridge {
         }
     }
 
+    func authorNames(forBookIds bookIds: [Int]) -> [Int: String] {
+        let uniqueBookIds = Array(Set(bookIds)).filter { $0 > 0 }
+        guard !uniqueBookIds.isEmpty else { return [:] }
+        var result: [Int: String] = [:]
+
+        do {
+            try withDatabase { db in
+                for start in stride(from: 0, to: uniqueBookIds.count, by: 400) {
+                    let chunk = Array(uniqueBookIds[start..<min(start + 400, uniqueBookIds.count)])
+                    let placeholders = Array(repeating: "?", count: chunk.count).joined(separator: ",")
+                    let query = """
+                        SELECT ba.bookId, a.name
+                        FROM book_author ba
+                        JOIN author a ON a.id = ba.authorId
+                        WHERE ba.bookId IN (\(placeholders))
+                        ORDER BY ba.bookId, a.name
+                    """
+                    let rows = try db.fetch(query: query, parameters: chunk) { row in
+                        (bookId: row.int(at: 0), name: row.string(at: 1) ?? "")
+                    }
+                    for row in rows {
+                        if result[row.bookId] == nil {
+                            result[row.bookId] = row.name
+                        }
+                    }
+                }
+            }
+        } catch {
+            OtzariaFileLogger.shared.log("[OtzariaLineSourcesService] batch authorNames error: \(error.localizedDescription)")
+        }
+        return result
+    }
+
+    func fetchLineContent(lineId: Int) throws -> String {
+        try withDatabase { db in
+            let capabilities = try OtzariaDatabaseCapabilities(database: db)
+            let content = OtzariaLineContentCompatibility.projection(
+                capabilities: capabilities,
+                lineAlias: "l",
+                contentAlias: "lc"
+            )
+            let decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
+            let query = """
+                SELECT l.id, l.lineIndex, \(content.expression), l.heRef
+                FROM line l
+                \(content.join)
+                WHERE l.id = ?
+                LIMIT 1
+            """
+            let rows = try db.fetch(query: query, parameters: [lineId]) { row in
+                try decoder.decode(row: row, at: 2)
+            }
+            return rows.first ?? ""
+        }
+    }
+
+    func fetchLineContent(bookId: Int, lineIndex: Int) throws -> (content: String, heRef: String?)? {
+        try withDatabase { db in
+            let capabilities = try OtzariaDatabaseCapabilities(database: db)
+            let content = OtzariaLineContentCompatibility.projection(
+                capabilities: capabilities,
+                lineAlias: "l",
+                contentAlias: "lc"
+            )
+            let decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
+            let query = """
+                SELECT l.id, l.lineIndex, \(content.expression), l.heRef
+                FROM line l
+                \(content.join)
+                WHERE l.bookId = ? AND l.lineIndex = ?
+                LIMIT 1
+            """
+            let rows = try db.fetch(query: query, parameters: [bookId, lineIndex]) { row in
+                let decoded = try decoder.decode(row: row, at: 2)
+                let heRef = row.string(at: 3)
+                return (decoded, heRef)
+            }
+            return rows.first
+        }
+    }
+
+    private static var cachedCategoryMap: [Int: CategoryData]?
+    private static let categoryCacheLock = NSLock()
+
+    static func clearCategoryCache() {
+        categoryCacheLock.lock()
+        cachedCategoryMap = nil
+        categoryCacheLock.unlock()
+    }
+
     private func categoryMap(in db: SQLiteDatabase) throws -> [Int: CategoryData] {
+        Self.categoryCacheLock.lock()
+        if let cached = Self.cachedCategoryMap {
+            Self.categoryCacheLock.unlock()
+            return cached
+        }
+        Self.categoryCacheLock.unlock()
+
         let categories = try db.fetch(query: """
             SELECT id, parentId, title, level, orderIndex
             FROM category
@@ -204,6 +318,10 @@ extension OtzariaMaktabahBridge {
 
         var result: [Int: CategoryData] = [:]
         for category in categories { result[category.id] = category }
+
+        Self.categoryCacheLock.lock()
+        Self.cachedCategoryMap = result
+        Self.categoryCacheLock.unlock()
         return result
     }
 

@@ -165,6 +165,9 @@ final class OtzariaMaktabahBridge {
         openedDatabaseURL = nil
         readingUnitService = nil
         lock.unlock()
+        clearReadingUnitCache()
+        OtzariaLineSourcesService.clearCategoryCache()
+        BookPageCache.shared.removeAll()
     }
 
     @discardableResult
@@ -176,6 +179,9 @@ final class OtzariaMaktabahBridge {
         if database != nil, openedDatabaseURL == url { return true }
         database = nil
         openedDatabaseURL = nil
+        clearReadingUnitCache()
+        OtzariaLineSourcesService.clearCategoryCache()
+        BookPageCache.shared.removeAll()
         database = try SQLiteDatabase(path: url.path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
         openedDatabaseURL = url
         readingUnitService = nil

@@ -3,6 +3,7 @@ import Foundation
 struct OtzariaReadingUnit: Identifiable, Equatable {
     let id: String
     let bookId: Int
+    let mode: OtzariaUnitMode
     let tocEntryId: Int?
     let title: String?
     let level: Int?
@@ -13,6 +14,36 @@ struct OtzariaReadingUnit: Identifiable, Equatable {
     let html: String
     let plainText: String
     let heRef: String?
+
+    init(
+        id: String,
+        bookId: Int,
+        mode: OtzariaUnitMode = .paragraph,
+        tocEntryId: Int?,
+        title: String?,
+        level: Int?,
+        startLineIndex: Int,
+        endLineIndex: Int,
+        sourceLineIndices: [Int],
+        lineAnchors: [OtzariaLineAnchor],
+        html: String,
+        plainText: String,
+        heRef: String?
+    ) {
+        self.id = id
+        self.bookId = bookId
+        self.mode = mode
+        self.tocEntryId = tocEntryId
+        self.title = title
+        self.level = level
+        self.startLineIndex = startLineIndex
+        self.endLineIndex = endLineIndex
+        self.sourceLineIndices = sourceLineIndices
+        self.lineAnchors = lineAnchors
+        self.html = html
+        self.plainText = plainText
+        self.heRef = heRef
+    }
 }
 
 struct OtzariaUnitLevelOption: Identifiable, Equatable {
@@ -22,12 +53,12 @@ struct OtzariaUnitLevelOption: Identifiable, Equatable {
     let mode: OtzariaUnitMode
 }
 
-enum OtzariaUnitMode: Equatable, Codable {
+public enum OtzariaUnitMode: String, Equatable, Codable, Sendable {
     case line
     case paragraph
     case chapter
 
-    var storageValue: String {
+    public var storageValue: String {
         switch self {
         case .line: return "line"
         case .paragraph: return "paragraph"
@@ -35,7 +66,7 @@ enum OtzariaUnitMode: Equatable, Codable {
         }
     }
 
-    init(storageValue: String) {
+    public init(storageValue: String) {
         switch storageValue {
         case "line", "sourceLine":
             self = .line

@@ -19,14 +19,15 @@ final class BookPageCache {
         cache.countLimit = 2000     // total item cache
         cache.totalCostLimit = 50 * 1024 * 1024 // 50 MB memory (opsional)
 
-        processedCache.countLimit = 2000
+        processedCache.countLimit = 100
+        processedCache.totalCostLimit = 50 * 1024 * 1024
     }
 
     private func processedSubKey(
         contentId: Int,
         key: CleanedTextKey
     ) -> NSString {
-        "\(contentId)_\(key.showHarakat)_\(key.isMultiLanguage)_\(key.isImported)" as NSString
+        "\(contentId)_\(key.showHarakat)_\(key.isMultiLanguage)_\(key.isImported)_\(key.textHash)" as NSString
     }
 
     func get(bookId: Int, contentId: Int) -> BookContent? {
@@ -49,7 +50,13 @@ final class BookPageCache {
         let pages = cache.object(forKey: bookKey) ?? NSMutableDictionary()
 
         pages[content.id as NSNumber] = content
-        cache.setObject(pages, forKey: bookKey)
+        var totalCost = 0
+        if let all = pages.allValues as? [BookContent] {
+            for item in all {
+                totalCost += item.content.utf16.count
+            }
+        }
+        cache.setObject(pages, forKey: bookKey, cost: totalCost)
     }
 
     func getProcessed(bookId: Int, contentId: Int, key: CleanedTextKey) -> ProcessedArabicContent? {
@@ -71,7 +78,15 @@ final class BookPageCache {
         let subKey = processedSubKey(contentId: contentId, key: key)
 
         pages[subKey] = content
-        processedCache.setObject(pages, forKey: bookKey)
+        var totalCost = 0
+        if let all = pages.allValues as? [ProcessedArabicContent] {
+            for item in all {
+                totalCost += item.sourceText.utf16.count + item.displayText.utf16.count
+            }
+        } else {
+            totalCost = content.sourceText.utf16.count + content.displayText.utf16.count
+        }
+        processedCache.setObject(pages, forKey: bookKey, cost: totalCost)
     }
 
     func remove(bookId: Int) {

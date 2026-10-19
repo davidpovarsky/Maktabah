@@ -570,7 +570,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         let renderSignature = RenderSignature(
             contentID: viewModel.currentContentId,
             textHash: text.hashValue,
-            textLength: (text as NSString).length,
+            textLength: text.utf16.count,
             showHarakat: state.showHarakat,
             isMultiLanguage: isMultiLanguage,
             isImported: isImported,
@@ -678,7 +678,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             )
             textView.invalidateIntrinsicContentSize()
             textView.setNeedsLayout()
-            textView.layoutIfNeeded()
+
         }
 
         if contentIdChanged {

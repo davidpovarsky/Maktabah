@@ -32,7 +32,9 @@ extension OtzariaMaktabahBridge {
                 otzariaLog("getReadingUnit error bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) error=\(error.localizedDescription)")
                 return nil
             }
-        } ?? nil
+        if let unit {
+            cacheReadingUnit(unit, mode: mode)
+        }
 
         otzariaLog("getReadingUnit done bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(otzariaUnitSummary(unit)) durationMs=\(otzariaElapsedMs(start))")
         return unit
@@ -87,6 +89,30 @@ extension OtzariaMaktabahBridge {
 
         otzariaLog("getPreviousReadingUnit done bookId=\(bookId) beforeLineIndex=\(lineIndex) mode=\(mode.storageValue) result=\(unit == nil ? "nil" : "ok") \(otzariaUnitSummary(unit)) durationMs=\(otzariaElapsedMs(start))")
         return unit
+    }
+
+    func getReadingUnitDescriptor(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) -> OtzariaReadingUnitDescriptor? {
+        withReadingUnitService { service in
+            try? service.descriptor(bookId: bookId, containingLineIndex: lineIndex, mode: mode)
+        } ?? nil
+    }
+
+    func getFirstReadingUnitDescriptor(bookId: Int, mode: OtzariaUnitMode) -> OtzariaReadingUnitDescriptor? {
+        withReadingUnitService { service in
+            try? service.firstDescriptor(bookId: bookId, mode: mode)
+        } ?? nil
+    }
+
+    func getNextReadingUnitDescriptor(bookId: Int, afterLineIndex lineIndex: Int, mode: OtzariaUnitMode) -> OtzariaReadingUnitDescriptor? {
+        withReadingUnitService { service in
+            try? service.nextDescriptor(bookId: bookId, afterLineIndex: lineIndex, mode: mode)
+        } ?? nil
+    }
+
+    func getPreviousReadingUnitDescriptor(bookId: Int, beforeLineIndex lineIndex: Int, mode: OtzariaUnitMode) -> OtzariaReadingUnitDescriptor? {
+        withReadingUnitService { service in
+            try? service.previousDescriptor(bookId: bookId, beforeLineIndex: lineIndex, mode: mode)
+        } ?? nil
     }
 
     func makeBookContent(from unit: OtzariaReadingUnit) -> BookContent {

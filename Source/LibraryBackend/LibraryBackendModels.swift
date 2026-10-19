@@ -459,6 +459,7 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
         mode = resolvedMode
 
         var output = ""
+        var currentUTF16Offset = 0
         var mappings: [LibraryRenderedSegment] = []
         for segment in section.segments {
             let source = segment.sourceText.readerPlainText
@@ -477,24 +478,28 @@ struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
                 block = parts.joined(separator: "\n")
             }
             guard !block.isEmpty else { continue }
-            if !output.isEmpty { output += "\n\n" }
-            let location = (output as NSString).length
+            if !output.isEmpty {
+                output += "\n\n"
+                currentUTF16Offset += 2
+            }
+            let location = currentUTF16Offset
             output += block
-            let fullLength = (block as NSString).length
-            let blockNSString = block as NSString
+            let utf16 = block.utf16
+            let fullLength = utf16.count
+            currentUTF16Offset += fullLength
+
             var leadTrim = 0
-            while leadTrim < fullLength {
-                let unichar = blockNSString.character(at: leadTrim)
-                if unichar == 0x202A || unichar == 0x202B || unichar == 0x202C {
+            for codeUnit in utf16 {
+                if codeUnit == 0x202A || codeUnit == 0x202B || codeUnit == 0x202C {
                     leadTrim += 1
                 } else {
                     break
                 }
             }
             var trailTrim = 0
-            while (fullLength - trailTrim - 1) >= leadTrim {
-                let unichar = blockNSString.character(at: fullLength - trailTrim - 1)
-                if unichar == 0x202A || unichar == 0x202B || unichar == 0x202C {
+            for codeUnit in utf16.reversed() {
+                if (leadTrim + trailTrim) >= fullLength { break }
+                if codeUnit == 0x202A || codeUnit == 0x202B || codeUnit == 0x202C {
                     trailTrim += 1
                 } else {
                     break

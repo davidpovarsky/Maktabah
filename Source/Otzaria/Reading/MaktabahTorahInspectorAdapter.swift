@@ -10,7 +10,11 @@ final class MaktabahTorahInspectorSession {
     private weak var readerViewModel: ReaderViewModel?
     private var locatorsByReference: [String: TextLocator] = [:]
     private var otzariaUnitsByReference: [String: OtzariaReadingUnit] = [:]
+    private var otzariaUnitsLRU: [String] = []
+    private let otzariaUnitsCapacity = 20
     private var otzariaUnitLinksByReference: [String: [TorahLinkedSource]] = [:]
+    private var otzariaUnitLinksLRU: [String] = []
+    private let otzariaUnitLinksCapacity = 30
 
     convenience init() {
         self.init(
@@ -81,7 +85,11 @@ final class MaktabahTorahInspectorSession {
             )
         }
         if let line = otzariaLine,
-           let unit = otzaria.getReadingUnit(
+           let unit = otzaria.cachedReadingUnit(
+            bookId: line.bookId,
+            contentId: line.lineIndex,
+            mode: otzaria.currentReadingUnitMode
+           ) ?? otzaria.getReadingUnit(
             bookId: line.bookId,
             containingLineIndex: line.lineIndex,
             mode: otzaria.currentReadingUnitMode
@@ -114,7 +122,8 @@ final class MaktabahTorahInspectorSession {
               let bookID = viewModel.currentBook?.id,
               let unit = otzaria.cachedReadingUnit(
                 bookId: bookID,
-                contentId: viewModel.currentContentId
+                contentId: viewModel.currentContentId,
+                mode: otzaria.currentReadingUnitMode
               ) ?? otzaria.getReadingUnit(
                 bookId: bookID,
                 containingLineIndex: viewModel.currentContentId,
@@ -178,59 +187,17 @@ final class MaktabahTorahInspectorSession {
         if locator.backend == .otzaria, let cached = otzariaUnitLinksByReference[key] {
             return cached
         }
-        let sources: [LibraryRelatedSource]
-        if locator.backend == .otzaria {
-            let unit: OtzariaReadingUnit?
-            if let cached = otzariaUnitsByReference[key] {
-                unit = cached
-            } else if let bookID = Self.otzariaBookID(from: locator.workKey),
-                      case .legacyLine(let lineIndex) = locator.position {
-                unit = otzaria.cachedReadingUnit(bookId: bookID, contentId: lineIndex)
-                    ?? otzaria.getReadingUnit(bookId: bookID, containingLineIndex: lineIndex, mode: otzaria.currentReadingUnitMode)
-            } else {
-                unit = nil
-            }
-            if let unit {
-                remember(unit, for: reference)
-                sources = try otzaria.getLinksForReadingUnit(unit).map(OtzariaInspectorRelationshipsProvider.map)
-            } else {
-                sources = try await coordinator.links(for: locator)
-            }
-        } else {
-            sources = try await coordinator.links(for: locator)
-        }
-        let mappedSources: [TorahLinkedSource] = sources.map { source in
-            let sourceReference = Self.reference(for: source.locator)
-            remember(source.locator, for: sourceReference)
-            let usesHebrewReference = preferredMode != .translation
 
-            let commentatorID: String?
-            let commentatorName: String?
-            let hebrewCommentatorName: String?
-            let workTitle: String?
-            let hebrewWorkTitle: String?
-            let collectiveTitle: String?
-            let hebrewCollectiveTitle: String?
-
-            if source.locator.backend == .otzaria {
-                let bookID = Self.otzariaBookID(from: source.locator.workKey)
-                let authorFromDB = bookID.flatMap { otzaria.authorName(forBookId: $0) }
-                let identity = OtzariaCommentatorResolver.resolve(
-                    bookID: bookID,
-                    bookTitle: source.displayRef,
-                    heRef: source.heRef,
-                    authorNameFromDB: authorFromDB
-                )
-                commentatorID = identity.commentatorID
-                commentatorName = identity.commentatorName
-                hebrewCommentatorName = identity.hebrewCommentatorName
-                workTitle = identity.workTitle
-                hebrewWorkTitle = identity.hebrewWorkTitle
-                collectiveTitle = identity.collectiveTitle
-                hebrewCollectiveTitle = identity.hebrewCollectiveTitle
-            } else {
-                collectiveTitle = source.collectiveTitle
-                hebrewCollectiveTitle = source.heCollectiveTitle
+        if locator.backend == .sefaria {
+            let sources = try await coordinator.links(for: locator)
+            let mappedSources: [TorahLinkedSource] = sources.map { source in
+                let sourceReference = Self.reference(for: source.locator)
+                remember(source.locator, for: sourceReference)
+                let collectiveTitle = source.collectiveTitle
+                let hebrewCollectiveTitle = source.heCollectiveTitle
+                let commentatorID: String?
+                let commentatorName: String?
+                let hebrewCommentatorName: String?
                 if let collective = source.collectiveTitle ?? source.heCollectiveTitle, !collective.isEmpty {
                     commentatorID = "author:\(collective.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current))"
                     commentatorName = source.heCollectiveTitle ?? source.collectiveTitle
@@ -240,38 +207,155 @@ final class MaktabahTorahInspectorSession {
                     commentatorName = nil
                     hebrewCommentatorName = nil
                 }
-                workTitle = source.heRef ?? source.versionTitle ?? source.displayRef
-                hebrewWorkTitle = source.heRef
+                return TorahLinkedSource(
+                    sourceRef: sourceReference,
+                    sourceHebrewRef: preferredMode != .translation ? source.heRef : nil,
+                    category: source.category,
+                    type: source.type,
+                    collectiveTitle: collectiveTitle,
+                    hebrewCollectiveTitle: hebrewCollectiveTitle,
+                    commentatorID: commentatorID,
+                    commentatorName: commentatorName,
+                    hebrewCommentatorName: hebrewCommentatorName,
+                    workTitle: source.heRef ?? source.versionTitle ?? source.displayRef,
+                    hebrewWorkTitle: source.heRef,
+                    hebrewText: source.primaryText?.readerPlainText,
+                    englishText: source.translation?.readerPlainText,
+                    versionTitle: source.versionTitle,
+                    hebrewVersionTitle: source.heVersionTitle,
+                    license: source.license,
+                    canonicalBookID: "\(source.locator.backend.rawValue):\(source.locator.workKey)",
+                    anchorRefs: source.anchorRefs,
+                    relationshipKind: Self.relationshipKind(category: source.category, type: source.type),
+                    semanticCategory: Self.semanticCategory(category: source.category, type: source.type),
+                    rawProviderPayload: source.locator.persistenceKey
+                )
+            }
+            return mappedSources
+        }
+
+        // Otzaria backend: execute heavy SQLite queries, author lookup, and mapping off MainActor
+        let initialGeneration = coordinator.generation
+        let bridge = self.otzaria
+        let currentMode = bridge.currentReadingUnitMode
+        let preferredMode = self.preferredMode
+
+        var resolvedBookID: Int?
+        var resolvedLineIndices: [Int]?
+        var resolvedUnit: OtzariaReadingUnit?
+
+        if reference.hasPrefix("otzaria:unit:") {
+            if let cached = otzariaUnitsByReference[key] {
+                resolvedUnit = cached
+            } else if let bookID = Self.otzariaBookID(from: locator.workKey),
+                      case .legacyLine(let lineIndex) = locator.position {
+                resolvedUnit = bridge.cachedReadingUnit(bookId: bookID, contentId: lineIndex, mode: currentMode)
+                resolvedBookID = bookID
+                resolvedLineIndices = [lineIndex]
+            }
+        } else if let bookID = Self.otzariaBookID(from: locator.workKey),
+                  case .legacyLine(let lineIndex) = locator.position {
+            resolvedBookID = bookID
+            resolvedLineIndices = [lineIndex]
+        }
+
+        let isUnitRef = reference.hasPrefix("otzaria:unit:")
+        let cachedUnit = resolvedUnit
+
+        let backgroundResult = try await Task.detached(priority: .userInitiated) { () -> (sources: [TorahLinkedSource], locators: [(String, TextLocator)], unitToRemember: OtzariaReadingUnit?) in
+            try Task.checkCancellation()
+
+            let rawSources: [OtzariaLinkedSource]
+            var builtUnit: OtzariaReadingUnit? = cachedUnit
+
+            if isUnitRef {
+                let unit: OtzariaReadingUnit?
+                if let built = builtUnit {
+                    unit = built
+                } else if let bkid = resolvedBookID, let lineIndex = resolvedLineIndices?.first {
+                    unit = bridge.getReadingUnit(bookId: bkid, containingLineIndex: lineIndex, mode: currentMode)
+                    builtUnit = unit
+                } else {
+                    unit = nil
+                }
+
+                if let unit {
+                    rawSources = try bridge.getLinksMetadataForReadingUnit(unit)
+                } else {
+                    rawSources = []
+                }
+            } else if let bkid = resolvedBookID, let lines = resolvedLineIndices {
+                rawSources = try bridge.getLinksMetadataForLineIndices(bookID: bkid, sourceLineIndices: lines)
+            } else {
+                rawSources = []
             }
 
-            return TorahLinkedSource(
-                sourceRef: sourceReference,
-                sourceHebrewRef: usesHebrewReference ? source.heRef : nil,
-                category: source.category,
-                type: source.type,
-                collectiveTitle: collectiveTitle,
-                hebrewCollectiveTitle: hebrewCollectiveTitle,
-                commentatorID: commentatorID,
-                commentatorName: commentatorName,
-                hebrewCommentatorName: hebrewCommentatorName,
-                workTitle: workTitle,
-                hebrewWorkTitle: hebrewWorkTitle,
-                hebrewText: source.primaryText?.readerPlainText,
-                englishText: source.translation?.readerPlainText,
-                versionTitle: source.versionTitle,
-                hebrewVersionTitle: source.heVersionTitle,
-                license: source.license,
-                canonicalBookID: "\(source.locator.backend.rawValue):\(source.locator.workKey)",
-                anchorRefs: source.anchorRefs,
-                relationshipKind: Self.relationshipKind(category: source.category, type: source.type),
-                semanticCategory: Self.semanticCategory(category: source.category, type: source.type),
-                rawProviderPayload: source.locator.persistenceKey
-            )
+            try Task.checkCancellation()
+
+            let librarySources = rawSources.map(OtzariaInspectorRelationshipsProvider.map)
+            let bookIds = Array(Set(librarySources.compactMap { source -> Int? in
+                guard source.locator.backend == .otzaria else { return nil }
+                return Self.otzariaBookID(from: source.locator.workKey)
+            }))
+            let authorNamesByBookId = bridge.authorNames(forBookIds: bookIds)
+
+            try Task.checkCancellation()
+
+            var locatorsToRemember: [(String, TextLocator)] = []
+            let mapped = librarySources.map { source -> TorahLinkedSource in
+                let sourceReference = Self.reference(for: source.locator)
+                locatorsToRemember.append((sourceReference, source.locator))
+
+                let usesHebrewReference = preferredMode != .translation
+                let bookID = Self.otzariaBookID(from: source.locator.workKey)
+                let authorFromDB = bookID.flatMap { authorNamesByBookId[$0] }
+                let identity = OtzariaCommentatorResolver.resolve(
+                    bookID: bookID,
+                    bookTitle: source.displayRef,
+                    heRef: source.heRef,
+                    authorNameFromDB: authorFromDB
+                )
+
+                return TorahLinkedSource(
+                    sourceRef: sourceReference,
+                    sourceHebrewRef: usesHebrewReference ? source.heRef : nil,
+                    category: source.category,
+                    type: source.type,
+                    collectiveTitle: identity.collectiveTitle,
+                    hebrewCollectiveTitle: identity.hebrewCollectiveTitle,
+                    commentatorID: identity.commentatorID,
+                    commentatorName: identity.commentatorName,
+                    hebrewCommentatorName: identity.hebrewCommentatorName,
+                    workTitle: identity.workTitle,
+                    hebrewWorkTitle: identity.hebrewWorkTitle,
+                    hebrewText: source.primaryText?.readerPlainText,
+                    englishText: source.translation?.readerPlainText,
+                    versionTitle: source.versionTitle,
+                    hebrewVersionTitle: source.heVersionTitle,
+                    license: source.license,
+                    canonicalBookID: "\(source.locator.backend.rawValue):\(source.locator.workKey)",
+                    anchorRefs: source.anchorRefs,
+                    relationshipKind: Self.relationshipKind(category: source.category, type: source.type),
+                    semanticCategory: Self.semanticCategory(category: source.category, type: source.type),
+                    rawProviderPayload: source.locator.persistenceKey
+                )
+            }
+
+            return (mapped, locatorsToRemember, builtUnit)
+        }.value
+
+        guard !Task.isCancelled, coordinator.generation == initialGeneration else {
+            return []
         }
-        if locator.backend == .otzaria {
-            otzariaUnitLinksByReference[key] = mappedSources
+
+        for (sourceReference, loc) in backgroundResult.locators {
+            remember(loc, for: sourceReference)
         }
-        return mappedSources
+        if let unit = backgroundResult.unitToRemember {
+            remember(unit, for: reference)
+        }
+        remember(links: backgroundResult.sources, for: key)
+        return backgroundResult.sources
     }
 
     private func topics(for reference: String, providerID: String?) async throws -> [TorahLinkedTopic] {
@@ -438,19 +522,59 @@ final class MaktabahTorahInspectorSession {
         requestedReference: String
     ) throws -> TorahTextDocument {
         guard let bookID = Self.otzariaBookID(from: locator.workKey),
-              case .legacyLine(let lineIndex) = locator.position,
-              let unit = otzaria.getReadingUnit(
-                bookId: bookID,
-                containingLineIndex: lineIndex,
-                mode: otzaria.currentReadingUnitMode
-              ) else { throw TorahError.invalidReference }
+              case .legacyLine(let lineIndex) = locator.position else {
+            throw TorahError.invalidReference
+        }
 
-        let previous = otzaria.getPreviousReadingUnit(
+        // Fast on-demand commentary expansion for single-line segments without loading the full chapter
+        if !requestedReference.hasPrefix("otzaria:unit:") {
+            if let lineData = try otzaria.fetchLineContent(bookId: bookID, lineIndex: lineIndex) {
+                let plain = lineData.content.otsariaPlainText
+                let segment = TorahTextSegment(
+                    locator: locator,
+                    canonicalRef: requestedReference,
+                    primaryText: plain,
+                    hebrewRef: lineData.heRef,
+                    hebrewText: plain,
+                    englishText: nil,
+                    category: .commentary,
+                    rawProviderPayload: "{\"bookId\":\(bookID),\"lineIndex\":\(lineIndex)}"
+                )
+                let bookTitle = otzaria.bookMetadata(for: bookID)?.title ?? "Commentary"
+                return TorahTextDocument(
+                    providerID: BackendID.otzaria.rawValue,
+                    requestedRef: requestedReference,
+                    canonicalRef: requestedReference,
+                    hebrewRef: lineData.heRef ?? bookTitle,
+                    sectionRef: requestedReference,
+                    hebrewSectionRef: lineData.heRef ?? bookTitle,
+                    segments: [segment],
+                    previousSectionRef: nil,
+                    nextSectionRef: nil,
+                    version: TorahTextVersionMetadata(
+                        language: "he",
+                        actualLanguage: "he",
+                        versionTitle: bookTitle,
+                        license: nil,
+                        direction: "rtl"
+                    ),
+                    rawProviderPayload: "{\"bookId\":\(bookID),\"lineIndex\":\(lineIndex)}"
+                )
+            }
+        }
+
+        guard let unit = otzaria.getReadingUnit(
+            bookId: bookID,
+            containingLineIndex: lineIndex,
+            mode: otzaria.currentReadingUnitMode
+        ) else { throw TorahError.invalidReference }
+
+        let previous = otzaria.getPreviousReadingUnitDescriptor(
             bookId: bookID,
             beforeLineIndex: unit.startLineIndex,
             mode: otzaria.currentReadingUnitMode
         )
-        let next = otzaria.getNextReadingUnit(
+        let next = otzaria.getNextReadingUnitDescriptor(
             bookId: bookID,
             afterLineIndex: unit.endLineIndex,
             mode: otzaria.currentReadingUnitMode
@@ -494,6 +618,14 @@ final class MaktabahTorahInspectorSession {
             return TextLocator(backend: .sefaria, workKey: workKey, position: .canonicalRef(reference))
         case .otzaria:
             let parts = reference.split(separator: ":", omittingEmptySubsequences: false)
+            if parts.count >= 6, parts[0] == "otzaria", parts[1] == "unit", parts[2] == "v1",
+               let bookID = Int(parts[3]), let startLine = Int(parts[5]) {
+                return TextLocator(
+                    backend: .otzaria,
+                    workKey: "book:\(bookID)",
+                    position: .legacyLine(startLine)
+                )
+            }
             guard parts.count == 4, parts[0] == "otzaria", parts[1] == "v1",
                   let bookID = Int(parts[2]), let lineIndex = Int(parts[3]) else { return nil }
             return TextLocator(
@@ -511,10 +643,24 @@ final class MaktabahTorahInspectorSession {
     }
 
     private func remember(_ unit: OtzariaReadingUnit, for reference: String) {
-        otzariaUnitsByReference[cacheKey(
-            providerID: BackendID.otzaria.rawValue,
-            reference: reference
-        )] = unit
+        let key = cacheKey(providerID: BackendID.otzaria.rawValue, reference: reference)
+        otzariaUnitsByReference[key] = unit
+        otzariaUnitsLRU.removeAll { $0 == key }
+        otzariaUnitsLRU.append(key)
+        while otzariaUnitsLRU.count > otzariaUnitsCapacity {
+            let oldest = otzariaUnitsLRU.removeFirst()
+            otzariaUnitsByReference.removeValue(forKey: oldest)
+        }
+    }
+
+    private func remember(links: [TorahLinkedSource], for key: String) {
+        otzariaUnitLinksByReference[key] = links
+        otzariaUnitLinksLRU.removeAll { $0 == key }
+        otzariaUnitLinksLRU.append(key)
+        while otzariaUnitLinksLRU.count > otzariaUnitLinksCapacity {
+            let oldest = otzariaUnitLinksLRU.removeFirst()
+            otzariaUnitLinksByReference.removeValue(forKey: oldest)
+        }
     }
 
     private func cacheKey(providerID: String, reference: String) -> String {
