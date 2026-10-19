@@ -182,7 +182,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
 
     func clearAllCaches() {
         clearReadingUnitCache()
-        OtzariaLineSourcesService.clearCategoryCache()
+        Self.clearCategoryCache()
         BookPageCache.shared.removeAll()
     }
 
@@ -533,6 +533,10 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
             book.bithoqoh = info.0
             book.info = info.1
         }
+    }
+
+    func bookMetadata(for bookId: Int) -> LibraryWorkMetadata? {
+        workMetadata(for: bookId)
     }
 
     func workMetadata(for bookId: Int) -> LibraryWorkMetadata? {

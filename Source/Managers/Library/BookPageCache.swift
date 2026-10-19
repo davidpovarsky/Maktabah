@@ -53,7 +53,7 @@ final class BookPageCache {
         var totalCost = 0
         if let all = pages.allValues as? [BookContent] {
             for item in all {
-                totalCost += item.content.utf16.count
+                totalCost += item.nash.utf16.count
             }
         }
         cache.setObject(pages, forKey: bookKey, cost: totalCost)

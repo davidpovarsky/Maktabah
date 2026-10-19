@@ -345,3 +345,9 @@ extension OtzariaMaktabahBridge {
             .joined(separator: ", ")
     }
 }
+
+public enum OtzariaLineSourcesService {
+    public static func clearCategoryCache() {
+        OtzariaMaktabahBridge.clearCategoryCache()
+    }
+}

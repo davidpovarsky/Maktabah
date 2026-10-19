@@ -83,7 +83,11 @@ final class OtzariaReadingUnitService {
 
     func firstDescriptor(bookId: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
         let summaries = try unitSummaries(bookId: bookId, mode: mode)
-        guard let summary = summaries.first ?? (mode == .line ? nil : try unitSummaries(bookId: bookId, mode: .line).first) else {
+        var summary = summaries.first
+        if summary == nil && mode != .line {
+            summary = try unitSummaries(bookId: bookId, mode: .line).first
+        }
+        guard let summary else {
             return nil
         }
         let next = summaries.first(where: { $0.startLineIndex > summary.endLineIndex })?.startLineIndex
