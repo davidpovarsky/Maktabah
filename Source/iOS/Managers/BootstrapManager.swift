@@ -161,8 +161,17 @@ final class iOSBootstrapManager {
                     }
                 }
                 guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
-                try await installRecommendedSearchData(generation: generation)
+                // Database is activated and verified; commit Otzaria so reader and library are functional
                 backendCoordinator.commit(.otzaria)
+
+                // Attempt recommended search package installation without failing library setup
+                do {
+                    try await installRecommendedSearchData(generation: generation)
+                } catch {
+                    OtzariaFileLogger.shared.log("[BootstrapManager] Recommended search data install skipped or failed: \(error.localizedDescription)")
+                }
+
+                guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
                 finishSetup()
             } catch let error as OtzariaDatabaseBootstrapError {
                 guard managedDownloadGeneration == generation else { return }
@@ -217,38 +226,52 @@ final class iOSBootstrapManager {
 
     private func installRecommendedSearchData(generation: UUID) async throws {
         coreDownloadState.detail = String(localized: "bootstrap.status.sharedLexical")
-        _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: true)
+        do {
+            _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: true)
+        } catch {
+            OtzariaFileLogger.shared.log("[BootstrapManager] Shared lexical dictionary refresh skipped: \(error.localizedDescription)")
+        }
         coreDownloadState.progress = 0.35
         guard managedDownloadGeneration == generation,
               let databasePath = OtzariaMaktabahBridge.shared.databasePath,
-              let databaseURL = OtzariaMaktabahBridge.shared.databaseURL,
-              let lexicalURL = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL else {
-            throw CancellationError()
+              let databaseURL = OtzariaMaktabahBridge.shared.databaseURL else {
+            return
         }
+        let lexicalURL = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL
 
-        _ = try await OtzariaSearchArtifactService.shared.install(databasePath: databasePath) { [weak self] update in
-            Task { @MainActor in
-                guard let self, self.managedDownloadGeneration == generation else { return }
-                let fraction = update.totalBytes > 0
-                    ? Double(update.completedBytes) / Double(update.totalBytes) : 0
-                self.coreDownloadState.progress = 0.35 + min(1, fraction) * 0.35
-                self.coreDownloadState.detail = String(localized: "bootstrap.status.otzariaSearch")
-            }
-        }
-
-        try await ZayitSearchArtifactService.shared.install(
-            databaseURL: databaseURL,
-            lexicalDatabaseURL: lexicalURL
-        ) { [weak self] state in
-            Task { @MainActor in
-                guard let self, self.managedDownloadGeneration == generation else { return }
-                switch state {
-                case .downloading(let completed, let total), .installing(let completed, let total):
-                    let fraction = total > 0 ? Double(completed) / Double(total) : 0
-                    self.coreDownloadState.progress = 0.70 + min(1, fraction) * 0.30
-                default: break
+        do {
+            _ = try await OtzariaSearchArtifactService.shared.install(databasePath: databasePath) { [weak self] update in
+                Task { @MainActor in
+                    guard let self, self.managedDownloadGeneration == generation else { return }
+                    let fraction = update.totalBytes > 0
+                        ? Double(update.completedBytes) / Double(update.totalBytes) : 0
+                    self.coreDownloadState.progress = 0.35 + min(1, fraction) * 0.35
+                    self.coreDownloadState.detail = String(localized: "bootstrap.status.otzariaSearch")
                 }
-                self.coreDownloadState.detail = String(localized: "bootstrap.status.zayitSearch")
+            }
+        } catch {
+            OtzariaFileLogger.shared.log("[BootstrapManager] Otzaria search artifact install skipped: \(error.localizedDescription)")
+        }
+
+        if let lexicalURL {
+            do {
+                try await ZayitSearchArtifactService.shared.install(
+                    databaseURL: databaseURL,
+                    lexicalDatabaseURL: lexicalURL
+                ) { [weak self] state in
+                    Task { @MainActor in
+                        guard let self, self.managedDownloadGeneration == generation else { return }
+                        switch state {
+                        case .downloading(let completed, let total), .installing(let completed, let total):
+                            let fraction = total > 0 ? Double(completed) / Double(total) : 0
+                            self.coreDownloadState.progress = 0.70 + min(1, fraction) * 0.30
+                        default: break
+                        }
+                        self.coreDownloadState.detail = String(localized: "bootstrap.status.zayitSearch")
+                    }
+                }
+            } catch {
+                OtzariaFileLogger.shared.log("[BootstrapManager] Zayit search artifact install skipped: \(error.localizedDescription)")
             }
         }
         coreDownloadState.progress = 1

@@ -45,54 +45,62 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
 
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
         #if os(iOS)
-        guard locator.backend == .otzaria,
-              case .legacyLine(let line) = locator.position else { throw LibraryBackendError.invalidLocator }
-        let bookID: Int?
-        if locator.workKey.hasPrefix("book:"),
-           let parsed = Int(locator.workKey.dropFirst("book:".count)) {
-            bookID = parsed
-        } else if let parsed = Int(locator.workKey) {
-            bookID = parsed
-        } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: locator.workKey, expectedBookId: 0) {
-            bookID = resolved.id
-        } else {
-            bookID = nil
+        let backgroundTask = Task.detached(priority: .userInitiated) { () -> LibraryTextSection in
+            try Task.checkCancellation()
+            guard locator.backend == .otzaria,
+                  case .legacyLine(let line) = locator.position else { throw LibraryBackendError.invalidLocator }
+            let bookID: Int?
+            if locator.workKey.hasPrefix("book:"),
+               let parsed = Int(locator.workKey.dropFirst("book:".count)) {
+                bookID = parsed
+            } else if let parsed = Int(locator.workKey) {
+                bookID = parsed
+            } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: locator.workKey, expectedBookId: 0) {
+                bookID = resolved.id
+            } else {
+                bookID = nil
+            }
+            guard let bookID else { throw LibraryBackendError.invalidLocator }
+
+            let mode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
+            if let unit = line == 0
+                ? OtzariaMaktabahBridge.shared.getFirstReadingUnit(bookId: bookID, mode: mode)
+                : OtzariaMaktabahBridge.shared.getReadingUnit(bookId: bookID, containingLineIndex: line, mode: mode) {
+                let previous = OtzariaMaktabahBridge.shared.getPreviousReadingUnitDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode)
+                let next = OtzariaMaktabahBridge.shared.getNextReadingUnitDescriptor(bookId: bookID, afterLineIndex: unit.endLineIndex, mode: mode)
+                return OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
+            }
+
+            let content = line == 0
+                ? OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookID)
+                : OtzariaMaktabahBridge.shared.getContent(bookId: bookID, contentId: line)
+            guard let content else { throw LibraryBackendError.invalidLocator }
+            let current = TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(content.id))
+            let previous = OtzariaMaktabahBridge.shared.getPreviousContent(bookId: bookID, before: content.id)
+            let next = OtzariaMaktabahBridge.shared.getNextContent(bookId: bookID, after: content.id)
+            // Split into per-paragraph segments for granular selection when reading units are unavailable.
+            let paragraphs = content.nash.components(separatedBy: "\n").enumerated().compactMap { offset, text -> LibraryTextSegment? in
+                let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !trimmed.isEmpty else { return nil }
+                let segLocator = TextLocator(backend: .otzaria, workKey: locator.workKey,
+                    position: .legacyLine(content.id + offset))
+                return .init(locator: segLocator, heRef: content.heRef, primaryText: trimmed, translation: nil)
+            }
+            let segments = paragraphs.isEmpty
+                ? [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
+                : paragraphs
+            return LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
+                heRef: content.heRef,
+                segments: segments,
+                previous: previous.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
+                next: next.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
+                versions: [], links: [], origin: .offline)
         }
-        guard let bookID else { throw LibraryBackendError.invalidLocator }
-        
-        let mode = OtzariaMaktabahBridge.shared.currentReadingUnitMode
-        if let unit = line == 0
-            ? OtzariaMaktabahBridge.shared.getFirstReadingUnit(bookId: bookID, mode: mode)
-            : OtzariaMaktabahBridge.shared.getReadingUnit(bookId: bookID, containingLineIndex: line, mode: mode) {
-            let previous = OtzariaMaktabahBridge.shared.getPreviousReadingUnitDescriptor(bookId: bookID, beforeLineIndex: unit.startLineIndex, mode: mode)
-            let next = OtzariaMaktabahBridge.shared.getNextReadingUnitDescriptor(bookId: bookID, afterLineIndex: unit.startLineIndex, mode: mode)
-            return OtzariaInspectorDocumentMapper.section(from: unit, previous: previous, next: next)
-        }
-        
-        let content = line == 0
-            ? OtzariaMaktabahBridge.shared.getFirstContent(bookId: bookID)
-            : OtzariaMaktabahBridge.shared.getContent(bookId: bookID, contentId: line)
-        guard let content else { throw LibraryBackendError.invalidLocator }
-        let current = TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(content.id))
-        let previous = OtzariaMaktabahBridge.shared.getPreviousContent(bookId: bookID, before: content.id)
-        let next = OtzariaMaktabahBridge.shared.getNextContent(bookId: bookID, after: content.id)
-        // Split into per-paragraph segments for granular selection when reading units are unavailable.
-        let paragraphs = content.nash.components(separatedBy: "\n").enumerated().compactMap { offset, text -> LibraryTextSegment? in
-            let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard !trimmed.isEmpty else { return nil }
-            let segLocator = TextLocator(backend: .otzaria, workKey: locator.workKey,
-                position: .legacyLine(content.id + offset))
-            return .init(locator: segLocator, heRef: content.heRef, primaryText: trimmed, translation: nil)
-        }
-        let segments = paragraphs.isEmpty
-            ? [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
-            : paragraphs
-        return LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
-            heRef: content.heRef,
-            segments: segments,
-            previous: previous.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
-            next: next.map { TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine($0.id)) },
-            versions: [], links: [], origin: .offline)
+
+        return try await withTaskCancellationHandler(
+            operation: { try await backgroundTask.value },
+            onCancel: { backgroundTask.cancel() }
+        )
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif

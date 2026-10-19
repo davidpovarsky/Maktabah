@@ -233,29 +233,38 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     }
 
     func withReadingUnitService<T>(_ work: (OtzariaReadingUnitService) -> T) -> T? {
-        lock.lock()
-        defer { lock.unlock() }
-
-        guard let db = try? requireDatabase() else { return nil }
-        if readingUnitService == nil {
-            readingUnitService = OtzariaReadingUnitService(database: db)
+        let (service, gen) = lock.withLock { () -> (OtzariaReadingUnitService?, UInt64) in
+            guard let db = try? requireDatabase() else { return (nil, dbGeneration) }
+            if readingUnitService == nil {
+                readingUnitService = OtzariaReadingUnitService(database: db)
+            }
+            return (readingUnitService, dbGeneration)
         }
-        guard let readingUnitService else { return nil }
-        return work(readingUnitService)
+        guard let service else { return nil }
+        let result = work(service)
+        guard lock.withLock({ dbGeneration == gen }) else { return nil }
+        return result
     }
 
     func withDatabase<T>(_ work: (SQLiteDatabase) throws -> T) throws -> T {
-        lock.lock()
-        defer { lock.unlock() }
-        return try work(requireDatabase())
+        let (db, gen) = try lock.withLock {
+            let db = try requireDatabase()
+            return (db, dbGeneration)
+        }
+        let result = try work(db)
+        guard lock.withLock({ dbGeneration == gen }) else {
+            throw CancellationError()
+        }
+        return result
     }
 
     func fetchCategories() throws -> [CategoryData] {
-        lock.lock()
-        defer { lock.unlock() }
-        let db = try requireDatabase()
+        let (db, gen) = try lock.withLock {
+            let db = try requireDatabase()
+            return (db, dbGeneration)
+        }
 
-        return try db.fetch(query: """
+        let result = try db.fetch(query: """
             SELECT id, parentId, title, level, orderIndex
             FROM category
             ORDER BY COALESCE(parentId, id), orderIndex, title
@@ -268,15 +277,20 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
                 parentId: row.isNull(at: 1) ? nil : row.int(at: 1)
             )
         }
+        guard lock.withLock({ dbGeneration == gen }) else {
+            throw CancellationError()
+        }
+        return result
     }
 
     func fetchAllBooks() throws -> [BooksData] {
-        lock.lock()
-        defer { lock.unlock() }
-        let db = try requireDatabase()
+        let (db, gen) = try lock.withLock {
+            let db = try requireDatabase()
+            return (db, dbGeneration)
+        }
         let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
-        return try db.fetch(query: """
+        let result = try db.fetch(query: """
             SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc,
                    \(schema.filePath), \(schema.fileType),
                    COALESCE((SELECT ba.authorId FROM book_author ba WHERE ba.bookId = b.id ORDER BY ba.authorId LIMIT 1), 0) AS firstAuthorId
@@ -305,6 +319,10 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
             book.pdfCs = 4
             return book
         }
+        guard lock.withLock({ dbGeneration == gen }) else {
+            throw CancellationError()
+        }
+        return result
     }
 
     func fetchBooksGroupedByCategory() throws -> [Int: [BooksData]] {
@@ -312,26 +330,32 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     }
 
     func fetchAuthors() throws -> [(id: Int, muallif: Muallif)] {
-        lock.lock()
-        defer { lock.unlock() }
-        let db = try requireDatabase()
+        let (db, gen) = try lock.withLock {
+            let db = try requireDatabase()
+            return (db, dbGeneration)
+        }
 
-        return try db.fetch(query: """
+        let result = try db.fetch(query: """
             SELECT id, name
             FROM author
             ORDER BY name
         """) { row in
             (id: row.int(at: 0), muallif: Muallif(nama: row.string(at: 1) ?? "", info: "", namaLengkap: ""))
         }
+        guard lock.withLock({ dbGeneration == gen }) else {
+            throw CancellationError()
+        }
+        return result
     }
 
     func fetchOtzariaAuthorsWithBookCounts() throws -> [OtzariaAuthor] {
-        lock.lock()
-        defer { lock.unlock() }
-        let db = try requireDatabase()
+        let (db, gen) = try lock.withLock {
+            let db = try requireDatabase()
+            return (db, dbGeneration)
+        }
         let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
-        return try db.fetch(query: """
+        let result = try db.fetch(query: """
             SELECT a.id, a.name, COUNT(DISTINCT b.id) AS bookCount
             FROM author a
             JOIN book_author ba ON ba.authorId = a.id
@@ -347,15 +371,20 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
                 bookCount: row.int(at: 2)
             )
         }
+        guard lock.withLock({ dbGeneration == gen }) else {
+            throw CancellationError()
+        }
+        return result
     }
 
     func fetchBooksForOtzariaAuthor(authorId: Int) throws -> [BooksData] {
-        lock.lock()
-        defer { lock.unlock() }
-        let db = try requireDatabase()
+        let (db, gen) = try lock.withLock {
+            let db = try requireDatabase()
+            return (db, dbGeneration)
+        }
         let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
 
-        return try db.fetch(query: """
+        let result = try db.fetch(query: """
             SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc,
                    \(schema.filePath), \(schema.fileType),
                    COALESCE((SELECT ba2.authorId FROM book_author ba2 WHERE ba2.bookId = b.id ORDER BY ba2.authorId LIMIT 1), 0) AS firstAuthorId

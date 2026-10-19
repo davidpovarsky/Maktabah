@@ -63,6 +63,10 @@ final class MaktabahTorahInspectorSession {
         notesFetcher: { [weak self] selection in
             guard let self else { throw TorahError.missingProvider }
             return await self.notes(for: selection)
+        },
+        snippetsFetcher: { [weak self] sources in
+            guard let self else { return [:] }
+            return try await self.fetchSnippets(for: sources)
         }
     )
 
@@ -304,12 +308,12 @@ final class MaktabahTorahInspectorSession {
                 }
 
                 if let unit {
-                    rawSources = try bridge.getLinksMetadataForReadingUnit(unit)
+                    rawSources = try bridge.getLinksMetadataForReadingUnit(unit, includeContent: false)
                 } else {
                     rawSources = []
                 }
             } else if let bkid = resolvedBookID, let lines = resolvedLineIndices {
-                rawSources = try bridge.getLinksMetadataForLineIndices(bookID: bkid, sourceLineIndices: lines)
+                rawSources = try bridge.getLinksMetadataForLineIndices(bookID: bkid, sourceLineIndices: lines, includeContent: false)
             } else {
                 rawSources = []
             }
@@ -385,6 +389,27 @@ final class MaktabahTorahInspectorSession {
         }
         remember(links: backgroundResult.sources, for: key)
         return backgroundResult.sources
+    }
+
+    private func fetchSnippets(for sources: [TorahLinkedSource]) async throws -> [TorahLinkedSource.ID: String] {
+        guard coordinator.activeBackendID == .otzaria else { return [:] }
+        let initialGeneration = coordinator.generation
+        let bridge = self.otzaria
+
+        let backgroundTask = Task.detached(priority: .userInitiated) { () -> [TorahLinkedSource.ID: String] in
+            try Task.checkCancellation()
+            return try bridge.fetchSnippets(for: sources)
+        }
+
+        let results = try await withTaskCancellationHandler(
+            operation: { try await backgroundTask.value },
+            onCancel: { backgroundTask.cancel() }
+        )
+
+        guard !Task.isCancelled, coordinator.generation == initialGeneration else {
+            throw CancellationError()
+        }
+        return results
     }
 
     private func topics(for reference: String, providerID: String?) async throws -> [TorahLinkedTopic] {

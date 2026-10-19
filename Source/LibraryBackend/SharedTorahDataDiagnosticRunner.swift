@@ -194,7 +194,11 @@ enum SharedTorahDataDiagnosticRunner {
                 for: reference,
                 providerID: backend.rawValue
             )
+            let metaStart = Date()
             let links = try await session.repository.links(for: reference, providerID: backend.rawValue)
+            let metaElapsed = Date().timeIntervalSince(metaStart)
+            let metadataReady = !links.isEmpty
+
             let topics = try await session.repository.topics(for: reference, providerID: backend.rawValue)
             let selected = document.segments.first { $0.canonicalRef == reference }
                 ?? document.segments.first
@@ -206,25 +210,39 @@ enum SharedTorahDataDiagnosticRunner {
             let refPassed = wantsHebrew
                 ? !(selected?.hebrewRef ?? document.hebrewRef ?? "").isEmpty
                 : !(selected?.canonicalRef ?? "").isEmpty
-            let snippetCount = links.filter {
-                let preferred = wantsHebrew ? $0.hebrewText : $0.englishText
-                let fallback = wantsHebrew ? $0.englishText : $0.hebrewText
-                return !((preferred ?? fallback) ?? "").readerPlainText.isEmpty
-            }.count
-            let snippetsPassed = snippetCount > 0
+
+            // Progressive snippet hydration stage
+            let snippetStart = Date()
+            let batchToHydrate = Array(links.prefix(10))
+            let hydratedSnippets = try await session.repository.fetchSnippets(for: batchToHydrate)
+            let snippetElapsed = Date().timeIntervalSince(snippetStart)
+
+            var verifiedSnippets: [(ref: String, text: String)] = []
+            for item in batchToHydrate {
+                let text = hydratedSnippets[item.id]
+                    ?? (wantsHebrew ? item.hebrewText ?? item.englishText : item.englishText ?? item.hebrewText)
+                if let t = text?.readerPlainText, !t.isEmpty {
+                    verifiedSnippets.append((ref: item.sourceRef, text: t))
+                }
+            }
+            let snippetCount = verifiedSnippets.count
+            // In two-stage model: eventual assertion requires >= 2 exact snippets loaded (or all if fewer than 2 total links)
+            let snippetsPassed = snippetCount >= min(2, links.count)
             let passed = document.providerID == backend.rawValue
                 && selected != nil
                 && !selectedText.readerPlainText.isEmpty
                 && languagePassed
                 && refPassed
-                && !links.isEmpty
+                && metadataReady
                 && snippetsPassed
 
+            let metaMs = Int(metaElapsed * 1000)
+            let snippetMs = Int(snippetElapsed * 1000)
             append(
                 component: "Inspector",
                 input: reference,
                 expected: "selected text/ref, relationships/snippets, stable backend",
-                actual: "provider=\(document.providerID); selected=\(selected?.canonicalRef ?? "nil"); links=\(links.count); snippets=\(snippetCount); topics=\(topics.count)",
+                actual: "provider=\(document.providerID); selected=\(selected?.canonicalRef ?? "nil"); links=\(links.count); snippets=\(snippetCount); topics=\(topics.count); metaMs=\(metaMs); snippetMs=\(snippetMs)",
                 passed: passed,
                 backend: backend,
                 locale: locale,

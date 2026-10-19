@@ -1,4 +1,5 @@
 import Foundation
+import TorahInspectorCore
 
 extension OtzariaMaktabahBridge {
     func fetchLinksForLine(_ line: OtzariaLineAnchor) throws -> [OtzariaLinkedSource] {
@@ -26,7 +27,7 @@ extension OtzariaMaktabahBridge {
         )
     }
 
-    func getLinksMetadataForLineIndices(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = true) throws -> [OtzariaLinkedSource] {
+    func getLinksMetadataForLineIndices(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = false) throws -> [OtzariaLinkedSource] {
         let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.getLinksMetadataForLineIndices")
         defer { interval.end(extra: "bookID=\(bookID) lines=\(sourceLineIndices.count)") }
         return try getLinks(
@@ -36,7 +37,7 @@ extension OtzariaMaktabahBridge {
         )
     }
 
-    func getLinksMetadataForReadingUnit(_ unit: OtzariaReadingUnit, includeContent: Bool = true) throws -> [OtzariaLinkedSource] {
+    func getLinksMetadataForReadingUnit(_ unit: OtzariaReadingUnit, includeContent: Bool = false) throws -> [OtzariaLinkedSource] {
         let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.getLinksMetadataForReadingUnit")
         defer { interval.end(extra: "unitId=\(unit.id) lines=\(unit.sourceLineIndices.count)") }
         return try getLinks(
@@ -50,7 +51,7 @@ extension OtzariaMaktabahBridge {
     /// unit's exact line indexes (not MIN...MAX), includes forward and inverse
     /// relationships, range coverage, and per-side suppression, and never opens
     /// one SQLite connection per line.
-    private func getLinks(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = true) throws -> [OtzariaLinkedSource] {
+    private func getLinks(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = false) throws -> [OtzariaLinkedSource] {
         let uniqueIndexes = Array(Set(sourceLineIndices)).sorted()
         guard !uniqueIndexes.isEmpty else { return [] }
 
@@ -299,6 +300,78 @@ extension OtzariaMaktabahBridge {
             }
             return rows.first
         }
+    }
+
+    func fetchSnippets(for sources: [TorahLinkedSource]) throws -> [TorahLinkedSource.ID: String] {
+        guard !sources.isEmpty else { return [:] }
+        let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.fetchSnippets")
+        defer { interval.end(extra: "sources=\(sources.count)") }
+
+        var lineLookup: [String: [(id: TorahLinkedSource.ID, bookId: Int, lineIndex: Int)]] = [:]
+        for source in sources {
+            let ref = source.sourceRef
+            guard ref.hasPrefix("otzaria:v1:") else { continue }
+            let parts = ref.split(separator: ":")
+            guard parts.count >= 4,
+                  let bookId = Int(parts[2]),
+                  let lineIndex = Int(parts[3]) else { continue }
+            let key = "\(bookId):\(lineIndex)"
+            lineLookup[key, default: []].append((id: source.id, bookId: bookId, lineIndex: lineIndex))
+        }
+        guard !lineLookup.isEmpty else { return [:] }
+
+        var results: [TorahLinkedSource.ID: String] = [:]
+        var linesByBookId: [Int: Set<Int>] = [:]
+        for items in lineLookup.values {
+            for item in items {
+                linesByBookId[item.bookId, default: []].insert(item.lineIndex)
+            }
+        }
+
+        try withDatabase { db in
+            let capabilities = try OtzariaDatabaseCapabilities(database: db)
+            let content = OtzariaLineContentCompatibility.projection(
+                capabilities: capabilities,
+                lineAlias: "l",
+                contentAlias: "lc"
+            )
+            let decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
+
+            for (bookId, lineIndices) in linesByBookId {
+                let sortedIndices = Array(lineIndices).sorted()
+                for start in stride(from: 0, to: sortedIndices.count, by: 400) {
+                    let chunk = Array(sortedIndices[start..<min(start + 400, sortedIndices.count)])
+                    let placeholders = Array(repeating: "?", count: chunk.count).joined(separator: ",")
+                    var params: [Any] = [bookId]
+                    params.append(contentsOf: chunk)
+
+                    let query = """
+                        SELECT l.bookId, l.lineIndex, \(content.expression)
+                        FROM line l
+                        \(content.join)
+                        WHERE l.bookId = ? AND l.lineIndex IN (\(placeholders))
+                    """
+                    let rows = try db.fetch(query: query, parameters: params) { row in
+                        let bId = row.int(at: 0)
+                        let lIdx = row.int(at: 1)
+                        let decoded = try decoder.decode(row: row, at: 2)
+                        return (bookId: bId, lineIndex: lIdx, content: decoded)
+                    }
+
+                    for row in rows {
+                        let key = "\(row.bookId):\(row.lineIndex)"
+                        let plain = row.content.otsariaPlainText
+                        if let items = lineLookup[key] {
+                            for item in items {
+                                results[item.id] = plain
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return results
     }
 
     private static var cachedCategoryMap: [Int: CategoryData]?
