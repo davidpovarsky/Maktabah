@@ -5,7 +5,7 @@ extension OtzariaMaktabahBridge {
         try getLinks(
             bookID: line.bookId,
             sourceLineIndices: [line.lineIndex],
-            includeContent: false
+            includeContent: true
         )
     }
 
@@ -22,27 +22,27 @@ extension OtzariaMaktabahBridge {
         try getLinks(
             bookID: unit.bookId,
             sourceLineIndices: unit.sourceLineIndices,
-            includeContent: false
+            includeContent: true
         )
     }
 
-    func getLinksMetadataForLineIndices(bookID: Int, sourceLineIndices: [Int]) throws -> [OtzariaLinkedSource] {
+    func getLinksMetadataForLineIndices(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = true) throws -> [OtzariaLinkedSource] {
         let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.getLinksMetadataForLineIndices")
         defer { interval.end(extra: "bookID=\(bookID) lines=\(sourceLineIndices.count)") }
         return try getLinks(
             bookID: bookID,
             sourceLineIndices: sourceLineIndices,
-            includeContent: false
+            includeContent: includeContent
         )
     }
 
-    func getLinksMetadataForReadingUnit(_ unit: OtzariaReadingUnit) throws -> [OtzariaLinkedSource] {
+    func getLinksMetadataForReadingUnit(_ unit: OtzariaReadingUnit, includeContent: Bool = true) throws -> [OtzariaLinkedSource] {
         let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.getLinksMetadataForReadingUnit")
         defer { interval.end(extra: "unitId=\(unit.id) lines=\(unit.sourceLineIndices.count)") }
         return try getLinks(
             bookID: unit.bookId,
             sourceLineIndices: unit.sourceLineIndices,
-            includeContent: false
+            includeContent: includeContent
         )
     }
 
@@ -50,7 +50,7 @@ extension OtzariaMaktabahBridge {
     /// unit's exact line indexes (not MIN...MAX), includes forward and inverse
     /// relationships, range coverage, and per-side suppression, and never opens
     /// one SQLite connection per line.
-    private func getLinks(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = false) throws -> [OtzariaLinkedSource] {
+    private func getLinks(bookID: Int, sourceLineIndices: [Int], includeContent: Bool = true) throws -> [OtzariaLinkedSource] {
         let uniqueIndexes = Array(Set(sourceLineIndices)).sorted()
         guard !uniqueIndexes.isEmpty else { return [] }
 
