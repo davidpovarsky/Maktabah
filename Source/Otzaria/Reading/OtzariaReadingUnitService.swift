@@ -147,6 +147,8 @@ final class OtzariaReadingUnitService {
     }
 
     func readingUnit(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnit? {
+        let interval = OtzariaPerformanceTelemetry.shared.begin("ReadingUnitService.readingUnit")
+        defer { interval.end(extra: "bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue)") }
         let start = Date()
         let unit = try readingUnitWithoutFallback(bookId: bookId, containingLineIndex: lineIndex, mode: mode)
             ?? fallbackUnit(bookId: bookId, lineIndex: lineIndex, failedMode: mode)
@@ -297,6 +299,8 @@ final class OtzariaReadingUnitService {
         includeDescendants: Bool,
         entryIdForLeaf: (Int) -> Int
     ) throws -> [UnitSummary] {
+        let interval = OtzariaPerformanceTelemetry.shared.begin("ReadingUnitService.tocSummaries")
+        defer { interval.end(extra: "bookId=\(bookId) mode=\(mode.storageValue)") }
         let index = try bookIndex(bookId: bookId)
 
         // Root entry handling: identify roots with children and direct lines <= 3
@@ -315,29 +319,32 @@ final class OtzariaReadingUnitService {
 
         var orderedEntryIds: [Int] = []
         var lineIndicesByUnitId: [Int: [Int]] = [:]
-        var heldRootLines: [Int] = []
+        var heldRootLinesByRootId: [Int: [Int]] = [:]
 
         for (lineIndex, leafId) in index.leafEntryByLineIndex.sorted(by: { $0.key < $1.key }) {
             if rootTitleLinesByRootId[leafId] != nil {
-                heldRootLines.append(lineIndex)
+                heldRootLinesByRootId[leafId, default: []].append(lineIndex)
                 continue
             }
 
             let unitId = entryIdForLeaf(leafId)
-            if lineIndicesByUnitId[unitId] == nil {
+            let isNewUnit = (lineIndicesByUnitId[unitId] == nil)
+            if isNewUnit {
                 orderedEntryIds.append(unitId)
                 lineIndicesByUnitId[unitId] = []
-                if !heldRootLines.isEmpty {
-                    lineIndicesByUnitId[unitId]?.append(contentsOf: heldRootLines)
-                    heldRootLines.removeAll()
+
+                // Associate held root title lines only with the first unit descending from that specific root
+                let rootOfUnit = rootEntryId(for: unitId, index: index)
+                if let held = heldRootLinesByRootId.removeValue(forKey: rootOfUnit) {
+                    lineIndicesByUnitId[unitId]?.append(contentsOf: held)
                 }
             }
             lineIndicesByUnitId[unitId, default: []].append(lineIndex)
         }
 
-        // If there are still held root lines (e.g. no child units mapped), attach them as a standalone unit
-        if !heldRootLines.isEmpty {
-            for (rootId, lines) in rootTitleLinesByRootId {
+        // If there are still held root lines (e.g. no child units mapped for that root), attach them as standalone units
+        if !heldRootLinesByRootId.isEmpty {
+            for (rootId, lines) in heldRootLinesByRootId.sorted(by: { $0.key < $1.key }) {
                 if lineIndicesByUnitId[rootId] == nil {
                     orderedEntryIds.insert(rootId, at: 0)
                     lineIndicesByUnitId[rootId] = lines
@@ -366,6 +373,17 @@ final class OtzariaReadingUnitService {
                 includeDescendants: includeDescendants
             )
         }.sorted { $0.startLineIndex < $1.startLineIndex }
+    }
+
+    private func rootEntryId(for entryId: Int, index: BookIndex) -> Int {
+        var currentId = entryId
+        var visited = Set<Int>()
+        while let entry = index.entriesById[currentId] {
+            guard visited.insert(currentId).inserted else { return currentId }
+            guard let parentId = entry.parentId else { return currentId }
+            currentId = parentId
+        }
+        return currentId
     }
 
     private func chapterEntryId(forLeaf leafId: Int, index: BookIndex) -> Int {

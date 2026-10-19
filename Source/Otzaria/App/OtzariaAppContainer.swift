@@ -21,6 +21,7 @@ final class OtzariaAppContainer: ObservableObject {
             guard let url = try accessController.restoreIfNeeded() else {
                 if repositories != nil || databaseURL != nil {
                     resetConnection()
+                    OtzariaMaktabahBridge.shared.resetConnection()
                     repositories = nil
                     databaseURL = nil
                     databaseToken = UUID()
@@ -68,6 +69,7 @@ final class OtzariaAppContainer: ObservableObject {
         defer { isOpeningDatabase = false }
 
         resetConnection()
+        OtzariaMaktabahBridge.shared.resetConnection()
         repositories = nil
 
         do {
@@ -105,7 +107,7 @@ struct OtzariaAppRepositories {
     let sources: any OtzariaSourceRepository
 }
 
-final class OtzariaMaktabahBridge {
+final class OtzariaMaktabahBridge: @unchecked Sendable {
     static let shared = OtzariaMaktabahBridge()
 
     private let accessController = OtzariaDatabaseAccessController.shared
@@ -142,6 +144,7 @@ final class OtzariaMaktabahBridge {
         openedDatabaseURL = url
         readingUnitService = nil
         lock.unlock()
+        clearAllCaches()
     }
 
     @discardableResult
@@ -159,15 +162,19 @@ final class OtzariaMaktabahBridge {
         resetConnection()
     }
 
+    func clearAllCaches() {
+        clearReadingUnitCache()
+        OtzariaLineSourcesService.clearCategoryCache()
+        BookPageCache.shared.removeAll()
+    }
+
     func resetConnection() {
         lock.lock()
         database = nil
         openedDatabaseURL = nil
         readingUnitService = nil
         lock.unlock()
-        clearReadingUnitCache()
-        OtzariaLineSourcesService.clearCategoryCache()
-        BookPageCache.shared.removeAll()
+        clearAllCaches()
     }
 
     @discardableResult
@@ -179,9 +186,7 @@ final class OtzariaMaktabahBridge {
         if database != nil, openedDatabaseURL == url { return true }
         database = nil
         openedDatabaseURL = nil
-        clearReadingUnitCache()
-        OtzariaLineSourcesService.clearCategoryCache()
-        BookPageCache.shared.removeAll()
+        clearAllCaches()
         database = try SQLiteDatabase(path: url.path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
         openedDatabaseURL = url
         readingUnitService = nil

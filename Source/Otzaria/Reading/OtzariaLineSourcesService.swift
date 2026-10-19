@@ -18,7 +18,9 @@ extension OtzariaMaktabahBridge {
     }
 
     func getLinksMetadataForLineIndices(bookID: Int, sourceLineIndices: [Int]) throws -> [OtzariaLinkedSource] {
-        try getLinks(
+        let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.getLinksMetadataForLineIndices")
+        defer { interval.end(extra: "bookID=\(bookID) lines=\(sourceLineIndices.count)") }
+        return try getLinks(
             bookID: bookID,
             sourceLineIndices: sourceLineIndices,
             includeContent: false
@@ -26,7 +28,9 @@ extension OtzariaMaktabahBridge {
     }
 
     func getLinksMetadataForReadingUnit(_ unit: OtzariaReadingUnit) throws -> [OtzariaLinkedSource] {
-        try getLinks(
+        let interval = OtzariaPerformanceTelemetry.shared.begin("Bridge.getLinksMetadataForReadingUnit")
+        defer { interval.end(extra: "unitId=\(unit.id) lines=\(unit.sourceLineIndices.count)") }
+        return try getLinks(
             bookID: unit.bookId,
             sourceLineIndices: unit.sourceLineIndices,
             includeContent: false
@@ -262,7 +266,9 @@ extension OtzariaMaktabahBridge {
     }
 
     func fetchLineContent(bookId: Int, lineIndex: Int) throws -> (content: String, heRef: String?)? {
-        try withDatabase { db in
+        let interval = OtzariaPerformanceTelemetry.shared.begin("LineSources.fetchLineContent")
+        defer { interval.end(extra: "bookId=\(bookId) lineIndex=\(lineIndex)") }
+        return try withDatabase { db in
             let capabilities = try OtzariaDatabaseCapabilities(database: db)
             let content = OtzariaLineContentCompatibility.projection(
                 capabilities: capabilities,
