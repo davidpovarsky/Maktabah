@@ -415,6 +415,10 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
             book.pdfCs = 4
             return book
         }
+        guard lock.withLock({ dbGeneration == gen }) else {
+            throw CancellationError()
+        }
+        return result
     }
 
     func fetchAuthorMapForBooks() throws -> [Int: [Muallif]] {
