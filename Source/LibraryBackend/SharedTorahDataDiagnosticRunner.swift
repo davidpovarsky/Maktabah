@@ -211,23 +211,35 @@ enum SharedTorahDataDiagnosticRunner {
                 ? !(selected?.hebrewRef ?? document.hebrewRef ?? "").isEmpty
                 : !(selected?.canonicalRef ?? "").isEmpty
 
-            // Progressive snippet hydration stage
+            // Progressive snippet hydration stage (Otzaria) vs inline snippet verification (Sefaria)
             let snippetStart = Date()
-            let batchToHydrate = Array(links.prefix(10))
-            let hydratedSnippets = try await session.repository.fetchSnippets(for: batchToHydrate)
+            let snippetCount: Int
+            let snippetsPassed: Bool
+            if backend == .otzaria {
+                let batchToHydrate = Array(links.prefix(10))
+                let hydratedSnippets = try await session.repository.fetchSnippets(for: batchToHydrate)
+                var verifiedSnippets: [(ref: String, text: String)] = []
+                for item in batchToHydrate {
+                    let text = hydratedSnippets[item.id]
+                        ?? (wantsHebrew ? item.hebrewText ?? item.englishText : item.englishText ?? item.hebrewText)
+                    if let t = text?.readerPlainText, !t.isEmpty {
+                        verifiedSnippets.append((ref: item.sourceRef, text: t))
+                    }
+                }
+                snippetCount = verifiedSnippets.count
+                // In two-stage model: eventual assertion requires >= 2 exact snippets loaded (or all if fewer than 2 total links)
+                snippetsPassed = snippetCount >= min(2, links.count)
+            } else {
+                let inlineCount = links.filter {
+                    let preferred = wantsHebrew ? $0.hebrewText : $0.englishText
+                    let fallback = wantsHebrew ? $0.englishText : $0.hebrewText
+                    return !((preferred ?? fallback) ?? "").readerPlainText.isEmpty
+                }.count
+                snippetCount = inlineCount
+                snippetsPassed = snippetCount > 0
+            }
             let snippetElapsed = Date().timeIntervalSince(snippetStart)
 
-            var verifiedSnippets: [(ref: String, text: String)] = []
-            for item in batchToHydrate {
-                let text = hydratedSnippets[item.id]
-                    ?? (wantsHebrew ? item.hebrewText ?? item.englishText : item.englishText ?? item.hebrewText)
-                if let t = text?.readerPlainText, !t.isEmpty {
-                    verifiedSnippets.append((ref: item.sourceRef, text: t))
-                }
-            }
-            let snippetCount = verifiedSnippets.count
-            // In two-stage model: eventual assertion requires >= 2 exact snippets loaded (or all if fewer than 2 total links)
-            let snippetsPassed = snippetCount >= min(2, links.count)
             let passed = document.providerID == backend.rawValue
                 && selected != nil
                 && !selectedText.readerPlainText.isEmpty
