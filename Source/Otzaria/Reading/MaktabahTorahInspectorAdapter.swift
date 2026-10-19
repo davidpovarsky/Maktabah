@@ -203,6 +203,7 @@ final class MaktabahTorahInspectorSession {
 
     private func links(for reference: String, providerID: String?) async throws -> [TorahLinkedSource] {
         let locator = try activeLocator(for: reference, providerID: providerID)
+        let preferredMode = self.preferredMode
         let key = cacheKey(providerID: locator.backend.rawValue, reference: reference)
         if locator.backend == .otzaria, let cached = otzariaUnitLinksByReference[key] {
             return cached
@@ -261,7 +262,6 @@ final class MaktabahTorahInspectorSession {
         let initialGeneration = coordinator.generation
         let bridge = self.otzaria
         let currentMode = bridge.currentReadingUnitMode
-        let preferredMode = self.preferredMode
 
         var resolvedBookID: Int?
         var resolvedLineIndices: [Int]?
