@@ -71,6 +71,7 @@ final class MaktabahTorahInspectorSession {
         otzariaLine: OtzariaLineAnchor?
     ) -> TorahInspectorSelection? {
         if let locator = sefariaLocator,
+           coordinator.activeBackendID == .sefaria,
            let sectionLocator = readerViewModel?.backendSection?.locator,
            locator != sectionLocator {
             let reference = Self.reference(for: locator)
