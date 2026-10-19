@@ -473,14 +473,23 @@ final class OtzariaReadingUnitService {
         )
     }
 
+    private func isContiguousRange(start: Int, end: Int, indices: [Int]) -> Bool {
+        guard start <= end, indices.count == (end - start + 1) else { return false }
+        guard let first = indices.first, first == start else { return false }
+        guard let last = indices.last, last == end else { return false }
+        for (i, val) in indices.enumerated() {
+            if val != start + i { return false }
+        }
+        return true
+    }
+
     private func sourceLines(for summary: UnitSummary) throws -> [SourceLine] {
         let start = Date()
         let lines: [SourceLine]
         let access = try lineContentAccess()
 
-        let count = summary.endLineIndex - summary.startLineIndex + 1
-        if count == summary.sourceLineIndices.count {
-            // Contiguous line range: fast single-index scan on idx_line_book_index
+        if isContiguousRange(start: summary.startLineIndex, end: summary.endLineIndex, indices: summary.sourceLineIndices) {
+            // Strictly contiguous line range: fast single-index scan on idx_line_book_index
             lines = try db.fetch(query: """
                 SELECT l.id, l.lineIndex, \(access.projection.expression), l.heRef
                 FROM line l

@@ -32,6 +32,8 @@ extension OtzariaMaktabahBridge {
                 otzariaLog("getReadingUnit error bookId=\(bookId) lineIndex=\(lineIndex) mode=\(mode.storageValue) error=\(error.localizedDescription)")
                 return nil
             }
+        } ?? nil
+
         if let unit {
             cacheReadingUnit(unit, mode: mode)
         }

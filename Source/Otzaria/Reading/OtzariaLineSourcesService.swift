@@ -1,12 +1,21 @@
 import Foundation
 
 extension OtzariaMaktabahBridge {
-    func getLinksForLine(_ line: OtzariaLineAnchor) -> [OtzariaLinkedSource] {
-        (try? getLinks(
+    func fetchLinksForLine(_ line: OtzariaLineAnchor) throws -> [OtzariaLinkedSource] {
+        try getLinks(
             bookID: line.bookId,
             sourceLineIndices: [line.lineIndex],
             includeContent: false
-        )) ?? []
+        )
+    }
+
+    func getLinksForLine(_ line: OtzariaLineAnchor) -> [OtzariaLinkedSource] {
+        do {
+            return try fetchLinksForLine(line)
+        } catch {
+            OtzariaFileLogger.shared.log("[OtzariaLineSourcesService] getLinksForLine error lineId=\(line.id) bookId=\(line.bookId) lineIndex=\(line.lineIndex) error=\(error.localizedDescription)")
+            return []
+        }
     }
 
     func getLinksForReadingUnit(_ unit: OtzariaReadingUnit) throws -> [OtzariaLinkedSource] {

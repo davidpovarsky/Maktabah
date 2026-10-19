@@ -67,27 +67,36 @@ enum OtzariaInspectorDocumentMapper {
 struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @unchecked Sendable {
     func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
         #if os(iOS)
-        guard locator.backend == .otzaria,
-              let bookID = Self.bookID(from: locator.workKey),
-              case .legacyLine(let lineIndex) = locator.position,
-              let unit = OtzariaMaktabahBridge.shared.getReadingUnit(
-                bookId: bookID,
-                containingLineIndex: lineIndex,
-                mode: OtzariaMaktabahBridge.shared.currentReadingUnitMode
-              ),
-              let anchor = unit.lineAnchors.first(where: { $0.lineIndex == lineIndex }) else {
-            throw LibraryBackendError.invalidLocator
-        }
-        let sources = OtzariaMaktabahBridge.shared.getLinksForLine(anchor).map(Self.map)
-        var seen = Set<String>()
-        var deduplicated: [LibraryRelatedSource] = []
-        for source in sources {
-            let key = "\(source.locator.persistenceKey)|\(source.type)|\(source.category)"
-            if seen.insert(key).inserted {
-                deduplicated.append(source)
+        let backgroundTask = Task.detached(priority: .userInitiated) { () -> [LibraryRelatedSource] in
+            try Task.checkCancellation()
+            guard locator.backend == .otzaria,
+                  let bookID = Self.bookID(from: locator.workKey),
+                  case .legacyLine(let lineIndex) = locator.position,
+                  let unit = OtzariaMaktabahBridge.shared.getReadingUnit(
+                    bookId: bookID,
+                    containingLineIndex: lineIndex,
+                    mode: OtzariaMaktabahBridge.shared.currentReadingUnitMode
+                  ),
+                  let anchor = unit.lineAnchors.first(where: { $0.lineIndex == lineIndex }) else {
+                throw LibraryBackendError.invalidLocator
             }
+            try Task.checkCancellation()
+            let sources = try OtzariaMaktabahBridge.shared.fetchLinksForLine(anchor).map(Self.map)
+            var seen = Set<String>()
+            var deduplicated: [LibraryRelatedSource] = []
+            for source in sources {
+                let key = "\(source.locator.persistenceKey)|\(source.type)|\(source.category)"
+                if seen.insert(key).inserted {
+                    deduplicated.append(source)
+                }
+            }
+            return deduplicated
         }
-        return deduplicated
+
+        return try await withTaskCancellationHandler(
+            operation: { try await backgroundTask.value },
+            onCancel: { backgroundTask.cancel() }
+        )
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif

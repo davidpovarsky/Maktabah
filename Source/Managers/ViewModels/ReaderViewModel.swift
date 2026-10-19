@@ -131,6 +131,7 @@ class ReaderViewModel: ViewModelBase {
     var otzariaSourcesSelectedGroupID: String?
     var otzariaSourcesSelectedBookID: String?
     var otzariaSourcesExpandedSourceIDs: Set<Int> = []
+    var otzariaSourcesLoadTask: Task<Void, Never>?
 
     func consumePendingReaderScrollTarget() -> PendingReaderScrollTarget? {
         let target = pendingReaderScrollTarget

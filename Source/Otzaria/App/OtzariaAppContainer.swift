@@ -1,16 +1,32 @@
 import Foundation
 import SQLite3
 
+struct OtzariaDatabaseToken: Hashable, Equatable, Sendable {
+    let generation: UInt64
+    let id: UUID
+
+    init(generation: UInt64 = 0, id: UUID = UUID()) {
+        self.generation = generation
+        self.id = id
+    }
+}
+
 @MainActor
 final class OtzariaAppContainer: ObservableObject {
     @Published private(set) var repositories: OtzariaAppRepositories?
     @Published private(set) var databaseURL: URL?
-    @Published private(set) var databaseToken = UUID()
+    @Published private(set) var databaseToken = OtzariaDatabaseToken()
     @Published var databaseError: String?
     @Published var isOpeningDatabase = false
 
+    private var tokenGeneration: UInt64 = 0
     private let accessController = OtzariaDatabaseAccessController.shared
     private var connection: OtzariaSQLiteConnection?
+
+    private func bumpDatabaseToken() {
+        tokenGeneration &+= 1
+        databaseToken = OtzariaDatabaseToken(generation: tokenGeneration)
+    }
 
     deinit {
         connection?.close()
@@ -24,7 +40,7 @@ final class OtzariaAppContainer: ObservableObject {
                     OtzariaMaktabahBridge.shared.resetConnection()
                     repositories = nil
                     databaseURL = nil
-                    databaseToken = UUID()
+                    bumpDatabaseToken()
                 }
                 return
             }
@@ -60,7 +76,7 @@ final class OtzariaAppContainer: ObservableObject {
         repositories = nil
         databaseURL = nil
         databaseError = nil
-        databaseToken = UUID()
+        bumpDatabaseToken()
     }
 
     private func openDatabase(at url: URL) async {
@@ -92,7 +108,7 @@ final class OtzariaAppContainer: ObservableObject {
             sources: OtzariaSQLiteSourceRepository(database: newConnection)
         )
         databaseURL = url
-        databaseToken = UUID()
+        bumpDatabaseToken()
     }
 
     private func resetConnection() {
@@ -113,6 +129,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     private let accessController = OtzariaDatabaseAccessController.shared
     private let unitModeKey = "otzaria_reader_unit_mode"
     private let lock = NSRecursiveLock()
+    private(set) var dbGeneration: UInt64 = 0
     private var database: SQLiteDatabase?
     private var openedDatabaseURL: URL?
     private var readingUnitService: OtzariaReadingUnitService?
@@ -140,11 +157,12 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
         )
         _ = try accessController.activateManagedDatabase(at: url)
         lock.lock()
+        dbGeneration &+= 1
+        clearAllCaches()
         database = candidate
         openedDatabaseURL = url
         readingUnitService = nil
         lock.unlock()
-        clearAllCaches()
     }
 
     @discardableResult
@@ -170,11 +188,12 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
 
     func resetConnection() {
         lock.lock()
+        dbGeneration &+= 1
+        clearAllCaches()
         database = nil
         openedDatabaseURL = nil
         readingUnitService = nil
         lock.unlock()
-        clearAllCaches()
     }
 
     @discardableResult
@@ -184,9 +203,10 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
 
         guard let url = try accessController.restoreIfNeeded() else { return false }
         if database != nil, openedDatabaseURL == url { return true }
+        dbGeneration &+= 1
+        clearAllCaches()
         database = nil
         openedDatabaseURL = nil
-        clearAllCaches()
         database = try SQLiteDatabase(path: url.path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
         openedDatabaseURL = url
         readingUnitService = nil

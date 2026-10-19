@@ -285,7 +285,7 @@ final class MaktabahTorahInspectorSession {
         let isUnitRef = reference.hasPrefix("otzaria:unit:")
         let cachedUnit = resolvedUnit
 
-        let backgroundResult = try await Task.detached(priority: .userInitiated) { () -> (sources: [TorahLinkedSource], locators: [(String, TextLocator)], unitToRemember: OtzariaReadingUnit?) in
+        let backgroundTask = Task.detached(priority: .userInitiated) { () -> (sources: [TorahLinkedSource], locators: [(String, TextLocator)], unitToRemember: OtzariaReadingUnit?) in
             try Task.checkCancellation()
 
             let rawSources: [OtzariaLinkedSource]
@@ -365,10 +365,15 @@ final class MaktabahTorahInspectorSession {
             }
 
             return (mapped, locatorsToRemember, builtUnit)
-        }.value
+        }
+
+        let backgroundResult = try await withTaskCancellationHandler(
+            operation: { try await backgroundTask.value },
+            onCancel: { backgroundTask.cancel() }
+        )
 
         guard !Task.isCancelled, coordinator.generation == initialGeneration else {
-            return []
+            throw CancellationError()
         }
 
         for (sourceReference, loc) in backgroundResult.locators {
@@ -546,7 +551,7 @@ final class MaktabahTorahInspectorSession {
         let preferredMode = self.preferredMode
         let isUnitRef = requestedReference.hasPrefix("otzaria:unit:")
 
-        let backgroundResult = try await Task.detached(priority: .userInitiated) { () -> (document: TorahTextDocument, locators: [(String, TextLocator)]) in
+        let backgroundTask = Task.detached(priority: .userInitiated) { () -> (document: TorahTextDocument, locators: [(String, TextLocator)]) in
             try Task.checkCancellation()
 
             var locatorsToRemember: [(String, TextLocator)] = []
@@ -665,10 +670,15 @@ final class MaktabahTorahInspectorSession {
                 rawProviderPayload: "{\"bookId\":\(bookID),\"unitId\":\"\(unit.id)\"}"
             )
             return (doc, locatorsToRemember)
-        }.value
+        }
+
+        let backgroundResult = try await withTaskCancellationHandler(
+            operation: { try await backgroundTask.value },
+            onCancel: { backgroundTask.cancel() }
+        )
 
         guard !Task.isCancelled, coordinator.generation == initialGeneration else {
-            throw TorahError.missingProvider
+            throw CancellationError()
         }
 
         for (ref, loc) in backgroundResult.locators {

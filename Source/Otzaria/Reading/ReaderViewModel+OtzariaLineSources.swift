@@ -24,6 +24,8 @@ extension ReaderViewModel {
     }
 
     func clearOtzariaLineSelectionForContentChange() {
+        otzariaSourcesLoadTask?.cancel()
+        otzariaSourcesLoadTask = nil
         readerInspectorVisible = false
         selectedSegmentLocator = nil
         otzariaSelectedLineAnchor = nil
@@ -57,16 +59,34 @@ extension ReaderViewModel {
 
         OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria text tapped characterIndex=\(characterIndex) bookId=\(currentBook.id) contentId=\(currentContentId)")
 
-        guard let anchor = OtzariaMaktabahBridge.shared.lineAnchor(
+        if let anchor = OtzariaMaktabahBridge.shared.lineAnchor(
             bookId: currentBook.id,
             contentId: currentContentId,
             characterIndex: characterIndex
-        ) else {
-            OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria tap failed to resolve line bookId=\(currentBook.id) contentId=\(currentContentId) characterIndex=\(characterIndex)")
-            return
+        ) {
+            applyOtzariaLineAnchorTap(anchor)
+        } else {
+            otzariaSourcesLoadTask?.cancel()
+            let bookId = currentBook.id
+            let contentId = currentContentId
+            otzariaSourcesLoadTask = Task { @MainActor [weak self] in
+                guard let self else { return }
+                guard let anchor = await OtzariaMaktabahBridge.shared.lineAnchorAsync(
+                    bookId: bookId,
+                    contentId: contentId,
+                    characterIndex: characterIndex
+                ) else {
+                    OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria tap failed to resolve line bookId=\(bookId) contentId=\(contentId) characterIndex=\(characterIndex)")
+                    return
+                }
+                guard !Task.isCancelled else { return }
+                self.applyOtzariaLineAnchorTap(anchor)
+            }
         }
+    }
 
-
+    @MainActor
+    private func applyOtzariaLineAnchorTap(_ anchor: OtzariaLineAnchor) {
         let locator = TextLocator(
             backend: .otzaria,
             workKey: "book:\(anchor.bookId)",
@@ -86,14 +106,33 @@ extension ReaderViewModel {
 
         OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria resolved lineId=\(anchor.id) lineIndex=\(anchor.lineIndex) heRef=\(anchor.heRef ?? "")")
 
-        let links = OtzariaMaktabahBridge.shared.getLinksForLine(anchor)
-        otzariaLinkedSources = links
-        otzariaSourcesIsLoading = false
+        otzariaSourcesLoadTask?.cancel()
+        otzariaSourcesLoadTask = Task { @MainActor [weak self] in
+            do {
+                let links = try await Task.detached(priority: .userInitiated) {
+                    try OtzariaMaktabahBridge.shared.fetchLinksForLine(anchor)
+                }.value
 
-        OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria links loaded lineId=\(anchor.id) count=\(links.count)")
+                guard !Task.isCancelled else { return }
+                guard let self, self.otzariaSelectedLineAnchor?.id == anchor.id else { return }
+                self.otzariaLinkedSources = links
+                self.otzariaSourcesIsLoading = false
+                self.otzariaSourcesError = nil
+                OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria links loaded lineId=\(anchor.id) count=\(links.count)")
+            } catch {
+                guard !Task.isCancelled else { return }
+                guard let self, self.otzariaSelectedLineAnchor?.id == anchor.id else { return }
+                self.otzariaLinkedSources = []
+                self.otzariaSourcesIsLoading = false
+                self.otzariaSourcesError = error.localizedDescription
+                OtzariaFileLogger.shared.log("[ReaderViewModel] Otzaria links failed lineId=\(anchor.id) error=\(error.localizedDescription)")
+            }
+        }
     }
 
     func closeReaderInspector() {
+        otzariaSourcesLoadTask?.cancel()
+        otzariaSourcesLoadTask = nil
         readerInspectorVisible = false
         selectedSegmentLocator = nil
         otzariaSelectedLineAnchor = nil

@@ -12,7 +12,7 @@ enum SefariaNativeTestMain {
             try await runBackendCoordinatorTests()
             try runUnifiedSearchArchitectureTests()
             #endif
-            try runOtzariaPerformanceUnitTests()
+            try await runOtzariaPerformanceUnitTests()
             print("Sefaria native contract tests passed")
         } catch {
             fatalError("Sefaria native contract tests failed: \(error)")

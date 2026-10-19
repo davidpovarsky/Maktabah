@@ -91,7 +91,7 @@ extension OtzariaMaktabahBridge {
     func lineAnchor(bookId: Int, contentId: Int, characterIndex: Int) -> OtzariaLineAnchor? {
         let mode = currentReadingUnitMode
         let unit = cachedReadingUnit(bookId: bookId, contentId: contentId, mode: mode)
-            ?? getReadingUnit(bookId: bookId, containingLineIndex: contentId, mode: mode)
+            ?? (Thread.isMainThread ? nil : getReadingUnit(bookId: bookId, containingLineIndex: contentId, mode: mode))
 
         if let unit {
             cacheReadingUnit(unit, mode: mode)
@@ -110,6 +110,21 @@ extension OtzariaMaktabahBridge {
             distance(from: characterIndex, to: lhs.range) < distance(from: characterIndex, to: rhs.range)
         }
         return closest ?? unit.lineAnchors.first
+    }
+
+    func lineAnchorAsync(bookId: Int, contentId: Int, characterIndex: Int) async -> OtzariaLineAnchor? {
+        if let direct = lineAnchor(bookId: bookId, contentId: contentId, characterIndex: characterIndex) {
+            return direct
+        }
+        let mode = currentReadingUnitMode
+        let unit = await Task.detached(priority: .userInitiated) { [weak self] () -> OtzariaReadingUnit? in
+            self?.getReadingUnit(bookId: bookId, containingLineIndex: contentId, mode: mode)
+        }.value
+        if let unit {
+            cacheReadingUnit(unit, mode: mode)
+            return lineAnchor(bookId: bookId, contentId: contentId, characterIndex: characterIndex)
+        }
+        return nil
     }
 
     private func distance(from index: Int, to range: NSRange) -> Int {

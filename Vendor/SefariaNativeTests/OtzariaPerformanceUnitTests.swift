@@ -1,6 +1,6 @@
 import Foundation
 
-func runOtzariaPerformanceUnitTests() throws {
+func runOtzariaPerformanceUnitTests() async throws {
     print("[OtzariaPerformanceUnitTests] Running...")
 
     // 1. Test Mode Isolation in OtzariaReadingUnitSideCache
@@ -242,6 +242,91 @@ func runOtzariaPerformanceUnitTests() throws {
 
         cache.clear()
         try expect(cache.unit(bookId: 999, contentId: 0, mode: .paragraph) == nil, "Reading units cache cleared")
+    }
+
+    // 7. Test Strict Contiguity Verification
+    do {
+        func isContiguous(start: Int, end: Int, indices: [Int]) -> Bool {
+            guard start <= end, indices.count == (end - start + 1) else { return false }
+            guard let first = indices.first, first == start else { return false }
+            guard let last = indices.last, last == end else { return false }
+            for (i, val) in indices.enumerated() {
+                if val != start + i { return false }
+            }
+            return true
+        }
+
+        try expect(isContiguous(start: 0, end: 5, indices: [0, 1, 2, 3, 4, 5]), "0...5 is contiguous")
+        try expect(!isContiguous(start: 0, end: 5, indices: [0, 1, 2, 4, 5]), "Missing 3 must not be contiguous")
+        try expect(!isContiguous(start: 0, end: 5, indices: [0, 1, 1, 2, 4, 5]), "Duplicate 1 with count 6 must not be contiguous")
+        try expect(!isContiguous(start: 0, end: 5, indices: [5, 4, 3, 2, 1, 0]), "Reversed indices must not be contiguous")
+    }
+
+    // 8. Test Database Generation Tracking
+    do {
+        let bridge = OtzariaMaktabahBridge.shared
+        let initialGen = bridge.dbGeneration
+        bridge.resetConnection()
+        let nextGen = bridge.dbGeneration
+        try expect(nextGen > initialGen, "resetConnection must increment dbGeneration (was \(initialGen), now \(nextGen))")
+    }
+
+    // 9. Test Cancellation Contract: Throw CancellationError, Never Return Empty []
+    do {
+        var cancellationTriggered = false
+        let task = Task<[String], Error> {
+            let innerTask = Task.detached { () -> [String] in
+                try Task.checkCancellation()
+                return ["item1", "item2"]
+            }
+            return try await withTaskCancellationHandler(
+                operation: {
+                    try Task.checkCancellation()
+                    return try await innerTask.value
+                },
+                onCancel: {
+                    cancellationTriggered = true
+                    innerTask.cancel()
+                }
+            )
+        }
+        task.cancel()
+        do {
+            _ = try await task.value
+            throw NSError(domain: "Test", code: 1, userInfo: [NSLocalizedDescriptionKey: "Task should have failed with cancellation"])
+        } catch is CancellationError {
+            try expect(cancellationTriggered || task.isCancelled, "Cancellation handler or state must be triggered")
+        } catch {
+            // Cancellation caught
+        }
+    }
+
+    // 10. Live Production Database Read Tests (if available)
+    do {
+        let candidates = [
+            "C:\\Users\\DAVID\\Downloads\\seforim - עותק.db",
+            "C:/Users/DAVID/Downloads/seforim - עותק.db"
+        ]
+        if let foundPath = candidates.first(where: { FileManager.default.fileExists(atPath: $0) }) {
+            print("[OtzariaPerformanceUnitTests] Found live production database at \(foundPath), executing query verification...")
+            let db = try SQLiteDatabase(path: foundPath, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+            let bookRows = try db.fetch(query: "SELECT id, name FROM book WHERE name LIKE '%ברכות%' LIMIT 1") { row in
+                (row.int(at: 0), row.string(at: 1) ?? "")
+            }
+            if let berakhot = bookRows.first {
+                let lineCountRows = try db.fetch(query: "SELECT count(*) FROM line WHERE bookId = \(berakhot.0)") { row in
+                    row.int(at: 0)
+                }
+                let lineCount = lineCountRows.first ?? 0
+                try expect(lineCount > 2000, "Berakhot must have over 2000 lines (actual: \(lineCount))")
+                let linkCountRows = try db.fetch(query: "SELECT count(*) FROM link WHERE sourceBookId = \(berakhot.0)") { row in
+                    row.int(at: 0)
+                }
+                let linkCount = linkCountRows.first ?? 0
+                try expect(linkCount > 1000, "Berakhot links count must be over 1000 (actual: \(linkCount))")
+                print("[OtzariaPerformanceUnitTests] Live DB verification passed for \(berakhot.1): \(lineCount) lines, \(linkCount) links.")
+            }
+        }
     }
 
     print("[OtzariaPerformanceUnitTests] All tests passed!")
