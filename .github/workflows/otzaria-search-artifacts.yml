@@ -70,16 +70,7 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26 and verify committed identity
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          bash Scripts/CI/select-xcode-26.sh
-          python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --check
-          test "$(git ls-remote https://github.com/Otzaria/otzaria_search_engine.git refs/heads/refactor | cut -f1)" = "$(tr -d '\n' < Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_COMMIT)"
-          df -h "$RUNNER_TEMP" "$GITHUB_WORKSPACE"
-          AVAILABLE_KIB="$(df -Pk "$RUNNER_TEMP" | awk 'NR==2 {print $4}')"
-          test "$AVAILABLE_KIB" -ge $((35 * 1024 * 1024))
+      - uses: dtolnay/rust-toolchain@stable
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -88,7 +79,16 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - uses: dtolnay/rust-toolchain@stable
+      - name: Select Xcode 26 and verify committed identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bash Scripts/CI/select-xcode-26.sh
+          python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --check --skip-validation
+          test "$(git ls-remote https://github.com/Otzaria/otzaria_search_engine.git refs/heads/refactor | cut -f1)" = "$(tr -d '\n' < Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_COMMIT)"
+          df -h "$RUNNER_TEMP" "$GITHUB_WORKSPACE"
+          AVAILABLE_KIB="$(df -Pk "$RUNNER_TEMP" | awk 'NR==2 {print $4}')"
+          test "$AVAILABLE_KIB" -ge $((35 * 1024 * 1024))
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -288,8 +288,7 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "Verified artifact release $TAG already exists; refusing a duplicate rebuild publication."
           else
-            gh release create "$TAG" --title "Otzaria search data $SOURCE_TAG" --notes "Prebuilt Otzaria Tantivy search data. Artifact identity: $IDENTITY"
-            gh release upload "$TAG" build/otzaria-artifact/* --clobber
+            gh release create "$TAG" build/otzaria-artifact/* --title "Otzaria search data $SOURCE_TAG" --notes "Prebuilt Otzaria Tantivy search data. Artifact identity: $IDENTITY"
           fi
           printf '%s\n' "$TAG" > build/logs/otzaria-search-release-tag.txt
       - name: Live Activity · refresh

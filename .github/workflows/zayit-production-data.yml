@@ -259,8 +259,7 @@ jobs:
             gh release download "$TAG" --pattern zayit-search-manifest.json --dir build/existing
             cmp build/existing/zayit-search-manifest.json build/zayit-production/zayit-search-manifest.json
           else
-            gh release create "$TAG" --title "Zayit search data $DATABASE_TAG" --notes "Production Zayit index for $DATABASE_TAG. Artifact identity: $IDENTITY"
-            gh release upload "$TAG" build/zayit-production/*
+            gh release create "$TAG" build/zayit-production/* --title "Zayit search data $DATABASE_TAG" --notes "Production Zayit index for $DATABASE_TAG. Artifact identity: $IDENTITY"
           fi
           printf '%s\n' "$TAG" > build/logs/zayit-release-tag.txt
       - name: Live Activity · refresh
