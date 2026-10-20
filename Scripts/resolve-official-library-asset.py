@@ -88,6 +88,11 @@ def main() -> None:
     elif args.format == "shell":
         print(f"RELEASE_TAG='{resolved['release_tag']}'")
         print(f"RELEASE_ID={resolved['release_id']}")
+        print(f"ASSET_ID={resolved['asset_id']}")
+        print(f"ASSET_NAME='{resolved['asset_name']}'")
+        print(f"ASSET_COMPRESSED_BYTES={resolved['compressed_bytes']}")
+        print(f"ASSET_COMPRESSED_SHA256='{resolved['compressed_sha256']}'")
+        print(f"ASSET_BROWSER_DOWNLOAD_URL='{resolved['browser_download_url']}'")
         print(f"DATABASE_ASSET_ID={resolved['asset_id']}")
         print(f"DATABASE_ASSET_NAME='{resolved['asset_name']}'")
         print(f"DATABASE_COMPRESSED_BYTES={resolved['compressed_bytes']}")
