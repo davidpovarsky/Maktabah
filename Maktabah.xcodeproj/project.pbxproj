@@ -15,6 +15,7 @@
 		A30000000000000000000002 /* TorahInspectorUI in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000002 /* TorahInspectorUI */; };
 		A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */; };
 		A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */; };
+		A50000000000000000000003 /* OtzariaRelationshipClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40000000000000000000003 /* OtzariaRelationshipClassifier.swift */; };
 		CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000001 /* LibraryBackendModels.swift */; };
 		CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000002 /* LibraryBackendProtocols.swift */; };
 		CE1000000000000000000003 /* BackendCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000003 /* BackendCoordinator.swift */; };
@@ -849,6 +850,7 @@
 		B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoAnchoredCard.swift; sourceTree = "<group>"; };
 		A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/MaktabahTorahInspectorAdapter.swift; sourceTree = "<group>"; };
 		A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaInspectorRelationshipsProvider.swift; sourceTree = "<group>"; };
+		A40000000000000000000003 /* OtzariaRelationshipClassifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaRelationshipClassifier.swift; sourceTree = "<group>"; };
 		CE0000000000000000000001 /* LibraryBackendModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendModels.swift; sourceTree = "<group>"; };
 		CE0000000000000000000002 /* LibraryBackendProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBackendProtocols.swift; sourceTree = "<group>"; };
 		CE0000000000000000000021 /* SharedTorahDataDiagnosticRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTorahDataDiagnosticRunner.swift; sourceTree = "<group>"; };
@@ -1404,6 +1406,7 @@
 			children = (
 				A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */,
 				A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */,
+				A40000000000000000000003 /* OtzariaRelationshipClassifier.swift */,
 				CE0000000000000000000015 /* OtzariaGenericBackendAdapter.swift */,
 				CE0000000000000000000016 /* OtzariaBackendActivation.swift */,
 				DAF000000000000000000001 /* OtzariaDataProfile.swift */,
@@ -2879,6 +2882,7 @@
 				C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */,
 				A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */,
 				A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */,
+				A50000000000000000000003 /* OtzariaRelationshipClassifier.swift in Sources */,
 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,
@@ -3900,7 +3904,7 @@
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
 			requirement = {
 				kind = revision;
-				revision = c303328c23f81a6137599591d12212dba75467c2;
+				revision = 157676f511990756fa4cd8337c744903d4dc9ef6;
 			};
 		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {

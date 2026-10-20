@@ -652,7 +652,8 @@ struct SearchDataView: View {
         case .ready(let manifest): "מוכן · \(manifest.version)"
         case .updateAvailable: "קיים עדכון"
         case .repairRequired(let detail): "נדרש תיקון · \(detail)"
-        case .incompatible(let detail): "אינו תואם · \(detail)"
+        case .incompatible(let detail):
+            detail == "אין עדיין חבילה תואמת לגרסת מסד זו" ? detail : "אינו תואם · \(detail)"
         case .failed(let detail): "נכשל · \(detail)"
         }
     }

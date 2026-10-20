@@ -152,6 +152,44 @@ struct SefariaRelatedDTO: Decodable, Sendable {
     let links: [SefariaLink]
 }
 
+struct SefariaRelatedResponseDTO: Codable, Sendable {
+    let links: [SefariaRelationshipLinkDTO]
+
+    enum CodingKeys: String, CodingKey {
+        case links
+    }
+
+    init(links: [SefariaRelationshipLinkDTO] = []) {
+        self.links = links
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if var linksArray = try? container.nestedUnkeyedContainer(forKey: .links) {
+            var items: [SefariaRelationshipLinkDTO] = []
+            if let count = linksArray.count {
+                items.reserveCapacity(count)
+            }
+            while !linksArray.isAtEnd {
+                do {
+                    let item = try linksArray.decode(SefariaRelationshipLinkDTO.self)
+                    items.append(item)
+                } catch {
+                    _ = try? linksArray.decode(SefariaJSONValue.self)
+                }
+            }
+            self.links = items
+        } else {
+            self.links = []
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(links, forKey: .links)
+    }
+}
+
 struct SefariaLocalizedTitleDTO: Codable, Hashable, Sendable {
     let en: String?
     let he: String?
@@ -182,7 +220,7 @@ private enum SefariaFlexString: Decodable, Hashable, Sendable {
     }
 }
 
-struct SefariaRelationshipLinkDTO: Hashable, Sendable {
+struct SefariaRelationshipLinkDTO: Hashable, Sendable, Codable {
     let sourceRef: String?
     let sourceHeRef: String?
     let ref: String?
@@ -210,7 +248,7 @@ struct SefariaRelationshipLinkDTO: Hashable, Sendable {
     }
 }
 
-extension SefariaRelationshipLinkDTO: Decodable {
+extension SefariaRelationshipLinkDTO {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         sourceRef = try values.decodeIfPresent(String.self, forKey: .sourceRef)
@@ -233,6 +271,31 @@ extension SefariaRelationshipLinkDTO: Decodable {
         anchorRefExpanded = (try? values.decode([String].self, forKey: .anchorRefExpanded))
             ?? (try? values.decode(String.self, forKey: .anchorRefExpanded)).map { [$0] }
             ?? []
+    }
+}
+
+extension SefariaRelationshipLinkDTO {
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encodeIfPresent(sourceRef, forKey: .sourceRef)
+        try values.encodeIfPresent(sourceHeRef, forKey: .sourceHeRef)
+        try values.encodeIfPresent(ref, forKey: .ref)
+        try values.encodeIfPresent(heRef, forKey: .heRef)
+        try values.encodeIfPresent(category, forKey: .category)
+        try values.encodeIfPresent(type, forKey: .type)
+        try values.encodeIfPresent(collectiveTitle, forKey: .collectiveTitle)
+        try values.encodeIfPresent(displayedText, forKey: .displayedText)
+        try values.encodeIfPresent(he, forKey: .he)
+        try values.encodeIfPresent(text, forKey: .text)
+        try values.encodeIfPresent(versionTitle, forKey: .versionTitle)
+        try values.encodeIfPresent(heVersionTitle, forKey: .heVersionTitle)
+        try values.encodeIfPresent(heLicense, forKey: .heLicense)
+        try values.encodeIfPresent(license, forKey: .license)
+        try values.encodeIfPresent(indexTitle, forKey: .indexTitle)
+        try values.encodeIfPresent(anchorRef, forKey: .anchorRef)
+        if !anchorRefExpanded.isEmpty {
+            try values.encode(anchorRefExpanded, forKey: .anchorRefExpanded)
+        }
     }
 }
 

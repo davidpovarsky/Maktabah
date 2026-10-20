@@ -934,24 +934,14 @@ enum MaktabahTorahInspectorFormatting {
         category: String,
         type: String
     ) -> TorahRelationshipKind {
-        let tokens = "\(category) \(type)".lowercased()
-        if tokens.contains("quoting commentary") { return .quotingCommentary }
-        return tokens.contains("commentary") ? .commentary : .link
+        OtzariaRelationshipClassifier.classify(category: category, type: type).relationshipKind
     }
 
     static func semanticCategory(
         category: String,
         type: String
     ) -> TorahSourceCategory {
-        let tokens = "\(category) \(type)".lowercased()
-        if tokens.contains("quoting commentary") { return .quotingCommentary }
-        if tokens.contains("commentary") { return .commentary }
-        if tokens.contains("tanakh") { return .tanakh }
-        if tokens.contains("talmud") { return .talmud }
-        if tokens.contains("midrash") { return .midrash }
-        if tokens.contains("targum") { return .targum }
-        if tokens.contains("halakh") { return .halakhah }
-        return .other
+        OtzariaRelationshipClassifier.classify(category: category, type: type).semanticCategory
     }
 }
 #endif

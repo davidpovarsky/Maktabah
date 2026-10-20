@@ -864,4 +864,22 @@ private func runHeterogeneousLinksDecodingTests() throws {
     }
     try expect(mappedSources.count == 2, "row lacking ref/sourceRef dropped during mapping without failing valid rows")
     try expect(mappedSources[0].displayRef == "Valid 1" && mappedSources[1].displayRef == "Valid 2", "valid sources mapped")
+
+    let relatedJson = Data(#"""
+    {
+      "links": [
+        {"sourceRef": "Rashi on Genesis 7:1", "category": "Commentary", "type": "commentary", "index_title": "Rashi on Genesis"},
+        {"sourceRef": 12345},
+        {"sourceRef": "Ibn Ezra on Genesis 7:1", "category": "Commentary", "type": "commentary", "index_title": "Ibn Ezra on Genesis"}
+      ]
+    }
+    """#.utf8)
+    let relatedResponse = try decoder.decode(SefariaRelatedResponseDTO.self, from: relatedJson)
+    try expect(relatedResponse.links.count == 2, "tolerant decoding extracted 2 valid links out of 3 entries")
+    try expect(relatedResponse.links[0].sourceRef == "Rashi on Genesis 7:1", "decoded first link")
+    try expect(relatedResponse.links[1].sourceRef == "Ibn Ezra on Genesis 7:1", "decoded second link")
+
+    let encoded = try JSONEncoder().encode(relatedResponse)
+    let roundtripped = try decoder.decode(SefariaRelatedResponseDTO.self, from: encoded)
+    try expect(roundtripped.links.count == 2, "roundtripped links count preserved")
 }

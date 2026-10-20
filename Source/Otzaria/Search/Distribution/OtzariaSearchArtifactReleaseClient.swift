@@ -5,7 +5,7 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
     static let tagPrefix = "otzaria-search-data-"
     static let manifestAssetName = "otzaria-search-manifest.json"
     static let releasesURL = URL(
-        string: "https://api.github.com/repos/\(repository)/releases?per_page=30"
+        string: "https://api.github.com/repos/\(repository)/releases?per_page=100"
     )!
 
     private let session: URLSession
@@ -131,14 +131,14 @@ struct OtzariaSearchArtifactReleaseClient: Sendable {
                     "releaseTag=\(release.tagName) manifestAsset=\(manifestAsset.name)",
                     error: error
                 )
-                throw error
+                continue
             } catch {
                 OtzariaIndexFileLogger.logError(
                     "search artifact manifest decode failed stage=decode " +
                     "releaseTag=\(release.tagName) manifestAsset=\(manifestAsset.name)",
                     error: error
                 )
-                throw OtzariaSearchArtifactError.malformedManifest(error.localizedDescription)
+                continue
             }
         }
         throw OtzariaSearchArtifactError.unavailable

@@ -7,11 +7,16 @@ on:
         description: Exact Maktabah commit containing the builder/schema
         required: true
         type: string
+      database_tag:
+        description: Target Otzaria/SeforimLibrary release tag (e.g. v32-20261010190601, or latest)
+        required: false
+        type: string
+        default: "v32-20261010190601"
       publish_release:
         description: Publish the verified package as GitHub Release assets
         required: true
         type: boolean
-        default: true
+        default: false
   push:
     branches:
       - codex/search-data-unification-parity
@@ -33,11 +38,7 @@ jobs:
     runs-on: ${{ vars.ZAYIT_PRODUCTION_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 720
     env:
-      DATABASE_TAG: v22-20260821152805
-      DATABASE_BYTES: "7874232320"
-      DATABASE_COMPRESSED_BYTES: "1549816972"
-      DATABASE_ASSET_SHA256: 10775581965f9dde2ddc5335adbb4ee5882238f3f876f1ec1e7d471ca05265b7
-      DATABASE_SHA256: 5084546e5feb88e3247ed91dad3aa44d07704094a1c9f429d2d3b9a059aa8fc8
+      DATABASE_TAG_FALLBACK: v32-20261010190601
       LEXICAL_TAG: v0.3.0
       LEXICAL_BYTES: "57122816"
       LEXICAL_SHA256: b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f
@@ -98,22 +99,37 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Download and authenticate official v22 database and lexical data
+      - name: Download and authenticate official database and lexical data
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh release download "$DATABASE_TAG" --repo Otzaria/SeforimLibrary --pattern seforim.db.zst --dir "$RUNNER_TEMP/zayit-source"
-          test "$(stat -c %s "$RUNNER_TEMP/zayit-source/seforim.db.zst")" = "$DATABASE_COMPRESSED_BYTES"
-          test "$(sha256sum "$RUNNER_TEMP/zayit-source/seforim.db.zst" | cut -d' ' -f1)" = "$DATABASE_ASSET_SHA256"
+          mkdir -p build/logs "$RUNNER_TEMP/zayit-source"
+          TARGET_TAG="${{ inputs.database_tag || env.DATABASE_TAG_FALLBACK }}"
+          if [ "$TARGET_TAG" = "latest" ] || [ -z "$TARGET_TAG" ]; then
+            gh api repos/Otzaria/SeforimLibrary/releases/latest > build/logs/source-release.json
+          else
+            gh api "repos/Otzaria/SeforimLibrary/releases/tags/$TARGET_TAG" > build/logs/source-release.json
+          fi
+          python3 Scripts/resolve-official-library-asset.py --release-json build/logs/source-release.json --format shell > build/logs/source-asset.env
+          source build/logs/source-asset.env
+          echo "ASSET_NAME=$ASSET_NAME" >> "$GITHUB_ENV"
+          curl --fail --location --retry 5 --continue-at - --output "$RUNNER_TEMP/zayit-source/$ASSET_NAME" "$ASSET_BROWSER_DOWNLOAD_URL"
+          if [ -n "$ASSET_COMPRESSED_SHA256" ]; then
+            test "$(sha256sum "$RUNNER_TEMP/zayit-source/$ASSET_NAME" | cut -d' ' -f1)" = "$ASSET_COMPRESSED_SHA256"
+          fi
           gh release download "$LEXICAL_TAG" --repo Otzaria/SeforimMagicIndexer --pattern lexical.db --dir "$RUNNER_TEMP/zayit-source"
           test "$(stat -c %s "$RUNNER_TEMP/zayit-source/lexical.db")" = "$LEXICAL_BYTES"
           test "$(sha256sum "$RUNNER_TEMP/zayit-source/lexical.db" | cut -d' ' -f1)" = "$LEXICAL_SHA256"
-          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/zayit-source/seforim.db.zst" -o "$RUNNER_TEMP/zayit-source/seforim.db"
-          rm "$RUNNER_TEMP/zayit-source/seforim.db.zst"
-          test "$(stat -c %s "$RUNNER_TEMP/zayit-source/seforim.db")" = "$DATABASE_BYTES"
-          test "$(sha256sum "$RUNNER_TEMP/zayit-source/seforim.db" | cut -d' ' -f1)" = "$DATABASE_SHA256"
-          sqlite3 "$RUNNER_TEMP/zayit-source/seforim.db" 'PRAGMA quick_check;' | grep -qx ok
+          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/zayit-source/$ASSET_NAME" -o "$RUNNER_TEMP/zayit-source/seforim.db"
+          rm "$RUNNER_TEMP/zayit-source/$ASSET_NAME"
+          DATABASE_BYTES="$(stat -c %s "$RUNNER_TEMP/zayit-source/seforim.db")"
+          DATABASE_SHA256="$(sha256sum "$RUNNER_TEMP/zayit-source/seforim.db" | cut -d' ' -f1)"
+          echo "DATABASE_TAG=$RELEASE_TAG" >> "$GITHUB_ENV"
+          echo "DATABASE_BYTES=$DATABASE_BYTES" >> "$GITHUB_ENV"
+          echo "DATABASE_ASSET_SHA256=$ASSET_COMPRESSED_SHA256" >> "$GITHUB_ENV"
+          echo "DATABASE_SHA256=$DATABASE_SHA256" >> "$GITHUB_ENV"
+          sqlite3 "$RUNNER_TEMP/zayit-source/seforim.db" 'PRAGMA quick_check(1);' | grep -qx ok
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -141,7 +157,7 @@ jobs:
           rm -rf Vendor/ZayitSearchPort/Rust/target
           "$RUNNER_TEMP/zayit-tools/zayit-index-builder" "$RUNNER_TEMP/zayit-source/seforim.db" "$RUNNER_TEMP/zayit-smoke-index"
           test -s "$RUNNER_TEMP/zayit-smoke-index/meta.json"
-          SMOKE_QUERY="$(sqlite3 "$RUNNER_TEMP/zayit-source/seforim.db" "SELECT content FROM line WHERE length(content)>20 ORDER BY bookId,lineIndex LIMIT 1;" | sed -E 's/<[^>]+>/ /g' | awk '{for(i=1;i<=NF;i++) if(length($i)>=4){print $i; exit}}')"
+          SMOKE_QUERY="$(sqlite3 "$RUNNER_TEMP/zayit-source/seforim.db" "SELECT title FROM book WHERE length(title)>=4 ORDER BY id LIMIT 1;" | awk '{print $1}')"
           test -n "$SMOKE_QUERY"
           "$RUNNER_TEMP/zayit-tools/zayit-query" "$RUNNER_TEMP/zayit-source/seforim.db" "$RUNNER_TEMP/zayit-source/lexical.db" "$RUNNER_TEMP/zayit-smoke-index" "$SMOKE_QUERY" > build/logs/zayit-smoke-query.json
           python3 - <<'PY'
@@ -286,17 +302,19 @@ jobs:
             test "$(stat -c %s "$OUT")" = $((OFFSET + UNCOMPRESSED))
             rm "$PART"
           done < "$RUNNER_TEMP/release-parts.tsv"
-          gh release download "$DATABASE_TAG" --repo Otzaria/SeforimLibrary --pattern seforim.db.zst --dir "$RUNNER_TEMP/release-download"
-          test "$(sha256sum "$RUNNER_TEMP/release-download/seforim.db.zst" | cut -d' ' -f1)" = "$DATABASE_ASSET_SHA256"
-          zstd -d --long=31 --no-progress "$RUNNER_TEMP/release-download/seforim.db.zst" -o "$RUNNER_TEMP/release-download/seforim.db"
-          rm "$RUNNER_TEMP/release-download/seforim.db.zst"
+          gh release download "$DATABASE_TAG" --repo Otzaria/SeforimLibrary --pattern "$ASSET_NAME" --dir "$RUNNER_TEMP/release-download"
+          if [ -n "$DATABASE_ASSET_SHA256" ]; then
+            test "$(sha256sum "$RUNNER_TEMP/release-download/$ASSET_NAME" | cut -d' ' -f1)" = "$DATABASE_ASSET_SHA256"
+          fi
+          zstd -d --long=31 --no-progress "$RUNNER_TEMP/release-download/$ASSET_NAME" -o "$RUNNER_TEMP/release-download/seforim.db"
+          rm "$RUNNER_TEMP/release-download/$ASSET_NAME"
           "$RUNNER_TEMP/zayit-tools/zayit-query" "$RUNNER_TEMP/release-download/seforim.db" "$RUNNER_TEMP/zayit-source/lexical.db" "$RUNNER_TEMP/zayit-release-index" 'לחתוך צנון בסכין בשרי' > build/logs/zayit-release-golden.json
           python3 - <<'PY'
-          import json
+          import json, os
           manifest=json.load(open('build/logs/published-manifest.json'))
           result=json.load(open('build/logs/zayit-release-golden.json'))
-          assert manifest['requiredDatabase']['releaseTag']=='v22-20260821152805'
-          assert manifest['requiredDatabase']['canonicalSHA256']=='5084546e5feb88e3247ed91dad3aa44d07704094a1c9f429d2d3b9a059aa8fc8'
+          assert manifest['requiredDatabase']['releaseTag']==os.environ['DATABASE_TAG']
+          assert manifest['requiredDatabase']['canonicalSHA256']==os.environ['DATABASE_SHA256']
           assert manifest['engine']['indexSchemaVersion']==2
           assert result.get('hits')
           PY

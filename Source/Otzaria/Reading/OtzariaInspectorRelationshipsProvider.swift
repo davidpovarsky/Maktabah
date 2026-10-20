@@ -108,11 +108,17 @@ struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @un
     }
 
     static func map(_ source: OtzariaLinkedSource) -> LibraryRelatedSource {
-        let category = source.connectionType.caseInsensitiveCompare("COMMENTARY") == .orderedSame
-            ? "Commentary"
-            : (source.linkedCategoryPath.isEmpty
-                ? source.localizedConnectionType
-                : source.linkedCategoryPath.joined(separator: " / "))
+        let classification = OtzariaRelationshipClassifier.classify(
+            rawConnectionType: source.rawConnectionType,
+            matchedSide: source.matchedSide,
+            currentBookId: source.matchedSide == 0 ? source.sourceBookId : source.targetBookId,
+            currentBookIsBaseBook: true,
+            linkedBookId: source.linkedBookId,
+            linkedBookTitle: source.bookTitle,
+            linkedBookIsBaseBook: source.linkedBookIsBaseBook,
+            linkedBookDependenceType: source.linkedBookDependenceType,
+            linkedCategoryPath: source.linkedCategoryPath
+        )
         let resolved = OtzariaCommentatorResolver.resolve(
             bookID: source.linkedBookId,
             bookTitle: source.bookTitle,
@@ -126,8 +132,8 @@ struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @un
             ),
             displayRef: source.bookTitle,
             heRef: source.heRef,
-            category: category,
-            type: source.connectionType,
+            category: classification.displayCategory,
+            type: classification.displayType,
             collectiveTitle: resolved.collectiveTitle,
             heCollectiveTitle: resolved.hebrewCollectiveTitle,
             primaryText: source.text,

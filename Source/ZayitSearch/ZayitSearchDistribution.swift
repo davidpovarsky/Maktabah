@@ -101,7 +101,7 @@ enum ZayitSearchDistributionError: LocalizedError, Sendable {
 
     var errorDescription: String? {
         switch self {
-        case .unavailable: "A compatible Zayit search package is not available yet."
+        case .unavailable: "אין עדיין חבילה תואמת לגרסת מסד זו"
         case .malformedManifest(let detail): "The Zayit manifest is invalid: \(detail)"
         case .incompatible(let detail): "The Zayit index is incompatible: \(detail)"
         case .missingPart(let name): "The Zayit package is missing \(name)."
@@ -229,8 +229,7 @@ actor ZayitSearchArtifactService {
     }
 
     func discover(databaseURL: URL) async throws -> ZayitSearchPackageState {
-        let artifact = try await resolveArtifact()
-        try validateCompatibility(artifact.manifest, databaseURL: databaseURL)
+        let artifact = try await resolveArtifact(matching: databaseURL)
         let storage = try ZayitSearchArtifactStorage()
         try storage.prepare()
         if let installed = try installedManifest(storage: storage) {
@@ -251,8 +250,7 @@ actor ZayitSearchArtifactService {
 
     func install(databaseURL: URL, lexicalDatabaseURL: URL, progress: @escaping Progress) async throws {
         cancelled = false
-        let artifact = try await resolveArtifact()
-        try validateCompatibility(artifact.manifest, databaseURL: databaseURL)
+        let artifact = try await resolveArtifact(matching: databaseURL)
         try validateLexicalDatabase(artifact.manifest, url: lexicalDatabaseURL)
         let storage = try ZayitSearchArtifactStorage()
         try storage.prepare()
@@ -327,7 +325,7 @@ private extension ZayitSearchArtifactService {
         enum CodingKeys: String, CodingKey { case name, browserDownloadURL = "browser_download_url" }
     }
 
-    func resolveArtifact() async throws -> ZayitResolvedArtifact {
+    func resolveArtifact(matching databaseURL: URL? = nil) async throws -> ZayitResolvedArtifact {
         if OtzariaDataProfileRegistry.activeProfileID != OtzariaDataProfileRegistry.productionID {
             let profile: OtzariaDataProfile
             do {
@@ -344,6 +342,9 @@ private extension ZayitSearchArtifactService {
                   manifest.engine.indexSchemaVersion == ZayitSearchArtifactManifest.currentIndexSchemaVersion else {
                 throw ZayitSearchDistributionError.incompatible("unsupported manifest or index schema")
             }
+            if let databaseURL {
+                try validateCompatibility(manifest, databaseURL: databaseURL)
+            }
             return .init(
                 releaseTag: "otzaria-miniTest10-v\(profile.profileVersion)",
                 manifest: manifest,
@@ -352,25 +353,37 @@ private extension ZayitSearchArtifactService {
                 })
             )
         }
-        let url = URL(string: "https://api.github.com/repos/\(Self.repository)/releases?per_page=30")!
+        let url = URL(string: "https://api.github.com/repos/\(Self.repository)/releases?per_page=100")!
         var request = URLRequest(url: url)
         request.setValue("Maktabah-iOS-Zayit", forHTTPHeaderField: "User-Agent")
         let (data, response) = try await URLSession.shared.data(for: request)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             throw ZayitSearchDistributionError.unavailable
         }
-        let releases = try JSONDecoder().decode([Release].self, from: data)
+        let releases: [Release]
+        do {
+            releases = try JSONDecoder().decode([Release].self, from: data)
+        } catch {
+            throw ZayitSearchDistributionError.unavailable
+        }
         for release in releases where release.tagName.hasPrefix("zayit-search-data-") {
             guard let manifestAsset = release.assets.first(where: { $0.name == Self.manifestName }) else { continue }
-            let (manifestData, manifestResponse) = try await URLSession.shared.data(from: manifestAsset.browserDownloadURL)
-            guard (manifestResponse as? HTTPURLResponse)?.statusCode == 200 else { continue }
-            guard let manifest = try? JSONDecoder().decode(ZayitSearchArtifactManifest.self, from: manifestData),
+            guard let (manifestData, manifestResponse) = try? await URLSession.shared.data(from: manifestAsset.browserDownloadURL),
+                  (manifestResponse as? HTTPURLResponse)?.statusCode == 200,
+                  let manifest = try? JSONDecoder().decode(ZayitSearchArtifactManifest.self, from: manifestData),
                   manifest.manifestSchemaVersion == ZayitSearchArtifactManifest.currentSchemaVersion,
                   manifest.engine.indexSchemaVersion == ZayitSearchArtifactManifest.currentIndexSchemaVersion else {
                 continue
             }
             let urls = Dictionary(uniqueKeysWithValues: release.assets.map { ($0.name, $0.browserDownloadURL) })
             guard manifest.parts.allSatisfy({ urls[$0.assetName] != nil }) else { continue }
+            if let databaseURL {
+                do {
+                    try validateCompatibility(manifest, databaseURL: databaseURL)
+                } catch {
+                    continue
+                }
+            }
             return .init(releaseTag: release.tagName, manifest: manifest, partURLs: urls)
         }
         throw ZayitSearchDistributionError.unavailable
@@ -588,6 +601,13 @@ final class ZayitSearchDataController: ObservableObject {
         guard discover, !state.isReady else { return }
         do {
             state = try await ZayitSearchArtifactService.shared.discover(databaseURL: database)
+        } catch let error as ZayitSearchDistributionError {
+            switch error {
+            case .unavailable:
+                state = .incompatible("אין עדיין חבילה תואמת לגרסת מסד זו")
+            default:
+                state = .failed(error.localizedDescription)
+            }
         } catch {
             state = .failed(error.localizedDescription)
         }
@@ -607,6 +627,13 @@ final class ZayitSearchDataController: ObservableObject {
                 Task { @MainActor in self?.state = update }
             }
             await refresh()
+        } catch let error as ZayitSearchDistributionError {
+            switch error {
+            case .unavailable:
+                state = .incompatible("אין עדיין חבילה תואמת לגרסת מסד זו")
+            default:
+                state = .failed(error.localizedDescription)
+            }
         } catch {
             state = .failed(error.localizedDescription)
         }

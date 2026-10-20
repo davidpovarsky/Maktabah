@@ -50,6 +50,13 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
     }
 
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
+        try await section(at: locator, redirectDepth: 0)
+    }
+
+    private func section(at locator: TextLocator, redirectDepth: Int) async throws -> LibraryTextSection {
+        guard redirectDepth <= 3 else {
+            throw LibraryBackendError.invalidResponse("Exceeded maximum redirects for section \(locator)")
+        }
         guard locator.backend == .sefaria, case .canonicalRef(let ref) = locator.position else {
             throw LibraryBackendError.invalidLocator
         }
@@ -57,13 +64,13 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
             let work = LibraryWork(locator: locator, title: locator.workKey, heTitle: nil,
                 categories: [], description: nil)
             let items = try await navigationItems(for: work)
-            return try await section(at: LibraryReadingUnitPolicy.resolve(locator, navigationItems: items))
+            return try await section(at: LibraryReadingUnitPolicy.resolve(locator, navigationItems: items), redirectDepth: redirectDepth)
         }
         let cacheName = "section-\(Data(ref.utf8).base64EncodedString().replacingOccurrences(of: "/", with: "_"))"
         if let cached: SefariaTextsV3DTO = await cache.decode(cacheName) {
             rememberSectionReferences(cached)
             if cached.sectionRef != ref {
-                return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(cached.sectionRef)))
+                return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(cached.sectionRef)), redirectDepth: redirectDepth + 1)
             }
             return map(cached, origin: .diskCache).asLibrarySection()
         }
@@ -77,7 +84,7 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         try await cache.encode(dto, as: cacheName)
         rememberSectionReferences(dto)
         if dto.sectionRef != ref {
-            return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(dto.sectionRef)))
+            return try await section(at: TextLocator(backend: .sefaria, workKey: locator.workKey, position: .canonicalRef(dto.sectionRef)), redirectDepth: redirectDepth + 1)
         }
         return map(dto, origin: .remote).asLibrarySection()
     }
@@ -712,31 +719,13 @@ actor SefariaRemoteStore: LibraryCatalogProviding, LibraryTextProviding,
         for sectionRef: String
     ) async throws -> [SefariaRelationshipLinkDTO] {
         let cacheName = "related-\(Data(sectionRef.utf8).base64EncodedString().replacingOccurrences(of: "/", with: "_"))"
-        let document: SefariaJSONValue
-        if let disk: SefariaJSONValue = await cache.decode(cacheName) {
-            document = disk
-        } else {
-            let url = try configuration.apiURL(pathPrefix: "/api/related/", pathComponent: sectionRef)
-            document = try await client.get(SefariaJSONValue.self, url: url)
-            try await cache.encode(document, as: cacheName)
+        if let disk: SefariaRelatedResponseDTO = await cache.decode(cacheName) {
+            return disk.links
         }
-        guard case .object(let object) = document,
-              case .array(let rawRows)? = object["links"] else {
-            throw LibraryBackendError.invalidResponse("related response has no links array")
-        }
-        let decoder = JSONDecoder()
-        var rows: [SefariaRelationshipLinkDTO] = []
-        for (index, raw) in rawRows.enumerated() {
-            do {
-                rows.append(try decoder.decode(
-                    SefariaRelationshipLinkDTO.self,
-                    from: JSONEncoder().encode(raw)
-                ))
-            } catch {
-                print("[Sefaria] related row \(index) for '\(sectionRef)' rejected: \(error)")
-            }
-        }
-        return rows
+        let url = try configuration.apiURL(pathPrefix: "/api/related/", pathComponent: sectionRef)
+        let response = try await client.get(SefariaRelatedResponseDTO.self, url: url, timeoutInterval: 15, maxAttempts: 2)
+        try? await cache.encode(response, as: cacheName)
+        return response.links
     }
 
     private func relationship(

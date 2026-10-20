@@ -32,7 +32,10 @@ actor SefariaHybridStore: LibraryTextProviding {
             let local = try await offline.section(at: locator)
             remember(local)
             return local
-        } catch LibraryBackendError.unavailableOffline {
+        } catch {
+            #if DEBUG
+            print("[SefariaHybridStore] Local read failed for \(locator), falling back to remote: \(error)")
+            #endif
             do {
                 let fetched = try await remote.section(at: locator)
                 remember(fetched)
@@ -83,8 +86,10 @@ actor SefariaHybridRelationshipsStore: LibraryRelationshipsProviding {
                 case .available(let local): return local
                 case .missing: break
                 }
-            } catch LibraryBackendError.unavailableOffline {
-                // The requested linked work may not belong to this local archive.
+            } catch {
+                #if DEBUG
+                print("[SefariaHybridRelationshipsStore] Local relationship lookup failed for \(locator), falling back to remote: \(error)")
+                #endif
             }
         }
         do {

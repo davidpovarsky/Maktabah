@@ -78,6 +78,52 @@ struct OtzariaLinkedSource: Identifiable, Hashable {
     let linkedBookOrderIndex: Int?
     let heRef: String?
     let content: String
+    let rawConnectionType: String
+    let matchedSide: Int
+    let sourceBookId: Int
+    let targetBookId: Int
+    let linkedBookIsBaseBook: Bool
+    let linkedBookDependenceType: String?
+
+    init(
+        id: Int,
+        connectionType: String,
+        linkedLineId: Int,
+        linkedBookId: Int,
+        linkedLineIndex: Int,
+        bookTitle: String,
+        bookPath: String?,
+        linkedCategoryId: Int?,
+        linkedCategoryPath: [String],
+        linkedBookOrderIndex: Int?,
+        heRef: String?,
+        content: String,
+        rawConnectionType: String? = nil,
+        matchedSide: Int = 0,
+        sourceBookId: Int? = nil,
+        targetBookId: Int? = nil,
+        linkedBookIsBaseBook: Bool = false,
+        linkedBookDependenceType: String? = nil
+    ) {
+        self.id = id
+        self.connectionType = connectionType
+        self.linkedLineId = linkedLineId
+        self.linkedBookId = linkedBookId
+        self.linkedLineIndex = linkedLineIndex
+        self.bookTitle = bookTitle
+        self.bookPath = bookPath
+        self.linkedCategoryId = linkedCategoryId
+        self.linkedCategoryPath = linkedCategoryPath
+        self.linkedBookOrderIndex = linkedBookOrderIndex
+        self.heRef = heRef
+        self.content = content
+        self.rawConnectionType = rawConnectionType ?? connectionType
+        self.matchedSide = matchedSide
+        self.sourceBookId = sourceBookId ?? (matchedSide == 0 ? 0 : linkedBookId)
+        self.targetBookId = targetBookId ?? (matchedSide == 0 ? linkedBookId : 0)
+        self.linkedBookIsBaseBook = linkedBookIsBaseBook
+        self.linkedBookDependenceType = linkedBookDependenceType
+    }
 
     var text: String { content.otsariaPlainText }
 

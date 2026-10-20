@@ -52,6 +52,17 @@ def compress_chunk(source: Path, offset: int, length: int, output: Path) -> None
 def selected_asset(release: dict, name: str) -> dict:
     matches = [asset for asset in release["assets"] if asset["name"] == name]
     if len(matches) != 1:
+        if name == "seforim.db.zst":
+            schema_matches = [
+                a for a in release["assets"]
+                if a["name"].startswith("seforim-schema") and a["name"].endswith(".db.zst")
+            ]
+            if schema_matches:
+                import re
+                def schema_ver(a):
+                    m = re.search(r"seforim-schema(\d+)\.db\.zst", a["name"])
+                    return int(m.group(1)) if m else 0
+                return max(schema_matches, key=schema_ver)
         raise RuntimeError(f"release must contain exactly one {name}")
     return matches[0]
 

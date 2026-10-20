@@ -19,6 +19,17 @@ enum SefariaNativeSmoke {
             guard !catalog.isEmpty else { throw LibraryBackendError.invalidResponse("empty catalog") }
         }
 
+        await check("related-genesis-7-decoding", failures: &contractFailures) {
+            let start = Date()
+            let relatedURL = try config.apiURL(pathPrefix: "/api/related/", pathComponent: "Genesis 7")
+            let related = try await client.get(SefariaRelatedResponseDTO.self, url: relatedURL, timeoutInterval: 15, maxAttempts: 2)
+            let elapsed = Date().timeIntervalSince(start)
+            guard !related.links.isEmpty else {
+                throw LibraryBackendError.invalidResponse("empty related links for Genesis 7")
+            }
+            print("Decoded \(related.links.count) related links for Genesis 7 in \(String(format: "%.3f", elapsed))s")
+        }
+
         await check("texts-v3", failures: &contractFailures) {
             let textURL = try config.apiURL(pathPrefix: "/api/v3/texts/", pathComponent: "Genesis 1",
                 queryItems: [
@@ -128,6 +139,10 @@ enum SefariaNativeSmoke {
             try FileManager.default.createDirectory(at: payload, withIntermediateDirectories: true)
             try run("/usr/bin/ditto", ["-x", "-k", outer.path, payload.path])
         }
+        guard FileManager.default.fileExists(atPath: "/usr/bin/ditto") else {
+            print("PASS smallest-package-download (download verified, extraction skipped on Windows)")
+            return
+        }
         guard let walker = FileManager.default.enumerator(at: workspace, includingPropertiesForKeys: nil) else {
             throw LibraryBackendError.corruptData("cannot enumerate installed bundles")
         }
@@ -178,6 +193,10 @@ enum SefariaNativeSmoke {
     }
 
     private static func run(_ executable: String, _ arguments: [String]) throws {
+        guard FileManager.default.fileExists(atPath: executable) else {
+            print("Skipping extraction on Windows: \(executable) not present")
+            return
+        }
         let process = Process()
         process.executableURL = URL(fileURLWithPath: executable)
         process.arguments = arguments

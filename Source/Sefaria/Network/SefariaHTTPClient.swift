@@ -13,10 +13,15 @@ actor SefariaHTTPClient {
         self.decoder = JSONDecoder()
     }
 
-    func get<T: Decodable & Sendable>(_ type: T.Type, url: URL) async throws -> T {
-        var request = URLRequest(url: url, timeoutInterval: 30)
+    func get<T: Decodable & Sendable>(
+        _ type: T.Type,
+        url: URL,
+        timeoutInterval: TimeInterval = 30,
+        maxAttempts: Int? = nil
+    ) async throws -> T {
+        var request = URLRequest(url: url, timeoutInterval: timeoutInterval)
         request.setValue("Maktabah/1 SefariaNative", forHTTPHeaderField: "User-Agent")
-        return try await send(type, request: request)
+        return try await send(type, request: request, maxAttempts: maxAttempts ?? maximumAttempts)
     }
 
     func post<T: Decodable & Sendable, Body: Encodable & Sendable>(
@@ -27,7 +32,7 @@ actor SefariaHTTPClient {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Maktabah/1 SefariaNative", forHTTPHeaderField: "User-Agent")
         request.httpBody = try JSONEncoder().encode(body)
-        return try await send(type, request: request)
+        return try await send(type, request: request, maxAttempts: maximumAttempts)
     }
 
     func postData<Body: Encodable & Sendable>(url: URL, body: Body) async throws -> (Data, HTTPURLResponse) {
@@ -75,19 +80,26 @@ actor SefariaHTTPClient {
         }
     }
 
-    private func send<T: Decodable>(_ type: T.Type, request: URLRequest) async throws -> T {
+    private func send<T: Decodable>(
+        _ type: T.Type,
+        request: URLRequest,
+        maxAttempts: Int = 3
+    ) async throws -> T {
         var attempt = 1
         while true {
+            try Task.checkCancellation()
             do {
                 let (data, response) = try await session.data(for: request)
                 try validate(response)
                 do { return try decoder.decode(type, from: data) }
                 catch { throw LibraryBackendError.invalidResponse(String(describing: error)) }
             } catch {
-                guard attempt < maximumAttempts, Self.isTransient(error) else {
+                try Task.checkCancellation()
+                guard attempt < maxAttempts, Self.isTransient(error) else {
                     throw Self.userFacing(error)
                 }
                 try await Task.sleep(nanoseconds: UInt64(attempt) * 500_000_000)
+                try Task.checkCancellation()
                 attempt += 1
             }
         }

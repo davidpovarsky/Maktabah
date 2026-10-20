@@ -69,6 +69,10 @@ extension OtzariaMaktabahBridge {
                 let decoder = includeContent ? try OtzariaLineContentDecoder(database: db, capabilities: capabilities) : nil
                 var byIdentity: [String: OtzariaLinkedSource] = [:]
 
+                let currentBookIsBaseBook = try db.fetch(query: "SELECT isBaseBook FROM book WHERE id = ?", parameters: [bookID]) { row in
+                    row.int(at: 0) == 1
+                }.first ?? true
+
                 // Each index appears in the forward and inverse arms. 400 keeps
                 // the statement below SQLite's common 999-variable limit.
                 for start in stride(from: 0, to: uniqueIndexes.count, by: 400) {
@@ -140,12 +144,10 @@ extension OtzariaMaktabahBridge {
                         ), resolved AS (
                             SELECT DISTINCT
                                 link.id AS linkId,
-                                CASE
-                                    WHEN matched.matchedSide = 1
-                                     AND connection_type.name IN (\(dependentTypes))
-                                    THEN 'SOURCE'
-                                    ELSE COALESCE(connection_type.name, 'OTHER')
-                                END AS connectionType,
+                                COALESCE(connection_type.name, 'OTHER') AS rawConnectionType,
+                                matched.matchedSide AS matchedSide,
+                                link.sourceBookId AS sourceBookId,
+                                link.targetBookId AS targetBookId,
                                 CASE matched.matchedSide
                                     WHEN 0 THEN link.targetLineId ELSE link.sourceLineId
                                 END AS linkedLineId,
@@ -166,7 +168,10 @@ extension OtzariaMaktabahBridge {
                             )
                         )
                         SELECT resolved.linkId,
-                               resolved.connectionType,
+                               resolved.rawConnectionType,
+                               resolved.matchedSide,
+                               resolved.sourceBookId,
+                               resolved.targetBookId,
                                resolved.linkedLineId,
                                resolved.linkedBookId,
                                linked_line.lineIndex,
@@ -174,6 +179,8 @@ extension OtzariaMaktabahBridge {
                                \(schema.filePath),
                                linked_book.categoryId,
                                linked_book.orderIndex,
+                               \(schema.isBaseBook),
+                               \(schema.dependenceType),
                                linked_line.heRef\(includeContent ? ", \(content?.expression ?? "")" : "")
                         FROM resolved
                         JOIN line linked_line ON linked_line.id = resolved.linkedLineId
@@ -181,20 +188,55 @@ extension OtzariaMaktabahBridge {
                         JOIN book linked_book ON linked_book.id = resolved.linkedBookId
                         ORDER BY linked_book.orderIndex, linked_line.lineIndex, resolved.linkId
                     """, parameters: parameters) { row in
-                        let linkedCategoryID = row.isNull(at: 7) ? nil : row.int(at: 7)
+                        let linkId = row.int(at: 0)
+                        let rawConnectionType = row.string(at: 1) ?? "OTHER"
+                        let matchedSide = row.int(at: 2)
+                        let sourceBookId = row.int(at: 3)
+                        let targetBookId = row.int(at: 4)
+                        let linkedLineId = row.int(at: 5)
+                        let linkedBookId = row.int(at: 6)
+                        let linkedLineIndex = row.int(at: 7)
+                        let bookTitle = row.string(at: 8) ?? "ללא שם"
+                        let bookPath = row.string(at: 9)
+                        let linkedCategoryID = row.isNull(at: 10) ? nil : row.int(at: 10)
+                        let linkedBookOrderIndex = row.isNull(at: 11) ? nil : row.int(at: 11)
+                        let linkedBookIsBaseBook = row.int(at: 12) == 1
+                        let linkedBookDependenceType = row.string(at: 13)
+                        let heRef = row.string(at: 14)
+                        let contentText = includeContent ? (try decoder?.decode(row: row, at: 15) ?? "") : ""
+                        let categoryPath = resolver.path(for: linkedCategoryID)
+
+                        let classification = OtzariaRelationshipClassifier.classify(
+                            rawConnectionType: rawConnectionType,
+                            matchedSide: matchedSide,
+                            currentBookId: bookID,
+                            currentBookIsBaseBook: currentBookIsBaseBook,
+                            linkedBookId: linkedBookId,
+                            linkedBookTitle: bookTitle,
+                            linkedBookIsBaseBook: linkedBookIsBaseBook,
+                            linkedBookDependenceType: linkedBookDependenceType,
+                            linkedCategoryPath: categoryPath
+                        )
+
                         return OtzariaLinkedSource(
-                            id: row.int(at: 0),
-                            connectionType: row.string(at: 1) ?? "OTHER",
-                            linkedLineId: row.int(at: 2),
-                            linkedBookId: row.int(at: 3),
-                            linkedLineIndex: row.int(at: 4),
-                            bookTitle: row.string(at: 5) ?? "ללא שם",
-                            bookPath: row.string(at: 6),
+                            id: linkId,
+                            connectionType: classification.displayType,
+                            linkedLineId: linkedLineId,
+                            linkedBookId: linkedBookId,
+                            linkedLineIndex: linkedLineIndex,
+                            bookTitle: bookTitle,
+                            bookPath: bookPath,
                             linkedCategoryId: linkedCategoryID,
-                            linkedCategoryPath: resolver.path(for: linkedCategoryID),
-                            linkedBookOrderIndex: row.isNull(at: 8) ? nil : row.int(at: 8),
-                            heRef: row.string(at: 9),
-                            content: includeContent ? (try decoder?.decode(row: row, at: 10) ?? "") : ""
+                            linkedCategoryPath: categoryPath,
+                            linkedBookOrderIndex: linkedBookOrderIndex,
+                            heRef: heRef,
+                            content: contentText,
+                            rawConnectionType: rawConnectionType,
+                            matchedSide: matchedSide,
+                            sourceBookId: sourceBookId,
+                            targetBookId: targetBookId,
+                            linkedBookIsBaseBook: linkedBookIsBaseBook,
+                            linkedBookDependenceType: linkedBookDependenceType
                         )
                     }
 

@@ -23,7 +23,12 @@ on:
         description: Publish verified package as a dedicated public data release
         required: true
         type: boolean
-        default: true
+        default: false
+      source_release_tag:
+        description: Target Otzaria/SeforimLibrary release tag (e.g. v32-20261010190601, or latest)
+        required: false
+        type: string
+        default: "v32-20261010190601"
       existing_release_tag:
         description: Verify an existing artifact release without rebuilding the corpus
         required: false
@@ -188,15 +193,20 @@ jobs:
           if [ -n "${{ inputs.existing_release_tag }}" ]; then
             SOURCE_TAG="$(python3 -c 'import json; print(json.load(open("build/otzaria-artifact/otzaria-search-manifest.json"))["sourceDatabase"]["releaseTag"])')"
             gh api "repos/Otzaria/SeforimLibrary/releases/tags/$SOURCE_TAG" > build/logs/source-release.json
+          elif [ -n "${{ inputs.source_release_tag }}" ] && [ "${{ inputs.source_release_tag }}" != "latest" ]; then
+            gh api "repos/Otzaria/SeforimLibrary/releases/tags/${{ inputs.source_release_tag }}" > build/logs/source-release.json
           else
             gh api repos/Otzaria/SeforimLibrary/releases/latest > build/logs/source-release.json
           fi
           gh api repos/Otzaria/SeforimMagicIndexer/releases/latest > build/logs/magic-release.json
-          ASSET_URL="$(python3 -c 'import json; r=json.load(open("build/logs/source-release.json")); print(next(a["browser_download_url"] for a in r["assets"] if a["name"]=="seforim.db.zst"))')"
-          EXPECTED="$(python3 -c 'import json; r=json.load(open("build/logs/source-release.json")); print(next(a["digest"].split(":",1)[1] for a in r["assets"] if a["name"]=="seforim.db.zst"))')"
-          curl --fail --location --retry 5 --continue-at - --output "$RUNNER_TEMP/seforim.db.zst" "$ASSET_URL"
-          test "$(shasum -a 256 "$RUNNER_TEMP/seforim.db.zst" | cut -d' ' -f1)" = "$EXPECTED"
-          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/seforim.db.zst" -o "$RUNNER_TEMP/seforim.db"
+          python3 Scripts/resolve-official-library-asset.py --release-json build/logs/source-release.json --format shell > build/logs/source-asset.env
+          source build/logs/source-asset.env
+          echo "ASSET_NAME=$ASSET_NAME" >> "$GITHUB_ENV"
+          curl --fail --location --retry 5 --continue-at - --output "$RUNNER_TEMP/$ASSET_NAME" "$ASSET_BROWSER_DOWNLOAD_URL"
+          if [ -n "$ASSET_COMPRESSED_SHA256" ]; then
+            test "$(shasum -a 256 "$RUNNER_TEMP/$ASSET_NAME" | cut -d' ' -f1)" = "$ASSET_COMPRESSED_SHA256"
+          fi
+          zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/$ASSET_NAME" -o "$RUNNER_TEMP/seforim.db"
           if [ -n "${{ inputs.existing_release_tag }}" ]; then
             python3 - "$RUNNER_TEMP/seforim.db" <<'PY'
           import hashlib, json, pathlib, sys
@@ -249,6 +259,7 @@ jobs:
           python3 Scripts/package-otzaria-search-artifact.py \
             --index "$INDEX" \
             --database "$RUNNER_TEMP/seforim.db" \
+            --database-asset-name "${ASSET_NAME:-seforim-schema6.db.zst}" \
             --release-json build/logs/source-release.json \
             --magic-release-json build/logs/magic-release.json \
             --acceptance-json build/logs/otzaria-corpus-acceptance.json \
