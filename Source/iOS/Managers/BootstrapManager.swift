@@ -163,16 +163,17 @@ final class iOSBootstrapManager {
                 guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
                 // Database is activated and verified; commit Otzaria so reader and library are functional
                 backendCoordinator.commit(.otzaria)
-
-                // Attempt recommended search package installation without failing library setup
-                do {
-                    try await installRecommendedSearchData(generation: generation)
-                } catch {
-                    OtzariaFileLogger.shared.log("[BootstrapManager] Recommended search data install skipped or failed: \(error.localizedDescription)")
-                }
-
-                guard !Task.isCancelled, managedDownloadGeneration == generation else { return }
                 finishSetup()
+
+                // Decouple search package download/install into a background task without blocking UI setup
+                Task.detached(priority: .utility) {
+                    do {
+                        _ = try await OtzariaMagicDictionaryManager.shared.refreshIfNeeded(force: false)
+                        OtzariaFileLogger.shared.log("[BootstrapManager] Background search package install completed successfully")
+                    } catch {
+                        OtzariaFileLogger.shared.log("[BootstrapManager] Background search package install skipped or failed: \(error.localizedDescription)")
+                    }
+                }
             } catch let error as OtzariaDatabaseBootstrapError {
                 guard managedDownloadGeneration == generation else { return }
                 if case .cancelled = error {

@@ -151,14 +151,36 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var readerHeaderTitle: String {
-        if let index = viewModel.currentNavigationIndex,
-           viewModel.navigationItems.indices.contains(index) {
-            return viewModel.navigationItems[index].title
+        let title = book.book.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !title.isEmpty {
+            return title
+        }
+        if let currentBookName = viewModel.currentBook?.book,
+           !currentBookName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return currentBookName
         }
         if let node = selectedTOCNode, !node.bab.isEmpty {
             return node.bab
         }
-        return book.book
+        return ""
+    }
+
+    private var readerHeaderSubtitle: String {
+        let status = viewModel.statusSubtitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !status.isEmpty && status != readerHeaderTitle {
+            return status
+        }
+        if let index = viewModel.currentNavigationIndex,
+           viewModel.navigationItems.indices.contains(index) {
+            let navTitle = viewModel.navigationItems[index].title.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !navTitle.isEmpty && navTitle != readerHeaderTitle {
+                return navTitle
+            }
+        }
+        if let node = selectedTOCNode, !node.bab.isEmpty && node.bab != readerHeaderTitle {
+            return node.bab
+        }
+        return ""
     }
 
     private var selectedTOCNode: TOCNode? {
@@ -284,11 +306,13 @@ struct iOSReaderWorkspaceView: View {
                         .font(.headline)
                         .lineLimit(1)
                         .accessibilityIdentifier("reader-header-title")
-                    Text(viewModel.statusSubtitle)
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                        .accessibilityIdentifier("reader-header-subtitle")
+                    if !readerHeaderSubtitle.isEmpty {
+                        Text(readerHeaderSubtitle)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .accessibilityIdentifier("reader-header-subtitle")
+                    }
                 }
             }
 

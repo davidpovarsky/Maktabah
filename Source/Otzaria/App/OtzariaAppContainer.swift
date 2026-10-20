@@ -182,6 +182,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
 
     func clearAllCaches() {
         clearReadingUnitCache()
+        readingUnitService?.clearCaches()
         Self.clearCategoryCache()
         BookPageCache.shared.removeAll()
     }

@@ -397,6 +397,73 @@ enum ITorahSharedContainer: Sendable {
         return true
     }
 
+    /// Fast startup validation for an already installed, trusted database file.
+    /// Checks existence, minimum size, SQLite magic header, manifest (if present),
+    /// and required tables without running expensive integrity PRAGMAs.
+    static func validateTrustedInstalledDatabaseForStartup(at url: URL, profileID: String) -> Bool {
+        let fileManager = FileManager.default
+        var isDir: ObjCBool = false
+        guard fileManager.fileExists(atPath: url.path, isDirectory: &isDir), !isDir.boolValue else {
+            return false
+        }
+        guard let attributes = try? fileManager.attributesOfItem(atPath: url.path),
+              let size = (attributes[.size] as? NSNumber)?.int64Value,
+              size > 100 else {
+            return false
+        }
+
+        // Check SQLite magic header (first 16 bytes: "SQLite format 3\000")
+        guard let handle = try? FileHandle(forReadingFrom: url) else { return false }
+        defer { try? handle.close() }
+        guard let headerData = try? handle.read(upToCount: 16),
+              headerData.count == 16,
+              let headerString = String(data: headerData, encoding: .ascii),
+              headerString.hasPrefix("SQLite format 3") else {
+            return false
+        }
+
+        // Manifest compatibility check if manifest file exists
+        let manifestURL = url.deletingLastPathComponent().appendingPathComponent("seforim-installation.json")
+        if fileManager.fileExists(atPath: manifestURL.path),
+           let data = try? Data(contentsOf: manifestURL),
+           let json = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any] {
+            let manifestProfileID = (json["profileID"] as? String) ?? (json["effectiveProfileID"] as? String) ?? OtzariaDataProfileRegistry.productionID
+            if profileID == OtzariaDataProfileRegistry.miniTest10ID {
+                guard manifestProfileID == OtzariaDataProfileRegistry.miniTest10ID else { return false }
+            } else if profileID == OtzariaDataProfileRegistry.productionID {
+                guard manifestProfileID == OtzariaDataProfileRegistry.productionID else { return false }
+            }
+            if let expectedSize = json["databaseFileSize"] as? NSNumber, expectedSize.int64Value > 0 {
+                guard expectedSize.int64Value == size else { return false }
+            }
+        }
+
+        #if canImport(SQLite3)
+        var db: OpaquePointer?
+        guard sqlite3_open_v2(url.path, &db, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil) == SQLITE_OK,
+              let db else {
+            if let db { sqlite3_close(db) }
+            return false
+        }
+        defer { sqlite3_close(db) }
+
+        // Fast table check without quick_check
+        var tableStmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, "SELECT 1 FROM sqlite_master WHERE type='table' AND name IN ('book', 'line', 'category');", -1, &tableStmt, nil) == SQLITE_OK,
+              let tableStmt else {
+            return false
+        }
+        var foundCount = 0
+        while sqlite3_step(tableStmt) == SQLITE_ROW {
+            foundCount += 1
+        }
+        sqlite3_finalize(tableStmt)
+        guard foundCount >= 3 else { return false }
+        #endif
+
+        return true
+    }
+
     /// Validates an Otzaria Tantivy search index directory.
     ///
     /// Asserts:
@@ -572,10 +639,19 @@ enum ITorahSharedContainer: Sendable {
     /// - Validated: Truncated or corrupted legacy datasets are never promoted.
     /// - Atomic: Uses unique `.migrating` staging files and atomically renames on completion.
     /// - Coordinated: Uses cross-process `ITorahStorageLock` to prevent race conditions.
+    private static let sessionMigrationLock = NSLock()
+    private static var migratedProfilesThisSession = Set<String>()
+
     static func migrateLegacyDataIfNeeded(
         profileID: String = OtzariaDataProfileRegistry.activeProfileID,
         customLegacyRoots: [URL]? = nil
     ) {
+        sessionMigrationLock.lock()
+        if migratedProfilesThisSession.contains(profileID) {
+            sessionMigrationLock.unlock()
+            return
+        }
+        sessionMigrationLock.unlock()
         let destinationRoot = sharedRootURL
         let fileManager = FileManager.default
 
@@ -608,6 +684,10 @@ enum ITorahSharedContainer: Sendable {
                 migrateSearchResources(legacyRoots: legacyRoots, sharedRoot: destinationRoot)
             }
         }
+
+        sessionMigrationLock.lock()
+        migratedProfilesThisSession.insert(profileID)
+        sessionMigrationLock.unlock()
     }
 
     private static func cleanDanglingStaging(in directory: URL) {
@@ -627,8 +707,8 @@ enum ITorahSharedContainer: Sendable {
         // Clean any dangling interrupted migration files in destination
         cleanDanglingStaging(in: destDir)
 
-        // 1. If destination already has a VALID database, do NOT overwrite it
-        if isDatabaseValid(at: destDB, profileID: profileID) {
+        // 1. If destination already has a VALID database, fast-path return without expensive PRAGMA quick_check
+        if validateTrustedInstalledDatabaseForStartup(at: destDB, profileID: profileID) {
             return
         }
 

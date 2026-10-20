@@ -451,4 +451,71 @@ func runNavigationAndPackageTests() async throws {
         "single segment section derives segment ref with offset when ref == sectionRef")
     try expect(mappedSection.segments[0].heRef == "רשב\"ם על בראשית א׳:א׳:1",
         "single segment section derives segment heRef with offset when ref == sectionRef")
+
+    // P1-D: Reader Title Hierarchy & Canonical Book Presentation
+    func resolveReaderHeader(
+        bookTitle: String,
+        currentBookTitle: String?,
+        tocNodeBab: String?,
+        statusSubtitle: String,
+        navigationTitle: String?
+    ) -> (title: String, subtitle: String) {
+        let title: String
+        let cleanBookTitle = bookTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !cleanBookTitle.isEmpty {
+            title = cleanBookTitle
+        } else if let currentBook = currentBookTitle?.trimmingCharacters(in: .whitespacesAndNewlines), !currentBook.isEmpty {
+            title = currentBook
+        } else if let bab = tocNodeBab?.trimmingCharacters(in: .whitespacesAndNewlines), !bab.isEmpty {
+            title = bab
+        } else {
+            title = ""
+        }
+
+        let subtitle: String
+        let cleanStatus = statusSubtitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !cleanStatus.isEmpty && cleanStatus != title {
+            subtitle = cleanStatus
+        } else if let nav = navigationTitle?.trimmingCharacters(in: .whitespacesAndNewlines), !nav.isEmpty && nav != title {
+            subtitle = nav
+        } else if let bab = tocNodeBab?.trimmingCharacters(in: .whitespacesAndNewlines), !bab.isEmpty && bab != title {
+            subtitle = bab
+        } else {
+            subtitle = ""
+        }
+
+        return (title, subtitle)
+    }
+
+    // When book is "תורה תמימה על התורה" and navigation item is "2", title remains canonical "תורה תמימה על התורה", while subtitle is "2"
+    let header1 = resolveReaderHeader(
+        bookTitle: "תורה תמימה על התורה",
+        currentBookTitle: "תורה תמימה על התורה",
+        tocNodeBab: nil,
+        statusSubtitle: "",
+        navigationTitle: "2"
+    )
+    try expect(header1.title == "תורה תמימה על התורה", "Canonical book title must never be replaced by numeric navigation title")
+    try expect(header1.subtitle == "2", "Numeric navigation index is relegated to subtitle")
+
+    // When statusSubtitle has a descriptive locator (e.g. "בראשית א:ב"), subtitle reflects it
+    let header2 = resolveReaderHeader(
+        bookTitle: "תורה תמימה על התורה",
+        currentBookTitle: "תורה תמימה על התורה",
+        tocNodeBab: "בראשית",
+        statusSubtitle: "בראשית א:ב",
+        navigationTitle: "2"
+    )
+    try expect(header2.title == "תורה תמימה על התורה", "Title remains canonical book name")
+    try expect(header2.subtitle == "בראשית א:ב", "Subtitle preserves locator")
+
+    // When subtitle equals title, redundant display is suppressed
+    let header3 = resolveReaderHeader(
+        bookTitle: "תורה תמימה על התורה",
+        currentBookTitle: "תורה תמימה על התורה",
+        tocNodeBab: nil,
+        statusSubtitle: "תורה תמימה על התורה",
+        navigationTitle: nil
+    )
+    try expect(header3.subtitle == "", "Redundant subtitle matching title is suppressed")
 }

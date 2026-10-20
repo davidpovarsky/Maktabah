@@ -46,7 +46,11 @@ final class OtzariaDatabaseAccessController {
         ITorahSharedContainer.databaseValidator = { [weak self] url, _ in
             guard let self else { return true }
             do {
-                try self.validateDatabase(at: url)
+                let database = try SQLiteDatabase(
+                    path: url.path,
+                    flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
+                )
+                try self.validateRequiredSchema(in: database)
                 return true
             } catch {
                 return false

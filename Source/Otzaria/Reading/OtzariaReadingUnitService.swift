@@ -53,6 +53,7 @@ final class OtzariaReadingUnitService {
     }
 
     private let db: SQLiteDatabase
+    private let cacheLock = NSLock()
     private var indexCache: [Int: BookIndex] = [:]
     private var summariesCache: [String: [UnitSummary]] = [:]
     private var contentCapabilities: OtzariaDatabaseCapabilities?
@@ -63,8 +64,12 @@ final class OtzariaReadingUnitService {
     }
 
     func clearCaches() {
-        indexCache.removeAll()
-        summariesCache.removeAll()
+        cacheLock.withLock {
+            indexCache.removeAll()
+            summariesCache.removeAll()
+            contentCapabilities = nil
+            contentDecoder = nil
+        }
     }
 
     func descriptor(bookId: Int, containingLineIndex lineIndex: Int, mode: OtzariaUnitMode) throws -> OtzariaReadingUnitDescriptor? {
@@ -230,7 +235,8 @@ final class OtzariaReadingUnitService {
     private func unitSummaries(bookId: Int, mode: OtzariaUnitMode) throws -> [UnitSummary] {
         let start = Date()
         let cacheKey = "\(bookId):\(mode.storageValue)"
-        if let cached = summariesCache[cacheKey] { return cached }
+        let cached = cacheLock.withLock { summariesCache[cacheKey] }
+        if let cached { return cached }
 
         let summaries: [UnitSummary]
         switch mode {
@@ -242,8 +248,10 @@ final class OtzariaReadingUnitService {
             summaries = try chapterSummaries(bookId: bookId)
         }
 
-        if summariesCache.count > 50 { summariesCache.removeAll() }
-        summariesCache[cacheKey] = summaries
+        cacheLock.withLock {
+            if summariesCache.count > 50 { summariesCache.removeAll() }
+            summariesCache[cacheKey] = summaries
+        }
         log("unitSummaries bookId=\(bookId) mode=\(mode.storageValue) count=\(summaries.count) durationMs=\(elapsedMs(start))")
         return summaries
     }
@@ -544,19 +552,22 @@ final class OtzariaReadingUnitService {
         projection: OtzariaLineContentProjection,
         decoder: OtzariaLineContentDecoder
     ) {
+        let (cachedCaps, cachedDec) = cacheLock.withLock {
+            (contentCapabilities, contentDecoder)
+        }
         let capabilities: OtzariaDatabaseCapabilities
-        if let cached = contentCapabilities {
-            capabilities = cached
+        if let cachedCaps {
+            capabilities = cachedCaps
         } else {
             capabilities = try OtzariaDatabaseCapabilities(database: db)
-            contentCapabilities = capabilities
+            cacheLock.withLock { contentCapabilities = capabilities }
         }
         let decoder: OtzariaLineContentDecoder
-        if let cached = contentDecoder {
-            decoder = cached
+        if let cachedDec {
+            decoder = cachedDec
         } else {
             decoder = try OtzariaLineContentDecoder(database: db, capabilities: capabilities)
-            contentDecoder = decoder
+            cacheLock.withLock { contentDecoder = decoder }
         }
         return (
             OtzariaLineContentCompatibility.projection(capabilities: capabilities),
@@ -565,7 +576,8 @@ final class OtzariaReadingUnitService {
     }
 
     private func bookIndex(bookId: Int) throws -> BookIndex {
-        if let cached = indexCache[bookId] { return cached }
+        let cached = cacheLock.withLock { indexCache[bookId] }
+        if let cached { return cached }
         let start = Date()
         let schema = try OtzariaTOCSchemaCompatibility.projection(in: db)
 
@@ -615,8 +627,10 @@ final class OtzariaReadingUnitService {
             childrenByParentId: childrenByParentId,
             leafEntryByLineIndex: leafEntryByLineIndex
         )
-        if indexCache.count > 20 { indexCache.removeAll() }
-        indexCache[bookId] = index
+        cacheLock.withLock {
+            if indexCache.count > 20 { indexCache.removeAll() }
+            indexCache[bookId] = index
+        }
         log("bookIndex bookId=\(bookId) tocEntries=\(entries.count) lineTocMappings=\(mappings.count) durationMs=\(elapsedMs(start))")
         return index
     }
