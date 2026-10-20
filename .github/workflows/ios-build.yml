@@ -532,6 +532,7 @@ jobs:
             Source/Otzaria/Reading/OtzariaLineAnchor.swift \
             Source/Otzaria/Reading/OtzariaReadingUnit.swift \
             Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift \
+            Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift \
             Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift \
             Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift \
             Source/Managers/Engine/SearchMode.swift \
