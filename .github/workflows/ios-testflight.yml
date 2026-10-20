@@ -378,6 +378,7 @@ jobs:
         run: |
           xcrun swiftc \
             -DTESTING \
+            -D OTZARIA_INSPECTOR_MAPPING_TESTS \
             Source/LibraryBackend/LibraryBackendModels.swift \
             Source/LibraryBackend/LibraryBackendProtocols.swift \
             Source/LibraryBackend/LibraryPresentationPolicy+Display.swift \
