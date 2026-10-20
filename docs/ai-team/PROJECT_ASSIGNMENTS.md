@@ -9,7 +9,7 @@
 
 ## 1. Project Scope & Technical Boundaries
 - Otzaria/Zayit stable search identities, pagination metadata, annotation persistence, and Inspector commentaries.
-- Preserve Maktabah upstream UI styling and navigation structures.
+- Reference Maktabah upstream visual styling and typography in root `DESIGN_LANGUAGE.md`; preserve the current fork's chosen windows, tabs, panels, sheets, Inspector and navigation structures unless a separate owner request explicitly changes them.
 - Isolating Otzaria / Zayit engine layers without leaking unstable identifiers.
 
 ---
