@@ -229,6 +229,7 @@ jobs:
           github_token: ${{ github.token }}
       - name: Package deterministic streaming parts and validate metadata
         run: |
+          find "$RUNNER_TEMP/zayit-production-index" -name ".managed.json" -delete 2>/dev/null || true
           python3 Scripts/package-zayit-search-artifact.py --index "$RUNNER_TEMP/zayit-production-index" --output build/zayit-production --lexical-version "$LEXICAL_TAG" --lexical-sha256 "$LEXICAL_SHA256" --lexical-bytes "$LEXICAL_BYTES" --peak-build-bytes "$(cat build/logs/zayit-peak-bytes.txt)"
           python3 - <<'PY'
           import hashlib,json,pathlib
