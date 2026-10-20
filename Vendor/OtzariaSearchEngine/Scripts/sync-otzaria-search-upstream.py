@@ -207,7 +207,11 @@ def main() -> int:
     if git("status", "--porcelain"):
         raise RuntimeError("upstream checkout is dirty immediately after checkout")
     version, schema, default_generation_order, semantic_revision = source_metadata(new)
-    app_commit = resolve_app_head()
+    if args.check and RESOURCE_MANIFEST.exists():
+        committed_resource_manifest = json.loads(RESOURCE_MANIFEST.read_text(encoding="utf-8"))
+        app_commit = committed_resource_manifest.get("reference_commit") or resolve_app_head()
+    else:
+        app_commit = resolve_app_head()
     resources = sync_resources(app_commit, write=not args.check)
     for record in resources:
         if record["name"] == "Semantic GGUF model":
