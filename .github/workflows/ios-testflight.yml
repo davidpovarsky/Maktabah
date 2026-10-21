@@ -403,7 +403,7 @@ jobs:
             Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift \
             Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift \
             Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift \
-            Source/Managers/Engine/SearchMode.swift \
+            Source/Core/SearchEngine/SearchMode.swift \
             Source/Otzaria/Search/OtzariaSearchMode.swift \
             Source/Otzaria/Search/OtzariaSearchModels.swift \
             Source/ZayitSearch/UnifiedSearchScope.swift \
