@@ -1,5 +1,30 @@
 import Foundation
+
+#if canImport(TorahInspectorCore)
 import TorahInspectorCore
+#else
+enum TorahRelationshipKind: String, Sendable, Codable {
+    case commentary
+    case link
+}
+
+enum TorahSourceCategory: String, Sendable, Codable {
+    case commentary
+    case tanakh
+    case mishnah
+    case talmud
+    case midrash
+    case halakhah
+    case kabbalah
+    case liturgy
+    case philosophy
+    case chasidut
+    case musar
+    case responsa
+    case modern
+    case other
+}
+#endif
 
 struct OtzariaRelationshipClassification: Equatable, Sendable {
     let relationshipKind: TorahRelationshipKind
