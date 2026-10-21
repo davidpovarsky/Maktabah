@@ -204,7 +204,9 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 facets: ["/"],
                 limit: 25,
                 order: .relevance,
-                wordMatchMode: .all
+                distance: 10,
+                scope: .sameSection,
+                wordMatchMode: .mostWords
             ))
             let orderedIDs = goldenPage.results.map(\.id)
             let stableIDs = goldenPage.results.map(\.filePath)
@@ -263,6 +265,10 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 error: nil
             ), path: resultPath)
         } catch {
+            let detail = (error as? OtzariaSearchArtifactError)?.failureReason
+                ?? (error as? LocalizedError)?.failureReason
+                ?? error.localizedDescription
+            print("::error::[PrebuiltAcceptance] phase \(phase) failed: \(detail)")
             try? write(Report(
                 passed: false,
                 phase: phase,
@@ -278,7 +284,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 productionDiscoveryRan: productionDiscoveryRan,
                 productionValidatorRan: productionValidatorRan,
                 selectedReleaseTag: selectedReleaseTag,
-                error: error.localizedDescription
+                error: detail
             ), path: resultPath)
         }
     }

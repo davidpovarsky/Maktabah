@@ -178,7 +178,11 @@ run_phase() {
       echo "Prebuilt $phase report ready after ${waited}s: $result"
       cp "$result" "$REPORT_DIR/otzaria-prebuilt-$phase.json"
       cat "$result"
-      python3 -c 'import json,sys; assert json.load(open(sys.argv[1]))["passed"]' "$result"
+      if ! python3 -c 'import json,sys; assert json.load(open(sys.argv[1]))["passed"]' "$result"; then
+        echo "::error::Prebuilt acceptance phase $phase report indicated failure!" >&2
+        print_diagnostics "$phase" "$pid" "$result"
+        return 1
+      fi
       return 0
     fi
 

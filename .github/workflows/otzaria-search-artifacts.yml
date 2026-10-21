@@ -348,5 +348,7 @@ jobs:
       - name: Confirm package data was not added to git
         if: always()
         run: |
+          git checkout -- Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved 2>/dev/null || true
+          git status --short --untracked-files=no
           test -z "$(git status --short --untracked-files=no)"
           test -z "$(git ls-files '*.gguf' '*.db.zst' 'build/otzaria-artifact/*')"

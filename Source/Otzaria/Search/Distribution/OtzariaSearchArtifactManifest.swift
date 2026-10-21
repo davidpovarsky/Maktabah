@@ -126,12 +126,12 @@ enum OtzariaSearchArtifactError: LocalizedError, Equatable, Sendable {
             return String(format: NSLocalizedString("גודל שגוי בחלק שהורד: %@.", comment: ""), asset)
         case .digestMismatch(let asset):
             return String(format: NSLocalizedString("אימות SHA-256 נכשל עבור: %@.", comment: ""), asset)
-        case .extractionFailed:
-            return NSLocalizedString("לא ניתן לחלץ את חבילת החיפוש.", comment: "")
-        case .validationFailed:
-            return NSLocalizedString("אינדקס החיפוש שהותקן אינו תקין.", comment: "")
-        case .activationFailed:
-            return NSLocalizedString("לא ניתן להפעיל את אינדקס החיפוש באופן בטוח.", comment: "")
+        case .extractionFailed(let detail):
+            return String(format: NSLocalizedString("לא ניתן לחלץ את חבילת החיפוש: %@.", comment: ""), detail)
+        case .validationFailed(let detail):
+            return String(format: NSLocalizedString("אינדקס החיפוש שהותקן אינו תקין: %@.", comment: ""), detail)
+        case .activationFailed(let detail):
+            return String(format: NSLocalizedString("לא ניתן להפעיל את אינדקס החיפוש באופן בטוח: %@.", comment: ""), detail)
         case .cancelled:
             return NSLocalizedString("הורדת חבילת החיפוש בוטלה. ניתן לחדש מאוחר יותר.", comment: "")
         }
