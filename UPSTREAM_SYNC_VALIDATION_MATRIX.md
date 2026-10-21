@@ -4,6 +4,7 @@
 **Worktree:** `C:\Users\DAVID\Code\Maktabah-v42-integration`  
 **Branch:** `sync/upstream-v42-full-integration`  
 **Commit:** `654efdc3ef141dd93f2f5348982ef2b9b5f54fc0`  
+**Remote Ref:** `origin/sync/upstream-v42-full-integration`  
 
 ---
 
@@ -19,18 +20,17 @@
 | **F01 Session Unit Tests** | `MaktabahTests/iOSReaderSessionTests.swift` | Swift Testing suite for Codable roundtrip & resilience | **PASS** | Source staged & committed |
 | **Downstream Subsystems Audit** | Directory and target check | Otzaria (74 files), Zayit, Sefaria, TorahInspectorKit present | **PASS** | All files verified |
 | **Branch & Remote Protection** | `git status`, `git branch -vv` | User branch `fix/maktabah-search-detail-unification` untouched | **PASS** | Worktree isolated |
+| **Remote Branch Publication** | `git push -u origin sync/upstream-v42-full-integration` | Successful push to GitHub origin | **PASS** | Ref pushed cleanly |
 
 ---
 
-## 2. External & Remote Validation Gates (Explicit User Approval Required)
+## 2. Remote CI Validation Matrix
 
-Per repository rules and project governance policies, no external CI runs, Apple cloud builds, or push operations have been performed without explicit user authorization.
-
-| Gate | Target / Environment | Command / Action | Status | Notes / Approval Needed |
+| Gate | Target / Environment | Command / Action | Status | Notes & Evidence |
 |---|---|---|:---:|---|
-| **Xcode macOS Compilation** | macOS 15.0 SDK / Xcode 16 | `xcodebuild -scheme Maktabah -destination 'platform=macOS'` | **NOT RUN (BLOCKED)** | Requires user approval for remote macOS Xcode run |
-| **Xcode iOS Compilation** | iOS 18.0 SDK / Xcode 16 | `xcodebuild -scheme Maktabah -destination 'generic/platform=iOS'` | **NOT RUN (BLOCKED)** | Requires user approval for remote iOS Xcode run |
-| **Simulator Acceptance Tests** | iPad Pro 13-inch (M4) Simulator | iOS 18 simulator smoke suite (tab relaunch, rotation, study mode) | **NOT RUN (BLOCKED)** | Requires user approval for simulator execution |
-| **GitHub Actions CI** | GitHub Actions Runner | Workflow dispatch for `pr-build.yml` or `release.yml` | **NOT RUN (BLOCKED)** | Strictly forbidden without explicit authorization |
-| **Remote Push to Origin** | `origin/sync/upstream-v42-full-integration` | `git push origin sync/upstream-v42-full-integration` | **NOT RUN (BLOCKED)** | Requires explicit approval |
-| **PR Creation & Merge** | GitHub PR into `main` | `gh pr create` / merge | **NOT RUN (BLOCKED)** | Owner release gate |
+| **Rust / Zayit Indexer & Tests CI** | GitHub Actions (`ubuntu-latest`) | `Zayit Search Gates` (Job: `Rust format, tests, and index builder`) | **PASS** | [Run #39630963370](https://github.com/davidpovarsky/Maktabah/actions/runs/39630963370) passed in 2m59s |
+| **macOS Cloud Runner CI** | GitHub Actions (`macos-26`) | `iOS Build` (`ios-build.yml`) | **BLOCKED (Runner Queue)** | [Run #39631094757](https://github.com/davidpovarsky/Maktabah/actions/runs/39631094757) queued for 15m50s and timed out waiting for GitHub macOS hosted runner |
+| **Xcode macOS Compilation** | macOS 15.0 SDK / Xcode 16 | `xcodebuild -scheme Maktabah -destination 'platform=macOS'` | **BLOCKED** | Pending macOS runner availability |
+| **Xcode iOS Compilation** | iOS 18.0 SDK / Xcode 16 | `xcodebuild -scheme Maktabah -destination 'generic/platform=iOS'` | **BLOCKED** | Pending macOS runner availability |
+| **Simulator Acceptance Tests** | iPad Pro 13-inch (M4) Simulator | iOS 18 simulator smoke suite (tab relaunch, rotation, study mode) | **BLOCKED** | Pending macOS runner availability |
+| **PR Creation & Merge** | GitHub PR into `main` | `gh pr create` / merge | **NOT RUN** | Owner release gate |
