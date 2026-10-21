@@ -147,7 +147,7 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
             SELECT b.id, b.title, COALESCE(b.categoryId, 0),
                    COALESCE((SELECT COUNT(*) FROM line lc WHERE lc.bookId = b.id), COALESCE(b.totalLines, 0)),
                    COALESCE(b.orderIndex, b.id), COALESCE(\(schema.fileType), 'txt'),
-                   COALESCE(b.isBaseBook, 0),
+                   COALESCE(\(schema.isBaseBook), 0),
                    COALESCE((SELECT SUM(length(CAST(\(content.expression) AS BLOB)))
                              FROM line l \(content.join) WHERE l.bookId = b.id), 0)
             FROM book b

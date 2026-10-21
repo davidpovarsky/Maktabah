@@ -59,7 +59,8 @@ extension OtzariaMaktabahBridge {
             return try withDatabase { db in
                 let categories = try categoryMap(in: db)
                 let resolver = OtzariaCategoryPathResolver(categoriesById: categories)
-                let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
+                let schema = try OtzariaBookSchemaCompatibility.projection(in: db, alias: "linked_book")
+                let currentBookSchema = try OtzariaBookSchemaCompatibility.projection(in: db, alias: "book")
                 let capabilities = try OtzariaDatabaseCapabilities(database: db)
                 let content = includeContent ? OtzariaLineContentCompatibility.projection(
                     capabilities: capabilities,
@@ -69,7 +70,7 @@ extension OtzariaMaktabahBridge {
                 let decoder = includeContent ? try OtzariaLineContentDecoder(database: db, capabilities: capabilities) : nil
                 var byIdentity: [String: OtzariaLinkedSource] = [:]
 
-                let currentBookIsBaseBook = try db.fetch(query: "SELECT isBaseBook FROM book WHERE id = ?", parameters: [bookID]) { row in
+                let currentBookIsBaseBook = try db.fetch(query: "SELECT \(currentBookSchema.isBaseBook) FROM book WHERE id = ?", parameters: [bookID]) { row in
                     row.int(at: 0) == 1
                 }.first ?? true
 

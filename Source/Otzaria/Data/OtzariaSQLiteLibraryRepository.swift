@@ -44,7 +44,7 @@ final class OtzariaSQLiteLibraryRepository: OtzariaLibraryRepository {
         let schema = try OtzariaBookSchemaCompatibility.projection(in: db)
         let statement = try OtzariaSQLiteStatement(database: db, sql: """
             SELECT b.id, b.title, b.categoryId, b.orderIndex, b.totalLines, b.heShortDesc,
-                   \(schema.filePath), \(schema.fileType), b.isBaseBook, b.hasTeamim, b.hasNekudot,
+                   \(schema.filePath), \(schema.fileType), \(schema.isBaseBook), \(schema.hasTeamim), \(schema.hasNekudot),
                    CASE
                        WHEN b.hasTargumConnection = 1
                          OR b.hasReferenceConnection = 1

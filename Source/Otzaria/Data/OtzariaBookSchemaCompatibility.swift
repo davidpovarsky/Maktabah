@@ -164,6 +164,8 @@ struct OtzariaBookSchemaProjection: Equatable {
     let eligiblePredicate: String
     let isBaseBook: String
     let dependenceType: String
+    let hasTeamim: String
+    let hasNekudot: String
 }
 
 struct OtzariaTOCSchemaProjection: Equatable {
@@ -186,7 +188,9 @@ enum OtzariaBookSchemaCompatibility {
                 ? "COALESCE(\(alias).fileType, '') NOT IN ('link', 'url')"
                 : "1 = 1",
             isBaseBook: expression("isBaseBook", fallback: "0"),
-            dependenceType: expression("dependenceType", fallback: "NULL")
+            dependenceType: expression("dependenceType", fallback: "NULL"),
+            hasTeamim: expression("hasTeamim", fallback: "0"),
+            hasNekudot: expression("hasNekudot", fallback: "0")
         )
     }
 
