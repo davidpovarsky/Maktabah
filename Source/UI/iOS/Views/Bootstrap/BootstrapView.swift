@@ -37,8 +37,6 @@ struct iOSBootstrapView: View {
                             onBack: { bootstrapManager.returnFromSefariaConfirmation() }
                         )
                         .padding()
-                        )
-                        .padding()
                     } else {
                         VStack(alignment: .leading, spacing: 8) {
                             Button {

@@ -156,7 +156,6 @@ class ArabicTextRenderer: @unchecked Sendable {
                 isMultiLanguage: isMultiLanguage,
                 isImported: isImported
             )
-            )
 
             if let bookId, let contentId {
                 BookPageCache.shared.setProcessed(bookId: bookId, contentId: contentId, key: key, content: processed)

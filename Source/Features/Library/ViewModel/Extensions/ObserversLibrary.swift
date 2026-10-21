@@ -71,7 +71,7 @@ extension LibraryViewModel {
                 }
             }
         }
-    }
+
         addObserver(
             forName: .activeLibraryBackendDidChange, object: nil, queue: .current
         ) { [weak self] _ in

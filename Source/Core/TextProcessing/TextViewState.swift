@@ -90,7 +90,6 @@ class TextViewState: @unchecked Sendable {
                                             userInfo: ["enable": enhancedUnderline])
         }
     }
-    }
 
     // MARK: - Computed Properties
     var backgroundColor: BackgroundColor {

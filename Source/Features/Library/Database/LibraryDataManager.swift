@@ -142,12 +142,6 @@ final class LibraryDataManager: Sendable {
         if let task = taskToAwait {
             await task.value
         }
-    }            return newTask
-        }
-
-        if let task = taskToAwait {
-            await task.value
-        }
     }
 
     func reloadAllData() async {
@@ -194,8 +188,6 @@ final class LibraryDataManager: Sendable {
         } catch {
             Logger.library.error("Error loading data: \(error.localizedDescription, privacy: .public)")
         }
-    }        }
-        await loadData()
     }
 
     // MARK: - Helpers for loading data

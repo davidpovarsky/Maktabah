@@ -291,7 +291,6 @@ struct BookCard: View {
                     if isDeleted {
                         viewModel.removeHistory(for: book)
                     }
-                    }
                 }
             }
             .background(

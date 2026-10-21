@@ -60,6 +60,8 @@ extension BooksData: Hashable {
 
 // MARK: - Controller
 
+class iOSHierarchicalCollectionViewController: BaseHierarchicalListViewController<LibraryItem> {
+
     private(set) var expandedCategories: Set<LibraryTreeItemIdentifier> = []
     private var previousExpandedCategories: Set<LibraryTreeItemIdentifier> = []
     private var pendingCategories: [CategoryData]?
@@ -356,6 +358,13 @@ extension iOSHierarchicalCollectionViewController: UICollectionViewDelegate {
     }
 }
 
+private enum LibrarySnapshotBuildError: LocalizedError {
+    case categoryCycle(name: String)
+    case duplicateOccurrence(LibraryTreeItemIdentifier)
+    case unsupportedChild(category: String)
+    case identifierCountMismatch
+
+    var errorDescription: String? {
         switch self {
         case .categoryCycle(let name): "Category cycle detected at \(name)."
         case .duplicateOccurrence: "The catalog produced a duplicate presentation identity."

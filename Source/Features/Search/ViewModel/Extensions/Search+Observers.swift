@@ -52,7 +52,6 @@ extension SearchViewModel {
                 state = .loaded
             }
         }
-    }
 
         addObserver(
             forName: .activeLibraryBackendDidChange, object: nil, queue: .current

@@ -34,7 +34,6 @@ struct SaveHighlightParams {
     var mode: AnnotationMode = .highlight
     var backendLocator: TextLocator? = nil
 }
-}
 
 class AnnotationCoordinator {
     private let store = AnnotationStore.shared

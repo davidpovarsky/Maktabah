@@ -245,7 +245,6 @@ class iOSNavigationManager {
             tab.viewModel.closeReaderInspector()
             tab.viewModel.clearSearchHighlight()
         }
-        }
         openTabs.removeAll()
         activeTabId = nil
         selectedBook = nil
