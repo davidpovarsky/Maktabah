@@ -36,7 +36,7 @@ struct iOSReaderTabView: View {
                 .toolbar {
                     if isRegularLayout, bManager.openTabs.count > 1 {
                         ToolbarItem(placement: .principal) {
-                            ReaderTabsView(isDarkMode: TextViewState.shared.isDarkMode)
+                            ReaderTabsView()
                         }
                     } else if bManager.openTabs.count > 1 {
                         ToolbarItem(placement: .topBarTrailing) {

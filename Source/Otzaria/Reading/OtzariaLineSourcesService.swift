@@ -417,7 +417,7 @@ extension OtzariaMaktabahBridge {
         return results
     }
 
-    private static var cachedCategoryMap: [Int: CategoryData]?
+    nonisolated(unsafe) private static var cachedCategoryMap: [Int: CategoryData]?
     private static let categoryCacheLock = NSLock()
 
     static func clearCategoryCache() {

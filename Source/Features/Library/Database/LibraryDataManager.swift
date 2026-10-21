@@ -57,11 +57,11 @@ final class LibraryDataManager: Sendable {
     }
 
     var loadedBackendID: BackendID? {
-        lock.withLock { _loadedBackendID }
+        state.withLock { $0.loadedBackendID }
     }
 
     var loadedBackendGeneration: UInt64? {
-        lock.withLock { _loadedBackendGeneration }
+        state.withLock { $0.loadedBackendGeneration }
     }
 
     private init() {}
@@ -165,6 +165,20 @@ final class LibraryDataManager: Sendable {
         let rootCategories: [CategoryData]
         let categoryMap: [Int: CategoryData]
         let booksById: [Int: BooksData]
+    }
+
+    private func fetchDatabaseCategoriesAndBooks() async throws -> DatabaseCatalogData {
+        let (rootCats, catMap, books) = try await Task.detached(priority: .userInitiated) { [self] in
+            let allCategories = try db.fetchAllCategories()
+            let (localRootCats, localCategoryMap) = buildCategoryHierarchy(from: allCategories)
+            let localBooksById = try loadBooksAndIndex(for: allCategories)
+            return (localRootCats, localCategoryMap, localBooksById)
+        }.value
+        return DatabaseCatalogData(
+            rootCategories: rootCats,
+            categoryMap: catMap,
+            booksById: books
+        )
     }
 
     private nonisolated func performDataLoad() async {

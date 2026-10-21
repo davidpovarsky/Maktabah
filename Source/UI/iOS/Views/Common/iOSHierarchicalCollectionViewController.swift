@@ -305,18 +305,168 @@ class iOSHierarchicalCollectionViewController: BaseHierarchicalListViewControlle
         reconfigureItems(items)
     }
 
+    func snapshotItems(for book: BooksData) -> [LibraryItem] {
+        dataSource.snapshot().itemIdentifiers.filter {
+            guard case let .book(_, candidate) = $0 else { return false }
+            if let locator = book.backendLocator, let candidateLocator = candidate.backendLocator {
+                return locator.backend == candidateLocator.backend && locator.workKey == candidateLocator.workKey
+            }
+            return candidate.id == book.id
+        }
+    }
+
+    func reconfigureCategories(including extraItems: [LibraryItem] = []) {
+        var items: [LibraryItem] = dataSource.snapshot().itemIdentifiers.filter {
+            if case .category = $0 { return true }
+            return false
+        }
+        items.append(contentsOf: extraItems)
+        reconfigureItems(items)
+    }
+
     func reconfigureCategories(includingBook book: BooksData) {
-        reconfigureCategories(including: [.book(book)])
+        reconfigureCategories(including: snapshotItems(for: book))
     }
 
     func reconfigureCategories(includingBooks books: [BooksData]) {
-        reconfigureCategories(including: books.map { .book($0) })
+        let items = books.flatMap { snapshotItems(for: $0) }
+        reconfigureCategories(including: items)
+    }
+
+    func toggleCategory(_ item: LibraryItem) {
+        guard case let .category(identifier, _) = item else { return }
+        let willBeExpanded = !expandedCategories.contains(identifier)
+
+        if willBeExpanded {
+            expandedCategories.insert(identifier)
+            previousExpandedCategories.insert(identifier)
+        } else {
+            expandedCategories.remove(identifier)
+            previousExpandedCategories.remove(identifier)
+        }
+
+        toggleExpansion(for: item, isExpanding: willBeExpanded)
     }
 
     // MARK: - Selection Hooks
 
     open func didSelectBook(_ book: BooksData) {}
     open func didSelectLoadMore() {}
+}
+
+extension Notification.Name {
+    static let librarySnapshotDidApply = Notification.Name("librarySnapshotDidApply")
+}
+
+private struct LibrarySnapshotPlan {
+    struct AppendOperation {
+        let item: LibraryItem
+        let parent: LibraryItem?
+    }
+
+    let appendOperations: [AppendOperation]
+    let expandedItems: [LibraryItem]
+
+    init(categories: [CategoryData], expandedCategories: Set<LibraryTreeItemIdentifier>) throws {
+        var operations: [AppendOperation] = []
+        var expanded: [LibraryItem] = []
+        var identifiers = Set<LibraryTreeItemIdentifier>()
+
+        func appendCategories(
+            _ categories: [CategoryData],
+            parent: LibraryItem?,
+            parentPath: [LibraryTreeItemIdentifier.Component],
+            ancestors: Set<ObjectIdentifier>
+        ) throws {
+            var siblingOccurrences: [LibraryTreeItemIdentifier.Component: Int] = [:]
+
+            for category in categories {
+                let objectID = ObjectIdentifier(category)
+                guard !ancestors.contains(objectID) else {
+                    throw LibrarySnapshotBuildError.categoryCycle(name: category.name)
+                }
+
+                let base = LibraryTreeItemIdentifier.Component(
+                    kind: .category,
+                    canonicalID: category.id,
+                    canonicalLocator: nil,
+                    title: category.name,
+                    siblingOccurrence: 0
+                )
+                let occurrence = siblingOccurrences[base, default: 0]
+                siblingOccurrences[base] = occurrence + 1
+                let component = LibraryTreeItemIdentifier.Component(
+                    kind: .category,
+                    canonicalID: category.id,
+                    canonicalLocator: nil,
+                    title: category.name,
+                    siblingOccurrence: occurrence
+                )
+                let path = parentPath + [component]
+                let identifier = LibraryTreeItemIdentifier(path: path)
+                guard identifiers.insert(identifier).inserted else {
+                    throw LibrarySnapshotBuildError.duplicateOccurrence(identifier)
+                }
+
+                let categoryItem = LibraryItem.category(identifier, category)
+                operations.append(.init(item: categoryItem, parent: parent))
+                if expandedCategories.contains(identifier) { expanded.append(categoryItem) }
+
+                var subcategories: [CategoryData] = []
+                var books: [BooksData] = []
+                for child in category.children {
+                    if let subcategory = child as? CategoryData {
+                        subcategories.append(subcategory)
+                    } else if let book = child as? BooksData {
+                        books.append(book)
+                    } else {
+                        throw LibrarySnapshotBuildError.unsupportedChild(category: category.name)
+                    }
+                }
+
+                var nextAncestors = ancestors
+                nextAncestors.insert(objectID)
+                try appendCategories(
+                    subcategories,
+                    parent: categoryItem,
+                    parentPath: path,
+                    ancestors: nextAncestors
+                )
+
+                var bookOccurrences: [LibraryTreeItemIdentifier.Component: Int] = [:]
+                for book in books {
+                    let base = LibraryTreeItemIdentifier.Component(
+                        kind: .book,
+                        canonicalID: book.id,
+                        canonicalLocator: book.backendLocator?.persistenceKey,
+                        title: book.book,
+                        siblingOccurrence: 0
+                    )
+                    let occurrence = bookOccurrences[base, default: 0]
+                    bookOccurrences[base] = occurrence + 1
+                    let component = LibraryTreeItemIdentifier.Component(
+                        kind: .book,
+                        canonicalID: book.id,
+                        canonicalLocator: book.backendLocator?.persistenceKey,
+                        title: book.book,
+                        siblingOccurrence: occurrence
+                    )
+                    let identifier = LibraryTreeItemIdentifier(path: path + [component])
+                    guard identifiers.insert(identifier).inserted else {
+                        throw LibrarySnapshotBuildError.duplicateOccurrence(identifier)
+                    }
+                    operations.append(.init(item: .book(identifier, book), parent: categoryItem))
+                }
+            }
+        }
+
+        try appendCategories(categories, parent: nil, parentPath: [], ancestors: [])
+        guard identifiers.count == operations.count else {
+            throw LibrarySnapshotBuildError.identifierCountMismatch
+        }
+        appendOperations = operations
+        expandedItems = expanded
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -326,9 +476,9 @@ extension iOSHierarchicalCollectionViewController: UICollectionViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
 
         switch item {
-        case let .category(category):
-            toggleCategory(category)
-        case let .book(book):
+        case .category:
+            toggleCategory(item)
+        case let .book(_, book):
             didSelectBook(book)
         case .loadMore:
             didSelectLoadMore()
@@ -346,7 +496,7 @@ extension iOSHierarchicalCollectionViewController: UICollectionViewDelegate {
     ) -> UIContextMenuConfiguration? {
         guard let indexPath = indexPaths.first,
               let item = dataSource.itemIdentifier(for: indexPath),
-              case let .book(book) = item
+              case let .book(_, book) = item
         else { return nil }
 
         let actions = contextMenuActions(for: book)

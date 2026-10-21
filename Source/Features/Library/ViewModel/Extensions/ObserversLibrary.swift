@@ -93,7 +93,9 @@ extension LibraryViewModel {
         addObserver(
             forName: .libraryOfflineAvailabilityDidChange, object: nil, queue: .main
         ) { [weak self] _ in
-            self?.updateDisplayedCategories()
+            Task { @MainActor [weak self] in
+                self?.updateDisplayedCategories()
+            }
         }
     }
 }

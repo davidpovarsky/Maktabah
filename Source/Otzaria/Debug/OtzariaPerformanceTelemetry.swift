@@ -17,7 +17,7 @@ public final class OtzariaPerformanceTelemetry: @unchecked Sendable {
     }
     #endif
 
-    public struct Interval: Sendable {
+    public struct Interval: @unchecked Sendable {
         let name: StaticString
         let startTime: Date
         #if canImport(os)

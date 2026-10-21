@@ -1,6 +1,6 @@
 import Foundation
 
-final class OtzariaReadingUnitSideCache {
+final class OtzariaReadingUnitSideCache: @unchecked Sendable {
     static let shared = OtzariaReadingUnitSideCache()
 
     private let lock = NSLock()

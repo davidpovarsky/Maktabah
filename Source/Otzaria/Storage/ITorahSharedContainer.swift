@@ -640,7 +640,7 @@ enum ITorahSharedContainer: Sendable {
     /// - Atomic: Uses unique `.migrating` staging files and atomically renames on completion.
     /// - Coordinated: Uses cross-process `ITorahStorageLock` to prevent race conditions.
     private static let sessionMigrationLock = NSLock()
-    private static var migratedProfilesThisSession = Set<String>()
+    nonisolated(unsafe) private static var migratedProfilesThisSession = Set<String>()
 
     static func migrateLegacyDataIfNeeded(
         profileID: String = OtzariaDataProfileRegistry.activeProfileID,

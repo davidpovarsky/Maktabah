@@ -138,9 +138,7 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
         return hasSelected ? .checked : .unchecked
     }
 
-    override func didSelectBook(_ book: BooksData) {
-        toggleBookSelection(book)
-    }
+    // didSelectBook handled above
 }
 
 // MARK: - SwiftUI Wrapper

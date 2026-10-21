@@ -2467,6 +2467,7 @@
 			children = (
 				F36382502FA6FA1E0006636C /* BootstrapManager.swift */,
 				F30577722FA463B1005732C6 /* iOSNavigationManager.swift */,
+				F3F000010000000000000001 /* iOSReaderSessionManager.swift */,
 				F34B708B2FC87BFF00BBE904 /* UserFontManager.swift */,
 			);
 			path = Managers;
@@ -4343,6 +4344,7 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */,
 				B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */,
 				C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */,
 				A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */,

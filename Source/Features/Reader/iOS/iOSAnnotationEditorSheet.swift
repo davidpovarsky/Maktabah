@@ -140,7 +140,7 @@ struct iOSAnnotationEditorSheet: View {
                 ThemeSection {
                     Button(role: .destructive, action: {
                         if let id = annotation.id {
-                            onDelete(id)
+                            try? onDelete(id)
                         }
                         dismiss()
                     }) {

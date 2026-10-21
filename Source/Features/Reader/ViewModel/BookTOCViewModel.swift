@@ -321,6 +321,8 @@ class BookTOCViewModel {
     }
 
     deinit {
-        cleanUp()
+        MainActor.assumeIsolated {
+            cleanUp()
+        }
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-final class OtzariaFileLogger {
+final class OtzariaFileLogger: @unchecked Sendable {
     static let shared = OtzariaFileLogger()
 
     private let queue = DispatchQueue(label: "org.maktabah.otzaria.filelogger")

@@ -60,6 +60,9 @@ class iOSCustomIbarotTextView: UITextView {
     override func layoutSubviews() {
         super.layoutSubviews()
         restorePendingViewportAnchor()
+        if pendingRestoreOffset != nil {
+            applyPendingScrollRestore()
+        }
     }
 
     private func captureViewportAnchor() -> ViewportAnchor? {
@@ -178,12 +181,7 @@ class iOSCustomIbarotTextView: UITextView {
     var pendingRestoreOffset: CGFloat?
     var isRestoringScroll: Bool = false
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if pendingRestoreOffset != nil {
-            applyPendingScrollRestore()
-        }
-    }
+
 
     @MainActor
     func applyPendingScrollRestore() {
@@ -794,10 +792,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             highlightColor: UIColor.header,
             showHarakat: state.showHarakat,
             isMultiLanguage: isMultiLanguage,
-            isImported: isImported,
-            fontName: state.fontName,
-            fontSize: state.fontSize,
-            lineHeight: state.lineHeight
+            isImported: isImported
         )
 
         textView.currentRenderResult = renderResult

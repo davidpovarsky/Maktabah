@@ -47,8 +47,10 @@ class ReaderViewModel: ViewModelBase {
 
     // MARK: - Backend Navigation & Multi-Backend State
 
-    private(set) var backendSection: LibraryTextSection?
+    var backendSection: LibraryTextSection?
     var currentDestination: LibraryReaderDestination?
+    var searchText: String = ""
+    var currentLocator: TextLocator? { readerState.currentLocator }
     var navigationItems: [LibraryNavigationItem] = []
     var backendRenderModel: LibraryReaderRenderModel?
     var selectedSegmentLocator: TextLocator?

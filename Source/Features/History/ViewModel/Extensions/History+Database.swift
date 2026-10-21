@@ -67,10 +67,10 @@ extension HistoryViewModel {
                 let active = BackendCoordinator.shared.activeBackendID
                 if BackendCoordinator.shared.usesNativeMaktabahDataPath { return }
                 let relevant = qualified.filter { $0.locator.backend == active }
-                historyBooks = relevant.filter { $0.lastOpened != .distantPast }.compactMap { entry in
+                self.historyBooks = relevant.filter { $0.lastOpened != .distantPast }.compactMap { entry in
                     MaktabahBackendAdapter.resolveBook(for: entry.locator, in: LibraryDataManager.shared)
                 }
-                favoriteBooks = relevant.filter(\.isFavorite).compactMap { entry in
+                self.favoriteBooks = relevant.filter(\.isFavorite).compactMap { entry in
                     MaktabahBackendAdapter.resolveBook(for: entry.locator, in: LibraryDataManager.shared)
                 }
             }

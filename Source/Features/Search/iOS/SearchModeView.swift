@@ -140,22 +140,22 @@ struct SearchModeView: View {
         }
         .overlay {
             if showFtsMigrationOverlay {
-                Color.appBackground
-                    .ignoresSafeArea()
-                    .onTapGesture {}
-                    .zIndex(10)
+                ZStack {
+                    Color.appBackground
+                        .ignoresSafeArea()
+                        .onTapGesture {}
 
-                FtsMigrationProgressView(
-                    onCancel: {
-                        showFtsMigrationOverlay = false
-                    },
-                    onUpdate: {
-                        try await ftsManager.performMigration()
-                        await MainActor.run { showFtsMigrationOverlay = false }
-                    }
-                )
-                .zIndex(11)
-                .transition(AnyTransition.opacity.combined(with: .scale))
+                    FtsMigrationProgressView(
+                        onCancel: {
+                            showFtsMigrationOverlay = false
+                        },
+                        onUpdate: {
+                            try await ftsManager.performMigration()
+                            await MainActor.run { showFtsMigrationOverlay = false }
+                        }
+                    )
+                    .transition(AnyTransition.opacity.combined(with: .scale))
+                }
             }
         }
         .animation(.easeInOut, value: showFtsMigrationOverlay)

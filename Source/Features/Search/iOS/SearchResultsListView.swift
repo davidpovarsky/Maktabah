@@ -298,3 +298,137 @@ struct SearchResultRow: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
+
+
+struct SearchResultContextPreview: View {
+    let item: SearchResultItem
+    var onOpen: (() -> Void)? = nil
+    @State private var fullSegments: [SearchPreviewSegment] = []
+    @State private var previewError: String?
+    @State private var isLoading = false
+    @State private var retryToken = 0
+
+    private var isHebrewBackend: Bool {
+        item.archive == "Otzaria" || item.archive == "Sefaria" || item.archive == "Zayit" || item.backendLocator != nil
+    }
+
+    private var readerMode: LibraryReaderTextMode {
+        TextViewState.shared.readerTextMode
+    }
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                if !fullSegments.isEmpty {
+                    LazyVStack(alignment: .leading, spacing: 14) {
+                        let isTranslationVersion = (item.resultLanguage != nil && item.resultLanguage != "he")
+                        ForEach(fullSegments) { segment in
+                            let showPrimary = isTranslationVersion
+                                ? (segment.translation == nil || segment.translation!.isEmpty)
+                                : (readerMode == .source || readerMode == .both || (readerMode == .translation && (segment.translation == nil || segment.translation!.isEmpty)))
+                            let showTranslation = isTranslationVersion
+                                ? (segment.translation != nil && !segment.translation!.isEmpty)
+                                : ((readerMode == .translation || readerMode == .both || (readerMode == .source && segment.primary.isEmpty)) && segment.translation != nil && !segment.translation!.isEmpty)
+
+                            VStack(alignment: .leading, spacing: 6) {
+                                if showPrimary && !segment.primary.isEmpty {
+                                    Text(segment.primary)
+                                        .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
+                                        .multilineTextAlignment(.leading)
+                                        .environment(\.layoutDirection, segment.primary.isParagraphRTL ? .rightToLeft : .leftToRight)
+                                }
+                                if showTranslation, let translation = segment.translation, !translation.isEmpty {
+                                    Text(translation)
+                                        .font(.body)
+                                        .multilineTextAlignment(.leading)
+                                        .environment(\.layoutDirection, translation.isParagraphRTL ? .rightToLeft : .leftToRight)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    .textSelection(.enabled)
+                } else if isLoading {
+                    ProgressView(String(localized: "Loading full text…", defaultValue: "טוען טקסט מלא…"))
+                        .frame(maxWidth: .infinity, minHeight: 160)
+                } else if let previewError {
+                    ContentUnavailableView {
+                        Label(String(localized: "Full Text Unavailable", defaultValue: "הטקסט המלא אינו זמין"), systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text(previewError)
+                    } actions: {
+                        Button(String(localized: "Retry", defaultValue: "נסה שוב")) { retryToken += 1 }
+                    }
+                } else if !item.attributedText.string.isEmpty {
+                    Text(AttributedString(item.attributedText))
+                        .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
+                        .multilineTextAlignment(.leading)
+                } else {
+                    ProgressView()
+                }
+
+                if let onOpen {
+                    Button(action: onOpen) {
+                        Label(String(localized: "Open", defaultValue: "פתח"), systemImage: "book")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("search-result-open-\(item.stableID)")
+                    .padding(.top, 8)
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .frame(maxWidth: .infinity, minHeight: 180, alignment: .leading)
+        .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(alignment: .topLeading) {
+            Color.clear
+                .frame(maxWidth: .infinity, maxHeight: 1)
+                .accessibilityElement(children: .ignore)
+                .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
+                .accessibilityLabel(String(localized: "Expanded search preview", defaultValue: "תצוגה מקדימה מורחבת"))
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
+        .task(id: "\(item.stableID):\(retryToken)") {
+            guard let locator = item.backendLocator else {
+                if item.attributedText.string.isEmpty {
+                    previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
+                }
+                return
+            }
+            isLoading = true
+            previewError = nil
+            do {
+                let section = try await BackendCoordinator.shared.section(at: locator)
+                try Task.checkCancellation()
+                fullSegments = section.segments.compactMap { segment in
+                    let primary = segment.primaryText.readerPlainText
+                    let translation = segment.translation?.readerPlainText
+                    guard !primary.isEmpty || translation?.isEmpty == false else { return nil }
+                    return SearchPreviewSegment(
+                        id: segment.locator.persistenceKey,
+                        primary: primary,
+                        translation: translation
+                    )
+                }
+                if fullSegments.isEmpty {
+                    previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
+                }
+            } catch is CancellationError {
+                return
+            } catch {
+                previewError = error.localizedDescription
+            }
+            isLoading = false
+        }
+    }
+}
+
+private struct SearchPreviewSegment: Identifiable {
+    let id: String
+    let primary: String
+    let translation: String?
+}

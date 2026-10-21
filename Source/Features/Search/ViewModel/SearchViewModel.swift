@@ -34,10 +34,10 @@ final class SearchViewModel: ViewModelBase {
     var completedRowsInTable: Int = 0
     var selectedBookIds: Set<Int> = []
     var backendSearchOptions = LibrarySearchOptions()
-    private(set) var paginationState = BackendPaginationState()
+    var paginationState = BackendPaginationState()
     var backendNextOffset: Int? { paginationState.nextOffset }
     var backendTotalResults: Int { paginationState.totalResults }
-    private(set) var isLoadingMoreBackendResults: Bool = false
+    var isLoadingMoreBackendResults: Bool = false
     var hasMoreBackendResults: Bool { paginationState.hasMore }
     var backendSearchGeneration: UInt64 = 0
     let loadMoreBackendWork = Mutex<Task<Void, Never>?>(nil)

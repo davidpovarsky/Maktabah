@@ -35,6 +35,34 @@ struct SaveHighlightParams {
     var backendLocator: TextLocator? = nil
 }
 
+final class AnnotationManager: @unchecked Sendable {
+    static let shared = AnnotationManager()
+
+    var db: SQLiteDatabase? {
+        AnnotationRepository.shared.db
+    }
+
+    func loadAnnotations(bkId: Int, contentId: Int) -> [Annotation] {
+        AnnotationStore.shared.loadAnnotations(bkId: bkId, contentId: contentId)
+    }
+
+    func loadAnnotations(bkId: Int) -> [Annotation] {
+        AnnotationStore.shared.loadAnnotations(bkId: bkId)
+    }
+
+    func loadAnnotationById(_ id: Int64) -> Annotation? {
+        AnnotationStore.shared.loadAnnotationById(id)
+    }
+
+    func saveAnnotation(_ annotation: Annotation) throws -> Annotation {
+        try AnnotationStore.shared.saveAnnotation(annotation)
+    }
+
+    func deleteAnnotation(_ id: Int64) throws {
+        try AnnotationStore.shared.deleteAnnotation(id)
+    }
+}
+
 class AnnotationCoordinator {
     private let store = AnnotationStore.shared
 

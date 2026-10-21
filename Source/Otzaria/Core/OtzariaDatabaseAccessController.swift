@@ -1,7 +1,7 @@
 import Foundation
 import SQLite3
 
-final class OtzariaDatabaseAccessController {
+final class OtzariaDatabaseAccessController: @unchecked Sendable {
     static let shared = OtzariaDatabaseAccessController()
 
     enum Source: Equatable {

@@ -1,6 +1,6 @@
 import Foundation
 
-final class OtzariaSearchIndexManager {
+final class OtzariaSearchIndexManager: @unchecked Sendable {
     static let shared = OtzariaSearchIndexManager()
 
     private let identityFileName = "otzaria_search_identity.json"

@@ -6,6 +6,71 @@
 import Foundation
 
 extension SearchViewModel {
+    func effectiveBackendSearchOptions() -> LibrarySearchOptions {
+        var options = backendSearchOptions
+        options.searchMode = searchMode.librarySearchMode
+        switch searchMode {
+        case .phrase:
+            options.matchMode = .exact
+            options.wordDistance = 0
+        case .near:
+            options.wordDistance = max(1, nearDistance)
+        case .contains:
+            options.matchMode = .hebrewLemmatized
+        }
+        return options
+    }
+
+    func loadNextBackendPage() {
+        guard !isSearching,
+              !isLoadingMoreBackendResults,
+              paginationState.hasMore,
+              let offset = paginationState.nextOffset else { return }
+
+        isLoadingMoreBackendResults = true
+        let generation = backendSearchGeneration
+        let requestQuery = query
+        let selectedBooks = selectedBookIds.compactMap { ldm.booksById[$0] }
+        let scopedBooks = selectedBooks.filter { $0.backendLocator != nil }
+        let scopeWorkKeys = scopedBooks.compactMap(\.backendLocator?.workKey)
+        let candidateFilters = scopedBooks.compactMap(\.backendSearchPath).filter { !$0.isEmpty }
+        let backendFilters = candidateFilters.count == scopedBooks.count ? candidateFilters : []
+        let options = effectiveBackendSearchOptions()
+
+        loadMoreBackendWork.withLock {
+            $0?.cancel()
+            $0 = nil
+        }
+        let task = Task { @MainActor [weak self] in
+            guard let self else { return }
+            do {
+                let page = try await BackendCoordinator.shared.search(.init(
+                    query: requestQuery,
+                    offset: offset,
+                    limit: backendPageSize,
+                    filters: backendFilters,
+                    scopeWorkKeys: scopeWorkKeys,
+                    options: options
+                ))
+                try Task.checkCancellation()
+                guard self.backendSearchGeneration == generation else { return }
+
+                let newResults = page.hits.map(MaktabahBackendAdapter.searchItem)
+                self.results.append(contentsOf: newResults)
+                self.paginationState.applyNextPage(pageTotal: page.total, nextOffset: page.nextOffset, count: newResults.count)
+                self.completedTables = self.results.count
+            } catch is CancellationError {
+                return
+            } catch {
+                #if DEBUG
+                print("Error loading next page: \(error)")
+                #endif
+            }
+            self.isLoadingMoreBackendResults = false
+        }
+        loadMoreBackendWork.withLock { $0 = task }
+    }
+
     // MARK: - Search Execution
 
     func setSelectedBooks(_ bookIds: Set<Int>) {

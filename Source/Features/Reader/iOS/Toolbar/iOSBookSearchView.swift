@@ -27,14 +27,14 @@ struct iOSBookSearchView: View {
                 SearchResultsListView(
                     results: viewModel.results,
                     showsBookTitle: false,
-                    query: viewModel.query,
-                    mode: viewModel.searchMode,
-                    nearDistance: viewModel.nearDistance,
                     isLoadingMore: viewModel.isLoadingMoreBackendResults,
                     hasMore: viewModel.hasMoreBackendResults,
                     onLoadMore: {
                         viewModel.loadNextBackendPage()
-                    }
+                    },
+                    query: viewModel.query,
+                    mode: viewModel.searchMode,
+                    nearDistance: viewModel.nearDistance
                 ) { item in
                     onSelect(item, viewModel.query)
                 }

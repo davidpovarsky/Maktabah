@@ -16,6 +16,8 @@ final class ProcessedArabicContent {
     let replacementEvents: [HonorificReplacementEvent]
     let importedHeaderRanges: [NSRange]
     let ligatureRanges: [NSRange]
+    let harakatEvents: [TextDeltaEvent]
+    let cleaningEvents: [TextDeltaEvent]
 
     init(
         sourceText: String,
@@ -24,7 +26,9 @@ final class ProcessedArabicContent {
         footnoteRanges: [NSRange],
         replacementEvents: [HonorificReplacementEvent],
         importedHeaderRanges: [NSRange],
-        ligatureRanges: [NSRange]
+        ligatureRanges: [NSRange],
+        harakatEvents: [TextDeltaEvent] = [],
+        cleaningEvents: [TextDeltaEvent] = []
     ) {
         self.sourceText = sourceText
         self.displayText = displayText
@@ -33,5 +37,7 @@ final class ProcessedArabicContent {
         self.replacementEvents = replacementEvents
         self.importedHeaderRanges = importedHeaderRanges
         self.ligatureRanges = ligatureRanges
+        self.harakatEvents = harakatEvents
+        self.cleaningEvents = cleaningEvents
     }
 }

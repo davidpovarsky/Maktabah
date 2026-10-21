@@ -16,7 +16,7 @@ extension ReaderViewModel {
             contentID: currentContentId,
             text: contentText,
             locator: annotationLocator(for: book),
-            manager: annotationStore
+            repository: annotationStore.repository
         )
 
         currentAnnotations = anns

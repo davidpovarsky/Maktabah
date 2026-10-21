@@ -8,6 +8,7 @@ import Foundation
 final class BooksData: Codable, Identifiable, @unchecked Sendable {
     let id: Int
     let book: String
+    var title: String { book }
     let normalizedBook: String
 
     let archive: Int

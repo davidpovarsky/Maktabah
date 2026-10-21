@@ -360,6 +360,14 @@ final class AnnotationRepository: SyncPendingManaging, Sendable {
         return deletedAnnotation
     }
 
+    func getAnnotations(bkId: Int, contentId: Int) throws -> [Annotation] {
+        try loadAnnotations(bkId: bkId, contentId: contentId)
+    }
+
+    func getAnnotations(bkId: Int) throws -> [Annotation] {
+        try loadAnnotations(bkId: bkId)
+    }
+
     func loadAnnotations(bkId: Int, contentId: Int) throws -> [Annotation] {
         guard let _db else { return [] }
         let sql = "SELECT * FROM \(annotationsTable) WHERE \(colAnnBkId) = ? AND \(colAnnContentId) = ? ORDER BY \(colAnnStart) ASC;"

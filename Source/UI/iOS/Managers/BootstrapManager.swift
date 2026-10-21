@@ -542,7 +542,7 @@ final class iOSBootstrapManager {
     }
 
     func chooseLibraryFolder() {
-        _ = SettingsActions.selectLibraryFolder(showSuccessAlert: false, shouldTerminateOnCancel: false) { [weak self] success in
+        _ = SettingsActions.selectLibraryFolder(showSuccessAlert: false, shouldTerminateOnCancel: false, onCompletion: { [weak self] success in
             if success {
                 Task { @MainActor in
                     if OtzariaMaktabahBridge.shared.isEnabled {
@@ -551,6 +551,6 @@ final class iOSBootstrapManager {
                     self?.finishSetup()
                 }
             }
-        }
+        })
     }
 }

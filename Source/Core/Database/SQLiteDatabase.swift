@@ -32,6 +32,10 @@ enum SQLiteError: LocalizedError {
 struct SQLiteRow {
     let stmt: OpaquePointer
 
+    var columnCount: Int32 {
+        sqlite3_column_count(stmt)
+    }
+
     func int(at index: Int32) -> Int {
         Int(sqlite3_column_int(stmt, index))
     }

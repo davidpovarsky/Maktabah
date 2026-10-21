@@ -3,7 +3,7 @@ import Observation
 import SwiftUI
 
 @Observable
-class HistoryViewModel: ViewModelBase {
+class HistoryViewModel: ViewModelBase, ObservableObject {
     static let shared = HistoryViewModel()
 
     var entriesByBookId: [Int: ReadingEntry] = [:]
@@ -110,7 +110,9 @@ class HistoryViewModel: ViewModelBase {
 
         enableBookIdMigrationObserver()
         addObserver(forName: .activeLibraryBackendDidChange, object: nil, queue: .main) { [weak self] _ in
-            self?.loadBooksData()
+            Task { @MainActor [weak self] in
+                self?.loadBooksData()
+            }
         }
     }
 
