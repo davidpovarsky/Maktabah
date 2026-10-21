@@ -3534,6 +3534,7 @@
 								enabled = 1;
 							};
 						};
+					};
 					4BD8A4E6307E521A00E04BCB = {
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = 4B7C90A02F83494200454BE1;
