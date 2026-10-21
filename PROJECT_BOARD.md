@@ -75,6 +75,11 @@ Use Markdown checkboxes where useful:
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
+- [x] Complete Build 6601: Otzaria & Zayit v32 search packages, streaming decode, and TestFlight delivery
+  - Implemented: 2026-10-21
+  - Commit/PR: `a6a2fd8`
+  - Notes: Published official v32 search data releases for Zayit (`zayit-search-data-v32-20261010190601-81cc25fa8fc3`) and Otzaria (`otzaria-search-data-v32-20261010190601-102293b3a63c`). Resolved Genesis 7 quadratic decode via streaming parsing, preserved Otzaria commentary/links split without collapsing to SOURCE, resolved schema projection table aliasing in SQLite queries, verified 37/37 checks in iPad acceptance matrix, and delivered signed Build 6601 (VALID) to TestFlight.
+
 - [x] Make production UI acceptance fail closed
   - Implemented: 2026-10-13
   - Notes: IDB `describe` responses wrap a matched element under an `elements` key, while `describe-all` returns a list. The acceptance runner now handles both shapes, uses distinct container accessibility elements, and exits on failed gestures, waits, geometry checks, or assertions instead of allowing a green workflow with swallowed UI failures.
