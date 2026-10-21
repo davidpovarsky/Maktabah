@@ -96,3 +96,6 @@ fastlane/test_output
 *.key
 *.mobileprovision
 *.provisionprofile
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

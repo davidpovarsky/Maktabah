@@ -1,0 +1,44 @@
+//
+//  Search+Library.swift
+//  Maktabah
+//
+
+import Foundation
+
+extension SearchViewModel {
+    // MARK: - Library
+
+    func loadLibraryData() {
+        Task { [weak self] in
+            guard let self, state == .loading else { return }
+            await ldm.loadData()
+            await ldm.buildArchive()
+            await MainActor.run {
+                self.state = .loaded
+                #if os(iOS)
+                self.updateDisplayedCategories()
+                #endif
+            }
+        }
+    }
+
+    func getCheckedTables(from categories: [CategoryData]) -> Set<String> {
+        ldm.getCheckedTables(categories)
+    }
+
+    func getBookTitle(for bookId: Int) -> String? {
+        ldm.booksById[bookId]?.book
+    }
+
+    /// Resolve `BooksData` dari `SearchResultItem`. Returns nil jika tidak ditemukan.
+    @MainActor
+    func resolveBook(from result: SearchResultItem) -> BooksData? {
+        if let locator = result.backendLocator {
+            return MaktabahBackendAdapter.resolveBook(for: locator, in: ldm)
+        }
+        return OtzariaSearchResultResolver.resolveBook(
+            from: result,
+            libraryDataManager: ldm
+        )
+    }
+}

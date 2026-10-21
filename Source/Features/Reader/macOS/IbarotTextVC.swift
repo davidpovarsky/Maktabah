@@ -1,0 +1,714 @@
+//
+//  IbarotTextVC.swift
+//  maktab
+//
+//  Created by MacBook on 07/12/25.
+//
+
+import Cocoa
+import Observation
+import OSLog
+
+@MainActor
+class IbarotTextVC: NSViewController {
+    // MARK: - IBOutlets
+
+    @IBOutlet weak var textView: IbarotTextView!
+
+    // MARK: - Properties
+
+    var sidebarVC: SidebarVC?
+    var libraryVC: LibraryVC?
+    weak var textDelegate: TextViewRenderable?
+
+    /// ViewModel - manages all reader business logic
+    let viewModel: ReaderViewModel = .init()
+
+    private let defaultFontSize: CGFloat = 18.0
+    private var pendingRestoreTask: Task<Void, Never>?
+
+    // MARK: - Window Title Properties
+
+    private let defaultTitle: String = "المكتبة الإسلامية"
+    private let subtitle: String = "لتيسر البحث العبارة"
+
+    var windowTitle: String = .init() {
+        didSet {
+            if windowTitle.isEmpty { return }
+            view.window?.title = windowTitle
+        }
+    }
+
+    var windowSubtitle: String = .init() {
+        didSet {
+            if windowSubtitle.isEmpty { return }
+            view.window?.subtitle = windowSubtitle
+        }
+    }
+
+    // MARK: - Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupBindings()
+        setupNotificationObservers()
+        textDelegate = textView
+    }
+
+    deinit {
+        Logger.reader.debug("IbarotTextVC deinit")
+    }
+
+    // MARK: - Setup
+
+    private func setupBindings() {
+        textView.viewModel = viewModel
+        bindContentPayload()
+        bindViewModelCallbacks()
+        bindTextViewAnnotationCallbacks()
+        bindTOCViewModelEvents()
+    }
+
+    private func bindContentPayload() {
+        viewModel.onPayloadChanged = { [weak self] payload in
+            guard let self, !payload.text.isEmpty else { return }
+            let options = IbarotTextOptions(
+                content: payload.content,
+                color: NSColor.header,
+                isMultiLanguage: viewModel.currentBook?.isMultiLanguage,
+                isImported: viewModel.currentBook?.isImported ?? false,
+                keepScrollPosition: payload.keepScrollPosition
+            )
+            textDelegate?.loadIbarotText(payload.text, options: options)
+        }
+    }
+
+    private func bindViewModelCallbacks() {
+        viewModel.onWindowTitleChanged = { [weak self] title, subtitle in
+            self?.windowTitle = title
+            self?.windowSubtitle = subtitle
+        }
+
+        viewModel.onContentChanged = { [weak self] content in
+            self?.handleNavigationToContent(content.id)
+        }
+
+        viewModel.onNeedScrollToTop = { [weak self] in
+            self?.textView.scrollToBeginningOfDocument(nil)
+        }
+
+        viewModel.onError = { error in
+            ReusableFunc.showAlert(title: "Error", message: error.localizedDescription, style: .critical)
+        }
+    }
+
+    private func bindTextViewAnnotationCallbacks() {
+        textView.onAddAnnotation = { [weak self] range, color, mode, sourceText in
+            do {
+                try self?.viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
+            } catch {
+                Logger.annotations.error("Failed to add annotation: \(error.localizedDescription, privacy: .public)")
+            }
+        }
+
+        textView.onUpdateAnnotation = { [weak self] annotation in
+            do {
+                try self?.viewModel.updateAnnotation(annotation)
+            } catch {
+                Logger.annotations.error("Failed to update annotation: \(error.localizedDescription, privacy: .public)")
+            }
+        }
+
+        textView.onDeleteAnnotation = { [weak self] id in
+            do {
+                try self?.viewModel.deleteAnnotation(id: id)
+            } catch {
+                Logger.annotations.error("Failed to delete annotation: \(error.localizedDescription, privacy: .public)")
+            }
+        }
+    }
+
+    private func bindTOCViewModelEvents() {
+        viewModel.tocViewModel.onTOCLoadingStateChanged = { [weak self] isLoading in
+            guard let self, let sidebarView = sidebarVC?.view else { return }
+            if isLoading {
+                ReusableFunc.showProgressWindow(sidebarView)
+            } else {
+                ReusableFunc.closeProgressWindow(sidebarView)
+            }
+        }
+
+        viewModel.tocViewModel.onTOCLoaded = { [weak self] nodes in
+            guard let self else { return }
+            sidebarVC?.updateTOC(nodes)
+            if viewModel.currentContentId > 0 {
+                handleNavigationToContent(viewModel.currentContentId)
+            }
+        }
+    }
+
+    private var observerTokens: [NotificationToken] = []
+
+    private func setupNotificationObservers() {
+        observerTokens.append(NotificationToken(token: NotificationCenter.default.addObserver(
+            forName: .libraryFolderChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated { [weak self] in
+                guard let self else { return }
+                cleanUpState()
+                viewModel.cleanUpState()
+                viewModel.tocViewModel.cleanUp()
+            }
+        }))
+
+        observerTokens.append(NotificationToken(token: NotificationCenter.default.addObserver(
+            forName: .bookIntegrated,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let bookId = notification.object as? Int else { return }
+            MainActor.assumeIsolated { [weak self] in
+                guard let self else { return }
+                if viewModel.currentBook?.id == bookId {
+                    if !BookArchiveIntegrator.shared.isBookIntegrated(viewModel.currentBook!) {
+                        clearUI()
+                    }
+                }
+            }
+        }))
+
+        observerTokens.append(NotificationToken(token: NotificationCenter.default.addObserver(
+            forName: .bookIdMigrated,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            guard let userInfo = notification.userInfo,
+                  let oldId = userInfo["oldId"] as? Int,
+                  let newId = userInfo["newId"] as? Int
+            else { return }
+
+            MainActor.assumeIsolated { [weak self] in
+                guard let self else { return }
+
+                if viewModel.currentBook?.id == oldId {
+                    // ReaderViewModel handleBookIdMigrated will update its currentBook.
+                    // We just need to make sure IbarotTextVC doesn't crash or holds onto stale state.
+                    // Re-rendering or updating title can be triggered here if necessary.
+                    if let newBookData = LibraryDataManager.shared.booksById[newId] {
+                        viewModel.currentBook = newBookData
+                    }
+                }
+            }
+        }))
+    }
+
+    // MARK: - State Accessors
+
+    private var splitVC: SplitVC? {
+        var current: NSViewController? = self
+        while let parent = current?.parent {
+            if let unified = parent as? SplitVC {
+                return unified
+            }
+            current = parent
+        }
+        return nil
+    }
+
+    var currentBook: BooksData? {
+        viewModel.currentBook
+    }
+
+    var currentPage: Int? {
+        viewModel.currentPage
+    }
+
+    var currentPart: Int? {
+        viewModel.currentPart
+    }
+
+    /// Alias ke viewModel.bookConnection untuk backward compatibility dengan SidebarVC
+    var bookDB: BookConnection {
+        viewModel.bookConnection
+    }
+
+    var currentRowi: Rowi? {
+        get { splitVC?.currentState.currentRowi }
+        set {
+            guard var state = splitVC?.currentState else { return }
+            state.edit { $0.currentRowi = newValue }
+        }
+    }
+
+    // MARK: - Public Methods
+
+    func restoreWindowTitleAfterModeSwitch(oldTitle: String, oldSubtitle: String) {}
+
+    private func setDefaultWindowTitle() {
+        view.window?.title = defaultTitle
+        view.window?.subtitle = subtitle
+    }
+
+    func didChangeBook(book: BooksData, loadSidebar: Bool = true) {
+        if viewModel.currentBook?.id != book.id {
+            viewModel.resetContentState()
+        }
+        viewModel.currentBook = book
+
+        // Update window title
+        viewModel.updateWindowTitle(
+            book: book, page: currentPage, part: currentPart
+        )
+
+        if viewModel.recordHistory {
+            // upload history to cloudkit and update library sidebar
+            libraryVC?.dataVM.viewModel.handleBookSelection(book: book)
+        } else {
+            libraryVC?.dataVM.viewModel.selectedBookName = book.book
+        }
+
+        libraryVC?.dataVM.restoreSelection(byBookName: book.book)
+    }
+
+    func updateLibraryReference(for mode: AppMode, library: LibraryVC?) {
+        libraryVC = (mode == .viewer) ? library : nil
+    }
+
+    // MARK: - Font & Appearance
+
+    func applyFont(_ redraw: Bool) {
+        if !redraw {
+            textView.preservingScrollPosition {
+                let defaults = UserDefaults.standard
+                var fontSize = CGFloat(defaults.textViewFontSize)
+                if fontSize == 0 { fontSize = defaultFontSize }
+                let fontName = defaults.textViewFontName
+
+                textView.textStorage?.applyFont(
+                    footnoteRanges: textView.footnoteRanges,
+                    fontName: fontName,
+                    fontSize: fontSize
+                )
+                textView.typingAttributes[.font] = NSFont(name: fontName, size: fontSize)
+            }
+        } else {
+            viewModel.refreshCurrentPage(keepScrollPosition: true)
+        }
+    }
+
+    func toggleHarakat(_ on: Bool) {
+        viewModel.refreshCurrentPage(keepScrollPosition: true)
+    }
+
+    func applyBackgroundColor(_ color: NSColor) {
+        textView.backgroundColor = color
+        if let textLayoutManager = textView.textLayoutManager {
+            textLayoutManager.invalidateLayout(for: textLayoutManager.documentRange)
+        }
+    }
+
+    // MARK: - Actions
+
+    @IBAction func previousPage(_ sender: Any?) {
+        viewModel.goToPrevPage()
+    }
+
+    @IBAction func nextPage(_ sender: Any?) {
+        viewModel.goToNextPage()
+    }
+
+    @IBAction func bookInfo(_ sender: Any) {
+        viewModel.fetchBookInfo { [weak self] bookData in
+            guard let self, let bookData else { return }
+            let bookInf = BookInfo()
+            bookInf.bookData = bookData
+            if let button = sender as? NSButton {
+                WindowController.showPopOver(sender: button, viewController: bookInf)
+            } else {
+                bookInf.popOver = false
+                presentAsSheet(bookInf)
+            }
+        }
+    }
+
+    @IBAction func copyWith(_ sender: Any? = nil) {
+        let fullAttributedString = textView.attributedString()
+        let selection = textView.selectedRange()
+        let rawAttributedText: NSAttributedString = if selection.location != NSNotFound,
+                                                       selection.location >= 0,
+                                                       selection.length > 0,
+                                                       selection.location + selection.length <= fullAttributedString.length
+        {
+            fullAttributedString.attributedSubstring(from: selection)
+        } else {
+            fullAttributedString
+        }
+        let attributedText = rawAttributedText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let rtlStyle = NSMutableParagraphStyle()
+        rtlStyle.baseWritingDirection = .rightToLeft
+        rtlStyle.alignment = .right
+        let rtlAttributes: [NSAttributedString.Key: Any] = [.paragraphStyle: rtlStyle]
+
+        let combined = NSMutableAttributedString()
+        combined.append(attributedText)
+        combined.append(NSAttributedString(string: "\n\n", attributes: rtlAttributes))
+
+        let citation = viewModel.getCopyCitation()
+        if !citation.isEmpty {
+            combined.append(NSAttributedString(string: citation, attributes: rtlAttributes))
+        }
+
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        if let rtfData = try? combined.data(
+            from: NSRange(location: 0, length: combined.length),
+            documentAttributes: [.documentType: NSAttributedString.DocumentType.rtf]
+        ) {
+            pasteboard.setData(rtfData, forType: .rtf)
+        }
+        pasteboard.setString(combined.string, forType: .string)
+    }
+
+    // MARK: - State Management
+
+    func clearUI() {
+        textView.string.removeAll()
+        sidebarVC?.cleanUpOutlineView()
+        viewModel.cleanUpState()
+        windowTitle = ""
+        windowSubtitle = ""
+        if splitVC?.currentMode != .narrator {
+            setDefaultWindowTitle()
+        }
+    }
+
+    // MARK: - Sidebar Helpers
+
+    private var lastSelectedContentIdFromSidebar: Int?
+
+    private func handleNavigationToContent(_ contentId: Int) {
+        guard let sidebarVC else { return }
+
+        if lastSelectedContentIdFromSidebar == contentId {
+            lastSelectedContentIdFromSidebar = nil
+            return
+        }
+
+        sidebarVC.enableDelegate = false
+        Task.detached { [weak self] in
+            if let self, let node = await viewModel.tocViewModel.findNode(forContentId: contentId) {
+                let path = await viewModel.tocViewModel.pathToNode(node)
+                await sidebarVC.selectNode(node, path: path)
+            }
+            await MainActor.run {
+                sidebarVC.enableDelegate = true
+            }
+        }
+    }
+
+    private func collectExpandedNodeIDs() -> [Int] {
+        guard let outlineView = sidebarVC?.outlineView else { return [] }
+        var expandedIDs: [Int] = []
+        func collectExpanded(item: Any?) {
+            let childCount = outlineView.numberOfChildren(ofItem: item)
+            for i in 0 ..< childCount {
+                let child = outlineView.child(i, ofItem: item)
+                if let node = child as? TOCNode {
+                    if outlineView.isItemExpanded(child) {
+                        expandedIDs.append(node.id)
+                        collectExpanded(item: child)
+                    }
+                }
+            }
+        }
+        collectExpanded(item: nil)
+        return expandedIDs
+    }
+}
+
+// MARK: - NavigationDelegate
+
+extension IbarotTextVC {
+    @IBAction func navigationPage(_ sender: Any) {
+        let navVC = Navigation(nibName: "Navigation", bundle: nil)
+        navVC.viewModel = viewModel
+
+        if let button = sender as? NSButton {
+            WindowController.showPopOver(sender: button, viewController: navVC)
+        } else {
+            navVC.popover = false
+            presentAsSheet(navVC)
+        }
+    }
+
+    func displayBook(
+        _ book: BooksData,
+        loadContent: Bool = true
+    ) async throws {
+        do {
+            try await viewModel.connectBookWithBundleFallback(book)
+            didChangeBook(book: book)
+            loadContent
+                ? viewModel.loadInitialContent()
+                : viewModel.loadTOC(book: book)
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {
+            await MainActor.run {
+                ReusableFunc.showAlert(
+                    title: DatabaseError.bookNotFound(book.id).localizedDescription,
+                    message: error.localizedDescription,
+                    style: .critical
+                )
+            }
+            throw error
+        }
+    }
+
+    func handleDelegate(_ contentId: Int, fromResults: Bool = false) {
+        guard currentBook != nil else {
+            Task { @MainActor in
+                textView?.string = "Konten tidak ditemukan"
+            }
+            return
+        }
+
+        viewModel.fetchContentById(contentId)
+    }
+
+    func openAnnotation(_ annotation: Annotation) async throws {
+        let bkId = annotation.bkId
+        let contentId = annotation.contentId
+        guard let book = LibraryDataManager.shared.getBook([bkId]).first else {
+            ReusableFunc.showAlert(
+                title: String(localized: .Library.bookNotFound(bkId)),
+                message: String(localized: .Library.bookMissingOnAnnotationClick)
+            )
+            return
+        }
+
+        pendingRestoreTask?.cancel()
+        pendingRestoreTask = nil
+
+        do {
+            if currentBook?.id != bkId {
+                try await displayBook(book, loadContent: false)
+            }
+        } catch {
+            ReusableFunc.showAlert(
+                title: DatabaseError.bookNotFound(bkId).localizedDescription,
+                message: DatabaseError.noConnection.localizedDescription
+            )
+            return
+        }
+
+        if contentId != viewModel.currentContentId {
+            handleDelegate(contentId)
+        }
+
+        await textDelegate?.highlightAndScrollToAnns(annotation)
+    }
+
+    func openHistory(book: BooksData, contentId: Int?) async throws {
+        pendingRestoreTask?.cancel()
+        pendingRestoreTask = nil
+
+        if currentBook?.id != book.id {
+            try await displayBook(book, loadContent: contentId == nil)
+        }
+        if let contentId {
+            handleDelegate(contentId)
+        }
+    }
+}
+
+// MARK: - SidebarDelegate
+
+extension IbarotTextVC: SidebarDelegate {
+    func didSelectItem(_ id: Int) {
+        didSelectItem(id, title: "")
+    }
+
+    func didSelectItem(_ id: Int, title: String) {
+        lastSelectedContentIdFromSidebar = id
+        handleDelegate(id)
+
+        if !title.isEmpty {
+            Task {
+                await textDelegate?.scrollToTOC(title: title)
+            }
+        }
+    }
+}
+
+// MARK: - LibraryDelegate
+
+extension IbarotTextVC: LibraryDelegate {
+    func didSelectBook(for book: BooksData, loadContent: Bool) async {
+        if loadContent { viewModel.recordHistory = true }
+        if viewModel.currentBook?.id == book.id { return }
+        try? await displayBook(book, loadContent: loadContent)
+    }
+}
+
+// MARK: - OptionSearchDelegate
+
+extension IbarotTextVC: OptionSearchDelegate {
+    func didSelectResult(for id: Int, highlightText: String, mode: SearchMode?, nearDistance: Int) async {
+        if viewModel.currentContentId != id { handleDelegate(id) }
+        await textDelegate?.highlightAndScrollToText(highlightText, mode: mode, nearDistance: nearDistance)
+    }
+}
+
+// MARK: - Author Mode
+
+extension IbarotTextVC {
+    func setRowiDisplayMode() {
+        guard var state = splitVC?.currentState else { return }
+        state.edit { $0.authorDisplayMode = .bookContent }
+    }
+
+    func setAuthorRowiDisplay(rowi: Rowi) {
+        var state = splitVC?.currentState ?? ReaderState()
+        state.edit {
+            $0.currentRowi = rowi
+            $0.authorDisplayMode = .rowiInfo
+        }
+        Logger.reader.debug("Author mode: display mode (\(String(describing: state.authorDisplayMode), privacy: .public))")
+    }
+}
+
+// MARK: - TarjamahBDelegate
+
+extension IbarotTextVC: TarjamahBDelegate {
+    func didSelectRowi(rowi: Rowi) {
+        viewModel.currentBook = nil
+        sidebarVC?.cleanUpOutlineView()
+        setAuthorRowiDisplay(rowi: rowi)
+    }
+
+    func didSelect(tarjamahB: TarjamahMen, query: String?) async {
+        guard let bookData = LibraryDataManager.shared.getBook([tarjamahB.bk]).first else { return }
+
+        if viewModel.currentBook?.id != bookData.id {
+            try? await displayBook(bookData)
+            try? viewModel.bookConnection.connect(archive: bookData.archive)
+        }
+
+        guard let content = viewModel.getContent(
+            bkId: tarjamahB.bk,
+            contentId: tarjamahB.id
+        ) else {
+            Logger.reader.debug("unable to get content from tarjamahB")
+            return
+        }
+
+        viewModel.updateContentState(with: content)
+        setRowiDisplayMode()
+
+        try? await Task.sleep(nanoseconds: 300_000_000)
+        if let query {
+            await textDelegate?.highlightAndScrollToText(query.normalizeArabic(true), mode: .phrase, nearDistance: 10)
+        }
+    }
+}
+
+// MARK: - ReaderStateComponent
+
+extension IbarotTextVC: ReaderStateComponent {
+    func updateState(_ state: inout ReaderState) {
+        if let textView, let ts = textView.textStorage, ts.length > 0 {
+            state.selectedRange = textView.selectedRange()
+
+            if pendingRestoreTask == nil, let scrollView = textView.enclosingScrollView {
+                state.scrollPosition = scrollView.contentView.bounds.origin
+            }
+        }
+
+        if let sidebarVC {
+            state.expandedNodeIDs = collectExpandedNodeIDs()
+            state.sidebarScrollPosition = sidebarVC.scrollView.documentVisibleRect.origin
+        }
+
+        viewModel.updateState(&state)
+    }
+
+    private func waitForSearchLayoutSettle() async {
+        guard let splitVC, splitVC.currentMode == .search,
+              let optionSearchVC = splitVC.optionSearchVC
+        else { return }
+
+        while optionSearchVC.viewModel.state != .loaded {
+            await Task.yield()
+            guard !Task.isCancelled else { return }
+        }
+
+        // Tambahkan sedikit delay agar layout split view benar-benar settle
+        // setelah progress indicator disembunyikan di `OptionSearchVC`.
+        await Task.yield()
+    }
+
+    func restore(from state: ReaderState) {
+        guard state.hasContent, let book = state.currentBook
+        else { clearUI(); return }
+
+        try? viewModel.bookConnection.connect(archive: book.archive)
+
+        if AppConfig.isUsingBundleMode,
+           !BookArchiveIntegrator.shared.isBookIntegrated(book)
+        {
+            viewModel.currentBook = nil
+            return
+        }
+
+        libraryVC?.dataVM.viewModel.selectedBookName = book.book
+        if libraryVC?.dataVM.isSetupComplete == true {
+            libraryVC?.dataVM.restoreSelection(byBookName: book.book)
+        }
+
+        pendingRestoreTask?.cancel()
+        pendingRestoreTask = Task { @MainActor [weak self] in
+            guard let self, !Task.isCancelled else { return }
+
+            await waitForSearchLayoutSettle()
+            guard !Task.isCancelled else { return }
+
+            viewModel.restore(from: state)
+
+            if let range = state.selectedRange {
+                textView.setSelectedRange(range)
+                if view.window?.isKeyWindow == true {
+                    view.window?.makeFirstResponder(textView)
+                }
+            }
+
+            if let query = state.searchQuery {
+                let mode = state.searchModeRaw.flatMap { SearchMode(rawValue: $0) }
+                let nearDistance = state.searchNearDistance ?? 10
+                await textDelegate?.highlightAndScrollToText(query, mode: mode, nearDistance: nearDistance)
+            }
+
+            guard !Task.isCancelled else { return }
+
+            if let scrollPos = state.scrollPosition {
+                await textDelegate?.scrollTo(scrollPos)            
+            }
+
+            if !Task.isCancelled {
+                self.pendingRestoreTask = nil
+            }
+        }
+    }
+
+    func cleanUpState() {
+        pendingRestoreTask?.cancel()
+        pendingRestoreTask = nil
+        clearUI()
+        var newState = ReaderState()
+        newState.isSidebarCollapsed = splitVC?.sidebarItem.isCollapsed ?? false
+        splitVC?.currentState = newState
+    }
+}

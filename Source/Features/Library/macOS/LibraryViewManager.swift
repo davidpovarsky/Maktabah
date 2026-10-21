@@ -1,0 +1,580 @@
+//
+//  LibraryViewManager.swift
+//  maktab
+//
+//  Created by MacBook on 03/12/25.
+//
+
+import Cocoa
+import Combine
+
+@MainActor
+class LibraryViewManager: NSObject {
+    static let filterSegmentIndexKey = "LibraryFilterSegmentIndex"
+
+    weak var outlineView: NSOutlineView!
+    weak var delegate: LibraryViewDelegate?
+
+    var searchView: Bool = false
+    var downloadView: Bool = false
+    var checkBoxToggle: (() -> Void)?
+
+    weak var searchField: DSFSearchField!
+    var viewModel: LibraryViewModel
+    var initialLoad: Bool = true
+    var isSetupComplete: Bool = false
+    var isUpdatingOutline: Bool = false
+
+    var cancellables = Set<AnyCancellable>()
+    let dataManager = LibraryDataManager.shared
+    let historyManager = HistoryViewModel.shared
+    private let selectionSubject = PassthroughSubject<Int, Never>()
+    private var bookInfoPopover: NSPopover?
+
+    init(
+        outlineView: NSOutlineView,
+        searchField: DSFSearchField,
+        searchView: Bool = false,
+        downloadView: Bool = false
+    ) {
+        self.outlineView = outlineView
+        viewModel = .init()
+        if searchView {
+            viewModel.showOnlyDownloaded = true
+            viewModel.filterMode = .downloaded
+        }
+        self.searchView = searchView || downloadView
+        self.downloadView = downloadView
+        self.searchField = searchField
+        super.init()
+        setupDSFSearchField()
+        setupContextMenu()
+        bindToViewModel()
+        setupNotificationObservers()
+
+        outlineView.target = self
+        outlineView.doubleAction = #selector(onDoubleClick(_:))
+    }
+
+    private func bindToViewModel() {
+        viewModel.updateSubject
+            .filter { [weak self] _ in
+                self?.isSetupComplete == true
+            }
+            .sink { [weak self] update in
+                if Thread.isMainThread {
+                    self?.handleViewModelUpdate(update)
+                } else {
+                    DispatchQueue.main.async {
+                        self?.handleViewModelUpdate(update)
+                    }
+                }
+            }
+            .store(in: &cancellables)
+
+        selectionSubject
+            .debounce(for: .milliseconds(50), scheduler: RunLoop.main)
+            .sink { [weak self] selectedRow in
+                Task { [weak self] in
+                    await self?.delegate?.didSelectItem(selectedRow)
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    private func handleViewModelUpdate(_ update: LibraryUpdate) {
+        switch update {
+        case .reloadData:
+            outlineView.reloadData()
+            restoreSelection(byBookName: viewModel.selectedBookName)
+        case let .reloadItem(item, reloadChildren):
+            outlineView.reloadItem(item, reloadChildren: reloadChildren)
+        case let .expandItem(item):
+            handleExpandUpdate(item)
+        case let .scrollRowToVisible(item):
+            let row = outlineView.row(forItem: item)
+            if row >= 0 {
+                outlineView.scrollRowToVisible(row)
+            }
+        case .beginUpdates, .endUpdates, .removeItems, .insertItems, .moveItem:
+            handleMutationUpdate(update)
+        }
+    }
+
+    private func handleExpandUpdate(_ item: Any?) {
+        if let category = item as? CategoryData {
+            outlineView.expandItem(category, expandChildren: true)
+        } else if let bookName = item as? String {
+            restoreSelection(byBookName: bookName)
+        } else {
+            outlineView.expandItem(item, expandChildren: true)
+        }
+    }
+
+    private func handleMutationUpdate(_ update: LibraryUpdate) {
+        switch update {
+        case .beginUpdates:
+            isUpdatingOutline = true
+            outlineView.beginUpdates()
+        case .endUpdates:
+            outlineView.endUpdates()
+            isUpdatingOutline = false
+        case let .removeItems(indexes, parent):
+            outlineView.removeItems(at: indexes, inParent: parent, withAnimation: [.slideUp])
+        case let .insertItems(indexes, parent):
+            outlineView.insertItems(at: indexes, inParent: parent, withAnimation: [.slideDown])
+            if viewModel.isFlatMode, let selectedBook = viewModel.selectedBookName {
+                restoreFlatSelection(byBookName: selectedBook)
+            }
+        case let .moveItem(from, to, parent):
+            outlineView.moveItem(at: from, inParent: parent, to: to, inParent: parent)
+        default:
+            break
+        }
+    }
+
+    // MARK: - Passthrough to ViewModel
+
+    nonisolated func prepareData(completion: (@MainActor () -> Void)? = nil) async {
+        if await isSetupComplete { return }
+
+        await viewModel.loadLibrary()
+        await completion?()
+        await MainActor.run { [weak self] in
+            guard let self else { return }
+            reloadOutlineData()
+            isSetupComplete = true
+        }
+    }
+
+    func reloadOutlineData() {
+        if initialLoad, searchView {
+            viewModel.selectAllBook(state: true)
+            initialLoad = false
+        }
+        outlineView.reloadData()
+        let query = viewModel.searchQuery
+        if !query.isEmpty {
+            outlineView.expandItem(nil, expandChildren: true)
+        }
+        restoreSelection(byBookName: viewModel.selectedBookName)
+    }
+
+    func applyFilter(_ mode: LibraryFilterMode) {
+        viewModel.applyFilter(mode)
+        if mode == .favorites || mode == .history {
+            outlineView?.expandItem(nil, expandChildren: true)
+        }
+        if mode == .downloaded {
+            outlineView?.allowsMultipleSelection = true
+        } else {
+            outlineView?.allowsMultipleSelection = false
+        }
+    }
+
+    // MARK: - Selection Restore (UI)
+
+    private var restoreSelectionTask: Task<Void, Never>?
+
+    func restoreSelection(byBookName bookName: String?) {
+        guard let bookName else { return }
+
+        if viewModel.isFlatMode {
+            restoreFlatSelection(byBookName: bookName)
+            return
+        }
+
+        restoreSelectionTask?.cancel()
+        let categories = viewModel.displayedCategories
+        restoreSelectionTask = Task.detached(priority: .userInitiated) { [weak self] in
+            guard let result = self?.findCategoryPathAndBook(for: bookName, in: categories) else {
+                return
+            }
+            guard !Task.isCancelled else { return }
+            await MainActor.run { [weak self] in
+                guard let self, viewModel.selectedBookName == bookName else { return }
+                let wasUpdating = isUpdatingOutline
+                isUpdatingOutline = true
+                defer { isUpdatingOutline = wasUpdating }
+                for cat in result.categoryPath {
+                    outlineView.expandItem(cat)
+                }
+                safelySelectOutlineRow(for: result.book)
+            }
+        }
+    }
+
+    private nonisolated func findCategoryPathAndBook(
+        for bookName: String,
+        in categories: [CategoryData]
+    ) -> (categoryPath: [CategoryData], book: BooksData)? {
+        for category in categories {
+            if let result = searchCategoryHierarchy(category: category, path: [category], targetBookName: bookName) {
+                return result
+            }
+        }
+        return nil
+    }
+
+    private nonisolated func searchCategoryHierarchy(
+        category: CategoryData,
+        path: [CategoryData],
+        targetBookName: String
+    ) -> (categoryPath: [CategoryData], book: BooksData)? {
+        for child in category.children {
+            if let book = child as? BooksData, book.book == targetBookName {
+                return (path, book)
+            } else if let subCategory = child as? CategoryData,
+                      let found = searchCategoryHierarchy(
+                          category: subCategory,
+                          path: path + [subCategory],
+                          targetBookName: targetBookName
+                      )
+            {
+                return found
+            }
+        }
+        return nil
+    }
+
+    func restoreFlatSelection(byBookName bookName: String?) {
+        guard let bookName,
+              let firstCat = viewModel.displayedCategories.first,
+              let index = firstCat.children.firstIndex(where: { ($0 as? BooksData)?.book == bookName })
+        else { return }
+
+        selectFlatRow(index)
+    }
+
+    private func selectFlatRow(_ row: Int) {
+        guard row >= 0, row < outlineView.numberOfRows else { return }
+        let wasUpdating = isUpdatingOutline
+        isUpdatingOutline = true
+        outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        isUpdatingOutline = wasUpdating
+        outlineView.scrollRowToVisible(row)
+    }
+
+    private func safelySelectOutlineRow(for book: BooksData) {
+        let row = outlineView.row(forItem: book)
+        if row >= 0, outlineView.selectedRow != row {
+            let wasUpdating = isUpdatingOutline
+            isUpdatingOutline = true
+            outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+            isUpdatingOutline = wasUpdating
+            outlineView.scrollRowToVisible(row)
+        }
+    }
+
+    // MARK: - Context Menu
+
+    private func setupContextMenu() {
+        let menu = NSMenu()
+        menu.delegate = self
+        outlineView.menu = menu
+    }
+
+    func setupDSFSearchField() {
+        searchField.searchTermChangeCallback = { [weak self] query in
+            self?.viewModel.searchQuery = query
+        }
+    }
+
+    @objc func checkboxToggled(_ sender: NSButton) {
+        let row = outlineView.row(for: sender)
+        guard row != -1, let item = outlineView.item(atRow: row) else { return }
+
+        if let category = item as? CategoryData {
+            viewModel.toggleCategorySelection(category)
+            outlineView.reloadItem(category, reloadChildren: true)
+
+            var parent = outlineView.parent(forItem: category)
+            while let currentParent = parent {
+                outlineView.reloadItem(currentParent)
+                parent = outlineView.parent(forItem: currentParent)
+            }
+        } else if let book = item as? BooksData {
+            viewModel.toggleBookSelection(book)
+            ReusableFunc.updateBuiltInRecents(with: book.book, in: searchField)
+
+            var parent = outlineView.parent(forItem: book)
+            while let currentParent = parent {
+                outlineView.reloadItem(currentParent)
+                parent = outlineView.parent(forItem: currentParent)
+            }
+        }
+        checkBoxToggle?()
+    }
+
+    @objc private func onDoubleClick(_ sender: AnyObject) {
+        let clickedRow = outlineView.clickedRow
+        guard clickedRow != -1, let item = outlineView.item(atRow: clickedRow) else { return }
+        if item is CategoryData {
+            if outlineView.isItemExpanded(item) {
+                outlineView.collapseItem(item)
+            } else {
+                outlineView.expandItem(item)
+            }
+        }
+    }
+
+    deinit {
+        MainActor.assumeIsolated {
+            cancellables.removeAll()
+            checkBoxToggle = nil
+            delegate = nil
+            bookInfoPopover?.performClose(nil)
+            bookInfoPopover = nil
+        }
+    }
+}
+
+// MARK: - NSOutlineViewDataSource
+
+extension LibraryViewManager: NSOutlineViewDataSource {
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        if item == nil {
+            if viewModel.isFlatMode, let firstCat = viewModel.displayedCategories.first {
+                return firstCat.children.count
+            }
+            return viewModel.displayedCategories.count
+        }
+        if let category = item as? CategoryData {
+            return category.children.count
+        }
+        return 0
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        if item == nil {
+            if viewModel.isFlatMode, let firstCat = viewModel.displayedCategories.first {
+                guard firstCat.children.indices.contains(index) else { return "" }
+                return firstCat.children[index]
+            }
+            guard viewModel.displayedCategories.indices.contains(index) else { return "" }
+            return viewModel.displayedCategories[index]
+        }
+        if let category = item as? CategoryData,
+           category.children.indices.contains(index)
+        {
+            return category.children[index]
+        }
+        return ""
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        if let category = item as? CategoryData {
+            return !category.children.isEmpty
+        }
+        return false
+    }
+}
+
+// MARK: - NSOutlineViewDelegate
+
+extension LibraryViewManager: NSOutlineViewDelegate {
+    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        let cellIdentifier = NSUserInterfaceItemIdentifier("DataCell")
+        let headerIdentifier = NSUserInterfaceItemIdentifier("HeaderCell")
+
+        if let category = item as? CategoryData {
+            guard let cell = outlineView.makeView(withIdentifier: headerIdentifier, owner: self) as? NSTableCellView else { return nil }
+            cell.textField?.stringValue = category.name
+            if searchView, let checkbox = cell.subviews.first(where: { $0 is NSButton }) as? NSButton {
+                let isSelected = viewModel.isCategorySelected(category)
+                let isPartial = viewModel.isCategoryPartiallySelected(category)
+                checkbox.state = isPartial ? .mixed : (isSelected ? .on : .off)
+                checkbox.target = self
+                checkbox.action = #selector(checkboxToggled(_:))
+            }
+            return cell
+        } else if let book = item as? BooksData {
+            guard let cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else { return nil }
+            cell.textField?.stringValue = book.book
+            if searchView, let checkbox = cell.subviews.first(where: { $0 is NSButton }) as? NSButton {
+                checkbox.state = viewModel.isBookSelected(book) ? .on : .off
+                checkbox.target = self
+                checkbox.action = #selector(checkboxToggled(_:))
+            }
+            return cell
+        }
+        return nil
+    }
+
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        guard !isUpdatingOutline else { return }
+        guard let outlineView = notification.object as? NSOutlineView else { return }
+        if outlineView.selectedRowIndexes.count > 1 {
+            return
+        }
+
+        let selectedRow = outlineView.selectedRow
+        guard selectedRow >= 0 else { return }
+
+        selectionSubject.send(selectedRow)
+
+        if let item = outlineView.item(atRow: selectedRow) as? BooksData {
+            ReusableFunc.updateBuiltInRecents(with: item.book, in: searchField)
+        }
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+        26
+    }
+
+    @objc func deleteBookAction(_ sender: NSMenuItem) {
+        guard let books = sender.representedObject as? [BooksData] else { return }
+        let alert = NSAlert()
+        alert.messageText = String(localized: .Library.deleteDownload)
+        alert.informativeText = books.count == 1
+            ? String(localized: .Library.deleteDownloadedSingleConfirmation(books[0].book))
+            : String(localized: .Library.deleteDownloadedMultipleConfirmation(books.count))
+        alert.addButton(withTitle: String(localized: "Delete"))
+        alert.addButton(withTitle: String(localized: "Cancel"))
+        alert.alertStyle = .warning
+
+        guard alert.runModal() == .alertFirstButtonReturn else { return }
+
+        removeDeletedBooksRows(books)
+
+        Task {
+            for book in books {
+                try? await BookArchiveIntegrator.shared.removeBookFromArchive(book)
+            }
+        }
+    }
+}
+
+// MARK: - NSMenuDelegate
+
+extension LibraryViewManager: NSMenuDelegate {
+    private func isBookDownloaded(_ book: BooksData) -> Bool {
+        if AppConfig.isUsingBundleMode {
+            BookArchiveIntegrator.shared.isBookIntegrated(book)
+        } else {
+            LibraryDataManager.shouldRemoveBook(id: book.id)
+        }
+    }
+
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.removeAllItems()
+
+        let clickedRow = outlineView.clickedRow
+
+        if clickedRow >= 0, let clickedBook = outlineView.item(atRow: clickedRow) as? BooksData {
+            if !searchView, BookArchiveIntegrator.shared.isBookIntegrated(clickedBook) {
+                let openInNewTabItem = NSMenuItem(
+                    title: String(localized: .Library.openInNewTab),
+                    action: #selector(openInNewTabAction(_:)),
+                    keyEquivalent: ""
+                )
+                openInNewTabItem.target = self
+                openInNewTabItem.representedObject = clickedBook
+                menu.addItem(openInNewTabItem)
+            }
+
+            let bookInfoItem = NSMenuItem(
+                title: String(localized: .Library.bookInfo),
+                action: #selector(showBookInfoAction(_:)),
+                keyEquivalent: ""
+            )
+            bookInfoItem.target = self
+            bookInfoItem.representedObject = clickedBook
+            menu.addItem(bookInfoItem)
+        }
+
+        let rowsToProcess = ReusableFunc.resolveRowsToProcess(
+            selectedRows: outlineView.selectedRowIndexes,
+            clickedRow: clickedRow
+        )
+
+        var deletableBooks: [BooksData] = []
+        for row in rowsToProcess {
+            guard let book = outlineView.item(atRow: row) as? BooksData else { continue }
+            if isBookDownloaded(book) {
+                deletableBooks.append(book)
+            }
+        }
+
+        if !deletableBooks.isEmpty {
+            if !menu.items.isEmpty { menu.addItem(NSMenuItem.separator()) }
+            let deleteItem = NSMenuItem(
+                title: String(localized: .Library.deleteDownload),
+                action: #selector(deleteBookAction(_:)),
+                keyEquivalent: ""
+            )
+            deleteItem.target = self
+            deleteItem.representedObject = deletableBooks
+            menu.addItem(deleteItem)
+        }
+
+        addFavoriteContextMenu(menu: menu, clickedRow: clickedRow)
+    }
+
+    private func addFavoriteContextMenu(menu: NSMenu, clickedRow: Int) {
+        if clickedRow >= 0, let book = outlineView.item(atRow: clickedRow) as? BooksData {
+            if !menu.items.isEmpty { menu.addItem(NSMenuItem.separator()) }
+            let isFav = HistoryViewModel.shared.isFavorite(book.id)
+            let title = isFav ? String(localized: "Remove Favorite") : String(localized: "Add Favorite")
+            let favItem = NSMenuItem(title: title, action: #selector(toggleFavoriteAction(_:)), keyEquivalent: "")
+            favItem.target = self
+            favItem.representedObject = book
+            menu.addItem(favItem)
+
+            let isHistory = HistoryViewModel.shared.historyBookIds.contains(book.id)
+            if isHistory {
+                let historyItem = NSMenuItem(
+                    title: String(localized: "Remove from History"), action: #selector(removeHistoryAction(_:)), keyEquivalent: ""
+                )
+                historyItem.target = self
+                historyItem.representedObject = book
+                menu.addItem(historyItem)
+            }
+        }
+    }
+
+    @objc func openInNewTabAction(_ sender: NSMenuItem) {
+        guard let book = sender.representedObject as? BooksData else { return }
+        delegate?.openBookInNewTab(book)
+    }
+
+    @objc func showBookInfoAction(_ sender: NSMenuItem) {
+        guard let book = sender.representedObject as? BooksData else { return }
+        showBookInfo(for: book)
+    }
+
+    func showBookInfo(for book: BooksData) {
+        LibraryDataManager.shared.loadBookInfo(book.id) { [weak self] in
+            guard let self else { return }
+            let resolvedBook = LibraryDataManager.shared.booksById[book.id] ?? book
+            presentBookInfoPopover(for: resolvedBook)
+        }
+    }
+
+    private func presentBookInfoPopover(for book: BooksData) {
+        bookInfoPopover?.performClose(nil)
+
+        let row = outlineView.row(forItem: book)
+        let anchor = outlineView.cellAnchor(forRow: row)
+
+        let bookInfoVC = BookInfo()
+        bookInfoVC.bookData = book
+        bookInfoVC.popOver = true
+
+        let popover = NSPopover()
+        popover.contentViewController = bookInfoVC
+        popover.behavior = .transient
+        popover.show(relativeTo: anchor.rect, of: anchor.view, preferredEdge: .maxX)
+        bookInfoPopover = popover
+    }
+
+    @objc func toggleFavoriteAction(_ sender: NSMenuItem) {
+        guard let book = sender.representedObject as? BooksData else { return }
+        HistoryViewModel.shared.toggleFavorite(book.id)
+    }
+
+    @objc func removeHistoryAction(_ sender: NSMenuItem) {
+        guard let book = sender.representedObject as? BooksData else { return }
+        HistoryViewModel.shared.removeHistory(for: book.id)
+    }
+}

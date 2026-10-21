@@ -1,0 +1,81 @@
+//
+//  CategoryData.swift
+//  Maktabah
+//
+
+import Foundation
+
+class CategoryData: @unchecked Sendable {
+    let id: Int
+    let name: String
+    let normalizedName: String
+    let level: Int
+    let order: Int
+    let parentId: Int?
+    var isChecked: Bool = true
+    var children: [Any] = [] // Bisa berisi CategoryData atau BooksData
+
+    init(id: Int, name: String, level: Int, order: Int, parentId: Int? = nil) {
+        self.id = id
+        self.name = StringInterner.shared.intern(name)
+        normalizedName = name.normalizeArabic(false)
+        self.level = level
+        self.order = order
+        self.parentId = parentId
+    }
+
+    func copy(with zone: NSZone? = nil) -> CategoryData {
+        CategoryData(
+            id: id,
+            name: StringInterner.shared.intern(name),
+            level: level,
+            order: order,
+            parentId: parentId
+        )
+    }
+
+    var allBooks: [BooksData] {
+        var result: [BooksData] = []
+        collectBooks(into: &result)
+        return result
+    }
+
+    var allSubcategories: [CategoryData] {
+        var result: [CategoryData] = []
+        collectSubcategories(into: &result)
+        return result
+    }
+
+    private func collectBooks(into books: inout [BooksData]) {
+        for child in children {
+            if let book = child as? BooksData {
+                books.append(book)
+            } else if let sub = child as? CategoryData {
+                sub.collectBooks(into: &books)
+            }
+        }
+    }
+
+    private func collectSubcategories(into categories: inout [CategoryData]) {
+        for child in children {
+            if let sub = child as? CategoryData {
+                categories.append(sub)
+                sub.collectSubcategories(into: &categories)
+            }
+        }
+    }
+
+    @discardableResult
+    func insertBookSorted(_ book: BooksData) -> Int {
+        if let existingIndex = children.firstIndex(where: { ($0 as? BooksData)?.id == book.id }) {
+            children[existingIndex] = book
+            return existingIndex
+        }
+        let firstBookIndex = children.firstIndex { $0 is BooksData } ?? children.count
+        let existingBooks = children[firstBookIndex...].compactMap { $0 as? BooksData }
+        let relativeIndex = existingBooks.insertionIndex(for: book) { $0.book < $1.book }
+        let insertIndex = firstBookIndex + relativeIndex
+        children.insert(book, at: insertIndex)
+        return insertIndex
+    }
+}

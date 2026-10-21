@@ -1,0 +1,327 @@
+//
+//  BookUpdateVM.swift
+//  Maktabah
+//
+//  Created by MacBook on 06/02/26.
+//
+
+import Foundation
+import Observation
+import OSLog
+import SwiftUI
+
+@Observable
+final class BookUpdateViewModel: @unchecked Sendable {
+    var availableUpdates: [BookUpdateItem] = []
+    var isLoadingList = false
+    var isUpdating = false
+    var progressMessage = ""
+    var updateResults: [BookUpdateResult] = []
+
+    static let driveLink = "https://drive.google.com/uc?export=download&id="
+
+    static let mainCSVURL = URL(
+        string: driveLink + "1FYrscpCBIuIym2ZHB6QBwYfy9eswYDna"
+    )!
+    static let authCSVURL = URL(
+        string: driveLink + "1Aekhq21Ihsxr1sAhnJSxZxA59yCxmEmq"
+    )!
+
+    // MARK: - Selection Summary
+
+    var selectedCount: Int = 0
+    var totalSelectedSize: Int64 = 0
+    var totalSelectedSizeFormatted: String = "0 B"
+    var needsUpdateCount: Int = 0
+
+    var hasUpdates: Bool {
+        !availableUpdates.isEmpty
+    }
+
+    // MARK: - Update Selection Summary
+
+    func updateSelectionSummary() {
+        var count = 0
+        var size: Int64 = 0
+        var needsCount = 0
+        for item in availableUpdates {
+            if item.isSelected {
+                count += 1
+                size += item.fileSize
+            }
+            if item.needsUpdate {
+                needsCount += 1
+            }
+        }
+        selectedCount = count
+        totalSelectedSize = size
+        totalSelectedSizeFormatted = size.formattedByteCount
+        needsUpdateCount = needsCount
+    }
+
+    func toggleSelection(for item: BookUpdateItem) {
+        guard item.needsUpdate else { return }
+        item.isSelected.toggle()
+        updateSelectionSummary()
+    }
+
+    // MARK: - Load Available Updates
+
+    func loadAvailableUpdates() {
+        isLoadingList = true
+        progressMessage = String(localized: .Library.loadingUpdateLists)
+
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            do {
+                let items = try await BookUpdateManager.shared
+                    .fetchAvailableUpdates(from: Self.mainCSVURL)
+
+                availableUpdates = items
+                updateSelectionSummary()
+                progressMessage = String(localized: .Library.foundBooksNeedUpdate(needsUpdateCount))
+
+            } catch {
+                progressMessage = "Error: \(error.localizedDescription)"
+                Logger.library.error("❌ [Load Updates] Error: \(error.localizedDescription, privacy: .public)")
+            }
+
+            isLoadingList = false
+        }
+    }
+
+    // MARK: - Select/Deselect Actions
+
+    func selectAll() {
+        for item in availableUpdates {
+            item.isSelected = item.needsUpdate
+        }
+        updateSelectionSummary()
+    }
+
+    func deselectAll() {
+        for item in availableUpdates {
+            item.isSelected = false
+        }
+        updateSelectionSummary()
+    }
+
+    func selectOnlyUpdates() {
+        for item in availableUpdates {
+            item.isSelected = item.needsUpdate
+        }
+        updateSelectionSummary()
+    }
+
+    // MARK: - Perform Selective Update
+
+    func performSelectedUpdates() {
+        let selectedItems = availableUpdates.filter { $0.isSelected && $0.needsUpdate }
+        guard !selectedItems.isEmpty else {
+            progressMessage = String(localized: .Library.noBooksSelected)
+            return
+        }
+
+        isUpdating = true
+        progressMessage = String(localized: .Library.startingBooksUpdate(selectedItems.count))
+        updateResults.removeAll()
+
+        Task { @MainActor [weak self] in
+            defer {
+                self?.isUpdating = false
+                BookUpdateManager.shared.cleanupWorkingDirectory()
+            }
+            await self?.executeBookUpdates(selectedItems: selectedItems)
+        }
+    }
+
+    @MainActor
+    private func executeBookUpdates(selectedItems: [BookUpdateItem]) async {
+        do {
+            let authEntries = try await BookUpdateManager.shared.fetchAuthIndexEntriesIfNeeded(from: Self.authCSVURL)
+            let authIndexMap = Dictionary(uniqueKeysWithValues: authEntries.map { ($0.authId, $0) })
+
+            let selectedContexts = createSelectedContexts(from: selectedItems)
+            for context in selectedContexts {
+                context.item.status = .downloading
+            }
+
+            let stagedUpdates = await downloadSelectedBooksInParallel(
+                selectedContexts: selectedContexts,
+                authIndexMap: authIndexMap,
+                maxConcurrentDownloads: 3
+            )
+
+            progressMessage = String(localized: .Library.downloadPhaseCompleted(stagedUpdates.count, selectedItems.count))
+
+            let results = await processStagedUpdates(
+                selectedContexts: selectedContexts, stagedUpdates: stagedUpdates, totalCount: selectedItems.count
+            )
+            updateResults = results
+
+            try await LibraryDataManager.shared.processBookUpdates(results)
+            refreshAvailableUpdatesState()
+        } catch {
+            progressMessage = "Error: \(error.localizedDescription)"
+            Logger.library.error("❌ [Perform Updates] Error: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    private func createSelectedContexts(from selectedItems: [BookUpdateItem]) -> [SelectedBookContext] {
+        selectedItems.enumerated().map { index, item in
+            SelectedBookContext(
+                index: index,
+                item: item,
+                entry: BookIndexEntry(
+                    bkid: item.id, bk: item.bookName, category: item.category,
+                    versionName: item.newVersion, downloadURL: item.downloadURL, fileSize: item.fileSize
+                )
+            )
+        }
+    }
+
+    @MainActor
+    private func processStagedUpdates(
+        selectedContexts: [SelectedBookContext],
+        stagedUpdates: [Int: BookUpdateManager.StagedBookUpdate],
+        totalCount: Int
+    ) async -> [BookUpdateResult] {
+        var results: [BookUpdateResult] = []
+        var completedCount = 0
+        var processingCount = 0
+
+        for context in selectedContexts {
+            guard let stagedUpdate = stagedUpdates[context.index] else { continue }
+
+            context.item.status = .processing
+            processingCount += 1
+            progressMessage = String(localized: .Library.processingBook(context.item.bookName, processingCount, totalCount))
+
+            if let result = await applySingleStagedUpdate(context: context, stagedUpdate: stagedUpdate) {
+                results.append(result)
+                if result.action == .inserted || result.action == .updated {
+                    completedCount += 1
+                }
+            }
+        }
+
+        progressMessage = String(localized: .Library.completedBooksUpdated(completedCount, totalCount))
+        return results
+    }
+
+    @MainActor
+    private func applySingleStagedUpdate(
+        context: SelectedBookContext,
+        stagedUpdate: BookUpdateManager.StagedBookUpdate
+    ) async -> BookUpdateResult? {
+        do {
+            let result = try await BookUpdateManager.shared.applyStagedBookUpdate(stagedUpdate)
+            switch result.action {
+            case .inserted, .updated:
+                context.item.currentVersion = context.item.newVersion
+                context.item.isSelected = false
+                context.item.status = .completed
+            case .skipped:
+                context.item.status = .skipped
+            }
+            return result
+        } catch {
+            context.item.status = .failed(error.localizedDescription)
+            refreshAvailableUpdatesState()
+            Logger.library.error("[Update] Failed to update book \(context.item.id): \(error.localizedDescription, privacy: .public)")
+            return nil
+        }
+    }
+
+    private struct SelectedBookContext {
+        let index: Int
+        let item: BookUpdateItem
+        let entry: BookIndexEntry
+    }
+
+    private struct DownloadTaskInput {
+        let index: Int
+        let entry: BookIndexEntry
+    }
+
+    private struct DownloadTaskOutput {
+        let index: Int
+        let stagedUpdate: BookUpdateManager.StagedBookUpdate?
+        let error: Error?
+    }
+
+    @MainActor
+    private func downloadSelectedBooksInParallel(
+        selectedContexts: [SelectedBookContext],
+        authIndexMap: [Int: AuthIndexEntry],
+        maxConcurrentDownloads: Int
+    ) async -> [Int: BookUpdateManager.StagedBookUpdate] {
+        var stagedUpdates: [Int: BookUpdateManager.StagedBookUpdate] = [:]
+        let taskInputs = selectedContexts.map {
+            DownloadTaskInput(index: $0.index, entry: $0.entry)
+        }
+
+        var completedDownloads = 0
+
+        for chunkStart in stride(from: 0, to: taskInputs.count, by: maxConcurrentDownloads) {
+            let chunkEnd = min(chunkStart + maxConcurrentDownloads, taskInputs.count)
+            let chunk = Array(taskInputs[chunkStart ..< chunkEnd])
+
+            await withTaskGroup(of: DownloadTaskOutput.self) { group in
+                for taskInput in chunk {
+                    group.addTask {
+                        await self.stageSingleBookDownload(input: taskInput, authIndexMap: authIndexMap)
+                    }
+                }
+
+                for await output in group {
+                    completedDownloads += 1
+                    self.processDownloadOutput(
+                        output,
+                        selectedContexts: selectedContexts,
+                        stagedUpdates: &stagedUpdates
+                    )
+                    progressMessage = String(localized:
+                        "Downloading books... (\(completedDownloads)/\(selectedContexts.count))")
+                }
+            }
+        }
+
+        return stagedUpdates
+    }
+
+    private func stageSingleBookDownload(
+        input: DownloadTaskInput,
+        authIndexMap: [Int: AuthIndexEntry]
+    ) async -> DownloadTaskOutput {
+        do {
+            let stagedUpdate = try await BookUpdateManager.shared.stageBookDownload(
+                input.entry,
+                authIndex: authIndexMap
+            )
+            return DownloadTaskOutput(index: input.index, stagedUpdate: stagedUpdate, error: nil)
+        } catch {
+            return DownloadTaskOutput(index: input.index, stagedUpdate: nil, error: error)
+        }
+    }
+
+    @MainActor
+    private func processDownloadOutput(
+        _ output: DownloadTaskOutput,
+        selectedContexts: [SelectedBookContext],
+        stagedUpdates: inout [Int: BookUpdateManager.StagedBookUpdate]
+    ) {
+        let item = selectedContexts[output.index].item
+        if let stagedUpdate = output.stagedUpdate {
+            stagedUpdates[output.index] = stagedUpdate
+            item.status = .downloaded
+        } else if let error = output.error {
+            item.status = .failed(error.localizedDescription)
+            Logger.library.error("[Download] Failed to download book \(item.id): \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    private func refreshAvailableUpdatesState() {
+        updateSelectionSummary()
+    }
+}

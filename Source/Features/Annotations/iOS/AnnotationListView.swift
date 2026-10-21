@@ -1,0 +1,336 @@
+import SwiftUI
+
+struct AnnotationListView: View {
+    @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
+    @State private var showMissingBookAlert = false
+    @State private var missingBookId: Int = 0
+    @AppStorage("hideMissingBookAnnotations") private var hideMissingBookAnnotations: Bool = false
+
+    @State private var isExporting = false
+    @State private var exportDocument: AnnotationJsonDocument?
+    @State private var isImporting = false
+    @State private var pendingImportAnnotations: [Annotation] = []
+    @State private var showOverwriteDialog = false
+    @State private var importAlertTitle = ""
+    @State private var importAlertMessage: String?
+    @State private var showImportAlert = false
+    @State private var editingAnnotation: Annotation?
+
+    var body: some View {
+        let viewModel = navigationManager.annotationViewModel
+        annotationContent(viewModel)
+            .overlay {
+                if viewModel.state == .loading {
+                    ProgressView()
+                        .controlSize(.large)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .fill(Color.appBackground)
+                        )
+                }
+            }
+            .task {
+                await viewModel.loadAnnotations()
+            }
+    }
+
+    private func annotationContent(_ viewModel: AnnotationViewModel) -> some View {
+        AnnotationViewControllerWrapper(
+            navigationManager: navigationManager,
+            viewModel: viewModel,
+            onEditAnnotation: { editingAnnotation = $0 },
+            onShowBookInfo: { navigationManager.selectedBookForInfo = $0 }
+        )
+        .themeTint()
+        .ignoresSafeArea(edges: .vertical)
+        .annotationSearch(viewModel: viewModel)
+        .missingBookAlert(
+            missingBookId: $missingBookId,
+            showAlert: $showMissingBookAlert,
+            hideAnnotations: hideMissingBookAnnotations,
+            onFilterChange: { viewModel.applyFilter() }
+        )
+        .withActiveIntegrationStates()
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                annotationToolbarMenu(viewModel: viewModel)
+            }
+        }
+        .fileExportImportModifiers(
+            isExporting: $isExporting,
+            exportDocument: exportDocument,
+            isImporting: $isImporting,
+            handleImportResult: handleImportResult,
+            onExportFailed: { error in
+                showImportAlert(title: "Export Failed".localized, message: error.localizedDescription)
+            }
+        )
+        .importOverwriteConfirmation(
+            showDialog: $showOverwriteDialog,
+            pendingAnnotations: $pendingImportAnnotations,
+            onPerformImport: { overwrite in
+                performImport(overwrite: overwrite, viewModel: viewModel)
+            }
+        )
+        .importResultAlert(
+            title: importAlertTitle,
+            message: importAlertMessage,
+            isPresented: $showImportAlert
+        )
+        .annotationEditorSheet(
+            editingAnnotation: $editingAnnotation,
+            viewModel: viewModel
+        )
+    }
+
+    @ViewBuilder
+    private func annotationToolbarMenu(viewModel: AnnotationViewModel) -> some View {
+        @Bindable var viewModel = viewModel
+        Menu {
+            Picker("Group By", selection: $viewModel.groupingMode) {
+                Text("Book").tag(AnnotationGroupingMode.book)
+                Text("Tag").tag(AnnotationGroupingMode.tag)
+                Text(.Annotation.timeline).tag(AnnotationGroupingMode.timeline)
+            }
+
+            Divider()
+
+            Picker("Sort By", selection: $viewModel.sortField) {
+                Text("Date Created").tag(AnnotationSortField.createdAt)
+                Text("Context").tag(AnnotationSortField.context)
+                Text("Page").tag(AnnotationSortField.page)
+                Text("Part").tag(AnnotationSortField.part)
+            }
+
+            Picker("Order", selection: $viewModel.sortAscending) {
+                Text("Ascending").tag(true)
+                Text("Descending").tag(false)
+            }
+
+            Divider()
+
+            Button {
+                exportAnnotations()
+            } label: {
+                Label(String(localized: .Annotation.exportAnnotationsJson), systemImage: "square.and.arrow.up")
+            }
+
+            Button {
+                isImporting = true
+            } label: {
+                Label(String(localized: .Annotation.importAnnotationsJson), systemImage: "square.and.arrow.down")
+            }
+
+            Divider()
+
+            Button(role: .destructive) {
+                CloudKitSyncManager.shared.resetChangeToken()
+            } label: {
+                Label(String(localized: .Annotation.reSynchroniseAllData), systemImage: "arrow.counterclockwise.icloud")
+            }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down.circle")
+        }
+    }
+
+    private func exportAnnotations() {
+        Task.detached(priority: .userInitiated) {
+            let allAnnotations = AnnotationStore.shared.loadAnnotations()
+            if let jsonString = AnnotationJsonSerializer.encode(annotations: allAnnotations) {
+                await MainActor.run {
+                    exportDocument = AnnotationJsonDocument(jsonString: jsonString)
+                    isExporting = true
+                }
+            }
+        }
+    }
+
+    private func handleImportResult(_ result: Result<[URL], Error>) {
+        switch result {
+        case let .success(urls):
+            guard let url = urls.first else { return }
+            guard url.startAccessingSecurityScopedResource() else {
+                showImportAlert(title: "Import Failed".localized, message: "Unable to access selected file.".localized)
+                return
+            }
+            Task.detached(priority: .userInitiated) {
+                defer { url.stopAccessingSecurityScopedResource() }
+                do {
+                    let data = try Data(contentsOf: url)
+                    let decoded = try AnnotationJsonSerializer.decode(from: data)
+                    await MainActor.run {
+                        guard !decoded.isEmpty else {
+                            showImportAlert(title: String(localized: .Annotation.importAnnotations), message: String(localized: .Annotation.noAnnotationsFoundInFile))
+                            return
+                        }
+                        pendingImportAnnotations = decoded
+                        showOverwriteDialog = true
+                    }
+                } catch {
+                    await MainActor.run {
+                        showImportAlert(title: "Import Failed".localized, message: error.localizedDescription)
+                    }
+                }
+            }
+        case let .failure(error):
+            showImportAlert(title: "Import Failed".localized, message: error.localizedDescription)
+        }
+    }
+
+    private func showImportAlert(title: String, message: String) {
+        importAlertTitle = title
+        importAlertMessage = message
+        showImportAlert = true
+    }
+
+    private func performImport(overwrite: Bool, viewModel: AnnotationViewModel) {
+        let annotations = pendingImportAnnotations
+        pendingImportAnnotations = []
+        Task.detached(priority: .userInitiated) {
+            do {
+                let count = try AnnotationStore.shared.importAnnotations(annotations, overwrite: overwrite)
+                await MainActor.run {
+                    importAlertTitle = String(localized: .Annotation.importAnnotations)
+                    importAlertMessage = String(localized: .Annotation.annotationsImportedSuccess(count))
+                    showImportAlert = true
+                }
+                await viewModel.loadAnnotations()
+            } catch {
+                await MainActor.run {
+                    importAlertTitle = "Import Failed".localized
+                    importAlertMessage = error.localizedDescription
+                    showImportAlert = true
+                }
+            }
+        }
+    }
+}
+
+private extension View {
+    func annotationSearch(viewModel: AnnotationViewModel) -> some View {
+        @Bindable var viewModel = viewModel
+        return searchable(
+            text: $viewModel.searchText,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: Text(.Annotation.searchAnnotations)
+        )
+        .searchScopes($viewModel.searchScope) {
+            ForEach(AnnotationSearchScope.allCases) { scope in
+                Text(scope.title).tag(scope)
+            }
+        }
+    }
+
+    func fileExportImportModifiers(
+        isExporting: Binding<Bool>,
+        exportDocument: AnnotationJsonDocument?,
+        isImporting: Binding<Bool>,
+        handleImportResult: @escaping (Result<[URL], Error>) -> Void,
+        onExportFailed: @escaping (Error) -> Void
+    ) -> some View {
+        fileExporter(
+            isPresented: isExporting,
+            document: exportDocument,
+            contentType: .json,
+            defaultFilename: "maktabah_annotations.json"
+        ) { result in
+            if case let .failure(error) = result {
+                onExportFailed(error)
+            }
+        }
+        .fileImporter(
+            isPresented: isImporting,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false,
+            onCompletion: handleImportResult
+        )
+    }
+
+    func importOverwriteConfirmation(
+        showDialog: Binding<Bool>,
+        pendingAnnotations: Binding<[Annotation]>,
+        onPerformImport: @escaping (Bool) -> Void
+    ) -> some View {
+        confirmationDialog(
+            String(localized: .Annotation.importAnnotations),
+            isPresented: showDialog,
+            titleVisibility: .visible
+        ) {
+            Button("Overwrite Existing".localized) {
+                onPerformImport(true)
+            }
+            Button("Skip Duplicates".localized) {
+                onPerformImport(false)
+            }
+            Button("Cancel".localized, role: .cancel) {
+                pendingAnnotations.wrappedValue = []
+            }
+        } message: {
+            Text(.Annotation.duplicateAnnotationsPrompt)
+        }
+        .onChange(of: showDialog.wrappedValue) { _, isPresented in
+            if !isPresented {
+                pendingAnnotations.wrappedValue = []
+            }
+        }
+    }
+
+    func importResultAlert(
+        title: String,
+        message: String?,
+        isPresented: Binding<Bool>
+    ) -> some View {
+        alert(title, isPresented: isPresented) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            if let msg = message {
+                Text(msg)
+            }
+        }
+    }
+
+    func missingBookAlert(
+        missingBookId: Binding<Int>,
+        showAlert: Binding<Bool>,
+        hideAnnotations: Bool,
+        onFilterChange: @escaping () -> Void
+    ) -> some View {
+        onReceive(NotificationCenter.default.publisher(for: .annotationMissingBook)) { notification in
+            if let bookId = notification.object as? Int {
+                missingBookId.wrappedValue = bookId
+                showAlert.wrappedValue = true
+            }
+        }
+        .onChange(of: hideAnnotations) { _, _ in
+            onFilterChange()
+        }
+        .alert(.Library.bookNotFound(missingBookId.wrappedValue), isPresented: showAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(.Library.bookMissingOnAnnotationClick)
+        }
+    }
+
+    func annotationEditorSheet(
+        editingAnnotation: Binding<Annotation?>,
+        viewModel: AnnotationViewModel
+    ) -> some View {
+        sheet(item: editingAnnotation) { ann in
+            iOSAnnotationEditorSheet(
+                annotation: ann,
+                onSave: { updated in
+                    do {
+                        try AnnotationStore.shared.updateAnnotation(updated)
+                        UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    } catch {
+                        UINotificationFeedbackGenerator().notificationOccurred(.error)
+                    }
+                },
+                onDelete: { id in
+                    viewModel.deleteAnnotation(id: id)
+                    UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                }
+            )
+        }
+    }
+}

@@ -1,0 +1,871 @@
+//
+//  AppDelegate.swift
+//  maktab
+//
+//  Created by MacBook on 29/11/25.
+//  Restorable state saat membuka jendela baru
+//
+
+@preconcurrency import CloudKit
+import Combine
+import OSLog
+import SwiftUI
+#if DIRECT_DISTRIBUTION
+import Sparkle
+#endif
+
+@main @MainActor
+class AppDelegate: NSObject, NSApplicationDelegate {
+    @IBOutlet var menu: NSMenu!
+    @IBOutlet weak var viewMenu: NSMenu!
+    @IBOutlet weak var appUpdatesMenuItem: NSMenuItem!
+    @IBOutlet weak var showDiacriticMenuItem: NSMenuItem!
+
+    @IBOutlet weak var controlMenu: NSMenu!
+    @IBOutlet weak var clickEditAnnotationMenuItem: NSMenuItem!
+    @IBOutlet weak var screenTimeMenuItem: NSMenuItem!
+    @IBOutlet weak var bookUpdatesMenuItem: NSMenuItem!
+
+    fileprivate var mainWindowController: NSWindowController!
+    fileprivate var windowControllers = Set<WindowController>()
+    private var isTerminating = false
+    private var pendingDeepLink: WidgetDeepLink?
+    var isFinishedLaunching = false
+    private var activeDeepLinkTask: Task<Void, Never>?
+
+    private let sessionSaveSubject = PassthroughSubject<Void, Never>()
+    private var sessionSaveCancellable: AnyCancellable?
+    private var lastSavedSession: WindowTabsSession?
+
+    fileprivate weak var quranWindow: NSWindow?
+    fileprivate weak var settingsWindow: NSWindow?
+
+    fileprivate var keyWindow: MainWindow? {
+        NSApp.keyWindow as? MainWindow
+    }
+
+    #if DIRECT_DISTRIBUTION
+    lazy var updaterController = SPUStandardUpdaterController(
+        startingUpdater: true,
+        updaterDelegate: self,
+        userDriverDelegate: nil
+    )
+    #endif
+
+    // Core Update Properties
+    var coreUpdateAlertWindow: NSWindow?
+    var coreDownloadProgressWindow: NSWindow?
+    var coreDownloadProgressState: CoreDownloadProgressState?
+    var coreDownloadProgressView: CoreDownloadProgressView?
+    var coreDownloader: CoreDatabaseDownloader?
+
+    override init() {
+        super.init()
+        BackendComposition.registerAll()
+        ArabicFont.registerCustomFonts()
+        AppConfig.initializeMode()
+        AppConfig.setupAnnotationsAndResults()
+        if BackendCoordinator.shared.usesNativeMaktabahDataPath {
+            CoreDatabaseBootstrap.run()
+        }
+        UserDefaults.standard.register(defaults: ["AplFirstLaunch": true])
+    }
+
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        let wc = WindowController()
+        registerWindowController(wc)
+        guard let window = wc.window else { return }
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"]
+            == "1" { return }
+
+        window.makeKeyAndOrderFront(nil)
+
+        NSAppleEventManager.shared().setEventHandler(
+            self,
+            andSelector: #selector(handleGetURLEvent(_:withReplyEvent:)),
+            forEventClass: AEEventClass(kInternetEventClass),
+            andEventID: AEEventID(kAEGetURL)
+        )
+    }
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        restorePersistedState(mainWindowController.window as? MainWindow)
+
+        if let deepLink = pendingDeepLink {
+            pendingDeepLink = nil
+            activeDeepLinkTask = Task { @MainActor in
+                await handleDeepLink(deepLink)
+            }
+        }
+        isFinishedLaunching = true
+        buildViewMenu()
+
+        BookConnection.tocTreeCache.countLimit = 20
+        BookConnection.tocTreeCache.totalCostLimit = 50 * 1024 * 1024
+
+        setupWindowObserver()
+        setupSessionAutoSave()
+
+        controlMenu.delegate = self
+        _ = ScreenTimeManager.shared // untuk init supaya pengaturan diload.
+        _ = WidgetUpdateCoordinator.shared // untuk init observer widget & snapshot awal
+
+        registerUserDefaults()
+
+        CloudKitSyncManager.shared.initializeOnLaunch()
+        // Register for CloudKit remote notifications
+        NSApplication.shared.registerForRemoteNotifications()
+
+        showWelcomeScreenIfNeeded()
+
+        // Check for core database updates (blocking, throttled 6 months)
+        checkCoreDatabaseUpdate()
+
+        // Check for book updates in background (throttled 24h, low priority)
+        checkBookUpdatesPeriodically()
+
+        NotificationCenter.default.addObserver(
+            forName: .booksChanged,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.checkBookUpdatesPeriodically(force: true)
+            }
+        }
+    }
+
+    private func registerUserDefaults() {
+        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.lineHeight: 1.0])
+        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorDark: 3])
+        UserDefaults.standard.register(defaults: [UserDefaults.TextViewKeys.backgroundColorLight: 0])
+        UserDefaults.standard.register(defaults: ["annotationsLayoutDirection": 1])
+
+        if UserDefaults.standard.data(forKey: AppConfig.annotationsAndResultsFolder) == nil {
+            UserDefaults.standard.register(defaults: [AppConfig.useICloudKey: true])
+        }
+
+        #if DIRECT_DISTRIBUTION
+        UserDefaults.standard.register(
+            defaults: [UserDefaults.autoCheckAppUpdatesKey: true]
+        )
+        Task.detached(priority: .low) { [weak self] in
+            if !UserDefaults.standard.autoCheckAppUpdates {
+                return
+            }
+            await Task.yield()
+            await self?.checkAppUpdates(true)
+        }
+        #else
+        appUpdatesMenuItem.isHidden = true
+        #endif
+
+    }
+
+    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
+        guard AppConfig.useICloud else { return }
+        Task {
+            try? await Task.sleep(for: .seconds(5))
+            CloudKitSyncManager.shared.fetchChanges()
+            await WidgetUpdateCoordinator.shared.handleSilentPush()
+        }
+    }
+
+    func applicationDidBecomeActive(_ notification: Notification) {
+        HistoryViewModel.shared.reloadFromDatabase()
+        if AppConfig.useICloud {
+            CloudKitSyncManager.shared.fetchChanges()
+        }
+        DonationManager.shared.recordActivation()
+        DonationManager.shared.checkAndPromptMacOSSheet(on: keyWindow ?? mainWindowController?.window)
+    }
+
+    func showWelcomeScreenIfNeeded() {
+        guard WelcomeScreenManager.shouldShow else { return }
+
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 520, height: 480),
+            styleMask: [.fullSizeContentView, .titled],
+            backing: .buffered,
+            defer: false
+        )
+
+        let contentView = WelcomeScreenView { [weak self, weak window] in
+            guard let window else { return }
+            WelcomeScreenManager.markAsPrompted()
+
+            if let mainWin = self?.mainWindowController?.window, mainWin.sheets.contains(window) {
+                mainWin.endSheet(window)
+            } else {
+                window.close()
+            }
+        }
+
+        let hostingView = NSHostingView(rootView: contentView)
+        window.contentView = hostingView
+        window.title = "What's New"
+        window.titleVisibility = .hidden
+        window.titlebarAppearsTransparent = true
+        window.isReleasedWhenClosed = false
+
+        if let mainWin = mainWindowController?.window {
+            mainWin.beginSheet(window)
+        } else {
+            window.center()
+            window.makeKeyAndOrderFront(nil)
+        }
+    }
+
+    func applicationWillResignActive(_ notification: Notification) {
+        flushPendingWidgetUpdates(cloudKit: true)
+    }
+
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        isTerminating = true
+        saveAllTabsSession()
+        return .terminateNow
+    }
+
+    func applicationWillTerminate(_ aNotification: Notification) {
+        isTerminating = true
+        flushPendingWidgetUpdates(cloudKit: true)
+        CloudKitCoreManager.shared.syncWorker()
+        CloudKitSyncManager.shared.resetSyncingKey(syncing: false)
+        ScreenTimeManager.shared.cancel()
+    }
+
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        true
+    }
+
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        mainWindowController = nil
+        return false
+    }
+
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows: Bool) -> Bool {
+        if !hasVisibleWindows {
+            newWindow(sender)
+        }
+        return true
+    }
+
+    // MARK: - Window Management
+
+    func registerWindowController(_ wc: WindowController) {
+        windowControllers.insert(wc)
+        if mainWindowController == nil {
+            mainWindowController = wc
+        }
+    }
+
+    func scheduleSessionSave() {
+        guard isFinishedLaunching, !isTerminating else { return }
+        sessionSaveSubject.send(())
+    }
+
+    func setupSessionAutoSave() {
+        sessionSaveCancellable = sessionSaveSubject
+            .debounce(for: .seconds(3), scheduler: RunLoop.main)
+            .sink { [weak self] in
+                guard let self, !isTerminating, mainWindowController != nil else { return }
+                saveAllTabsSession()
+            }
+    }
+
+    func saveAllTabsSession() {
+        guard let refWindow = (keyWindow ?? mainWindowController?.window as? MainWindow ?? NSApp.windows.compactMap { $0 as? MainWindow }.first) else {
+            return
+        }
+
+        let tabbedWindows: [MainWindow] = if let group = refWindow.tabGroup?.windows.compactMap({ $0 as? MainWindow }), !group.isEmpty {
+            group
+        } else {
+            [refWindow]
+        }
+
+        let selectedWin = keyWindow ?? (refWindow.tabGroup?.selectedWindow as? MainWindow) ?? (mainWindowController?.window as? MainWindow) ?? refWindow
+        let selectedIndex = tabbedWindows.firstIndex(where: { $0 === selectedWin }) ?? 0
+        var snapshots: [TabStateSnapshot] = []
+
+        for win in tabbedWindows {
+            let splitVC = win.splitVC
+            let mode = splitVC.currentMode
+            snapshots.append(
+                splitVC.stateManager.exportTabSnapshot(
+                    currentMode: mode,
+                    components: splitVC.components(for: mode)
+                )
+            )
+        }
+
+        guard !snapshots.isEmpty else { return }
+
+        let session = WindowTabsSession(selectedTabIndex: selectedIndex, tabs: snapshots)
+        if lastSavedSession == session {
+            return
+        }
+        lastSavedSession = session
+        ReaderStateManager.saveTabsSession(session)
+    }
+
+    func setupWindowObserver() {
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(windowObserverDidChangeKey(_:)),
+            name: NSWindow.didBecomeKeyNotification, object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(windowObserverWillCloseNotification(_:)),
+            name: NSWindow.willCloseNotification, object: nil
+        )
+    }
+
+    @objc func windowObserverDidChangeKey(_ notification: Notification) {
+        guard let window = notification.object as? MainWindow,
+              let windowController = window.windowController as? WindowController
+        else { return }
+
+        if mainWindowController != windowController {
+            mainWindowController = windowController
+        }
+
+        scheduleSessionSave()
+    }
+
+    @objc func windowObserverWillCloseNotification(_ notification: Notification) {
+        guard let window = notification.object as? MainWindow else { return }
+
+        if let wc = window.windowController as? WindowController {
+            windowControllers.remove(wc)
+        }
+        if mainWindowController?.window === window {
+            mainWindowController = windowControllers.first
+        }
+    }
+
+    // MARK: - App Launch
+
+    func restorePersistedState(_ window: MainWindow?) {
+        guard let firstWindow = window else {
+            Logger.app.debug("mainWindowController window nil")
+            return
+        }
+
+        if let wc = firstWindow.windowController as? WindowController {
+            registerWindowController(wc)
+        }
+
+        guard let session = ReaderStateManager.loadTabsSession(), !session.tabs.isEmpty else {
+            firstWindow.setupContentView(restoreState: false)
+            firstWindow.displayIfNeeded()
+            return
+        }
+
+        lastSavedSession = session
+
+        var restoredWindows: [MainWindow] = []
+        var previousWindow = firstWindow
+
+        for (index, snapshot) in session.tabs.enumerated() {
+            let targetWindow: MainWindow
+            if index == 0 {
+                targetWindow = firstWindow
+            } else {
+                let newWC = WindowController()
+                registerWindowController(newWC)
+                guard let newWin = newWC.window as? MainWindow else { continue }
+                previousWindow.addTabbedWindow(newWin, ordered: .above)
+                previousWindow = newWin
+                targetWindow = newWin
+            }
+
+            configureRestoredWindow(targetWindow, with: snapshot)
+            restoredWindows.append(targetWindow)
+        }
+
+        let safeIndex = min(max(0, session.selectedTabIndex), restoredWindows.count - 1)
+        activateWindow(restoredWindows[safeIndex], firstWindow: firstWindow)
+    }
+
+    private func configureRestoredWindow(_ window: MainWindow, with snapshot: TabStateSnapshot) {
+        let mode = snapshot.currentMode
+        let splitVC = window.splitVC
+        splitVC.stateManager.importTabSnapshot(snapshot)
+
+        window.setupContentView(mode: mode, restoreState: true)
+        splitVC.setupForMode(mode)
+        splitVC.setupAutoSave()
+        splitVC.sidebarItem.isCollapsed = splitVC.stateManager.getState(for: mode).isSidebarCollapsed
+        splitVC.stateManager.restoreState(
+            for: mode,
+            components: splitVC.components(for: mode)
+        )
+        window.setupView()
+        window.displayIfNeeded()
+    }
+
+    private func activateWindow(_ activeWindow: MainWindow, firstWindow: MainWindow) {
+        firstWindow.tabGroup?.selectedWindow = activeWindow
+        activeWindow.makeKeyAndOrderFront(nil)
+        if let wc = activeWindow.windowController as? WindowController {
+            mainWindowController = wc
+        }
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            (activeWindow.tabGroup ?? firstWindow.tabGroup)?.selectedWindow = activeWindow
+            activeWindow.makeKeyAndOrderFront(nil)
+            if let wc = activeWindow.windowController as? WindowController {
+                mainWindowController = wc
+            }
+        }
+    }
+
+    @IBAction func openSettings(_ sender: Any?) {
+        if let settingsWindow {
+            settingsWindow.center()
+            settingsWindow.makeKeyAndOrderFront(nil)
+            return
+        }
+
+        let contentView = SettingsView()
+        let hostingView = NSHostingView(rootView: contentView)
+        hostingView.frame = NSRect(x: 0, y: 0, width: 600, height: 520)
+
+        let window = ReusableFunc.makeWindow(
+            contentView: hostingView,
+            styleMask: [.titled, .closable, .miniaturizable, .resizable],
+            title: String(localized: "Settings")
+        )
+
+        window.makeKeyAndOrderFront(sender)
+
+        settingsWindow = window
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    @IBAction func downloadLibrary(_ sender: Any?) {
+        SettingsActions.downloadSelectiveLibrary()
+    }
+
+    @IBAction fileprivate func checkUpdatesClicked(_ sender: Any?) {
+        #if DIRECT_DISTRIBUTION
+        Task.detached { [weak self] in
+            await self?.checkAppUpdates(false)
+        }
+        #endif
+    }
+
+    @IBAction fileprivate func checkBooksUpdates(_ sender: Any?) {
+        // 1. Inisialisasi SwiftUI View
+        let contentView = UpdateView()
+
+        // 2. Bungkus dalam NSHostingView
+        let hostingView = NSHostingView(rootView: contentView)
+        hostingView.frame = NSRect(x: 0, y: 0, width: 400, height: 300)
+
+        // 3. Buat Window baru dengan style mask yang sudah benar dari awal
+        let window = ReusableFunc.makeWindow(
+            contentView: hostingView,
+            styleMask: [.fullSizeContentView, .titled, .resizable],
+            title: String(localized: .Library.booksUpdates)
+        )
+
+        // 4. Jalankan sebagai Modal
+        NSApp.runModal(for: window)
+        checkBookUpdatesPeriodically(force: true)
+    }
+
+    // MARK: - Book Updates Periodic Check & Badge
+
+    fileprivate func checkBookUpdatesPeriodically(force: Bool = false) {
+        LibraryDataManager.shared.checkBookUpdatesPeriodically(
+            force: force
+        ) { [weak self] count in
+            self?.bookUpdatesMenuItem?.badge = count > 0
+                ? .init(count: count) : nil
+        }
+    }
+
+    @IBAction func importOfflineBook(_ sender: Any?) {
+        showOfflineImportWindow()
+    }
+
+    private func showOfflineImportWindow() {
+        let contentView = OfflineImportFormView(onImport: { [weak self]
+            (url: URL, metadata: BookMetadata, authorRow: [String: any Sendable]?) async in
+                guard let self else { return }
+                await performCustomImport(
+                    url: url,
+                    metadata: metadata,
+                    authorRow: authorRow
+                )
+        })
+
+        let hostingView = NSHostingView(rootView: contentView)
+        hostingView.frame = NSRect(x: 0, y: 0, width: 600, height: 600)
+
+        let window = ReusableFunc.makeWindow(
+            contentView: hostingView,
+            styleMask: [.fullSizeContentView, .titled, .closable, .resizable],
+            title: "Import Offline Book"
+        )
+
+        window.titleVisibility = .hidden
+        window.makeKeyAndOrderFront(nil as Any?)
+    }
+
+    @MainActor
+    private func performCustomImport(
+        url: URL, metadata: BookMetadata, authorRow: [String: any Sendable]?
+    ) async {
+        do {
+            let result = try await BookUpdateManager
+                .shared.importOfflineUpdate(
+                    from: url,
+                    providedMetadata: metadata,
+                    authorRow: authorRow
+                )
+
+            try? await LibraryDataManager.shared.processBookUpdates([result])
+            BookUpdateManager.shared.integrateBooks(metadata: metadata)
+
+            ReusableFunc.showAlert(
+                title: String(localized: .Library.importSuccess),
+                message: String(localized: .Library.importSuccessDesc)
+            )
+        } catch {
+            ReusableFunc.showAlert(
+                title: String(localized: .Library.importError),
+                message: error.localizedDescription
+            )
+
+            Logger.library.error("[Offline Import] Failed to import book from \(url.lastPathComponent, privacy: .public): \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    fileprivate func buildMenu(_ title: String, image: String, representedObject: AppMode? = nil, keyEquivalent: String) -> NSMenuItem {
+        let menu = NSMenuItem()
+        menu.representedObject = representedObject
+        menu.keyEquivalent = keyEquivalent
+        menu.title = title
+        menu.image = NSImage(systemSymbolName: image, accessibilityDescription: nil)
+        menu.target = self
+        menu.isEnabled = true
+        return menu
+    }
+
+    fileprivate func buildViewMenu() {
+        let modeItems = createModeMenuItems()
+        let toolItems = createToolMenuItems()
+
+        let donationItem = buildMenu(
+            String(localized: .Donation.supportDevelopmentShort),
+            image: "heart.fill",
+            keyEquivalent: ""
+        )
+        donationItem.action = #selector(showDonationSheet(_:))
+
+        viewMenu.insertItem(.separator(), at: viewMenu.items.count - 1)
+        viewMenu.insertItem(donationItem, at: viewMenu.items.count - 1)
+        viewMenu.insertItem(.separator(), at: viewMenu.items.count - 1)
+
+        for item in toolItems {
+            viewMenu.insertItem(item, at: viewMenu.items.count - 1)
+        }
+
+        viewMenu.insertItem(.separator(), at: viewMenu.items.count - 1)
+
+        for item in modeItems {
+            viewMenu.insertItem(item, at: viewMenu.items.count - 1)
+        }
+
+        viewMenu.insertItem(.separator(), at: viewMenu.items.count - 1)
+    }
+
+    private func createModeMenuItems() -> [NSMenuItem] {
+        let reader = buildMenu(
+            NSLocalizedString("Reader", comment: ""), image: "book.fill",
+            representedObject: .viewer, keyEquivalent: "1"
+        )
+        let search = buildMenu(
+            NSLocalizedString("Finder", comment: ""), image: "text.viewfinder",
+            representedObject: .search, keyEquivalent: "2"
+        )
+        let author = buildMenu(
+            NSLocalizedString("Rowi", comment: ""), image: "person.text.rectangle.fill",
+            representedObject: .narrator, keyEquivalent: "3"
+        )
+
+        reader.action = #selector(switchMode(_:))
+        search.action = #selector(switchMode(_:))
+        author.action = #selector(switchMode(_:))
+
+        return [reader, search, author]
+    }
+
+    private func createToolMenuItems() -> [NSMenuItem] {
+        let bookInfoImage = if #available(macOS 15.4, *) {
+            "info.circle.text.page.rtl"
+        } else {
+            "info.circle"
+        }
+
+        let resetCurrentView = buildMenu(NSLocalizedString("ResetCurrentView", comment: ""), image: "arrow.counterclockwise", keyEquivalent: "r")
+        let quranWindow = buildMenu(NSLocalizedString("QuranMenuBar", comment: ""), image: "character.book.closed.ar", keyEquivalent: "u")
+        let annotations = buildMenu(NSLocalizedString("Annotations", comment: ""), image: "quote.closing", keyEquivalent: "p")
+        let bookInfo = buildMenu(String(localized: .Library.bookInfo), image: bookInfoImage, keyEquivalent: "i")
+        let viewOpt = buildMenu(NSLocalizedString("View Options", comment: ""), image: "textformat.size.ar", keyEquivalent: "o")
+        let pageSlider = buildMenu(NSLocalizedString("PageSlider", comment: ""), image: "slider.horizontal.below.square.filled.and.square", keyEquivalent: "p")
+        let daftarIsi = buildMenu(NSLocalizedString("toggleTableOfContents", comment: ""), image: "doc.append.fill", keyEquivalent: "l")
+
+        bookInfo.keyEquivalentModifierMask = [.control]
+        resetCurrentView.keyEquivalentModifierMask = [.control, .option]
+        annotations.keyEquivalentModifierMask = [.control]
+        daftarIsi.keyEquivalentModifierMask = [.control, .option]
+        pageSlider.keyEquivalentModifierMask = [.control, .option]
+        viewOpt.keyEquivalentModifierMask = [.control, .option]
+        quranWindow.keyEquivalentModifierMask = [.control]
+
+        annotations.action = #selector(showAnnotations)
+        bookInfo.action = #selector(showCurrentBookInfo(_:))
+        daftarIsi.action = #selector(showTOC)
+        viewOpt.action = #selector(viewOptions)
+        pageSlider.action = #selector(navigationSlider)
+        quranWindow.action = #selector(displayQuranWindow(_:))
+        resetCurrentView.action = #selector(resetCurrentViewState)
+
+        return [resetCurrentView, .separator(), quranWindow, annotations, bookInfo, viewOpt, pageSlider, daftarIsi]
+    }
+
+    @objc private func resetCurrentViewState() {
+        guard let keyWindow else { return }
+        let splitVC = keyWindow.splitVC
+        let mode = keyWindow.currentMode
+        splitVC.stateManager.cleanUpState(
+            for: mode,
+            components: splitVC.components(for: mode)
+        )
+        saveAllTabsSession()
+    }
+
+    @objc private func viewOptions() {
+        guard let keyWindow else { return }
+        keyWindow.viewOptions(self)
+    }
+
+    @objc private func navigationSlider() {
+        guard let keyWindow else { return }
+        keyWindow.navigationPage(self)
+    }
+
+    @objc private func showTOC() {
+        guard let keyWindow else { return }
+        keyWindow.sidebarTrailing(self)
+    }
+
+    @objc private func showAnnotations() {
+        guard let keyWindow else { return }
+        keyWindow.displayAllNotations(nil)
+    }
+
+    @objc private func switchMode(_ sender: NSMenuItem) {
+        guard let keyWindow else { return }
+        keyWindow.switchMode(sender)
+    }
+
+    @objc private func displayQuranWindow(_ sender: Any) {
+        if let window = quranWindow {
+            window.makeKeyAndOrderFront(sender)
+            return
+        }
+        let rect = NSRect(x: 196, y: 240, width: 480, height: 270)
+        let style: NSWindow.StyleMask = [
+            .titled,
+            .closable,
+            .resizable,
+            .miniaturizable,
+            .fullSizeContentView,
+            .utilityWindow,
+        ]
+
+        let window = QuranWindow(
+            contentRect: rect,
+            styleMask: style,
+            backing: .buffered,
+            defer: false
+        )
+        window.title = "القرآن الكريم"
+        window.titlebarAppearsTransparent = true
+        window.tabbingMode = .disallowed
+        window.toolbarStyle = .unifiedCompact
+        window.appearance = NSAppearance(named: .vibrantLight)
+
+        quranWindow = window
+
+        let vc = QuranSplitVC()
+        window.contentViewController = vc
+        window.splitView = vc.splitView
+        window.setFrameAutosaveName("QuranWindowFrame")
+
+        window.makeKeyAndOrderFront(sender)
+        window.isReleasedWhenClosed = false
+    }
+
+    @IBAction private func extendScreenTime(_ sender: NSMenuItem) {
+        let shouldEnable = sender.state == .off
+        shouldEnable ? ScreenTimeManager.shared.extend() : ScreenTimeManager.shared.cancel()
+        UserDefaults.standard.extendScreenTime = shouldEnable
+    }
+
+    @IBAction private func clickableAnnotation(_ sender: NSMenuItem) {
+        let shouldEnable = sender.state == .off
+        TextViewState.shared.setClickableAnnotation(shouldEnable)
+    }
+
+    @IBAction func showDiacritics(_ sender: NSMenuItem) {
+        TextViewState.shared.toggleHarakat()
+    }
+
+    @IBAction func showDonationSheet(_ sender: Any?) {
+        DonationManager.shared.presentDonationSheet(on: keyWindow ?? mainWindowController?.window)
+    }
+
+    @objc private func showCurrentBookInfo(_ sender: NSMenuItem) {
+        keyWindow?.splitVC.bookInfo(sender)
+    }
+
+    @IBAction func decreaseFontSize(_ sender: NSMenuItem) {
+        TextViewState.shared.changeFontSize(by: -2)
+    }
+
+    @IBAction func increaseFontSize(_ sender: NSMenuItem) {
+        TextViewState.shared.changeFontSize(by: 2)
+    }
+
+    @IBAction func newWindow(_ sender: Any) {
+        newWindow(sender, restoreState: true)
+    }
+
+    func newWindow(_ sender: Any, restoreState: Bool, mode: AppMode? = nil) {
+        let wc = WindowController()
+        wc.window?.setFrameAutosaveName("MainWindow")
+        let hadNoMainWindow = (mainWindowController == nil)
+        registerWindowController(wc)
+
+        guard let w = wc.window as? MainWindow else { return }
+
+        if hadNoMainWindow, restoreState {
+            restorePersistedState(w)
+        } else {
+            w.setupContentView(mode: mode, restoreState: false)
+            w.makeKeyAndOrderFront(sender)
+            w.displayIfNeeded()
+        }
+    }
+
+    @IBAction func newTabWindow(_ sender: Any?) {
+        guard let keyWindow else { return }
+        keyWindow.newWindowForTab(sender)
+    }
+
+    @discardableResult
+    func ensureActiveMainWindow(mode: AppMode? = nil, restoreState: Bool = true) -> MainWindow? {
+        NSApp.activate(ignoringOtherApps: true)
+
+        if let existingWindow = (NSApp.windows.first(where: { $0 is MainWindow && !$0.isMiniaturized }) as? MainWindow) ?? (keyWindow ?? mainWindowController?.window as? MainWindow) {
+            existingWindow.makeKeyAndOrderFront(nil)
+            return existingWindow
+        }
+
+        if let minimizedWindow = NSApp.windows.first(where: { $0 is MainWindow && $0.isMiniaturized }) as? MainWindow {
+            minimizedWindow.deminiaturize(nil)
+            minimizedWindow.makeKeyAndOrderFront(nil)
+            return minimizedWindow
+        }
+
+        newWindow(self, restoreState: restoreState, mode: mode)
+        return keyWindow ?? (mainWindowController?.window as? MainWindow)
+    }
+
+    private func processDeepLink(_ deepLink: WidgetDeepLink) {
+        if isFinishedLaunching {
+            activeDeepLinkTask?.cancel()
+            activeDeepLinkTask = Task { @MainActor in
+                await handleDeepLink(deepLink)
+            }
+        } else {
+            pendingDeepLink = deepLink
+        }
+    }
+
+    func application(_ application: NSApplication, open urls: [URL]) {
+        guard let url = urls.first, let deepLink = WidgetDeepLink.parse(from: url) else { return }
+        processDeepLink(deepLink)
+    }
+
+    @objc func handleGetURLEvent(_ event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {
+        guard let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue,
+              let url = URL(string: urlString),
+              let deepLink = WidgetDeepLink.parse(from: url)
+        else { return }
+
+        processDeepLink(deepLink)
+    }
+
+    @MainActor
+    private func handleDeepLink(_ deepLink: WidgetDeepLink) async {
+        guard !Task.isCancelled else { return }
+        guard let targetWindow = ensureActiveMainWindow(mode: .viewer, restoreState: false) else { return }
+
+        guard !Task.isCancelled else { return }
+        targetWindow.switchToMode(.viewer, restoreState: false)
+        let ibarotVC = targetWindow.splitVC.ibarotTextVC
+
+        guard !Task.isCancelled else { return }
+        switch deepLink {
+        case let .annotation(annId):
+            guard let annotation = AnnotationStore.shared.loadAnnotationById(annId) else { return }
+            do {
+                try await ibarotVC.openAnnotation(annotation)
+            } catch {
+                Logger.annotations.error("Failed to open annotation from deep link: \(error.localizedDescription, privacy: .public)")
+            }
+
+        case let .history(bkId, contentId):
+            guard let book = LibraryDataManager.shared.getBook([bkId]).first else { return }
+            do {
+                try await ibarotVC.openHistory(book: book, contentId: contentId)
+            } catch {
+                Logger.history.error("Failed to open history book from deep link: \(error.localizedDescription, privacy: .public)")
+            }
+        }
+    }
+
+    private func flushPendingWidgetUpdates(cloudKit: Bool = false) {
+        WidgetUpdateCoordinator.shared.flushPendingUpdatesTask(
+            forceCloudKit: cloudKit
+        )
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+extension AppDelegate: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        guard menu === controlMenu else { return }
+
+        showDiacriticMenuItem.state = TextViewState.shared
+            .showHarakat ? .on : .off
+
+        clickEditAnnotationMenuItem.state = TextViewState.shared
+            .clickableAnnotation ? .on : .off
+
+        screenTimeMenuItem.state = ScreenTimeManager.shared
+            .isExtended() ? .on : .off
+    }
+}

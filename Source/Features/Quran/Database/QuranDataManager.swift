@@ -1,0 +1,184 @@
+//
+//  QuranDataManager.swift
+//  maktab
+//
+//  Created by MacBook on 23/12/25.
+//
+
+import Foundation
+import OSLog
+import SQLite3
+
+@MainActor
+final class QuranDataManager {
+    static let shared: QuranDataManager = .init()
+    private var db: SQLiteDatabase?
+
+    private(set) var surahNodes: [SurahNode] = []
+    private(set) lazy var tafseerBooks: [BooksData] = []
+
+    let path = AppConfig.specialDatabasePath
+
+    let bkConn = BookConnection()
+    private(set) var selectedQuran: (aya: Int, surah: Int)?
+    private(set) var selectedBook: BooksData?
+    private(set) var currentBookContent: BookContent?
+
+    private init() {
+        guard let path else { return }
+
+        let readWriteFlags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX
+
+        do {
+            db = try SQLiteDatabase(path: path, flags: readWriteFlags, queryOnly: true)
+        } catch {
+            Logger.quran.error("error saat mencoba membuka database: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    func connect(to book: BooksData) {
+        Logger.quran.debug("QuranDataManager connect")
+        try? bkConn.connect(archive: book.archive)
+        selectedBook = book
+    }
+
+    @discardableResult
+    func loadTafseer(for aya: Int, in surah: Int) -> String? {
+        Logger.quran.debug("loadTafseer")
+        selectedQuran = (aya: aya, surah: surah)
+        guard let selectedBook else {
+            Logger.quran.debug("no selectedBook")
+            return nil
+        }
+        currentBookContent = bkConn.fetchTafseer(
+            archive: selectedBook.archive,
+            bkId: selectedBook.id,
+            for: aya, in: surah
+        )
+
+        return currentBookContent?.nash
+    }
+
+    // =====================================================
+    // FETCH QURAN → SURAH NODE
+    // =====================================================
+
+    func fetchSurahNodes() throws {
+        guard let db else { return }
+
+        let sql = """
+        SELECT
+            q.Id,
+            q.nass,
+            q.sora,
+            q.aya,
+            q.Page,
+            s.sora AS surah_name
+        FROM Qr q
+        JOIN Sora s ON q.sora = s.id
+        ORDER BY q.sora, q.aya
+        """
+
+        // Grouping sementara
+        var surahMap: [Int: (name: String, aya: [Quran])] = [:]
+
+        try db.fetch(query: sql) { row in
+            let nass = row.string(at: 1) ?? ""
+            let sora = row.int(at: 2)
+            let aya = row.int(at: 3)
+            let surahName = row.string(at: 5) ?? ""
+
+            let ayat = Quran(
+                nass: nass,
+                aya: aya
+            )
+
+            if surahMap[sora] == nil {
+                surahMap[sora] = (surahName, [])
+            }
+            surahMap[sora]?.aya.append(ayat)
+        }
+
+        // Build node berurutan
+        let nodes = surahMap
+            .sorted { $0.key < $1.key }
+            .map { key, value in
+                SurahNode(
+                    id: key,
+                    surah: value.name,
+                    aya: value.aya
+                )
+            }
+
+        surahNodes = nodes
+        Logger.quran.debug("total nodes: \(nodes.count)")
+    }
+
+    func buildTafseerMap() {
+        tafseerBooks.removeAll(keepingCapacity: true)
+
+        for cat in LibraryDataManager.shared.allRootCategories {
+            guard cat.id == 127 || cat.id == 70 else { continue }
+            for case let book as BooksData in cat.children where book.tafseerNam != nil {
+                tafseerBooks.append(book)
+            }
+        }
+
+        Logger.quran.debug("tafseerBooks: \(self.tafseerBooks.count)")
+    }
+
+    func setCurrentBookContent(_ content: BookContent?) {
+        if content != nil {
+            currentBookContent = content
+        }
+    }
+
+    func nextPage() -> BookContent? {
+        guard let selectedBook, let currentBookContent else { return nil }
+        let content = bkConn.getNextPage(
+            from: selectedBook,
+            contentId: currentBookContent.id,
+            quran: true
+        )
+
+        setCurrentBookContent(content)
+
+        return content
+    }
+
+    func prevPage() -> BookContent? {
+        guard let selectedBook, let currentBookContent else { return nil }
+        let content = bkConn.getPrevPage(
+            from: selectedBook,
+            contentId: currentBookContent.id,
+            quran: true
+        )
+
+        setCurrentBookContent(content)
+
+        return content
+    }
+
+    func searchTafseerBooks(_ query: String) -> [BooksData] {
+        let q = query
+        guard !q.isEmpty else {
+            return tafseerBooks
+        }
+
+        return tafseerBooks.filter {
+            $0.book.contains(q)
+                || ($0.tafseerNam?.contains(q) ?? false)
+        }
+    }
+
+    func searchSurah(_ query: String) -> [SurahNode] {
+        let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !q.isEmpty else { return surahNodes }
+
+        let nq = q.normalizeArabic()
+
+        return surahNodes.compactMap { surah in
+            surah.surah.contains(nq) ? surah : nil
+        }
+    }
+}

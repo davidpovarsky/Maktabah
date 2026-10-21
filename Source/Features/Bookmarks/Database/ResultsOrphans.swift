@@ -1,0 +1,101 @@
+//
+//  ResultsOrphans.swift
+//  Maktabah
+//
+//  Created by MacBook on 05/12/25.
+//
+
+import Foundation
+import OSLog
+
+extension ResultsHandler {
+    @discardableResult
+    func resolveOrphanFolders() -> Bool {
+        guard let db else { return false }
+        var hasChanges = false
+        do {
+            try transaction {
+                let sql = """
+                SELECT f1.\(colId), f1.\(colName), f1.\(colParentCkRecordId), f2.\(colId) as expected_parent
+                FROM \(foldersTable) f1
+                LEFT JOIN \(foldersTable) f2 ON f1.\(colParentCkRecordId) = f2.\(colCkRecordId)
+                WHERE f1.\(colParentCkRecordId) IS NOT NULL 
+                AND COALESCE(f1.\(colParent), -1) != COALESCE(f2.\(colId), -1)
+                """
+
+                struct OrphanFolderRow {
+                    let id: Int64
+                    let name: String
+                    let expectedParent: Int64?
+                }
+
+                let orphans = try db.fetch(query: sql) { row -> OrphanFolderRow in
+                    OrphanFolderRow(
+                        id: row.int64(at: 0),
+                        name: row.string(at: 1) ?? "",
+                        expectedParent: !row.isNull(at: 3) ? row.int64(at: 3) : nil
+                    )
+                }
+
+                for orphan in orphans {
+                    guard let newParentId = orphan.expectedParent, newParentId != orphan.id else { continue }
+                    let descendants = getAllDescendantIds(of: orphan.id)
+                    guard !descendants.contains(newParentId) else { continue }
+
+                    let conflictSql = "SELECT \(colId) FROM \(foldersTable) WHERE \(colParent) = ? AND \(colName) = ? AND \(colId) != ? LIMIT 1"
+                    if let conflictId = try db.fetch(query: conflictSql, parameters: [newParentId, orphan.name, orphan.id], mapping: { $0.int64(at: 0) }).first {
+                        try exec("UPDATE \(resultsTable) SET \(colFolderId) = ? WHERE \(colFolderId) = ?;", parameters: [conflictId, orphan.id])
+                        try exec("UPDATE \(foldersTable) SET \(colParent) = ? WHERE \(colParent) = ?;", parameters: [conflictId, orphan.id])
+                        try exec("DELETE FROM \(foldersTable) WHERE \(colId) = ?;", parameters: [orphan.id])
+                        hasChanges = true
+                    } else {
+                        try exec("UPDATE \(foldersTable) SET \(colParent) = ? WHERE \(colId) = ?;", parameters: [newParentId, orphan.id])
+                        hasChanges = true
+                    }
+                }
+            }
+        } catch {
+            Logger.bookmarks.error("ResultsHandler: Failed to resolve orphan folders: \(error.localizedDescription, privacy: .public)")
+        }
+        return hasChanges
+    }
+
+    @discardableResult
+    func resolveOrphanResults() -> Bool {
+        guard let db else { return false }
+        var hasChanges = false
+        do {
+            try transaction {
+                let whereClause = """
+                WHERE \(colFolderCkRecordId) IS NOT NULL
+                  AND EXISTS (
+                      SELECT 1 FROM \(foldersTable) f
+                      WHERE f.\(colCkRecordId) = \(resultsTable).\(colFolderCkRecordId)
+                      AND COALESCE(\(resultsTable).\(colFolderId), -1) != COALESCE(f.\(colId), -1)
+                  )
+                """
+
+                let countSql = "SELECT COUNT(*) FROM \(resultsTable) \(whereClause)"
+                let orphanCount = try db.fetch(query: countSql, mapping: { $0.int(at: 0) }).first ?? 0
+                guard orphanCount > 0 else { return }
+
+                let updateSql = """
+                UPDATE OR IGNORE \(resultsTable)
+                SET \(colFolderId) = (SELECT \(colId) FROM \(foldersTable) WHERE \(colCkRecordId) = \(resultsTable).\(colFolderCkRecordId))
+                \(whereClause);
+                """
+                try exec(updateSql)
+
+                let deleteSql = """
+                DELETE FROM \(resultsTable)
+                \(whereClause);
+                """
+                try exec(deleteSql)
+                hasChanges = true
+            }
+        } catch {
+            Logger.bookmarks.error("ResultsHandler: Failed to resolve orphan results: \(error.localizedDescription, privacy: .public)")
+        }
+        return hasChanges
+    }
+}

@@ -1,0 +1,788 @@
+//
+//  OptionSearchVC.swift
+//  maktab
+//
+//  Created by MacBook on 03/12/25.
+//
+
+import Cocoa
+@preconcurrency import Combine
+import OSLog
+import SwiftUI
+
+@MainActor
+class OptionSearchVC: NSViewController {
+    @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var stackView: NSStackView!
+    @IBOutlet weak var progressTable: NSProgressIndicator!
+    @IBOutlet weak var searchField: DSFSearchField!
+    @IBOutlet weak var startButton: NSButton!
+    @IBOutlet weak var stopButton: NSButton!
+    @IBOutlet weak var optionsSegment: NSSegmentedControl!
+    @IBOutlet weak var helpButton: NSButton!
+    @IBOutlet weak var cleanUpButton: NSButton!
+    @IBOutlet weak var ismKitabColumn: NSTableColumn!
+    @IBOutlet weak var displayResults: NSButton!
+    @IBOutlet weak var insertNewResults: NSButton!
+
+    /// Menu Item Copy
+    lazy var copyMenuItem: NSMenuItem = {
+        let item = NSMenuItem()
+        item.title = String(localized: "Copy")
+        item.action = #selector(copy(_:))
+        item.target = self
+        return item
+    }()
+
+    lazy var viewModel: SearchViewModel = .init()
+
+    var results: [SearchResultItem] {
+        viewModel.results
+    }
+
+    static var query: String = .init()
+
+    var searchText: String = .init() {
+        didSet {
+            Self.query = searchText
+            viewModel.query = searchText
+        }
+    }
+
+    weak var delegate: LibraryDelegate?
+    weak var itemDelegate: OptionSearchDelegate?
+    weak var libraryViewManager: LibraryViewManager?
+
+    var bkId: String = "" {
+        didSet { viewModel.targetBookId = bkId }
+    }
+
+    var onSelectedItem: (@MainActor (Int, String, SearchMode, String) -> Void)?
+    var onCleanUp: (@MainActor () -> Void)?
+
+    var compactConfigured: Bool = false
+
+    private final class CellTaskBox {
+        let task: Task<Void, Never>
+
+        init(_ task: Task<Void, Never>) {
+            self.task = task
+        }
+    }
+
+    private var cancellables = Set<AnyCancellable>()
+    private var resultsLoadingTask: Task<Void, Never>?
+    private let cellTasks = NSMapTable<NSTableCellView, CellTaskBox>.weakToStrongObjects()
+    private var migrationButton: NSView?
+    private var nearDistanceField: NSTextField?
+    private var nearDistanceWidthConstraint: NSLayoutConstraint?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTableView()
+        resetProgressBar()
+        searchField.focusRingType = .none
+        searchField.recentsAutosaveName = "SearchInSelectedBooks"
+        searchField.delegate = self
+        tableView.userInterfaceLayoutDirection = .leftToRight
+        ReusableFunc.setupSearchField(searchField)
+        if #available(macOS 26.0, *) {
+            progressTable.controlSize = .small
+            optionsSegment.borderShape = .capsule
+            let btn = [
+                cleanUpButton, startButton, stopButton, insertNewResults,
+                displayResults,
+            ]
+            for button in btn {
+                button?.borderShape = .capsule
+            }
+        } else {
+            progressTable.controlSize = .regular
+            // Fallback on earlier versions
+        }
+
+        tableView.menu = NSMenu()
+        tableView.menu?.addItem(copyMenuItem)
+        tableView.menu?.delegate = self
+
+        tableView.allowsMultipleSelection = true
+
+        bindViewModelPublishers()
+        setupNearDistanceControl()
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        if viewModel.state == .loaded { return }
+        setupUI()
+    }
+
+    private func setupMigrationButtonIfNeeded() {
+        let ftsManager = FtsMigrationManager.shared
+        ftsManager.checkNeedsMigration()
+
+        let isHidden = UserDefaults.standard.bool(forKey: "hideFtsMigrationBannerv5")
+        guard let stackView = optionsSegment.superview as? NSStackView,
+              ftsManager.needsMigration,
+              migrationButton == nil,
+              !isHidden
+        else { return }
+
+        let targetArchiveId: Int? = !bkId.isEmpty
+            ? Int(bkId).flatMap { try? DatabaseManager.shared.fetchBook(byId: $0) }?.archive
+            : nil
+
+        if let targetArchiveId, !ftsManager.doesArchiveNeedAction(targetArchiveId) {
+            return
+        }
+
+        let isOptimizeOnly: Bool = if let targetArchiveId {
+            ftsManager.isArchiveOptimizationOnly(targetArchiveId)
+        } else {
+            ftsManager.isOptimizationOnly
+        }
+
+        let title: String = if isOptimizeOnly {
+            bkId.isEmpty
+                ? String(localized: "Optimize Index")
+                : String(localized: .ftsOptimizationAvailableBook)
+        } else {
+            bkId.isEmpty
+                ? String(localized: .updateIndex)
+                : String(localized: .ftsMigrationAvailableBook)
+        }
+
+        let segmentedControl = NSSegmentedControl()
+        segmentedControl.segmentCount = 2
+        segmentedControl.trackingMode = .selectAny
+
+        segmentedControl.setLabel(title, forSegment: 0)
+
+        if let menuImage = NSImage(systemSymbolName: "chevron.down", accessibilityDescription: nil) {
+            segmentedControl.setImage(menuImage, forSegment: 1)
+        }
+
+        // Atur lebar manual untuk tombol menu jika perlu
+        segmentedControl.setWidth(30, forSegment: 1)
+
+        segmentedControl.target = self
+        segmentedControl.action = #selector(migrationSegmentClicked(_:))
+
+        stackView.insertArrangedSubview(segmentedControl, at: 0)
+        migrationButton = segmentedControl
+    }
+
+    @objc private func migrationSegmentClicked(_ sender: NSSegmentedControl) {
+        if sender.isSelected(forSegment: 0) {
+            sender.setSelected(false, forSegment: 0)
+            startMigration(sender)
+        }
+
+        if sender.isSelected(forSegment: 1) {
+            sender.setSelected(false, forSegment: 1)
+            showMigrationOptions(sender)
+        }
+    }
+
+    @objc private func showMigrationOptions(_ sender: NSView) {
+        let menu = NSMenu()
+        let hideItem = NSMenuItem(title: String(localized: ".ftsMigrationHideBannerBtn"), action: #selector(hideMigrationBanner), keyEquivalent: "")
+        hideItem.target = self
+        menu.addItem(hideItem)
+
+        let point = NSPoint(x: sender.bounds.minX, y: sender.bounds.maxY)
+        menu.popUp(positioning: nil, at: point, in: sender)
+    }
+
+    @objc private func hideMigrationBanner() {
+        UserDefaults.standard.set(true, forKey: "hideFtsMigrationBannerv5")
+        migrationButton?.isHidden = true
+        migrationButton?.removeFromSuperview()
+        migrationButton = nil
+
+        ReusableFunc.showAlert(
+            title: String(localized: .ftsMigrationAlertTitle),
+            message: String(localized: .ftsMigrationAlertMessage),
+            style: .informational
+        )
+    }
+
+    @objc private func startMigration(_ sender: NSView) {
+        let archiveId: Int? = !bkId.isEmpty
+            ? Int(bkId).flatMap { try? DatabaseManager.shared.fetchBook(byId: $0) }?.archive
+            : nil
+
+        SettingsActions.showFtsMigrationModal(archiveId: archiveId) { [weak self] in
+            self?.migrationButton?.isHidden = true
+            self?.migrationButton?.removeFromSuperview()
+            self?.migrationButton = nil
+        }
+    }
+
+    private func setupUI() {
+        setupIndeterminateProgress()
+        Task { [weak self] in
+            guard let self else { return }
+            await viewModel.loadLibraryDataForDisplay(libraryViewManager: libraryViewManager) { [weak self] in
+                self?.resetIndeterminateProgress(true)
+                self?.setupMigrationButtonIfNeeded()
+            }
+        }
+    }
+
+    func compactButton() {
+        if compactConfigured { return }
+        guard let stackView = optionsSegment
+            .superview as? NSStackView
+        else { return }
+
+        stackView.spacing = 4
+        helpButton.isHidden = true
+        searchField.placeholderString = "searchInThisBook".localized
+        if let ismKitabColumn {
+            tableView.removeTableColumn(ismKitabColumn)
+        }
+        tableView.sizeToFit()
+        compactConfigured = true
+    }
+
+    private func bindViewModelPublishers() {
+        bindSearchLifecyclePublishers()
+        bindSearchProgressPublishers()
+
+        viewModel.onStateChanged = { [weak self] state in
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                let loaded = state == .loaded
+                loaded
+                    ? resetIndeterminateProgress(loaded)
+                    : setupUI()
+            }
+        }
+    }
+
+    private func bindSearchLifecyclePublishers() {
+        viewModel.searchDidInitialize
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] total in
+                guard let self else { return }
+                updateStartButton(systemSymbolName: "pause.fill", state: .on)
+
+                resetIndeterminateProgress(false)
+                progressTable.maxValue = max(Double(total), 1)
+                progressTable.doubleValue = 0
+                progressTable.isHidden = false
+
+                tableView.reloadData()
+                tableView.sortDescriptors.removeAll()
+            }
+            .store(in: &cancellables)
+
+        viewModel.searchDidComplete
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self else { return }
+                updateStartButton(state: .off)
+                resetProgressBar()
+            }
+            .store(in: &cancellables)
+
+        viewModel.searchNeedsReload
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func bindSearchProgressPublishers() {
+        viewModel.searchDidReceiveResult
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self else { return }
+                let prevCount = tableView.numberOfRows
+                let newCount = viewModel.results.count
+                if newCount > prevCount {
+                    tableView.insertRows(at: IndexSet(prevCount ..< newCount))
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel.searchProgressDidUpdate
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] progress in
+                guard let self else { return }
+                progressTable.maxValue = Double(progress.total)
+                progressTable.doubleValue = Double(progress.completed)
+            }
+            .store(in: &cancellables)
+
+        viewModel.rowProgressDidUpdate
+            .receive(on: RunLoop.main)
+            .sink { [weak self] progress in
+                guard let self else { return }
+                if viewModel.totalTables <= 1, progress.total > 0 {
+                    progressTable.maxValue = Double(progress.total)
+                    progressTable.doubleValue = Double(progress.completed)
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.target = self
+        tableView.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("Content"))?.sortDescriptorPrototype = nil
+        ReusableFunc.registerNib(
+            tableView: tableView,
+            nibName: .resultNib, // CellIViewIdentifier.resultNib
+            cellIdentifier: .resultAndOutlineChild // CellIViewIdentifier.resultAndOutlineChild
+        )
+    }
+
+    @IBAction func saveResults(_ sender: NSButton) {
+        let sr = ResultWriter()
+        sr.query = searchField.stringValue
+        sr.searchMode = viewModel.searchMode
+        sr.searchViewModel = viewModel
+        let popover = NSPopover()
+        popover.contentViewController = sr
+        popover.behavior = .semitransient
+        popover.show(
+            relativeTo: sender.bounds,
+            of: sender,
+            preferredEdge: .minY
+        )
+        sr.results = results
+    }
+
+    @IBAction func cleanUp(_ sender: Any) {
+        stopSearch(sender)
+        viewModel.clearResults()
+        tableView.removeRows(
+            at: IndexSet(
+                integersIn: 0 ..< tableView.numberOfRows
+            )
+        )
+        tableView.sortDescriptors.removeAll()
+        onCleanUp?()
+        if !bkId.isEmpty {
+            libraryViewManager = nil
+        }
+    }
+
+    @IBAction func displayBookmark(_ sender: Any?) {
+        let bm = SavedResults()
+        bm.delegate = self
+        let window = NSWindow(contentViewController: bm)
+        window.setFrameAutosaveName("searchResultsSheetWindowFrame")
+        window.isReleasedWhenClosed = false
+        view.window?.beginSheet(window)
+    }
+
+    @MainActor
+    func updateStartButton(
+        systemSymbolName: String = "play.fill",
+        state: NSControl.StateValue
+    ) {
+        startButton.image = NSImage(
+            systemSymbolName: systemSymbolName,
+            accessibilityDescription: .none
+        )
+        startButton.state = state
+    }
+
+    private func startSearchEngine() {
+        if let lvm = libraryViewManager {
+            viewModel.setSelectedBooks(lvm.viewModel.selectedBookIds)
+        } else if !bkId.isEmpty {
+            viewModel.setTargetBook(bkId)
+        }
+        Task { await viewModel.startSearch() }
+    }
+
+    func resetProgressBar() {
+        progressTable.stopAnimation(nil)
+        progressTable.isIndeterminate = false
+        progressTable.isHidden = true
+        progressTable.doubleValue = 0
+    }
+
+    func setupIndeterminateProgress() {
+        progressTable.isIndeterminate = true
+        progressTable.startAnimation(nil)
+        progressTable.isHidden = false
+    }
+
+    func resetIndeterminateProgress(_ hide: Bool) {
+        progressTable.stopAnimation(nil)
+        progressTable.isHidden = hide
+        progressTable.isIndeterminate = false
+    }
+
+    @IBAction func startSearch(_ sender: Any) {
+        if searchText.isEmpty || (compactConfigured && bkId.isEmpty) { return }
+        ReusableFunc.updateBuiltInRecents(with: searchText, in: searchField)
+
+        let isPaused = viewModel.isPaused
+        let isRunning = viewModel.isSearching
+
+        if !isRunning, !isPaused {
+            resetIndeterminateProgress(false)
+        }
+
+        startSearchEngine()
+
+        if isPaused {
+            updateStartButton(systemSymbolName: "pause.fill", state: .on)
+        } else {
+            updateStartButton(state: .on)
+        }
+    }
+
+    @IBAction func stopSearch(_ sender: Any?) {
+        viewModel.stopSearch()
+        startButton.state = .off
+        startButton.image = NSImage(
+            systemSymbolName: "play.fill",
+            accessibilityDescription: .none
+        )
+        resetProgressBar()
+        resultsLoadingTask?.cancel()
+    }
+
+    private func setupNearDistanceControl() {
+        guard let stackView = optionsSegment.superview as? NSStackView else { return }
+
+        let field = NSTextField(string: "\(viewModel.nearDistance)")
+        field.focusRingType = .none
+        field.placeholderString = String(localized: "nearDistancePlaceholder")
+        field.font = NSFont.systemFont(ofSize: 11)
+        field.alignment = .center
+        field.isBezeled = true
+        field.bezelStyle = .roundedBezel
+        field.isHidden = true
+        field.translatesAutoresizingMaskIntoConstraints = false
+
+        let widthConstraint = field.widthAnchor.constraint(
+            equalToConstant: viewModel.searchMode != .near ? 0 : 45
+        )
+        widthConstraint.isActive = true
+        nearDistanceWidthConstraint = widthConstraint
+
+        field.target = self
+        field.action = #selector(distanceFieldChanged(_:))
+
+        if let index = stackView.arrangedSubviews.firstIndex(of: optionsSegment) {
+            stackView.insertArrangedSubview(field, at: index + 1)
+        } else {
+            stackView.addArrangedSubview(field)
+        }
+        nearDistanceField = field
+    }
+
+    @objc private func distanceFieldChanged(_ sender: NSTextField) {
+        if let val = Int(sender.stringValue), val > 0 {
+            viewModel.nearDistance = val
+        } else {
+            sender.stringValue = "\(viewModel.nearDistance)"
+        }
+    }
+
+    @IBAction func optionsSegmentDidCange(_ sender: NSSegmentedControl) {
+        viewModel.setSearchModeFromSegment(sender.selectedSegment)
+        let isNear = viewModel.searchMode == .near
+        if isNear {
+            nearDistanceField?.stringValue = ""
+            nearDistanceField?.isHidden = false
+        }
+        NSAnimationContext.runAnimationGroup { [weak self] ctx in
+            guard let self else { return }
+            ctx.duration = 0.15
+            ctx.allowsImplicitAnimation = true
+            ctx.timingFunction = CAMediaTimingFunction(name: .easeIn)
+            nearDistanceWidthConstraint?.animator().constant = isNear ? 45 : 0
+            stackView.animator().layoutSubtreeIfNeeded()
+        } completionHandler: {
+            MainActor.assumeIsolated { [weak self] in
+                guard let self, let nearDistanceField else { return }
+                if isNear { nearDistanceField.stringValue = .init(viewModel.nearDistance) }
+            }
+        }
+    }
+
+    @IBAction func searchFieldDidChange(_ sender: NSSearchField) {
+        searchText = sender.stringValue
+    }
+
+    @IBAction func helpSearchOpt(_ sender: NSButton) {
+        ReusableFunc.helpSearchOpt(sender)
+    }
+
+    @IBAction func performFindPanelAction(_ sender: Any) {
+        searchField.becomeFirstResponder()
+    }
+
+    @IBAction func copy(_ sender: Any?) {
+        ReusableFunc.copyResults(results, tableView: tableView)
+    }
+
+    deinit {
+        Logger.search.debug("deinit OptionSearchVC")
+        cancellables.removeAll()
+        resultsLoadingTask?.cancel()
+        resultsLoadingTask = nil
+    }
+}
+
+// MARK: - NSTableViewDataSource & Delegate
+
+extension OptionSearchVC: NSTableViewDataSource, NSTableViewDelegate {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        results.count
+    }
+
+    func tableView(
+        _ tableView: NSTableView,
+        viewFor tableColumn: NSTableColumn?,
+        row: Int
+    ) -> NSView? {
+        guard
+            let cell = tableView.makeView(
+                withIdentifier: NSUserInterfaceItemIdentifier(
+                    CellIViewIdentifier.resultAndOutlineChild.rawValue
+                ),
+                owner: self
+            ) as? NSTableCellView
+        else {
+            return nil
+        }
+
+        let item = results[row]
+
+        guard let identifier = tableColumn?.identifier else { return nil }
+
+        cell.textField?.allowsExpansionToolTips = true
+        cell.textField?.lineBreakMode = .byTruncatingTail
+        cell.textField?.usesSingleLineMode = true
+        cell.textField?.maximumNumberOfLines = 1
+
+        if identifier.rawValue == "Book" {
+            cell.textField?.stringValue = item.bookTitle
+            return cell
+        } else if identifier.rawValue == "Content" {
+            if let snippet = (item.hasResolvedSnippet ? item.attributedText : nil) ?? SearchHitResolver.shared.cachedSnippet(for: item) {
+                cell.textField?.attributedStringValue = snippet
+            } else {
+                scheduleSnippetResolution(for: cell, item: item)
+            }
+            return cell
+        } else if identifier.rawValue == "Page" {
+            cell.textField?.stringValue = "\(item.page)"
+            return cell
+        } else if identifier.rawValue == "Part" {
+            cell.textField?.stringValue = "\(item.part)"
+            return cell
+        }
+
+        return nil
+    }
+
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        guard let sd = tableView.sortDescriptors.first, let sdKey = sd.key,
+              let key = SearchSortKey(rawValue: sdKey) else { return }
+        viewModel.sortResults(by: key, ascending: sd.ascending)
+        tableView.reloadData()
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let row = tableView.selectedRow
+        guard row >= 0, row < results.count else {
+            Logger.search.debug("result out of range")
+            return
+        }
+        // didSelectItem sekarang adalah fungsi async di LibraryViewDelegate
+        Task { await didSelectItem(row) }
+        if !bkId.isEmpty {
+            view.window?.performClose(nil)
+        }
+    }
+
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        24
+    }
+
+    @inline(__always)
+    private func scheduleSnippetResolution(for cell: NSTableCellView, item: SearchResultItem) {
+        cell.textField?.stringValue = "..."
+        let itemId = item.id
+
+        cellTasks.object(forKey: cell)?.task.cancel()
+
+        let loadTask = Task { @MainActor [weak self, weak cell] in
+            do {
+                try await Task.sleep(for: .seconds(0.05))
+            } catch {
+                return
+            }
+
+            guard let self, let cell, !Task.isCancelled else { return }
+            let currentRow = tableView.row(for: cell)
+            guard currentRow >= 0, currentRow < results.count, results[currentRow].id == itemId else { return }
+
+            let keywords = FtsQueryParser.extractKeywords(query: viewModel.query, mode: viewModel.searchMode)
+            if let resolved = await SearchHitResolver.shared.resolveSnippet(
+                for: item,
+                keywords: keywords,
+                mode: viewModel.searchMode,
+                nearDistance: viewModel.nearDistance
+            ) {
+                guard !Task.isCancelled else { return }
+                let finalRow = tableView.row(for: cell)
+                if finalRow >= 0, finalRow < results.count, results[finalRow].id == itemId {
+                    cell.textField?.attributedStringValue = resolved
+                }
+            }
+        }
+        cellTasks.setObject(CellTaskBox(loadTask), forKey: cell)
+    }
+}
+
+extension OptionSearchVC: NSSearchFieldDelegate {
+    func control(
+        _ control: NSControl,
+        textView: NSTextView,
+        doCommandBy commandSelector: Selector
+    ) -> Bool {
+        switch commandSelector {
+        case #selector(NSResponder.insertNewline(_:)),
+             #selector(NSResponder.insertLineBreak(_:)):
+            startSearch(commandSelector)
+            return true
+        default: return false
+        }
+    }
+}
+
+extension OptionSearchVC: LibraryViewDelegate {
+    func didSelectItem(_ row: Int) async {
+        let book = results[row]
+
+        guard let bookData = viewModel.resolveBook(from: book) else {
+            Logger.search.debug("bookData not cached")
+            return
+        }
+
+        let shouldRecord = UserDefaults.standard.recordSearchHistory
+        if let ibarotVC = delegate as? IbarotTextVC {
+            ibarotVC.viewModel.recordHistory = ibarotVC.viewModel.currentBook?.id == bookData.id
+                ? (ibarotVC.viewModel.recordHistory || shouldRecord)
+                : shouldRecord
+        }
+
+        if shouldRecord, bookData.backendLocator == nil {
+            HistoryViewModel.shared.addBookToHistory(bookData.id)
+        }
+
+        // Penggunaan Task sudah benar di sini, tidak perlu Task.detached lagi
+        await delegate?.didSelectBook(for: bookData, loadContent: false)
+        await itemDelegate?.didSelectResult(
+            for: book.bookId,
+            highlightText: searchText,
+            mode: viewModel.searchMode,
+            nearDistance: viewModel.nearDistance
+        )
+        onSelectedItem?(
+            book.bookId,
+            searchField.stringValue,
+            viewModel.searchMode,
+            nearDistanceField?.stringValue ?? "10"
+        )
+    }
+}
+
+extension OptionSearchVC: ResultsDelegate {
+    func didSelect(savedResults: [SavedResultsItem]) {
+        if let sheet = view.window?.attachedSheet {
+            view.window?.endSheet(sheet)
+        }
+        viewModel.clearResults()
+        tableView.reloadData()
+        stopSearch(nil)
+        resultsLoadingTask?.cancel()
+
+        guard !savedResults.isEmpty else { return }
+
+        searchField.stringValue = savedResults.first?.query ?? ""
+        searchText = searchField.stringValue
+
+        if let first = savedResults.first,
+           let mode = SearchMode(rawValue: first.searchMode)
+        {
+            viewModel.setSearchMode(mode)
+            optionsSegment?.selectedSegment = mode.rawValue
+            viewModel.nearDistance = first.nearDistance
+            nearDistanceField?.stringValue = "\(first.nearDistance)"
+            nearDistanceField?.isHidden = mode != .near
+            nearDistanceWidthConstraint?.constant = mode == .near ? 45 : 0
+        }
+
+        resultsLoadingTask = viewModel.loadSavedResults(
+            savedResults,
+            onProgress: { [weak self] total in
+                self?.progressTable.isHidden = false
+                self?.progressTable.maxValue = total
+            },
+            onInsert: { [weak self] prev, newCount in
+                guard let self else { return }
+                progressTable.doubleValue += Double(newCount - prev)
+                tableView.insertRows(at: IndexSet(prev ..< newCount))
+            },
+            onFinish: { [weak self] in
+                guard let self else { return }
+                progressTable.doubleValue = progressTable.maxValue
+                Task {
+                    try? await Task.sleep(nanoseconds: 955_000_000)
+                    self.resetProgressBar()
+                }
+            }
+        )
+    }
+}
+
+extension OptionSearchVC: ReaderStateComponent {
+    func updateState(_ state: inout ReaderState) {
+        viewModel.updateState(&state)
+    }
+
+    func restore(from state: ReaderState) {
+        guard let savedResults = state.searchResults,
+              !savedResults.isEmpty else { return }
+
+        viewModel.restore(from: state)
+
+        tableView.reloadData()
+        searchField.stringValue = viewModel.query
+        searchText = viewModel.query
+
+        optionsSegment?.selectedSegment = viewModel.searchMode.rawValue
+        nearDistanceField?.stringValue = "\(viewModel.nearDistance)"
+        nearDistanceField?.isHidden = viewModel.searchMode != .near
+        nearDistanceWidthConstraint?.constant = viewModel.searchMode == .near ? 45 : 0
+    }
+
+    func cleanUpState() {
+        viewModel.cleanUpState()
+        searchField.stringValue = ""
+        searchText = ""
+        tableView.reloadData()
+    }
+}
+
+extension OptionSearchVC: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        let clickedRow = tableView.clickedRow
+        copyMenuItem.isHidden = clickedRow < 0
+    }
+}

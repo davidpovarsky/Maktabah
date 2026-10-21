@@ -1,7 +1,7 @@
 <h1 align="center">Maktabah Syamilah for macOS</h1>
 <p align="center">
   <a href="https://apps.apple.com/app/maktabah/id6761461336">
-    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us" alt="Download on the Mac App Store" height="40">
+    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the Mac App Store" height="40">
   </a>
 </p>
 <p align="center">
@@ -15,30 +15,24 @@
     <img src="https://img.shields.io/badge/%E2%9C%94%20NOTARIZED_-v2+-orange" alt="NOTARIZED">
   </a>
   <a>
-    <img src="https://img.shields.io/badge/required-macOS_13%2B-darkgreen" alt="Requirement">
+    <img src="https://img.shields.io/badge/required-macOS_15%2B-darkgreen" alt="Requirement">
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/bismillah-100/Maktabah/actions/workflows/release.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/bismillah-100/Maktabah/release.yml?label=Build&logo=github" alt="Build Status">
-  </a>
   <a href="https://github.com/bismillah-100/Maktabah/actions/workflows/codeql.yml">
     <img src="https://img.shields.io/github/actions/workflow/status/bismillah-100/Maktabah/codeql.yml?label=CodeQL&logo=github" alt="CodeQL Status">
+  </a>
+  <a href="https://bismillah-100.github.io/Maktabah/">
+    <img src="https://img.shields.io/badge/Docs-MkDocs-orange?logo=materialformkdocs&logoColor=white" alt="Documentation">
   </a>
   <a>
     <img src="https://img.shields.io/badge/Swift-6.0-F05138?logo=swift&logoColor=white" alt="Swift 6.0">
   </a>
   <a>
-    <img src="https://sloc.xyz/github/bismillah-100/Maktabah" alt="Total Lines">
+    <img src="https://sloc.xyz/github/bismillah-100/Maktabah/?category=code" alt="Code Lines">
   </a>
   <a href="https://app.codacy.com/gh/bismillah-100/Maktabah/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade">
     <img src="https://app.codacy.com/project/badge/Grade/1e56e8340d844ba28959d9d1cc7efd98" alt="Codacy Grade">
-  </a>
-  <a>
-    <img src="https://img.shields.io/badge/complexity-36-informational" alt="Complexity">
-  </a>
-  <a>
-    <img src="https://img.shields.io/badge/duplication-17%25-orange" alt="Duplication">
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue" alt="License">
@@ -52,6 +46,13 @@ Created as Sadaqah Jariyah — may it be beneficial for studying religious scien
 
 ## Screenshots
 ![App-Mode](https://raw.githubusercontent.com/bismillah-100/Maktabah/main/Screenshots/AppMode.gif)
+
+---
+
+## Documentation
+
+Full technical architecture, API references, and feature specifications are available on the documentation site:
+**[bismillah-100.github.io/Maktabah](https://bismillah-100.github.io/Maktabah/)**
 
 ---
 

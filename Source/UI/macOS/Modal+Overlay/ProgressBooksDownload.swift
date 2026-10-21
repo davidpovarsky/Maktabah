@@ -1,0 +1,562 @@
+//
+//  ProgressBooksDownload.swift
+//  Maktabah
+//
+//  Created by MacBook on 02/03/26.
+//
+
+import Observation
+import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
+
+@Observable
+@MainActor
+final class BundleArchiveDownloadProgressState: Identifiable {
+    let id = UUID()
+
+    enum Mode {
+        case confirmation
+        case downloading
+        case integrating
+    }
+
+    enum PendingData {
+        case single(book: BooksData, contentId: Int?)
+        case bulk(books: [BooksData])
+    }
+
+    var pendingData: PendingData?
+
+    var title: String
+    var message: String
+    var detail: String
+    var progress: Double
+    var mode: Mode
+    var totalSizeString: String
+
+    init(
+        title: String,
+        message: String,
+        detail: String = "",
+        progress: Double = 0,
+        mode: Mode = .confirmation,
+        totalSizeString: String = ""
+    ) {
+        self.title = title
+        self.message = message
+        self.detail = detail
+        self.progress = progress
+        self.mode = mode
+        self.totalSizeString = totalSizeString
+    }
+
+    static func makeConfirmation(for book: BooksData) -> BundleArchiveDownloadProgressState {
+        let message = String(localized: .Library.confirmDownloadMessage(book.book))
+
+        var sizeString = ""
+        let size = book.compressedDownloadSize
+            ?? LibraryDataManager.shared.getBook([book.id]).first?.compressedDownloadSize
+
+        if let size, size > 0 {
+            book.compressedDownloadSize = size
+            sizeString = size.formattedByteCount
+        }
+
+        return BundleArchiveDownloadProgressState(
+            title: book.book,
+            message: message,
+            mode: .confirmation,
+            totalSizeString: sizeString
+        )
+    }
+
+    func transitionToIntegrating() {
+        mode = .integrating
+        title = String(localized: .Library.integratingBook)
+        message = String(localized: .Library.copyingTablesAndRebuildingFts)
+        detail = String(localized: .Library.pleaseWaitProcessCannotBeCancelled)
+        progress = 0
+    }
+
+    func updateIntegrationPhase(_ phase: IntegratePhase) {
+        switch phase {
+        case .fts:
+            progress = 0.5
+        case .data:
+            progress = 0.9
+        }
+    }
+}
+
+struct BundleArchiveDownloadProgressView: View {
+    var state: BundleArchiveDownloadProgressState
+    let onConfirm: () -> Void
+    let onCancel: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            // Header with icon, title, and mode badge
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Color.accentColor.opacity(0.95),
+                                    Color.accentColor.opacity(0.65),
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                    Image(systemName: "tray.and.arrow.down.fill")
+                        .foregroundStyle(.white)
+                        .imageScale(.medium)
+                        .symbolEffect(.pulse, isActive: state.mode != .confirmation)
+                }
+                .frame(width: 36, height: 36)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(state.title)
+                        .font(.headline)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+
+                    let badgeText = switch state.mode {
+                    case .confirmation:
+                        String(localized: .Library.readyToDownload)
+                    case .downloading:
+                        String(localized: .Library.downloadingWithEllipsis)
+                    case .integrating:
+                        String(localized: .Library.integrating)
+                    }
+                    Text(badgeText)
+                        .font(.caption2)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            Capsule().fill(Color.secondary.opacity(0.15))
+                        )
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer(minLength: 0)
+            }
+
+            // Message / description
+            if state.mode == .confirmation, !state.totalSizeString.isEmpty {
+                Text("\(state.message) (\(state.totalSizeString))")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+            } else {
+                Text(state.message)
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(state.mode == .confirmation ? nil : 2)
+                    .multilineTextAlignment(.leading)
+            }
+
+            if state.mode != .confirmation {
+                VStack(alignment: .leading, spacing: 8) {
+                    ProgressView(value: state.progress)
+                        .progressViewStyle(.linear)
+                        .tint(.accentColor)
+
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(state.detail)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .monospacedDigit()
+
+                        Spacer()
+
+                        let percent = max(0, min(1, state.progress))
+                        Text("\(Int((percent * 100).rounded()))%")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .monospacedDigit()
+                    }
+                }
+                .transition(.opacity.combined(with: .move(edge: .top)))
+
+                if state.mode != .integrating {
+                    HStack {
+                        Spacer()
+                        Button(
+                            "Cancel",
+                            action: onCancel
+                        )
+                        .buttonStyle(.bordered)
+                        .keyboardShortcut(.cancelAction)
+                    }
+                }
+            } else {
+                HStack(spacing: 12) {
+                    Spacer()
+                    Button(
+                        "Cancel",
+                        action: onCancel
+                    )
+                    .buttonStyle(.bordered)
+                    .keyboardShortcut(.cancelAction)
+
+                    Button(
+                        String(localized: "Download"),
+                        action: onConfirm
+                    )
+                    .buttonStyle(.borderedProminent)
+                    .keyboardShortcut(.defaultAction)
+                }
+                .transition(.opacity.combined(with: .move(edge: .bottom)))
+            }
+        }
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .fill(.regularMaterial)
+                #if os(iOS)
+                .shadow(color: .black.opacity(0.3), radius: 12, x: 0, y: 4)
+                #endif
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .strokeBorder(.quaternary, lineWidth: 1)
+        )
+        .frame(maxWidth: 380, minHeight: 200)
+        .animation(.easeInOut(duration: 0.2), value: state.mode)
+        .animation(.linear(duration: 0.15), value: state.progress)
+        .controlSize(.large)
+    }
+}
+
+struct iOSBookDownloadProgressView: View {
+    var state: BundleArchiveDownloadProgressState
+    var onConfirm: (() -> Void)?
+    var onCancel: (() -> Void)?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "tray.and.arrow.down.fill")
+                            .font(.caption)
+                            .foregroundColor(.accentColor)
+                            .symbolEffect(.pulse, isActive: state.mode != .confirmation)
+                        Text(state.title)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .lineLimit(1)
+                    }
+
+                    if state.mode == .confirmation {
+                        Text(state.message + (state.totalSizeString.isEmpty ? "" : " (\(state.totalSizeString))"))
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .lineLimit(2)
+                    } else {
+                        Text(state.message)
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                    }
+                }
+
+                Spacer()
+
+                if state.mode == .confirmation {
+                    HStack(spacing: 2) {
+                        Button(action: { onCancel?() }) {
+                            Image(systemName: "xmark")
+                        }
+                        .buttonBorderShapeCircle()
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
+
+                        Button(action: { onConfirm?() }) {
+                            Image(systemName: "checkmark")
+                        }
+                        .buttonBorderShapeCircle()
+                        .buttonStyle(.borderedProminent)
+                        .tint(.green)
+                    }
+                    .transition(.opacity.combined(with: .scale))
+                } else if state.mode == .integrating {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .controlSize(.small)
+                        .transition(.opacity.combined(with: .scale))
+                }
+            }
+
+            if state.mode != .confirmation {
+                ProgressView(value: state.progress)
+                    .progressViewStyle(.linear)
+                    .tint(.accentColor)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 10)
+        .animation(.easeInOut(duration: 0.25), value: state.mode)
+        .animation(.smooth(duration: 0.25), value: state.progress)
+    }
+}
+
+#Preview("iOSBookDownloadProgressView") {
+    VStack(spacing: 20) {
+        iOSBookDownloadProgressView(
+            state: BundleArchiveDownloadProgressState(
+                title: "صحيح البخاري",
+                message: "Unduh kitab untuk membaca",
+                mode: .confirmation,
+                totalSizeString: "12.5 MB"
+            )
+        )
+        .background(Color.secondary.opacity(0.1))
+        .cornerRadius(10)
+
+        iOSBookDownloadProgressView(
+            state: BundleArchiveDownloadProgressState(
+                title: "صحيح البخاري",
+                message: "Mengunduh kitab dari server...",
+                detail: "5.2 MB / 12.5 MB",
+                progress: 0.42,
+                mode: .downloading
+            )
+        )
+        .background(Color.secondary.opacity(0.1))
+        .cornerRadius(10)
+
+        iOSBookDownloadProgressView(
+            state: {
+                let state = BundleArchiveDownloadProgressState(title: "صحيح البخاري", message: "")
+                state.transitionToIntegrating()
+                return state
+            }()
+        )
+        .background(Color.secondary.opacity(0.1))
+        .cornerRadius(10)
+    }
+    .frame(width: 450)
+    .padding()
+}
+
+extension View {
+    /// Memberikan bentuk lingkaran pada border tombol.
+    func buttonBorderShapeCircle() -> some View {
+        buttonBorderShape(.circle)
+    }
+}
+
+// MARK: - BookIntegrateModalCenter
+
+#if os(macOS)
+
+/// Modal konfirmasi + progress untuk proses integrasi per-book
+/// (download kitab → copy tables → rebuild FTS).
+///
+/// Alur pemakaian dari `connectBookWithBundleFallback`:
+/// ```swift
+/// let confirmed = await BookIntegrateModalCenter.shared
+///     .presentAndWaitForConfirmation(book: book)
+/// guard confirmed else { throw CancellationError() }
+///
+/// defer { Task { @MainActor in BookIntegrateModalCenter.shared.dismiss() } }
+///
+/// try await BookArchiveIntegrator.shared.ensureBookIntegrated(
+///     book,
+///     onIntegrating: {
+///         await BookIntegrateModalCenter.shared.showIntegrating()
+///     }
+/// )
+/// ```
+@MainActor
+final class BookIntegrateModalCenter {
+    static let shared = BookIntegrateModalCenter()
+
+    private var sheetWindow: NSWindow?
+    private var progressState: BundleArchiveDownloadProgressState?
+    private var isModalRunning = false
+    private var confirmationContinuation: CheckedContinuation<Bool, Never>?
+
+    private init() {}
+
+    // MARK: - Public API
+
+    /// Tampilkan modal konfirmasi dan tunggu pilihan user.
+    /// Mengembalikan `true` jika user tekan "Download", `false` jika Cancel.
+    func presentAndWaitForConfirmation(book: BooksData) async -> Bool {
+        internalDismiss(cancelContinuation: true)
+
+        let state = BundleArchiveDownloadProgressState.makeConfirmation(for: book)
+        progressState = state
+
+        let hostingView = NSHostingView(
+            rootView: BundleArchiveDownloadProgressView(
+                state: state,
+                onConfirm: { [weak self] in self?.confirmAndStartProgress() },
+                onCancel: { [weak self] in self?.cancelDownload() }
+            )
+        )
+        let height = 200
+        let width = 380
+        hostingView.frame = NSRect(x: 0, y: 0, width: width, height: height)
+        hostingView.autoresizingMask = [.width, .height]
+
+        let w = ReusableFunc.makeTitlelessWindow(
+            contentView: hostingView,
+            size: .init(width: width, height: height)
+        )
+        sheetWindow = w
+        w.center()
+        w.makeKeyAndOrderFront(nil)
+
+        return await withCheckedContinuation { continuation in
+            confirmationContinuation = continuation
+            isModalRunning = true
+            NSApp.runModal(for: w)
+            isModalRunning = false
+        }
+    }
+
+    /// Transisi ke fase integrasi (copy tables + rebuild FTS).
+    /// Progress bar menjadi indeterminate, tombol Cancel hilang.
+    func showIntegrating() {
+        guard let state = progressState else { return }
+        state.transitionToIntegrating()
+        updateWindowSize(height: 180, animated: true)
+    }
+
+    func completeDownloadBeforeIntegrating() async {
+        progressState?.progress = 1.0
+        try? await Task.sleep(for: .seconds(0.4))
+        showIntegrating()
+    }
+
+    func updateProgressPhase(_ phase: IntegratePhase) {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            progressState?.updateIntegrationPhase(phase)
+        }
+    }
+
+    func dismiss() {
+        internalDismiss(cancelContinuation: true)
+    }
+
+    // MARK: - Private helpers
+
+    private func confirmAndStartProgress() {
+        guard let state = progressState else { return }
+
+        if isModalRunning {
+            NSApp.stopModal()
+            isModalRunning = false
+        }
+
+        state.mode = .downloading
+        state.message = String(localized: .Library.downloadingBookFromServer)
+        state.detail = state.totalSizeString.isEmpty ? "" : "0 B / \(state.totalSizeString)"
+        state.progress = 0
+
+        updateWindowSize(height: 180, animated: true)
+
+        if let continuation = confirmationContinuation {
+            confirmationContinuation = nil
+            continuation.resume(returning: true)
+        }
+    }
+
+    private func cancelDownload() {
+        if let continuation = confirmationContinuation {
+            confirmationContinuation = nil
+            continuation.resume(returning: false)
+        }
+        internalDismiss(cancelContinuation: false)
+    }
+
+    private func internalDismiss(cancelContinuation: Bool) {
+        if isModalRunning {
+            NSApp.stopModal()
+            isModalRunning = false
+        }
+
+        if let w = sheetWindow {
+            w.orderOut(nil)
+            w.close()
+            sheetWindow = nil
+        }
+
+        if cancelContinuation, let continuation = confirmationContinuation {
+            confirmationContinuation = nil
+            continuation.resume(returning: false)
+        }
+
+        progressState = nil
+    }
+
+    private func updateWindowSize(height: CGFloat, animated: Bool) {
+        guard let w = sheetWindow else { return }
+        let newSize = NSSize(width: 380, height: height)
+        if animated {
+            NSAnimationContext.runAnimationGroup { ctx in
+                ctx.duration = 0.2
+                w.animator().setContentSize(newSize)
+            }
+        } else {
+            w.setContentSize(newSize)
+        }
+    }
+}
+
+extension BookIntegrateModalCenter {
+    /// Memeriksa status integrasi bundle dan menampilkan modal konfirmasi & progress jika diperlukan.
+    func ensureIntegrated(book: BooksData) async throws {
+        guard AppConfig.isUsingBundleMode,
+              !BookArchiveIntegrator.shared.isBookIntegrated(book)
+        else {
+            return
+        }
+
+        let confirmed = await presentAndWaitForConfirmation(book: book)
+        guard confirmed else { throw CancellationError() }
+
+        defer {
+            Task { @MainActor [weak self] in
+                self?.dismiss()
+            }
+        }
+
+        try await BookArchiveIntegrator.shared.ensureBookIntegrated(
+            book,
+            onDownloadProgress: { [weak self] written, total in
+                let writtenStr = written.formattedByteCount
+                let totalStr = total > 0 ? total.formattedByteCount : ""
+                let progress = total > 0 ? min(1.0, Double(written) / Double(total)) : 0
+                Task { @MainActor [weak self] in
+                    guard let state = self?.progressState, state.mode == .downloading else { return }
+                    state.detail = total > 0 ? "\(writtenStr) / \(totalStr)" : writtenStr
+                    withAnimation(.linear(duration: 0.15)) {
+                        state.progress = progress
+                    }
+                }
+            },
+            onIntegrating: { [weak self] in
+                await self?.completeDownloadBeforeIntegrating()
+            },
+            onProgress: { [weak self] phase in
+                await self?.updateProgressPhase(phase)
+            }
+        )
+
+        withAnimation(.easeInOut(duration: 0.25)) {
+            progressState?.progress = 1.0
+        }
+        await Task.yield()
+    }
+}
+#endif

@@ -1,0 +1,200 @@
+# Data Models & State Types
+
+Bagian ini membedah berbagai `struct`, `class`, dan `enum` murni yang berada di folder `Models/`. Model-model ini dirancang bebas dari ketergantungan sistem luar agar ringan dan *thread-safe* (mengadopsi *protocol* `Sendable`).
+
+## Annotation (Struct)
+
+Entitas utama yang merepresentasikan sebuah anotasi (*highlight*, *underline*, atau *note*).
+
+```swift
+struct Annotation: Sendable, Equatable, Identifiable {
+    var id: Int64? // (1)!
+    let bkId: Int // (2)!
+    let contentId: Int 
+    var range: NSRange // (3)!
+    let rangeDiacritics: NSRange // (4)!
+    var colorHex: String // (5)!
+    var type: AnnotationMode
+    var note: String?
+    let createdAt: Int64
+    let context: String
+    let page: Int
+    let part: Int
+    var pageArb: String? // (6)!
+    var partArb: String?
+    var tags: [String] = []
+
+    // CloudKit Sync Support
+    var ckRecordId: String?
+    var lastModified: Int64?
+}
+```
+
+1. `id` bernilai `nil` sebelum disimpan ke dalam basis data SQLite (menunggu *auto-increment*).
+2. Referensi ID Buku yang bersangkutan.
+3. Posisi teks (`NSRange` berbasis UTF-16 / `NSString`) pada teks *tanpa* harakat.
+4. Posisi teks yang dikalkulasi pada teks asli *dengan* harakat.
+5. Kode warna heksadesimal format `#RRGGBB`.
+6. Angka yang dikonversi ke format angka Arab untuk kebutuhan rendering antarmuka pengguna.
+
+**Optimasi Khusus:**
+
+- *Protocol* `Sendable`: `Annotation` dijamin aman untuk diteruskan antar-*thread* (Task/Actor) secara konkuren tanpa risiko *data race*.
+- Teks Konteks (`context`): Menyimpan salinan denormalisasi potongan teks agar saat pencarian/filter tidak perlu membaca basis data buku utama secara berulang.
+
+### Helper & Computed Properties
+
+Untuk menjaga modularitas dan prinsip DRY, `Annotation` menyediakan *computed property* pembantu:
+
+- `displayTitle: String`: Mengembalikan teks catatan (`note`) jika tidak kosong, atau *fallback* ke teks kutipan (`context`).
+- `stableId: Int64`: Mengembalikan `id ?? 0` sebagai pengidentifikasi stabil (*stable identity*) untuk keperluan *diffing* `ThemeList` dan preservasi ID posisi *scroll* antarmuka di iOS.
+
+!!! note "Metadata Buku Diinjeksi ke Node"
+    Properti metadata buku (`bookTitle`, `normalizedBookTitle`) tidak lagi berada pada model `Annotation` untuk mencegah *query* SQLite yang memblokir *main thread*. Metadata tersebut di-*resolve* di *background queue* (misalnya via `AnnotationTreeBuilder`) dan diinjeksikan langsung ke `AnnotationNode`.
+
+## ContentKey (Struct)
+
+Kunci untuk *in-memory cache map* (`AnnotationStore`).
+
+```swift
+struct ContentKey: Hashable, Sendable {
+    let bkId: Int
+    let contentId: Int
+}
+```
+
+Digunakan sebagai *key* pada kamus *caching* per konten buku `[ContentKey: [Annotation]]` agar operasi *lookup* berjalan dalam kompleksitas waktu $O(1)$.
+
+## AnnotationNode (Class)
+
+Digunakan untuk membentuk struktur hierarki (*tree*) pada antarmuka `NSOutlineView` atau `SwiftUI List`.
+
+```swift
+final class AnnotationNode: Equatable, Hashable, @unchecked Sendable {
+    var title: String
+    var children: [AnnotationNode] = []
+    var annotation: Annotation? 
+    var kind: AnnotationNodeKind
+    var bookTitle: String?
+    var normalizedBookTitle: String?
+    
+    // ...
+}
+```
+
+!!! warning "Catatan Thread-Safety"
+    *Class* `AnnotationNode` menggunakan atribut `@unchecked Sendable`. Hal ini karena mutasi dilakukan eksklusif saat fase pembentukan struktur hierarki di *background thread*. Setelah dipublikasikan ke antarmuka pengguna, objek ini dianggap *read-only* (*frozen*). Hindari memutasi objek ini dari Main Actor secara langsung.
+
+### AnnotationNodeKind (Enum)
+
+```swift
+enum AnnotationNodeKind {
+    case root
+    case book
+    case tag
+    case untagged
+    case dateBucket
+    case annotation
+}
+```
+
+### DateBucket (Enum)
+
+Digunakan untuk pengelompokan (*grouping*) linimasa secara kronologis (Today, Yesterday, dsb.).
+
+```swift
+enum DateBucket: Hashable, Comparable {
+    case today
+    case yesterday
+    case thisWeek
+    case thisMonth
+    case lastMonth
+    case older(year: Int, month: Int)
+}
+```
+
+Tipe ini mengadopsi `Comparable` untuk memudahkan pengurutan (*sorting*) kelompok waktu secara kronologis.
+
+## Status & Filter (Enum)
+
+### AnnotationMode (Enum)
+
+Menentukan bentuk visual anotasi.
+
+```swift
+enum AnnotationMode: Int, Sendable {
+    case highlight
+    case underline
+}
+```
+
+### AnnotationSortOption (Enum)
+
+Enum yang mengatur bagaimana antarmuka pengguna menyortir dan mengelompokkan data.
+
+```swift
+enum AnnotationSortField: Int {
+    case createdAt
+    case context
+    case page
+    case part
+}
+
+enum AnnotationGroupingMode: Int {
+    case book
+    case tag
+    case timeline
+}
+
+enum TagFilterMode {
+    case or
+    case and
+}
+```
+
+### AnnotationSearchScope (Enum)
+
+Mengatur cakupan pencarian teks pada hierarki anotasi:
+
+```swift
+enum AnnotationSearchScope: Int, CaseIterable, Sendable {
+    case all
+    case book
+    case context
+    case note
+    case tag
+
+    var title: String {
+        switch self {
+        case .all: String(localized: .Annotation.searchScopeAll)
+        case .book: String(localized: .Annotation.searchScopeBook)
+        case .context: String(localized: .Annotation.searchScopeContext)
+        case .note: String(localized: .Annotation.searchScopeNote)
+        case .tag: String(localized: .Annotation.searchScopeTag)
+        }
+    }
+}
+```
+
+- `.all`: Mencari kecocokan pada judul buku, teks konteks, catatan, atau tag.
+- `.book`: Membatasi pencarian hanya pada judul buku.
+- `.context`: Membatasi pencarian hanya pada teks konteks kutipan.
+- `.note`: Membatasi pencarian hanya pada teks catatan pengguna.
+- `.tag`: Membatasi pencarian hanya pada label/tag yang terpasang pada anotasi.
+- **Lokalisasi**: String antarmuka dimuat secara dinamis dari String Catalog `Annotation.xcstrings` (mendukung lokalisasi EN, AR, ID).
+
+## AnnotationEvent (Enum)
+
+Menggunakan tipe data aljabar (*algebraic data types* / enum dengan *associated values*) untuk dipancarkan melalui `PassthroughSubject` di Combine.
+
+```swift
+enum AnnotationEvent: Sendable {
+    case added(Annotation)
+    case updated(Annotation)
+    case deleted(id: Int64, annotation: Annotation?)
+    case batchUpdated([Annotation])
+    case treeInvalidated
+}
+```
+
+Setiap perubahan di `AnnotationStore` menghasilkan *event* yang ditangkap oleh pengamat (*observer*) seperti `AnnotationTreeBuilder` atau lapisan antarmuka pengguna.

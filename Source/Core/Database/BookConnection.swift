@@ -1,0 +1,620 @@
+
+//
+//  BookConnection.swift
+//  maktab
+//
+//  Created by MacBook on 02/12/25.
+//
+
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
+import Foundation
+import OSLog
+import SQLite3
+import Synchronization
+
+final class BookConnection: Sendable {
+    private struct ConnectionState {
+        var archiveId: Int?
+        var db: SQLiteDatabase?
+    }
+
+    private let _state = Mutex<ConnectionState>(ConnectionState())
+    private let _connectLock = Mutex<Void>(())
+
+    var db: SQLiteDatabase? {
+        _state.withLock { $0.db }
+    }
+
+    var currentArchiveId: Int? {
+        _state.withLock { $0.archiveId }
+    }
+
+    nonisolated(unsafe) static let tocTreeCache: NSCache<NSNumber, NSArray> = {
+        let cache = NSCache<NSNumber, NSArray>()
+        cache.countLimit = 50
+        cache.name = "BookTOCTreeCache"
+        return cache
+    }()
+
+    nonisolated(unsafe) static let totalPartsCache: NSCache<NSString, NSNumber> = {
+        let cache = NSCache<NSString, NSNumber>()
+        cache.countLimit = 100 // max 100 books di cache
+        cache.name = "BookTotalPartsCache"
+        return cache
+    }()
+
+    init() {}
+
+    deinit {
+        setDatabase(nil)
+    }
+
+    func setDatabase(_ newDB: SQLiteDatabase?, archiveId: Int? = nil) {
+        _state.withLock {
+            $0.db = newDB
+            $0.archiveId = newDB != nil ? archiveId : nil
+        }
+    }
+
+    /// Connect ke archive database dengan availability check
+    /// - Parameters:
+    ///   - archive: Archive ID (1-20, sesuai kolom Archive di tabel 0bok)
+    ///   - force: Jika false dan archive sudah terhubung, langsung keluar tanpa membuka ulang koneksi
+    /// - Throws: ArchiveError jika archive tidak tersedia
+    func connect(archive: Int, force: Bool = false) throws {
+        if try OtzariaBookConnectionAdapter.connectIfEnabled(archive: archive) {
+            setDatabase(nil)
+            return
+        }
+
+        try _connectLock.withLock { _ in
+            if !force {
+                let isConnected = _state.withLock { state in
+                    state.archiveId == archive && state.db != nil
+                }
+                if isConnected { return }
+            }
+
+            guard let archivePath = AppConfig.archiveDatabasePath(archiveId: archive) else {
+                throw ArchiveError.databasePathNotAvailable
+            }
+
+            // Check apakah archive tersedia
+            guard DatabaseManager.shared.checkArchiveAvailability(archiveId: archive) else {
+                throw ArchiveError.archiveNotAvailable(archiveId: archive)
+            }
+
+            // Tutup koneksi lama jika ada
+            setDatabase(nil)
+
+            let flags = SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
+
+            do {
+                let newDb = try SQLiteDatabase(path: archivePath, flags: flags)
+                setDatabase(newDb, archiveId: archive)
+            } catch let SQLiteError.connectionFailed(msg) {
+                throw NSError(domain: "BookConnection", code: 1, userInfo: [NSLocalizedDescriptionKey: msg])
+            } catch {
+                throw NSError(domain: "BookConnection", code: 1, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])
+            }
+        }
+    }
+
+    func fetchTafseer(
+        archive: Int,
+        bkId: Int,
+        for aya: Int,
+        in surah: Int
+    ) -> BookContent? {
+        if OtzariaBookConnectionAdapter.isEnabled {
+            return nil
+        }
+
+        if db == nil {
+            try? connect(archive: archive)
+        }
+
+        guard let db else { return nil }
+
+        let tableName = "b\(bkId)"
+
+        let sql = """
+        SELECT id, nass, page, part, sora, aya
+        FROM \(tableName)
+        WHERE sora = ? AND aya = ?
+        LIMIT 1
+        """
+
+        do {
+            return try db.fetch(query: sql, parameters: [surah, aya]) { row -> BookContent? in
+                let id = row.int64(at: 0)
+                let page = row.int64(at: 2)
+                let part = row.int64(at: 3)
+
+                if let nassBlob = row.rawBlob(at: 1) {
+                    let nass = ZstdDecompressor.decompressData(from: nassBlob)
+
+                    return BookContent(
+                        id: Int(id),
+                        nash: nass,
+                        page: Int(page),
+                        part: Int(part)
+                    )
+                }
+
+                return nil
+            }.compactMap(\.self).first
+        } catch {
+            Logger.db.error("fetchTafseer error: \(error.localizedDescription, privacy: .public)")
+            return nil
+        }
+    }
+
+    func applyShortsMapping(
+        to text: String,
+        with mapping: ShortsMapping
+    ) -> String {
+        guard !mapping.isEmpty else { return text }
+
+        var output = text
+
+        for key in mapping.sortedKeys {
+            if let replacement = mapping.map[key] {
+                output = output.replacing(
+                    key,
+                    with: "\(replacement)\n"
+                )
+            }
+        }
+
+        return output
+    }
+
+    func getCached(bkId: String, idContent: Int) -> BookContent? {
+        if OtzariaBookConnectionAdapter.isEnabled {
+            return nil
+        }
+
+        if let bkIdInt = Int(bkId),
+           let cached = BookPageCache.shared.get(
+               bookId: bkIdInt,
+               contentId: idContent
+           )
+        {
+            return cached
+        }
+
+        return nil
+    }
+
+    private func setCache(bkId: String, content: BookContent) {
+        if OtzariaBookConnectionAdapter.isEnabled {
+            return
+        }
+
+        if let bookId = Int(bkId) {
+            BookPageCache.shared.set(bookId: bookId, content: content)
+        }
+    }
+}
+
+extension BookConnection {
+    private func parsePartValue(row: SQLiteRow, column: Int32) -> Int {
+        let type = row.type(at: column)
+
+        if type == SQLITE_INTEGER {
+            return Int(row.int64(at: column))
+        } else if type == SQLITE_TEXT {
+            if let strValue = row.string(at: column) {
+                if let dashIndex = strValue.firstIndex(of: "-") {
+                    return Int(strValue[..<dashIndex]) ?? 1
+                }
+
+                return Int(strValue) ?? 1
+            }
+        }
+
+        return 1
+    }
+
+    private func parseBookContent(row: SQLiteRow, bkid: String, quran: Bool = false) -> BookContent? {
+        guard let nassBlob = row.rawBlob(at: 0) else { return nil }
+        let decompressedNass = ZstdDecompressor.decompressData(from: nassBlob)
+
+        let page = row.int64(at: 1)
+        let id = row.int64(at: 2)
+        let part = parsePartValue(row: row, column: 3)
+
+        let shortsMap = DatabaseManager.shared.loadShortsForBook(bkid)
+        let finalNass = shortsMap.isEmpty ? decompressedNass : applyShortsMapping(to: decompressedNass, with: shortsMap)
+
+        var newContent = BookContent(
+            id: Int(id),
+            nash: finalNass,
+            page: Int(page),
+            part: part
+        )
+
+        if quran {
+            newContent.surah = Int(row.int64(at: 4))
+            newContent.aya = Int(row.int64(at: 5))
+        }
+        return newContent
+    }
+
+    private func fetchContent(
+        query: String,
+        parameters: [String] = [],
+        bkid: String,
+        quran: Bool = false,
+        errorContext: String
+    ) -> BookContent? {
+        guard let db else { return nil }
+
+        do {
+            let contents = try db.fetch(query: query, parameters: parameters) { [weak self] row -> BookContent? in
+                self?.parseBookContent(row: row, bkid: bkid, quran: quran)
+            }.compactMap(\.self)
+
+            if let content = contents.first {
+                setCache(bkId: bkid, content: content)
+                return content
+            }
+        } catch {
+            Logger.db.error("\(errorContext, privacy: .public) error: \(error.localizedDescription, privacy: .public)")
+        }
+
+        return nil
+    }
+
+    /// UPDATED: getContent dengan decompress otomatis
+    func getContent(bkid: String, contentId: Int, quran: Bool = false)
+        -> BookContent?
+    {
+        if let cached = getCached(bkId: bkid, idContent: contentId) {
+            Logger.db.debug("return cached")
+            return cached
+        }
+
+        let querySQL = quran ? quranContentQuery(forBook: bkid) : contentQuery(forBook: bkid)
+        return fetchContent(
+            query: querySQL,
+            parameters: [String(contentId)],
+            bkid: bkid,
+            quran: quran,
+            errorContext: "getContent"
+        )
+    }
+
+    func getFirstContent(bkid: String) -> BookContent? {
+        if OtzariaBookConnectionAdapter.isEnabled, Int(bkid) != nil {
+            return OtzariaBookConnectionAdapter.getFirstContent(bkid: bkid)
+        }
+
+        let querySQL = """
+        SELECT nass, page, id, part
+        FROM b\(bkid)
+        ORDER BY id ASC
+        LIMIT 1
+        """
+
+        return fetchContent(
+            query: querySQL,
+            bkid: bkid,
+            errorContext: "getFirstContent"
+        )
+    }
+
+    /// UPDATED: getContent by part and page
+    func getContent(bkid: String, part: Int, page: Int) -> BookContent? {
+        if OtzariaBookConnectionAdapter.isEnabled, Int(bkid) != nil {
+            return OtzariaBookConnectionAdapter.getContent(
+                bkid: bkid,
+                part: part,
+                page: page
+            )
+        }
+        let querySQL = """
+        SELECT nass, page, id, part
+        FROM b\(bkid)
+        WHERE part = ? AND page = ?
+        LIMIT 1
+        """
+
+        return fetchContent(
+            query: querySQL,
+            parameters: [String(part), String(page)],
+            bkid: bkid,
+            errorContext: "getContent part page"
+        )
+    }
+
+    func getNextPage(
+        from currentBook: BooksData,
+        contentId: Int,
+        quran: Bool = false
+    ) -> BookContent? {
+        if OtzariaBookConnectionAdapter.isEnabled {
+            return OtzariaBookConnectionAdapter.getNextPage(
+                from: currentBook,
+                contentId: contentId
+            )
+        }
+
+        let bkid = "\(currentBook.id)"
+        if let cached = getCached(bkId: bkid, idContent: contentId + 1) {
+            return cached
+        }
+
+        let querySQL = quran
+            ? "SELECT nass, page, id, part, sora, aya FROM b\(bkid) WHERE id > ? ORDER BY id ASC LIMIT 1"
+            : "SELECT nass, page, id, part FROM b\(bkid) WHERE id > ? ORDER BY id ASC LIMIT 1"
+
+        return fetchContent(
+            query: querySQL,
+            parameters: [String(contentId)],
+            bkid: bkid,
+            quran: quran,
+            errorContext: "getNextPage"
+        )
+    }
+
+    func getPrevPage(
+        from currentBook: BooksData,
+        contentId: Int,
+        quran: Bool = false
+    ) -> BookContent? {
+        if OtzariaBookConnectionAdapter.isEnabled {
+            return OtzariaBookConnectionAdapter.getPrevPage(
+                from: currentBook,
+                contentId: contentId
+            )
+        }
+
+        let bkid = "\(currentBook.id)"
+        if let cached = getCached(bkId: bkid, idContent: contentId - 1) {
+            return cached
+        }
+
+        let querySQL = quran
+            ? "SELECT nass, page, id, part, sora, aya FROM b\(bkid) WHERE id < ? ORDER BY id DESC LIMIT 1"
+            : "SELECT nass, page, id, part FROM b\(bkid) WHERE id < ? ORDER BY id DESC LIMIT 1"
+
+        return fetchContent(
+            query: querySQL,
+            parameters: [String(contentId)],
+            bkid: bkid,
+            quran: quran,
+            errorContext: "getPrevPage"
+        )
+    }
+
+    func contentQuery(forBook bkid: String) -> String {
+        """
+        SELECT nass, page, id, part
+        FROM b\(bkid)
+        WHERE id = ?
+        """
+    }
+
+    func quranContentQuery(forBook bkid: String) -> String {
+        """
+        SELECT nass, page, id, part, sora, aya
+        FROM b\(bkid)
+        WHERE id = ?
+        """
+    }
+
+    func getTotalParts(bkid: String) -> Int {
+        if let totalParts = OtzariaBookConnectionAdapter.getTotalParts(bkid: bkid) {
+            return totalParts
+        }
+
+        let key = bkid as NSString
+
+        // Cek cache dulu
+        if let cached = Self.totalPartsCache.object(forKey: key) {
+            return cached.intValue
+        }
+
+        let total = calculateTotalParts(bkid: bkid)
+
+        // Simpan ke cache
+        Self.totalPartsCache.setObject(NSNumber(value: total), forKey: key)
+
+        return total
+    }
+
+    private func calculateTotalParts(bkid: String) -> Int {
+        guard let db else { return 0 }
+
+        let querySQL = """
+        SELECT MAX(
+            CAST(
+                CASE
+                    WHEN instr(part, '-') > 0
+                    THEN substr(part, 1, instr(part, '-') - 1)
+                    ELSE part
+                END AS INTEGER
+            )
+        )
+        FROM b\(bkid)
+        """
+
+        return (try? db.fetch(query: querySQL) { row in
+            Int(row.int64(at: 0))
+        }.first) ?? 0
+    }
+
+    func getPagesInPart(bkid: String, part: Int) -> Int {
+        if let maxPage = OtzariaBookConnectionAdapter.getMaxPage(bkid: bkid) {
+            return maxPage
+        }
+        return getPageAggregate(function: "MAX", bkid: bkid, part: part)
+    }
+
+    func getMinPagesInPart(bkid: String, part: Int) -> Int {
+        if let minPage = OtzariaBookConnectionAdapter.getMinPage(bkid: bkid) {
+            return minPage
+        }
+        return getPageAggregate(function: "MIN", bkid: bkid, part: part)
+    }
+
+    private func getPageAggregate(function: String, bkid: String, part: Int) -> Int {
+        guard let db else { return 0 }
+
+        let querySQL = """
+        SELECT \(function)(page)
+        FROM b\(bkid)
+        WHERE part = ?
+        """
+
+        return (try? db.fetch(query: querySQL, parameters: [String(part)]) { row in
+            Int(row.int64(at: 0))
+        }.first) ?? 0
+    }
+
+    func getTOCEntries(_ book: BooksData) async -> [TOC] {
+        if let entries = OtzariaBookConnectionAdapter.getTOCEntries(for: book) {
+            return entries
+        }
+
+        try? connect(archive: book.archive)
+
+        guard let db else { return [] }
+
+        let query = """
+        SELECT id, tit, COALESCE(lvl, 0) as lvl, COALESCE(sub, 0) as sub
+        FROM t\(book.id)
+        ORDER BY id
+        """
+
+        do {
+            return try db.fetch(query: query) { row -> TOC? in
+                if Task.isCancelled { return nil }
+
+                let id = row.int64(at: 0)
+                let tit = row.string(at: 1) ?? ""
+                let lvl = row.int64(at: 2)
+                let sub = row.int64(at: 3)
+
+                return TOC(
+                    bab: tit,
+                    level: Int(lvl),
+                    sub: Int(sub),
+                    id: Int(id)
+                )
+            }.compactMap(\.self)
+        } catch {
+            Logger.db.error("getTOCEntries error: \(error.localizedDescription, privacy: .public)")
+            return []
+        }
+    }
+
+    /// Membangun pohon hierarki TOC dari daftar flat entri TOC database (`t{bookId}`).
+    /// Menggunakan multi-pass traversal untuk menangani struktur database Maktabah yang memiliki
+    /// level tidak berurutan secara linier (misalnya lonjakan level atau sub-bab non-monotonik).
+    /// Hasil disimpan di `tocTreeCache` agar kalkulasi hanya berjalan sekali per buku.
+    func buildTOCTree(from flatTOCs: [TOC], bookId: Int) async -> [TOCNode] {
+        guard !flatTOCs.isEmpty else { return [] }
+
+        let key = NSNumber(value: bookId)
+
+        if let cached = Self.tocTreeCache.object(forKey: key) as? [TOCNode] {
+            return cached
+        }
+
+        var allNodes: [TOCNode] = []
+        var levelStacks: [Int: [TOCNode]] = [:]
+        var nodesByEntryId: [Int: TOCNode] = [:]
+        var hasParentLinks = false
+
+        for toc in flatTOCs {
+            if Task.isCancelled { return [] }
+
+            let node = TOCNode(from: toc)
+            allNodes.append(node)
+            nodesByEntryId[toc.entryId] = node
+            if toc.parentId != nil { hasParentLinks = true }
+
+            levelStacks[node.level, default: []].append(node)
+        }
+
+        var rootNodes: [TOCNode] = []
+
+        if hasParentLinks {
+            for toc in flatTOCs {
+                if Task.isCancelled { return [] }
+                let node = nodesByEntryId[toc.entryId]
+                guard let node else { continue }
+                if let parentId = toc.parentId, let parent = nodesByEntryId[parentId] {
+                    parent.children.append(node)
+                } else {
+                    rootNodes.append(node)
+                }
+            }
+        } else {
+            let success = attachTOCNodesToParents(levelStacks: levelStacks, rootNodes: &rootNodes)
+            guard success else { return [] }
+        }
+
+        #if os(iOS)
+        // Pass 4: Hitung endID berdasarkan urutan flat list
+        calculateTOCEndIDs(allNodes: allNodes)
+        #endif
+
+        Self.tocTreeCache.setObject(rootNodes as NSArray, forKey: key)
+        return rootNodes
+    }
+
+    private func attachTOCNodesToParents(levelStacks: [Int: [TOCNode]], rootNodes: inout [TOCNode]) -> Bool {
+        let sortedLevels = levelStacks.keys.sorted()
+
+        for currentLevel in sortedLevels where currentLevel > 1 {
+            if Task.isCancelled { return false }
+            guard let nodesAtCurrentLevel = levelStacks[currentLevel] else { continue }
+
+            for node in nodesAtCurrentLevel {
+                if Task.isCancelled { return false }
+                var foundParent = false
+
+                for parentLevel in stride(from: currentLevel - 1, through: 1, by: -1) {
+                    if Task.isCancelled { return false }
+                    guard let candidateParents = levelStacks[parentLevel] else { continue }
+
+                    if let parent = candidateParents.last(where: { $0.id <= node.id }) {
+                        parent.children.append(node)
+                        foundParent = true
+                        break
+                    }
+                }
+
+                if !foundParent {
+                    rootNodes.append(node)
+                }
+            }
+        }
+        return true
+    }
+
+    #if os(iOS)
+    private func calculateTOCEndIDs(allNodes: [TOCNode]) {
+        for (i, node) in allNodes.enumerated() {
+            if i < allNodes.count - 1 {
+                node.endID = allNodes[i + 1].id - 1
+            } else {
+                node.endID = Int.max
+            }
+        }
+    }
+    #endif
+
+    static func invalidateTOC(for bookId: Int) {
+        tocTreeCache.removeObject(forKey: NSNumber(value: bookId))
+    }
+}
+

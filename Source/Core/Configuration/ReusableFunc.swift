@@ -1,0 +1,389 @@
+//
+//  ReusableFunc.swift
+//  maktab
+//
+//  Created by MacBook on 09/12/25.
+//
+
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
+import UIKit
+#endif
+import OSLog
+
+@MainActor
+class ReusableFunc {
+    static func bundledArabicFont(ofSize size: CGFloat) -> PlatformFont {
+        PlatformFont(name: "KFGQPCUthmanTahaNaskh", size: size)
+            ?? PlatformFont.systemFont(ofSize: size)
+    }
+
+    #if os(macOS)
+    static func setupSearchField(
+        _ searchField: NSSearchField,
+        systemSymbolName: String = "line.3.horizontal.decrease.circle"
+    ) {
+        // Asumsikan 'searchField' adalah instance dari NSSearchField Anda
+        if let searchFieldCell = searchField.cell as? NSSearchFieldCell {
+            if let searchButton = searchFieldCell.searchButtonCell {
+                // 1. Buat NSImage baru untuk ikon yang diinginkan
+                let customImage = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: .none)
+
+                // 2. Setel NSImage baru ke searchButtonCell
+                searchButton.image = customImage
+
+                // Pilihan: Jika Anda ingin gambar yang sama untuk status alternatif (misalnya, saat ditekan),
+                // Anda juga dapat menyetel properti alternateImage.
+                searchButton.alternateImage = customImage
+            }
+        }
+    }
+
+    static func updateBuiltInRecents(with newQuery: String, in searchField: NSSearchField) {
+        if newQuery.isEmpty { return }
+        let maxRecents = 10
+        let trimmedQuery = newQuery
+
+        // 1. Akses properti recentSearches bawaan
+        var recents = searchField.recentSearches
+
+        // 2. Terapkan Logika Penimpaan (LIFO - Last In, First Out)
+
+        // Hapus duplikat
+        if let existingIndex = recents.firstIndex(of: trimmedQuery) {
+            recents.remove(at: existingIndex)
+        }
+
+        // Masukkan item baru di awal
+        recents.insert(trimmedQuery, at: 0)
+
+        // Batasi jumlah entri (Penimpaan item terlama)
+        if recents.count > maxRecents {
+            recents = Array(recents.prefix(maxRecents))
+        }
+
+        // 3. Simpan kembali ke properti, yang akan memicu penyimpanan di UserDefaults
+        searchField.recentSearches = recents
+    }
+
+    /// Fungsi untuk membuka jendela ketika salah satu view di Sidebar pertama kali ditampilkan. Yaitu ketika view sedang memproses pemuatan data dari Data Base.
+    /// - Parameters:
+    ///   - view: view yang akan bertindak sebagai induk untuk jendela yang akan ditambahkan sebagai child window.
+    static func showProgressWindow(_ parentView: NSView) {
+        // 1. Cek apakah view sudah ada untuk menghindari duplikasi
+        if parentView.subviews.first(where: { $0.identifier?.rawValue == "ProgressOverlay" }) != nil {
+            return
+        }
+
+        // 2. Muat view controller dari XIB
+        let progressVC = InitProgress(nibName: "InitProgress", bundle: nil)
+        let progressView = progressVC.view
+
+        // Set identifier agar mudah ditemukan saat mau menghapus nanti
+        progressView.identifier = NSUserInterfaceItemIdentifier("ProgressOverlay")
+
+        // 4. Atur Frame agar berada di tengah parentView
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(progressView)
+
+        // 5. Gunakan Auto Layout agar tetap di tengah meskipun window di-resize
+        NSLayoutConstraint.activate([
+            progressView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
+            progressView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor),
+            // Jika InitProgress punya size tetap di XIB, gunakan itu:
+            progressView.widthAnchor.constraint(equalToConstant: progressView.frame.width),
+            progressView.heightAnchor.constraint(equalToConstant: progressView.frame.height),
+        ])
+    }
+
+    /// Fungsi untuk menutup jendela progress pemuatan atau pembaruan data.
+    /// - Parameter parentWindow: Jendela induk (`NSWindow`) tempat jendela progres ditampilkan sebagai child window.
+    static func closeProgressWindow(_ parentView: NSView) {
+        // Cari progressView di dalam parentView menggunakan identifier
+        guard let progressView = parentView.subviews.first(where: { $0.identifier?.rawValue == "ProgressOverlay" }) else {
+            return
+        }
+
+        // Atur NSAnimationContext untuk fade out view
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.5
+            // Mengurangi alphaValue view menjadi 0
+            progressView.animator().alphaValue = 0
+        }) {
+            // Setelah animasi selesai, hapus dari superview
+            MainActor.assumeIsolated {
+                progressView.removeFromSuperview()
+            }
+            Logger.app.debug("Progress view removed from parent view")
+        }
+    }
+
+    // MARK: - TABLEVIEW
+
+    static func registerNib(tableView: NSTableView, nibName: CellIViewIdentifier, cellIdentifier: CellIViewIdentifier) {
+        if let folderNib = NSNib(nibNamed: nibName.rawValue, bundle: nil) {
+            tableView.register(folderNib, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier.rawValue))
+        } else {
+            Logger.app.error("couldnt register Nib \(cellIdentifier.rawValue, privacy: .public)")
+        }
+    }
+
+    // MARK: - WINDOW
+
+    static func makeTitlelessWindow(contentView: NSView, size: NSSize) -> NSWindow {
+        let w = NSWindow(
+            contentRect: NSRect(origin: .zero, size: size),
+            styleMask: [.titled, .fullSizeContentView],
+            backing: .buffered,
+            defer: false
+        )
+        w.contentView = contentView
+        w.titlebarAppearsTransparent = true
+        w.isMovableByWindowBackground = true
+        w.isOpaque = false
+        w.backgroundColor = .clear
+        w.hasShadow = true
+        w.titleVisibility = .hidden
+        w.isReleasedWhenClosed = false
+        w.standardWindowButton(.closeButton)?.isHidden = true
+        w.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        w.standardWindowButton(.zoomButton)?.isHidden = true
+        return w
+    }
+
+    static func makeWindow(
+        contentView: NSView,
+        styleMask: NSWindow.StyleMask,
+        size: NSSize? = nil,
+        title: String = "",
+        centered: Bool = true
+    ) -> NSWindow {
+        let window = NSWindow(
+            contentRect: contentView.frame,
+            styleMask: styleMask,
+            backing: .buffered,
+            defer: false
+        )
+
+        window.title = title
+        window.contentView = contentView
+        window.isReleasedWhenClosed = false
+        if centered { window.center() }
+
+        return window
+    }
+
+    // MARK: - OTHERS
+
+    static func resolveRowsToProcess(selectedRows: IndexSet, clickedRow: Int) -> IndexSet {
+        if selectedRows.contains(clickedRow), selectedRows.count > 1 {
+            return selectedRows
+        }
+        if !selectedRows.isEmpty, clickedRow < 0 {
+            return selectedRows
+        }
+        if clickedRow >= 0 {
+            return IndexSet(integer: clickedRow)
+        }
+        return selectedRows
+    }
+
+    static func unhideSearchField(
+        searchFieldIsHidden: Bool,
+        searchField: NSSearchField,
+        scrollViewTopConstraint: NSLayoutConstraint
+    ) {
+        let hide = searchFieldIsHidden
+
+        searchField.isHidden = hide
+
+        // 3. Buat Constraint yang Baru
+        if !hide {
+            // KONDISI 1: TIDAK TERSEMBUNYI (Unhide)
+            scrollViewTopConstraint.constant = 92
+            searchField.becomeFirstResponder()
+        } else {
+            // KONDISI 2: TERSEMBUNYI (Hide)
+            // Hubungkan scrollView top ke superview top dengan constant 0
+            // Asumsi superview dari scrollView adalah view utama ViewController
+            scrollViewTopConstraint.constant = 0
+        }
+    }
+    #endif
+
+    // Menampilkan jendela peringatan standar kepada pengguna.
+    #if os(macOS)
+    nonisolated static func showAlert(title: String, message: String, style: NSAlert.Style = .warning) {
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.alertStyle = style
+            alert.messageText = title
+            alert.informativeText = message
+            alert.runModal()
+        }
+    }
+    #else
+    nonisolated static func showAlert(title: String, message: String) {
+        DispatchQueue.main.async {
+            guard let topVC = getTopViewController() else { return }
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            topVC.present(alert, animated: true)
+        }
+    }
+
+    static func getTopViewController() -> UIViewController? {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let rootVC = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController
+        else {
+            return nil
+        }
+        var topVC = rootVC
+        while let presentedVC = topVC.presentedViewController {
+            topVC = presentedVC
+        }
+        return topVC
+    }
+    #endif
+
+    #if os(macOS)
+    static func helpSearchOpt(_ sender: NSButton) {
+        let searchHelpPopover = NSPopover()
+        if searchHelpPopover.isShown {
+            searchHelpPopover.close()
+            return
+        }
+
+        searchHelpPopover.contentViewController = createSearchHelpContentViewController()
+        searchHelpPopover.behavior = .transient
+        searchHelpPopover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .minX)
+    }
+
+    private static func createSearchHelpContentViewController() -> NSViewController {
+        let preferredWidth: CGFloat = 250
+        let preferredHeight: CGFloat = 250
+        let contentVC = NSViewController()
+        contentVC.preferredContentSize = NSSize(width: preferredWidth, height: preferredHeight)
+
+        let mainView = NSView(frame: NSRect(x: 0, y: 0, width: preferredWidth, height: preferredHeight))
+        contentVC.view = mainView
+
+        let stackView = NSStackView()
+        stackView.orientation = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 12
+        stackView.edgeInsets = NSEdgeInsetsZero
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        mainView.addSubview(stackView)
+
+        let constant: CGFloat = 20
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: constant),
+            stackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -constant),
+            stackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: constant),
+            stackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -constant),
+        ])
+
+        let titleLabel = NSTextField(labelWithString: NSLocalizedString("searchOptionsHelp", comment: ""))
+        titleLabel.font = NSFont.boldSystemFont(ofSize: 16)
+        stackView.addArrangedSubview(titleLabel)
+
+        let options: [(title: String, desc: String)] = [
+            (NSLocalizedString("exactSearchTitle", comment: ""), NSLocalizedString("exactSearchDesc", comment: "")),
+            (NSLocalizedString("separateWordsSearchTitle", comment: ""), NSLocalizedString("separateWordsSearchDesc", comment: "")),
+            (String(localized: "anyWordsSearchTitle"), String(localized: "anyWordsSearchDesc")),
+            (String(localized: "nearSearchTitle"), String(localized: "nearSearchDesc")),
+        ]
+
+        for (title, desc) in options {
+            let separator = NSBox()
+            separator.boxType = .separator
+            stackView.addArrangedSubview(separator)
+
+            let titleLbl = NSTextField(wrappingLabelWithString: title)
+            titleLbl.font = NSFont.systemFont(ofSize: 13, weight: .semibold)
+            stackView.addArrangedSubview(titleLbl)
+
+            let descLbl = NSTextField(wrappingLabelWithString: desc)
+            descLbl.font = NSFont.systemFont(ofSize: 13)
+            descLbl.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            stackView.addArrangedSubview(descLbl)
+        }
+
+        return contentVC
+    }
+
+    // MARK: - NSIMAGE
+
+    static func systemImage(named name: String) -> NSImage {
+        guard let image = NSImage(systemSymbolName: name,
+                                  accessibilityDescription: nil)
+        else { return NSImage() }
+        return image
+    }
+    #endif
+}
+
+#if os(macOS)
+extension NSTableView {
+    func effectiveRows() -> IndexSet {
+        if clickedRow == -1 { return selectedRowIndexes }
+        return selectedRowIndexes.contains(clickedRow)
+            ? selectedRowIndexes
+            : IndexSet(integer: clickedRow)
+    }
+
+    func contextMenuAnchorRect() -> NSRect {
+        let anchorRow = clickedRow >= 0 ? clickedRow : selectedRow
+        guard anchorRow >= 0 else { return bounds }
+        return rect(ofRow: anchorRow)
+    }
+
+    func cellAnchor(forRow row: Int, column: Int = 0) -> (view: NSView, rect: NSRect) {
+        guard row >= 0, row < numberOfRows else { return (self, bounds) }
+        if let cell = view(atColumn: column, row: row, makeIfNecessary: false) {
+            return (cell, cell.bounds)
+        }
+        return (self, rect(ofRow: row))
+    }
+
+    func contextMenuCellAnchor(column: Int = 0) -> (view: NSView, rect: NSRect) {
+        let anchorRow = clickedRow >= 0 ? clickedRow : selectedRow
+        return cellAnchor(forRow: anchorRow, column: column)
+    }
+}
+
+extension NSSegmentedControl {
+    static func makeNavigationControl(
+        target: AnyObject? = nil,
+        action: Selector? = nil
+    ) -> NSSegmentedControl {
+        let control = NSSegmentedControl()
+        control.segmentCount = 2
+        control.segmentStyle = .texturedRounded
+        control.trackingMode = .momentary
+        control.userInterfaceLayoutDirection = .leftToRight
+        control.setImage(ReusableFunc.systemImage(named: "arrow.left"), forSegment: 0)
+        control.setImage(ReusableFunc.systemImage(named: "arrow.right"), forSegment: 1)
+        control.setWidth(23, forSegment: 0)
+        control.setWidth(23, forSegment: 1)
+        control.target = target
+        control.action = action
+        control.setAccessibilityLabel(String(localized: "Navigation"))
+        control.toolTip = String(localized: "Navigation")
+        control.setToolTip(String(localized: "Next Page"), forSegment: 0)
+        control.setToolTip(String(localized: "Previous Page"), forSegment: 1)
+        return control
+    }
+}
+#endif
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        guard size > 0 else { return [self] }
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}

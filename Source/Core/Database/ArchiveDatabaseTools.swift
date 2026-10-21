@@ -1,0 +1,343 @@
+//
+//  ArchiveDatabaseTools.swift
+//  Maktabah
+//
+//  Shared helpers for table copy/replace and FTS building.
+//
+
+import Foundation
+import SQLite3
+
+enum ArchiveDatabaseTools {
+    static let sqliteTransient = unsafeBitCast(
+        OpaquePointer(bitPattern: -1),
+        to: sqlite3_destructor_type.self
+    )
+
+    struct TableColumnInfo {
+        let name: String
+        let type: String
+        let isPrimaryKey: Bool
+    }
+
+    private enum SQL {
+        static let dropTable = "DROP TABLE IF EXISTS %@;"
+        static let insertSelect = "INSERT INTO \"%@\" SELECT * FROM %@.\"%@\";"
+        static let createTableAsSelect = "CREATE TABLE main.\"%@\" AS SELECT * FROM %@.\"%@\";"
+        static let createFTS = "CREATE VIRTUAL TABLE %@.%@ USING fts5(nass_clean, content='', tokenize='unicode61');"
+        static let createUnifiedIndex = "CREATE TABLE IF NOT EXISTS %@.archive_index (rowid INTEGER PRIMARY KEY, book_id INTEGER, page INTEGER, id INTEGER, part INTEGER);"
+        static let createUnifiedFTS = "CREATE VIRTUAL TABLE IF NOT EXISTS %@.archive_fts USING fts5(nass_clean, content='', contentless_delete=1, tokenize='unicode61');"
+        static let selectFTS = "SELECT id, nass FROM %@.%@ WHERE nass IS NOT NULL AND nass != '';"
+        static let selectUnifiedSource = "SELECT id, nass, page, part FROM %@.%@ WHERE nass IS NOT NULL AND nass != '';"
+        static let insertFTS = "INSERT INTO %@.%@(rowid, nass_clean) VALUES (?, ?);"
+        static let insertUnifiedIndex = "INSERT OR REPLACE INTO %@.archive_index(rowid, book_id, page, id, part) VALUES (?, ?, ?, ?, ?);"
+        static let insertUnifiedFTS = "INSERT INTO %@.archive_fts(rowid, nass_clean) VALUES (?, ?);"
+        static let beginTx = "BEGIN TRANSACTION;"
+        static let commitTx = "COMMIT;"
+        static let rollbackTx = "ROLLBACK;"
+        static let checkMetadata = "SELECT name FROM %@.sqlite_master WHERE type='table' AND name='metadata';"
+        static let countFtsTables = "SELECT count(*) FROM %@.sqlite_master WHERE type='table' AND name LIKE '%%_fts';"
+        static let createMetadata = "CREATE TABLE IF NOT EXISTS %@.metadata (key TEXT PRIMARY KEY, value INTEGER);"
+        static let insertMetadata = "INSERT OR REPLACE INTO %@.metadata (key, value) VALUES ('fts_version', \(AppConfig.currentFtsVersion));"
+        static let pragmaTableInfo = "PRAGMA %@.table_info('%@');"
+    }
+
+    /// Menjalankan block operasi di dalam SQLite transaction jika belum ada transaksi aktif.
+    static func withTransaction(
+        db: OpaquePointer,
+        _ block: () throws -> Void
+    ) throws {
+        let isInTransaction = sqlite3_get_autocommit(db) == 0
+        if !isInTransaction {
+            try exec(db, SQL.beginTx)
+        }
+        do {
+            try block()
+            if !isInTransaction {
+                try exec(db, SQL.commitTx)
+            }
+        } catch {
+            if !isInTransaction {
+                try? exec(db, SQL.rollbackTx)
+            }
+            throw error
+        }
+    }
+
+    static func copyTable(db: OpaquePointer, sourceSchema: String, tableName: String) throws {
+        let dropSQL = String(format: SQL.dropTable, "main.\"\(tableName)\"")
+        let createAsSQL = String(format: SQL.createTableAsSelect, tableName, sourceSchema, tableName)
+
+        try exec(db, dropSQL)
+        try exec(db, createAsSQL)
+    }
+
+    static func buildFTS(
+        db: OpaquePointer,
+        ftsSchema: String = "fts_db",
+        ftsTable: String,
+        sourceSchema: String,
+        sourceTable: String,
+        isNassCompressed: Bool = false
+    ) throws {
+        let dropSQL = String(format: SQL.dropTable, "\(ftsSchema).\(ftsTable)")
+        let createFTSSQL = String(format: SQL.createFTS, ftsSchema, ftsTable)
+        try exec(db, dropSQL)
+        try exec(db, createFTSSQL)
+
+        let selectSQL = String(format: SQL.selectFTS, sourceSchema, sourceTable)
+        let insertSQL = String(format: SQL.insertFTS, ftsSchema, ftsTable)
+
+        let selectStmt = try prepareStatement(db: db, sql: selectSQL, errorMsg: "Error prepare SELECT FTS \(ftsTable).")
+        defer { sqlite3_finalize(selectStmt) }
+
+        let insertStmt = try prepareStatement(db: db, sql: insertSQL, errorMsg: "Error prepare INSERT FTS \(ftsTable).")
+        defer { sqlite3_finalize(insertStmt) }
+
+        try processFtsRows(db: db, selectStmt: selectStmt, insertStmt: insertStmt, ftsTable: ftsTable, isNassCompressed: isNassCompressed)
+        try initializeFtsMetadataIfNeeded(db: db, ftsSchema: ftsSchema)
+    }
+
+    static func createUnifiedFTS(db: OpaquePointer, ftsSchema: String = "fts_db") throws {
+        let sqlIndex = String(format: SQL.createUnifiedIndex, ftsSchema)
+        try exec(db, sqlIndex)
+        let sqlFts = String(format: SQL.createUnifiedFTS, ftsSchema)
+        try exec(db, sqlFts)
+    }
+
+    static func appendBookToUnifiedFTS(
+        db: OpaquePointer,
+        ftsSchema: String = "fts_db",
+        sourceSchema: String = "main",
+        sourceTable: String,
+        bookId: Int,
+        isNassCompressed: Bool = true
+    ) throws {
+        try createUnifiedFTS(db: db, ftsSchema: ftsSchema)
+
+        let insertIndexSQL = String(format: SQL.insertUnifiedIndex, ftsSchema)
+        let insertFtsSQL = String(format: SQL.insertUnifiedFTS, ftsSchema)
+
+        let insertIndexStmt = try prepareStatement(db: db, sql: insertIndexSQL, errorMsg: "Error prepare INSERT into unified index.")
+        defer { sqlite3_finalize(insertIndexStmt) }
+
+        let insertFtsStmt = try prepareStatement(db: db, sql: insertFtsSQL, errorMsg: "Error prepare INSERT into unified FTS.")
+        defer { sqlite3_finalize(insertFtsStmt) }
+
+        try withTransaction(db: db) {
+            try? exec(db, "DELETE FROM \(ftsSchema).archive_fts WHERE rowid IN (SELECT rowid FROM \(ftsSchema).archive_index WHERE book_id = \(bookId));")
+            try exec(db, "DELETE FROM \(ftsSchema).archive_index WHERE book_id = \(bookId);")
+
+            try appendBookFast(
+                db: db,
+                sourceSchema: sourceSchema,
+                sourceTable: sourceTable,
+                bookId: bookId,
+                insertIndexStmt: insertIndexStmt,
+                insertFtsStmt: insertFtsStmt,
+                isNassCompressed: isNassCompressed
+            )
+        }
+        try initializeFtsMetadataIfNeeded(db: db, ftsSchema: ftsSchema)
+    }
+
+    /// Versi berperforma tinggi untuk migrasi massal menggunakan reusable prepared statements.
+    static func appendBookFast(
+        db: OpaquePointer,
+        sourceSchema: String = "main",
+        sourceTable: String,
+        bookId: Int,
+        insertIndexStmt: OpaquePointer,
+        insertFtsStmt: OpaquePointer,
+        isNassCompressed: Bool = true
+    ) throws {
+        let selectSQL = String(format: SQL.selectUnifiedSource, sourceSchema, sourceTable)
+        let selectStmt = try prepareStatement(db: db, sql: selectSQL, errorMsg: "Error prepare SELECT for unified FTS \(sourceTable).")
+        defer { sqlite3_finalize(selectStmt) }
+
+        while sqlite3_step(selectStmt) == SQLITE_ROW {
+            try autoreleasepool {
+                guard let normalized = extractNormalizedText(from: selectStmt, isNassCompressed: isNassCompressed) else { return }
+
+                let rowId = sqlite3_column_int64(selectStmt, 0)
+                let page = sqlite3_column_int64(selectStmt, 2)
+                let part = sqlite3_column_int64(selectStmt, 3)
+                let packedRowId = (Int64(bookId) << 32) | (rowId & 0xFFFF_FFFF)
+
+                // 1. Insert ke archive_index (metadata)
+                sqlite3_reset(insertIndexStmt)
+                sqlite3_clear_bindings(insertIndexStmt)
+                sqlite3_bind_int64(insertIndexStmt, 1, packedRowId)
+                sqlite3_bind_int64(insertIndexStmt, 2, Int64(bookId))
+                sqlite3_bind_int64(insertIndexStmt, 3, page)
+                sqlite3_bind_int64(insertIndexStmt, 4, rowId)
+                sqlite3_bind_int64(insertIndexStmt, 5, part)
+                if sqlite3_step(insertIndexStmt) != SQLITE_DONE {
+                    throw sqliteError(db, message: "Error insert unified index \(sourceTable).")
+                }
+
+                // 2. Insert ke archive_fts (tokens)
+                sqlite3_reset(insertFtsStmt)
+                sqlite3_clear_bindings(insertFtsStmt)
+                sqlite3_bind_int64(insertFtsStmt, 1, packedRowId)
+                _ = normalized.withCString { ptr in
+                    sqlite3_bind_text(insertFtsStmt, 2, ptr, -1, sqliteTransient)
+                }
+                if sqlite3_step(insertFtsStmt) != SQLITE_DONE {
+                    throw sqliteError(db, message: "Error insert unified FTS \(sourceTable).")
+                }
+            }
+        }
+    }
+
+    private static func processFtsRows(
+        db: OpaquePointer,
+        selectStmt: OpaquePointer,
+        insertStmt: OpaquePointer,
+        ftsTable: String,
+        isNassCompressed: Bool
+    ) throws {
+        try withTransaction(db: db) {
+            while sqlite3_step(selectStmt) == SQLITE_ROW {
+                try autoreleasepool {
+                    guard let normalized = extractNormalizedText(from: selectStmt, isNassCompressed: isNassCompressed) else { return }
+                    let rowId = sqlite3_column_int64(selectStmt, 0)
+                    try insertFtsRow(insertStmt: insertStmt, rowId: rowId, normalized: normalized, ftsTable: ftsTable, db: db)
+                }
+            }
+        }
+    }
+
+    private static func extractNormalizedText(from selectStmt: OpaquePointer, isNassCompressed: Bool) -> String? {
+        guard let rawText = readRawText(selectStmt: selectStmt, isNassCompressed: isNassCompressed) else { return nil }
+        let normalized = rawText
+            .cleaningLineBreaks()
+            .stripSpanTags()
+            .stemArabicLight10()
+        return normalized.isEmpty ? nil : normalized
+    }
+
+    private static func readRawText(selectStmt: OpaquePointer, isNassCompressed: Bool) -> String? {
+        isNassCompressed ? selectStmt.columnTextOrDecompressedBlob(1) : selectStmt.columnString(1)
+    }
+
+    private static func insertFtsRow(
+        insertStmt: OpaquePointer, rowId: Int64, normalized: String, ftsTable: String, db: OpaquePointer
+    ) throws {
+        sqlite3_reset(insertStmt)
+        sqlite3_clear_bindings(insertStmt)
+        sqlite3_bind_int64(insertStmt, 1, rowId)
+
+        _ = normalized.withCString {
+            sqlite3_bind_text(insertStmt, 2, $0, -1, sqliteTransient)
+        }
+
+        if sqlite3_step(insertStmt) != SQLITE_DONE {
+            throw sqliteError(db, message: "Error insert FTS \(ftsTable).")
+        }
+    }
+
+    private static func initializeFtsMetadataIfNeeded(db: OpaquePointer, ftsSchema: String) throws {
+        let checkSql = String(format: SQL.checkMetadata, ftsSchema)
+        if let stmt = try? prepareStatement(db: db, sql: checkSql, errorMsg: "Check metadata error") {
+            defer { sqlite3_finalize(stmt) }
+            if sqlite3_step(stmt) == SQLITE_ROW { return }
+        }
+
+        let countSql = String(format: SQL.countFtsTables, ftsSchema)
+        var ftsCount = 0
+        if let countStmt = try? prepareStatement(db: db, sql: countSql, errorMsg: "Count metadata error") {
+            defer { sqlite3_finalize(countStmt) }
+            if sqlite3_step(countStmt) == SQLITE_ROW {
+                ftsCount = Int(sqlite3_column_int64(countStmt, 0))
+            }
+        }
+
+        if ftsCount <= 1 {
+            try exec(db, String(format: SQL.createMetadata, ftsSchema))
+            try exec(db, String(format: SQL.insertMetadata, ftsSchema))
+        }
+    }
+
+    static func loadTableColumns(tableName: String, db: OpaquePointer, schemaName: String = "main") throws -> [TableColumnInfo] {
+        let sql = String(format: SQL.pragmaTableInfo, schemaName, tableName)
+        let stmt = try prepareStatement(db: db, sql: sql, errorMsg: "Error load info tabel \(tableName).")
+        defer { sqlite3_finalize(stmt) }
+
+        var columns: [TableColumnInfo] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            let name = stmt.columnString(1) ?? ""
+            let type = stmt.columnString(2) ?? ""
+            let isPrimaryKey = sqlite3_column_int64(stmt, 5) == 1
+            columns.append(TableColumnInfo(name: name, type: type, isPrimaryKey: isPrimaryKey))
+        }
+        return columns
+    }
+
+    static func makeCreateTableSQL(tableName: String, columns: [TableColumnInfo]) -> String {
+        let definitions = columns.map { column -> String in
+            let primaryKey = column.isPrimaryKey ? " PRIMARY KEY" : ""
+            if column.name.lowercased() == "nass" {
+                return "\(column.name) BLOB\(primaryKey)"
+            }
+            return "\(column.name) \(column.type)\(primaryKey)"
+        }
+        return "CREATE TABLE \(tableName) (\(definitions.joined(separator: ", ")));"
+    }
+
+    private static func prepareStatement(db: OpaquePointer, sql: String, errorMsg: String) throws -> OpaquePointer {
+        var stmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) != SQLITE_OK {
+            throw sqliteError(db, message: errorMsg)
+        }
+        guard let validStmt = stmt else {
+            throw sqliteError(db, message: errorMsg)
+        }
+        return validStmt
+    }
+
+    private static func exec(_ db: OpaquePointer, _ sql: String) throws {
+        let stmt = try prepareStatement(db: db, sql: sql, errorMsg: "Run SQL Prepare Error.")
+        defer { sqlite3_finalize(stmt) }
+        if sqlite3_step(stmt) != SQLITE_DONE {
+            throw sqliteError(db, message: "Run SQL Step Error.")
+        }
+    }
+
+    private static func sqliteError(_ db: OpaquePointer?, message: String) -> NSError {
+        let detail = db.flatMap { String(cString: sqlite3_errmsg($0)) } ?? "Unknown error"
+        return NSError(
+            domain: "ArchiveDatabaseTools",
+            code: -5,
+            userInfo: [NSLocalizedDescriptionKey: "\(message) (\(detail))"]
+        )
+    }
+
+    static func tableExists(db: OpaquePointer, schemaName: String = "main", tableName: String) -> Bool {
+        let sql = "SELECT name FROM \(schemaName).sqlite_master WHERE type='table' AND name=? LIMIT 1;"
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+            return false
+        }
+        defer { sqlite3_finalize(stmt) }
+
+        _ = tableName.withCString { ptr in
+            sqlite3_bind_text(stmt, 1, ptr, -1, sqliteTransient)
+        }
+
+        return sqlite3_step(stmt) == SQLITE_ROW
+    }
+
+    /// Mengecek apakah database memiliki skema Unified FTS (archive_fts & archive_index).
+    static func hasUnifiedFTS(db: OpaquePointer, schemaName: String = "fts_db") -> Bool {
+        tableExists(db: db, schemaName: schemaName, tableName: "archive_fts") &&
+            tableExists(db: db, schemaName: schemaName, tableName: "archive_index")
+    }
+}
+
+/*
+ SUMMARY:
+ 1. Centralized Queries: Extracted all SQL literals into a structured `private enum SQL`. Created helper methods `prepareStatement` and `processFtsRows` to remove boilerplate.
+ 2. SwiftLint Reductions: Reduced cyclomatic complexity and function body length by breaking down `buildFTS` into targeted subroutines (`processFtsRows`, `insertFtsRow`, `initializeFtsMetadataIfNeeded`).
+ 3. Safety Verification: Guaranteed 1-based index binding and 0-based column reading. Enforced `SQLITE_TRANSIENT` string binding safety and verified strict lifecycle memory management using `defer { sqlite3_finalize(stmt) }`.
+ */

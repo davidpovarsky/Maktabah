@@ -1,0 +1,165 @@
+//
+//  BookUpdateModels.swift
+//  Maktabah
+//
+//  Updated struktur untuk download selektif
+//
+
+import Combine
+import Foundation
+
+// MARK: - CSV Entry dengan informasi lengkap
+
+struct BookIndexEntry: Codable, Sendable {
+    let bkid: Int
+    let bk: String
+    let category: Int
+    let versionName: Int64
+    let downloadURL: String
+    let fileSize: Int64 // Ukuran dalam bytes
+
+    enum CodingKeys: String, CodingKey {
+        case bkid
+        case bk
+        case category
+        case versionName = "ver"
+        case downloadURL = "url"
+        case fileSize = "size"
+    }
+}
+
+struct AuthIndexEntry: Codable, Sendable {
+    let authId: Int
+    let versionName: Int64
+    let downloadURL: String
+
+    enum CodingKeys: String, CodingKey {
+        case authId = "auth_id"
+        case versionName = "oVer"
+        case downloadURL = "url"
+    }
+}
+
+struct BookMetadata: Sendable {
+    let bkid: Int
+    let cat: Int?
+    let bk: String
+    let archive: Int
+    let betaka: String?
+    let authno: Int?
+    let inf: String?
+    let tafseerNam: String?
+    let bVer: Int?
+    let link: String?
+    let pdfCs: Int?
+}
+
+// MARK: - Update Status untuk UI
+
+enum UpdateStatus: Equatable, Sendable {
+    case pending // Belum diproses
+    case checking // Sedang mengecek versi
+    case new // buku baru
+    case needsUpdate // Perlu update
+    case upToDate // Sudah terbaru
+    case downloading // Sedang download
+    case downloaded // Download selesai, menunggu proses
+    case processing // Sedang memproses
+    case completed // Selesai
+    case failed(String) // Gagal dengan pesan error
+    case skipped // Dilewati (tidak dipilih user)
+
+    var displayText: String {
+        switch self {
+        case .pending: String(localized: .Library.waiting)
+        case .checking: String(localized: .Library.checking)
+        case .new: String(localized: "new").localizedUppercase
+        case .needsUpdate: String(localized: .Library.needsUpdate)
+        case .upToDate: String(localized: .Library.alreadyUpdated)
+        case .downloading: String(localized: .Library.downloadingWithEllipsis)
+        case .downloaded: String(localized: .Library.downloaded)
+        case .processing: String(localized: .Library.processing)
+        case .completed: String(localized: "Done")
+        case let .failed(msg): String(localized: .Library.failedWithMessage(msg))
+        case .skipped: String(localized: .Library.skipped)
+        }
+    }
+}
+
+// MARK: - Book Update Item untuk ditampilkan di List
+
+@Observable
+final class BookUpdateItem: Identifiable, @unchecked Sendable {
+    let id: Int
+    let bookName: String
+    let category: Int
+    let existsInLibrary: Bool
+    var currentVersion: Int64?
+    let newVersion: Int64
+    let fileSize: Int64
+    let downloadURL: String
+
+    var isSelected: Bool = false
+    var status: UpdateStatus = .pending
+    // var progress: Double = 0.0
+
+    var needsUpdate: Bool {
+        guard existsInLibrary else { return true }
+        guard let current = currentVersion else { return true }
+        return current != newVersion
+    }
+
+    var newBook: Bool {
+        !existsInLibrary
+    }
+
+    var fileSizeFormatted: String {
+        fileSize.formattedByteCount
+    }
+
+    var categoryName: String {
+        LibraryDataManager.shared.categoryMap[category]?.name ?? ""
+    }
+
+    init(
+        id: Int,
+        bookName: String,
+        category: Int,
+        existsInLibrary: Bool,
+        currentVersion: Int64?,
+        newVersion: Int64,
+        fileSize: Int64,
+        downloadURL: String
+    ) {
+        self.id = id
+        self.bookName = bookName
+        self.category = category
+        self.existsInLibrary = existsInLibrary
+        self.currentVersion = currentVersion
+        self.newVersion = newVersion
+        self.fileSize = fileSize
+        self.downloadURL = downloadURL
+
+        // Auto-select jika perlu update
+        isSelected = needsUpdate
+    }
+}
+
+// MARK: - Result untuk tracking
+
+struct BookUpdateResult: Sendable {
+    let bookId: Int
+    let catId: Int
+    let action: UpdateAction
+}
+
+enum UpdateAction: Sendable {
+    case inserted
+    case updated
+    case skipped
+}
+
+struct BooksChangedNotification: Sendable {
+    let insertedBooks: [(categoryId: Int, book: BooksData)]
+    let updatedBookIds: Set<Int>
+}

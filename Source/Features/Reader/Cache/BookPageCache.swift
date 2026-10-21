@@ -1,0 +1,101 @@
+//
+//  BookPageCache.swift
+//  maktab
+//
+//  Created by MacBook on 11/12/25.
+//
+
+import Foundation
+import OSLog
+import Synchronization
+#if canImport(UIKit)
+import UIKit
+#endif
+
+final class BookPageCache: @unchecked Sendable {
+    static let shared = BookPageCache()
+
+    // Key: bookId (NSNumber) -> Value: Map of pages (NSMutableDictionary)
+    private let cache = NSCache<NSNumber, NSMutableDictionary>()
+    private let processedCache = NSCache<NSNumber, NSMutableDictionary>()
+    private let lock = Mutex<Void>(())
+
+    private init() {
+        cache.countLimit = 200
+        cache.totalCostLimit = 5000
+
+        processedCache.countLimit = 200
+        processedCache.totalCostLimit = 5000
+
+        #if os(iOS)
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didReceiveMemoryWarningNotification,
+            object: nil,
+            queue: nil
+        ) { [weak self] _ in
+            self?.removeAll()
+        }
+        #endif
+    }
+
+    private func processedSubKey(
+        contentId: Int,
+        key: CleanedTextKey
+    ) -> NSString {
+        "\(contentId)_\(key.showHarakat)_\(key.isMultiLanguage)_\(key.isImported)_\(key.textHash)" as NSString
+    }
+
+    func get(bookId: Int, contentId: Int) -> BookContent? {
+        lock.withLock { _ in
+            let bookKey = bookId as NSNumber
+            let pages = cache.object(forKey: bookKey)
+            return pages?[contentId as NSNumber] as? BookContent
+        }
+    }
+
+    func set(bookId: Int, content: BookContent) {
+        lock.withLock { _ in
+            let bookKey = bookId as NSNumber
+            let pages = cache.object(forKey: bookKey) ?? NSMutableDictionary()
+
+            pages[content.id as NSNumber] = content
+            cache.setObject(pages, forKey: bookKey, cost: pages.count)
+        }
+    }
+
+    func getProcessed(bookId: Int, contentId: Int, key: CleanedTextKey) -> ProcessedArabicContent? {
+        lock.withLock { _ in
+            let bookKey = bookId as NSNumber
+            let pages = processedCache.object(forKey: bookKey)
+            let subKey = processedSubKey(contentId: contentId, key: key)
+            return pages?[subKey] as? ProcessedArabicContent
+        }
+    }
+
+    func setProcessed(bookId: Int, contentId: Int, key: CleanedTextKey, content: ProcessedArabicContent) {
+        lock.withLock { _ in
+            let bookKey = bookId as NSNumber
+            let pages = processedCache.object(forKey: bookKey) ?? NSMutableDictionary()
+            let subKey = processedSubKey(contentId: contentId, key: key)
+
+            pages[subKey] = content
+            processedCache.setObject(pages, forKey: bookKey, cost: pages.count)
+        }
+    }
+
+    func remove(bookId: Int) {
+        lock.withLock { _ in
+            // Langsung hapus satu buku beserta seluruh halamannya
+            cache.removeObject(forKey: bookId as NSNumber)
+            processedCache.removeObject(forKey: bookId as NSNumber)
+            Logger.reader.debug("Cache REMOVED all content for bookId: \(bookId)")
+        }
+    }
+
+    func removeAll() {
+        lock.withLock { _ in
+            cache.removeAllObjects()
+            processedCache.removeAllObjects()
+        }
+    }
+}

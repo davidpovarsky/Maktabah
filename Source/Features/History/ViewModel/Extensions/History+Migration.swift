@@ -1,0 +1,102 @@
+//
+//  History+Migration.swift
+//  Maktabah
+//
+
+import Foundation
+import OSLog
+
+extension HistoryViewModel {
+    // MARK: - KVS Migration (Legacy)
+
+    func backfillCloudKitFieldsIfNeeded(completion: (([ReadingEntry]) -> Void)? = nil) {
+        var backfilled = [ReadingEntry]()
+        var legacyCkIdsToDelete = [String]()
+        var didChange = false
+
+        for (bookId, entry) in entriesByBookId {
+            if entry.ckRecordId == nil || entry.ckRecordId?.hasPrefix("history_") == true {
+                if let oldId = entry.ckRecordId, oldId.hasPrefix("history_") {
+                    legacyCkIdsToDelete.append(oldId)
+                }
+                var updated = entry
+                updated.ckRecordId = String(bookId)
+                entriesByBookId[bookId] = updated
+                backfilled.append(updated)
+                didChange = true
+            }
+        }
+
+        let toUpdateDb = backfilled
+        if didChange {
+            Task.detached {
+                do {
+                    try HistoryDatabaseManager.shared.saveUpsertedEntries(toUpdateDb)
+                    await MainActor.run {
+                        self.loadBooksData()
+                    }
+                } catch {
+                    Logger.history.error("Failed to backfillCloudKitFields: \(error.localizedDescription, privacy: .public)")
+                }
+            }
+        }
+
+        if !legacyCkIdsToDelete.isEmpty {
+            CloudKitSyncManager.shared.delete(ckRecordIds: legacyCkIdsToDelete, target: .history, trackPending: true)
+        }
+
+        completion?(backfilled)
+    }
+
+    func migrateLegacyKVSDataIfNeeded() {
+        if UserDefaults.standard.bool(forKey: "HistoryViewModel_LegacyMigrated_v2") {
+            return
+        }
+
+        if let legacy = loadLegacyPayload() {
+            loadFromDatabase()
+
+            var newEntries = [ReadingEntry]()
+            for entry in legacy.entries where entriesByBookId[entry.bookId] == nil {
+                var migrated = entry
+                migrated.ckRecordId = String(entry.bookId)
+                entriesByBookId[entry.bookId] = migrated
+                newEntries.append(migrated)
+            }
+
+            for hId in legacy.historyOrder where !historyOrder.contains(hId) {
+                historyOrder.append(hId)
+            }
+
+            let finalOrder = historyOrder
+            let migratedEntries = Array(entriesByBookId.values).filter { $0.ckRecordId != nil }
+
+            Task.detached {
+                do {
+                    try HistoryDatabaseManager.shared.saveMigrationChanges(newEntries: newEntries, finalOrder: finalOrder)
+                    if !migratedEntries.isEmpty {
+                        CloudKitSyncManager.shared.uploadHistory(entries: migratedEntries, debounce: false, trackPending: false)
+                    }
+                } catch {
+                    Logger.history.error("Failed to migrateLegacyKVSData: \(error.localizedDescription, privacy: .public)")
+                }
+            }
+        }
+
+        UserDefaults.standard.set(true, forKey: "HistoryViewModel_LegacyMigrated_v2")
+    }
+
+    func loadLegacyPayload() -> StoredReadingEntries? {
+        let kvs = NSUbiquitousKeyValueStore.default
+        if let data = UserDefaults.standard.data(forKey: legacyHistoryKey),
+           let decoded = try? JSONDecoder().decode(StoredReadingEntries.self, from: data)
+        {
+            return decoded
+        } else if let data = kvs.data(forKey: legacyHistoryKey),
+                  let decoded = try? JSONDecoder().decode(StoredReadingEntries.self, from: data)
+        {
+            return decoded
+        }
+        return nil
+    }
+}
