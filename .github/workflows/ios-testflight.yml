@@ -39,7 +39,7 @@ env:
 jobs:
   build-sign-and-upload:
     name: Build, Sign, and Deliver ChavrusaText (${{ inputs.data_profile }})
-    runs-on: macos-27
+    runs-on: xcode-27
     timeout-minutes: 210
 
     steps:
