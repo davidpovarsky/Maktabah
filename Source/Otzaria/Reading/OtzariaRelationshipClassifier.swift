@@ -5,23 +5,18 @@ import TorahInspectorCore
 #else
 enum TorahRelationshipKind: String, Sendable, Codable {
     case commentary
+    case quotingCommentary
     case link
 }
 
 enum TorahSourceCategory: String, Sendable, Codable {
     case commentary
+    case quotingCommentary
     case tanakh
-    case mishnah
     case talmud
     case midrash
+    case targum
     case halakhah
-    case kabbalah
-    case liturgy
-    case philosophy
-    case chasidut
-    case musar
-    case responsa
-    case modern
     case other
 }
 #endif
