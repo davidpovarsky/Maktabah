@@ -108,7 +108,6 @@ class AnnotationCoordinator {
     }
 
     @discardableResult
-    @discardableResult
     func saveHighlight(
         text: String,
         range: NSRange,

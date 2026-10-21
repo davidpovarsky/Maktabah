@@ -298,8 +298,6 @@ final class LibraryDataManager: Sendable {
             return task
         }
         taskToCancel?.cancel()
-    }        }
-        taskToCancel?.cancel()
     }
 
     func updateAuthorInCache(id: Int, muallif: Muallif) {
@@ -563,8 +561,6 @@ extension LibraryDataManager {
             },
             onComplete: callbacks.onComplete
         ) {
-            return
-        }
             return
         }
 
@@ -993,29 +989,6 @@ extension LibraryDataManager {
         for book in books {
             authorCategory.children.append(book)
         }
-        return authorCategory
-    }
-        var booksByAuthor: [Int: [BooksData]] = [:]
-        var booksWithNoAuthor: [BooksData] = []
-
-        for book in allBooks {
-            if book.muallif == 0 {
-                booksWithNoAuthor.append(book)
-            } else {
-                booksByAuthor[book.muallif, default: []].append(book)
-            }
-        }
-        return (booksByAuthor, booksWithNoAuthor)
-    }
-
-    private func createAuthorCategory(id: Int, name: String, books: [BooksData], order: Int) -> CategoryData {
-        let authorCategory = CategoryData(
-            id: id,
-            name: name,
-            level: 0,
-            order: order
-        )
-        authorCategory.children = books.sorted { $0.book < $1.book }
         return authorCategory
     }
 

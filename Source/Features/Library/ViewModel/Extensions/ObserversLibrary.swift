@@ -96,4 +96,4 @@ extension LibraryViewModel {
             self?.updateDisplayedCategories()
         }
     }
-
+}
