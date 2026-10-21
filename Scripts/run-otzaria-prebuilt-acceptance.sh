@@ -201,7 +201,11 @@ run_phase() {
   return 1
 }
 
-run_phase install 180
+install_timeout=180
+if [ -n "$RELEASE_BASE_URL" ]; then
+  install_timeout=600
+fi
+run_phase install "$install_timeout"
 xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
 run_phase reopen 180
 xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
