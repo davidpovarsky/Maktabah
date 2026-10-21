@@ -1,0 +1,250 @@
+//
+//  iOSReaderSessionManager.swift
+//  Maktabah
+//
+//  Durable cross-process session persistence for the iOS/iPad reader.
+//
+
+import CoreGraphics
+import Foundation
+import OSLog
+import SwiftUI
+
+// MARK: - Session Data Models
+
+/// Represents the durable versioned session for the iOS/iPad reader.
+public struct iOSReaderSession: Codable, Equatable, Sendable {
+    public static let currentSchemaVersion = 1
+
+    public var schemaVersion: Int
+    public var savedAt: Date
+    public var activeTabId: UUID?
+    public var selectedTabModeRaw: Int
+    public var tabs: [iOSReaderTabSession]
+
+    public var selectedTabMode: AppMode {
+        AppMode(rawValue: selectedTabModeRaw) ?? .viewer
+    }
+
+    public init(
+        schemaVersion: Int = currentSchemaVersion,
+        savedAt: Date = Date(),
+        activeTabId: UUID? = nil,
+        selectedTabModeRaw: Int = AppMode.viewer.rawValue,
+        tabs: [iOSReaderTabSession] = []
+    ) {
+        self.schemaVersion = schemaVersion
+        self.savedAt = savedAt
+        self.activeTabId = activeTabId
+        self.selectedTabModeRaw = selectedTabModeRaw
+        self.tabs = tabs
+    }
+}
+
+/// Represents the state of a single reader tab in the session.
+public struct iOSReaderTabSession: Codable, Equatable, Sendable {
+    public let id: UUID
+    public let bookId: Int
+    public let bookTitle: String?
+    public let backendLocator: TextLocator?
+    public let contentId: Int?
+    public let locator: TextLocator?
+    public let page: Int?
+    public let part: Int?
+    public let scrollPosition: CGPoint?
+    public let selectedRange: NSRange?
+    public let expandedNodeIDs: [Int]?
+    public let sidebarScrollPosition: CGPoint?
+    public let isSidebarCollapsed: Bool?
+    public let searchText: String?
+    public let searchModeRaw: Int?
+    public let nearDistance: Int?
+    public let highlightTerms: [String]?
+
+    public init(
+        id: UUID = UUID(),
+        bookId: Int,
+        bookTitle: String? = nil,
+        backendLocator: TextLocator? = nil,
+        contentId: Int? = nil,
+        locator: TextLocator? = nil,
+        page: Int? = nil,
+        part: Int? = nil,
+        scrollPosition: CGPoint? = nil,
+        selectedRange: NSRange? = nil,
+        expandedNodeIDs: [Int]? = nil,
+        sidebarScrollPosition: CGPoint? = nil,
+        isSidebarCollapsed: Bool? = nil,
+        searchText: String? = nil,
+        searchModeRaw: Int? = nil,
+        nearDistance: Int? = nil,
+        highlightTerms: [String]? = nil
+    ) {
+        self.id = id
+        self.bookId = bookId
+        self.bookTitle = bookTitle
+        self.backendLocator = backendLocator
+        self.contentId = contentId
+        self.locator = locator
+        self.page = page
+        self.part = part
+        self.scrollPosition = scrollPosition
+        self.selectedRange = selectedRange
+        self.expandedNodeIDs = expandedNodeIDs
+        self.sidebarScrollPosition = sidebarScrollPosition
+        self.isSidebarCollapsed = isSidebarCollapsed
+        self.searchText = searchText
+        self.searchModeRaw = searchModeRaw
+        self.nearDistance = nearDistance
+        self.highlightTerms = highlightTerms
+    }
+}
+
+// MARK: - Session Manager
+
+/// Coordinates durable atomic persistence and restoration of reader session state on iOS/iPad.
+public final class iOSReaderSessionManager: @unchecked Sendable {
+    public static let shared = iOSReaderSessionManager()
+
+    private let fileManager = FileManager.default
+    private let ioQueue = DispatchQueue(label: "com.maktabah.sessionManager.io", qos: .utility)
+    private var pendingSaveWorkItem: DispatchWorkItem?
+    private let saveLock = NSLock()
+
+    private var statesDirectory: URL {
+        let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let dir = appSupport.appendingPathComponent("Maktabah/States", isDirectory: true)
+        if !fileManager.fileExists(atPath: dir.path) {
+            try? fileManager.createDirectory(at: dir, withIntermediateDirectories: true)
+        }
+        return dir
+    }
+
+    private var sessionFileURL: URL {
+        statesDirectory.appendingPathComponent("ios_reader_session.json")
+    }
+
+    private var legacyViewerStateURL: URL {
+        statesDirectory.appendingPathComponent("viewer_state.json")
+    }
+
+    private init() {}
+
+    // MARK: - Save Operations
+
+    /// Schedules a debounced session save (useful during typing, layout updates, or scrolling).
+    public func scheduleSaveSession(_ session: iOSReaderSession, debounceInterval: TimeInterval = 0.5) {
+        saveLock.lock()
+        defer { saveLock.unlock() }
+
+        pendingSaveWorkItem?.cancel()
+        let workItem = DispatchWorkItem { [weak self] in
+            self?.performAtomicWrite(session)
+        }
+        pendingSaveWorkItem = workItem
+        ioQueue.asyncAfter(deadline: .now() + debounceInterval, execute: workItem)
+    }
+
+    /// Flushes session to disk immediately and synchronously (required when app is backgrounding or quitting).
+    public func saveSessionImmediately(_ session: iOSReaderSession) {
+        saveLock.lock()
+        pendingSaveWorkItem?.cancel()
+        pendingSaveWorkItem = nil
+        saveLock.unlock()
+
+        performAtomicWrite(session)
+    }
+
+    private func performAtomicWrite(_ session: iOSReaderSession) {
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            let data = try encoder.encode(session)
+            let targetURL = sessionFileURL
+            try data.write(to: targetURL, options: [.atomic])
+            Logger.reader.debug("iOS reader session saved successfully with \(session.tabs.count) tabs.")
+        } catch {
+            Logger.reader.error("Failed to write iOS reader session: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    // MARK: - Load Operations
+
+    /// Loads the saved session from disk with defensive fallbacks and legacy state migration.
+    public func loadSession() -> iOSReaderSession? {
+        if fileManager.fileExists(atPath: sessionFileURL.path) {
+            do {
+                let data = try Data(contentsOf: sessionFileURL)
+                let session = try JSONDecoder().decode(iOSReaderSession.self, from: data)
+                if !session.tabs.isEmpty {
+                    Logger.reader.info("Loaded iOS reader session with \(session.tabs.count) tabs.")
+                    return session
+                }
+            } catch {
+                Logger.reader.error("Failed to decode iOS reader session: \(error.localizedDescription, privacy: .public)")
+            }
+        }
+
+        // Defensive fallback: check for legacy single-book viewer state
+        if let legacy = loadLegacyViewerState() {
+            Logger.reader.info("Migrated legacy viewer state to iOS reader session.")
+            saveSessionImmediately(legacy)
+            return legacy
+        }
+
+        return nil
+    }
+
+    /// Clears the saved session from disk.
+    public func clearSession() {
+        saveLock.lock()
+        pendingSaveWorkItem?.cancel()
+        pendingSaveWorkItem = nil
+        saveLock.unlock()
+
+        ioQueue.async { [weak self] in
+            guard let self else { return }
+            try? self.fileManager.removeItem(at: self.sessionFileURL)
+            Logger.reader.info("Cleared iOS reader session file.")
+        }
+    }
+
+    // MARK: - Legacy Migration
+
+    private func loadLegacyViewerState() -> iOSReaderSession? {
+        guard fileManager.fileExists(atPath: legacyViewerStateURL.path),
+              let data = try? Data(contentsOf: legacyViewerStateURL),
+              let legacyState = try? JSONDecoder().decode(ReaderState.self, from: data),
+              let book = legacyState.currentBook else {
+            return nil
+        }
+
+        let tabSession = iOSReaderTabSession(
+            id: UUID(),
+            bookId: book.id,
+            bookTitle: book.title,
+            backendLocator: book.backendLocator ?? legacyState.currentLocator,
+            contentId: legacyState.currentID,
+            locator: legacyState.currentLocator,
+            page: legacyState.currentPage,
+            part: legacyState.currentPart,
+            scrollPosition: legacyState.scrollPosition,
+            selectedRange: legacyState.selectedRange,
+            expandedNodeIDs: legacyState.expandedNodeIDs,
+            sidebarScrollPosition: legacyState.sidebarScrollPosition,
+            isSidebarCollapsed: legacyState.isSidebarCollapsed,
+            searchText: legacyState.searchQuery,
+            searchModeRaw: legacyState.searchModeRaw,
+            nearDistance: legacyState.searchNearDistance,
+            highlightTerms: nil
+        )
+
+        return iOSReaderSession(
+            schemaVersion: iOSReaderSession.currentSchemaVersion,
+            savedAt: Date(),
+            activeTabId: tabSession.id,
+            selectedTabModeRaw: AppMode.viewer.rawValue,
+            tabs: [tabSession]
+        )
+    }
+}

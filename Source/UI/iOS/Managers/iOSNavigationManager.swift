@@ -124,6 +124,20 @@ class iOSNavigationManager {
                 }
             )
         )
+
+        observerTokens.append(
+            NotificationToken(
+                token: NotificationCenter.default.addObserver(
+                    forName: UIApplication.didEnterBackgroundNotification,
+                    object: nil,
+                    queue: .main
+                ) { [weak self] _ in
+                    Task { @MainActor [weak self] in
+                        self?.persistCurrentSession(immediate: true)
+                    }
+                }
+            )
+        )
     }
 
     private func handleBookIdMigrated(oldId: Int, newId: Int) {
@@ -219,6 +233,7 @@ class iOSNavigationManager {
             if openTabs.isEmpty {
                 showingTabsList = false
             }
+            persistCurrentSession(immediate: true)
         }
     }
 
@@ -236,6 +251,7 @@ class iOSNavigationManager {
         selectedBook = nil
         selectedContentId = nil
         showingTabsList = false
+        persistCurrentSession(immediate: true)
     }
 
     func selectTab(id: UUID) {
@@ -252,6 +268,7 @@ class iOSNavigationManager {
             selectedBook = nextTab.book
             selectedContentId = nextTab.viewModel.currentContentId
         }
+        persistCurrentSession(immediate: false)
     }
 
     func confirmPendingBookIntegration(state: BundleArchiveDownloadProgressState) {
@@ -596,9 +613,149 @@ class iOSNavigationManager {
 
         selectedContentId = options.contentId
         selectedBook = book
+        persistCurrentSession(immediate: false)
     }
 
     private func clearPendingBookIntegration() {
         activeIntegrationStates.removeAll { $0.mode == .confirmation }
+    }
+
+    // MARK: - Durable Session Persistence (F01)
+
+    private var isRestoringSession = false
+
+    func restoreSessionIfNeeded() {
+        guard openTabs.isEmpty, !isRestoringSession else { return }
+        isRestoringSession = true
+        defer { isRestoringSession = false }
+
+        guard let session = iOSReaderSessionManager.shared.loadSession(),
+              !session.tabs.isEmpty else {
+            return
+        }
+
+        var restoredTabs: [ReaderTab] = []
+        let ldm = LibraryDataManager.shared
+
+        for tabSession in session.tabs {
+            // Find book by ID or backend locator
+            var book: BooksData? = ldm.booksById[tabSession.bookId]
+            if book == nil, let locator = tabSession.backendLocator {
+                book = ldm.booksById.values.first(where: { $0.backendLocator == locator })
+            }
+            if book == nil {
+                book = ldm.getBook([tabSession.bookId]).first
+            }
+
+            // Resilient placeholder if catalog is still indexing
+            let validBook = book ?? BooksData(
+                id: tabSession.bookId,
+                title: tabSession.bookTitle ?? "Book \(tabSession.bookId)",
+                backendLocator: tabSession.backendLocator
+            )
+
+            let viewModel = ReaderViewModel(book: validBook)
+            viewModel.recordHistory = false
+            viewModel.needsScrollRestore = true
+            if let pos = tabSession.scrollPosition {
+                viewModel.readerState.scrollPosition = pos
+            }
+            if let range = tabSession.selectedRange {
+                viewModel.readerState.selectedRange = range
+            }
+            if let expanded = tabSession.expandedNodeIDs {
+                viewModel.readerState.expandedNodeIDs = expanded
+            }
+            if let collapsed = tabSession.isSidebarCollapsed {
+                viewModel.readerState.isSidebarCollapsed = collapsed
+            }
+            if let sidebarPos = tabSession.sidebarScrollPosition {
+                viewModel.readerState.sidebarScrollPosition = sidebarPos
+            }
+            if let search = tabSession.searchText {
+                viewModel.searchText = search
+            }
+            if let modeRaw = tabSession.searchModeRaw, let mode = SearchMode(rawValue: modeRaw) {
+                viewModel.searchMode = mode
+            }
+            if let near = tabSession.nearDistance {
+                viewModel.nearDistance = near
+            }
+            if let terms = tabSession.highlightTerms {
+                viewModel.highlightTerms = terms
+            }
+
+            if let locator = tabSession.locator {
+                viewModel.loadBackendContent(locator)
+            } else if let contentId = tabSession.contentId {
+                viewModel.loadInitialContent(initialContentId: contentId)
+            } else {
+                viewModel.loadInitialContent(initialContentId: nil)
+            }
+
+            let tab = ReaderTab(
+                id: tabSession.id,
+                book: validBook,
+                initialContentId: tabSession.contentId,
+                viewModel: viewModel
+            )
+            restoredTabs.append(tab)
+        }
+
+        guard !restoredTabs.isEmpty else { return }
+
+        self.openTabs = restoredTabs
+        let targetActiveId = session.activeTabId ?? restoredTabs.first?.id
+        self.activeTabId = targetActiveId
+        if let active = restoredTabs.first(where: { $0.id == targetActiveId }) {
+            self.selectedBook = active.book
+            self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
+        }
+        self.currentMode = session.selectedTabMode
+    }
+
+    func persistCurrentSession(immediate: Bool = false) {
+        guard !isRestoringSession else { return }
+        if let active = activeTab {
+            active.viewModel.saveCurrentState()
+        }
+
+        let tabSessions: [iOSReaderTabSession] = openTabs.map { tab in
+            let vm = tab.viewModel
+            let state = vm.readerState
+            return iOSReaderTabSession(
+                id: tab.id,
+                bookId: tab.book.id,
+                bookTitle: tab.book.title,
+                backendLocator: tab.book.backendLocator,
+                contentId: vm.currentContentId ?? tab.initialContentId ?? state.currentID,
+                locator: vm.currentLocator ?? state.currentLocator,
+                page: vm.currentPage ?? state.currentPage,
+                part: vm.currentPart ?? state.currentPart,
+                scrollPosition: state.scrollPosition ?? vm.fetchScrollPosition?(),
+                selectedRange: state.selectedRange ?? vm.fetchSelectedRange?(),
+                expandedNodeIDs: state.expandedNodeIDs,
+                sidebarScrollPosition: state.sidebarScrollPosition,
+                isSidebarCollapsed: state.isSidebarCollapsed,
+                searchText: vm.searchText.isEmpty ? nil : vm.searchText,
+                searchModeRaw: vm.searchMode?.rawValue,
+                nearDistance: vm.nearDistance,
+                highlightTerms: vm.highlightTerms
+            )
+        }
+
+        let session = iOSReaderSession(
+            schemaVersion: iOSReaderSession.currentSchemaVersion,
+            savedAt: Date(),
+            activeTabId: activeTabId,
+            selectedTabModeRaw: currentMode.rawValue,
+            tabs: tabSessions
+        )
+
+        if immediate {
+            iOSReaderSessionManager.shared.saveSessionImmediately(session)
+        } else {
+            iOSReaderSessionManager.shared.scheduleSaveSession(session)
+        }
     }
 }

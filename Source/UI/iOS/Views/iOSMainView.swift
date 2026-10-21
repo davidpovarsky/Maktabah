@@ -142,6 +142,9 @@ struct iOSMainView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
+        .onAppear {
+            navigationManager.restoreSessionIfNeeded()
+        }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .active {
                 if AppConfig.useICloud {
@@ -149,6 +152,9 @@ struct iOSMainView: View {
                 }
                 DonationManager.shared.recordActivation()
                 DonationManager.shared.checkAndPromptIOSSheet()
+                navigationManager.restoreSessionIfNeeded()
+            } else if newPhase == .inactive || newPhase == .background {
+                navigationManager.persistCurrentSession(immediate: true)
             }
         }
         #if DEBUG
