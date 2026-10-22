@@ -40,7 +40,7 @@ struct iOSReaderTabView: View {
                         }
                     } else if bManager.openTabs.count > 1 {
                         ToolbarItem(placement: .topBarTrailing) {
-                            ReaderTabsView(isDarkMode: TextViewState.shared.isDarkMode)
+                            ReaderTabsView()
                         }
                     }
                 }

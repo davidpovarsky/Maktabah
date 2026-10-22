@@ -66,4 +66,8 @@ final class BooksData: Codable, Identifiable, @unchecked Sendable {
         self.bithoqoh = bithoqoh.convertToArabicDigits()
         self.info = info.convertToArabicDigits()
     }
+
+    convenience init(id: Int, title: String, backendLocator: TextLocator? = nil) {
+        self.init(id: id, book: title, archive: 0, muallif: 0, backendLocator: backendLocator)
+    }
 }

@@ -13,20 +13,20 @@ import SwiftUI
 // MARK: - Session Data Models
 
 /// Represents the durable versioned session for the iOS/iPad reader.
-public struct iOSReaderSession: Codable, Equatable, Sendable {
-    public static let currentSchemaVersion = 1
+struct iOSReaderSession: Codable, Equatable, Sendable {
+    static let currentSchemaVersion = 1
 
-    public var schemaVersion: Int
-    public var savedAt: Date
-    public var activeTabId: UUID?
-    public var selectedTabModeRaw: Int
-    public var tabs: [iOSReaderTabSession]
+    var schemaVersion: Int
+    var savedAt: Date
+    var activeTabId: UUID?
+    var selectedTabModeRaw: Int
+    var tabs: [iOSReaderTabSession]
 
-    public var selectedTabMode: AppMode {
+    var selectedTabMode: AppMode {
         AppMode(rawValue: selectedTabModeRaw) ?? .viewer
     }
 
-    public init(
+    init(
         schemaVersion: Int = currentSchemaVersion,
         savedAt: Date = Date(),
         activeTabId: UUID? = nil,
@@ -42,26 +42,26 @@ public struct iOSReaderSession: Codable, Equatable, Sendable {
 }
 
 /// Represents the state of a single reader tab in the session.
-public struct iOSReaderTabSession: Codable, Equatable, Sendable {
-    public let id: UUID
-    public let bookId: Int
-    public let bookTitle: String?
-    public let backendLocator: TextLocator?
-    public let contentId: Int?
-    public let locator: TextLocator?
-    public let page: Int?
-    public let part: Int?
-    public let scrollPosition: CGPoint?
-    public let selectedRange: NSRange?
-    public let expandedNodeIDs: [Int]?
-    public let sidebarScrollPosition: CGPoint?
-    public let isSidebarCollapsed: Bool?
-    public let searchText: String?
-    public let searchModeRaw: Int?
-    public let nearDistance: Int?
-    public let highlightTerms: [String]?
+struct iOSReaderTabSession: Codable, Equatable, Sendable {
+    let id: UUID
+    let bookId: Int
+    let bookTitle: String?
+    let backendLocator: TextLocator?
+    let contentId: Int?
+    let locator: TextLocator?
+    let page: Int?
+    let part: Int?
+    let scrollPosition: CGPoint?
+    let selectedRange: NSRange?
+    let expandedNodeIDs: [Int]?
+    let sidebarScrollPosition: CGPoint?
+    let isSidebarCollapsed: Bool?
+    let searchText: String?
+    let searchModeRaw: Int?
+    let nearDistance: Int?
+    let highlightTerms: [String]?
 
-    public init(
+    init(
         id: UUID = UUID(),
         bookId: Int,
         bookTitle: String? = nil,
@@ -103,8 +103,8 @@ public struct iOSReaderTabSession: Codable, Equatable, Sendable {
 // MARK: - Session Manager
 
 /// Coordinates durable atomic persistence and restoration of reader session state on iOS/iPad.
-public final class iOSReaderSessionManager: @unchecked Sendable {
-    public static let shared = iOSReaderSessionManager()
+final class iOSReaderSessionManager: @unchecked Sendable {
+    static let shared = iOSReaderSessionManager()
 
     private let fileManager = FileManager.default
     private let ioQueue = DispatchQueue(label: "com.maktabah.sessionManager.io", qos: .utility)
@@ -133,7 +133,7 @@ public final class iOSReaderSessionManager: @unchecked Sendable {
     // MARK: - Save Operations
 
     /// Schedules a debounced session save (useful during typing, layout updates, or scrolling).
-    public func scheduleSaveSession(_ session: iOSReaderSession, debounceInterval: TimeInterval = 0.5) {
+    func scheduleSaveSession(_ session: iOSReaderSession, debounceInterval: TimeInterval = 0.5) {
         saveLock.lock()
         defer { saveLock.unlock() }
 
@@ -146,7 +146,7 @@ public final class iOSReaderSessionManager: @unchecked Sendable {
     }
 
     /// Flushes session to disk immediately and synchronously (required when app is backgrounding or quitting).
-    public func saveSessionImmediately(_ session: iOSReaderSession) {
+    func saveSessionImmediately(_ session: iOSReaderSession) {
         saveLock.lock()
         pendingSaveWorkItem?.cancel()
         pendingSaveWorkItem = nil
@@ -171,7 +171,7 @@ public final class iOSReaderSessionManager: @unchecked Sendable {
     // MARK: - Load Operations
 
     /// Loads the saved session from disk with defensive fallbacks and legacy state migration.
-    public func loadSession() -> iOSReaderSession? {
+    func loadSession() -> iOSReaderSession? {
         if fileManager.fileExists(atPath: sessionFileURL.path) {
             do {
                 let data = try Data(contentsOf: sessionFileURL)
@@ -196,7 +196,7 @@ public final class iOSReaderSessionManager: @unchecked Sendable {
     }
 
     /// Clears the saved session from disk.
-    public func clearSession() {
+    func clearSession() {
         saveLock.lock()
         pendingSaveWorkItem?.cancel()
         pendingSaveWorkItem = nil

@@ -50,16 +50,36 @@ final class AnnotationManager: @unchecked Sendable {
         AnnotationStore.shared.loadAnnotations(bkId: bkId)
     }
 
+    func loadAnnotations() -> [Annotation] {
+        (try? AnnotationRepository.shared.loadAllAnnotations()) ?? []
+    }
+
     func loadAnnotationById(_ id: Int64) -> Annotation? {
         AnnotationStore.shared.loadAnnotationById(id)
     }
 
     func saveAnnotation(_ annotation: Annotation) throws -> Annotation {
-        try AnnotationStore.shared.saveAnnotation(annotation)
+        if let id = annotation.id, id > 0 {
+            try AnnotationStore.shared.updateAnnotation(annotation)
+            return annotation
+        } else {
+            let newId = try AnnotationStore.shared.addAnnotation(annotation)
+            var saved = annotation
+            saved.id = newId
+            return saved
+        }
+    }
+
+    func updateAnnotation(_ annotation: Annotation) throws {
+        try AnnotationStore.shared.updateAnnotation(annotation)
+    }
+
+    func deleteAnnotation(id: Int64) throws {
+        try AnnotationStore.shared.deleteAnnotation(id: id)
     }
 
     func deleteAnnotation(_ id: Int64) throws {
-        try AnnotationStore.shared.deleteAnnotation(id)
+        try AnnotationStore.shared.deleteAnnotation(id: id)
     }
 }
 

@@ -133,9 +133,9 @@ struct SearchModeView: View {
         }
         .onChange(of: session.isSearching) { _, isSearching in
             if isSearching {
-                session.resultKitabFilter = ""
-            } else if session.sortKey != .bookTitle || !session.sortAscending {
-                session.sortResults(by: session.sortKey, ascending: session.sortAscending)
+                viewModel.resultKitabFilter = ""
+            } else if viewModel.sortKey != .bookTitle || !viewModel.sortAscending {
+                viewModel.sortResults(by: viewModel.sortKey, ascending: viewModel.sortAscending)
             }
         }
         .overlay {

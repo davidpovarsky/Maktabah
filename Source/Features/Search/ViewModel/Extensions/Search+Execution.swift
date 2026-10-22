@@ -15,7 +15,7 @@ extension SearchViewModel {
             options.wordDistance = 0
         case .near:
             options.wordDistance = max(1, nearDistance)
-        case .contains:
+        case .contains, .or:
             options.matchMode = .hebrewLemmatized
         }
         return options

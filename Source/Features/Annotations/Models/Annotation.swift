@@ -111,7 +111,8 @@ enum CrossBackendAnnotationResolver {
         contentID: Int,
         text: String,
         locator: TextLocator?,
-        repository: AnnotationRepository = .shared
+        repository: AnnotationRepository = .shared,
+        manager: AnnotationManager? = nil
     ) -> [Annotation] {
         let exact = (try? repository.getAnnotations(bkId: bookID, contentId: contentID)) ?? []
         guard let locator, !text.isEmpty else { return exact }

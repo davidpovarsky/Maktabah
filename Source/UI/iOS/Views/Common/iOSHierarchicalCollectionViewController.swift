@@ -305,48 +305,7 @@ class iOSHierarchicalCollectionViewController: BaseHierarchicalListViewControlle
         reconfigureItems(items)
     }
 
-    func snapshotItems(for book: BooksData) -> [LibraryItem] {
-        dataSource.snapshot().itemIdentifiers.filter {
-            guard case let .book(_, candidate) = $0 else { return false }
-            if let locator = book.backendLocator, let candidateLocator = candidate.backendLocator {
-                return locator.backend == candidateLocator.backend && locator.workKey == candidateLocator.workKey
-            }
-            return candidate.id == book.id
-        }
-    }
 
-    func reconfigureCategories(including extraItems: [LibraryItem] = []) {
-        var items: [LibraryItem] = dataSource.snapshot().itemIdentifiers.filter {
-            if case .category = $0 { return true }
-            return false
-        }
-        items.append(contentsOf: extraItems)
-        reconfigureItems(items)
-    }
-
-    func reconfigureCategories(includingBook book: BooksData) {
-        reconfigureCategories(including: snapshotItems(for: book))
-    }
-
-    func reconfigureCategories(includingBooks books: [BooksData]) {
-        let items = books.flatMap { snapshotItems(for: $0) }
-        reconfigureCategories(including: items)
-    }
-
-    func toggleCategory(_ item: LibraryItem) {
-        guard case let .category(identifier, _) = item else { return }
-        let willBeExpanded = !expandedCategories.contains(identifier)
-
-        if willBeExpanded {
-            expandedCategories.insert(identifier)
-            previousExpandedCategories.insert(identifier)
-        } else {
-            expandedCategories.remove(identifier)
-            previousExpandedCategories.remove(identifier)
-        }
-
-        toggleExpansion(for: item, isExpanding: willBeExpanded)
-    }
 
     // MARK: - Selection Hooks
 
