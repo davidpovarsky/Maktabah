@@ -5452,7 +5452,7 @@
 				DEVELOPMENT_TEAM = NA6HPWARQ2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Source/iOS-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Maktabah (Debug)";
+				INFOPLIST_KEY_CFBundleDisplayName = ChavrusaText;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: David Povarsky";
@@ -5511,7 +5511,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Source/iOS-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Maktabah;
+				INFOPLIST_KEY_CFBundleDisplayName = ChavrusaText;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Support: David Povarsky";
