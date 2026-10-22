@@ -1,6 +1,6 @@
 import Foundation
 
-struct OtzariaLibraryCategory: Identifiable, Hashable {
+struct OtzariaLibraryCategory: Identifiable, Hashable, Sendable {
     let id: Int
     let parentId: Int?
     let title: String
@@ -8,7 +8,7 @@ struct OtzariaLibraryCategory: Identifiable, Hashable {
     let orderIndex: Int
 }
 
-struct OtzariaBook: Identifiable, Hashable {
+struct OtzariaBook: Identifiable, Hashable, Sendable {
     let id: Int
     let title: String
     let categoryId: Int
@@ -33,13 +33,13 @@ struct OtzariaBook: Identifiable, Hashable {
     }
 }
 
-struct OtzariaAuthor: Identifiable, Hashable {
+struct OtzariaAuthor: Identifiable, Hashable, Sendable {
     let id: Int
     let name: String
     let bookCount: Int
 }
 
-struct OtzariaBookLine: Identifiable, Hashable {
+struct OtzariaBookLine: Identifiable, Hashable, Sendable {
     let id: Int
     let bookId: Int
     let lineIndex: Int
@@ -50,7 +50,7 @@ struct OtzariaBookLine: Identifiable, Hashable {
     var isHeading: Bool { content.otsariaLooksLikeHTMLHeading }
 }
 
-struct OtzariaTOCEntry: Identifiable, Hashable {
+struct OtzariaTOCEntry: Identifiable, Hashable, Sendable {
     let id: Int
     let bookId: Int
     let parentId: Int?
@@ -65,7 +65,7 @@ struct OtzariaTOCEntry: Identifiable, Hashable {
     }
 }
 
-struct OtzariaLinkedSource: Identifiable, Hashable {
+struct OtzariaLinkedSource: Identifiable, Hashable, Sendable {
     let id: Int
     let connectionType: String
     let linkedLineId: Int
@@ -149,13 +149,13 @@ struct OtzariaLinkedSource: Identifiable, Hashable {
     }
 }
 
-struct OtzariaSourceSection: Identifiable, Hashable {
+struct OtzariaSourceSection: Identifiable, Hashable, Sendable {
     let id: String
     let title: String
     let items: [OtzariaLinkedSource]
 }
 
-struct OtzariaLibraryNode: Identifiable, Hashable {
+struct OtzariaLibraryNode: Identifiable, Hashable, Sendable {
     let id: String
     let title: String
     let subtitle: String?

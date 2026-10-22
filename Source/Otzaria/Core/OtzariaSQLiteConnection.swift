@@ -39,7 +39,7 @@ final class OtzariaSQLiteConnection: @unchecked Sendable {
         return OtzariaSQLiteConnection(db: opened)
     }
 
-    func read<T>(_ work: @escaping (OpaquePointer) throws -> T) async throws -> T {
+    func read<T>(_ work: @escaping @Sendable (OpaquePointer) throws -> T) async throws -> T {
         try await withCheckedThrowingContinuation { continuation in
             queue.async { [weak self] in
                 guard let self, let db = self.db else {

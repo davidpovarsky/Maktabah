@@ -158,9 +158,9 @@ class AnnotationContentView: UIView, UIContentView {
             }
         } else {
             if !ann.tags.isEmpty {
-                SecondaryInfo(text: ann.tags.map { " -- \($0)" }.joined(separator: " "), color: .secondaryLabel, isHidden: false)
+                return SecondaryInfo(text: ann.tags.map { " -- \($0)" }.joined(separator: " "), color: .secondaryLabel, isHidden: false)
             } else {
-                SecondaryInfo(text: nil, color: .secondaryLabel, isHidden: true)
+                return SecondaryInfo(text: nil, color: .secondaryLabel, isHidden: true)
             }
         }
     }
