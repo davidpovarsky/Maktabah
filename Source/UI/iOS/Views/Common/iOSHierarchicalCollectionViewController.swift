@@ -305,6 +305,15 @@ class iOSHierarchicalCollectionViewController: BaseHierarchicalListViewControlle
         reconfigureItems(items)
     }
 
+    func reconfigureCategories(includingBook book: BooksData) {
+        reconfigureCategories(including: snapshotItems(for: book))
+    }
+
+    func reconfigureCategories(includingBooks books: [BooksData]) {
+        let items = books.flatMap { snapshotItems(for: $0) }
+        reconfigureCategories(including: items)
+    }
+
 
 
     // MARK: - Selection Hooks
