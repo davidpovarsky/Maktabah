@@ -94,3 +94,7 @@ Do NOT evaluate the git diff in isolation line-by-line. You MUST perform active 
   * Docs: Frasa berulang ("Tipe struct..."), kata "instansi" alih-alih `*instance*`, istilah teknis tanpa format cetak miring/inline code, terjemahan kaku.
 - **`### [NIT]`**:
   * Code/Docs: Formatting minor, spasi, typo kosmetik yang tidak mengubah semantik.
+
+## Mandatory upstream boundary and approval gate (2026-10-22)
+
+Read [docs/architecture/UPSTREAM_INTEGRITY_POLICY.md](docs/architecture/UPSTREAM_INTEGRITY_POLICY.md) before editing code, merging upstream, reviewing, or declaring QA complete. Upstream-owned files are read-only for downstream features by default. Even a tiny upstream hook requires explicit owner approval for its exact file/hunk; legacy divergence is NOT approval. Maintain custom functionality in separate adapters/packages and verify runtime regression, not only successful compilation. Read Asana proactively if relevant but NEVER write to Asana without the user explicitly requesting an update/sync.

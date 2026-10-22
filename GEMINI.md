@@ -21,4 +21,8 @@ For all substantive work, review:
 - `docs/ai-team/ASANA_POLICY.md`
 - Agent profiles under `.agents/agents/` and roles under `.agents/roles/`
 
-Autonomous Asana updates and verified task completion are authorized under the standards in `docs/ai-team/ASANA_POLICY.md`. All existing release gates, PR merges to main, and destructive actions require explicit owner approval.
+Asana may be read as needed; writes require an explicit user update/sync request, following `docs/ai-team/ASANA_POLICY.md`. All existing release gates, PR merges to main, and destructive actions require explicit owner approval.
+
+## Mandatory upstream boundary and approval gate (2026-10-22)
+
+Read [docs/architecture/UPSTREAM_INTEGRITY_POLICY.md](docs/architecture/UPSTREAM_INTEGRITY_POLICY.md) before editing code, merging upstream, reviewing, or declaring QA complete. Upstream-owned files are read-only for downstream features by default. Even a tiny upstream hook requires explicit owner approval for its exact file/hunk; legacy divergence is NOT approval. Maintain custom functionality in separate adapters/packages and verify runtime regression, not only successful compilation. Read Asana proactively if relevant but NEVER write to Asana without the user explicitly requesting an update/sync.

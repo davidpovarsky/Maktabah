@@ -13,7 +13,7 @@ This document outlines the automated and manual verification procedures for the 
    - All relative file links in `AGENTS.md`, `GEMINI.md`, and `docs/ai-team/*.md` must resolve to existing files.
 4. **Policy Integrity:**
    - `ASANA_POLICY.md` must contain the authorized verified completion rule and the two-tier execution policy (NORMAL vs TEAM).
-   - No stale blanket prohibition ("never write/update Asana") should survive in role or agent definitions.
+   - Asana writes require explicit user request; any older autonomous-write permission is superseded.
 
 ## 2. Runtime Smoke Tests
 1. **NORMAL Mode Test (Default):**
@@ -22,8 +22,12 @@ This document outlines the automated and manual verification procedures for the 
    - Verify that upon explicit user request, the coordinator delegates via `invoke_subagent`, receives results, and logs as `[SUBAGENT]`.
 3. **Asana Integration:**
    - Verify connection via Asana MCP or REST API (`asana_list_workspaces`).
-   - Perform safe read -> meaningful write -> read-back test on designated setup tasks.
+   - Perform read-only checks by default. Write -> read-back tests ONLY when explicitly authorized by the user.
    - Verify task completion gating (tasks without physical device proof remain open).
 
 ## 3. Branch Diagnostic Tool
 Run `tools/ai-team/ensure-team.ps1 -Check` to verify configuration integrity on any branch.
+
+## Mandatory upstream boundary and approval gate (2026-10-22)
+
+Read [docs/architecture/UPSTREAM_INTEGRITY_POLICY.md](docs/architecture/UPSTREAM_INTEGRITY_POLICY.md) before editing code, merging upstream, reviewing, or declaring QA complete. Upstream-owned files are read-only for downstream features by default. Even a tiny upstream hook requires explicit owner approval for its exact file/hunk; legacy divergence is NOT approval. Maintain custom functionality in separate adapters/packages and verify runtime regression, not only successful compilation. Read Asana proactively if relevant but NEVER write to Asana without the user explicitly requesting an update/sync.

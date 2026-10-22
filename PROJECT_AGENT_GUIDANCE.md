@@ -41,3 +41,7 @@ Required behavior:
 - After the watcher exits, query final run/job metadata once. Download logs or artifacts only when needed for the requested result or failure diagnosis.
 - If the watcher is interrupted by a tool timeout or connection failure, resume or reattach to the same watcher/session when possible. Start a new watcher only when the original process can no longer be resumed; never fall back to frequent model-driven polling.
 - `--exit-status` is mandatory so a failed or cancelled workflow wakes the model with a nonzero result instead of appearing successful.
+
+## Mandatory upstream boundary and approval gate (2026-10-22)
+
+Read [docs/architecture/UPSTREAM_INTEGRITY_POLICY.md](docs/architecture/UPSTREAM_INTEGRITY_POLICY.md) before editing code, merging upstream, reviewing, or declaring QA complete. Upstream-owned files are read-only for downstream features by default. Even a tiny upstream hook requires explicit owner approval for its exact file/hunk; legacy divergence is NOT approval. Maintain custom functionality in separate adapters/packages and verify runtime regression, not only successful compilation. Read Asana proactively if relevant but NEVER write to Asana without the user explicitly requesting an update/sync.

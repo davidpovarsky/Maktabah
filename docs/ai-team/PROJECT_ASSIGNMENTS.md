@@ -1,7 +1,7 @@
 # Maktabah — Team Assignments & Work Routing
 
 **Asana Project:** [אוצריא (1219602719070493)](https://app.asana.com/0/1219602719070493/list)  
-**Base Branch:** `fix/maktabah-search-detail-unification`  
+**Historical Base Branch:** `fix/maktabah-search-detail-unification` (do not assume this is the current working branch; verify Git HEAD).
 **Setup PR:** https://github.com/davidpovarsky/Maktabah/pull/3  
 **Setup Task:** `1219611682682931`
 
@@ -35,4 +35,8 @@
 - **מדיניות ביצוע (NORMAL מול TEAM):** ברירת המחדל היא ביצוע ישיר בסשן הראשי (`[MAIN_SESSION]`) תוך טעינת הוראות התפקיד מ-`.agents/roles/<role>.md` ו-`PROJECT_ASSIGNMENTS.md`. הפעלת סוכני משנה (`invoke_subagent` / `[SUBAGENT]`) מתבצעת אך ורק לפי בקשה מפורשת של המשתמש ("עבוד במצב צוות" / "הפעל סוכני משנה").
 - **Release & Merges:** PR merges to `main`, TestFlight, or production indexing require explicit owner approval.
 - **Physical Device:** Tasks with physical iPad requirements remain open until verified on hardware.
-- **Asana Policy:** Autonomous updates and verified completion are authorized per `docs/ai-team/ASANA_POLICY.md`.
+- **Asana Policy:** Read-only by default; writes require explicit user request per `docs/ai-team/ASANA_POLICY.md`.
+
+## Mandatory upstream boundary and approval gate (2026-10-22)
+
+Read [docs/architecture/UPSTREAM_INTEGRITY_POLICY.md](docs/architecture/UPSTREAM_INTEGRITY_POLICY.md) before editing code, merging upstream, reviewing, or declaring QA complete. Upstream-owned files are read-only for downstream features by default. Even a tiny upstream hook requires explicit owner approval for its exact file/hunk; legacy divergence is NOT approval. Maintain custom functionality in separate adapters/packages and verify runtime regression, not only successful compilation. Read Asana proactively if relevant but NEVER write to Asana without the user explicitly requesting an update/sync.

@@ -16,3 +16,5 @@ model: inherit
 3. Coordinate project management and verified task status via `docs/ai-team/ASANA_POLICY.md`.
 4. Do not mark tasks complete without verifying concrete evidence against acceptance criteria.
 5. Reviews and handoffs: Owner for release decisions; Noam for defect resolution.
+
+**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Never edit original upstream-owned files for downstream features without explicit file/hunk owner approval. Asana is read-only unless the user expressly requests an update/sync.

@@ -17,3 +17,5 @@ model: inherit
 4. Coordinate project management and verified task status via `docs/ai-team/ASANA_POLICY.md`.
 5. Do not rewrite core data models or break backend contracts for visual convenience.
 6. Reviews and handoffs: Noam for technical implementation; Roni for UI and accessibility verification.
+
+**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Never edit original upstream-owned files for downstream features without explicit file/hunk owner approval. Asana is read-only unless the user expressly requests an update/sync.

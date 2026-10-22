@@ -28,7 +28,7 @@ The user is the owner and final approver. Role names are logical attribution lab
    - טוען את הוראות התפקיד מתוך `.agents/roles/<role>.md` ו-`docs/ai-team/PROJECT_ASSIGNMENTS.md`.
    - בודק ב-Asana משימות והחלטות רלוונטיות לפי הצורך.
    - מבצע בעצמו את העבודה בסשן הראשי, תוך יישום מלא של הוראות התפקיד המקצועי שנבחר.
-   - מתעד ב-Asana תחת הזהות המקצועית: `[<Role> | <Specialty>] [MAIN_SESSION]` (למשל `[מיה | UX] [MAIN_SESSION]`, `[נועם | DEV] [MAIN_SESSION]`).
+   - רק אם המשתמש ביקש במפורש עדכון Asana, מתעד תחת הזהות המקצועית: `[<Role> | <Specialty>] [MAIN_SESSION]` (למשל `[מיה | UX] [MAIN_SESSION]`, `[נועם | DEV] [MAIN_SESSION]`).
 3. **איסור הפעלת סוכני משנה:** אין להפעיל כלי האצלה אמיתי של הפלטפורמה במצב NORMAL; מורכבות המשימה כשלעצמה אינה עילה להפעלת סוכן משנה.
 4. מעבר בין תפקידים שונים באותה שיחה מותר לפי שלבי העבודה (תכנון -> פיתוח -> בדיקות), תוך טעינת ההוראות המתאימות ותיעוד התפקיד הנכון.
 
@@ -39,14 +39,14 @@ The user is the owner and final approver. Role names are logical attribution lab
    - בוחר ומפעיל מתוכם באופן ממוקד את הסוכנים הרלוונטיים באמצעות כלי ההאצלה המקוריים של הפלטפורמה: כלי שיתוף הפעולה הנתמכים ב-Codex (כגון `spawn_agent`), או `invoke_subagent` / `define_subagent` ב-Antigravity כאשר הם זמינים.
    - כל סוכן משנה טוען את הוראותיו המקצועיות הקיימות.
    - חלוקת עבודה במקביל או ברצף לפי תלויות.
-   - תוצאות ומסירות מתועדות ב-Asana תחת: `[<Role> | <Specialty>] [SUBAGENT]` בצירוף ראיות להפעלת הסוכן (Conversation ID).
+   - רק אם המשתמש ביקש במפורש עדכון Asana, תוצאות ומסירות מתועדות תחת: `[<Role> | <Specialty>] [SUBAGENT]` בצירוף ראיות להפעלת הסוכן (Conversation ID).
 3. בקשה רגילה כגון "תן לנועם את המשימה" או "זה של מיה" מתייחסת לזהות המקצועית ולשיוך המשימה בלבד, ואינה מהווה בקשה להפעלת סוכן משנה אמיתי.
 
 ## 3. Asana and GitHub Coordination
 
 - **GitHub:** Current Git commit and code are technical truth.
 - **Asana:** Hub for tasks, acceptance tracking, and team handoffs.
-- **Policy:** Follow `docs/ai-team/ASANA_POLICY.md`. Antigravity agents may autonomously create/update tasks and mark them complete upon verified passing of acceptance criteria.
+- **Policy:** Follow `docs/ai-team/ASANA_POLICY.md`. Asana is read-only unless the user explicitly requests an update or sync; verified completion does not authorize an automatic write.
 - **Owner Gates:** PR merges to default/main, production releases, IPA/TestFlight publication, signing key modifications, and destructive migrations strictly require explicit owner approval.
 
 ## 4. Work Handoffs
@@ -76,3 +76,7 @@ Follow `docs/ai-team/TASK_HANDOFF_TEMPLATE.md` for handoff formatting.
 - **Antigravity:** Loads root `AGENTS.md`, `GEMINI.md`, `.agents/rules/*.md`, `.agents/agents/*.md`, `.agents/roles/*.md`, and `.agents/skills/*/SKILL.md`.
 - **Codex:** Reads root `AGENTS.md`, project-scoped `.codex/agents/*.toml`, and shared `docs/ai-team/*.md`; delegation uses the native collaboration tools exposed by the installed Codex release and never assumes Antigravity's tool names.
 - Both platforms share the exact same role identities and operating contracts.
+
+## Mandatory upstream boundary and approval gate (2026-10-22)
+
+Read [docs/architecture/UPSTREAM_INTEGRITY_POLICY.md](docs/architecture/UPSTREAM_INTEGRITY_POLICY.md) before editing code, merging upstream, reviewing, or declaring QA complete. Upstream-owned files are read-only for downstream features by default. Even a tiny upstream hook requires explicit owner approval for its exact file/hunk; legacy divergence is NOT approval. Maintain custom functionality in separate adapters/packages and verify runtime regression, not only successful compilation. Read Asana proactively if relevant but NEVER write to Asana without the user explicitly requesting an update/sync.

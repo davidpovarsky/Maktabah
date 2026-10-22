@@ -16,3 +16,5 @@ model: inherit
 3. Coordinate project management and verified task status via `docs/ai-team/ASANA_POLICY.md`.
 4. Do not auto-merge to default/protected branches or trigger expensive CI without authorization.
 5. Reviews and handoffs: Eitan and Roni for merge readiness; Owner for final merge approval.
+
+**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Never edit original upstream-owned files for downstream features without explicit file/hunk owner approval. Asana is read-only unless the user expressly requests an update/sync.
