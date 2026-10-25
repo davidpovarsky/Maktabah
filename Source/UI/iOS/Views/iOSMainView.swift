@@ -489,8 +489,9 @@ private extension iOSMainView {
         let model = navigationManager.libraryViewModel
         for backend in [BackendID.otzaria, .sefaria, .otzaria, .sefaria] {
             BackendCoordinator.shared.commit(backend)
-            if let reloadTask = model.reloadTask {
-                await reloadTask.value
+            let taskToAwait = model.reloadTask.withLock { $0 }
+            if let taskToAwait {
+                await taskToAwait.value
             }
             if model.loadedBackendID != backend
                 || model.loadedBackendGeneration != BackendCoordinator.shared.generation {

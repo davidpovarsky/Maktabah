@@ -1,5 +1,5 @@
 diff --git a/Source/UI/iOS/Views/iOSMainView.swift b/Source/UI/iOS/Views/iOSMainView.swift
-index 18f64d2..5e80e89 100644
+index 18f64d2..14475c6 100644
 --- a/Source/UI/iOS/Views/iOSMainView.swift
 +++ b/Source/UI/iOS/Views/iOSMainView.swift
 @@ -30,7 +30,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
@@ -11,3 +11,15 @@ index 18f64d2..5e80e89 100644
          }
      }
  
+@@ -489,8 +489,9 @@ private extension iOSMainView {
+         let model = navigationManager.libraryViewModel
+         for backend in [BackendID.otzaria, .sefaria, .otzaria, .sefaria] {
+             BackendCoordinator.shared.commit(backend)
+-            if let reloadTask = model.reloadTask {
+-                await reloadTask.value
++            let taskToAwait = model.reloadTask.withLock { $0 }
++            if let taskToAwait {
++                await taskToAwait.value
+             }
+             if model.loadedBackendID != backend
+                 || model.loadedBackendGeneration != BackendCoordinator.shared.generation {
