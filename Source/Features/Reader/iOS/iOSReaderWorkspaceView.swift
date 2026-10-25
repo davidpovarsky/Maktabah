@@ -299,7 +299,7 @@ struct iOSReaderWorkspaceView: View {
                 .frame(width: 1, height: 1)
                 .accessibilityElement(children: .ignore)
                 .accessibilityIdentifier("reader-current-locator")
-                .accessibilityLabel(viewModel.currentLocator?.position.description ?? book.book)
+                .accessibilityLabel(viewModel.currentLocator?.persistenceKey ?? book.book)
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")

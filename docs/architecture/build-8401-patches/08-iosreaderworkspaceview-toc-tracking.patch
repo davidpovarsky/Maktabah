@@ -1,5 +1,5 @@
 diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
-index 1a136eb..5bdb8d5 100644
+index 1a136eb..ccb677d 100644
 --- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 +++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 @@ -184,6 +184,10 @@ struct iOSReaderWorkspaceView: View {
@@ -20,7 +20,7 @@ index 1a136eb..5bdb8d5 100644
 -                .accessibilityIdentifier("reader-header-title")
 -                .accessibilityLabel(book.book)
 +                .accessibilityIdentifier("reader-current-locator")
-+                .accessibilityLabel(viewModel.currentLocator?.position.description ?? book.book)
++                .accessibilityLabel(viewModel.currentLocator?.persistenceKey ?? book.book)
          }
          .accessibilityElement(children: .contain)
          .accessibilityIdentifier("reader-surface")

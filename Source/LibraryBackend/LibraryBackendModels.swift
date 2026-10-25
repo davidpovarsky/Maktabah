@@ -23,7 +23,7 @@ struct BackendCapabilities: OptionSet, Codable, Sendable {
     static let workMetadata = Self(rawValue: 1 << 9)
 }
 
-enum TextPosition: Codable, Hashable, Sendable {
+enum TextPosition: Codable, Hashable, Sendable, CustomStringConvertible {
     case legacyLine(Int)
     case canonicalRef(String)
 
@@ -35,6 +35,13 @@ enum TextPosition: Codable, Hashable, Sendable {
         switch try values.decode(Kind.self, forKey: .kind) {
         case .legacyLine: self = .legacyLine(try values.decode(Int.self, forKey: .integer))
         case .canonicalRef: self = .canonicalRef(try values.decode(String.self, forKey: .string))
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .legacyLine(let value): return "line:\(value)"
+        case .canonicalRef(let value): return value
         }
     }
 
