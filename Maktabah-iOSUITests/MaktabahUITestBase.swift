@@ -12,11 +12,13 @@ class MaktabahUITestBase: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
-        app = XCUIApplication()
+        app = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
         app.launchArguments = [
             "-OtzariaDataProfile", "miniTest10",
             "-smokeBypassBootstrap"
         ]
+        app.launchEnvironment["OTZARIA_DATA_PROFILE"] = "miniTest10"
+        app.launchEnvironment["SIMCTL_CHILD_OTZARIA_DATA_PROFILE"] = "miniTest10"
     }
 
     override func tearDownWithError() throws {
@@ -31,7 +33,7 @@ class MaktabahUITestBase: XCTestCase {
         language: String = "he",
         locale: String = "he_IL"
     ) -> XCUIApplication {
-        app = XCUIApplication()
+        let app = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
         app.launchArguments = [
             "-OtzariaDataProfile", "miniTest10",
             "-smokeBypassBootstrap",
@@ -40,7 +42,10 @@ class MaktabahUITestBase: XCTestCase {
             "-AppleLanguages", "(\(language))",
             "-AppleLocale", locale
         ] + extraArgs
+        app.launchEnvironment["OTZARIA_DATA_PROFILE"] = "miniTest10"
+        app.launchEnvironment["SIMCTL_CHILD_OTZARIA_DATA_PROFILE"] = "miniTest10"
         app.launch()
+        self.app = app
         return app
     }
 

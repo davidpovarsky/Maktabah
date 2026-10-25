@@ -289,14 +289,20 @@ jobs:
             -disableAutomaticPackageResolution \
             OTZARIA_DEFAULT_DATA_PROFILE=miniTest10 \
             -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=YES \
             2>&1 | tee build/logs/build-simulator.log
 
           APP="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
           test -d "$APP"
           test -f "$APP/dictionary.json"
           test -f "$APP/Acronyms.json"
-          echo "Simulator build-for-testing successful: $APP"
+          /usr/libexec/PlistBuddy -c 'Set :OtzariaDefaultDataProfile miniTest10' "$APP/Info.plist" 2>/dev/null || /usr/libexec/PlistBuddy -c 'Add :OtzariaDefaultDataProfile string miniTest10' "$APP/Info.plist"
+          codesign --force --deep --sign - "$APP"
+          RUNNER="build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app"
+          if [ -d "$RUNNER" ]; then
+            codesign --force --deep --sign - "$RUNNER"
+          fi
+          echo "Simulator build-for-testing successful and ad-hoc signed: $APP"
 
       - name: Run Genuine iPad Simulator Acceptance Tests (Fail-Closed)
         run: |
@@ -311,6 +317,11 @@ jobs:
           xcrun simctl boot "$IPAD_UDID" || true
           xcrun simctl bootstatus "$IPAD_UDID" -b
 
+          APP="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          echo "Pre-installing app on simulator..."
+          xcrun simctl install "$IPAD_UDID" "$APP"
+
+          TEST_EXIT=0
           xcodebuild test-without-building \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
@@ -318,7 +329,20 @@ jobs:
             -destination "platform=iOS Simulator,id=$IPAD_UDID" \
             -derivedDataPath build/DerivedData \
             -resultBundlePath build/DerivedData/TestResults.xcresult \
-            2>&1 | tee build/logs/test-simulator.log
+            2>&1 | tee build/logs/test-simulator.log || TEST_EXIT=$?
+
+          if [ "$TEST_EXIT" -ne 0 ]; then
+            echo "=== Simulator Crash Reports ==="
+            ls -la ~/Library/Logs/DiagnosticReports/ || true
+            for f in ~/Library/Logs/DiagnosticReports/*; do
+              [ -f "$f" ] || continue
+              echo "--- $f ---"
+              head -n 60 "$f"
+            done
+            echo "=== Simulator App System Logs ==="
+            xcrun simctl spawn "$IPAD_UDID" log show --predicate 'process == "Maktabah" OR process == "Maktabah-iOSUITests-Runner"' --style syslog --last 5m | tail -n 100 || true
+            exit "$TEST_EXIT"
+          fi
       - name: Upload Compilation and Test Results
         if: always()
         uses: actions/upload-artifact@v4
