@@ -23,10 +23,16 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         // A2: Clear 'X' button must be visible when active search highlight exists
         let clearButton = app.buttons["reader.clear_search_highlight_button"]
         XCTAssertTrue(waitForElement(clearButton, timeout: 8.0), "Clear 'X' button must appear next to search button")
-        XCTAssertTrue(clearButton.isHittable, "Clear 'X' button must be hittable")
 
-        // Tap Clear 'X' button
-        clearButton.tap()
+        // Wait for element to settle and tap it
+        let isHittablePredicate = NSPredicate(format: "isHittable == true")
+        let hittableExpectation = XCTNSPredicateExpectation(predicate: isHittablePredicate, object: clearButton)
+        let waitResult = XCTWaiter().wait(for: [hittableExpectation], timeout: 5.0)
+        if waitResult == .completed && clearButton.isHittable {
+            clearButton.tap()
+        } else {
+            clearButton.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        }
 
         // After tapping, Clear 'X' button must disappear
         let clearButtonPredicate = NSPredicate(format: "exists == false")

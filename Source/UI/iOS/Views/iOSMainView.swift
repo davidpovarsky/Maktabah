@@ -363,6 +363,7 @@ private extension iOSMainView {
             try? await Task.sleep(for: .milliseconds(500))
             if let first = await prepareSmokeSearch(query: query) {
                 navigationManager.unifiedSearchSession.openResult(first, using: navigationManager)
+                selectedTab = .viewer
                 navigationManager.switchToMode(.viewer)
             } else {
                 smokeSucceeded = false
