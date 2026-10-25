@@ -14,8 +14,8 @@
       "status": "OWNER_APPROVAL_REQUIRED",
       "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-01",
       "expected_patch_file": "01-project-pbxproj-chavrusatext.patch",
-      "patch_digest_sha256": "afbe716a5ae8854ebd02a9decf183fff23af3f372d40e4548d41f9e09aa9db03",
-      "expected_head_blob_sha": "8bf340384b857901ab9bfdeec70c46409f4a66c6",
+      "patch_digest_sha256": "7534045587b20c340d4de5b945fe0d108902d7c8de158c01791a12806aa633e8",
+      "expected_head_blob_sha": "8a332467292ba7a0198be11966fa7147c0edcc42",
       "review_provenance": "Registers 9 ChavrusaText component files in Maktabah.xcodeproj",
       "owner_attestation": null
     },
@@ -28,7 +28,7 @@
       "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-02",
       "expected_patch_file": "02-iosreaderview-tabbar-visibility.patch",
       "patch_digest_sha256": "97abbfe5d5489c4cc6c59377a9711ff3b14097b96a564e591b1331d22c5e634c",
-      "expected_head_blob_sha": "92816935eaf52d5d2abcd38a1b6a26ac7c2c6f2c",
+      "expected_head_blob_sha": "3da6586c02412b4b66a072bf9c14342639a6a61c",
       "review_provenance": "Removes line 119 .toolbar(.hidden, for: .tabBar) in iOSReaderView",
       "owner_attestation": null
     },
@@ -40,8 +40,8 @@
       "status": "OWNER_APPROVAL_REQUIRED",
       "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-03",
       "expected_patch_file": "03-iosmainview-history-localization.patch",
-      "patch_digest_sha256": "f9e529a5fcd6a98423b70fd59592d6d73bb42819e57086dce440268b5f99afd6",
-      "expected_head_blob_sha": "5e80e89683028e50f45ccdebaa91e62412625f4e",
+      "patch_digest_sha256": "563ad9e20188819962afc821be8db99f19a0efe6f04380eb55d0de0abc44d631",
+      "expected_head_blob_sha": "14475c6a8454321809810e35d50ba9dbab5dbb3b",
       "review_provenance": "Routes History tab title through Localizable.xcstrings",
       "owner_attestation": null
     },
@@ -57,7 +57,7 @@
         "05-iosibarottextview-selection-mapper.patch"
       ],
       "patch_digest_sha256": "ce92efaf0554b9d1a57123a88dce11687288bedf941e59dc346e5212526517cc",
-      "expected_head_blob_sha": "d27343c10b51fc35efe985b1d1f925dd0ac2ac08",
+      "expected_head_blob_sha": "fa5430a8ee65318f65fbcdfd0e5d5f68a0f4b912",
       "review_provenance": "Wires ReaderPullNavigationStateMachine and ReaderSelectionRangeMapper in iOSIbarotTextView",
       "owner_attestation": null
     },
@@ -95,8 +95,8 @@
       "status": "OWNER_APPROVAL_REQUIRED",
       "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-08",
       "expected_patch_file": "08-iosnavigationmanager-session-restore.patch",
-      "patch_digest_sha256": "a2a643568ed5e93e12910bc6a86550925bf7b64a9962c6fe0460471e98ead128",
-      "expected_head_blob_sha": "9117460a175136cf5dca71aad3e4d11238b029f6",
+      "patch_digest_sha256": "53e504284b98a67af2d5376431b65abdb20beda07356ec4dd2e9f04004e4e57e",
+      "expected_head_blob_sha": "68d14d5a04362ba308fdef884e21d2f0fe453c13",
       "review_provenance": "Wires iOSNavigationManager as BackendSwitchParticipant in two-phase switch orchestration",
       "owner_attestation": null
     },
@@ -108,10 +108,14 @@
       "status": "OWNER_APPROVAL_REQUIRED",
       "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-09",
       "expected_patch_file": "09-ci-boundary-guard-workflow.patch",
-      "patch_digest_sha256": "a9a8b33b668a5e81e5a07cf28f37ade8a8779fd84ca5b6e126c562fdc36281e5",
-      "expected_head_blob_sha": "06deea9b2d9fa57b3eed58d01cfdcf1e1ab4cdd5",
+      "patch_digest_sha256": "256a99685e6b0233d37642df1c22b8a9e4cb8285a33db54a45e4d095b9498545",
+      "expected_head_blob_sha": "174c2240ffcd081800d0970b4375b2dcfa052dcd",
       "review_provenance": "Adds event-aware clean upstream boundary verification CI workflow",
       "owner_attestation": null
     }
-  ]
+  ],
+  "last_reconciled": "2026-10-25T08:00:00Z",
+  "reconciled_against_baseline": "c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f",
+  "pinned_upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "status": "PENDING_OWNER_SIGNATURE"
 }

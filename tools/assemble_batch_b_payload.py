@@ -11,6 +11,8 @@ import hashlib
 import json
 import os
 import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 def verify_payload_integrity(repo_root, manifest_data):
     print("=== Verifying Batch B Payload Components & Patches Integrity ===")
@@ -38,7 +40,7 @@ def verify_payload_integrity(repo_root, manifest_data):
             continue
 
         with open(full_path, "rb") as f:
-            actual_bytes = f.read()
+            actual_bytes = f.read().replace(b"\r\n", b"\n")
 
         actual_size = len(actual_bytes)
         actual_sha = hashlib.sha256(actual_bytes).hexdigest()
@@ -74,7 +76,7 @@ def verify_payload_integrity(repo_root, manifest_data):
             continue
 
         with open(patch_full, "rb") as pf:
-            p_bytes = pf.read()
+            p_bytes = pf.read().replace(b"\r\n", b"\n")
 
         p_size = len(p_bytes)
         p_sha = hashlib.sha256(p_bytes).hexdigest()

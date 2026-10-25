@@ -39,7 +39,7 @@ env:
 jobs:
   build-sign-and-upload:
     name: Build, Sign, and Deliver ChavrusaText (${{ inputs.data_profile }})
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 210
 
     steps:
@@ -62,10 +62,10 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Select Xcode 26
+      - name: Select Xcode 27
         id: xcode
         run: |
-          bash Scripts/CI/select-xcode-26.sh
+          bash Scripts/CI/select-xcode-27.sh
           echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
 
       - name: Live Activity · refresh

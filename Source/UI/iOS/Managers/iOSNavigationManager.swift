@@ -711,25 +711,24 @@ class iOSNavigationManager: BackendSwitchParticipant {
     }
 
     func publishTransition(to targetBackend: BackendID, transition: PreparedBackendTransition?) {
-        isSwitchingBackend = true
-        clearTabsForBackendSwitch()
-        clearPendingBookIntegration()
-        alertMessage = nil
-        unifiedSearchSession.handleBackendChanged()
-        lastKnownBackendID = targetBackend
-        BackendNavigationAdapter.shared.commitTransition(incomingBackend: targetBackend)
-
         let activeTransition = transition ?? self.stagedTransition
+
         if let activeTransition, !activeTransition.isCleanDestination, !activeTransition.stagedTabs.isEmpty {
-            let resolver = DefaultTargetBackendBookResolver.shared
+            // Priority B1 & B2: Atomically prepare all tabs from pre-resolved retained books
+            // NO second throwing book resolver call and NO `continue` dropping failed tabs.
             var restoredTabs: [ReaderTab] = []
+            var allSucceeded = true
+
             for staged in activeTransition.stagedTabs {
-                guard let book = try? resolver.resolveBook(
+                guard let book = (staged.retainedBook as? BooksData) ?? (try? targetBackendResolver.resolveBook(
                     id: staged.bookId,
                     backendLocator: staged.backendLocator,
                     title: staged.bookTitle,
                     in: targetBackend
-                ) else { continue }
+                )) else {
+                    allSucceeded = false
+                    break
+                }
 
                 let viewModel = ReaderViewModel(book: book)
                 viewModel.recordHistory = false
@@ -760,6 +759,23 @@ class iOSNavigationManager: BackendSwitchParticipant {
                 ))
             }
 
+            // ATOMICITY: If ANY tab failed to restore or count does not match stagedTabs, ABORT!
+            guard allSucceeded && restoredTabs.count == activeTransition.stagedTabs.count else {
+                AppLogger.log("publishTransition failed atomic restoration (\(restoredTabs.count)/\(activeTransition.stagedTabs.count) tabs ready). Preserving existing tabs without mutating state.", category: .lifecycle)
+                self.stagedTransition = nil
+                self.isSwitchingBackend = false
+                return
+            }
+
+            // Only AFTER all tabs are safely constructed and verified do we perform irreversible UI modifications
+            isSwitchingBackend = true
+            clearTabsForBackendSwitch()
+            clearPendingBookIntegration()
+            alertMessage = nil
+            unifiedSearchSession.handleBackendChanged()
+            lastKnownBackendID = targetBackend
+            BackendNavigationAdapter.shared.commitTransition(incomingBackend: targetBackend)
+
             self.openTabs = restoredTabs
             let resolution = ReaderSessionRestoreCoordinator().resolveActiveTab(
                 savedActiveId: activeTransition.targetActiveTabId,
@@ -771,11 +787,25 @@ class iOSNavigationManager: BackendSwitchParticipant {
                 self.selectedBook = active.book
                 self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
             }
-        }
+            self.persistCurrentSession(immediate: true)
+            self.stagedTransition = nil
+            self.isSwitchingBackend = false
+        } else {
+            // Clean destination or empty stagedTabs
+            isSwitchingBackend = true
+            clearTabsForBackendSwitch()
+            clearPendingBookIntegration()
+            alertMessage = nil
+            unifiedSearchSession.handleBackendChanged()
+            lastKnownBackendID = targetBackend
+            BackendNavigationAdapter.shared.commitTransition(incomingBackend: targetBackend)
 
-        self.stagedTransition = nil
-        self.isSwitchingBackend = false
-        persistCurrentSession(immediate: true)
+            self.openTabs = []
+            self.activeTabId = nil
+            self.persistCurrentSession(immediate: true)
+            self.stagedTransition = nil
+            self.isSwitchingBackend = false
+        }
     }
 
     func completeTransition(to targetBackend: BackendID) {

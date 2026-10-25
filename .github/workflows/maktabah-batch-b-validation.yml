@@ -273,12 +273,12 @@ jobs:
             Source/LibraryBackend/BackendCoordinator.swift
           /tmp/chavrusa_tests
 
-      - name: Build Maktabah-iOS Simulator App (Debug)
+      - name: Build Maktabah-iOS for Testing on Simulator (Debug)
         run: |
           JOBS="$(sysctl -n hw.ncpu)"
           [ "$JOBS" -le 8 ] || JOBS=8
           set -o pipefail
-          xcodebuild build \
+          xcodebuild build-for-testing \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
             -configuration Debug \
@@ -296,30 +296,36 @@ jobs:
           test -d "$APP"
           test -f "$APP/dictionary.json"
           test -f "$APP/Acronyms.json"
-          echo "Simulator build successful: $APP"
+          echo "Simulator build-for-testing successful: $APP"
 
-      - name: Run Focused Xcode Simulator Tests
-        continue-on-error: true
+      - name: Run Genuine iPad Simulator Acceptance Tests (Fail-Closed)
         run: |
           set -o pipefail
-          # Find available simulator
-          SIM_NAME=$(xcrun simctl list devices available | grep -E "iPhone|iPad" | head -n 1 | sed -E 's/^[ ]+//; s/[ ]+\(.*//')
-          echo "Testing on simulator: ${SIM_NAME:-iPhone 16}"
+          echo "=== Discovering iPad Simulator on iOS 27 ==="
+          IPAD_SIM=$(xcrun simctl list devices available | grep -E "iPad Pro 13-inch|iPad Pro|iPad" | head -n 1 | sed -E 's/^[ ]+//; s/[ ]+\(.*//')
+          if [ -z "$IPAD_SIM" ]; then
+            echo "::error::Required iPad simulator unavailable on iOS 27 runtime"
+            exit 1
+          fi
+          echo "Selected iPad Simulator device: $IPAD_SIM"
+
           xcodebuild test-without-building \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
             -configuration Debug \
-            -destination "platform=iOS Simulator,name=${SIM_NAME:-iPhone 16}" \
+            -destination "platform=iOS Simulator,name=$IPAD_SIM" \
             -derivedDataPath build/DerivedData \
             -resultBundlePath build/DerivedData/TestResults.xcresult \
-            2>&1 | tee build/logs/test-simulator.log || true
+            2>&1 | tee build/logs/test-simulator.log
 
-      - name: Upload Compilation and Test Logs
+      - name: Upload Compilation and Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: macos27-simulator-build-logs
-          path: build/logs/
+          name: macos27-simulator-test-results
+          path: |
+            build/logs/
+            build/DerivedData/TestResults.xcresult
           if-no-files-found: warn
 
   device-build:

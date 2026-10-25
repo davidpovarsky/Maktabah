@@ -43,6 +43,7 @@ struct PreparedBackendTransition: Sendable, Equatable {
         let searchModeRaw: Int?
         let nearDistance: Int?
         let highlightTerms: [String]?
+        let retainedBook: (any AnyObject & Sendable)?
 
         init(
             id: UUID,
@@ -61,7 +62,8 @@ struct PreparedBackendTransition: Sendable, Equatable {
             searchText: String? = nil,
             searchModeRaw: Int? = nil,
             nearDistance: Int? = nil,
-            highlightTerms: [String]? = nil
+            highlightTerms: [String]? = nil,
+            retainedBook: (any AnyObject & Sendable)? = nil
         ) {
             self.id = id
             self.bookId = bookId
@@ -80,6 +82,28 @@ struct PreparedBackendTransition: Sendable, Equatable {
             self.searchModeRaw = searchModeRaw
             self.nearDistance = nearDistance
             self.highlightTerms = highlightTerms
+            self.retainedBook = retainedBook
+        }
+
+        static func == (lhs: StagedTabSession, rhs: StagedTabSession) -> Bool {
+            lhs.id == rhs.id &&
+            lhs.bookId == rhs.bookId &&
+            lhs.bookTitle == rhs.bookTitle &&
+            lhs.backendLocator == rhs.backendLocator &&
+            lhs.contentId == rhs.contentId &&
+            lhs.locator == rhs.locator &&
+            lhs.page == rhs.page &&
+            lhs.part == rhs.part &&
+            lhs.scrollPosition == rhs.scrollPosition &&
+            lhs.selectedRange == rhs.selectedRange &&
+            lhs.expandedNodeIDs == rhs.expandedNodeIDs &&
+            lhs.sidebarScrollPosition == rhs.sidebarScrollPosition &&
+            lhs.isSidebarCollapsed == rhs.isSidebarCollapsed &&
+            lhs.searchText == rhs.searchText &&
+            lhs.searchModeRaw == rhs.searchModeRaw &&
+            lhs.nearDistance == rhs.nearDistance &&
+            lhs.highlightTerms == rhs.highlightTerms &&
+            lhs.retainedBook === rhs.retainedBook
         }
     }
 

@@ -1,5 +1,5 @@
 diff --git a/Source/UI/iOS/Managers/iOSNavigationManager.swift b/Source/UI/iOS/Managers/iOSNavigationManager.swift
-index 26a2394..ac3eb39 100644
+index 26a2394..68d14d5 100644
 --- a/Source/UI/iOS/Managers/iOSNavigationManager.swift
 +++ b/Source/UI/iOS/Managers/iOSNavigationManager.swift
 @@ -5,7 +5,7 @@ import UIKit
@@ -49,13 +49,13 @@ index 26a2394..ac3eb39 100644
  
          observerTokens.append(
              NotificationToken(
-@@ -632,7 +622,215 @@ class iOSNavigationManager {
+@@ -632,7 +622,245 @@ class iOSNavigationManager {
                !session.tabs.isEmpty else {
              return
          }
 +        restoreSessionFromData(session)
 +    }
- 
++
 +    // MARK: - BackendSwitchParticipant (Two-Phase Fail-Closed Boundary)
 +
 +    func prepareTransition(from currentBackend: BackendID, to targetBackend: BackendID, token: UInt64) throws -> PreparedBackendTransition? {
@@ -142,25 +142,24 @@ index 26a2394..ac3eb39 100644
 +    }
 +
 +    func publishTransition(to targetBackend: BackendID, transition: PreparedBackendTransition?) {
-+        isSwitchingBackend = true
-+        clearTabsForBackendSwitch()
-+        clearPendingBookIntegration()
-+        alertMessage = nil
-+        unifiedSearchSession.handleBackendChanged()
-+        lastKnownBackendID = targetBackend
-+        BackendNavigationAdapter.shared.commitTransition(incomingBackend: targetBackend)
-+
 +        let activeTransition = transition ?? self.stagedTransition
++
 +        if let activeTransition, !activeTransition.isCleanDestination, !activeTransition.stagedTabs.isEmpty {
-+            let resolver = DefaultTargetBackendBookResolver.shared
++            // Priority B1 & B2: Atomically prepare all tabs from pre-resolved retained books
++            // NO second throwing book resolver call and NO `continue` dropping failed tabs.
 +            var restoredTabs: [ReaderTab] = []
++            var allSucceeded = true
++
 +            for staged in activeTransition.stagedTabs {
-+                guard let book = try? resolver.resolveBook(
++                guard let book = (staged.retainedBook as? BooksData) ?? (try? targetBackendResolver.resolveBook(
 +                    id: staged.bookId,
 +                    backendLocator: staged.backendLocator,
 +                    title: staged.bookTitle,
 +                    in: targetBackend
-+                ) else { continue }
++                )) else {
++                    allSucceeded = false
++                    break
++                }
 +
 +                let viewModel = ReaderViewModel(book: book)
 +                viewModel.recordHistory = false
@@ -191,6 +190,23 @@ index 26a2394..ac3eb39 100644
 +                ))
 +            }
 +
++            // ATOMICITY: If ANY tab failed to restore or count does not match stagedTabs, ABORT!
++            guard allSucceeded && restoredTabs.count == activeTransition.stagedTabs.count else {
++                AppLogger.log("publishTransition failed atomic restoration (\(restoredTabs.count)/\(activeTransition.stagedTabs.count) tabs ready). Preserving existing tabs without mutating state.", category: .lifecycle)
++                self.stagedTransition = nil
++                self.isSwitchingBackend = false
++                return
++            }
++
++            // Only AFTER all tabs are safely constructed and verified do we perform irreversible UI modifications
++            isSwitchingBackend = true
++            clearTabsForBackendSwitch()
++            clearPendingBookIntegration()
++            alertMessage = nil
++            unifiedSearchSession.handleBackendChanged()
++            lastKnownBackendID = targetBackend
++            BackendNavigationAdapter.shared.commitTransition(incomingBackend: targetBackend)
++
 +            self.openTabs = restoredTabs
 +            let resolution = ReaderSessionRestoreCoordinator().resolveActiveTab(
 +                savedActiveId: activeTransition.targetActiveTabId,
@@ -202,17 +218,31 @@ index 26a2394..ac3eb39 100644
 +                self.selectedBook = active.book
 +                self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
 +            }
-+        }
++            self.persistCurrentSession(immediate: true)
++            self.stagedTransition = nil
++            self.isSwitchingBackend = false
++        } else {
++            // Clean destination or empty stagedTabs
++            isSwitchingBackend = true
++            clearTabsForBackendSwitch()
++            clearPendingBookIntegration()
++            alertMessage = nil
++            unifiedSearchSession.handleBackendChanged()
++            lastKnownBackendID = targetBackend
++            BackendNavigationAdapter.shared.commitTransition(incomingBackend: targetBackend)
 +
-+        self.stagedTransition = nil
-+        self.isSwitchingBackend = false
-+        persistCurrentSession(immediate: true)
++            self.openTabs = []
++            self.activeTabId = nil
++            self.persistCurrentSession(immediate: true)
++            self.stagedTransition = nil
++            self.isSwitchingBackend = false
++        }
 +    }
 +
 +    func completeTransition(to targetBackend: BackendID) {
 +        BackendNavigationAdapter.shared.completeTransition(incomingBackend: targetBackend)
 +    }
-+
+ 
 +    func abortTransition(from currentBackend: BackendID, to targetBackend: BackendID, error: Error) {
 +        BackendNavigationAdapter.shared.resetTransition()
 +        self.stagedTransition = nil
@@ -265,7 +295,7 @@ index 26a2394..ac3eb39 100644
          var restoredTabs: [ReaderTab] = []
          let ldm = LibraryDataManager.shared
  
-@@ -704,9 +902,13 @@ class iOSNavigationManager {
+@@ -704,9 +932,13 @@ class iOSNavigationManager {
          guard !restoredTabs.isEmpty else { return }
  
          self.openTabs = restoredTabs
@@ -281,7 +311,7 @@ index 26a2394..ac3eb39 100644
              self.selectedBook = active.book
              self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
          }
-@@ -714,34 +916,12 @@ class iOSNavigationManager {
+@@ -714,34 +946,12 @@ class iOSNavigationManager {
      }
  
      func persistCurrentSession(immediate: Bool = false) {
@@ -318,7 +348,7 @@ index 26a2394..ac3eb39 100644
  
          let session = iOSReaderSession(
              schemaVersion: iOSReaderSession.currentSchemaVersion,
-@@ -758,3 +938,64 @@ class iOSNavigationManager {
+@@ -758,3 +968,64 @@ class iOSNavigationManager {
          }
      }
  }

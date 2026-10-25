@@ -765,6 +765,109 @@ struct TestRunner {
             assertCondition(realSwitchSuccess, "End-to-end switch using real BackendNavigationAdapter participant succeeded")
             assertCondition(coordinator.activeBackendID == .otzaria, "Backend coordinator active backend updated to .otzaria")
             assertCondition(realNavAdapter.transitionState == .uiTransitionCommitted(incoming: .otzaria) || realNavAdapter.transitionState == .incomingSnapshotRestored(incoming: .otzaria), "BackendNavigationAdapter state restored for otzaria")
+
+            // Test 9.10: Atomic Tab Restoration with pre-resolved retained books (Priority B1/B2)
+            final class AtomicRestorationParticipant: BackendSwitchParticipant {
+                final class MockBook: @unchecked Sendable {
+                    let id: Int
+                    let title: String
+                    init(id: Int, title: String) { self.id = id; self.title = title }
+                }
+
+                var openTabs: [String] = ["outgoing_tab_1", "outgoing_tab_2"]
+                var simulatedResolverChanged = false
+                var abortCalled = false
+
+                func prepareTransition(from currentBackend: BackendID, to targetBackend: BackendID, token: UInt64) throws -> PreparedBackendTransition? {
+                    let book1 = MockBook(id: 301, title: "Retained Book 1")
+                    let book2 = MockBook(id: 302, title: "Retained Book 2")
+                    return PreparedBackendTransition(
+                        transitionToken: token,
+                        outgoingBackend: currentBackend,
+                        incomingBackend: targetBackend,
+                        outgoingSnapshotData: nil,
+                        incomingSnapshotData: nil,
+                        isCleanDestination: false,
+                        stagedTabs: [
+                            .init(id: UUID(), bookId: 301, bookTitle: "Title 1", backendLocator: nil, retainedBook: book1),
+                            .init(id: UUID(), bookId: 302, bookTitle: "Title 2", backendLocator: nil, retainedBook: book2)
+                        ],
+                        targetActiveTabId: nil
+                    )
+                }
+
+                func publishTransition(to targetBackend: BackendID, transition: PreparedBackendTransition?) {
+                    guard let transition, !transition.stagedTabs.isEmpty else { return }
+                    var restored: [String] = []
+                    for tab in transition.stagedTabs {
+                        if let book = tab.retainedBook as? MockBook {
+                            restored.append(book.title)
+                        } else if !simulatedResolverChanged {
+                            restored.append(tab.bookTitle)
+                        }
+                    }
+                    guard restored.count == transition.stagedTabs.count else { return }
+                    openTabs = restored
+                }
+
+                func completeTransition(to targetBackend: BackendID) {}
+                func abortTransition(from currentBackend: BackendID, to targetBackend: BackendID, error: Error) {
+                    abortCalled = true
+                }
+            }
+
+            let atomicParticipant = AtomicRestorationParticipant()
+            atomicParticipant.simulatedResolverChanged = true
+            coordinator.addSwitchParticipant(atomicParticipant)
+            let atomicSwitchSuccess = coordinator.commit(.sefaria)
+            assertCondition(atomicSwitchSuccess, "Atomic switch with pre-resolved retained books succeeded")
+            assertCondition(atomicParticipant.openTabs == ["Retained Book 1", "Retained Book 2"], "Pre-resolved books installed without re-resolution")
+            coordinator.removeSwitchParticipant(atomicParticipant)
+
+            // Test 9.11: Partial restoration count mismatch fails-closed (Priority B2)
+            final class PartialMismatchParticipant: BackendSwitchParticipant {
+                var openTabs: [String] = ["saved_tab_1", "saved_tab_2"]
+                var abortCalled = false
+
+                func prepareTransition(from currentBackend: BackendID, to targetBackend: BackendID, token: UInt64) throws -> PreparedBackendTransition? {
+                    return PreparedBackendTransition(
+                        transitionToken: token,
+                        outgoingBackend: currentBackend,
+                        incomingBackend: targetBackend,
+                        outgoingSnapshotData: nil,
+                        incomingSnapshotData: nil,
+                        isCleanDestination: false,
+                        stagedTabs: [
+                            .init(id: UUID(), bookId: 401, bookTitle: "Valid 1", backendLocator: nil, retainedBook: "Book1" as (any AnyObject & Sendable)),
+                            .init(id: UUID(), bookId: 402, bookTitle: "Corrupt 2", backendLocator: nil, retainedBook: nil)
+                        ],
+                        targetActiveTabId: nil
+                    )
+                }
+
+                func publishTransition(to targetBackend: BackendID, transition: PreparedBackendTransition?) {
+                    guard let transition else { return }
+                    var restored: [String] = []
+                    for tab in transition.stagedTabs {
+                        if let book = tab.retainedBook as? String {
+                            restored.append(book)
+                        }
+                    }
+                    guard restored.count == transition.stagedTabs.count else { return }
+                    openTabs = restored
+                }
+
+                func completeTransition(to targetBackend: BackendID) {}
+                func abortTransition(from currentBackend: BackendID, to targetBackend: BackendID, error: Error) {
+                    abortCalled = true
+                }
+            }
+
+            let mismatchParticipant = PartialMismatchParticipant()
+            coordinator.addSwitchParticipant(mismatchParticipant)
+            _ = coordinator.commit(.otzaria)
+            assertCondition(mismatchParticipant.openTabs == ["saved_tab_1", "saved_tab_2"], "Tabs preserved after partial restoration mismatch")
+            coordinator.removeSwitchParticipant(mismatchParticipant)
         } catch {
             assertCondition(false, "Suite 9 failed with error: \(error)")
         }

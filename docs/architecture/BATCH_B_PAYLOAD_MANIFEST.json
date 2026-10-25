@@ -1,6 +1,6 @@
 {
-  "manifest_version": "2.0.0",
-  "generated_at": "2026-10-25T03:30:00Z",
+  "manifest_version": "2.1.0",
+  "generated_at": "2026-10-25T08:00:00Z",
   "baseline_commit": "c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f",
   "upstream_pinned_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
   "total_payload_files": 15,
@@ -73,8 +73,8 @@
     },
     {
       "path": "tools/test_chavrusa_text_components.swift",
-      "size_bytes": 46361,
-      "sha256": "f4551c146bb31fac3d831224447f579205e48c0022ef34450454fb8c4bccd217"
+      "size_bytes": 52081,
+      "sha256": "043fe176a352d4b6ca53df3d9f29f1a15441a14b9b6f3b2175b80113553403a1"
     },
     {
       "path": "tools/test_verify_upstream_boundary.py",
@@ -87,34 +87,37 @@
       "order": 0,
       "patch_id": "00-FORK-FILES",
       "filename": "00-fork-owned-components.patch",
-      "patch_file_sha256": "29bc72b3433f3738243ac53635ebe792284fdf81555c9e3264cd70289b765d51",
-      "size_bytes": 210533,
+      "patch_file_sha256": "ab8320e9d393592f95f56e0401ff4fe809f69d6f395ed046667bcf937ba20acc",
+      "size_bytes": 216701,
       "target_file": "Source/ChavrusaText/*, MaktabahTests/*, Scripts/CI/*, tools/*",
       "ownership": "FORK_OWNED",
-      "approval_status": "AUTOMATIC_PRE_APPROVED",
-      "description": "Creates all 15 untracked fork-owned Swift/Python components"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Creates all 15 untracked fork-owned Swift/Python components",
+      "canonical_patch_sha256": "ab8320e9d393592f95f56e0401ff4fe809f69d6f395ed046667bcf937ba20acc"
     },
     {
       "order": 1,
       "patch_id": "00-FORK-COORD",
       "filename": "00-backendcoordinator-two-phase-switch.patch",
-      "patch_file_sha256": "7af933c5ed8ae7229bebee67baa7408253ed9a7d651122de669e6016d538d342",
-      "size_bytes": 19514,
+      "patch_file_sha256": "b8d1125281c84753f419089904beafb7e1625e6d668dba7fc2e82e267fd6cda8",
+      "size_bytes": 20685,
       "target_file": "Source/LibraryBackend/BackendCoordinator.swift",
       "ownership": "FORK_OWNED",
-      "approval_status": "AUTOMATIC_PRE_APPROVED",
-      "description": "Adds BackendSwitchParticipant protocol and fail-closed switch orchestration to BackendCoordinator"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Adds BackendSwitchParticipant protocol and fail-closed switch orchestration to BackendCoordinator",
+      "canonical_patch_sha256": "b8d1125281c84753f419089904beafb7e1625e6d668dba7fc2e82e267fd6cda8"
     },
     {
       "order": 2,
       "patch_id": "BATCH_B_PATCH_01",
       "filename": "01-project-pbxproj-chavrusatext.patch",
-      "patch_file_sha256": "afbe716a5ae8854ebd02a9decf183fff23af3f372d40e4548d41f9e09aa9db03",
-      "size_bytes": 12524,
+      "patch_file_sha256": "7534045587b20c340d4de5b945fe0d108902d7c8de158c01791a12806aa633e8",
+      "size_bytes": 20960,
       "target_file": "Maktabah.xcodeproj/project.pbxproj",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Registers 9 ChavrusaText component files in Maktabah.xcodeproj"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Registers 9 ChavrusaText component files in Maktabah.xcodeproj",
+      "canonical_patch_sha256": "7534045587b20c340d4de5b945fe0d108902d7c8de158c01791a12806aa633e8"
     },
     {
       "order": 3,
@@ -124,8 +127,9 @@
       "size_bytes": 621,
       "target_file": "Source/Features/Reader/iOS/iOSReaderView.swift",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Removes line 119 .toolbar(.hidden, for: .tabBar) in iOSReaderView"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Removes line 119 .toolbar(.hidden, for: .tabBar) in iOSReaderView",
+      "canonical_patch_sha256": "97abbfe5d5489c4cc6c59377a9711ff3b14097b96a564e591b1331d22c5e634c"
     },
     {
       "order": 4,
@@ -135,8 +139,9 @@
       "size_bytes": 1190,
       "target_file": "Source/UI/iOS/Views/iOSMainView.swift",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Routes History tab title through ChavrusaTextLocalizationResolver"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Routes History tab title through ChavrusaTextLocalizationResolver",
+      "canonical_patch_sha256": "563ad9e20188819962afc821be8db99f19a0efe6f04380eb55d0de0abc44d631"
     },
     {
       "order": 5,
@@ -146,8 +151,9 @@
       "size_bytes": 5951,
       "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Wires ReaderPullNavigationStateMachine in iOSIbarotTextView"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Wires ReaderPullNavigationStateMachine in iOSIbarotTextView",
+      "canonical_patch_sha256": "ce92efaf0554b9d1a57123a88dce11687288bedf941e59dc346e5212526517cc"
     },
     {
       "order": 6,
@@ -157,8 +163,9 @@
       "size_bytes": 1760,
       "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Wires ReaderSelectionRangeMapper in iOSIbarotTextView"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Wires ReaderSelectionRangeMapper in iOSIbarotTextView",
+      "canonical_patch_sha256": "3b15bbfe91fdde648aa48429d5d45a76f925d0ec76cf65a75d3e0d8eb5135a8a"
     },
     {
       "order": 7,
@@ -168,8 +175,9 @@
       "size_bytes": 4448,
       "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Annotation.swift",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Wires ReaderAnnotationRefreshCoordinator in Reader+Annotation"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Wires ReaderAnnotationRefreshCoordinator in Reader+Annotation",
+      "canonical_patch_sha256": "055c93a7da5763c73a9e368979acccc9666b0994b7bfc41c4a5aa93d92e1f490"
     },
     {
       "order": 8,
@@ -179,19 +187,21 @@
       "size_bytes": 3977,
       "target_file": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Delegates atomic session persistence to SerializedSessionWriter"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Delegates atomic session persistence to SerializedSessionWriter",
+      "canonical_patch_sha256": "146473ab6364d55a11353d277047298dc8f399cdce1431eb74116349f8f35a63"
     },
     {
       "order": 9,
       "patch_id": "BATCH_B_PATCH_08",
       "filename": "08-iosnavigationmanager-session-restore.patch",
-      "patch_file_sha256": "37e08b79da6c5b8f1aa33d8fe9695937d8a104a2386277aa79f4bf88246944f0",
-      "size_bytes": 17311,
+      "patch_file_sha256": "53e504284b98a67af2d5376431b65abdb20beda07356ec4dd2e9f04004e4e57e",
+      "size_bytes": 18956,
       "target_file": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Wires iOSNavigationManager as BackendSwitchParticipant with non-throwing publishTransition"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Wires iOSNavigationManager as BackendSwitchParticipant with non-throwing publishTransition",
+      "canonical_patch_sha256": "53e504284b98a67af2d5376431b65abdb20beda07356ec4dd2e9f04004e4e57e"
     },
     {
       "order": 10,
@@ -201,8 +211,10 @@
       "size_bytes": 3015,
       "target_file": ".github/workflows/upstream-boundary-guard.yml",
       "ownership": "UPSTREAM_OWNED",
-      "approval_status": "OWNER_APPROVAL_REQUIRED",
-      "description": "Adds upstream boundary verification CI workflow"
+      "approval_status": "PENDING_OWNER_SIGNATURE",
+      "description": "Adds upstream boundary verification CI workflow",
+      "canonical_patch_sha256": "256a99685e6b0233d37642df1c22b8a9e4cb8285a33db54a45e4d095b9498545"
     }
-  ]
+  ],
+  "status": "PENDING_OWNER_SIGNATURE"
 }

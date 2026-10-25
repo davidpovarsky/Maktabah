@@ -1,5 +1,5 @@
 diff --git a/Source/LibraryBackend/BackendCoordinator.swift b/Source/LibraryBackend/BackendCoordinator.swift
-index 33e09c6..3cb640c 100644
+index 33e09c6..ac208a7 100644
 --- a/Source/LibraryBackend/BackendCoordinator.swift
 +++ b/Source/LibraryBackend/BackendCoordinator.swift
 @@ -1,4 +1,9 @@
@@ -12,7 +12,7 @@ index 33e09c6..3cb640c 100644
  import Foundation
  
  extension Notification.Name {
-@@ -7,19 +12,211 @@ extension Notification.Name {
+@@ -7,19 +12,235 @@ extension Notification.Name {
      static let libraryBackendConfigurationRequested = Notification.Name("libraryBackendConfigurationRequested")
  }
  
@@ -47,6 +47,7 @@ index 33e09c6..3cb640c 100644
 +        let searchModeRaw: Int?
 +        let nearDistance: Int?
 +        let highlightTerms: [String]?
++        let retainedBook: (any AnyObject & Sendable)?
 +
 +        init(
 +            id: UUID,
@@ -65,7 +66,8 @@ index 33e09c6..3cb640c 100644
 +            searchText: String? = nil,
 +            searchModeRaw: Int? = nil,
 +            nearDistance: Int? = nil,
-+            highlightTerms: [String]? = nil
++            highlightTerms: [String]? = nil,
++            retainedBook: (any AnyObject & Sendable)? = nil
 +        ) {
 +            self.id = id
 +            self.bookId = bookId
@@ -84,6 +86,28 @@ index 33e09c6..3cb640c 100644
 +            self.searchModeRaw = searchModeRaw
 +            self.nearDistance = nearDistance
 +            self.highlightTerms = highlightTerms
++            self.retainedBook = retainedBook
++        }
++
++        static func == (lhs: StagedTabSession, rhs: StagedTabSession) -> Bool {
++            lhs.id == rhs.id &&
++            lhs.bookId == rhs.bookId &&
++            lhs.bookTitle == rhs.bookTitle &&
++            lhs.backendLocator == rhs.backendLocator &&
++            lhs.contentId == rhs.contentId &&
++            lhs.locator == rhs.locator &&
++            lhs.page == rhs.page &&
++            lhs.part == rhs.part &&
++            lhs.scrollPosition == rhs.scrollPosition &&
++            lhs.selectedRange == rhs.selectedRange &&
++            lhs.expandedNodeIDs == rhs.expandedNodeIDs &&
++            lhs.sidebarScrollPosition == rhs.sidebarScrollPosition &&
++            lhs.isSidebarCollapsed == rhs.isSidebarCollapsed &&
++            lhs.searchText == rhs.searchText &&
++            lhs.searchModeRaw == rhs.searchModeRaw &&
++            lhs.nearDistance == rhs.nearDistance &&
++            lhs.highlightTerms == rhs.highlightTerms &&
++            lhs.retainedBook === rhs.retainedBook
 +        }
 +    }
 +
@@ -148,7 +172,8 @@ index 33e09c6..3cb640c 100644
 +}
 +
 +/// Lifecycle participant in the single-authority backend switch orchestration.
-+@MainActor
+ @MainActor
+-final class BackendCoordinator: ObservableObject {
 +protocol BackendSwitchParticipant: AnyObject, Sendable {
 +    /// Phase 1 (Sync): Preflight validation and staging under CURRENT backend.
 +    /// Captures outgoing snapshot, validates target backend/locator/book against target catalog,
@@ -190,8 +215,7 @@ index 33e09c6..3cb640c 100644
 +    }
 +}
 +
- @MainActor
--final class BackendCoordinator: ObservableObject {
++@MainActor
 +final class BackendCoordinator {
      enum StartupResolution: Equatable {
          case chooseSource
@@ -225,7 +249,7 @@ index 33e09c6..3cb640c 100644
  
      private var registrations: [BackendID: LibraryBackendRegistration] = [:]
      private var inFlightCancellations: [UUID: @Sendable () -> Void] = [:]
-@@ -78,27 +275,218 @@ final class BackendCoordinator: ObservableObject {
+@@ -78,27 +299,218 @@ final class BackendCoordinator: ObservableObject {
          }
      }
  
@@ -454,7 +478,7 @@ index 33e09c6..3cb640c 100644
      }
  
      func catalog(forceRefresh: Bool = false) async throws -> [LibraryCatalogNode] {
-@@ -224,3 +612,7 @@ final class BackendCoordinator: ObservableObject {
+@@ -224,3 +636,7 @@ final class BackendCoordinator: ObservableObject {
          return result
      }
  }
