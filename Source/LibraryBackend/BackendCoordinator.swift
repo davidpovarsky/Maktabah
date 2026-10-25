@@ -241,6 +241,13 @@ final class BackendCoordinator {
     private(set) var lastTransitionErrorMessage: String? = nil
     #endif
 
+    var isTransitioning: Bool {
+        if case .preparing = transitionPhase {
+            return true
+        }
+        return false
+    }
+
     private(set) var activeTransitionToken: UInt64 = 0
     private var switchParticipants: [WeakSwitchParticipant] = []
 

@@ -268,8 +268,19 @@ jobs:
             Source/ChavrusaText/Navigation/SerializedSessionWriter.swift \
             Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift \
             Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift \
-            Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift \
+            Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift \
+            Source/ChavrusaText/Navigation/ReaderBackendPagingCoordinator.swift \
+            Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift \
+            Source/ChavrusaText/Navigation/TOCReadingLocationTracker.swift \
+            Source/ChavrusaText/Navigation/TargetBackendBookResolver.swift \
+            Source/Sefaria/Domain/SefariaModels.swift \
+            Source/Sefaria/Offline/SefariaExportModels.swift \
+            Source/Sefaria/Offline/SefariaOfflinePaths.swift \
             Source/LibraryBackend/LibraryBackendProtocols.swift \
+            Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/LibraryBackend/LibraryPresentationPolicy+Display.swift \
+            Source/LibraryBackend/LegacyIdentityRegistry.swift \
             Source/LibraryBackend/BackendCoordinator.swift
           /tmp/chavrusa_tests
 
