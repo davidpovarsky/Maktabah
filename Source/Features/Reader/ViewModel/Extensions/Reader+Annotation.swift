@@ -59,6 +59,7 @@ extension ReaderViewModel {
         )
         _ = try annotationCoordinator.saveHighlight(params)
         loadAnnotations()
+        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
     }
 
     func makeAnnotationDraft(
@@ -93,26 +94,31 @@ extension ReaderViewModel {
         try validateAnnotationTarget(annotation)
         _ = try annotationStore.addAnnotation(annotation)
         loadAnnotations()
+        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
     }
 
     func annotationLocator(for book: BooksData) -> TextLocator? {
         if let locator = backendSection?.locator ?? book.backendLocator { return locator }
-        return TextLocator(
-            backend: .otzaria,
-            workKey: "book:\(book.id)",
-            position: .legacyLine(currentContentId)
+        guard currentContentId >= 0 else { return nil }
+        return try? BackendAnnotationBridge.shared.resolveLocator(
+            bookId: book.id,
+            workKey: nil,
+            backendID: BackendID.otzaria.rawValue,
+            contentId: currentContentId
         )
     }
 
     func deleteAnnotation(id: Int64) throws {
         try annotationStore.deleteAnnotation(id: id)
         loadAnnotations()
+        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
     }
 
     func updateAnnotation(_ annotation: Annotation) throws {
         try validateAnnotationTarget(annotation)
         try annotationStore.updateAnnotation(annotation)
         loadAnnotations()
+        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
     }
 
     private func validateAnnotationTarget(_ annotation: Annotation) throws {

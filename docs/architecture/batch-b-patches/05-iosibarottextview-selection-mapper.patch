@@ -1,0 +1,35 @@
+diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+index cc39864..6e1adc1 100644
+--- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
++++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+@@ -1228,8 +1228,28 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         ) -> UIMenu? {
+             guard range.length > 0 else { return nil }
+ 
+-            let sourceRange = currentRenderResult?.remapSourceRange(range) ?? range
+-            let sourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
++            let mapper = ReaderSelectionRangeMapper()
++            let rawSourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
++            let mappingProvider = currentRenderResult.map { ClosureRangeMappingProvider(transform: $0.remapSourceRange) }
++            let mapResult = mapper.mapSelection(
++                displayedRange: range,
++                sourceText: rawSourceText,
++                displayedText: textView.text,
++                mappingProvider: mappingProvider
++            )
++
++            let sourceRange: NSRange
++            let sourceText: String
++            switch mapResult {
++            case .success(let mapped):
++                sourceRange = mapped.sourceRange
++                sourceText = rawSourceText
++            case .failure(let error):
++                #if DEBUG
++                print("[ReaderSelectionRangeMapper] Selection mapping rejected: \(error)")
++                #endif
++                return nil
++            }
+ 
+             let menuChildren: [UIMenuElement] = if let existing = parent.viewModel.findBestAnnotation(for: sourceRange) {
+                 buildExistingAnnotationMenuChildren(for: existing)

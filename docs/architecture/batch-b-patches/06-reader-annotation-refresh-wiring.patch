@@ -1,0 +1,95 @@
+diff --git a/Source/Features/Reader/ViewModel/Extensions/Reader+Annotation.swift b/Source/Features/Reader/ViewModel/Extensions/Reader+Annotation.swift
+index 663a6b0..fa7fb39 100644
+--- a/Source/Features/Reader/ViewModel/Extensions/Reader+Annotation.swift
++++ b/Source/Features/Reader/ViewModel/Extensions/Reader+Annotation.swift
+@@ -59,6 +59,7 @@ extension ReaderViewModel {
+         )
+         _ = try annotationCoordinator.saveHighlight(params)
+         loadAnnotations()
++        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
+     }
+ 
+     func makeAnnotationDraft(
+@@ -93,26 +94,31 @@ extension ReaderViewModel {
+         try validateAnnotationTarget(annotation)
+         _ = try annotationStore.addAnnotation(annotation)
+         loadAnnotations()
++        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
+     }
+ 
+     func annotationLocator(for book: BooksData) -> TextLocator? {
+         if let locator = backendSection?.locator ?? book.backendLocator { return locator }
+-        return TextLocator(
+-            backend: .otzaria,
+-            workKey: "book:\(book.id)",
+-            position: .legacyLine(currentContentId)
++        guard currentContentId >= 0 else { return nil }
++        return try? BackendAnnotationBridge.shared.resolveLocator(
++            bookId: book.id,
++            workKey: nil,
++            backendID: BackendID.otzaria.rawValue,
++            contentId: currentContentId
+         )
+     }
+ 
+     func deleteAnnotation(id: Int64) throws {
+         try annotationStore.deleteAnnotation(id: id)
+         loadAnnotations()
++        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
+     }
+ 
+     func updateAnnotation(_ annotation: Annotation) throws {
+         try validateAnnotationTarget(annotation)
+         try annotationStore.updateAnnotation(annotation)
+         loadAnnotations()
++        ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
+     }
+ 
+     private func validateAnnotationTarget(_ annotation: Annotation) throws {
+diff --git a/Source/Features/Reader/iOS/iOSReaderView.swift b/Source/Features/Reader/iOS/iOSReaderView.swift
+index 1078fb9..a4c34ea 100644
+--- a/Source/Features/Reader/iOS/iOSReaderView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderView.swift
+@@ -30,6 +30,7 @@ struct iOSReaderView: View {
+     @State private var showingAnnotationActionSheet = false
+     @State private var tappedAnnotationId: Int64?
+     @State private var isReading = false
++    @ObservedObject private var annotationRefreshCoordinator = ReaderAnnotationRefreshCoordinator.shared
+ 
+     init(
+         book: BooksData,
+@@ -108,6 +109,7 @@ struct iOSReaderView: View {
+             book: book,
+             viewModel: viewModel,
+             textViewState: textViewState,
++            annotationRevision: annotationRefreshCoordinator.revision,
+             tappedAnnotationId: $tappedAnnotationId,
+             showingAnnotationActionSheet: $showingAnnotationActionSheet
+         )
+@@ -224,6 +226,7 @@ private struct _ReaderTextContentView: View {
+     let book: BooksData
+     var viewModel: ReaderViewModel
+     var textViewState: TextViewState
++    var annotationRevision: UInt64 = 0
+     @Binding var tappedAnnotationId: Int64?
+     @Binding var showingAnnotationActionSheet: Bool
+ 
+@@ -245,6 +248,8 @@ private struct _ReaderTextContentView: View {
+                     try viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
+                     UINotificationFeedbackGenerator().notificationOccurred(.success)
+                 } catch {
++                    Logger.reader.error("Failed to add annotation: \(error.localizedDescription, privacy: .public)")
++                    ReaderAnnotationRefreshCoordinator.shared.recordError(error)
+                     UINotificationFeedbackGenerator().notificationOccurred(.error)
+                 }
+             },
+@@ -270,7 +275,8 @@ private struct _ReaderTextContentView: View {
+ 
+ extension _ReaderTextContentView: @MainActor Equatable {
+     static func == (lhs: _ReaderTextContentView, rhs: _ReaderTextContentView) -> Bool {
+-        lhs.book.id == rhs.book.id &&
++        lhs.annotationRevision == rhs.annotationRevision &&
++            lhs.book.id == rhs.book.id &&
+             lhs.viewModel === rhs.viewModel &&
+             !rhs.viewModel.needsScrollRestore &&
+             lhs.viewModel.currentContentId == rhs.viewModel.currentContentId &&

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "base_ref": "c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f",
+  "head_ref": "WORKTREE",
+  "upstream_ref": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "total_changes_detected": 28,
+  "total_violations": 0,
+  "total_warnings": 0,
+  "violations": [],
+  "warnings": [],
+  "policy_files_changed": [
+    "Scripts/CI/verify-upstream-boundary.py"
+  ],
+  "protected_files_changed": []
+}

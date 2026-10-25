@@ -107,9 +107,7 @@ final class iOSReaderSessionManager: @unchecked Sendable {
     static let shared = iOSReaderSessionManager()
 
     private let fileManager = FileManager.default
-    private let ioQueue = DispatchQueue(label: "com.maktabah.sessionManager.io", qos: .utility)
-    private var pendingSaveWorkItem: DispatchWorkItem?
-    private let saveLock = NSLock()
+    private let sessionWriter = SerializedSessionWriter(queueLabel: "com.maktabah.sessionManager.io")
 
     private var statesDirectory: URL {
         let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -134,37 +132,24 @@ final class iOSReaderSessionManager: @unchecked Sendable {
 
     /// Schedules a debounced session save (useful during typing, layout updates, or scrolling).
     func scheduleSaveSession(_ session: iOSReaderSession, debounceInterval: TimeInterval = 0.5) {
-        saveLock.lock()
-        defer { saveLock.unlock() }
-
-        pendingSaveWorkItem?.cancel()
-        let workItem = DispatchWorkItem { [weak self] in
-            self?.performAtomicWrite(session)
+        sessionWriter.scheduleSave(to: sessionFileURL, debounceInterval: debounceInterval) {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            return try encoder.encode(session)
         }
-        pendingSaveWorkItem = workItem
-        ioQueue.asyncAfter(deadline: .now() + debounceInterval, execute: workItem)
     }
 
     /// Flushes session to disk immediately and synchronously (required when app is backgrounding or quitting).
     func saveSessionImmediately(_ session: iOSReaderSession) {
-        saveLock.lock()
-        pendingSaveWorkItem?.cancel()
-        pendingSaveWorkItem = nil
-        saveLock.unlock()
-
-        performAtomicWrite(session)
-    }
-
-    private func performAtomicWrite(_ session: iOSReaderSession) {
         do {
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-            let data = try encoder.encode(session)
-            let targetURL = sessionFileURL
-            try data.write(to: targetURL, options: [.atomic])
-            Logger.reader.debug("iOS reader session saved successfully with \(session.tabs.count) tabs.")
+            try sessionWriter.saveImmediately(to: sessionFileURL) {
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+                return try encoder.encode(session)
+            }
+            Logger.reader.debug("iOS reader session saved immediately with \(session.tabs.count) tabs.")
         } catch {
-            Logger.reader.error("Failed to write iOS reader session: \(error.localizedDescription, privacy: .public)")
+            Logger.reader.error("Failed to write iOS reader session immediately: \(error.localizedDescription, privacy: .public)")
         }
     }
 
@@ -197,15 +182,11 @@ final class iOSReaderSessionManager: @unchecked Sendable {
 
     /// Clears the saved session from disk.
     func clearSession() {
-        saveLock.lock()
-        pendingSaveWorkItem?.cancel()
-        pendingSaveWorkItem = nil
-        saveLock.unlock()
-
-        ioQueue.async { [weak self] in
-            guard let self else { return }
-            try? self.fileManager.removeItem(at: self.sessionFileURL)
+        do {
+            try sessionWriter.clear(at: sessionFileURL)
             Logger.reader.info("Cleared iOS reader session file.")
+        } catch {
+            Logger.reader.error("Failed to clear iOS reader session file: \(error.localizedDescription, privacy: .public)")
         }
     }
 

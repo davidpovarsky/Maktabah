@@ -30,6 +30,7 @@ struct iOSReaderView: View {
     @State private var showingAnnotationActionSheet = false
     @State private var tappedAnnotationId: Int64?
     @State private var isReading = false
+    @ObservedObject private var annotationRefreshCoordinator = ReaderAnnotationRefreshCoordinator.shared
 
     init(
         book: BooksData,
@@ -108,6 +109,7 @@ struct iOSReaderView: View {
             book: book,
             viewModel: viewModel,
             textViewState: textViewState,
+            annotationRevision: annotationRefreshCoordinator.revision,
             tappedAnnotationId: $tappedAnnotationId,
             showingAnnotationActionSheet: $showingAnnotationActionSheet
         )
@@ -116,7 +118,6 @@ struct iOSReaderView: View {
         .navigationTitle(resolvedNavigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .platformTabBarVisibility(hiddenOnPhone: true)
-        .toolbar(.hidden, for: .tabBar)
         .if(!MaktabahApp.isIpad) { view in
             view.toolbarVisibility(
                 isReading ? .hidden : .visible,
@@ -224,6 +225,7 @@ private struct _ReaderTextContentView: View {
     let book: BooksData
     var viewModel: ReaderViewModel
     var textViewState: TextViewState
+    var annotationRevision: UInt64 = 0
     @Binding var tappedAnnotationId: Int64?
     @Binding var showingAnnotationActionSheet: Bool
 
@@ -245,6 +247,8 @@ private struct _ReaderTextContentView: View {
                     try viewModel.addAnnotation(in: range, mode: mode, sourceText: sourceText, color: color)
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                 } catch {
+                    Logger.reader.error("Failed to add annotation: \(error.localizedDescription, privacy: .public)")
+                    ReaderAnnotationRefreshCoordinator.shared.recordError(error)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
                 }
             },
@@ -270,7 +274,8 @@ private struct _ReaderTextContentView: View {
 
 extension _ReaderTextContentView: @MainActor Equatable {
     static func == (lhs: _ReaderTextContentView, rhs: _ReaderTextContentView) -> Bool {
-        lhs.book.id == rhs.book.id &&
+        lhs.annotationRevision == rhs.annotationRevision &&
+            lhs.book.id == rhs.book.id &&
             lhs.viewModel === rhs.viewModel &&
             !rhs.viewModel.needsScrollRestore &&
             lhs.viewModel.currentContentId == rhs.viewModel.currentContentId &&

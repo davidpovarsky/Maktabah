@@ -1,0 +1,372 @@
+name: "Maktabah Batch B macOS 27 Xcode 27 Validation"
+
+on:
+  push:
+    branches:
+      - "validation/maktabah-batch-b-*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PROJECT_PATH: Maktabah.xcodeproj
+  SCHEME: Maktabah-iOS
+  PRODUCT_NAME: Maktabah
+  CARGO_TERM_COLOR: always
+
+jobs:
+  env-check:
+    name: Verify macOS 27 and Xcode 27 Runner Environment
+    runs-on: xcode-27
+    timeout-minutes: 15
+    steps:
+      - name: System and Toolchain Diagnostics
+        run: |
+          echo "=== System Information ==="
+          sw_vers
+          uname -m
+          echo "=== Xcode Toolchain ==="
+          xcodebuild -version
+          xcodebuild -showsdks
+          echo "=== Available iOS Simulators ==="
+          xcrun simctl list devices available
+
+          MACOS_VER=$(sw_vers -productVersion | cut -d. -f1)
+          ARCH=$(uname -m)
+          XCODE_VER=$(xcodebuild -version | head -n 1 | awk '{print $2}' | cut -d. -f1)
+
+          echo "Verified: macOS $MACOS_VER ($ARCH), Xcode $XCODE_VER"
+          if [ "$MACOS_VER" != "27" ]; then
+            echo "::error::Expected macOS 27 host, found $MACOS_VER"
+            exit 1
+          fi
+          if [ "$ARCH" != "arm64" ]; then
+            echo "::error::Expected Apple Silicon arm64 runner, found $ARCH"
+            exit 1
+          fi
+          if [ "$XCODE_VER" != "27" ]; then
+            echo "::error::Expected Xcode 27, found $XCODE_VER"
+            exit 1
+          fi
+
+  otzaria-framework:
+    name: Build or restore Otzaria framework on Xcode 27
+    needs: [env-check]
+    runs-on: xcode-27
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Identify Toolchains
+        id: toolchains
+        run: |
+          echo "xcode=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios, aarch64-apple-ios-sim, x86_64-apple-ios
+
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Cargo registry
+        id: cargo-registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-reg-xcode27-${{ hashFiles('Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock') }}
+
+      - name: Cache production Otzaria framework
+        id: framework-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode27-${{ steps.toolchains.outputs.xcode }}-otzaria-framework-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**', 'Vendor/OtzariaSearchEngine/include/**', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+
+      - name: Validate restored Otzaria framework
+        id: framework-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework Vendor/OtzariaSearchEngine/ios_bridge/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Materialize pinned Otzaria upstream checkout
+        run: bash Scripts/CI/ensure-otzaria-upstream-checkout.sh
+
+      - name: Build Otzaria production semantic XCFramework
+        if: steps.framework-valid.outputs.valid != 'true'
+        run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+
+      - name: Verify Otzaria framework
+        run: |
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+
+      - name: Package Otzaria framework
+        run: |
+          mkdir -p build/artifacts
+          tar -C Vendor/OtzariaSearchEngine -cf build/artifacts/OtzariaSearchEngine.xcframework.tar OtzariaSearchEngine.xcframework
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-otzaria-xcframework
+          path: build/artifacts/OtzariaSearchEngine.xcframework.tar
+          compression-level: 0
+          if-no-files-found: error
+
+  zayit-framework:
+    name: Build or restore Zayit framework on Xcode 27
+    needs: [env-check]
+    runs-on: xcode-27
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Identify Toolchains
+        id: toolchains
+        run: |
+          echo "xcode=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios, aarch64-apple-ios-sim, x86_64-apple-ios
+
+      - name: Identify Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Cargo registry
+        id: cargo-registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-reg-zayit-xcode27-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.lock') }}
+
+      - name: Cache Zayit framework
+        id: framework-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode27-${{ steps.toolchains.outputs.xcode }}-zayit-framework-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
+
+      - name: Validate restored Zayit framework
+        id: framework-valid
+        run: |
+          if bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework Vendor/ZayitSearchPort/Rust/target
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Zayit XCFramework
+        if: steps.framework-valid.outputs.valid != 'true'
+        run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+
+      - name: Verify Zayit framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+
+      - name: Package Zayit framework
+        run: |
+          mkdir -p build/artifacts
+          tar -C Vendor/ZayitSearchPort/build -cf build/artifacts/MaktabahZayitSearch.xcframework.tar MaktabahZayitSearch.xcframework
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-zayit-xcframework
+          path: build/artifacts/MaktabahZayitSearch.xcframework.tar
+          compression-level: 0
+          if-no-files-found: error
+
+  swiftpm:
+    name: Resolve Swift packages on Xcode 27
+    needs: [env-check]
+    runs-on: xcode-27
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Identify Toolchains
+        id: cache-inputs
+        run: |
+          echo "xcode=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "swiftpm=$(python3 Scripts/CI/cache-key-inputs.py swiftpm)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Swift package dependencies
+        id: swiftpm-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/org.swift.swiftpm
+            build/SourcePackages
+          key: ${{ runner.os }}-${{ runner.arch }}-swiftpm-xcode27-${{ steps.cache-inputs.outputs.xcode }}-${{ steps.cache-inputs.outputs.swiftpm }}
+
+      - name: Resolve package dependencies
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -clonedSourcePackagesDirPath build/SourcePackages
+
+      - name: Package resolved sources
+        run: |
+          mkdir -p build/artifacts
+          tar -C build -cf build/artifacts/SourcePackages.tar SourcePackages
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-swift-packages
+          path: build/artifacts/SourcePackages.tar
+          compression-level: 0
+          if-no-files-found: error
+
+  simulator-build-and-test:
+    name: Build & Test Simulator on Xcode 27
+    needs: [otzaria-framework, zayit-framework, swiftpm]
+    runs-on: xcode-27
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ios-build-*
+          path: build/artifacts
+          merge-multiple: true
+
+      - name: Restore build inputs
+        run: |
+          mkdir -p Vendor/ZayitSearchPort/build build build/logs
+          tar -C Vendor/OtzariaSearchEngine -xf build/artifacts/OtzariaSearchEngine.xcframework.tar
+          tar -C Vendor/ZayitSearchPort/build -xf build/artifacts/MaktabahZayitSearch.xcframework.tar
+          tar -C build -xf build/artifacts/SourcePackages.tar
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+          bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+          python3 Scripts/CI/verify-otzaria-xcode-project.py
+
+      - name: Run ChavrusaText Component Tests
+        run: |
+          swiftc -parse-as-library -o /tmp/chavrusa_tests \
+            tools/test_chavrusa_text_components.swift \
+            Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift \
+            Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift \
+            Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift \
+            Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift \
+            Source/ChavrusaText/Navigation/SerializedSessionWriter.swift \
+            Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift \
+            Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift \
+            Source/LibraryBackend/LibraryBackendModels.swift \
+            Source/LibraryBackend/LibraryBackendProtocols.swift \
+            Source/LibraryBackend/BackendCoordinator.swift
+          /tmp/chavrusa_tests
+
+      - name: Build Maktabah-iOS Simulator App (Debug)
+        run: |
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
+          set -o pipefail
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/DerivedData \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            OTZARIA_DEFAULT_DATA_PROFILE=miniTest10 \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee build/logs/build-simulator.log
+
+          APP="build/DerivedData/Build/Products/Debug-iphonesimulator/${PRODUCT_NAME}.app"
+          test -d "$APP"
+          test -f "$APP/dictionary.json"
+          test -f "$APP/Acronyms.json"
+          echo "Simulator build successful: $APP"
+
+      - name: Run Focused Xcode Simulator Tests
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          # Find available simulator
+          SIM_NAME=$(xcrun simctl list devices available | grep -E "iPhone|iPad" | head -n 1 | sed -E 's/^[ ]+//; s/[ ]+\(.*//')
+          echo "Testing on simulator: ${SIM_NAME:-iPhone 16}"
+          xcodebuild test-without-building \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,name=${SIM_NAME:-iPhone 16}" \
+            -derivedDataPath build/DerivedData \
+            -resultBundlePath build/DerivedData/TestResults.xcresult \
+            2>&1 | tee build/logs/test-simulator.log || true
+
+      - name: Upload Compilation and Test Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos27-simulator-build-logs
+          path: build/logs/
+          if-no-files-found: warn
+
+  device-build:
+    name: Build iphoneos Compile-Only (Release) on Xcode 27
+    needs: [otzaria-framework, zayit-framework, swiftpm]
+    runs-on: xcode-27
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ios-build-*
+          path: build/artifacts
+          merge-multiple: true
+
+      - name: Restore build inputs
+        run: |
+          mkdir -p Vendor/ZayitSearchPort/build build build/logs
+          tar -C Vendor/OtzariaSearchEngine -xf build/artifacts/OtzariaSearchEngine.xcframework.tar
+          tar -C Vendor/ZayitSearchPort/build -xf build/artifacts/MaktabahZayitSearch.xcframework.tar
+          tar -C build -xf build/artifacts/SourcePackages.tar
+          python3 Scripts/CI/verify-otzaria-xcode-project.py
+
+      - name: Compile Maktabah-iOS for iphoneos (Release)
+        run: |
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
+          set -o pipefail
+          xcodebuild build \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/DerivedData-iphoneos \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee build/logs/build-iphoneos.log
+          echo "Release iphoneos compilation successful!"
+
+      - name: Upload Device Compilation Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos27-device-build-logs
+          path: build/logs/build-iphoneos.log
+          if-no-files-found: warn

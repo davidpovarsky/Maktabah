@@ -979,12 +979,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
         private var manualDragStartOffset: CGFloat?
         private var didClearSearchForCurrentDrag = false
 
-        // Pull-to-navigate state
+        // Pull-to-navigate state (delegated to ReaderPullNavigationStateMachine)
         weak var topIndicator: PullNavigationIndicatorView?
         weak var bottomIndicator: PullNavigationIndicatorView?
-        private let pullThreshold: CGFloat = 80
-        private var hasTriggeredHaptic = false
-        private var activePullDirection: PullDirection?
+        private let pullStateMachine = ReaderPullNavigationStateMachine(pullThreshold: 80)
         private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
 
         init(_ parent: iOSIbarotTextView) {
@@ -1087,69 +1085,34 @@ struct iOSIbarotTextView: UIViewRepresentable {
             let adjustedTopInset = scrollView.adjustedContentInset.top
             let adjustedBottomInset = scrollView.adjustedContentInset.bottom
 
-            // 1. Batas Atas (Previous Page)
+            // Pull-to-navigate single-source state machine handling (BUG-02 fix)
             let topOverscroll = -(offsetY + adjustedTopInset)
-            let isTopOverscrolling = handleOverscroll(
-                topOverscroll,
-                direction: .prev,
-                scrollView: scrollView,
-                onUpdate: { [weak self] progress in self?.topIndicator?.updateProgress(progress) },
-                onReset: { [weak self] in self?.topIndicator?.reset() }
-            )
-
-            if isTopOverscrolling { return }
-
-            // 2. Batas Bawah (Next Page)
             let maxOffsetY = contentHeight + adjustedBottomInset - boundsHeight
             let effectiveMaxOffsetY = max(maxOffsetY, -adjustedTopInset)
             let bottomOverscroll = offsetY - effectiveMaxOffsetY
 
-            let isBottomOverscrolling = handleOverscroll(
-                bottomOverscroll,
-                direction: .next,
-                scrollView: scrollView,
-                onUpdate: { [weak self] progress in self?.bottomIndicator?.updateProgress(progress) },
-                onReset: { [weak self] in self?.bottomIndicator?.reset() }
+            let isRestoring = (scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false
+            let transition = pullStateMachine.handleScroll(
+                topOverscroll: topOverscroll,
+                bottomOverscroll: bottomOverscroll,
+                isTracking: scrollView.isTracking,
+                isRestoringScroll: isRestoring
             )
 
-            if isBottomOverscrolling { return }
-
-            // Bersihkan state jika dilepas di posisi tengah/normal
-            if !scrollView.isTracking {
-                activePullDirection = nil
+            if transition.shouldTriggerHaptic {
+                hapticGenerator.impactOccurred()
             }
-        }
 
-        private func handleOverscroll(
-            _ overscroll: CGFloat,
-            direction: PullDirection,
-            scrollView: UIScrollView,
-            onUpdate: (CGFloat) -> Void,
-            onReset: () -> Void
-        ) -> Bool {
-            if overscroll > 0 {
-                if scrollView.isTracking {
-                    let progress = min(overscroll / pullThreshold, 1.0)
-                    onUpdate(progress)
-                    activePullDirection = direction
-
-                    if overscroll >= pullThreshold {
-                        if !hasTriggeredHaptic {
-                            hasTriggeredHaptic = true
-                            hapticGenerator.impactOccurred()
-                        }
-                    } else {
-                        hasTriggeredHaptic = false
-                    }
-
-                    if !hasTriggeredHaptic {
-                        hapticGenerator.prepare()
-                    }
-                }
-                return true // Mengembalikan true untuk menandakan state sedang overscroll
-            } else {
-                onReset()
-                return false
+            switch transition.direction {
+            case .prev:
+                topIndicator?.updateProgress(transition.progress)
+                bottomIndicator?.reset()
+            case .next:
+                bottomIndicator?.updateProgress(transition.progress)
+                topIndicator?.reset()
+            case nil:
+                topIndicator?.reset()
+                bottomIndicator?.reset()
             }
         }
 
@@ -1173,24 +1136,23 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
             defer {
                 if !decelerate { manualDragStartOffset = nil }
-                hasTriggeredHaptic = false
-                activePullDirection = nil
                 topIndicator?.reset()
                 bottomIndicator?.reset()
             }
 
-            guard hasTriggeredHaptic, let direction = activePullDirection else { return }
-
-            switch direction {
-            case .prev:
-                parent.onNavigatePrev?()
-            case .next:
-                parent.onNavigateNext?()
+            if let direction = pullStateMachine.handleEndDragging(willDecelerate: decelerate) {
+                switch direction {
+                case .prev:
+                    parent.onNavigatePrev?()
+                case .next:
+                    parent.onNavigateNext?()
+                }
             }
         }
 
         func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
             manualDragStartOffset = nil
+            pullStateMachine.reset()
             updateLastKnownScrollPosition(from: scrollView)
         }
 
@@ -1228,8 +1190,28 @@ struct iOSIbarotTextView: UIViewRepresentable {
         ) -> UIMenu? {
             guard range.length > 0 else { return nil }
 
-            let sourceRange = currentRenderResult?.remapSourceRange(range) ?? range
-            let sourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
+            let mapper = ReaderSelectionRangeMapper()
+            let rawSourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
+            let mappingProvider = currentRenderResult.map { ClosureRangeMappingProvider(transform: $0.remapSourceRange) }
+            let mapResult = mapper.mapSelection(
+                displayedRange: range,
+                sourceText: rawSourceText,
+                displayedText: textView.text,
+                mappingProvider: mappingProvider
+            )
+
+            let sourceRange: NSRange
+            let sourceText: String
+            switch mapResult {
+            case .success(let mapped):
+                sourceRange = mapped.sourceRange
+                sourceText = rawSourceText
+            case .failure(let error):
+                #if DEBUG
+                print("[ReaderSelectionRangeMapper] Selection mapping rejected: \(error)")
+                #endif
+                return nil
+            }
 
             let menuChildren: [UIMenuElement] = if let existing = parent.viewModel.findBestAnnotation(for: sourceRange) {
                 buildExistingAnnotationMenuChildren(for: existing)

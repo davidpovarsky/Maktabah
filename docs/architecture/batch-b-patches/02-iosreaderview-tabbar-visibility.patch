@@ -1,0 +1,12 @@
+diff --git a/Source/Features/Reader/iOS/iOSReaderView.swift b/Source/Features/Reader/iOS/iOSReaderView.swift
+index 1078fb9..e537d87 100644
+--- a/Source/Features/Reader/iOS/iOSReaderView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderView.swift
+@@ -116,7 +116,6 @@ struct iOSReaderView: View {
+         .navigationTitle(resolvedNavigationTitle)
+         .navigationBarTitleDisplayMode(.inline)
+         .platformTabBarVisibility(hiddenOnPhone: true)
+-        .toolbar(.hidden, for: .tabBar)
+         .if(!MaktabahApp.isIpad) { view in
+             view.toolbarVisibility(
+                 isReading ? .hidden : .visible,

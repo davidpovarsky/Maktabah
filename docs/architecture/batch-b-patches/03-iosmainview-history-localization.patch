@@ -1,0 +1,13 @@
+diff --git a/Source/UI/iOS/Views/iOSMainView.swift b/Source/UI/iOS/Views/iOSMainView.swift
+index 18f64d2..5e80e89 100644
+--- a/Source/UI/iOS/Views/iOSMainView.swift
++++ b/Source/UI/iOS/Views/iOSMainView.swift
+@@ -30,7 +30,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
+         case .search, .textSearch, .zayitSearch: "Search".localized
+         case .author: "Narrators".localized
+         case .annotations: "Annotations".localized
+-        case .history: String(localized: .Library.history)
++        case .history: "History".localized
+         }
+     }
+ 

@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.1.0",
+  "baseline_commit": "c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f",
+  "upstream_pinned_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "audit_date": "2026-10-25",
+  "policy_authority": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+  "approval_gate_status": "GATE_OPEN_OWNER_APPROVAL_REQUIRED",
+  "exceptions": [
+    {
+      "patch_id": "BATCH_B_PATCH_01",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-01",
+      "expected_patch_file": "01-project-pbxproj-chavrusatext.patch",
+      "patch_digest_sha256": "afbe716a5ae8854ebd02a9decf183fff23af3f372d40e4548d41f9e09aa9db03",
+      "expected_head_blob_sha": "8bf340384b857901ab9bfdeec70c46409f4a66c6",
+      "review_provenance": "Registers 9 ChavrusaText component files in Maktabah.xcodeproj",
+      "owner_attestation": null
+    },
+    {
+      "patch_id": "BATCH_B_PATCH_02",
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-02",
+      "expected_patch_file": "02-iosreaderview-tabbar-visibility.patch",
+      "patch_digest_sha256": "97abbfe5d5489c4cc6c59377a9711ff3b14097b96a564e591b1331d22c5e634c",
+      "expected_head_blob_sha": "92816935eaf52d5d2abcd38a1b6a26ac7c2c6f2c",
+      "review_provenance": "Removes line 119 .toolbar(.hidden, for: .tabBar) in iOSReaderView",
+      "owner_attestation": null
+    },
+    {
+      "patch_id": "BATCH_B_PATCH_03",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-03",
+      "expected_patch_file": "03-iosmainview-history-localization.patch",
+      "patch_digest_sha256": "f9e529a5fcd6a98423b70fd59592d6d73bb42819e57086dce440268b5f99afd6",
+      "expected_head_blob_sha": "5e80e89683028e50f45ccdebaa91e62412625f4e",
+      "review_provenance": "Routes History tab title through Localizable.xcstrings",
+      "owner_attestation": null
+    },
+    {
+      "patch_id": "BATCH_B_PATCH_04_05",
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-04-05",
+      "expected_patch_file": [
+        "04-iosibarottextview-pull-statemachine.patch",
+        "05-iosibarottextview-selection-mapper.patch"
+      ],
+      "patch_digest_sha256": "ce92efaf0554b9d1a57123a88dce11687288bedf941e59dc346e5212526517cc",
+      "expected_head_blob_sha": "d27343c10b51fc35efe985b1d1f925dd0ac2ac08",
+      "review_provenance": "Wires ReaderPullNavigationStateMachine and ReaderSelectionRangeMapper in iOSIbarotTextView",
+      "owner_attestation": null
+    },
+    {
+      "patch_id": "BATCH_B_PATCH_06",
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Annotation.swift",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-06",
+      "expected_patch_file": "06-reader-annotation-refresh-wiring.patch",
+      "patch_digest_sha256": "055c93a7da5763c73a9e368979acccc9666b0994b7bfc41c4a5aa93d92e1f490",
+      "expected_head_blob_sha": "fa7fb390fa4931445d785a4b24b8f91da021fb55",
+      "review_provenance": "Wires ReaderAnnotationRefreshCoordinator and BackendAnnotationBridge in Reader+Annotation",
+      "owner_attestation": null
+    },
+    {
+      "patch_id": "BATCH_B_PATCH_07",
+      "path": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-07",
+      "expected_patch_file": "07-iosreadersessionmanager-writer.patch",
+      "patch_digest_sha256": "146473ab6364d55a11353d277047298dc8f399cdce1431eb74116349f8f35a63",
+      "expected_head_blob_sha": "217bbb011c09173f292f738375b7b63f0aa5e4b5",
+      "review_provenance": "Delegates atomic persistence and session clearing to SerializedSessionWriter",
+      "owner_attestation": null
+    },
+    {
+      "patch_id": "BATCH_B_PATCH_08",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-08",
+      "expected_patch_file": "08-iosnavigationmanager-session-restore.patch",
+      "patch_digest_sha256": "a2a643568ed5e93e12910bc6a86550925bf7b64a9962c6fe0460471e98ead128",
+      "expected_head_blob_sha": "9117460a175136cf5dca71aad3e4d11238b029f6",
+      "review_provenance": "Wires iOSNavigationManager as BackendSwitchParticipant in two-phase switch orchestration",
+      "owner_attestation": null
+    },
+    {
+      "patch_id": "BATCH_B_PATCH_09",
+      "path": ".github/workflows/upstream-boundary-guard.yml",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "proposal_state": "PATCH_PROPOSED",
+      "status": "OWNER_APPROVAL_REQUIRED",
+      "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-09",
+      "expected_patch_file": "09-ci-boundary-guard-workflow.patch",
+      "patch_digest_sha256": "a9a8b33b668a5e81e5a07cf28f37ade8a8779fd84ca5b6e126c562fdc36281e5",
+      "expected_head_blob_sha": "06deea9b2d9fa57b3eed58d01cfdcf1e1ab4cdd5",
+      "review_provenance": "Adds event-aware clean upstream boundary verification CI workflow",
+      "owner_attestation": null
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+diff --git a/Maktabah.xcodeproj/project.pbxproj b/Maktabah.xcodeproj/project.pbxproj
+index 977e5d6..8bf3403 100644
+--- a/Maktabah.xcodeproj/project.pbxproj
++++ b/Maktabah.xcodeproj/project.pbxproj
+@@ -7,6 +7,31 @@
+ 	objects = {
+ 
+ /* Begin PBXBuildFile section */
++		CF3000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
++		CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
++		CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
++		CF3000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */; };
++		CF1000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */; };
++		CF2000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */; };
++		CF3000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000003 /* ChavrusaTextLocalizationResolver.swift */; };
++		CF1000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000003 /* ChavrusaTextLocalizationResolver.swift */; };
++		CF2000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000003 /* ChavrusaTextLocalizationResolver.swift */; };
++		CF3000000000000000000004 /* BackendNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000004 /* BackendNavigationAdapter.swift */; };
++		CF1000000000000000000004 /* BackendNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000004 /* BackendNavigationAdapter.swift */; };
++		CF2000000000000000000004 /* BackendNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000004 /* BackendNavigationAdapter.swift */; };
++		CF3000000000000000000005 /* ReaderSessionRestoreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000005 /* ReaderSessionRestoreCoordinator.swift */; };
++		CF1000000000000000000005 /* ReaderSessionRestoreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000005 /* ReaderSessionRestoreCoordinator.swift */; };
++		CF2000000000000000000005 /* ReaderSessionRestoreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000005 /* ReaderSessionRestoreCoordinator.swift */; };
++		CF3000000000000000000006 /* SerializedSessionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000006 /* SerializedSessionWriter.swift */; };
++		CF1000000000000000000006 /* SerializedSessionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000006 /* SerializedSessionWriter.swift */; };
++		CF2000000000000000000006 /* SerializedSessionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000006 /* SerializedSessionWriter.swift */; };
++		CF3000000000000000000007 /* iOSTabBarVisibilityHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000007 /* iOSTabBarVisibilityHost.swift */; };
++		CF3000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */; };
++		CF1000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */; };
++		CF2000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */; };
++		CF3000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
++		CF1000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
++		CF2000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
+ 		F3F000040000000000000004 /* iOSReaderSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000030000000000000003 /* iOSReaderSessionTests.swift */; };
+ 		F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000010000000000000001 /* iOSReaderSessionManager.swift */; };
+ 		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
+@@ -1250,6 +1275,15 @@
+ /* End PBXCopyFilesBuildPhase section */
+ 
+ /* Begin PBXFileReference section */
++		CF0000000000000000000001 /* BackendAnnotationBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/BackendAnnotationBridge.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/ReaderAnnotationRefreshCoordinator.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000003 /* ChavrusaTextLocalizationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization/ChavrusaTextLocalizationResolver.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000004 /* BackendNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/BackendNavigationAdapter.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000005 /* ReaderSessionRestoreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderSessionRestoreCoordinator.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000006 /* SerializedSessionWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/SerializedSessionWriter.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000007 /* iOSTabBarVisibilityHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/iOSTabBarVisibilityHost.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderRendering/ReaderPullNavigationStateMachine.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderRendering/ReaderSelectionRangeMapper.swift"; sourceTree = "<group>"; };
+ 		F3F000030000000000000003 /* iOSReaderSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionTests.swift; sourceTree = "<group>"; };
+ 		F3F000010000000000000001 /* iOSReaderSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionManager.swift; sourceTree = "<group>"; };
+ 		B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoAnchoredCard.swift; sourceTree = "<group>"; };
+@@ -1914,6 +1948,22 @@
+ /* End PBXFrameworksBuildPhase section */
+ 
+ /* Begin PBXGroup section */
++		CFEE00000000000000000001 /* ChavrusaText */ = {
++			isa = PBXGroup;
++			children = (
++				CF0000000000000000000001 /* BackendAnnotationBridge.swift */,
++				CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */,
++				CF0000000000000000000003 /* ChavrusaTextLocalizationResolver.swift */,
++				CF0000000000000000000004 /* BackendNavigationAdapter.swift */,
++				CF0000000000000000000005 /* ReaderSessionRestoreCoordinator.swift */,
++				CF0000000000000000000006 /* SerializedSessionWriter.swift */,
++				CF0000000000000000000007 /* iOSTabBarVisibilityHost.swift */,
++				CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */,
++				CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */,
++			);
++			path = ChavrusaText;
++			sourceTree = "<group>";
++		};
+ 		CEEE00000000000000000001 /* LibraryBackend */ = {
+ 			isa = PBXGroup;
+ 			children = (
+@@ -2170,6 +2220,7 @@
+ 		4B32022A2EDAFE85003B95D1 /* Source */ = {
+ 			isa = PBXGroup;
+ 			children = (
++				CFEE00000000000000000001 /* ChavrusaText */,
+ 				CEEE00000000000000000001 /* LibraryBackend */,
+ 				CEEE00000000000000000002 /* Sefaria */,
+ 				0A7AF0000000000000000000 /* Otzaria */,
+@@ -3716,6 +3767,14 @@
+ 		4B3202242EDAFE85003B95D1 /* Sources */ = {
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
++								CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
++				CF1000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
++				CF1000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */,
++				CF1000000000000000000004 /* BackendNavigationAdapter.swift in Sources */,
++				CF1000000000000000000005 /* ReaderSessionRestoreCoordinator.swift in Sources */,
++				CF1000000000000000000006 /* SerializedSessionWriter.swift in Sources */,
++				CF1000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
++				CF1000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
+ 				CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+ 				CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+ 				CE1000000000000000000003 /* BackendCoordinator.swift in Sources */,
+@@ -4027,6 +4086,14 @@
+ 		4B7C90A52F83494200454BE1 /* Sources */ = {
+ 			isa = PBXSourcesBuildPhase;
+ 			files = (
++								CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
++				CF2000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
++				CF2000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */,
++				CF2000000000000000000004 /* BackendNavigationAdapter.swift in Sources */,
++				CF2000000000000000000005 /* ReaderSessionRestoreCoordinator.swift in Sources */,
++				CF2000000000000000000006 /* SerializedSessionWriter.swift in Sources */,
++				CF2000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
++				CF2000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
+ 				CE2000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+ 				CE2000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+ 				CE2000000000000000000003 /* BackendCoordinator.swift in Sources */,
+@@ -4350,6 +4417,15 @@
+ 				A50000000000000000000001 /* MaktabahTorahInspectorAdapter.swift in Sources */,
+ 				A50000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift in Sources */,
+ 				A50000000000000000000003 /* OtzariaRelationshipClassifier.swift in Sources */,
++								CF3000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
++				CF3000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
++				CF3000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */,
++				CF3000000000000000000004 /* BackendNavigationAdapter.swift in Sources */,
++				CF3000000000000000000005 /* ReaderSessionRestoreCoordinator.swift in Sources */,
++				CF3000000000000000000006 /* SerializedSessionWriter.swift in Sources */,
++				CF3000000000000000000007 /* iOSTabBarVisibilityHost.swift in Sources */,
++				CF3000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
++				CF3000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
+ 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+ 				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+ 				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,

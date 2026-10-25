@@ -1,0 +1,208 @@
+{
+  "manifest_version": "2.0.0",
+  "generated_at": "2026-10-25T03:30:00Z",
+  "baseline_commit": "c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f",
+  "upstream_pinned_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "total_payload_files": 15,
+  "total_patches": 11,
+  "fork_payload_components": [
+    {
+      "path": "Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift",
+      "size_bytes": 5525,
+      "sha256": "bfc35295959843318048d00f40e1530d68ac4b7ed40a8201442100032af1bf8d"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/ReaderAnnotationRefreshCoordinator.swift",
+      "size_bytes": 1595,
+      "sha256": "4af1daa03c7ff1c5c573d205c12b800ea2dc37dcbdae9713fc4b494da7b86048"
+    },
+    {
+      "path": "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "size_bytes": 2238,
+      "sha256": "ef0a9f7aa377e71bee90a62a48c63d5ee02fa249e5d8e304fa4aa34090010923"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "size_bytes": 16953,
+      "sha256": "a41d2d6c18b0d3a6804c8891e2401dbd92bd6d286ec1b6faf3b8759e91c5cf54"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift",
+      "size_bytes": 2896,
+      "sha256": "3d9ecf798b4a2a99a58a8f7d354927d5a07a1ac6d5fadd8ededf346b1d9ba972"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/SerializedSessionWriter.swift",
+      "size_bytes": 8506,
+      "sha256": "1a14bb40887ec2d3cc49cea5393eb1e02508fb74832cbe32982f8f5bad9f0aa6"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift",
+      "size_bytes": 1272,
+      "sha256": "b604f76be4bfe9a8e9bf56b9f0e8feb3ca8a43c988b3b368f5212d77c45dccba"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift",
+      "size_bytes": 4898,
+      "sha256": "9560a855867ef42a15e0304ca45e770a6ae1c824ec4ba7b598be35760db7bad5"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift",
+      "size_bytes": 8094,
+      "sha256": "58193cbd1cf1f967ae7267b411f5fb378edababad834c3c358b983f70cff012d"
+    },
+    {
+      "path": "MaktabahTests/ChavrusaTextComponentTests.swift",
+      "size_bytes": 19029,
+      "sha256": "f23114d7adba0cc6c5aec907e5b4850c7a4e96bed407e22edd8fff14fd70c504"
+    },
+    {
+      "path": "Scripts/CI/verify-upstream-boundary.py",
+      "size_bytes": 30948,
+      "sha256": "3c0f76129fb88c172ae0986a860cb9bb65a1784541026cf864f077476c23b1a4"
+    },
+    {
+      "path": "tools/build_maktabah_ios.sh",
+      "size_bytes": 1385,
+      "sha256": "2c974e064a4cf3f4d0db6d84b21172ef65171b2e67ca725ad53f2ed62571724e"
+    },
+    {
+      "path": "tools/generate_migration_ledger.py",
+      "size_bytes": 22993,
+      "sha256": "e74e9cacbf2212ac01d8bb3b4eb19da245e2c49bd8765a385dcc124346eea79d"
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "size_bytes": 46325,
+      "sha256": "15746a60fa5f686618b8c8ac39344f6883552c3fda47209fa2ba748839bf4574"
+    },
+    {
+      "path": "tools/test_verify_upstream_boundary.py",
+      "size_bytes": 32170,
+      "sha256": "21d09eafc8324919f201bedbf3ac3c1e5f274fea72d4a63b30924993a5ba941d"
+    }
+  ],
+  "ordered_patches": [
+    {
+      "order": 0,
+      "patch_id": "00-FORK-FILES",
+      "filename": "00-fork-owned-components.patch",
+      "patch_file_sha256": "24facc1237375eb2835a96b0b8ac1d449f0f1b36edec3773b0a63a94b87d08c0",
+      "size_bytes": 212992,
+      "target_file": "Source/ChavrusaText/*, MaktabahTests/*, Scripts/CI/*, tools/*",
+      "ownership": "FORK_OWNED",
+      "approval_status": "AUTOMATIC_PRE_APPROVED",
+      "description": "Creates all 15 untracked fork-owned Swift/Python components"
+    },
+    {
+      "order": 1,
+      "patch_id": "00-FORK-COORD",
+      "filename": "00-backendcoordinator-two-phase-switch.patch",
+      "patch_file_sha256": "20287bcdd34806b804f0b849ecc4f26e14ead0e573b543e1fbe6db35928daef9",
+      "size_bytes": 19463,
+      "target_file": "Source/LibraryBackend/BackendCoordinator.swift",
+      "ownership": "FORK_OWNED",
+      "approval_status": "AUTOMATIC_PRE_APPROVED",
+      "description": "Adds BackendSwitchParticipant protocol and fail-closed switch orchestration to BackendCoordinator"
+    },
+    {
+      "order": 2,
+      "patch_id": "BATCH_B_PATCH_01",
+      "filename": "01-project-pbxproj-chavrusatext.patch",
+      "patch_file_sha256": "afbe716a5ae8854ebd02a9decf183fff23af3f372d40e4548d41f9e09aa9db03",
+      "size_bytes": 12524,
+      "target_file": "Maktabah.xcodeproj/project.pbxproj",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Registers 9 ChavrusaText component files in Maktabah.xcodeproj"
+    },
+    {
+      "order": 3,
+      "patch_id": "BATCH_B_PATCH_02",
+      "filename": "02-iosreaderview-tabbar-visibility.patch",
+      "patch_file_sha256": "97abbfe5d5489c4cc6c59377a9711ff3b14097b96a564e591b1331d22c5e634c",
+      "size_bytes": 621,
+      "target_file": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Removes line 119 .toolbar(.hidden, for: .tabBar) in iOSReaderView"
+    },
+    {
+      "order": 4,
+      "patch_id": "BATCH_B_PATCH_03",
+      "filename": "03-iosmainview-history-localization.patch",
+      "patch_file_sha256": "f9e529a5fcd6a98423b70fd59592d6d73bb42819e57086dce440268b5f99afd6",
+      "size_bytes": 564,
+      "target_file": "Source/UI/iOS/Views/iOSMainView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Routes History tab title through ChavrusaTextLocalizationResolver"
+    },
+    {
+      "order": 5,
+      "patch_id": "BATCH_B_PATCH_04",
+      "filename": "04-iosibarottextview-pull-statemachine.patch",
+      "patch_file_sha256": "ce92efaf0554b9d1a57123a88dce11687288bedf941e59dc346e5212526517cc",
+      "size_bytes": 5951,
+      "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Wires ReaderPullNavigationStateMachine in iOSIbarotTextView"
+    },
+    {
+      "order": 6,
+      "patch_id": "BATCH_B_PATCH_05",
+      "filename": "05-iosibarottextview-selection-mapper.patch",
+      "patch_file_sha256": "044bc0f570336878630af9bc70956b5475c7d5aa8170ff7e2afebe40882d4515",
+      "size_bytes": 1740,
+      "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Wires ReaderSelectionRangeMapper in iOSIbarotTextView"
+    },
+    {
+      "order": 7,
+      "patch_id": "BATCH_B_PATCH_06",
+      "filename": "06-reader-annotation-refresh-wiring.patch",
+      "patch_file_sha256": "055c93a7da5763c73a9e368979acccc9666b0994b7bfc41c4a5aa93d92e1f490",
+      "size_bytes": 4448,
+      "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Annotation.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Wires ReaderAnnotationRefreshCoordinator in Reader+Annotation"
+    },
+    {
+      "order": 8,
+      "patch_id": "BATCH_B_PATCH_07",
+      "filename": "07-iosreadersessionmanager-writer.patch",
+      "patch_file_sha256": "146473ab6364d55a11353d277047298dc8f399cdce1431eb74116349f8f35a63",
+      "size_bytes": 3977,
+      "target_file": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Delegates atomic session persistence to SerializedSessionWriter"
+    },
+    {
+      "order": 9,
+      "patch_id": "BATCH_B_PATCH_08",
+      "filename": "08-iosnavigationmanager-session-restore.patch",
+      "patch_file_sha256": "03b8a43bb992d33774e0482eedb36bb9754cd687f94ca96a772db80dd7e83b6d",
+      "size_bytes": 15557,
+      "target_file": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Wires iOSNavigationManager as BackendSwitchParticipant with non-throwing publishTransition"
+    },
+    {
+      "order": 10,
+      "patch_id": "BATCH_B_PATCH_09",
+      "filename": "09-ci-boundary-guard-workflow.patch",
+      "patch_file_sha256": "256a99685e6b0233d37642df1c22b8a9e4cb8285a33db54a45e4d095b9498545",
+      "size_bytes": 3015,
+      "target_file": ".github/workflows/upstream-boundary-guard.yml",
+      "ownership": "UPSTREAM_OWNED",
+      "approval_status": "OWNER_APPROVAL_REQUIRED",
+      "description": "Adds upstream boundary verification CI workflow"
+    }
+  ]
+}

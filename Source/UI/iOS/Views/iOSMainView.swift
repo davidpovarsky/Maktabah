@@ -30,7 +30,7 @@ enum iOSTab: Int, CaseIterable, Identifiable {
         case .search, .textSearch, .zayitSearch: "Search".localized
         case .author: "Narrators".localized
         case .annotations: "Annotations".localized
-        case .history: String(localized: .Library.history)
+        case .history: "History".localized
         }
     }
 

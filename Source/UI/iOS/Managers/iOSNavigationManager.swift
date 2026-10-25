@@ -5,7 +5,7 @@ import UIKit
 /// Manages the navigation and current mode for the iOS application.
 @MainActor
 @Observable
-class iOSNavigationManager {
+class iOSNavigationManager: BackendSwitchParticipant {
     struct AlertMessage: Identifiable {
         let id = UUID()
         let title: String
@@ -51,13 +51,18 @@ class iOSNavigationManager {
     }
 
     private var observerTokens: [NotificationToken] = []
+    private var lastKnownBackendID: BackendID = BackendCoordinator.shared.activeBackendID
+    private var isSwitchingBackend: Bool = false
+    private var stagedTransition: PreparedBackendTransition?
 
     init() {
         unifiedSearchSession.searchViewModel = searchViewModel
         setupObservers()
+        BackendCoordinator.shared.addSwitchParticipant(self)
     }
 
     deinit {
+        BackendCoordinator.shared.removeSwitchParticipant(self)
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -109,21 +114,7 @@ class iOSNavigationManager {
             )
         )
 
-        observerTokens.append(
-            NotificationToken(
-                token: NotificationCenter.default.addObserver(
-                    forName: .activeLibraryBackendDidChange,
-                    object: nil,
-                    queue: .main
-                ) { [weak self] _ in
-                    guard let self else { return }
-                    self.clearAllTabs()
-                    self.clearPendingBookIntegration()
-                    self.alertMessage = nil
-                    self.unifiedSearchSession.handleBackendChanged()
-                }
-            )
-        )
+        // Note: Library backend switching is orchestrated fail-closed via BackendSwitchParticipant
 
         observerTokens.append(
             NotificationToken(
@@ -632,7 +623,221 @@ class iOSNavigationManager {
               !session.tabs.isEmpty else {
             return
         }
+        restoreSessionFromData(session)
+    }
 
+    // MARK: - BackendSwitchParticipant (Two-Phase Fail-Closed Boundary)
+
+    func prepareTransition(from currentBackend: BackendID, to targetBackend: BackendID, token: UInt64) throws -> PreparedBackendTransition? {
+        let resolver = DefaultTargetBackendBookResolver.shared
+        let transition = try BackendNavigationAdapter.shared.prepareTransition(
+            outgoingBackend: currentBackend,
+            outgoingSession: { [weak self] in
+                guard let self, !self.openTabs.isEmpty else { return nil }
+                if let active = self.activeTab {
+                    active.viewModel.saveCurrentState()
+                }
+                let tabSessions = self.createTabSessions(from: self.openTabs)
+                let session = iOSReaderSession(
+                    schemaVersion: iOSReaderSession.currentSchemaVersion,
+                    savedAt: Date(),
+                    activeTabId: self.activeTabId,
+                    selectedTabModeRaw: self.currentMode.rawValue,
+                    tabs: tabSessions
+                )
+                return try JSONEncoder().encode(session)
+            },
+            incomingBackend: targetBackend,
+            incomingValidator: { [weak self] data in
+                let session = try JSONDecoder().decode(iOSReaderSession.self, from: data)
+                var staged: [PreparedBackendTransition.StagedTabSession] = []
+                for tabSession in session.tabs {
+                    if let locator = tabSession.locator {
+                        guard locator.backend == targetBackend else {
+                            throw BackendTransitionError.foreignBackendLocator(
+                                locator: "\(locator.backend.rawValue):\(locator.workKey)",
+                                expectedBackend: targetBackend
+                            )
+                        }
+                    }
+                    if let backendLocator = tabSession.backendLocator {
+                        if targetBackend == .otzaria && backendLocator.hasPrefix("sefaria:") {
+                            throw BackendTransitionError.foreignBackendLocator(
+                                locator: backendLocator,
+                                expectedBackend: .otzaria
+                            )
+                        }
+                        if targetBackend == .sefaria && backendLocator.hasPrefix("otzaria:") {
+                            throw BackendTransitionError.foreignBackendLocator(
+                                locator: backendLocator,
+                                expectedBackend: .sefaria
+                            )
+                        }
+                    }
+
+                    _ = try resolver.resolveBook(
+                        id: tabSession.bookId,
+                        backendLocator: tabSession.backendLocator,
+                        title: tabSession.bookTitle,
+                        in: targetBackend
+                    )
+
+                    staged.append(PreparedBackendTransition.StagedTabSession(
+                        id: tabSession.id,
+                        bookId: tabSession.bookId,
+                        bookTitle: tabSession.bookTitle ?? "Book \(tabSession.bookId)",
+                        backendLocator: tabSession.backendLocator,
+                        contentId: tabSession.contentId,
+                        locator: tabSession.locator,
+                        page: tabSession.page,
+                        part: tabSession.part,
+                        scrollPosition: tabSession.scrollPosition,
+                        selectedRange: tabSession.selectedRange,
+                        expandedNodeIDs: tabSession.expandedNodeIDs,
+                        sidebarScrollPosition: tabSession.sidebarScrollPosition,
+                        isSidebarCollapsed: tabSession.isSidebarCollapsed,
+                        searchText: tabSession.searchText,
+                        searchModeRaw: tabSession.searchModeRaw,
+                        nearDistance: tabSession.nearDistance,
+                        highlightTerms: tabSession.highlightTerms
+                    ))
+                }
+                return staged
+            },
+            token: token
+        )
+        self.stagedTransition = transition
+        return transition
+    }
+
+    func prepareTransitionAsync(from currentBackend: BackendID, to targetBackend: BackendID, token: UInt64) async throws -> PreparedBackendTransition? {
+        if targetBackend == .sefaria {
+            _ = try? await MaktabahBackendAdapter.loadLibraryIfNeeded()
+        }
+        return try prepareTransition(from: currentBackend, to: targetBackend, token: token)
+    }
+
+    func publishTransition(to targetBackend: BackendID, transition: PreparedBackendTransition?) {
+        isSwitchingBackend = true
+        clearTabsForBackendSwitch()
+        clearPendingBookIntegration()
+        alertMessage = nil
+        unifiedSearchSession.handleBackendChanged()
+        lastKnownBackendID = targetBackend
+        BackendNavigationAdapter.shared.commitTransition(incomingBackend: targetBackend)
+
+        let activeTransition = transition ?? self.stagedTransition
+        if let activeTransition, !activeTransition.isCleanDestination, !activeTransition.stagedTabs.isEmpty {
+            let resolver = DefaultTargetBackendBookResolver.shared
+            var restoredTabs: [ReaderTab] = []
+            for staged in activeTransition.stagedTabs {
+                guard let book = try? resolver.resolveBook(
+                    id: staged.bookId,
+                    backendLocator: staged.backendLocator,
+                    title: staged.bookTitle,
+                    in: targetBackend
+                ) else { continue }
+
+                let viewModel = ReaderViewModel(book: book)
+                viewModel.recordHistory = false
+                viewModel.needsScrollRestore = true
+                if let pos = staged.scrollPosition { viewModel.readerState.scrollPosition = pos }
+                if let range = staged.selectedRange { viewModel.readerState.selectedRange = range }
+                if let exp = staged.expandedNodeIDs { viewModel.readerState.expandedNodeIDs = exp }
+                if let col = staged.isSidebarCollapsed { viewModel.readerState.isSidebarCollapsed = col }
+                if let sidePos = staged.sidebarScrollPosition { viewModel.readerState.sidebarScrollPosition = sidePos }
+                if let search = staged.searchText { viewModel.searchText = search }
+                if let raw = staged.searchModeRaw, let mode = SearchMode(rawValue: raw) { viewModel.searchMode = mode }
+                if let near = staged.nearDistance { viewModel.nearDistance = near }
+                if let terms = staged.highlightTerms { viewModel.highlightTerms = terms }
+
+                if let locator = staged.locator {
+                    viewModel.loadBackendContent(locator)
+                } else if let contentId = staged.contentId {
+                    viewModel.loadInitialContent(initialContentId: contentId)
+                } else {
+                    viewModel.loadInitialContent(initialContentId: nil)
+                }
+
+                restoredTabs.append(ReaderTab(
+                    id: staged.id,
+                    book: book,
+                    initialContentId: staged.contentId,
+                    viewModel: viewModel
+                ))
+            }
+
+            self.openTabs = restoredTabs
+            let resolution = ReaderSessionRestoreCoordinator().resolveActiveTab(
+                savedActiveId: activeTransition.targetActiveTabId,
+                restoredTabs: restoredTabs
+            )
+            self.activeTabId = resolution.activeTabId
+            if let targetActiveId = resolution.activeTabId,
+               let active = restoredTabs.first(where: { $0.id == targetActiveId }) {
+                self.selectedBook = active.book
+                self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
+            }
+        }
+
+        self.stagedTransition = nil
+        self.isSwitchingBackend = false
+        persistCurrentSession(immediate: true)
+    }
+
+    func completeTransition(to targetBackend: BackendID) {
+        BackendNavigationAdapter.shared.completeTransition(incomingBackend: targetBackend)
+    }
+
+    func abortTransition(from currentBackend: BackendID, to targetBackend: BackendID, error: Error) {
+        BackendNavigationAdapter.shared.resetTransition()
+        self.stagedTransition = nil
+        self.isSwitchingBackend = false
+        alertMessage = AlertMessage(
+            title: "Backend Switch Failed",
+            message: "Unable to switch backend: \(error.localizedDescription)"
+        )
+    }
+
+    private func clearTabsForBackendSwitch() {
+        for tab in openTabs {
+            tab.viewModel.closeReaderInspector()
+            tab.viewModel.clearSearchHighlight()
+        }
+        openTabs.removeAll()
+        activeTabId = nil
+        selectedBook = nil
+        selectedContentId = nil
+        showingTabsList = false
+    }
+
+    private func createTabSessions(from tabs: [ReaderTab]) -> [iOSReaderTabSession] {
+        tabs.map { tab in
+            let vm = tab.viewModel
+            let state = vm.readerState
+            return iOSReaderTabSession(
+                id: tab.id,
+                bookId: tab.book.id,
+                bookTitle: tab.book.title,
+                backendLocator: tab.book.backendLocator,
+                contentId: vm.currentID ?? tab.initialContentId ?? state.currentID ?? (vm.currentContentId > 0 ? vm.currentContentId : nil),
+                locator: vm.currentLocator ?? state.currentLocator,
+                page: vm.currentPage ?? state.currentPage,
+                part: vm.currentPart ?? state.currentPart,
+                scrollPosition: state.scrollPosition ?? vm.fetchScrollPosition?(),
+                selectedRange: state.selectedRange ?? vm.fetchSelectedRange?(),
+                expandedNodeIDs: state.expandedNodeIDs,
+                sidebarScrollPosition: state.sidebarScrollPosition,
+                isSidebarCollapsed: state.isSidebarCollapsed,
+                searchText: vm.searchText.isEmpty ? nil : vm.searchText,
+                searchModeRaw: vm.searchMode?.rawValue,
+                nearDistance: vm.nearDistance,
+                highlightTerms: vm.highlightTerms
+            )
+        }
+    }
+
+    private func restoreSessionFromData(_ session: iOSReaderSession) {
         var restoredTabs: [ReaderTab] = []
         let ldm = LibraryDataManager.shared
 
@@ -704,9 +909,13 @@ class iOSNavigationManager {
         guard !restoredTabs.isEmpty else { return }
 
         self.openTabs = restoredTabs
-        let targetActiveId = session.activeTabId ?? restoredTabs.first?.id
+        let resolution = ReaderSessionRestoreCoordinator().resolveActiveTab(
+            savedActiveId: session.activeTabId,
+            restoredTabs: restoredTabs
+        )
+        let targetActiveId = resolution.activeTabId
         self.activeTabId = targetActiveId
-        if let active = restoredTabs.first(where: { $0.id == targetActiveId }) {
+        if let targetActiveId, let active = restoredTabs.first(where: { $0.id == targetActiveId }) {
             self.selectedBook = active.book
             self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
         }
@@ -714,34 +923,12 @@ class iOSNavigationManager {
     }
 
     func persistCurrentSession(immediate: Bool = false) {
-        guard !isRestoringSession else { return }
+        guard !isRestoringSession && !isSwitchingBackend else { return }
         if let active = activeTab {
             active.viewModel.saveCurrentState()
         }
 
-        let tabSessions: [iOSReaderTabSession] = openTabs.map { tab in
-            let vm = tab.viewModel
-            let state = vm.readerState
-            return iOSReaderTabSession(
-                id: tab.id,
-                bookId: tab.book.id,
-                bookTitle: tab.book.title,
-                backendLocator: tab.book.backendLocator,
-                contentId: vm.currentContentId ?? tab.initialContentId ?? state.currentID,
-                locator: vm.currentLocator ?? state.currentLocator,
-                page: vm.currentPage ?? state.currentPage,
-                part: vm.currentPart ?? state.currentPart,
-                scrollPosition: state.scrollPosition ?? vm.fetchScrollPosition?(),
-                selectedRange: state.selectedRange ?? vm.fetchSelectedRange?(),
-                expandedNodeIDs: state.expandedNodeIDs,
-                sidebarScrollPosition: state.sidebarScrollPosition,
-                isSidebarCollapsed: state.isSidebarCollapsed,
-                searchText: vm.searchText.isEmpty ? nil : vm.searchText,
-                searchModeRaw: vm.searchMode?.rawValue,
-                nearDistance: vm.nearDistance,
-                highlightTerms: vm.highlightTerms
-            )
-        }
+        let tabSessions = createTabSessions(from: openTabs)
 
         let session = iOSReaderSession(
             schemaVersion: iOSReaderSession.currentSchemaVersion,

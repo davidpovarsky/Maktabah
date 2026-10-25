@@ -1,0 +1,74 @@
+name: "Upstream Boundary Guard"
+
+on:
+  pull_request:
+    branches: [ "main", "sync/**" ]
+  push:
+    branches: [ "main", "sync/**" ]
+  workflow_dispatch:
+    inputs:
+      base_ref:
+        description: 'Approved baseline commit SHA'
+        required: false
+        default: 'c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-boundary:
+    name: Verify Clean Upstream Boundary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pinned Cryptography Dependency
+        run: |
+          python -m pip install --upgrade pip
+          pip install cryptography==43.0.3
+
+      - name: Determine Verification Base & Run Guard
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+          EVENT_BEFORE: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
+          INPUT_BASE_REF: ${{ github.event.inputs.base_ref }}
+          MAKTABAH_OWNER_VERIFICATION_KEY: ${{ secrets.MAKTABAH_OWNER_VERIFICATION_KEY || vars.MAKTABAH_OWNER_VERIFICATION_KEY }}
+        run: |
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            git fetch origin "$GITHUB_BASE_REF" --depth=100 || true
+            BASE_REF=$(git merge-base "origin/$GITHUB_BASE_REF" "$PR_HEAD_SHA" || echo "$PR_BASE_SHA")
+            HEAD_REF="$PR_HEAD_SHA"
+            git checkout "origin/$GITHUB_BASE_REF" -- Scripts/CI/verify-upstream-boundary.py || true
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ] && [ -n "$INPUT_BASE_REF" ]; then
+            BASE_REF="$INPUT_BASE_REF"
+            HEAD_REF="$EVENT_SHA"
+          elif [ -n "$EVENT_BEFORE" ] && [ "$EVENT_BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            BASE_REF="$EVENT_BEFORE"
+            HEAD_REF="$EVENT_SHA"
+          else
+            BASE_REF="c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f"
+            HEAD_REF="$EVENT_SHA"
+          fi
+
+          if [ "$BASE_REF" = "$HEAD_REF" ]; then
+            echo "::error::Baseline SHA and Head SHA cannot be identical ($BASE_REF)"
+            exit 1
+          fi
+
+          echo "Verification mode: event=$EVENT_NAME base=$BASE_REF head=$HEAD_REF"
+          python Scripts/CI/verify-upstream-boundary.py \
+            --base "$BASE_REF" \
+            --head "$HEAD_REF" \
+            --upstream-ref "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4"
