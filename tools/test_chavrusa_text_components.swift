@@ -70,7 +70,10 @@ struct TestRunner {
             writer.scheduleSave(to: targetURL, debounceInterval: 0.05) {
                 throw CustomError()
             }
-            Thread.sleep(forTimeInterval: 0.15)
+            let errorDeadline = Date().addingTimeInterval(2.0)
+            while box.reportedRev == nil && Date() < errorDeadline {
+                Thread.sleep(forTimeInterval: 0.02)
+            }
             assertCondition(box.reportedRev != nil, "onDelayedWriteError triggered on async failure")
             assertCondition(writer.lastDelayedWriteError != nil, "lastDelayedWriteError recorded")
 
