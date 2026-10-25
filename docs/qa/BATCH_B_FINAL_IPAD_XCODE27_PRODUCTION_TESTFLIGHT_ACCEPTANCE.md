@@ -3,13 +3,14 @@
 **Date:** 2026-10-25  
 **Candidate Branch:** [`validation/maktabah-batch-b-xcode27-20261025`](https://github.com/davidpovarsky/Maktabah/tree/validation/maktabah-batch-b-xcode27-20261025)  
 **Release Candidate Branch:** [`rc/maktabah-batch-b-xcode27-20261025`](https://github.com/davidpovarsky/Maktabah/tree/rc/maktabah-batch-b-xcode27-20261025)  
-**Candidate Commit SHA:** `691efa9`  
+**Release Candidate Commit SHA:** `031df35198ec5c26b901a1c9779df5156a0050ae`  
 **Baseline Commit:** `c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f`  
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`  
 **Target Runner / Toolchain:** macOS 27.0 (arm64 Apple Silicon) / Xcode 27.1 / iOS 27.1 SDK  
 **Test Simulator Target:** `iPad Pro 13-inch (M5)` (iOS 27.0)  
 **Owner Integration Worktree:** `C:\Users\DAVID\Code\Maktabah-v42-integration` on `sync/upstream-v42-full-integration` (untouched, unmodified)  
-**Latest Validation Actions Run:** [Run 40178179484](https://github.com/davidpovarsky/Maktabah/actions/runs/40178179484)
+**iPad Simulator QA Run:** [Run 40178179484](https://github.com/davidpovarsky/Maktabah/actions/runs/40178179484)  
+**Production TestFlight Release Run:** [Run 40179808443](https://github.com/davidpovarsky/Maktabah/actions/runs/40179808443)
 
 ---
 
@@ -23,17 +24,17 @@
 | **GATE-4** | `IPAD_UI` | Genuine iPad Pro 13-inch simulator execution asserting all 4 regressions (Tab Bar, Pull Nav, Annotations, History Localization) | **PASS** | **10 of 10 UI tests PASSED (0 failures)** on `iPad Pro 13-inch (M5)` under iOS 27 runtime in 351.464s. |
 | **GATE-5** | `SESSION_RESTORE` | Two-phase transactional switch with `retainedBook`; zero tab dropping or partial restore | **PASS** | Implemented `retainedBook: (any AnyObject & Sendable)?` in `BackendCoordinator.swift` & `iOSNavigationManager.swift`. All session restoration assertions pass. |
 | **GATE-6** | `TRUSTED_APPROVAL` | Reconcile exact Git blob SHAs & canonical diff digests in `UPSTREAM_EXCEPTION_REGISTER.json` and `BATCH_B_PAYLOAD_MANIFEST.json` | **VERIFIED_RECONCILED** | All 8 exception blobs and patch digests mechanically verified against Git tree; 23/23 boundary guard fixtures passed; status maintained as `OWNER_APPROVAL_REQUIRED` without faked keys. |
-| **GATE-7** | `RELEASE_SIGNING` | Apple distribution certificate, provisioning profile, and entitlements validated for release candidate | **READY** | Provisioning and signing step preserved in `ios-testflight.yml`; `APP_BUNDLE_ID=com.davidpovarsky.chavrusatext`. |
-| **GATE-8** | `IPA_PRODUCTION_PROFILE` | Mandatory data profile `production` using `seforim.db.zst` (no `miniTest10` fixture in release IPA) | **VERIFIED** | Default `data_profile=production` enforced in `ios-testflight.yml`; no embedded SQLite files. |
-| **GATE-9** | `TESTFLIGHT_UPLOAD` | App Store Connect delivery of signed production IPA | **READY_FOR_DISPATCH** | Release candidate validated and workflow migrated to `runs-on: xcode-27`. Authorized by user directive for TestFlight distribution. |
-| **GATE-10** | `APP_STORE_CONNECT_PROCESSING` | App Store Connect build processing and availability for internal testers | **IN_PROGRESS** | Tracking TestFlight upload workflow execution. |
+| **GATE-7** | `RELEASE_SIGNING` | Apple distribution certificate, provisioning profile, and entitlements validated for release candidate | **PASS** | Signed using Apple Distribution Certificate (`NA6HPWARQ2`) and App Store Provisioning Profile; `get-task-allow: false`, `aps-environment: production`, `beta-reports-active: true`. |
+| **GATE-8** | `IPA_PRODUCTION_PROFILE` | Mandatory data profile `production` using `seforim.db.zst` (no `miniTest10` fixture in release IPA) | **PASS** | `OtzariaDefaultDataProfile == production` verified in `Info.plist`; no embedded SQLite database files. |
+| **GATE-9** | `TESTFLIGHT_UPLOAD` | App Store Connect delivery of signed production IPA | **PASS** | Exported signed IPA `ChavrusaText-production-8401.ipa` delivered via `altool` without errors. Delivery UUID: `aaad950b-80ef-4a05-aa09-a1b6a3f6d1c3`. |
+| **GATE-10** | `APP_STORE_CONNECT_PROCESSING` | App Store Connect build processing and availability for internal testers | **PASS (VALID)** | Apple App Store Connect processing completed successfully; build status verified as **`VALID`** (App ID: `6809559414`, Build: `1.0.0 (8401)`). |
 
 ---
 
 ## 2. Priority A: Real iPad XCTest & UI Acceptance Suite (10 of 10 Passed)
 
 ### A1. Target & Runner Configuration
-- Registered dedicated UI test bundle `Maktabah-iOSUITests` (`F30578012FA46222005732C6`) in `Maktabah.xcodeproj`.
+- Dedicated native UI test target `Maktabah-iOSUITests` (`F30578012FA46222005732C6`) registered in `Maktabah.xcodeproj`.
 - Configured `<Testables>` reference in `Maktabah-iOS.xcscheme`.
 - Automated dynamic simulator discovery targeting `iPad Pro 13-inch (M5)` via `xcrun simctl list devices available -j`.
 - Booted device and executed tests using `xcodebuild test-without-building` with ad-hoc codesigning (`CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=YES`).
@@ -97,13 +98,38 @@ All 8 registered exceptions in `docs/architecture/UPSTREAM_EXCEPTION_REGISTER.js
 
 ---
 
-## 5. Priority D: TestFlight Workflow & Production Data Profile
+## 5. Priority D: Production TestFlight Delivery & Verification
 
-### D1. Runner & Toolchain Migration
-- Workflow `.github/workflows/ios-testflight.yml` configured with `runs-on: xcode-27`.
-- Xcode selector: `bash Scripts/CI/select-xcode-27.sh`.
-- Inputs: `data_profile: production`, `upload_to_testflight: true`.
+### D1. Production Release Execution
+- **Release Candidate Branch:** `rc/maktabah-batch-b-xcode27-20261025`
+- **Release Candidate Commit SHA:** `031df35198ec5c26b901a1c9779df5156a0050ae`
+- **Workflow:** `.github/workflows/ios-testflight.yml`
+- **Workflow Run:** [Run 40179808443](https://github.com/davidpovarsky/Maktabah/actions/runs/40179808443) (Job `121128256879`)
+- **Total Duration:** 32m 18s
 
-### D2. Production Profile Enforcement
-- Enforces `seforim.db.zst` production asset download path on fresh device bootstrap.
-- Zero embedded fixture databases in signed IPA.
+### D2. Build & IPA Delivery Artifacts
+- **App Version:** `1.0.0`
+- **Build Number:** `8401`
+- **Bundle ID:** `com.davidpovarsky.chavrusatext`
+- **Apple App ID:** `6809559414`
+- **App Store Connect Delivery UUID:** `aaad950b-80ef-4a05-aa09-a1b6a3f6d1c3`
+- **Signed IPA Name:** `ChavrusaText-production-8401.ipa`
+- **Signed IPA SHA-256:** `b50e6e3e7c8b60953d722ab5281de573c562387e56bf161cb00702c8cd3dac69`
+- **Code Directory Hash (Full):** `sha256=4ba9e33dc8167d60ea7f75b16f964f0a7b0977bac21444ad4e8b99d5ca631412`
+- **Artifact Download URL:** [`https://github.com/davidpovarsky/Maktabah/actions/runs/40179808443/artifacts/12594760627`](https://github.com/davidpovarsky/Maktabah/actions/runs/40179808443/artifacts/12594760627)
+
+### D3. App Store Connect Ingestion & TestFlight Processing
+Apple App Store Connect processing log output:
+```json
+{
+  "appId": "6809559414",
+  "buildId": "aaad950b-80ef-4a05-aa09-a1b6a3f6d1c3",
+  "buildNumber": "8401",
+  "bundleId": "com.davidpovarsky.chavrusatext",
+  "expired": false,
+  "observedAt": "2026-10-25T09:45:34.015670+00:00",
+  "processingState": "VALID",
+  "version": "1.0.0"
+}
+```
+**TestFlight Processing Status:** `VALID` (Ready for internal testers).
