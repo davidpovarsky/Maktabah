@@ -185,7 +185,14 @@ class iOSNavigationManager: BackendSwitchParticipant {
     ) {
         let options = OpenBookOptions(
             contentId: initialContentId,
-            searchEvent: nil,
+            searchEvent: (searchText != nil && !searchText!.isEmpty)
+                ? ReaderHighlightEvent(
+                    query: searchText!,
+                    contentId: initialContentId,
+                    mode: searchMode,
+                    nearDistance: nearDistance
+                )
+                : nil,
             annotationEvent: nil,
             recordHistory: recordHistory,
             searchText: searchText,
@@ -572,7 +579,9 @@ class iOSNavigationManager: BackendSwitchParticipant {
             }
             if let contentId = options.contentId {
                 let isSameContent = updatedTab.viewModel.currentContentId == contentId
-                updatedTab.viewModel.searchEvent = options.searchEvent
+                if let event = options.searchEvent {
+                    updatedTab.viewModel.searchEvent = event
+                }
                 updatedTab.viewModel.annotationEvent = options.annotationEvent
 
                 if !isSameContent {
@@ -988,41 +997,11 @@ final class DefaultTargetBackendBookResolver: TargetBackendBookResolver {
         title: String?,
         in backend: BackendID
     ) throws -> BooksData {
-        let ldm = LibraryDataManager.shared
-        var matchedBook: BooksData?
-
-        switch backend {
-        case .otzaria:
-            if let book = ldm.booksById[id] {
-                matchedBook = book
-            } else if let locator = backendLocator,
-                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator || "\($0.backendLocator?.backend.rawValue ?? ""):\($0.backendLocator?.workKey ?? "")" == locator }) {
-                matchedBook = book
-            } else if let book = ldm.getBook([id]).first {
-                matchedBook = book
-            }
-
-        case .sefaria:
-            if let locator = backendLocator {
-                guard !locator.hasPrefix("otzaria:") else {
-                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .sefaria)
-                }
-            }
-            if let book = ldm.booksById[id], book.backendLocator != nil {
-                matchedBook = book
-            } else if let locator = backendLocator,
-                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator }) {
-                matchedBook = book
-            }
-        }
-
-        guard let valid = matchedBook else {
-            throw BackendTransitionError.unresolvableBook(
-                bookId: id,
-                title: title ?? "Book \(id)",
-                locator: backendLocator
-            )
-        }
-        return valid
+        try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
+            id: id,
+            backendLocator: backendLocator,
+            title: title,
+            in: backend
+        )
     }
 }

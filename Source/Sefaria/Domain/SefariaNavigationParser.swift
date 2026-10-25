@@ -64,12 +64,8 @@ enum SefariaNavigationParser {
             } else if case .object(let obj) = structure,
                       let en = schemaTitle(obj, language: "en"), !prefersHebrew {
                 title = en
-            } else if key == "Parasha" {
-                title = prefersHebrew ? "פרשות" : "Parashot"
-            } else if key == "Perek" {
-                title = prefersHebrew ? "פרקים" : "Chapters"
             } else {
-                title = key
+                title = ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: key, prefersHebrew: prefersHebrew)
             }
             let altNodes = alternateNodes(structure, indexTitle: indexTitle, prefersHebrew: prefersHebrew)
             if !altNodes.isEmpty {
@@ -409,7 +405,11 @@ enum SefariaNavigationParser {
 
     static func chapterDisplayTitle(offset: Int, type: String?, prefersHebrew: Bool) -> String {
         if type == "Talmud" {
-            return SefariaRef.talmudAddress(offset: offset)
+            if prefersHebrew {
+                return TalmudHebrewAddressFormatter.format(offset: offset)
+            } else {
+                return SefariaRef.talmudAddress(offset: offset)
+            }
         }
         let number = offset + 1
         if prefersHebrew {

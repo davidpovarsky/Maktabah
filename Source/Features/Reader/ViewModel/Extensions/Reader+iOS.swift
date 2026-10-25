@@ -80,23 +80,30 @@ extension ReaderViewModel {
         )
         annotationEvent = nil
         if let locator = result.backendLocator {
-            loadBackendContent(LibraryReaderDestination(sectionLocator: locator, focusLocator: locator))
+            let resolved = ReaderDestinationResolver.resolve(locator: locator)
+            loadBackendContent(resolved.destination)
         } else {
             fetchContentById(result.bookId)
         }
     }
 
     var hasActiveSearchHighlight: Bool {
-        !searchText.isEmpty || highlightTerms?.isEmpty == false
+        ReaderSearchContextCoordinator.hasActiveSearchHighlight(
+            searchText: searchText,
+            highlightTerms: highlightTerms,
+            focusLocator: searchHighlightFocusLocator,
+            selectedSegmentLocator: selectedSegmentLocator
+        )
     }
 
     func clearSearchHighlight() {
-        ReaderSearchHighlightPolicy.clear(
+        var mode = searchMode?.librarySearchMode
+        ReaderSearchContextCoordinator.clearTransientSearchState(
             searchText: &searchText,
             highlightTerms: &highlightTerms,
             focusLocator: &searchHighlightFocusLocator,
-            selectedLocator: &selectedSegmentLocator,
-            inspectorIsVisible: readerInspectorVisible
+            selectedSegmentLocator: &selectedSegmentLocator,
+            searchMode: &mode
         )
         searchMode = nil
         searchEvent = nil

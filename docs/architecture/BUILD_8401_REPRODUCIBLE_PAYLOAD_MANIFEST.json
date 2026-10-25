@@ -1,0 +1,180 @@
+{
+  "manifest_version": "1.0.0",
+  "date": "2026-10-25",
+  "baseline_candidate_commit": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+  "pinned_upstream_ref": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "new_downstream_sources": [
+    {
+      "path": "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "blob_sha": "da1faba53fa3f37cb85187313b53f2b0ed6af489",
+      "size_bytes": 2831
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderBackendPagingCoordinator.swift",
+      "sha256": "dc48aed691e5e937a7e5b560b239db0cef4df62cf2826f307dacbe1ab63e92c7",
+      "blob_sha": "84950260eec250728c9009c0c45887af9808a6af",
+      "size_bytes": 2623
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift",
+      "sha256": "5577756046c9c2a74376ed43e605ad7cf450b5df711ae584a2b5a33bb7dab810",
+      "blob_sha": "36864df8841b87b4c0855adc7f47de4dba7d15be",
+      "size_bytes": 3734
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/TOCReadingLocationTracker.swift",
+      "sha256": "2aec9c053f7f166dddb8e3cf91f4855cc8c9e40bc869800911348cd6ac1c7817",
+      "blob_sha": "0763d2236383ddeb804246efd0342334d7e22b42",
+      "size_bytes": 3414
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/TargetBackendBookResolver.swift",
+      "sha256": "fa971363af2123c6e82fb6c17bbc6c340b0b997f0c9680e07ec8a4a6e2a68a1a",
+      "blob_sha": "3991afe282c78643fb635e1097441daf35a032b0",
+      "size_bytes": 8008
+    },
+    {
+      "path": "Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift",
+      "sha256": "c6cf82cd25d3b3e48496d372ec44552703fc7afea77db2749464073708600bbe",
+      "blob_sha": "5afdddc4cec30e379574181c3a1df9421c478ed8",
+      "size_bytes": 3756
+    }
+  ],
+  "modified_downstream_sources": [
+    {
+      "path": "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "sha256": "dd20d004ed3834662a2888d2e935aa46dc2a7a54699254bb0a654c4c326d9274",
+      "blob_sha": "c78c65da59f9b05f8a09653fda8888b711e7ddc7",
+      "size_bytes": 4454
+    },
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "sha256": "7782681da171314beb2f1bf464a741c98f58119e89851bcace94c38bdd99c876",
+      "blob_sha": "625f56f156d1ff3b788d96dd030e80555d3cf915",
+      "size_bytes": 26542
+    },
+    {
+      "path": "Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift",
+      "sha256": "b34799a8a9d6847e17d5daed0189b64a20182694dd75de88264d797d9ffaa8a7",
+      "blob_sha": "4a5fbce0cc40d69a548590877f65942591ba1e41",
+      "size_bytes": 4182
+    },
+    {
+      "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "sha256": "651c555044682f5389bfbfc085f7a509bdd97906a388a64b199241c90303c7a3",
+      "blob_sha": "0607002bf477d9f4f8be21fa306693b6eb35d580",
+      "size_bytes": 21384
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "sha256": "5a2d34d2f3aab22d47579862d5877204f0907e37aadde4cb64c3987fa1913233",
+      "blob_sha": "d35243e025d4b243d8f65dd4e95fa85f74a76056",
+      "size_bytes": 19360
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "sha256": "3ed6a18dedf477aaf755d0b4179034bf7ce5c756752c709fb97b9cda24c1c5db",
+      "blob_sha": "87a2f25861726c3ea04c4ff6cc108021ea3dc09c",
+      "size_bytes": 68203
+    }
+  ],
+  "proposed_protected_patches": [
+    {
+      "patch_file": "01-iosibarottextview-decoration-cache-and-scroll.patch",
+      "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "sha256": "588b111a226e93243be4c1387eeed687cf6da0813c5b142fd33ae84844adb8a8",
+      "size_bytes": 1868,
+      "base_blob_sha": "fa5430a8ee65318f65fbcdfd0e5d5f68a0f4b912",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "02-readernavigation-backend-paging.patch",
+      "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
+      "sha256": "4db28ba23460b351964caf271785ab1079ff1e2f6fc67f3313b5966f18f72de8",
+      "size_bytes": 2589,
+      "base_blob_sha": "8584cc718dbb7888a1cde7e24fcf61b957100898",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "03-readercontent-bounded-destination-resolution.patch",
+      "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "sha256": "8ab35d43c69a6fcca32f2cfb3b2b6095449af7a540b9f7c7e5cd955e94d0dd2f",
+      "size_bytes": 3425,
+      "base_blob_sha": "11caf78e533c0a88b8ee2d9d0472165371da6676",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "04-readerios-search-context-and-selection.patch",
+      "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "sha256": "28a36e0bd79ffae0c081c8897318a3081ea4e33c604673dc11f9478a4d774f52",
+      "size_bytes": 1760,
+      "base_blob_sha": "ba2a051005cfdef04c33dd6e800295453dc47449",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "05-readerviewmodel-search-event-preservation.patch",
+      "target_file": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "sha256": "c5ef6257581ba4887cb3fce269a153e006ac4ae0d4afaa83ff9f1b669e1339c1",
+      "size_bytes": 752,
+      "base_blob_sha": "7ab42dbf00653317dbaaa266385729353b99d323",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "06-iosreaderbottomtoolbarview-clear-x.patch",
+      "target_file": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "sha256": "5ea782f34f538f1eeffed9415b8f591a436037b5b66d09bd0ad001513372c58a",
+      "size_bytes": 706,
+      "base_blob_sha": "daa0abfe16ce0ef23366dd1a2fb71402544127be",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "07-iostoceview-live-tracking-and-loading-state.patch",
+      "target_file": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "sha256": "11d17f08d4fce0a4ec6d21e0e7713213901e759aba1c2d762602af791339be8e",
+      "size_bytes": 1488,
+      "base_blob_sha": "6920c2e41f163b04cebb05eb0a0bc58deacd2ad4",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "08-iosreaderworkspaceview-toc-tracking.patch",
+      "target_file": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "028cdb1628f3b1937a4e1f66e491a91f92558c8e307dcd9557bb54334655b19d",
+      "size_bytes": 768,
+      "base_blob_sha": "1a136ebdd29f8a4c46bbf59bc4b2a5a2bdf6d4f0",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "09-booktocviewmodel-loading-and-matching.patch",
+      "target_file": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "sha256": "2b71346624e4d4e8a725910cee703b908c06e630f4e1bdb40f1de68bdd8d4cff",
+      "size_bytes": 1955,
+      "base_blob_sha": "173bfe8a68fd2c6b46967f58e863fcd1e7db77f2",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "10-settingsview-backend-switch-error-handling.patch",
+      "target_file": "Source/Features/Setting/SettingsView.swift",
+      "sha256": "22a1fafc82b89ee0c836a09a7a28464b0bc06539732c5010937ee53b2b032734",
+      "size_bytes": 2323,
+      "base_blob_sha": "47aa588f3ca41fffb303e823e44958b2627e8df1",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "11-iosnavigationmanager-cold-catalog-and-search-context.patch",
+      "target_file": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "90a227d7ff6b7ee3b88dbd71ec5cb073a7c267578be9ea90094a304775b4b752",
+      "size_bytes": 3373,
+      "base_blob_sha": "32046c0b2c468fa4e7b312b1474b582c751da1aa",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    },
+    {
+      "patch_file": "12-maktabah-xcode-target-integration.patch",
+      "target_file": "Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "6b754147e15d2c6b3c9dc548e46dd20426a18ee1b69d47bc4606d2bf4560b14c",
+      "size_bytes": 10739,
+      "base_blob_sha": "8a332467292ba7a0198be11966fa7147c0edcc42",
+      "status": "OWNER_APPROVAL_REQUIRED"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+diff --git a/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift b/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
+index 11caf78..0845a49 100644
+--- a/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
++++ b/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
+@@ -47,7 +47,12 @@ extension ReaderViewModel {
+             var hasExplicitLocator = false
+             if let initialContentId {
+                 if let initialLocator = LegacyIdentityRegistry.shared.locator(for: initialContentId) {
+-                    target = initialLocator
++                    let resolved = ReaderDestinationResolver.resolve(locator: initialLocator)
++                    target = resolved.sectionLocator
++                    if let focus = resolved.focusLocator {
++                        self.selectedSegmentLocator = focus
++                        self.currentDestination = resolved.destination
++                    }
+                     hasExplicitLocator = true
+                 } else if locator.backend == .otzaria {
+                     target = TextLocator(backend: locator.backend, workKey: locator.workKey, position: .legacyLine(initialContentId))
+@@ -106,19 +111,21 @@ extension ReaderViewModel {
+     }
+ 
+     private func loadBackendContentInternal(locator: TextLocator, focusLocator: TextLocator?) {
+-        let isExplicitSegmentFocus = focusLocator != nil && focusLocator != locator
++        let resolved = ReaderDestinationResolver.resolve(locator: locator)
++        let effectiveSection = resolved.sectionLocator
++        let effectiveFocus = focusLocator ?? resolved.focusLocator
+         currentDestination = LibraryReaderDestination(
+-            sectionLocator: locator,
+-            focusLocator: isExplicitSegmentFocus ? focusLocator : nil
++            sectionLocator: effectiveSection,
++            focusLocator: effectiveFocus
+         )
+-        selectedSegmentLocator = isExplicitSegmentFocus ? focusLocator : nil
++        selectedSegmentLocator = effectiveFocus
+         backendLoadTask?.cancel()
+         state = .loading
+-        let expectedBookKey = locator.workKey
++        let expectedBookKey = effectiveSection.workKey
+         backendLoadTask = Task { @MainActor [weak self] in
+             guard let self else { return }
+             do {
+-                let section = try await BackendCoordinator.shared.section(at: locator)
++                let section = try await BackendCoordinator.shared.section(at: effectiveSection)
+                 try Task.checkCancellation()
+                 guard self.currentBook?.backendLocator?.workKey == expectedBookKey else { return }
+                 self.backendSection = section
+@@ -132,11 +139,7 @@ extension ReaderViewModel {
+                     BookPageCache.shared.set(bookId: bookID, content: content)
+                 }
+                 self.updateContentState(with: content)
+-                if isExplicitSegmentFocus, let focus = self.currentDestination?.focusLocator {
+-                    self.selectedSegmentLocator = focus
+-                } else {
+-                    self.selectedSegmentLocator = nil
+-                }
++                self.selectedSegmentLocator = self.currentDestination?.focusLocator
+                 self.state = .loaded
+                 if let workLocator = self.currentBook?.backendLocator, self.navigationItems.isEmpty {
+                     let work = LibraryWork(

@@ -39,13 +39,30 @@ extension iOSNavigationManager {
                     }
                 }
             }
+            let resolved = ReaderDestinationResolver.resolve(locator: targetLocator)
             guard let book = MaktabahBackendAdapter.resolveBook(
-                for: targetLocator,
+                for: resolved.sectionLocator,
                 in: LibraryDataManager.shared
             ) else { return }
-            let initialContentId = LegacyIdentityRegistry.shared.id(for: targetLocator)
-            openBookInNewTab(book, initialContentId: initialContentId)
+            openBookInNewTab(book, destination: resolved.destination)
         }
+    }
+
+    private func openBookInNewTab(_ book: BooksData, destination: LibraryReaderDestination) {
+        switchToMode(.viewer)
+        if let activeId = activeTabId,
+           let currentTab = openTabs.first(where: { $0.id == activeId }) {
+            currentTab.viewModel.saveCurrentState()
+        }
+
+        let viewModel = ReaderViewModel(book: book)
+        viewModel.loadBackendContent(destination)
+        let initialContentId = LegacyIdentityRegistry.shared.id(for: destination.sectionLocator)
+        let newTab = ReaderTab(id: UUID(), book: book, initialContentId: initialContentId, viewModel: viewModel)
+        openTabs.append(newTab)
+        activeTabId = newTab.id
+        selectedContentId = initialContentId
+        selectedBook = book
     }
 
     private func openBookInNewTab(_ book: BooksData, initialContentId: Int?) {

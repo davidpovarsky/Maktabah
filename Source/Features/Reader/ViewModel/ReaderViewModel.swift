@@ -287,7 +287,10 @@ class ReaderViewModel: ViewModelBase {
         #endif
 
         #if os(iOS)
-        if let searchEvent, searchEvent.contentId != content.id {
+        if currentBook?.backendLocator == nil,
+           let searchEvent,
+           let eventContentId = searchEvent.contentId,
+           eventContentId != content.id {
             self.searchEvent = nil
         }
         if let annotationEvent, annotationEvent.annotation.contentId != content.id {

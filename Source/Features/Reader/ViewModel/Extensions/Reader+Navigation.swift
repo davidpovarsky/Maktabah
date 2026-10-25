@@ -31,13 +31,49 @@ extension ReaderViewModel {
     }
 
     func goToNextPage() {
-        guard let content = navigateToPage(direction: .next) else { return }
-        updateContentState(with: content)
+        let action = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .next,
+            isBackendBook: currentBook?.backendLocator != nil,
+            currentLocator: backendSection?.locator ?? currentBook?.backendLocator,
+            backendSectionNext: backendSection?.next,
+            backendSectionPrevious: backendSection?.previous,
+            navigationItems: navigationItems
+        )
+        switch action {
+        case .loadBackendLocator(let locator, let scrollTarget):
+            #if os(iOS)
+            pendingReaderScrollTarget = scrollTarget == .top ? .top : .bottom
+            #endif
+            loadBackendContent(locator)
+        case .noOpBoundaryReached:
+            return
+        case .performLegacyFallback:
+            guard let content = navigateToPage(direction: .next) else { return }
+            updateContentState(with: content)
+        }
     }
 
     func goToPrevPage() {
-        guard let content = navigateToPage(direction: .prev) else { return }
-        updateContentState(with: content)
+        let action = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .previous,
+            isBackendBook: currentBook?.backendLocator != nil,
+            currentLocator: backendSection?.locator ?? currentBook?.backendLocator,
+            backendSectionNext: backendSection?.next,
+            backendSectionPrevious: backendSection?.previous,
+            navigationItems: navigationItems
+        )
+        switch action {
+        case .loadBackendLocator(let locator, let scrollTarget):
+            #if os(iOS)
+            pendingReaderScrollTarget = scrollTarget == .top ? .top : .bottom
+            #endif
+            loadBackendContent(locator)
+        case .noOpBoundaryReached:
+            return
+        case .performLegacyFallback:
+            guard let content = navigateToPage(direction: .prev) else { return }
+            updateContentState(with: content)
+        }
     }
 
     func fetchContentById(_ contentId: Int) {

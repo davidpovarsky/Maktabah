@@ -39,6 +39,7 @@ class BookTOCViewModel {
     var navigationStructures: [LibraryNavigationStructure] = []
     var selectedStructureID: String = ""
     var loadFailure: LoadFailure?
+    var isLoading: Bool = false
     private(set) var tocRanges: [TOCRange] = []
     private var nodeIdCache: [Int: TOCNode] = [:]
 
@@ -60,7 +61,12 @@ class BookTOCViewModel {
         if let locator = book.backendLocator {
             loadingTask = Task { @MainActor [weak self] in
                 guard let self else { return }
+                self.isLoading = true
                 self.onTOCLoadingStateChanged?(true)
+                defer {
+                    self.isLoading = false
+                    self.onTOCLoadingStateChanged?(false)
+                }
                 do {
                     let work = LibraryWork(
                         locator: locator,
@@ -252,6 +258,15 @@ class BookTOCViewModel {
     func findNode(for locator: TextLocator) -> TOCNode? {
         let allNodes = Self.flattenNodes(tocNodes)
         return allNodes.first { $0.backendLocator == locator }
+    }
+
+    func findMatchingNode(for locator: TextLocator) -> TOCNode? {
+        let allNodes = Self.flattenNodes(tocNodes)
+        let flattened = allNodes.map { FlattenedTOCItem(id: $0.id, title: $0.bab, level: $0.level, locator: $0.backendLocator) }
+        guard let matchingID = TOCReadingLocationTracker.findMatchingNodeID(for: locator, in: flattened) else {
+            return nil
+        }
+        return findNodeById(matchingID)
     }
 
     /// Mencari path lengkap dari root ke node terdalam yang mencakup contentId.

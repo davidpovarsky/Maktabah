@@ -368,7 +368,13 @@ final class UnifiedSearchSessionController {
 
         if let book = resolveBook(from: item) {
             let shouldRecord = UserDefaults.standard.recordSearchHistory
-            let targetContentId = item.page
+            let targetContentId: Int
+            if let backendLocator = item.backendLocator {
+                let resolved = ReaderDestinationResolver.resolve(locator: backendLocator)
+                targetContentId = LegacyIdentityRegistry.shared.id(for: resolved.sectionLocator)
+            } else {
+                targetContentId = item.page
+            }
             let mode = searchModeForReader
             let dist = nearDistanceForReader
             manager.openBook(
@@ -416,7 +422,8 @@ final class UnifiedSearchSessionController {
 
     func resolveBook(from item: SearchResultItem) -> BooksData? {
         if let locator = item.backendLocator {
-            return MaktabahBackendAdapter.resolveBook(for: locator, in: LibraryDataManager.shared)
+            let resolved = ReaderDestinationResolver.resolve(locator: locator)
+            return MaktabahBackendAdapter.resolveBook(for: resolved.sectionLocator, in: LibraryDataManager.shared)
         }
         return OtzariaSearchResultResolver.resolveBook(
             from: item,

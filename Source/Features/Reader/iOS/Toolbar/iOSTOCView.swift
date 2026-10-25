@@ -120,6 +120,14 @@ struct iOSTOCView: View {
                         systemImage: "exclamationmark.triangle",
                         description: Text(failure.message)
                     )
+                } else if tocViewModel.isLoading && identifiableNodes.isEmpty {
+                    VStack(spacing: 12) {
+                        ProgressView()
+                        Text(String(localized: "Loading Table of Contents..."))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else if identifiableNodes.isEmpty {
                     ContentUnavailableView(
                         String(localized: "No Table of Contents"),
@@ -171,6 +179,9 @@ struct iOSTOCView: View {
                             scrollSelected(proxy: proxy)
                         }
                         .onChange(of: tocViewModel.tocRanges.count) { _, _ in
+                            scrollSelected(proxy: proxy)
+                        }
+                        .onChange(of: selectedId) { _, _ in
                             scrollSelected(proxy: proxy)
                         }
                     }

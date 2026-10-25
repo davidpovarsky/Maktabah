@@ -1,0 +1,15 @@
+diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+index 1a136eb..713acc7 100644
+--- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+@@ -184,6 +184,10 @@ struct iOSReaderWorkspaceView: View {
+     }
+ 
+     private var selectedTOCNode: TOCNode? {
++        if let locator = viewModel.backendSection?.locator ?? viewModel.currentBook?.backendLocator,
++           let node = viewModel.tocViewModel.findMatchingNode(for: locator) {
++            return node
++        }
+         if let locator = viewModel.backendSection?.locator,
+            let node = viewModel.tocViewModel.findNode(for: locator) {
+             return node

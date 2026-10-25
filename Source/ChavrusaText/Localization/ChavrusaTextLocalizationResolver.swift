@@ -1,9 +1,7 @@
 import Foundation
 
 /// Localization resolver for ChavrusaText UI.
-/// Fixes BUG-04 by ensuring tab labels (specifically "History") resolve from the primary
-/// `Localizable.xcstrings` catalog (where Hebrew translation "היסטוריה" is present)
-/// rather than failing over to unlocalized English from `Library.xcstrings`.
+/// Provides authoritative Hebrew/English translations for tabs, navigation structures, and TOC titles.
 public struct ChavrusaTextLocalizationResolver: Sendable {
     public enum TabKey: String, CaseIterable, Sendable {
         case library = "Library"
@@ -52,5 +50,55 @@ public struct ChavrusaTextLocalizationResolver: Sendable {
         }
 
         return key.rawValue
+    }
+
+    /// Resolves Sefaria navigation structure identifiers (e.g. "Chapters", "Folios", "Parashot")
+    /// into traditional Hebrew when `prefersHebrew` is true, or English when false.
+    public static func resolveNavigationStructureTitle(for key: String, prefersHebrew: Bool) -> String {
+        if prefersHebrew {
+            switch key.trimmingCharacters(in: .whitespacesAndNewlines) {
+            case "Chapters": return "פרקים"
+            case "Chapter": return "פרק"
+            case "Folios": return "דפים"
+            case "Folio": return "דף"
+            case "Parashot", "Parashiot": return "פרשות"
+            case "Parasha", "Parashah": return "פרשה"
+            case "Perek": return "פרקים"
+            case "Perakim": return "פרקים"
+            case "Sections": return "סעיפים"
+            case "Section": return "סעיף"
+            case "Halakhot", "Halachot": return "הלכות"
+            case "Halakha", "Halacha": return "הלכה"
+            case "Mishnayot": return "משניות"
+            case "Mishnah": return "משנה"
+            case "Simanim": return "סימנים"
+            case "Siman": return "סימן"
+            case "Verses": return "פסוקים"
+            case "Verse": return "פסוק"
+            case "Teshuvot": return "תשובות"
+            case "Teshuvah": return "תשובה"
+            default: return key
+            }
+        } else {
+            switch key.trimmingCharacters(in: .whitespacesAndNewlines) {
+            case "פרקים", "Perek", "Perakim": return "Chapters"
+            case "פרק": return "Chapter"
+            case "דפים": return "Folios"
+            case "דף": return "Folio"
+            case "פרשות", "Parasha", "Parashot": return "Parashot"
+            case "פרשה": return "Parasha"
+            case "סעיפים": return "Sections"
+            case "סעיף": return "Section"
+            case "הלכות": return "Halakhot"
+            case "הלכה": return "Halakhah"
+            case "משניות": return "Mishnayot"
+            case "משנה": return "Mishnah"
+            case "סימנים": return "Simanim"
+            case "סימן": return "Siman"
+            case "פסוקים": return "Verses"
+            case "פסוק": return "Verse"
+            default: return key
+            }
+        }
     }
 }

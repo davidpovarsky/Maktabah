@@ -1,0 +1,16 @@
+diff --git a/Source/Features/Reader/ViewModel/ReaderViewModel.swift b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+index 7ab42db..86a7990 100644
+--- a/Source/Features/Reader/ViewModel/ReaderViewModel.swift
++++ b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+@@ -287,7 +287,10 @@ class ReaderViewModel: ViewModelBase {
+         #endif
+ 
+         #if os(iOS)
+-        if let searchEvent, searchEvent.contentId != content.id {
++        if currentBook?.backendLocator == nil,
++           let searchEvent,
++           let eventContentId = searchEvent.contentId,
++           eventContentId != content.id {
+             self.searchEvent = nil
+         }
+         if let annotationEvent, annotationEvent.annotation.contentId != content.id {

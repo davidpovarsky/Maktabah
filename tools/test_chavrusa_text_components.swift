@@ -872,6 +872,225 @@ struct TestRunner {
             assertCondition(false, "Suite 9 failed with error: \(error)")
         }
 
+        // 10. TalmudHebrewAddressFormatter & Expanded Localization (Defect #7, L1/L2)
+        print("\n--- 10. Testing TalmudHebrewAddressFormatter & Localization ---")
+        assertCondition(TalmudHebrewAddressFormatter.format(offset: 20) == "י״ב ע״א", "12a offset 20 -> י״ב ע״א")
+        assertCondition(TalmudHebrewAddressFormatter.format(offset: 21) == "י״ב ע״ב", "12b offset 21 -> י״ב ע״ב")
+        assertCondition(TalmudHebrewAddressFormatter.format(offset: 27) == "ט״ו ע״ב", "15b offset 27 -> ט״ו ע״ב (special 15 handling)")
+        assertCondition(TalmudHebrewAddressFormatter.format(offset: 28) == "ט״ז ע״א", "16a offset 28 -> ט״ז ע״א (special 16 handling)")
+        assertCondition(TalmudHebrewAddressFormatter.format(address: "12a") == "י״ב ע״א", "address '12a' -> י״ב ע״א")
+        assertCondition(TalmudHebrewAddressFormatter.format(address: "15b") == "ט״ו ע״ב", "address '15b' -> ט״ו ע״ב")
+        assertCondition(TalmudHebrewAddressFormatter.format(address: "2a") == "ב׳ ע״א", "address '2a' -> ב׳ ע״א with gersh")
+        assertCondition(ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: "Chapters", prefersHebrew: true) == "פרקים", "Chapters in Hebrew is פרקים")
+        assertCondition(ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: "Chapters", prefersHebrew: false) == "Chapters", "Chapters in English is Chapters")
+        assertCondition(ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: "Folios", prefersHebrew: true) == "דפים", "Folios in Hebrew is דפים")
+        assertCondition(ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: "Parashot", prefersHebrew: true) == "פרשות", "Parashot in Hebrew is פרשות")
+        assertCondition(ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: "Halakhot", prefersHebrew: true) == "הלכות", "Halakhot in Hebrew is הלכות")
+
+        // 11. ReaderDestinationResolver (Defect #6 & #1, S1/S2/H1)
+        print("\n--- 11. Testing ReaderDestinationResolver ---")
+        let rashiHit = TextLocator(backend: .sefaria, workKey: "Rashi on Berakhot", position: .canonicalRef("Rashi on Berakhot 15b:3:1"))
+        let resolvedRashi = ReaderDestinationResolver.resolve(locator: rashiHit)
+        assertCondition(resolvedRashi.isSegmentLevelFocus, "Rashi 15b:3:1 is detected as segment-level focus")
+        assertCondition(resolvedRashi.sectionLocator.position == .canonicalRef("Rashi on Berakhot 15b"), "Rashi sectionLocator bounded to containing daf 15b")
+        assertCondition(resolvedRashi.focusLocator?.position == .canonicalRef("Rashi on Berakhot 15b:3:1"), "Rashi focusLocator preserves exact segment hit")
+
+        let genesisHit = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:3"))
+        let resolvedGenesis = ReaderDestinationResolver.resolve(locator: genesisHit)
+        assertCondition(resolvedGenesis.isSegmentLevelFocus, "Genesis 1:3 is detected as segment-level focus")
+        assertCondition(resolvedGenesis.sectionLocator.position == .canonicalRef("Genesis 1"), "Genesis sectionLocator bounded to chapter 1")
+        assertCondition(resolvedGenesis.focusLocator?.position == .canonicalRef("Genesis 1:3"), "Genesis focusLocator preserves verse 3")
+
+        let dafSection = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 15b"))
+        let resolvedDaf = ReaderDestinationResolver.resolve(locator: dafSection)
+        assertCondition(!resolvedDaf.isSegmentLevelFocus, "Berakhot 15b is already a section, not a segment")
+        assertCondition(resolvedDaf.sectionLocator.position == .canonicalRef("Berakhot 15b"), "Section locator is Berakhot 15b")
+        assertCondition(resolvedDaf.focusLocator == nil, "Focus locator is nil for section-level locator")
+
+        // 12. ReaderBackendPagingCoordinator (Defect #3, P1/P2/P3/P4)
+        print("\n--- 12. Testing ReaderBackendPagingCoordinator ---")
+        let nextLoc = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 16a"))
+        let prevLoc = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 15a"))
+        let actionNext = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .next,
+            isBackendBook: true,
+            currentLocator: dafSection,
+            backendSectionNext: nextLoc,
+            backendSectionPrevious: prevLoc,
+            navigationItems: []
+        )
+        assertCondition(actionNext == .loadBackendLocator(nextLoc, scrollTarget: .top), "Next action loads next section with .top scroll target")
+
+        let actionPrev = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .previous,
+            isBackendBook: true,
+            currentLocator: dafSection,
+            backendSectionNext: nextLoc,
+            backendSectionPrevious: prevLoc,
+            navigationItems: []
+        )
+        assertCondition(actionPrev == .loadBackendLocator(prevLoc, scrollTarget: .bottom), "Prev action loads prev section with .bottom scroll target")
+
+        let actionBoundary = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .next,
+            isBackendBook: true,
+            currentLocator: dafSection,
+            backendSectionNext: nil,
+            backendSectionPrevious: prevLoc,
+            navigationItems: []
+        )
+        assertCondition(actionBoundary == .noOpBoundaryReached, "Boundary reached is safe no-op (no jump to first page)")
+
+        let actionLegacy = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .next,
+            isBackendBook: false,
+            currentLocator: nil,
+            backendSectionNext: nil,
+            backendSectionPrevious: nil,
+            navigationItems: []
+        )
+        assertCondition(actionLegacy == .performLegacyFallback, "Non-backend book performs legacy fallback")
+
+        // 13. ReaderSearchContextCoordinator (Defect #2 & #1, H3/H4)
+        print("\n--- 13. Testing ReaderSearchContextCoordinator ---")
+        assertCondition(
+            ReaderSearchContextCoordinator.hasActiveSearchHighlight(searchText: "shalom", highlightTerms: nil, focusLocator: nil, selectedSegmentLocator: nil),
+            "Active search highlight detected with search text"
+        )
+        assertCondition(
+            ReaderSearchContextCoordinator.hasActiveSearchHighlight(searchText: "", highlightTerms: ["term"], focusLocator: nil, selectedSegmentLocator: nil),
+            "Active search highlight detected with highlight terms"
+        )
+        assertCondition(
+            ReaderSearchContextCoordinator.hasActiveSearchHighlight(searchText: "shalom", highlightTerms: ["term"], focusLocator: rashiHit, selectedSegmentLocator: nil),
+            "Active search highlight detected with search text, terms, and focus locator"
+        )
+        assertCondition(
+            !ReaderSearchContextCoordinator.hasActiveSearchHighlight(searchText: "", highlightTerms: nil, focusLocator: rashiHit, selectedSegmentLocator: nil, isSearchOrigin: false),
+            "Ordinary linked commentary focus without search origin does NOT trigger search highlight"
+        )
+        assertCondition(
+            !ReaderSearchContextCoordinator.hasActiveSearchHighlight(searchText: "", highlightTerms: nil, focusLocator: nil, selectedSegmentLocator: rashiHit),
+            "Ordinary reader segment selection does NOT trigger search highlight"
+        )
+        assertCondition(
+            !ReaderSearchContextCoordinator.hasActiveSearchHighlight(searchText: "", highlightTerms: nil, focusLocator: nil, selectedSegmentLocator: nil),
+            "No active search highlight when all fields are empty"
+        )
+
+        // Programmatic scroll never clears
+        let progClear = ReaderSearchContextCoordinator.shouldClearAfterScroll(
+            startOffsetY: 0,
+            currentOffsetY: 500,
+            viewportHeight: 600,
+            isManualUserDrag: false,
+            hasActiveHighlight: true
+        )
+        assertCondition(!progClear, "Programmatic scroll NEVER clears search highlight")
+
+        // Manual drag below threshold does not clear
+        let subThresholdClear = ReaderSearchContextCoordinator.shouldClearAfterScroll(
+            startOffsetY: 100,
+            currentOffsetY: 120,
+            viewportHeight: 600,
+            isManualUserDrag: true,
+            hasActiveHighlight: true
+        )
+        assertCondition(!subThresholdClear, "Manual scroll below threshold does not clear search highlight")
+
+        // Manual drag above threshold clears
+        let supraThresholdClear = ReaderSearchContextCoordinator.shouldClearAfterScroll(
+            startOffsetY: 100,
+            currentOffsetY: 250,
+            viewportHeight: 600,
+            isManualUserDrag: true,
+            hasActiveHighlight: true
+        )
+        assertCondition(supraThresholdClear, "Manual scroll above threshold clears search highlight")
+
+        // Clearing transient search state
+        var sText = "hello"
+        var hTerms: [String]? = ["a", "b"]
+        var fLoc: TextLocator? = rashiHit
+        var sLoc: TextLocator? = rashiHit
+        var sMode: LibrarySearchMode? = .phrase
+        ReaderSearchContextCoordinator.clearTransientSearchState(
+            searchText: &sText,
+            highlightTerms: &hTerms,
+            focusLocator: &fLoc,
+            selectedSegmentLocator: &sLoc,
+            searchMode: &sMode
+        )
+        assertCondition(sText.isEmpty && hTerms == nil && fLoc == nil && sLoc == nil && sMode == nil, "Clear transient search state cleanly clears all search context")
+
+        // 14. TOCReadingLocationTracker (Defect #5, T1/T2)
+        print("\n--- 14. Testing TOCReadingLocationTracker ---")
+        let otzariaNodes: [FlattenedTOCItem] = [
+            FlattenedTOCItem(id: 1, title: "Chapter 1", level: 1, locator: TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(0))),
+            FlattenedTOCItem(id: 2, title: "Section A", level: 2, locator: TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(50))),
+            FlattenedTOCItem(id: 3, title: "Section B", level: 2, locator: TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(100))),
+            FlattenedTOCItem(id: 4, title: "Chapter 2", level: 1, locator: TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(200)))
+        ]
+        let currentReadingAtLine125 = TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(125))
+        let matchedNodeId = TOCReadingLocationTracker.findMatchingNodeID(for: currentReadingAtLine125, in: otzariaNodes)
+        assertCondition(matchedNodeId == 3, "Line 125 matches Section B at line 100 (closest heading at or before 125)")
+
+        let sefariaTOCNodes: [FlattenedTOCItem] = [
+            FlattenedTOCItem(id: 10, title: "15a", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Rashi on Berakhot", position: .canonicalRef("Rashi on Berakhot 15a"))),
+            FlattenedTOCItem(id: 11, title: "15b", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Rashi on Berakhot", position: .canonicalRef("Rashi on Berakhot 15b"))),
+            FlattenedTOCItem(id: 12, title: "16a", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Rashi on Berakhot", position: .canonicalRef("Rashi on Berakhot 16a")))
+        ]
+        let matchedSefariaTOC = TOCReadingLocationTracker.findMatchingNodeID(for: rashiHit, in: sefariaTOCNodes)
+        assertCondition(matchedSefariaTOC == 11, "Rashi on Berakhot 15b:3:1 matches TOC node 15b (ancestor)")
+
+        // 15. SefariaBookIdentityValidator (Defect #4, B2)
+        print("\n--- 15. Testing SefariaBookIdentityValidator ---")
+        let nonExistentWorkKey = "DefinitelyNotARealSefariaWorkXYZ"
+        let nonExistentLocator = TextLocator(backend: .sefaria, workKey: nonExistentWorkKey, position: .canonicalRef(nonExistentWorkKey))
+
+        // Negative test 1: Nonexistent archive URL (.isFileURL is true for file scheme, but file does NOT exist)
+        let nonExistentArchiveURL = SefariaOfflinePaths().standaloneArchive(for: nonExistentWorkKey)
+        assertCondition(nonExistentArchiveURL.isFileURL, "standaloneArchive URL has isFileURL true by scheme")
+        assertCondition(!FileManager.default.fileExists(atPath: nonExistentArchiveURL.path), "Actual file does NOT exist on disk")
+        assertCondition(!SefariaBookIdentityValidator.isAuthoritative(workKey: nonExistentWorkKey, id: 9999, textLocator: nonExistentLocator), "Nonexistent archive URL rejected fail-closed")
+
+        // Negative test 2: Placeholder strings rejected
+        let placeholderWorkKey = "Book 9999"
+        let placeholderLocator = TextLocator(backend: .sefaria, workKey: placeholderWorkKey, position: .canonicalRef(placeholderWorkKey))
+        assertCondition(!SefariaBookIdentityValidator.isAuthoritative(workKey: placeholderWorkKey, id: 9999, textLocator: placeholderLocator), "Placeholder 'Book 9999' rejected fail-closed")
+
+        // Negative test 3: Foreign Otzaria legacy ID does not validate Sefaria work
+        let otzariaOnlyId = -777
+        _ = LegacyIdentityRegistry.shared.id(for: TextLocator(backend: .otzaria, workKey: "book:777", position: .legacyLine(0)), title: "Otzaria Book 777")
+        assertCondition(!SefariaBookIdentityValidator.isAuthoritative(workKey: "SomeRandomWork", id: otzariaOnlyId, textLocator: TextLocator(backend: .sefaria, workKey: "SomeRandomWork", position: .canonicalRef("SomeRandomWork"))), "Foreign Otzaria ID rejected fail-closed for Sefaria work")
+
+        // Positive test 4: Legitimate registered Sefaria work in LegacyIdentityRegistry
+        let sefariaWorkKey = "Genesis"
+        let sefariaGenesisLocator = TextLocator(backend: .sefaria, workKey: sefariaWorkKey, position: .canonicalRef(sefariaWorkKey))
+        let registeredSefariaId = LegacyIdentityRegistry.shared.id(for: sefariaGenesisLocator, title: "Genesis")
+        assertCondition(SefariaBookIdentityValidator.isAuthoritative(workKey: sefariaWorkKey, id: registeredSefariaId, textLocator: sefariaGenesisLocator), "Authoritative registered Sefaria work in LegacyIdentityRegistry validated successfully")
+
+        // Positive test 5: Cross-backend canonical ID match
+        let crossBackendWorkKey = "Berakhot"
+        let crossBackendLocator = TextLocator(backend: .sefaria, workKey: crossBackendWorkKey, position: .canonicalRef(crossBackendWorkKey))
+        CrossBackendBookIdentityIndex.shared.register(
+            LibraryWork(locator: crossBackendLocator, title: "Berakhot", heTitle: "ברכות", categories: ["Talmud"], description: nil),
+            canonicalID: 200
+        )
+        assertCondition(SefariaBookIdentityValidator.isAuthoritative(workKey: crossBackendWorkKey, id: 200, textLocator: crossBackendLocator), "Cross-backend registered Sefaria work validated successfully")
+
+        // Positive test 6: Real file on disk validation
+        let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent("SefariaTest_\(UUID().uuidString)")
+        try? FileManager.default.createDirectory(at: tempDir, withIntermediateDirectories: true)
+        let mockOfflinePaths = SefariaOfflinePaths(root: tempDir)
+        let testWork = "TestOfflineWork"
+        let testArchiveURL = mockOfflinePaths.standaloneArchive(for: testWork)
+        try? FileManager.default.createDirectory(at: testArchiveURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try? "mock zip content".data(using: .utf8)?.write(to: testArchiveURL)
+        let testWorkLocator = TextLocator(backend: .sefaria, workKey: testWork, position: .canonicalRef(testWork))
+        assertCondition(SefariaBookIdentityValidator.isAuthoritative(workKey: testWork, id: 300, textLocator: testWorkLocator, offlinePaths: mockOfflinePaths), "Real file present on disk validated successfully")
+        try? FileManager.default.removeItem(at: tempDir)
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

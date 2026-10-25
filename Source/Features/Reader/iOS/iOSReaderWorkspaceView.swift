@@ -184,6 +184,10 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var selectedTOCNode: TOCNode? {
+        if let locator = viewModel.backendSection?.locator ?? viewModel.currentBook?.backendLocator,
+           let node = viewModel.tocViewModel.findMatchingNode(for: locator) {
+            return node
+        }
         if let locator = viewModel.backendSection?.locator,
            let node = viewModel.tocViewModel.findNode(for: locator) {
             return node

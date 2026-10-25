@@ -1,0 +1,12 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift b/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift
+index daa0abf..95e0e8c 100644
+--- a/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift
+@@ -67,6 +67,7 @@ struct iOSReaderBottomToolbarView: View {
+             }) {
+                 Image(systemName: "xmark.circle")
+             }
++            .accessibilityIdentifier("reader.clear_search_highlight_button")
+             .accessibilityLabel(String(localized: "Clear Search Highlights"))
+             .help(String(localized: "Clear Search Highlights"))
+         }

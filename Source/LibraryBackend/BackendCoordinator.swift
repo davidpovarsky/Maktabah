@@ -232,11 +232,13 @@ final class BackendCoordinator {
     @Published private(set) var pendingBackendID: BackendID?
     @Published private(set) var generation: UInt64 = 0
     @Published private(set) var transitionPhase: TransitionPhase = .idle
+    @Published private(set) var lastTransitionErrorMessage: String? = nil
     #else
     private(set) var activeBackendID: BackendID
     private(set) var pendingBackendID: BackendID?
     private(set) var generation: UInt64 = 0
     private(set) var transitionPhase: TransitionPhase = .idle
+    private(set) var lastTransitionErrorMessage: String? = nil
     #endif
 
     private(set) var activeTransitionToken: UInt64 = 0
@@ -316,8 +318,10 @@ final class BackendCoordinator {
     func commit(_ backendID: BackendID) -> Bool {
         do {
             try performTwoPhaseSwitch(to: backendID)
+            lastTransitionErrorMessage = nil
             return true
         } catch {
+            lastTransitionErrorMessage = error.localizedDescription
             return false
         }
     }
@@ -332,8 +336,10 @@ final class BackendCoordinator {
     func commitAsync(_ backendID: BackendID) async -> Bool {
         do {
             try await performTwoPhaseSwitchAsync(to: backendID)
+            lastTransitionErrorMessage = nil
             return true
         } catch {
+            lastTransitionErrorMessage = error.localizedDescription
             return false
         }
     }

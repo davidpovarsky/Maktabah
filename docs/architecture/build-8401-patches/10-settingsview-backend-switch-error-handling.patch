@@ -1,0 +1,53 @@
+diff --git a/Source/Features/Setting/SettingsView.swift b/Source/Features/Setting/SettingsView.swift
+index 47aa588..d09d5f8 100644
+--- a/Source/Features/Setting/SettingsView.swift
++++ b/Source/Features/Setting/SettingsView.swift
+@@ -227,6 +227,7 @@ extension SettingsView {
+             Picker("Source", selection: Binding(
+                 get: { backendCoordinator.activeBackendID },
+                 set: { requestedBackend in
++                    guard !backendCoordinator.isTransitioning else { return }
+                     guard requestedBackend != backendCoordinator.activeBackendID else { return }
+                     #if os(iOS)
+                     if requestedBackend == .otzaria, !OtzariaMaktabahBridge.shared.isEnabled {
+@@ -236,10 +237,14 @@ extension SettingsView {
+                             object: BackendID.otzaria
+                         )
+                     } else {
+-                        backendCoordinator.commit(requestedBackend)
++                        Task { @MainActor in
++                            await backendCoordinator.commitAsync(requestedBackend)
++                        }
+                     }
+                     #else
+-                    backendCoordinator.commit(requestedBackend)
++                    Task { @MainActor in
++                        await backendCoordinator.commitAsync(requestedBackend)
++                    }
+                     #endif
+                 }
+             )) {
+@@ -247,6 +252,23 @@ extension SettingsView {
+                     Text(backend.displayName).tag(backend)
+                 }
+             }
++            .disabled(backendCoordinator.isTransitioning)
++
++            if backendCoordinator.isTransitioning {
++                HStack(spacing: 8) {
++                    ProgressView()
++                        .controlSize(.small)
++                    Text("Switching library backend...")
++                        .font(.caption)
++                        .foregroundStyle(.secondary)
++                }
++            }
++
++            if let error = backendCoordinator.lastTransitionErrorMessage, !error.isEmpty {
++                Text(error)
++                    .font(.caption)
++                    .foregroundStyle(.red)
++            }
+ 
+             Text(backendCoordinator.activeSourceDescription)
+                 .font(.caption)

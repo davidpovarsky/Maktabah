@@ -1,0 +1,94 @@
+diff --git a/Maktabah.xcodeproj/project.pbxproj b/Maktabah.xcodeproj/project.pbxproj
+index 8a33246..4107589 100644
+--- a/Maktabah.xcodeproj/project.pbxproj
++++ b/Maktabah.xcodeproj/project.pbxproj
+@@ -32,6 +32,24 @@
+ 		CF3000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
+ 		CF1000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
+ 		CF2000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
++		CF300000000000000000000A /* ReaderDestinationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000A /* ReaderDestinationResolver.swift */; };
++		CF100000000000000000000A /* ReaderDestinationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000A /* ReaderDestinationResolver.swift */; };
++		CF200000000000000000000A /* ReaderDestinationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000A /* ReaderDestinationResolver.swift */; };
++		CF300000000000000000000B /* ReaderBackendPagingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000B /* ReaderBackendPagingCoordinator.swift */; };
++		CF100000000000000000000B /* ReaderBackendPagingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000B /* ReaderBackendPagingCoordinator.swift */; };
++		CF200000000000000000000B /* ReaderBackendPagingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000B /* ReaderBackendPagingCoordinator.swift */; };
++		CF300000000000000000000C /* ReaderSearchContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000C /* ReaderSearchContextCoordinator.swift */; };
++		CF100000000000000000000C /* ReaderSearchContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000C /* ReaderSearchContextCoordinator.swift */; };
++		CF200000000000000000000C /* ReaderSearchContextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000C /* ReaderSearchContextCoordinator.swift */; };
++		CF300000000000000000000D /* TOCReadingLocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000D /* TOCReadingLocationTracker.swift */; };
++		CF100000000000000000000D /* TOCReadingLocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000D /* TOCReadingLocationTracker.swift */; };
++		CF200000000000000000000D /* TOCReadingLocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000D /* TOCReadingLocationTracker.swift */; };
++		CF300000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000E /* TalmudHebrewAddressFormatter.swift */; };
++		CF100000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000E /* TalmudHebrewAddressFormatter.swift */; };
++		CF200000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000E /* TalmudHebrewAddressFormatter.swift */; };
++		CF300000000000000000000F /* TargetBackendBookResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000F /* TargetBackendBookResolver.swift */; };
++		CF100000000000000000000F /* TargetBackendBookResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000F /* TargetBackendBookResolver.swift */; };
++		CF200000000000000000000F /* TargetBackendBookResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000000F /* TargetBackendBookResolver.swift */; };
+ 		F3F000040000000000000004 /* iOSReaderSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000030000000000000003 /* iOSReaderSessionTests.swift */; };
+ 		F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000010000000000000001 /* iOSReaderSessionManager.swift */; };
+ 		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
+@@ -1292,6 +1310,12 @@
+ 		CF0000000000000000000007 /* iOSTabBarVisibilityHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/iOSTabBarVisibilityHost.swift"; sourceTree = "<group>"; };
+ 		CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderRendering/ReaderPullNavigationStateMachine.swift"; sourceTree = "<group>"; };
+ 		CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderRendering/ReaderSelectionRangeMapper.swift"; sourceTree = "<group>"; };
++		CF000000000000000000000A /* ReaderDestinationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderDestinationResolver.swift"; sourceTree = "<group>"; };
++		CF000000000000000000000B /* ReaderBackendPagingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderBackendPagingCoordinator.swift"; sourceTree = "<group>"; };
++		CF000000000000000000000C /* ReaderSearchContextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search/ReaderSearchContextCoordinator.swift"; sourceTree = "<group>"; };
++		CF000000000000000000000D /* TOCReadingLocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/TOCReadingLocationTracker.swift"; sourceTree = "<group>"; };
++		CF000000000000000000000E /* TalmudHebrewAddressFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization/TalmudHebrewAddressFormatter.swift"; sourceTree = "<group>"; };
++		CF000000000000000000000F /* TargetBackendBookResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/TargetBackendBookResolver.swift"; sourceTree = "<group>"; };
+ 		F3F000030000000000000003 /* iOSReaderSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionTests.swift; sourceTree = "<group>"; };
+ 		F3F000010000000000000001 /* iOSReaderSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionManager.swift; sourceTree = "<group>"; };
+ 		B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoAnchoredCard.swift; sourceTree = "<group>"; };
+@@ -1980,6 +2004,12 @@
+ 				CF0000000000000000000007 /* iOSTabBarVisibilityHost.swift */,
+ 				CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */,
+ 				CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */,
++				CF000000000000000000000A /* ReaderDestinationResolver.swift */,
++				CF000000000000000000000B /* ReaderBackendPagingCoordinator.swift */,
++				CF000000000000000000000C /* ReaderSearchContextCoordinator.swift */,
++				CF000000000000000000000D /* TOCReadingLocationTracker.swift */,
++				CF000000000000000000000E /* TalmudHebrewAddressFormatter.swift */,
++				CF000000000000000000000F /* TargetBackendBookResolver.swift */,
+ 			);
+ 			path = ChavrusaText;
+ 			sourceTree = "<group>";
+@@ -3837,6 +3867,12 @@
+ 				CF1000000000000000000006 /* SerializedSessionWriter.swift in Sources */,
+ 				CF1000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
+ 				CF1000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
++				CF100000000000000000000A /* ReaderDestinationResolver.swift in Sources */,
++				CF100000000000000000000B /* ReaderBackendPagingCoordinator.swift in Sources */,
++				CF100000000000000000000C /* ReaderSearchContextCoordinator.swift in Sources */,
++				CF100000000000000000000D /* TOCReadingLocationTracker.swift in Sources */,
++				CF100000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */,
++				CF100000000000000000000F /* TargetBackendBookResolver.swift in Sources */,
+ 				CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+ 				CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+ 				CE1000000000000000000003 /* BackendCoordinator.swift in Sources */,
+@@ -4156,6 +4192,12 @@
+ 				CF2000000000000000000006 /* SerializedSessionWriter.swift in Sources */,
+ 				CF2000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
+ 				CF2000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
++				CF200000000000000000000A /* ReaderDestinationResolver.swift in Sources */,
++				CF200000000000000000000B /* ReaderBackendPagingCoordinator.swift in Sources */,
++				CF200000000000000000000C /* ReaderSearchContextCoordinator.swift in Sources */,
++				CF200000000000000000000D /* TOCReadingLocationTracker.swift in Sources */,
++				CF200000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */,
++				CF200000000000000000000F /* TargetBackendBookResolver.swift in Sources */,
+ 				CE2000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+ 				CE2000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+ 				CE2000000000000000000003 /* BackendCoordinator.swift in Sources */,
+@@ -4488,6 +4530,12 @@
+ 				CF3000000000000000000007 /* iOSTabBarVisibilityHost.swift in Sources */,
+ 				CF3000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
+ 				CF3000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
++				CF300000000000000000000A /* ReaderDestinationResolver.swift in Sources */,
++				CF300000000000000000000B /* ReaderBackendPagingCoordinator.swift in Sources */,
++				CF300000000000000000000C /* ReaderSearchContextCoordinator.swift in Sources */,
++				CF300000000000000000000D /* TOCReadingLocationTracker.swift in Sources */,
++				CF300000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */,
++				CF300000000000000000000F /* TargetBackendBookResolver.swift in Sources */,
+ 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
+ 				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
+ 				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,

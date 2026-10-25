@@ -67,6 +67,7 @@ struct iOSReaderBottomToolbarView: View {
             }) {
                 Image(systemName: "xmark.circle")
             }
+            .accessibilityIdentifier("reader.clear_search_highlight_button")
             .accessibilityLabel(String(localized: "Clear Search Highlights"))
             .help(String(localized: "Clear Search Highlights"))
         }

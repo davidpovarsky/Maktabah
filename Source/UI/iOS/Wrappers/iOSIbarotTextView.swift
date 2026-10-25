@@ -715,6 +715,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
             text: text,
             annotations: annotations,
             searchEventId: activeSearchEventId,
+            selectedSegmentRange: selectedSegmentRange,
+            highlightTerms: viewModel.highlightTerms,
             showHarakat: state.showHarakat,
             clickableAnnotation: state.clickableAnnotation,
             enhancedUnderline: enhancedUnderline,
@@ -764,6 +766,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
         let text: String
         let annotations: [Annotation]
         let searchEventId: UUID?
+        let selectedSegmentRange: NSRange?
+        let highlightTerms: [String]?
         let showHarakat: Bool
         let clickableAnnotation: Bool
         let enhancedUnderline: Bool
@@ -1070,10 +1074,11 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
             (scrollView as? iOSCustomIbarotTextView)?.updateViewportAccessibilityMetadata()
             if !didClearSearchForCurrentDrag,
-               ReaderSearchHighlightPolicy.shouldClearAfterManualScroll(
+               ReaderSearchContextCoordinator.shouldClearAfterScroll(
                    startOffsetY: manualDragStartOffset.map(Double.init),
                    currentOffsetY: Double(scrollView.contentOffset.y),
                    viewportHeight: Double(scrollView.bounds.height),
+                   isManualUserDrag: scrollView.isDragging || scrollView.isTracking,
                    hasActiveHighlight: parent.viewModel.hasActiveSearchHighlight
                ) {
                 didClearSearchForCurrentDrag = true
