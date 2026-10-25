@@ -302,18 +302,41 @@ jobs:
         run: |
           set -o pipefail
           echo "=== Discovering iPad Simulator on iOS 27 ==="
-          IPAD_SIM=$(xcrun simctl list devices available | grep -E "iPad Pro 13-inch|iPad Pro|iPad" | head -n 1 | sed -E 's/^[ ]+//; s/[ ]+\(.*//')
-          if [ -z "$IPAD_SIM" ]; then
+          IPAD_UDID=$(xcrun simctl list devices available -j | python3 -c '
+import json, sys
+data = json.load(sys.stdin)
+candidates = []
+for runtime, devices in data.get("devices", {}).items():
+    if "iOS" in runtime:
+        for d in devices:
+            if d.get("isAvailable") and "iPad" in d.get("name", ""):
+                candidates.append(d)
+chosen = None
+for c in candidates:
+    if "iPad Pro 13-inch" in c["name"]:
+        chosen = c; break
+if not chosen:
+    for c in candidates:
+        if "iPad Pro" in c["name"]:
+            chosen = c; break
+if not chosen and candidates:
+    chosen = candidates[0]
+if chosen:
+    print(chosen["udid"])
+')
+          if [ -z "$IPAD_UDID" ]; then
             echo "::error::Required iPad simulator unavailable on iOS 27 runtime"
             exit 1
           fi
-          echo "Selected iPad Simulator device: $IPAD_SIM"
+          echo "Selected iPad Simulator UDID: $IPAD_UDID"
+          xcrun simctl boot "$IPAD_UDID" || true
+          xcrun simctl bootstatus "$IPAD_UDID" -b
 
           xcodebuild test-without-building \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
             -configuration Debug \
-            -destination "platform=iOS Simulator,name=$IPAD_SIM" \
+            -destination "platform=iOS Simulator,id=$IPAD_UDID" \
             -derivedDataPath build/DerivedData \
             -resultBundlePath build/DerivedData/TestResults.xcresult \
             2>&1 | tee build/logs/test-simulator.log

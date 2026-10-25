@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-25  
 **Candidate Branch:** [`validation/maktabah-batch-b-xcode27-20261025`](https://github.com/davidpovarsky/Maktabah/tree/validation/maktabah-batch-b-xcode27-20261025)  
-**Candidate Commit SHA:** `31f79f266b9673c0e0ac76cdd7d8c0733cac4e51`  
+**Candidate Commit SHA:** `d3ebd0a7479ec5c6544e45c43d702fcbb3f9dfaa`  
 **Baseline Commit:** `c8defbf812d34dd22ea1b7b63b1a356c0e96fa8f`  
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`  
 **Target Runner / Toolchain:** macOS 27.0 (arm64 Apple Silicon) / Xcode 27.1 / iOS 27.1 SDK  
