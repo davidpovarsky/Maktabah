@@ -62,7 +62,6 @@ class iOSNavigationManager: BackendSwitchParticipant {
     }
 
     deinit {
-        BackendCoordinator.shared.removeSwitchParticipant(self)
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -661,23 +660,17 @@ class iOSNavigationManager: BackendSwitchParticipant {
                         }
                     }
                     if let backendLocator = tabSession.backendLocator {
-                        if targetBackend == .otzaria && backendLocator.hasPrefix("sefaria:") {
+                        guard backendLocator.backend == targetBackend else {
                             throw BackendTransitionError.foreignBackendLocator(
-                                locator: backendLocator,
-                                expectedBackend: .otzaria
-                            )
-                        }
-                        if targetBackend == .sefaria && backendLocator.hasPrefix("otzaria:") {
-                            throw BackendTransitionError.foreignBackendLocator(
-                                locator: backendLocator,
-                                expectedBackend: .sefaria
+                                locator: "\(backendLocator.backend.rawValue):\(backendLocator.workKey)",
+                                expectedBackend: targetBackend
                             )
                         }
                     }
 
                     _ = try resolver.resolveBook(
                         id: tabSession.bookId,
-                        backendLocator: tabSession.backendLocator,
+                        backendLocator: tabSession.backendLocator?.workKey,
                         title: tabSession.bookTitle,
                         in: targetBackend
                     )
@@ -686,7 +679,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
                         id: tabSession.id,
                         bookId: tabSession.bookId,
                         bookTitle: tabSession.bookTitle ?? "Book \(tabSession.bookId)",
-                        backendLocator: tabSession.backendLocator,
+                        backendLocator: tabSession.backendLocator?.workKey,
                         contentId: tabSession.contentId,
                         locator: tabSession.locator,
                         page: tabSession.page,
@@ -943,5 +936,66 @@ class iOSNavigationManager: BackendSwitchParticipant {
         } else {
             iOSReaderSessionManager.shared.scheduleSaveSession(session)
         }
+    }
+}
+
+// MARK: - Target Backend Book Resolution
+
+@MainActor
+protocol TargetBackendBookResolver: Sendable {
+    func resolveBook(
+        id: Int,
+        backendLocator: String?,
+        title: String?,
+        in backend: BackendID
+    ) throws -> BooksData
+}
+
+@MainActor
+final class DefaultTargetBackendBookResolver: TargetBackendBookResolver {
+    static let shared = DefaultTargetBackendBookResolver()
+
+    func resolveBook(
+        id: Int,
+        backendLocator: String?,
+        title: String?,
+        in backend: BackendID
+    ) throws -> BooksData {
+        let ldm = LibraryDataManager.shared
+        var matchedBook: BooksData?
+
+        switch backend {
+        case .otzaria:
+            if let book = ldm.booksById[id] {
+                matchedBook = book
+            } else if let locator = backendLocator,
+                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator || "\($0.backendLocator?.backend.rawValue ?? ""):\($0.backendLocator?.workKey ?? "")" == locator }) {
+                matchedBook = book
+            } else if let book = ldm.getBook([id]).first {
+                matchedBook = book
+            }
+
+        case .sefaria:
+            if let locator = backendLocator {
+                guard !locator.hasPrefix("otzaria:") else {
+                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .sefaria)
+                }
+            }
+            if let book = ldm.booksById[id], book.backendLocator != nil {
+                matchedBook = book
+            } else if let locator = backendLocator,
+                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator }) {
+                matchedBook = book
+            }
+        }
+
+        guard let valid = matchedBook else {
+            throw BackendTransitionError.unresolvableBook(
+                bookId: id,
+                title: title ?? "Book \(id)",
+                locator: backendLocator
+            )
+        }
+        return valid
     }
 }

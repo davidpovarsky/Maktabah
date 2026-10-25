@@ -1,15 +1,18 @@
 diff --git a/Source/LibraryBackend/BackendCoordinator.swift b/Source/LibraryBackend/BackendCoordinator.swift
-index 33e09c6..cad46b7 100644
+index 33e09c6..3cb640c 100644
 --- a/Source/LibraryBackend/BackendCoordinator.swift
 +++ b/Source/LibraryBackend/BackendCoordinator.swift
-@@ -1,4 +1,6 @@
+@@ -1,4 +1,9 @@
 +#if canImport(Combine)
  import Combine
++#endif
++#if canImport(CoreGraphics)
++import CoreGraphics
 +#endif
  import Foundation
  
  extension Notification.Name {
-@@ -7,19 +9,211 @@ extension Notification.Name {
+@@ -7,19 +12,211 @@ extension Notification.Name {
      static let libraryBackendConfigurationRequested = Notification.Name("libraryBackendConfigurationRequested")
  }
  
@@ -35,13 +38,13 @@ index 33e09c6..cad46b7 100644
 +        let locator: TextLocator?
 +        let page: Int?
 +        let part: Int?
-+        let scrollPosition: Double?
++        let scrollPosition: CGPoint?
 +        let selectedRange: NSRange?
-+        let expandedNodeIDs: Set<Int>?
-+        let sidebarScrollPosition: Double?
++        let expandedNodeIDs: [Int]?
++        let sidebarScrollPosition: CGPoint?
 +        let isSidebarCollapsed: Bool?
 +        let searchText: String?
-+        let searchModeRaw: String?
++        let searchModeRaw: Int?
 +        let nearDistance: Int?
 +        let highlightTerms: [String]?
 +
@@ -54,13 +57,13 @@ index 33e09c6..cad46b7 100644
 +            locator: TextLocator? = nil,
 +            page: Int? = nil,
 +            part: Int? = nil,
-+            scrollPosition: Double? = nil,
++            scrollPosition: CGPoint? = nil,
 +            selectedRange: NSRange? = nil,
-+            expandedNodeIDs: Set<Int>? = nil,
-+            sidebarScrollPosition: Double? = nil,
++            expandedNodeIDs: [Int]? = nil,
++            sidebarScrollPosition: CGPoint? = nil,
 +            isSidebarCollapsed: Bool? = nil,
 +            searchText: String? = nil,
-+            searchModeRaw: String? = nil,
++            searchModeRaw: Int? = nil,
 +            nearDistance: Int? = nil,
 +            highlightTerms: [String]? = nil
 +        ) {
@@ -222,7 +225,7 @@ index 33e09c6..cad46b7 100644
  
      private var registrations: [BackendID: LibraryBackendRegistration] = [:]
      private var inFlightCancellations: [UUID: @Sendable () -> Void] = [:]
-@@ -78,27 +272,218 @@ final class BackendCoordinator: ObservableObject {
+@@ -78,27 +275,218 @@ final class BackendCoordinator: ObservableObject {
          }
      }
  
@@ -451,7 +454,7 @@ index 33e09c6..cad46b7 100644
      }
  
      func catalog(forceRefresh: Bool = false) async throws -> [LibraryCatalogNode] {
-@@ -224,3 +609,7 @@ final class BackendCoordinator: ObservableObject {
+@@ -224,3 +612,7 @@ final class BackendCoordinator: ObservableObject {
          return result
      }
  }

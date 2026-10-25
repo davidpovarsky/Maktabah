@@ -8,8 +8,8 @@
   "fork_payload_components": [
     {
       "path": "Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift",
-      "size_bytes": 5525,
-      "sha256": "bfc35295959843318048d00f40e1530d68ac4b7ed40a8201442100032af1bf8d"
+      "size_bytes": 5535,
+      "sha256": "b48e702ae0af4b1027052fd3b6269359dbb919cd86ba5ce710b3bed48e97dc56"
     },
     {
       "path": "Source/ChavrusaText/Annotations/ReaderAnnotationRefreshCoordinator.swift",
@@ -23,8 +23,8 @@
     },
     {
       "path": "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
-      "size_bytes": 16953,
-      "sha256": "a41d2d6c18b0d3a6804c8891e2401dbd92bd6d286ec1b6faf3b8759e91c5cf54"
+      "size_bytes": 14895,
+      "sha256": "af458c767906338b796cbc3a09315498159db4b6bd3ab841996cfc077b8d312f"
     },
     {
       "path": "Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift",
@@ -38,8 +38,8 @@
     },
     {
       "path": "Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift",
-      "size_bytes": 1272,
-      "sha256": "b604f76be4bfe9a8e9bf56b9f0e8feb3ca8a43c988b3b368f5212d77c45dccba"
+      "size_bytes": 1230,
+      "sha256": "ecfcf8f96434df17794f50c2d28cac4826077d25e2f29833e37de2549134438d"
     },
     {
       "path": "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift",
@@ -48,8 +48,8 @@
     },
     {
       "path": "Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift",
-      "size_bytes": 8094,
-      "sha256": "58193cbd1cf1f967ae7267b411f5fb378edababad834c3c358b983f70cff012d"
+      "size_bytes": 8095,
+      "sha256": "97f05de4dcb3ce774b3ac6f881ab352501695793f861bb0efdcb42f5b54cf8af"
     },
     {
       "path": "MaktabahTests/ChavrusaTextComponentTests.swift",
@@ -73,8 +73,8 @@
     },
     {
       "path": "tools/test_chavrusa_text_components.swift",
-      "size_bytes": 46325,
-      "sha256": "15746a60fa5f686618b8c8ac39344f6883552c3fda47209fa2ba748839bf4574"
+      "size_bytes": 46361,
+      "sha256": "f4551c146bb31fac3d831224447f579205e48c0022ef34450454fb8c4bccd217"
     },
     {
       "path": "tools/test_verify_upstream_boundary.py",
@@ -87,8 +87,8 @@
       "order": 0,
       "patch_id": "00-FORK-FILES",
       "filename": "00-fork-owned-components.patch",
-      "patch_file_sha256": "24facc1237375eb2835a96b0b8ac1d449f0f1b36edec3773b0a63a94b87d08c0",
-      "size_bytes": 212992,
+      "patch_file_sha256": "29bc72b3433f3738243ac53635ebe792284fdf81555c9e3264cd70289b765d51",
+      "size_bytes": 210533,
       "target_file": "Source/ChavrusaText/*, MaktabahTests/*, Scripts/CI/*, tools/*",
       "ownership": "FORK_OWNED",
       "approval_status": "AUTOMATIC_PRE_APPROVED",
@@ -98,8 +98,8 @@
       "order": 1,
       "patch_id": "00-FORK-COORD",
       "filename": "00-backendcoordinator-two-phase-switch.patch",
-      "patch_file_sha256": "20287bcdd34806b804f0b849ecc4f26e14ead0e573b543e1fbe6db35928daef9",
-      "size_bytes": 19463,
+      "patch_file_sha256": "7af933c5ed8ae7229bebee67baa7408253ed9a7d651122de669e6016d538d342",
+      "size_bytes": 19514,
       "target_file": "Source/LibraryBackend/BackendCoordinator.swift",
       "ownership": "FORK_OWNED",
       "approval_status": "AUTOMATIC_PRE_APPROVED",
@@ -153,8 +153,8 @@
       "order": 6,
       "patch_id": "BATCH_B_PATCH_05",
       "filename": "05-iosibarottextview-selection-mapper.patch",
-      "patch_file_sha256": "044bc0f570336878630af9bc70956b5475c7d5aa8170ff7e2afebe40882d4515",
-      "size_bytes": 1740,
+      "patch_file_sha256": "3b15bbfe91fdde648aa48429d5d45a76f925d0ec76cf65a75d3e0d8eb5135a8a",
+      "size_bytes": 1760,
       "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
       "ownership": "UPSTREAM_OWNED",
       "approval_status": "OWNER_APPROVAL_REQUIRED",
@@ -186,8 +186,8 @@
       "order": 9,
       "patch_id": "BATCH_B_PATCH_08",
       "filename": "08-iosnavigationmanager-session-restore.patch",
-      "patch_file_sha256": "03b8a43bb992d33774e0482eedb36bb9754cd687f94ca96a772db80dd7e83b6d",
-      "size_bytes": 15557,
+      "patch_file_sha256": "37e08b79da6c5b8f1aa33d8fe9695937d8a104a2386277aa79f4bf88246944f0",
+      "size_bytes": 17311,
       "target_file": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
       "ownership": "UPSTREAM_OWNED",
       "approval_status": "OWNER_APPROVAL_REQUIRED",

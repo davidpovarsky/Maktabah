@@ -1,6 +1,5 @@
 diff --git a/Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift b/Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift
 new file mode 100644
-index 0000000..0f89365
 --- /dev/null
 +++ b/Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift
 @@ -0,0 +1,153 @@
@@ -105,7 +104,7 @@ index 0000000..0f89365
 +/// Downstream adapter bridging backend text locators with Maktabah annotations.
 +/// Isolates multi-backend (Otzaria, Sefaria, Zayit) locator binding from upstream reader view models.
 +/// P3-3: Prohibits fabricated default line 0; requires exact canonical position.
-+final class BackendAnnotationBridge {
++final class BackendAnnotationBridge: Sendable {
 +    static let shared = BackendAnnotationBridge()
 +
 +    private init() {}
@@ -159,7 +158,6 @@ index 0000000..0f89365
 +}
 diff --git a/Source/ChavrusaText/Annotations/ReaderAnnotationRefreshCoordinator.swift b/Source/ChavrusaText/Annotations/ReaderAnnotationRefreshCoordinator.swift
 new file mode 100644
-index 0000000..2177bd0
 --- /dev/null
 +++ b/Source/ChavrusaText/Annotations/ReaderAnnotationRefreshCoordinator.swift
 @@ -0,0 +1,46 @@
@@ -211,7 +209,6 @@ index 0000000..2177bd0
 +#endif
 diff --git a/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift b/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift
 new file mode 100644
-index 0000000..4ffdb4e
 --- /dev/null
 +++ b/Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift
 @@ -0,0 +1,56 @@
@@ -273,10 +270,9 @@ index 0000000..4ffdb4e
 +}
 diff --git a/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift b/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift
 new file mode 100644
-index 0000000..f6ca6dc
 --- /dev/null
 +++ b/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift
-@@ -0,0 +1,410 @@
+@@ -0,0 +1,349 @@
 +import Foundation
 +
 +enum BackendNavigationAdapterError: Error, Equatable, LocalizedError {
@@ -626,70 +622,8 @@ index 0000000..f6ca6dc
 +        lock.unlock()
 +    }
 +}
-+
-+#if canImport(UIKit) || canImport(AppKit)
-+@MainActor
-+protocol TargetBackendBookResolver: Sendable {
-+    func resolveBook(
-+        id: Int,
-+        backendLocator: String?,
-+        title: String?,
-+        in backend: BackendID
-+    ) throws -> BooksData
-+}
-+
-+@MainActor
-+final class DefaultTargetBackendBookResolver: TargetBackendBookResolver {
-+    static let shared = DefaultTargetBackendBookResolver()
-+
-+    func resolveBook(
-+        id: Int,
-+        backendLocator: String?,
-+        title: String?,
-+        in backend: BackendID
-+    ) throws -> BooksData {
-+        let ldm = LibraryDataManager.shared
-+        var matchedBook: BooksData?
-+
-+        switch backend {
-+        case .otzaria:
-+            if let book = ldm.booksById[id] {
-+                matchedBook = book
-+            } else if let locator = backendLocator,
-+                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator || "\($0.backendLocator?.backend.rawValue ?? ""):\($0.backendLocator?.workKey ?? "")" == locator }) {
-+                matchedBook = book
-+            } else if let book = ldm.getBook([id]).first {
-+                matchedBook = book
-+            }
-+
-+        case .sefaria:
-+            if let locator = backendLocator {
-+                guard !locator.hasPrefix("otzaria:") else {
-+                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .sefaria)
-+                }
-+            }
-+            if let book = ldm.booksById[id], book.backendLocator != nil {
-+                matchedBook = book
-+            } else if let locator = backendLocator,
-+                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator }) {
-+                matchedBook = book
-+            }
-+        }
-+
-+        guard let valid = matchedBook else {
-+            throw BackendTransitionError.unresolvableBook(
-+                bookId: id,
-+                title: title ?? "Book \(id)",
-+                locator: backendLocator
-+            )
-+        }
-+        return valid
-+    }
-+}
-+#endif
 diff --git a/Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift b/Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift
 new file mode 100644
-index 0000000..da9b315
 --- /dev/null
 +++ b/Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift
 @@ -0,0 +1,81 @@
@@ -776,7 +710,6 @@ index 0000000..da9b315
 +}
 diff --git a/Source/ChavrusaText/Navigation/SerializedSessionWriter.swift b/Source/ChavrusaText/Navigation/SerializedSessionWriter.swift
 new file mode 100644
-index 0000000..808ed54
 --- /dev/null
 +++ b/Source/ChavrusaText/Navigation/SerializedSessionWriter.swift
 @@ -0,0 +1,232 @@
@@ -1014,7 +947,6 @@ index 0000000..808ed54
 +}
 diff --git a/Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift b/Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift
 new file mode 100644
-index 0000000..6e2a057
 --- /dev/null
 +++ b/Source/ChavrusaText/ReaderHost/iOSTabBarVisibilityHost.swift
 @@ -0,0 +1,34 @@
@@ -1024,17 +956,17 @@ index 0000000..6e2a057
 +/// ChavrusaText fork-owned host-level Tab Bar visibility policy.
 +/// Enforces iPad tab bar persistence across reading modes while respecting iPhone fullscreen reading.
 +/// Note: Marked READY_FOR_HOOK / NOT_IN_APP until integrated into host and tested on hardware.
-+public struct TabBarVisibilityHostModifier: ViewModifier {
-+    public let isIpad: Bool
-+    public let isReading: Bool
++struct TabBarVisibilityHostModifier: ViewModifier {
++    let isIpad: Bool
++    let isReading: Bool
 +
-+    public init(isIpad: Bool = MaktabahApp.isIpad, isReading: Bool = false) {
++    init(isIpad: Bool = MaktabahApp.isIpad, isReading: Bool = false) {
 +        self.isIpad = isIpad
 +        self.isReading = isReading
 +    }
 +
 +    @ViewBuilder
-+    public func body(content: Content) -> some View {
++    func body(content: Content) -> some View {
 +        if isIpad {
 +            // On iPad, Tab Bar MUST remain visible across reader, TOC, inspector, and sheets (BUG-01)
 +            content.toolbarVisibility(.visible, for: .tabBar)
@@ -1045,7 +977,7 @@ index 0000000..6e2a057
 +    }
 +}
 +
-+public extension View {
++extension View {
 +    /// Applies fork-owned Tab Bar visibility host policy.
 +    func chavrusaTextTabBarHostPolicy(isReading: Bool = false) -> some View {
 +        modifier(TabBarVisibilityHostModifier(isReading: isReading))
@@ -1054,7 +986,6 @@ index 0000000..6e2a057
 +#endif
 diff --git a/Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift b/Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift
 new file mode 100644
-index 0000000..4840c75
 --- /dev/null
 +++ b/Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift
 @@ -0,0 +1,143 @@
@@ -1203,7 +1134,6 @@ index 0000000..4840c75
 +}
 diff --git a/Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift b/Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift
 new file mode 100644
-index 0000000..e816408
 --- /dev/null
 +++ b/Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift
 @@ -0,0 +1,185 @@
@@ -1215,10 +1145,10 @@ index 0000000..e816408
 +}
 +
 +/// Concrete adapter wrapping an existing ArabicRenderResult or closure.
-+public struct ClosureRangeMappingProvider: ReaderRangeMappingProvider {
-+    private let transform: @Sendable (NSRange) -> NSRange?
++public struct ClosureRangeMappingProvider: @unchecked Sendable, ReaderRangeMappingProvider {
++    private let transform: (NSRange) -> NSRange?
 +
-+    public init(transform: @escaping @Sendable (NSRange) -> NSRange?) {
++    public init(transform: @escaping (NSRange) -> NSRange?) {
 +        self.transform = transform
 +    }
 +
@@ -1394,7 +1324,6 @@ index 0000000..e816408
 +}
 diff --git a/MaktabahTests/ChavrusaTextComponentTests.swift b/MaktabahTests/ChavrusaTextComponentTests.swift
 new file mode 100644
-index 0000000..acbf584
 --- /dev/null
 +++ b/MaktabahTests/ChavrusaTextComponentTests.swift
 @@ -0,0 +1,410 @@
@@ -1810,7 +1739,6 @@ index 0000000..acbf584
 +}
 diff --git a/Scripts/CI/verify-upstream-boundary.py b/Scripts/CI/verify-upstream-boundary.py
 new file mode 100644
-index 0000000..6483a0f
 --- /dev/null
 +++ b/Scripts/CI/verify-upstream-boundary.py
 @@ -0,0 +1,690 @@
@@ -2506,7 +2434,6 @@ index 0000000..6483a0f
 +    main()
 diff --git a/tools/build_maktabah_ios.sh b/tools/build_maktabah_ios.sh
 new file mode 100644
-index 0000000..9c4db97
 --- /dev/null
 +++ b/tools/build_maktabah_ios.sh
 @@ -0,0 +1,50 @@
@@ -2562,7 +2489,6 @@ index 0000000..9c4db97
 +echo "=== Build completed successfully! ==="
 diff --git a/tools/generate_migration_ledger.py b/tools/generate_migration_ledger.py
 new file mode 100644
-index 0000000..7cdb56c
 --- /dev/null
 +++ b/tools/generate_migration_ledger.py
 @@ -0,0 +1,411 @@
@@ -2979,7 +2905,6 @@ index 0000000..7cdb56c
 +    main()
 diff --git a/tools/test_chavrusa_text_components.swift b/tools/test_chavrusa_text_components.swift
 new file mode 100644
-index 0000000..ba56178
 --- /dev/null
 +++ b/tools/test_chavrusa_text_components.swift
 @@ -0,0 +1,777 @@
@@ -3471,8 +3396,8 @@ index 0000000..ba56178
 +                        incomingSnapshotData: "{\"tabs\": [3, 4]}".data(using: .utf8),
 +                        isCleanDestination: false,
 +                        stagedTabs: [
-+                            .init(id: UUID(), bookId: 201, bookTitle: "Sefaria Genesis", backendLocator: "sefaria:Genesis", scrollPosition: 42.0),
-+                            .init(id: UUID(), bookId: 202, bookTitle: "Sefaria Exodus", backendLocator: "sefaria:Exodus", scrollPosition: 100.5)
++                            .init(id: UUID(), bookId: 201, bookTitle: "Sefaria Genesis", backendLocator: "sefaria:Genesis", scrollPosition: CGPoint(x: 0, y: 42.0)),
++                            .init(id: UUID(), bookId: 202, bookTitle: "Sefaria Exodus", backendLocator: "sefaria:Exodus", scrollPosition: CGPoint(x: 0, y: 100.5))
 +                        ],
 +                        targetActiveTabId: nil
 +                    )
@@ -3762,7 +3687,6 @@ index 0000000..ba56178
 +}
 diff --git a/tools/test_verify_upstream_boundary.py b/tools/test_verify_upstream_boundary.py
 new file mode 100644
-index 0000000..32f0a8e
 --- /dev/null
 +++ b/tools/test_verify_upstream_boundary.py
 @@ -0,0 +1,535 @@

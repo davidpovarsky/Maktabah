@@ -1192,7 +1192,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
             let mapper = ReaderSelectionRangeMapper()
             let rawSourceText = currentRenderResult?.sourceText ?? textView.text ?? ""
-            let mappingProvider = currentRenderResult.map { ClosureRangeMappingProvider(transform: $0.remapSourceRange) }
+            let mappingProvider = currentRenderResult.map { res in ClosureRangeMappingProvider(transform: { r in res.remapSourceRange(r) }) }
             let mapResult = mapper.mapSelection(
                 displayedRange: range,
                 sourceText: rawSourceText,

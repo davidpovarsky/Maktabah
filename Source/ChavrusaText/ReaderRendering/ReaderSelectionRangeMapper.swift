@@ -6,10 +6,10 @@ public protocol ReaderRangeMappingProvider: Sendable {
 }
 
 /// Concrete adapter wrapping an existing ArabicRenderResult or closure.
-public struct ClosureRangeMappingProvider: ReaderRangeMappingProvider {
-    private let transform: @Sendable (NSRange) -> NSRange?
+public struct ClosureRangeMappingProvider: @unchecked Sendable, ReaderRangeMappingProvider {
+    private let transform: (NSRange) -> NSRange?
 
-    public init(transform: @escaping @Sendable (NSRange) -> NSRange?) {
+    public init(transform: @escaping (NSRange) -> NSRange?) {
         self.transform = transform
     }
 

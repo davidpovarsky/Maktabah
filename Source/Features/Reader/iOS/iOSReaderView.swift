@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct iOSReaderView: View {
     let book: BooksData

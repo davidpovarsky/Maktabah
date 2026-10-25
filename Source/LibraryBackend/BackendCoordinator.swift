@@ -1,6 +1,9 @@
 #if canImport(Combine)
 import Combine
 #endif
+#if canImport(CoreGraphics)
+import CoreGraphics
+#endif
 import Foundation
 
 extension Notification.Name {
@@ -31,13 +34,13 @@ struct PreparedBackendTransition: Sendable, Equatable {
         let locator: TextLocator?
         let page: Int?
         let part: Int?
-        let scrollPosition: Double?
+        let scrollPosition: CGPoint?
         let selectedRange: NSRange?
-        let expandedNodeIDs: Set<Int>?
-        let sidebarScrollPosition: Double?
+        let expandedNodeIDs: [Int]?
+        let sidebarScrollPosition: CGPoint?
         let isSidebarCollapsed: Bool?
         let searchText: String?
-        let searchModeRaw: String?
+        let searchModeRaw: Int?
         let nearDistance: Int?
         let highlightTerms: [String]?
 
@@ -50,13 +53,13 @@ struct PreparedBackendTransition: Sendable, Equatable {
             locator: TextLocator? = nil,
             page: Int? = nil,
             part: Int? = nil,
-            scrollPosition: Double? = nil,
+            scrollPosition: CGPoint? = nil,
             selectedRange: NSRange? = nil,
-            expandedNodeIDs: Set<Int>? = nil,
-            sidebarScrollPosition: Double? = nil,
+            expandedNodeIDs: [Int]? = nil,
+            sidebarScrollPosition: CGPoint? = nil,
             isSidebarCollapsed: Bool? = nil,
             searchText: String? = nil,
-            searchModeRaw: String? = nil,
+            searchModeRaw: Int? = nil,
             nearDistance: Int? = nil,
             highlightTerms: [String]? = nil
         ) {

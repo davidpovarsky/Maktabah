@@ -99,7 +99,7 @@ final class InMemoryAnnotationPersistenceAdapter: AnnotationPersistenceAdapter, 
 /// Downstream adapter bridging backend text locators with Maktabah annotations.
 /// Isolates multi-backend (Otzaria, Sefaria, Zayit) locator binding from upstream reader view models.
 /// P3-3: Prohibits fabricated default line 0; requires exact canonical position.
-final class BackendAnnotationBridge {
+final class BackendAnnotationBridge: Sendable {
     static let shared = BackendAnnotationBridge()
 
     private init() {}

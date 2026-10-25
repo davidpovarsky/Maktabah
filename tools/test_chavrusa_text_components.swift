@@ -486,8 +486,8 @@ struct TestRunner {
                         incomingSnapshotData: "{\"tabs\": [3, 4]}".data(using: .utf8),
                         isCleanDestination: false,
                         stagedTabs: [
-                            .init(id: UUID(), bookId: 201, bookTitle: "Sefaria Genesis", backendLocator: "sefaria:Genesis", scrollPosition: 42.0),
-                            .init(id: UUID(), bookId: 202, bookTitle: "Sefaria Exodus", backendLocator: "sefaria:Exodus", scrollPosition: 100.5)
+                            .init(id: UUID(), bookId: 201, bookTitle: "Sefaria Genesis", backendLocator: "sefaria:Genesis", scrollPosition: CGPoint(x: 0, y: 42.0)),
+                            .init(id: UUID(), bookId: 202, bookTitle: "Sefaria Exodus", backendLocator: "sefaria:Exodus", scrollPosition: CGPoint(x: 0, y: 100.5))
                         ],
                         targetActiveTabId: nil
                     )

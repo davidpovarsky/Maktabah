@@ -1,5 +1,5 @@
 diff --git a/Source/UI/iOS/Managers/iOSNavigationManager.swift b/Source/UI/iOS/Managers/iOSNavigationManager.swift
-index 26a2394..ff27de6 100644
+index 26a2394..ac3eb39 100644
 --- a/Source/UI/iOS/Managers/iOSNavigationManager.swift
 +++ b/Source/UI/iOS/Managers/iOSNavigationManager.swift
 @@ -5,7 +5,7 @@ import UIKit
@@ -11,7 +11,7 @@ index 26a2394..ff27de6 100644
      struct AlertMessage: Identifiable {
          let id = UUID()
          let title: String
-@@ -51,13 +51,18 @@ class iOSNavigationManager {
+@@ -51,10 +51,14 @@ class iOSNavigationManager {
      }
  
      private var observerTokens: [NotificationToken] = []
@@ -26,11 +26,7 @@ index 26a2394..ff27de6 100644
      }
  
      deinit {
-+        BackendCoordinator.shared.removeSwitchParticipant(self)
-         NotificationCenter.default.removeObserver(self)
-     }
- 
-@@ -109,21 +114,7 @@ class iOSNavigationManager {
+@@ -109,21 +113,7 @@ class iOSNavigationManager {
              )
          )
  
@@ -53,13 +49,13 @@ index 26a2394..ff27de6 100644
  
          observerTokens.append(
              NotificationToken(
-@@ -632,7 +623,221 @@ class iOSNavigationManager {
+@@ -632,7 +622,215 @@ class iOSNavigationManager {
                !session.tabs.isEmpty else {
              return
          }
 +        restoreSessionFromData(session)
 +    }
-+
+ 
 +    // MARK: - BackendSwitchParticipant (Two-Phase Fail-Closed Boundary)
 +
 +    func prepareTransition(from currentBackend: BackendID, to targetBackend: BackendID, token: UInt64) throws -> PreparedBackendTransition? {
@@ -95,23 +91,17 @@ index 26a2394..ff27de6 100644
 +                        }
 +                    }
 +                    if let backendLocator = tabSession.backendLocator {
-+                        if targetBackend == .otzaria && backendLocator.hasPrefix("sefaria:") {
++                        guard backendLocator.backend == targetBackend else {
 +                            throw BackendTransitionError.foreignBackendLocator(
-+                                locator: backendLocator,
-+                                expectedBackend: .otzaria
-+                            )
-+                        }
-+                        if targetBackend == .sefaria && backendLocator.hasPrefix("otzaria:") {
-+                            throw BackendTransitionError.foreignBackendLocator(
-+                                locator: backendLocator,
-+                                expectedBackend: .sefaria
++                                locator: "\(backendLocator.backend.rawValue):\(backendLocator.workKey)",
++                                expectedBackend: targetBackend
 +                            )
 +                        }
 +                    }
 +
 +                    _ = try resolver.resolveBook(
 +                        id: tabSession.bookId,
-+                        backendLocator: tabSession.backendLocator,
++                        backendLocator: tabSession.backendLocator?.workKey,
 +                        title: tabSession.bookTitle,
 +                        in: targetBackend
 +                    )
@@ -120,7 +110,7 @@ index 26a2394..ff27de6 100644
 +                        id: tabSession.id,
 +                        bookId: tabSession.bookId,
 +                        bookTitle: tabSession.bookTitle ?? "Book \(tabSession.bookId)",
-+                        backendLocator: tabSession.backendLocator,
++                        backendLocator: tabSession.backendLocator?.workKey,
 +                        contentId: tabSession.contentId,
 +                        locator: tabSession.locator,
 +                        page: tabSession.page,
@@ -270,12 +260,12 @@ index 26a2394..ff27de6 100644
 +            )
 +        }
 +    }
- 
++
 +    private func restoreSessionFromData(_ session: iOSReaderSession) {
          var restoredTabs: [ReaderTab] = []
          let ldm = LibraryDataManager.shared
  
-@@ -704,9 +909,13 @@ class iOSNavigationManager {
+@@ -704,9 +902,13 @@ class iOSNavigationManager {
          guard !restoredTabs.isEmpty else { return }
  
          self.openTabs = restoredTabs
@@ -291,7 +281,7 @@ index 26a2394..ff27de6 100644
              self.selectedBook = active.book
              self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
          }
-@@ -714,34 +923,12 @@ class iOSNavigationManager {
+@@ -714,34 +916,12 @@ class iOSNavigationManager {
      }
  
      func persistCurrentSession(immediate: Bool = false) {
@@ -328,3 +318,68 @@ index 26a2394..ff27de6 100644
  
          let session = iOSReaderSession(
              schemaVersion: iOSReaderSession.currentSchemaVersion,
+@@ -758,3 +938,64 @@ class iOSNavigationManager {
+         }
+     }
+ }
++
++// MARK: - Target Backend Book Resolution
++
++@MainActor
++protocol TargetBackendBookResolver: Sendable {
++    func resolveBook(
++        id: Int,
++        backendLocator: String?,
++        title: String?,
++        in backend: BackendID
++    ) throws -> BooksData
++}
++
++@MainActor
++final class DefaultTargetBackendBookResolver: TargetBackendBookResolver {
++    static let shared = DefaultTargetBackendBookResolver()
++
++    func resolveBook(
++        id: Int,
++        backendLocator: String?,
++        title: String?,
++        in backend: BackendID
++    ) throws -> BooksData {
++        let ldm = LibraryDataManager.shared
++        var matchedBook: BooksData?
++
++        switch backend {
++        case .otzaria:
++            if let book = ldm.booksById[id] {
++                matchedBook = book
++            } else if let locator = backendLocator,
++                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator || "\($0.backendLocator?.backend.rawValue ?? ""):\($0.backendLocator?.workKey ?? "")" == locator }) {
++                matchedBook = book
++            } else if let book = ldm.getBook([id]).first {
++                matchedBook = book
++            }
++
++        case .sefaria:
++            if let locator = backendLocator {
++                guard !locator.hasPrefix("otzaria:") else {
++                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .sefaria)
++                }
++            }
++            if let book = ldm.booksById[id], book.backendLocator != nil {
++                matchedBook = book
++            } else if let locator = backendLocator,
++                      let book = ldm.booksById.values.first(where: { $0.backendLocator?.workKey == locator }) {
++                matchedBook = book
++            }
++        }
++
++        guard let valid = matchedBook else {
++            throw BackendTransitionError.unresolvableBook(
++                bookId: id,
++                title: title ?? "Book \(id)",
++                locator: backendLocator
++            )
++        }
++        return valid
++    }
++}
