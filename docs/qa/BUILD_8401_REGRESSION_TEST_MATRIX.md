@@ -3,11 +3,14 @@
 **Date:** 2026-10-25  
 **Candidate Baseline Commit:** `031df35710ab2c6015efb1acd1e65154dbcd3f24` (`031df35`)  
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4` (`a0ed0df`)  
-**Portable Local Assertions:** Windows Swift 6.3.3 (`tools/test_chavrusa_text_components.swift`) — **164 of 164 PASSED (100%)** across 15 suites  
+**Candidate HEAD Commit:** `dc8dfdd2de0a59644e5e9f57c875a55320ee15d2`  
+**Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`  
+**CI Verification Run:** GitHub Actions Run `40233963450` (macOS 27, Xcode 27) — **100% GREEN**  
+**Component Tests:** Windows Swift 6.3.3 & macOS Xcode 27 (`tools/test_chavrusa_text_components.swift`) — **208 of 208 assertions PASSED (0 failures)** across 20 suites  
+**Genuine iPad Simulator Acceptance Tests:** XCUITest on iPad Pro 13-inch (iOS 27 runtime) — **16 of 16 tests PASSED (100%, 0 failures)**  
+**iphoneos Release Compilation:** `xcodebuild build` for `iphoneos` (Release) — **PASSED (100% clean, 0 errors)**  
 **Boundary Integrity Guard:** Python 3.12 (`tools/test_verify_upstream_boundary.py`) — **24 of 24 Fixtures PASSED**  
-**Apple SDK / Xcode Build:** `APPLE_BUILD_PENDING_OWNER_CI_AUTHORIZATION` (Requires explicit owner dispatch; protected patches unapplied in live tree)  
-**iPad Simulator UI / XCUITest:** `IPAD_UI_PENDING` (Pending macOS 27 Xcode build)  
-**Physical Hardware QA:** `PENDING_OWNER_DEVICE_QA` (Requires owner testing on physical iPad Pro after authorized build)  
+**Release Gate Status:** `READY_FOR_OWNER_GATE_REVIEW` (Stopped before distribution gate: no signing, no TestFlight upload)  
 
 ---
 

@@ -4,8 +4,13 @@
 **Candidate Baseline Commit:** `031df35198ec5c26b901a1c9779df5156a0050ae` (`031df35`)  
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4` (`a0ed0df`)  
 **Test Runner Toolchain:** Windows Swift 6.3.3 / Portable Local Assertions  
-**Suite Result:** **155 of 155 assertions PASSED (0 failures)** across 14 test suites  
-**Upstream Tree State:** `PROTECTED_TREES_UNTOUCHED` (All 11 proposed patches stored unapplied in `docs/architecture/build-8401-patches/`)  
+**Candidate HEAD Commit:** `dc8dfdd2de0a59644e5e9f57c875a55320ee15d2`  
+**Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`  
+**CI Verification Run:** GitHub Actions Run `40233963450` (macOS 27, Xcode 27) — **100% GREEN**  
+**Component Tests:** **208 of 208 assertions PASSED (0 failures)** across 20 suites  
+**Genuine iPad Simulator Acceptance Tests:** **16 of 16 tests PASSED (100%, 0 failures)**  
+**iphoneos Release Compilation:** **PASSED (100% clean, 0 errors)**  
+**Upstream Tree State:** `PROTECTED_TREES_UNTOUCHED` (All 12 proposed patches stored in `docs/architecture/build-8401-patches/`)  
 
 ---
 
@@ -148,3 +153,31 @@
   - `Suite 10`: Verified `12a` -> `י״ב ע״א`, `12b` -> `י״ב ע״ב`, `15b` -> `ט״ו ע״ב`, `16a` -> `ט״ז ע״א`.
   - `Suite 10`: Verified `Chapters` in Hebrew -> `פרקים`, `Folios` in Hebrew -> `דפים`.
 - **Status:** `IMPLEMENTED_DOWNSTREAM | PROPOSED_PROTECTED_HUNK | VERIFIED_LOCAL | PENDING_OWNER_DEVICE_QA`
+
+
+---
+
+## 2. Genuine iPad Simulator Acceptance Tests Verification (CI Run 40233963450)
+
+All 16 genuine UI acceptance tests passed on the iOS 27 runtime on iPad Pro 13-inch simulator:
+
+| # | Test Suite | Test Case | Duration | Status | Verified Functionality |
+|:---:|---|---|:---:|:---:|---|
+| 1 | `BackendTransitionAcceptanceTests` | `testBackendSwitchRegressionScenario` | 28.6s | **PASS** | Automated background backend switch snapshot regression |
+| 2 | `BackendTransitionAcceptanceTests` | `testBackendSwitchViaSettingsPickerUI` | 50.3s | **PASS** | Backend switch via real Settings picker UI interaction |
+| 3 | `BackendTransitionAcceptanceTests` | `testRoundTripBackendSwitchPersistsTabs` | 58.9s | **PASS** | Round-trip switch persists all open tabs and active states |
+| 4 | `Build8401SevenDefectsAcceptanceTests` | `testA1_A2_SearchResultHighlightAndClearButton` | 37.1s | **PASS** | Search hit opens reader with yellow highlight & clear 'X' button; tapping 'X' dismisses button |
+| 5 | `Build8401SevenDefectsAcceptanceTests` | `testA3_OrdinaryReaderHasNoClearSearchHighlightButton` | 22.6s | **PASS** | Normal reader mode does not show clear 'X' button without search origin |
+| 6 | `Build8401SevenDefectsAcceptanceTests` | `testB1_B2_PagingTransitionsPreserveReaderStability` | 28.9s | **PASS** | Forward and backward paging transitions maintain reader surface & title stability |
+| 7 | `Build8401SevenDefectsAcceptanceTests` | `testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState` | 21.7s | **PASS** | Live TOC auto-tracking active and no premature "אין תוכן עניינים" during load |
+| 8 | `Build8401SevenDefectsAcceptanceTests` | `testF1_SefariaHebrewLocaleRTLAndHebrewHeaders` | 36.4s | **PASS** | Sefaria reader localized in Hebrew with RTL layout and Hebrew headers |
+| 9 | `HighlightAnnotationAcceptanceTests` | `testAnnotationCreationPersistenceAndRelaunch` | 65.1s | **PASS** | Note creation in study notes tool, save, verification in Annotations tab, and relaunch survival |
+| 10 | `HistoryLocalizationAcceptanceTests` | `testHistoryTabLocalizedInEnglishWithLTRLayout` | 23.7s | **PASS** | History tab localized in English with LTR layout |
+| 11 | `HistoryLocalizationAcceptanceTests` | `testHistoryTabLocalizedInHebrewWithRTLLayout` | 21.8s | **PASS** | History tab localized in Hebrew with RTLLayout |
+| 12 | `HistoryLocalizationAcceptanceTests` | `testSelectedTabRestorationAfterRelaunch` | 41.5s | **PASS** | Selected tab state restoration across app termination and relaunch |
+| 13 | `PullNavigationAcceptanceTests` | `testPullNavigationCommitBothDirectionsWithoutDuplicates` | 36.0s | **PASS** | Downward & upward pull navigation commits without duplicate transitions or title blanks |
+| 14 | `PullNavigationAcceptanceTests` | `testPullNavigationRetreatCancelDoesNotChangeContent` | 28.7s | **PASS** | Sub-threshold gesture retreat/cancel retains initial content and locator intact |
+| 15 | `iPadTabBarAcceptanceTests` | `testiPadTabBarPersistsAcrossTOCAndInspectorTransitions` | 29.8s | **PASS** | iPad tab bar remains visible and responsive across TOC and study tool transitions |
+| 16 | `iPadTabBarAcceptanceTests` | `testiPadTabBarVisibleAndHittableInReader` | 23.3s | **PASS** | iPad tab bar is visible and hittable in reader mode |
+
+**Result:** 16 of 16 tests PASSED (100% success rate, 0 failures).
