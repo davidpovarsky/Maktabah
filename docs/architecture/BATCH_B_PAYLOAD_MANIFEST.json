@@ -195,13 +195,13 @@
       "order": 9,
       "patch_id": "BATCH_B_PATCH_08",
       "filename": "08-iosnavigationmanager-session-restore.patch",
-      "patch_file_sha256": "53e504284b98a67af2d5376431b65abdb20beda07356ec4dd2e9f04004e4e57e",
-      "size_bytes": 18956,
+      "patch_file_sha256": "cb906fb32da635ac4c94cf9ac9f63d70221a11bc5491bdee51840b53360c845b",
+      "size_bytes": 18808,
       "target_file": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
       "ownership": "UPSTREAM_OWNED",
       "approval_status": "PENDING_OWNER_SIGNATURE",
       "description": "Wires iOSNavigationManager as BackendSwitchParticipant with non-throwing publishTransition",
-      "canonical_patch_sha256": "53e504284b98a67af2d5376431b65abdb20beda07356ec4dd2e9f04004e4e57e"
+      "canonical_patch_sha256": "cb906fb32da635ac4c94cf9ac9f63d70221a11bc5491bdee51840b53360c845b"
     },
     {
       "order": 10,

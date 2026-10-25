@@ -95,8 +95,8 @@
       "status": "OWNER_APPROVAL_REQUIRED",
       "approval_ref": "BATCH_B_APPROVAL_PACKAGE.md#batch-b-patch-08",
       "expected_patch_file": "08-iosnavigationmanager-session-restore.patch",
-      "patch_digest_sha256": "53e504284b98a67af2d5376431b65abdb20beda07356ec4dd2e9f04004e4e57e",
-      "expected_head_blob_sha": "68d14d5a04362ba308fdef884e21d2f0fe453c13",
+      "patch_digest_sha256": "cb906fb32da635ac4c94cf9ac9f63d70221a11bc5491bdee51840b53360c845b",
+      "expected_head_blob_sha": "32046c0b2c468fa4e7b312b1474b582c751da1aa",
       "review_provenance": "Wires iOSNavigationManager as BackendSwitchParticipant in two-phase switch orchestration",
       "owner_attestation": null
     },

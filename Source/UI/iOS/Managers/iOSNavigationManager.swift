@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 import SwiftUI
 import UIKit
 
@@ -668,7 +669,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
                         }
                     }
 
-                    _ = try resolver.resolveBook(
+                    let resolvedBook = try resolver.resolveBook(
                         id: tabSession.bookId,
                         backendLocator: tabSession.backendLocator?.workKey,
                         title: tabSession.bookTitle,
@@ -692,7 +693,8 @@ class iOSNavigationManager: BackendSwitchParticipant {
                         searchText: tabSession.searchText,
                         searchModeRaw: tabSession.searchModeRaw,
                         nearDistance: tabSession.nearDistance,
-                        highlightTerms: tabSession.highlightTerms
+                        highlightTerms: tabSession.highlightTerms,
+                        retainedBook: resolvedBook
                     ))
                 }
                 return staged
@@ -720,12 +722,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
             var allSucceeded = true
 
             for staged in activeTransition.stagedTabs {
-                guard let book = (staged.retainedBook as? BooksData) ?? (try? targetBackendResolver.resolveBook(
-                    id: staged.bookId,
-                    backendLocator: staged.backendLocator,
-                    title: staged.bookTitle,
-                    in: targetBackend
-                )) else {
+                guard let book = staged.retainedBook as? BooksData else {
                     allSucceeded = false
                     break
                 }
@@ -761,7 +758,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
 
             // ATOMICITY: If ANY tab failed to restore or count does not match stagedTabs, ABORT!
             guard allSucceeded && restoredTabs.count == activeTransition.stagedTabs.count else {
-                AppLogger.log("publishTransition failed atomic restoration (\(restoredTabs.count)/\(activeTransition.stagedTabs.count) tabs ready). Preserving existing tabs without mutating state.", category: .lifecycle)
+                Logger.app.error("publishTransition failed atomic restoration (\(restoredTabs.count)/\(activeTransition.stagedTabs.count) tabs ready). Preserving existing tabs without mutating state.")
                 self.stagedTransition = nil
                 self.isSwitchingBackend = false
                 return
