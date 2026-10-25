@@ -638,6 +638,15 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         let rendered = resolveRenderedContent(textView: textView, context: context)
 
+        #if DEBUG
+        ReaderRenderedHighlightInspector.updateDiagnostics(
+            for: textView,
+            searchRanges: rendered.searchRanges,
+            currentLocator: viewModel.currentLocator?.persistenceKey,
+            renderGeneration: context.coordinator.renderGeneration
+        )
+        #endif
+
         if let pendingTarget = viewModel.consumePendingReaderScrollTarget(for: viewModel.currentLocator) {
             switch pendingTarget {
             case .top:
@@ -733,6 +742,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
             return cached
         }
 
+        context.coordinator.renderGeneration += 1
         let newlyRendered = renderAttributedContent(
             textView: textView,
             context: context,
@@ -979,6 +989,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         var lastRenderedContent: RenderedAttributedContent?
         var lastBackgroundColorIndex: Int?
         var animationTask: Task<Void, Never>?
+        var renderGeneration: Int = 0
         private var lastSelectionChangeDate: Date?
         private var manualDragStartOffset: CGFloat?
         private var didClearSearchForCurrentDrag = false

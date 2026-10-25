@@ -1259,6 +1259,26 @@ struct TestRunner {
         assertCondition(resolvedSectionLoc.sectionLocator == alreadySectionLoc, "Berakhot 15b section is self")
         assertCondition(resolvedSectionLoc.focusLocator == nil, "Berakhot 15b focus locator is nil")
 
+        // 21. RenderedHighlightSnapshot Serialization & Provenance (Section 1A)
+        print("\n--- 21. Testing RenderedHighlightSnapshot Diagnostics ---")
+        let item1 = RenderedHighlightItem(location: 10, length: 5, colorHex: "#FFFF00", provenance: "search")
+        let item2 = RenderedHighlightItem(location: 30, length: 8, colorHex: "#0000FF", provenance: "selection")
+        let testSnapshot = RenderedHighlightSnapshot(
+            searchHighlightCount: 1,
+            annotationHighlightCount: 0,
+            segmentSelectionCount: 1,
+            totalHighlights: 2,
+            locator: "sefaria|Berakhot|ref:Berakhot 15b",
+            renderGeneration: 4,
+            highlights: [item1, item2]
+        )
+        let jsonStr = testSnapshot.toJSONString()
+        assertCondition(!jsonStr.isEmpty && jsonStr.contains("searchHighlightCount"), "Snapshot encodes valid JSON")
+        let decoded = RenderedHighlightSnapshot.fromJSONString(jsonStr)
+        assertCondition(decoded == testSnapshot, "Snapshot decodes losslessly with exact counts and items")
+        assertCondition(decoded?.searchHighlightCount == 1, "Decoded searchHighlightCount matches")
+        assertCondition(decoded?.highlights.first?.provenance == "search", "Decoded provenance matches search")
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

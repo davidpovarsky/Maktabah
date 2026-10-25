@@ -43,11 +43,14 @@ final class HighlightAnnotationAcceptanceTests: MaktabahUITestBase {
         )
         annotationsTab.tap()
 
-        // 4. Verify annotation note is present in the annotations list
+        // 4. Verify annotation note is present in the annotations list BEFORE relaunch
         let createdNoteElement = app.staticTexts.matching(
             NSPredicate(format: "label CONTAINS %@", testNote)
         ).firstMatch
-        _ = createdNoteElement.waitForExistence(timeout: 5.0)
+        XCTAssertTrue(
+            waitForElement(createdNoteElement, timeout: 8.0),
+            "Annotation note must appear in the annotations list before relaunch"
+        )
 
         // 5. Navigate back to Library/Reader tab using resilient Hebrew/English locator
         let libraryTab = findTabButton(hebrew: "ספר", english: "Library")

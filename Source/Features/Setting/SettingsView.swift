@@ -255,6 +255,19 @@ extension SettingsView {
             .accessibilityIdentifier("settings-library-source-picker")
             .disabled(backendCoordinator.isTransitioning)
 
+            #if DEBUG
+            Text(backendCoordinator.activeBackendID.rawValue)
+                .frame(width: 1, height: 1)
+                .clipped()
+                .accessibilityIdentifier("settings-active-backend-id")
+                .accessibilityValue(backendCoordinator.activeBackendID.rawValue)
+            Text(backendCoordinator.isTransitioning ? "transitioning" : "idle")
+                .frame(width: 1, height: 1)
+                .clipped()
+                .accessibilityIdentifier("settings-transition-state")
+                .accessibilityValue(backendCoordinator.isTransitioning ? "transitioning" : "idle")
+            #endif
+
             if backendCoordinator.isTransitioning {
                 HStack(spacing: 8) {
                     ProgressView()

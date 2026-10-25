@@ -1,8 +1,8 @@
 diff --git a/Maktabah.xcodeproj/project.pbxproj b/Maktabah.xcodeproj/project.pbxproj
-index 8a33246..0fd168d 100644
+index 8a33246..f4238e2 100644
 --- a/Maktabah.xcodeproj/project.pbxproj
 +++ b/Maktabah.xcodeproj/project.pbxproj
-@@ -32,6 +32,27 @@
+@@ -32,6 +32,30 @@
  		CF3000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
  		CF1000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
  		CF2000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */; };
@@ -27,10 +27,13 @@ index 8a33246..0fd168d 100644
 +		CF3000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */; };
 +		CF1000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */; };
 +		CF2000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */; };
++		CF3000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */; };
++		CF1000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */; };
++		CF2000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */; };
  		F3F000040000000000000004 /* iOSReaderSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000030000000000000003 /* iOSReaderSessionTests.swift */; };
  		F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000010000000000000001 /* iOSReaderSessionManager.swift */; };
  		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
-@@ -1292,6 +1313,13 @@
+@@ -1292,6 +1316,14 @@
  		CF0000000000000000000007 /* iOSTabBarVisibilityHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/iOSTabBarVisibilityHost.swift"; sourceTree = "<group>"; };
  		CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderRendering/ReaderPullNavigationStateMachine.swift"; sourceTree = "<group>"; };
  		CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderRendering/ReaderSelectionRangeMapper.swift"; sourceTree = "<group>"; };
@@ -41,10 +44,11 @@ index 8a33246..0fd168d 100644
 +		CF000000000000000000000E /* TalmudHebrewAddressFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization/TalmudHebrewAddressFormatter.swift"; sourceTree = "<group>"; };
 +		CF000000000000000000000F /* TargetBackendBookResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/TargetBackendBookResolver.swift"; sourceTree = "<group>"; };
 +		CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderContentLoadCoordinator.swift"; sourceTree = "<group>"; };
++		CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderRenderedHighlightInspector.swift"; sourceTree = "<group>"; };
  		F3F000030000000000000003 /* iOSReaderSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionTests.swift; sourceTree = "<group>"; };
  		F3F000010000000000000001 /* iOSReaderSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionManager.swift; sourceTree = "<group>"; };
  		B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoAnchoredCard.swift; sourceTree = "<group>"; };
-@@ -1980,6 +2008,13 @@
+@@ -1980,6 +2012,14 @@
  				CF0000000000000000000007 /* iOSTabBarVisibilityHost.swift */,
  				CF0000000000000000000008 /* ReaderPullNavigationStateMachine.swift */,
  				CF0000000000000000000009 /* ReaderSelectionRangeMapper.swift */,
@@ -55,10 +59,11 @@ index 8a33246..0fd168d 100644
 +				CF000000000000000000000E /* TalmudHebrewAddressFormatter.swift */,
 +				CF000000000000000000000F /* TargetBackendBookResolver.swift */,
 +				CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */,
++				CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */,
  			);
  			path = ChavrusaText;
  			sourceTree = "<group>";
-@@ -3837,6 +3872,13 @@
+@@ -3837,6 +3877,14 @@
  				CF1000000000000000000006 /* SerializedSessionWriter.swift in Sources */,
  				CF1000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
  				CF1000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
@@ -69,10 +74,11 @@ index 8a33246..0fd168d 100644
 +				CF100000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */,
 +				CF100000000000000000000F /* TargetBackendBookResolver.swift in Sources */,
 +				CF1000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
++				CF1000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
  				CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */,
  				CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
  				CE1000000000000000000003 /* BackendCoordinator.swift in Sources */,
-@@ -4156,6 +4198,13 @@
+@@ -4156,6 +4204,14 @@
  				CF2000000000000000000006 /* SerializedSessionWriter.swift in Sources */,
  				CF2000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
  				CF2000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
@@ -83,10 +89,11 @@ index 8a33246..0fd168d 100644
 +				CF200000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */,
 +				CF200000000000000000000F /* TargetBackendBookResolver.swift in Sources */,
 +				CF2000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
++				CF2000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
  				CE2000000000000000000001 /* LibraryBackendModels.swift in Sources */,
  				CE2000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
  				CE2000000000000000000003 /* BackendCoordinator.swift in Sources */,
-@@ -4488,6 +4537,13 @@
+@@ -4488,6 +4544,14 @@
  				CF3000000000000000000007 /* iOSTabBarVisibilityHost.swift in Sources */,
  				CF3000000000000000000008 /* ReaderPullNavigationStateMachine.swift in Sources */,
  				CF3000000000000000000009 /* ReaderSelectionRangeMapper.swift in Sources */,
@@ -97,6 +104,7 @@ index 8a33246..0fd168d 100644
 +				CF300000000000000000000E /* TalmudHebrewAddressFormatter.swift in Sources */,
 +				CF300000000000000000000F /* TargetBackendBookResolver.swift in Sources */,
 +				CF3000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
++				CF3000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
  				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
  				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
  				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,

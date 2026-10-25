@@ -530,6 +530,23 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Verify Immutable Candidate SHA and Cryptographic Upstream Boundary Gate (Fail-Closed)
+        run: |
+          echo "=== Enforcing Immutable Candidate SHA and Boundary Gate ==="
+          CURRENT_SHA=$(git rev-parse HEAD)
+          echo "Release candidate SHA: $CURRENT_SHA"
+
+          if [ "${{ inputs.data_profile }}" != "production" ]; then
+            echo "::error::Release build requires data_profile=production, got '${{ inputs.data_profile }}'"
+            exit 1
+          fi
+
+          echo "Running Upstream Boundary Verification..."
+          python3 Scripts/CI/verify-upstream-boundary.py \
+            --base 031df35710ab2c6015efb1acd1e65154dbcd3f24 \
+            --head "$CURRENT_SHA" \
+            --upstream-ref a0ed0df908a6cb38bc459d4baaeb400f447b2fc4
+
       - name: Import Apple Distribution certificate
         shell: bash
         env:

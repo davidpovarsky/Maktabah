@@ -1,0 +1,13 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift b/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift
+index 357400e..9b92435 100644
+--- a/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift
++++ b/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift
+@@ -94,6 +94,8 @@ struct TOCNodeRow: View {
+                 )
+         }
+         .accessibilityIdentifier("toc-row-\(item.id)")
++        .accessibilityAddTraits(item.id == selectedId ? [.isSelected] : [])
++        .accessibilityValue(item.id == selectedId ? "selected" : "unselected")
+     }
+ }
+ 

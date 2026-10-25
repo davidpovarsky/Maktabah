@@ -1,5 +1,5 @@
 diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
-index 1a136eb..197b525 100644
+index 1a136eb..b1da086 100644
 --- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 +++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 @@ -184,6 +184,10 @@ struct iOSReaderWorkspaceView: View {
@@ -38,7 +38,7 @@ index 1a136eb..197b525 100644
          }
          .onChange(of: viewModel.readerInspectorVisible) { _, _ in
              updatePanelPresentation()
-@@ -291,11 +313,19 @@ struct iOSReaderWorkspaceView: View {
+@@ -291,11 +313,21 @@ struct iOSReaderWorkspaceView: View {
              onShowTableOfContents: openContents
          )
          .overlay(alignment: .top) {
@@ -53,17 +53,19 @@ index 1a136eb..197b525 100644
 +                    .clipped()
 +                    .accessibilityIdentifier("reader-header-title")
 +                    .accessibilityLabel(readerHeaderTitle)
-+                Text(viewModel.currentLocator?.persistenceKey ?? book.book)
++                let canonicalLocator = viewModel.currentLocator?.persistenceKey ?? viewModel.backendSection?.locator.persistenceKey ?? viewModel.currentBook?.backendLocator?.persistenceKey ?? book.book
++                Text(canonicalLocator)
 +                    .frame(width: 1, height: 1)
 +                    .clipped()
 +                    .accessibilityIdentifier("reader-current-locator")
-+                    .accessibilityLabel(viewModel.currentLocator?.persistenceKey ?? book.book)
++                    .accessibilityLabel(canonicalLocator)
++                    .accessibilityValue(canonicalLocator)
 +            }
 +            .allowsHitTesting(false)
          }
          .accessibilityElement(children: .contain)
          .accessibilityIdentifier("reader-surface")
-@@ -305,7 +335,7 @@ struct iOSReaderWorkspaceView: View {
+@@ -305,7 +337,7 @@ struct iOSReaderWorkspaceView: View {
                      Text(readerHeaderTitle)
                          .font(.headline)
                          .lineLimit(1)

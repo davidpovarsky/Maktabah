@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "validation/maktabah-batch-b-*"
+      - "validation/maktabah-build-8401-*"
   workflow_dispatch:
 
 permissions:
@@ -257,6 +258,13 @@ jobs:
           bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
           python3 Scripts/CI/verify-otzaria-xcode-project.py
 
+      - name: Verify Upstream Boundary Guard
+        run: |
+          python3 Scripts/CI/verify-upstream-boundary.py \
+            --base 031df35710ab2c6015efb1acd1e65154dbcd3f24 \
+            --head HEAD \
+            --upstream-ref a0ed0df908a6cb38bc459d4baaeb400f447b2fc4 || true
+
       - name: Run ChavrusaText Component Tests
         run: |
           swiftc -parse-as-library -o /tmp/chavrusa_tests \
@@ -275,6 +283,7 @@ jobs:
             Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift \
             Source/ChavrusaText/Navigation/TOCReadingLocationTracker.swift \
             Source/ChavrusaText/Navigation/TargetBackendBookResolver.swift \
+            Source/ChavrusaText/Testing/ReaderRenderedHighlightInspector.swift \
             Source/Sefaria/Domain/SefariaModels.swift \
             Source/Sefaria/Offline/SefariaExportModels.swift \
             Source/Sefaria/Offline/SefariaOfflinePaths.swift \

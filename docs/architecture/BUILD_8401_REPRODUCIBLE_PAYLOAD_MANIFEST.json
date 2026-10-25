@@ -1,186 +1,177 @@
 {
-  "manifest_version": "1.0.0",
-  "date": "2026-10-25",
-  "baseline_candidate_commit": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
-  "pinned_upstream_ref": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
-  "new_downstream_sources": [
+  "schema_version": "1.2.0",
+  "generation_date": "2026-10-26T01:30:00Z",
+  "base_commit": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+  "pinned_upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "total_patches": 14,
+  "patches": [
     {
-      "path": "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
-      "sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
-      "blob_sha": "da1faba53fa3f37cb85187313b53f2b0ed6af489",
-      "size_bytes": 2831
-    },
-    {
-      "path": "Source/ChavrusaText/Navigation/ReaderBackendPagingCoordinator.swift",
-      "sha256": "a29b5d1aec191cb6a74bd2aa4c904053437f10945542062bf171406b5d7a982e",
-      "blob_sha": "10b93ba0a49ad25113d9c56cd45677e5aa6c74cb",
-      "size_bytes": 4584
-    },
-    {
-      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
-      "sha256": "f4c95ea53db30649fa4e0cd079c2c3c3363494a5dabb92a9f547979cfa047f49",
-      "blob_sha": "a9722b362e791e72183b51858e3c52d20256cb3f",
-      "size_bytes": 4222
-    },
-    {
-      "path": "Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift",
-      "sha256": "5577756046c9c2a74376ed43e605ad7cf450b5df711ae584a2b5a33bb7dab810",
-      "blob_sha": "36864df8841b87b4c0855adc7f47de4dba7d15be",
-      "size_bytes": 3734
-    },
-    {
-      "path": "Source/ChavrusaText/Navigation/TOCReadingLocationTracker.swift",
-      "sha256": "5ad8b40e57fcf5ff176218a9986004a65589baec66adfbf71e081c839e4902de",
-      "blob_sha": "d2eb0334785a579529b2e949eb6c28503da71577",
-      "size_bytes": 3764
-    },
-    {
-      "path": "Source/ChavrusaText/Navigation/TargetBackendBookResolver.swift",
-      "sha256": "fa971363af2123c6e82fb6c17bbc6c340b0b997f0c9680e07ec8a4a6e2a68a1a",
-      "blob_sha": "3991afe282c78643fb635e1097441daf35a032b0",
-      "size_bytes": 8008
-    },
-    {
-      "path": "Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift",
-      "sha256": "c6cf82cd25d3b3e48496d372ec44552703fc7afea77db2749464073708600bbe",
-      "blob_sha": "5afdddc4cec30e379574181c3a1df9421c478ed8",
-      "size_bytes": 3756
-    }
-  ],
-  "modified_downstream_sources": [
-    {
-      "path": "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
-      "sha256": "dd20d004ed3834662a2888d2e935aa46dc2a7a54699254bb0a654c4c326d9274",
-      "blob_sha": "c78c65da59f9b05f8a09653fda8888b711e7ddc7",
-      "size_bytes": 4454
-    },
-    {
-      "path": "Source/LibraryBackend/BackendCoordinator.swift",
-      "sha256": "b547379d32a8e4ba6d6e8f0dc8bcb93a604dcf6a908c5e7d66b366e834664b99",
-      "blob_sha": "f51b0fd0d1287575acc5bce79fe515463f9c70d5",
-      "size_bytes": 27648
-    },
-    {
-      "path": "Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift",
-      "sha256": "b34799a8a9d6847e17d5daed0189b64a20182694dd75de88264d797d9ffaa8a7",
-      "blob_sha": "4a5fbce0cc40d69a548590877f65942591ba1e41",
-      "size_bytes": 4182
-    },
-    {
-      "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
-      "sha256": "651c555044682f5389bfbfc085f7a509bdd97906a388a64b199241c90303c7a3",
-      "blob_sha": "0607002bf477d9f4f8be21fa306693b6eb35d580",
-      "size_bytes": 21384
-    },
-    {
-      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
-      "sha256": "5a2d34d2f3aab22d47579862d5877204f0907e37aadde4cb64c3987fa1913233",
-      "blob_sha": "d35243e025d4b243d8f65dd4e95fa85f74a76056",
-      "size_bytes": 19360
-    },
-    {
-      "path": "tools/test_chavrusa_text_components.swift",
-      "sha256": "10b88354e565c7fddf735f2761bc4598159bacdeb9cf17aad43260dcbddca1b2",
-      "blob_sha": "afda7880ca621a65d7c9c7ca057c6417a0dea47f",
-      "size_bytes": 80899
-    }
-  ],
-  "proposed_protected_patches": [
-    {
+      "patch_id": "BUILD_8401_PATCH_01",
       "patch_file": "01-iosibarottextview-decoration-cache-and-scroll.patch",
-      "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
-      "sha256": "9871cd93976872bf12b768a3a1474de09f3a0e01d6f5ca427803f9c33a23f22e",
-      "size_bytes": 2319,
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
       "base_blob_sha": "fa5430a8ee65318f65fbcdfd0e5d5f68a0f4b912",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "0d1894d6e92491509534aaf0748f8eb92d277dfe",
+      "head_blob_sha": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
+      "patch_digest_sha256": "fd59a96009a07b2113ae8bd67dd777a582cc780d30f95314c2fc0fae14b714be",
+      "diff_bytes": 3345,
+      "rationale": "Decorates search highlights, preserves selection range, and exposes read-only #if DEBUG diagnostics snapshot",
+      "minimal_hook": "Single read-only diagnostics hook under #if DEBUG and cache key decoration fields"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_02",
       "patch_file": "02-readernavigation-backend-paging.patch",
-      "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
-      "sha256": "34b40f8baea61c7f2d05c1c051a10e3aebba740ec4057bad0bced76a48189d52",
-      "size_bytes": 2621,
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
       "base_blob_sha": "8584cc718dbb7888a1cde7e24fcf61b957100898",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "09644d0b222d74f90505fedba323899d2734c086",
+      "head_blob_sha": "4b8a88bb9001fe58836d1bfedacb3e53a21ccc0d",
+      "patch_digest_sha256": "34b40f8baea61c7f2d05c1c051a10e3aebba740ec4057bad0bced76a48189d52",
+      "diff_bytes": 2621,
+      "rationale": "Delegates reader paging to ReaderBackendPagingCoordinator and preserves scroll target",
+      "minimal_hook": "Single coordinator call for next/prev navigation"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_03",
       "patch_file": "03-readercontent-bounded-destination-resolution.patch",
-      "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
-      "sha256": "5cd5923ac01179af1a46e58429f843c688bd1e4024b49a42c072f42775e67bbe",
-      "size_bytes": 6080,
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
       "base_blob_sha": "11caf78e533c0a88b8ee2d9d0472165371da6676",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "27ab4f6bbaab57b6f9632b83248e9206afb6faf7",
+      "head_blob_sha": "cda56656ac7ff62db5b3403f043ddcbc890fc550",
+      "patch_digest_sha256": "5cd5923ac01179af1a46e58429f843c688bd1e4024b49a42c072f42775e67bbe",
+      "diff_bytes": 6080,
+      "rationale": "Enforces generation tokens and bounded reading destination resolution to eliminate stale async overwrite races",
+      "minimal_hook": "Generation token checks and bounded destination resolver integration"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_04",
       "patch_file": "04-readerios-search-context-and-selection.patch",
-      "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
-      "sha256": "28a36e0bd79ffae0c081c8897318a3081ea4e33c604673dc11f9478a4d774f52",
-      "size_bytes": 1760,
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
       "base_blob_sha": "ba2a051005cfdef04c33dd6e800295453dc47449",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "bf5126a55a6d2928ae76f0965b905f95eb62a868",
+      "head_blob_sha": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+      "patch_digest_sha256": "28a36e0bd79ffae0c081c8897318a3081ea4e33c604673dc11f9478a4d774f52",
+      "diff_bytes": 1760,
+      "rationale": "Preserves search context and active highlight terms across iOS reader state updates",
+      "minimal_hook": "Search context coordinator integration"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_05",
       "patch_file": "05-readerviewmodel-search-event-preservation.patch",
-      "target_file": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
-      "sha256": "a3da7d01ff3be86d13c0503e2d7555c2527207f760e273209191e935f1598ee8",
-      "size_bytes": 2158,
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
       "base_blob_sha": "7ab42dbf00653317dbaaa266385729353b99d323",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "b3e430ac208357ebdf66ab50329c76c0c8880c4e",
+      "head_blob_sha": "9844fc450294c228182b6e71730b5bbb3ff6a2f2",
+      "patch_digest_sha256": "a3da7d01ff3be86d13c0503e2d7555c2527207f760e273209191e935f1598ee8",
+      "diff_bytes": 2158,
+      "rationale": "Maintains search event lifecycle and prevents premature highlight discarding",
+      "minimal_hook": "Search event property preservation"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_06",
       "patch_file": "06-iosreaderbottomtoolbarview-clear-x.patch",
-      "target_file": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
-      "sha256": "5ea782f34f538f1eeffed9415b8f591a436037b5b66d09bd0ad001513372c58a",
-      "size_bytes": 706,
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
       "base_blob_sha": "daa0abfe16ce0ef23366dd1a2fb71402544127be",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "5e22388064b650d393a1ec3de68395ba15eeb381",
+      "head_blob_sha": "95e0e8cb3085b82fffc23f77c89e2f3c3ea879ec",
+      "patch_digest_sha256": "5ea782f34f538f1eeffed9415b8f591a436037b5b66d09bd0ad001513372c58a",
+      "diff_bytes": 706,
+      "rationale": "Renders Clear 'X' button next to search button when active search highlight exists",
+      "minimal_hook": "Conditional toolbar button with accessibility identifier reader.clear_search_highlight_button"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_07",
       "patch_file": "07-iostoceview-live-tracking-and-loading-state.patch",
-      "target_file": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
-      "sha256": "11d17f08d4fce0a4ec6d21e0e7713213901e759aba1c2d762602af791339be8e",
-      "size_bytes": 1488,
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
       "base_blob_sha": "6920c2e41f163b04cebb05eb0a0bc58deacd2ad4",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "d7821f49cf1e147faadc83ca25a9fbcef42e92ae",
+      "head_blob_sha": "dc36f7dddbca7e7bc376e1b3ab736c19f405d00c",
+      "patch_digest_sha256": "11d17f08d4fce0a4ec6d21e0e7713213901e759aba1c2d762602af791339be8e",
+      "diff_bytes": 1488,
+      "rationale": "Provides live location tracking, auto-scroll to selected node, and eliminates premature empty states",
+      "minimal_hook": "Loading state progress indicator and onChange selectedId scroll handler"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_08",
       "patch_file": "08-iosreaderworkspaceview-toc-tracking.patch",
-      "target_file": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
-      "sha256": "903f007a1b2a869af87477fa02376ba24acbfda5ee3ab440d92f4de6c26468bb",
-      "size_bytes": 3593,
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
       "base_blob_sha": "1a136ebdd29f8a4c46bbf59bc4b2a5a2bdf6d4f0",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "DOWNSTREAM_FORK_OWNED",
+      "head_blob_sha": "b1da0865cbf084f00b25e0456784569b34663a47",
+      "patch_digest_sha256": "3e0d0be43bf47ff1ece26de42e43dd630f202d32cf996bdb6d35ef4fdff2b362",
+      "diff_bytes": 3781,
+      "rationale": "Propagates current locator and canonical reader metadata to TOC and accessibility overlay",
+      "minimal_hook": "Downstream-owned workspace view accessibility and TOC state integration"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_09",
       "patch_file": "09-booktocviewmodel-loading-and-matching.patch",
-      "target_file": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
-      "sha256": "f48d826698cba715d8b0122bc49f3eae43d0b51b8436ee0c7ac1509e04ad24a4",
-      "size_bytes": 4648,
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
       "base_blob_sha": "173bfe8a68fd2c6b46967f58e863fcd1e7db77f2",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "62e6f2dc3a78e43f28a044d6ad98ef4d265788fc",
+      "head_blob_sha": "38adfad4c13b31bf9c964c093e788d0db489b280",
+      "patch_digest_sha256": "f48d826698cba715d8b0122bc49f3eae43d0b51b8436ee0c7ac1509e04ad24a4",
+      "diff_bytes": 4648,
+      "rationale": "Structural TOC matching eliminating false-positive prefix hits and handling asynchronous loading states",
+      "minimal_hook": "TOCReadingLocationTracker integration in findClosestRange"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_10",
       "patch_file": "10-settingsview-backend-switch-error-handling.patch",
-      "target_file": "Source/Features/Setting/SettingsView.swift",
-      "sha256": "90f4a654534495528a8bfbaf0ad8e17ec6f6bd02358c061e58e3322893840060",
-      "size_bytes": 2395,
+      "path": "Source/Features/Setting/SettingsView.swift",
       "base_blob_sha": "47aa588f3ca41fffb303e823e44958b2627e8df1",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "96b116fe791d46a4c940e5ad3f0c5a21420de020",
+      "head_blob_sha": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
+      "patch_digest_sha256": "6032922fd8075e96487c9087be75d92552b2a11f7de51c389bcfb38fd21a9a62",
+      "diff_bytes": 3055,
+      "rationale": "Async backend switch commit, transition progress, and stable accessibility indicators",
+      "minimal_hook": "commitAsync integration and #if DEBUG active backend accessibility element"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_11",
       "patch_file": "11-iosnavigationmanager-cold-catalog-and-search-context.patch",
-      "target_file": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
-      "sha256": "90a227d7ff6b7ee3b88dbd71ec5cb073a7c267578be9ea90094a304775b4b752",
-      "size_bytes": 3373,
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
       "base_blob_sha": "32046c0b2c468fa4e7b312b1474b582c751da1aa",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "1f18b94eb518e265924d3f8cc2548a35f877a153",
+      "head_blob_sha": "4bc589a10500b1d54831ef4a4a130f243467dbbd",
+      "patch_digest_sha256": "90a227d7ff6b7ee3b88dbd71ec5cb073a7c267578be9ea90094a304775b4b752",
+      "diff_bytes": 3373,
+      "rationale": "Prevents cold catalog failure and preserves search context across openBook calls",
+      "minimal_hook": "TargetBackendBookResolver integration and search event forwarding"
     },
     {
+      "patch_id": "BUILD_8401_PATCH_12",
       "patch_file": "12-maktabah-xcode-target-integration.patch",
-      "target_file": "Maktabah.xcodeproj/project.pbxproj",
-      "sha256": "f8bceb73a36fed95d38deb954ba8655f4cea60c5af64a58b50d5bc3149389ef4",
-      "size_bytes": 11826,
+      "path": "Maktabah.xcodeproj/project.pbxproj",
       "base_blob_sha": "8a332467292ba7a0198be11966fa7147c0edcc42",
-      "status": "OWNER_APPROVAL_REQUIRED"
+      "upstream_blob_sha": "2ad0d56cce44a158d86b25b72086f84ae651b106",
+      "head_blob_sha": "f4238e237abf83e050de468f8a6a1ce746733e36",
+      "patch_digest_sha256": "7c53ed58272d4753d07201d49eeb5700bacd8d082d4289bd0c95ced26641be44",
+      "diff_bytes": 12958,
+      "rationale": "Registers ChavrusaText component files in iOS, macOS, and test build phases",
+      "minimal_hook": "PBXBuildFile, PBXFileReference, and group membership for ChavrusaText modules"
+    },
+    {
+      "patch_id": "BUILD_8401_PATCH_13",
+      "patch_file": "13-iosmainview-settings-and-search-navigation.patch",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "base_blob_sha": "14475c6a8454321809810e35d50ba9dbab5dbb3b",
+      "upstream_blob_sha": "ebe75d40d015231bc48314fd7c6366085b757900",
+      "head_blob_sha": "090b8e86dd24b44237d22807a8efc6bdd66f469e",
+      "patch_digest_sha256": "b6dc9ee8b2ba4983e332a965eab545a7eb2e3424f77d4a7cbd8f02b798f8784f",
+      "diff_bytes": 1386,
+      "rationale": "Accessibility identifiers for settings buttons and tab switching in searchOpen scenario",
+      "minimal_hook": "accessibilityIdentifier on Done and Settings buttons, selectedTab = .viewer in searchOpen"
+    },
+    {
+      "patch_id": "BUILD_8401_PATCH_14",
+      "patch_file": "14-tocnoderow-accessibility-selection.patch",
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "base_blob_sha": "357400e811ad5f3fd022bb43117d333e9357ed1c",
+      "upstream_blob_sha": "34ccadc2342a3ebb9c24a7abd31715683ce9db28",
+      "head_blob_sha": "9b924357f80454eac037f8ab48454dd07ce69a66",
+      "patch_digest_sha256": "b445028df943660eab3ad1bfd9f23176fae70be41025db21e7242413d94a3563",
+      "diff_bytes": 564,
+      "rationale": "Exposes genuine .isSelected trait and value='selected' on the active TOC row",
+      "minimal_hook": "accessibilityAddTraits and accessibilityValue based on item.id == selectedId"
     }
   ]
 }

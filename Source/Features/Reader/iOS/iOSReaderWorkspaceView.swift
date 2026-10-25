@@ -319,11 +319,13 @@ struct iOSReaderWorkspaceView: View {
                     .clipped()
                     .accessibilityIdentifier("reader-header-title")
                     .accessibilityLabel(readerHeaderTitle)
-                Text(viewModel.currentLocator?.persistenceKey ?? book.book)
+                let canonicalLocator = viewModel.currentLocator?.persistenceKey ?? viewModel.backendSection?.locator.persistenceKey ?? viewModel.currentBook?.backendLocator?.persistenceKey ?? book.book
+                Text(canonicalLocator)
                     .frame(width: 1, height: 1)
                     .clipped()
                     .accessibilityIdentifier("reader-current-locator")
-                    .accessibilityLabel(viewModel.currentLocator?.persistenceKey ?? book.book)
+                    .accessibilityLabel(canonicalLocator)
+                    .accessibilityValue(canonicalLocator)
             }
             .allowsHitTesting(false)
         }

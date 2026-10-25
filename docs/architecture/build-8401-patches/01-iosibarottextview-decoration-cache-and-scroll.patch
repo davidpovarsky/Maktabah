@@ -1,17 +1,26 @@
 diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
-index fa5430a..aedcc8f 100644
+index fa5430a..23cd37e 100644
 --- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
 +++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
-@@ -638,7 +638,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+@@ -638,7 +638,16 @@ struct iOSIbarotTextView: UIViewRepresentable {
  
          let rendered = resolveRenderedContent(textView: textView, context: context)
  
 -        if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
++        #if DEBUG
++        ReaderRenderedHighlightInspector.updateDiagnostics(
++            for: textView,
++            searchRanges: rendered.searchRanges,
++            currentLocator: viewModel.currentLocator?.persistenceKey,
++            renderGeneration: context.coordinator.renderGeneration
++        )
++        #endif
++
 +        if let pendingTarget = viewModel.consumePendingReaderScrollTarget(for: viewModel.currentLocator) {
              switch pendingTarget {
              case .top:
                  scrollTextViewToTop(textView)
-@@ -715,6 +715,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
+@@ -715,6 +724,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
              text: text,
              annotations: annotations,
              searchEventId: activeSearchEventId,
@@ -20,7 +29,15 @@ index fa5430a..aedcc8f 100644
              showHarakat: state.showHarakat,
              clickableAnnotation: state.clickableAnnotation,
              enhancedUnderline: enhancedUnderline,
-@@ -764,6 +766,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
+@@ -731,6 +742,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             return cached
+         }
+ 
++        context.coordinator.renderGeneration += 1
+         let newlyRendered = renderAttributedContent(
+             textView: textView,
+             context: context,
+@@ -764,6 +776,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
          let text: String
          let annotations: [Annotation]
          let searchEventId: UUID?
@@ -29,7 +46,15 @@ index fa5430a..aedcc8f 100644
          let showHarakat: Bool
          let clickableAnnotation: Bool
          let enhancedUnderline: Bool
-@@ -1070,10 +1074,11 @@ struct iOSIbarotTextView: UIViewRepresentable {
+@@ -975,6 +989,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         var lastRenderedContent: RenderedAttributedContent?
+         var lastBackgroundColorIndex: Int?
+         var animationTask: Task<Void, Never>?
++        var renderGeneration: Int = 0
+         private var lastSelectionChangeDate: Date?
+         private var manualDragStartOffset: CGFloat?
+         private var didClearSearchForCurrentDrag = false
+@@ -1070,10 +1085,11 @@ struct iOSIbarotTextView: UIViewRepresentable {
  
              (scrollView as? iOSCustomIbarotTextView)?.updateViewportAccessibilityMetadata()
              if !didClearSearchForCurrentDrag,
