@@ -12,16 +12,19 @@ final class HistoryLocalizationAcceptanceTests: MaktabahUITestBase {
 
     func testHistoryTabLocalizedInHebrewWithRTLLayout() throws {
         launchWithScenario("catalog", backend: "sefaria", language: "he", locale: "he_IL")
+        dismissAlertsIfNeeded()
 
         // 1. Assert History tab label is explicitly "היסטוריה"
-        let historyTab = app.buttons.matching(NSPredicate(format: "label CONTAINS 'היסטוריה'")).firstMatch
+        let historyTab = findTabButton(hebrew: "היסטוריה", english: "History")
         XCTAssertTrue(waitForElement(historyTab, timeout: 10.0), "History tab must have label 'היסטוריה' in Hebrew")
+        XCTAssertTrue(historyTab.label.contains("היסטוריה"), "History tab label must contain 'היסטוריה'")
 
-        let libraryTab = app.buttons.matching(NSPredicate(format: "label CONTAINS 'ספריה'")).firstMatch
+        let libraryTab = findTabButton(hebrew: "ספר", english: "Library")
         XCTAssertTrue(waitForElement(libraryTab, timeout: 5.0), "Library tab must exist in Hebrew")
+        XCTAssertTrue(libraryTab.label.contains("ספר"), "Library tab label must contain 'ספר' (ספרייה)")
 
         // 2. Assert RTL layout alignment:
-        // In iPad TabView with RTL (Hebrew), the visual order starts from the right edge or follows RTL layout
+        // In iPad TabView with RTL (Hebrew), the tab buttons exist with nonzero frames
         if isPad && historyTab.exists && libraryTab.exists {
             let histFrame = historyTab.frame
             let libFrame = libraryTab.frame
@@ -32,13 +35,16 @@ final class HistoryLocalizationAcceptanceTests: MaktabahUITestBase {
 
     func testHistoryTabLocalizedInEnglishWithLTRLayout() throws {
         launchWithScenario("catalog", backend: "sefaria", language: "en", locale: "en_US")
+        dismissAlertsIfNeeded()
 
         // 1. Assert History tab label is explicitly "History"
-        let historyTab = app.buttons.matching(NSPredicate(format: "label CONTAINS 'History'")).firstMatch
+        let historyTab = findTabButton(hebrew: "היסטוריה", english: "History")
         XCTAssertTrue(waitForElement(historyTab, timeout: 10.0), "History tab must have label 'History' in English")
+        XCTAssertTrue(historyTab.label.contains("History"), "History tab label must contain 'History'")
 
-        let libraryTab = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Library'")).firstMatch
+        let libraryTab = findTabButton(hebrew: "ספר", english: "Library")
         XCTAssertTrue(waitForElement(libraryTab, timeout: 5.0), "Library tab must exist in English")
+        XCTAssertTrue(libraryTab.label.contains("Library"), "Library tab label must contain 'Library'")
 
         // 2. Assert Hebrew label is NOT present in English mode
         let hebrewTab = app.buttons.matching(NSPredicate(format: "label CONTAINS 'היסטוריה'")).firstMatch
@@ -47,8 +53,9 @@ final class HistoryLocalizationAcceptanceTests: MaktabahUITestBase {
 
     func testSelectedTabRestorationAfterRelaunch() throws {
         launchWithScenario("catalog", backend: "sefaria", language: "he", locale: "he_IL")
+        dismissAlertsIfNeeded()
 
-        let historyTab = app.buttons.matching(NSPredicate(format: "label CONTAINS 'היסטוריה'")).firstMatch
+        let historyTab = findTabButton(hebrew: "היסטוריה", english: "History")
         XCTAssertTrue(waitForElement(historyTab, timeout: 10.0))
 
         // Switch to History tab
@@ -58,9 +65,10 @@ final class HistoryLocalizationAcceptanceTests: MaktabahUITestBase {
         // Terminate and relaunch
         app.terminate()
         app.launch()
+        dismissAlertsIfNeeded()
 
         // Verify history tab remains selected or restored
-        let restoredHistory = app.buttons.matching(NSPredicate(format: "label CONTAINS 'היסטוריה'")).firstMatch
+        let restoredHistory = findTabButton(hebrew: "היסטוריה", english: "History")
         XCTAssertTrue(waitForElement(restoredHistory, timeout: 10.0), "App must launch into restored state")
     }
 }
