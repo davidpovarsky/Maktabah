@@ -25,6 +25,53 @@ enum ReaderScrollTarget: Equatable, Sendable {
 }
 
 enum ReaderBackendPagingCoordinator: Sendable {
+    /// Finds the index of the active reading unit within the ordered navigation items.
+    /// Handles exact equality, Sefaria hierarchical refs, and Otzaria line anchors.
+    static func findCurrentIndex(
+        currentLocator: TextLocator,
+        in navigationItems: [LibraryNavigationItem]
+    ) -> Int? {
+        guard !navigationItems.isEmpty else { return nil }
+
+        // 1. Exact locator match
+        if let exact = navigationItems.firstIndex(where: { $0.locator == currentLocator }) {
+            return exact
+        }
+
+        switch currentLocator.backend {
+        case .sefaria:
+            // 2. Sefaria canonical ref match
+            guard case .canonicalRef(let currentRef) = currentLocator.position else { return nil }
+            return navigationItems.firstIndex(where: { item in
+                guard item.locator.backend == .sefaria,
+                      item.locator.workKey == currentLocator.workKey,
+                      case .canonicalRef(let itemRef) = item.locator.position else {
+                    return false
+                }
+                return SefariaRef.sectionMatches(currentRef, itemRef) ||
+                       SefariaRef.sectionAncestors(of: currentRef).contains(SefariaRef.canonicalInput(itemRef))
+            })
+
+        case .otzaria:
+            // 3. Otzaria line anchor match (closest heading at or before current line)
+            guard case .legacyLine(let currentLine) = currentLocator.position else { return nil }
+            var bestIdx: Int?
+            var bestLine = -1
+            for (idx, item) in navigationItems.enumerated() {
+                guard item.locator.backend == .otzaria,
+                      item.locator.workKey == currentLocator.workKey,
+                      case .legacyLine(let itemLine) = item.locator.position else {
+                    continue
+                }
+                if itemLine <= currentLine && itemLine > bestLine {
+                    bestLine = itemLine
+                    bestIdx = idx
+                }
+            }
+            return bestIdx
+        }
+    }
+
     /// Determines the appropriate paging action for next/previous navigation.
     static func resolvePagingAction(
         direction: ReaderPagingDirection,
@@ -43,9 +90,8 @@ enum ReaderBackendPagingCoordinator: Sendable {
             if let nextLocator = backendSectionNext {
                 return .loadBackendLocator(nextLocator, scrollTarget: .top)
             }
-            // Check ordered navigation items if available
             if let currentLocator, !navigationItems.isEmpty {
-                if let currentIndex = navigationItems.firstIndex(where: { $0.locator == currentLocator }),
+                if let currentIndex = findCurrentIndex(currentLocator: currentLocator, in: navigationItems),
                    currentIndex + 1 < navigationItems.count {
                     return .loadBackendLocator(navigationItems[currentIndex + 1].locator, scrollTarget: .top)
                 }
@@ -57,9 +103,8 @@ enum ReaderBackendPagingCoordinator: Sendable {
             if let prevLocator = backendSectionPrevious {
                 return .loadBackendLocator(prevLocator, scrollTarget: .bottom)
             }
-            // Check ordered navigation items if available
             if let currentLocator, !navigationItems.isEmpty {
-                if let currentIndex = navigationItems.firstIndex(where: { $0.locator == currentLocator }),
+                if let currentIndex = findCurrentIndex(currentLocator: currentLocator, in: navigationItems),
                    currentIndex > 0 {
                     return .loadBackendLocator(navigationItems[currentIndex - 1].locator, scrollTarget: .bottom)
                 }

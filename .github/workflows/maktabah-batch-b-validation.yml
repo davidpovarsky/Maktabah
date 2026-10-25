@@ -271,6 +271,7 @@ jobs:
             Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift \
             Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift \
             Source/ChavrusaText/Navigation/ReaderBackendPagingCoordinator.swift \
+            Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift \
             Source/ChavrusaText/Search/ReaderSearchContextCoordinator.swift \
             Source/ChavrusaText/Navigation/TOCReadingLocationTracker.swift \
             Source/ChavrusaText/Navigation/TargetBackendBookResolver.swift \

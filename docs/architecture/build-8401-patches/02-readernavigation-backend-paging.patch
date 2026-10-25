@@ -1,5 +1,5 @@
 diff --git a/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift b/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift
-index 8584cc7..3faba82 100644
+index 8584cc7..4b8a88b 100644
 --- a/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift
 +++ b/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift
 @@ -31,13 +31,49 @@ extension ReaderViewModel {
@@ -19,7 +19,7 @@ index 8584cc7..3faba82 100644
 +        switch action {
 +        case .loadBackendLocator(let locator, let scrollTarget):
 +            #if os(iOS)
-+            pendingReaderScrollTarget = scrollTarget == .top ? .top : .bottom
++            setPendingReaderScrollTarget(scrollTarget == .top ? .top : .bottom, for: locator)
 +            #endif
 +            loadBackendContent(locator)
 +        case .noOpBoundaryReached:
@@ -44,7 +44,7 @@ index 8584cc7..3faba82 100644
 +        switch action {
 +        case .loadBackendLocator(let locator, let scrollTarget):
 +            #if os(iOS)
-+            pendingReaderScrollTarget = scrollTarget == .top ? .top : .bottom
++            setPendingReaderScrollTarget(scrollTarget == .top ? .top : .bottom, for: locator)
 +            #endif
 +            loadBackendContent(locator)
 +        case .noOpBoundaryReached:

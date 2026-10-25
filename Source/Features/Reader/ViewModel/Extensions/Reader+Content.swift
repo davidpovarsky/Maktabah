@@ -121,18 +121,29 @@ extension ReaderViewModel {
         selectedSegmentLocator = effectiveFocus
         backendLoadTask?.cancel()
         state = .loading
-        let expectedBookKey = effectiveSection.workKey
+        let scrollTarget: ReaderScrollTarget? = pendingReaderScrollTarget == .top ? .top : (pendingReaderScrollTarget == .bottom ? .bottom : nil)
+        let token = contentLoadCoordinator.beginRequest(
+            backend: effectiveSection.backend,
+            workKey: effectiveSection.workKey,
+            sectionLocator: effectiveSection,
+            scrollTarget: scrollTarget
+        )
         backendLoadTask = Task { @MainActor [weak self] in
             guard let self else { return }
             do {
                 let section = try await BackendCoordinator.shared.section(at: effectiveSection)
                 try Task.checkCancellation()
-                guard self.currentBook?.backendLocator?.workKey == expectedBookKey else { return }
+                guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
+                    return
+                }
                 self.backendSection = section
                 let renderModel = MaktabahBackendAdapter.renderModel(
                     from: section,
                     preferredMode: TextViewState.shared.readerTextMode
                 )
+                guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
+                    return
+                }
                 self.backendRenderModel = renderModel
                 let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
                 if let bookID = self.currentBook?.id {
@@ -149,9 +160,16 @@ extension ReaderViewModel {
                         categories: [],
                         description: nil
                     )
+                    let navGen = self.contentLoadCoordinator.beginNavigationItemsRequest(for: workLocator.workKey)
                     Task { [weak self] in
+                        guard let self else { return }
                         if let items = try? await BackendCoordinator.shared.navigationItems(for: work) {
-                            self?.navigationItems = items
+                            await MainActor.run {
+                                guard self.contentLoadCoordinator.isNavigationItemsRequestActive(generation: navGen, workKey: workLocator.workKey) else {
+                                    return
+                                }
+                                self.navigationItems = items
+                            }
                         }
                     }
                 }
@@ -160,10 +178,13 @@ extension ReaderViewModel {
             } catch LibraryBackendError.staleRequest {
                 return
             } catch {
+                guard !Task.isCancelled, self.contentLoadCoordinator.isTokenActive(token) else { return }
                 self.contentText = error.localizedDescription
                 self.state = .error(error.localizedDescription)
             }
-            self.backendLoadTask = nil
+            if self.contentLoadCoordinator.isTokenActive(token) {
+                self.backendLoadTask = nil
+            }
         }
     }
 

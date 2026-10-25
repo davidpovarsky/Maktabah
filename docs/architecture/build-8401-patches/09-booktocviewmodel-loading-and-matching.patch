@@ -1,5 +1,5 @@
 diff --git a/Source/Features/Reader/ViewModel/BookTOCViewModel.swift b/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
-index 173bfe8..74b72a5 100644
+index 173bfe8..38adfad 100644
 --- a/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
 +++ b/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
 @@ -39,6 +39,7 @@ class BookTOCViewModel {
@@ -10,8 +10,16 @@ index 173bfe8..74b72a5 100644
      private(set) var tocRanges: [TOCRange] = []
      private var nodeIdCache: [Int: TOCNode] = [:]
  
-@@ -60,7 +61,12 @@ class BookTOCViewModel {
+@@ -56,11 +57,20 @@ class BookTOCViewModel {
+     func loadTOC(book: BooksData) {
+         loadingTask?.cancel()
+         loadFailure = nil
++        tocNodes = []
++        navigationStructures = []
++        selectedStructureID = ""
+ 
          if let locator = book.backendLocator {
++            let expectedWorkKey = locator.workKey
              loadingTask = Task { @MainActor [weak self] in
                  guard let self else { return }
 +                self.isLoading = true
@@ -23,7 +31,58 @@ index 173bfe8..74b72a5 100644
                  do {
                      let work = LibraryWork(
                          locator: locator,
-@@ -254,6 +260,15 @@ class BookTOCViewModel {
+@@ -70,6 +80,8 @@ class BookTOCViewModel {
+                         description: nil
+                     )
+                     let structures = try await BackendCoordinator.shared.navigationStructures(for: work)
++                    try Task.checkCancellation()
++                    guard book.backendLocator?.workKey == expectedWorkKey else { return }
+                     self.navigationStructures = structures
+                     let activeStructure = structures.first
+                     self.selectedStructureID = activeStructure?.id ?? ""
+@@ -79,6 +91,8 @@ class BookTOCViewModel {
+                     } else {
+                         nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
+                     }
++                    try Task.checkCancellation()
++                    guard book.backendLocator?.workKey == expectedWorkKey else { return }
+                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
+                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
+                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
+@@ -96,7 +110,10 @@ class BookTOCViewModel {
+                         self.onStructureChanged?(items)
+                     }
+                     self.onTOCLoaded?(tree)
++                } catch is CancellationError {
++                    return
+                 } catch {
++                    guard !Task.isCancelled, book.backendLocator?.workKey == expectedWorkKey else { return }
+                     if case LibraryBackendError.unavailableOffline = error {
+                         self.loadFailure = .unavailableOffline
+                     } else if case LibraryBackendError.corruptData(_) = error {
+@@ -106,7 +123,6 @@ class BookTOCViewModel {
+                     }
+                     Logger.reader.error("Failed to load backend TOC: \(error.localizedDescription, privacy: .public)")
+                 }
+-                self.onTOCLoadingStateChanged?(false)
+             }
+             return
+         }
+@@ -207,12 +223,7 @@ class BookTOCViewModel {
+         for r in roots {
+             traverse(r)
+         }
+-        return result.sorted {
+-            if $0.id != $1.id {
+-                return $0.id < $1.id
+-            }
+-            return $0.level < $1.level
+-        }
++        return result
+     }
+ 
+     nonisolated private static func computeEndIDs(for allNodes: [TOCNode]) {
+@@ -254,6 +265,15 @@ class BookTOCViewModel {
          return allNodes.first { $0.backendLocator == locator }
      }
  

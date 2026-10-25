@@ -42,7 +42,7 @@ extension ReaderViewModel {
         switch action {
         case .loadBackendLocator(let locator, let scrollTarget):
             #if os(iOS)
-            pendingReaderScrollTarget = scrollTarget == .top ? .top : .bottom
+            setPendingReaderScrollTarget(scrollTarget == .top ? .top : .bottom, for: locator)
             #endif
             loadBackendContent(locator)
         case .noOpBoundaryReached:
@@ -65,7 +65,7 @@ extension ReaderViewModel {
         switch action {
         case .loadBackendLocator(let locator, let scrollTarget):
             #if os(iOS)
-            pendingReaderScrollTarget = scrollTarget == .top ? .top : .bottom
+            setPendingReaderScrollTarget(scrollTarget == .top ? .top : .bottom, for: locator)
             #endif
             loadBackendContent(locator)
         case .noOpBoundaryReached:

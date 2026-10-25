@@ -638,7 +638,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
         let rendered = resolveRenderedContent(textView: textView, context: context)
 
-        if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
+        if let pendingTarget = viewModel.consumePendingReaderScrollTarget(for: viewModel.currentLocator) {
             switch pendingTarget {
             case .top:
                 scrollTextViewToTop(textView)

@@ -298,8 +298,8 @@ struct iOSReaderWorkspaceView: View {
             Color.clear
                 .frame(width: 1, height: 1)
                 .accessibilityElement(children: .ignore)
-                .accessibilityIdentifier("reader-header-title")
-                .accessibilityLabel(book.book)
+                .accessibilityIdentifier("reader-current-locator")
+                .accessibilityLabel(viewModel.currentLocator?.position.description ?? book.book)
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")

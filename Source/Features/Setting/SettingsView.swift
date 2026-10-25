@@ -252,6 +252,7 @@ extension SettingsView {
                     Text(backend.displayName).tag(backend)
                 }
             }
+            .accessibilityIdentifier("settings-library-source-picker")
             .disabled(backendCoordinator.isTransitioning)
 
             if backendCoordinator.isTransitioning {

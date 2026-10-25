@@ -1,5 +1,5 @@
 diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
-index 1a136eb..713acc7 100644
+index 1a136eb..5bdb8d5 100644
 --- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 +++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 @@ -184,6 +184,10 @@ struct iOSReaderWorkspaceView: View {
@@ -13,3 +13,14 @@ index 1a136eb..713acc7 100644
          if let locator = viewModel.backendSection?.locator,
             let node = viewModel.tocViewModel.findNode(for: locator) {
              return node
+@@ -294,8 +298,8 @@ struct iOSReaderWorkspaceView: View {
+             Color.clear
+                 .frame(width: 1, height: 1)
+                 .accessibilityElement(children: .ignore)
+-                .accessibilityIdentifier("reader-header-title")
+-                .accessibilityLabel(book.book)
++                .accessibilityIdentifier("reader-current-locator")
++                .accessibilityLabel(viewModel.currentLocator?.position.description ?? book.book)
+         }
+         .accessibilityElement(children: .contain)
+         .accessibilityIdentifier("reader-surface")

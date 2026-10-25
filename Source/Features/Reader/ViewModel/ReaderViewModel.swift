@@ -64,6 +64,7 @@ class ReaderViewModel: ViewModelBase {
     var otzariaSourcesExpandedSourceIDs: Set<Int> = []
     var otzariaSourcesLoadTask: Task<Void, Never>?
     var backendLoadTask: Task<Void, Never>?
+    let contentLoadCoordinator = ReaderContentLoadCoordinator()
 
     enum PendingReaderScrollTarget: Equatable {
         case top
@@ -73,10 +74,20 @@ class ReaderViewModel: ViewModelBase {
     var highlightTerms: [String]? = nil
     var searchHighlightFocusLocator: TextLocator?
     var pendingReaderScrollTarget: PendingReaderScrollTarget?
+    var pendingReaderScrollTargetLocator: TextLocator?
 
-    func consumePendingReaderScrollTarget() -> PendingReaderScrollTarget? {
-        let target = pendingReaderScrollTarget
+    func setPendingReaderScrollTarget(_ target: PendingReaderScrollTarget?, for locator: TextLocator? = nil) {
+        pendingReaderScrollTarget = target
+        pendingReaderScrollTargetLocator = locator
+    }
+
+    func consumePendingReaderScrollTarget(for locator: TextLocator? = nil) -> PendingReaderScrollTarget? {
+        guard let target = pendingReaderScrollTarget else { return nil }
+        if let expected = pendingReaderScrollTargetLocator, let locator {
+            guard expected == locator else { return nil }
+        }
         pendingReaderScrollTarget = nil
+        pendingReaderScrollTargetLocator = nil
         return target
     }
 

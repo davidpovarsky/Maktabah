@@ -38,4 +38,34 @@ final class BackendTransitionAcceptanceTests: MaktabahUITestBase {
         dismissAlertsIfNeeded()
         XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0))
     }
+
+    func testBackendSwitchViaSettingsPickerUI() throws {
+        // Launch into settings scenario with Sefaria active
+        launchWithScenario("settings", backend: "sefaria")
+        dismissAlertsIfNeeded()
+
+        let picker = app.pickers["settings-library-source-picker"]
+        let otzariaOption = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS[c] 'Otzaria' OR label CONTAINS[c] 'אוצריא'")
+        ).firstMatch
+
+        if picker.waitForExistence(timeout: 5.0) {
+            picker.adjust(toPickerWheelValue: "Otzaria")
+        } else if otzariaOption.waitForExistence(timeout: 5.0) && otzariaOption.isHittable {
+            otzariaOption.tap()
+        }
+
+        // Wait for transition to complete and Done button to be tapped
+        let doneButton = app.buttons["settings-done-button"]
+        if doneButton.waitForExistence(timeout: 10.0) && doneButton.isHittable {
+            doneButton.tap()
+        }
+
+        // Verify library tab is restored and functional
+        let libraryTab = findTabButton(hebrew: "ספר", english: "Library")
+        XCTAssertTrue(
+            waitForElement(libraryTab, timeout: 12.0),
+            "Library tab must remain responsive after settings backend transition"
+        )
+    }
 }

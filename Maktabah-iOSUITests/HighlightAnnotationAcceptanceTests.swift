@@ -11,44 +11,76 @@ import XCTest
 final class HighlightAnnotationAcceptanceTests: MaktabahUITestBase {
 
     func testAnnotationCreationPersistenceAndRelaunch() throws {
-        // Launch into studyNotes scenario
+        // 1. Launch into studyNotes scenario
         launchWithScenario("studyNotes", backend: "sefaria")
 
         let noteTextView = app.textViews["annotation-note-text"]
+        XCTAssertTrue(
+            waitForElement(noteTextView, timeout: 12.0),
+            "Annotation note text view must exist in studyNotes scenario"
+        )
+
+        // 2. Type a distinctive unique Hebrew annotation note
+        let noteToken = UUID().uuidString.prefix(6)
+        let testNote = "הערת אימות מערכתית \(noteToken)"
+        noteTextView.tap()
+        noteTextView.typeText(testNote)
+
         let saveButton = app.buttons["annotation-save"]
+        XCTAssertTrue(
+            waitForElement(saveButton, timeout: 5.0),
+            "Annotation save button must exist"
+        )
+        XCTAssertTrue(saveButton.isHittable, "Annotation save button must be hittable")
+        saveButton.tap()
 
-        if noteTextView.waitForExistence(timeout: 8.0) {
-            // Type a distinctive Hebrew annotation note
-            let testNote = "הערת אימות מערכתית - בדיקת קבלה"
-            noteTextView.tap()
-            noteTextView.typeText(testNote)
+        // 3. Navigate away to Annotations tab
+        let annotationsTab = findTabButton(hebrew: "הערות", english: "Annotations")
+        XCTAssertTrue(
+            waitForElement(annotationsTab, timeout: 8.0),
+            "Annotations tab button must exist and be accessible"
+        )
+        annotationsTab.tap()
 
-            if saveButton.waitForExistence(timeout: 3.0) && saveButton.isHittable {
-                saveButton.tap()
-            }
-        }
+        // 4. Verify annotation note is present in the annotations list
+        let createdNoteElement = app.staticTexts.matching(
+            NSPredicate(format: "label CONTAINS %@", testNote)
+        ).firstMatch
+        _ = createdNoteElement.waitForExistence(timeout: 5.0)
 
-        // Navigate away to Annotations tab
-        let annotationsTab = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'הערות' OR label CONTAINS[c] 'Annotations'")).firstMatch
-        if annotationsTab.waitForExistence(timeout: 5.0) && annotationsTab.isHittable {
-            annotationsTab.tap()
-            sleep(1)
+        // 5. Navigate back to Library/Reader tab using resilient Hebrew/English locator
+        let libraryTab = findTabButton(hebrew: "ספר", english: "Library")
+        XCTAssertTrue(
+            waitForElement(libraryTab, timeout: 8.0),
+            "Library tab button ('ספרייה' / 'Library') must exist"
+        )
+        libraryTab.tap()
 
-            // Verify annotations list is displayed
-            let libraryTab = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'ספריה' OR label CONTAINS[c] 'Library'")).firstMatch
-            XCTAssertTrue(libraryTab.waitForExistence(timeout: 5.0))
+        let readerSurface = app.otherElements["reader-surface"]
+        XCTAssertTrue(
+            waitForElement(readerSurface, timeout: 10.0),
+            "Reader surface must be restored when returning to Library tab"
+        )
 
-            // Navigate back to Library/Reader tab
-            libraryTab.tap()
-            sleep(1)
-        }
-
-        // Terminate and relaunch app to verify persistence across app sessions
+        // 6. Terminate and relaunch app to verify persistence across app sessions
         app.terminate()
         app.launch()
 
-        // Verify app launched successfully and tab bar is responsive
-        let historyTab = app.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'היסטוריה' OR label CONTAINS[c] 'History'")).firstMatch
-        XCTAssertTrue(waitForElement(historyTab, timeout: 10.0), "Tab bar must be restored and responsive after relaunch")
+        // 7. Verify tab bar is responsive and navigate to Annotations tab
+        let annotationsTabAfterLaunch = findTabButton(hebrew: "הערות", english: "Annotations")
+        XCTAssertTrue(
+            waitForElement(annotationsTabAfterLaunch, timeout: 12.0),
+            "Annotations tab must be responsive after app relaunch"
+        )
+        annotationsTabAfterLaunch.tap()
+
+        // 8. Assert that the persisted annotation note survived relaunch
+        let persistedNoteElement = app.staticTexts.matching(
+            NSPredicate(format: "label CONTAINS %@", testNote)
+        ).firstMatch
+        XCTAssertTrue(
+            waitForElement(persistedNoteElement, timeout: 8.0),
+            "Persisted annotation with note '\(testNote)' must survive app relaunch"
+        )
     }
 }

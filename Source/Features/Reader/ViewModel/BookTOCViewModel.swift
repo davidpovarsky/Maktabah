@@ -57,8 +57,12 @@ class BookTOCViewModel {
     func loadTOC(book: BooksData) {
         loadingTask?.cancel()
         loadFailure = nil
+        tocNodes = []
+        navigationStructures = []
+        selectedStructureID = ""
 
         if let locator = book.backendLocator {
+            let expectedWorkKey = locator.workKey
             loadingTask = Task { @MainActor [weak self] in
                 guard let self else { return }
                 self.isLoading = true
@@ -76,6 +80,8 @@ class BookTOCViewModel {
                         description: nil
                     )
                     let structures = try await BackendCoordinator.shared.navigationStructures(for: work)
+                    try Task.checkCancellation()
+                    guard book.backendLocator?.workKey == expectedWorkKey else { return }
                     self.navigationStructures = structures
                     let activeStructure = structures.first
                     self.selectedStructureID = activeStructure?.id ?? ""
@@ -85,6 +91,8 @@ class BookTOCViewModel {
                     } else {
                         nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
                     }
+                    try Task.checkCancellation()
+                    guard book.backendLocator?.workKey == expectedWorkKey else { return }
                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
@@ -102,7 +110,10 @@ class BookTOCViewModel {
                         self.onStructureChanged?(items)
                     }
                     self.onTOCLoaded?(tree)
+                } catch is CancellationError {
+                    return
                 } catch {
+                    guard !Task.isCancelled, book.backendLocator?.workKey == expectedWorkKey else { return }
                     if case LibraryBackendError.unavailableOffline = error {
                         self.loadFailure = .unavailableOffline
                     } else if case LibraryBackendError.corruptData(_) = error {
@@ -112,7 +123,6 @@ class BookTOCViewModel {
                     }
                     Logger.reader.error("Failed to load backend TOC: \(error.localizedDescription, privacy: .public)")
                 }
-                self.onTOCLoadingStateChanged?(false)
             }
             return
         }
@@ -213,12 +223,7 @@ class BookTOCViewModel {
         for r in roots {
             traverse(r)
         }
-        return result.sorted {
-            if $0.id != $1.id {
-                return $0.id < $1.id
-            }
-            return $0.level < $1.level
-        }
+        return result
     }
 
     nonisolated private static func computeEndIDs(for allNodes: [TOCNode]) {

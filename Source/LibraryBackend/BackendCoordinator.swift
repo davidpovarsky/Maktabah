@@ -323,6 +323,7 @@ final class BackendCoordinator {
     /// Preflights and stages before modifying defaults, generation, activeBackendID, or posting notifications.
     @discardableResult
     func commit(_ backendID: BackendID) -> Bool {
+        lastTransitionErrorMessage = nil
         do {
             try performTwoPhaseSwitch(to: backendID)
             lastTransitionErrorMessage = nil
@@ -341,6 +342,7 @@ final class BackendCoordinator {
     /// Async variants for preflight with catalog resolution or async loading.
     @discardableResult
     func commitAsync(_ backendID: BackendID) async -> Bool {
+        lastTransitionErrorMessage = nil
         do {
             try await performTwoPhaseSwitchAsync(to: backendID)
             lastTransitionErrorMessage = nil
@@ -361,6 +363,9 @@ final class BackendCoordinator {
     }
 
     private func performTwoPhaseSwitch(to targetBackend: BackendID) throws {
+        guard !isTransitioning else {
+            throw BackendTransitionError.transitionSuperseded
+        }
         let wasCommitted = committedBackendID == targetBackend
         guard !wasCommitted || targetBackend != activeBackendID else {
             pendingBackendID = nil
@@ -444,6 +449,9 @@ final class BackendCoordinator {
     }
 
     private func performTwoPhaseSwitchAsync(to targetBackend: BackendID) async throws {
+        guard !isTransitioning else {
+            throw BackendTransitionError.transitionSuperseded
+        }
         let wasCommitted = committedBackendID == targetBackend
         guard !wasCommitted || targetBackend != activeBackendID else {
             pendingBackendID = nil

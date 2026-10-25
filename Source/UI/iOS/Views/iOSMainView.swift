@@ -117,6 +117,7 @@ struct iOSMainView: View {
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
                             Button("Done") { showSettings = false }
+                                .accessibilityIdentifier("settings-done-button")
                         }
                     }
             }
@@ -217,6 +218,7 @@ extension View {
                 Button { showSettings.wrappedValue = true } label: {
                     Image(systemName: "gear")
                 }
+                .accessibilityIdentifier("main-settings-button")
                 .accessibilityLabel(String(localized: "Settings"))
                 .help(String(localized: "Settings"))
             }

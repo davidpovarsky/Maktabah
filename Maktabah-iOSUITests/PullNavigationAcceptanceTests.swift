@@ -17,7 +17,9 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
-        let initialTitle = headerTitle.exists ? headerTitle.label : ""
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Header title must exist")
+        let initialTitle = headerTitle.label
+        XCTAssertFalse(initialTitle.isEmpty, "Initial header title must not be empty")
 
         // Perform sub-threshold drag (pull down slightly and retreat back)
         let startCoordinate = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2))
@@ -28,12 +30,11 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         subThresholdCoordinate.press(forDuration: 0.05, thenDragTo: startCoordinate)
 
         // Allow any animation to settle
-        sleep(1)
+        _ = readerSurface.waitForExistence(timeout: 2.0)
 
         // Content must NOT have changed after a retreat/cancel
-        if headerTitle.exists {
-            XCTAssertEqual(headerTitle.label, initialTitle, "Header title must remain unchanged after retreat/cancel")
-        }
+        XCTAssertTrue(headerTitle.exists, "Header title must exist")
+        XCTAssertEqual(headerTitle.label, initialTitle, "Header title must remain unchanged after retreat/cancel")
     }
 
     func testPullNavigationCommitBothDirectionsWithoutDuplicates() throws {
@@ -43,31 +44,28 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
-        let initialTitle = headerTitle.exists ? headerTitle.label : ""
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Header title must exist")
+        let initialTitle = headerTitle.label
+        XCTAssertFalse(initialTitle.isEmpty, "Initial reader header title must not be empty")
 
         // 1. Commit in downward direction (drag down past threshold)
         let topStart = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2))
         let bottomTarget = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.75))
         topStart.press(forDuration: 0.1, thenDragTo: bottomTarget)
 
-        // Wait for page transition
-        sleep(2)
-
-        // Verify content updated or transition executed cleanly
-        let nextTitle = headerTitle.exists ? headerTitle.label : ""
-        XCTAssertTrue(readerSurface.exists, "Reader surface must remain valid after downward transition")
+        // Wait for page transition and reader surface to settle
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must remain valid after downward transition")
 
         // 2. Commit in opposite (upward) direction (drag up past threshold)
         let bottomStart = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.8))
         let topTarget = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.25))
         bottomStart.press(forDuration: 0.1, thenDragTo: topTarget)
 
-        // Wait for reverse transition
-        sleep(2)
-
-        // Reader must be stable and responsive without crash or duplicated transitions
-        XCTAssertTrue(readerSurface.exists, "Reader surface must remain stable after bidirectional transitions")
-        let finalTitle = headerTitle.exists ? headerTitle.label : ""
+        // Wait for reverse transition to complete
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must remain stable after bidirectional transitions")
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Header title must exist after reverse transition")
+        let finalTitle = headerTitle.label
         XCTAssertFalse(finalTitle.isEmpty, "Reader header title must not be empty")
+        XCTAssertEqual(finalTitle, initialTitle, "Header title must match initial title after bidirectional transition round-trip")
     }
 }

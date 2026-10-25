@@ -41,7 +41,7 @@ enum TOCReadingLocationTracker: Sendable {
             guard case .legacyLine(let currentLine) = locator.position else {
                 return nil
             }
-            // Find all nodes that start at or before currentLine
+            // Find all nodes that start at or before currentLine within the same work
             let eligible = flattenedNodes.compactMap { item -> (line: Int, level: Int, id: Int)? in
                 guard let nodeLoc = item.locator,
                       nodeLoc.backend == .otzaria,
@@ -68,7 +68,8 @@ enum TOCReadingLocationTracker: Sendable {
             let canonicalCurrent = SefariaRef.canonicalInput(currentRef)
             let ancestors = Set(SefariaRef.sectionAncestors(of: canonicalCurrent))
 
-            // Find nodes whose locator ref matches any ancestor
+            // Find nodes whose locator ref structurally matches an ancestor
+            // Eliminates unsafe loose prefix matching that conflates e.g. "Genesis 1" with "Genesis 10"
             let matchingAncestors = flattenedNodes.compactMap { item -> (level: Int, id: Int)? in
                 guard let nodeLoc = item.locator,
                       nodeLoc.backend == .sefaria,
@@ -77,7 +78,11 @@ enum TOCReadingLocationTracker: Sendable {
                     return nil
                 }
                 let canonicalNode = SefariaRef.canonicalInput(nodeRef)
-                if ancestors.contains(canonicalNode) || canonicalCurrent.hasPrefix(canonicalNode) {
+                let isStructuralMatch = ancestors.contains(canonicalNode)
+                    || canonicalCurrent == canonicalNode
+                    || canonicalCurrent.hasPrefix(canonicalNode + ":")
+                    || canonicalCurrent.hasPrefix(canonicalNode + " ")
+                if isStructuralMatch {
                     return (level: item.level, id: item.id)
                 }
                 return nil

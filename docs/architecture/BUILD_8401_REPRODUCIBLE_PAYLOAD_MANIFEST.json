@@ -12,9 +12,15 @@
     },
     {
       "path": "Source/ChavrusaText/Navigation/ReaderBackendPagingCoordinator.swift",
-      "sha256": "dc48aed691e5e937a7e5b560b239db0cef4df62cf2826f307dacbe1ab63e92c7",
-      "blob_sha": "84950260eec250728c9009c0c45887af9808a6af",
-      "size_bytes": 2623
+      "sha256": "a29b5d1aec191cb6a74bd2aa4c904053437f10945542062bf171406b5d7a982e",
+      "blob_sha": "10b93ba0a49ad25113d9c56cd45677e5aa6c74cb",
+      "size_bytes": 4584
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "sha256": "f4c95ea53db30649fa4e0cd079c2c3c3363494a5dabb92a9f547979cfa047f49",
+      "blob_sha": "a9722b362e791e72183b51858e3c52d20256cb3f",
+      "size_bytes": 4222
     },
     {
       "path": "Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift",
@@ -24,9 +30,9 @@
     },
     {
       "path": "Source/ChavrusaText/Navigation/TOCReadingLocationTracker.swift",
-      "sha256": "2aec9c053f7f166dddb8e3cf91f4855cc8c9e40bc869800911348cd6ac1c7817",
-      "blob_sha": "0763d2236383ddeb804246efd0342334d7e22b42",
-      "size_bytes": 3414
+      "sha256": "5ad8b40e57fcf5ff176218a9986004a65589baec66adfbf71e081c839e4902de",
+      "blob_sha": "d2eb0334785a579529b2e949eb6c28503da71577",
+      "size_bytes": 3764
     },
     {
       "path": "Source/ChavrusaText/Navigation/TargetBackendBookResolver.swift",
@@ -50,9 +56,9 @@
     },
     {
       "path": "Source/LibraryBackend/BackendCoordinator.swift",
-      "sha256": "7782681da171314beb2f1bf464a741c98f58119e89851bcace94c38bdd99c876",
-      "blob_sha": "625f56f156d1ff3b788d96dd030e80555d3cf915",
-      "size_bytes": 26542
+      "sha256": "b547379d32a8e4ba6d6e8f0dc8bcb93a604dcf6a908c5e7d66b366e834664b99",
+      "blob_sha": "f51b0fd0d1287575acc5bce79fe515463f9c70d5",
+      "size_bytes": 27648
     },
     {
       "path": "Source/Otzaria/Reading/iOSNavigationManager+OtzariaLinkedSource.swift",
@@ -74,33 +80,33 @@
     },
     {
       "path": "tools/test_chavrusa_text_components.swift",
-      "sha256": "3ed6a18dedf477aaf755d0b4179034bf7ce5c756752c709fb97b9cda24c1c5db",
-      "blob_sha": "87a2f25861726c3ea04c4ff6cc108021ea3dc09c",
-      "size_bytes": 68203
+      "sha256": "10b88354e565c7fddf735f2761bc4598159bacdeb9cf17aad43260dcbddca1b2",
+      "blob_sha": "afda7880ca621a65d7c9c7ca057c6417a0dea47f",
+      "size_bytes": 80899
     }
   ],
   "proposed_protected_patches": [
     {
       "patch_file": "01-iosibarottextview-decoration-cache-and-scroll.patch",
       "target_file": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
-      "sha256": "588b111a226e93243be4c1387eeed687cf6da0813c5b142fd33ae84844adb8a8",
-      "size_bytes": 1868,
+      "sha256": "9871cd93976872bf12b768a3a1474de09f3a0e01d6f5ca427803f9c33a23f22e",
+      "size_bytes": 2319,
       "base_blob_sha": "fa5430a8ee65318f65fbcdfd0e5d5f68a0f4b912",
       "status": "OWNER_APPROVAL_REQUIRED"
     },
     {
       "patch_file": "02-readernavigation-backend-paging.patch",
       "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
-      "sha256": "4db28ba23460b351964caf271785ab1079ff1e2f6fc67f3313b5966f18f72de8",
-      "size_bytes": 2589,
+      "sha256": "34b40f8baea61c7f2d05c1c051a10e3aebba740ec4057bad0bced76a48189d52",
+      "size_bytes": 2621,
       "base_blob_sha": "8584cc718dbb7888a1cde7e24fcf61b957100898",
       "status": "OWNER_APPROVAL_REQUIRED"
     },
     {
       "patch_file": "03-readercontent-bounded-destination-resolution.patch",
       "target_file": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
-      "sha256": "8ab35d43c69a6fcca32f2cfb3b2b6095449af7a540b9f7c7e5cd955e94d0dd2f",
-      "size_bytes": 3425,
+      "sha256": "5cd5923ac01179af1a46e58429f843c688bd1e4024b49a42c072f42775e67bbe",
+      "size_bytes": 6080,
       "base_blob_sha": "11caf78e533c0a88b8ee2d9d0472165371da6676",
       "status": "OWNER_APPROVAL_REQUIRED"
     },
@@ -115,8 +121,8 @@
     {
       "patch_file": "05-readerviewmodel-search-event-preservation.patch",
       "target_file": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
-      "sha256": "c5ef6257581ba4887cb3fce269a153e006ac4ae0d4afaa83ff9f1b669e1339c1",
-      "size_bytes": 752,
+      "sha256": "a3da7d01ff3be86d13c0503e2d7555c2527207f760e273209191e935f1598ee8",
+      "size_bytes": 2158,
       "base_blob_sha": "7ab42dbf00653317dbaaa266385729353b99d323",
       "status": "OWNER_APPROVAL_REQUIRED"
     },
@@ -139,24 +145,24 @@
     {
       "patch_file": "08-iosreaderworkspaceview-toc-tracking.patch",
       "target_file": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
-      "sha256": "028cdb1628f3b1937a4e1f66e491a91f92558c8e307dcd9557bb54334655b19d",
-      "size_bytes": 768,
+      "sha256": "c99b06082c04366137d89e87f1c13973dc1c9b748101d778ad50ccdc6d83b0ed",
+      "size_bytes": 1347,
       "base_blob_sha": "1a136ebdd29f8a4c46bbf59bc4b2a5a2bdf6d4f0",
       "status": "OWNER_APPROVAL_REQUIRED"
     },
     {
       "patch_file": "09-booktocviewmodel-loading-and-matching.patch",
       "target_file": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
-      "sha256": "2b71346624e4d4e8a725910cee703b908c06e630f4e1bdb40f1de68bdd8d4cff",
-      "size_bytes": 1955,
+      "sha256": "f48d826698cba715d8b0122bc49f3eae43d0b51b8436ee0c7ac1509e04ad24a4",
+      "size_bytes": 4648,
       "base_blob_sha": "173bfe8a68fd2c6b46967f58e863fcd1e7db77f2",
       "status": "OWNER_APPROVAL_REQUIRED"
     },
     {
       "patch_file": "10-settingsview-backend-switch-error-handling.patch",
       "target_file": "Source/Features/Setting/SettingsView.swift",
-      "sha256": "22a1fafc82b89ee0c836a09a7a28464b0bc06539732c5010937ee53b2b032734",
-      "size_bytes": 2323,
+      "sha256": "90f4a654534495528a8bfbaf0ad8e17ec6f6bd02358c061e58e3322893840060",
+      "size_bytes": 2395,
       "base_blob_sha": "47aa588f3ca41fffb303e823e44958b2627e8df1",
       "status": "OWNER_APPROVAL_REQUIRED"
     },
@@ -171,8 +177,8 @@
     {
       "patch_file": "12-maktabah-xcode-target-integration.patch",
       "target_file": "Maktabah.xcodeproj/project.pbxproj",
-      "sha256": "6b754147e15d2c6b3c9dc548e46dd20426a18ee1b69d47bc4606d2bf4560b14c",
-      "size_bytes": 10739,
+      "sha256": "f8bceb73a36fed95d38deb954ba8655f4cea60c5af64a58b50d5bc3149389ef4",
+      "size_bytes": 11826,
       "base_blob_sha": "8a332467292ba7a0198be11966fa7147c0edcc42",
       "status": "OWNER_APPROVAL_REQUIRED"
     }

@@ -1,7 +1,16 @@
 diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
-index fa5430a..0373b55 100644
+index fa5430a..aedcc8f 100644
 --- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
 +++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+@@ -638,7 +638,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+ 
+         let rendered = resolveRenderedContent(textView: textView, context: context)
+ 
+-        if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
++        if let pendingTarget = viewModel.consumePendingReaderScrollTarget(for: viewModel.currentLocator) {
+             switch pendingTarget {
+             case .top:
+                 scrollTextViewToTop(textView)
 @@ -715,6 +715,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
              text: text,
              annotations: annotations,

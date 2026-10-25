@@ -1091,6 +1091,174 @@ struct TestRunner {
         assertCondition(SefariaBookIdentityValidator.isAuthoritative(workKey: testWork, id: 300, textLocator: testWorkLocator, offlinePaths: mockOfflinePaths), "Real file present on disk validated successfully")
         try? FileManager.default.removeItem(at: tempDir)
 
+        // 16. ReaderContentLoadCoordinator & Out-of-Order Async Protection (Section 2)
+        print("\n--- 16. Testing ReaderContentLoadCoordinator ---")
+        let loadCoordinator = ReaderContentLoadCoordinator()
+        let tokenA = loadCoordinator.beginRequest(
+            backend: .sefaria,
+            workKey: "Berakhot",
+            sectionLocator: TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 2a"))
+        )
+        assertCondition(tokenA.generation == 1, "Token A has generation 1")
+        assertCondition(loadCoordinator.isTokenActive(tokenA), "Token A is initially active")
+
+        let tokenB = loadCoordinator.beginRequest(
+            backend: .sefaria,
+            workKey: "Berakhot",
+            sectionLocator: TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 2b"))
+        )
+        assertCondition(tokenB.generation == 2, "Token B has generation 2")
+        assertCondition(!loadCoordinator.isTokenActive(tokenA), "Token A is superseded when B begins")
+        assertCondition(loadCoordinator.isTokenActive(tokenB), "Token B is active")
+
+        let tokenC = loadCoordinator.beginRequest(
+            backend: .sefaria,
+            workKey: "Berakhot",
+            sectionLocator: TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 3a"))
+        )
+        assertCondition(tokenC.generation == 3, "Token C has generation 3")
+        assertCondition(!loadCoordinator.isTokenActive(tokenB), "Token B is superseded when C begins")
+        assertCondition(loadCoordinator.isTokenActive(tokenC), "Token C is active")
+
+        // Out-of-order delivery simulation: Token A finishes NOW (after C)
+        let currentBerakhotLocator = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 3a"))
+        assertCondition(!loadCoordinator.canApplyContent(token: tokenA, currentBookLocator: currentBerakhotLocator), "Stale response A cannot apply content to current book")
+        assertCondition(!loadCoordinator.canApplyContent(token: tokenB, currentBookLocator: currentBerakhotLocator), "Stale response B cannot apply content to current book")
+        assertCondition(loadCoordinator.canApplyContent(token: tokenC, currentBookLocator: currentBerakhotLocator), "Fresh response C successfully applies content")
+
+        // Secondary navigation items request isolation
+        let navGen1 = loadCoordinator.beginNavigationItemsRequest(for: "Berakhot")
+        assertCondition(loadCoordinator.isNavigationItemsRequestActive(generation: navGen1, workKey: "Berakhot"), "Navigation items request 1 is active")
+        let navGen2 = loadCoordinator.beginNavigationItemsRequest(for: "Shabbat")
+        assertCondition(!loadCoordinator.isNavigationItemsRequestActive(generation: navGen1, workKey: "Berakhot"), "Navigation items request 1 invalidated by request 2")
+        assertCondition(loadCoordinator.isNavigationItemsRequestActive(generation: navGen2, workKey: "Shabbat"), "Navigation items request 2 is active")
+
+        // Invalidation on book switch
+        loadCoordinator.invalidate()
+        assertCondition(!loadCoordinator.isTokenActive(tokenC), "Token C invalidated on coordinator reset")
+        assertCondition(!loadCoordinator.isNavigationItemsRequestActive(generation: navGen2, workKey: "Shabbat"), "Nav request invalidated on coordinator reset")
+
+        // 17. TOC Structural Matching & Negative False-Positive Elimination (Section 8)
+        print("\n--- 17. Testing Structural TOC Matching & False-Positive Elimination ---")
+        let testTOCNodes = [
+            FlattenedTOCItem(id: 1, title: "Genesis 1", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1"))),
+            FlattenedTOCItem(id: 2, title: "Genesis 10", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 10"))),
+            FlattenedTOCItem(id: 3, title: "Genesis 11", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 11"))),
+            FlattenedTOCItem(id: 20, title: "Berakhot 2a", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 2a"))),
+            FlattenedTOCItem(id: 21, title: "Berakhot 20a", level: 1, locator: TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 20a")))
+        ]
+
+        // CRITICAL CHECK: "Genesis 10:1" must NOT match "Genesis 1"
+        let gen10Locator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 10:1"))
+        let matchedGen10 = TOCReadingLocationTracker.findMatchingNodeID(for: gen10Locator, in: testTOCNodes)
+        assertCondition(matchedGen10 == 2, "Genesis 10:1 matches node 2 (Genesis 10), NEVER node 1 (Genesis 1)")
+        assertCondition(matchedGen10 != 1, "Genesis 10:1 strictly eliminated from false-positive prefix match on Genesis 1")
+
+        // "Berakhot 20a" must NOT match "Berakhot 2a"
+        let berakhot20Locator = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 20a:5"))
+        let matchedBerakhot20 = TOCReadingLocationTracker.findMatchingNodeID(for: berakhot20Locator, in: testTOCNodes)
+        assertCondition(matchedBerakhot20 == 21, "Berakhot 20a:5 matches node 21 (Berakhot 20a)")
+        assertCondition(matchedBerakhot20 != 20, "Berakhot 20a:5 strictly eliminated from false-positive match on Berakhot 2a")
+
+        // Cross-work rejection
+        let foreignWorkLocator = TextLocator(backend: .sefaria, workKey: "Exodus", position: .canonicalRef("Exodus 1:1"))
+        let matchedForeign = TOCReadingLocationTracker.findMatchingNodeID(for: foreignWorkLocator, in: testTOCNodes)
+        assertCondition(matchedForeign == nil, "Exodus locator rejected with nil against Genesis/Berakhot TOC nodes")
+
+        // 18. ReaderBackendPagingCoordinator Structural Paging & Boundary Safety (Section 3)
+        print("\n--- 18. Testing ReaderBackendPagingCoordinator Structural Paging ---")
+        let otzariaNavItems = [
+            LibraryNavigationItem(locator: TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(0)), title: "Chapter 1", index: 0),
+            LibraryNavigationItem(locator: TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(100)), title: "Chapter 2", index: 1),
+            LibraryNavigationItem(locator: TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(200)), title: "Chapter 3", index: 2)
+        ]
+
+        // Mid-book position: User is at line 125 (inside Chapter 2 at line 100)
+        let midBookLocator = TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(125))
+        let nextPagingAction = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .next,
+            isBackendBook: true,
+            currentLocator: midBookLocator,
+            backendSectionNext: nil,
+            backendSectionPrevious: nil,
+            navigationItems: otzariaNavItems
+        )
+        assertCondition(
+            nextPagingAction == .loadBackendLocator(otzariaNavItems[2].locator, scrollTarget: .top),
+            "Next from line 125 advances to Chapter 3 at line 200"
+        )
+
+        let prevPagingAction = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .previous,
+            isBackendBook: true,
+            currentLocator: midBookLocator,
+            backendSectionNext: nil,
+            backendSectionPrevious: nil,
+            navigationItems: otzariaNavItems
+        )
+        assertCondition(
+            prevPagingAction == .loadBackendLocator(otzariaNavItems[0].locator, scrollTarget: .bottom),
+            "Prev from line 125 retreats to Chapter 1 at line 0"
+        )
+
+        // Boundary protection: First page prev is no-op (NEVER jump or legacy fallback)
+        let firstPageLocator = TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(0))
+        let firstPagePrev = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .previous,
+            isBackendBook: true,
+            currentLocator: firstPageLocator,
+            backendSectionNext: nil,
+            backendSectionPrevious: nil,
+            navigationItems: otzariaNavItems
+        )
+        assertCondition(firstPagePrev == .noOpBoundaryReached, "Prev from first page is safe no-op boundary reached")
+
+        // Boundary protection: Last page next is no-op
+        let lastPageLocator = TextLocator(backend: .otzaria, workKey: "book:100", position: .legacyLine(200))
+        let lastPageNext = ReaderBackendPagingCoordinator.resolvePagingAction(
+            direction: .next,
+            isBackendBook: true,
+            currentLocator: lastPageLocator,
+            backendSectionNext: nil,
+            backendSectionPrevious: nil,
+            navigationItems: otzariaNavItems
+        )
+        assertCondition(lastPageNext == .noOpBoundaryReached, "Next from last page is safe no-op boundary reached")
+
+        // 19. Extended TalmudHebrewAddressFormatter Boundaries & High Numbers (Section 11)
+        print("\n--- 19. Testing Extended TalmudHebrewAddressFormatter ---")
+        assertCondition(TalmudHebrewAddressFormatter.hebrewDafNumeral(from: 100) == "ק׳", "100 is ק׳ with single gersh")
+        assertCondition(TalmudHebrewAddressFormatter.hebrewDafNumeral(from: 101) == "ק״א", "101 is ק״א")
+        assertCondition(TalmudHebrewAddressFormatter.hebrewDafNumeral(from: 110) == "ק״י", "110 is ק״י")
+        assertCondition(TalmudHebrewAddressFormatter.hebrewDafNumeral(from: 115) == "קט״ו", "115 is special קט״ו")
+        assertCondition(TalmudHebrewAddressFormatter.hebrewDafNumeral(from: 116) == "קט״ז", "116 is special קט״ז")
+        assertCondition(TalmudHebrewAddressFormatter.hebrewDafNumeral(from: 200) == "ר׳", "200 is ר׳")
+        assertCondition(TalmudHebrewAddressFormatter.format(offset: 227) == "קט״ו ע״ב", "Offset 227 (115b) is קט״ו ע״ב")
+        assertCondition(TalmudHebrewAddressFormatter.format(offset: 228) == "קט״ז ע״א", "Offset 228 (116a) is קט״ז ע״א")
+        assertCondition(TalmudHebrewAddressFormatter.format(address: "115b") == "קט״ו ע״ב", "Address '115b' formatted correctly")
+        assertCondition(TalmudHebrewAddressFormatter.format(address: "InvalidAddress") == "InvalidAddress", "Unparseable address falls back gracefully")
+
+        // 20. ReaderDestinationResolver Commentary & Granularity Bounding (Section 7)
+        print("\n--- 20. Testing ReaderDestinationResolver Commentary Bounding ---")
+        let rashiDafSection = TextLocator(backend: .sefaria, workKey: "Rashi on Berakhot", position: .canonicalRef("Rashi on Berakhot 15b"))
+        let rashiSegmentHit = TextLocator(backend: .sefaria, workKey: "Rashi on Berakhot", position: .canonicalRef("Rashi on Berakhot 15b:3:1"))
+        let resolvedRashiCommentary = ReaderDestinationResolver.resolve(locator: rashiSegmentHit)
+        assertCondition(resolvedRashiCommentary.isSegmentLevelFocus, "Rashi 15b:3:1 has isSegmentLevelFocus true")
+        assertCondition(resolvedRashiCommentary.sectionLocator == rashiDafSection, "Rashi 15b:3:1 bounded to containing folio section 15b")
+        assertCondition(resolvedRashiCommentary.focusLocator == rashiSegmentHit, "Rashi 15b:3:1 preserves exact segment hit as focus locator")
+
+        let tanakhVerseHit = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:3"))
+        let resolvedTanakhCommentary = ReaderDestinationResolver.resolve(locator: tanakhVerseHit)
+        assertCondition(resolvedTanakhCommentary.isSegmentLevelFocus, "Genesis 1:3 has isSegmentLevelFocus true")
+        assertCondition(resolvedTanakhCommentary.sectionLocator == TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1")), "Genesis 1:3 bounded to chapter 1")
+        assertCondition(resolvedTanakhCommentary.focusLocator == tanakhVerseHit, "Genesis 1:3 preserves verse 3 as focus")
+
+        let alreadySectionLoc = TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 15b"))
+        let resolvedSectionLoc = ReaderDestinationResolver.resolve(locator: alreadySectionLoc)
+        assertCondition(!resolvedSectionLoc.isSegmentLevelFocus, "Berakhot 15b is not segment-level focus")
+        assertCondition(resolvedSectionLoc.sectionLocator == alreadySectionLoc, "Berakhot 15b section is self")
+        assertCondition(resolvedSectionLoc.focusLocator == nil, "Berakhot 15b focus locator is nil")
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

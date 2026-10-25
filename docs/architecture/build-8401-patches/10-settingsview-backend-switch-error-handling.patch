@@ -1,5 +1,5 @@
 diff --git a/Source/Features/Setting/SettingsView.swift b/Source/Features/Setting/SettingsView.swift
-index 47aa588..d09d5f8 100644
+index 47aa588..7795dfc 100644
 --- a/Source/Features/Setting/SettingsView.swift
 +++ b/Source/Features/Setting/SettingsView.swift
 @@ -227,6 +227,7 @@ extension SettingsView {
@@ -27,10 +27,11 @@ index 47aa588..d09d5f8 100644
                      #endif
                  }
              )) {
-@@ -247,6 +252,23 @@ extension SettingsView {
+@@ -247,6 +252,24 @@ extension SettingsView {
                      Text(backend.displayName).tag(backend)
                  }
              }
++            .accessibilityIdentifier("settings-library-source-picker")
 +            .disabled(backendCoordinator.isTransitioning)
 +
 +            if backendCoordinator.isTransitioning {
