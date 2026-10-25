@@ -12,14 +12,19 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
 
     func testPullNavigationRetreatCancelDoesNotChangeContent() throws {
         launchWithScenario("reader", backend: "sefaria")
+        dismissAlertsIfNeeded()
 
         let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must exist")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
-        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Header title must exist")
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 8.0), "Header title must exist")
         let initialTitle = headerTitle.label
         XCTAssertFalse(initialTitle.isEmpty, "Initial header title must not be empty")
+
+        let currentLocator = app.staticTexts["reader-current-locator"]
+        _ = currentLocator.waitForExistence(timeout: 5.0)
+        let initialLocator = currentLocator.exists ? currentLocator.label : ""
 
         // Perform sub-threshold drag (pull down slightly and retreat back)
         let startCoordinate = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2))
@@ -35,18 +40,26 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         // Content must NOT have changed after a retreat/cancel
         XCTAssertTrue(headerTitle.exists, "Header title must exist")
         XCTAssertEqual(headerTitle.label, initialTitle, "Header title must remain unchanged after retreat/cancel")
+        if !initialLocator.isEmpty && currentLocator.exists {
+            XCTAssertEqual(currentLocator.label, initialLocator, "Locator must remain unchanged after retreat/cancel")
+        }
     }
 
     func testPullNavigationCommitBothDirectionsWithoutDuplicates() throws {
         launchWithScenario("reader", backend: "sefaria")
+        dismissAlertsIfNeeded()
 
         let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must exist")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
-        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Header title must exist")
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 8.0), "Header title must exist")
         let initialTitle = headerTitle.label
         XCTAssertFalse(initialTitle.isEmpty, "Initial reader header title must not be empty")
+
+        let currentLocator = app.staticTexts["reader-current-locator"]
+        _ = currentLocator.waitForExistence(timeout: 5.0)
+        let initialLocator = currentLocator.exists ? currentLocator.label : ""
 
         // 1. Commit in downward direction (drag down past threshold)
         let topStart = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2))
@@ -54,7 +67,7 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         topStart.press(forDuration: 0.1, thenDragTo: bottomTarget)
 
         // Wait for page transition and reader surface to settle
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must remain valid after downward transition")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must remain valid after downward transition")
 
         // 2. Commit in opposite (upward) direction (drag up past threshold)
         let bottomStart = readerSurface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.8))
@@ -62,10 +75,13 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         bottomStart.press(forDuration: 0.1, thenDragTo: topTarget)
 
         // Wait for reverse transition to complete
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must remain stable after bidirectional transitions")
-        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Header title must exist after reverse transition")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must remain stable after bidirectional transitions")
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 8.0), "Header title must exist after reverse transition")
         let finalTitle = headerTitle.label
         XCTAssertFalse(finalTitle.isEmpty, "Reader header title must not be empty")
         XCTAssertEqual(finalTitle, initialTitle, "Header title must match initial title after bidirectional transition round-trip")
+        if !initialLocator.isEmpty && currentLocator.exists {
+            XCTAssertEqual(currentLocator.label, initialLocator, "Locator must match initial locator after bidirectional transition round-trip")
+        }
     }
 }

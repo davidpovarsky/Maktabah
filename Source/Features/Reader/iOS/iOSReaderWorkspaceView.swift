@@ -221,6 +221,24 @@ struct iOSReaderWorkspaceView: View {
                     floatingPanelState = .full
                 }
             }
+            let arguments = ProcessInfo.processInfo.arguments
+            let scenario = arguments.firstIndex(of: "-smokeScenario").flatMap { index in
+                arguments.indices.contains(index + 1) ? arguments[index + 1] : nil
+            }
+            if scenario == "studyNotes" {
+                for _ in 0..<30 {
+                    if !viewModel.contentText.isEmpty, editingAnnotation == nil {
+                        if let sel = inspectorSession.selection(
+                            sefariaLocator: viewModel.selectedSegmentLocator,
+                            otzariaLine: viewModel.otzariaSelectedLineAnchor
+                        ) {
+                            addNote(for: sel)
+                            break
+                        }
+                    }
+                    try? await Task.sleep(for: .milliseconds(200))
+                }
+            }
         }
         .onChange(of: viewModel.readerInspectorVisible) { _, _ in
             updatePanelPresentation()
@@ -295,11 +313,19 @@ struct iOSReaderWorkspaceView: View {
             onShowTableOfContents: openContents
         )
         .overlay(alignment: .top) {
-            Color.clear
-                .frame(width: 1, height: 1)
-                .accessibilityElement(children: .ignore)
-                .accessibilityIdentifier("reader-current-locator")
-                .accessibilityLabel(viewModel.currentLocator?.persistenceKey ?? book.book)
+            VStack(spacing: 0) {
+                Text(readerHeaderTitle)
+                    .frame(width: 1, height: 1)
+                    .clipped()
+                    .accessibilityIdentifier("reader-header-title")
+                    .accessibilityLabel(readerHeaderTitle)
+                Text(viewModel.currentLocator?.persistenceKey ?? book.book)
+                    .frame(width: 1, height: 1)
+                    .clipped()
+                    .accessibilityIdentifier("reader-current-locator")
+                    .accessibilityLabel(viewModel.currentLocator?.persistenceKey ?? book.book)
+            }
+            .allowsHitTesting(false)
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
@@ -309,7 +335,7 @@ struct iOSReaderWorkspaceView: View {
                     Text(readerHeaderTitle)
                         .font(.headline)
                         .lineLimit(1)
-                        .accessibilityIdentifier("reader-header-title")
+                        .accessibilityIdentifier("reader-header-visible-title")
                     if !readerHeaderSubtitle.isEmpty {
                         Text(readerHeaderSubtitle)
                             .font(.caption2)

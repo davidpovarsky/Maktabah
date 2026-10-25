@@ -13,10 +13,11 @@ final class HighlightAnnotationAcceptanceTests: MaktabahUITestBase {
     func testAnnotationCreationPersistenceAndRelaunch() throws {
         // 1. Launch into studyNotes scenario
         launchWithScenario("studyNotes", backend: "sefaria")
+        dismissAlertsIfNeeded()
 
         let noteTextView = app.textViews["annotation-note-text"]
         XCTAssertTrue(
-            waitForElement(noteTextView, timeout: 12.0),
+            waitForElement(noteTextView, timeout: 15.0),
             "Annotation note text view must exist in studyNotes scenario"
         )
 

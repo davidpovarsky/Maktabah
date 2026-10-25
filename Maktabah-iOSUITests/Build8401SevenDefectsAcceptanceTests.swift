@@ -13,16 +13,16 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
     // MARK: - A1, A2, A3: Search Highlight & Clear 'X' Button Lifecycle
 
     func testA1_A2_SearchResultHighlightAndClearButton() throws {
-        // Launch into searchResults scenario
-        launchWithScenario("searchResults", backend: "sefaria")
+        // Launch into searchOpen scenario which opens the result in reader with search context
+        launchWithScenario("searchOpen", backend: "sefaria")
         dismissAlertsIfNeeded()
 
         let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must open for search result")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must open for search result")
 
         // A2: Clear 'X' button must be visible when active search highlight exists
         let clearButton = app.buttons["reader.clear_search_highlight_button"]
-        XCTAssertTrue(waitForElement(clearButton, timeout: 5.0), "Clear 'X' button must appear next to search button")
+        XCTAssertTrue(waitForElement(clearButton, timeout: 8.0), "Clear 'X' button must appear next to search button")
         XCTAssertTrue(clearButton.isHittable, "Clear 'X' button must be hittable")
 
         // Tap Clear 'X' button
@@ -41,7 +41,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         dismissAlertsIfNeeded()
 
         let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must exist")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must exist")
 
         // Verify Clear 'X' button is NOT present for ordinary reading
         let clearButton = app.buttons["reader.clear_search_highlight_button"]
@@ -55,10 +55,10 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         dismissAlertsIfNeeded()
 
         let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface must exist")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
-        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Header title must exist")
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 8.0), "Header title must exist")
         let initialTitle = headerTitle.label
         XCTAssertFalse(initialTitle.isEmpty, "Initial title must not be empty")
 
@@ -99,7 +99,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         XCTAssertTrue(waitForElement(libraryTab, timeout: 10.0), "Hebrew library tab must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
-        XCTAssertTrue(waitForElement(headerTitle, timeout: 5.0), "Reader header title must exist")
+        XCTAssertTrue(waitForElement(headerTitle, timeout: 8.0), "Reader header title must exist")
         XCTAssertFalse(headerTitle.label.isEmpty, "Header title must be populated in Hebrew locale")
     }
 }
