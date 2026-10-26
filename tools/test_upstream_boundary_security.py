@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.join(REPO_DIR, "Scripts", "CI"))
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 import importlib.util
 
-spec = importlib.util.spec_from_file_location("boundary_guard", os.path.join(REPO_DIR, "Scripts", "CI", "verify-upstream-boundary.py"))
+spec = importlib.util.spec_from_file_location("boundary_guard", os.path.join(REPO_DIR, "tools", "verify_upstream_boundary.py"))
 bg = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bg)
 

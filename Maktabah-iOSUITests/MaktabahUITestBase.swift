@@ -86,8 +86,13 @@ class MaktabahUITestBase: XCTestCase {
 
         case .production:
             args += [
-                "-OtzariaDataProfile", "production"
+                "-OtzariaDataProfile", "production",
+                "-preferredBackend", backend,
+                "-smokeBackend", backend
             ]
+            if let scenario {
+                args += ["-smokeScenario", scenario]
+            }
             env["OTZARIA_DATA_PROFILE"] = "production"
             env["SIMCTL_CHILD_OTZARIA_DATA_PROFILE"] = "production"
             if let sharedRoot = ProcessInfo.processInfo.environment["OTZARIA_SHARED_ROOT_OVERRIDE"] {

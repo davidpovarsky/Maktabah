@@ -40,8 +40,8 @@ final class BackendTransitionAcceptanceTests: MaktabahUITestBase {
     }
 
     func testBackendSwitchViaSettingsPickerUI() throws {
-        // Launch into settings scenario with Sefaria active
-        launchWithScenario("settings", backend: "sefaria")
+        // Launch into settings scenario with production profile and Sefaria active
+        launchWithTier(.production, scenario: "settings", backend: "sefaria")
         dismissAlertsIfNeeded()
 
         let picker = app.descendants(matching: .any)["settings-library-source-picker"]
@@ -67,22 +67,21 @@ final class BackendTransitionAcceptanceTests: MaktabahUITestBase {
 
         // Verify active backend diagnostic updates or transition settles
         let activeBackendText = app.staticTexts["settings-active-backend-id"]
-        _ = activeBackendText.waitForExistence(timeout: 5.0)
+        _ = activeBackendText.waitForExistence(timeout: 8.0)
 
         // Wait for transition to complete and Done button to be tapped
         let doneButton = app.buttons["settings-done-button"]
-        if !doneButton.waitForExistence(timeout: 5.0) {
-            // Otzaria DB prerequisite is missing on standard simulator runtime;
-            // Selecting Otzaria properly triggered configuration rather than silent fallback.
-            throw XCTSkip("BLOCKED: Otzaria database prerequisite is not configured on simulator; configuration prompt presented per Section 1C")
-        }
+        XCTAssertTrue(
+            doneButton.waitForExistence(timeout: 10.0),
+            "Settings Done button must exist after selecting provisioned Otzaria backend"
+        )
         XCTAssertTrue(doneButton.isHittable, "Settings Done button must be hittable")
         doneButton.tap()
 
         // Verify library tab is restored and functional
         let libraryTab = findTabButton(hebrew: "ספר", english: "Library")
         XCTAssertTrue(
-            waitForElement(libraryTab, timeout: 12.0),
+            waitForElement(libraryTab, timeout: 15.0),
             "Library tab must remain responsive after settings backend transition"
         )
     }

@@ -8,6 +8,7 @@
 //
 
 import XCTest
+import SQLite3
 
 final class ProductionOtzariaAcceptanceTests: MaktabahUITestBase {
 
@@ -38,23 +39,15 @@ final class ProductionOtzariaAcceptanceTests: MaktabahUITestBase {
             XCTAssertFalse(backendId.contains("miniTest10"), "Production launch must not contain miniTest10 profile")
         }
 
-        // When corpus is provisioned: verify categories and book content
+        // When corpus is provisioned: verify categories and book content load properly
         let categoryElement = app.descendants(matching: .any).matching(
             NSPredicate(format: "label CONTAINS[c] 'סדר' OR label CONTAINS[c] 'תנ\"ך' OR label CONTAINS[c] 'משנה' OR label CONTAINS[c] 'בבלי' OR label CONTAINS[c] 'הלכה'")
         ).firstMatch
 
-        if !categoryElement.waitForExistence(timeout: 8.0) {
-            // Check if setup prompt is displayed because corpus is not provisioned
-            let setupPrompt = app.descendants(matching: .any).matching(
-                NSPredicate(format: "label CONTAINS[c] 'הורד' OR label CONTAINS[c] 'הורדה' OR label CONTAINS[c] 'Download' OR label CONTAINS[c] 'Database'")
-            ).firstMatch
-            if setupPrompt.exists {
-                throw XCTSkip("BLOCKED_FULL_PRODUCTION: Full production Otzaria corpus (1.85 GB) is not provisioned in simulator App Group container. Setup prompt displayed per Section 5B.")
-            } else {
-                throw XCTSkip("BLOCKED_FULL_PRODUCTION: Library categories not loaded (production corpus unprovisioned in this runner).")
-            }
-        }
-
+        XCTAssertTrue(
+            categoryElement.waitForExistence(timeout: 15.0),
+            "Production library must present genuine Otzaria categories within 15 seconds"
+        )
         XCTAssertTrue(categoryElement.exists, "Production library must present genuine Otzaria categories")
     }
 
@@ -122,7 +115,7 @@ final class ProductionOtzariaAcceptanceTests: MaktabahUITestBase {
         }
     }
 
-    func testProductionCorpusSQLiteIntegrityIfInstalled() throws {
+    func testProductionCorpusSQLiteIntegrity() throws {
         // Resolve database URL from environment override, production corpus path, or App Group container
         var dbURL: URL?
         let fileManager = FileManager.default
@@ -154,16 +147,75 @@ final class ProductionOtzariaAcceptanceTests: MaktabahUITestBase {
             }
         }
 
-        guard let targetURL = dbURL else {
-            throw XCTSkip("BLOCKED_FULL_PRODUCTION: Production database not provisioned in this test runner")
+        // If not found in primary locations, scan Application Support in simulator containers
+        if dbURL == nil {
+            let appSupportUrls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+            for asUrl in appSupportUrls {
+                let candidate = asUrl.appendingPathComponent("Otzaria/seforim.db")
+                if fileManager.fileExists(atPath: candidate.path) {
+                    dbURL = candidate
+                    break
+                }
+            }
         }
 
-        // Verify SQLite database file size >= 1.5 GB
+        guard let targetURL = dbURL else {
+            XCTFail("CRITICAL: Full production Otzaria corpus (1.85 GB compressed / 3.82 GB extracted) is not provisioned in simulator. Failing positive acceptance.")
+            return
+        }
+
+        // 1. Verify SQLite database file size >= 1.5 GB
         guard let attrs = try? fileManager.attributesOfItem(atPath: targetURL.path),
               let fileSize = attrs[.size] as? Int64 else {
             XCTFail("Failed reading attributes of \(targetURL.path)")
             return
         }
-        XCTAssertGreaterThan(fileSize, 1_500_000_000, "Decompressed production database must exceed 1.5 GB")
+        XCTAssertGreaterThan(fileSize, 1_500_000_000, "Decompressed production database must exceed 1.5 GB (actual: \(fileSize) bytes)")
+
+        // 2. Perform authoritative SQLite quick_check and record counts
+        var db: OpaquePointer?
+        let openResult = sqlite3_open_v2(targetURL.path, &db, SQLITE_OPEN_READONLY, nil)
+        XCTAssertEqual(openResult, SQLITE_OK, "SQLite database must open in read-only mode")
+        defer { sqlite3_close(db) }
+
+        // quick_check
+        var stmt: OpaquePointer?
+        if sqlite3_prepare_v2(db, "PRAGMA quick_check(1);", -1, &stmt, nil) == SQLITE_OK {
+            if sqlite3_step(stmt) == SQLITE_ROW {
+                if let cStr = sqlite3_column_text(stmt, 0) {
+                    let result = String(cString: cStr)
+                    XCTAssertEqual(result.lowercased(), "ok", "SQLite PRAGMA quick_check must return 'ok'")
+                } else {
+                    XCTFail("PRAGMA quick_check returned null string")
+                }
+            } else {
+                XCTFail("PRAGMA quick_check returned no rows")
+            }
+            sqlite3_finalize(stmt)
+        } else {
+            XCTFail("Failed preparing PRAGMA quick_check query")
+        }
+
+        // book count >= 7000 (production release contains 7,876 books)
+        if sqlite3_prepare_v2(db, "SELECT count(*) FROM book;", -1, &stmt, nil) == SQLITE_OK {
+            if sqlite3_step(stmt) == SQLITE_ROW {
+                let bookCount = sqlite3_column_int64(stmt, 0)
+                XCTAssertGreaterThanOrEqual(bookCount, 7000, "Production corpus must contain at least 7000 books (actual: \(bookCount))")
+            }
+            sqlite3_finalize(stmt)
+        } else {
+            XCTFail("Failed preparing SELECT count(*) FROM book")
+        }
+
+        // category count >= 1000 (production release contains 1,423 categories)
+        if sqlite3_prepare_v2(db, "SELECT count(*) FROM category;", -1, &stmt, nil) == SQLITE_OK {
+            if sqlite3_step(stmt) == SQLITE_ROW {
+                let catCount = sqlite3_column_int64(stmt, 0)
+                XCTAssertGreaterThanOrEqual(catCount, 1000, "Production corpus must contain at least 1000 categories (actual: \(catCount))")
+            }
+            sqlite3_finalize(stmt)
+        } else {
+            XCTFail("Failed preparing SELECT count(*) FROM category")
+        }
     }
 }

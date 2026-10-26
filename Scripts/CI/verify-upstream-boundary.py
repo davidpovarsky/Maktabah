@@ -34,36 +34,13 @@ FORK_ALLOWED_NAMESPACES = [
     "Source/Sefaria/"
 ]
 
-POLICY_ENFORCEMENT_FILES = [
+POLICY_FILES = [
     "Scripts/CI/verify-upstream-boundary.py",
-    "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
-]
-
-POLICY_DOCUMENTATION_FILES = [
+    "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
     "docs/architecture/UPSTREAM_EXCEPTION_REGISTER.md",
+    "docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json",
     "docs/architecture/UPSTREAM_LEGACY_DEBT.md"
 ]
-
-POLICY_FILES = POLICY_ENFORCEMENT_FILES
-
-def is_protected_path(path, upstream_files):
-    """
-    Determines if a relative path belongs to the protected upstream surface:
-    1. Any file present in pinned upstream.
-    2. Maktabah.xcodeproj/project.pbxproj (shared upstream project definition).
-    3. Any file within protected namespaces (Source/Core/, Source/Features/, Source/UI/, Source/Extensions/)
-       that does not belong to authorized downstream fork layers (Source/ChavrusaText/, etc.).
-    """
-    norm = path.replace("\\", "/")
-    if norm in upstream_files:
-        return True
-    if norm == "Maktabah.xcodeproj/project.pbxproj":
-        return True
-    in_prot = any(norm.startswith(ns) for ns in PROTECTED_NAMESPACES)
-    in_fork = any(norm.startswith(ns) for ns in FORK_ALLOWED_NAMESPACES)
-    if in_prot and not in_fork:
-        return True
-    return False
 
 def construct_canonical_attestation_payload(repo, path, base_sha, head_blob_sha, patch_sha256, approval_id, expires_at):
     """
@@ -155,74 +132,44 @@ def is_attestation_expired(expires_at_str):
     except Exception as e:
         return True, f"Invalid expiration format '{expires_at_str}': {str(e)}"
 
-def load_exception_register(base_ref, head_ref, register_arg, allow_unsafe, cwd):
+def load_exception_register(base_ref, register_arg, allow_unsafe, cwd):
     """
-    Loads approved exceptions from:
-    1. The trusted baseline Git object (base_ref:docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json)
-    2. Candidate register (head_ref:docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json or local file)
-    In production / CI, candidate exceptions MUST have full cryptographic owner attestations
-    verified against the pinned owner public key.
+    Loads approved exceptions from the trusted base ref.
+    Enforces that untrusted PR / worktree heads cannot inject unreviewed approvals.
+    register_arg is ONLY allowed if allow_unsafe is True (for isolated test fixtures).
+    In production / CI, exceptions MUST come from base_ref:docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json.
     """
-    exceptions_by_path = {}
-
-    # 1. Baseline register
-    if base_ref and base_ref != "WORKTREE":
-        code, out, _ = run_cmd(["git", "show", f"{base_ref}:docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json"], cwd=cwd)
-        if code == 0 and out.strip():
-            try:
-                base_data = json.loads(out)
-                reg_baseline = base_data.get("baseline_commit") or base_data.get("baseline_sha")
-                for entry in base_data.get("exceptions", []):
-                    path = entry.get("path", "").replace("\\", "/")
-                    if path:
-                        if reg_baseline and "register_baseline" not in entry:
-                            entry["register_baseline"] = reg_baseline
-                        entry["source"] = "BASELINE"
-                        exceptions_by_path[path] = entry
-            except Exception:
-                pass
-
-    # 2. Candidate register
-    candidate_data = None
+    data = None
     if register_arg:
-        if allow_unsafe:
+        if not allow_unsafe:
+            print("Security Notice: CLI --exception-register is ignored in production mode without --allow-unsafe-register.", file=sys.stderr)
+        else:
             reg_full = os.path.join(cwd, register_arg) if not os.path.isabs(register_arg) else register_arg
             if os.path.exists(reg_full):
                 try:
                     with open(reg_full, "r", encoding="utf-8") as f:
-                        candidate_data = json.load(f)
+                        data = json.load(f)
                 except Exception as e:
                     print(f"Warning: Failed reading exception register '{register_arg}': {e}", file=sys.stderr)
-        else:
-            print("Security Notice: CLI --exception-register is ignored in production mode without --allow-unsafe-register.", file=sys.stderr)
+    if not data and base_ref and base_ref != "WORKTREE":
+        code, out, _ = run_cmd(["git", "show", f"{base_ref}:docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json"], cwd=cwd)
+        if code == 0 and out.strip():
+            try:
+                data = json.loads(out)
+            except Exception:
+                pass
 
-    if not candidate_data:
-        if head_ref == "WORKTREE":
-            cand_path = os.path.join(cwd, "docs", "architecture", "UPSTREAM_EXCEPTION_REGISTER.json")
-            if os.path.exists(cand_path):
-                try:
-                    with open(cand_path, "r", encoding="utf-8") as f:
-                        candidate_data = json.load(f)
-                except Exception:
-                    pass
-        elif head_ref:
-            code, out, _ = run_cmd(["git", "show", f"{head_ref}:docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json"], cwd=cwd)
-            if code == 0 and out.strip():
-                try:
-                    candidate_data = json.loads(out)
-                except Exception:
-                    pass
+    if not data or "exceptions" not in data:
+        return {}
 
-    if candidate_data and "exceptions" in candidate_data:
-        reg_baseline = candidate_data.get("baseline_commit") or candidate_data.get("baseline_sha")
-        for entry in candidate_data.get("exceptions", []):
-            path = entry.get("path", "").replace("\\", "/")
-            if path:
-                if reg_baseline and "register_baseline" not in entry:
-                    entry["register_baseline"] = reg_baseline
-                entry["source"] = "CANDIDATE"
-                exceptions_by_path[path] = entry
-
+    exceptions_by_path = {}
+    reg_baseline = data.get("baseline_commit") or data.get("baseline_sha")
+    for entry in data.get("exceptions", []):
+        path = entry.get("path", "").replace("\\", "/")
+        if path:
+            if reg_baseline and "register_baseline" not in entry:
+                entry["register_baseline"] = reg_baseline
+            exceptions_by_path[path] = entry
     return exceptions_by_path
 
 def run_cmd(cmd, cwd=None):
@@ -371,7 +318,7 @@ def verify_boundaries(base_ref, head_ref, upstream_ref, cwd, exception_register=
     except Exception as e:
         return 2, {"status": "ERROR", "message": f"Failed reading Git tree: {str(e)}"}
 
-    exceptions_by_path = load_exception_register(base_ref, head_ref, exception_register, allow_unsafe_register, cwd)
+    exceptions_by_path = load_exception_register(base_ref, exception_register, allow_unsafe_register, cwd)
 
     changes_by_path = {}
 
@@ -435,26 +382,23 @@ def verify_boundaries(base_ref, head_ref, upstream_ref, cwd, exception_register=
 
         is_upstream_owned = path in upstream_files
         is_orig_upstream_owned = orig_path in upstream_files if orig_path else False
-        is_protected = is_protected_path(path, upstream_files)
-        is_orig_protected = is_protected_path(orig_path, upstream_files) if orig_path else False
 
-        # Deletion of upstream / protected file (or rename away from protected)
-        if (is_protected and "D" in status) or is_orig_protected:
+        # Deletion of upstream file (or rename away from upstream)
+        if (is_upstream_owned and "D" in status) or is_orig_upstream_owned:
             target_desc = f" (renamed to {path})" if orig_path else ""
-            del_path = orig_path if is_orig_protected else path
+            del_path = orig_path if is_orig_upstream_owned else path
             violations.append({
                 "type": "UPSTREAM_FILE_DELETED",
                 "path": del_path,
                 "status": status,
                 "provenance": provenance,
-                "message": f"Protected upstream file was deleted or renamed{target_desc}: {del_path}"
+                "message": f"Original upstream-owned file was deleted or renamed{target_desc}: {del_path}"
             })
             protected_files_changed.append(del_path)
             continue
 
-        # Modification of protected file (M, T, or A if already in base/upstream)
-        is_modified = any(c in status for c in ["M", "T"]) or ("A" in status and (path in base_files or is_upstream_owned))
-        if is_protected and is_modified:
+        # Modification of upstream file
+        if is_upstream_owned and any(c in status for c in ["M", "T", "A"]):
             approved_entry = exceptions_by_path.get(path)
             if approved_entry:
                 entry_status = approved_entry.get("status", "PATCH_PROPOSED")
@@ -592,7 +536,7 @@ def verify_boundaries(base_ref, head_ref, upstream_ref, cwd, exception_register=
                         continue
 
                 # Verify patch diff digest if provided in attestation
-                expected_digest = attestation.get("patch_digest_sha256") or attestation.get("canonical_diff_sha256") or approved_entry.get("patch_digest_sha256")
+                expected_digest = attestation.get("patch_digest_sha256") or attestation.get("canonical_diff_sha256")
                 actual_diff_digest = None
                 diff_cmd = ["git", "diff", base_ref, "HEAD", "--", path] if head_ref == "WORKTREE" else ["git", "diff", base_ref, head_ref, "--", path]
                 d_code, d_out, _ = run_cmd(diff_cmd, cwd=cwd)
@@ -610,50 +554,9 @@ def verify_boundaries(base_ref, head_ref, upstream_ref, cwd, exception_register=
                         protected_files_changed.append(path)
                         continue
 
-                # Verify packaged patch file on disk if specified
-                expected_patch_file = approved_entry.get("expected_patch_file")
-                if expected_patch_file:
-                    patch_path = os.path.join(cwd, "docs", "architecture", "build-8401-patches", expected_patch_file)
-                    if not os.path.exists(patch_path):
-                        patch_path = os.path.join(cwd, "docs", "architecture", expected_patch_file)
-                    if not os.path.exists(patch_path):
-                        violations.append({
-                            "type": "PATCH_FILE_NOT_FOUND",
-                            "path": path,
-                            "status": status,
-                            "provenance": provenance,
-                            "message": f"Packaged patch file '{expected_patch_file}' for {path} not found on disk."
-                        })
-                        protected_files_changed.append(path)
-                        continue
-                    try:
-                        with open(patch_path, "rb") as pf:
-                            pf_norm = pf.read().replace(b"\r\n", b"\n")
-                        pf_digest = hashlib.sha256(pf_norm).hexdigest()
-                        if expected_digest and pf_digest != expected_digest:
-                            violations.append({
-                                "type": "PATCH_FILE_DIGEST_MISMATCH",
-                                "path": path,
-                                "status": status,
-                                "provenance": provenance,
-                                "message": f"Packaged patch file digest mismatch ({pf_digest} != {expected_digest}) for {path}"
-                            })
-                            protected_files_changed.append(path)
-                            continue
-                    except Exception as e:
-                        violations.append({
-                            "type": "PATCH_FILE_READ_ERROR",
-                            "path": path,
-                            "status": status,
-                            "provenance": provenance,
-                            "message": f"Failed reading packaged patch file '{expected_patch_file}': {str(e)}"
-                        })
-                        protected_files_changed.append(path)
-                        continue
-
                 # Cryptographic Ed25519 signature verification over canonical payload
                 repo_id = attestation.get("repo", "davidpovarsky/Maktabah")
-                approval_id = attestation.get("approval_id") or approved_entry.get("approval_ref") or "REF-APPROVED"
+                approval_id = approved_entry.get("approval_ref") or attestation.get("approval_id", "REF-APPROVED")
                 patch_sha_for_payload = attestation.get("canonical_patch_sha256") or expected_digest or actual_diff_digest or ""
 
                 payload_bytes = construct_canonical_attestation_payload(
@@ -698,7 +601,7 @@ def verify_boundaries(base_ref, head_ref, upstream_ref, cwd, exception_register=
             continue
 
         # Untracked or added file in protected upstream namespaces
-        if ("?" in status or "A" in status) and path not in base_files and not is_upstream_owned:
+        if ("?" in status or "A" in status) and not is_upstream_owned:
             in_protected_ns = any(path.startswith(ns) for ns in PROTECTED_NAMESPACES)
             in_allowed_fork_ns = any(path.startswith(ns) for ns in FORK_ALLOWED_NAMESPACES)
             if in_protected_ns and not in_allowed_fork_ns:

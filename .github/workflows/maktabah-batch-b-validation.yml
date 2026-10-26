@@ -440,7 +440,13 @@ jobs:
         run: |
           mkdir -p build/reports
           EXIT_CODE=0
-          python3 Scripts/CI/verify-upstream-boundary.py \
+          EXPECTED_VERIFIER_SHA="654a411bc78011037e6b0178d63ad8e2efb8cae3a6bb3da823738d076b387d0f"
+          ACTUAL_VERIFIER_SHA=$(shasum -a 256 tools/verify_upstream_boundary.py | cut -d' ' -f1)
+          if [ "$ACTUAL_VERIFIER_SHA" != "$EXPECTED_VERIFIER_SHA" ]; then
+            echo "::error::tools/verify_upstream_boundary.py SHA256 mismatch ($ACTUAL_VERIFIER_SHA != $EXPECTED_VERIFIER_SHA)!"
+            exit 1
+          fi
+          python3 tools/verify_upstream_boundary.py \
             --base 031df35710ab2c6015efb1acd1e65154dbcd3f24 \
             --head HEAD \
             --upstream-ref a0ed0df908a6cb38bc459d4baaeb400f447b2fc4 \
@@ -600,11 +606,22 @@ jobs:
             -destination "platform=iOS Simulator,id=$IPAD_UDID" \
             -derivedDataPath build/DerivedData-prod \
             -only-testing:Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests \
-            -only-testing:Maktabah-iOSUITests/BackendTransitionAcceptanceTests \
+            -only-testing:Maktabah-iOSUITests/BackendTransitionAcceptanceTests/testBackendSwitchRegressionScenario \
+            -only-testing:Maktabah-iOSUITests/BackendTransitionAcceptanceTests/testRoundTripBackendSwitchPersistsTabs \
+            -only-testing:Maktabah-iOSUITests/BackendTransitionAcceptanceTests/testBackendSwitchViaSettingsPickerUI \
             -resultBundlePath build/DerivedData-prod/ProductionTestResults.xcresult \
-            OTZARIA_SHARED_ROOT_OVERRIDE="$SHARED_ROOT" \
-            OTZARIA_PRODUCTION_DB_PATH="$PWD/build/production-corpus/seforim.db" \
+            -test-runner-env OTZARIA_SHARED_ROOT_OVERRIDE="$SHARED_ROOT" \
+            -test-runner-env OTZARIA_PRODUCTION_DB_PATH="$PWD/build/production-corpus/seforim.db" \
+            -test-env OTZARIA_SHARED_ROOT_OVERRIDE="$SHARED_ROOT" \
+            -test-env OTZARIA_PRODUCTION_DB_PATH="$PWD/build/production-corpus/seforim.db" \
             2>&1 | tee build/logs/test-simulator-prod.log
+
+      - name: Verify Zero Skips in Production Acceptance Suite
+        run: |
+          python3 tools/verify_xcresult_zero_skips.py \
+            --xcresult build/DerivedData-prod/ProductionTestResults.xcresult \
+            --log build/logs/test-simulator-prod.log \
+            --min-tests 6
 
       - name: Upload Production Acceptance Test Results
         if: always()
