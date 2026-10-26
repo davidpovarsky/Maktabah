@@ -6,9 +6,10 @@
 **Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`  
 **Candidate Baseline Commit:** `031df35710ab2c6015efb1acd1e65154dbcd3f24` (`031df35`)  
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4` (`a0ed0df`)  
-**Verified CI Run on Final Candidate SHA:** GitHub Actions Run [`40250952113`](https://github.com/davidpovarsky/Maktabah/actions/runs/40250952113) (macOS 27, Xcode 27) — **ALL 6 JOBS GREEN**, 212/212 portable component assertions passed, 21 XCUITests passed, 1 test skipped/blocked on missing on-disk DB prerequisite per Section 1C, 0 failures, Release compile successful  
-**Upstream Integrity Status:** `FAIL / OWNER_APPROVAL_REQUIRED` (Cryptographic release gate fail-closed; 14 protected patches registered)  
-**Distribution Gate Status:** `STOPPED_AT_OWNER_APPROVAL_GATE` (No code signing, no IPA creation, zero TestFlight upload without authentic owner Ed25519 signature)  
+**Verified CI Run on Tested Code SHA (`b7541e6`):** GitHub Actions Run [`40250952113`](https://github.com/davidpovarsky/Maktabah/actions/runs/40250952113) (macOS 27, Xcode 27) — **ALL 6 JOBS GREEN**, 212/212 portable component assertions passed, 21 XCUITests passed, 1 test skipped/blocked on missing on-disk DB prerequisite per Section 1C, 0 failures, Release compile successful  
+**Upstream Integrity Status:** `BLOCKED_OWNER_SIGNATURE` (14 protected patches pending authentic owner Ed25519 signature; guard fails closed)  
+**Distribution Gate Status:** `STOPPED_AT_OWNER_APPROVAL_GATE` (Zero code signing, zero IPA creation, zero TestFlight upload without authentic owner Ed25519 signature)  
+**Final Completion State:** `BLOCKED_OWNER_SIGNATURE`  
 
 ---
 
@@ -17,152 +18,139 @@
 - **Baseline SHA:** `031df35710ab2c6015efb1acd1e65154dbcd3f24`
 - **Pinned Upstream SHA:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`
 - **Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`
-- **Final Candidate SHA:** `b7541e6caaa4cdc98e0b6ccf33b9754ab0cdf8ff`
 - **Protected Trees Untouched:** `C:\Users\DAVID\Code\Maktabah`, `C:\Users\DAVID\Code\Maktabah-v42-integration` (`sync/upstream-v42-full-integration`), `Maktabah-signing`, and `maktabah-torah-photo-study` remain 100% untouched. No git identity modifications, no resets, no merges to `main` or integration branches.
+- **Subagent Policy:** Strict NORMAL mode maintained. Single primary agent only, zero subagents invoked.
+- **Asana Policy:** Read-only inspection; zero Asana mutations performed.
 
 ---
 
-## 2. File-by-File Change Inventory & Ownership Classification
+## 2. File-by-File Change Inventory & Ownership Classification (14 Protected Patches)
 
-| File Path | Ownership | Classification | Proposed Patch | Status |
-|---|---|---|---|---|
-| `Source/UI/iOS/Wrappers/iOSIbarotTextView.swift` | Upstream-owned | Protected UI wrapper | `01-iosibarottextview-decoration-cache-and-scroll.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift` | Upstream-owned | Protected ViewModel extension | `02-readernavigation-backend-paging.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift` | Upstream-owned | Protected ViewModel extension | `03-readercontent-bounded-destination-resolution.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift` | Upstream-owned | Protected ViewModel extension | `04-readerios-search-context-and-selection.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/ViewModel/ReaderViewModel.swift` | Upstream-owned | Protected ViewModel | `05-readerviewmodel-search-event-preservation.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift` | Upstream-owned | Protected UI view | `06-iosreaderbottomtoolbarview-clear-x.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift` | Upstream-owned | Protected UI view | `07-iostoceview-live-tracking-and-loading-state.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift` | Downstream-owned | Fork-created workspace view | `08-iosreaderworkspaceview-toc-tracking.patch` | Tracked in bundle |
-| `Source/Features/Reader/ViewModel/BookTOCViewModel.swift` | Upstream-owned | Protected ViewModel | `09-booktocviewmodel-loading-and-matching.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Setting/SettingsView.swift` | Upstream-owned | Protected UI view | `10-settingsview-backend-switch-error-handling.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/UI/iOS/Managers/iOSNavigationManager.swift` | Upstream-owned | Protected UI Manager | `11-iosnavigationmanager-cold-catalog-and-search-context.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Maktabah.xcodeproj/project.pbxproj` | Upstream-owned | Protected project file | `12-maktabah-xcode-target-integration.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/UI/iOS/Views/iOSMainView.swift` | Upstream-owned | Protected UI root view | `13-iosmainview-settings-and-search-navigation.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift` | Upstream-owned | Protected UI row | `14-tocnoderow-accessibility-selection.patch` | `OWNER_APPROVAL_REQUIRED` |
-| `Source/ChavrusaText/Testing/ReaderRenderedHighlightInspector.swift` | Downstream-owned | Testing diagnostics | None (Downstream module) | Permitted |
-| `Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift` | Downstream-owned | Localization module | None (Downstream module) | Permitted |
-| `Source/ChavrusaText/Navigation/*` | Downstream-owned | Navigation coordinators | None (Downstream module) | Permitted |
-| `Source/ChavrusaText/Search/*` | Downstream-owned | Search context coordinator | None (Downstream module) | Permitted |
-| `Maktabah-iOSUITests/*` | Downstream / Tests | Test target acceptance suites | None (Test target) | Permitted |
-| `.github/workflows/*` | Upstream / CI | CI workflows | None (Candidate CI gates) | Permitted |
+Every modified file is categorized and tracked in `docs/architecture/BUILD_8401_REPRODUCIBLE_PAYLOAD_MANIFEST.json` and `UPSTREAM_EXCEPTION_REGISTER.json`:
+
+| Patch ID | File Path | Ownership | Classification | Proposed Patch | Status |
+|---|---|---|---|---|---|
+| `BUILD_8401_PATCH_01` | `Source/UI/iOS/Wrappers/iOSIbarotTextView.swift` | Upstream-owned | Protected UI wrapper | `01-iosibarottextview-decoration-cache-and-scroll.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_02` | `Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift` | Upstream-owned | Protected ViewModel extension | `02-readernavigation-backend-paging.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_03` | `Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift` | Upstream-owned | Protected ViewModel extension | `03-readercontent-bounded-destination-resolution.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_04` | `Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift` | Upstream-owned | Protected ViewModel extension | `04-readerios-search-context-and-selection.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_05` | `Source/Features/Reader/ViewModel/ReaderViewModel.swift` | Upstream-owned | Protected ViewModel | `05-readerviewmodel-search-event-preservation.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_06` | `Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift` | Upstream-owned | Protected UI view | `06-iosreaderbottomtoolbarview-clear-x.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_07` | `Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift` | Upstream-owned | Protected UI view | `07-iostoceview-live-tracking-and-loading-state.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_08` | `Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift` | Downstream-owned | Fork-created workspace view | `08-iosreaderworkspaceview-toc-tracking.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_09` | `Source/Features/Reader/ViewModel/BookTOCViewModel.swift` | Upstream-owned | Protected ViewModel | `09-booktocviewmodel-loading-and-matching.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_10` | `Source/Features/Setting/SettingsView.swift` | Upstream-owned | Protected UI view | `10-settingsview-backend-switch-error-handling.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_11` | `Source/UI/iOS/Managers/iOSNavigationManager.swift` | Upstream-owned | Protected UI Manager | `11-iosnavigationmanager-cold-catalog-and-search-context.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_12` | `Maktabah.xcodeproj/project.pbxproj` | Upstream-owned | Protected project file | `12-maktabah-xcode-target-integration.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_13` | `Source/UI/iOS/Views/iOSMainView.swift` | Upstream-owned | Protected UI root view | `13-iosmainview-settings-and-search-navigation.patch` | `OWNER_APPROVAL_REQUIRED` |
+| `BUILD_8401_PATCH_14` | `Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift` | Upstream-owned | Protected UI row | `14-tocnoderow-accessibility-selection.patch` | `OWNER_APPROVAL_REQUIRED` |
 
 ---
 
-## 3. Test Truthfulness Gaps Resolved
+## 3. Cryptographic Boundary Guard Architecture (Pass 4 Hardened)
 
-### 3A. Search Highlighting in Rendered Attributed Text
-- **Prior Gap:** `testA1_A2_SearchResultHighlightAndClearButton` only checked for the existence of `reader.clear_search_highlight_button` in a synthetic `searchOpen` scenario without validating actual glyph highlighting in `UITextView.attributedText`.
-- **Resolution:**
-  - Implemented downstream `Source/ChavrusaText/Testing/ReaderRenderedHighlightInspector.swift`.
-  - Added a minimal read-only `#if DEBUG` hook in `Source/UI/iOS/Wrappers/iOSIbarotTextView.swift` that inspects `textView.attributedText` directly and exposes a JSON diagnostics element `reader-rendered-highlight-diagnostics`.
-  - Strengthened `testA1_A2_SearchResultHighlightAndClearButton` to assert that `searchHighlightCount > 0` before clearing, and strictly equals `0` after tapping `reader.clear_search_highlight_button`.
-  - Added `testA1_RealSearchFlowHighlightAndClear` verifying user search execution, result row expansion, reader navigation, and highlight clearing.
+### 3A. Upstream Verifier Enhancements (`Scripts/CI/verify-upstream-boundary.py`)
+- **Candidate Exception Loading:** Inspects candidate `docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json` without trusting self-asserted `APPROVED` flags.
+- **Fail-Closed Gate:** Every candidate entry MUST possess an authentic `owner_attestation` verified with Ed25519 against `MAKTABAH_OWNER_VERIFICATION_KEY`.
+- **Exact Cryptographic Binding:** Binds `repo`, `path`, `base_sha`, `head_blob_sha`, `patch_digest_sha256`, `approval_id`, and `expires_at` deterministically.
+- **Packaged Patch File Validation:** Verifies that packaged `.patch` files on disk exist and match the diff digest byte-for-byte.
+- **Enforcement Separation:** Isolates policy enforcement files (`verify-upstream-boundary.py`, `UPSTREAM_INTEGRITY_POLICY.md`) from register files, eliminating false-positive bypass warnings while preventing unreviewed guard alterations.
 
-### 3B. Paging Verification with Canonical Locators & Text Transitions
-- **Prior Gap:** `testB1_B2_PagingTransitionsPreserveReaderStability` only checked that `readerSurface` exists after swipes. `PullNavigationAcceptanceTests` wrapped locator assertions in conditional `if currentLocator.exists`.
-- **Resolution:**
-  - Made `reader-current-locator` mandatory in `PullNavigationAcceptanceTests` and `Build8401SevenDefectsAcceptanceTests`.
-  - Required non-empty canonical locator format (`backend|workKey|positionKey`).
-  - Verified intermediate locator transition upon threshold commit.
-  - Verified exact return to initial locator upon reverse transition.
-
-### 3C. Settings Backend Switch Verification
-- **Prior Gap:** `testBackendSwitchViaSettingsPickerUI` contained optional `if/else if` guards that passed even if the picker was never tapped.
-- **Resolution:**
-  - Enforced mandatory selection of the Otzaria option via `app.descendants(matching: .any)["settings-library-source-picker"]`.
-  - Added stable read-only accessibility values for `settings-active-backend-id` and `settings-transition-state` in `SettingsView.swift`.
-  - Asserted transition completion and responsive Library tab restoration after tapping Done.
-
-### 3D. TOC Tracking & Selection Verification
-- **Prior Gap:** `testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState` only asserted that search was present and "No TOC" was absent. It never asserted row selection.
-- **Resolution:**
-  - Updated `TOCNodeRow.swift` to attach `.accessibilityAddTraits(item.id == selectedId ? [.isSelected] : [])` and `.accessibilityValue(item.id == selectedId ? "selected" : "unselected")`.
-  - Strengthened test to assert that the active reading unit is selected in the TOC tree.
-  - Added `testF2_HebrewTOCStructureAndDafLabels` validating Hebrew structural and daf labels (`דפים`, `פרקים`, `י״ב ע״א`, `ט״ו ע״ב`).
-
-### 3E. Deep Commentary Links & Annotation Persistence
-- **Prior Gap:** Deep commentary bounding (`Rashi on Berakhot 15b:3:1`) was only tested in portable suites. Pre-relaunch annotation check in `HighlightAnnotationAcceptanceTests` discarded existence result (`_ = ...`).
-- **Resolution:**
-  - Added `DeepLinkedCommentaryAcceptanceTests` asserting full folio loading (`Rashi on Berakhot 15b`) without a blank 1-line viewport and zero search Clear button appearance.
-  - Enforced mandatory pre-relaunch and post-relaunch assertions in `HighlightAnnotationAcceptanceTests`.
+### 3B. Comprehensive Security Test Suite (`tools/test_upstream_boundary_security.py`)
+Executed and verified **16 of 16 security conditions (100% pass)**:
+1. `Test 1: Unsigned APPROVED entry without attestation` -> `MISSING_OWNER_ATTESTATION` (PASS)
+2. `Test 2: Attestation signed by unauthorized key` -> `UNAUTHORIZED_SIGNER_KEY` (PASS)
+3. `Test 3: Missing owner key in policy configuration` -> `TRUST_GATE_BLOCKED_OWNER_CONFIGURATION` (PASS)
+4. `Test 4: Modified head blob SHA differs from actual` -> `UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION` (PASS)
+5. `Test 5: Modified diff digest mismatch` -> `PATCH_DIGEST_MISMATCH` (PASS)
+6. `Test 6: Missing packaged patch file on disk` -> `PATCH_FILE_NOT_FOUND` (PASS)
+7. `Test 7: Expired attestation timestamp` -> `ATTESTATION_EXPIRED` (PASS)
+8. `Test 8: Swapped path in signature payload` -> `INVALID_CRYPTOGRAPHIC_SIGNATURE` (PASS)
+9. `Test 9: Baseline commit mismatch` -> `ATTESTATION_BASE_MISMATCH` (PASS)
+10. `Test 10: Corrupted signature bytes` -> `INVALID_CRYPTOGRAPHIC_SIGNATURE` (PASS)
+11. `Test 11: Production CI strictly forbids --allow-unsafe-register` -> `PROD_CI_FORBIDS_UNSAFE_REGISTER` (PASS)
+12. `Test 12: Zero-commit scan base == head rejected` -> `SAME_BASE_AND_HEAD_NOT_PROOF` (PASS)
+13. `Test 13: Protected upstream modification without exception entry` -> `UNAUTHORIZED_UPSTREAM_MODIFICATION` (PASS)
+14. `Test 14: Protected namespace pollution rejected` -> `PROTECTED_NAMESPACE_POLLUTION` (PASS)
+15. `Test 15: Policy bypass via coupled policy file modification` -> `UNAUTHORIZED_POLICY_BYPASS_ATTEMPT` (PASS)
+16. `Test 16: Complete 14-hunk genuine fixture verification` -> `PASS (0 violations, clean approval)` (PASS)
 
 ---
 
-## 4. Test Suite Execution & Tiering
+## 4. Production Database Acceptance & Test Truthfulness
 
-The test harness is split into three independent tiers:
-
-1. **Tier S — Fast Smoke:**
-   - Launch flags: `-OtzariaDataProfile miniTest10`, `-smokeBypassBootstrap`, `-smokeScenario <scenario>`, `-smokeBackend <backend>`.
-   - Result: `PASS_SMOKE_MINI`.
-2. **Tier R — Real User UI:**
-   - Launch flags: Normal app bootstrap without smoke bypass (`launchWithTier(.realUI)`).
-   - Result: `PASS_REAL_UI`.
-3. **Tier P — Full Production Otzaria:**
-   - Launch flags: `-OtzariaDataProfile production` (`launchWithTier(.production)`), strictly rejecting `miniTest10` overrides.
-   - Verified via `ProductionOtzariaAcceptanceTests.swift`.
-   - Result: `PASS_FULL_PRODUCTION` (Asset & Profile Integrity) / `OWNER_DEVICE_PENDING` (Physical Device).
-
-### Exact Test Counts (Verified on GitHub Actions Run 40250952113):
-- **Portable Component Assertions:** **212 of 212 passed (100%)** across 21 suites in `tools/test_chavrusa_text_components.swift`.
-- **iPad XCUITest Suites:** 8 test classes (22 total test cases):
-  1. `Build8401SevenDefectsAcceptanceTests` (7 tests: 7 passed)
-  2. `PullNavigationAcceptanceTests` (2 tests: 2 passed)
-  3. `BackendTransitionAcceptanceTests` (3 tests: 2 passed, 1 skipped/blocked per Section 1C #4)
-  4. `HighlightAnnotationAcceptanceTests` (1 test: 1 passed)
-  5. `HistoryLocalizationAcceptanceTests` (3 tests: 3 passed)
-  6. `iPadTabBarAcceptanceTests` (2 tests: 2 passed)
-  7. `DeepLinkedCommentaryAcceptanceTests` (2 tests: 2 passed)
-  8. `ProductionOtzariaAcceptanceTests` (2 tests: 2 passed)
-  **Total XCUITest Executed:** 21 passed, 1 skipped/blocked, 0 failed.
-
----
-
-## 5. Official Production Database Assets
-
+### 4A. Production Corpus Metadata & Independent Verification
 - **Official Release Tag:** `v32-20261010190601` (`Otzaria/SeforimLibrary`)
 - **Asset Filename:** `seforim-schema6.db.zst`
 - **Compressed Size:** `1,850,679,582 bytes` (~1.85 GB)
-- **SHA-256 Digest:** `6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44`
-- **Distribution Policy:** The production database is **not bundled inside the IPA**. It is downloaded and verified on-device. An app upgrade preserves existing database files and personal annotations in-place.
+- **Official SHA-256 Digest:** `6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44`
+- **Runtime Installation Path:** `$CONTAINER_DIR/Library/Application Support/Otzaria/DataProfiles/production/Database/seforim.db` via `ITorahSharedContainer` + `OtzariaProfileStorage`. Database is **never bundled in the IPA**.
+
+### 4B. UI Acceptance Test Suite Updates
+- **`ProductionOtzariaAcceptanceTests.swift`**:
+  - Eliminated hardcoded metadata self-comparisons.
+  - Added live GitHub Release API validation of tag, filename, and exact compressed byte count.
+  - Added `testProductionCorpusSQLiteIntegrityIfInstalled` validating SQLite structure (`book`, `category`, `line` tables and record counts).
+  - Enforced pure Tier P launch (`-OtzariaDataProfile production`) with explicit skip diagnostics when unprovisioned.
+- **`BackendTransitionAcceptanceTests.swift`**:
+  - Enforced mandatory selection in `testBackendSwitchViaSettingsPickerUI`.
+  - Added `testBackendSwitchWhenCorpusUnavailablePresentsConfigurationPrompt` testing that unconfigured Otzaria properly presents the download prompt rather than silently falling back.
+
+### 4C. Component Test Verification
+- **Command:** `swiftc -parse-as-library -o chavrusa_tests.exe tools/test_chavrusa_text_components.swift ...`
+- **Result:** **212 of 212 portable assertions passed (100%)** across all 21 suites.
 
 ---
 
-## 6. Upstream Boundary Verification & Cryptographic Release Gate
+## 5. CI Workflow Updates
 
-- Executed command:
-  ```bash
-  python Scripts/CI/verify-upstream-boundary.py \
-    --base 031df35710ab2c6015efb1acd1e65154dbcd3f24 \
-    --head HEAD \
-    --upstream-ref a0ed0df908a6cb38bc459d4baaeb400f447b2fc4
-  ```
-- **Boundary Result:** `FAIL / OWNER_APPROVAL_REQUIRED`
-- **Violations:** 12 committed upstream files (and 2 pending uncommitted working-copy files) require authentic owner Ed25519 cryptographic attestations.
-- **Fail-Closed Protection:** No candidate-provided private key was generated. No signatures were forged. The CI release workflow `.github/workflows/ios-testflight.yml` includes a fail-closed gate before signing or archive export that halts execution when this check fails.
+### 5A. Validation Workflow (`.github/workflows/maktabah-batch-b-validation.yml`)
+- Removed `|| true` from any required integrity gate.
+- Added `boundary-guard-diagnostic` job running boundary verification and security negative tests.
+- Added `production-database-acceptance` job:
+  - Downloads official `seforim-schema6.db.zst` (1.85 GB)
+  - Validates SHA-256 `6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44`
+  - Decompresses with `zstd -T0 -d`
+  - Verifies SQLite quick_check and table counts
+  - Provisions into iPad simulator App Group container and executes full production acceptance tests.
 
----
-
-## 7. Signed Release & TestFlight Distribution Status
-
-- **Status:** **`STOPPED_AT_OWNER_APPROVAL_GATE`**
-- **Action Taken:** In strict accordance with `AGENTS.md`, `UPSTREAM_INTEGRITY_POLICY.md`, and the user's explicit directive:
-  - No signing keys were accessed.
-  - No archive was generated.
-  - No IPA was exported or uploaded to App Store Connect / TestFlight.
-- **Prerequisite for TestFlight:** Repository owner must review the 14 patches in `docs/architecture/BUILD_8401_PROTECTED_HUNK_APPROVAL_PACKAGE.md`, sign the attestations in `docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json`, and authorize release workflow dispatch.
+### 5B. TestFlight Workflow (`.github/workflows/ios-testflight.yml`)
+- Added `expected_sha` input to `workflow_dispatch`.
+- Enforced `fetch-depth: 0` on checkout.
+- Enforced release HEAD matches `expected_sha`.
+- Added pre-signing fail-closed boundary gate:
+  `python3 Scripts/CI/verify-upstream-boundary.py ... --owner-public-key "${{ vars.MAKTABAH_OWNER_VERIFICATION_KEY || secrets.MAKTABAH_OWNER_VERIFICATION_KEY }}"`
+  Halts immediately before importing certificates if owner signatures are unverified.
 
 ---
 
-## 8. Summary of Next Actions for Repository Owner
+## 6. One-Action Owner Signing Handoff
 
-1. **Review Protected Patches:** Inspect the exact hunks in `docs/architecture/build-8401-patches/` (14 patches total).
-2. **Attest Approvals:** Sign the canonical payload hashes in `docs/architecture/BUILD_8401_REPRODUCIBLE_PAYLOAD_MANIFEST.json` using the owner Ed25519 key.
-3. **Dispatch CI / Release:**
-   - Run validation CI: `gh workflow run maktabah-batch-b-validation.yml --ref validation/maktabah-build-8401-repair-production-20261025`
-   - Following approved gate, dispatch production TestFlight release:
-     ```bash
-     gh workflow run ios-testflight.yml --ref validation/maktabah-build-8401-repair-production-20261025 -f data_profile=production -f upload_to_testflight=true
-     ```
-4. **Physical iPad Pro Acceptance:** Verify internal TestFlight build on physical hardware with production database.
+Since `MAKTABAH_OWNER_VERIFICATION_KEY` is not yet provisioned in GitHub variables or secrets, and the repository owner has not yet signed the 14 hunks, the release is held in the authorized fail-closed state: **`BLOCKED_OWNER_SIGNATURE`**.
+
+### Exact One-Action Signing Command for Owner:
+
+The owner can inspect canonical payloads or sign all 14 hunks in a single command using `tools/sign_owner_approvals.py`:
+
+```bash
+# 1. (Optional) Review the 14 canonical JSON payloads:
+python tools/sign_owner_approvals.py --generate-payloads
+
+# 2. Sign all 14 hunks with owner Ed25519 private key:
+python tools/sign_owner_approvals.py --sign --private-key <PATH_TO_OWNER_PRIVATE_KEY_OR_HEX>
+
+# 3. Provision the owner verification public key on GitHub:
+gh variable set MAKTABAH_OWNER_VERIFICATION_KEY --repo davidpovarsky/Maktabah --body "<OWNER_PUBLIC_KEY_HEX>"
+
+# 4. Commit and push the signed UPSTREAM_EXCEPTION_REGISTER.json:
+git commit -am "chore(audit): record authentic owner Ed25519 attestations for Build 8401 (14 hunks)"
+git push origin validation/maktabah-build-8401-repair-production-20261025
+
+# 5. Dispatch production TestFlight release:
+gh workflow run ios-testflight.yml \
+  --repo davidpovarsky/Maktabah \
+  --ref validation/maktabah-build-8401-repair-production-20261025 \
+  -f data_profile=production \
+  -f upload_to_testflight=true \
+  -f expected_sha="$(git rev-parse HEAD)"
+```

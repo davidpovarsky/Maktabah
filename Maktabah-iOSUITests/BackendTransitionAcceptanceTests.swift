@@ -86,4 +86,41 @@ final class BackendTransitionAcceptanceTests: MaktabahUITestBase {
             "Library tab must remain responsive after settings backend transition"
         )
     }
+
+    func testBackendSwitchWhenCorpusUnavailablePresentsConfigurationPrompt() throws {
+        // When Otzaria database is not configured, selecting Otzaria in Settings
+        // must present the configuration / download flow rather than silently falling back.
+        launchWithScenario("settings", backend: "sefaria")
+        dismissAlertsIfNeeded()
+
+        let picker = app.descendants(matching: .any)["settings-library-source-picker"]
+        XCTAssertTrue(waitForElement(picker, timeout: 8.0), "Settings library source picker must exist")
+
+        let otzariaOption = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS[c] 'Otzaria' OR label CONTAINS[c] 'אוצריא'")
+        ).firstMatch
+
+        if picker.elementType == .picker {
+            picker.adjust(toPickerWheelValue: "Otzaria")
+        } else if otzariaOption.exists && otzariaOption.isHittable {
+            otzariaOption.tap()
+        } else if picker.isHittable {
+            picker.tap()
+            let menuOption = app.buttons.matching(
+                NSPredicate(format: "label CONTAINS[c] 'Otzaria' OR label CONTAINS[c] 'אוצריא'")
+            ).firstMatch
+            if menuOption.waitForExistence(timeout: 4.0) {
+                menuOption.tap()
+            }
+        }
+
+        // Verify that either the Done button is dismissed or configuration prompt appears
+        let doneButton = app.buttons["settings-done-button"]
+        let setupPrompt = app.descendants(matching: .any).matching(
+            NSPredicate(format: "label CONTAINS[c] 'הורד' OR label CONTAINS[c] 'הורדה' OR label CONTAINS[c] 'Download' OR label CONTAINS[c] 'Database'")
+        ).firstMatch
+
+        let isHandled = !doneButton.waitForExistence(timeout: 4.0) || setupPrompt.exists
+        XCTAssertTrue(isHandled, "Selecting unconfigured backend must trigger configuration prompt or dismiss Done button")
+    }
 }

@@ -16,6 +16,10 @@ on:
         required: true
         type: boolean
         default: true
+      expected_sha:
+        description: Exact git commit SHA expected to be built and signed (fail-closed check)
+        required: false
+        type: string
 
 permissions:
   actions: read
@@ -53,6 +57,8 @@ jobs:
           github_token: ${{ github.token }}
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -541,11 +547,20 @@ jobs:
             exit 1
           fi
 
-          echo "Running Upstream Boundary Verification..."
+          if [ -n "${{ inputs.expected_sha }}" ]; then
+            if [ "$CURRENT_SHA" != "${{ inputs.expected_sha }}" ]; then
+              echo "::error::Current HEAD ($CURRENT_SHA) does not match expected_sha (${{ inputs.expected_sha }})"
+              exit 1
+            fi
+            echo "Verified release HEAD matches expected_sha: $CURRENT_SHA"
+          fi
+
+          echo "Running Upstream Boundary Verification (Fail-Closed Gate)..."
           python3 Scripts/CI/verify-upstream-boundary.py \
             --base 031df35710ab2c6015efb1acd1e65154dbcd3f24 \
             --head "$CURRENT_SHA" \
-            --upstream-ref a0ed0df908a6cb38bc459d4baaeb400f447b2fc4
+            --upstream-ref a0ed0df908a6cb38bc459d4baaeb400f447b2fc4 \
+            --owner-public-key "${{ vars.MAKTABAH_OWNER_VERIFICATION_KEY || secrets.MAKTABAH_OWNER_VERIFICATION_KEY }}"
 
       - name: Import Apple Distribution certificate
         shell: bash
