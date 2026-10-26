@@ -25,19 +25,25 @@ def parse_xcodebuild_log(log_path):
             # Match: Test Case '-[Suite TestName]' passed ...
             # Match: Test Case '-[Suite TestName]' failed ...
             # Match: Test Case '-[Suite TestName]' skipped ...
-            m_pass = re.search(r"Test Case '-\[(\w+)\s+(\w+)\]'\s+passed", line)
+            m_pass = re.search(r"Test Case '-\[(\S+)\s+(\S+)\]'\s+passed", line)
             if m_pass:
-                passed.append(f"{m_pass.group(1)}/{m_pass.group(2)}")
+                suite = m_pass.group(1).split(".")[-1]
+                test = m_pass.group(2)
+                passed.append(f"{suite}/{test}")
                 continue
 
-            m_fail = re.search(r"Test Case '-\[(\w+)\s+(\w+)\]'\s+failed", line)
+            m_fail = re.search(r"Test Case '-\[(\S+)\s+(\S+)\]'\s+failed", line)
             if m_fail:
-                failed.append(f"{m_fail.group(1)}/{m_fail.group(2)}")
+                suite = m_fail.group(1).split(".")[-1]
+                test = m_fail.group(2)
+                failed.append(f"{suite}/{test}")
                 continue
 
-            m_skip = re.search(r"Test Case '-\[(\w+)\s+(\w+)\]'\s+skipped", line)
+            m_skip = re.search(r"Test Case '-\[(\S+)\s+(\S+)\]'\s+skipped", line)
             if m_skip:
-                skipped.append(f"{m_skip.group(1)}/{m_skip.group(2)}")
+                suite = m_skip.group(1).split(".")[-1]
+                test = m_skip.group(2)
+                skipped.append(f"{suite}/{test}")
                 continue
 
     return {
