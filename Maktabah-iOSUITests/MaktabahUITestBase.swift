@@ -90,6 +90,14 @@ class MaktabahUITestBase: XCTestCase {
             ]
             env["OTZARIA_DATA_PROFILE"] = "production"
             env["SIMCTL_CHILD_OTZARIA_DATA_PROFILE"] = "production"
+            if let sharedRoot = ProcessInfo.processInfo.environment["OTZARIA_SHARED_ROOT_OVERRIDE"] {
+                env["OTZARIA_SHARED_ROOT_OVERRIDE"] = sharedRoot
+                env["SIMCTL_CHILD_OTZARIA_SHARED_ROOT_OVERRIDE"] = sharedRoot
+            }
+            if let dbPath = ProcessInfo.processInfo.environment["OTZARIA_PRODUCTION_DB_PATH"] {
+                env["OTZARIA_PRODUCTION_DB_PATH"] = dbPath
+                env["SIMCTL_CHILD_OTZARIA_PRODUCTION_DB_PATH"] = dbPath
+            }
         }
 
         args += [
@@ -137,8 +145,8 @@ class MaktabahUITestBase: XCTestCase {
     }
 
     func dismissAlertsIfNeeded() {
-        let alert = app.alerts.firstMatch
-        if alert.waitForExistence(timeout: 1.5) {
+        if app.alerts.count > 0 {
+            let alert = app.alerts.firstMatch
             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
             if okButton.exists {
                 okButton.tap()

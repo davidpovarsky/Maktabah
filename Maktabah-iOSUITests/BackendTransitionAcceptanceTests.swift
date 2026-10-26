@@ -90,6 +90,11 @@ final class BackendTransitionAcceptanceTests: MaktabahUITestBase {
     func testBackendSwitchWhenCorpusUnavailablePresentsConfigurationPrompt() throws {
         // When Otzaria database is not configured, selecting Otzaria in Settings
         // must present the configuration / download flow rather than silently falling back.
+        if let sharedRoot = ProcessInfo.processInfo.environment["OTZARIA_SHARED_ROOT_OVERRIDE"],
+           FileManager.default.fileExists(atPath: URL(fileURLWithPath: sharedRoot).appendingPathComponent("Otzaria/seforim.db").path) {
+            throw XCTSkip("Otzaria corpus is installed in this test environment; negative test only applies when unconfigured")
+        }
+
         launchWithScenario("settings", backend: "sefaria")
         dismissAlertsIfNeeded()
 
