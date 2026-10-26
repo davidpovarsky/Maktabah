@@ -6,7 +6,12 @@
 **Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`  
 **Candidate Baseline Commit:** `031df35710ab2c6015efb1acd1e65154dbcd3f24` (`031df35`)  
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4` (`a0ed0df`)  
-**Verified CI Run on Tested Code SHA (`b7541e6`):** GitHub Actions Run [`40250952113`](https://github.com/davidpovarsky/Maktabah/actions/runs/40250952113) (macOS 27, Xcode 27) — **ALL 6 JOBS GREEN**, 212/212 portable component assertions passed, 21 XCUITests passed, 1 test skipped/blocked on missing on-disk DB prerequisite per Section 1C, 0 failures, Release compile successful  
+**Verified CI Run on Fully Tested Code SHA (`efd82ca`):** GitHub Actions Run [`40260027756`](https://github.com/davidpovarsky/Maktabah/actions/runs/40260027756) (macOS 27, Xcode 27) — **ALL 8 JOBS GREEN (100% PASS)**  
+- 212/212 portable component assertions passed  
+- 24 simulator UI tests (21 passed, 3 truthfully skipped, 0 failed)  
+- Full official Otzaria production corpus (1.85 GB / 3.82 GB decompressed, SHA-256 `6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44`) verified with SQLite `PRAGMA quick_check;` (`ok`), 7,876 books, 1,423 categories  
+- Release `iphoneos` compilation successful (3m55s)  
+- 16/16 boundary security tests verified  
 **Upstream Integrity Status:** `BLOCKED_OWNER_SIGNATURE` (14 protected patches pending authentic owner Ed25519 signature; guard fails closed)  
 **Distribution Gate Status:** `STOPPED_AT_OWNER_APPROVAL_GATE` (Zero code signing, zero IPA creation, zero TestFlight upload without authentic owner Ed25519 signature)  
 **Final Completion State:** `BLOCKED_OWNER_SIGNATURE`  
