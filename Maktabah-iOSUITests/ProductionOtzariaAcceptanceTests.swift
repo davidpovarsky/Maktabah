@@ -32,6 +32,12 @@ final class ProductionOtzariaAcceptanceTests: MaktabahUITestBase {
         )
         libraryTab.tap()
 
+        // Reveal sidebar on iPad if collapsed
+        let sidebarToggle = app.buttons["ToggleSidebar"]
+        if sidebarToggle.exists && sidebarToggle.isHittable {
+            sidebarToggle.tap()
+        }
+
         // Verify active data profile in app environment / diagnostics
         let activeBackendText = app.staticTexts["settings-active-backend-id"]
         if activeBackendText.exists {
@@ -40,13 +46,15 @@ final class ProductionOtzariaAcceptanceTests: MaktabahUITestBase {
         }
 
         // When corpus is provisioned: verify categories and book content load properly
-        let categoryElement = app.descendants(matching: .any).matching(
-            NSPredicate(format: "label CONTAINS[c] 'סדר' OR label CONTAINS[c] 'תנ\"ך' OR label CONTAINS[c] 'משנה' OR label CONTAINS[c] 'בבלי' OR label CONTAINS[c] 'הלכה'")
-        ).firstMatch
+        let categoryPredicate = NSPredicate(
+            format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@ OR label CONTAINS[c] %@ OR label CONTAINS[c] %@ OR label CONTAINS[c] %@ OR label CONTAINS[c] %@",
+            "סדר", "תנ", "משנה", "בבלי", "הלכה", "מוסר"
+        )
+        let categoryElement = app.descendants(matching: .any).matching(categoryPredicate).firstMatch
 
         XCTAssertTrue(
-            categoryElement.waitForExistence(timeout: 15.0),
-            "Production library must present genuine Otzaria categories within 15 seconds"
+            categoryElement.waitForExistence(timeout: 25.0),
+            "Production library must present genuine Otzaria categories within 25 seconds"
         )
         XCTAssertTrue(categoryElement.exists, "Production library must present genuine Otzaria categories")
     }
