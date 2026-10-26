@@ -44,9 +44,16 @@ final class HighlightAnnotationAcceptanceTests: MaktabahUITestBase {
         annotationsTab.tap()
 
         // 4. Verify annotation note is present in the annotations list BEFORE relaunch
+        let firstGroup = app.collectionViews.cells.firstMatch
+        if firstGroup.waitForExistence(timeout: 8.0) {
+            firstGroup.tap()
+        }
         let createdNoteElement = app.staticTexts.matching(
             NSPredicate(format: "label CONTAINS %@", testNote)
         ).firstMatch
+        if !createdNoteElement.waitForExistence(timeout: 4.0) && firstGroup.exists {
+            firstGroup.tap()
+        }
         XCTAssertTrue(
             waitForElement(createdNoteElement, timeout: 8.0),
             "Annotation note must appear in the annotations list before relaunch"
@@ -79,9 +86,16 @@ final class HighlightAnnotationAcceptanceTests: MaktabahUITestBase {
         annotationsTabAfterLaunch.tap()
 
         // 8. Assert that the persisted annotation note survived relaunch
+        let groupAfterRelaunch = app.collectionViews.cells.firstMatch
+        if groupAfterRelaunch.waitForExistence(timeout: 8.0) {
+            groupAfterRelaunch.tap()
+        }
         let persistedNoteElement = app.staticTexts.matching(
             NSPredicate(format: "label CONTAINS %@", testNote)
         ).firstMatch
+        if !persistedNoteElement.waitForExistence(timeout: 4.0) && groupAfterRelaunch.exists {
+            groupAfterRelaunch.tap()
+        }
         XCTAssertTrue(
             waitForElement(persistedNoteElement, timeout: 8.0),
             "Persisted annotation with note '\(testNote)' must survive app relaunch"

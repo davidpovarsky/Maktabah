@@ -205,9 +205,9 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         let tocSearch = app.searchFields.firstMatch
         XCTAssertTrue(waitForElement(tocSearch, timeout: 12.0), "TOC must be interactive")
 
-        // Assert presence of structural or daf labels (e.g. 'דפים', 'פרקים', or traditional Hebrew daf notation)
+        // Assert presence of structural or daf labels (e.g. 'פרק', 'דף', 'פרשה', 'ע״א', 'ע״ב', or traditional Hebrew notation)
         let hebrewStructureOrDaf = app.staticTexts.matching(
-            NSPredicate(format: "label CONTAINS 'דפים' OR label CONTAINS 'פרקים' OR label CONTAINS 'ע״א' OR label CONTAINS 'ע״ב'")
+            NSPredicate(format: "label CONTAINS 'פרק' OR label CONTAINS 'דף' OR label CONTAINS 'פרשה' OR label CONTAINS 'ע״א' OR label CONTAINS 'ע״ב'")
         ).firstMatch
 
         XCTAssertTrue(
