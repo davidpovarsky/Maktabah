@@ -413,6 +413,8 @@ jobs:
             Source/Otzaria/Search/OtzariaSearchMode.swift \
             Source/Otzaria/Search/OtzariaSearchModels.swift \
             Source/ZayitSearch/UnifiedSearchScope.swift \
+            Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift \
+            Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift \
             Vendor/SefariaNativeTests/TestSupport.swift \
             Vendor/SefariaNativeTests/LocatorAndRefTests.swift \
             Vendor/SefariaNativeTests/DecodingTests.swift \
