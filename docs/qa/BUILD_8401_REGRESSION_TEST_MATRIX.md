@@ -5,8 +5,8 @@
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4` (`a0ed0df`)  
 **Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`  
 **Component Tests:** Windows Swift 6.3.3 & macOS Xcode 27 (`tools/test_chavrusa_text_components.swift`) — **212 of 212 assertions PASSED (0 failures)** across 21 suites  
-**XCUITest Suite:** 8 test suites covering Tier S (Smoke), Tier R (Real UI), and Tier P (Production)  
-**iphoneos Release Compilation:** `xcodebuild build` for `iphoneos` (Release) — Configured and ready  
+**XCUITest Suite:** 8 test suites covering Tier S (Smoke), Tier R (Real UI), and Tier P (Production) — **21 PASSED, 1 SKIPPED/BLOCKED (Section 1C #4), 0 FAILURES** on GitHub Actions Run [`40250952113`](https://github.com/davidpovarsky/Maktabah/actions/runs/40250952113)  
+**iphoneos Release Compilation:** `xcodebuild build` for `iphoneos` (Release) — **PASSED in 3m19s** on Xcode 27  
 **Boundary Integrity Guard:** `Scripts/CI/verify-upstream-boundary.py` — **14 of 14 patches registered** as `OWNER_APPROVAL_REQUIRED` (Fail-closed)  
 **Release Gate Status:** `STOPPED_AT_OWNER_APPROVAL_GATE` (No forged keys, no self-approval, stopped before signing and TestFlight delivery)  
 

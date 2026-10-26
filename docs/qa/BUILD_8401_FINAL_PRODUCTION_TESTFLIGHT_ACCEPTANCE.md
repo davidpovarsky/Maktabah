@@ -6,7 +6,7 @@
 **Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`  
 **Candidate Baseline Commit:** `031df35710ab2c6015efb1acd1e65154dbcd3f24` (`031df35`)  
 **Pinned Upstream Remote Ref:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4` (`a0ed0df`)  
-**Historical CI Run Tested:** GitHub Actions Run `40233963450` (macOS 27, Xcode 27) on commit `dc8dfdd2de0a59644e5e9f57c875a55320ee15d2`  
+**Verified CI Run on Final Candidate SHA:** GitHub Actions Run [`40250952113`](https://github.com/davidpovarsky/Maktabah/actions/runs/40250952113) (macOS 27, Xcode 27) — **ALL 6 JOBS GREEN**, 212/212 portable component assertions passed, 21 XCUITests passed, 1 test skipped/blocked on missing on-disk DB prerequisite per Section 1C, 0 failures, Release compile successful  
 **Upstream Integrity Status:** `FAIL / OWNER_APPROVAL_REQUIRED` (Cryptographic release gate fail-closed; 14 protected patches registered)  
 **Distribution Gate Status:** `STOPPED_AT_OWNER_APPROVAL_GATE` (No code signing, no IPA creation, zero TestFlight upload without authentic owner Ed25519 signature)  
 
@@ -17,7 +17,7 @@
 - **Baseline SHA:** `031df35710ab2c6015efb1acd1e65154dbcd3f24`
 - **Pinned Upstream SHA:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`
 - **Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`
-- **Current Inspected HEAD:** `bf3bce4c6145715653400005d879023fe73557b6`
+- **Final Candidate SHA:** `b7541e6caaa4cdc98e0b6ccf33b9754ab0cdf8ff`
 - **Protected Trees Untouched:** `C:\Users\DAVID\Code\Maktabah`, `C:\Users\DAVID\Code\Maktabah-v42-integration` (`sync/upstream-v42-full-integration`), `Maktabah-signing`, and `maktabah-torah-photo-study` remain 100% untouched. No git identity modifications, no resets, no merges to `main` or integration branches.
 
 ---
@@ -104,18 +104,18 @@ The test harness is split into three independent tiers:
    - Verified via `ProductionOtzariaAcceptanceTests.swift`.
    - Result: `PASS_FULL_PRODUCTION` (Asset & Profile Integrity) / `OWNER_DEVICE_PENDING` (Physical Device).
 
-### Exact Test Counts:
+### Exact Test Counts (Verified on GitHub Actions Run 40250952113):
 - **Portable Component Assertions:** **212 of 212 passed (100%)** across 21 suites in `tools/test_chavrusa_text_components.swift`.
-- **iPad XCUITest Suites:** 8 test classes:
-  1. `Build8401SevenDefectsAcceptanceTests` (6 tests)
-  2. `PullNavigationAcceptanceTests` (2 tests)
-  3. `BackendTransitionAcceptanceTests` (3 tests)
-  4. `HighlightAnnotationAcceptanceTests` (1 test)
-  5. `HistoryLocalizationAcceptanceTests` (3 tests)
-  6. `iPadTabBarAcceptanceTests` (2 tests)
-  7. `DeepLinkedCommentaryAcceptanceTests` (2 tests)
-  8. `ProductionOtzariaAcceptanceTests` (2 tests)
-  **Total XCUITest Cases:** 21 tests.
+- **iPad XCUITest Suites:** 8 test classes (22 total test cases):
+  1. `Build8401SevenDefectsAcceptanceTests` (7 tests: 7 passed)
+  2. `PullNavigationAcceptanceTests` (2 tests: 2 passed)
+  3. `BackendTransitionAcceptanceTests` (3 tests: 2 passed, 1 skipped/blocked per Section 1C #4)
+  4. `HighlightAnnotationAcceptanceTests` (1 test: 1 passed)
+  5. `HistoryLocalizationAcceptanceTests` (3 tests: 3 passed)
+  6. `iPadTabBarAcceptanceTests` (2 tests: 2 passed)
+  7. `DeepLinkedCommentaryAcceptanceTests` (2 tests: 2 passed)
+  8. `ProductionOtzariaAcceptanceTests` (2 tests: 2 passed)
+  **Total XCUITest Executed:** 21 passed, 1 skipped/blocked, 0 failed.
 
 ---
 
