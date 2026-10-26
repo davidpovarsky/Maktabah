@@ -6,6 +6,8 @@
 **Repository:** `davidpovarsky/Maktabah`  
 **Candidate Worktree:** `C:\Users\DAVID\Code\Maktabah-build-8401-candidate`  
 **Candidate Branch:** `validation/maktabah-build-8401-repair-production-20261025`  
+**Verified Candidate Commit:** `c6f8efeedbbf276ff1a052733c395c0297079fd7`  
+**Verified 100% Green CI Run:** [Run 40329222602](https://github.com/davidpovarsky/Maktabah/actions/runs/40329222602) (8 of 8 jobs passed, 0 skipped tests)  
 **Baseline Commit:** `031df35710ab2c6015efb1acd1e65154dbcd3f24`  
 **Pinned Upstream Commit:** `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`  
 
