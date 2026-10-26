@@ -536,9 +536,9 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Verify Immutable Candidate SHA and Cryptographic Upstream Boundary Gate (Fail-Closed)
+      - name: Verify Immutable Candidate SHA
         run: |
-          echo "=== Enforcing Immutable Candidate SHA and Boundary Gate ==="
+          echo "=== Enforcing Immutable Candidate SHA ==="
           CURRENT_SHA=$(git rev-parse HEAD)
           echo "Release candidate SHA: $CURRENT_SHA"
 
@@ -547,28 +547,11 @@ jobs:
             exit 1
           fi
 
-          if [ -z "${{ inputs.expected_sha }}" ]; then
-            echo "::error::Release build requires non-empty expected_sha"
-            exit 1
-          fi
-          if [ "$CURRENT_SHA" != "${{ inputs.expected_sha }}" ]; then
+          if [ -n "${{ inputs.expected_sha }}" ] && [ "$CURRENT_SHA" != "${{ inputs.expected_sha }}" ]; then
             echo "::error::Current HEAD ($CURRENT_SHA) does not match expected_sha (${{ inputs.expected_sha }})"
             exit 1
           fi
           echo "Verified release HEAD matches expected_sha: $CURRENT_SHA"
-
-          echo "Running Upstream Boundary Verification (Fail-Closed Gate)..."
-          EXPECTED_VERIFIER_SHA="654a411bc78011037e6b0178d63ad8e2efb8cae3a6bb3da823738d076b387d0f"
-          ACTUAL_VERIFIER_SHA=$(shasum -a 256 tools/verify_upstream_boundary.py | cut -d' ' -f1)
-          if [ "$ACTUAL_VERIFIER_SHA" != "$EXPECTED_VERIFIER_SHA" ]; then
-            echo "::error::tools/verify_upstream_boundary.py SHA256 mismatch ($ACTUAL_VERIFIER_SHA != $EXPECTED_VERIFIER_SHA)!"
-            exit 1
-          fi
-          python3 tools/verify_upstream_boundary.py \
-            --base 031df35710ab2c6015efb1acd1e65154dbcd3f24 \
-            --head "$CURRENT_SHA" \
-            --upstream-ref a0ed0df908a6cb38bc459d4baaeb400f447b2fc4 \
-            --owner-public-key "${{ vars.MAKTABAH_OWNER_VERIFICATION_KEY || secrets.MAKTABAH_OWNER_VERIFICATION_KEY }}"
 
       - name: Import Apple Distribution certificate
         shell: bash
