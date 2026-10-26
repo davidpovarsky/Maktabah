@@ -159,6 +159,21 @@ final class ProductionOtzariaAcceptanceTests: MaktabahUITestBase {
             }
         }
 
+        // Direct candidate fallback for CI runner environments
+        if dbURL == nil {
+            let directCandidates = [
+                URL(fileURLWithPath: fileManager.currentDirectoryPath).appendingPathComponent("build/production-corpus/seforim.db"),
+                URL(fileURLWithPath: fileManager.currentDirectoryPath).appendingPathComponent("build/shared-root/Otzaria/seforim.db"),
+                URL(fileURLWithPath: "/tmp/seforim.db")
+            ]
+            for candidate in directCandidates {
+                if fileManager.fileExists(atPath: candidate.path) {
+                    dbURL = candidate
+                    break
+                }
+            }
+        }
+
         guard let targetURL = dbURL else {
             XCTFail("CRITICAL: Full production Otzaria corpus (1.85 GB compressed / 3.82 GB extracted) is not provisioned in simulator. Failing positive acceptance.")
             return

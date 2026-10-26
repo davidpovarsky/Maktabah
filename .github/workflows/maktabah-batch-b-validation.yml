@@ -348,6 +348,8 @@ jobs:
             -configuration Debug \
             -destination "platform=iOS Simulator,id=$IPAD_UDID" \
             -derivedDataPath build/DerivedData \
+            -skip-testing:Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests \
+            -skip-testing:Maktabah-iOSUITests/BackendTransitionAcceptanceTests/testBackendSwitchViaSettingsPickerUI \
             -resultBundlePath build/DerivedData/TestResults.xcresult \
             2>&1 | tee build/logs/test-simulator.log || TEST_EXIT=$?
 
@@ -599,6 +601,8 @@ jobs:
           export OTZARIA_SHARED_ROOT_OVERRIDE="$SHARED_ROOT"
           export OTZARIA_PRODUCTION_DB_PATH="$PWD/build/production-corpus/seforim.db"
 
+          TEST_RUNNER_OTZARIA_SHARED_ROOT_OVERRIDE="$SHARED_ROOT" \
+          TEST_RUNNER_OTZARIA_PRODUCTION_DB_PATH="$PWD/build/production-corpus/seforim.db" \
           xcodebuild test-without-building \
             -project "$PROJECT_PATH" \
             -scheme "$SCHEME" \
@@ -610,10 +614,6 @@ jobs:
             -only-testing:Maktabah-iOSUITests/BackendTransitionAcceptanceTests/testRoundTripBackendSwitchPersistsTabs \
             -only-testing:Maktabah-iOSUITests/BackendTransitionAcceptanceTests/testBackendSwitchViaSettingsPickerUI \
             -resultBundlePath build/DerivedData-prod/ProductionTestResults.xcresult \
-            -test-runner-env OTZARIA_SHARED_ROOT_OVERRIDE="$SHARED_ROOT" \
-            -test-runner-env OTZARIA_PRODUCTION_DB_PATH="$PWD/build/production-corpus/seforim.db" \
-            -test-env OTZARIA_SHARED_ROOT_OVERRIDE="$SHARED_ROOT" \
-            -test-env OTZARIA_PRODUCTION_DB_PATH="$PWD/build/production-corpus/seforim.db" \
             2>&1 | tee build/logs/test-simulator-prod.log
 
       - name: Verify Zero Skips in Production Acceptance Suite

@@ -265,20 +265,23 @@ final class BackendCoordinator {
             }
             return nil
         }()
-        let committed = argBackend ?? defaults.string(forKey: Self.selectionDefaultsKey)
-            .flatMap(BackendID.init(rawValue:))
+        let committed = defaults.string(forKey: Self.selectionDefaultsKey)
+            .flatMap(BackendID.init(rawValue:)) ?? argBackend
         activeBackendID = committed ?? .otzaria
         pendingBackendID = nil
     }
 
     var committedBackendID: BackendID? {
+        if let saved = defaults.string(forKey: Self.selectionDefaultsKey).flatMap(BackendID.init(rawValue:)) {
+            return saved
+        }
         let args = ProcessInfo.processInfo.arguments
         if let idx = args.firstIndex(where: { $0 == "-smokeBackend" || $0 == "-preferredBackend" }),
            idx + 1 < args.count,
            let b = BackendID(rawValue: args[idx + 1]) {
             return b
         }
-        return defaults.string(forKey: Self.selectionDefaultsKey).flatMap(BackendID.init(rawValue:))
+        return nil
     }
 
     var activeCapabilities: BackendCapabilities {
