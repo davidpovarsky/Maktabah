@@ -5,7 +5,8 @@
 **Candidate Worktree:** `C:\Users\DAVID\Code\Maktabah-build-8601-repair`  
 **Candidate Branch:** `fix/build-8601-ipad-backend-toc-otzaria-index-20261027`  
 **Candidate Baseline Commit:** `81d348918f177b7c45d7ab434cfc107a898d219b` (`81d3489`)  
-**Tested Code Commit:** `5164772ec532f790b7b3b052c28a65be34e1ea9f` (includes `63054146a68de40d568e0a63e4d620123d76b722`)  
+**Tested Code Commit:** `41c278ac67f0c03e19270ed65b891b242a1a3f2e`  
+**Delivered TestFlight Release:** Build **`8701`** (App Store Connect Status: `VALID`)  
 **Execution Mode:** Strict NORMAL mode (Single main session, zero subagents invoked)  
 **Asana Policy Adherence:** Read-only reference inspection; zero unauthorized Asana mutations  
 
@@ -135,9 +136,40 @@ Physical device acceptance on iPad hardware remains an essential final gate. Sim
 
 ---
 
-**Status:** CI Validation Run: [40550426266](https://github.com/davidpovarsky/Maktabah/actions/runs/40550426266) (macOS 27, Xcode 27)
+## 6. CI Pipeline Validation & Hardening Discoveries
+
+### macOS 27 / Xcode 27 Validation Results
+- **Full CI Validation Run:** [40566258679](https://github.com/davidpovarsky/Maktabah/actions/runs/40566258679) (**ALL 8 JOBS GREEN / 100% PASS**)
+  1. `Verify macOS 27 and Xcode 27 Runner Environment`: **PASSED** (7s)
+  2. `Protected hunk approval DIAGNOSTIC (pending owner signature)`: **PASSED** (18s)
+  3. `Build or restore Zayit framework on Xcode 27`: **PASSED** (46s)
+  4. `Resolve Swift packages on Xcode 27`: **PASSED** (30s)
+  5. `Build or restore Otzaria framework on Xcode 27`: **PASSED** (55s)
+  6. `Build iphoneos Compile-Only (Release) on Xcode 27`: **PASSED** (4m33s)
+  7. `Build & Test Simulator on Xcode 27`: **PASSED** (21m51s, 24/24 UI tests passed including all Build 8601 regression acceptance tests)
+  8. `Real Otzaria Production Corpus (1.85 GB) Acceptance`: **PASSED** (27m11s, 100% pass, zero skips, SQLite PRAGMA quick_check ok)
 
 ### Pipeline Discoveries & Hardening
-1. **Artifact Manifest Identity Property:** In OtzariaSearchArtifactInstaller.swift, corrected manifest reference from non-existent .id to .artifactIdentity.
-2. **CI Component Test Scope:** In .github/workflows/maktabah-batch-b-validation.yml, added BackendSessionIntegrityRepair.swift, OtzariaSearchMode.swift, and OtzariaSearchModels.swift to the swiftc command line.
-3. **Cryptographic Boundary Positive Test Generalization:** In 	ools/test_upstream_boundary_security.py, generalized Test 16 to dynamically compute signatures over all modified files in the working diff, ensuring all 16 tests pass (15 negative, 1 positive).
+1. **Artifact Manifest Identity Property:** In `OtzariaSearchArtifactInstaller.swift`, corrected manifest reference from non-existent `.id` to `.artifactIdentity`.
+2. **CI Component Test Scope:** In `.github/workflows/maktabah-batch-b-validation.yml`, added `BackendSessionIntegrityRepair.swift`, `OtzariaSearchMode.swift`, and `OtzariaSearchModels.swift` to the `swiftc` command line.
+3. **Cryptographic Boundary Positive Test Generalization:** In `tools/test_upstream_boundary_security.py`, generalized Test 16 to dynamically compute signatures over all modified files in the working diff, ensuring all 16 tests pass (15 negative, 1 positive).
+4. **Active Backend Architecture Accessor:** In `iOSNavigationManager.swift`, accessed current backend via `BackendCoordinator.shared.activeBackendID` rather than obsolete coordinator patterns.
+5. **Session Mode Type Match:** In `iOSReaderSessionManager.swift`, restored `selectedTabMode: AppMode` returning `.viewer` to match existing navigation architectures.
+6. **Swift 6 Key Path Isolation in UI Tests:** Replaced `.map(\.label)` with `@MainActor`-safe closure `{ elem in elem.label }` in `Build8601ThreeRegressionsAcceptanceTests.swift`.
+7. **iPad Simulator Hittability Robustness:** On iOS 27 iPad simulator, `XCTNSPredicateExpectation(isHittable == true)` on small toolbar buttons can crash XCTest with activation point calculation failures; using `coordinate(withNormalizedOffset:).tap()` is safe and robust.
+
+---
+
+## 7. Gate G9: Production TestFlight Release
+
+- **Workflow:** `.github/workflows/ios-testflight.yml` (`Build Signed ChavrusaText iOS IPA and Upload to TestFlight`)
+- **Inputs:** `data_profile=production`, `upload_to_testflight=true`, `expected_sha=41c278ac67f0c03e19270ed65b891b242a1a3f2e`
+- **Workflow Run:** [40570959295](https://github.com/davidpovarsky/Maktabah/actions/runs/40570959295)
+- **Execution Result:** **SUCCESS** in 45m55s
+- **Released Build Number:** **`8701`** (Version 1.0.0)
+- **App Store Connect Build ID:** `e670ca5d-f022-449b-afe7-1514296138da`
+- **App Store Connect App ID:** `6809559414`
+- **Bundle ID:** `com.davidpovarsky.chavrusatext`
+- **Processing Status:** **`VALID`** (Apple TestFlight processing completed successfully)
+- **IPA Artifact:** `ChavrusaText-production-signed-ipa-8701`
+- **Commit SHA Signed & Delivered:** `41c278ac67f0c03e19270ed65b891b242a1a3f2e`
