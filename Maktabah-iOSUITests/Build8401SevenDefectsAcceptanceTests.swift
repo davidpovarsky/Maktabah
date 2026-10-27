@@ -35,14 +35,8 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         XCTAssertTrue(waitForElement(clearButton, timeout: 8.0), "Clear 'X' button must appear next to search button")
 
         // Wait for element to settle and tap it
-        let isHittablePredicate = NSPredicate(format: "isHittable == true")
-        let hittableExpectation = XCTNSPredicateExpectation(predicate: isHittablePredicate, object: clearButton)
-        let waitResult = XCTWaiter().wait(for: [hittableExpectation], timeout: 5.0)
-        if waitResult == .completed && clearButton.isHittable {
-            clearButton.tap()
-        } else {
-            clearButton.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
-        }
+        Thread.sleep(forTimeInterval: 0.5)
+        clearButton.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
 
         // After tapping, Clear 'X' button must disappear
         let clearButtonPredicate = NSPredicate(format: "exists == false")
