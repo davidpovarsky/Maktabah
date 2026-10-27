@@ -5,7 +5,7 @@
 **Candidate Worktree:** `C:\Users\DAVID\Code\Maktabah-build-8601-repair`  
 **Candidate Branch:** `fix/build-8601-ipad-backend-toc-otzaria-index-20261027`  
 **Candidate Baseline Commit:** `81d348918f177b7c45d7ab434cfc107a898d219b` (`81d3489`)  
-**Tested Code Commit:** `e14d4dc069e2a6d71b55fa110821639c0496ad88` (includes `63054146a68de40d568e0a63e4d620123d76b722`)  
+**Tested Code Commit:** `5164772ec532f790b7b3b052c28a65be34e1ea9f` (includes `63054146a68de40d568e0a63e4d620123d76b722`)  
 **Execution Mode:** Strict NORMAL mode (Single main session, zero subagents invoked)  
 **Asana Policy Adherence:** Read-only reference inspection; zero unauthorized Asana mutations  
 
@@ -135,4 +135,9 @@ Physical device acceptance on iPad hardware remains an essential final gate. Sim
 
 ---
 
-**Status:** Ready for CI validation and TestFlight release packaging.
+**Status:** CI Validation Run: [40550426266](https://github.com/davidpovarsky/Maktabah/actions/runs/40550426266) (macOS 27, Xcode 27)
+
+### Pipeline Discoveries & Hardening
+1. **Artifact Manifest Identity Property:** In OtzariaSearchArtifactInstaller.swift, corrected manifest reference from non-existent .id to .artifactIdentity.
+2. **CI Component Test Scope:** In .github/workflows/maktabah-batch-b-validation.yml, added BackendSessionIntegrityRepair.swift, OtzariaSearchMode.swift, and OtzariaSearchModels.swift to the swiftc command line.
+3. **Cryptographic Boundary Positive Test Generalization:** In 	ools/test_upstream_boundary_security.py, generalized Test 16 to dynamically compute signatures over all modified files in the working diff, ensuring all 16 tests pass (15 negative, 1 positive).
