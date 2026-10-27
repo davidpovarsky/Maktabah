@@ -632,7 +632,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
               !session.tabs.isEmpty else {
             return
         }
-        let activeBackend = BackendNavigationAdapter.shared.activeBackend
+        let activeBackend = BackendCoordinator.shared.activeBackendID
         let (sanitized, foreignTabs, _) = BackendSessionIntegrityRepair.shared.repairSessionSnapshot(
             session: session,
             targetBackend: activeBackend
@@ -994,7 +994,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
         }
 
         let tabSessions = createTabSessions(from: openTabs)
-        let currentBackend = BackendNavigationAdapter.shared.activeBackend
+        let currentBackend = BackendCoordinator.shared.activeBackendID
 
         let session = iOSReaderSession(
             schemaVersion: iOSReaderSession.currentSchemaVersion,
