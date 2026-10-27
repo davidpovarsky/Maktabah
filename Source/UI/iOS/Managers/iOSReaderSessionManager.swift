@@ -143,7 +143,7 @@ final class iOSReaderSessionManager: @unchecked Sendable {
 // MARK: - Navigation Mode Convenience
 
 extension iOSReaderSession {
-    var selectedTabMode: TabMode {
-        TabMode(rawValue: selectedTabModeRaw) ?? .book
+    var selectedTabMode: AppMode {
+        AppMode(rawValue: selectedTabModeRaw) ?? .viewer
     }
 }
