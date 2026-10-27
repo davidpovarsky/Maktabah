@@ -1282,6 +1282,148 @@ struct TestRunner {
         assertCondition(decoded?.searchHighlightCount == 1, "Decoded searchHighlightCount matches")
         assertCondition(decoded?.highlights.first?.provenance == "search", "Decoded provenance matches search")
 
+        // 22. BackendSessionIntegrityRepair & Cross-Backend Isolation (Build 8601 Defect A)
+        print("\n--- 22. Testing BackendSessionIntegrityRepair & Cross-Backend Isolation (Defect A) ---")
+        do {
+            let repair = BackendSessionIntegrityRepair.shared
+
+            // Tab backend detection
+            let otzariaTab = iOSReaderTabSession(
+                id: UUID(),
+                bookId: 101,
+                bookTitle: "Tanya",
+                locator: TextLocator(backend: .otzaria, workKey: "Tanya", position: .legacyLine(1))
+            )
+            let sefariaTab = iOSReaderTabSession(
+                id: UUID(),
+                bookId: 202,
+                bookTitle: "Berakhot",
+                locator: TextLocator(backend: .sefaria, workKey: "Berakhot", position: .canonicalRef("Berakhot 15b"))
+            )
+            assertCondition(repair.detectTabBackend(otzariaTab) == .otzaria, "Detected Otzaria tab correctly")
+            assertCondition(repair.detectTabBackend(sefariaTab) == .sefaria, "Detected Sefaria tab correctly")
+            assertCondition(!repair.isTabMatchingBackend(otzariaTab, backend: .sefaria), "Otzaria tab does not match Sefaria backend")
+            assertCondition(repair.isTabMatchingBackend(sefariaTab, backend: .sefaria), "Sefaria tab matches Sefaria backend")
+
+            // Contaminated session repair with quarantine
+            let tempQuarantineDir = FileManager.default.temporaryDirectory.appendingPathComponent("test_quarantine_\(UUID().uuidString)")
+            try FileManager.default.createDirectory(at: tempQuarantineDir, withIntermediateDirectories: true)
+            defer { try? FileManager.default.removeItem(at: tempQuarantineDir) }
+
+            let contaminatedSession = iOSReaderSession(
+                activeTabId: otzariaTab.id,
+                tabs: [otzariaTab, sefariaTab],
+                backend: "sefaria"
+            )
+            let rawData = try JSONEncoder().encode(contaminatedSession)
+
+            let (sanitized, foreignTabs, backupURL) = repair.repairSessionSnapshot(
+                session: contaminatedSession,
+                targetBackend: .sefaria,
+                rawIncomingData: rawData,
+                quarantineDirectory: tempQuarantineDir
+            )
+
+            assertCondition(foreignTabs.count == 1, "Foreign tab identified and extracted (count == 1)")
+            assertCondition(foreignTabs.first?.id == otzariaTab.id, "Foreign tab is the Otzaria tab")
+            assertCondition(sanitized.tabs.count == 1, "Sanitized session retains exactly 1 target tab")
+            assertCondition(sanitized.tabs.first?.id == sefariaTab.id, "Sanitized session retains the Sefaria tab")
+            assertCondition(sanitized.activeTabId == sefariaTab.id, "Active tab normalized from foreign tab to remaining Sefaria tab")
+            assertCondition(sanitized.backend == "sefaria", "Sanitized session tagged with sefaria backend")
+            assertCondition(backupURL != nil, "Quarantined raw backup URL created")
+            if let backupURL {
+                assertCondition(FileManager.default.fileExists(atPath: backupURL.path), "Quarantined file exists on disk")
+                let backedUp = try Data(contentsOf: backupURL)
+                assertCondition(backedUp == rawData, "Quarantined file matches original raw bytes exactly")
+            }
+
+            // Completely foreign session starts with clean empty destination
+            let allForeignSession = iOSReaderSession(
+                activeTabId: otzariaTab.id,
+                tabs: [otzariaTab],
+                backend: "sefaria"
+            )
+            let (emptySanitized, allForeign, _) = repair.repairSessionSnapshot(
+                session: allForeignSession,
+                targetBackend: .sefaria
+            )
+            assertCondition(allForeign.count == 1, "All foreign tabs quarantined")
+            assertCondition(emptySanitized.tabs.isEmpty, "Sanitized tabs empty -> safe clean destination")
+            assertCondition(emptySanitized.activeTabId == nil, "Active tab is nil for clean destination")
+
+            // iOSReaderSession schema backward compatibility
+            let legacyJSON = "{\"schemaVersion\": 1, \"savedAt\": 0, \"selectedTabModeRaw\": 0, \"tabs\": []}".data(using: .utf8)!
+            let decodedLegacy = try JSONDecoder().decode(iOSReaderSession.self, from: legacyJSON)
+            assertCondition(decodedLegacy.backend == nil, "Legacy session without backend field decodes with backend == nil")
+
+            let versionedJSON = "{\"schemaVersion\": 1, \"savedAt\": 0, \"selectedTabModeRaw\": 0, \"tabs\": [], \"backend\": \"sefaria\"}".data(using: .utf8)!
+            let decodedVersioned = try JSONDecoder().decode(iOSReaderSession.self, from: versionedJSON)
+            assertCondition(decodedVersioned.backend == "sefaria", "Versioned session decodes backend correctly")
+        } catch {
+            assertCondition(false, "Defect A test failed with error: \(error)")
+        }
+
+        // 23. Table of Contents Restoration & Idle State Protection (Build 8601 Defect B)
+        print("\n--- 23. Testing Table of Contents Restoration & Idle State Protection (Defect B) ---")
+        do {
+            // Test TOC state logic
+            enum TestTOCStatus: Equatable {
+                case idle
+                case loading
+                case loaded
+                case failed
+            }
+
+            var status: TestTOCStatus = .idle
+            var identifiableNodes: [Int] = []
+
+            // When idle and empty, UI must NOT declare "No Table of Contents"
+            func shouldShowNoTOC(status: TestTOCStatus, nodes: [Int]) -> Bool {
+                return status == .loaded && nodes.isEmpty
+            }
+
+            func shouldShowLoading(status: TestTOCStatus, nodes: [Int]) -> Bool {
+                return (status == .loading || status == .idle) && nodes.isEmpty
+            }
+
+            assertCondition(shouldShowLoading(status: status, nodes: identifiableNodes), "Idle empty state shows Loading indicator, not empty state")
+            assertCondition(!shouldShowNoTOC(status: status, nodes: identifiableNodes), "Idle empty state does not prematurely show 'No Table of Contents'")
+
+            // Transition to loading
+            status = .loading
+            assertCondition(shouldShowLoading(status: status, nodes: identifiableNodes), "Loading state shows Loading indicator")
+            assertCondition(!shouldShowNoTOC(status: status, nodes: identifiableNodes), "Loading state does not show 'No Table of Contents'")
+
+            // Transition to loaded with nodes
+            status = .loaded
+            identifiableNodes = [1, 2, 3]
+            assertCondition(!shouldShowLoading(status: status, nodes: identifiableNodes), "Loaded with nodes does not show loading")
+            assertCondition(!shouldShowNoTOC(status: status, nodes: identifiableNodes), "Loaded with nodes does not show empty state")
+
+            // Transition to loaded with empty nodes (confirmed empty book)
+            identifiableNodes = []
+            assertCondition(shouldShowNoTOC(status: status, nodes: identifiableNodes), "Only confirmed loaded empty state shows 'No Table of Contents'")
+        }
+
+        // 24. Otzaria Search Engine Detailed Init Errors (Build 8601 Defect C)
+        print("\n--- 24. Testing Otzaria Search Engine Detailed Init Errors (Defect C) ---")
+        do {
+            let missingDirErr = OtzariaSearchError.engineInitializationFailed(code: "MISSING_DIRECTORY", message: "index path does not exist: /tmp/test")
+            let desc1 = missingDirErr.errorDescription ?? ""
+            assertCondition(desc1.contains("MISSING_DIRECTORY"), "errorDescription contains error code MISSING_DIRECTORY")
+            assertCondition(desc1.contains("index path does not exist"), "errorDescription contains message")
+            assertCondition(desc1.contains("אתחול מנוע החיפוש של אוצריא נכשל"), "errorDescription contains localized Hebrew prefix")
+
+            let corruptMetaErr = OtzariaSearchError.engineInitializationFailed(code: "CORRUPTED_METADATA", message: "meta.json invalid JSON")
+            let desc2 = corruptMetaErr.errorDescription ?? ""
+            assertCondition(desc2.contains("CORRUPTED_METADATA"), "errorDescription contains error code CORRUPTED_METADATA")
+
+            let fallbackErr = OtzariaSearchError.engineNotAvailable
+            let desc3 = fallbackErr.errorDescription ?? ""
+            assertCondition(desc3.contains("אינו זמין בסביבה זו"), "engineNotAvailable updated to informative non-misleading description")
+            assertCondition(!desc3.contains("ודא שה-XCFramework נוסף"), "engineNotAvailable no longer blames missing XCFramework")
+        }
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

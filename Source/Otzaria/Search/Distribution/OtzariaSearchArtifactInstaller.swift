@@ -72,11 +72,13 @@ struct OtzariaSearchArtifactInstaller: Sendable {
         let manager = OtzariaSearchIndexManager.shared
         let fileManager = FileManager.default
         let stagingURL = storage.stagingURL(databasePath: databasePath)
+        OtzariaIndexFileLogger.log("[Installer] Starting installation for database: \(databasePath), artifact: \(artifact.manifest.id)")
         if fileManager.fileExists(atPath: stagingURL.path) {
             try fileManager.removeItem(at: stagingURL)
         }
         try fileManager.createDirectory(at: stagingURL, withIntermediateDirectories: true)
         try excludeFromBackup(stagingURL)
+        OtzariaIndexFileLogger.log("[Installer] Staging directory initialized at \(stagingURL.path)")
 
         var extracted: Int64 = 0
         do {
@@ -138,36 +140,44 @@ struct OtzariaSearchArtifactInstaller: Sendable {
                 semanticArtifactIdentity: nil
             )
             try manager.writeIdentity(identity, indexURL: stagingURL)
+            OtzariaIndexFileLogger.log("[Installer] Checking compatibility at \(stagingURL.path)...")
             let compatibility = try OtzariaSearchEngineBridge.checkCompatibility(indexURL: stagingURL)
             guard compatibility.compatible else {
-                throw OtzariaSearchArtifactError.validationFailed(
-                    compatibility.reason ?? compatibility.status
-                )
+                let reason = compatibility.reason ?? compatibility.status
+                OtzariaIndexFileLogger.log("[Installer] Incompatible index: \(reason)")
+                throw OtzariaSearchArtifactError.validationFailed(reason)
             }
+            OtzariaIndexFileLogger.log("[Installer] Compatibility verified. Opening engine bridge at \(stagingURL.path)...")
             let engine = try OtzariaSearchEngineBridge(indexURL: stagingURL)
             let count: UInt64
             do {
                 count = try engine.documentCount()
             } catch {
                 engine.close()
+                OtzariaIndexFileLogger.logError("[Installer] Failed to read document count", error: error)
                 throw error
             }
             engine.close()
+            OtzariaIndexFileLogger.log("[Installer] Engine document count verified: \(count)")
             guard count == artifact.manifest.lexicalArtifact.documentCount else {
-                throw OtzariaSearchArtifactError.validationFailed(
-                    "opened document count \(count), expected \(artifact.manifest.lexicalArtifact.documentCount)"
-                )
+                let msg = "opened document count \(count), expected \(artifact.manifest.lexicalArtifact.documentCount)"
+                OtzariaIndexFileLogger.log("[Installer] Document count mismatch: \(msg)")
+                throw OtzariaSearchArtifactError.validationFailed(msg)
             }
             try writeTrustedManifest(artifact.manifest, to: stagingURL)
+            OtzariaIndexFileLogger.log("[Installer] Promoting staging directory to final location...")
             try promote(stagingURL: stagingURL, databasePath: databasePath)
+            OtzariaIndexFileLogger.log("[Installer] Installation successfully finished with \(count) documents.")
             return count
         } catch is CancellationError {
             try? fileManager.removeItem(at: stagingURL)
             throw OtzariaSearchArtifactError.cancelled
         } catch let error as OtzariaSearchArtifactError {
+            OtzariaIndexFileLogger.logError("[Installer] Installation failed with artifact error", error: error)
             try? fileManager.removeItem(at: stagingURL)
             throw error
         } catch {
+            OtzariaIndexFileLogger.logError("[Installer] Installation failed with unexpected error", error: error)
             try? fileManager.removeItem(at: stagingURL)
             if OtzariaStorageErrorNormalizer.failure(for: error) != nil {
                 throw error
@@ -186,9 +196,11 @@ struct OtzariaSearchArtifactInstaller: Sendable {
         let manager = OtzariaSearchIndexManager.shared
         let fileManager = FileManager.default
         let stagingURL = storage.stagingURL(databasePath: databasePath)
+        OtzariaIndexFileLogger.log("[Installer] Starting streaming installation for database: \(databasePath), artifact: \(artifact.manifest.id)")
         if fileManager.fileExists(atPath: stagingURL.path) { try fileManager.removeItem(at: stagingURL) }
         try fileManager.createDirectory(at: stagingURL, withIntermediateDirectories: true)
         try excludeFromBackup(stagingURL)
+        OtzariaIndexFileLogger.log("[Installer] Streaming staging directory initialized at \(stagingURL.path)")
 
         var extracted: Int64 = 0
         do {
@@ -240,23 +252,34 @@ struct OtzariaSearchArtifactInstaller: Sendable {
                 semanticArtifactIdentity: nil
             )
             try manager.writeIdentity(identity, indexURL: stagingURL)
+            OtzariaIndexFileLogger.log("[Installer] Checking compatibility at \(stagingURL.path)...")
             let compatibility = try OtzariaSearchEngineBridge.checkCompatibility(indexURL: stagingURL)
             guard compatibility.compatible else {
-                throw OtzariaSearchArtifactError.validationFailed(compatibility.reason ?? compatibility.status)
+                let reason = compatibility.reason ?? compatibility.status
+                OtzariaIndexFileLogger.log("[Installer] Incompatible index: \(reason)")
+                throw OtzariaSearchArtifactError.validationFailed(reason)
             }
+            OtzariaIndexFileLogger.log("[Installer] Compatibility verified. Opening engine bridge at \(stagingURL.path)...")
             let engine = try OtzariaSearchEngineBridge(indexURL: stagingURL)
             let count = try engine.documentCount()
             engine.close()
+            OtzariaIndexFileLogger.log("[Installer] Engine document count verified: \(count)")
             guard count == artifact.manifest.lexicalArtifact.documentCount else {
-                throw OtzariaSearchArtifactError.validationFailed("opened document count \(count), expected \(artifact.manifest.lexicalArtifact.documentCount)")
+                let msg = "opened document count \(count), expected \(artifact.manifest.lexicalArtifact.documentCount)"
+                OtzariaIndexFileLogger.log("[Installer] Document count mismatch: \(msg)")
+                throw OtzariaSearchArtifactError.validationFailed(msg)
             }
             try writeTrustedManifest(artifact.manifest, to: stagingURL)
+            OtzariaIndexFileLogger.log("[Installer] Promoting staging directory to final location...")
             try promote(stagingURL: stagingURL, databasePath: databasePath)
+            OtzariaIndexFileLogger.log("[Installer] Streaming installation successfully finished with \(count) documents.")
             return count
         } catch is CancellationError {
+            OtzariaIndexFileLogger.log("[Installer] Streaming installation cancelled.")
             try? fileManager.removeItem(at: stagingURL)
             throw OtzariaSearchArtifactError.cancelled
         } catch {
+            OtzariaIndexFileLogger.logError("[Installer] Streaming installation failed", error: error)
             try? fileManager.removeItem(at: stagingURL)
             throw error
         }

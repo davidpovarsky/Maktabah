@@ -34,12 +34,20 @@ class BookTOCViewModel {
 
     private let tocLoader: TOCLoaderRefCount
 
+    enum TOCLoadingStatus: Equatable {
+        case idle
+        case loading
+        case loaded
+        case failed(LoadFailure)
+    }
+
     // State
     var tocNodes: [TOCNode] = []
     var navigationStructures: [LibraryNavigationStructure] = []
     var selectedStructureID: String = ""
     var loadFailure: LoadFailure?
     var isLoading: Bool = false
+    var loadingStatus: TOCLoadingStatus = .idle
     private(set) var tocRanges: [TOCRange] = []
     private var nodeIdCache: [Int: TOCNode] = [:]
 
@@ -57,6 +65,7 @@ class BookTOCViewModel {
     func loadTOC(book: BooksData) {
         loadingTask?.cancel()
         loadFailure = nil
+        loadingStatus = .loading
         tocNodes = []
         navigationStructures = []
         selectedStructureID = ""
@@ -66,6 +75,7 @@ class BookTOCViewModel {
             loadingTask = Task { @MainActor [weak self] in
                 guard let self else { return }
                 self.isLoading = true
+                self.loadingStatus = .loading
                 self.onTOCLoadingStateChanged?(true)
                 defer {
                     self.isLoading = false
@@ -102,6 +112,7 @@ class BookTOCViewModel {
                     }
                     let tree = nodes.map { convert($0, level: 1) }
                     self.tocNodes = tree
+                    self.loadingStatus = .loaded
                     let allNodes = Self.flattenNodes(tree)
                     self.tocRanges = allNodes.map { TOCRange(start: $0.id, end: $0.id, node: $0) }
                     self.nodeIdCache = Self.buildNodeIdCache(allNodes)
@@ -114,13 +125,16 @@ class BookTOCViewModel {
                     return
                 } catch {
                     guard !Task.isCancelled, book.backendLocator?.workKey == expectedWorkKey else { return }
+                    let failure: LoadFailure
                     if case LibraryBackendError.unavailableOffline = error {
-                        self.loadFailure = .unavailableOffline
+                        failure = .unavailableOffline
                     } else if case LibraryBackendError.corruptData(_) = error {
-                        self.loadFailure = .corruptData
+                        failure = .corruptData
                     } else {
-                        self.loadFailure = .backend
+                        failure = .backend
                     }
+                    self.loadFailure = failure
+                    self.loadingStatus = .failed(failure)
                     Logger.reader.error("Failed to load backend TOC: \(error.localizedDescription, privacy: .public)")
                 }
             }

@@ -120,7 +120,7 @@ struct iOSTOCView: View {
                         systemImage: "exclamationmark.triangle",
                         description: Text(failure.message)
                     )
-                } else if tocViewModel.isLoading && identifiableNodes.isEmpty {
+                } else if (tocViewModel.isLoading || tocViewModel.loadingStatus == .loading || tocViewModel.loadingStatus == .idle) && identifiableNodes.isEmpty {
                     VStack(spacing: 12) {
                         ProgressView()
                         Text(String(localized: "Loading Table of Contents..."))

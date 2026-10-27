@@ -103,6 +103,9 @@ extension ReaderViewModel {
     }
 
     func loadBackendContent(_ locator: TextLocator) {
+        if let book = currentBook {
+            loadTOC(book: book)
+        }
         if let current = currentDestination, current.sectionLocator == locator {
             loadBackendContentInternal(locator: locator, focusLocator: current.focusLocator)
         } else {
@@ -111,6 +114,9 @@ extension ReaderViewModel {
     }
 
     private func loadBackendContentInternal(locator: TextLocator, focusLocator: TextLocator?) {
+        if let book = currentBook {
+            loadTOC(book: book)
+        }
         let resolved = ReaderDestinationResolver.resolve(locator: locator)
         let effectiveSection = resolved.sectionLocator
         let effectiveFocus = focusLocator ?? resolved.focusLocator

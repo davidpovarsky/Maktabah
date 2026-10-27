@@ -44,46 +44,54 @@ actor OtzariaSearchArtifactService {
         databasePath: String,
         progress: @escaping ProgressHandler
     ) async throws -> UInt64 {
-        let availability = try await checkAvailability(databasePath: databasePath)
-        guard availability.availableFreeBytes >= availability.requiredFreeBytes else {
-            throw OtzariaSearchArtifactError.insufficientStorage(
-                required: availability.requiredFreeBytes,
-                available: availability.availableFreeBytes
-            )
-        }
-        let artifact = availability.artifact
-        let storage = try OtzariaSearchArtifactStorage()
-        let workspace = storage.workspaceURL(artifactIdentity: artifact.manifest.artifactIdentity)
-        let partDownloader = downloader
-        progress(.init(stage: .downloading, completedBytes: availability.downloadedBytes,
-                       totalBytes: artifact.manifest.lexicalArtifact.packagedBytes))
-        let count = try await installer.installStreaming(
-            artifact: artifact,
-            databasePath: databasePath,
-            storage: storage,
-            downloadPart: { part in
-                let base = artifact.manifest.lexicalArtifact.parts
-                    .prefix { $0.assetName != part.assetName }
-                    .reduce(Int64(0)) { $0 + $1.packagedBytes }
-                let url = try await partDownloader.downloadAndVerifyPart(
-                    artifact: artifact,
-                    part: part,
-                    workspaceURL: workspace
-                ) { received in
-                    progress(.init(
-                        stage: .downloading,
-                        completedBytes: base + received,
-                        totalBytes: artifact.manifest.lexicalArtifact.packagedBytes
-                    ))
-                }
-                return url
+        OtzariaIndexFileLogger.log("[ArtifactService] install requested for database: \(databasePath)")
+        do {
+            let availability = try await checkAvailability(databasePath: databasePath)
+            OtzariaIndexFileLogger.log("[ArtifactService] availability checked: free=\(availability.availableFreeBytes), required=\(availability.requiredFreeBytes)")
+            guard availability.availableFreeBytes >= availability.requiredFreeBytes else {
+                throw OtzariaSearchArtifactError.insufficientStorage(
+                    required: availability.requiredFreeBytes,
+                    available: availability.availableFreeBytes
+                )
             }
-        ) { completed, total in
-            progress(.init(stage: .extracting, completedBytes: completed, totalBytes: total))
+            let artifact = availability.artifact
+            let storage = try OtzariaSearchArtifactStorage()
+            let workspace = storage.workspaceURL(artifactIdentity: artifact.manifest.artifactIdentity)
+            let partDownloader = downloader
+            progress(.init(stage: .downloading, completedBytes: availability.downloadedBytes,
+                           totalBytes: artifact.manifest.lexicalArtifact.packagedBytes))
+            let count = try await installer.installStreaming(
+                artifact: artifact,
+                databasePath: databasePath,
+                storage: storage,
+                downloadPart: { part in
+                    let base = artifact.manifest.lexicalArtifact.parts
+                        .prefix { $0.assetName != part.assetName }
+                        .reduce(Int64(0)) { $0 + $1.packagedBytes }
+                    let url = try await partDownloader.downloadAndVerifyPart(
+                        artifact: artifact,
+                        part: part,
+                        workspaceURL: workspace
+                    ) { received in
+                        progress(.init(
+                            stage: .downloading,
+                            completedBytes: base + received,
+                            totalBytes: artifact.manifest.lexicalArtifact.packagedBytes
+                        ))
+                    }
+                    return url
+                }
+            ) { completed, total in
+                progress(.init(stage: .extracting, completedBytes: completed, totalBytes: total))
+            }
+            await downloader.cleanup(workspaceURL: workspace)
+            progress(.init(stage: .ready, completedBytes: Int64(count), totalBytes: Int64(count)))
+            OtzariaIndexFileLogger.log("[ArtifactService] install successfully completed with \(count) docs")
+            return count
+        } catch {
+            OtzariaIndexFileLogger.logError("[ArtifactService] install encountered error", error: error)
+            throw error
         }
-        await downloader.cleanup(workspaceURL: workspace)
-        progress(.init(stage: .ready, completedBytes: Int64(count), totalBytes: Int64(count)))
-        return count
     }
 
     func cancel() async {

@@ -11,6 +11,8 @@ extern "C" {
 typedef void *OtzariaSearchEngineHandle;
 
 OtzariaSearchEngineHandle otzaria_search_engine_new(const char *index_path);
+char *otzaria_search_engine_last_init_error(void);
+OtzariaSearchEngineHandle otzaria_search_engine_new_with_error(const char *index_path, char **out_error_json);
 void otzaria_search_engine_free(OtzariaSearchEngineHandle handle);
 
 char *otzaria_search_engine_add_text_book_json(OtzariaSearchEngineHandle handle, const char *book_json);

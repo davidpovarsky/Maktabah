@@ -495,6 +495,7 @@ enum OtzariaSearchIndexStatus: Equatable, Sendable {
 enum OtzariaSearchError: Error, LocalizedError {
     case databaseNotSelected
     case engineNotAvailable
+    case engineInitializationFailed(code: String, message: String)
     case invalidEngineResponse(String)
     case indexingCancelled
     case insufficientStorage(requiredBytes: UInt64, availableBytes: UInt64)
@@ -502,11 +503,13 @@ enum OtzariaSearchError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .databaseNotSelected: return "לא נבחר seforim.db של אוצריא."
-        case .engineNotAvailable: return "מנוע החיפוש של אוצריא לא נטען. ודא שה־XCFramework נוסף ל־target."
+        case .engineNotAvailable: return "מנוע החיפוש של אוצריא אינו זמין בסביבה זו."
+        case .engineInitializationFailed(let code, let message):
+            return "אתחול מנוע החיפוש של אוצריא נכשל (\(code)): \(message)"
         case .invalidEngineResponse(let message): return message
         case .insufficientStorage(let required, let available):
             return "Insufficient storage for the Otzaria index build (required \(required) bytes, available \(available) bytes)."
-        case .indexingCancelled: return "האינדוקס הופסק; ההתקדמות המחויבת נשמרה."
+        case .indexingCancelled: return "האינדוקס בוטל; האינדקס החלקי נמחק."
         }
     }
 }

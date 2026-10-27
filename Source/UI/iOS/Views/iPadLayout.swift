@@ -148,6 +148,11 @@ struct iPadLayout: View {
                 onSelect: tab.viewModel.didSelectTOCNode
             )
             .toolbar(removing: .sidebarToggle)
+            .onAppear {
+                if tab.viewModel.tocViewModel.tocNodes.isEmpty && !tab.viewModel.tocViewModel.isLoading {
+                    tab.viewModel.loadTOC(book: tab.book)
+                }
+            }
         } else {
             NavigationStack {
                 ContentUnavailableView(

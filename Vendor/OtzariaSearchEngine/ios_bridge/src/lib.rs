@@ -16,11 +16,40 @@ use search_engine::api::search_engine::{
 };
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
+use std::cell::RefCell;
 use std::collections::HashMap;
 use std::ffi::{CStr, CString};
 use std::panic::{catch_unwind, AssertUnwindSafe};
+use std::path::Path;
 use std::ptr;
 use std::sync::Mutex;
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct InitErrorInfo {
+    pub code: String,
+    pub message: String,
+}
+
+thread_local! {
+    static LAST_INIT_ERROR: RefCell<Option<InitErrorInfo>> = const { RefCell::new(None) };
+}
+
+fn set_last_init_error(code: impl Into<String>, message: impl Into<String>) {
+    let err = InitErrorInfo {
+        code: code.into(),
+        message: message.into(),
+    };
+    LAST_INIT_ERROR.with(|cell| {
+        *cell.borrow_mut() = Some(err);
+    });
+}
+
+fn clear_last_init_error() {
+    LAST_INIT_ERROR.with(|cell| {
+        *cell.borrow_mut() = None;
+    });
+}
 
 pub struct EngineHandle {
     engine: Mutex<SearchEngine>,
@@ -682,16 +711,143 @@ fn semantic_response_json(value: SemanticSearchResponse) -> Value {
     })
 }
 
+fn otzaria_search_engine_new_internal(index_path: *const c_char) -> Result<*mut EngineHandle, InitErrorInfo> {
+    clear_last_init_error();
+    if index_path.is_null() {
+        let err = InitErrorInfo {
+            code: "NULL_POINTER".to_string(),
+            message: "index path pointer is null".to_string(),
+        };
+        set_last_init_error(&err.code, &err.message);
+        return Err(err);
+    }
+    let path = match c_str_to_string(index_path) {
+        Ok(s) => s,
+        Err(e) => {
+            let err = InitErrorInfo {
+                code: "INVALID_PATH".to_string(),
+                message: format!("invalid UTF-8 in index path: {e}"),
+            };
+            set_last_init_error(&err.code, &err.message);
+            return Err(err);
+        }
+    };
+
+    let p = Path::new(&path);
+    if !p.exists() {
+        let err = InitErrorInfo {
+            code: "MISSING_DIRECTORY".to_string(),
+            message: format!("index path does not exist: {}", p.display()),
+        };
+        set_last_init_error(&err.code, &err.message);
+        return Err(err);
+    }
+    if !p.is_dir() {
+        let err = InitErrorInfo {
+            code: "NOT_A_DIRECTORY".to_string(),
+            message: format!("index path is not a directory: {}", p.display()),
+        };
+        set_last_init_error(&err.code, &err.message);
+        return Err(err);
+    }
+
+    if p.join("meta.json").exists() {
+        let comp = check_index_compatibility(path.clone());
+        if !comp.compatible {
+            let reason = comp.reason.unwrap_or_else(|| comp.status.clone());
+            let code = if comp.status == "incompatible_schema" || comp.status == "rebuild_required" {
+                "INCOMPATIBLE_SCHEMA"
+            } else {
+                "CORRUPTED_METADATA"
+            };
+            let err = InitErrorInfo {
+                code: code.to_string(),
+                message: format!("index preflight check failed at {}: {}", p.display(), reason),
+            };
+            set_last_init_error(&err.code, &err.message);
+            return Err(err);
+        }
+    }
+
+    let res = catch_unwind(AssertUnwindSafe(|| {
+        SearchEngine::new(&path)
+    }));
+
+    match res {
+        Ok(engine) => {
+            clear_last_init_error();
+            Ok(Box::into_raw(Box::new(EngineHandle {
+                engine: Mutex::new(engine),
+            })))
+        }
+        Err(payload) => {
+            let raw_msg = panic_text(payload);
+            let code = if raw_msg.contains("unable to open mmap directory") {
+                "MMAP_FAILED"
+            } else if raw_msg.contains("incompatible schema") {
+                "INCOMPATIBLE_SCHEMA"
+            } else if raw_msg.contains("Failed to create index reader") {
+                "READER_FAILED"
+            } else if raw_msg.contains("Failed to open index") {
+                "CORRUPTED_INDEX"
+            } else {
+                "CONSTRUCTOR_PANIC"
+            };
+            let safe_msg = if raw_msg.len() > 400 {
+                format!("{}...", &raw_msg[..400])
+            } else {
+                raw_msg
+            };
+            let err = InitErrorInfo {
+                code: code.to_string(),
+                message: safe_msg,
+            };
+            set_last_init_error(&err.code, &err.message);
+            Err(err)
+        }
+    }
+}
+
 #[no_mangle]
 pub extern "C" fn otzaria_search_engine_new(index_path: *const c_char) -> *mut EngineHandle {
-    match catch_unwind(AssertUnwindSafe(|| {
-        let path = c_str_to_string(index_path)?;
-        Ok::<_, String>(Box::into_raw(Box::new(EngineHandle {
-            engine: Mutex::new(SearchEngine::new(&path)),
-        })))
-    })) {
-        Ok(Ok(handle)) => handle,
-        _ => ptr::null_mut(),
+    otzaria_search_engine_new_internal(index_path).unwrap_or(ptr::null_mut())
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_last_init_error() -> *mut c_char {
+    let err = LAST_INIT_ERROR.with(|cell| cell.borrow().clone());
+    match err {
+        Some(info) => match serde_json::to_string(&info) {
+            Ok(json) => match CString::new(json) {
+                Ok(c_str) => c_str.into_raw(),
+                Err(_) => ptr::null_mut(),
+            },
+            Err(_) => ptr::null_mut(),
+        },
+        None => ptr::null_mut(),
+    }
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_new_with_error(
+    index_path: *const c_char,
+    out_error_json: *mut *mut c_char,
+) -> *mut EngineHandle {
+    match otzaria_search_engine_new_internal(index_path) {
+        Ok(handle) => {
+            if !out_error_json.is_null() {
+                unsafe { *out_error_json = ptr::null_mut() };
+            }
+            handle
+        }
+        Err(err) => {
+            if !out_error_json.is_null() {
+                let json = serde_json::to_string(&err).unwrap_or_else(|_| "{}".to_string());
+                let c_str = CString::new(json).unwrap_or_default();
+                unsafe { *out_error_json = c_str.into_raw() };
+            }
+            ptr::null_mut()
+        }
     }
 }
 
@@ -1466,6 +1622,78 @@ mod tests {
         let compatibility = decode_ffi(otzaria_search_engine_check_compatibility(path.as_ptr()));
         assert_eq!(compatibility["value"]["compatible"], true);
         assert_eq!(compatibility["value"]["requiredSchemaVersion"], 4);
+        std::fs::remove_dir_all(index).unwrap();
+    }
+
+    #[test]
+    fn constructor_error_protocol_reports_missing_directory() {
+        let missing = temporary_index().join("does-not-exist");
+        let path = CString::new(missing.to_string_lossy().as_bytes()).unwrap();
+        let mut err_ptr: *mut c_char = ptr::null_mut();
+        let handle = otzaria_search_engine_new_with_error(path.as_ptr(), &mut err_ptr);
+        assert!(handle.is_null());
+        assert!(!err_ptr.is_null());
+        let json = unsafe { CStr::from_ptr(err_ptr) }.to_string_lossy().into_owned();
+        otzaria_search_engine_free_string(err_ptr);
+        let err: Value = serde_json::from_str(&json).unwrap();
+        assert_eq!(err["code"], "MISSING_DIRECTORY");
+
+        let last_err_ptr = otzaria_search_engine_last_init_error();
+        assert!(!last_err_ptr.is_null());
+        let last_json = unsafe { CStr::from_ptr(last_err_ptr) }.to_string_lossy().into_owned();
+        otzaria_search_engine_free_string(last_err_ptr);
+        let last_err: Value = serde_json::from_str(&last_json).unwrap();
+        assert_eq!(last_err["code"], "MISSING_DIRECTORY");
+    }
+
+    #[test]
+    fn constructor_error_protocol_reports_not_a_directory() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        let file_path = index.join("not_a_dir.txt");
+        std::fs::write(&file_path, b"hello").unwrap();
+        let path = CString::new(file_path.to_string_lossy().as_bytes()).unwrap();
+        let mut err_ptr: *mut c_char = ptr::null_mut();
+        let handle = otzaria_search_engine_new_with_error(path.as_ptr(), &mut err_ptr);
+        assert!(handle.is_null());
+        assert!(!err_ptr.is_null());
+        let json = unsafe { CStr::from_ptr(err_ptr) }.to_string_lossy().into_owned();
+        otzaria_search_engine_free_string(err_ptr);
+        let err: Value = serde_json::from_str(&json).unwrap();
+        assert_eq!(err["code"], "NOT_A_DIRECTORY");
+        std::fs::remove_dir_all(index).unwrap();
+    }
+
+    #[test]
+    fn constructor_error_protocol_reports_corrupted_metadata() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        std::fs::write(index.join("meta.json"), b"{corrupt-meta-json").unwrap();
+        let path = CString::new(index.to_string_lossy().as_bytes()).unwrap();
+        let mut err_ptr: *mut c_char = ptr::null_mut();
+        let handle = otzaria_search_engine_new_with_error(path.as_ptr(), &mut err_ptr);
+        assert!(handle.is_null());
+        assert!(!err_ptr.is_null());
+        let json = unsafe { CStr::from_ptr(err_ptr) }.to_string_lossy().into_owned();
+        otzaria_search_engine_free_string(err_ptr);
+        let err: Value = serde_json::from_str(&json).unwrap();
+        assert_eq!(err["code"], "CORRUPTED_METADATA");
+        std::fs::remove_dir_all(index).unwrap();
+    }
+
+    #[test]
+    fn constructor_error_protocol_succeeds_on_valid_empty_dir() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        let path = CString::new(index.to_string_lossy().as_bytes()).unwrap();
+        let mut err_ptr: *mut c_char = ptr::null_mut();
+        let handle = otzaria_search_engine_new_with_error(path.as_ptr(), &mut err_ptr);
+        assert!(!handle.is_null());
+        assert!(err_ptr.is_null());
+        let last_err_ptr = otzaria_search_engine_last_init_error();
+        assert!(last_err_ptr.is_null());
+        assert_eq!(decode_ffi(otzaria_search_engine_document_count(handle))["value"], 0);
+        otzaria_search_engine_free(handle);
         std::fs::remove_dir_all(index).unwrap();
     }
 }

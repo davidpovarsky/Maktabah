@@ -632,7 +632,24 @@ class iOSNavigationManager: BackendSwitchParticipant {
               !session.tabs.isEmpty else {
             return
         }
-        restoreSessionFromData(session)
+        let activeBackend = BackendNavigationAdapter.shared.activeBackend
+        let (sanitized, foreignTabs, _) = BackendSessionIntegrityRepair.shared.repairSessionSnapshot(
+            session: session,
+            targetBackend: activeBackend
+        )
+        if !foreignTabs.isEmpty {
+            Logger.app.warning("restoreSessionIfNeeded detected \(foreignTabs.count) foreign tabs for active backend \(activeBackend.rawValue)")
+            if sanitized.tabs.isEmpty {
+                if let backendData = BackendNavigationAdapter.shared.retrieveBackendSessionSnapshot(backend: activeBackend),
+                   let backendSession = try? JSONDecoder().decode(iOSReaderSession.self, from: backendData),
+                   !backendSession.tabs.isEmpty {
+                    restoreSessionFromData(backendSession)
+                    return
+                }
+                return
+            }
+        }
+        restoreSessionFromData(sanitized)
     }
 
     // MARK: - BackendSwitchParticipant (Two-Phase Fail-Closed Boundary)
@@ -652,15 +669,28 @@ class iOSNavigationManager: BackendSwitchParticipant {
                     savedAt: Date(),
                     activeTabId: self.activeTabId,
                     selectedTabModeRaw: self.currentMode.rawValue,
-                    tabs: tabSessions
+                    tabs: tabSessions,
+                    backend: currentBackend.rawValue
                 )
                 return try JSONEncoder().encode(session)
             },
             incomingBackend: targetBackend,
             incomingValidator: { [weak self] data in
                 let session = try JSONDecoder().decode(iOSReaderSession.self, from: data)
+                let repairResult = BackendSessionIntegrityRepair.shared.repairSessionSnapshot(
+                    session: session,
+                    targetBackend: targetBackend,
+                    rawIncomingData: data
+                )
+                let sanitized = repairResult.sanitizedSession
+                if !repairResult.foreignTabs.isEmpty {
+                    Logger.app.warning("Repaired incoming snapshot for \(targetBackend.rawValue): quarantined \(repairResult.foreignTabs.count) foreign tabs")
+                    if let sanitizedData = try? JSONEncoder().encode(sanitized) {
+                        try? BackendNavigationAdapter.shared.saveBackendSessionSnapshot(backend: targetBackend, sessionData: sanitizedData)
+                    }
+                }
                 var staged: [PreparedBackendTransition.StagedTabSession] = []
-                for tabSession in session.tabs {
+                for tabSession in sanitized.tabs {
                     if let locator = tabSession.locator {
                         guard locator.backend == targetBackend else {
                             throw BackendTransitionError.foreignBackendLocator(
@@ -716,7 +746,11 @@ class iOSNavigationManager: BackendSwitchParticipant {
 
     func prepareTransitionAsync(from currentBackend: BackendID, to targetBackend: BackendID, token: UInt64) async throws -> PreparedBackendTransition? {
         if targetBackend == .sefaria {
-            _ = try? await MaktabahBackendAdapter.loadLibraryIfNeeded()
+            do {
+                _ = try await MaktabahBackendAdapter.loadLibraryIfNeeded()
+            } catch {
+                Logger.app.error("Failed to preload Sefaria library: \(error.localizedDescription)")
+            }
         }
         return try prepareTransition(from: currentBackend, to: targetBackend, token: token)
     }
@@ -756,6 +790,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
                 } else {
                     viewModel.loadInitialContent(initialContentId: nil)
                 }
+                viewModel.loadTOC(book: book)
 
                 restoredTabs.append(ReaderTab(
                     id: staged.id,
@@ -793,9 +828,9 @@ class iOSNavigationManager: BackendSwitchParticipant {
                 self.selectedBook = active.book
                 self.selectedContentId = active.initialContentId ?? active.viewModel.currentContentId
             }
-            self.persistCurrentSession(immediate: true)
             self.stagedTransition = nil
             self.isSwitchingBackend = false
+            self.persistCurrentSession(immediate: true)
         } else {
             // Clean destination or empty stagedTabs
             isSwitchingBackend = true
@@ -808,9 +843,9 @@ class iOSNavigationManager: BackendSwitchParticipant {
 
             self.openTabs = []
             self.activeTabId = nil
-            self.persistCurrentSession(immediate: true)
             self.stagedTransition = nil
             self.isSwitchingBackend = false
+            self.persistCurrentSession(immediate: true)
         }
     }
 
@@ -925,6 +960,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
             } else {
                 viewModel.loadInitialContent(initialContentId: nil)
             }
+            viewModel.loadTOC(book: validBook)
 
             let tab = ReaderTab(
                 id: tabSession.id,
@@ -958,13 +994,15 @@ class iOSNavigationManager: BackendSwitchParticipant {
         }
 
         let tabSessions = createTabSessions(from: openTabs)
+        let currentBackend = BackendNavigationAdapter.shared.activeBackend
 
         let session = iOSReaderSession(
             schemaVersion: iOSReaderSession.currentSchemaVersion,
             savedAt: Date(),
             activeTabId: activeTabId,
             selectedTabModeRaw: currentMode.rawValue,
-            tabs: tabSessions
+            tabs: tabSessions,
+            backend: currentBackend.rawValue
         )
 
         if immediate {

@@ -3,6 +3,10 @@ import Foundation
 
 @_silgen_name("otzaria_search_engine_new")
 private func c_engineNew(_ path: UnsafePointer<CChar>) -> UnsafeMutableRawPointer?
+@_silgen_name("otzaria_search_engine_new_with_error")
+private func c_engineNewWithError(_ path: UnsafePointer<CChar>, _ outError: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>) -> UnsafeMutableRawPointer?
+@_silgen_name("otzaria_search_engine_last_init_error")
+private func c_lastInitError() -> UnsafeMutablePointer<CChar>?
 @_silgen_name("otzaria_search_engine_free")
 private func c_engineFree(_ handle: UnsafeMutableRawPointer?)
 @_silgen_name("otzaria_search_engine_search_json")
@@ -54,8 +58,29 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
 
     init(indexURL: URL) throws {
         try FileManager.default.createDirectory(at: indexURL, withIntermediateDirectories: true)
-        handle = indexURL.path.withCString(c_engineNew)
-        guard handle != nil else { throw OtzariaSearchError.engineNotAvailable }
+        var errorPtr: UnsafeMutablePointer<CChar>? = nil
+        let handle = indexURL.path.withCString { cPath in
+            c_engineNewWithError(cPath, &errorPtr)
+        }
+        if let handle {
+            self.handle = handle
+            return
+        }
+        var errorCode = "UNKNOWN_INIT_ERROR"
+        var errorMessage = "Unknown search engine initialization failure"
+        let cErr = errorPtr ?? c_lastInitError()
+        if let cErr {
+            let jsonString = String(cString: cErr)
+            c_freeString(cErr)
+            if let data = jsonString.data(using: .utf8),
+               let parsed = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                if let code = parsed["code"] as? String { errorCode = code }
+                if let message = parsed["message"] as? String { errorMessage = message }
+            } else {
+                errorMessage = jsonString
+            }
+        }
+        throw OtzariaSearchError.engineInitializationFailed(code: errorCode, message: errorMessage)
     }
 
     deinit { close() }
