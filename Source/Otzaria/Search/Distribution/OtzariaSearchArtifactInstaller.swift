@@ -72,7 +72,7 @@ struct OtzariaSearchArtifactInstaller: Sendable {
         let manager = OtzariaSearchIndexManager.shared
         let fileManager = FileManager.default
         let stagingURL = storage.stagingURL(databasePath: databasePath)
-        OtzariaIndexFileLogger.log("[Installer] Starting installation for database: \(databasePath), artifact: \(artifact.manifest.id)")
+        OtzariaIndexFileLogger.log("[Installer] Starting installation for database: \(databasePath), artifact: \(artifact.manifest.artifactIdentity)")
         if fileManager.fileExists(atPath: stagingURL.path) {
             try fileManager.removeItem(at: stagingURL)
         }
@@ -196,7 +196,7 @@ struct OtzariaSearchArtifactInstaller: Sendable {
         let manager = OtzariaSearchIndexManager.shared
         let fileManager = FileManager.default
         let stagingURL = storage.stagingURL(databasePath: databasePath)
-        OtzariaIndexFileLogger.log("[Installer] Starting streaming installation for database: \(databasePath), artifact: \(artifact.manifest.id)")
+        OtzariaIndexFileLogger.log("[Installer] Starting streaming installation for database: \(databasePath), artifact: \(artifact.manifest.artifactIdentity)")
         if fileManager.fileExists(atPath: stagingURL.path) { try fileManager.removeItem(at: stagingURL) }
         try fileManager.createDirectory(at: stagingURL, withIntermediateDirectories: true)
         try excludeFromBackup(stagingURL)

@@ -290,7 +290,10 @@ jobs:
             Source/LibraryBackend/LibraryBackendModels.swift \
             Source/LibraryBackend/LibraryPresentationPolicy+Display.swift \
             Source/LibraryBackend/LegacyIdentityRegistry.swift \
-            Source/LibraryBackend/BackendCoordinator.swift
+            Source/LibraryBackend/BackendCoordinator.swift \
+            Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift \
+            Source/Otzaria/Search/OtzariaSearchMode.swift \
+            Source/Otzaria/Search/OtzariaSearchModels.swift
           /tmp/chavrusa_tests
 
       - name: Build Maktabah-iOS for Testing on Simulator (Debug)
