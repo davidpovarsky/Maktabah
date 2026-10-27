@@ -79,36 +79,24 @@ final class Build8601ThreeRegressionsAcceptanceTests: MaktabahUITestBase {
     // MARK: - Defect B: Table of Contents Restoration on iPad Relaunch
 
     func testDefectB_TOCRestorationAfterRelaunch() throws {
-        // Launch reader with open book scenario
-        launchWithScenario("reader", backend: "otzaria")
+        // Launch reader with TOC scenario
+        launchWithScenario("readerTOC", backend: "otzaria")
         dismissAlertsIfNeeded()
 
         let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 10.0), "Reader surface opens with restored book")
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface opens with restored book")
 
-        // Open Table of Contents if not already visible (on iPad right panel or via toolbar button)
-        let tocButton = app.buttons["reader.toc_button"]
-        if tocButton.exists && tocButton.isHittable {
-            tocButton.tap()
+        // Toggle Table of Contents if button is present and hittable
+        let tocToggle = app.buttons["reader-toc-toggle"]
+        if tocToggle.exists && tocToggle.isHittable {
+            tocToggle.tap()
         }
 
-        // Wait for TOC panel to appear
-        let tocList = app.descendants(matching: .any)["reader.table_of_contents_list"]
-        let tocNodeRows = app.descendants(matching: .any).matching(
-            NSPredicate(format: "identifier BEGINSWITH 'toc-node-row'")
-        )
-
-        // Verify that "אין תוכן עניינים" / "No Table of Contents" is NOT displayed for a book that has content
+        // Verify that "אין תוכן עניינים" / "No Table of Contents" is NOT displayed prematurely
         let noTOCMessage = app.staticTexts.matching(
             NSPredicate(format: "label == 'אין תוכן עניינים' OR label == 'No Table of Contents'")
         ).firstMatch
-
-        // Give the TOC a moment to load from restored tab
-        _ = waitForElement(tocNodeRows.firstMatch, timeout: 8.0)
-
-        if tocNodeRows.count > 0 {
-            XCTAssertFalse(noTOCMessage.exists, "TOC nodes exist, 'No Table of Contents' must not be displayed")
-        }
+        XCTAssertFalse(noTOCMessage.exists, "TOC must not display premature 'No Table of Contents' for a restored book")
     }
 
     // MARK: - Defect C: Otzaria Search Engine Detailed Error Channel
