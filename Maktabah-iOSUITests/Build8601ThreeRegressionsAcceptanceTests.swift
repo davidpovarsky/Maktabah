@@ -44,7 +44,7 @@ final class Build8601ThreeRegressionsAcceptanceTests: MaktabahUITestBase {
         // Verify NO error alert pops up with 'foreign backend' error
         let alert = app.alerts.firstMatch
         if alert.exists {
-            let alertText = alert.label + " " + alert.staticTexts.allElementsBoundByIndex.map(\.label).joined(separator: " ")
+            let alertText = alert.label + " " + alert.staticTexts.allElementsBoundByIndex.map { elem in elem.label }.joined(separator: " ")
             XCTAssertFalse(
                 alertText.contains("foreign backend") || alertText.contains("Locator") || alertText.contains("foreignBackendLocator"),
                 "Switch must not fail with foreign backend locator error: \(alertText)"
