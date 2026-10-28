@@ -101,4 +101,32 @@ public struct ChavrusaTextLocalizationResolver: Sendable {
             }
         }
     }
+
+
+    /// Resolves the localized display title for a backend.
+    /// Hebrew: "אוצריא", "ספריא (ישן)", "ספריא"
+    /// English: "Otzaria", "Sefaria (Legacy)", "Sefaria"
+    static func resolveBackendTitle(
+        for backend: BackendID,
+        forcedLocaleIdentifier: String? = nil
+    ) -> String {
+        let effectiveLocale = forcedLocaleIdentifier
+            ?? Locale.preferredLanguages.first
+            ?? Locale.current.language.languageCode?.identifier
+            ?? "he"
+
+        if effectiveLocale.hasPrefix("en") {
+            switch backend {
+            case .otzaria: return "Otzaria"
+            case .sefaria: return "Sefaria (Legacy)"
+            case .sefariaEmbedded: return "Sefaria"
+            }
+        } else {
+            switch backend {
+            case .otzaria: return "אוצריא"
+            case .sefaria: return "ספריא (ישן)"
+            case .sefariaEmbedded: return "ספריא"
+            }
+        }
+    }
 }

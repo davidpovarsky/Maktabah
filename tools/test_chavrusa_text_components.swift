@@ -1424,6 +1424,75 @@ struct TestRunner {
             assertCondition(!desc3.contains("ודא שה-XCFramework נוסף"), "engineNotAvailable no longer blames missing XCFramework")
         }
 
+        // 25. Three-Source Backend Identity, RawValue Stability, and Localization
+        print("\n--- 25. Testing Three-Source Backend Identity & Localization ---")
+        assertCondition(BackendID.allCases.count == 3, "BackendID.allCases contains exactly 3 cases")
+        assertCondition(BackendID.otzaria.rawValue == "otzaria", "otzaria rawValue is 'otzaria'")
+        assertCondition(BackendID.sefaria.rawValue == "sefaria", "sefaria rawValue is preserved as 'sefaria'")
+        assertCondition(BackendID.sefariaEmbedded.rawValue == "sefariaEmbedded", "sefariaEmbedded rawValue is 'sefariaEmbedded'")
+
+        assertCondition(BackendID.otzaria.displayName == "אוצריא", "otzaria displayName is 'אוצריא'")
+        assertCondition(BackendID.sefaria.displayName == "ספריא (ישן)", "sefaria displayName is 'ספריא (ישן)'")
+        assertCondition(BackendID.sefariaEmbedded.displayName == "ספריא", "sefariaEmbedded displayName is 'ספריא'")
+
+        assertCondition(ChavrusaTextLocalizationResolver.resolveBackendTitle(for: .otzaria, forcedLocaleIdentifier: "en") == "Otzaria", "en: Otzaria")
+        assertCondition(ChavrusaTextLocalizationResolver.resolveBackendTitle(for: .sefaria, forcedLocaleIdentifier: "en") == "Sefaria (Legacy)", "en: Sefaria (Legacy)")
+        assertCondition(ChavrusaTextLocalizationResolver.resolveBackendTitle(for: .sefariaEmbedded, forcedLocaleIdentifier: "en") == "Sefaria", "en: Sefaria")
+
+        assertCondition(BackendID(rawValue: "sefaria") == .sefaria, "BackendID(rawValue: 'sefaria') decodes to .sefaria")
+        assertCondition(BackendID(rawValue: "sefariaEmbedded") == .sefariaEmbedded, "BackendID(rawValue: 'sefariaEmbedded') decodes to .sefariaEmbedded")
+
+        do {
+            let decodedLegacy = try JSONDecoder().decode(BackendID.self, from: "\"sefaria\"".data(using: .utf8)!)
+            assertCondition(decodedLegacy == .sefaria, "JSON decodes 'sefaria' to .sefaria")
+            let decodedEmbedded = try JSONDecoder().decode(BackendID.self, from: "\"sefariaEmbedded\"".data(using: .utf8)!)
+            assertCondition(decodedEmbedded == .sefariaEmbedded, "JSON decodes 'sefariaEmbedded' to .sefariaEmbedded")
+        } catch {
+            assertCondition(false, "BackendID JSON decode failed: \(error)")
+        }
+
+        // 26. Three-Source TextLocator Persistence & Session Repair Isolation
+        print("\n--- 26. Testing Three-Source TextLocator Persistence & Session Isolation ---")
+        let locOtzaria = TextLocator(backend: .otzaria, workKey: "book:103", position: .legacyLine(2034))
+        let locSefariaLegacy = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+        let locSefariaEmbedded = TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+
+        assertCondition(locOtzaria.persistenceKey == "otzaria|book:103|line:2034", "Otzaria persistenceKey format")
+        assertCondition(locSefariaLegacy.persistenceKey == "sefaria|Genesis|ref:Genesis 1:1", "Sefaria Legacy persistenceKey format")
+        assertCondition(locSefariaEmbedded.persistenceKey == "sefariaEmbedded|Genesis|ref:Genesis 1:1", "Sefaria Embedded persistenceKey format")
+        assertCondition(locSefariaLegacy.persistenceKey != locSefariaEmbedded.persistenceKey, "Legacy and Embedded persistenceKeys do not collide")
+
+        let tabOtzaria = iOSReaderTabSession(id: UUID(), bookId: 103, locator: locOtzaria)
+        let tabLegacy = iOSReaderTabSession(id: UUID(), bookId: 200, locator: locSefariaLegacy)
+        let tabEmbedded = iOSReaderTabSession(id: UUID(), bookId: 300, locator: locSefariaEmbedded)
+
+        assertCondition(BackendSessionIntegrityRepair.shared.detectTabBackend(tabOtzaria) == .otzaria, "tabOtzaria detected as .otzaria")
+        assertCondition(BackendSessionIntegrityRepair.shared.detectTabBackend(tabLegacy) == .sefaria, "tabLegacy detected as .sefaria")
+        assertCondition(BackendSessionIntegrityRepair.shared.detectTabBackend(tabEmbedded) == .sefariaEmbedded, "tabEmbedded detected as .sefariaEmbedded")
+
+        let mixedSession = iOSReaderSession(
+            activeTabId: tabEmbedded.id,
+            tabs: [tabOtzaria, tabLegacy, tabEmbedded]
+        )
+
+        let embeddedRepair = BackendSessionIntegrityRepair.shared.repairSessionSnapshot(
+            session: mixedSession,
+            targetBackend: .sefariaEmbedded
+        )
+        assertCondition(embeddedRepair.sanitizedSession.tabs.count == 1, "Embedded repair keeps only matching tabs")
+        assertCondition(embeddedRepair.sanitizedSession.tabs.first?.locator?.backend == .sefariaEmbedded, "Kept tab is sefariaEmbedded")
+        assertCondition(embeddedRepair.foreignTabs.count == 2, "Foreign tabs count is 2 (otzaria + sefaria legacy)")
+        assertCondition(embeddedRepair.sanitizedSession.backend == "sefariaEmbedded", "Sanitized session tagged sefariaEmbedded")
+
+        let legacyRepair = BackendSessionIntegrityRepair.shared.repairSessionSnapshot(
+            session: mixedSession,
+            targetBackend: .sefaria
+        )
+        assertCondition(legacyRepair.sanitizedSession.tabs.count == 1, "Legacy repair keeps only matching legacy tab")
+        assertCondition(legacyRepair.sanitizedSession.tabs.first?.locator?.backend == .sefaria, "Kept tab is sefaria")
+        assertCondition(legacyRepair.foreignTabs.count == 2, "Foreign tabs count is 2 (otzaria + sefariaEmbedded)")
+        assertCondition(legacyRepair.sanitizedSession.backend == "sefaria", "Sanitized session tagged sefaria")
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

@@ -92,7 +92,7 @@ final class iOSBootstrapManager {
             }
         }
 
-        if backendCoordinator.committedBackendID == .sefaria {
+        if backendCoordinator.committedBackendID == .sefaria || backendCoordinator.committedBackendID == .sefariaEmbedded {
             finishSetup()
             return
         }
@@ -125,6 +125,11 @@ final class iOSBootstrapManager {
             requiresInitialSourceSelection = false
             requiresSefariaConfirmation = true
             isChecking = false
+        case .sefariaEmbedded:
+            backendCoordinator.commit(.sefariaEmbedded)
+            requiresInitialSourceSelection = false
+            isChecking = false
+            finishSetup()
         case .otzaria:
             backendCoordinator.beginConfiguration(of: .otzaria)
             showOtzariaConfiguration()
@@ -495,6 +500,10 @@ final class iOSBootstrapManager {
             backendCoordinator.commit(.sefaria)
             return
         }
+        if backendID == .sefariaEmbedded {
+            backendCoordinator.commit(.sefariaEmbedded)
+            return
+        }
         if OtzariaMaktabahBridge.shared.isEnabled {
             backendCoordinator.commit(.otzaria)
             return
@@ -508,7 +517,7 @@ final class iOSBootstrapManager {
         cancelManagedDownload()
         backendCoordinator.cancelConfiguration()
         coreDownloadState.errorPresentation = nil
-        if backendCoordinator.committedBackendID != .sefaria {
+        if backendCoordinator.committedBackendID != .sefaria && backendCoordinator.committedBackendID != .sefariaEmbedded {
             showSourceSelection()
         } else {
             requiresInitialSourceSelection = false

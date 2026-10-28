@@ -27,5 +27,6 @@ enum BackendComposition {
             invalidateTransientState: {}
         ))
         SefariaBackend.shared.register()
+        SefariaMobileEmbeddedBackend.shared.register()
     }
 }

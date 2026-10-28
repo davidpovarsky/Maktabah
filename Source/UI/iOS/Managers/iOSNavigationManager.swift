@@ -751,6 +751,12 @@ class iOSNavigationManager: BackendSwitchParticipant {
             } catch {
                 Logger.app.error("Failed to preload Sefaria library: \(error.localizedDescription)")
             }
+        } else if targetBackend == .sefariaEmbedded {
+            do {
+                _ = try await MaktabahBackendAdapter.loadLibraryIfNeeded()
+            } catch {
+                Logger.app.error("Failed to preload Sefaria Embedded library: \(error.localizedDescription)")
+            }
         }
         return try prepareTransition(from: currentBackend, to: targetBackend, token: token)
     }

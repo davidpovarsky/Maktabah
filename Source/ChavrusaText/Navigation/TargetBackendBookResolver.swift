@@ -176,6 +176,48 @@ final class ChavrusaTextTargetBackendBookResolver: TargetBackendBookResolverProt
 
                 matchedBook = MaktabahBackendAdapter.resolveBook(for: textLocator, in: ldm)
             }
+
+        case .sefariaEmbedded:
+            if let locator = backendLocator {
+                guard !locator.hasPrefix("otzaria:") else {
+                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .sefariaEmbedded)
+                }
+            }
+            if let book = ldm.booksById[id], book.backendLocator?.backend == .sefariaEmbedded {
+                matchedBook = book
+            } else if let locator = backendLocator,
+                      let book = ldm.booksById.values.first(where: {
+                          $0.backendLocator?.workKey == locator && $0.backendLocator?.backend == .sefariaEmbedded
+                      }) {
+                matchedBook = book
+            } else {
+                let rawWorkKey: String? = {
+                    if let locator = backendLocator {
+                        let stripped = locator.hasPrefix("sefariaEmbedded:") ? String(locator.dropFirst("sefariaEmbedded:".count)) :
+                                       (locator.hasPrefix("sefaria:") ? String(locator.dropFirst("sefaria:".count)) : locator)
+                        return stripped.trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+                    if let registered = LegacyIdentityRegistry.shared.locator(for: id), registered.backend == .sefariaEmbedded {
+                        return registered.workKey
+                    }
+                    return nil
+                }()
+
+                guard let workKey = rawWorkKey,
+                      !workKey.isEmpty,
+                      !workKey.lowercased().hasPrefix("book "),
+                      workKey != "Book \(id)" else {
+                    throw BackendTransitionError.unresolvableBook(
+                        bookId: id,
+                        title: title ?? "Book \(id)",
+                        locator: backendLocator
+                    )
+                }
+
+                let canonical = SefariaRef.canonicalInput(workKey)
+                let textLocator = TextLocator(backend: .sefariaEmbedded, workKey: workKey, position: .canonicalRef(canonical))
+                matchedBook = MaktabahBackendAdapter.resolveBook(for: textLocator, in: ldm)
+            }
         }
 
         guard let valid = matchedBook else {

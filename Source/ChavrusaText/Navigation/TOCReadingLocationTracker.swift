@@ -60,7 +60,7 @@ enum TOCReadingLocationTracker: Sendable {
                 return $0.level < $1.level
             })?.id
 
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             // In Sefaria, nodes are canonical refs (.canonicalRef)
             guard case .canonicalRef(let currentRef) = locator.position else {
                 return nil
@@ -72,7 +72,7 @@ enum TOCReadingLocationTracker: Sendable {
             // Eliminates unsafe loose prefix matching that conflates e.g. "Genesis 1" with "Genesis 10"
             let matchingAncestors = flattenedNodes.compactMap { item -> (level: Int, id: Int)? in
                 guard let nodeLoc = item.locator,
-                      nodeLoc.backend == .sefaria,
+                      nodeLoc.backend == locator.backend,
                       nodeLoc.workKey == locator.workKey,
                       case .canonicalRef(let nodeRef) = nodeLoc.position else {
                     return nil

@@ -1,0 +1,3 @@
+[submodule "Vendor/SefariaMobile/Upstream"]
+	path = Vendor/SefariaMobile/Upstream
+	url = https://github.com/Sefaria/Sefaria-Mobile.git

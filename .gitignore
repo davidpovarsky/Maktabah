@@ -99,3 +99,12 @@ fastlane/test_output
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+
+# Node / React Native / CocoaPods
+node_modules/
+Pods/
+*.jsbundle
+scratch/
+tools/test_runner.exe
+tools/test_runner.exp
+tools/test_runner.lib

@@ -39,11 +39,11 @@ enum ReaderBackendPagingCoordinator: Sendable {
         }
 
         switch currentLocator.backend {
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             // 2. Sefaria canonical ref match
             guard case .canonicalRef(let currentRef) = currentLocator.position else { return nil }
             return navigationItems.firstIndex(where: { item in
-                guard item.locator.backend == .sefaria,
+                guard item.locator.backend == currentLocator.backend,
                       item.locator.workKey == currentLocator.workKey,
                       case .canonicalRef(let itemRef) = item.locator.position else {
                     return false

@@ -15,7 +15,7 @@ on:
         description: Validate and upload the exported IPA to App Store Connect/TestFlight
         required: true
         type: boolean
-        default: true
+        default: false
       expected_sha:
         description: Exact git commit SHA expected to be built and signed (fail-closed check)
         required: false
@@ -59,6 +59,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: recursive
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -73,6 +74,35 @@ jobs:
         run: |
           bash Scripts/CI/select-xcode-27.sh
           echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Sefaria-Mobile JS Dependencies
+        if: hashFiles('Vendor/SefariaMobile/Upstream/package.json') != ''
+        working-directory: Vendor/SefariaMobile/Upstream
+        run: |
+          npm ci --legacy-peer-deps
+
+      - name: Install CocoaPods
+        run: |
+          if [ -f "Podfile" ]; then
+            pod install
+          fi
+
+      - name: Build Sefaria Production Metro Bundle
+        if: hashFiles('Vendor/SefariaMobile/Integration/index.embedded.js') != ''
+        run: |
+          mkdir -p build/jsbundle
+          cd Vendor/SefariaMobile/Upstream
+          npx react-native bundle \
+            --platform ios \
+            --dev false \
+            --entry-file ../Integration/index.embedded.js \
+            --bundle-output ../../../build/jsbundle/main.jsbundle \
+            --assets-dest ../../../build/jsbundle || true
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -271,8 +301,12 @@ jobs:
           github_token: ${{ github.token }}
       - name: Resolve Swift packages
         run: |
+          CONTAINER_ARGS=(-project "$PROJECT_PATH")
+          if [ -d "Maktabah.xcworkspace" ]; then
+            CONTAINER_ARGS=(-workspace Maktabah.xcworkspace)
+          fi
           xcodebuild -resolvePackageDependencies \
-            -project "$PROJECT_PATH" \
+            "${CONTAINER_ARGS[@]}" \
             -scheme "$SCHEME" \
             -clonedSourcePackagesDirPath build/SourcePackages
 
@@ -788,8 +822,12 @@ jobs:
             )
           fi
 
+          CONTAINER_ARGS=(-project "$PROJECT_PATH")
+          if [ -d "Maktabah.xcworkspace" ]; then
+            CONTAINER_ARGS=(-workspace Maktabah.xcworkspace)
+          fi
           xcodebuild archive \
-            -project "$PROJECT_PATH" \
+            "${CONTAINER_ARGS[@]}" \
             -scheme "$SCHEME" \
             -configuration Release \
             -destination 'generic/platform=iOS' \

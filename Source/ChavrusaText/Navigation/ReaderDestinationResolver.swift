@@ -33,7 +33,7 @@ enum ReaderDestinationResolver: Sendable {
     /// - Line-anchored locator retains its bounded unit and segment focus.
     static func resolve(locator: TextLocator) -> ResolvedReaderDestination {
         switch locator.backend {
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             guard case .canonicalRef(let rawRef) = locator.position else {
                 return ResolvedReaderDestination(
                     destination: LibraryReaderDestination(sectionLocator: locator, focusLocator: nil),
@@ -47,7 +47,7 @@ enum ReaderDestinationResolver: Sendable {
             // If ancestors has more than 1 entry, the last entry is the containing section
             if ancestors.count > 1, let boundedSectionRef = ancestors.last {
                 let sectionLocator = TextLocator(
-                    backend: .sefaria,
+                    backend: locator.backend,
                     workKey: locator.workKey,
                     position: .canonicalRef(boundedSectionRef)
                 )

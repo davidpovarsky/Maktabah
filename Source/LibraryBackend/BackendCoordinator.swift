@@ -311,6 +311,8 @@ final class BackendCoordinator {
         switch committedBackendID {
         case .sefaria:
             return .ready(.sefaria)
+        case .sefariaEmbedded:
+            return .ready(.sefariaEmbedded)
         case .otzaria:
             return hasValidOtzariaInstallation ? .ready(.otzaria) : .configureOtzaria
         case nil:
@@ -385,7 +387,7 @@ final class BackendCoordinator {
         }
 
         // Validate target backend canonicality
-        guard targetBackend == .otzaria || targetBackend == .sefaria else {
+        guard targetBackend == .otzaria || targetBackend == .sefaria || targetBackend == .sefariaEmbedded else {
             throw BackendTransitionError.invalidTargetBackend(targetBackend.rawValue)
         }
 
@@ -471,7 +473,7 @@ final class BackendCoordinator {
         }
 
         // Validate target backend canonicality
-        guard targetBackend == .otzaria || targetBackend == .sefaria else {
+        guard targetBackend == .otzaria || targetBackend == .sefaria || targetBackend == .sefariaEmbedded else {
             throw BackendTransitionError.invalidTargetBackend(targetBackend.rawValue)
         }
 

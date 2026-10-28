@@ -74,7 +74,7 @@ final class MaktabahTorahInspectorSession {
         sefariaLocator: TextLocator?,
         otzariaLine: OtzariaLineAnchor?
     ) -> TorahInspectorSelection? {
-        if coordinator.activeBackendID == .sefaria {
+        if coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded {
             if let locator = sefariaLocator,
                locator.backend == .sefaria,
                let sectionLocator = readerViewModel?.backendSection?.locator,
@@ -158,7 +158,7 @@ final class MaktabahTorahInspectorSession {
 
     private func currentUnitSelection() -> TorahInspectorSelection? {
         guard let viewModel = readerViewModel else { return nil }
-        if coordinator.activeBackendID == .sefaria,
+        if (coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded),
            let locator = viewModel.backendSection?.locator {
             let reference = Self.reference(for: locator)
             remember(locator, for: reference)
@@ -240,7 +240,7 @@ final class MaktabahTorahInspectorSession {
     private func document(for reference: String, providerID: String?) async throws -> TorahTextDocument {
         let locator = try activeLocator(for: reference, providerID: providerID)
         switch locator.backend {
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             do {
                 let section = try await coordinator.section(at: locator)
                 return try map(section, requestedReference: reference)
@@ -260,7 +260,7 @@ final class MaktabahTorahInspectorSession {
             return cached
         }
 
-        if locator.backend == .sefaria {
+        if locator.backend == .sefaria || locator.backend == .sefariaEmbedded {
             let sources = try await coordinator.links(for: locator)
             let mappedSources: [TorahLinkedSource] = sources.map { source in
                 let sourceReference = Self.reference(for: source.locator)
@@ -449,7 +449,7 @@ final class MaktabahTorahInspectorSession {
     }
 
     private func fetchSnippets(for sources: [TorahLinkedSource]) async throws -> [TorahLinkedSource.ID: String] {
-        if coordinator.activeBackendID == .sefaria {
+        if coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded {
             var snippets: [TorahLinkedSource.ID: String] = [:]
             for source in sources {
                 if let text = source.hebrewText ?? source.englishText, !text.isEmpty {
@@ -562,7 +562,7 @@ final class MaktabahTorahInspectorSession {
             )] else { return false }
             return locator.workKey == "book:\(unit.bookId)"
                 && (unit.startLineIndex...unit.endLineIndex).contains(lineIndex)
-        case (.sefaria, .canonicalRef(let reference)):
+        case (.sefaria, .canonicalRef(let reference)), (.sefariaEmbedded, .canonicalRef(let reference)):
             let section = SefariaRef.canonicalInput(selection.canonicalRef)
             let candidate = SefariaRef.canonicalInput(reference)
             return candidate == section || candidate.hasPrefix(section + ":")
@@ -809,7 +809,8 @@ final class MaktabahTorahInspectorSession {
             return remembered
         }
         switch BackendID(rawValue: providerID) {
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
+            let backend: BackendID = (providerID == BackendID.sefariaEmbedded.rawValue) ? .sefariaEmbedded : .sefaria
             let knownTitles = LibraryDataManager.shared.booksById.values.map(\.book)
             let workKey: String
             if let resolved = SefariaRef.workKey(from: reference, knownTitles: knownTitles) {
@@ -819,7 +820,7 @@ final class MaktabahTorahInspectorSession {
             } else {
                 workKey = reference
             }
-            return TextLocator(backend: .sefaria, workKey: workKey, position: .canonicalRef(reference))
+            return TextLocator(backend: backend, workKey: workKey, position: .canonicalRef(reference))
         case .otzaria:
             let parts = reference.split(separator: ":", omittingEmptySubsequences: false)
             if parts.count >= 6, parts[0] == "otzaria", parts[1] == "unit", parts[2] == "v1",
@@ -911,7 +912,7 @@ final class MaktabahTorahInspectorSession {
 enum MaktabahTorahInspectorFormatting {
     static func reference(for locator: TextLocator) -> String {
         switch (locator.backend, locator.position) {
-        case (.sefaria, .canonicalRef(let reference)):
+        case (.sefaria, .canonicalRef(let reference)), (.sefariaEmbedded, .canonicalRef(let reference)):
             return reference
         case (.otzaria, .legacyLine(let lineIndex)):
             return "otzaria:v1:\(otzariaBookID(from: locator.workKey) ?? 0):\(lineIndex)"

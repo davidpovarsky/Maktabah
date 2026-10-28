@@ -139,10 +139,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        SefariaExpoLifecycleAdapter.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         if AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable {
             application.registerForRemoteNotifications()
         }
         return true
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return SefariaExpoLifecycleAdapter.shared.application(app, open: url, options: options)
+    }
+
+    func application(
+        _ application: UIApplication,
+        continue userActivity: NSUserActivity,
+        restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
+    ) -> Bool {
+        return SefariaExpoLifecycleAdapter.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
     }
 
     func application(_ application: UIApplication,

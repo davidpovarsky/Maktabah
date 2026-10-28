@@ -407,4 +407,73 @@ struct ChavrusaTextComponentTests {
         #expect(participant.completeCalledCount == 1)
         #expect(participant.openTabs == ["new1", "new2"])
     }
+
+    // MARK: - 10. Three-Source Backend Identity & Localization
+    @Test("Three-Source Backend: Identity, rawValue immutability, and display names")
+    func testThreeSourceBackendIdentityAndLocalization() throws {
+        #expect(BackendID.allCases.count == 3)
+        #expect(BackendID.otzaria.rawValue == "otzaria")
+        #expect(BackendID.sefaria.rawValue == "sefaria")
+        #expect(BackendID.sefariaEmbedded.rawValue == "sefariaEmbedded")
+
+        #expect(BackendID.otzaria.displayName == "אוצריא")
+        #expect(BackendID.sefaria.displayName == "ספריא (ישן)")
+        #expect(BackendID.sefariaEmbedded.displayName == "ספריא")
+
+        #expect(ChavrusaTextLocalizationResolver.resolveBackendTitle(for: .otzaria, forcedLocaleIdentifier: "en") == "Otzaria")
+        #expect(ChavrusaTextLocalizationResolver.resolveBackendTitle(for: .sefaria, forcedLocaleIdentifier: "en") == "Sefaria (Legacy)")
+        #expect(ChavrusaTextLocalizationResolver.resolveBackendTitle(for: .sefariaEmbedded, forcedLocaleIdentifier: "en") == "Sefaria")
+
+        #expect(BackendID(rawValue: "sefaria") == .sefaria)
+        #expect(BackendID(rawValue: "sefariaEmbedded") == .sefariaEmbedded)
+
+        let decodedLegacy = try JSONDecoder().decode(BackendID.self, from: "\"sefaria\"".data(using: .utf8)!)
+        #expect(decodedLegacy == .sefaria)
+        let decodedEmbedded = try JSONDecoder().decode(BackendID.self, from: "\"sefariaEmbedded\"".data(using: .utf8)!)
+        #expect(decodedEmbedded == .sefariaEmbedded)
+    }
+
+    // MARK: - 11. Three-Source TextLocator Persistence & Session Isolation
+    @Test("Three-Source Backend: TextLocator persistence and session repair isolation")
+    func testThreeSourceTextLocatorPersistenceAndSessionIsolation() throws {
+        let locOtzaria = TextLocator(backend: .otzaria, workKey: "book:103", position: .legacyLine(2034))
+        let locSefariaLegacy = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+        let locSefariaEmbedded = TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+
+        #expect(locOtzaria.persistenceKey == "otzaria|book:103|line:2034")
+        #expect(locSefariaLegacy.persistenceKey == "sefaria|Genesis|ref:Genesis 1:1")
+        #expect(locSefariaEmbedded.persistenceKey == "sefariaEmbedded|Genesis|ref:Genesis 1:1")
+        #expect(locSefariaLegacy.persistenceKey != locSefariaEmbedded.persistenceKey)
+
+        let tabOtzaria = iOSReaderTabSession(id: UUID(), bookId: 103, locator: locOtzaria)
+        let tabLegacy = iOSReaderTabSession(id: UUID(), bookId: 200, locator: locSefariaLegacy)
+        let tabEmbedded = iOSReaderTabSession(id: UUID(), bookId: 300, locator: locSefariaEmbedded)
+
+        #expect(BackendSessionIntegrityRepair.shared.detectTabBackend(tabOtzaria) == .otzaria)
+        #expect(BackendSessionIntegrityRepair.shared.detectTabBackend(tabLegacy) == .sefaria)
+        #expect(BackendSessionIntegrityRepair.shared.detectTabBackend(tabEmbedded) == .sefariaEmbedded)
+
+        let mixedSession = iOSReaderSession(
+            activeTabId: tabEmbedded.id,
+            tabs: [tabOtzaria, tabLegacy, tabEmbedded]
+        )
+
+        let embeddedRepair = BackendSessionIntegrityRepair.shared.repairSessionSnapshot(
+            session: mixedSession,
+            targetBackend: .sefariaEmbedded
+        )
+        #expect(embeddedRepair.sanitizedSession.tabs.count == 1)
+        #expect(embeddedRepair.sanitizedSession.tabs.first?.locator?.backend == .sefariaEmbedded)
+        #expect(embeddedRepair.foreignTabs.count == 2)
+        #expect(embeddedRepair.sanitizedSession.backend == "sefariaEmbedded")
+
+        let legacyRepair = BackendSessionIntegrityRepair.shared.repairSessionSnapshot(
+            session: mixedSession,
+            targetBackend: .sefaria
+        )
+        #expect(legacyRepair.sanitizedSession.tabs.count == 1)
+        #expect(legacyRepair.sanitizedSession.tabs.first?.locator?.backend == .sefaria)
+        #expect(legacyRepair.foreignTabs.count == 2)
+        #expect(legacyRepair.sanitizedSession.backend == "sefaria")
+    }
 }
