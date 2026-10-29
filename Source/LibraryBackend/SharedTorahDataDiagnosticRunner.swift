@@ -102,10 +102,10 @@ enum SharedTorahDataDiagnosticRunner {
 
     private static func scenario(for backend: BackendID, locale: String) async throws -> Scenario {
         switch backend {
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             return Scenario(
                 sectionLocator: TextLocator(
-                    backend: .sefaria,
+                    backend: backend,
                     workKey: "Genesis",
                     position: .canonicalRef("Genesis 1:1")
                 ),
@@ -488,16 +488,16 @@ enum SharedTorahDataDiagnosticRunner {
                 workKey: "book:1",
                 position: .legacyLine(2)
             )
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             let work = LibraryWork(
-                locator: TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis")),
+                locator: TextLocator(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis")),
                 title: "Genesis",
                 heTitle: "בראשית",
                 categories: ["Tanakh", "Torah"],
                 description: nil
             )
             _ = CrossBackendBookIdentityIndex.shared.canonicalID(for: work)
-            locator = TextLocator(backend: .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+            locator = TextLocator(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
         }
 
         let section = try await BackendCoordinator.shared.section(at: locator)
