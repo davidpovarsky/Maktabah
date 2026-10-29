@@ -144,6 +144,7 @@ jobs:
           tar -C build -xf build/artifacts/SourcePackages.tar
           bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
           bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+          python3 Scripts/CI/prepare-swift-packages.py
 
       - name: Build Maktabah-iOS for iPad Simulator
         run: |
