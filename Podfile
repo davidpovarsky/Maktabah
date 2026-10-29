@@ -84,4 +84,14 @@ post_install do |installer|
     rn_rel_path,
     :mac_catalyst_enabled => false
   )
+
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      current_dep = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+      if current_dep.nil? || current_dep.to_f < 15.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '18.0'
+      end
+    end
+  end
+  installer.pods_project.save
 end
