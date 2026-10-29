@@ -688,7 +688,7 @@ enum SharedTorahDataDiagnosticRunner {
 
     private static func inspectorReference(for locator: TextLocator) -> String {
         switch (locator.backend, locator.position) {
-        case (.sefaria, .canonicalRef(let reference)):
+        case (.sefaria, .canonicalRef(let reference)), (.sefariaEmbedded, .canonicalRef(let reference)):
             return reference
         case (.otzaria, .legacyLine(let lineIndex)):
             let bookID = locator.workKey.replacingOccurrences(of: "book:", with: "")

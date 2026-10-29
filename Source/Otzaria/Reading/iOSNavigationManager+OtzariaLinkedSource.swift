@@ -26,16 +26,16 @@ extension iOSNavigationManager {
                   let book = LibraryDataManager.shared.getBook([bookID]).first
                     ?? (try? OtzariaMaktabahBridge.shared.fetchBook(byId: bookID)) else { return }
             openBookInNewTab(book, initialContentId: lineIndex)
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             var targetLocator = locator
             if case .canonicalRef(let ref) = locator.position {
                 if locator.workKey == ref || locator.workKey.isEmpty {
                     let knownTitles = LibraryDataManager.shared.booksById.values.map(\.book)
                     if let resolvedWork = SefariaRef.workKey(from: ref, knownTitles: knownTitles) {
-                        targetLocator = TextLocator(backend: .sefaria, workKey: resolvedWork, position: .canonicalRef(ref))
+                        targetLocator = TextLocator(backend: locator.backend, workKey: resolvedWork, position: .canonicalRef(ref))
                     } else if let match = ref.range(of: #"\s+\d+.*$"#, options: .regularExpression) {
                         let work = String(ref[..<match.lowerBound])
-                        targetLocator = TextLocator(backend: .sefaria, workKey: work, position: .canonicalRef(ref))
+                        targetLocator = TextLocator(backend: locator.backend, workKey: work, position: .canonicalRef(ref))
                     }
                 }
             }
