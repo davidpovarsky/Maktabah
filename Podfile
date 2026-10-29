@@ -87,6 +87,7 @@ post_install do |installer|
 
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
+      config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
       current_dep = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
       if current_dep.nil? || current_dep.to_f < 15.0
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '18.0'

@@ -103,9 +103,14 @@ jobs:
           ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/metro.config.js" "${PWD}/metro.config.js"
           ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/babel.config.js" "${PWD}/babel.config.js"
           
+          echo "=== Setting script permissions ==="
+          chmod -R +x "${PWD}/Vendor/SefariaMobile/Upstream/node_modules/.bin" || true
+          chmod -R +x "${PWD}/Vendor/SefariaMobile/Upstream/node_modules/expo/bin" || true
+          
           echo "=== Running pod install ==="
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           pod install
+          chmod -R +x "${PWD}/Pods/Target Support Files" || true
 
       - name: Download Otzaria Search XCFramework
         uses: actions/download-artifact@v4
@@ -168,6 +173,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             COMPILER_INDEX_STORE_ENABLE=NO \
             ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
+            ENABLE_USER_SCRIPT_SANDBOXING=NO \
             RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 \
             PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
 
@@ -210,6 +216,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
+            ENABLE_USER_SCRIPT_SANDBOXING=NO \
             RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 \
             || true
 
