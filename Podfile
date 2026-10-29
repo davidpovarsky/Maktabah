@@ -10,7 +10,7 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', upstream_dir]).strip
 
-min_ios_version_supported = '18.6'
+min_ios_version_supported = '18.0'
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 

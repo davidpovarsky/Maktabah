@@ -102,17 +102,38 @@ jobs:
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           pod install
 
+      - name: Download Otzaria Search XCFramework
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build-otzaria-xcframework
+          path: build/artifacts
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: davidpovarsky/Maktabah
+          run-id: 32860355082
+
+      - name: Download Zayit Search XCFramework
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build-zayit-xcframework
+          path: build/artifacts
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: davidpovarsky/Maktabah
+          run-id: 32860355082
+
+      - name: Restore and Verify Search XCFrameworks
+        run: |
+          set -euo pipefail
+          echo "=== Restoring search engine XCFrameworks ==="
+          mkdir -p Vendor/ZayitSearchPort/build build
+          tar -C Vendor/OtzariaSearchEngine -xf build/artifacts/OtzariaSearchEngine.xcframework.tar
+          tar -C Vendor/ZayitSearchPort/build -xf build/artifacts/MaktabahZayitSearch.xcframework.tar
+          bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+          bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+
       - name: Build Maktabah-iOS for iPad Simulator
         run: |
           echo "=== Building Maktabah-iOS for Simulator ==="
           xcodebuild build \
-            -workspace Maktabah.xcworkspace \
-            -scheme Maktabah-iOS \
-            -destination "generic/platform=iOS Simulator" \
-            -configuration Debug \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            | xcpretty || xcodebuild build \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -destination "generic/platform=iOS Simulator" \
