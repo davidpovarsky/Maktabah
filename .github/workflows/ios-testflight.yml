@@ -89,6 +89,8 @@ jobs:
       - name: Install CocoaPods
         run: |
           if [ -f "Podfile" ]; then
+            ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/../node_modules"
+            ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/node_modules"
             export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
             pod install
           fi

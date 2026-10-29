@@ -94,6 +94,10 @@ jobs:
 
       - name: Install CocoaPods Dependencies
         run: |
+          echo "=== Symlinking node_modules for CocoaPods relative path resolution ==="
+          ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/../node_modules"
+          ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/node_modules"
+          
           echo "=== Running pod install ==="
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           pod install
