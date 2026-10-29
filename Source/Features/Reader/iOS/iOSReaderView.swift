@@ -119,12 +119,12 @@ struct iOSReaderView: View {
         .navigationTitle(resolvedNavigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .platformTabBarVisibility(hiddenOnPhone: true)
-        .if(!MaktabahApp.isIpad) { view in
+        .if(!MaktabahApp.isIpad, transform: { view in
             view.toolbarVisibility(
                 isReading ? .hidden : .visible,
                 for: .navigationBar, .bottomBar
             )
-        }
+        })
         .onTapGesture {
             withAnimation(.easeInOut) {
                 isReading.toggle()

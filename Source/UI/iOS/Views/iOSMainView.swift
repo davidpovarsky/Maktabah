@@ -578,9 +578,9 @@ private extension iOSMainView {
 
     func openSmokeBook(for backend: BackendID, inspectorMode: SmokeInspectorMode) async {
         switch backend {
-        case .sefaria:
+        case .sefaria, .sefariaEmbedded:
             let genesisLocator = TextLocator(
-                backend: .sefaria,
+                backend: backend,
                 workKey: "Genesis",
                 position: .canonicalRef("Genesis 1:1")
             )
