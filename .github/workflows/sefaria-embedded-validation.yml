@@ -94,9 +94,13 @@ jobs:
 
       - name: Install CocoaPods Dependencies
         run: |
-          echo "=== Symlinking node_modules for CocoaPods relative path resolution ==="
+          echo "=== Symlinking node_modules and Expo manifests for relative path resolution ==="
           ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/../node_modules"
           ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/node_modules"
+          ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/package.json" "${PWD}/package.json"
+          ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/app.json" "${PWD}/app.json"
+          ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/metro.config.js" "${PWD}/metro.config.js"
+          ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/babel.config.js" "${PWD}/babel.config.js"
           
           echo "=== Running pod install ==="
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
@@ -133,13 +137,17 @@ jobs:
       - name: Build Maktabah-iOS for iPad Simulator
         run: |
           echo "=== Building Maktabah-iOS for Simulator ==="
+          export PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
+          export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           xcodebuild build \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -destination "generic/platform=iOS Simulator" \
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO
+            CODE_SIGNING_REQUIRED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
 
       - name: Verify App Bundle Staged Resources
         run: |
