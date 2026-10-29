@@ -31,5 +31,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>RCTNewArchEnabled</key>
+	<true/>
 </dict>
 </plist>

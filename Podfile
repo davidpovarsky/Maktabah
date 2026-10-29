@@ -68,6 +68,17 @@ end
 
 post_install do |installer|
   rn_rel_path = 'Vendor/SefariaMobile/Upstream/node_modules/react-native'
+
+  # Gracefully override set_RCTNewArchEnabled_in_info_plist because RCTNewArchEnabled
+  # is already statically configured in Source/iOS-Info.plist and scanning non-UTF8 targets crashes.
+  if defined?(NewArchitectureHelper)
+    class << NewArchitectureHelper
+      def set_RCTNewArchEnabled_in_info_plist(installer, new_arch_enabled)
+        Pod::UI.message "RCTNewArchEnabled is statically configured in Source/iOS-Info.plist"
+      end
+    end
+  end
+
   react_native_post_install(
     installer,
     rn_rel_path,

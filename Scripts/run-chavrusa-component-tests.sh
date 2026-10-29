@@ -48,4 +48,8 @@ swiftc -parse-as-library \
   -o "${OUT_BIN}"
 
 echo "=== Compilation Succeeded. Running Test Suite ==="
-"${OUT_BIN}"
+if [[ "${OUT_BIN}" != /* && "${OUT_BIN}" != .* && "${OUT_BIN}" != [a-zA-Z]:* ]]; then
+  "./${OUT_BIN}"
+else
+  "${OUT_BIN}"
+fi

@@ -130,6 +130,8 @@ jobs:
           fi
           if [ -n "${BUILT_APP}" ]; then
             echo "Found built app at: ${BUILT_APP}"
+            chmod +x Scripts/copy-sefaria-bundle-resources.sh
+            bash Scripts/copy-sefaria-bundle-resources.sh "${BUILT_APP}"
             python3 Scripts/verify-sefaria-bundle-resources.py \
               "${BUILT_APP}" \
               --manifest-out build/sefaria-app-bundle-manifest.json
