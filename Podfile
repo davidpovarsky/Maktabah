@@ -85,6 +85,15 @@ post_install do |installer|
     :mac_catalyst_enabled => false
   )
 
+  installer.aggregate_targets.each do |aggregate_target|
+    aggregate_target.user_project.targets.each do |target|
+      target.build_phases.delete_if do |phase|
+        phase.respond_to?(:name) && phase.name.to_s =~ /Crashlytics/i
+      end
+    end
+    aggregate_target.user_project.save
+  end
+
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'

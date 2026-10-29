@@ -770,6 +770,7 @@
 		F30577522FA46222005732C6 /* IconMaktabah.icon in Resources */ = {isa = PBXBuildFile; fileRef = F349073E2F3064A10036CDAF /* IconMaktabah.icon */; };
 		F305775A2FA46222005732C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */; };
 		F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392EB2EFCC15700460756 /* Localizable.xcstrings */; };
+		F3A775592FB2288E00C82F7B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3A775582FB2288E00C82F7B /* GoogleService-Info.plist */; };
 		F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777A2FA463B1005732C6 /* iOSMainView.swift */; };
 		F30577852FA463B1005732C6 /* SearchModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777B2FA463B1005732C6 /* SearchModeView.swift */; };
 		F30577882FA463B1005732C6 /* AuthorModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30577782FA463B1005732C6 /* AuthorModeView.swift */; };
@@ -1864,6 +1865,7 @@
 		F3A002002FBB000100000001 /* CloudKitUploadDebouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitUploadDebouncer.swift; sourceTree = "<group>"; };
 		F3A20B132FD2E8DF0023F561 /* iOSCoreUpdateProgressOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCoreUpdateProgressOverlayView.swift; sourceTree = "<group>"; };
 		F3A775572FB2288E00C82F7B /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS-Info.plist"; sourceTree = "<group>"; };
+		F3A775582FB2288E00C82F7B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3A8CE3F3051B4010027B362 /* SafeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCounter.swift; sourceTree = "<group>"; };
 		F3ABDF742FBF429700A8965E /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		F3AE62B1304C5760002569BB /* BulkActionLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkActionLibrary.swift; sourceTree = "<group>"; };
@@ -2377,6 +2379,7 @@
 				F3D0965A3037CB8800E4A7D7 /* Donation.xcstrings */,
 				F38A74ED2FF43E9300198CDD /* Info.plist */,
 				F3A775572FB2288E00C82F7B /* iOS-Info.plist */,
+				F3A775582FB2288E00C82F7B /* GoogleService-Info.plist */,
 				F349073E2F3064A10036CDAF /* IconMaktabah.icon */,
 				4BF392EB2EFCC15700460756 /* Localizable.xcstrings */,
 				4B22B2F02F7E3BD300741EEC /* PrivacyInfo.xcprivacy */,
@@ -3911,6 +3914,7 @@
 				F30577522FA46222005732C6 /* IconMaktabah.icon in Resources */,
 				F305775A2FA46222005732C6 /* InfoPlist.strings in Resources */,
 				F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */,
+				F3A775592FB2288E00C82F7B /* GoogleService-Info.plist in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */

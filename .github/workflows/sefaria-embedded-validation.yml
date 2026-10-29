@@ -107,6 +107,10 @@ jobs:
           chmod -R +x "${PWD}/Vendor/SefariaMobile/Upstream/node_modules/.bin" || true
           chmod -R +x "${PWD}/Vendor/SefariaMobile/Upstream/node_modules/expo/bin" || true
           
+          echo "=== Staging GoogleService-Info.plist for CocoaPods and build ==="
+          cp Source/GoogleService-Info.plist "${PWD}/GoogleService-Info.plist" || true
+          cp Source/GoogleService-Info.plist "${PWD}/Vendor/SefariaMobile/Upstream/ios/GoogleService-Info.plist" || true
+
           echo "=== Running pod install ==="
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           pod install
@@ -158,6 +162,9 @@ jobs:
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           export RCT_NO_LAUNCH_PACKAGER=1
           export SKIP_BUNDLING=1
+          export GOOGLE_SERVICES_FILE="${PWD}/Source/GoogleService-Info.plist"
+          cp Source/GoogleService-Info.plist "${PWD}/GoogleService-Info.plist" || true
+          cp Source/GoogleService-Info.plist "${PWD}/Vendor/SefariaMobile/Upstream/ios/GoogleService-Info.plist" || true
           JOBS="$(sysctl -n hw.ncpu)"
           [ "$JOBS" -le 8 ] || JOBS=8
           xcodebuild build \
