@@ -13,6 +13,7 @@ on:
         default: true
 
 permissions:
+  actions: read
   contents: read
 
 concurrency:
@@ -124,13 +125,23 @@ jobs:
           repository: davidpovarsky/Maktabah
           run-id: 32860355082
 
-      - name: Restore and Verify Search XCFrameworks
+      - name: Download matching resolved Swift packages
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build-swift-packages
+          path: build/artifacts
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: davidpovarsky/Maktabah
+          run-id: 32860355082
+
+      - name: Restore and Verify Search XCFrameworks and Swift Packages
         run: |
           set -euo pipefail
-          echo "=== Restoring search engine XCFrameworks ==="
+          echo "=== Restoring search engine XCFrameworks and Swift Packages ==="
           mkdir -p Vendor/ZayitSearchPort/build build
           tar -C Vendor/OtzariaSearchEngine -xf build/artifacts/OtzariaSearchEngine.xcframework.tar
           tar -C Vendor/ZayitSearchPort/build -xf build/artifacts/MaktabahZayitSearch.xcframework.tar
+          tar -C build -xf build/artifacts/SourcePackages.tar
           bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
           bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
 
@@ -148,6 +159,8 @@ jobs:
             -sdk iphonesimulator \
             -destination "generic/platform=iOS Simulator" \
             -derivedDataPath build/DerivedData \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
             -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             COMPILER_INDEX_STORE_ENABLE=NO \
@@ -186,6 +199,9 @@ jobs:
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -destination "platform=iOS Simulator,name=${SIM_NAME}" \
+            -derivedDataPath build/DerivedData \
+            -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution \
             -only-testing:MaktabahTests/ChavrusaTextComponentTests \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
