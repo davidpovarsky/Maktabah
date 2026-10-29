@@ -2,80 +2,133 @@
 //  SefariaEmbeddedRelationshipsAdapter.swift
 //  Maktabah
 //
-//  Downstream-owned relationships adapter for embedded Sefaria-Mobile.
-//  Conforms to LibraryRelationshipsProviding.
+//  Downstream-owned relationships adapter resolving commentaries, links, and topics
+//  via Sefaria-Mobile's offlineOnline.loadRelated().
 //
 
 import Foundation
 
-public final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, @unchecked Sendable {
-    private let bridge: SefariaJSRPCBridge
+public final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, Sendable {
+    public static let shared = SefariaEmbeddedRelationshipsAdapter()
 
-    public init(bridge: SefariaJSRPCBridge = .shared) {
-        self.bridge = bridge
-    }
+    private init() {}
 
     public func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
-        guard case .canonicalRef(let ref) = locator.position else { return [] }
+        try await SefariaRuntimeManager.shared.ensureReady()
 
-        let params: [String: Any] = ["ref": ref, "online": true]
+        let canonicalRef: String
+        switch locator.position {
+        case .canonicalRef(let ref):
+            canonicalRef = ref
+        default:
+            canonicalRef = locator.workKey
+        }
+
+        let params = ["ref": canonicalRef, "online": true]
         let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
 
-        let response = try await bridge.call(
+        let response = try await SefariaJSRPCBridge.shared.call(
             method: "relationships.links",
-            paramsData: paramsData,
-            timeoutMs: 15000
+            paramsJson: paramsJson
         )
 
-        guard response.isSuccess, let resultData = response.resultData else {
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8) else {
             return []
         }
 
-        return parseRelatedSources(from: resultData, anchorLocator: locator)
-    }
+        var rawLinks: [[String: Any]] = []
 
-    public func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
-        return []
-    }
-
-    private func parseRelatedSources(from data: Data, anchorLocator: TextLocator) -> [LibraryRelatedSource] {
-        guard let jsonArray = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
-            return []
+        if let linksArray = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] {
+            rawLinks = linksArray
+        } else if let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let linksArray = dict["links"] as? [[String: Any]] {
+            rawLinks = linksArray
         }
 
-        return jsonArray.compactMap { dict -> LibraryRelatedSource? in
-            guard let sourceRef = dict["sourceRef"] as? String ?? dict["ref"] as? String else {
+        return rawLinks.compactMap { linkDict in
+            guard let sourceRef = (linkDict["sourceRef"] as? String) ?? (linkDict["ref"] as? String) else {
                 return nil
             }
+            let sourceHeRef = (linkDict["sourceHeRef"] as? String) ?? (linkDict["heRef"] as? String)
+            let category = (linkDict["category"] as? String) ?? "Commentary"
+            let type = (linkDict["type"] as? String) ?? category
+            let anchorRef = linkDict["anchorRef"] as? String
 
-            let heSourceRef = dict["sourceHeRef"] as? String ?? dict["heRef"] as? String
-            let category = dict["category"] as? String ?? "Commentary"
-            let heCategory = dict["heCategory"] as? String
-            let collectiveTitle = dict["collectiveTitle"] as? String
-            let heCollectiveTitle = dict["heCollectiveTitle"] as? String
-            let indexTitle = dict["index_title"] as? String ?? sourceRef
+            var collectiveEn: String? = nil
+            var collectiveHe: String? = nil
+            if let collDict = linkDict["collectiveTitle"] as? [String: Any] {
+                collectiveEn = collDict["en"] as? String
+                collectiveHe = collDict["he"] as? String
+            } else if let collStr = linkDict["collectiveTitle"] as? String {
+                collectiveEn = collStr
+            }
 
-            let targetLocator = TextLocator(
+            let sourceLocator = TextLocator(
                 backend: .sefariaEmbedded,
-                workKey: indexTitle,
+                workKey: sourceRef,
                 position: .canonicalRef(sourceRef)
             )
 
-            let anchorExpanded = (dict["anchorRefExpanded"] as? [String])?.first
-                ?? (dict["anchorRef"] as? String)
-                ?? (anchorLocator.position.description)
-
             return LibraryRelatedSource(
-                locator: targetLocator,
-                title: sourceRef,
-                heTitle: heSourceRef,
+                locator: sourceLocator,
+                displayRef: sourceRef,
+                heRef: sourceHeRef,
                 category: category,
-                heCategory: heCategory,
-                collectiveTitle: collectiveTitle,
-                heCollectiveTitle: heCollectiveTitle,
-                anchorRefExpanded: anchorExpanded,
-                hebrewText: dict["he"] as? String,
-                englishText: dict["text"] as? String
+                type: type,
+                collectiveTitle: collectiveEn,
+                heCollectiveTitle: collectiveHe,
+                primaryText: linkDict["he"] as? String,
+                translation: linkDict["text"] as? String,
+                versionTitle: linkDict["versionTitle"] as? String,
+                heVersionTitle: linkDict["heVersionTitle"] as? String,
+                license: linkDict["license"] as? String,
+                anchorRefs: anchorRef != nil ? [anchorRef!] : []
+            )
+        }
+    }
+
+    public func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
+        try await SefariaRuntimeManager.shared.ensureReady()
+
+        let canonicalRef: String
+        switch locator.position {
+        case .canonicalRef(let ref):
+            canonicalRef = ref
+        default:
+            canonicalRef = locator.workKey
+        }
+
+        let params = ["ref": canonicalRef, "online": true]
+        let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
+
+        let response = try await SefariaJSRPCBridge.shared.call(
+            method: "relationships.links",
+            paramsJson: paramsJson
+        )
+
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let topicsArray = dict["topics"] as? [[String: Any]] else {
+            return []
+        }
+
+        return topicsArray.compactMap { topicDict in
+            guard let slug = (topicDict["topic"] as? String) ?? (topicDict["slug"] as? String) else {
+                return nil
+            }
+            let titleEn = (topicDict["title"] as? String) ?? (topicDict["en"] as? String)
+            let titleHe = (topicDict["he"] as? String)
+
+            return LibraryRelatedTopic(
+                slug: slug,
+                titleHe: titleHe,
+                titleEn: titleEn
             )
         }
     }

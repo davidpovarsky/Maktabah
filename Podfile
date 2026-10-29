@@ -9,14 +9,14 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', upstream_dir]).strip
 
-min_ios_version_supported = '15.5'
+min_ios_version_supported = '18.6'
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
 $RNFirebaseAnalyticsWithoutAdIdSupport = true
 production = ENV["PRODUCTION"] == "1"
 
-target 'Maktabah' do
+target 'Maktabah-iOS' do
   project 'Maktabah.xcodeproj'
 
   pod 'Firebase', :modular_headers => true

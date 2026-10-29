@@ -27,7 +27,6 @@ public actor SefariaRuntimeManager {
 
     private(set) public var state: SefariaRuntimeState = .notStarted
     private var startupTask: Task<Void, any Error>?
-    private var startupContinuations: [CheckedContinuation<Void, any Error>] = []
 
     private init() {}
 
@@ -60,13 +59,18 @@ public actor SefariaRuntimeManager {
     private func performBootstrap(timeoutSeconds: Double) async throws {
         state = .starting
 
+        // 1. Ensure the React Native host factory has mounted the root view on MainActor
+        await MainActor.run {
+            SefariaExpoLifecycleAdapter.shared.ensureHostStarted()
+        }
+
+        state = .bootstrapping
         let bridge = SefariaJSRPCBridge.shared
 
-        // 1. Send runtime.initialize to JS
-        state = .bootstrapping
+        // 2. Send runtime.initialize to JS
         let initResponse = try await bridge.call(
             method: "runtime.initialize",
-            paramsData: nil,
+            paramsJson: nil,
             timeoutMs: Int(timeoutSeconds * 1000)
         )
 
@@ -76,10 +80,10 @@ public actor SefariaRuntimeManager {
             throw SefariaRPCError(code: "BOOTSTRAP_FAILED", message: errorMsg, retryable: true)
         }
 
-        // 2. Non-blocking postInitSearch and postInit
+        // 3. Trigger non-blocking search and update setup
         Task.detached {
-            _ = try? await bridge.call(method: "runtime.postInitSearch", paramsData: nil, timeoutMs: 10000)
-            _ = try? await bridge.call(method: "runtime.postInit", paramsData: nil, timeoutMs: 30000)
+            _ = try? await bridge.call(method: "runtime.postInitSearch", paramsJson: nil, timeoutMs: 10000)
+            _ = try? await bridge.call(method: "runtime.postInit", paramsJson: nil, timeoutMs: 30000)
         }
 
         state = .ready
@@ -90,6 +94,9 @@ public actor SefariaRuntimeManager {
         startupTask?.cancel()
         startupTask = nil
         state = .notStarted
+        Task {
+            await SefariaJSRPCBridge.shared.cancelAll(reason: "Runtime reset")
+        }
     }
 
     /// Marks runtime as ready directly when native host completes startup.

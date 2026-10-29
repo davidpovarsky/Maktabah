@@ -6,6 +6,8 @@
 
 'use strict';
 
+import { NativeModules } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as OfflineOnline from '../../Upstream/offlineOnline';
 import * as DownloadControl from '../../Upstream/DownloadControl';
 
@@ -17,16 +19,17 @@ export class ChavrusaRPCFacade {
   }
 
   static async handleNativeEnvelope(envelope) {
-    const { protocolVersion, requestID, method, paramsData, backendID, sessionGeneration } = envelope;
+    const { protocolVersion, requestID, method, paramsJson, backendID, sessionGeneration } = envelope;
     let params = {};
-    if (paramsData) {
+    if (paramsJson) {
       try {
-        params = typeof paramsData === 'string' ? JSON.parse(paramsData) : paramsData;
+        params = typeof paramsJson === 'string' ? JSON.parse(paramsJson) : paramsJson;
       } catch (e) {
         return {
           protocolVersion: '1.0',
           requestID,
           status: 'error',
+          resultJson: null,
           error: { code: 'INVALID_JSON_PARAMS', message: e.message, retryable: false },
           sessionGeneration,
         };
@@ -39,7 +42,7 @@ export class ChavrusaRPCFacade {
         // --- RUNTIME ---
         case 'runtime.initialize':
           if (!global.Sefaria) {
-            throw new Error('global.Sefaria is not defined');
+            throw new Error('global.Sefaria is not defined in runtime environment');
           }
           await global.Sefaria.init(ChavrusaRPCFacade.dispatch || (() => {}));
           result = { status: 'initialized' };
@@ -61,7 +64,7 @@ export class ChavrusaRPCFacade {
 
         // --- CATALOG ---
         case 'catalog.root':
-          result = global.Sefaria?.getRootTocItems ? global.Sefaria.getRootTocItems() : [];
+          result = global.Sefaria?.getRootTocItems ? global.Sefaria.getRootTocItems() : (global.Sefaria?.toc || []);
           break;
 
         case 'catalog.bookMetadata':
@@ -106,55 +109,114 @@ export class ChavrusaRPCFacade {
           break;
 
         // --- SEARCH ---
-        case 'search.query':
+        case 'search.query': {
           if (!global.Sefaria?.search?.execute_query) {
             throw new Error('Sefaria search engine not initialized');
           }
-          result = await global.Sefaria.search.execute_query(params.queryProps);
-          break;
+          const queryProps = {
+            query: params.query,
+            start: params.offset || 0,
+            size: params.limit || 20,
+            type: params.type || 'text',
+            field: params.field || 'exact',
+            exact: params.exact || false,
+            applied_filters: params.appliedFilters || [],
+            appliedFilterAggTypes: params.appliedFilterAggTypes || [],
+            sort_type: params.sortType || 'relevance',
+          };
+          const rawSearchData = await global.Sefaria.search.execute_query(queryProps);
+          const rawHits = rawSearchData?.hits?.hits || [];
+          const processedHits = global.Sefaria.search.process_text_hits
+            ? global.Sefaria.search.process_text_hits(rawHits)
+            : rawHits;
 
-        case 'search.processHits':
-          if (!global.Sefaria?.search?.process_text_hits) {
-            throw new Error('Sefaria process_text_hits not initialized');
-          }
-          result = global.Sefaria.search.process_text_hits(params.hits);
+          result = {
+            hits: processedHits.map(hit => {
+              const source = hit._source || {};
+              const highlight = hit.highlight || {};
+              const snippetArr = highlight.exact || highlight.naive_lemmatizer || highlight.text || [];
+              return {
+                ref: source.ref,
+                heRef: source.heRef,
+                snippet: Array.isArray(snippetArr) ? snippetArr.join(' ... ') : String(snippetArr),
+                score: hit._score,
+                version: source.version,
+                language: hit._id?.includes('[he]') ? 'hebrew' : 'english',
+              };
+            }),
+            total: rawSearchData?.hits?.total || 0,
+            start: queryProps.start,
+            size: queryProps.size,
+          };
           break;
+        }
 
         // --- DOWNLOADS & UPDATES ---
-        case 'downloads.selected':
-          result = DownloadControl.selectedPackages ? DownloadControl.selectedPackages() : {};
+        case 'downloads.packages': {
+          if (!DownloadControl.PackagesState || Object.keys(DownloadControl.PackagesState).length === 0) {
+            await DownloadControl.packageSetupProtocol();
+          }
+          const pkgs = Object.values(DownloadControl.PackagesState || {}).map(pkg => ({
+            id: pkg.name,
+            title: pkg.jsonData?.en || pkg.name,
+            heTitle: pkg.jsonData?.he || null,
+            parentID: pkg.parent || null,
+            compressedSize: pkg.jsonData?.size || 0,
+            indexTitles: pkg.jsonData?.indexes || [],
+            isCompleteLibrary: pkg.name === 'COMPLETE LIBRARY',
+          }));
+          result = pkgs;
           break;
+        }
 
-        case 'downloads.install':
+        case 'downloads.installed': {
+          const stored = await AsyncStorage.getItem('packagesSelected');
+          const packagesSelected = stored ? JSON.parse(stored) : {};
+          result = Object.keys(packagesSelected);
+          break;
+        }
+
+        case 'downloads.install': {
           result = await DownloadControl.downloadPackage(
-            params.packageTitle,
-            params.networkSetting || 'wifiOnly',
-            (progress) => {
-              ChavrusaRPCFacade.sendEventToNative('downloadProgress', {
-                packageTitle: params.packageTitle,
-                progress,
-              });
-            }
+            params.packageName,
+            params.networkSetting || 'wifiOnly'
           );
           break;
+        }
 
-        case 'downloads.cancel':
-          if (DownloadControl.runCancelMethods) {
-            DownloadControl.runCancelMethods();
+        case 'downloads.remove': {
+          if (params.bookTitles && params.bookTitles.length > 0) {
+            await DownloadControl.deleteBooks(params.bookTitles);
+          } else {
+            const toDelete = DownloadControl.calculateBooksToDelete();
+            if (toDelete && toDelete.length > 0) {
+              await DownloadControl.deleteBooks(toDelete);
+            }
+          }
+          result = { removed: true };
+          break;
+        }
+
+        case 'downloads.cancel': {
+          if (DownloadControl.Tracker?.cancelDownload) {
+            DownloadControl.Tracker.cancelDownload(false);
           }
           result = { cancelled: true };
           break;
+        }
 
-        case 'updates.check':
+        case 'updates.check': {
           result = await DownloadControl.checkUpdatesFromServer();
           break;
+        }
 
-        case 'updates.download':
+        case 'updates.download': {
           result = await DownloadControl.downloadUpdate(
             params.networkSetting || 'wifiOnly',
             false
           );
           break;
+        }
 
         default:
           throw new Error(`Unsupported RPC method: ${method}`);
@@ -164,7 +226,7 @@ export class ChavrusaRPCFacade {
         protocolVersion: '1.0',
         requestID,
         status: 'success',
-        resultData: result ? JSON.stringify(result) : null,
+        resultJson: result !== undefined && result !== null ? JSON.stringify(result) : null,
         error: null,
         sessionGeneration,
       };
@@ -173,7 +235,7 @@ export class ChavrusaRPCFacade {
         protocolVersion: '1.0',
         requestID,
         status: 'error',
-        resultData: null,
+        resultJson: null,
         error: {
           code: 'EXECUTION_ERROR',
           message: err?.message || String(err),
@@ -185,13 +247,13 @@ export class ChavrusaRPCFacade {
   }
 
   static sendEventToNative(eventName, payload) {
-    if (global.__chavrusaNativeBridge?.emitEvent) {
-      global.__chavrusaNativeBridge.emitEvent(
+    if (NativeModules?.ChavrusaSefariaBridgeModule?.deliverEvent) {
+      NativeModules.ChavrusaSefariaBridgeModule.deliverEvent(
         JSON.stringify({
           event: eventName,
           sequence: Date.now(),
           backendID: 'sefariaEmbedded',
-          payloadData: JSON.stringify(payload),
+          payloadJson: payload ? JSON.stringify(payload) : null,
         })
       );
     }

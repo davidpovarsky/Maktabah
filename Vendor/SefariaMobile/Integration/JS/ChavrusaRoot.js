@@ -1,13 +1,14 @@
 /**
  * ChavrusaRoot.js
  * React Native Root component that preserves Sefaria-Mobile's original context providers,
- * state managers, and error boundaries, while allowing native Swift to invoke RPC methods.
+ * state managers, and error boundaries, while connecting native Swift to the JS engine.
  */
 
 'use strict';
 
 import React, { useReducer, useEffect } from 'react';
-import { AppRegistry, View } from 'react-native';
+import { AppRegistry, View, NativeModules } from 'react-native';
+import BatchedBridge from 'react-native/Libraries/BatchedBridge/BatchedBridge';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ErrorBoundary } from 'react-error-boundary';
 import {
@@ -28,22 +29,47 @@ export const ChavrusaRoot = (props) => {
   useEffect(() => {
     ChavrusaRPCFacade.setDispatch(dispatch);
 
-    // Register global bridge handler for native invocation
-    global.__chavrusaHandleEnvelope = async (envelopeJSON) => {
+    const handleIncomingEnvelope = async (envelopeJSON) => {
       try {
         const envelope = typeof envelopeJSON === 'string' ? JSON.parse(envelopeJSON) : envelopeJSON;
         const response = await ChavrusaRPCFacade.handleNativeEnvelope(envelope);
-        return JSON.stringify(response);
+        const responseJSON = JSON.stringify(response);
+
+        if (NativeModules?.ChavrusaSefariaBridgeModule?.deliverResponse) {
+          NativeModules.ChavrusaSefariaBridgeModule.deliverResponse(responseJSON);
+        }
+        return responseJSON;
       } catch (err) {
-        return JSON.stringify({
+        const errResponse = JSON.stringify({
           protocolVersion: '1.0',
+          requestID: envelopeJSON?.requestID || 'unknown',
           status: 'error',
-          error: { code: 'NATIVE_INVOCATION_FAILED', message: err?.message || String(err) },
+          resultJson: null,
+          error: { code: 'NATIVE_INVOCATION_FAILED', message: err?.message || String(err), retryable: false },
+          sessionGeneration: envelopeJSON?.sessionGeneration || 0,
         });
+        if (NativeModules?.ChavrusaSefariaBridgeModule?.deliverResponse) {
+          NativeModules.ChavrusaSefariaBridgeModule.deliverResponse(errResponse);
+        }
+        return errResponse;
       }
     };
 
-    // Notify native that JS bridge is mounted and ready
+    // 1. Register with NativeModule direct callback if available
+    if (NativeModules?.ChavrusaSefariaBridgeModule?.registerJSDispatcher) {
+      NativeModules.ChavrusaSefariaBridgeModule.registerJSDispatcher(handleIncomingEnvelope);
+    }
+
+    // 2. Also register callable module for bridge.enqueueJSCall compatibility
+    try {
+      BatchedBridge.registerCallableModule('ChavrusaRPCModule', {
+        handleEnvelope: handleIncomingEnvelope,
+      });
+    } catch (e) {
+      // Ignore if already registered
+    }
+
+    // 3. Notify native that JS root is mounted and providers are live
     ChavrusaRPCFacade.sendEventToNative('ready', { timestamp: Date.now() });
   }, [dispatch]);
 

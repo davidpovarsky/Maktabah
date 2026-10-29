@@ -2,81 +2,133 @@
 //  SefariaEmbeddedCatalogAdapter.swift
 //  Maktabah
 //
-//  Downstream-owned catalog adapter for embedded Sefaria-Mobile.
-//  Conforms to LibraryCatalogProviding and LibraryWorkMetadataProviding.
+//  Downstream-owned catalog adapter mapping Sefaria-Mobile's recursive TOC hierarchy
+//  faithfully into LibraryCatalogNode without dropping nested categories or books.
 //
 
 import Foundation
 
-public final class SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadataProviding, @unchecked Sendable {
+public actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadataProviding {
+    public static let shared = SefariaEmbeddedCatalogAdapter()
+
     private var cachedNodes: [LibraryCatalogNode]?
-    private let bridge: SefariaJSRPCBridge
+    private var cachedWorkMetadata: [String: LibraryWorkMetadata] = [:]
 
-    public init(bridge: SefariaJSRPCBridge = .shared) {
-        self.bridge = bridge
-    }
+    private init() {}
 
-    public func catalog(forceRefresh: Bool) async throws -> [LibraryCatalogNode] {
-        if !forceRefresh, let cached = cachedNodes {
+    public func rootNodes() async throws -> [LibraryCatalogNode] {
+        if let cached = cachedNodes {
             return cached
         }
 
-        let response = try await bridge.call(method: "catalog.root", paramsData: nil)
-        guard response.isSuccess, let resultData = response.resultData else {
-            throw SefariaRPCError(
-                code: "CATALOG_FETCH_FAILED",
-                message: response.error?.message ?? "Failed to fetch Sefaria root catalog"
-            )
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let response = try await SefariaJSRPCBridge.shared.call(method: "catalog.toc")
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let jsonArray = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
+            throw response.error ?? LibraryBackendError.corruptData("Failed to parse Sefaria TOC JSON")
         }
 
-        let nodes = try parseCatalogNodes(from: resultData)
+        let nodes = parseCatalogItems(jsonArray, parentPath: "")
         self.cachedNodes = nodes
         return nodes
     }
 
-    public func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata? {
-        let params = ["title": workKey]
-        let paramsData = try? JSONEncoder().encode(params)
-        let response = try await bridge.call(method: "catalog.bookMetadata", paramsData: paramsData)
-        guard response.isSuccess, let resultData = response.resultData else {
-            return nil
-        }
-
-        return try? JSONDecoder().decode(LibraryWorkMetadata.self, from: resultData)
+    public func children(of parentID: String) async throws -> [LibraryCatalogNode] {
+        let roots = try await rootNodes()
+        return findChildren(in: roots, parentID: parentID) ?? []
     }
 
-    private func parseCatalogNodes(from data: Data) throws -> [LibraryCatalogNode] {
-        guard let jsonArray = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
-            return []
-        }
-
-        return jsonArray.compactMap { dict -> LibraryCatalogNode? in
-            guard let category = dict["category"] as? String else {
-                if let title = dict["title"] as? String {
-                    let heTitle = dict["heTitle"] as? String
-                    let work = LibraryWork(
-                        locator: TextLocator(backend: .sefariaEmbedded, workKey: title, position: .canonicalRef(title)),
-                        title: title,
-                        heTitle: heTitle,
-                        categories: dict["categories"] as? [String] ?? [],
-                        description: dict["description"] as? String
-                    )
-                    return .book(work)
-                }
-                return nil
+    private func findChildren(in nodes: [LibraryCatalogNode], parentID: String) -> [LibraryCatalogNode]? {
+        for node in nodes {
+            if node.id == parentID {
+                return node.children
             }
-
-            let heCategory = dict["heCategory"] as? String
-            return .category(LibraryCategory(
-                id: category,
-                title: category,
-                heTitle: heCategory,
-                parentID: nil
-            ))
+            if let children = node.children, let found = findChildren(in: children, parentID: parentID) {
+                return found
+            }
         }
+        return nil
     }
 
-    public func clearCache() {
-        cachedNodes = nil
+    private func parseCatalogItems(_ items: [[String: Any]], parentPath: String) -> [LibraryCatalogNode] {
+        var result: [LibraryCatalogNode] = []
+
+        for item in items {
+            if let categoryName = item["category"] as? String {
+                let heCategory = item["heCategory"] as? String
+                let currentPath = parentPath.isEmpty ? categoryName : "\(parentPath)/\(categoryName)"
+                let contents = (item["contents"] as? [[String: Any]]) ?? []
+                let children = parseCatalogItems(contents, parentPath: currentPath)
+
+                result.append(.category(
+                    id: currentPath,
+                    title: categoryName,
+                    heTitle: heCategory,
+                    children: children
+                ))
+            } else if let bookTitle = item["title"] as? String {
+                let heTitle = item["heTitle"] as? String
+                result.append(.book(
+                    id: bookTitle,
+                    title: bookTitle,
+                    heTitle: heTitle,
+                    workKey: bookTitle
+                ))
+
+                // Cache metadata
+                cachedWorkMetadata[bookTitle] = LibraryWorkMetadata(
+                    workKey: bookTitle,
+                    title: bookTitle,
+                    heTitle: heTitle,
+                    authors: [],
+                    categories: (item["categories"] as? [String]) ?? [],
+                    order: item["order"] as? Int,
+                    description: item["enShortDesc"] as? String,
+                    heDescription: item["heShortDesc"] as? String
+                )
+            }
+        }
+
+        return result
+    }
+
+    // MARK: - LibraryWorkMetadataProviding
+
+    public func metadata(for workKey: String) async throws -> LibraryWorkMetadata {
+        if let cached = cachedWorkMetadata[workKey] {
+            return cached
+        }
+
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let params = ["title": workKey]
+        let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
+
+        let response = try await SefariaJSRPCBridge.shared.call(
+            method: "catalog.bookMetadata",
+            paramsJson: paramsJson
+        )
+
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let item = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return LibraryWorkMetadata(workKey: workKey, title: workKey, heTitle: nil, authors: [], categories: [])
+        }
+
+        let meta = LibraryWorkMetadata(
+            workKey: workKey,
+            title: (item["title"] as? String) ?? workKey,
+            heTitle: item["heTitle"] as? String,
+            authors: (item["authors"] as? [String]) ?? [],
+            categories: (item["categories"] as? [String]) ?? [],
+            order: item["order"] as? Int,
+            description: item["enShortDesc"] as? String,
+            heDescription: item["heShortDesc"] as? String
+        )
+        cachedWorkMetadata[workKey] = meta
+        return meta
     }
 }

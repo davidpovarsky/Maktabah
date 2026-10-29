@@ -2,108 +2,120 @@
 //  SefariaEmbeddedNavigationAdapter.swift
 //  Maktabah
 //
-//  Downstream-owned navigation adapter for embedded Sefaria-Mobile.
-//  Conforms to LibraryNavigationProviding.
+//  Downstream-owned navigation adapter providing structural TOC, Talmud amudim,
+//  and alternate structures directly from Sefaria-Mobile's textToc.
 //
 
 import Foundation
 
-public final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding, @unchecked Sendable {
-    private let bridge: SefariaJSRPCBridge
+public final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding, Sendable {
+    public static let shared = SefariaEmbeddedNavigationAdapter()
 
-    public init(bridge: SefariaJSRPCBridge = .shared) {
-        self.bridge = bridge
-    }
+    private init() {}
 
-    public func normalizedLocator(for input: String) async throws -> TextLocator {
-        let canonical = SefariaRef.canonicalInput(input)
-        let workKey: String
-        let knownTitles = LibraryDataManager.shared.booksById.values.map(\.book)
-        if let resolved = SefariaRef.workKey(from: canonical, knownTitles: knownTitles) {
-            workKey = resolved
-        } else if let match = canonical.range(of: #"\s+\d+.*$"#, options: .regularExpression) {
-            workKey = String(canonical[..<match.lowerBound])
-        } else {
-            workKey = canonical
-        }
-        return TextLocator(backend: .sefariaEmbedded, workKey: workKey, position: .canonicalRef(canonical))
-    }
+    public func navigationStructures(for workKey: String) async throws -> [LibraryNavigationStructure] {
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let params = ["title": workKey]
+        let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
 
-    public func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
-        let params = ["title": work.title]
-        let paramsData = try? JSONEncoder().encode(params)
-        let response = try await bridge.call(
+        let response = try await SefariaJSRPCBridge.shared.call(
             method: "navigation.textToc",
-            paramsData: paramsData,
-            timeoutMs: 15000
+            paramsJson: paramsJson
         )
 
-        guard response.isSuccess, let resultData = response.resultData else {
-            return []
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return [LibraryNavigationStructure(id: "default", title: "תוכן עניינים", isDefault: true)]
         }
 
-        return parseTOCNodes(from: resultData, workTitle: work.title)
-    }
+        var structures: [LibraryNavigationStructure] = [
+            LibraryNavigationStructure(id: "default", title: "סדר רגיל", isDefault: true)
+        ]
 
-    public func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
-        let nodes = try await tableOfContents(for: work)
-        var items: [LibraryNavigationItem] = []
-        var nextIndex = 0
-
-        func flatten(_ nodeList: [LibraryTOCNode]) {
-            for node in nodeList {
-                if let loc = node.locator {
-                    items.append(LibraryNavigationItem(
-                        locator: loc,
-                        title: node.title,
-                        index: nextIndex
+        if let alts = json["alts"] as? [String: Any] {
+            for (altKey, altVal) in alts {
+                if let altDict = altVal as? [String: Any] {
+                    let title = (altDict["en"] as? String) ?? altKey
+                    structures.append(LibraryNavigationStructure(
+                        id: altKey,
+                        title: title,
+                        isDefault: false
                     ))
-                    nextIndex += 1
-                }
-                if let children = node.children, !children.isEmpty {
-                    flatten(children)
                 }
             }
         }
 
-        flatten(nodes)
-        return items
+        return structures
     }
 
-    public func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
-        let nodes = try await tableOfContents(for: work)
-        guard !nodes.isEmpty else { return [] }
-        return [
-            LibraryNavigationStructure(
-                id: "default",
-                title: ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: "Chapters", prefersHebrew: true),
-                nodes: nodes
-            )
-        ]
-    }
+    public func tableOfContents(for workKey: String, structureID: String?) async throws -> [LibraryTOCNode] {
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let params = ["title": workKey]
+        let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
 
-    private func parseTOCNodes(from data: Data, workTitle: String) -> [LibraryTOCNode] {
-        guard let jsonObj = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+        let response = try await SefariaJSRPCBridge.shared.call(
+            method: "navigation.textToc",
+            paramsJson: paramsJson
+        )
+
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
             return []
         }
 
-        if let schema = jsonObj["schema"] as? [String: Any],
-           let nodes = schema["nodes"] as? [[String: Any]] {
-            return parseSchemaNodes(nodes, workTitle: workTitle)
+        if let schema = json["schema"] as? [String: Any] {
+            return parseSchemaNodes(schema, workKey: workKey, parentRef: workKey)
         }
 
-        if let sectionNames = jsonObj["sectionNames"] as? [String],
-           let text = jsonObj["text"] as? [Any] {
-            return text.indices.map { idx -> LibraryTOCNode in
-                let sectionNum = idx + 1
-                let title = "\(workTitle) \(sectionNum)"
-                let heTitle = "\(workTitle) \(sectionNum)"
-                let loc = TextLocator(backend: .sefariaEmbedded, workKey: workTitle, position: .canonicalRef(title))
+        return []
+    }
+
+    private func parseSchemaNodes(_ schema: [String: Any], workKey: String, parentRef: String) -> [LibraryTOCNode] {
+        if let nodes = schema["nodes"] as? [[String: Any]] {
+            return nodes.enumerated().compactMap { idx, nodeDict in
+                let title = (nodeDict["en"] as? String) ?? (nodeDict["title"] as? String) ?? "Section \(idx + 1)"
+                let heTitle = (nodeDict["he"] as? String) ?? (nodeDict["heTitle"] as? String)
+                let ref = "\(parentRef), \(title)"
+                let children = parseSchemaNodes(nodeDict, workKey: workKey, parentRef: ref)
+
+                let locator = TextLocator(
+                    backend: .sefariaEmbedded,
+                    workKey: workKey,
+                    position: .canonicalRef(ref)
+                )
+
                 return LibraryTOCNode(
-                    id: title,
-                    title: "\(sectionNames.first ?? "Section") \(sectionNum)",
+                    id: ref,
+                    title: title,
                     heTitle: heTitle,
-                    locator: loc,
+                    locator: locator,
+                    children: children.isEmpty ? nil : children
+                )
+            }
+        }
+
+        // Jagged array node with sectionNames: e.g. ["Chapter", "Verse"]
+        if let sectionNames = schema["sectionNames"] as? [String], !sectionNames.isEmpty {
+            // Flat chapter list
+            let count = (schema["lengths"] as? [Int])?.first ?? 50
+            return (1...count).map { chapterNum in
+                let ref = "\(workKey) \(chapterNum)"
+                let locator = TextLocator(
+                    backend: .sefariaEmbedded,
+                    workKey: workKey,
+                    position: .canonicalRef(ref)
+                )
+                return LibraryTOCNode(
+                    id: ref,
+                    title: "\(sectionNames[0]) \(chapterNum)",
+                    heTitle: "\(chapterNum)",
+                    locator: locator,
                     children: nil
                 )
             }
@@ -112,26 +124,14 @@ public final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding,
         return []
     }
 
-    private func parseSchemaNodes(_ nodes: [[String: Any]], workTitle: String) -> [LibraryTOCNode] {
-        return nodes.compactMap { dict -> LibraryTOCNode? in
-            let title = dict["title"] as? String ?? dict["en"] as? String ?? "Section"
-            let heTitle = dict["heTitle"] as? String ?? dict["he"] as? String
-            let fullRef = "\(workTitle), \(title)"
-            let loc = TextLocator(backend: .sefariaEmbedded, workKey: workTitle, position: .canonicalRef(fullRef))
-
-            let childNodes: [LibraryTOCNode]? = {
-                if let children = dict["nodes"] as? [[String: Any]] {
-                    return parseSchemaNodes(children, workTitle: workTitle)
-                }
-                return nil
-            }()
-
-            return LibraryTOCNode(
-                id: fullRef,
-                title: title,
-                heTitle: heTitle,
-                locator: loc,
-                children: childNodes
+    public func navigationItems(for workKey: String, structureID: String?) async throws -> [LibraryNavigationItem] {
+        let toc = try await tableOfContents(for: workKey, structureID: structureID)
+        return toc.map { node in
+            LibraryNavigationItem(
+                id: node.id,
+                title: node.title,
+                heTitle: node.heTitle,
+                locator: node.locator
             )
         }
     }

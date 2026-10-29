@@ -3,6 +3,8 @@
 //  Maktabah
 //
 //  Downstream-owned native module bridging Swift to Sefaria-Mobile React Native runtime.
+//  Registered with React Native's NativeModules and provides robust bidirectional
+//  communication without relying on unverified globals.
 //
 
 import Foundation
@@ -19,7 +21,9 @@ public final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport {
     public weak var bridge: RCTBridge?
     #endif
 
-    private var jsExecutor: (@Sendable (String) async throws -> Void)?
+    public typealias JSDispatcherBlock = @convention(block) (String) -> Void
+    private var jsDispatcher: JSDispatcherBlock?
+    private var customExecutor: (@Sendable (String) async throws -> Void)?
 
     override public init() {
         super.init()
@@ -29,36 +33,45 @@ public final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport {
     }
 
     public func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
-        self.jsExecutor = executor
+        self.customExecutor = executor
     }
 
-    // MARK: - SefariaJSTransport
+    // MARK: - JS -> Native Registration
+
+    @objc public func registerJSDispatcher(_ dispatcher: @escaping JSDispatcherBlock) {
+        self.jsDispatcher = dispatcher
+    }
+
+    // MARK: - SefariaJSTransport (Swift -> JS)
 
     public func sendToJS(jsonString: String) async throws {
-        if let customExecutor = jsExecutor {
-            try await customExecutor(jsonString)
+        if let custom = customExecutor {
+            try await custom(jsonString)
+            return
+        }
+
+        if let dispatcher = jsDispatcher {
+            dispatcher(jsonString)
             return
         }
 
         #if canImport(React)
-        guard let bridge = self.bridge else {
-            throw SefariaRPCError(
-                code: "BRIDGE_NOT_ATTACHED",
-                message: "RCTBridge is not attached to ChavrusaSefariaBridgeModule",
-                retryable: true
+        if let bridge = self.bridge {
+            bridge.enqueueJSCall(
+                "ChavrusaRPCModule",
+                method: "handleEnvelope",
+                args: [jsonString],
+                completion: nil
             )
+            return
         }
-
-        // Call global.__chavrusaHandleEnvelope on the JS thread
-        bridge.enqueueJSCall(
-            "__chavrusaHandleEnvelope",
-            method: "call",
-            args: [jsonString],
-            completion: nil
-        )
-        #else
-        // Mock / headless portable execution fallback
         #endif
+
+        throw SefariaRPCError(
+            code: "BRIDGE_NOT_ATTACHED",
+            message: "Neither JS dispatcher nor RCTBridge is attached to ChavrusaSefariaBridgeModule",
+            retryable: true
+        )
     }
 
     // MARK: - JS -> Native Callbacks

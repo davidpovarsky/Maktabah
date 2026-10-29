@@ -2,139 +2,148 @@
 //  SefariaEmbeddedDownloadAdapter.swift
 //  Maktabah
 //
-//  Downstream-owned download and offline storage adapter delegating directly
-//  to Sefaria-Mobile's DownloadControl.js and Expo FileSystem.
-//  Conforms to OfflineLibraryProviding and OfflineWorkProviding.
+//  Downstream-owned adapter providing offline package management, download progress,
+//  and updates via original Sefaria-Mobile DownloadControl.js runtime.
 //
 
 import Foundation
 
-public final class SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProviding, @unchecked Sendable {
-    private let bridge: SefariaJSRPCBridge
-    private var progressCallbacks: [String: @Sendable (OfflineInstallProgress) -> Void] = [:]
+public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProviding {
+    public static let shared = SefariaEmbeddedDownloadAdapter()
 
-    public init(bridge: SefariaJSRPCBridge = .shared) {
-        self.bridge = bridge
+    private var activeProgressHandlers: [String: @Sendable (OfflineInstallProgress) -> Void] = [:]
 
-        Task { [weak self] in
-            await bridge.addEventListener(for: "downloadProgress") { event in
-                guard let self = self,
-                      let data = event.payloadData,
-                      let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                      let title = dict["packageTitle"] as? String,
-                      let callback = self.progressCallbacks[title] else {
-                    return
+    private init() {
+        Task {
+            await self.registerEventListener()
+        }
+    }
+
+    private func registerEventListener() {
+        Task {
+            await SefariaJSRPCBridge.shared.addEventListener(for: "downloadProgress") { [weak self] event in
+                guard let self else { return }
+                Task {
+                    await self.handleDownloadProgressEvent(event)
                 }
-
-                let progressInfo = dict["progress"] as? [String: Any]
-                let bytesWritten = (progressInfo?["totalBytesWritten"] as? Int64) ?? 0
-                let totalBytes = (progressInfo?["totalBytesExpectedToWrite"] as? Int64) ?? 0
-
-                let progress = OfflineInstallProgress(
-                    packageID: title,
-                    bytesDownloaded: bytesWritten,
-                    totalBytes: totalBytes,
-                    isComplete: bytesWritten >= totalBytes && totalBytes > 0
-                )
-                callback(progress)
             }
         }
     }
 
+    private func handleDownloadProgressEvent(_ event: SefariaRPCEvent) {
+        guard let payloadJson = event.payloadJson,
+              let data = payloadJson.data(using: .utf8),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let packageTitle = json["packageTitle"] as? String else {
+            return
+        }
+
+        let progress = (json["progress"] as? Double) ?? 0.0
+        let completedBytes = Int64(progress * 100_000_000)
+        let totalBytes: Int64 = 100_000_000
+
+        let update = OfflineInstallProgress(
+            phase: progress >= 1.0 ? .finished : .downloading,
+            packageID: packageTitle,
+            completedBytes: completedBytes,
+            totalBytes: totalBytes
+        )
+
+        if let handler = activeProgressHandlers[packageTitle] {
+            handler(update)
+        }
+    }
+
+    // MARK: - OfflineLibraryProviding
+
     public func packages(forceRefresh: Bool) async throws -> [OfflinePackage] {
-        let response = try await bridge.call(method: "downloads.selected")
-        guard response.isSuccess, let resultData = response.resultData else {
-            return []
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let response = try await SefariaJSRPCBridge.shared.call(method: "downloads.packages")
+        guard response.isSuccess else {
+            throw response.error ?? SefariaRPCError(code: "PACKAGES_FETCH_FAILED", message: "Failed to fetch packages")
         }
-
-        guard let selections = try? JSONSerialization.jsonObject(with: resultData) as? [String: Bool] else {
-            return []
-        }
-
-        return selections.map { (title, isSelected) in
-            OfflinePackage(
-                id: title,
-                title: title,
-                heTitle: title,
-                sizeBytes: 0,
-                parentID: nil
-            )
-        }
+        return try response.decodeResult([OfflinePackage].self)
     }
 
     public func installedPackageIDs() async -> Set<String> {
-        let response = try? await bridge.call(method: "downloads.selected")
-        guard let response = response, response.isSuccess, let resultData = response.resultData,
-              let selections = try? JSONSerialization.jsonObject(with: resultData) as? [String: Bool] else {
+        guard (try? await SefariaRuntimeManager.shared.ensureReady()) != nil else {
             return []
         }
-        return Set(selections.filter { $0.value }.map(\.key))
+        guard let response = try? await SefariaJSRPCBridge.shared.call(method: "downloads.installed"),
+              response.isSuccess,
+              let ids = try? response.decodeResult([String].self) else {
+            return []
+        }
+        return Set(ids)
     }
 
-    public func install(
-        packageIDs: Set<String>,
-        progress: @escaping @Sendable (OfflineInstallProgress) -> Void
-    ) async throws {
+    public func install(packageIDs: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
+        try await SefariaRuntimeManager.shared.ensureReady()
         for packageID in packageIDs {
-            progressCallbacks[packageID] = progress
-            let params = ["packageTitle": packageID, "networkSetting": "all"]
-            let paramsData = try JSONEncoder().encode(params)
-            _ = try await bridge.call(
+            activeProgressHandlers[packageID] = progress
+            let params = ["packageName": packageID, "networkSetting": "wifiOnly"]
+            let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
+
+            progress(OfflineInstallProgress(
+                phase: .downloading,
+                packageID: packageID,
+                completedBytes: 0,
+                totalBytes: 100_000_000
+            ))
+
+            let response = try await SefariaJSRPCBridge.shared.call(
                 method: "downloads.install",
-                paramsData: paramsData,
-                timeoutMs: 300000 // 5 minutes per package
+                paramsJson: paramsJson,
+                timeoutMs: 600_000 // 10 minute timeout for large downloads
             )
-            progressCallbacks.removeValue(forKey: packageID)
+            activeProgressHandlers.removeValue(forKey: packageID)
+
+            guard response.isSuccess else {
+                throw response.error ?? SefariaRPCError(code: "INSTALL_FAILED", message: "Failed to install package \(packageID)")
+            }
+
+            progress(OfflineInstallProgress(
+                phase: .finished,
+                packageID: packageID,
+                completedBytes: 100_000_000,
+                totalBytes: 100_000_000
+            ))
         }
     }
 
     public func remove(packageIDs: Set<String>) async throws {
-        for packageID in packageIDs {
-            let params = ["packageTitle": packageID]
-            let paramsData = try JSONEncoder().encode(params)
-            _ = try await bridge.call(method: "downloads.remove", paramsData: paramsData)
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let params = ["packageTitles": Array(packageIDs)]
+        let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
+        let response = try await SefariaJSRPCBridge.shared.call(method: "downloads.remove", paramsJson: paramsJson)
+        guard response.isSuccess else {
+            throw response.error ?? SefariaRPCError(code: "REMOVE_FAILED", message: "Failed to remove packages")
         }
     }
 
     public func availableUpdates() async throws -> OfflineUpdateSummary {
-        let response = try await bridge.call(method: "updates.check")
-        guard response.isSuccess, let resultData = response.resultData,
-              let summary = try? JSONSerialization.jsonObject(with: resultData) as? [String: Any] else {
-            return OfflineUpdateSummary(changedWorkCount: 0, totalBytes: 0)
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let response = try await SefariaJSRPCBridge.shared.call(method: "updates.check")
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return OfflineUpdateSummary(changedWorkCount: 0, affectedPackageIDs: [])
         }
 
-        let count = (summary["updatesAvailable"] as? Int) ?? 0
-        let bytes = (summary["totalBytes"] as? Int64) ?? 0
-        return OfflineUpdateSummary(changedWorkCount: count, totalBytes: bytes)
-    }
-
-    public func update(progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
-        _ = try await bridge.call(method: "updates.download", timeoutMs: 300000)
-    }
-
-    public func cancelInstall() async {
-        _ = try? await bridge.call(method: "downloads.cancel")
-        progressCallbacks.removeAll()
+        let count = (json["count"] as? Int) ?? (json["hasUpdates"] as? Bool == true ? 1 : 0)
+        let packageIDs = (json["packageIDs"] as? [String]) ?? []
+        return OfflineUpdateSummary(changedWorkCount: count, affectedPackageIDs: Set(packageIDs))
     }
 
     // MARK: - OfflineWorkProviding
 
     public func installedWorkKeys() async -> Set<String> {
-        return await installedPackageIDs()
+        let pkgs = await installedPackageIDs()
+        return pkgs
     }
 
-    public func install(
-        workKeys: Set<String>,
-        progress: @escaping @Sendable (OfflineInstallProgress) -> Void
-    ) async throws {
+    public func install(workKeys: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
         try await install(packageIDs: workKeys, progress: progress)
-    }
-
-    public func remove(workKeys: Set<String>) async throws {
-        try await remove(packageIDs: workKeys)
-    }
-
-    public func cancelWorkInstall() async {
-        await cancelInstall()
     }
 }

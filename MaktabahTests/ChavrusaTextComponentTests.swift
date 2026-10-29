@@ -476,4 +476,180 @@ struct ChavrusaTextComponentTests {
         #expect(legacyRepair.foreignTabs.count == 2)
         #expect(legacyRepair.sanitizedSession.backend == "sefaria")
     }
+
+    // MARK: - 12. SefariaRPC Wire Models & JSON Boundary Roundtrip
+    @Test("SefariaRPC: Wire models, UTF-8 Hebrew preservation, and decodeResult")
+    func testSefariaRPCWireModelsAndDecodeResult() throws {
+        let sampleParams = ["ref": "Genesis 1:1", "language": "he", "text": "בְּרֵאשִׁית בָּרָא אֱלֹהִים"]
+        let paramsData = try JSONSerialization.data(withJSONObject: sampleParams)
+        let paramsJson = String(data: paramsData, encoding: .utf8)!
+
+        let envelope = SefariaRPCEnvelope(
+            protocolVersion: "1.0",
+            requestID: "req-1234",
+            method: "text.load",
+            paramsJson: paramsJson,
+            backendID: "sefariaEmbedded",
+            sessionGeneration: 42,
+            timeoutMs: 15000
+        )
+
+        let envData = try JSONEncoder().encode(envelope)
+        let envJsonStr = String(data: envData, encoding: .utf8)!
+        #expect(!envJsonStr.contains("paramsData"))
+        #expect(envJsonStr.contains("בְּרֵאשִׁית"))
+
+        let decodedEnv = try JSONDecoder().decode(SefariaRPCEnvelope.self, from: envData)
+        #expect(decodedEnv.requestID == "req-1234")
+        #expect(decodedEnv.sessionGeneration == 42)
+        #expect(decodedEnv.backendID == "sefariaEmbedded")
+
+        struct SampleTextResult: Codable, Equatable {
+            let sectionRef: String
+            let heSectionRef: String
+        }
+        let sampleResult = SampleTextResult(sectionRef: "Genesis 1", heSectionRef: "בראשית א׳")
+        let resultData = try JSONEncoder().encode(sampleResult)
+        let resultJsonStr = String(data: resultData, encoding: .utf8)!
+
+        let response = SefariaRPCResponse(
+            protocolVersion: "1.0",
+            requestID: "req-1234",
+            status: "success",
+            resultJson: resultJsonStr,
+            error: nil,
+            sessionGeneration: 42
+        )
+        #expect(response.isSuccess)
+        let decodedResult = try response.decodeResult(SampleTextResult.self)
+        #expect(decodedResult == sampleResult)
+
+        let rpcError = SefariaRPCError(code: "NOT_FOUND", message: "Section not found", retryable: false)
+        let errResponse = SefariaRPCResponse(
+            protocolVersion: "1.0",
+            requestID: "req-5678",
+            status: "error",
+            resultJson: nil,
+            error: rpcError,
+            sessionGeneration: 42
+        )
+        #expect(!errResponse.isSuccess)
+        #expect(errResponse.error?.code == "NOT_FOUND")
+    }
+
+    // MARK: - 13. SefariaEmbedded Offline & Search Models Conformance
+    @Test("SefariaEmbedded: Offline & search models protocol conformance")
+    func testSefariaEmbeddedOfflineAndSearchModels() {
+        let pkg = OfflinePackage(
+            id: "Torah",
+            title: "Torah",
+            heTitle: "תורה",
+            parentID: "COMPLETE LIBRARY",
+            compressedSize: 52428800,
+            indexTitles: ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy"],
+            isCompleteLibrary: false
+        )
+        #expect(pkg.id == "Torah")
+        #expect(pkg.compressedSize == 52428800)
+        #expect(pkg.indexTitles?.count == 5)
+        #expect(!pkg.isCompleteLibrary)
+
+        let completePkg = OfflinePackage(
+            id: "COMPLETE LIBRARY",
+            title: "Complete Library",
+            heTitle: "כל הספרייה",
+            parentID: nil,
+            compressedSize: 1048576000,
+            indexTitles: nil,
+            isCompleteLibrary: true
+        )
+        #expect(completePkg.isCompleteLibrary)
+
+        let progress = OfflineInstallProgress(
+            phase: .downloading,
+            packageID: "Torah",
+            completedBytes: 26214400,
+            totalBytes: 52428800
+        )
+        #expect(progress.phase == .downloading)
+        #expect(progress.completedBytes == 26214400)
+
+        let summary = OfflineUpdateSummary(
+            changedWorkCount: 3,
+            affectedPackageIDs: ["Torah", "Talmud"]
+        )
+        #expect(summary.hasUpdates)
+        #expect(summary.changedWorkCount == 3)
+        #expect(summary.affectedPackageIDs.contains("Torah"))
+
+        let emptySummary = OfflineUpdateSummary(changedWorkCount: 0, affectedPackageIDs: [])
+        #expect(!emptySummary.hasUpdates)
+
+        let searchHit = LibrarySearchHit(
+            locator: TextLocator(backend: .sefariaEmbedded, workKey: "Genesis 1:1", position: .canonicalRef("Genesis 1:1")),
+            displayRef: "Genesis 1:1",
+            heRef: "בראשית א׳:א׳",
+            snippet: "<b>בְּרֵאשִׁית</b> בָּרָא",
+            score: 1.45,
+            versionTitle: "Miqra according to the Masorah",
+            language: "hebrew"
+        )
+        #expect(searchHit.displayRef == "Genesis 1:1")
+        #expect(searchHit.locator.backend == .sefariaEmbedded)
+
+        let searchPage = LibrarySearchPage(hits: [searchHit], total: 100, nextOffset: 20)
+        #expect(searchPage.hits.count == 1)
+        #expect(searchPage.total == 100)
+        #expect(searchPage.nextOffset == 20)
+    }
+
+    // MARK: - 14. SefariaEmbedded Text & Relationship Structures
+    @Test("SefariaEmbedded: Text & relationship structures mapping")
+    func testSefariaEmbeddedTextAndRelationshipsStructures() {
+        let segLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+        let segment = LibraryTextSegment(
+            locator: segLocator,
+            heRef: "בראשית א׳:א׳",
+            primaryText: "בְּרֵאשִׁית בָּרָא אֱלֹהִים",
+            translation: "In the beginning God created"
+        )
+        #expect(segment.primaryText.contains("בְּרֵאשִׁית"))
+        #expect(segment.translation == "In the beginning God created")
+        #expect(segment.sourceText == segment.primaryText)
+
+        let section = LibraryTextSection(
+            locator: TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1")),
+            displayRef: "Genesis 1",
+            heRef: "בראשית פרק א׳",
+            segments: [segment],
+            previous: nil,
+            next: TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 2")),
+            versions: [],
+            links: [],
+            origin: .offline
+        )
+        #expect(section.displayRef == "Genesis 1")
+        #expect(section.segments.count == 1)
+        #expect(section.next?.position == .canonicalRef("Genesis 2"))
+        #expect(section.origin == .offline)
+
+        let related = LibraryRelatedSource(
+            locator: TextLocator(backend: .sefariaEmbedded, workKey: "Rashi on Genesis 1:1:1", position: .canonicalRef("Rashi on Genesis 1:1:1")),
+            displayRef: "Rashi on Genesis 1:1:1",
+            heRef: "רש״י על בראשית א׳:א׳:א׳",
+            category: "Commentary",
+            type: "Commentary",
+            collectiveTitle: "Rashi",
+            heCollectiveTitle: "רש״י",
+            primaryText: "בראשית ברא",
+            translation: nil,
+            versionTitle: nil,
+            heVersionTitle: nil,
+            license: nil,
+            anchorRefs: ["Genesis 1:1"]
+        )
+        #expect(related.collectiveTitle == "Rashi")
+        #expect(related.heCollectiveTitle == "רש״י")
+        #expect(related.anchorRefs == ["Genesis 1:1"])
+    }
 }

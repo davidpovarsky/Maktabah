@@ -3,7 +3,8 @@
 //  Maktabah
 //
 //  Downstream-owned asynchronous RPC bridge between Swift and Sefaria-Mobile JS runtime.
-//  Enforces timeouts, generation guards, error propagation, and event routing.
+//  Enforces single-resume continuations, actor-owned timeout handling, zero leaks,
+//  generation guards, and event listener dispatching.
 //
 
 import Foundation
@@ -15,10 +16,15 @@ public protocol SefariaJSTransport: Sendable {
 public actor SefariaJSRPCBridge {
     public static let shared = SefariaJSRPCBridge()
 
+    private struct InFlightRequest {
+        let continuation: CheckedContinuation<SefariaRPCResponse, any Error>
+        let generation: UInt64
+        let timeoutTask: Task<Void, Never>
+    }
+
     private var transport: (any SefariaJSTransport)?
-    private var inFlightContinuations: [String: CheckedContinuation<SefariaRPCResponse, any Error>] = [:]
-    private var inFlightGenerations: [String: UInt64] = [:]
-    private var eventListeners: [String: [(SefariaRPCEvent) -> Void]] = [:]
+    private var inFlightRequests: [String: InFlightRequest] = [:]
+    private var eventListeners: [String: [@Sendable (SefariaRPCEvent) -> Void]] = [:]
 
     private init() {}
 
@@ -26,10 +32,11 @@ public actor SefariaJSRPCBridge {
         self.transport = transport
     }
 
-    /// Dispatches an RPC call to the Sefaria runtime with bounded timeout and generation tracking.
+    /// Dispatches an RPC call to the Sefaria runtime with bounded timeout, generation tracking,
+    /// and cancellation-safe continuation management.
     public func call(
         method: String,
-        paramsData: Data? = nil,
+        paramsJson: String? = nil,
         generation: UInt64 = 0,
         timeoutMs: Int = 15000
     ) async throws -> SefariaRPCResponse {
@@ -38,7 +45,7 @@ public actor SefariaJSRPCBridge {
             protocolVersion: "1.0",
             requestID: requestID,
             method: method,
-            paramsData: paramsData,
+            paramsJson: paramsJson,
             backendID: BackendID.sefariaEmbedded.rawValue,
             sessionGeneration: generation,
             timeoutMs: timeoutMs
@@ -61,109 +68,121 @@ public actor SefariaJSRPCBridge {
             )
         }
 
-        return try await withThrowingTaskGroup(of: SefariaRPCResponse.self) { group in
-            group.addTask {
-                try await withCheckedThrowingContinuation { continuation in
-                    Task { [weak self] in
-                        guard let self else { return }
-                        await self.registerContinuation(continuation, for: requestID, generation: generation)
-                        do {
-                            try await transport.sendToJS(jsonString: jsonString)
-                        } catch {
-                            await self.failContinuation(for: requestID, error: error)
-                        }
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                self.registerInFlight(
+                    requestID: requestID,
+                    continuation: continuation,
+                    generation: generation,
+                    timeoutMs: timeoutMs,
+                    method: method
+                )
+                Task {
+                    do {
+                        try await transport.sendToJS(jsonString: jsonString)
+                    } catch {
+                        await self.failInFlight(requestID: requestID, error: error)
                     }
                 }
             }
-
-            group.addTask {
-                try await Task.sleep(nanoseconds: UInt64(timeoutMs) * 1_000_000)
-                throw SefariaRPCError(
-                    code: "TIMEOUT",
-                    message: "RPC call to '\(method)' timed out after \(timeoutMs)ms",
-                    retryable: true
-                )
+        } onCancel: {
+            Task {
+                await self.cancelInFlight(requestID: requestID)
             }
-
-            let response = try await group.next()!
-            group.cancelAll()
-            return response
         }
     }
 
-    private func registerContinuation(
-        _ continuation: CheckedContinuation<SefariaRPCResponse, any Error>,
-        for requestID: String,
-        generation: UInt64
+    private func registerInFlight(
+        requestID: String,
+        continuation: CheckedContinuation<SefariaRPCResponse, any Error>,
+        generation: UInt64,
+        timeoutMs: Int,
+        method: String
     ) {
-        inFlightContinuations[requestID] = continuation
-        inFlightGenerations[requestID] = generation
+        let timeoutTask = Task { [weak self, requestID, method, timeoutMs] in
+            try? await Task.sleep(nanoseconds: UInt64(timeoutMs) * 1_000_000)
+            await self?.handleTimeout(requestID: requestID, method: method, timeoutMs: timeoutMs)
+        }
+        inFlightRequests[requestID] = InFlightRequest(
+            continuation: continuation,
+            generation: generation,
+            timeoutTask: timeoutTask
+        )
     }
 
-    private func failContinuation(for requestID: String, error: any Error) {
-        guard let continuation = inFlightContinuations.removeValue(forKey: requestID) else { return }
-        inFlightGenerations.removeValue(forKey: requestID)
-        continuation.resume(throwing: error)
+    private func handleTimeout(requestID: String, method: String, timeoutMs: Int) {
+        guard let req = inFlightRequests.removeValue(forKey: requestID) else { return }
+        req.continuation.resume(throwing: SefariaRPCError(
+            code: "TIMEOUT",
+            message: "RPC call to '\(method)' timed out after \(timeoutMs)ms",
+            retryable: true
+        ))
     }
 
-    /// Handles an incoming RPC response delivered from JavaScript.
     public func handleIncomingResponse(jsonString: String) {
         guard let data = jsonString.data(using: .utf8),
               let response = try? JSONDecoder().decode(SefariaRPCResponse.self, from: data) else {
             return
         }
 
-        guard let continuation = inFlightContinuations.removeValue(forKey: response.requestID) else {
+        guard let req = inFlightRequests.removeValue(forKey: response.requestID) else {
+            // Late response after timeout or stale request - safely ignored
             return
         }
-        inFlightGenerations.removeValue(forKey: response.requestID)
+        req.timeoutTask.cancel()
 
-        if response.isSuccess {
-            continuation.resume(returning: response)
-        } else {
-            let error = response.error ?? SefariaRPCError(
-                code: "UNKNOWN_JS_ERROR",
-                message: "JavaScript execution failed without error details"
-            )
-            continuation.resume(throwing: error)
+        // Verify generation if both caller and response specify it
+        if req.generation > 0 && response.sessionGeneration > 0 && req.generation != response.sessionGeneration {
+            req.continuation.resume(throwing: SefariaRPCError(
+                code: "STALE_GENERATION",
+                message: "Response generation \(response.sessionGeneration) does not match in-flight generation \(req.generation)",
+                retryable: false
+            ))
+            return
         }
+
+        req.continuation.resume(returning: response)
     }
 
-    /// Registers a listener for asynchronous Sefaria events (e.g. downloadProgress, catalogChanged).
-    public func addEventListener(
-        for event: String,
-        handler: @escaping @Sendable (SefariaRPCEvent) -> Void
-    ) {
-        var handlers = eventListeners[event] ?? []
-        handlers.append(handler)
-        eventListeners[event] = handlers
+    private func failInFlight(requestID: String, error: any Error) {
+        guard let req = inFlightRequests.removeValue(forKey: requestID) else { return }
+        req.timeoutTask.cancel()
+        req.continuation.resume(throwing: error)
     }
 
-    /// Handles an incoming asynchronous event delivered from JavaScript.
+    private func cancelInFlight(requestID: String) {
+        guard let req = inFlightRequests.removeValue(forKey: requestID) else { return }
+        req.timeoutTask.cancel()
+        req.continuation.resume(throwing: CancellationError())
+    }
+
+    /// Cancels all pending in-flight requests (e.g. during a backend switch or runtime reset).
+    public func cancelAll(reason: String = "Session invalidated") {
+        for (_, req) in inFlightRequests {
+            req.timeoutTask.cancel()
+            req.continuation.resume(throwing: SefariaRPCError(code: "CANCELLED", message: reason, retryable: false))
+        }
+        inFlightRequests.removeAll()
+    }
+
+    // MARK: - Event Subscriptions
+
+    public func addEventListener(for eventName: String, listener: @escaping @Sendable (SefariaRPCEvent) -> Void) {
+        var listeners = eventListeners[eventName] ?? []
+        listeners.append(listener)
+        eventListeners[eventName] = listeners
+    }
+
     public func handleIncomingEvent(jsonString: String) {
         guard let data = jsonString.data(using: .utf8),
               let event = try? JSONDecoder().decode(SefariaRPCEvent.self, from: data) else {
             return
         }
 
-        if let handlers = eventListeners[event.event] {
-            for handler in handlers {
-                handler(event)
+        if let listeners = eventListeners[event.event] {
+            for listener in listeners {
+                listener(event)
             }
         }
-    }
-
-    /// Cancels all pending in-flight requests, e.g. on backend transition abort.
-    public func cancelAllInFlight() {
-        let staleError = SefariaRPCError(
-            code: "CANCELLED",
-            message: "RPC request was cancelled by runtime or session transition.",
-            retryable: false
-        )
-        for (_, continuation) in inFlightContinuations {
-            continuation.resume(throwing: staleError)
-        }
-        inFlightContinuations.removeAll()
-        inFlightGenerations.removeAll()
     }
 }

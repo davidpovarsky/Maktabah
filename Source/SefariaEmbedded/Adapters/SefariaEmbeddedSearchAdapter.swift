@@ -2,93 +2,79 @@
 //  SefariaEmbeddedSearchAdapter.swift
 //  Maktabah
 //
-//  Downstream-owned search adapter delegating to original Sefaria @sefaria/search engine.
-//  Conforms to LibrarySearchProviding.
+//  Downstream-owned adapter providing full-text search via original Sefaria-Mobile
+//  @sefaria/search engine with exact queryProps (start, size, type).
 //
 
 import Foundation
 
-public final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, @unchecked Sendable {
-    private let bridge: SefariaJSRPCBridge
+public final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
+    public static let shared = SefariaEmbeddedSearchAdapter()
 
-    public init(bridge: SefariaJSRPCBridge = .shared) {
-        self.bridge = bridge
-    }
+    private init() {}
 
-    public func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
-        let pageSize = max(1, min(request.pageSize, 100))
-        let offset = request.offset
+    public func search(request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        try await SefariaRuntimeManager.shared.ensureReady()
 
-        let queryProps: [String: Any] = [
+        let params: [String: Any] = [
             "query": request.query,
+            "offset": request.offset,
+            "limit": 20,
             "type": "text",
-            "size": pageSize,
-            "from": offset,
-            "sort_type": "relevance",
+            "field": "exact",
+            "sortType": "relevance",
         ]
 
-        let params: [String: Any] = ["queryProps": queryProps]
         let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
 
-        let response = try await bridge.call(
+        let response = try await SefariaJSRPCBridge.shared.call(
             method: "search.query",
-            paramsData: paramsData,
-            timeoutMs: 20000
+            paramsJson: paramsJson,
+            timeoutMs: 15000
         )
 
-        guard response.isSuccess, let resultData = response.resultData else {
-            return LibrarySearchPage(items: [], totalCount: 0, hasMore: false, nextOffset: offset)
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            throw response.error ?? SefariaRPCError(code: "SEARCH_FAILED", message: "Search query execution failed")
         }
 
-        return parseSearchPage(from: resultData, query: request.query, offset: offset, pageSize: pageSize)
-    }
+        let rawHits = (json["hits"] as? [[String: Any]]) ?? []
+        let total = (json["total"] as? Int) ?? rawHits.count
+        let start = (json["start"] as? Int) ?? request.offset
 
-    private func parseSearchPage(
-        from data: Data,
-        query: String,
-        offset: Int,
-        pageSize: Int
-    ) -> LibrarySearchPage {
-        guard let jsonObj = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let hitsObj = jsonObj["hits"] as? [String: Any],
-              let totalObj = hitsObj["total"] as? [String: Any],
-              let totalCount = totalObj["value"] as? Int,
-              let hits = hitsObj["hits"] as? [[String: Any]] else {
-            return LibrarySearchPage(items: [], totalCount: 0, hasMore: false, nextOffset: offset)
-        }
+        let hits: [LibrarySearchHit] = rawHits.compactMap { hitDict in
+            guard let ref = hitDict["ref"] as? String else { return nil }
+            let heRef = hitDict["heRef"] as? String
+            let snippet = (hitDict["snippet"] as? String) ?? ""
+            let score = hitDict["score"] as? Double
+            let version = hitDict["version"] as? String
+            let language = hitDict["language"] as? String
 
-        let items: [SearchResultItem] = hits.compactMap { hitDict -> SearchResultItem? in
-            guard let source = hitDict["_source"] as? [String: Any],
-                  let ref = source["ref"] as? String else {
-                return nil
-            }
+            let locator = TextLocator(
+                backend: .sefariaEmbedded,
+                workKey: ref,
+                position: .canonicalRef(ref)
+            )
 
-            let heRef = source["heRef"] as? String ?? ref
-            let title = (source["title"] as? String) ?? ref
-            let highlight = hitDict["highlight"] as? [String: Any]
-            let snippet = (highlight?["exact"] as? [String])?.first
-                ?? (highlight?["naive_lemmatizer"] as? [String])?.first
-                ?? (source["text"] as? String)
-                ?? ""
-
-            let locator = TextLocator(backend: .sefariaEmbedded, workKey: title, position: .canonicalRef(ref))
-
-            return SearchResultItem(
+            return LibrarySearchHit(
                 locator: locator,
-                title: ref,
-                heTitle: heRef,
+                displayRef: ref,
+                heRef: heRef,
                 snippet: snippet,
-                score: hitDict["_score"] as? Double ?? 1.0
+                score: score,
+                versionTitle: version,
+                language: language
             )
         }
 
-        let nextOffset = offset + items.count
-        let hasMore = nextOffset < totalCount
+        let nextOffset: Int? = (start + hits.count < total) ? (start + hits.count) : nil
 
         return LibrarySearchPage(
-            items: items,
-            totalCount: totalCount,
-            hasMore: hasMore,
+            hits: hits,
+            total: total,
             nextOffset: nextOffset
         )
     }

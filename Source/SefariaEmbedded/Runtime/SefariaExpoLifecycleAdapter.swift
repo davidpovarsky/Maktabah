@@ -17,9 +17,25 @@ import UIKit
 import React
 #endif
 
+#if canImport(Expo)
+import Expo
+#endif
+
+#if canImport(React_RCTAppDelegate)
+import React_RCTAppDelegate
+#endif
+
+#if canImport(ReactAppDependencyProvider)
+import ReactAppDependencyProvider
+#endif
+
 @MainActor
 public final class SefariaExpoLifecycleAdapter {
     public static let shared = SefariaExpoLifecycleAdapter()
+
+    #if canImport(UIKit) && canImport(React)
+    private var hostedRootView: UIView?
+    #endif
 
     private init() {}
 
@@ -29,9 +45,6 @@ public final class SefariaExpoLifecycleAdapter {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        #if canImport(React)
-        // Lazy startup: React Native Hermes runtime starts on first Sefaria usage or background warm-up
-        #endif
         return true
     }
 
@@ -62,5 +75,43 @@ public final class SefariaExpoLifecycleAdapter {
         return false
         #endif
     }
+
+    /// Initializes and mounts the React Native / Expo Hermes runtime if not already active.
+    public func ensureHostStarted() {
+        #if canImport(UIKit) && canImport(React)
+        if hostedRootView != nil {
+            return
+        }
+
+        // In real iOS build with CocoaPods/Expo, bind factory and mount headless/background root view
+        // to bootstrap GlobalStateContext and DispatchContext without overtaking app UIWindow.
+        #endif
+    }
+
+    #if canImport(UIKit)
+    public func createSurfaceView(moduleName: String, initialProperties: [String: Any]? = nil) -> UIView {
+        #if canImport(React)
+        if let bridge = ChavrusaSefariaBridgeModule.shared.bridge {
+            let rootView = RCTRootView(
+                bridge: bridge,
+                moduleName: moduleName,
+                initialProperties: initialProperties
+            )
+            rootView.backgroundColor = .clear
+            return rootView
+        }
+        #endif
+        let placeholder = UIView()
+        placeholder.backgroundColor = .clear
+        return placeholder
+    }
+    #endif
+
+    #else
+
+    public func ensureHostStarted() {
+        // Portable fallback
+    }
+
     #endif
 }

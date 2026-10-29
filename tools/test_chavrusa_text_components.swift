@@ -1493,6 +1493,188 @@ struct TestRunner {
         assertCondition(legacyRepair.foreignTabs.count == 2, "Foreign tabs count is 2 (otzaria + sefariaEmbedded)")
         assertCondition(legacyRepair.sanitizedSession.backend == "sefaria", "Sanitized session tagged sefaria")
 
+        
+        // 27. SefariaRPC Wire Models & JSON Boundary Roundtrip
+        print("\n--- 27. Testing SefariaRPC Wire Models & JSON Boundary Roundtrip ---")
+        do {
+            let sampleParams = ["ref": "Genesis 1:1", "language": "he", "text": "בְּרֵאשִׁית בָּרָא אֱלֹהִים"]
+            let paramsData = try JSONSerialization.data(withJSONObject: sampleParams)
+            let paramsJson = String(data: paramsData, encoding: .utf8)!
+
+            let envelope = SefariaRPCEnvelope(
+                protocolVersion: "1.0",
+                requestID: "req-1234",
+                method: "text.load",
+                paramsJson: paramsJson,
+                backendID: BackendID.sefariaEmbedded.rawValue,
+                sessionGeneration: 42,
+                timeoutMs: 15000
+            )
+
+            let envData = try JSONEncoder().encode(envelope)
+            let envJsonStr = String(data: envData, encoding: .utf8)!
+            assertCondition(!envJsonStr.contains("paramsData"), "Envelope uses paramsJson, not legacy paramsData")
+            assertCondition(envJsonStr.contains("בְּרֵאשִׁית"), "Envelope preserves UTF-8 Hebrew without Base64 corruption")
+
+            let decodedEnv = try JSONDecoder().decode(SefariaRPCEnvelope.self, from: envData)
+            assertCondition(decodedEnv.requestID == "req-1234", "Decoded requestID matches")
+            assertCondition(decodedEnv.sessionGeneration == 42, "Decoded sessionGeneration matches")
+            assertCondition(decodedEnv.backendID == "sefariaEmbedded", "Decoded backendID matches")
+
+            // Test SefariaRPCResponse roundtrip and decodeResult
+            struct SampleTextResult: Codable, Equatable {
+                let sectionRef: String
+                let heSectionRef: String
+            }
+            let sampleResult = SampleTextResult(sectionRef: "Genesis 1", heSectionRef: "בראשית א׳")
+            let resultData = try JSONEncoder().encode(sampleResult)
+            let resultJsonStr = String(data: resultData, encoding: .utf8)!
+
+            let response = SefariaRPCResponse(
+                protocolVersion: "1.0",
+                requestID: "req-1234",
+                status: "success",
+                resultJson: resultJsonStr,
+                error: nil,
+                sessionGeneration: 42
+            )
+            assertCondition(response.isSuccess, "Response isSuccess is true for status 'success'")
+            let decodedResult = try response.decodeResult(SampleTextResult.self)
+            assertCondition(decodedResult == sampleResult, "decodeResult losslessly recovers strongly typed Swift struct")
+
+            // Test SefariaRPCError serialization
+            let rpcError = SefariaRPCError(code: "NOT_FOUND", message: "Section not found", retryable: false)
+            let errResponse = SefariaRPCResponse(
+                protocolVersion: "1.0",
+                requestID: "req-5678",
+                status: "error",
+                resultJson: nil,
+                error: rpcError,
+                sessionGeneration: 42
+            )
+            assertCondition(!errResponse.isSuccess, "Response isSuccess is false for status 'error'")
+            assertCondition(errResponse.error?.code == "NOT_FOUND", "Error code preserved")
+        } catch {
+            assertCondition(false, "Suite 27 failed with error: \(error)")
+        }
+
+        // 28. SefariaEmbedded Offline & Search Models Conformance
+        print("\n--- 28. Testing SefariaEmbedded Protocol & Model Conformance ---")
+        do {
+            let pkg = OfflinePackage(
+                id: "Torah",
+                title: "Torah",
+                heTitle: "תורה",
+                parentID: "COMPLETE LIBRARY",
+                compressedSize: 52428800,
+                indexTitles: ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy"],
+                isCompleteLibrary: false
+            )
+            assertCondition(pkg.id == "Torah", "OfflinePackage id is 'Torah'")
+            assertCondition(pkg.compressedSize == 52428800, "OfflinePackage compressedSize matches")
+            assertCondition(pkg.indexTitles?.count == 5, "OfflinePackage indexTitles contains 5 books")
+            assertCondition(!pkg.isCompleteLibrary, "Torah is not complete library")
+
+            let completePkg = OfflinePackage(
+                id: "COMPLETE LIBRARY",
+                title: "Complete Library",
+                heTitle: "כל הספרייה",
+                parentID: nil,
+                compressedSize: 1048576000,
+                indexTitles: nil,
+                isCompleteLibrary: true
+            )
+            assertCondition(completePkg.isCompleteLibrary, "COMPLETE LIBRARY marked isCompleteLibrary true")
+
+            let progress = OfflineInstallProgress(
+                phase: .downloading,
+                packageID: "Torah",
+                completedBytes: 26214400,
+                totalBytes: 52428800
+            )
+            assertCondition(progress.phase == .downloading, "Progress phase is downloading")
+            assertCondition(progress.completedBytes == 26214400, "Progress completedBytes matches")
+
+            let summary = OfflineUpdateSummary(
+                changedWorkCount: 3,
+                affectedPackageIDs: ["Torah", "Talmud"]
+            )
+            assertCondition(summary.hasUpdates, "OfflineUpdateSummary hasUpdates is true when count > 0")
+            assertCondition(summary.changedWorkCount == 3, "changedWorkCount is 3")
+            assertCondition(summary.affectedPackageIDs.contains("Torah"), "affectedPackageIDs contains Torah")
+
+            let emptySummary = OfflineUpdateSummary(changedWorkCount: 0, affectedPackageIDs: [])
+            assertCondition(!emptySummary.hasUpdates, "OfflineUpdateSummary hasUpdates is false when count == 0")
+
+            // Test LibrarySearchHit and LibrarySearchPage
+            let searchHit = LibrarySearchHit(
+                locator: TextLocator(backend: .sefariaEmbedded, workKey: "Genesis 1:1", position: .canonicalRef("Genesis 1:1")),
+                displayRef: "Genesis 1:1",
+                heRef: "בראשית א׳:א׳",
+                snippet: "<b>בְּרֵאשִׁית</b> בָּרָא",
+                score: 1.45,
+                versionTitle: "Miqra according to the Masorah",
+                language: "hebrew"
+            )
+            assertCondition(searchHit.displayRef == "Genesis 1:1", "searchHit displayRef matches")
+            assertCondition(searchHit.locator.backend == .sefariaEmbedded, "searchHit locator is sefariaEmbedded")
+
+            let searchPage = LibrarySearchPage(hits: [searchHit], total: 100, nextOffset: 20)
+            assertCondition(searchPage.hits.count == 1, "searchPage has 1 hit")
+            assertCondition(searchPage.total == 100, "searchPage total is 100")
+            assertCondition(searchPage.nextOffset == 20, "searchPage nextOffset is 20")
+        }
+
+        // 29. SefariaEmbedded Text & Relationship Structure Mapping
+        print("\n--- 29. Testing SefariaEmbedded Text & Relationship Structures ---")
+        do {
+            let segLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+            let segment = LibraryTextSegment(
+                locator: segLocator,
+                heRef: "בראשית א׳:א׳",
+                primaryText: "בְּרֵאשִׁית בָּרָא אֱלֹהִים",
+                translation: "In the beginning God created"
+            )
+            assertCondition(segment.primaryText.contains("בְּרֵאשִׁית"), "segment primaryText preserved")
+            assertCondition(segment.translation == "In the beginning God created", "segment translation preserved")
+            assertCondition(segment.sourceText == segment.primaryText, "segment sourceText compatibility alias")
+
+            let section = LibraryTextSection(
+                locator: TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1")),
+                displayRef: "Genesis 1",
+                heRef: "בראשית פרק א׳",
+                segments: [segment],
+                previous: nil,
+                next: TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 2")),
+                versions: [],
+                links: [],
+                origin: .offline
+            )
+            assertCondition(section.displayRef == "Genesis 1", "section displayRef matches")
+            assertCondition(section.segments.count == 1, "section has 1 segment")
+            assertCondition(section.next?.position == .canonicalRef("Genesis 2"), "section next locator matches")
+            assertCondition(section.origin == .offline, "section origin is offline")
+
+            let related = LibraryRelatedSource(
+                locator: TextLocator(backend: .sefariaEmbedded, workKey: "Rashi on Genesis 1:1:1", position: .canonicalRef("Rashi on Genesis 1:1:1")),
+                displayRef: "Rashi on Genesis 1:1:1",
+                heRef: "רש״י על בראשית א׳:א׳:א׳",
+                category: "Commentary",
+                type: "Commentary",
+                collectiveTitle: "Rashi",
+                heCollectiveTitle: "רש״י",
+                primaryText: "בראשית ברא",
+                translation: nil,
+                versionTitle: nil,
+                heVersionTitle: nil,
+                license: nil,
+                anchorRefs: ["Genesis 1:1"]
+            )
+            assertCondition(related.collectiveTitle == "Rashi", "related collectiveTitle matches")
+            assertCondition(related.heCollectiveTitle == "רש״י", "related heCollectiveTitle matches")
+            assertCondition(related.anchorRefs == ["Genesis 1:1"], "related anchorRefs matches exact segment")
+        }
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

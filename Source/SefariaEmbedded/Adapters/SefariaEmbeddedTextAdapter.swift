@@ -2,139 +2,178 @@
 //  SefariaEmbeddedTextAdapter.swift
 //  Maktabah
 //
-//  Downstream-owned text adapter for embedded Sefaria-Mobile.
-//  Conforms to LibraryTextProviding and LibraryMetadataProviding.
+//  Downstream-owned adapter providing full reading units, structured segments,
+//  and version metadata directly from Sefaria-Mobile's offlineOnline.loadText().
 //
 
 import Foundation
 
-public final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataProviding, @unchecked Sendable {
-    private let bridge: SefariaJSRPCBridge
+public final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataProviding, Sendable {
+    public static let shared = SefariaEmbeddedTextAdapter()
 
-    public init(bridge: SefariaJSRPCBridge = .shared) {
-        self.bridge = bridge
-    }
+    private init() {}
+
+    // MARK: - LibraryTextProviding
 
     public func section(at locator: TextLocator) async throws -> LibraryTextSection {
-        guard case .canonicalRef(let ref) = locator.position else {
-            throw LibraryBackendError.unsupportedLocation(locator)
+        try await SefariaRuntimeManager.shared.ensureReady()
+
+        let canonicalRef: String
+        switch locator.position {
+        case .canonicalRef(let ref):
+            canonicalRef = ref
+        default:
+            canonicalRef = locator.workKey
         }
 
         let params: [String: Any] = [
-            "ref": ref,
+            "ref": canonicalRef,
             "context": true,
             "fallbackOnDefaultVersions": true,
         ]
+
         let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
 
-        let response = try await bridge.call(
+        let response = try await SefariaJSRPCBridge.shared.call(
             method: "text.load",
-            paramsData: paramsData,
-            timeoutMs: 20000
+            paramsJson: paramsJson,
+            timeoutMs: 15000
         )
 
-        guard response.isSuccess, let resultData = response.resultData else {
-            let errorMsg = response.error?.message ?? "Failed to load text section for \(ref)"
-            throw LibraryBackendError.readingFailed(errorMsg)
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            throw response.error ?? LibraryBackendError.invalidResponse("Sefaria loadText returned invalid payload")
         }
 
-        return try parseTextSection(from: resultData, originalLocator: locator)
-    }
+        let textContent = (json["textContent"] as? [String: Any]) ?? json
+        let sectionRef = (textContent["sectionRef"] as? String) ?? canonicalRef
+        let heSectionRef = textContent["heSectionRef"] as? String
 
-    public func versions(for workKey: String) async throws -> [TextVersionMetadata] {
-        let params = ["ref": workKey]
-        let paramsData = try? JSONEncoder().encode(params)
-        let response = try await bridge.call(method: "text.versions", paramsData: paramsData)
-        guard response.isSuccess, let resultData = response.resultData else {
-            return []
-        }
-
-        guard let jsonArray = try? JSONSerialization.jsonObject(with: resultData) as? [[String: Any]] else {
-            return []
-        }
-
-        return jsonArray.compactMap { dict -> TextVersionMetadata? in
-            guard let title = dict["versionTitle"] as? String else { return nil }
-            return TextVersionMetadata(
-                title: title,
-                heTitle: dict["versionTitleInHebrew"] as? String,
-                language: dict["language"] as? String ?? "en",
-                isSource: dict["isSource"] as? Bool ?? false
-            )
-        }
-    }
-
-    public func related(to locator: TextLocator) async throws -> [TextLocator] {
-        guard case .canonicalRef(let ref) = locator.position else { return [] }
-        let params = ["ref": ref, "online": true] as [String: Any]
-        let paramsData = try? JSONSerialization.data(withJSONObject: params)
-        let response = try await bridge.call(method: "relationships.links", paramsData: paramsData)
-        guard response.isSuccess, let resultData = response.resultData else {
-            return []
-        }
-
-        guard let jsonArray = try? JSONSerialization.jsonObject(with: resultData) as? [[String: Any]] else {
-            return []
-        }
-
-        return jsonArray.compactMap { dict -> TextLocator? in
-            guard let sourceRef = dict["sourceRef"] as? String ?? dict["ref"] as? String else { return nil }
-            let workKey = (dict["index_title"] as? String) ?? sourceRef
-            return TextLocator(backend: .sefariaEmbedded, workKey: workKey, position: .canonicalRef(sourceRef))
-        }
-    }
-
-    private func parseTextSection(from data: Data, originalLocator: TextLocator) throws -> LibraryTextSection {
-        guard let jsonObj = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            throw LibraryBackendError.readingFailed("Invalid JSON response from text.load")
-        }
-
-        let content = (jsonObj["textContent"] as? [String: Any]) ?? jsonObj
-
-        let ref = content["ref"] as? String ?? originalLocator.workKey
-        let heRef = content["heRef"] as? String
-        let sectionRef = content["sectionRef"] as? String ?? ref
-        let heSectionRef = content["heSectionRef"] as? String ?? heRef
-
-        let sectionLocator = TextLocator(
-            backend: .sefariaEmbedded,
-            workKey: originalLocator.workKey,
-            position: .canonicalRef(sectionRef)
-        )
-
-        let nextRef = content["next"] as? String
-        let prevRef = content["prev"] as? String
-
-        let nextLocator = nextRef.map { TextLocator(backend: .sefariaEmbedded, workKey: originalLocator.workKey, position: .canonicalRef($0)) }
-        let prevLocator = prevRef.map { TextLocator(backend: .sefariaEmbedded, workKey: originalLocator.workKey, position: .canonicalRef($0)) }
-
-        // Segments parsing
+        // Segments from textContent.content: [{ segmentNumber, he, text }]
+        let rawContent = (textContent["content"] as? [[String: Any]]) ?? []
         var segments: [LibraryTextSegment] = []
-        let hebrewSegments = (content["he"] as? [String]) ?? (content["he"] as? String).map { [$0] } ?? []
-        let englishSegments = (content["text"] as? [String]) ?? (content["text"] as? String).map { [$0] } ?? []
 
-        let segmentCount = max(hebrewSegments.count, englishSegments.count)
-        for i in 0..<segmentCount {
-            let he = i < hebrewSegments.count ? hebrewSegments[i] : ""
-            let en = i < englishSegments.count ? englishSegments[i] : ""
-            let segmentRef = "\(sectionRef):\(i + 1)"
-            let segmentLocator = TextLocator(backend: .sefariaEmbedded, workKey: originalLocator.workKey, position: .canonicalRef(segmentRef))
+        for (idx, segDict) in rawContent.enumerated() {
+            let segNum = (segDict["segmentNumber"] as? String) ?? "\(idx + 1)"
+            let heText = (segDict["he"] as? String) ?? ""
+            let enText = (segDict["text"] as? String)
+            let segRef = "\(sectionRef):\(segNum)"
+
+            let segLocator = TextLocator(
+                backend: .sefariaEmbedded,
+                workKey: locator.workKey,
+                position: .canonicalRef(segRef)
+            )
 
             segments.append(LibraryTextSegment(
-                locator: segmentLocator,
-                index: i,
-                hebrewText: he,
-                englishText: en
+                locator: segLocator,
+                heRef: nil,
+                primaryText: heText,
+                translation: enText
             ))
         }
 
+        // If content array was missing, check legacy he/text string arrays
+        if segments.isEmpty {
+            let heArray = (textContent["he"] as? [String]) ?? []
+            let enArray = (textContent["text"] as? [String]) ?? []
+            let count = max(heArray.count, enArray.count)
+
+            for i in 0..<count {
+                let he = i < heArray.count ? heArray[i] : ""
+                let en = i < enArray.count ? enArray[i] : nil
+                let segLocator = TextLocator(
+                    backend: .sefariaEmbedded,
+                    workKey: locator.workKey,
+                    position: .canonicalRef("\(sectionRef):\(i + 1)")
+                )
+                segments.append(LibraryTextSegment(
+                    locator: segLocator,
+                    heRef: nil,
+                    primaryText: he,
+                    translation: en
+                ))
+            }
+        }
+
+        let prevRef = textContent["prev"] as? String
+        let nextRef = textContent["next"] as? String
+
+        let previousLocator = prevRef.map {
+            TextLocator(backend: .sefariaEmbedded, workKey: locator.workKey, position: .canonicalRef($0))
+        }
+        let nextLocator = nextRef.map {
+            TextLocator(backend: .sefariaEmbedded, workKey: locator.workKey, position: .canonicalRef($0))
+        }
+
+        let rawLinks = (json["links"] as? [[String: Any]]) ?? []
+        let links: [LibraryTextLink] = rawLinks.compactMap { linkDict in
+            guard let sourceRef = linkDict["sourceRef"] as? String else { return nil }
+            let linkLocator = TextLocator(
+                backend: .sefariaEmbedded,
+                workKey: sourceRef,
+                position: .canonicalRef(sourceRef)
+            )
+            return LibraryTextLink(
+                locator: linkLocator,
+                category: linkDict["category"] as? String,
+                sourceTitle: sourceRef
+            )
+        }
+
+        let sectionLocator = TextLocator(
+            backend: .sefariaEmbedded,
+            workKey: locator.workKey,
+            position: .canonicalRef(sectionRef)
+        )
+
         return LibraryTextSection(
             locator: sectionLocator,
-            title: sectionRef,
-            heTitle: heSectionRef,
+            displayRef: sectionRef,
+            heRef: heSectionRef,
             segments: segments,
-            nextSectionLocator: nextLocator,
-            previousSectionLocator: prevLocator
+            previous: previousLocator,
+            next: nextLocator,
+            versions: [],
+            links: links,
+            origin: .offline
         )
+    }
+
+    // MARK: - LibraryMetadataProviding
+
+    public func versions(for workKey: String) async throws -> [TextVersionMetadata] {
+        try await SefariaRuntimeManager.shared.ensureReady()
+        let params = ["ref": workKey]
+        let paramsData = try JSONSerialization.data(withJSONObject: params)
+        let paramsJson = String(data: paramsData, encoding: .utf8)
+
+        let response = try await SefariaJSRPCBridge.shared.call(
+            method: "text.versions",
+            paramsJson: paramsJson
+        )
+
+        guard response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8),
+              let versionsArray = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
+            return []
+        }
+
+        return versionsArray.compactMap { dict in
+            guard let title = dict["versionTitle"] as? String else { return nil }
+            let lang = (dict["language"] as? String) ?? "he"
+            return TextVersionMetadata(
+                id: "\(title)|\(lang)",
+                title: title,
+                heTitle: dict["versionTitleInHebrew"] as? String,
+                language: lang,
+                license: dict["license"] as? String,
+                source: dict["versionSource"] as? String
+            )
+        }
     }
 }

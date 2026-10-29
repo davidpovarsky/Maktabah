@@ -9,16 +9,17 @@
 
 ---
 
-## 1. Summary of Execution Gates
+## 1. Truthful Status of Execution Gates (Per Policy K20)
 
-| Gate | Description | Status | Evidence / Notes |
+| Gate | Description | Status | Evidence & Concrete Findings |
 |---|---|:---:|---|
-| **Gate A** | Original project provenance & build | **PASS** | Pinned submodule at `2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c`. Podfile configured for React Native 0.81 New Architecture and Expo 54 autolinking. No code mutation of upstream files. |
-| **Gate B** | React Native state/lifecycle & direct UI | **PASS** | `ChavrusaRoot.js` mounts `GlobalStateContext`, `DispatchContext`, `SafeAreaProvider`, `ErrorBoundary`. Single-flight `SefariaRuntimeManager` handles lifecycle. `SefariaEmbeddedNativeSurfaceHost` exposes UIViewControllerRepresentable wrapper. |
-| **Gate C** | 3-source identity & persistence isolation | **PASS** | `BackendID.otzaria`, `.sefaria`, `.sefariaEmbedded` verified. Raw values immutable (`"sefaria"` preserved for legacy). `TextLocator.persistenceKey` distinct. `BackendSessionIntegrityRepair` tested with 3-source mixed sessions. |
-| **Gate D** | Native screens using original engine | **PASS** | Adapters conform to `LibraryBackendProtocols`: Catalog, Text, Navigation, Search, Relationships, Downloads. All methods route to upstream `global.Sefaria`, `offlineOnline`, `@sefaria/search`, `DownloadControl`. |
-| **Gate E** | Build, release & performance safeguards | **PASS** | No blocking MainActor execution on RPC bridge. Metro production bundle pipeline in CI (`ios-testflight.yml`). Upload to TestFlight set to `false` by default for experiments. |
+| **Gate A** | Original project provenance & build configuration | **PASS** | Pinned submodule at `2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c` verified in `.gitmodules` and initialized locally. `Podfile` updated to target `Maktabah-iOS` (iOS 18.6) rather than macOS `Maktabah`. Metro production bundle generation in `.github/workflows/ios-testflight.yml` hardened without `\|\| true`. |
+| **Gate B** | React Native state/lifecycle & bidirectional bridge | **VERIFIED IN CONTRACT / BLOCKED FOR MACOS RUNNER** | `ChavrusaRoot.js` mounts `GlobalStateContext`, `DispatchContext`, `SafeAreaProvider`, `ErrorBoundary`. `ChavrusaSefariaBridgeModule` implements registered JS dispatchers and callable module hooks. Wire schema unified with `paramsJson`/`resultJson`. Local runtime execution requires macOS Xcode environment; static and portable test contracts verified. |
+| **Gate C** | 3-source identity & persistence isolation | **PASS** | `BackendID.otzaria`, `.sefaria`, `.sefariaEmbedded` verified. Raw values immutable (`"sefaria"` preserved for legacy). `TextLocator.persistenceKey` distinct. `BackendSessionIntegrityRepair` tested with 3-source mixed sessions. Round-trip JSON persistence verified in portable suite (Suites 25 & 26). |
+| **Gate D** | Native screens using original engine contracts | **VERIFIED IN CODE CONTRACTS / NOT_RUN ON SIMULATOR** | All 6 downstream adapters conform strictly to `LibraryBackendProtocols`: Catalog (recursive category/book hierarchy), Text (`textContent.content` segment array), Navigation (`textToc` schema & alts), Search (`start`/`size` queryProps), Relationships (`links` and `topics`), Downloads (`DownloadControl.js` exact 2-arg signature). Live simulator rendering requires macOS CI. |
+| **Gate E** | Build, release & performance safeguards | **CONFIGURED / PENDING CI DISPATCH** | Single-flight `SefariaRuntimeManager` actor prevents concurrent startup. Non-blocking RPC bridge with actor-owned in-flight map and leak-free cancellation/timeout handling. Metro bundle step made non-optional in CI. TestFlight upload set to `false` by default. |
 | **Gate F** | Licensing, privacy & Apple policy | **PASS** | GPL-3.0 attribution preserved. No hardcoded credentials or private keys. Privacy-safe RPC error logging. |
+| **Physical QA** | Physical iPad Acceptance Testing | **PENDING** | Explicitly pending owner execution on physical iPad hardware. |
 
 ---
 
@@ -27,10 +28,10 @@
 ### 2.1 Portable Test Suite (`tools/test_chavrusa_text_components.swift`)
 - **Toolchain:** Windows Swift 6.3.3
 - **Executable:** `scratch/chavrusa_tests.exe`
-- **Total Assertions:** 272
-- **Passed:** 272 (100%)
+- **Total Assertions:** 307
+- **Passed:** 307 (100%)
 - **Failed:** 0
-- **Suites:** 26 complete test suites covering:
+- **Suites:** 29 complete test suites covering:
   - Suite 1: SerializedSessionWriter (atomic write & last-good preservation)
   - Suite 2: ReaderSelectionRangeMapper
   - Suite 3: ReaderPullNavigationStateMachine
@@ -49,14 +50,15 @@
   - Suite 24: Otzaria Search Engine Detailed Init Errors
   - **Suite 25: Three-Source Backend Identity & Localization**
   - **Suite 26: Three-Source TextLocator Persistence & Session Isolation**
+  - **Suite 27: SefariaRPC Wire Models & JSON Boundary Roundtrip**
+  - **Suite 28: SefariaEmbedded Protocol & Model Conformance**
+  - **Suite 29: SefariaEmbedded Text & Relationship Structures**
 
-### 2.2 XCTest Mirror Target (`MaktabahTests/ChavrusaTextComponentTests.swift`)
-- Added tests:
+### 2.2 XCTest Target (`MaktabahTests/ChavrusaTextComponentTests.swift`)
+- Added unit tests:
   - `testThreeSourceBackendIdentityAndLocalization()`
   - `testThreeSourceTextLocatorPersistenceAndSessionIsolation()`
-- Registered in Xcode project file `Maktabah.xcodeproj/project.pbxproj`.
-
----
-
-## 3. Physical Device Verification Note
-Per project guidelines, physical iPad acceptance testing remains **PENDING** owner execution on device. Automated simulation and unit test suites are fully verified.
+  - `testSefariaRPCWireModelsAndDecodeResult()`
+  - `testSefariaEmbeddedOfflineAndSearchModels()`
+  - `testSefariaEmbeddedTextAndRelationshipsStructures()`
+- All registered in `Maktabah.xcodeproj/project.pbxproj`.
