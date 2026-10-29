@@ -60,6 +60,7 @@ jobs:
           mkdir -p build/jsbundle
           cd Vendor/SefariaMobile/Upstream
           npx react-native bundle \
+            --config ../Integration/metro.config.embedded.js \
             --platform ios \
             --dev false \
             --entry-file ../Integration/index.embedded.js \
