@@ -50,9 +50,13 @@ target 'Maktabah-iOS' do
     end
   end
 
-  $config = use_native_modules!(
-    :project_root => upstream_dir
-  )
+  cli_config_command = [
+    'node',
+    '--no-warnings',
+    '-e',
+    "process.chdir('#{upstream_dir}');process.argv=['', '', 'config'];require('@react-native-community/cli').run()"
+  ]
+  $config = use_native_modules!(cli_config_command)
 
   use_react_native!(
     :path => $config[:reactNativePath],
