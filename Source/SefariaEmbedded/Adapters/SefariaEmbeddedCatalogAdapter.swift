@@ -54,7 +54,7 @@ actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadat
             if node.id == parentID {
                 return node.children
             }
-            if let children = node.children, let found = findChildren(in: children, parentID: parentID) {
+            if !node.children.isEmpty, let found = findChildren(in: node.children, parentID: parentID) {
                 return found
             }
         }
@@ -71,19 +71,35 @@ actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadat
                 let contents = (item["contents"] as? [[String: Any]]) ?? []
                 let children = parseCatalogItems(contents, parentPath: currentPath)
 
-                result.append(.category(
+                result.append(LibraryCatalogNode(
                     id: currentPath,
+                    kind: .category,
                     title: categoryName,
                     heTitle: heCategory,
+                    work: nil,
                     children: children
                 ))
             } else if let bookTitle = item["title"] as? String {
                 let heTitle = item["heTitle"] as? String
-                result.append(.book(
-                    id: bookTitle,
+                let workLocator = TextLocator(
+                    backend: .sefariaEmbedded,
+                    workKey: bookTitle,
+                    position: .canonicalRef(bookTitle)
+                )
+                let work = LibraryWork(
+                    locator: workLocator,
                     title: bookTitle,
                     heTitle: heTitle,
-                    workKey: bookTitle
+                    categories: (item["categories"] as? [String]) ?? [],
+                    description: item["enShortDesc"] as? String
+                )
+                result.append(LibraryCatalogNode(
+                    id: bookTitle,
+                    kind: .work,
+                    title: bookTitle,
+                    heTitle: heTitle,
+                    work: work,
+                    children: []
                 ))
 
                 // Cache metadata
@@ -92,10 +108,8 @@ actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadat
                     title: bookTitle,
                     heTitle: heTitle,
                     authors: [],
-                    categories: (item["categories"] as? [String]) ?? [],
-                    order: item["order"] as? Int,
                     description: item["enShortDesc"] as? String,
-                    heDescription: item["heShortDesc"] as? String
+                    categories: (item["categories"] as? [String]) ?? []
                 )
             }
         }
@@ -128,7 +142,7 @@ actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadat
               let resultJson = response.resultJson,
               let data = resultJson.data(using: .utf8),
               let item = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            return LibraryWorkMetadata(workKey: workKey, title: workKey, heTitle: nil, authors: [], categories: [])
+            return LibraryWorkMetadata(workKey: workKey, title: workKey, heTitle: nil, authors: [], description: nil, categories: [])
         }
 
         let meta = LibraryWorkMetadata(
@@ -136,10 +150,8 @@ actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadat
             title: (item["title"] as? String) ?? workKey,
             heTitle: item["heTitle"] as? String,
             authors: (item["authors"] as? [String]) ?? [],
-            categories: (item["categories"] as? [String]) ?? [],
-            order: item["order"] as? Int,
             description: item["enShortDesc"] as? String,
-            heDescription: item["heShortDesc"] as? String
+            categories: (item["categories"] as? [String]) ?? []
         )
         cachedWorkMetadata[workKey] = meta
         return meta

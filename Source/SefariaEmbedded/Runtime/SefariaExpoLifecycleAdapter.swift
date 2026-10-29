@@ -34,7 +34,7 @@ final class SefariaExpoLifecycleAdapter {
     static let shared = SefariaExpoLifecycleAdapter()
 
     #if canImport(UIKit) && canImport(React)
-    private var hostedRootView: UIView?
+    private var hostedWindow: UIWindow?
     private var isHostActive: Bool = false
     #if canImport(Expo)
     private var reactNativeDelegate: Any?
@@ -105,52 +105,27 @@ final class SefariaExpoLifecycleAdapter {
         self.reactNativeDelegate = delegate
         self.reactNativeFactory = factory
 
-        // Mount a persistent headless background root view to bootstrap the Hermes
+        // Mount a persistent headless background UIWindow to bootstrap the Hermes
         // engine, global context, and JS RPC module without disrupting Maktabah's
         // native SwiftUI window hierarchy.
-        let rootView = factory.createRootView(withModuleName: "ChavrusaSefariaRoot", initialProperties: nil)
-        rootView.isHidden = true
-        rootView.alpha = 0.001
-        rootView.isUserInteractionEnabled = false
-        self.hostedRootView = rootView
+        let headlessWindow = UIWindow(frame: .zero)
+        headlessWindow.isHidden = true
+        headlessWindow.alpha = 0.001
+        headlessWindow.isUserInteractionEnabled = false
+
+        factory.startReactNative(
+            withModuleName: "ReaderApp",
+            in: headlessWindow,
+            launchOptions: nil
+        )
+        self.hostedWindow = headlessWindow
         self.isHostActive = true
-        #else
-        if let bridge = ChavrusaSefariaBridgeModule.shared.bridge {
-            let rootView = RCTRootView(
-                bridge: bridge,
-                moduleName: "ChavrusaSefariaRoot",
-                initialProperties: nil
-            )
-            rootView.isHidden = true
-            rootView.alpha = 0.001
-            rootView.isUserInteractionEnabled = false
-            self.hostedRootView = rootView
-            self.isHostActive = true
-        }
         #endif
         #endif
     }
 
     #if canImport(UIKit)
     func createSurfaceView(moduleName: String, initialProperties: [String: Any]? = nil) -> UIView {
-        #if canImport(React)
-        #if canImport(Expo)
-        if let factory = self.reactNativeFactory as? ExpoReactNativeFactory {
-            let surface = factory.createRootView(withModuleName: moduleName, initialProperties: initialProperties)
-            surface.backgroundColor = .clear
-            return surface
-        }
-        #endif
-        if let bridge = ChavrusaSefariaBridgeModule.shared.bridge {
-            let rootView = RCTRootView(
-                bridge: bridge,
-                moduleName: moduleName,
-                initialProperties: initialProperties
-            )
-            rootView.backgroundColor = .clear
-            return rootView
-        }
-        #endif
         let placeholder = UIView()
         placeholder.backgroundColor = .clear
         return placeholder

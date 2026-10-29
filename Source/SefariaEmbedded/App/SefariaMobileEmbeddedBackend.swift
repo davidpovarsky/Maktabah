@@ -27,10 +27,14 @@ final class SefariaMobileEmbeddedBackend {
         self.downloads = .shared
     }
 
-    func register(with coordinator: BackendCoordinator = .shared) {
+    func register() {
+        register(with: .shared)
+    }
+
+    func register(with coordinator: BackendCoordinator) {
         coordinator.register(LibraryBackendRegistration(
             id: .sefariaEmbedded,
-            sourceDescription: String(localized: "Read from embedded Sefaria-Mobile engine with full original React Native runtime."),
+            sourceDescription: "Read from embedded Sefaria-Mobile engine with full original React Native runtime.",
             capabilities: [.catalog, .reading, .navigation, .search, .links, .versions, .offlineLibrary, .workMetadata],
             catalog: catalog,
             text: text,

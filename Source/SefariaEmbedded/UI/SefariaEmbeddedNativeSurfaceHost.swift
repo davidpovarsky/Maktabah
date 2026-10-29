@@ -12,10 +12,6 @@ import SwiftUI
 import UIKit
 #endif
 
-#if canImport(React)
-import React
-#endif
-
 struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
     let moduleName: String
     let initialProperties: [String: Any]?
@@ -29,29 +25,18 @@ struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
         let vc = UIViewController()
         vc.view.backgroundColor = .clear
 
-        #if canImport(React)
-        if let bridge = ChavrusaSefariaBridgeModule.shared.bridge {
-            let rootView = RCTRootView(
-                bridge: bridge,
-                moduleName: moduleName,
-                initialProperties: initialProperties
-            )
-            rootView.backgroundColor = .clear
-            rootView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            rootView.frame = vc.view.bounds
-            vc.view.addSubview(rootView)
-        }
+        #if canImport(UIKit)
+        let surfaceView = SefariaExpoLifecycleAdapter.shared.createSurfaceView(
+            moduleName: moduleName,
+            initialProperties: initialProperties
+        )
+        surfaceView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        surfaceView.frame = vc.view.bounds
+        vc.view.addSubview(surfaceView)
         #endif
 
         return vc
     }
 
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        #if canImport(React)
-        if let rootView = uiViewController.view.subviews.first(where: { $0 is RCTRootView }) as? RCTRootView,
-           let props = initialProperties {
-            rootView.appProperties = props
-        }
-        #endif
-    }
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }

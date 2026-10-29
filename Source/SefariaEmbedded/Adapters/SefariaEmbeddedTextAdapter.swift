@@ -110,17 +110,15 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
         }
 
         let rawLinks = (json["links"] as? [[String: Any]]) ?? []
-        let links: [LibraryTextLink] = rawLinks.compactMap { linkDict in
-            guard let sourceRef = linkDict["sourceRef"] as? String else { return nil }
-            let linkLocator = TextLocator(
-                backend: .sefariaEmbedded,
-                workKey: sourceRef,
-                position: .canonicalRef(sourceRef)
-            )
+        let links: [LibraryTextLink] = rawLinks.compactMap { (linkDict: [String: Any]) -> LibraryTextLink? in
+            guard let sourceRef = (linkDict["sourceRef"] as? String) ?? (linkDict["ref"] as? String) else { return nil }
             return LibraryTextLink(
-                locator: linkLocator,
+                ref: sourceRef,
+                heRef: linkDict["heRef"] as? String,
                 category: linkDict["category"] as? String,
-                sourceTitle: sourceRef
+                type: linkDict["type"] as? String,
+                anchorRef: linkDict["anchorRef"] as? String,
+                sourceRef: sourceRef
             )
         }
 
@@ -163,16 +161,17 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
             return []
         }
 
-        return versionsArray.compactMap { dict in
+        return versionsArray.compactMap { (dict: [String: Any]) -> TextVersionMetadata? in
             guard let title = dict["versionTitle"] as? String else { return nil }
             let lang = (dict["language"] as? String) ?? "he"
             return TextVersionMetadata(
-                id: "\(title)|\(lang)",
                 title: title,
-                heTitle: dict["versionTitleInHebrew"] as? String,
                 language: lang,
+                actualLanguage: dict["actualLanguage"] as? String,
+                sourceURL: (dict["versionSource"] as? String).flatMap { URL(string: $0) },
                 license: dict["license"] as? String,
-                source: dict["versionSource"] as? String
+                notes: dict["versionNotes"] as? String,
+                isPrimary: (dict["isPrimary"] as? Bool) ?? false
             )
         }
     }

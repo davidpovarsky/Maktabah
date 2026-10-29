@@ -24,7 +24,7 @@ final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, 
             canonicalRef = locator.workKey
         }
 
-        let params = ["ref": canonicalRef, "online": true]
+        let params: [String: Any] = ["ref": canonicalRef, "online": true]
         let paramsData = try JSONSerialization.data(withJSONObject: params)
         let paramsJson = String(data: paramsData, encoding: .utf8)
 
@@ -101,7 +101,7 @@ final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, 
             canonicalRef = locator.workKey
         }
 
-        let params = ["ref": canonicalRef, "online": true]
+        let params: [String: Any] = ["ref": canonicalRef, "online": true]
         let paramsData = try JSONSerialization.data(withJSONObject: params)
         let paramsJson = String(data: paramsData, encoding: .utf8)
 
