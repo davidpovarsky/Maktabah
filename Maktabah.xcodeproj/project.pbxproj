@@ -1368,19 +1368,20 @@
 		CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderContentLoadCoordinator.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderRenderedHighlightInspector.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/BackendSessionIntegrityRepair.swift"; sourceTree = "<group>"; };
-		CE000000000000000000002A /* SefariaRPCModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift"; sourceTree = SOURCE_ROOT; };
-		CE000000000000000000002B /* SefariaJSRPCBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift"; sourceTree = SOURCE_ROOT; };
-		CE000000000000000000002C /* SefariaRuntimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift"; sourceTree = SOURCE_ROOT; };
-		CE000000000000000000002D /* SefariaExpoLifecycleAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift"; sourceTree = SOURCE_ROOT; };
-		CE000000000000000000002E /* SefariaEmbeddedCatalogAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Adapters/SefariaEmbeddedCatalogAdapter.swift"; sourceTree = SOURCE_ROOT; };
-		CE000000000000000000002F /* SefariaEmbeddedTextAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift"; sourceTree = SOURCE_ROOT; };
-		CE0000000000000000000030 /* SefariaEmbeddedNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift"; sourceTree = SOURCE_ROOT; };
-		CE0000000000000000000031 /* SefariaEmbeddedSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift"; sourceTree = SOURCE_ROOT; };
-		CE0000000000000000000032 /* SefariaEmbeddedRelationshipsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift"; sourceTree = SOURCE_ROOT; };
-		CE0000000000000000000033 /* SefariaEmbeddedDownloadAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift"; sourceTree = SOURCE_ROOT; };
-		CE0000000000000000000034 /* SefariaMobileEmbeddedBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift"; sourceTree = SOURCE_ROOT; };
-		CE0000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift"; sourceTree = SOURCE_ROOT; };
-		CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"; sourceTree = SOURCE_ROOT; };
+		CE000000000000000000002A /* SefariaRPCModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bridge/SefariaRPCModels.swift"; sourceTree = "<group>"; };
+		CE000000000000000000002B /* SefariaJSRPCBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bridge/SefariaJSRPCBridge.swift"; sourceTree = "<group>"; };
+		CE000000000000000000002C /* SefariaRuntimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Runtime/SefariaRuntimeManager.swift"; sourceTree = "<group>"; };
+		CE000000000000000000002D /* SefariaExpoLifecycleAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Runtime/SefariaExpoLifecycleAdapter.swift"; sourceTree = "<group>"; };
+		CE000000000000000000002E /* SefariaEmbeddedCatalogAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adapters/SefariaEmbeddedCatalogAdapter.swift"; sourceTree = "<group>"; };
+		CE000000000000000000002F /* SefariaEmbeddedTextAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adapters/SefariaEmbeddedTextAdapter.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000030 /* SefariaEmbeddedNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adapters/SefariaEmbeddedNavigationAdapter.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000031 /* SefariaEmbeddedSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adapters/SefariaEmbeddedSearchAdapter.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000032 /* SefariaEmbeddedRelationshipsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adapters/SefariaEmbeddedRelationshipsAdapter.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000033 /* SefariaEmbeddedDownloadAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adapters/SefariaEmbeddedDownloadAdapter.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000034 /* SefariaMobileEmbeddedBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/SefariaMobileEmbeddedBackend.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedNativeSurfaceHost.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "../../Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"; sourceTree = "<group>"; };
+		CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "../../Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m"; sourceTree = "<group>"; };
 		F3F000030000000000000003 /* iOSReaderSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionTests.swift; sourceTree = "<group>"; };
 		F3F000010000000000000001 /* iOSReaderSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionManager.swift; sourceTree = "<group>"; };
 		B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoAnchoredCard.swift; sourceTree = "<group>"; };
@@ -2078,19 +2079,6 @@
 				CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */,
 				CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */,
 				CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */,
-				CE000000000000000000002A /* SefariaRPCModels.swift */,
-				CE000000000000000000002B /* SefariaJSRPCBridge.swift */,
-				CE000000000000000000002C /* SefariaRuntimeManager.swift */,
-				CE000000000000000000002D /* SefariaExpoLifecycleAdapter.swift */,
-				CE000000000000000000002E /* SefariaEmbeddedCatalogAdapter.swift */,
-				CE000000000000000000002F /* SefariaEmbeddedTextAdapter.swift */,
-				CE0000000000000000000030 /* SefariaEmbeddedNavigationAdapter.swift */,
-				CE0000000000000000000031 /* SefariaEmbeddedSearchAdapter.swift */,
-				CE0000000000000000000032 /* SefariaEmbeddedRelationshipsAdapter.swift */,
-				CE0000000000000000000033 /* SefariaEmbeddedDownloadAdapter.swift */,
-				CE0000000000000000000034 /* SefariaMobileEmbeddedBackend.swift */,
-				CE0000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift */,
-				CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */,
 			);
 			path = ChavrusaText;
 			sourceTree = "<group>";
@@ -2139,6 +2127,27 @@
 				CE0000000000000000000014 /* SefariaBackend.swift */,
 			);
 			path = Sefaria;
+			sourceTree = "<group>";
+		};
+		CEEE00000000000000000003 /* SefariaEmbedded */ = {
+			isa = PBXGroup;
+			children = (
+				CE000000000000000000002A /* SefariaRPCModels.swift */,
+				CE000000000000000000002B /* SefariaJSRPCBridge.swift */,
+				CE000000000000000000002C /* SefariaRuntimeManager.swift */,
+				CE000000000000000000002D /* SefariaExpoLifecycleAdapter.swift */,
+				CE000000000000000000002E /* SefariaEmbeddedCatalogAdapter.swift */,
+				CE000000000000000000002F /* SefariaEmbeddedTextAdapter.swift */,
+				CE0000000000000000000030 /* SefariaEmbeddedNavigationAdapter.swift */,
+				CE0000000000000000000031 /* SefariaEmbeddedSearchAdapter.swift */,
+				CE0000000000000000000032 /* SefariaEmbeddedRelationshipsAdapter.swift */,
+				CE0000000000000000000033 /* SefariaEmbeddedDownloadAdapter.swift */,
+				CE0000000000000000000034 /* SefariaMobileEmbeddedBackend.swift */,
+				CE0000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift */,
+				CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */,
+				CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */,
+			);
+			path = SefariaEmbedded;
 			sourceTree = "<group>";
 		};
 		0A7AF0000000000000000000 /* Otzaria */ = {
@@ -2356,6 +2365,7 @@
 				CFEE00000000000000000001 /* ChavrusaText */,
 				CEEE00000000000000000001 /* LibraryBackend */,
 				CEEE00000000000000000002 /* Sefaria */,
+				CEEE00000000000000000003 /* SefariaEmbedded */,
 				0A7AF0000000000000000000 /* Otzaria */,
 				4B4C97072F1EFC310051503E /* Core */,
 				FE0000010000000000000001 /* Features */,
