@@ -1,6 +1,7 @@
 ENV['RCT_NEW_ARCH_ENABLED'] = '1'
 
 upstream_dir = File.expand_path('Vendor/SefariaMobile/Upstream', __dir__)
+ENV['NODE_PATH'] = [File.join(upstream_dir, 'node_modules'), ENV['NODE_PATH']].compact.reject(&:empty?).join(':')
 
 require File.join(File.dirname(`node --print "require.resolve('expo/package.json', {paths: ['#{upstream_dir}']})"`), "scripts/autolinking")
 require Pod::Executable.execute_command('node', ['-p',

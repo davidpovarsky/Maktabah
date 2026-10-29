@@ -95,6 +95,7 @@ jobs:
       - name: Install CocoaPods Dependencies
         run: |
           echo "=== Running pod install ==="
+          export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           pod install
 
       - name: Build Maktabah-iOS for iPad Simulator

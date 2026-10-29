@@ -89,6 +89,7 @@ jobs:
       - name: Install CocoaPods
         run: |
           if [ -f "Podfile" ]; then
+            export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
             pod install
           fi
 
