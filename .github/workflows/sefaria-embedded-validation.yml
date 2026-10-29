@@ -23,7 +23,7 @@ jobs:
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
     runs-on: macos-15
-    timeout-minutes: 90
+    timeout-minutes: 120
 
     steps:
       - name: Checkout Repository with Submodules
@@ -139,25 +139,29 @@ jobs:
           echo "=== Building Maktabah-iOS for Simulator ==="
           export PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
+          JOBS="$(sysctl -n hw.ncpu)"
+          [ "$JOBS" -le 8 ] || JOBS=8
           xcodebuild build \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
-            -destination "generic/platform=iOS Simulator" \
             -configuration Debug \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            -derivedDataPath build/DerivedData \
+            -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             COMPILER_INDEX_STORE_ENABLE=NO \
+            ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
             PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
 
       - name: Verify App Bundle Staged Resources
         run: |
           echo "=== Verifying built app bundle resources ==="
-          BUILT_APP=$(find ~/Library/Developer/Xcode/DerivedData -name "Maktabah.app" -type d | head -n 1)
-          if [ -z "${BUILT_APP}" ]; then
-            echo "::warning::Could not find Maktabah.app in DerivedData, checking build directory"
+          BUILT_APP="build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+          if [ ! -d "${BUILT_APP}" ]; then
             BUILT_APP=$(find build -name "Maktabah.app" -type d | head -n 1)
           fi
-          if [ -n "${BUILT_APP}" ]; then
+          if [ -n "${BUILT_APP}" ] && [ -d "${BUILT_APP}" ]; then
             echo "Found built app at: ${BUILT_APP}"
             chmod +x Scripts/copy-sefaria-bundle-resources.sh
             bash Scripts/copy-sefaria-bundle-resources.sh "${BUILT_APP}"
@@ -165,22 +169,28 @@ jobs:
               "${BUILT_APP}" \
               --manifest-out build/sefaria-app-bundle-manifest.json
           else
-            echo "::warning::Maktabah.app not located for post-build scan."
+            echo "::error::Maktabah.app not found at expected path!"
+            exit 1
           fi
 
       - name: Run Xcode Simulator Unit Tests
         if: inputs.run_simulator_tests != false
         run: |
           echo "=== Running Unit Tests on iPad Simulator ==="
-          xcrun simctl list devices available
+          SIM_NAME=$(xcrun simctl list devices available | grep -E "iPad" | head -n 1 | sed -E 's/^[ ]+([^(\n]+).*/\1/' | xargs)
+          if [ -z "${SIM_NAME}" ]; then
+            SIM_NAME="iPad (10th generation)"
+          fi
+          echo "Selected simulator: ${SIM_NAME}"
           xcodebuild test \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
-            -destination "platform=iOS Simulator,name=iPad Pro 13-inch (M4)" \
+            -destination "platform=iOS Simulator,name=${SIM_NAME}" \
             -only-testing:MaktabahTests/ChavrusaTextComponentTests \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            | xcpretty || true
+            ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
+            || true
 
       - name: Upload Build & Verification Manifests
         if: always()
