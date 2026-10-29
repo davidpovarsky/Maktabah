@@ -3711,6 +3711,7 @@
 				F30576E22FA46222005732C6 /* Sources */,
 				F30577472FA46222005732C6 /* Frameworks */,
 				F305774A2FA46222005732C6 /* Resources */,
+				F3A775602FB2288E00C82F7B /* [ChavrusaText] Copy Sefaria Bundle Resources */,
 			);
 			buildRules = (
 			);
@@ -3918,6 +3919,27 @@
 			);
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F3A775602FB2288E00C82F7B /* [ChavrusaText] Copy Sefaria Bundle Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[ChavrusaText] Copy Sefaria Bundle Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${SRCROOT}/Scripts/copy-sefaria-bundle-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F30578042FA46222005732C6 /* Sources */ = {

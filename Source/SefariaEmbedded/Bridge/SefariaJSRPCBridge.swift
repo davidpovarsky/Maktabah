@@ -81,7 +81,7 @@ actor SefariaJSRPCBridge {
                     do {
                         try await transport.sendToJS(jsonString: jsonString)
                     } catch {
-                        await self.failInFlight(requestID: requestID, error: error)
+                        self.failInFlight(requestID: requestID, error: error)
                     }
                 }
             }

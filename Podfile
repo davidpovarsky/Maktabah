@@ -87,8 +87,12 @@ post_install do |installer|
 
   installer.aggregate_targets.each do |aggregate_target|
     aggregate_target.user_project.targets.each do |target|
-      target.build_phases.delete_if do |phase|
-        phase.respond_to?(:name) && phase.name.to_s =~ /Crashlytics/i
+      target.build_phases.each do |phase|
+        if phase.respond_to?(:name) && phase.name.to_s =~ /Crashlytics/i
+          if phase.respond_to?(:shell_script) && phase.shell_script && !phase.shell_script.include?("Skipping Crashlytics")
+            phase.shell_script = "if [ \"${CONFIGURATION}\" = \"Debug\" ] || [ \"${EFFECTIVE_PLATFORM_NAME}\" = \"-iphonesimulator\" ]; then\n  echo \"Skipping Crashlytics dSYM upload for simulator/debug build\"\n  exit 0\nfi\n" + phase.shell_script
+          end
+        end
       end
     end
     aggregate_target.user_project.save

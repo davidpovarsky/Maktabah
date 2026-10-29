@@ -13,33 +13,39 @@ import Foundation
 import React
 #endif
 
+#if canImport(React)
 @objc(ChavrusaSefariaBridgeModule)
-final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecked Sendable {
-    static let shared = ChavrusaSefariaBridgeModule()
-
-    #if canImport(React)
-    weak var bridge: RCTBridge?
-    #endif
-
-    typealias JSDispatcherBlock = @convention(block) (String) -> Void
-    private var jsDispatcher: JSDispatcherBlock?
+final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @unchecked Sendable {
+    private static var activeInstance: ChavrusaSefariaBridgeModule?
     private var customExecutor: (@Sendable (String) async throws -> Void)?
+    private var hasListeners: Bool = false
 
     override init() {
         super.init()
+        ChavrusaSefariaBridgeModule.activeInstance = self
         Task {
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
     }
 
-    func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
-        self.customExecutor = executor
+    override class func requiresMainQueueSetup() -> Bool {
+        return true
     }
 
-    // MARK: - JS -> Native Registration
+    override func supportedEvents() -> [String]! {
+        return ["onSefariaRPCRequest"]
+    }
 
-    @objc func registerJSDispatcher(_ dispatcher: @escaping JSDispatcherBlock) {
-        self.jsDispatcher = dispatcher
+    override func startObserving() {
+        hasListeners = true
+    }
+
+    override func stopObserving() {
+        hasListeners = false
+    }
+
+    func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
+        self.customExecutor = executor
     }
 
     // MARK: - SefariaJSTransport (Swift -> JS)
@@ -50,28 +56,15 @@ final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecke
             return
         }
 
-        if let dispatcher = jsDispatcher {
-            dispatcher(jsonString)
-            return
-        }
-
-        #if canImport(React)
-        if let bridge = self.bridge {
-            bridge.enqueueJSCall(
-                "ChavrusaRPCModule",
-                method: "handleEnvelope",
-                args: [jsonString],
-                completion: nil
+        guard let active = ChavrusaSefariaBridgeModule.activeInstance else {
+            throw SefariaRPCError(
+                code: "BRIDGE_NOT_ATTACHED",
+                message: "ChavrusaSefariaBridgeModule instance not created by React Native runtime",
+                retryable: true
             )
-            return
         }
-        #endif
 
-        throw SefariaRPCError(
-            code: "BRIDGE_NOT_ATTACHED",
-            message: "Neither JS dispatcher nor RCTBridge is attached to ChavrusaSefariaBridgeModule",
-            retryable: true
-        )
+        active.sendEvent(withName: "onSefariaRPCRequest", body: jsonString)
     }
 
     // MARK: - JS -> Native Callbacks
@@ -88,17 +81,56 @@ final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecke
         }
     }
 
-    #if canImport(React)
-    @objc static func requiresMainQueueSetup() -> Bool {
-        return true
+    @objc func echo(_ message: String, resolver: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
+        resolver("echo:\(message)")
     }
-    #endif
 }
 
-#if canImport(React)
 extension ChavrusaSefariaBridgeModule: RCTBridgeModule {
     static func moduleName() -> String! {
         return "ChavrusaSefariaBridgeModule"
+    }
+}
+
+#else
+
+final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecked Sendable {
+    static let shared = ChavrusaSefariaBridgeModule()
+    private var customExecutor: (@Sendable (String) async throws -> Void)?
+
+    override init() {
+        super.init()
+        Task {
+            await SefariaJSRPCBridge.shared.setTransport(self)
+        }
+    }
+
+    func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
+        self.customExecutor = executor
+    }
+
+    func sendToJS(jsonString: String) async throws {
+        if let custom = customExecutor {
+            try await custom(jsonString)
+            return
+        }
+        throw SefariaRPCError(
+            code: "BRIDGE_NOT_ATTACHED",
+            message: "RCTBridge is not available in non-React environment",
+            retryable: true
+        )
+    }
+
+    func deliverResponse(_ jsonString: String) {
+        Task {
+            await SefariaJSRPCBridge.shared.handleIncomingResponse(jsonString: jsonString)
+        }
+    }
+
+    func deliverEvent(_ jsonString: String) {
+        Task {
+            await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)
+        }
     }
 }
 #endif

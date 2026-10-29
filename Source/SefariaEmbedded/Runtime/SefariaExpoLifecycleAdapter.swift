@@ -114,7 +114,7 @@ final class SefariaExpoLifecycleAdapter {
         headlessWindow.isUserInteractionEnabled = false
 
         factory.startReactNative(
-            withModuleName: "ReaderApp",
+            withModuleName: "ChavrusaSefariaRoot",
             in: headlessWindow,
             launchOptions: nil
         )
@@ -126,9 +126,18 @@ final class SefariaExpoLifecycleAdapter {
 
     #if canImport(UIKit)
     func createSurfaceView(moduleName: String, initialProperties: [String: Any]? = nil) -> UIView {
-        let placeholder = UIView()
-        placeholder.backgroundColor = .clear
-        return placeholder
+        #if canImport(React)
+        ensureHostStarted()
+        if let rootView = hostedWindow?.rootViewController?.view {
+            rootView.isHidden = false
+            rootView.alpha = 1.0
+            rootView.isUserInteractionEnabled = true
+            return rootView
+        }
+        #endif
+        let container = UIView()
+        container.backgroundColor = .systemBackground
+        return container
     }
     #endif
 
@@ -150,13 +159,19 @@ private final class ChavrusaReactNativeDelegate: ExpoReactNativeFactoryDelegate 
     }
 
     override func bundleURL() -> URL? {
-        #if DEBUG
-        if let metroURL = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: ".expo/.virtual-metro-entry") {
-            return metroURL
+        if let bundledURL = Bundle.main.url(forResource: "main", withExtension: "jsbundle") {
+            #if DEBUG
+            if ProcessInfo.processInfo.environment["ENABLE_METRO"] == "1",
+               let metroURL = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: ".expo/.virtual-metro-entry") {
+                return metroURL
+            }
+            #endif
+            return bundledURL
         }
-        return Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+        #if DEBUG
+        return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: ".expo/.virtual-metro-entry")
         #else
-        return Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+        return nil
         #endif
     }
 }

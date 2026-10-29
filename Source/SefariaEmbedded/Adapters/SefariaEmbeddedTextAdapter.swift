@@ -60,7 +60,8 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
             let segNum = (segDict["segmentNumber"] as? String) ?? "\(idx + 1)"
             let heText = (segDict["he"] as? String) ?? ""
             let enText = (segDict["text"] as? String)
-            let segRef = "\(sectionRef):\(segNum)"
+            let segRef = (segDict["ref"] as? String) ?? "\(sectionRef):\(segNum)"
+            let heRef = (segDict["heRef"] as? String) ?? (heSectionRef != nil ? "\(heSectionRef!):\(segNum)" : nil)
 
             let segLocator = TextLocator(
                 backend: .sefariaEmbedded,
@@ -70,7 +71,7 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
 
             segments.append(LibraryTextSegment(
                 locator: segLocator,
-                heRef: nil,
+                heRef: heRef,
                 primaryText: heText,
                 translation: enText
             ))

@@ -156,12 +156,11 @@ actor SefariaRuntimeManager {
         await MainActor.run {
             SefariaExpoLifecycleAdapter.shared.ensureHostStarted()
         }
-        readiness.hostReady = true
 
         state = .bootstrapping
         let bridge = SefariaJSRPCBridge.shared
 
-        // 2. Send runtime.initialize to JS
+        // 2. Send runtime.initialize to JS (verifies live bidirectional Swift <-> Hermes communication)
         let initResponse = try await bridge.call(
             method: "runtime.initialize",
             paramsJson: nil,
@@ -174,6 +173,8 @@ actor SefariaRuntimeManager {
             throw SefariaRPCError(code: "BOOTSTRAP_FAILED", message: errorMsg, retryable: true)
         }
 
+        // Host and catalog verified ready only after successful live JS handshake response
+        readiness.hostReady = true
         readiness.catalogReady = true
         state = .ready
 
@@ -225,15 +226,22 @@ actor SefariaRuntimeManager {
         }
     }
 
-    /// Marks runtime as ready directly when native host completes startup.
-    func markReady() {
+    /// Sets capability readiness only with explicitly verified states.
+    func setCapabilitiesReady(
+        hostReady: Bool = false,
+        catalogReady: Bool = false,
+        searchReady: Bool = false,
+        packagesReady: Bool = false
+    ) {
         readiness = SefariaCapabilityReadiness(
-            hostReady: true,
-            catalogReady: true,
-            searchReady: true,
-            packagesReady: true
+            hostReady: hostReady,
+            catalogReady: catalogReady,
+            searchReady: searchReady,
+            packagesReady: packagesReady
         )
-        state = .ready
+        if readiness.isFullyReady {
+            state = .ready
+        }
     }
 
     /// Marks runtime as failed with an authoritative message.

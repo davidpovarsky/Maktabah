@@ -144,7 +144,9 @@ export class ChavrusaRPCFacade {
                 language: hit._id?.includes('[he]') ? 'hebrew' : 'english',
               };
             }),
-            total: rawSearchData?.hits?.total || 0,
+            total: (typeof rawSearchData?.hits?.total === 'number')
+              ? rawSearchData.hits.total
+              : (rawSearchData?.hits?.total?.value || rawHits.length),
             start: queryProps.start,
             size: queryProps.size,
           };
@@ -170,9 +172,33 @@ export class ChavrusaRPCFacade {
         }
 
         case 'downloads.installed': {
-          const stored = await AsyncStorage.getItem('packagesSelected');
-          const packagesSelected = stored ? JSON.parse(stored) : {};
-          result = Object.keys(packagesSelected);
+          if (!DownloadControl.BooksState || Object.keys(DownloadControl.BooksState).length === 0) {
+            await DownloadControl.repopulateBooksState();
+          }
+          if (!DownloadControl.PackagesState || Object.keys(DownloadControl.PackagesState).length === 0) {
+            await DownloadControl.packageSetupProtocol();
+          }
+
+          // A book is truly installed when localLastUpdated is non-null
+          const installedBooks = Object.keys(DownloadControl.BooksState || {}).filter(
+            b => !!DownloadControl.BooksState[b]?.localLastUpdated
+          );
+
+          // A package is installed if all its indexed books are installed
+          const installedPackages = [];
+          for (const pkg of Object.values(DownloadControl.PackagesState || {})) {
+            const indexes = pkg.jsonData?.indexes || [];
+            if (indexes.length > 0 && indexes.every(b => installedBooks.includes(b))) {
+              installedPackages.push(pkg.name);
+            }
+          }
+
+          // Return array of installed package names, plus an object map for works
+          result = {
+            packages: installedPackages,
+            books: installedBooks,
+            allKeys: Array.from(new Set([...installedPackages, ...installedBooks])),
+          };
           break;
         }
 
@@ -232,12 +258,25 @@ export class ChavrusaRPCFacade {
           const updateData = await DownloadControl.checkUpdatesFromServer();
           const allBooksToDownload = Array.isArray(updateData) ? (updateData[0] || []) : [];
           const notDownloaded = Array.isArray(updateData) ? (updateData[1] || []) : [];
+
+          if (!DownloadControl.PackagesState || Object.keys(DownloadControl.PackagesState).length === 0) {
+            await DownloadControl.packageSetupProtocol();
+          }
+
+          const affectedPackageIDs = [];
+          for (const pkg of Object.values(DownloadControl.PackagesState || {})) {
+            const indexes = pkg.jsonData?.indexes || [];
+            if (indexes.some(b => allBooksToDownload.includes(b))) {
+              affectedPackageIDs.push(pkg.name);
+            }
+          }
+
           result = {
             allBooksToDownload,
             booksNotDownloaded: notDownloaded,
             hasUpdates: allBooksToDownload.length > 0,
             count: allBooksToDownload.length,
-            packageIDs: [],
+            packageIDs: affectedPackageIDs,
           };
           break;
         }

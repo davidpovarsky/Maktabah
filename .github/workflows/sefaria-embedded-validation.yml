@@ -203,29 +203,89 @@ jobs:
             exit 1
           fi
 
-      - name: Run Xcode Simulator Unit Tests
-        if: inputs.run_simulator_tests != false
+      - name: Boot iPad Simulator and Verify App Launch
         run: |
-          echo "=== Running Unit Tests on iPad Simulator ==="
-          SIM_NAME=$(xcrun simctl list devices available | grep -E "iPad" | head -n 1 | sed -E 's/^[ ]+([^(\n]+).*/\1/' | xargs)
-          if [ -z "${SIM_NAME}" ]; then
-            SIM_NAME="iPad (10th generation)"
+          set -euo pipefail
+          echo "=== Discovering available iPad Simulator ==="
+          xcrun simctl list runtimes
+          python3 -c '
+import json, subprocess
+res = subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"])
+data = json.loads(res)
+ipad_udid = None
+for runtime, devices in data.get("devices", {}).items():
+    for d in devices:
+        if d.get("isAvailable") and "iPad" in d.get("name", ""):
+            ipad_udid = d.get("udid")
+            print(f"Selected iPad simulator: {d.get(\"name\")} ({ipad_udid}) on {runtime}")
+            break
+    if ipad_udid:
+        break
+if not ipad_udid:
+    for runtime, devices in data.get("devices", {}).items():
+        for d in devices:
+            if d.get("isAvailable"):
+                ipad_udid = d.get("udid")
+                print(f"Fallback selected simulator: {d.get(\"name\")} ({ipad_udid}) on {runtime}")
+                break
+        if ipad_udid:
+            break
+if ipad_udid:
+    with open("sim_udid.txt", "w") as f:
+        f.write(ipad_udid.strip())
+else:
+    print("::error::No available simulator found!")
+    exit(1)
+'
+          SIM_UDID=$(cat sim_udid.txt)
+          echo "Booting simulator: ${SIM_UDID}"
+          xcrun simctl boot "${SIM_UDID}" || true
+          xcrun simctl bootstatus "${SIM_UDID}" -b
+          
+          BUILT_APP="build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+          if [ ! -d "${BUILT_APP}" ]; then
+            BUILT_APP=$(find build -name "Maktabah.app" -type d | head -n 1)
           fi
-          echo "Selected simulator: ${SIM_NAME}"
+          
+          echo "Installing ${BUILT_APP} into simulator..."
+          xcrun simctl install "${SIM_UDID}" "${BUILT_APP}"
+          
+          echo "Launching com.davidpovarsky.chavrusatext on simulator..."
+          xcrun simctl launch "${SIM_UDID}" com.davidpovarsky.chavrusatext
+          
+          sleep 6
+          echo "Capturing simulator launch screenshot..."
+          mkdir -p build/artifacts
+          xcrun simctl io "${SIM_UDID}" screenshot build/artifacts/simulator-launch.png || true
+          
+          echo "Collecting simulator process logs..."
+          xcrun simctl spawn "${SIM_UDID}" log show --predicate 'process == "Maktabah"' --style compact --last 2m > build/artifacts/simulator-app.log || true
+
+      - name: Run Xcode Simulator Unit Tests
+        run: |
+          set -euo pipefail
+          echo "=== Running Unit Tests on iPad Simulator ==="
+          if [ -f sim_udid.txt ]; then
+            SIM_UDID=$(cat sim_udid.txt)
+            DESTINATION="platform=iOS Simulator,id=${SIM_UDID}"
+          else
+            DESTINATION="platform=iOS Simulator,name=iPad (10th generation)"
+          fi
+          echo "Testing on destination: ${DESTINATION}"
           xcodebuild test \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
-            -destination "platform=iOS Simulator,name=${SIM_NAME}" \
+            -destination "${DESTINATION}" \
             -derivedDataPath build/DerivedData \
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
             -only-testing:MaktabahTests/ChavrusaTextComponentTests \
+            -resultBundlePath build/artifacts/result.xcresult \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
             ENABLE_USER_SCRIPT_SANDBOXING=NO \
-            RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 \
-            || true
+            RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1
 
       - name: Upload Build & Verification Manifests
         if: always()
@@ -236,3 +296,6 @@ jobs:
             build/sefaria-source-manifest.json
             build/sefaria-app-bundle-manifest.json
             build/jsbundle/main.jsbundle
+            build/artifacts/simulator-launch.png
+            build/artifacts/simulator-app.log
+            build/artifacts/result.xcresult

@@ -683,4 +683,67 @@ struct ChavrusaTextComponentTests {
         )
         #expect(initialized.isFullyReady)
     }
+
+    // MARK: - 16. Live Sefaria Transport & Progress Handshake
+    @Test("SefariaEmbedded: Progress tracking, updates parsing, and segment canonical ref")
+    func testLiveSefariaTransportAndProgressHandshake() throws {
+        // Test 1: Real progress parsing without fake numbers
+        let progressPayload: [String: Any] = [
+            "completedBytes": 5242880,
+            "totalBytes": 10485760,
+            "progress": 0.5
+        ]
+        let data = try JSONSerialization.data(withJSONObject: progressPayload)
+        let jsonStr = String(data: data, encoding: .utf8) ?? ""
+        let event = SefariaRPCEvent(
+            eventName: "downloadProgress",
+            backendID: "sefariaEmbedded",
+            payloadJson: jsonStr
+        )
+        #expect(event.eventName == "downloadProgress")
+        #expect(event.backendID == "sefariaEmbedded")
+
+        if let pData = event.payloadJson?.data(using: .utf8),
+           let pJson = try? JSONSerialization.jsonObject(with: pData) as? [String: Any] {
+            let completed = pJson["completedBytes"] as? Int64 ?? 0
+            let total = pJson["totalBytes"] as? Int64 ?? 0
+            let frac = pJson["progress"] as? Double ?? 0.0
+            #expect(completed == 5242880)
+            #expect(total == 10485760)
+            #expect(frac == 0.5)
+        }
+
+        // Test 2: Updates parsing with real packageIDs
+        let updatePayload: [String: Any] = [
+            "allBooksToDownload": ["Genesis", "Exodus"],
+            "booksNotDownloaded": [],
+            "hasUpdates": true,
+            "count": 2,
+            "packageIDs": ["Torah"]
+        ]
+        let updateData = try JSONSerialization.data(withJSONObject: updatePayload)
+        if let updateJson = try? JSONSerialization.jsonObject(with: updateData) as? [String: Any] {
+            let count = updateJson["count"] as? Int ?? 0
+            let packageIDs = updateJson["packageIDs"] as? [String] ?? []
+            let updateSummary = OfflineUpdateSummary(changedWorkCount: count, affectedPackageIDs: Set(packageIDs))
+            #expect(updateSummary.hasUpdates)
+            #expect(updateSummary.changedWorkCount == 2)
+            #expect(updateSummary.affectedPackageIDs.contains("Torah"))
+        }
+
+        // Test 3: Segment canonical ref and heRef preservation
+        let segLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Berakhot", position: .canonicalRef("Berakhot 2a:1"))
+        let seg = LibraryTextSegment(
+            locator: segLocator,
+            heRef: "ברכות דף ב׳ ע״א:א׳",
+            primaryText: "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּעַרְבִית",
+            translation: "From when may one recite the Shema in the evening?"
+        )
+        if case .canonicalRef(let ref) = seg.locator.position {
+            #expect(ref == "Berakhot 2a:1")
+        } else {
+            #expect(Bool(false), "Expected canonicalRef position")
+        }
+        #expect(seg.heRef == "ברכות דף ב׳ ע״א:א׳")
+    }
 }

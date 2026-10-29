@@ -33,24 +33,29 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
     private func handleDownloadProgressEvent(_ event: SefariaRPCEvent) {
         guard let payloadJson = event.payloadJson,
               let data = payloadJson.data(using: .utf8),
-              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let packageTitle = json["packageTitle"] as? String else {
+              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
             return
         }
 
-        let progress = (json["progress"] as? Double) ?? 0.0
-        let completedBytes = Int64(progress * 100_000_000)
-        let totalBytes: Int64 = 100_000_000
+        let packageTitle = (json["packageTitle"] as? String) ?? activeProgressHandlers.keys.first ?? "Download"
+        let completedBytes = (json["bytesWritten"] as? Int64)
+            ?? Int64((json["bytesWritten"] as? Double) ?? Double((json["bytesWritten"] as? Int) ?? 0))
+        let totalBytes = (json["totalBytes"] as? Int64)
+            ?? Int64((json["totalBytes"] as? Double) ?? Double((json["totalBytes"] as? Int) ?? 0))
+        let fraction = (json["fraction"] as? Double)
+            ?? (totalBytes > 0 ? Double(completedBytes) / Double(totalBytes) : 0.0)
 
         let update = OfflineInstallProgress(
-            phase: progress >= 1.0 ? .finished : .downloading,
+            phase: fraction >= 1.0 ? .finished : .downloading,
             packageID: packageTitle,
             completedBytes: completedBytes,
-            totalBytes: totalBytes
+            totalBytes: totalBytes > 0 ? totalBytes : completedBytes
         )
 
         if let handler = activeProgressHandlers[packageTitle] {
             handler(update)
+        } else if let firstHandler = activeProgressHandlers.values.first {
+            firstHandler(update)
         }
     }
 
@@ -71,10 +76,18 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         }
         guard let response = try? await SefariaJSRPCBridge.shared.call(method: "downloads.installed"),
               response.isSuccess,
-              let ids = try? response.decodeResult([String].self) else {
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8) else {
             return []
         }
-        return Set(ids)
+
+        if let jsonDict = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+            let pkgs = (jsonDict["packages"] as? [String]) ?? []
+            return Set(pkgs)
+        } else if let ids = try? JSONDecoder().decode([String].self, from: data) {
+            return Set(ids)
+        }
+        return []
     }
 
     func install(packageIDs: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
@@ -88,7 +101,7 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
                 phase: .downloading,
                 packageID: packageID,
                 completedBytes: 0,
-                totalBytes: 100_000_000
+                totalBytes: 0
             ))
 
             let response = try await SefariaJSRPCBridge.shared.call(
@@ -105,8 +118,8 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
             progress(OfflineInstallProgress(
                 phase: .finished,
                 packageID: packageID,
-                completedBytes: 100_000_000,
-                totalBytes: 100_000_000
+                completedBytes: 1,
+                totalBytes: 1
             ))
         }
     }
@@ -144,9 +157,23 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
 
     func update(progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
         let updates = try await availableUpdates()
+        guard updates.hasUpdates else { return }
+
         if !updates.affectedPackageIDs.isEmpty {
             try await install(packageIDs: updates.affectedPackageIDs, progress: progress)
+            return
         }
+
+        progress(OfflineInstallProgress(phase: .downloading, packageID: "Update", completedBytes: 0, totalBytes: 0))
+        let response = try await SefariaJSRPCBridge.shared.call(
+            method: "updates.download",
+            paramsJson: nil,
+            timeoutMs: 600_000
+        )
+        guard response.isSuccess else {
+            throw response.error ?? SefariaRPCError(code: "UPDATE_FAILED", message: "Failed to download Sefaria updates")
+        }
+        progress(OfflineInstallProgress(phase: .finished, packageID: "Update", completedBytes: 1, totalBytes: 1))
     }
 
     func cancelInstall() async {
@@ -156,16 +183,51 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
     // MARK: - OfflineWorkProviding
 
     func installedWorkKeys() async -> Set<String> {
-        let pkgs = await installedPackageIDs()
-        return pkgs
+        guard (try? await SefariaRuntimeManager.shared.ensurePackagesReady()) != nil else {
+            return []
+        }
+        guard let response = try? await SefariaJSRPCBridge.shared.call(method: "downloads.installed"),
+              response.isSuccess,
+              let resultJson = response.resultJson,
+              let data = resultJson.data(using: .utf8) else {
+            return []
+        }
+
+        if let jsonDict = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+           let books = jsonDict["books"] as? [String] {
+            return Set(books)
+        }
+        return []
     }
 
     func install(workKeys: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
-        try await install(packageIDs: workKeys, progress: progress)
+        let allPackages = (try? await packages(forceRefresh: false)) ?? []
+        var packagesToInstall = Set<String>()
+
+        for workKey in workKeys {
+            for pkg in allPackages {
+                if pkg.indexTitles.contains(workKey) {
+                    packagesToInstall.insert(pkg.id)
+                }
+            }
+        }
+
+        if packagesToInstall.isEmpty {
+            // If works are not in a specific sub-package, try COMPLETE LIBRARY
+            packagesToInstall.insert("COMPLETE LIBRARY")
+        }
+
+        try await install(packageIDs: packagesToInstall, progress: progress)
     }
 
     func remove(workKeys: Set<String>) async throws {
-        try await remove(packageIDs: workKeys)
+        try await SefariaRuntimeManager.shared.ensurePackagesReady()
+        let params = ["bookTitles": Array(workKeys)]
+        let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
+        let response = try await SefariaJSRPCBridge.shared.call(method: "downloads.remove", paramsJson: paramsJson)
+        guard response.isSuccess else {
+            throw response.error ?? SefariaRPCError(code: "REMOVE_FAILED", message: "Failed to remove works")
+        }
     }
 
     func cancelWorkInstall() async {

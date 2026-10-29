@@ -29,9 +29,10 @@ final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
         let params: [String: Any] = [
             "query": request.query,
             "offset": request.offset,
-            "limit": 20,
+            "limit": request.limit > 0 ? request.limit : 20,
             "type": "text",
             "field": "exact",
+            "appliedFilters": request.filters,
             "sortType": "relevance",
         ]
 

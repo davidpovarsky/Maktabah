@@ -1707,6 +1707,70 @@ struct TestRunner {
             assertCondition(initializedReadiness.isFullyReady, "custom init preserves isFullyReady")
         }
 
+        print("\n--- 31. Testing Live Sefaria Transport & Progress Handshake ---")
+        do {
+            // Test 1: SefariaRPCEvent downloadProgress parsing
+            let progressPayload: [String: Any] = [
+                "bytesWritten": 4_520_100,
+                "totalBytes": 12_800_000,
+                "fraction": 0.3531328125,
+                "packageTitle": "Torah"
+            ]
+            if let payloadData = try? JSONSerialization.data(withJSONObject: progressPayload),
+               let payloadJson = String(data: payloadData, encoding: .utf8) {
+                let event = SefariaRPCEvent(
+                    event: "downloadProgress",
+                    sequence: 12345,
+                    backendID: BackendID.sefariaEmbedded.rawValue,
+                    payloadJson: payloadJson
+                )
+                assertCondition(event.event == "downloadProgress", "event name matches downloadProgress")
+                assertCondition(event.backendID == "sefariaEmbedded", "event backend is sefariaEmbedded")
+
+                let parsedJson = try? JSONSerialization.jsonObject(with: payloadData) as? [String: Any]
+                let completedBytes = (parsedJson?["bytesWritten"] as? Int) ?? 0
+                let totalBytes = (parsedJson?["totalBytes"] as? Int) ?? 0
+                let fraction = (parsedJson?["fraction"] as? Double) ?? 0.0
+
+                assertCondition(completedBytes == 4_520_100, "real completedBytes parsed accurately without fake numbers")
+                assertCondition(totalBytes == 12_800_000, "real totalBytes parsed accurately")
+                assertCondition(abs(fraction - 0.3531328125) < 0.0001, "real progress fraction matches")
+            }
+
+            // Test 2: Updates parsing with real packageIDs
+            let updatePayload: [String: Any] = [
+                "allBooksToDownload": ["Genesis", "Exodus"],
+                "booksNotDownloaded": [],
+                "hasUpdates": true,
+                "count": 2,
+                "packageIDs": ["Torah"]
+            ]
+            if let updateData = try? JSONSerialization.data(withJSONObject: updatePayload),
+               let updateJson = try? JSONSerialization.jsonObject(with: updateData) as? [String: Any] {
+                let count = updateJson["count"] as? Int ?? 0
+                let packageIDs = updateJson["packageIDs"] as? [String] ?? []
+                let updateSummary = OfflineUpdateSummary(changedWorkCount: count, affectedPackageIDs: Set(packageIDs))
+                assertCondition(updateSummary.hasUpdates, "hasUpdates is true when count > 0")
+                assertCondition(updateSummary.changedWorkCount == 2, "changedWorkCount matches 2")
+                assertCondition(updateSummary.affectedPackageIDs.contains("Torah"), "affectedPackageIDs contains 'Torah'")
+            }
+
+            // Test 3: Segment canonical ref and heRef preservation
+            let segLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Berakhot", position: .canonicalRef("Berakhot 2a:1"))
+            let seg = LibraryTextSegment(
+                locator: segLocator,
+                heRef: "ברכות דף ב׳ ע״א:א׳",
+                primaryText: "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּעַרְבִית",
+                translation: "From when may one recite the Shema in the evening?"
+            )
+            if case .canonicalRef(let ref) = seg.locator.position {
+                assertCondition(ref == "Berakhot 2a:1", "exact canonical segment ref preserved")
+            } else {
+                assertCondition(false, "segment position is canonicalRef")
+            }
+            assertCondition(seg.heRef == "ברכות דף ב׳ ע״א:א׳", "heRef preserved without nil loss")
+        }
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")
