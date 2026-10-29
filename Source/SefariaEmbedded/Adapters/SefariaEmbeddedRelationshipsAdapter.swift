@@ -8,12 +8,12 @@
 
 import Foundation
 
-public final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, Sendable {
-    public static let shared = SefariaEmbeddedRelationshipsAdapter()
+final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProviding, Sendable {
+    static let shared = SefariaEmbeddedRelationshipsAdapter()
 
     private init() {}
 
-    public func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
+    func links(for locator: TextLocator) async throws -> [LibraryRelatedSource] {
         try await SefariaRuntimeManager.shared.ensureReady()
 
         let canonicalRef: String
@@ -90,7 +90,7 @@ public final class SefariaEmbeddedRelationshipsAdapter: LibraryRelationshipsProv
         }
     }
 
-    public func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
+    func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
         try await SefariaRuntimeManager.shared.ensureReady()
 
         let canonicalRef: String

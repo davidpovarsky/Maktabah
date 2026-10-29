@@ -8,8 +8,8 @@
 
 import Foundation
 
-public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProviding {
-    public static let shared = SefariaEmbeddedDownloadAdapter()
+actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProviding {
+    static let shared = SefariaEmbeddedDownloadAdapter()
 
     private var activeProgressHandlers: [String: @Sendable (OfflineInstallProgress) -> Void] = [:]
 
@@ -56,7 +56,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
 
     // MARK: - OfflineLibraryProviding
 
-    public func packages(forceRefresh: Bool) async throws -> [OfflinePackage] {
+    func packages(forceRefresh: Bool) async throws -> [OfflinePackage] {
         try await SefariaRuntimeManager.shared.ensurePackagesReady()
         let response = try await SefariaJSRPCBridge.shared.call(method: "downloads.packages")
         guard response.isSuccess else {
@@ -65,7 +65,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
         return try response.decodeResult([OfflinePackage].self)
     }
 
-    public func installedPackageIDs() async -> Set<String> {
+    func installedPackageIDs() async -> Set<String> {
         guard (try? await SefariaRuntimeManager.shared.ensurePackagesReady()) != nil else {
             return []
         }
@@ -77,7 +77,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
         return Set(ids)
     }
 
-    public func install(packageIDs: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
+    func install(packageIDs: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
         try await SefariaRuntimeManager.shared.ensurePackagesReady()
         for packageID in packageIDs {
             activeProgressHandlers[packageID] = progress
@@ -111,7 +111,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
         }
     }
 
-    public func remove(packageIDs: Set<String>) async throws {
+    func remove(packageIDs: Set<String>) async throws {
         try await SefariaRuntimeManager.shared.ensurePackagesReady()
         let params = ["packageTitles": Array(packageIDs)]
         let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
@@ -121,7 +121,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
         }
     }
 
-    public func availableUpdates() async throws -> OfflineUpdateSummary {
+    func availableUpdates() async throws -> OfflineUpdateSummary {
         try await SefariaRuntimeManager.shared.ensurePackagesReady()
         let response = try await SefariaJSRPCBridge.shared.call(method: "updates.check")
         guard response.isSuccess,
@@ -142,14 +142,33 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
         return OfflineUpdateSummary(changedWorkCount: 0, affectedPackageIDs: [])
     }
 
+    func update(progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
+        let updates = try await availableUpdates()
+        if !updates.affectedPackageIDs.isEmpty {
+            try await install(packageIDs: updates.affectedPackageIDs, progress: progress)
+        }
+    }
+
+    func cancelInstall() async {
+        _ = try? await SefariaJSRPCBridge.shared.call(method: "downloads.cancel")
+    }
+
     // MARK: - OfflineWorkProviding
 
-    public func installedWorkKeys() async -> Set<String> {
+    func installedWorkKeys() async -> Set<String> {
         let pkgs = await installedPackageIDs()
         return pkgs
     }
 
-    public func install(workKeys: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
+    func install(workKeys: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
         try await install(packageIDs: workKeys, progress: progress)
+    }
+
+    func remove(workKeys: Set<String>) async throws {
+        try await remove(packageIDs: workKeys)
+    }
+
+    func cancelWorkInstall() async {
+        await cancelInstall()
     }
 }

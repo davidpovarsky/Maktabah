@@ -8,12 +8,31 @@
 
 import Foundation
 
-public final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding, Sendable {
-    public static let shared = SefariaEmbeddedNavigationAdapter()
+final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding, Sendable {
+    static let shared = SefariaEmbeddedNavigationAdapter()
 
     private init() {}
 
-    public func navigationStructures(for workKey: String) async throws -> [LibraryNavigationStructure] {
+    // MARK: - LibraryNavigationProviding
+
+    func normalizedLocator(for input: String) async throws -> TextLocator {
+        let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        return TextLocator(backend: .sefariaEmbedded, workKey: trimmed, position: .canonicalRef(trimmed))
+    }
+
+    func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
+        return try await tableOfContents(for: work.workKey, structureID: nil)
+    }
+
+    func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
+        return try await navigationItems(for: work.workKey, structureID: nil)
+    }
+
+    func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
+        return try await navigationStructures(for: work.workKey)
+    }
+
+    func navigationStructures(for workKey: String) async throws -> [LibraryNavigationStructure] {
         try await SefariaRuntimeManager.shared.ensureReady()
         let params = ["title": workKey]
         let paramsData = try JSONSerialization.data(withJSONObject: params)
@@ -51,7 +70,7 @@ public final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding,
         return structures
     }
 
-    public func tableOfContents(for workKey: String, structureID: String?) async throws -> [LibraryTOCNode] {
+    func tableOfContents(for workKey: String, structureID: String?) async throws -> [LibraryTOCNode] {
         try await SefariaRuntimeManager.shared.ensureReady()
         let params = ["title": workKey]
         let paramsData = try JSONSerialization.data(withJSONObject: params)
@@ -124,7 +143,7 @@ public final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding,
         return []
     }
 
-    public func navigationItems(for workKey: String, structureID: String?) async throws -> [LibraryNavigationItem] {
+    func navigationItems(for workKey: String, structureID: String?) async throws -> [LibraryNavigationItem] {
         let toc = try await tableOfContents(for: workKey, structureID: structureID)
         return toc.map { node in
             LibraryNavigationItem(

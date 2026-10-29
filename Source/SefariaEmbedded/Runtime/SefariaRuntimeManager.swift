@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum SefariaRuntimeState: Sendable, Equatable {
+enum SefariaRuntimeState: Sendable, Equatable {
     case notStarted
     case starting
     case bootstrapping
@@ -16,23 +16,23 @@ public enum SefariaRuntimeState: Sendable, Equatable {
     case failed(message: String, retryable: Bool)
     case suspended
 
-    public var isReady: Bool {
+    var isReady: Bool {
         if case .ready = self { return true }
         return false
     }
 }
 
-public struct SefariaCapabilityReadiness: Sendable, Equatable {
-    public var hostReady: Bool = false
-    public var catalogReady: Bool = false
-    public var searchReady: Bool = false
-    public var packagesReady: Bool = false
+struct SefariaCapabilityReadiness: Sendable, Equatable {
+    var hostReady: Bool = false
+    var catalogReady: Bool = false
+    var searchReady: Bool = false
+    var packagesReady: Bool = false
 
-    public var isFullyReady: Bool {
+    var isFullyReady: Bool {
         hostReady && catalogReady && searchReady && packagesReady
     }
 
-    public init(
+    init(
         hostReady: Bool = false,
         catalogReady: Bool = false,
         searchReady: Bool = false,
@@ -45,11 +45,11 @@ public struct SefariaCapabilityReadiness: Sendable, Equatable {
     }
 }
 
-public actor SefariaRuntimeManager {
-    public static let shared = SefariaRuntimeManager()
+actor SefariaRuntimeManager {
+    static let shared = SefariaRuntimeManager()
 
-    private(set) public var state: SefariaRuntimeState = .notStarted
-    private(set) public var readiness = SefariaCapabilityReadiness()
+    private(set) var state: SefariaRuntimeState = .notStarted
+    private(set) var readiness = SefariaCapabilityReadiness()
 
     private var startupTask: Task<Void, any Error>?
     private var searchInitTask: Task<Void, any Error>?
@@ -59,12 +59,12 @@ public actor SefariaRuntimeManager {
 
     /// Ensures the Sefaria runtime and catalog are bootstrapped and ready.
     /// Thread-safe single-flight: concurrent callers await the same in-flight startup.
-    public func ensureReady(timeoutSeconds: Double = 25.0) async throws {
+    func ensureReady(timeoutSeconds: Double = 25.0) async throws {
         try await ensureCatalogReady(timeoutSeconds: timeoutSeconds)
     }
 
     /// Ensures host and catalog (TOC / index) are ready.
-    public func ensureCatalogReady(timeoutSeconds: Double = 25.0) async throws {
+    func ensureCatalogReady(timeoutSeconds: Double = 25.0) async throws {
         if readiness.catalogReady && state == .ready {
             return
         }
@@ -89,7 +89,7 @@ public actor SefariaRuntimeManager {
     }
 
     /// Ensures search index and engine are ready via postInitSearch.
-    public func ensureSearchReady(timeoutSeconds: Double = 30.0) async throws {
+    func ensureSearchReady(timeoutSeconds: Double = 30.0) async throws {
         try await ensureCatalogReady(timeoutSeconds: timeoutSeconds)
 
         if readiness.searchReady {
@@ -116,7 +116,7 @@ public actor SefariaRuntimeManager {
     }
 
     /// Ensures package state and download engine are ready via postInit / packageSetupProtocol.
-    public func ensurePackagesReady(timeoutSeconds: Double = 30.0) async throws {
+    func ensurePackagesReady(timeoutSeconds: Double = 30.0) async throws {
         try await ensureCatalogReady(timeoutSeconds: timeoutSeconds)
 
         if readiness.packagesReady {
@@ -143,7 +143,7 @@ public actor SefariaRuntimeManager {
     }
 
     /// Ensures all capabilities (catalog, search, and packages) are ready.
-    public func ensureFullyReady(timeoutSeconds: Double = 35.0) async throws {
+    func ensureFullyReady(timeoutSeconds: Double = 35.0) async throws {
         try await ensureCatalogReady(timeoutSeconds: timeoutSeconds)
         try await ensureSearchReady(timeoutSeconds: timeoutSeconds)
         try await ensurePackagesReady(timeoutSeconds: timeoutSeconds)
@@ -211,7 +211,7 @@ public actor SefariaRuntimeManager {
     }
 
     /// Resets the runtime state after failure or during diagnostics.
-    public func reset() {
+    func reset() {
         startupTask?.cancel()
         searchInitTask?.cancel()
         packagesInitTask?.cancel()
@@ -226,7 +226,7 @@ public actor SefariaRuntimeManager {
     }
 
     /// Marks runtime as ready directly when native host completes startup.
-    public func markReady() {
+    func markReady() {
         readiness = SefariaCapabilityReadiness(
             hostReady: true,
             catalogReady: true,
@@ -237,7 +237,7 @@ public actor SefariaRuntimeManager {
     }
 
     /// Marks runtime as failed with an authoritative message.
-    public func markFailed(message: String, retryable: Bool = true) {
+    func markFailed(message: String, retryable: Bool = true) {
         state = .failed(message: message, retryable: retryable)
     }
 }

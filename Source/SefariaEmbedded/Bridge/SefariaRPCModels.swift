@@ -10,16 +10,16 @@
 
 import Foundation
 
-public struct SefariaRPCEnvelope: Codable, Sendable, Equatable {
-    public let protocolVersion: String
-    public let requestID: String
-    public let method: String
-    public let paramsJson: String?
-    public let backendID: String
-    public let sessionGeneration: UInt64
-    public let timeoutMs: Int
+struct SefariaRPCEnvelope: Codable, Sendable, Equatable {
+    let protocolVersion: String
+    let requestID: String
+    let method: String
+    let paramsJson: String?
+    let backendID: String
+    let sessionGeneration: UInt64
+    let timeoutMs: Int
 
-    public init(
+    init(
         protocolVersion: String = "1.0",
         requestID: String = UUID().uuidString,
         method: String,
@@ -37,7 +37,7 @@ public struct SefariaRPCEnvelope: Codable, Sendable, Equatable {
         self.timeoutMs = timeoutMs
     }
 
-    public init<T: Encodable>(
+    init<T: Encodable>(
         protocolVersion: String = "1.0",
         requestID: String = UUID().uuidString,
         method: String,
@@ -60,19 +60,19 @@ public struct SefariaRPCEnvelope: Codable, Sendable, Equatable {
     }
 }
 
-public struct SefariaRPCResponse: Codable, Sendable, Equatable {
-    public let protocolVersion: String
-    public let requestID: String
-    public let status: String // "success" or "error"
-    public let resultJson: String?
-    public let error: SefariaRPCError?
-    public let sessionGeneration: UInt64
+struct SefariaRPCResponse: Codable, Sendable, Equatable {
+    let protocolVersion: String
+    let requestID: String
+    let status: String // "success" or "error"
+    let resultJson: String?
+    let error: SefariaRPCError?
+    let sessionGeneration: UInt64
 
-    public var isSuccess: Bool {
+    var isSuccess: Bool {
         status == "success"
     }
 
-    public init(
+    init(
         protocolVersion: String = "1.0",
         requestID: String,
         status: String,
@@ -88,7 +88,7 @@ public struct SefariaRPCResponse: Codable, Sendable, Equatable {
         self.sessionGeneration = sessionGeneration
     }
 
-    public func decodeResult<T: Decodable>(_ type: T.Type) throws -> T {
+    func decodeResult<T: Decodable>(_ type: T.Type) throws -> T {
         guard let resultJson = resultJson,
               let data = resultJson.data(using: .utf8) else {
             throw SefariaRPCError(
@@ -100,17 +100,17 @@ public struct SefariaRPCResponse: Codable, Sendable, Equatable {
     }
 }
 
-public struct SefariaRPCError: Codable, Sendable, Equatable, LocalizedError {
-    public let code: String
-    public let message: String
-    public let retryable: Bool
-    public let details: String?
+struct SefariaRPCError: Codable, Sendable, Equatable, LocalizedError {
+    let code: String
+    let message: String
+    let retryable: Bool
+    let details: String?
 
-    public var errorDescription: String? {
+    var errorDescription: String? {
         "[\(code)] \(message)"
     }
 
-    public init(
+    init(
         code: String,
         message: String,
         retryable: Bool = false,
@@ -123,13 +123,13 @@ public struct SefariaRPCError: Codable, Sendable, Equatable, LocalizedError {
     }
 }
 
-public struct SefariaRPCEvent: Codable, Sendable, Equatable {
-    public let event: String
-    public let sequence: UInt64
-    public let backendID: String
-    public let payloadJson: String?
+struct SefariaRPCEvent: Codable, Sendable, Equatable {
+    let event: String
+    let sequence: UInt64
+    let backendID: String
+    let payloadJson: String?
 
-    public init(
+    init(
         event: String,
         sequence: UInt64,
         backendID: String = "sefariaEmbedded",
@@ -141,7 +141,7 @@ public struct SefariaRPCEvent: Codable, Sendable, Equatable {
         self.payloadJson = payloadJson
     }
 
-    public func decodePayload<T: Decodable>(_ type: T.Type) throws -> T {
+    func decodePayload<T: Decodable>(_ type: T.Type) throws -> T {
         guard let payloadJson = payloadJson,
               let data = payloadJson.data(using: .utf8) else {
             throw SefariaRPCError(

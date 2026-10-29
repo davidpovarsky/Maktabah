@@ -14,37 +14,37 @@ import React
 #endif
 
 @objc(ChavrusaSefariaBridgeModule)
-public final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport {
-    public static let shared = ChavrusaSefariaBridgeModule()
+final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecked Sendable {
+    static let shared = ChavrusaSefariaBridgeModule()
 
     #if canImport(React)
-    public weak var bridge: RCTBridge?
+    weak var bridge: RCTBridge?
     #endif
 
-    public typealias JSDispatcherBlock = @convention(block) (String) -> Void
+    typealias JSDispatcherBlock = @convention(block) (String) -> Void
     private var jsDispatcher: JSDispatcherBlock?
     private var customExecutor: (@Sendable (String) async throws -> Void)?
 
-    override public init() {
+    override init() {
         super.init()
         Task {
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
     }
 
-    public func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
+    func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
         self.customExecutor = executor
     }
 
     // MARK: - JS -> Native Registration
 
-    @objc public func registerJSDispatcher(_ dispatcher: @escaping JSDispatcherBlock) {
+    @objc func registerJSDispatcher(_ dispatcher: @escaping JSDispatcherBlock) {
         self.jsDispatcher = dispatcher
     }
 
     // MARK: - SefariaJSTransport (Swift -> JS)
 
-    public func sendToJS(jsonString: String) async throws {
+    func sendToJS(jsonString: String) async throws {
         if let custom = customExecutor {
             try await custom(jsonString)
             return
@@ -76,20 +76,20 @@ public final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport {
 
     // MARK: - JS -> Native Callbacks
 
-    @objc public func deliverResponse(_ jsonString: String) {
+    @objc func deliverResponse(_ jsonString: String) {
         Task {
             await SefariaJSRPCBridge.shared.handleIncomingResponse(jsonString: jsonString)
         }
     }
 
-    @objc public func deliverEvent(_ jsonString: String) {
+    @objc func deliverEvent(_ jsonString: String) {
         Task {
             await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)
         }
     }
 
     #if canImport(React)
-    @objc public static func requiresMainQueueSetup() -> Bool {
+    @objc static func requiresMainQueueSetup() -> Bool {
         return true
     }
     #endif
@@ -97,7 +97,7 @@ public final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport {
 
 #if canImport(React)
 extension ChavrusaSefariaBridgeModule: RCTBridgeModule {
-    public static func moduleName() -> String! {
+    static func moduleName() -> String! {
         return "ChavrusaSefariaBridgeModule"
     }
 }

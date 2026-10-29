@@ -8,14 +8,14 @@
 
 import Foundation
 
-public final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataProviding, Sendable {
-    public static let shared = SefariaEmbeddedTextAdapter()
+final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataProviding, Sendable {
+    static let shared = SefariaEmbeddedTextAdapter()
 
     private init() {}
 
     // MARK: - LibraryTextProviding
 
-    public func section(at locator: TextLocator) async throws -> LibraryTextSection {
+    func section(at locator: TextLocator) async throws -> LibraryTextSection {
         try await SefariaRuntimeManager.shared.ensureReady()
 
         let canonicalRef: String
@@ -145,7 +145,7 @@ public final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMeta
 
     // MARK: - LibraryMetadataProviding
 
-    public func versions(for workKey: String) async throws -> [TextVersionMetadata] {
+    func versions(for workKey: String) async throws -> [TextVersionMetadata] {
         try await SefariaRuntimeManager.shared.ensureReady()
         let params = ["ref": workKey]
         let paramsData = try JSONSerialization.data(withJSONObject: params)
@@ -175,5 +175,10 @@ public final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMeta
                 source: dict["versionSource"] as? String
             )
         }
+    }
+
+    func related(to locator: TextLocator) async throws -> [TextLocator] {
+        let links = try await SefariaEmbeddedRelationshipsAdapter.shared.links(for: locator)
+        return links.map(\.locator)
     }
 }

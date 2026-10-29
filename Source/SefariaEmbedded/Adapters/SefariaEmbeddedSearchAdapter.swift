@@ -8,12 +8,22 @@
 
 import Foundation
 
-public final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
-    public static let shared = SefariaEmbeddedSearchAdapter()
+final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
+    static let shared = SefariaEmbeddedSearchAdapter()
 
     private init() {}
 
-    public func search(request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+    // MARK: - LibrarySearchProviding
+
+    func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        try await executeSearch(request)
+    }
+
+    func search(request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        try await executeSearch(request)
+    }
+
+    private func executeSearch(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
         try await SefariaRuntimeManager.shared.ensureSearchReady()
 
         let params: [String: Any] = [

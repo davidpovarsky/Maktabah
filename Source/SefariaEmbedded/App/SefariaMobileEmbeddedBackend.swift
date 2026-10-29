@@ -8,27 +8,26 @@
 import Foundation
 
 @MainActor
-public final class SefariaMobileEmbeddedBackend {
-    public static let shared = SefariaMobileEmbeddedBackend()
+final class SefariaMobileEmbeddedBackend {
+    static let shared = SefariaMobileEmbeddedBackend()
 
-    public let catalog: SefariaEmbeddedCatalogAdapter
-    public let text: SefariaEmbeddedTextAdapter
-    public let navigation: SefariaEmbeddedNavigationAdapter
-    public let search: SefariaEmbeddedSearchAdapter
-    public let relationships: SefariaEmbeddedRelationshipsAdapter
-    public let downloads: SefariaEmbeddedDownloadAdapter
+    let catalog: SefariaEmbeddedCatalogAdapter
+    let text: SefariaEmbeddedTextAdapter
+    let navigation: SefariaEmbeddedNavigationAdapter
+    let search: SefariaEmbeddedSearchAdapter
+    let relationships: SefariaEmbeddedRelationshipsAdapter
+    let downloads: SefariaEmbeddedDownloadAdapter
 
     private init() {
-        let bridge = SefariaJSRPCBridge.shared
-        self.catalog = SefariaEmbeddedCatalogAdapter(bridge: bridge)
-        self.text = SefariaEmbeddedTextAdapter(bridge: bridge)
-        self.navigation = SefariaEmbeddedNavigationAdapter(bridge: bridge)
-        self.search = SefariaEmbeddedSearchAdapter(bridge: bridge)
-        self.relationships = SefariaEmbeddedRelationshipsAdapter(bridge: bridge)
-        self.downloads = SefariaEmbeddedDownloadAdapter(bridge: bridge)
+        self.catalog = .shared
+        self.text = .shared
+        self.navigation = .shared
+        self.search = .shared
+        self.relationships = .shared
+        self.downloads = .shared
     }
 
-    public func register(with coordinator: BackendCoordinator = .shared) {
+    func register(with coordinator: BackendCoordinator = .shared) {
         coordinator.register(LibraryBackendRegistration(
             id: .sefariaEmbedded,
             sourceDescription: String(localized: "Read from embedded Sefaria-Mobile engine with full original React Native runtime."),

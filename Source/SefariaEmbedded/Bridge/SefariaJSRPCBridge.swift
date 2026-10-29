@@ -9,12 +9,12 @@
 
 import Foundation
 
-public protocol SefariaJSTransport: Sendable {
+protocol SefariaJSTransport: Sendable {
     func sendToJS(jsonString: String) async throws
 }
 
-public actor SefariaJSRPCBridge {
-    public static let shared = SefariaJSRPCBridge()
+actor SefariaJSRPCBridge {
+    static let shared = SefariaJSRPCBridge()
 
     private struct InFlightRequest {
         let continuation: CheckedContinuation<SefariaRPCResponse, any Error>
@@ -28,13 +28,13 @@ public actor SefariaJSRPCBridge {
 
     private init() {}
 
-    public func setTransport(_ transport: any SefariaJSTransport) {
+    func setTransport(_ transport: any SefariaJSTransport) {
         self.transport = transport
     }
 
     /// Dispatches an RPC call to the Sefaria runtime with bounded timeout, generation tracking,
     /// and cancellation-safe continuation management.
-    public func call(
+    func call(
         method: String,
         paramsJson: String? = nil,
         generation: UInt64 = 0,
@@ -119,7 +119,7 @@ public actor SefariaJSRPCBridge {
         ))
     }
 
-    public func handleIncomingResponse(jsonString: String) {
+    func handleIncomingResponse(jsonString: String) {
         guard let data = jsonString.data(using: .utf8),
               let response = try? JSONDecoder().decode(SefariaRPCResponse.self, from: data) else {
             return
@@ -157,7 +157,7 @@ public actor SefariaJSRPCBridge {
     }
 
     /// Cancels all pending in-flight requests (e.g. during a backend switch or runtime reset).
-    public func cancelAll(reason: String = "Session invalidated") {
+    func cancelAll(reason: String = "Session invalidated") {
         for (_, req) in inFlightRequests {
             req.timeoutTask.cancel()
             req.continuation.resume(throwing: SefariaRPCError(code: "CANCELLED", message: reason, retryable: false))
@@ -165,15 +165,19 @@ public actor SefariaJSRPCBridge {
         inFlightRequests.removeAll()
     }
 
+    func cancelAllInFlight() {
+        cancelAll(reason: "Backend invalidated")
+    }
+
     // MARK: - Event Subscriptions
 
-    public func addEventListener(for eventName: String, listener: @escaping @Sendable (SefariaRPCEvent) -> Void) {
+    func addEventListener(for eventName: String, listener: @escaping @Sendable (SefariaRPCEvent) -> Void) {
         var listeners = eventListeners[eventName] ?? []
         listeners.append(listener)
         eventListeners[eventName] = listeners
     }
 
-    public func handleIncomingEvent(jsonString: String) {
+    func handleIncomingEvent(jsonString: String) {
         guard let data = jsonString.data(using: .utf8),
               let event = try? JSONDecoder().decode(SefariaRPCEvent.self, from: data) else {
             return

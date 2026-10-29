@@ -8,15 +8,24 @@
 
 import Foundation
 
-public actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadataProviding {
-    public static let shared = SefariaEmbeddedCatalogAdapter()
+actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWorkMetadataProviding {
+    static let shared = SefariaEmbeddedCatalogAdapter()
 
     private var cachedNodes: [LibraryCatalogNode]?
     private var cachedWorkMetadata: [String: LibraryWorkMetadata] = [:]
 
     private init() {}
 
-    public func rootNodes() async throws -> [LibraryCatalogNode] {
+    // MARK: - LibraryCatalogProviding
+
+    func catalog(forceRefresh: Bool) async throws -> [LibraryCatalogNode] {
+        if !forceRefresh, let cached = cachedNodes {
+            return cached
+        }
+        return try await rootNodes()
+    }
+
+    func rootNodes() async throws -> [LibraryCatalogNode] {
         if let cached = cachedNodes {
             return cached
         }
@@ -35,7 +44,7 @@ public actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWork
         return nodes
     }
 
-    public func children(of parentID: String) async throws -> [LibraryCatalogNode] {
+    func children(of parentID: String) async throws -> [LibraryCatalogNode] {
         let roots = try await rootNodes()
         return findChildren(in: roots, parentID: parentID) ?? []
     }
@@ -96,7 +105,11 @@ public actor SefariaEmbeddedCatalogAdapter: LibraryCatalogProviding, LibraryWork
 
     // MARK: - LibraryWorkMetadataProviding
 
-    public func metadata(for workKey: String) async throws -> LibraryWorkMetadata {
+    func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata? {
+        return try await metadata(for: workKey)
+    }
+
+    func metadata(for workKey: String) async throws -> LibraryWorkMetadata {
         if let cached = cachedWorkMetadata[workKey] {
             return cached
         }

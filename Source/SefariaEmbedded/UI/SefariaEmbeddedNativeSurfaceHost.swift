@@ -16,16 +16,16 @@ import UIKit
 import React
 #endif
 
-public struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
-    public let moduleName: String
-    public let initialProperties: [String: Any]?
+struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
+    let moduleName: String
+    let initialProperties: [String: Any]?
 
-    public init(moduleName: String = "ChavrusaSefariaRoot", initialProperties: [String: Any]? = nil) {
+    init(moduleName: String = "ChavrusaSefariaRoot", initialProperties: [String: Any]? = nil) {
         self.moduleName = moduleName
         self.initialProperties = initialProperties
     }
 
-    public func makeUIViewController(context: Context) -> UIViewController {
+    func makeUIViewController(context: Context) -> UIViewController {
         let vc = UIViewController()
         vc.view.backgroundColor = .clear
 
@@ -46,7 +46,7 @@ public struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
         return vc
     }
 
-    public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         #if canImport(React)
         if let rootView = uiViewController.view.subviews.first(where: { $0 is RCTRootView }) as? RCTRootView,
            let props = initialProperties {

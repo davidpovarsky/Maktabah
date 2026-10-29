@@ -30,8 +30,8 @@ import ReactAppDependencyProvider
 #endif
 
 @MainActor
-public final class SefariaExpoLifecycleAdapter {
-    public static let shared = SefariaExpoLifecycleAdapter()
+final class SefariaExpoLifecycleAdapter {
+    static let shared = SefariaExpoLifecycleAdapter()
 
     #if canImport(UIKit) && canImport(React)
     private var hostedRootView: UIView?
@@ -45,7 +45,7 @@ public final class SefariaExpoLifecycleAdapter {
     private init() {}
 
     #if canImport(UIKit)
-    public var isStarted: Bool {
+    var isStarted: Bool {
         #if canImport(React)
         return isHostActive
         #else
@@ -54,14 +54,14 @@ public final class SefariaExpoLifecycleAdapter {
     }
 
     @discardableResult
-    public func application(
+    func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         return true
     }
 
-    public func application(
+    func application(
         _ app: UIApplication,
         open url: URL,
         options: [UIApplication.OpenURLOptionsKey: Any] = [:]
@@ -73,7 +73,7 @@ public final class SefariaExpoLifecycleAdapter {
         #endif
     }
 
-    public func application(
+    func application(
         _ application: UIApplication,
         continue userActivity: NSUserActivity,
         restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
@@ -90,7 +90,7 @@ public final class SefariaExpoLifecycleAdapter {
     }
 
     /// Initializes and mounts the React Native / Expo Hermes runtime if not already active.
-    public func ensureHostStarted() {
+    func ensureHostStarted() {
         #if canImport(UIKit) && canImport(React)
         if isHostActive {
             return
@@ -132,7 +132,7 @@ public final class SefariaExpoLifecycleAdapter {
     }
 
     #if canImport(UIKit)
-    public func createSurfaceView(moduleName: String, initialProperties: [String: Any]? = nil) -> UIView {
+    func createSurfaceView(moduleName: String, initialProperties: [String: Any]? = nil) -> UIView {
         #if canImport(React)
         #if canImport(Expo)
         if let factory = self.reactNativeFactory as? ExpoReactNativeFactory {
@@ -159,9 +159,9 @@ public final class SefariaExpoLifecycleAdapter {
 
     #else
 
-    public var isStarted: Bool { true }
+    var isStarted: Bool { true }
 
-    public func ensureHostStarted() {
+    func ensureHostStarted() {
         // Portable host fallback
     }
 
