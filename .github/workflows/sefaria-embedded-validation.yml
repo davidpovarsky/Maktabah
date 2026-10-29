@@ -82,8 +82,9 @@ jobs:
 
       - name: Run Portable Swift Component Tests
         run: |
-          echo "=== Running 307+ Swift Component & RPC Contract Tests ==="
-          swift tools/test_chavrusa_text_components.swift
+          echo "=== Running 317 Swift Component & RPC Contract Tests ==="
+          chmod +x Scripts/run-chavrusa-component-tests.sh
+          bash Scripts/run-chavrusa-component-tests.sh
 
       - name: Setup Ruby and CocoaPods
         uses: ruby/setup-ruby@v1
