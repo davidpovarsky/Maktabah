@@ -58,17 +58,19 @@ target 'Maktabah-iOS' do
   ]
   $config = use_native_modules!(cli_config_command)
 
+  rn_path = File.join(upstream_dir, 'node_modules/react-native')
   use_react_native!(
-    :path => $config[:reactNativePath],
+    :path => rn_path,
     :production => production,
     :app_path => upstream_dir
   )
 end
 
 post_install do |installer|
+  rn_path = File.join(upstream_dir, 'node_modules/react-native')
   react_native_post_install(
     installer,
-    $config[:reactNativePath],
+    rn_path,
     :mac_catalyst_enabled => false
   )
 end
