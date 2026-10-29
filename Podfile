@@ -36,6 +36,9 @@ target 'Maktabah-iOS' do
   pod 'AppCheckCore', :modular_headers => true
 
   use_expo_modules!(
+    :projectRoot => upstream_dir,
+    :project_root => upstream_dir,
+    :searchPaths => [upstream_dir],
     :search_paths => [upstream_dir]
   )
 
