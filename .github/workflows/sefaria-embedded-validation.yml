@@ -208,35 +208,7 @@ jobs:
           set -euo pipefail
           echo "=== Discovering available iPad Simulator ==="
           xcrun simctl list runtimes
-          python3 -c '
-import json, subprocess
-res = subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "-j"])
-data = json.loads(res)
-ipad_udid = None
-for runtime, devices in data.get("devices", {}).items():
-    for d in devices:
-        if d.get("isAvailable") and "iPad" in d.get("name", ""):
-            ipad_udid = d.get("udid")
-            print(f"Selected iPad simulator: {d.get(\"name\")} ({ipad_udid}) on {runtime}")
-            break
-    if ipad_udid:
-        break
-if not ipad_udid:
-    for runtime, devices in data.get("devices", {}).items():
-        for d in devices:
-            if d.get("isAvailable"):
-                ipad_udid = d.get("udid")
-                print(f"Fallback selected simulator: {d.get(\"name\")} ({ipad_udid}) on {runtime}")
-                break
-        if ipad_udid:
-            break
-if ipad_udid:
-    with open("sim_udid.txt", "w") as f:
-        f.write(ipad_udid.strip())
-else:
-    print("::error::No available simulator found!")
-    exit(1)
-'
+          python3 Scripts/CI/select-ipad-simulator.py --out sim_udid.txt
           SIM_UDID=$(cat sim_udid.txt)
           echo "Booting simulator: ${SIM_UDID}"
           xcrun simctl boot "${SIM_UDID}" || true
