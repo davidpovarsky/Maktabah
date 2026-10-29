@@ -1675,6 +1675,38 @@ struct TestRunner {
             assertCondition(related.anchorRefs == ["Genesis 1:1"], "related anchorRefs matches exact segment")
         }
 
+        
+        // 30. Sefaria Capability Readiness & Granular Readiness States
+        print("\n--- 30. Testing Sefaria Capability Readiness & Granular States ---")
+        do {
+            var readiness = SefariaCapabilityReadiness()
+            assertCondition(!readiness.hostReady, "initial hostReady is false")
+            assertCondition(!readiness.catalogReady, "initial catalogReady is false")
+            assertCondition(!readiness.searchReady, "initial searchReady is false")
+            assertCondition(!readiness.packagesReady, "initial packagesReady is false")
+            assertCondition(!readiness.isFullyReady, "initial isFullyReady is false")
+
+            readiness.hostReady = true
+            assertCondition(!readiness.isFullyReady, "hostReady alone is not fully ready")
+
+            readiness.catalogReady = true
+            assertCondition(!readiness.isFullyReady, "catalogReady is not fully ready")
+
+            readiness.searchReady = true
+            assertCondition(!readiness.isFullyReady, "searchReady is not fully ready")
+
+            readiness.packagesReady = true
+            assertCondition(readiness.isFullyReady, "all capabilities true produces isFullyReady true")
+
+            let initializedReadiness = SefariaCapabilityReadiness(
+                hostReady: true,
+                catalogReady: true,
+                searchReady: true,
+                packagesReady: true
+            )
+            assertCondition(initializedReadiness.isFullyReady, "custom init preserves isFullyReady")
+        }
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

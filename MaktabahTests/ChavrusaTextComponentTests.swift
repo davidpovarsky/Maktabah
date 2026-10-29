@@ -652,4 +652,35 @@ struct ChavrusaTextComponentTests {
         #expect(related.heCollectiveTitle == "רש״י")
         #expect(related.anchorRefs == ["Genesis 1:1"])
     }
+
+    // MARK: - 15. Sefaria Capability Readiness & Granular States
+    @Test("SefariaRuntimeManager: Capability readiness and granular state transitions")
+    func testSefariaCapabilityReadiness() {
+        var readiness = SefariaCapabilityReadiness()
+        #expect(!readiness.hostReady)
+        #expect(!readiness.catalogReady)
+        #expect(!readiness.searchReady)
+        #expect(!readiness.packagesReady)
+        #expect(!readiness.isFullyReady)
+
+        readiness.hostReady = true
+        #expect(!readiness.isFullyReady)
+
+        readiness.catalogReady = true
+        #expect(!readiness.isFullyReady)
+
+        readiness.searchReady = true
+        #expect(!readiness.isFullyReady)
+
+        readiness.packagesReady = true
+        #expect(readiness.isFullyReady)
+
+        let initialized = SefariaCapabilityReadiness(
+            hostReady: true,
+            catalogReady: true,
+            searchReady: true,
+            packagesReady: true
+        )
+        #expect(initialized.isFullyReady)
+    }
 }

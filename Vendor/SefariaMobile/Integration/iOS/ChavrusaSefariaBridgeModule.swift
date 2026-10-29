@@ -87,4 +87,18 @@ public final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport {
             await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)
         }
     }
+
+    #if canImport(React)
+    @objc public static func requiresMainQueueSetup() -> Bool {
+        return true
+    }
+    #endif
 }
+
+#if canImport(React)
+extension ChavrusaSefariaBridgeModule: RCTBridgeModule {
+    public static func moduleName() -> String! {
+        return "ChavrusaSefariaBridgeModule"
+    }
+}
+#endif

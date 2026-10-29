@@ -57,7 +57,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
     // MARK: - OfflineLibraryProviding
 
     public func packages(forceRefresh: Bool) async throws -> [OfflinePackage] {
-        try await SefariaRuntimeManager.shared.ensureReady()
+        try await SefariaRuntimeManager.shared.ensurePackagesReady()
         let response = try await SefariaJSRPCBridge.shared.call(method: "downloads.packages")
         guard response.isSuccess else {
             throw response.error ?? SefariaRPCError(code: "PACKAGES_FETCH_FAILED", message: "Failed to fetch packages")
@@ -66,7 +66,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
     }
 
     public func installedPackageIDs() async -> Set<String> {
-        guard (try? await SefariaRuntimeManager.shared.ensureReady()) != nil else {
+        guard (try? await SefariaRuntimeManager.shared.ensurePackagesReady()) != nil else {
             return []
         }
         guard let response = try? await SefariaJSRPCBridge.shared.call(method: "downloads.installed"),
@@ -78,7 +78,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
     }
 
     public func install(packageIDs: Set<String>, progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
-        try await SefariaRuntimeManager.shared.ensureReady()
+        try await SefariaRuntimeManager.shared.ensurePackagesReady()
         for packageID in packageIDs {
             activeProgressHandlers[packageID] = progress
             let params = ["packageName": packageID, "networkSetting": "wifiOnly"]
@@ -112,7 +112,7 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
     }
 
     public func remove(packageIDs: Set<String>) async throws {
-        try await SefariaRuntimeManager.shared.ensureReady()
+        try await SefariaRuntimeManager.shared.ensurePackagesReady()
         let params = ["packageTitles": Array(packageIDs)]
         let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
         let response = try await SefariaJSRPCBridge.shared.call(method: "downloads.remove", paramsJson: paramsJson)
@@ -122,18 +122,24 @@ public actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWor
     }
 
     public func availableUpdates() async throws -> OfflineUpdateSummary {
-        try await SefariaRuntimeManager.shared.ensureReady()
+        try await SefariaRuntimeManager.shared.ensurePackagesReady()
         let response = try await SefariaJSRPCBridge.shared.call(method: "updates.check")
         guard response.isSuccess,
               let resultJson = response.resultJson,
-              let data = resultJson.data(using: .utf8),
-              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+              let data = resultJson.data(using: .utf8) else {
             return OfflineUpdateSummary(changedWorkCount: 0, affectedPackageIDs: [])
         }
 
-        let count = (json["count"] as? Int) ?? (json["hasUpdates"] as? Bool == true ? 1 : 0)
-        let packageIDs = (json["packageIDs"] as? [String]) ?? []
-        return OfflineUpdateSummary(changedWorkCount: count, affectedPackageIDs: Set(packageIDs))
+        if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+            let count = (json["count"] as? Int) ?? (json["hasUpdates"] as? Bool == true ? 1 : 0)
+            let packageIDs = (json["packageIDs"] as? [String]) ?? []
+            return OfflineUpdateSummary(changedWorkCount: count, affectedPackageIDs: Set(packageIDs))
+        } else if let array = try? JSONSerialization.jsonObject(with: data) as? [Any],
+                  let allBooks = array.first as? [Any] {
+            return OfflineUpdateSummary(changedWorkCount: allBooks.count, affectedPackageIDs: [])
+        }
+
+        return OfflineUpdateSummary(changedWorkCount: 0, affectedPackageIDs: [])
     }
 
     // MARK: - OfflineWorkProviding

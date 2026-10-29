@@ -14,7 +14,7 @@ public final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendabl
     private init() {}
 
     public func search(request: LibrarySearchRequest) async throws -> LibrarySearchPage {
-        try await SefariaRuntimeManager.shared.ensureReady()
+        try await SefariaRuntimeManager.shared.ensureSearchReady()
 
         let params: [String: Any] = [
             "query": request.query,
@@ -42,7 +42,14 @@ public final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendabl
         }
 
         let rawHits = (json["hits"] as? [[String: Any]]) ?? []
-        let total = (json["total"] as? Int) ?? rawHits.count
+        let total: Int
+        if let totalInt = json["total"] as? Int {
+            total = totalInt
+        } else if let totalDict = json["total"] as? [String: Any], let val = totalDict["value"] as? Int {
+            total = val
+        } else {
+            total = rawHits.count
+        }
         let start = (json["start"] as? Int) ?? request.offset
 
         let hits: [LibrarySearchHit] = rawHits.compactMap { hitDict in

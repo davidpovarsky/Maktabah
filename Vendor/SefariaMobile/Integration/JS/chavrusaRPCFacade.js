@@ -185,15 +185,38 @@ export class ChavrusaRPCFacade {
         }
 
         case 'downloads.remove': {
-          if (params.bookTitles && params.bookTitles.length > 0) {
-            await DownloadControl.deleteBooks(params.bookTitles);
-          } else {
-            const toDelete = DownloadControl.calculateBooksToDelete();
-            if (toDelete && toDelete.length > 0) {
-              await DownloadControl.deleteBooks(toDelete);
+          let booksToDelete = [];
+          if (params.packageTitles && Array.isArray(params.packageTitles)) {
+            for (const pkgTitle of params.packageTitles) {
+              const pkg = DownloadControl.PackagesState?.[pkgTitle];
+              if (pkg && typeof pkg.unclick === 'function') {
+                try {
+                  const toDel = await pkg.unclick();
+                  if (Array.isArray(toDel)) {
+                    booksToDelete.push(...toDel);
+                  }
+                } catch (e) {
+                  // Ignore if disabled/superseded
+                }
+              }
             }
           }
-          result = { removed: true };
+          if (params.bookTitles && Array.isArray(params.bookTitles)) {
+            booksToDelete.push(...params.bookTitles);
+          }
+          if (booksToDelete.length === 0) {
+            const calculated = DownloadControl.calculateBooksToDelete
+              ? DownloadControl.calculateBooksToDelete(DownloadControl.BooksState)
+              : [];
+            if (Array.isArray(calculated)) {
+              booksToDelete.push(...calculated);
+            }
+          }
+          const uniqueBooks = Array.from(new Set(booksToDelete));
+          if (uniqueBooks.length > 0) {
+            await DownloadControl.deleteBooks(uniqueBooks);
+          }
+          result = { removed: true, booksDeleted: uniqueBooks };
           break;
         }
 
@@ -206,7 +229,16 @@ export class ChavrusaRPCFacade {
         }
 
         case 'updates.check': {
-          result = await DownloadControl.checkUpdatesFromServer();
+          const updateData = await DownloadControl.checkUpdatesFromServer();
+          const allBooksToDownload = Array.isArray(updateData) ? (updateData[0] || []) : [];
+          const notDownloaded = Array.isArray(updateData) ? (updateData[1] || []) : [];
+          result = {
+            allBooksToDownload,
+            booksNotDownloaded: notDownloaded,
+            hasUpdates: allBooksToDownload.length > 0,
+            count: allBooksToDownload.length,
+            packageIDs: [],
+          };
           break;
         }
 
