@@ -23,7 +23,7 @@ concurrency:
 jobs:
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
-    runs-on: macos-14
+    runs-on: xcode-27
     timeout-minutes: 120
 
     steps:
