@@ -97,6 +97,7 @@ jobs:
         run: |
           mkdir -p build/jsbundle
           cd Vendor/SefariaMobile/Upstream
+          export NODE_PATH="${PWD}/node_modules"
           npx react-native bundle \
             --config ../Integration/metro.config.embedded.js \
             --platform ios \
