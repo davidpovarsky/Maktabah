@@ -143,8 +143,9 @@ struct MaktabahApp: App {
     }
 }
 
+#if canImport(Expo)
 @MainActor
-class AppDelegate: MaktabahAppDelegateBase, UIApplicationDelegate {
+class AppDelegate: MaktabahAppDelegateBase {
     override init() {
         super.init()
         MaktabahApp.sharedAppDelegate = self
@@ -214,7 +215,6 @@ class AppDelegate: MaktabahAppDelegateBase, UIApplicationDelegate {
         // Silently tolerate unexpected KVC mutations
     }
 
-    #if canImport(Expo)
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -242,36 +242,14 @@ class AppDelegate: MaktabahAppDelegateBase, UIApplicationDelegate {
         let adapterHandled = SefariaExpoLifecycleAdapter.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
         return superHandled || adapterHandled
     }
-    #else
-    func application(
+
+    override func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-    ) -> Bool {
-        SefariaExpoLifecycleAdapter.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        if AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable {
-            application.registerForRemoteNotifications()
-        }
-        return true
-    }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return SefariaExpoLifecycleAdapter.shared.application(app, open: url, options: options)
-    }
-
-    func application(
-        _ application: UIApplication,
-        continue userActivity: NSUserActivity,
-        restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
-    ) -> Bool {
-        return SefariaExpoLifecycleAdapter.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
-    }
-    #endif
-
-    func application(_ application: UIApplication,
-                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
+    ) {
         guard AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable else {
-            completionHandler(.noData)
+            super.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
             return
         }
         CloudKitSyncManager.shared.fetchChanges()
@@ -280,16 +258,41 @@ class AppDelegate: MaktabahAppDelegateBase, UIApplicationDelegate {
             completionHandler(updated ? .newData : .noData)
         }
     }
-    func applicationDidEnterBackground(_ application: UIApplication) {
+
+    override func applicationDidEnterBackground(_ application: UIApplication) {
+        super.applicationDidEnterBackground(application)
         OtzariaTantivySearchRepository.shared.closeAllEngines()
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
+    override func applicationWillTerminate(_ application: UIApplication) {
+        super.applicationWillTerminate(application)
         OtzariaTantivySearchRepository.shared.closeAllEngines()
         WidgetUpdateCoordinator.shared.flushPendingUpdatesTask(forceCloudKit: true)
         CloudKitCoreManager.shared.syncWorker()
     }
 }
+#else
+@MainActor
+class AppDelegate: NSObject, UIApplicationDelegate {
+    override init() {
+        super.init()
+        MaktabahApp.sharedAppDelegate = self
+        SefariaExpoLifecycleAdapter.installKVCResilience()
+    }
+
+    @objc var window: UIWindow? {
+        get { nil }
+        set {}
+    }
+
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        return true
+    }
+}
+#endif
 
 extension View {
     @ViewBuilder
