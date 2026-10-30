@@ -122,7 +122,7 @@ final class SefariaExpoLifecycleAdapter {
         self.hostedWindow = headlessWindow
 
         factory.startReactNative(
-            withModuleName: "ReaderApp",
+            withModuleName: "ChavrusaSefariaRoot",
             in: headlessWindow,
             launchOptions: nil
         )
