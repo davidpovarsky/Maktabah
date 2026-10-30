@@ -110,9 +110,8 @@ final class SefariaExpoLifecycleAdapter {
         self.reactNativeFactory = factory
 
         // Bind factory to app delegate if conforming to ExpoAppDelegate
-        if let appDelegate = UIApplication.shared.delegate as? ExpoAppDelegate {
-            appDelegate.bindReactNativeFactory(factory)
-        }
+        let actualAppDelegate = (UIApplication.shared.delegate as? ExpoAppDelegate) ?? (MaktabahApp.sharedAppDelegate as? ExpoAppDelegate)
+        actualAppDelegate?.bindReactNativeFactory(factory)
 
         // Mount a persistent headless background UIWindow to bootstrap the Hermes
         // engine, global context, and JS RPC module without disrupting Maktabah's

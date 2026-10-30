@@ -142,6 +142,16 @@ struct MaktabahApp: App {
     }
 }
 
+#if canImport(UIKit)
+extension NSObject {
+    /// Explicitly exposed property to satisfy Expo's `value(forKey: "_expoAppDelegate")`
+    /// lookup on `UIApplication.shared.delegate` without broad undefined-key swizzling.
+    @objc var _expoAppDelegate: Any? {
+        return MaktabahApp.sharedAppDelegate
+    }
+}
+#endif
+
 #if canImport(Expo)
 @MainActor
 class AppDelegate: MaktabahAppDelegateBase {
@@ -165,12 +175,6 @@ class AppDelegate: MaktabahAppDelegateBase {
             SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue
             #endif
         }
-    }
-
-    /// Explicitly exposed property to satisfy Expo's `value(forKey: "_expoAppDelegate")`
-    /// fallback without triggering unhandled KVC undefined key exceptions.
-    @objc var _expoAppDelegate: Any? {
-        return self
     }
 
     @objc var reactNativeFactory: Any? {
