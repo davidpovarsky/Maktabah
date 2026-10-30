@@ -472,11 +472,11 @@ private extension iOSMainView {
             report.stages["runtimeInitialize"] = .init(passed: true, details: "SefariaRuntimeManager initialized cleanly")
 
             // Stage 5: catalog.toc asserting Genesis/Bereshit
-            let roots = try await SefariaEmbeddedCatalogAdapter.shared.rootCategories()
+            let roots = try await SefariaEmbeddedCatalogAdapter.shared.rootNodes()
             guard !roots.isEmpty else {
                 throw SefariaRPCError(code: "CATALOG_EMPTY", message: "Catalog returned zero root categories")
             }
-            report.stages["catalogTOC"] = .init(passed: true, details: "Catalog loaded \(roots.count) root categories")
+            report.stages["catalogTOC"] = .init(passed: true, details: "Catalog loaded \(roots.count) root nodes")
 
             // Stage 6: text.load Genesis 1:1 asserting Hebrew בראשית
             let genLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
