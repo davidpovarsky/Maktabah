@@ -111,6 +111,12 @@ jobs:
           cp Source/GoogleService-Info.plist "${PWD}/GoogleService-Info.plist" || true
           cp Source/GoogleService-Info.plist "${PWD}/Vendor/SefariaMobile/Upstream/ios/GoogleService-Info.plist" || true
 
+          echo "PROJECT_ROOT=${PWD}/Vendor/SefariaMobile/Upstream" >> $GITHUB_ENV
+          echo "NODE_PATH=${PWD}/Vendor/SefariaMobile/Upstream/node_modules" >> $GITHUB_ENV
+          echo "RCT_NO_LAUNCH_PACKAGER=1" >> $GITHUB_ENV
+          echo "SKIP_BUNDLING=1" >> $GITHUB_ENV
+          echo "GOOGLE_SERVICES_FILE=${PWD}/Source/GoogleService-Info.plist" >> $GITHUB_ENV
+
           echo "=== Running pod install ==="
           export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
           pod install
@@ -242,6 +248,11 @@ jobs:
         run: |
           set -euo pipefail
           echo "=== Running Unit Tests on iPad Simulator ==="
+          export PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
+          export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
+          export RCT_NO_LAUNCH_PACKAGER=1
+          export SKIP_BUNDLING=1
+          export GOOGLE_SERVICES_FILE="${PWD}/Source/GoogleService-Info.plist"
           if [ -f sim_udid.txt ]; then
             SIM_UDID=$(cat sim_udid.txt)
             DESTINATION="platform=iOS Simulator,id=${SIM_UDID}"
@@ -262,7 +273,8 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
             ENABLE_USER_SCRIPT_SANDBOXING=NO \
-            RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1
+            RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 \
+            PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
 
       - name: Upload Build & Verification Manifests
         if: always()
