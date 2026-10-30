@@ -134,24 +134,21 @@ struct MaktabahApp: App {
     }
 }
 
+@MainActor
 class AppDelegate: NSObject, UIApplicationDelegate {
     // MARK: - Expo & React Native Host Delegation & KVC Resilience
 
     @objc var window: UIWindow? {
         get {
             #if canImport(UIKit)
-            MainActor.assumeIsolated {
-                SefariaExpoLifecycleAdapter.shared.hostedWindow
-            }
+            return SefariaExpoLifecycleAdapter.shared.hostedWindow
             #else
             nil
             #endif
         }
         set {
             #if canImport(UIKit)
-            MainActor.assumeIsolated {
-                SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue
-            }
+            SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue
             #endif
         }
     }
@@ -159,9 +156,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     @objc var reactNativeFactory: Any? {
         get {
             #if canImport(UIKit)
-            MainActor.assumeIsolated {
-                SefariaExpoLifecycleAdapter.shared.reactNativeFactory
-            }
+            return SefariaExpoLifecycleAdapter.shared.reactNativeFactory
             #else
             nil
             #endif
@@ -172,9 +167,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     @objc var reactNativeDelegate: Any? {
         get {
             #if canImport(UIKit)
-            MainActor.assumeIsolated {
-                SefariaExpoLifecycleAdapter.shared.reactNativeDelegate
-            }
+            return SefariaExpoLifecycleAdapter.shared.reactNativeDelegate
             #else
             nil
             #endif
@@ -192,12 +185,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         set {}
     }
 
-    override func value(forUndefinedKey key: String) -> Any? {
+    override nonisolated func value(forUndefinedKey key: String) -> Any? {
         // Silently tolerate unexpected KVC inspection from Expo/React Native subsystems
         return nil
     }
 
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override nonisolated func setValue(_ value: Any?, forUndefinedKey key: String) {
         // Silently tolerate unexpected KVC mutations
     }
     func application(

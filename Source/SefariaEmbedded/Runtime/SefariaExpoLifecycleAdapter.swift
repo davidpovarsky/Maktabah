@@ -152,17 +152,18 @@ final class SefariaExpoLifecycleAdapter {
 }
 
 #if canImport(UIKit) && canImport(React) && canImport(Expo)
+@MainActor
 private final class ChavrusaReactNativeDelegate: ExpoReactNativeFactoryDelegate {
     @objc var window: UIWindow? {
         get { SefariaExpoLifecycleAdapter.shared.hostedWindow }
         set { SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue }
     }
 
-    override func value(forUndefinedKey key: String) -> Any? {
+    override nonisolated func value(forUndefinedKey key: String) -> Any? {
         return nil
     }
 
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override nonisolated func setValue(_ value: Any?, forUndefinedKey key: String) {
         // Silently tolerate undefined keys from Expo/React Native subsystems
     }
 
