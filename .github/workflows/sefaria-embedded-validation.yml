@@ -173,7 +173,7 @@ jobs:
           cp Source/GoogleService-Info.plist "${PWD}/Vendor/SefariaMobile/Upstream/ios/GoogleService-Info.plist" || true
           JOBS="$(sysctl -n hw.ncpu)"
           [ "$JOBS" -le 8 ] || JOBS=8
-          xcodebuild build \
+          xcodebuild build-for-testing \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -configuration Debug \
@@ -183,7 +183,7 @@ jobs:
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
             -parallelizeTargets -jobs "$JOBS" -showBuildTimingSummary \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=YES \
             COMPILER_INDEX_STORE_ENABLE=NO \
             ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
             ENABLE_USER_SCRIPT_SANDBOXING=NO \
@@ -206,6 +206,12 @@ jobs:
               "${BUILT_APP}" \
               --require-bundle \
               --manifest-out build/sefaria-app-bundle-manifest.json
+            echo "Ad-hoc signing built app and test runner..."
+            codesign --force --deep --sign - "${BUILT_APP}"
+            RUNNER="build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah-iOSUITests-Runner.app"
+            if [ -d "${RUNNER}" ]; then
+              codesign --force --deep --sign - "${RUNNER}"
+            fi
           else
             echo "::error::Maktabah.app not found at expected path!"
             exit 1
@@ -244,6 +250,9 @@ jobs:
           echo "Collecting simulator process logs..."
           xcrun simctl spawn "${SIM_UDID}" log show --predicate 'process == "Maktabah"' --style compact --last 2m > build/artifacts/simulator-app.log || true
 
+          echo "Terminating standalone launch before running test runner..."
+          xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
+
       - name: Run Xcode Simulator Unit Tests
         run: |
           set -euo pipefail
@@ -260,21 +269,30 @@ jobs:
             DESTINATION="platform=iOS Simulator,name=iPad (10th generation)"
           fi
           echo "Testing on destination: ${DESTINATION}"
-          xcodebuild test \
+          TEST_EXIT=0
+          xcodebuild test-without-building \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -destination "${DESTINATION}" \
             -derivedDataPath build/DerivedData \
-            -clonedSourcePackagesDirPath build/SourcePackages \
-            -disableAutomaticPackageResolution \
             -only-testing:Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests \
             -resultBundlePath build/artifacts/result.xcresult \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
-            ENABLE_USER_SCRIPT_SANDBOXING=NO \
-            RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 \
-            PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
+            2>&1 | tee build/artifacts/test-simulator.log || TEST_EXIT=$?
+
+          if [ "$TEST_EXIT" -ne 0 ]; then
+            echo "=== Simulator Crash Reports ==="
+            ls -la ~/Library/Logs/DiagnosticReports/ || true
+            for f in ~/Library/Logs/DiagnosticReports/*; do
+              [ -f "$f" ] || continue
+              echo "--- $f ---"
+              head -n 60 "$f"
+            done
+            echo "=== Simulator App System Logs ==="
+            if [ -n "${SIM_UDID:-}" ]; then
+              xcrun simctl spawn "${SIM_UDID}" log show --predicate 'process == "Maktabah" OR process == "Maktabah-iOSUITests-Runner"' --style syslog --last 5m | tail -n 100 || true
+            fi
+            exit "$TEST_EXIT"
+          fi
 
       - name: Upload Build & Verification Manifests
         if: always()
@@ -287,4 +305,5 @@ jobs:
             build/jsbundle/main.jsbundle
             build/artifacts/simulator-launch.png
             build/artifacts/simulator-app.log
+            build/artifacts/test-simulator.log
             build/artifacts/result.xcresult

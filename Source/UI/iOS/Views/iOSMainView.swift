@@ -490,7 +490,10 @@ private extension iOSMainView {
     @MainActor
     func runBackendSwitchSnapshotRegression() async -> (succeeded: Bool, failureDetail: String?) {
         let model = navigationManager.libraryViewModel
-        for backend in [BackendID.otzaria, .sefaria, .otzaria, .sefaria] {
+        let backendsToTest: [BackendID] = OtzariaMaktabahBridge.shared.isEnabled
+            ? [.otzaria, .sefaria, .sefariaEmbedded, .sefaria]
+            : [.sefaria, .sefariaEmbedded, .sefaria, .sefariaEmbedded]
+        for backend in backendsToTest {
             BackendCoordinator.shared.commit(backend)
             let taskToAwait = model.reloadTask.withLock { $0 }
             if let taskToAwait {
