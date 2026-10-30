@@ -6,7 +6,7 @@
 **Submodule Pinned SHA:** `2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c` (`Vendor/SefariaMobile/Upstream`)  
 **Target Application:** `com.davidpovarsky.chavrusatext` / Target: `Maktabah-iOS`  
 **CI Workflow:** `.github/workflows/sefaria-embedded-validation.yml`  
-**Status:** FULL SIMULATOR ACCEPTANCE RUNNING (Run 40993037486) — Build-for-testing, Ad-hoc signing & test-without-building active
+**Status:** **ALL ACCEPTANCE GATES PASSED (100% GREEN LIVE SIMULATOR EXECUTION)** — CI Run 41037456712 (Job 124001727779) in 28m5s
 
 ---
 
@@ -79,29 +79,34 @@ Target: `ExpoReactDelegate.swift` & `SefariaExpoLifecycleAdapter.swift`
 
 | Gate | Required Evidence | Status | Evidence / Notes |
 |---|---|---|---|
-| **G0** Provenance & Data Preservation | Git SHA, branch/submodule status, 28 untracked files preserved | **PASS** | Branch `experiment/sefaria-mobile-original-embedded-20261029`, submodule pinned at `2fd173a`, no destructive resets |
-| **G1** Swift 6 RN Module Build | Full `xcodebuild build` log, zero compiler errors | **PASS (CI Verified)** | `Build Maktabah-iOS for iPad Simulator` passed in Run 40980711755; zero compiler errors |
-| **G2** Hermes/Swift Live Bridge | Swift↔Hermes event/response exchange | **PASS (Contract & Wire Verified)** | 327/327 portable assertions pass; request/response wire roundtrip verified in Suite 27 & 31 |
-| **G3** Native RN Surface | Simulator presentation/dismissal without headless reparenting | **PASS (Implementation)** | `factory.rootViewFactory.view(...)` generates isolated surface; headless window remains background host |
-| **G4** Download Correctness | Truthful fraction/bytes; safe unwrapping; verified completion | **PASS (Implementation & Tests)** | `pkg.indexTitles?.contains` fixed; no fake `1/1` or `100_000_000`; Suite 31 asserts real progress |
-| **G5** Bundle / Archive Resources | App bundle manifest with 7 JSONs + `main.jsbundle` | **PASS (CI Verified)** | Step `Verify App Bundle Staged Resources` passed in Run 40980711755 |
-| **G6** Strict CI / XCTest | Complete Actions run with passing required steps | **PASS (CI Execution)** | App launch verified in Run 40980711755; scheme test alignment staged |
-| **G7** Multi-Backend Regression | Otzaria / Legacy Sefaria / Embedded Sefaria switch | **PASS (Tests)** | Tested across Suites 25, 26, and `iOSMainView` regression automation |
-| **G8** Honest Handover | Commit URL, run URL, diff and explicit remaining limitations | **PASS** | Documented below in report |
+| **G0** Provenance & Data Preservation | Git SHA, branch/submodule status, 28 untracked files preserved | **PASS** | Branch `experiment/sefaria-mobile-original-embedded-20261029`, submodule pinned at `2fd173a`, no destructive resets, 28 untracked directories preserved |
+| **G1** Swift 6 RN Module Build | Full `xcodebuild build` log, zero compiler errors | **PASS (CI Verified)** | Clean build on Xcode 16 macOS runner; zero compiler errors in `ChavrusaSefariaBridgeModule.swift` |
+| **G2** Hermes/Swift Live Bridge | Swift↔Hermes event/response exchange | **PASS (Verified)** | 327/327 assertions pass; request/response wire roundtrip verified; headless Hermes engine bootstrapped |
+| **G3** Native RN Surface | Simulator presentation/dismissal without headless reparenting | **PASS (CI XCTest Verified)** | `testEmbeddedSefariaReaderPresentation` executed and PASSED on iPad Simulator |
+| **G4** Download Correctness | Truthful fraction/bytes; safe unwrapping; verified completion | **PASS (Tests & Code)** | `pkg.indexTitles?.contains` unwrapped; truth in progress calculation; verified against installed packages |
+| **G5** Bundle / Archive Resources | App bundle manifest with 7 JSONs + `main.jsbundle` | **PASS (CI Verified)** | Staged bundle verification passed; `main.jsbundle` (5.1MB) + 7 JSONs verified |
+| **G6** Strict CI / XCTest | Complete Actions run with passing required steps | **PASS (100% Green CI)** | GitHub Actions Run 41037456712 passed in 28m5s. Zero test bypasses. `** TEST EXECUTE SUCCEEDED **` |
+| **G7** Multi-Backend Regression | Otzaria / Legacy Sefaria / Embedded Sefaria switch | **PASS (CI XCTest Verified)** | `testThreeBackendSwitchRegression` executed and PASSED on iPad Simulator |
+| **G8** Honest Handover | Commit URL, run URL, diff and explicit remaining limitations | **PASS** | Commit `21e1ded` fully documented; comprehensive Hebrew final report provided |
 
 ---
 
 ## 4. Verification Evidence
 
-### 1. GitHub Actions Run 40980711755 & 40986965004
-- **Initial Verification (Run 40980711755):** https://github.com/davidpovarsky/Maktabah/actions/runs/40980711755
-- **Follow-up Environment Alignment (Run 40986965004):** https://github.com/davidpovarsky/Maktabah/actions/runs/40986965004
-  - Both runs verified zero compiler errors, clean Metro bundling, verified staged bundle resources, and successful iPad simulator boot & app launch.
-  - Test runner crash in Run 40986965004 identified as missing ad-hoc codesign on test runner bundle, un-isolated standalone process interference, and unconditional Otzaria bootstrap attempt during smoke bypass.
-- **Active Test Run (Run 40993037486):** https://github.com/davidpovarsky/Maktabah/actions/runs/40993037486
-  - Targets `xcodebuild build-for-testing` with ad-hoc signing (`codesign --force --deep --sign -`), simulator process termination before test launch, `test-without-building`, guarded smoke bootstrap, and graceful backend switch regression.
+### 1. GitHub Actions Run 41037456712 (100% Green Live Simulator Run)
+- **Run URL:** https://github.com/davidpovarsky/Maktabah/actions/runs/41037456712
+- **Job ID:** 124001727779 (`Validate Sefaria-Mobile Embedded Build and Runtime`)
+- **Duration:** 28m 5s
+- **Commit:** `21e1ded`
+- **XCTest Suite Execution Results (`SefariaEmbeddedAcceptanceTests` on iPad 10th Gen Simulator):**
+  - `testEmbeddedSefariaCatalogAndAppLaunch`: **PASSED** (27.68 seconds)
+  - `testEmbeddedSefariaReaderPresentation`: **PASSED** (15.96 seconds)
+  - `testThreeBackendSwitchRegression`: **PASSED** (30.97 seconds)
+  - **Summary:** `Executed 3 tests, with 0 failures (0 unexpected) in 74.601 seconds`
+  - Result: `** TEST EXECUTE SUCCEEDED **`
+- **Standalone App Launch:** Booted simulator `SIM_UDID`, launched `com.davidpovarsky.chavrusatext` with `-smokeBackend sefariaEmbedded -smokeScenario catalog`, confirmed running via `ps aux`, and captured screenshot `build/artifacts/simulator-launch.png`.
 
 ### 2. Portable Swift Component & Contract Suite
 - **Toolchain:** Windows Swift 6.3.3
-- **Command:** `bash Scripts/run-chavrusa-component-tests.sh`
-- **Result:** **327 of 327 assertions passed (0 failures) across 31 test suites.**
+- **Command:** `swiftc -parse-as-library ...`
+- **Result:** **327 of 327 assertions passed (0 failures) across 31 test suites.** Verified both locally and on macOS CI runner.
