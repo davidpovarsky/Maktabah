@@ -6,7 +6,7 @@
 **Submodule Pinned SHA:** `2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c` (`Vendor/SefariaMobile/Upstream`)  
 **Target Application:** `com.davidpovarsky.chavrusatext` / Target: `Maktabah-iOS`  
 **CI Workflow:** `.github/workflows/sefaria-embedded-validation.yml`  
-**Status:** COMPILATION, BUNDLE & SIMULATOR LAUNCH VERIFIED (Run 40980711755) — XCTest Scheme Aligned
+**Status:** FULL SIMULATOR ACCEPTANCE RUNNING (Run 40993037486) — Build-for-testing, Ad-hoc signing & test-without-building active
 
 ---
 
@@ -78,22 +78,13 @@ Target: `Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift`
 
 ## 4. Verification Evidence
 
-### 1. GitHub Actions Run 40980711755
-- **URL:** https://github.com/davidpovarsky/Maktabah/actions/runs/40980711755
-- **Job ID:** 123819772555
-- **Steps Verified:**
-  - `Checkout Repository with Submodules`: PASS
-  - `Setup Node.js 22`: PASS
-  - `Verify Upstream Submodule State`: PASS
-  - `Install Sefaria-Mobile JS Dependencies`: PASS
-  - `Build Metro JS Production Bundle`: PASS (main.jsbundle generated)
-  - `Verify Upstream Sefaria Resources`: PASS (7 JSON files verified)
-  - `Run Portable Swift Component Tests`: PASS (327 assertions)
-  - `Install CocoaPods Dependencies`: PASS
-  - `Restore and Verify Search XCFrameworks and Swift Packages`: PASS
-  - `Build Maktabah-iOS for iPad Simulator`: PASS
-  - `Verify App Bundle Staged Resources`: PASS
-  - `Boot iPad Simulator and Verify App Launch`: PASS (launched com.davidpovarsky.chavrusatext with sefariaEmbedded)
+### 1. GitHub Actions Run 40980711755 & 40986965004
+- **Initial Verification (Run 40980711755):** https://github.com/davidpovarsky/Maktabah/actions/runs/40980711755
+- **Follow-up Environment Alignment (Run 40986965004):** https://github.com/davidpovarsky/Maktabah/actions/runs/40986965004
+  - Both runs verified zero compiler errors, clean Metro bundling, verified staged bundle resources, and successful iPad simulator boot & app launch.
+  - Test runner crash in Run 40986965004 identified as missing ad-hoc codesign on test runner bundle, un-isolated standalone process interference, and unconditional Otzaria bootstrap attempt during smoke bypass.
+- **Active Test Run (Run 40993037486):** https://github.com/davidpovarsky/Maktabah/actions/runs/40993037486
+  - Targets `xcodebuild build-for-testing` with ad-hoc signing (`codesign --force --deep --sign -`), simulator process termination before test launch, `test-without-building`, guarded smoke bootstrap, and graceful backend switch regression.
 
 ### 2. Portable Swift Component & Contract Suite
 - **Toolchain:** Windows Swift 6.3.3
