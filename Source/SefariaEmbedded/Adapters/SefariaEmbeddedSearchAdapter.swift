@@ -71,9 +71,10 @@ final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
             let version = hitDict["version"] as? String
             let language = hitDict["language"] as? String
 
+            let workKey = (hitDict["workKey"] as? String) ?? (hitDict["title"] as? String) ?? (ref.components(separatedBy: " ").first ?? ref)
             let locator = TextLocator(
                 backend: .sefariaEmbedded,
-                workKey: ref,
+                workKey: workKey,
                 position: .canonicalRef(ref)
             )
 

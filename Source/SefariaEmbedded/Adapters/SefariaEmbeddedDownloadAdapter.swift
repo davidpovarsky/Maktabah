@@ -45,15 +45,14 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         let fraction = (json["fraction"] as? Double)
             ?? (totalBytes > 0 ? Double(completedBytes) / Double(totalBytes) : 0.0)
 
-        let targetPackageID = packageTitle ?? activeProgressHandlers.keys.first
-
-        guard let pkgID = targetPackageID, let handler = activeProgressHandlers[pkgID] else {
+        guard let packageTitle = json["packageTitle"] as? String,
+              let handler = activeProgressHandlers[packageTitle] else {
             return
         }
 
         let update = OfflineInstallProgress(
-            phase: fraction >= 1.0 ? .finished : .downloading,
-            packageID: pkgID,
+            phase: .downloading,
+            packageID: packageTitle,
             completedBytes: completedBytes,
             totalBytes: totalBytes > 0 ? totalBytes : 0
         )
@@ -119,7 +118,7 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
 
             // Verify package was actually recorded as installed
             let installedIDs = await installedPackageIDs()
-            let isVerified = installedIDs.contains(packageID) || packageID == "COMPLETE LIBRARY"
+            let isVerified = installedIDs.contains(packageID)
             guard isVerified else {
                 throw SefariaRPCError(
                     code: "INSTALL_VERIFICATION_FAILED",
@@ -178,6 +177,9 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         }
 
         progress(OfflineInstallProgress(phase: .downloading, packageID: "Update", completedBytes: 0, totalBytes: 0))
+        activeProgressHandlers["Update"] = progress
+        defer { activeProgressHandlers.removeValue(forKey: "Update") }
+
         let response = try await SefariaJSRPCBridge.shared.call(
             method: "updates.download",
             paramsJson: nil,
@@ -226,9 +228,8 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
             }
         }
 
-        if packagesToInstall.isEmpty {
-            // If works are not in a specific sub-package, try COMPLETE LIBRARY
-            packagesToInstall.insert("COMPLETE LIBRARY")
+        guard !packagesToInstall.isEmpty else {
+            throw LibraryBackendError.invalidResponse("No package found containing requested works: \(workKeys.joined(separator: ", "))")
         }
 
         try await install(packageIDs: packagesToInstall, progress: progress)

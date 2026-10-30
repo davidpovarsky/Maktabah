@@ -867,6 +867,8 @@ jobs:
             --team-id "$TEAM_ID" \
             --bundle-id "$APP_BUNDLE_ID" \
             --container-id "iCloud.com.davidpovarsky.chavrusatext"
+          echo "Verifying Sefaria-Mobile embedded assets in xcarchive..."
+          python3 Scripts/verify-sefaria-bundle-resources.py "$app" --require-bundle --manifest-out "$BUILD_DIR/logs/sefaria-archive-manifest.json"
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -1024,6 +1026,9 @@ jobs:
             echo "::error::IPA unexpectedly contains runtime database/search data"
             exit 1
           fi
+
+          echo "Verifying Sefaria-Mobile embedded assets in exported IPA..."
+          python3 Scripts/verify-sefaria-bundle-resources.py "$app" --require-bundle --manifest-out "$BUILD_DIR/logs/sefaria-ipa-manifest.json"
 
           echo "IPA validation passed successfully!"
 

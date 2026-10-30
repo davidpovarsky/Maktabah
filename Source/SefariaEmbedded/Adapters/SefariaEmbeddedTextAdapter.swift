@@ -123,6 +123,12 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
             )
         }
 
+        let isOffline = (json["isOffline"] as? Bool) ?? (textContent["isOffline"] as? Bool) ?? false
+
+        guard !segments.isEmpty else {
+            throw LibraryBackendError.invalidResponse("No readable text segments found for ref '\(canonicalRef)'")
+        }
+
         let sectionLocator = TextLocator(
             backend: .sefariaEmbedded,
             workKey: locator.workKey,
@@ -138,7 +144,7 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
             next: nextLocator,
             versions: [],
             links: links,
-            origin: .offline
+            origin: isOffline ? .offline : .remote
         )
     }
 

@@ -26,12 +26,81 @@ actor SefariaJSRPCBridge {
     private var inFlightRequests: [String: InFlightRequest] = [:]
     private var eventListeners: [String: [@Sendable (SefariaRPCEvent) -> Void]] = [:]
 
+    private(set) var isReady: Bool = false
+    private(set) var hasActiveListeners: Bool = false
+    private var readyContinuations: [CheckedContinuation<Void, any Error>] = []
+
     private init() {}
 
     func setTransport(_ transport: (any SefariaJSTransport)?) {
         self.transport = transport
         if transport == nil {
+            self.isReady = false
+            self.hasActiveListeners = false
             cancelAll(reason: "Transport detached")
+        }
+    }
+
+    func clearTransportIfMatches(_ transport: any SefariaJSTransport) {
+        if let current = self.transport, (current as AnyObject) === (transport as AnyObject) {
+            self.transport = nil
+            self.isReady = false
+            self.hasActiveListeners = false
+            cancelAll(reason: "Transport invalidated")
+        }
+    }
+
+    func notifyListenersActive(_ active: Bool) {
+        self.hasActiveListeners = active
+    }
+
+    /// Awaits validated readiness from the Sefaria Hermes runtime with generation and listener checks.
+    func waitForReady(timeoutSeconds: Double = 25.0) async throws {
+        if isReady && transport != nil {
+            return
+        }
+
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            group.addTask {
+                try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, any Error>) in
+                    Task { [weak self] in
+                        guard let self else {
+                            continuation.resume()
+                            return
+                        }
+                        await self.registerReadyContinuation(continuation)
+                    }
+                }
+            }
+
+            group.addTask {
+                try await Task.sleep(nanoseconds: UInt64(timeoutSeconds * 1_000_000_000))
+                throw SefariaRPCError(
+                    code: "READY_TIMEOUT",
+                    message: "Timed out waiting for Sefaria JS runtime 'ready' event after \(timeoutSeconds)s",
+                    retryable: true
+                )
+            }
+
+            try await group.next()
+            group.cancelAll()
+        }
+    }
+
+    private func registerReadyContinuation(_ continuation: CheckedContinuation<Void, any Error>) {
+        if isReady && transport != nil {
+            continuation.resume()
+        } else {
+            readyContinuations.append(continuation)
+        }
+    }
+
+    private func notifyReady() {
+        isReady = true
+        let continuations = readyContinuations
+        readyContinuations.removeAll()
+        for cont in continuations {
+            cont.resume()
         }
     }
 
@@ -134,14 +203,26 @@ actor SefariaJSRPCBridge {
         }
         req.timeoutTask.cancel()
 
-        // Verify generation if both caller and response specify it
-        if req.generation > 0 && response.sessionGeneration > 0 && req.generation != response.sessionGeneration {
+        // Validate backend ID if specified in response
+        if let backendID = response.backendID, !backendID.isEmpty, backendID != BackendID.sefariaEmbedded.rawValue {
             req.continuation.resume(throwing: SefariaRPCError(
-                code: "STALE_GENERATION",
-                message: "Response generation \(response.sessionGeneration) does not match in-flight generation \(req.generation)",
+                code: "BACKEND_MISMATCH",
+                message: "Response backend '\(backendID)' does not match expected '\(BackendID.sefariaEmbedded.rawValue)'",
                 retryable: false
             ))
             return
+        }
+
+        // Verify generation if caller specified one (do not permit 0 as bypass if caller requested generation)
+        if req.generation > 0 {
+            if response.sessionGeneration != req.generation {
+                req.continuation.resume(throwing: SefariaRPCError(
+                    code: "STALE_GENERATION",
+                    message: "Response generation \(response.sessionGeneration) does not match in-flight generation \(req.generation)",
+                    retryable: false
+                ))
+                return
+            }
         }
 
         req.continuation.resume(returning: response)
@@ -184,6 +265,10 @@ actor SefariaJSRPCBridge {
         guard let data = jsonString.data(using: .utf8),
               let event = try? JSONDecoder().decode(SefariaRPCEvent.self, from: data) else {
             return
+        }
+
+        if event.event == "ready" {
+            notifyReady()
         }
 
         if let listeners = eventListeners[event.event] {

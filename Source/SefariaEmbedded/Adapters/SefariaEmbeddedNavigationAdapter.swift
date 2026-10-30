@@ -91,6 +91,14 @@ final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding, Sendab
             return []
         }
 
+        if let structureID = structureID, structureID != "default" {
+            if let alts = json["alts"] as? [String: Any],
+               let alt = alts[structureID] as? [String: Any] {
+                return parseSchemaNodes(alt, workKey: workKey, parentRef: workKey)
+            }
+            return []
+        }
+
         if let schema = json["schema"] as? [String: Any] {
             return parseSchemaNodes(schema, workKey: workKey, parentRef: workKey)
         }
@@ -122,7 +130,9 @@ final class SefariaEmbeddedNavigationAdapter: LibraryNavigationProviding, Sendab
         // Jagged array node with sectionNames: e.g. ["Chapter", "Verse"]
         if let sectionNames = schema["sectionNames"] as? [String], !sectionNames.isEmpty {
             // Flat chapter list
-            let count = (schema["lengths"] as? [Int])?.first ?? 50
+            guard let count = (schema["lengths"] as? [Int])?.first, count > 0 else {
+                return []
+            }
             return (1...count).map { chapterNum in
                 let ref = "\(workKey) \(chapterNum)"
                 let locator = TextLocator(

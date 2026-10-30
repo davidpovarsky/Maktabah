@@ -39,7 +39,19 @@ export class ChavrusaRPCFacade {
     try {
       let result = null;
       switch (method) {
-        // --- RUNTIME ---
+        // --- DIAGNOSTICS & RUNTIME ---
+        case 'diagnostic.echo': {
+          if (params?.injectError) {
+            throw new Error(params?.errorMessage || 'Injected diagnostic error');
+          }
+          result = {
+            echoedMessage: params?.message || '',
+            timestamp: Date.now(),
+            generation: sessionGeneration,
+          };
+          break;
+        }
+
         case 'runtime.initialize':
           if (!global.Sefaria) {
             throw new Error('global.Sefaria is not defined in runtime environment');
@@ -49,17 +61,19 @@ export class ChavrusaRPCFacade {
           break;
 
         case 'runtime.postInitSearch':
-          if (global.Sefaria?.postInitSearch) {
-            await global.Sefaria.postInitSearch();
+          if (!global.Sefaria?.postInitSearch) {
+            throw new Error('global.Sefaria.postInitSearch is not available in runtime');
           }
-          result = { status: 'postInitSearch_complete' };
+          await global.Sefaria.postInitSearch();
+          result = { status: 'postInitSearch_complete', searchReady: !!global.Sefaria?.search?.execute_query };
           break;
 
         case 'runtime.postInit':
-          if (global.Sefaria?.postInit) {
-            await global.Sefaria.postInit(params.networkSetting || 'wifiOnly');
+          if (!global.Sefaria?.postInit) {
+            throw new Error('global.Sefaria.postInit is not available in runtime');
           }
-          result = { status: 'postInit_complete' };
+          await global.Sefaria.postInit(params.networkSetting || 'wifiOnly');
+          result = { status: 'postInit_complete', packagesReady: !!DownloadControl?.PackagesState };
           break;
 
         // --- CATALOG ---
@@ -76,15 +90,33 @@ export class ChavrusaRPCFacade {
           break;
 
         // --- TEXT & VERSIONS ---
-        case 'text.load':
-          result = await OfflineOnline.loadText(
+        case 'text.load': {
+          const raw = await OfflineOnline.loadText(
             params.ref,
             params.context !== false,
             params.versions,
             params.fallbackOnDefaultVersions !== false,
             params.failSilently || false
           );
+          let isOffline = false;
+          let textContent = null;
+          let links = [];
+          if (raw?.textContent) {
+            textContent = raw.textContent;
+            links = raw.links || [];
+            isOffline = true;
+          } else {
+            textContent = raw;
+            links = raw?.links || [];
+            isOffline = false;
+          }
+          result = {
+            textContent,
+            links,
+            isOffline,
+          };
           break;
+        }
 
         case 'text.versions':
           result = await OfflineOnline.loadVersions(params.ref);
@@ -135,9 +167,12 @@ export class ChavrusaRPCFacade {
               const source = hit._source || {};
               const highlight = hit.highlight || {};
               const snippetArr = highlight.exact || highlight.naive_lemmatizer || highlight.text || [];
+              const bookTitle = source.title || (global.Sefaria?.textTitleForRef ? global.Sefaria.textTitleForRef(source.ref) : null) || source.ref;
               return {
                 ref: source.ref,
                 heRef: source.heRef,
+                title: bookTitle,
+                workKey: bookTitle,
                 snippet: Array.isArray(snippetArr) ? snippetArr.join(' ... ') : String(snippetArr),
                 score: hit._score,
                 version: source.version,
@@ -230,19 +265,13 @@ export class ChavrusaRPCFacade {
           if (params.bookTitles && Array.isArray(params.bookTitles)) {
             booksToDelete.push(...params.bookTitles);
           }
-          if (booksToDelete.length === 0) {
-            const calculated = DownloadControl.calculateBooksToDelete
-              ? DownloadControl.calculateBooksToDelete(DownloadControl.BooksState)
-              : [];
-            if (Array.isArray(calculated)) {
-              booksToDelete.push(...calculated);
-            }
-          }
           const uniqueBooks = Array.from(new Set(booksToDelete));
           if (uniqueBooks.length > 0) {
             await DownloadControl.deleteBooks(uniqueBooks);
+            result = { removed: true, booksDeleted: uniqueBooks };
+          } else {
+            result = { removed: false, booksDeleted: [] };
           }
-          result = { removed: true, booksDeleted: uniqueBooks };
           break;
         }
 

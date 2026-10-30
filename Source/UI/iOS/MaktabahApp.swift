@@ -32,7 +32,6 @@ struct MaktabahApp: App {
     @StateObject private var zayitSearchSession = ZayitSearchSessionController()
 
     init() {
-        SefariaExpoLifecycleAdapter.installKVCResilience()
         BackendComposition.registerAll()
         // Native acceptance launches exercise isolated Otzaria bootstrap/search
         // paths and must not be blocked by unrelated first-launch setup.
@@ -149,10 +148,9 @@ class AppDelegate: MaktabahAppDelegateBase {
     override init() {
         super.init()
         MaktabahApp.sharedAppDelegate = self
-        SefariaExpoLifecycleAdapter.installKVCResilience()
     }
 
-    // MARK: - Expo & React Native Host Delegation & KVC Resilience
+    // MARK: - Expo & React Native Host Delegation & Clean Integration
 
     @objc var window: UIWindow? {
         get {
@@ -169,15 +167,27 @@ class AppDelegate: MaktabahAppDelegateBase {
         }
     }
 
+    /// Explicitly exposed property to satisfy Expo's `value(forKey: "_expoAppDelegate")`
+    /// fallback without triggering unhandled KVC undefined key exceptions.
+    @objc var _expoAppDelegate: Any? {
+        return self
+    }
+
     @objc var reactNativeFactory: Any? {
         get {
             #if canImport(UIKit)
-            return SefariaExpoLifecycleAdapter.shared.reactNativeFactory
+            return self.factory ?? SefariaExpoLifecycleAdapter.shared.reactNativeFactory
             #else
             nil
             #endif
         }
-        set {}
+        set {
+            #if canImport(UIKit)
+            if let f = newValue as? RCTReactNativeFactory {
+                self.factory = f
+            }
+            #endif
+        }
     }
 
     @objc var reactNativeDelegate: Any? {
@@ -189,30 +199,6 @@ class AppDelegate: MaktabahAppDelegateBase {
             #endif
         }
         set {}
-    }
-
-    @objc var reactDelegate: Any? {
-        get { nil }
-        set {}
-    }
-
-    @objc var reactNativeFactoryModuleName: String {
-        get { "ReaderApp" }
-        set {}
-    }
-
-    @objc var rootView: UIView? {
-        get { nil }
-        set {}
-    }
-
-    override nonisolated func value(forUndefinedKey key: String) -> Any? {
-        // Silently tolerate unexpected KVC inspection from Expo/React Native subsystems
-        return nil
-    }
-
-    override nonisolated func setValue(_ value: Any?, forUndefinedKey key: String) {
-        // Silently tolerate unexpected KVC mutations
     }
 
     override func application(
@@ -277,7 +263,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     override init() {
         super.init()
         MaktabahApp.sharedAppDelegate = self
-        SefariaExpoLifecycleAdapter.installKVCResilience()
     }
 
     @objc var window: UIWindow? {

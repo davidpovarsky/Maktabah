@@ -67,16 +67,22 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
 
     override func startObserving() {
         hasListeners = true
+        Task {
+            await SefariaJSRPCBridge.shared.notifyListenersActive(true)
+        }
     }
 
     override func stopObserving() {
         hasListeners = false
+        Task {
+            await SefariaJSRPCBridge.shared.notifyListenersActive(false)
+        }
     }
 
     override func invalidate() {
         hasListeners = false
         Task {
-            await SefariaJSRPCBridge.shared.setTransport(nil)
+            await SefariaJSRPCBridge.shared.clearTransportIfMatches(self)
         }
         super.invalidate()
     }
@@ -160,10 +166,11 @@ final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecke
             try await custom(jsonString)
             return
         }
+
         throw SefariaRPCError(
-            code: "BRIDGE_NOT_ATTACHED",
-            message: "RCTBridge is not available in non-React environment",
-            retryable: true
+            code: "BRIDGE_NOT_AVAILABLE",
+            message: "UIKit/React Native not available in current environment",
+            retryable: false
         )
     }
 
@@ -179,4 +186,5 @@ final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecke
         }
     }
 }
+
 #endif

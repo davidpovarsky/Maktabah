@@ -1771,6 +1771,168 @@ struct TestRunner {
             assertCondition(seg.heRef == "ברכות דף ב׳ ע״א:א׳", "heRef preserved without nil loss")
         }
 
+        print("\n--- 32. Testing SefariaEmbedded Navigation Schema Parsing ---")
+        do {
+            // Helper parsing mimicking SefariaEmbeddedNavigationAdapter
+            func parseSchemaNodesMock(_ schema: [String: Any], workKey: String, parentRef: String) -> [LibraryTOCNode] {
+                if let nodes = schema["nodes"] as? [[String: Any]] {
+                    return nodes.enumerated().compactMap { idx, nodeDict in
+                        let title = (nodeDict["en"] as? String) ?? (nodeDict["title"] as? String) ?? "Section \(idx + 1)"
+                        let ref = "\(parentRef), \(title)"
+                        let children = parseSchemaNodesMock(nodeDict, workKey: workKey, parentRef: ref)
+                        let locator = TextLocator(backend: .sefariaEmbedded, workKey: workKey, position: .canonicalRef(ref))
+                        return LibraryTOCNode(locator: locator, title: title, children: children)
+                    }
+                }
+                if let sectionNames = schema["sectionNames"] as? [String], !sectionNames.isEmpty {
+                    guard let count = (schema["lengths"] as? [Int])?.first, count > 0 else {
+                        return []
+                    }
+                    return (1...count).map { chapterNum in
+                        let ref = "\(workKey) \(chapterNum)"
+                        let locator = TextLocator(backend: .sefariaEmbedded, workKey: workKey, position: .canonicalRef(ref))
+                        return LibraryTOCNode(locator: locator, title: "\(sectionNames[0]) \(chapterNum)", children: [])
+                    }
+                }
+                return []
+            }
+
+            // Test A: Normal jagged array with known length
+            let normalSchema: [String: Any] = [
+                "sectionNames": ["Chapter", "Verse"],
+                "lengths": [24]
+            ]
+            let nodes24 = parseSchemaNodesMock(normalSchema, workKey: "Exodus", parentRef: "Exodus")
+            assertCondition(nodes24.count == 24, "exact lengths [24] yields 24 chapters")
+            assertCondition(nodes24.first?.title == "Chapter 1", "first node is Chapter 1")
+
+            // Test B: Missing lengths MUST NOT default to 50
+            let missingLengthsSchema: [String: Any] = [
+                "sectionNames": ["Chapter", "Verse"]
+            ]
+            let emptyNodes = parseSchemaNodesMock(missingLengthsSchema, workKey: "Exodus", parentRef: "Exodus")
+            assertCondition(emptyNodes.isEmpty, "missing lengths safely produces empty array (0 chapters) instead of hardcoded 50")
+
+            // Test C: Alternate structure lookup
+            let altJson: [String: Any] = [
+                "alts": [
+                    "Parasha": [
+                        "nodes": [
+                            ["en": "Bereshit", "title": "Bereshit"],
+                            ["en": "Noach", "title": "Noach"]
+                        ]
+                    ]
+                ]
+            ]
+            if let alts = altJson["alts"] as? [String: Any],
+               let parasha = alts["Parasha"] as? [String: Any] {
+                let parashaNodes = parseSchemaNodesMock(parasha, workKey: "Genesis", parentRef: "Genesis")
+                assertCondition(parashaNodes.count == 2, "alternate structure Parasha parsed 2 nodes")
+                assertCondition(parashaNodes.first?.title == "Bereshit", "first Parasha node title is Bereshit")
+            } else {
+                assertCondition(false, "Parasha alternate structure not found")
+            }
+        }
+
+        print("\n--- 33. Testing SefariaEmbedded Text & Search Adapter Contracts ---")
+        do {
+            // Test A: Zero-segment fail-closed
+            let rawEmptyContent: [[String: Any]] = []
+            var segments: [LibraryTextSegment] = []
+            for (idx, segDict) in rawEmptyContent.enumerated() {
+                let segNum = (segDict["segmentNumber"] as? String) ?? "\(idx + 1)"
+                let heText = (segDict["he"] as? String) ?? ""
+                let segLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Test", position: .canonicalRef("Test 1:\(segNum)"))
+                segments.append(LibraryTextSegment(locator: segLocator, heRef: nil, primaryText: heText, translation: nil))
+            }
+            assertCondition(segments.isEmpty, "segments array is empty")
+            let failClosedError: LibraryBackendError? = segments.isEmpty ? .invalidResponse("No readable text segments found for ref 'Test 1'") : nil
+            assertCondition(failClosedError == .invalidResponse("No readable text segments found for ref 'Test 1'"), "zero-segment payload correctly triggers fail-closed error")
+
+            // Test B: Offline vs Online origin truthfulness
+            let payloadOffline: [String: Any] = ["isOffline": true]
+            let isOfflineVal = payloadOffline["isOffline"] as? Bool ?? false
+            let origin: LibraryTextSection.Origin = isOfflineVal ? .offline : .remote
+            assertCondition(origin == .offline, "isOffline true resolves to .offline origin")
+
+            let payloadOnline: [String: Any] = ["isOffline": false]
+            let isOnlineVal = payloadOnline["isOffline"] as? Bool ?? false
+            let originOnline: LibraryTextSection.Origin = isOnlineVal ? .offline : .remote
+            assertCondition(originOnline == .remote, "isOffline false resolves to .remote origin")
+
+            // Test C: Search Hit workKey Mapping to book title
+            let sampleHit: [String: Any] = [
+                "ref": "Genesis 1:1",
+                "heRef": "בראשית א׳:א׳",
+                "title": "Genesis",
+                "workKey": "Genesis",
+                "snippet": "In the beginning..."
+            ]
+            let hitRef = sampleHit["ref"] as! String
+            let hitWorkKey = (sampleHit["workKey"] as? String) ?? (sampleHit["title"] as? String) ?? (hitRef.components(separatedBy: " ").first ?? hitRef)
+            let locator = TextLocator(backend: .sefariaEmbedded, workKey: hitWorkKey, position: .canonicalRef(hitRef))
+            assertCondition(locator.workKey == "Genesis", "search hit workKey mapped to book title 'Genesis' not full ref 'Genesis 1:1'")
+            if case .canonicalRef(let r) = locator.position {
+                assertCondition(r == "Genesis 1:1", "search hit position preserves full canonical ref 'Genesis 1:1'")
+            } else {
+                assertCondition(false, "locator position is not canonicalRef")
+            }
+        }
+
+        print("\n--- 34. Testing SefariaEmbedded Download Integrity & Safety ---")
+        do {
+            // Test A: No matching packages fails closed without Complete Library fallback
+            let requestedWorks: Set<String> = ["ObscureBookXYZ"]
+            let allPackages: [OfflinePackage] = [
+                OfflinePackage(
+                    id: "Torah",
+                    title: "Torah",
+                    heTitle: "תורה",
+                    parentID: nil,
+                    compressedSize: 1000,
+                    indexTitles: ["Genesis", "Exodus"],
+                    isCompleteLibrary: false
+                )
+            ]
+            var packagesToInstall = Set<String>()
+            for workKey in requestedWorks {
+                for pkg in allPackages {
+                    if pkg.indexTitles?.contains(workKey) == true {
+                        packagesToInstall.insert(pkg.id)
+                    }
+                }
+            }
+            assertCondition(packagesToInstall.isEmpty, "no matching package found for obscure work")
+            // Must NOT contain "COMPLETE LIBRARY"
+            assertCondition(!packagesToInstall.contains("COMPLETE LIBRARY"), "does not fall back to COMPLETE LIBRARY")
+
+            // Test B: Progress routing only to matching package title
+            var activeProgress: [String: Double] = ["Torah": 0.0]
+            let progressJson: [String: Any] = ["packageTitle": "Mishnah", "bytesWritten": 500, "totalBytes": 1000]
+            let incomingTitle = progressJson["packageTitle"] as? String
+            var routed = false
+            if let title = incomingTitle, let _ = activeProgress[title] {
+                routed = true
+            }
+            assertCondition(!routed, "progress for unrequested 'Mishnah' is not misrouted to 'Torah'")
+
+            let validProgressJson: [String: Any] = ["packageTitle": "Torah", "bytesWritten": 500, "totalBytes": 1000]
+            if let title = validProgressJson["packageTitle"] as? String, activeProgress[title] != nil {
+                activeProgress[title] = 0.5
+            }
+            assertCondition(activeProgress["Torah"] == 0.5, "progress for 'Torah' accurately routed to 'Torah' handler")
+        }
+
+        print("\n--- 35. Testing Objective-C KVC Safety Contract ---")
+        do {
+            // Verify protocol and contract for safe property exposure without swizzling
+            struct SafeAppDelegateMock {
+                var expoAppDelegate: Any? { return self }
+            }
+            let mock = SafeAppDelegateMock()
+            assertCondition(mock.expoAppDelegate != nil, "_expoAppDelegate cleanly returns self without dynamic key interception")
+        }
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

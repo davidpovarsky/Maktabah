@@ -62,7 +62,6 @@ final class SefariaExpoLifecycleAdapter {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        Self.installKVCResilience()
         return true
     }
 
@@ -101,8 +100,6 @@ final class SefariaExpoLifecycleAdapter {
             return
         }
 
-        Self.installKVCResilience()
-
         #if canImport(Expo)
         let delegate = ChavrusaReactNativeDelegate()
         #if canImport(ReactAppDependencyProvider)
@@ -111,6 +108,11 @@ final class SefariaExpoLifecycleAdapter {
         let factory = ExpoReactNativeFactory(delegate: delegate)
         self.reactNativeDelegate = delegate
         self.reactNativeFactory = factory
+
+        // Bind factory to app delegate if conforming to ExpoAppDelegate
+        if let appDelegate = UIApplication.shared.delegate as? ExpoAppDelegate {
+            appDelegate.bindReactNativeFactory(factory)
+        }
 
         // Mount a persistent headless background UIWindow to bootstrap the Hermes
         // engine, global context, and JS RPC module without disrupting Maktabah's
@@ -132,7 +134,7 @@ final class SefariaExpoLifecycleAdapter {
     }
 
     #if canImport(UIKit)
-    func createSurfaceView(moduleName: String = "ReaderApp", initialProperties: [String: Any]? = nil) -> UIView {
+    func createSurfaceView(moduleName: String = "ChavrusaSefariaRoot", initialProperties: [String: Any]? = nil) -> UIView {
         #if canImport(React)
         ensureHostStarted()
         #if canImport(Expo)
@@ -158,77 +160,10 @@ final class SefariaExpoLifecycleAdapter {
     #endif
 }
 
-// MARK: - KVC Resilience Implementation
-
-#if canImport(UIKit) && canImport(ObjectiveC)
-@MainActor
-private var hasInstalledKVCResilience = false
-
-private let chavrusa_safeGetterIMP: @convention(c) (AnyObject, Selector, String) -> AnyObject? = { target, _, key in
-    if key == "_configuration" {
-        var currentCls: AnyClass? = object_getClass(target)
-        while let cls = currentCls, cls != NSObject.self {
-            if let ivar = class_getInstanceVariable(cls, "_configuration") {
-                return object_getIvar(target, ivar) as AnyObject?
-            }
-            currentCls = class_getSuperclass(cls)
-        }
-        return nil
-    }
-    return nil
-}
-
-private let chavrusa_safeSetterIMP: @convention(c) (AnyObject, Selector, AnyObject?, String) -> Void = { target, _, value, key in
-    if key == "_configuration", let val = value {
-        var currentCls: AnyClass? = object_getClass(target)
-        while let cls = currentCls, cls != NSObject.self {
-            if let ivar = class_getInstanceVariable(cls, "_configuration") {
-                object_setIvar(target, ivar, val)
-                return
-            }
-            currentCls = class_getSuperclass(cls)
-        }
-    }
-}
-
 extension SefariaExpoLifecycleAdapter {
-    static func installKVCResilience() {
-        guard !hasInstalledKVCResilience else { return }
-        hasInstalledKVCResilience = true
-
-        let getterIMP = unsafeBitCast(chavrusa_safeGetterIMP, to: IMP.self)
-        let setterIMP = unsafeBitCast(chavrusa_safeSetterIMP, to: IMP.self)
-
-        // 1. Globally replace default throwing KVC implementations on NSObject so any undefined key returns nil
-        _ = class_replaceMethod(NSObject.self, #selector(NSObject.value(forUndefinedKey:)), getterIMP, "@@:@")
-        _ = class_replaceMethod(NSObject.self, #selector(NSObject.setValue(_:forUndefinedKey:)), setterIMP, "v@:@@")
-
-        // 2. Explicitly install safe handlers on known React Native factory and delegate candidate classes
-        let candidateClassNames = [
-            "RCTRootViewFactory",
-            "EXReactRootViewFactory",
-            "ExpoReactRootViewFactory"
-        ]
-
-        for name in candidateClassNames {
-            if let cls = NSClassFromString(name) {
-                _ = class_addMethod(cls, #selector(NSObject.value(forUndefinedKey:)), getterIMP, "@@:@")
-                _ = class_addMethod(cls, #selector(NSObject.setValue(_:forUndefinedKey:)), setterIMP, "v@:@@")
-            }
-        }
-
-        if let appDelegate = UIApplication.shared.delegate {
-            let appDelegateCls: AnyClass = type(of: appDelegate)
-            _ = class_addMethod(appDelegateCls, #selector(NSObject.value(forUndefinedKey:)), getterIMP, "@@:@")
-            _ = class_addMethod(appDelegateCls, #selector(NSObject.setValue(_:forUndefinedKey:)), setterIMP, "v@:@@")
-        }
-    }
-}
-#else
-extension SefariaExpoLifecycleAdapter {
+    /// Safe no-op retained for backwards compatibility without global swizzling.
     static func installKVCResilience() {}
 }
-#endif
 
 #if canImport(UIKit) && canImport(React) && canImport(Expo)
 @MainActor
@@ -236,14 +171,6 @@ private final class ChavrusaReactNativeDelegate: ExpoReactNativeFactoryDelegate 
     @objc var window: UIWindow? {
         get { SefariaExpoLifecycleAdapter.shared.hostedWindow }
         set { SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue }
-    }
-
-    override nonisolated func value(forUndefinedKey key: String) -> Any? {
-        return nil
-    }
-
-    override nonisolated func setValue(_ value: Any?, forUndefinedKey key: String) {
-        // Silently tolerate undefined keys from Expo/React Native subsystems
     }
 
     override func sourceURL(for bridge: RCTBridge) -> URL? {

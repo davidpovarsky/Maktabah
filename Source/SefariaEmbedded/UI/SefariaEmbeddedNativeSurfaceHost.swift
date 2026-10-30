@@ -16,9 +16,13 @@ struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
     let moduleName: String
     let initialProperties: [String: Any]?
 
-    init(moduleName: String = "ReaderApp", initialProperties: [String: Any]? = nil) {
+    init(moduleName: String = "ChavrusaSefariaRoot", initialProperties: [String: Any]? = nil) {
         self.moduleName = moduleName
-        self.initialProperties = initialProperties
+        var props = initialProperties ?? [:]
+        if props["renderFullUI"] == nil {
+            props["renderFullUI"] = true
+        }
+        self.initialProperties = props
     }
 
     func makeUIViewController(context: Context) -> UIViewController {

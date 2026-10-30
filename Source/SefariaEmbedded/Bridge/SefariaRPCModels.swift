@@ -67,6 +67,7 @@ struct SefariaRPCResponse: Codable, Sendable, Equatable {
     let resultJson: String?
     let error: SefariaRPCError?
     let sessionGeneration: UInt64
+    let backendID: String?
 
     var isSuccess: Bool {
         status == "success"
@@ -78,7 +79,8 @@ struct SefariaRPCResponse: Codable, Sendable, Equatable {
         status: String,
         resultJson: String? = nil,
         error: SefariaRPCError? = nil,
-        sessionGeneration: UInt64 = 0
+        sessionGeneration: UInt64 = 0,
+        backendID: String? = "sefariaEmbedded"
     ) {
         self.protocolVersion = protocolVersion
         self.requestID = requestID
@@ -86,6 +88,7 @@ struct SefariaRPCResponse: Codable, Sendable, Equatable {
         self.resultJson = resultJson
         self.error = error
         self.sessionGeneration = sessionGeneration
+        self.backendID = backendID
     }
 
     func decodeResult<T: Decodable>(_ type: T.Type) throws -> T {

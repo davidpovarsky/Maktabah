@@ -107,20 +107,24 @@ export const ChavrusaRoot = (props) => {
       timestamp: Date.now(),
       version: '1.0',
       upstreamLockedSHA: '2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c',
+      generation: 1,
     });
 
     return () => {
-      if (rpcSubscription?.remove) {
-        rpcSubscription.remove();
-        rpcSubscription = null;
-      }
-      if (progressTrackerAttached) {
-        try {
-          if (DownloadControl?.Tracker?.removeProgressTracker) {
-            DownloadControl.Tracker.removeProgressTracker('chavrusaTracker');
-          }
-        } catch (e) {}
-        progressTrackerAttached = false;
+      // Preserve singleton RPC listener and progress tracker if unmounting a UI presenter
+      if (!props?.renderFullUI) {
+        if (rpcSubscription?.remove) {
+          rpcSubscription.remove();
+          rpcSubscription = null;
+        }
+        if (progressTrackerAttached) {
+          try {
+            if (DownloadControl?.Tracker?.removeProgressTracker) {
+              DownloadControl.Tracker.removeProgressTracker('chavrusaTracker');
+            }
+          } catch (e) {}
+          progressTrackerAttached = false;
+        }
       }
     };
   }, [dispatch]);

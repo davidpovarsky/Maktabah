@@ -160,7 +160,10 @@ actor SefariaRuntimeManager {
         state = .bootstrapping
         let bridge = SefariaJSRPCBridge.shared
 
-        // 2. Send runtime.initialize to JS (verifies live bidirectional Swift <-> Hermes communication)
+        // 2. Await verified JS bridge listener ready handshake
+        try await bridge.waitForReady(timeoutSeconds: timeoutSeconds)
+
+        // 3. Send runtime.initialize to JS (verifies live bidirectional Swift <-> Hermes communication)
         let initResponse = try await bridge.call(
             method: "runtime.initialize",
             paramsJson: nil,
@@ -173,7 +176,22 @@ actor SefariaRuntimeManager {
             throw SefariaRPCError(code: "BOOTSTRAP_FAILED", message: errorMsg, retryable: true)
         }
 
-        // Host and catalog verified ready only after successful live JS handshake response
+        // 4. Verify original catalog TOC contains Genesis / Bereshit before marking catalogReady
+        let tocResponse = try await bridge.call(
+            method: "catalog.toc",
+            paramsJson: nil,
+            timeoutMs: 15000
+        )
+
+        guard tocResponse.isSuccess,
+              let resultJson = tocResponse.resultJson,
+              resultJson.contains("Genesis") || resultJson.contains("Bereshit") else {
+            let errorMsg = "TOC validation failed: Genesis not found in original Sefaria catalog"
+            state = .failed(message: errorMsg, retryable: true)
+            throw SefariaRPCError(code: "CATALOG_VALIDATION_FAILED", message: errorMsg, retryable: true)
+        }
+
+        // Host and catalog verified ready only after successful live JS handshake response and real Genesis TOC
         readiness.hostReady = true
         readiness.catalogReady = true
         state = .ready
