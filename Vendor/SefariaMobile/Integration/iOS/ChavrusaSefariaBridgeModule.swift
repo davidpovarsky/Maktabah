@@ -16,7 +16,7 @@ import React
 #if canImport(React)
 @objc(ChavrusaSefariaBridgeModule)
 final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @unchecked Sendable {
-    private static var activeInstance: ChavrusaSefariaBridgeModule?
+    nonisolated(unsafe) private static var activeInstance: ChavrusaSefariaBridgeModule?
     private var customExecutor: (@Sendable (String) async throws -> Void)?
     private var hasListeners: Bool = false
 
@@ -26,6 +26,10 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
         Task {
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
+    }
+
+    override class func moduleName() -> String! {
+        return "ChavrusaSefariaBridgeModule"
     }
 
     override class func requiresMainQueueSetup() -> Bool {
@@ -83,12 +87,6 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
 
     @objc func echo(_ message: String, resolver: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
         resolver("echo:\(message)")
-    }
-}
-
-extension ChavrusaSefariaBridgeModule: RCTBridgeModule {
-    static func moduleName() -> String! {
-        return "ChavrusaSefariaBridgeModule"
     }
 }
 
