@@ -25,6 +25,9 @@ import { ChavrusaRPCFacade } from './chavrusaRPCFacade';
 const ReaderAppGesturified = gestureHandlerRootHOC(ReaderApp);
 const FallbackView = () => <View style={{ flex: 1, backgroundColor: 'transparent' }} />;
 
+let rpcSubscription = null;
+let progressTrackerAttached = false;
+
 export const ChavrusaRoot = (props) => {
   const [globalState, dispatch] = useReducer(reducer, DEFAULT_STATE);
   const theme = getTheme(globalState.themeStr);
@@ -63,30 +66,40 @@ export const ChavrusaRoot = (props) => {
       }
     };
 
-    // 1. Subscribe to NativeEventEmitter for incoming Swift RPC requests
-    let subscription = null;
-    if (NativeModules?.ChavrusaSefariaBridgeModule) {
+    // 1. Subscribe to NativeEventEmitter for incoming Swift RPC requests (singleton)
+    if (!rpcSubscription && NativeModules?.ChavrusaSefariaBridgeModule) {
       try {
         const eventEmitter = new NativeEventEmitter(NativeModules.ChavrusaSefariaBridgeModule);
-        subscription = eventEmitter.addListener('onSefariaRPCRequest', handleIncomingEnvelope);
+        rpcSubscription = eventEmitter.addListener('onSefariaRPCRequest', handleIncomingEnvelope);
       } catch (e) {
         console.warn('[ChavrusaRoot] Failed to create NativeEventEmitter:', e);
       }
     }
 
-    // 2. Wire DownloadControl Tracker progress events to Native
-    try {
-      if (DownloadControl?.Tracker?.attachProgressTracker) {
-        DownloadControl.Tracker.attachProgressTracker((bytesWritten, totalBytes) => {
-          ChavrusaRPCFacade.sendEventToNative('downloadProgress', {
-            bytesWritten: Number(bytesWritten) || 0,
-            totalBytes: Number(totalBytes) || 1,
-            fraction: totalBytes > 0 ? (bytesWritten / totalBytes) : 0,
-          });
-        }, 'chavrusaTracker');
+    // 2. Wire DownloadControl Tracker progress events to Native (singleton)
+    if (!progressTrackerAttached) {
+      try {
+        if (DownloadControl?.Tracker?.attachProgressTracker) {
+          DownloadControl.Tracker.attachProgressTracker((bytesWritten, totalBytes) => {
+            const numWritten = Number(bytesWritten) || 0;
+            const numTotal = Number(totalBytes) || 0;
+            const fraction = numTotal > 0 ? Math.min(1.0, Math.max(0.0, numWritten / numTotal)) : 0.0;
+            const downloadSize = Number(DownloadControl?.Tracker?.downloadSize) || null;
+
+            ChavrusaRPCFacade.sendEventToNative('downloadProgress', {
+              fraction: fraction,
+              bytesWritten: downloadSize ? Math.round(fraction * downloadSize) : null,
+              totalBytes: downloadSize,
+              rawReceived: numWritten,
+              rawTotal: numTotal,
+              packageTitle: DownloadControl?.Tracker?.downloadTitle || null,
+            });
+          }, 'chavrusaTracker');
+          progressTrackerAttached = true;
+        }
+      } catch (e) {
+        console.warn('[ChavrusaRoot] Failed to attach progress tracker:', e);
       }
-    } catch (e) {
-      console.warn('[ChavrusaRoot] Failed to attach progress tracker:', e);
     }
 
     // 3. Notify native that JS root is mounted and providers are live
@@ -97,8 +110,17 @@ export const ChavrusaRoot = (props) => {
     });
 
     return () => {
-      if (subscription?.remove) {
-        subscription.remove();
+      if (rpcSubscription?.remove) {
+        rpcSubscription.remove();
+        rpcSubscription = null;
+      }
+      if (progressTrackerAttached) {
+        try {
+          if (DownloadControl?.Tracker?.removeProgressTracker) {
+            DownloadControl.Tracker.removeProgressTracker('chavrusaTracker');
+          }
+        } catch (e) {}
+        progressTrackerAttached = false;
       }
     };
   }, [dispatch]);
@@ -133,6 +155,5 @@ export const ChavrusaRoot = (props) => {
   );
 };
 
-// Register under both names so any factory instantiation activates the ChavrusaRoot RPC & context
+// Register headless engine root component
 AppRegistry.registerComponent('ChavrusaSefariaRoot', () => ChavrusaRoot);
-AppRegistry.registerComponent('ReaderApp', () => ChavrusaRoot);

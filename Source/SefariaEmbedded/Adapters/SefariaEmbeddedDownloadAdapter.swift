@@ -37,7 +37,7 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
             return
         }
 
-        let packageTitle = (json["packageTitle"] as? String) ?? activeProgressHandlers.keys.first ?? "Download"
+        let packageTitle = json["packageTitle"] as? String
         let completedBytes = (json["bytesWritten"] as? Int64)
             ?? Int64((json["bytesWritten"] as? Double) ?? Double((json["bytesWritten"] as? Int) ?? 0))
         let totalBytes = (json["totalBytes"] as? Int64)
@@ -45,18 +45,20 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         let fraction = (json["fraction"] as? Double)
             ?? (totalBytes > 0 ? Double(completedBytes) / Double(totalBytes) : 0.0)
 
+        let targetPackageID = packageTitle ?? activeProgressHandlers.keys.first
+
+        guard let pkgID = targetPackageID, let handler = activeProgressHandlers[pkgID] else {
+            return
+        }
+
         let update = OfflineInstallProgress(
             phase: fraction >= 1.0 ? .finished : .downloading,
-            packageID: packageTitle,
+            packageID: pkgID,
             completedBytes: completedBytes,
-            totalBytes: totalBytes > 0 ? totalBytes : completedBytes
+            totalBytes: totalBytes > 0 ? totalBytes : 0
         )
 
-        if let handler = activeProgressHandlers[packageTitle] {
-            handler(update)
-        } else if let firstHandler = activeProgressHandlers.values.first {
-            firstHandler(update)
-        }
+        handler(update)
     }
 
     // MARK: - OfflineLibraryProviding
@@ -94,7 +96,7 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         try await SefariaRuntimeManager.shared.ensurePackagesReady()
         for packageID in packageIDs {
             activeProgressHandlers[packageID] = progress
-            let params = ["packageName": packageID, "networkSetting": "wifiOnly"]
+            let params = ["packageName": packageID, "networkSetting": "all"]
             let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
 
             progress(OfflineInstallProgress(
@@ -115,11 +117,22 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
                 throw response.error ?? SefariaRPCError(code: "INSTALL_FAILED", message: "Failed to install package \(packageID)")
             }
 
+            // Verify package was actually recorded as installed
+            let installedIDs = await installedPackageIDs()
+            let isVerified = installedIDs.contains(packageID) || packageID == "COMPLETE LIBRARY"
+            guard isVerified else {
+                throw SefariaRPCError(
+                    code: "INSTALL_VERIFICATION_FAILED",
+                    message: "Package \(packageID) completion could not be verified in local store",
+                    retryable: true
+                )
+            }
+
             progress(OfflineInstallProgress(
                 phase: .finished,
                 packageID: packageID,
-                completedBytes: 1,
-                totalBytes: 1
+                completedBytes: 0,
+                totalBytes: 0
             ))
         }
     }
@@ -173,11 +186,12 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         guard response.isSuccess else {
             throw response.error ?? SefariaRPCError(code: "UPDATE_FAILED", message: "Failed to download Sefaria updates")
         }
-        progress(OfflineInstallProgress(phase: .finished, packageID: "Update", completedBytes: 1, totalBytes: 1))
+        progress(OfflineInstallProgress(phase: .finished, packageID: "Update", completedBytes: 0, totalBytes: 0))
     }
 
     func cancelInstall() async {
         _ = try? await SefariaJSRPCBridge.shared.call(method: "downloads.cancel")
+        activeProgressHandlers.removeAll()
     }
 
     // MARK: - OfflineWorkProviding
@@ -206,7 +220,7 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
 
         for workKey in workKeys {
             for pkg in allPackages {
-                if pkg.indexTitles.contains(workKey) {
+                if pkg.indexTitles?.contains(workKey) == true {
                     packagesToInstall.insert(pkg.id)
                 }
             }

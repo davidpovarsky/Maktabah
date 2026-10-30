@@ -128,12 +128,11 @@ final class SefariaExpoLifecycleAdapter {
     func createSurfaceView(moduleName: String, initialProperties: [String: Any]? = nil) -> UIView {
         #if canImport(React)
         ensureHostStarted()
-        if let rootView = hostedWindow?.rootViewController?.view {
-            rootView.isHidden = false
-            rootView.alpha = 1.0
-            rootView.isUserInteractionEnabled = true
-            return rootView
+        #if canImport(Expo)
+        if let factory = reactNativeFactory as? ExpoReactNativeFactory {
+            return factory.rootViewFactory.view(withModuleName: moduleName, initialProperties: initialProperties)
         }
+        #endif
         #endif
         let container = UIView()
         container.backgroundColor = .systemBackground

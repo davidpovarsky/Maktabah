@@ -182,6 +182,7 @@ jobs:
             ONLY_ACTIVE_ARCH=YES ARCHS=arm64 \
             ENABLE_USER_SCRIPT_SANDBOXING=NO \
             RCT_NO_LAUNCH_PACKAGER=1 SKIP_BUNDLING=1 \
+            FAIL_ON_MISSING_BUNDLE=1 \
             PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
 
       - name: Verify App Bundle Staged Resources
@@ -197,6 +198,7 @@ jobs:
             bash Scripts/copy-sefaria-bundle-resources.sh "${BUILT_APP}"
             python3 Scripts/verify-sefaria-bundle-resources.py \
               "${BUILT_APP}" \
+              --require-bundle \
               --manifest-out build/sefaria-app-bundle-manifest.json
           else
             echo "::error::Maktabah.app not found at expected path!"
@@ -222,10 +224,13 @@ jobs:
           echo "Installing ${BUILT_APP} into simulator..."
           xcrun simctl install "${SIM_UDID}" "${BUILT_APP}"
           
-          echo "Launching com.davidpovarsky.chavrusatext on simulator..."
-          xcrun simctl launch "${SIM_UDID}" com.davidpovarsky.chavrusatext
+          echo "Launching com.davidpovarsky.chavrusatext on simulator with sefariaEmbedded backend..."
+          xcrun simctl launch "${SIM_UDID}" com.davidpovarsky.chavrusatext -smokeBackend sefariaEmbedded -smokeScenario catalog
           
-          sleep 6
+          sleep 8
+          echo "Verifying process is running..."
+          xcrun simctl spawn "${SIM_UDID}" ps aux | grep "Maktabah" || true
+          
           echo "Capturing simulator launch screenshot..."
           mkdir -p build/artifacts
           xcrun simctl io "${SIM_UDID}" screenshot build/artifacts/simulator-launch.png || true

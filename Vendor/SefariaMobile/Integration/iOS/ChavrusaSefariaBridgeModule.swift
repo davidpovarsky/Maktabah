@@ -16,13 +16,38 @@ import React
 #if canImport(React)
 @objc(ChavrusaSefariaBridgeModule)
 final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @unchecked Sendable {
-    nonisolated(unsafe) private static var activeInstance: ChavrusaSefariaBridgeModule?
-    private var customExecutor: (@Sendable (String) async throws -> Void)?
-    private var hasListeners: Bool = false
+    private let stateLock = NSLock()
+    private var _customExecutor: (@Sendable (String) async throws -> Void)?
+    private var _hasListeners: Bool = false
+
+    private var hasListeners: Bool {
+        get {
+            stateLock.lock()
+            defer { stateLock.unlock() }
+            return _hasListeners
+        }
+        set {
+            stateLock.lock()
+            defer { stateLock.unlock() }
+            _hasListeners = newValue
+        }
+    }
+
+    private var customExecutor: (@Sendable (String) async throws -> Void)? {
+        get {
+            stateLock.lock()
+            defer { stateLock.unlock() }
+            return _customExecutor
+        }
+        set {
+            stateLock.lock()
+            defer { stateLock.unlock() }
+            _customExecutor = newValue
+        }
+    }
 
     override init() {
         super.init()
-        ChavrusaSefariaBridgeModule.activeInstance = self
         Task {
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
@@ -48,6 +73,14 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
         hasListeners = false
     }
 
+    override func invalidate() {
+        hasListeners = false
+        Task {
+            await SefariaJSRPCBridge.shared.setTransport(nil)
+        }
+        super.invalidate()
+    }
+
     func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
         self.customExecutor = executor
     }
@@ -60,15 +93,17 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
             return
         }
 
-        guard let active = ChavrusaSefariaBridgeModule.activeInstance else {
+        guard hasListeners else {
             throw SefariaRPCError(
-                code: "BRIDGE_NOT_ATTACHED",
-                message: "ChavrusaSefariaBridgeModule instance not created by React Native runtime",
+                code: "BRIDGE_NOT_READY",
+                message: "React Native event emitter has no active listeners",
                 retryable: true
             )
         }
 
-        active.sendEvent(withName: "onSefariaRPCRequest", body: jsonString)
+        await MainActor.run {
+            self.sendEvent(withName: "onSefariaRPCRequest", body: jsonString)
+        }
     }
 
     // MARK: - JS -> Native Callbacks
@@ -93,8 +128,21 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
 #else
 
 final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecked Sendable {
-    static let shared = ChavrusaSefariaBridgeModule()
-    private var customExecutor: (@Sendable (String) async throws -> Void)?
+    private let stateLock = NSLock()
+    private var _customExecutor: (@Sendable (String) async throws -> Void)?
+
+    private var customExecutor: (@Sendable (String) async throws -> Void)? {
+        get {
+            stateLock.lock()
+            defer { stateLock.unlock() }
+            return _customExecutor
+        }
+        set {
+            stateLock.lock()
+            defer { stateLock.unlock() }
+            _customExecutor = newValue
+        }
+    }
 
     override init() {
         super.init()

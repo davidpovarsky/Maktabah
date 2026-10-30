@@ -28,8 +28,11 @@ actor SefariaJSRPCBridge {
 
     private init() {}
 
-    func setTransport(_ transport: any SefariaJSTransport) {
+    func setTransport(_ transport: (any SefariaJSTransport)?) {
         self.transport = transport
+        if transport == nil {
+            cancelAll(reason: "Transport detached")
+        }
     }
 
     /// Dispatches an RPC call to the Sefaria runtime with bounded timeout, generation tracking,

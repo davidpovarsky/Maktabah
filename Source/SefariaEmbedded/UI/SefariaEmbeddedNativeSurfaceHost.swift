@@ -39,4 +39,12 @@ struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+
+    static func dismantleUIViewController(_ uiViewController: UIViewController, coordinator: ()) {
+        #if canImport(UIKit)
+        for subview in uiViewController.view.subviews {
+            subview.removeFromSuperview()
+        }
+        #endif
+    }
 }
