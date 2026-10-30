@@ -1,10 +1,18 @@
 import CloudKit
 import SwiftUI
 
+#if canImport(Expo)
+import Expo
+typealias MaktabahAppDelegateBase = ExpoAppDelegate
+#else
+typealias MaktabahAppDelegateBase = NSObject
+#endif
+
 @main
 struct MaktabahApp: App {
     @Environment(\.scenePhase) private var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    static weak var sharedAppDelegate: AppDelegate?
 
     static var isIpad: Bool {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -24,6 +32,7 @@ struct MaktabahApp: App {
     @StateObject private var zayitSearchSession = ZayitSearchSessionController()
 
     init() {
+        SefariaExpoLifecycleAdapter.installKVCResilience()
         BackendComposition.registerAll()
         // Native acceptance launches exercise isolated Otzaria bootstrap/search
         // paths and must not be blocked by unrelated first-launch setup.
@@ -135,7 +144,13 @@ struct MaktabahApp: App {
 }
 
 @MainActor
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: MaktabahAppDelegateBase, UIApplicationDelegate {
+    override init() {
+        super.init()
+        MaktabahApp.sharedAppDelegate = self
+        SefariaExpoLifecycleAdapter.installKVCResilience()
+    }
+
     // MARK: - Expo & React Native Host Delegation & KVC Resilience
 
     @objc var window: UIWindow? {
@@ -180,6 +195,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         set {}
     }
 
+    @objc var reactNativeFactoryModuleName: String {
+        get { "ReaderApp" }
+        set {}
+    }
+
     @objc var rootView: UIView? {
         get { nil }
         set {}
@@ -193,6 +213,36 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     override nonisolated func setValue(_ value: Any?, forUndefinedKey key: String) {
         // Silently tolerate unexpected KVC mutations
     }
+
+    #if canImport(Expo)
+    override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        _ = super.application(application, didFinishLaunchingWithOptions: launchOptions)
+        SefariaExpoLifecycleAdapter.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        if AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable {
+            application.registerForRemoteNotifications()
+        }
+        return true
+    }
+
+    override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        let superHandled = super.application(app, open: url, options: options)
+        let adapterHandled = SefariaExpoLifecycleAdapter.shared.application(app, open: url, options: options)
+        return superHandled || adapterHandled
+    }
+
+    override func application(
+        _ application: UIApplication,
+        continue userActivity: NSUserActivity,
+        restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void
+    ) -> Bool {
+        let superHandled = super.application(application, continue: userActivity, restorationHandler: restorationHandler)
+        let adapterHandled = SefariaExpoLifecycleAdapter.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
+        return superHandled || adapterHandled
+    }
+    #else
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -215,6 +265,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> Bool {
         return SefariaExpoLifecycleAdapter.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
     }
+    #endif
 
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],

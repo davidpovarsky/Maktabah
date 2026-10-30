@@ -16,7 +16,7 @@ struct SefariaEmbeddedNativeSurfaceHost: UIViewControllerRepresentable {
     let moduleName: String
     let initialProperties: [String: Any]?
 
-    init(moduleName: String = "ChavrusaSefariaRoot", initialProperties: [String: Any]? = nil) {
+    init(moduleName: String = "ReaderApp", initialProperties: [String: Any]? = nil) {
         self.moduleName = moduleName
         self.initialProperties = initialProperties
     }
