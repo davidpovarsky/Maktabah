@@ -256,7 +256,7 @@ jobs:
             -derivedDataPath build/DerivedData \
             -clonedSourcePackagesDirPath build/SourcePackages \
             -disableAutomaticPackageResolution \
-            -only-testing:MaktabahTests/ChavrusaTextComponentTests \
+            -only-testing:Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests \
             -resultBundlePath build/artifacts/result.xcresult \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
