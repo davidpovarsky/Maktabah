@@ -135,6 +135,71 @@ struct MaktabahApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    // MARK: - Expo & React Native Host Delegation & KVC Resilience
+
+    @objc var window: UIWindow? {
+        get {
+            #if canImport(UIKit)
+            MainActor.assumeIsolated {
+                SefariaExpoLifecycleAdapter.shared.hostedWindow
+            }
+            #else
+            nil
+            #endif
+        }
+        set {
+            #if canImport(UIKit)
+            MainActor.assumeIsolated {
+                SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue
+            }
+            #endif
+        }
+    }
+
+    @objc var reactNativeFactory: Any? {
+        get {
+            #if canImport(UIKit)
+            MainActor.assumeIsolated {
+                SefariaExpoLifecycleAdapter.shared.reactNativeFactory
+            }
+            #else
+            nil
+            #endif
+        }
+        set {}
+    }
+
+    @objc var reactNativeDelegate: Any? {
+        get {
+            #if canImport(UIKit)
+            MainActor.assumeIsolated {
+                SefariaExpoLifecycleAdapter.shared.reactNativeDelegate
+            }
+            #else
+            nil
+            #endif
+        }
+        set {}
+    }
+
+    @objc var reactDelegate: Any? {
+        get { nil }
+        set {}
+    }
+
+    @objc var rootView: UIView? {
+        get { nil }
+        set {}
+    }
+
+    override func value(forUndefinedKey key: String) -> Any? {
+        // Silently tolerate unexpected KVC inspection from Expo/React Native subsystems
+        return nil
+    }
+
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        // Silently tolerate unexpected KVC mutations
+    }
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil

@@ -23,11 +23,26 @@ Target: `Source/SefariaEmbedded/Adapters/SefariaEmbeddedDownloadAdapter.swift`
 1. **Line 209:24:** `error: value of optional type '[String]?' must be unwrapped to refer to member 'contains' of wrapped base type '[String]'`
    `209 | if pkg.indexTitles.contains(workKey) {`
 
-### Verification in GitHub Actions Run 40980711755 (Job 123819772555)
-- **Compile Step:** `Build Maktabah-iOS for iPad Simulator` **PASSED** (exit code 0). Zero compile errors.
-- **Resource Verification Step:** `Verify App Bundle Staged Resources` **PASSED** (exit code 0). 7 JSON sources + `main.jsbundle` verified.
-- **Simulator Launch Step:** `Boot iPad Simulator and Verify App Launch` **PASSED** (exit code 0). App booted and launched with `-smokeBackend sefariaEmbedded -smokeScenario catalog`.
-- **Test Step:** `Run Xcode Simulator Unit Tests` reported `Tests in the target “MaktabahTests” can’t be run because “MaktabahTests” isn’t a member of the specified test plan or scheme.` Scheme `Maktabah-iOS` tests `Maktabah-iOSUITests`. Resolved by adding `SefariaEmbeddedAcceptanceTests` in `Maktabah-iOSUITests` and targeting it in CI.
+### Prior Failure 3: GitHub Actions Run 40993141652 (Job 123847844002)
+Target: `ExpoReactDelegate.swift` & `SefariaExpoLifecycleAdapter.swift`
+1. **Crash Diagnostic (`Maktabah-2026-10-30-031114.ips`):**
+   ```json
+   "lastExceptionBacktrace" : [
+     {"symbol":"-[NSObject(NSKeyValueCoding) valueForUndefinedKey:]"},
+     {"symbol":"-[NSObject(NSKeyValueCoding) valueForKey:]"},
+     {"symbol":"closure #3 in implicit closure #1 in ExpoReactDelegate.createReactRootView(moduleName:initialProperties:launchOptions:)", "sourceFile":"ExpoReactDelegate.swift", "sourceLine":26},
+     {"symbol":"ExpoReactDelegate.createReactRootView(moduleName:initialProperties:launchOptions:)", "sourceFile":"ExpoReactDelegate.swift", "sourceLine":25},
+     {"symbol":"-[EXReactRootViewFactory viewWithModuleName:initialProperties:launchOptions:]", "sourceFile":"EXReactRootViewFactory.mm", "sourceLine":38},
+     {"symbol":"-[RCTReactNativeFactory startReactNativeWithModuleName:inWindow:initialProperties:launchOptions:]", "sourceFile":"RCTReactNativeFactory.mm", "sourceLine":88},
+     {"symbol":"-[RCTReactNativeFactory startReactNativeWithModuleName:inWindow:launchOptions:]", "sourceFile":"RCTReactNativeFactory.mm", "sourceLine":80},
+     {"symbol":"SefariaExpoLifecycleAdapter.ensureHostStarted()", "sourceFile":"SefariaExpoLifecycleAdapter.swift", "sourceLine":116}
+   ]
+   ```
+2. **Root Cause:**
+   Expo and React Native's `EXReactRootViewFactory` and `ExpoReactDelegate` inspect `UIApplication.shared.delegate` using Objective-C Key-Value Coding (KVC) for `window`, `reactNativeFactory`, `reactNativeDelegate`, `reactDelegate`, etc. Because `AppDelegate` is a pure Swift `NSObject, UIApplicationDelegate` that did not subclass `ExpoAppDelegate` or expose these properties, `-[NSObject(NSKeyValueCoding) valueForUndefinedKey:]` threw an unhandled `NSUnknownKeyException` causing `SIGABRT`.
+3. **Remediation:**
+   - In `Source/UI/iOS/MaktabahApp.swift`: Added `@objc var window: UIWindow?`, `@objc var reactNativeFactory`, `@objc var reactNativeDelegate`, `@objc var reactDelegate`, `@objc var rootView` backed by `SefariaExpoLifecycleAdapter.shared`, and overrode `value(forUndefinedKey:)` and `setValue(_:forUndefinedKey:)` to return `nil` and prevent uncaught KVC exceptions.
+   - In `Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift`: Pre-assigned `self.hostedWindow = headlessWindow` prior to starting React Native, and implemented `@objc var window` and KVC undefined key resilience in `ChavrusaReactNativeDelegate`.
 
 ---
 

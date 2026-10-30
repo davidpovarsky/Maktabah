@@ -34,11 +34,11 @@ final class SefariaExpoLifecycleAdapter {
     static let shared = SefariaExpoLifecycleAdapter()
 
     #if canImport(UIKit) && canImport(React)
-    private var hostedWindow: UIWindow?
-    private var isHostActive: Bool = false
+    var hostedWindow: UIWindow?
+    var isHostActive: Bool = false
     #if canImport(Expo)
-    private var reactNativeDelegate: Any?
-    private var reactNativeFactory: Any?
+    var reactNativeDelegate: Any?
+    var reactNativeFactory: Any?
     #endif
     #endif
 
@@ -112,13 +112,13 @@ final class SefariaExpoLifecycleAdapter {
         headlessWindow.isHidden = true
         headlessWindow.alpha = 0.001
         headlessWindow.isUserInteractionEnabled = false
+        self.hostedWindow = headlessWindow
 
         factory.startReactNative(
             withModuleName: "ChavrusaSefariaRoot",
             in: headlessWindow,
             launchOptions: nil
         )
-        self.hostedWindow = headlessWindow
         self.isHostActive = true
         #endif
         #endif
@@ -153,6 +153,19 @@ final class SefariaExpoLifecycleAdapter {
 
 #if canImport(UIKit) && canImport(React) && canImport(Expo)
 private final class ChavrusaReactNativeDelegate: ExpoReactNativeFactoryDelegate {
+    @objc var window: UIWindow? {
+        get { SefariaExpoLifecycleAdapter.shared.hostedWindow }
+        set { SefariaExpoLifecycleAdapter.shared.hostedWindow = newValue }
+    }
+
+    override func value(forUndefinedKey key: String) -> Any? {
+        return nil
+    }
+
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        // Silently tolerate undefined keys from Expo/React Native subsystems
+    }
+
     override func sourceURL(for bridge: RCTBridge) -> URL? {
         bridge.bundleURL ?? bundleURL()
     }
