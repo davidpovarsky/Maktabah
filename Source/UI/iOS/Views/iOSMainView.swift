@@ -159,12 +159,14 @@ struct iOSMainView: View {
                 navigationManager.persistCurrentSession(immediate: true)
             }
         }
-        .overlay {
-            Color.clear
-                .frame(width: 1, height: 1)
-                .accessibilityElement()
+        .overlay(alignment: .bottomTrailing) {
+            Text(sefariaEmbeddedAcceptanceResult ?? "PENDING")
+                .font(.system(size: 8))
                 .accessibilityIdentifier("sefaria-embedded-acceptance-result")
-                .accessibilityValue(sefariaEmbeddedAcceptanceResult ?? "")
+                .accessibilityLabel(sefariaEmbeddedAcceptanceResult ?? "PENDING")
+                .accessibilityValue(sefariaEmbeddedAcceptanceResult ?? "PENDING")
+                .frame(width: 2, height: 2)
+                .opacity(0.02)
                 .allowsHitTesting(false)
         }
         #if DEBUG
@@ -443,6 +445,12 @@ private extension iOSMainView {
         var report = AcceptanceReport(status: "PENDING", failedStage: nil, errorMessage: nil, stages: [:])
 
         do {
+            // Ensure backend is committed to sefariaEmbedded
+            BackendCoordinator.shared.commit(.sefariaEmbedded)
+
+            // Start React Native host and mount headless root view to spin up Hermes runtime
+            SefariaExpoLifecycleAdapter.shared.ensureHostStarted()
+
             // Stage 1: waitForReady handshake
             try await SefariaJSRPCBridge.shared.waitForReady(timeoutSeconds: 30)
             report.stages["waitForReady"] = .init(passed: true, details: "Hermes JS bridge emitted ready event with matching generation")
@@ -523,11 +531,15 @@ private extension iOSMainView {
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         if let data = try? encoder.encode(report), let jsonStr = String(data: data, encoding: .utf8) {
             self.sefariaEmbeddedAcceptanceResult = jsonStr
+            #if canImport(UIKit)
+            UIAccessibility.post(notification: .layoutChanged, argument: nil)
+            #endif
             writeSmokeAutomationResult(
                 scenario: "embeddedAcceptance",
                 succeeded: report.status == "SUCCESS",
                 failureDetail: report.errorMessage
             )
+            NSLog("=== SefariaEmbedded Acceptance Result ===\n%@", jsonStr)
             print("=== SefariaEmbedded Acceptance Result ===")
             print(jsonStr)
             print("=========================================")

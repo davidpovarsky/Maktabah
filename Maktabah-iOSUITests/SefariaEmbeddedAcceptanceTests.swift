@@ -18,19 +18,29 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
         )
         dismissAlertsIfNeeded()
 
-        let resultElement = app.otherElements["sefaria-embedded-acceptance-result"]
+        let resultElement = app.descendants(matching: .any)["sefaria-embedded-acceptance-result"]
         XCTAssertTrue(resultElement.waitForExistence(timeout: 60.0), "sefaria-embedded-acceptance-result element must appear within 60s")
 
-        // Wait until accessibilityValue contains status
-        let predicate = NSPredicate(format: "value CONTAINS 'SUCCESS' OR value CONTAINS 'FAILURE'")
+        // Wait until accessibilityValue or accessibilityLabel contains SUCCESS or FAILURE
+        let predicate = NSPredicate(format: "value CONTAINS 'SUCCESS' OR value CONTAINS 'FAILURE' OR label CONTAINS 'SUCCESS' OR label CONTAINS 'FAILURE'")
         let expectation = XCTNSPredicateExpectation(predicate: predicate, object: resultElement)
-        let waitResult = XCTWaiter().wait(for: [expectation], timeout: 60.0)
+        let waitResult = XCTWaiter().wait(for: [expectation], timeout: 120.0)
         XCTAssertEqual(waitResult, .completed, "Acceptance runner timed out waiting for diagnostic completion")
 
-        guard let jsonString = resultElement.value as? String,
+        let rawString: String? = {
+            if let val = resultElement.value as? String, val.contains("{") {
+                return val
+            }
+            if resultElement.label.contains("{") {
+                return resultElement.label
+            }
+            return (resultElement.value as? String) ?? resultElement.label
+        }()
+
+        guard let jsonString = rawString,
               let data = jsonString.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            XCTFail("Failed to parse sefaria-embedded-acceptance-result JSON: \(String(describing: resultElement.value))")
+            XCTFail("Failed to parse sefaria-embedded-acceptance-result JSON: \(String(describing: rawString))")
             return
         }
 
