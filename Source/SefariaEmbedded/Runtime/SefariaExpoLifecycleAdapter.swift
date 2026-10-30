@@ -171,6 +171,7 @@ final class SefariaExpoLifecycleAdapter {
 // MARK: - KVC Resilience Implementation
 
 #if canImport(UIKit) && canImport(ObjectiveC)
+@MainActor
 private var hasInstalledKVCResilience = false
 
 extension SefariaExpoLifecycleAdapter {
