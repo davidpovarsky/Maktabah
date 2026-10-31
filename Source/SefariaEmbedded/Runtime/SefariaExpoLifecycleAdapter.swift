@@ -113,21 +113,55 @@ final class SefariaExpoLifecycleAdapter {
         let actualAppDelegate = (UIApplication.shared.delegate as? ExpoAppDelegate) ?? (MaktabahApp.sharedAppDelegate as? ExpoAppDelegate)
         actualAppDelegate?.bindReactNativeFactory(factory)
 
-        // Mount a persistent headless background UIWindow to bootstrap the Hermes
-        // engine, global context, and JS RPC module without disrupting Maktabah's
-        // native SwiftUI window hierarchy.
-        let headlessWindow = UIWindow(frame: .zero)
-        headlessWindow.isHidden = true
-        headlessWindow.alpha = 0.001
-        headlessWindow.isUserInteractionEnabled = false
-        self.hostedWindow = headlessWindow
+        // Mount a persistent background UIWindow attached to the active window scene
+        // to bootstrap the Hermes engine, global context, and JS RPC module without
+        // disrupting Maktabah's native SwiftUI window hierarchy.
+        var activeScene: UIWindowScene?
+        for scene in UIApplication.shared.connectedScenes {
+            if let windowScene = scene as? UIWindowScene {
+                if windowScene.activationState == .foregroundActive {
+                    activeScene = windowScene
+                    break
+                }
+                if activeScene == nil {
+                    activeScene = windowScene
+                }
+            }
+        }
+
+        let previousKeyWindow = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
+
+        let hostedWindow: UIWindow
+        if let scene = activeScene {
+            hostedWindow = UIWindow(windowScene: scene)
+        } else {
+            hostedWindow = UIWindow(frame: UIScreen.main.bounds)
+        }
+        hostedWindow.frame = activeScene?.screen.bounds ?? CGRect(x: 0, y: 0, width: 320, height: 480)
+        hostedWindow.windowLevel = UIWindow.Level(rawValue: -1000)
+        hostedWindow.alpha = 0.01
+        hostedWindow.isHidden = false
+        hostedWindow.isUserInteractionEnabled = false
+        self.hostedWindow = hostedWindow
 
         factory.startReactNative(
             withModuleName: "ChavrusaSefariaRoot",
-            in: headlessWindow,
+            in: hostedWindow,
             launchOptions: nil
         )
         self.isHostActive = true
+
+        // Force root view controller to load its view hierarchy and run initial layout
+        // so React Native's surface view is mounted and Hermes evaluates index.embedded.js
+        _ = hostedWindow.rootViewController?.view
+        hostedWindow.rootViewController?.view.setNeedsLayout()
+        hostedWindow.rootViewController?.view.layoutIfNeeded()
+
+        // Restore main key window so SwiftUI interaction remains uninterrupted
+        previousKeyWindow?.makeKey()
         #endif
         #endif
     }
