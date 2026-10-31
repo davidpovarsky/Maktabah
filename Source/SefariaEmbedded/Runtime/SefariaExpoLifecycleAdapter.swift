@@ -113,21 +113,48 @@ final class SefariaExpoLifecycleAdapter {
         let actualAppDelegate = (UIApplication.shared.delegate as? ExpoAppDelegate) ?? (MaktabahApp.sharedAppDelegate as? ExpoAppDelegate)
         actualAppDelegate?.bindReactNativeFactory(factory)
 
-        // Mount a persistent headless background UIWindow to bootstrap the Hermes
+        // Mount a persistent hosted background UIWindow to bootstrap the Hermes
         // engine, global context, and JS RPC module without disrupting Maktabah's
         // native SwiftUI window hierarchy.
-        let headlessWindow = UIWindow(frame: .zero)
-        headlessWindow.isHidden = true
-        headlessWindow.alpha = 0.001
-        headlessWindow.isUserInteractionEnabled = false
-        self.hostedWindow = headlessWindow
+        var activeScene: UIWindowScene?
+        for scene in UIApplication.shared.connectedScenes {
+            if let windowScene = scene as? UIWindowScene {
+                if windowScene.activationState == .foregroundActive {
+                    activeScene = windowScene
+                    break
+                }
+                if activeScene == nil {
+                    activeScene = windowScene
+                }
+            }
+        }
+
+        let previousKeyWindow = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
+
+        let hostedWindow: UIWindow
+        if let scene = activeScene {
+            hostedWindow = UIWindow(windowScene: scene)
+        } else {
+            hostedWindow = UIWindow(frame: CGRect(x: 0, y: 0, width: 2, height: 2))
+        }
+        hostedWindow.frame = CGRect(x: 0, y: 0, width: 2, height: 2)
+        hostedWindow.alpha = 0.01
+        hostedWindow.isHidden = false
+        hostedWindow.isUserInteractionEnabled = false
+        self.hostedWindow = hostedWindow
 
         factory.startReactNative(
             withModuleName: "ChavrusaSefariaRoot",
-            in: headlessWindow,
+            in: hostedWindow,
             launchOptions: nil
         )
         self.isHostActive = true
+
+        // Restore key window so SwiftUI interaction remains uninterrupted
+        previousKeyWindow?.makeKeyWindow()
         #endif
         #endif
     }

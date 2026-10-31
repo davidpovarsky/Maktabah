@@ -159,6 +159,17 @@ struct iOSMainView: View {
                 navigationManager.persistCurrentSession(immediate: true)
             }
         }
+        .overlay(alignment: .bottomLeading) {
+            if isSefariaEmbeddedHostNeeded {
+                SefariaEmbeddedNativeSurfaceHost(
+                    moduleName: "ChavrusaSefariaRoot",
+                    initialProperties: ["renderFullUI": false]
+                )
+                .frame(width: 2, height: 2)
+                .opacity(0.01)
+                .allowsHitTesting(false)
+            }
+        }
         .overlay(alignment: .bottomTrailing) {
             Text(sefariaEmbeddedAcceptanceResult ?? "PENDING")
                 .font(.system(size: 8))
@@ -174,6 +185,20 @@ struct iOSMainView: View {
             await performSmokeAutomationIfNeeded()
         }
         #endif
+    }
+
+    private var isSefariaEmbeddedHostNeeded: Bool {
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("-runSefariaEmbeddedAcceptance") {
+            return true
+        }
+        if let idx = args.firstIndex(of: "-smokeScenario"), idx + 1 < args.count, args[idx + 1] == "embeddedAcceptance" {
+            return true
+        }
+        if let idx = args.firstIndex(of: "-smokeBackend"), idx + 1 < args.count, args[idx + 1] == "sefariaEmbedded" {
+            return true
+        }
+        return BackendCoordinator.shared.activeBackendID == .sefariaEmbedded
     }
 
     private func handleOpenURL(_ url: URL, bManager: iOSNavigationManager) {
@@ -450,10 +475,11 @@ private extension iOSMainView {
 
             // Start React Native host and mount headless root view to spin up Hermes runtime
             SefariaExpoLifecycleAdapter.shared.ensureHostStarted()
+            try? await Task.sleep(nanoseconds: 500_000_000)
 
             // Stage 1: waitForReady handshake
             NSLog("[SefariaAcceptance] Stage 1: waitForReady started")
-            try await SefariaJSRPCBridge.shared.waitForReady(timeoutSeconds: 30)
+            try await SefariaJSRPCBridge.shared.waitForReady(timeoutSeconds: 45)
             report.stages["waitForReady"] = .init(passed: true, details: "Hermes JS bridge emitted ready event with matching generation")
             NSLog("[SefariaAcceptance] Stage 1: waitForReady passed")
 

@@ -32,6 +32,7 @@ actor SefariaJSRPCBridge {
     private init() {}
 
     func setTransport(_ transport: (any SefariaJSTransport)?) {
+        NSLog("[SefariaJSRPCBridge] setTransport called (transport: %@)", String(describing: transport))
         self.transport = transport
         if transport == nil {
             self.isReady = false
@@ -42,6 +43,7 @@ actor SefariaJSRPCBridge {
 
     func clearTransportIfMatches(_ transport: any SefariaJSTransport) {
         if let current = self.transport, (current as AnyObject) === (transport as AnyObject) {
+            NSLog("[SefariaJSRPCBridge] clearTransportIfMatches: clearing transport")
             self.transport = nil
             self.isReady = false
             self.hasActiveListeners = false
@@ -50,18 +52,22 @@ actor SefariaJSRPCBridge {
     }
 
     func notifyListenersActive(_ active: Bool) {
+        NSLog("[SefariaJSRPCBridge] notifyListenersActive: %d", active)
         self.hasActiveListeners = active
     }
 
     /// Awaits validated readiness from the Sefaria Hermes runtime with generation and listener checks.
-    func waitForReady(timeoutSeconds: Double = 25.0) async throws {
+    func waitForReady(timeoutSeconds: Double = 30.0) async throws {
         if isReady && transport != nil {
+            NSLog("[SefariaJSRPCBridge] waitForReady: already ready with active transport")
             return
         }
 
+        NSLog("[SefariaJSRPCBridge] waitForReady: awaiting ready event (timeout: %.1fs)...", timeoutSeconds)
         let deadline = Date().addingTimeInterval(timeoutSeconds)
         while Date() < deadline {
             if isReady && transport != nil {
+                NSLog("[SefariaJSRPCBridge] waitForReady: successfully became ready!")
                 return
             }
             try await Task.sleep(nanoseconds: 100_000_000)
@@ -71,14 +77,17 @@ actor SefariaJSRPCBridge {
             return
         }
 
+        let state = "isReady=\(isReady), transport=\(transport != nil), hasListeners=\(hasActiveListeners)"
+        NSLog("[SefariaJSRPCBridge] waitForReady FAILED: %@", state)
         throw SefariaRPCError(
             code: "READY_TIMEOUT",
-            message: "Timed out waiting for Sefaria JS runtime 'ready' event after \(timeoutSeconds)s",
+            message: "Timed out waiting for Sefaria JS runtime 'ready' event after \(timeoutSeconds)s (\(state))",
             retryable: true
         )
     }
 
     private func notifyReady() {
+        NSLog("[SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!")
         isReady = true
     }
 
@@ -240,6 +249,7 @@ actor SefariaJSRPCBridge {
     }
 
     func handleIncomingEvent(jsonString: String) {
+        NSLog("[SefariaJSRPCBridge] handleIncomingEvent: %@", jsonString)
         guard let data = jsonString.data(using: .utf8),
               let event = try? JSONDecoder().decode(SefariaRPCEvent.self, from: data) else {
             return
