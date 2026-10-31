@@ -154,7 +154,7 @@ final class SefariaExpoLifecycleAdapter {
         self.isHostActive = true
 
         // Restore key window so SwiftUI interaction remains uninterrupted
-        previousKeyWindow?.makeKeyWindow()
+        previousKeyWindow?.makeKey()
         #endif
         #endif
     }
