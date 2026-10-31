@@ -128,3 +128,4 @@
 | `dbfcb4e` | `fix(sefaria-embedded): configure Firebase native SDK, eliminate waitForReady continuation deadlock, and guard bundle initialization` |
 | `d7e2e0c` | `fix(acceptance): invoke runBackendSwitchSnapshotRegression directly on MainActor` |
 | `fe2681a` | `fix(sefaria-embedded): mock React Native Firebase in JS and remove native FirebaseApp to prevent simulator crash` |
+| `e1e5f1c` | `fix(sefaria-embedded): bootstrap Hermes JS bridge via active UIWindowScene and module-level RPC subscription` |
