@@ -4,7 +4,7 @@
 // that ChavrusaSefariaRoot is registered with AppRegistry before any
 // downstream or upstream module evaluation.
 import './JS/chavrusaRPCFacade';
-import './JS/ChavrusaRoot';
+import { setupChavrusaRPCBridge } from './JS/ChavrusaRoot';
 
 // 2. Initialize original Sefaria-Mobile global context, state providers, and components
 try {
@@ -14,4 +14,11 @@ try {
 }
 
 console.log('[ChavrusaText] Sefaria-Mobile embedded JS runtime initialized successfully');
+
+// 3. Setup RPC bridge listener and emit ready handshake to native Swift
+try {
+  setupChavrusaRPCBridge();
+} catch (e) {
+  console.warn('[ChavrusaText] Failed to initialize RPC bridge after upstream load:', e);
+}
 

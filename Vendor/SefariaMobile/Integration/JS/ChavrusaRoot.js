@@ -105,13 +105,6 @@ export const setupChavrusaRPCBridge = () => {
   });
 };
 
-// Immediately wire bridge upon module evaluation so Hermes runtime is immediately ready
-try {
-  setupChavrusaRPCBridge();
-} catch (e) {
-  console.warn('[ChavrusaRoot] Failed immediate setup of RPC bridge:', e);
-}
-
 export const ChavrusaRoot = (props) => {
   const [globalState, dispatch] = useReducer(reducer, DEFAULT_STATE);
   const theme = getTheme(globalState.themeStr);

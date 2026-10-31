@@ -159,17 +159,6 @@ struct iOSMainView: View {
                 navigationManager.persistCurrentSession(immediate: true)
             }
         }
-        .overlay(alignment: .bottomLeading) {
-            if isSefariaEmbeddedHostNeeded {
-                SefariaEmbeddedNativeSurfaceHost(
-                    moduleName: "ChavrusaSefariaRoot",
-                    initialProperties: ["renderFullUI": false]
-                )
-                .frame(width: 2, height: 2)
-                .opacity(0.01)
-                .allowsHitTesting(false)
-            }
-        }
         .overlay(alignment: .bottomTrailing) {
             Text(sefariaEmbeddedAcceptanceResult ?? "PENDING")
                 .font(.system(size: 8))
@@ -185,20 +174,6 @@ struct iOSMainView: View {
             await performSmokeAutomationIfNeeded()
         }
         #endif
-    }
-
-    private var isSefariaEmbeddedHostNeeded: Bool {
-        let args = ProcessInfo.processInfo.arguments
-        if args.contains("-runSefariaEmbeddedAcceptance") {
-            return true
-        }
-        if let idx = args.firstIndex(of: "-smokeScenario"), idx + 1 < args.count, args[idx + 1] == "embeddedAcceptance" {
-            return true
-        }
-        if let idx = args.firstIndex(of: "-smokeBackend"), idx + 1 < args.count, args[idx + 1] == "sefariaEmbedded" {
-            return true
-        }
-        return BackendCoordinator.shared.activeBackendID == .sefariaEmbedded
     }
 
     private func handleOpenURL(_ url: URL, bManager: iOSNavigationManager) {
