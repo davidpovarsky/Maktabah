@@ -16,6 +16,8 @@ import React
 #if canImport(React)
 @objc(ChavrusaSefariaBridgeModule)
 final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @unchecked Sendable {
+    static let shared = ChavrusaSefariaBridgeModule()
+
     private let stateLock = NSLock()
     private var _customExecutor: (@Sendable (String) async throws -> Void)?
     private var _hasListeners: Bool = false
@@ -138,6 +140,8 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
 #else
 
 final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecked Sendable {
+    static let shared = ChavrusaSefariaBridgeModule()
+
     private let stateLock = NSLock()
     private var _customExecutor: (@Sendable (String) async throws -> Void)?
 

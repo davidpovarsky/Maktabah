@@ -101,6 +101,9 @@ final class SefariaExpoLifecycleAdapter {
         }
 
         #if canImport(Expo)
+        // Ensure shared bridge module is instantiated and registered with RPC bridge
+        _ = ChavrusaSefariaBridgeModule.shared
+
         let delegate = ChavrusaReactNativeDelegate()
         #if canImport(ReactAppDependencyProvider)
         delegate.dependencyProvider = RCTAppDependencyProvider()
@@ -154,20 +157,9 @@ final class SefariaExpoLifecycleAdapter {
         )
         self.isHostActive = true
 
-        // Ensure hostedWindow hosts a concrete surface view so React Native starts its surface
-        let rootVC = hostedWindow.rootViewController ?? UIViewController()
-        rootVC.view.backgroundColor = .clear
-        let surfaceView = factory.rootViewFactory.view(
-            withModuleName: "ChavrusaSefariaRoot",
-            initialProperties: ["renderFullUI": false]
-        )
-        surfaceView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        surfaceView.frame = hostedWindow.bounds
-        rootVC.view.addSubview(surfaceView)
-        hostedWindow.rootViewController = rootVC
-
         // Force root view controller to load its view hierarchy and run initial layout
         // so React Native's surface view is mounted and Hermes evaluates index.embedded.js
+        _ = hostedWindow.rootViewController?.view
         hostedWindow.rootViewController?.view.setNeedsLayout()
         hostedWindow.rootViewController?.view.layoutIfNeeded()
 
@@ -236,6 +228,12 @@ private final class ChavrusaReactNativeDelegate: ExpoReactNativeFactoryDelegate 
         #else
         return nil
         #endif
+    }
+
+    override func extraModules(for bridge: RCTBridge!) -> [RCTBridgeModule]! {
+        var modules: [RCTBridgeModule] = super.extraModules(for: bridge) ?? []
+        modules.append(ChavrusaSefariaBridgeModule.shared)
+        return modules
     }
 }
 #endif
