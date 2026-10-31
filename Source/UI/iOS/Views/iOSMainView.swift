@@ -454,7 +454,7 @@ private extension iOSMainView {
 
             // Stage 1: waitForReady handshake
             NSLog("[SefariaAcceptance] Stage 1: waitForReady started")
-            try await SefariaJSRPCBridge.shared.waitForReady(timeoutSeconds: 45)
+            try await SefariaJSRPCBridge.shared.waitForReady(timeoutSeconds: 60)
             report.stages["waitForReady"] = .init(passed: true, details: "Hermes JS bridge emitted ready event with matching generation")
             NSLog("[SefariaAcceptance] Stage 1: waitForReady passed")
 

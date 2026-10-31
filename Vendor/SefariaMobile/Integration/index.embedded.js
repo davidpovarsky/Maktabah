@@ -18,6 +18,15 @@ console.log('[ChavrusaText] Sefaria-Mobile embedded JS runtime initialized succe
 // 3. Setup RPC bridge listener and emit ready handshake to native Swift
 try {
   setupChavrusaRPCBridge();
+  let readyAttempts = 0;
+  const readyInterval = setInterval(() => {
+    readyAttempts += 1;
+    if (readyAttempts >= 10) {
+      clearInterval(readyInterval);
+      return;
+    }
+    setupChavrusaRPCBridge();
+  }, 500);
 } catch (e) {
   console.warn('[ChavrusaText] Failed to initialize RPC bridge after upstream load:', e);
 }

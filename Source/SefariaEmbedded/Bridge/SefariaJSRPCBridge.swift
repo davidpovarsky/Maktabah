@@ -29,6 +29,10 @@ actor SefariaJSRPCBridge {
     private(set) var isReady: Bool = false
     private(set) var hasActiveListeners: Bool = false
 
+    var hasTransport: Bool {
+        return transport != nil
+    }
+
     private init() {}
 
     func setTransport(_ transport: (any SefariaJSTransport)?) {

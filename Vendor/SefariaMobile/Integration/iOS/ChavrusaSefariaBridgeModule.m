@@ -17,5 +17,7 @@ RCT_EXTERN_METHOD(deliverEvent:(NSString *)jsonString)
 RCT_EXTERN_METHOD(echo:(NSString *)message
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(addListener:(NSString *)eventName)
+RCT_EXTERN_METHOD(removeListeners:(double)count)
 
 @end
