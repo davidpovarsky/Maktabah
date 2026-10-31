@@ -527,20 +527,9 @@ private extension iOSMainView {
 
             // Stage 9: 3-backend switch regression
             NSLog("[SefariaAcceptance] Stage 9: backendSwitchRegression started")
-            let regressionResult: (succeeded: Bool, failureDetail: String?) = await withTaskGroup(of: (Bool, String?).self) { group in
-                group.addTask { @MainActor in
-                    await self.runBackendSwitchSnapshotRegression()
-                }
-                group.addTask {
-                    try? await Task.sleep(nanoseconds: 20_000_000_000)
-                    return (false, "Timed out after 20s in runBackendSwitchSnapshotRegression")
-                }
-                let first = await group.next() ?? (false, "Task group empty")
-                group.cancelAll()
-                return first
-            }
-            guard regressionResult.succeeded else {
-                throw SefariaRPCError(code: "BACKEND_SWITCH_REGRESSION_FAILED", message: regressionResult.failureDetail ?? "Unknown backend regression error")
+            let regression = await self.runBackendSwitchSnapshotRegression()
+            guard regression.succeeded else {
+                throw SefariaRPCError(code: "BACKEND_SWITCH_REGRESSION_FAILED", message: regression.failureDetail ?? "Unknown backend regression error")
             }
             report.stages["backendSwitchRegression"] = .init(passed: true, details: "3-backend switch regression completed cleanly")
             NSLog("[SefariaAcceptance] Stage 9: backendSwitchRegression passed")
