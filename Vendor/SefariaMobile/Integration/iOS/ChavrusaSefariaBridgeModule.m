@@ -7,18 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#if __has_include(<React/RCTBridgeModule.h>)
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
-#elif __has_feature(modules)
-@import React;
-#else
-#import "RCTBridgeModule.h"
-#import "RCTEventEmitter.h"
-#endif
 
-RCT_EXTERN_MODULE(ChavrusaSefariaBridgeModule, RCTEventEmitter)
+@interface RCT_EXTERN_MODULE(ChavrusaSefariaBridgeModule, RCTEventEmitter)
 
 RCT_EXTERN_METHOD(deliverResponse:(NSString *)jsonString)
 RCT_EXTERN_METHOD(deliverEvent:(NSString *)jsonString)
