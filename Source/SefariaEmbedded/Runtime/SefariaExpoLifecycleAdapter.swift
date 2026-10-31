@@ -33,6 +33,10 @@ import ReactAppDependencyProvider
 import ObjectiveC
 #endif
 
+#if canImport(FirebaseCore)
+import FirebaseCore
+#endif
+
 @MainActor
 final class SefariaExpoLifecycleAdapter {
     static let shared = SefariaExpoLifecycleAdapter()
@@ -99,6 +103,20 @@ final class SefariaExpoLifecycleAdapter {
         if isHostActive {
             return
         }
+
+        #if canImport(FirebaseCore)
+        if FirebaseApp.app() == nil {
+            if let plistPath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+               let options = FirebaseOptions(contentsOfFile: plistPath) {
+                FirebaseApp.configure(options: options)
+            } else {
+                let options = FirebaseOptions(googleAppID: "1:123456789012:ios:abcdef0123456789abcdef", gcmSenderID: "123456789012")
+                options.apiKey = "AIzaSyFakeKeyForEmbeddedBuild0000000"
+                options.projectID = "sefaria-embedded-mock"
+                FirebaseApp.configure(options: options)
+            }
+        }
+        #endif
 
         #if canImport(Expo)
         let delegate = ChavrusaReactNativeDelegate()

@@ -89,6 +89,9 @@ jobs:
       - name: Install CocoaPods
         run: |
           if [ -f "Podfile" ]; then
+            cp Source/GoogleService-Info.plist "${PWD}/GoogleService-Info.plist" || true
+            cp Source/GoogleService-Info.plist "${PWD}/Vendor/SefariaMobile/Upstream/ios/GoogleService-Info.plist" || true
+            export GOOGLE_SERVICES_FILE="${PWD}/Source/GoogleService-Info.plist"
             ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/../node_modules"
             ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/node_modules"
             export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"

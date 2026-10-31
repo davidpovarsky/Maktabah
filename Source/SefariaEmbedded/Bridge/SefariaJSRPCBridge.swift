@@ -28,7 +28,6 @@ actor SefariaJSRPCBridge {
 
     private(set) var isReady: Bool = false
     private(set) var hasActiveListeners: Bool = false
-    private var readyContinuations: [CheckedContinuation<Void, any Error>] = []
 
     private init() {}
 
@@ -60,48 +59,27 @@ actor SefariaJSRPCBridge {
             return
         }
 
-        try await withThrowingTaskGroup(of: Void.self) { group in
-            group.addTask {
-                try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, any Error>) in
-                    Task { [weak self] in
-                        guard let self else {
-                            continuation.resume()
-                            return
-                        }
-                        await self.registerReadyContinuation(continuation)
-                    }
-                }
+        let deadline = Date().addingTimeInterval(timeoutSeconds)
+        while Date() < deadline {
+            if isReady && transport != nil {
+                return
             }
-
-            group.addTask {
-                try await Task.sleep(nanoseconds: UInt64(timeoutSeconds * 1_000_000_000))
-                throw SefariaRPCError(
-                    code: "READY_TIMEOUT",
-                    message: "Timed out waiting for Sefaria JS runtime 'ready' event after \(timeoutSeconds)s",
-                    retryable: true
-                )
-            }
-
-            try await group.next()
-            group.cancelAll()
+            try await Task.sleep(nanoseconds: 100_000_000)
         }
-    }
 
-    private func registerReadyContinuation(_ continuation: CheckedContinuation<Void, any Error>) {
         if isReady && transport != nil {
-            continuation.resume()
-        } else {
-            readyContinuations.append(continuation)
+            return
         }
+
+        throw SefariaRPCError(
+            code: "READY_TIMEOUT",
+            message: "Timed out waiting for Sefaria JS runtime 'ready' event after \(timeoutSeconds)s",
+            retryable: true
+        )
     }
 
     private func notifyReady() {
         isReady = true
-        let continuations = readyContinuations
-        readyContinuations.removeAll()
-        for cont in continuations {
-            cont.resume()
-        }
     }
 
     /// Dispatches an RPC call to the Sefaria runtime with bounded timeout, generation tracking,
