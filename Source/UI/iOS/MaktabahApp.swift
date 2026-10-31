@@ -1,10 +1,6 @@
 import CloudKit
 import SwiftUI
 
-#if canImport(FirebaseCore)
-import FirebaseCore
-#endif
-
 #if canImport(Expo)
 import Expo
 typealias MaktabahAppDelegateBase = ExpoAppDelegate
@@ -213,19 +209,6 @@ class AppDelegate: MaktabahAppDelegateBase {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        #if canImport(FirebaseCore)
-        if FirebaseApp.app() == nil {
-            if let plistPath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
-               let options = FirebaseOptions(contentsOfFile: plistPath) {
-                FirebaseApp.configure(options: options)
-            } else {
-                let options = FirebaseOptions(googleAppID: "1:123456789012:ios:abcdef0123456789abcdef", gcmSenderID: "123456789012")
-                options.apiKey = "AIzaSyFakeKeyForEmbeddedBuild0000000"
-                options.projectID = "sefaria-embedded-mock"
-                FirebaseApp.configure(options: options)
-            }
-        }
-        #endif
         _ = super.application(application, didFinishLaunchingWithOptions: launchOptions)
         SefariaExpoLifecycleAdapter.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         if AppConfig.useICloud, CloudKitCoreManager.shared.isAvailable {

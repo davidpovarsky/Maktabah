@@ -21,6 +21,12 @@ const embeddedConfig = {
   resolver: {
     assetExts: assetExts.filter((ext) => ext !== 'svg'),
     sourceExts: [...sourceExts, 'svg'],
+    extraNodeModules: {
+      '@react-native-firebase/app': path.resolve(integrationDir, 'JS/mocks/firebase-app.js'),
+      '@react-native-firebase/crashlytics': path.resolve(integrationDir, 'JS/mocks/firebase-crashlytics.js'),
+      '@react-native-firebase/analytics': path.resolve(integrationDir, 'JS/mocks/firebase-analytics.js'),
+      '@react-native-firebase/remote-config': path.resolve(integrationDir, 'JS/mocks/firebase-remote-config.js'),
+    },
     nodeModulesPaths: [
       path.resolve(upstreamDir, 'node_modules'),
     ],

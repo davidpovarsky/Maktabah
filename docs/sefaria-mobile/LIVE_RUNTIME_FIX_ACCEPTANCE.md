@@ -125,4 +125,6 @@
 | `4661067` | `fix(sefaria-embedded): expose _expoAppDelegate on NSObject and bind factory to sharedAppDelegate` |
 | `7bd203e` | `fix(sefaria-embedded): start React Native host and expand accessibility result detection for simulator acceptance` |
 | `21a945d` | `docs(sefaria-embedded): update live runtime acceptance dossier` |
-| `e0a3f91` | `fix(sefaria-embedded): configure Firebase native SDK, eliminate waitForReady continuation deadlock, and guard bundle initialization` |
+| `dbfcb4e` | `fix(sefaria-embedded): configure Firebase native SDK, eliminate waitForReady continuation deadlock, and guard bundle initialization` |
+| `d7e2e0c` | `fix(acceptance): invoke runBackendSwitchSnapshotRegression directly on MainActor` |
+| `fe2681a` | `fix(sefaria-embedded): mock React Native Firebase in JS and remove native FirebaseApp to prevent simulator crash` |
