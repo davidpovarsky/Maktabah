@@ -61,12 +61,20 @@ const handleIncomingEnvelope = async (envelopeJSON) => {
 
 export const setupChavrusaRPCBridge = () => {
   // 1. Subscribe to NativeEventEmitter for incoming Swift RPC requests (singleton)
-  if (!rpcSubscription && NativeModules?.ChavrusaSefariaBridgeModule) {
-    try {
-      const eventEmitter = new NativeEventEmitter(NativeModules.ChavrusaSefariaBridgeModule);
-      rpcSubscription = eventEmitter.addListener('onSefariaRPCRequest', handleIncomingEnvelope);
-    } catch (e) {
-      console.warn('[ChavrusaRoot] Failed to create NativeEventEmitter:', e);
+  if (!rpcSubscription) {
+    if (NativeModules?.ChavrusaSefariaBridgeModule) {
+      try {
+        const eventEmitter = new NativeEventEmitter(NativeModules.ChavrusaSefariaBridgeModule);
+        rpcSubscription = eventEmitter.addListener('onSefariaRPCRequest', handleIncomingEnvelope);
+        console.log('[ChavrusaRoot] Successfully wired onSefariaRPCRequest NativeEventEmitter');
+      } catch (e) {
+        console.warn('[ChavrusaRoot] Failed to create NativeEventEmitter:', e);
+      }
+    } else {
+      console.warn('[ChavrusaRoot] NativeModules.ChavrusaSefariaBridgeModule is not yet available, scheduling retry');
+      setTimeout(() => {
+        setupChavrusaRPCBridge();
+      }, 150);
     }
   }
 

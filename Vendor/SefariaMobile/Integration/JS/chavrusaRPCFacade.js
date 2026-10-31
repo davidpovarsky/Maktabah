@@ -356,6 +356,8 @@ export class ChavrusaRPCFacade {
           payloadJson: payload ? JSON.stringify(payload) : null,
         })
       );
+    } else {
+      console.warn('[ChavrusaText] sendEventToNative failed: NativeModules.ChavrusaSefariaBridgeModule.deliverEvent is unavailable');
     }
   }
 }

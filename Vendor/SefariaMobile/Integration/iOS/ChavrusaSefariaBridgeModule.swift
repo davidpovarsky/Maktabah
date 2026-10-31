@@ -48,6 +48,7 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
 
     override init() {
         super.init()
+        NSLog("[ChavrusaSefariaBridgeModule] init() called, registering transport with SefariaJSRPCBridge")
         Task {
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
@@ -66,6 +67,7 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
     }
 
     override func startObserving() {
+        NSLog("[ChavrusaSefariaBridgeModule] startObserving() called, active listeners wired")
         hasListeners = true
         Task {
             await SefariaJSRPCBridge.shared.notifyListenersActive(true)
@@ -115,12 +117,14 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
     // MARK: - JS -> Native Callbacks
 
     @objc func deliverResponse(_ jsonString: String) {
+        NSLog("[ChavrusaSefariaBridgeModule] deliverResponse called: %@", jsonString)
         Task {
             await SefariaJSRPCBridge.shared.handleIncomingResponse(jsonString: jsonString)
         }
     }
 
     @objc func deliverEvent(_ jsonString: String) {
+        NSLog("[ChavrusaSefariaBridgeModule] deliverEvent called: %@", jsonString)
         Task {
             await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)
         }
@@ -152,6 +156,7 @@ final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecke
 
     override init() {
         super.init()
+        NSLog("[ChavrusaSefariaBridgeModule] init() called, registering transport with SefariaJSRPCBridge")
         Task {
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
