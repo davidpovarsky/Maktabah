@@ -230,8 +230,8 @@ private final class ChavrusaReactNativeDelegate: ExpoReactNativeFactoryDelegate 
         #endif
     }
 
-    override func extraModules(for bridge: RCTBridge!) -> [RCTBridgeModule]! {
-        var modules: [RCTBridgeModule] = super.extraModules(for: bridge) ?? []
+    override func extraModules(for bridge: RCTBridge!) -> [RCTBridgeModule] {
+        var modules: [RCTBridgeModule] = super.extraModules(for: bridge)
         modules.append(ChavrusaSefariaBridgeModule.shared)
         return modules
     }
