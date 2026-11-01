@@ -1,17 +1,31 @@
 'use strict';
 
 const crashlyticsInstance = {
-  log: () => {},
-  recordError: () => {},
-  setUserId: () => {},
-  setAttribute: () => {},
-  setCrashlyticsCollectionEnabled: () => {},
+  log: (...args) => console.log(...args),
+  recordError: (...args) => Promise.resolve(),
+  setUserId: () => Promise.resolve(),
+  setAttribute: () => Promise.resolve(),
+  setAttributes: () => Promise.resolve(),
+  setCrashlyticsCollectionEnabled: () => Promise.resolve(),
+  sendUnsentReports: () => Promise.resolve(),
+  deleteUnsentReports: () => Promise.resolve(),
+  checkForUnsentReports: () => Promise.resolve(false),
+  didCrashOnPreviousExecution: () => Promise.resolve(false),
+  error: (...args) => console.error(...args),
 };
 
-module.exports = () => crashlyticsInstance;
-module.exports.default = () => crashlyticsInstance;
-module.exports.getCrashlytics = () => crashlyticsInstance;
-module.exports.log = (x) => console.log(x);
-module.exports.recordError = (x) => console.error(x);
-module.exports.setAttribute = () => {};
-module.exports.error = (x) => console.error(x);
+const fn = () => crashlyticsInstance;
+fn.default = fn;
+fn.getCrashlytics = () => crashlyticsInstance;
+fn.log = (...args) => console.log(...args);
+fn.recordError = (...args) => {
+  console.error(...args);
+  return Promise.resolve();
+};
+fn.setAttribute = () => {};
+fn.setAttributes = () => {};
+fn.setUserId = () => {};
+fn.setCrashlyticsCollectionEnabled = () => {};
+fn.error = (...args) => console.error(...args);
+
+module.exports = fn;

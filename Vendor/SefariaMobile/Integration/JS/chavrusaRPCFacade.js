@@ -42,7 +42,18 @@ export class ChavrusaRPCFacade {
         // --- DIAGNOSTICS & RUNTIME ---
         case 'diagnostic.echo': {
           if (params?.injectError) {
-            throw new Error(params?.errorMessage || 'Injected diagnostic error');
+            return {
+              protocolVersion: '1.0',
+              requestID,
+              status: 'error',
+              resultJson: null,
+              error: {
+                code: 'ECHO_INJECTED_ERROR',
+                message: params?.errorMessage || 'Injected diagnostic error',
+                retryable: false,
+              },
+              sessionGeneration,
+            };
           }
           result = {
             echoedMessage: params?.message || '',
