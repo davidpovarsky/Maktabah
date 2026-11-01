@@ -8,14 +8,20 @@ project_path = root / "Maktabah.xcodeproj" / "project.pbxproj"
 text = project_path.read_text(encoding="utf-8")
 
 target_match = re.search(
-    r"[A-F0-9]+ /\* Maktabah-iOS \*/ = \{.*?buildPhases = \(\s*"
-    r"([A-F0-9]+) /\* Sources \*/.*?([A-F0-9]+) /\* Frameworks \*/.*?"
-    r"([A-F0-9]+) /\* Resources \*/",
+    r"[A-F0-9]+ /\* Maktabah-iOS \*/ = \{.*?buildPhases = \((.*?)\);",
     text,
     re.S,
 )
 if not target_match:
     raise SystemExit("Maktabah-iOS target build phases were not found")
+
+build_phases_text = target_match.group(1)
+
+def phase_id(label: str) -> str:
+    match = re.search(rf"([A-F0-9]+) /\* {label} \*/", build_phases_text)
+    if not match:
+        raise SystemExit(f"Maktabah-iOS build phase '{label}' was not found in target")
+    return match.group(1)
 
 def phase_body(identifier: str, label: str) -> str:
     match = re.search(
@@ -27,9 +33,9 @@ def phase_body(identifier: str, label: str) -> str:
         raise SystemExit(f"{label} phase {identifier} was not found")
     return match.group(1)
 
-sources = phase_body(target_match.group(1), "Sources")
-frameworks = phase_body(target_match.group(2), "Frameworks")
-resources = phase_body(target_match.group(3), "Resources")
+sources = phase_body(phase_id("Sources"), "Sources")
+frameworks = phase_body(phase_id("Frameworks"), "Frameworks")
+resources = phase_body(phase_id("Resources"), "Resources")
 
 missing = []
 for source in sorted((root / "Source" / "Otzaria").rglob("*.swift")):
