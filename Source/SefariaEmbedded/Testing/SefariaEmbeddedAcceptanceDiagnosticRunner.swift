@@ -236,11 +236,13 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             // Stage 14: normalAppBootstrap verification
             let startT14 = Date()
             NSLog("[SefariaAcceptance] Stage 14: normalAppBootstrap started")
-            let isReady = SefariaRuntimeManager.shared.state.isReady
-            let hostReady = SefariaRuntimeManager.shared.readiness.hostReady
-            let catalogReady = SefariaRuntimeManager.shared.readiness.catalogReady
+            let runtimeState = await SefariaRuntimeManager.shared.state
+            let readiness = await SefariaRuntimeManager.shared.readiness
+            let isReady = runtimeState.isReady
+            let hostReady = readiness.hostReady
+            let catalogReady = readiness.catalogReady
             guard isReady && hostReady && catalogReady else {
-                throw SefariaRPCError(code: "BOOTSTRAP_STATE_INVALID", message: "Runtime not in verified ready state (state=\(SefariaRuntimeManager.shared.state), host=\(hostReady), catalog=\(catalogReady))")
+                throw SefariaRPCError(code: "BOOTSTRAP_STATE_INVALID", message: "Runtime not in verified ready state (state=\(runtimeState), host=\(hostReady), catalog=\(catalogReady))")
             }
             let dur14 = Int(Date().timeIntervalSince(startT14) * 1000)
             report.stages["normalAppBootstrap"] = .init(
