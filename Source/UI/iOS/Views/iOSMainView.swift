@@ -432,127 +432,8 @@ private extension iOSMainView {
 
     @MainActor
     func runSefariaEmbeddedComprehensiveAcceptance() async {
-        struct AcceptanceReport: Codable {
-            var status: String
-            var failedStage: String?
-            var errorMessage: String?
-            var stages: [String: StageDetail]
-            struct StageDetail: Codable {
-                var passed: Bool
-                var details: String?
-            }
-        }
-        var report = AcceptanceReport(status: "PENDING", failedStage: nil, errorMessage: nil, stages: [:])
-
-        do {
-            // Ensure backend is committed to sefariaEmbedded
-            BackendCoordinator.shared.commit(.sefariaEmbedded)
-
-            // Start React Native host and mount headless root view to spin up Hermes runtime
-            SefariaExpoLifecycleAdapter.shared.ensureHostStarted()
-            try? await Task.sleep(nanoseconds: 500_000_000)
-
-            // Stage 1: waitForReady handshake
-            NSLog("[SefariaAcceptance] Stage 1: waitForReady started")
-            try await SefariaJSRPCBridge.shared.waitForReady(timeoutSeconds: 60)
-            report.stages["waitForReady"] = .init(passed: true, details: "Hermes JS bridge emitted ready event with matching generation")
-            NSLog("[SefariaAcceptance] Stage 1: waitForReady passed")
-
-            // Stage 2: diagnostic.echo with Hebrew UTF-8 roundtrip
-            NSLog("[SefariaAcceptance] Stage 2: echoHebrew started")
-            let echoParams: [String: Any] = ["message": "שלום עולם"]
-            let echoJson = String(data: try JSONSerialization.data(withJSONObject: echoParams), encoding: .utf8)
-            let echoResp = try await SefariaJSRPCBridge.shared.call(method: "diagnostic.echo", paramsJson: echoJson, timeoutMs: 10000)
-            guard echoResp.isSuccess,
-                  let resJson = echoResp.resultJson,
-                  resJson.contains("שלום עולם") else {
-                throw SefariaRPCError(code: "ECHO_HEBREW_FAILED", message: "Echo did not return expected Hebrew string")
-            }
-            report.stages["echoHebrew"] = .init(passed: true, details: "Hebrew UTF-8 roundtrip verified losslessly")
-            NSLog("[SefariaAcceptance] Stage 2: echoHebrew passed")
-
-            // Stage 3: diagnostic.echo error injection
-            NSLog("[SefariaAcceptance] Stage 3: echoErrorInjection started")
-            let errParams: [String: Any] = ["message": "test-fail", "injectError": true]
-            let errJson = String(data: try JSONSerialization.data(withJSONObject: errParams), encoding: .utf8)
-            let errResp = try await SefariaJSRPCBridge.shared.call(method: "diagnostic.echo", paramsJson: errJson, timeoutMs: 10000)
-            guard !errResp.isSuccess, errResp.error?.code == "ECHO_INJECTED_ERROR" else {
-                throw SefariaRPCError(code: "ERROR_INJECTION_FAILED", message: "Error injection did not return ECHO_INJECTED_ERROR")
-            }
-            report.stages["echoErrorInjection"] = .init(passed: true, details: "Injected error correctly rejected across bridge")
-            NSLog("[SefariaAcceptance] Stage 3: echoErrorInjection passed")
-
-            // Stage 4: runtime.initialize
-            NSLog("[SefariaAcceptance] Stage 4: runtimeInitialize started")
-            try await SefariaRuntimeManager.shared.ensureReady()
-            report.stages["runtimeInitialize"] = .init(passed: true, details: "SefariaRuntimeManager initialized cleanly")
-            NSLog("[SefariaAcceptance] Stage 4: runtimeInitialize passed")
-
-            // Stage 5: catalog.toc asserting Genesis/Bereshit
-            NSLog("[SefariaAcceptance] Stage 5: catalogTOC started")
-            let roots = try await SefariaEmbeddedCatalogAdapter.shared.rootNodes()
-            guard !roots.isEmpty else {
-                throw SefariaRPCError(code: "CATALOG_EMPTY", message: "Catalog returned zero root categories")
-            }
-            report.stages["catalogTOC"] = .init(passed: true, details: "Catalog loaded \(roots.count) root nodes")
-            NSLog("[SefariaAcceptance] Stage 5: catalogTOC passed")
-
-            // Stage 6: text.load Genesis 1:1 asserting Hebrew בראשית
-            NSLog("[SefariaAcceptance] Stage 6: textLoadGenesis started")
-            let genLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
-            let genSection = try await SefariaEmbeddedTextAdapter.shared.section(at: genLocator)
-            guard let firstGenSeg = genSection.segments.first else {
-                throw SefariaRPCError(code: "GENESIS_EMPTY", message: "Genesis 1:1 returned no segments")
-            }
-            let genLetters = String(firstGenSeg.primaryText.readerPlainText.unicodeScalars.filter { $0.value >= 0x05D0 && $0.value <= 0x05EA })
-            guard genLetters.contains("בראשית") || firstGenSeg.primaryText.contains("בְּרֵאשִׁית") || firstGenSeg.primaryText.contains("בראשית") else {
-                throw SefariaRPCError(code: "GENESIS_TEXT_INVALID", message: "Genesis 1:1 text missing Hebrew בראשית: '\(firstGenSeg.primaryText)'")
-            }
-            report.stages["textLoadGenesis"] = .init(passed: true, details: "Genesis 1:1 loaded with Hebrew text: \(firstGenSeg.primaryText)")
-            NSLog("[SefariaAcceptance] Stage 6: textLoadGenesis passed")
-
-            // Stage 7: text.load Berakhot 2a asserting Hebrew מאימתי
-            NSLog("[SefariaAcceptance] Stage 7: textLoadBerakhot started")
-            let berLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Berakhot", position: .canonicalRef("Berakhot 2a:1"))
-            let berSection = try await SefariaEmbeddedTextAdapter.shared.section(at: berLocator)
-            guard let firstBerSeg = berSection.segments.first else {
-                throw SefariaRPCError(code: "BERAKHOT_EMPTY", message: "Berakhot 2a:1 returned no segments")
-            }
-            let berLetters = String(firstBerSeg.primaryText.readerPlainText.unicodeScalars.filter { $0.value >= 0x05D0 && $0.value <= 0x05EA })
-            guard berLetters.contains("מאימתי") || firstBerSeg.primaryText.contains("מֵאֵימָתַי") || firstBerSeg.primaryText.contains("מאימתי") else {
-                throw SefariaRPCError(code: "BERAKHOT_TEXT_INVALID", message: "Berakhot 2a:1 text missing Hebrew מאימתי: '\(firstBerSeg.primaryText)'")
-            }
-            report.stages["textLoadBerakhot"] = .init(passed: true, details: "Berakhot 2a:1 loaded with Hebrew text: \(firstBerSeg.primaryText)")
-            NSLog("[SefariaAcceptance] Stage 7: textLoadBerakhot passed")
-
-            // Stage 8: navigation.textToc Genesis asserting chapter count
-            NSLog("[SefariaAcceptance] Stage 8: navigationTextToc started")
-            let structures = try await SefariaEmbeddedNavigationAdapter.shared.navigationStructures(for: "Genesis")
-            guard let defaultStruct = structures.first(where: { $0.id == "default" }), !defaultStruct.nodes.isEmpty else {
-                throw SefariaRPCError(code: "NAVIGATION_TOC_EMPTY", message: "Genesis TOC returned empty nodes")
-            }
-            report.stages["navigationTextToc"] = .init(passed: true, details: "Genesis navigation structure has \(defaultStruct.nodes.count) nodes")
-            NSLog("[SefariaAcceptance] Stage 8: navigationTextToc passed")
-
-            // Stage 9: 3-backend switch regression
-            NSLog("[SefariaAcceptance] Stage 9: backendSwitchRegression started")
-            let regression = await self.runBackendSwitchSnapshotRegression()
-            guard regression.succeeded else {
-                throw SefariaRPCError(code: "BACKEND_SWITCH_REGRESSION_FAILED", message: regression.failureDetail ?? "Unknown backend regression error")
-            }
-            report.stages["backendSwitchRegression"] = .init(passed: true, details: "3-backend switch regression completed cleanly")
-            NSLog("[SefariaAcceptance] Stage 9: backendSwitchRegression passed")
-
-            report.status = "SUCCESS"
-        } catch {
-            report.status = "FAILURE"
-            report.errorMessage = error.localizedDescription
-            if let rpcErr = error as? SefariaRPCError {
-                report.failedStage = rpcErr.code
-            } else {
-                report.failedStage = "UNKNOWN_ERROR"
-            }
-            NSLog("[SefariaAcceptance] Acceptance FAILED at stage '%@': %@", report.failedStage ?? "unknown", report.errorMessage ?? "none")
+        let report = await SefariaEmbeddedAcceptanceDiagnosticRunner.run {
+            await self.runBackendSwitchSnapshotRegression()
         }
 
         let encoder = JSONEncoder()
@@ -568,6 +449,14 @@ private extension iOSMainView {
                 failureDetail: report.errorMessage
             )
             if let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let fileURL = docsURL.appendingPathComponent("sefaria-acceptance-result.json")
+                try? data.write(to: fileURL)
+            }
+            NSLog("=== SefariaEmbedded Acceptance Result ===\n%@", jsonStr)
+            print("=== SefariaEmbedded Acceptance Result ===")
+            print(jsonStr)
+        }
+    }
                 let fileURL = docsURL.appendingPathComponent("sefaria-acceptance-result.json")
                 try? data.write(to: fileURL)
             }

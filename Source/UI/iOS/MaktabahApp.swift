@@ -142,13 +142,29 @@ struct MaktabahApp: App {
     }
 }
 
-#if canImport(UIKit)
-extension NSObject {
-    /// Explicitly exposed property to satisfy Expo's `value(forKey: "_expoAppDelegate")`
-    /// lookup on `UIApplication.shared.delegate` without broad undefined-key swizzling.
-    @objc var _expoAppDelegate: Any? {
-        return MaktabahApp.sharedAppDelegate
+#if canImport(UIKit) && canImport(ObjectiveC)
+import ObjectiveC
+
+enum ExpoKVCSupport {
+    /// Narrowly ensures that the runtime delegate object (e.g. SwiftUI's internal AppDelegateProxy)
+    /// responds to `_expoAppDelegate` without adding properties to all NSObjects or replacing methods.
+    @MainActor
+    static func configureTargetedDelegateKVC() {
+        guard let delegate = UIApplication.shared.delegate else { return }
+        let delegateClass: AnyClass = type(of: delegate)
+        let sel = Selector(("_expoAppDelegate"))
+        if !class_respondsToSelector(delegateClass, sel) {
+            let block: @convention(block) (AnyObject) -> Any? = { _ in
+                return MaktabahApp.sharedAppDelegate
+            }
+            let imp = imp_implementationWithBlock(block)
+            class_addMethod(delegateClass, sel, imp, "@@:")
+        }
     }
+}
+#else
+enum ExpoKVCSupport {
+    static func configureTargetedDelegateKVC() {}
 }
 #endif
 
@@ -158,6 +174,13 @@ class AppDelegate: MaktabahAppDelegateBase {
     override init() {
         super.init()
         MaktabahApp.sharedAppDelegate = self
+        ExpoKVCSupport.configureTargetedDelegateKVC()
+    }
+
+    /// Explicitly exposed property to satisfy Expo's `value(forKey: "_expoAppDelegate")`
+    /// lookup directly on the concrete app delegate without modifying any unrelated NSObjects.
+    @objc var _expoAppDelegate: Any? {
+        return self
     }
 
     // MARK: - Expo & React Native Host Delegation & Clean Integration

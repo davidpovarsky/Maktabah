@@ -10,9 +10,79 @@ import { NativeModules } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as OfflineOnline from '../../Upstream/offlineOnline';
 import * as DownloadControl from '../../Upstream/DownloadControl';
+import { loadTextOffline, textFromRefData } from '../../Upstream/offline';
+import { ERRORS } from '../../Upstream/errors';
+import api from '../../Upstream/api';
+
+/**
+ * Loads text while rigorously tracking provenance (offline vs remote).
+ * Does not invent an origin from response shape.
+ */
+export async function loadTextWithProvenance(ref, context = true, versions, fallbackOnDefaultVersions = true, failSilently = false) {
+  if (typeof context === 'undefined') { context = true; }
+
+  // 1. If debugNoLibrary is active, skip offline loading entirely
+  if (!global.Sefaria?.debugNoLibrary) {
+    try {
+      const offlineResult = await loadTextOffline(ref, versions, fallbackOnDefaultVersions);
+      const { textContent, links } = offlineResult || {};
+      if (textContent?.missingLangs?.length) {
+        throw ERRORS.MISSING_OFFLINE_DATA;
+      }
+      if (!context) {
+        const result = textFromRefData(textContent);
+        return {
+          result,
+          textContent: null,
+          links: [],
+          isOffline: true,
+          origin: 'offline',
+        };
+      }
+      return {
+        textContent,
+        links: links || [],
+        result: null,
+        isOffline: true,
+        origin: 'offline',
+      };
+    } catch (error) {
+      if (error !== ERRORS.MISSING_OFFLINE_DATA) {
+        // Corrupt file or parsing error — do NOT fall back to remote API!
+        console.error('[ChavrusaText] Unexpected offline load error (corrupt file or parse error):', error);
+        throw error;
+      }
+      // Missing offline data: fall back to remote API below
+    }
+  }
+
+  // 2. Remote API fallback
+  const rawApiData = await api.textApi(ref, context, versions, failSilently);
+  api.processTextApiData(ref, context, versions, rawApiData);
+
+  let textContent = null;
+  let links = [];
+  let result = null;
+
+  if (context) {
+    textContent = rawApiData?.textContent || rawApiData;
+    links = rawApiData?.links || [];
+  } else {
+    result = rawApiData?.result || rawApiData;
+  }
+
+  return {
+    textContent,
+    links,
+    result,
+    isOffline: false,
+    origin: 'remote',
+  };
+}
 
 export class ChavrusaRPCFacade {
   static dispatch = null;
+  static activeDownloadingPackage = null;
 
   static setDispatch(d) {
     ChavrusaRPCFacade.dispatch = d;
@@ -32,6 +102,7 @@ export class ChavrusaRPCFacade {
           resultJson: null,
           error: { code: 'INVALID_JSON_PARAMS', message: e.message, retryable: false },
           sessionGeneration,
+          backendID: 'sefariaEmbedded',
         };
       }
     }
@@ -53,6 +124,7 @@ export class ChavrusaRPCFacade {
                 retryable: false,
               },
               sessionGeneration,
+              backendID: 'sefariaEmbedded',
             };
           }
           result = {
@@ -102,29 +174,19 @@ export class ChavrusaRPCFacade {
 
         // --- TEXT & VERSIONS ---
         case 'text.load': {
-          const raw = await OfflineOnline.loadText(
+          const loaded = await loadTextWithProvenance(
             params.ref,
             params.context !== false,
             params.versions,
             params.fallbackOnDefaultVersions !== false,
             params.failSilently || false
           );
-          let isOffline = false;
-          let textContent = null;
-          let links = [];
-          if (raw?.textContent) {
-            textContent = raw.textContent;
-            links = raw.links || [];
-            isOffline = true;
-          } else {
-            textContent = raw;
-            links = raw?.links || [];
-            isOffline = false;
-          }
           result = {
-            textContent,
-            links,
-            isOffline,
+            textContent: loaded.textContent,
+            links: loaded.links || [],
+            result: loaded.result,
+            isOffline: loaded.isOffline,
+            origin: loaded.origin,
           };
           break;
         }
@@ -178,13 +240,19 @@ export class ChavrusaRPCFacade {
               const source = hit._source || {};
               const highlight = hit.highlight || {};
               const snippetArr = highlight.exact || highlight.naive_lemmatizer || highlight.text || [];
+              let snippet = Array.isArray(snippetArr) && snippetArr.length > 0
+                ? snippetArr.join(' ... ')
+                : (typeof snippetArr === 'string' && snippetArr.length > 0 ? snippetArr : '');
+              if (!snippet) {
+                snippet = source.text || source.he || '';
+              }
               const bookTitle = source.title || (global.Sefaria?.textTitleForRef ? global.Sefaria.textTitleForRef(source.ref) : null) || source.ref;
               return {
                 ref: source.ref,
                 heRef: source.heRef,
                 title: bookTitle,
                 workKey: bookTitle,
-                snippet: Array.isArray(snippetArr) ? snippetArr.join(' ... ') : String(snippetArr),
+                snippet: snippet,
                 score: hit._score,
                 version: source.version,
                 language: hit._id?.includes('[he]') ? 'hebrew' : 'english',
@@ -249,10 +317,43 @@ export class ChavrusaRPCFacade {
         }
 
         case 'downloads.install': {
-          result = await DownloadControl.downloadPackage(
-            params.packageName,
-            params.networkSetting || 'wifiOnly'
+          if (!DownloadControl.PackagesState || Object.keys(DownloadControl.PackagesState).length === 0) {
+            await DownloadControl.packageSetupProtocol();
+          }
+          const pkg = DownloadControl.PackagesState?.[params.packageName];
+          if (!pkg) {
+            throw new Error(`Package '${params.packageName}' not found in package manifest`);
+          }
+
+          DownloadControl.Tracker.downloadTitle = params.packageName;
+          ChavrusaRPCFacade.activeDownloadingPackage = params.packageName;
+
+          try {
+            await DownloadControl.downloadPackage(
+              params.packageName,
+              params.networkSetting || 'wifiOnly'
+            );
+          } finally {
+            ChavrusaRPCFacade.activeDownloadingPackage = null;
+          }
+
+          // Verify whether the package was physically installed
+          await DownloadControl.repopulateBooksState();
+          const installedBooks = Object.keys(DownloadControl.BooksState || {}).filter(
+            b => !!DownloadControl.BooksState[b]?.localLastUpdated
           );
+          const pkgIndexes = pkg.jsonData?.indexes || [];
+          const isInstalled = pkgIndexes.length > 0 && pkgIndexes.every(b => installedBooks.includes(b));
+
+          if (!isInstalled) {
+            throw new Error(`Installation of package '${params.packageName}' failed or was blocked by network policy`);
+          }
+
+          result = {
+            installed: true,
+            packageName: params.packageName,
+            booksCount: pkgIndexes.length,
+          };
           break;
         }
 
@@ -340,6 +441,7 @@ export class ChavrusaRPCFacade {
         resultJson: result !== undefined && result !== null ? JSON.stringify(result) : null,
         error: null,
         sessionGeneration,
+        backendID: 'sefariaEmbedded',
       };
     } catch (err) {
       return {
@@ -353,6 +455,7 @@ export class ChavrusaRPCFacade {
           retryable: false,
         },
         sessionGeneration,
+        backendID: 'sefariaEmbedded',
       };
     }
   }

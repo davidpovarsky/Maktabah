@@ -7,27 +7,30 @@ import './JS/chavrusaRPCFacade';
 import { setupChavrusaRPCBridge } from './JS/ChavrusaRoot';
 
 // 2. Initialize original Sefaria-Mobile global context, state providers, and components
+let upstreamBootstrapError = null;
 try {
   require('../Upstream/index');
 } catch (e) {
-  console.warn('[ChavrusaText] Upstream Sefaria initialization warning:', e);
+  upstreamBootstrapError = e;
+  console.error('[ChavrusaText] Fatal error during upstream Sefaria initialization:', e);
 }
 
-console.log('[ChavrusaText] Sefaria-Mobile embedded JS runtime initialized successfully');
-
-// 3. Setup RPC bridge listener and emit ready handshake to native Swift
-try {
-  setupChavrusaRPCBridge();
-  let readyAttempts = 0;
-  const readyInterval = setInterval(() => {
-    readyAttempts += 1;
-    if (readyAttempts >= 10) {
-      clearInterval(readyInterval);
-      return;
-    }
-    setupChavrusaRPCBridge();
-  }, 500);
-} catch (e) {
-  console.warn('[ChavrusaText] Failed to initialize RPC bridge after upstream load:', e);
+if (upstreamBootstrapError) {
+  console.error('[ChavrusaText] Sefaria-Mobile embedded JS runtime failed to bootstrap cleanly');
+  try {
+    const { ChavrusaRPCFacade } = require('./JS/chavrusaRPCFacade');
+    ChavrusaRPCFacade.sendEventToNative('bootstrapError', {
+      error: upstreamBootstrapError.message || String(upstreamBootstrapError),
+      fatal: true,
+    });
+  } catch (_) {}
+} else {
+  console.log('[ChavrusaText] Sefaria-Mobile embedded JS runtime initialized successfully');
+  // 3. Setup RPC bridge listener and emit ready handshake to native Swift
+  try {
+    setupChavrusaRPCBridge(1);
+  } catch (e) {
+    console.error('[ChavrusaText] Failed to initialize RPC bridge after upstream load:', e);
+  }
 }
 

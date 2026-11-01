@@ -71,6 +71,9 @@
 		CE1000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift */; };
 		CE1000000000000000000036 /* ChavrusaSefariaBridgeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */; };
 		CE1000000000000000000037 /* ChavrusaSefariaBridgeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */; };
+		CE1000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift */; };
+		CE2000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift */; };
+		CE3000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift */; };
 		CE200000000000000000002A /* SefariaRPCModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000002A /* SefariaRPCModels.swift */; };
 		CE200000000000000000002B /* SefariaJSRPCBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000002B /* SefariaJSRPCBridge.swift */; };
 		CE200000000000000000002C /* SefariaRuntimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE000000000000000000002C /* SefariaRuntimeManager.swift */; };
@@ -1384,6 +1387,7 @@
 		CE0000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedNativeSurfaceHost.swift"; sourceTree = "<group>"; };
 		CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "../../Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"; sourceTree = "<group>"; };
 		CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "../../Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m"; sourceTree = "<group>"; };
+		CE0000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift"; sourceTree = "<group>"; };
 		F3F000030000000000000003 /* iOSReaderSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionTests.swift; sourceTree = "<group>"; };
 		F3F000010000000000000001 /* iOSReaderSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSReaderSessionManager.swift; sourceTree = "<group>"; };
 		B40000000000000000000002 /* iOSBookInfoAnchoredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSBookInfoAnchoredCard.swift; sourceTree = "<group>"; };
@@ -2149,6 +2153,7 @@
 				CE0000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift */,
 				CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */,
 				CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */,
+				CE0000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift */,
 			);
 			path = SefariaEmbedded;
 			sourceTree = "<group>";
@@ -4007,6 +4012,7 @@
 				CE1000000000000000000034 /* SefariaMobileEmbeddedBackend.swift in Sources */,
 				CE1000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift in Sources */,
 				CE1000000000000000000036 /* ChavrusaSefariaBridgeModule.swift in Sources */,
+				CE1000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */,
 				CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE1000000000000000000003 /* BackendCoordinator.swift in Sources */,
@@ -4348,6 +4354,7 @@
 				CE2000000000000000000034 /* SefariaMobileEmbeddedBackend.swift in Sources */,
 				CE2000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift in Sources */,
 				CE2000000000000000000036 /* ChavrusaSefariaBridgeModule.swift in Sources */,
+				CE2000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */,
 				CE2000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE2000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE2000000000000000000003 /* BackendCoordinator.swift in Sources */,
@@ -4713,6 +4720,7 @@
 				CE3000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift in Sources */,
 				CE3000000000000000000036 /* ChavrusaSefariaBridgeModule.swift in Sources */,
 				CE3000000000000000000037 /* ChavrusaSefariaBridgeModule.m in Sources */,
+				CE3000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */,
 				CE3000000000000000000009 /* SefariaModels.swift in Sources */,
 				CE300000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
 				CE300000000000000000000B /* SefariaHTTPClient.swift in Sources */,

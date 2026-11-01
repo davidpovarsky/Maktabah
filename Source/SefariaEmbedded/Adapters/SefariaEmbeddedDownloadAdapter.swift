@@ -95,39 +95,50 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         try await SefariaRuntimeManager.shared.ensurePackagesReady()
         for packageID in packageIDs {
             activeProgressHandlers[packageID] = progress
-            let params = ["packageName": packageID, "networkSetting": "all"]
-            let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
+            do {
+                defer {
+                    activeProgressHandlers.removeValue(forKey: packageID)
+                }
+                let params = ["packageName": packageID, "networkSetting": "all"]
+                let paramsJson = String(data: try JSONSerialization.data(withJSONObject: params), encoding: .utf8)
 
-            progress(OfflineInstallProgress(
-                phase: .downloading,
-                packageID: packageID,
-                completedBytes: 0,
-                totalBytes: 0
-            ))
+                progress(OfflineInstallProgress(
+                    phase: .downloading,
+                    packageID: packageID,
+                    completedBytes: 0,
+                    totalBytes: 0
+                ))
 
-            let response = try await SefariaJSRPCBridge.shared.call(
-                method: "downloads.install",
-                paramsJson: paramsJson,
-                timeoutMs: 600_000 // 10 minute timeout for large downloads
-            )
-            activeProgressHandlers.removeValue(forKey: packageID)
-
-            guard response.isSuccess else {
-                throw response.error ?? SefariaRPCError(code: "INSTALL_FAILED", message: "Failed to install package \(packageID)")
-            }
-
-            // Verify package was actually recorded as installed
-            let installedIDs = await installedPackageIDs()
-            let isVerified = installedIDs.contains(packageID)
-            guard isVerified else {
-                throw SefariaRPCError(
-                    code: "INSTALL_VERIFICATION_FAILED",
-                    message: "Package \(packageID) completion could not be verified in local store",
-                    retryable: true
+                let response = try await SefariaJSRPCBridge.shared.call(
+                    method: "downloads.install",
+                    paramsJson: paramsJson,
+                    timeoutMs: 600_000 // 10 minute timeout for large downloads
                 )
-            }
 
-            progress(OfflineInstallProgress(
+                guard response.isSuccess else {
+                    throw response.error ?? SefariaRPCError(code: "INSTALL_FAILED", message: "Failed to install package \(packageID)")
+                }
+
+                // Verify package was actually recorded as installed
+                let installedIDs = await installedPackageIDs()
+                let isVerified = installedIDs.contains(packageID)
+                guard isVerified else {
+                    throw SefariaRPCError(
+                        code: "INSTALL_VERIFICATION_FAILED",
+                        message: "Package \(packageID) completion could not be verified in local store",
+                        retryable: true
+                    )
+                }
+
+                progress(OfflineInstallProgress(
+                    phase: .finished,
+                    packageID: packageID,
+                    completedBytes: 100,
+                    totalBytes: 100
+                ))
+            }
+        }
+    }
                 phase: .finished,
                 packageID: packageID,
                 completedBytes: 0,

@@ -119,14 +119,28 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
     // MARK: - JS -> Native Callbacks
 
     @objc func deliverResponse(_ jsonString: String) {
-        NSLog("[ChavrusaSefariaBridgeModule] deliverResponse called: %@", jsonString)
+        #if DEBUG
+        if jsonString.count > 300 {
+            let prefix = String(jsonString.prefix(200))
+            NSLog("[ChavrusaSefariaBridgeModule] deliverResponse: %@... (%ld bytes)", prefix, jsonString.count)
+        } else {
+            NSLog("[ChavrusaSefariaBridgeModule] deliverResponse: %@", jsonString)
+        }
+        #endif
         Task {
             await SefariaJSRPCBridge.shared.handleIncomingResponse(jsonString: jsonString)
         }
     }
 
     @objc func deliverEvent(_ jsonString: String) {
-        NSLog("[ChavrusaSefariaBridgeModule] deliverEvent called: %@", jsonString)
+        #if DEBUG
+        if jsonString.count > 300 {
+            let prefix = String(jsonString.prefix(200))
+            NSLog("[ChavrusaSefariaBridgeModule] deliverEvent: %@... (%ld bytes)", prefix, jsonString.count)
+        } else {
+            NSLog("[ChavrusaSefariaBridgeModule] deliverEvent: %@", jsonString)
+        }
+        #endif
         Task {
             await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)
         }

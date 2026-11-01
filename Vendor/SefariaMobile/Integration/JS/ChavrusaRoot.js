@@ -27,6 +27,7 @@ const FallbackView = () => <View style={{ flex: 1, backgroundColor: 'transparent
 
 let rpcSubscription = null;
 let progressTrackerAttached = false;
+let bridgeReadyEmitted = false;
 
 const handleIncomingEnvelope = async (envelopeJSON) => {
   let reqID = 'unknown';
@@ -51,6 +52,7 @@ const handleIncomingEnvelope = async (envelopeJSON) => {
       resultJson: null,
       error: { code: 'NATIVE_INVOCATION_FAILED', message: err?.message || String(err), retryable: false },
       sessionGeneration: sessionGen,
+      backendID: 'sefariaEmbedded',
     });
     if (NativeModules?.ChavrusaSefariaBridgeModule?.deliverResponse) {
       NativeModules.ChavrusaSefariaBridgeModule.deliverResponse(errResponse);
@@ -59,7 +61,7 @@ const handleIncomingEnvelope = async (envelopeJSON) => {
   }
 };
 
-export const setupChavrusaRPCBridge = () => {
+export const setupChavrusaRPCBridge = (sessionGeneration = 1) => {
   // 1. Subscribe to NativeEventEmitter for incoming Swift RPC requests (singleton)
   if (!rpcSubscription) {
     if (NativeModules?.ChavrusaSefariaBridgeModule) {
@@ -71,10 +73,7 @@ export const setupChavrusaRPCBridge = () => {
         console.warn('[ChavrusaRoot] Failed to create NativeEventEmitter:', e);
       }
     } else {
-      console.warn('[ChavrusaRoot] NativeModules.ChavrusaSefariaBridgeModule is not yet available, scheduling retry');
-      setTimeout(() => {
-        setupChavrusaRPCBridge();
-      }, 150);
+      console.warn('[ChavrusaRoot] NativeModules.ChavrusaSefariaBridgeModule is not yet available');
     }
   }
 
@@ -87,6 +86,7 @@ export const setupChavrusaRPCBridge = () => {
           const numTotal = Number(totalBytes) || 0;
           const fraction = numTotal > 0 ? Math.min(1.0, Math.max(0.0, numWritten / numTotal)) : 0.0;
           const downloadSize = Number(DownloadControl?.Tracker?.downloadSize) || null;
+          const activePkg = ChavrusaRPCFacade.activeDownloadingPackage || DownloadControl?.Tracker?.downloadTitle || null;
 
           ChavrusaRPCFacade.sendEventToNative('downloadProgress', {
             fraction: fraction,
@@ -94,7 +94,7 @@ export const setupChavrusaRPCBridge = () => {
             totalBytes: downloadSize,
             rawReceived: numWritten,
             rawTotal: numTotal,
-            packageTitle: DownloadControl?.Tracker?.downloadTitle || null,
+            packageTitle: activePkg,
           });
         }, 'chavrusaTracker');
         progressTrackerAttached = true;
@@ -104,13 +104,16 @@ export const setupChavrusaRPCBridge = () => {
     }
   }
 
-  // 3. Notify native that JS root is mounted and providers are live
-  ChavrusaRPCFacade.sendEventToNative('ready', {
-    timestamp: Date.now(),
-    version: '1.0',
-    upstreamLockedSHA: '2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c',
-    generation: 1,
-  });
+  // 3. Notify native that JS root is mounted and providers are live (only once per subscription)
+  if (rpcSubscription && !bridgeReadyEmitted) {
+    bridgeReadyEmitted = true;
+    ChavrusaRPCFacade.sendEventToNative('ready', {
+      timestamp: Date.now(),
+      version: '1.0',
+      upstreamLockedSHA: '2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c',
+      generation: sessionGeneration,
+    });
+  }
 };
 
 export const ChavrusaRoot = (props) => {

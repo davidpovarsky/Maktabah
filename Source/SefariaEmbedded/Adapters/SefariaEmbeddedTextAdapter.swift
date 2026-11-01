@@ -123,7 +123,14 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
             )
         }
 
+        let rawOrigin = (json["origin"] as? String) ?? (textContent["origin"] as? String)
         let isOffline = (json["isOffline"] as? Bool) ?? (textContent["isOffline"] as? Bool) ?? false
+        let origin: LibraryTextSection.Origin
+        if let rawOrigin = rawOrigin, let parsed = LibraryTextSection.Origin(rawValue: rawOrigin) {
+            origin = parsed
+        } else {
+            origin = isOffline ? .offline : .remote
+        }
 
         guard !segments.isEmpty else {
             throw LibraryBackendError.invalidResponse("No readable text segments found for ref '\(canonicalRef)'")
@@ -144,7 +151,7 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
             next: nextLocator,
             versions: [],
             links: links,
-            origin: isOffline ? .offline : .remote
+            origin: origin
         )
     }
 

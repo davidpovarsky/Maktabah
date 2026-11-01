@@ -59,11 +59,17 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
             "waitForReady",
             "echoHebrew",
             "echoErrorInjection",
+            "lateGenerationRejected",
             "runtimeInitialize",
             "catalogTOC",
             "textLoadGenesis",
             "textLoadBerakhot",
+            "textOriginRemote",
             "navigationTextToc",
+            "searchLive",
+            "searchOpenResult",
+            "fullReactSurface",
+            "normalAppBootstrap",
             "backendSwitchRegression"
         ]
 

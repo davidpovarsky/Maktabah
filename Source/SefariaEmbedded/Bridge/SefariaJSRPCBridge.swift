@@ -28,12 +28,26 @@ actor SefariaJSRPCBridge {
 
     private(set) var isReady: Bool = false
     private(set) var hasActiveListeners: Bool = false
+    private(set) var sessionEpoch: UInt64 = 1
 
     var hasTransport: Bool {
         return transport != nil
     }
 
+    var isTransportReady: Bool {
+        return isReady && transport != nil && hasActiveListeners
+    }
+
     private init() {}
+
+    func setSessionEpoch(_ epoch: UInt64) {
+        self.sessionEpoch = epoch
+    }
+
+    func bumpSessionEpoch() -> UInt64 {
+        sessionEpoch &+= 1
+        return sessionEpoch
+    }
 
     func setTransport(_ transport: (any SefariaJSTransport)?) {
         NSLog("[SefariaJSRPCBridge] setTransport called (transport: %@)", String(describing: transport))
@@ -61,27 +75,39 @@ actor SefariaJSRPCBridge {
     }
 
     /// Awaits validated readiness from the Sefaria Hermes runtime with generation and listener checks.
-    func waitForReady(timeoutSeconds: Double = 30.0) async throws {
-        if isReady && transport != nil {
-            NSLog("[SefariaJSRPCBridge] waitForReady: already ready with active transport")
-            return
+    func waitForReady(timeoutSeconds: Double = 30.0, expectedGeneration: UInt64? = nil) async throws {
+        if isTransportReady {
+            if let expected = expectedGeneration, sessionEpoch != expected {
+                // Not matching expected generation, continue waiting below
+            } else {
+                NSLog("[SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners")
+                return
+            }
         }
 
         NSLog("[SefariaJSRPCBridge] waitForReady: awaiting ready event (timeout: %.1fs)...", timeoutSeconds)
         let deadline = Date().addingTimeInterval(timeoutSeconds)
         while Date() < deadline {
-            if isReady && transport != nil {
-                NSLog("[SefariaJSRPCBridge] waitForReady: successfully became ready!")
-                return
+            if isReady && transport != nil && hasActiveListeners {
+                if let expected = expectedGeneration, sessionEpoch != expected {
+                    // Waiting for matching epoch
+                } else {
+                    NSLog("[SefariaJSRPCBridge] waitForReady: successfully became ready!")
+                    return
+                }
             }
             try await Task.sleep(nanoseconds: 100_000_000)
         }
 
-        if isReady && transport != nil {
-            return
+        if isReady && transport != nil && hasActiveListeners {
+            if let expected = expectedGeneration, sessionEpoch != expected {
+                // Mismatch
+            } else {
+                return
+            }
         }
 
-        let state = "isReady=\(isReady), transport=\(transport != nil), hasListeners=\(hasActiveListeners)"
+        let state = "isReady=\(isReady), transport=\(transport != nil), hasListeners=\(hasActiveListeners), sessionEpoch=\(sessionEpoch)"
         NSLog("[SefariaJSRPCBridge] waitForReady FAILED: %@", state)
         throw SefariaRPCError(
             code: "READY_TIMEOUT",
@@ -100,17 +126,18 @@ actor SefariaJSRPCBridge {
     func call(
         method: String,
         paramsJson: String? = nil,
-        generation: UInt64 = 0,
+        generation: UInt64? = nil,
         timeoutMs: Int = 15000
     ) async throws -> SefariaRPCResponse {
         let requestID = UUID().uuidString
+        let effectiveGeneration = generation ?? sessionEpoch
         let envelope = SefariaRPCEnvelope(
             protocolVersion: "1.0",
             requestID: requestID,
             method: method,
             paramsJson: paramsJson,
             backendID: BackendID.sefariaEmbedded.rawValue,
-            sessionGeneration: generation,
+            sessionGeneration: effectiveGeneration,
             timeoutMs: timeoutMs
         )
 
@@ -136,7 +163,7 @@ actor SefariaJSRPCBridge {
                 self.registerInFlight(
                     requestID: requestID,
                     continuation: continuation,
-                    generation: generation,
+                    generation: effectiveGeneration,
                     timeoutMs: timeoutMs,
                     method: method
                 )
@@ -194,6 +221,16 @@ actor SefariaJSRPCBridge {
         }
         req.timeoutTask.cancel()
 
+        // Validate protocol version
+        if response.protocolVersion != "1.0" {
+            req.continuation.resume(throwing: SefariaRPCError(
+                code: "PROTOCOL_VERSION_MISMATCH",
+                message: "Response protocol version '\(response.protocolVersion)' is incompatible with expected '1.0'",
+                retryable: false
+            ))
+            return
+        }
+
         // Validate backend ID if specified in response
         if let backendID = response.backendID, !backendID.isEmpty, backendID != BackendID.sefariaEmbedded.rawValue {
             req.continuation.resume(throwing: SefariaRPCError(
@@ -204,16 +241,14 @@ actor SefariaJSRPCBridge {
             return
         }
 
-        // Verify generation if caller specified one (do not permit 0 as bypass if caller requested generation)
-        if req.generation > 0 {
-            if response.sessionGeneration != req.generation {
-                req.continuation.resume(throwing: SefariaRPCError(
-                    code: "STALE_GENERATION",
-                    message: "Response generation \(response.sessionGeneration) does not match in-flight generation \(req.generation)",
-                    retryable: false
-                ))
-                return
-            }
+        // Strict generation validation: response must match in-flight generation (no zero-bypass)
+        if response.sessionGeneration != req.generation {
+            req.continuation.resume(throwing: SefariaRPCError(
+                code: "STALE_GENERATION",
+                message: "Response generation \(response.sessionGeneration) does not match in-flight generation \(req.generation)",
+                retryable: false
+            ))
+            return
         }
 
         req.continuation.resume(returning: response)
@@ -261,6 +296,9 @@ actor SefariaJSRPCBridge {
 
         if event.event == "ready" {
             notifyReady()
+        } else if event.event == "bootstrapError" {
+            NSLog("[SefariaJSRPCBridge] bootstrapError received: %@", event.payloadJson ?? "")
+            isReady = false
         }
 
         if let listeners = eventListeners[event.event] {

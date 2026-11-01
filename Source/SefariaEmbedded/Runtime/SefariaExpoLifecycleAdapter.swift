@@ -112,6 +112,9 @@ final class SefariaExpoLifecycleAdapter {
         self.reactNativeDelegate = delegate
         self.reactNativeFactory = factory
 
+        // Ensure targeted KVC support on runtime delegate
+        ExpoKVCSupport.configureTargetedDelegateKVC()
+
         // Bind factory to app delegate if conforming to ExpoAppDelegate
         let actualAppDelegate = (UIApplication.shared.delegate as? ExpoAppDelegate) ?? (MaktabahApp.sharedAppDelegate as? ExpoAppDelegate)
         actualAppDelegate?.bindReactNativeFactory(factory)
