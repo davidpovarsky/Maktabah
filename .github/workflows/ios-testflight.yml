@@ -94,8 +94,20 @@ jobs:
             export GOOGLE_SERVICES_FILE="${PWD}/Source/GoogleService-Info.plist"
             ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/../node_modules"
             ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/node_modules" "${PWD}/node_modules"
+            ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/package.json" "${PWD}/package.json"
+            ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/app.json" "${PWD}/app.json"
+            ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/metro.config.js" "${PWD}/metro.config.js"
+            ln -sfn "${PWD}/Vendor/SefariaMobile/Upstream/babel.config.js" "${PWD}/babel.config.js"
+            chmod -R +x "${PWD}/Vendor/SefariaMobile/Upstream/node_modules/.bin" || true
+            chmod -R +x "${PWD}/Vendor/SefariaMobile/Upstream/node_modules/expo/bin" || true
+            echo "PROJECT_ROOT=${PWD}/Vendor/SefariaMobile/Upstream" >> $GITHUB_ENV
+            echo "NODE_PATH=${PWD}/Vendor/SefariaMobile/Upstream/node_modules" >> $GITHUB_ENV
+            echo "RCT_NO_LAUNCH_PACKAGER=1" >> $GITHUB_ENV
+            echo "SKIP_BUNDLING=1" >> $GITHUB_ENV
+            echo "GOOGLE_SERVICES_FILE=${PWD}/Source/GoogleService-Info.plist" >> $GITHUB_ENV
             export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
             pod install
+            chmod -R +x "${PWD}/Pods/Target Support Files" || true
           fi
 
       - name: Build Sefaria Production Metro Bundle
@@ -674,9 +686,14 @@ jobs:
               --container-id "$container_id"
           }
 
+          CONTAINER_ARGS=(-project "$PROJECT_PATH")
+          if [ -d "Maktabah.xcworkspace" ]; then
+            CONTAINER_ARGS=(-workspace Maktabah.xcworkspace)
+          fi
+
           automatic_ok=false
           if xcodebuild build \
-            -project "$PROJECT_PATH" \
+            "${CONTAINER_ARGS[@]}" \
             -scheme "$SCHEME" \
             -configuration Release \
             -destination 'generic/platform=iOS' \
@@ -689,6 +706,10 @@ jobs:
             CHAVRUSATEXT_PROFILE_SPECIFIER="" \
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            ENABLE_USER_SCRIPT_SANDBOXING=NO \
+            RCT_NO_LAUNCH_PACKAGER=1 \
+            SKIP_BUNDLING=1 \
+            PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream" \
             "${auth_args[@]}" \
             | tee "$BUILD_DIR/logs/automatic-provisioning-build.log"; then
             automatic_app=$(find "$automatic_derived/Build/Products/Release-iphoneos" -maxdepth 1 -type d -name '*.app' -print -quit)
@@ -722,7 +743,7 @@ jobs:
 
           manual_derived="$BUILD_DIR/DerivedDataProvisioningManual"
           xcodebuild build \
-            -project "$PROJECT_PATH" \
+            "${CONTAINER_ARGS[@]}" \
             -scheme "$SCHEME" \
             -configuration Release \
             -destination 'generic/platform=iOS' \
@@ -735,6 +756,10 @@ jobs:
             CHAVRUSATEXT_PROFILE_SPECIFIER="$profile_name" \
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
+            ENABLE_USER_SCRIPT_SANDBOXING=NO \
+            RCT_NO_LAUNCH_PACKAGER=1 \
+            SKIP_BUNDLING=1 \
+            PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream" \
             | tee "$BUILD_DIR/logs/api-profile-build.log"
           manual_app=$(find "$manual_derived/Build/Products/Release-iphoneos" -maxdepth 1 -type d -name '*.app' -print -quit)
           verify_signed_app "$manual_app" api-generated
@@ -761,6 +786,10 @@ jobs:
             DEVELOPMENT_TEAM="$TEAM_ID"
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE"
+            ENABLE_USER_SCRIPT_SANDBOXING=NO
+            RCT_NO_LAUNCH_PACKAGER=1
+            SKIP_BUNDLING=1
+            PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
           )
           if [ "$SIGNING_MODE" = Automatic ]; then
             signing_args+=(
@@ -780,7 +809,12 @@ jobs:
             )
           fi
 
-          xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" \
+          CONTAINER_ARGS=(-project "$PROJECT_PATH")
+          if [ -d "Maktabah.xcworkspace" ]; then
+            CONTAINER_ARGS=(-workspace Maktabah.xcworkspace)
+          fi
+
+          xcodebuild "${CONTAINER_ARGS[@]}" -scheme "$SCHEME" \
             -configuration Release -destination 'generic/platform=iOS' \
             "${signing_args[@]}" \
             -showBuildSettings | tee "$BUILD_DIR/logs/ios-signing-build-settings.log"
@@ -811,6 +845,10 @@ jobs:
             DEVELOPMENT_TEAM="$TEAM_ID"
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE"
+            ENABLE_USER_SCRIPT_SANDBOXING=NO
+            RCT_NO_LAUNCH_PACKAGER=1
+            SKIP_BUNDLING=1
+            PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
           )
           if [ "$SIGNING_MODE" = Automatic ]; then
             signing_args+=(
