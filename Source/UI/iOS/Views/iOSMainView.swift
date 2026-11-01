@@ -501,8 +501,12 @@ private extension iOSMainView {
             NSLog("[SefariaAcceptance] Stage 6: textLoadGenesis started")
             let genLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
             let genSection = try await SefariaEmbeddedTextAdapter.shared.section(at: genLocator)
-            guard let firstGenSeg = genSection.segments.first, firstGenSeg.primaryText.contains("בְּרֵאשִׁית") else {
-                throw SefariaRPCError(code: "GENESIS_TEXT_INVALID", message: "Genesis 1:1 text missing Hebrew בראשית")
+            guard let firstGenSeg = genSection.segments.first else {
+                throw SefariaRPCError(code: "GENESIS_EMPTY", message: "Genesis 1:1 returned no segments")
+            }
+            let genLetters = String(firstGenSeg.primaryText.readerPlainText.unicodeScalars.filter { $0.value >= 0x05D0 && $0.value <= 0x05EA })
+            guard genLetters.contains("בראשית") || firstGenSeg.primaryText.contains("בְּרֵאשִׁית") || firstGenSeg.primaryText.contains("בראשית") else {
+                throw SefariaRPCError(code: "GENESIS_TEXT_INVALID", message: "Genesis 1:1 text missing Hebrew בראשית: '\(firstGenSeg.primaryText)'")
             }
             report.stages["textLoadGenesis"] = .init(passed: true, details: "Genesis 1:1 loaded with Hebrew text: \(firstGenSeg.primaryText)")
             NSLog("[SefariaAcceptance] Stage 6: textLoadGenesis passed")
@@ -511,8 +515,12 @@ private extension iOSMainView {
             NSLog("[SefariaAcceptance] Stage 7: textLoadBerakhot started")
             let berLocator = TextLocator(backend: .sefariaEmbedded, workKey: "Berakhot", position: .canonicalRef("Berakhot 2a:1"))
             let berSection = try await SefariaEmbeddedTextAdapter.shared.section(at: berLocator)
-            guard let firstBerSeg = berSection.segments.first, firstBerSeg.primaryText.contains("מֵאֵימָתַי") else {
-                throw SefariaRPCError(code: "BERAKHOT_TEXT_INVALID", message: "Berakhot 2a:1 text missing Hebrew מאימתי")
+            guard let firstBerSeg = berSection.segments.first else {
+                throw SefariaRPCError(code: "BERAKHOT_EMPTY", message: "Berakhot 2a:1 returned no segments")
+            }
+            let berLetters = String(firstBerSeg.primaryText.readerPlainText.unicodeScalars.filter { $0.value >= 0x05D0 && $0.value <= 0x05EA })
+            guard berLetters.contains("מאימתי") || firstBerSeg.primaryText.contains("מֵאֵימָתַי") || firstBerSeg.primaryText.contains("מאימתי") else {
+                throw SefariaRPCError(code: "BERAKHOT_TEXT_INVALID", message: "Berakhot 2a:1 text missing Hebrew מאימתי: '\(firstBerSeg.primaryText)'")
             }
             report.stages["textLoadBerakhot"] = .init(passed: true, details: "Berakhot 2a:1 loaded with Hebrew text: \(firstBerSeg.primaryText)")
             NSLog("[SefariaAcceptance] Stage 7: textLoadBerakhot passed")
