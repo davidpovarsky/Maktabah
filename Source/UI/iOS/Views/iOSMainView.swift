@@ -455,14 +455,6 @@ private extension iOSMainView {
             NSLog("=== SefariaEmbedded Acceptance Result ===\n%@", jsonStr)
             print("=== SefariaEmbedded Acceptance Result ===")
             print(jsonStr)
-        }
-    }
-                let fileURL = docsURL.appendingPathComponent("sefaria-acceptance-result.json")
-                try? data.write(to: fileURL)
-            }
-            NSLog("=== SefariaEmbedded Acceptance Result ===\n%@", jsonStr)
-            print("=== SefariaEmbedded Acceptance Result ===")
-            print(jsonStr)
             print("=========================================")
         }
     }

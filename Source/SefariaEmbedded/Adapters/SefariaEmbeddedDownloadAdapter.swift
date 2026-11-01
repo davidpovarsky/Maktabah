@@ -139,13 +139,6 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
             }
         }
     }
-                phase: .finished,
-                packageID: packageID,
-                completedBytes: 0,
-                totalBytes: 0
-            ))
-        }
-    }
 
     func remove(packageIDs: Set<String>) async throws {
         try await SefariaRuntimeManager.shared.ensurePackagesReady()
