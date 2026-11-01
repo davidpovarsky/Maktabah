@@ -228,6 +228,20 @@ class AppDelegate: MaktabahAppDelegateBase {
         set {}
     }
 
+    #if canImport(UIKit)
+    override func recreateRootView(
+        withBundleURL bundleURL: URL?,
+        moduleName: String,
+        initialProps: [AnyHashable: Any]?,
+        launchOptions: [AnyHashable: Any]?
+    ) -> UIView? {
+        if let existing = SefariaExpoLifecycleAdapter.shared.hostedWindow?.rootViewController?.view {
+            return existing
+        }
+        return nil
+    }
+    #endif
+
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil

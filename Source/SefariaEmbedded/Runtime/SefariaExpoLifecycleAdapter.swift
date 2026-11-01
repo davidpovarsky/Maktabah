@@ -177,6 +177,9 @@ final class SefariaExpoLifecycleAdapter {
         #if canImport(React)
         ensureHostStarted()
         #if canImport(Expo)
+        if let existing = hostedWindow?.rootViewController?.view {
+            return existing
+        }
         if let factory = reactNativeFactory as? ExpoReactNativeFactory {
             return factory.rootViewFactory.view(withModuleName: moduleName, initialProperties: initialProperties)
         }
