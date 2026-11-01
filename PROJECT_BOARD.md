@@ -16,6 +16,10 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 Useful technical discoveries, undocumented behavior, shortcuts, implementation tricks, platform behavior, or reusable knowledge discovered while working.
 
+- CocoaPods PBXTargetDependency Matching in Build Verifiers: Build scripts parsing `project.pbxproj` (such as `verify-otzaria-xcode-project.py`) must isolate target matching strictly within the `PBXNativeTarget` section (`isa = PBXNativeTarget; name = "Maktabah-iOS";`). Matching comments like `/* Maktabah-iOS */` indiscriminately matches `PBXTargetDependency` proxies from test targets (such as `Maktabah-iOSUITests`), causing false-positive verification errors regarding missing files.
+- Expo Autolinking Root Resolution in Standalone Workspaces: When compiling an embedded React Native/Expo app in Xcode/CI from a workspace (`Maktabah.xcworkspace`), the CocoaPods `[Expo] Configure project` phase runs `npx expo-modules-autolinking` from `PROJECT_DIR`. Symlinking or staging `package.json`, `app.json`, `metro.config.js`, and `babel.config.js` to the repository root and passing `PROJECT_ROOT`, `NODE_PATH`, `RCT_NO_LAUNCH_PACKAGER=1`, `SKIP_BUNDLING=1` ensures Expo autolinking resolves correctly in Release builds.
+- Clang Optimization Profile Missing in Release Configuration: If Xcode project configuration declares `CLANG_USE_OPTIMIZATION_PROFILE = YES;` without a committed `.profdata` file (e.g. `OptimizationProfiles/Maktabah.profdata`), Release builds fail with `error: Build input file cannot be found`. Explicitly setting `CLANG_USE_OPTIMIZATION_PROFILE = NO;` in `project.pbxproj` and passing it via `xcodebuild` ensures reliable release builds.
+- Hermes RPC Generation and Epoch Tokens: Securing the native-to-Hermes RPC bridge requires monotonic per-session generation tokens (`UInt64`) and strict lifecycle invalidation (`clearTransportIfMatches`), preventing stale event loops, cross-talk, and duplicate continuations across app background/foreground or backend transitions.
 - Sefaria Relationship Loading Quadratic Elimination: Parsing `/api/related/{sectionRef}` with a single-pass tolerant collection `SefariaRelatedResponseDTO` reduced Genesis 7 (2,317 links) decode time from >20s (quadratic dictionary re-encoding loop) to ~2.29s with zero MainActor lockup and per-request inspector timeouts.
 - Otzaria Relationship Semantic Classification: SeforimLibrary v32 relationships must retain `rawConnectionType`, `matchedSide`, `sourceBookId`, `targetBookId`, `linkedBookIsBaseBook`, and `linkedBookDependenceType`. Commentary categories (`COMMENTARY`, `SUPER_COMMENTARY`, `PARSHANUT`, `DIBUR_HAMATCHIL`, `ELUCIDATION`, `EXPLICATION`, `FOOTNOTES`) must not be squashed to `'SOURCE'` in SQL queries when `matchedSide == 1`, but classified based on whether the linked book is a commentary or base text.
 - Multi-Candidate Search Release Resolution: `ZayitSearchArtifactService.resolveArtifact(matching:)` must evaluate database compatibility across all published releases instead of picking the first tag prefix match, gracefully skipping incompatible releases (e.g. v22 vs v32) and presenting `.unavailable` ("אין עדיין חבילה תואמת לגרסת מסד זו") without failing search data views.
@@ -83,6 +87,11 @@ Use Markdown checkboxes where useful:
 ## Done
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
+
+- [x] ChavrusaText Sefaria-Mobile Embedded Final Preflight & TestFlight Delivery (Build 9401)
+  - Implemented: 2026-11-01
+  - Commit/PR: `f243d06` / `experiment/sefaria-mobile-original-embedded-20261029`
+  - Notes: Completed final preflight fixes for embedded Sefaria-Mobile runtime. Verified 15/15 acceptance diagnostic stages and 4/4 UI tests on real iPad Simulator CI (`41323238956`), verified 379/379 portable component assertions, verified signed production Release archive and exported IPA preflight (`41340314211`), and delivered Build 1.0.0 (9401) to Apple TestFlight with valid App Store Connect processing (`41345570389`).
 
 - [x] Complete Build 6601: Otzaria & Zayit v32 search packages, streaming decode, and TestFlight delivery
   - Implemented: 2026-10-21
