@@ -707,6 +707,7 @@ jobs:
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
             ENABLE_USER_SCRIPT_SANDBOXING=NO \
+            CLANG_USE_OPTIMIZATION_PROFILE=NO \
             RCT_NO_LAUNCH_PACKAGER=1 \
             SKIP_BUNDLING=1 \
             PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream" \
@@ -757,6 +758,7 @@ jobs:
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE" \
             ENABLE_USER_SCRIPT_SANDBOXING=NO \
+            CLANG_USE_OPTIMIZATION_PROFILE=NO \
             RCT_NO_LAUNCH_PACKAGER=1 \
             SKIP_BUNDLING=1 \
             PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream" \
@@ -787,6 +789,7 @@ jobs:
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE"
             ENABLE_USER_SCRIPT_SANDBOXING=NO
+            CLANG_USE_OPTIMIZATION_PROFILE=NO
             RCT_NO_LAUNCH_PACKAGER=1
             SKIP_BUNDLING=1
             PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
@@ -846,6 +849,7 @@ jobs:
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER"
             OTZARIA_DEFAULT_DATA_PROFILE="$DATA_PROFILE"
             ENABLE_USER_SCRIPT_SANDBOXING=NO
+            CLANG_USE_OPTIMIZATION_PROFILE=NO
             RCT_NO_LAUNCH_PACKAGER=1
             SKIP_BUNDLING=1
             PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
