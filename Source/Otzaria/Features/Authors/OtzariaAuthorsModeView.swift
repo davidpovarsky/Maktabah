@@ -41,7 +41,7 @@ struct OtzariaAuthorsModeView: View {
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                                Text("\(author.bookCount) ספרים")
+                                Text(ChavrusaTextLocalizationResolver.formatHebrewBookCount(author.bookCount))
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.leading)

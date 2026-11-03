@@ -17,6 +17,7 @@ struct iPadLayout: View {
     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
     @StateObject private var historyViewModel = HistoryViewModel.shared
     @StateObject private var backendCoordinator = BackendCoordinator.shared
+    @State private var sidebarCoordinator = ReaderSidebarStateCoordinator()
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -100,40 +101,59 @@ struct iPadLayout: View {
 
     @ViewBuilder
     private var viewerTabContent: some View {
-        NavigationSplitView(
-            columnVisibility: $columnVisibility,
-            preferredCompactColumn: $preferredLibraryCompactColumn
-        ) {
-            NavigationStack {
-                iOSLibraryView()
-                    .navigationTitle(iOSTab.viewer.title)
-                    .toolbarGeneral(showSettings: $showSettings)
-            }
-            .searchable(
-                text: Bindable(bManager.libraryViewModel).searchQuery,
-                placement: .toolbar,
-                prompt: String(localized: "Search Library")
+        if ChavrusaTextFeatureFlags.shared.effectiveSidebarPagerEnabled {
+            ReaderTwoColumnSplitHost(
+                sidebarCoordinator: sidebarCoordinator,
+                preferredCompactColumn: $preferredLibraryCompactColumn,
+                showSettings: $showSettings
             )
-            .toolbarBackground(Color.appBackground, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .background(Color.appBackground)
-            .accessibilityElement(children: .contain)
-            .accessibilityIdentifier("library-column")
-        } content: {
-            activeReaderTableOfContents
-                .accessibilityElement(children: .contain)
-                .accessibilityIdentifier("toc-column")
-        } detail: {
-            iOSReaderTabView(
+        } else {
+            NavigationSplitView(
                 columnVisibility: $columnVisibility,
                 preferredCompactColumn: $preferredLibraryCompactColumn
-            )
+            ) {
+                NavigationStack {
+                    iOSLibraryView()
+                        .navigationTitle(iOSTab.viewer.title)
+                        .toolbarGeneral(showSettings: $showSettings)
+                }
+                .searchable(
+                    text: Bindable(bManager.libraryViewModel).searchQuery,
+                    placement: .toolbar,
+                    prompt: String(localized: "Search Library")
+                )
+                .toolbarBackground(Color.appBackground, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
                 .background(Color.appBackground)
                 .accessibilityElement(children: .contain)
-                .accessibilityIdentifier("reader-detail-column")
+                .accessibilityIdentifier("library-column")
+            } content: {
+                activeReaderTableOfContents
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("toc-column")
+            } detail: {
+                iOSReaderTabView(
+                    columnVisibility: $columnVisibility,
+                    preferredCompactColumn: $preferredLibraryCompactColumn,
+                    sidebarCoordinator: sidebarCoordinator
+                )
+                    .background(Color.appBackground)
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("reader-detail-column")
+            }
+            .navigationSplitViewStyle(.balanced)
+            .background(Color.appBackground.ignoresSafeArea())
+            .onAppear {
+                sidebarCoordinator.onUpdateLegacySplitVisibility = { visibility, compactColumn in
+                    withAnimation(.snappy(duration: 0.25)) {
+                        columnVisibility = visibility
+                        if let compactColumn {
+                            preferredLibraryCompactColumn = compactColumn
+                        }
+                    }
+                }
+            }
         }
-        .navigationSplitViewStyle(.balanced)
-        .background(Color.appBackground.ignoresSafeArea())
     }
 
     @ViewBuilder

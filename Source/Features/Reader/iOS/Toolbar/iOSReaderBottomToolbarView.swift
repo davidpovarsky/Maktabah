@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct iOSReaderBottomToolbarView: View {
+    @Environment(ReaderSidebarStateCoordinator.self) private var sidebarCoordinator: ReaderSidebarStateCoordinator?
     @Bindable var viewModel: ReaderViewModel
     var onShowTableOfContents: (() -> Void)? = nil
     var tableOfContentsIsPresented = false
@@ -25,8 +26,20 @@ struct iOSReaderBottomToolbarView: View {
     }
 
     var body: some View {
+        let displaySubtitle: String = {
+            if ChavrusaTextFeatureFlags.shared.effectiveSemanticSliderPolicyEnabled {
+                return ReaderNavigationDisplayPolicy.resolveUnifiedSemanticDisplayLabel(
+                    sectionDisplayRef: viewModel.backendSection?.displayRef,
+                    sectionHeRef: viewModel.backendSection?.heRef,
+                    activeNavigationItemTitle: viewModel.activeNavigationItem?.title,
+                    explicitSelectedSegmentLocator: viewModel.selectedSegmentLocator,
+                    fallbackSubtitle: viewModel.statusSubtitle
+                )
+            }
+            return viewModel.statusSubtitle
+        }()
         Button(
-            viewModel.statusSubtitle,
+            displaySubtitle,
             action: {
                 showingNavigation.toggle()
             }
@@ -84,7 +97,13 @@ struct iOSReaderBottomToolbarView: View {
             .help(String(localized: "Text Options"))
 
             Button(action: {
-                if let onShowTableOfContents {
+                if ChavrusaTextFeatureFlags.shared.effectiveSidebarPagerEnabled, let sidebarCoordinator {
+                    if sidebarCoordinator.sidebarVisible && sidebarCoordinator.selectedPage == .toc {
+                        sidebarCoordinator.closeSidebar()
+                    } else {
+                        sidebarCoordinator.showTOC()
+                    }
+                } else if let onShowTableOfContents {
                     onShowTableOfContents()
                 } else {
                     DispatchQueue.main.async {

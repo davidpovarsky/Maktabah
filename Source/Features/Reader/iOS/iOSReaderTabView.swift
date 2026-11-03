@@ -5,13 +5,17 @@ struct iOSReaderTabView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var preferredCompactColumn: NavigationSplitViewColumn
+    var sidebarCoordinator: ReaderSidebarStateCoordinator?
+    @State private var fallbackSidebarCoordinator = ReaderSidebarStateCoordinator()
 
     init(
         columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all),
-        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail)
+        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail),
+        sidebarCoordinator: ReaderSidebarStateCoordinator? = nil
     ) {
         self._columnVisibility = columnVisibility
         self._preferredCompactColumn = preferredCompactColumn
+        self.sidebarCoordinator = sidebarCoordinator
     }
 
     private var activeTab: iOSNavigationManager.ReaderTab? {
@@ -22,7 +26,8 @@ struct iOSReaderTabView: View {
         horizontalSizeClass == .regular
     }
 
-    var body: some View {
+    @ViewBuilder
+    private var coreReaderContent: some View {
         Group {
             if let activeTab {
                 iOSReaderWorkspaceView(
@@ -35,8 +40,10 @@ struct iOSReaderTabView: View {
                 .id(activeTab.id)
                 .toolbar {
                     if isRegularLayout, bManager.openTabs.count > 1 {
-                        ToolbarItem(placement: .principal) {
-                            ReaderTabsView()
+                        if !ChavrusaTextFeatureFlags.shared.effectiveDuckTabStripEnabled {
+                            ToolbarItem(placement: .principal) {
+                                ReaderTabsView()
+                            }
                         }
                     } else if bManager.openTabs.count > 1 {
                         ToolbarItem(placement: .topBarTrailing) {
@@ -56,6 +63,17 @@ struct iOSReaderTabView: View {
                     }
                 }
             }
+        }
+    }
+
+    var body: some View {
+        let coordinator = sidebarCoordinator ?? fallbackSidebarCoordinator
+        if isRegularLayout, ChavrusaTextFeatureFlags.shared.hasAnyReaderChromeUpgradeEnabled {
+            ReaderWorkspaceChromeHost(sidebarCoordinator: coordinator) {
+                coreReaderContent
+            }
+        } else {
+            coreReaderContent
         }
     }
 }

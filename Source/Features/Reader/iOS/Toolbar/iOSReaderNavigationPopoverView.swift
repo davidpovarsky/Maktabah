@@ -42,12 +42,46 @@ struct iOSReaderNavigationPopoverView: View {
                     }
                     .disabled(viewModel.backendSection?.previous == nil)
                     
-                    Text(viewModel.backendSection.map {
-                        LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)
-                    } ?? "")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
+                    if ChavrusaTextFeatureFlags.shared.effectiveSemanticSliderPolicyEnabled {
+                        let activeNavTitle = viewModel.navigationItems.indices.contains(Int(localNav))
+                            ? viewModel.navigationItems[Int(localNav)].title
+                            : nil
+                        let explicitUserSelection = ReaderNavigationDisplayPolicy.resolveExplicitUserSelectedSegmentLocator(
+                            selectedSegmentLocator: viewModel.selectedSegmentLocator,
+                            otzariaSelectedLineIndex: viewModel.otzariaSelectedLineAnchor?.lineIndex,
+                            otzariaBookId: viewModel.otzariaSelectedLineAnchor?.bookId,
+                            destinationFocusLocator: viewModel.currentDestination?.focusLocator,
+                            searchHighlightFocusLocator: viewModel.searchHighlightFocusLocator,
+                            isInspectorVisible: viewModel.readerInspectorVisible
+                        )
+                        let header = ReaderNavigationDisplayPolicy.formattedCurrentSectionLabel(
+                            sectionDisplayRef: viewModel.backendSection?.displayRef,
+                            sectionHeRef: viewModel.backendSection?.heRef,
+                            activeNavigationItemTitle: activeNavTitle,
+                            explicitSelectedSegmentLocator: explicitUserSelection
+                        )
+                        VStack(spacing: 4) {
+                            Text(header.sectionTitle)
+                                .font(.headline)
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity)
+                            if let badge = header.selectedSegmentBadge {
+                                Text(badge)
+                                    .font(.caption.weight(.medium))
+                                    .foregroundStyle(.secondary)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(Color.secondary.opacity(0.14)))
+                            }
+                        }
+                    } else {
+                        Text(viewModel.backendSection.map {
+                            LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)
+                        } ?? "")
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                    }
                     
                     Button {
                         if let next = viewModel.backendSection?.next {

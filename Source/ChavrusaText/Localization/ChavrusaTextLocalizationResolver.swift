@@ -102,7 +102,6 @@ public struct ChavrusaTextLocalizationResolver: Sendable {
         }
     }
 
-
     /// Resolves the localized display title for a backend.
     /// Hebrew: "אוצריא", "ספריא (ישן)", "ספריא"
     /// English: "Otzaria", "Sefaria (Legacy)", "Sefaria"
@@ -127,6 +126,36 @@ public struct ChavrusaTextLocalizationResolver: Sendable {
             case .sefaria: return "ספריא (ישן)"
             case .sefariaEmbedded: return "ספריא"
             }
+        }
+    }
+
+    /// Resolves the context-aware title for the Authors tab ("מחברים" in Torah/Otzaria/Sefaria contexts).
+    static func resolveAuthorTabTitle(
+        for backend: BackendID = .otzaria,
+        forcedLocaleIdentifier: String? = nil
+    ) -> String {
+        let effectiveLocale = forcedLocaleIdentifier
+            ?? Locale.preferredLanguages.first
+            ?? Locale.current.language.languageCode?.identifier
+            ?? "he"
+
+        if effectiveLocale.hasPrefix("en") {
+            return "Authors"
+        }
+        return "מחברים"
+    }
+
+    /// Formats a Hebrew book count with proper singular/plural grammar ("ספר אחד" instead of "1 ספרים").
+    public static func formatHebrewBookCount(_ count: Int) -> String {
+        switch count {
+        case 0:
+            return "אין ספרים"
+        case 1:
+            return "ספר אחד"
+        case 2:
+            return "שני ספרים"
+        default:
+            return "\(count) ספרים"
         }
     }
 }

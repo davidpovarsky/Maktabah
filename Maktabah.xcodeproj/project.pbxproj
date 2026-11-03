@@ -103,6 +103,87 @@
 		CE3000000000000000000037 /* ChavrusaSefariaBridgeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */; };
 		CF1000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */; };
 		CF2000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */; };
+		CF1000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */; };
+		CF2000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */; };
+		CF3000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */; };
+		CF1000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */; };
+		CF2000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */; };
+		CF3000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */; };
+		CF1000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */; };
+		CF2000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */; };
+		CF3000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */; };
+		CF1000000000000000000016 /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000016 /* ReaderSidebarPager.swift */; };
+		CF2000000000000000000016 /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000016 /* ReaderSidebarPager.swift */; };
+		CF3000000000000000000016 /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000016 /* ReaderSidebarPager.swift */; };
+		CF1000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */; };
+		CF2000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */; };
+		CF3000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */; };
+		CF1000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */; };
+		CF2000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */; };
+		CF3000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */; };
+		CF1000000000000000000019 /* ReaderDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000019 /* ReaderDocumentTab.swift */; };
+		CF2000000000000000000019 /* ReaderDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000019 /* ReaderDocumentTab.swift */; };
+		CF3000000000000000000019 /* ReaderDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000019 /* ReaderDocumentTab.swift */; };
+		CF100000000000000000001A /* StudyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001A /* StudyProfile.swift */; };
+		CF200000000000000000001A /* StudyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001A /* StudyProfile.swift */; };
+		CF300000000000000000001A /* StudyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001A /* StudyProfile.swift */; };
+		CF100000000000000000001B /* StudyTabGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001B /* StudyTabGroup.swift */; };
+		CF200000000000000000001B /* StudyTabGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001B /* StudyTabGroup.swift */; };
+		CF300000000000000000001B /* StudyTabGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001B /* StudyTabGroup.swift */; };
+		CF100000000000000000001C /* StudyWorkspaceMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001C /* StudyWorkspaceMigration.swift */; };
+		CF200000000000000000001C /* StudyWorkspaceMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001C /* StudyWorkspaceMigration.swift */; };
+		CF300000000000000000001C /* StudyWorkspaceMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001C /* StudyWorkspaceMigration.swift */; };
+		CF100000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */; };
+		CF200000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */; };
+		CF300000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */; };
+		CF100000000000000000001E /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001E /* StudyWorkspacePersistence.swift */; };
+		CF200000000000000000001E /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001E /* StudyWorkspacePersistence.swift */; };
+		CF300000000000000000001E /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001E /* StudyWorkspacePersistence.swift */; };
+		CF100000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */; };
+		CF200000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */; };
+		CF300000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */; };
+		CF1000000000000000000020 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000020 /* StudyWorkspaceStore.swift */; };
+		CF2000000000000000000020 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000020 /* StudyWorkspaceStore.swift */; };
+		CF3000000000000000000020 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000020 /* StudyWorkspaceStore.swift */; };
+		CF1000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */; };
+		CF2000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */; };
+		CF3000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */; };
+		CF1000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */; };
+		CF2000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */; };
+		CF3000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */; };
+		CF1000000000000000000023 /* ReaderTabStripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000023 /* ReaderTabStripCell.swift */; };
+		CF2000000000000000000023 /* ReaderTabStripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000023 /* ReaderTabStripCell.swift */; };
+		CF3000000000000000000023 /* ReaderTabStripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000023 /* ReaderTabStripCell.swift */; };
+		CF1000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000024 /* ReaderTabStripFlareView.swift */; };
+		CF2000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000024 /* ReaderTabStripFlareView.swift */; };
+		CF3000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000024 /* ReaderTabStripFlareView.swift */; };
+		CF1000000000000000000025 /* ReaderTabStripLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000025 /* ReaderTabStripLayout.swift */; };
+		CF2000000000000000000025 /* ReaderTabStripLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000025 /* ReaderTabStripLayout.swift */; };
+		CF3000000000000000000025 /* ReaderTabStripLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000025 /* ReaderTabStripLayout.swift */; };
+		CF1000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000026 /* StudyGroupSelectorHost.swift */; };
+		CF2000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000026 /* StudyGroupSelectorHost.swift */; };
+		CF3000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000026 /* StudyGroupSelectorHost.swift */; };
+		CF1000000000000000000027 /* StudyGroupsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000027 /* StudyGroupsOverview.swift */; };
+		CF2000000000000000000027 /* StudyGroupsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000027 /* StudyGroupsOverview.swift */; };
+		CF3000000000000000000027 /* StudyGroupsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000027 /* StudyGroupsOverview.swift */; };
+		CF1000000000000000000028 /* StudyProfileCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000028 /* StudyProfileCapsule.swift */; };
+		CF2000000000000000000028 /* StudyProfileCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000028 /* StudyProfileCapsule.swift */; };
+		CF3000000000000000000028 /* StudyProfileCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000028 /* StudyProfileCapsule.swift */; };
+		CF1000000000000000000029 /* StudyProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000029 /* StudyProfileManagementView.swift */; };
+		CF2000000000000000000029 /* StudyProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000029 /* StudyProfileManagementView.swift */; };
+		CF3000000000000000000029 /* StudyProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000029 /* StudyProfileManagementView.swift */; };
+		CF100000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */; };
+		CF200000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */; };
+		CF300000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */; };
+		CF100000000000000000002B /* GelatinMotionOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002B /* GelatinMotionOnly.swift */; };
+		CF200000000000000000002B /* GelatinMotionOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002B /* GelatinMotionOnly.swift */; };
+		CF300000000000000000002B /* GelatinMotionOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002B /* GelatinMotionOnly.swift */; };
+		CF100000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */; };
+		CF200000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */; };
+		CF300000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */; };
+		CF100000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */; };
+		CF200000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */; };
+		CF300000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */; };
 		F3F000040000000000000004 /* iOSReaderSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000030000000000000003 /* iOSReaderSessionTests.swift */; };
 		F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000010000000000000001 /* iOSReaderSessionManager.swift */; };
 		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
@@ -1373,6 +1454,33 @@
 		CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderContentLoadCoordinator.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderRenderedHighlightInspector.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/BackendSessionIntegrityRepair.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration/ChavrusaTextFeatureFlags.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderNavigationDisplayPolicy.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderInspectorHostPolicy.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000016 /* ReaderSidebarPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarPager.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarStateCoordinator.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderWorkspaceChromeHost.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000019 /* ReaderDocumentTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/ReaderDocumentTab.swift"; sourceTree = "<group>"; };
+		CF000000000000000000001A /* StudyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyProfile.swift"; sourceTree = "<group>"; };
+		CF000000000000000000001B /* StudyTabGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyTabGroup.swift"; sourceTree = "<group>"; };
+		CF000000000000000000001C /* StudyWorkspaceMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceMigration.swift"; sourceTree = "<group>"; };
+		CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"; sourceTree = "<group>"; };
+		CF000000000000000000001E /* StudyWorkspacePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspacePersistence.swift"; sourceTree = "<group>"; };
+		CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceSceneCoordinator.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000020 /* StudyWorkspaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceStore.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderDocumentTabsBarController.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderDocumentTabsBarRepresentable.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000023 /* ReaderTabStripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderTabStripCell.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000024 /* ReaderTabStripFlareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderTabStripFlareView.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000025 /* ReaderTabStripLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderTabStripLayout.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000026 /* StudyGroupSelectorHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyGroupSelectorHost.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000027 /* StudyGroupsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyGroupsOverview.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000028 /* StudyProfileCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyProfileCapsule.swift"; sourceTree = "<group>"; };
+		CF0000000000000000000029 /* StudyProfileManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyProfileManagementView.swift"; sourceTree = "<group>"; };
+		CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ExpandableLibrarySearchCoordinator.swift"; sourceTree = "<group>"; };
+		CF000000000000000000002B /* GelatinMotionOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/GelatinMotionOnly.swift"; sourceTree = "<group>"; };
+		CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ReaderLibraryCommandPaletteHost.swift"; sourceTree = "<group>"; };
+		CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ReaderLibraryToolbarHost.swift"; sourceTree = "<group>"; };
 		CE000000000000000000002A /* SefariaRPCModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bridge/SefariaRPCModels.swift"; sourceTree = "<group>"; };
 		CE000000000000000000002B /* SefariaJSRPCBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bridge/SefariaJSRPCBridge.swift"; sourceTree = "<group>"; };
 		CE000000000000000000002C /* SefariaRuntimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Runtime/SefariaRuntimeManager.swift"; sourceTree = "<group>"; };
@@ -2086,6 +2194,33 @@
 				CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */,
 				CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */,
 				CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */,
+				CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */,
+				CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */,
+				CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */,
+				CF0000000000000000000016 /* ReaderSidebarPager.swift */,
+				CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */,
+				CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */,
+				CF0000000000000000000019 /* ReaderDocumentTab.swift */,
+				CF000000000000000000001A /* StudyProfile.swift */,
+				CF000000000000000000001B /* StudyTabGroup.swift */,
+				CF000000000000000000001C /* StudyWorkspaceMigration.swift */,
+				CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */,
+				CF000000000000000000001E /* StudyWorkspacePersistence.swift */,
+				CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */,
+				CF0000000000000000000020 /* StudyWorkspaceStore.swift */,
+				CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */,
+				CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */,
+				CF0000000000000000000023 /* ReaderTabStripCell.swift */,
+				CF0000000000000000000024 /* ReaderTabStripFlareView.swift */,
+				CF0000000000000000000025 /* ReaderTabStripLayout.swift */,
+				CF0000000000000000000026 /* StudyGroupSelectorHost.swift */,
+				CF0000000000000000000027 /* StudyGroupsOverview.swift */,
+				CF0000000000000000000028 /* StudyProfileCapsule.swift */,
+				CF0000000000000000000029 /* StudyProfileManagementView.swift */,
+				CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */,
+				CF000000000000000000002B /* GelatinMotionOnly.swift */,
+				CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */,
+				CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */,
 			);
 			path = ChavrusaText;
 			sourceTree = "<group>";
@@ -3999,6 +4134,33 @@
 				CF1000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
 				CF1000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
 				CF1000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */,
+				CF1000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */,
+				CF1000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */,
+				CF1000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */,
+				CF1000000000000000000016 /* ReaderSidebarPager.swift in Sources */,
+				CF1000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */,
+				CF1000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */,
+				CF1000000000000000000019 /* ReaderDocumentTab.swift in Sources */,
+				CF100000000000000000001A /* StudyProfile.swift in Sources */,
+				CF100000000000000000001B /* StudyTabGroup.swift in Sources */,
+				CF100000000000000000001C /* StudyWorkspaceMigration.swift in Sources */,
+				CF100000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */,
+				CF100000000000000000001E /* StudyWorkspacePersistence.swift in Sources */,
+				CF100000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */,
+				CF1000000000000000000020 /* StudyWorkspaceStore.swift in Sources */,
+				CF1000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */,
+				CF1000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */,
+				CF1000000000000000000023 /* ReaderTabStripCell.swift in Sources */,
+				CF1000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */,
+				CF1000000000000000000025 /* ReaderTabStripLayout.swift in Sources */,
+				CF1000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */,
+				CF1000000000000000000027 /* StudyGroupsOverview.swift in Sources */,
+				CF1000000000000000000028 /* StudyProfileCapsule.swift in Sources */,
+				CF1000000000000000000029 /* StudyProfileManagementView.swift in Sources */,
+				CF100000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */,
+				CF100000000000000000002B /* GelatinMotionOnly.swift in Sources */,
+				CF100000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */,
+				CF100000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */,
 				CE100000000000000000002A /* SefariaRPCModels.swift in Sources */,
 				CE100000000000000000002B /* SefariaJSRPCBridge.swift in Sources */,
 				CE100000000000000000002C /* SefariaRuntimeManager.swift in Sources */,
@@ -4341,6 +4503,33 @@
 				CF2000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
 				CF2000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
 				CF2000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */,
+				CF2000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */,
+				CF2000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */,
+				CF2000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */,
+				CF2000000000000000000016 /* ReaderSidebarPager.swift in Sources */,
+				CF2000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */,
+				CF2000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */,
+				CF2000000000000000000019 /* ReaderDocumentTab.swift in Sources */,
+				CF200000000000000000001A /* StudyProfile.swift in Sources */,
+				CF200000000000000000001B /* StudyTabGroup.swift in Sources */,
+				CF200000000000000000001C /* StudyWorkspaceMigration.swift in Sources */,
+				CF200000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */,
+				CF200000000000000000001E /* StudyWorkspacePersistence.swift in Sources */,
+				CF200000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */,
+				CF2000000000000000000020 /* StudyWorkspaceStore.swift in Sources */,
+				CF2000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */,
+				CF2000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */,
+				CF2000000000000000000023 /* ReaderTabStripCell.swift in Sources */,
+				CF2000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */,
+				CF2000000000000000000025 /* ReaderTabStripLayout.swift in Sources */,
+				CF2000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */,
+				CF2000000000000000000027 /* StudyGroupsOverview.swift in Sources */,
+				CF2000000000000000000028 /* StudyProfileCapsule.swift in Sources */,
+				CF2000000000000000000029 /* StudyProfileManagementView.swift in Sources */,
+				CF200000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */,
+				CF200000000000000000002B /* GelatinMotionOnly.swift in Sources */,
+				CF200000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */,
+				CF200000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */,
 				CE200000000000000000002A /* SefariaRPCModels.swift in Sources */,
 				CE200000000000000000002B /* SefariaJSRPCBridge.swift in Sources */,
 				CE200000000000000000002C /* SefariaRuntimeManager.swift in Sources */,
@@ -4696,6 +4885,33 @@
 				CF3000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
 				CF3000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
 				CF3000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */,
+				CF3000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */,
+				CF3000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */,
+				CF3000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */,
+				CF3000000000000000000016 /* ReaderSidebarPager.swift in Sources */,
+				CF3000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */,
+				CF3000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */,
+				CF3000000000000000000019 /* ReaderDocumentTab.swift in Sources */,
+				CF300000000000000000001A /* StudyProfile.swift in Sources */,
+				CF300000000000000000001B /* StudyTabGroup.swift in Sources */,
+				CF300000000000000000001C /* StudyWorkspaceMigration.swift in Sources */,
+				CF300000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */,
+				CF300000000000000000001E /* StudyWorkspacePersistence.swift in Sources */,
+				CF300000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */,
+				CF3000000000000000000020 /* StudyWorkspaceStore.swift in Sources */,
+				CF3000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */,
+				CF3000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */,
+				CF3000000000000000000023 /* ReaderTabStripCell.swift in Sources */,
+				CF3000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */,
+				CF3000000000000000000025 /* ReaderTabStripLayout.swift in Sources */,
+				CF3000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */,
+				CF3000000000000000000027 /* StudyGroupsOverview.swift in Sources */,
+				CF3000000000000000000028 /* StudyProfileCapsule.swift in Sources */,
+				CF3000000000000000000029 /* StudyProfileManagementView.swift in Sources */,
+				CF300000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */,
+				CF300000000000000000002B /* GelatinMotionOnly.swift in Sources */,
+				CF300000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */,
+				CF300000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */,
 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,

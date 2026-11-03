@@ -175,12 +175,14 @@ struct iOSReaderView: View {
                 }
             }
 
-            ToolbarItemGroup(placement: .bottomBar) {
-                iOSReaderBottomToolbarView(
-                    viewModel: viewModel,
-                    onShowTableOfContents: toggleTableOfContents,
-                    tableOfContentsIsPresented: tableOfContentsIsPresented
-                )
+            if !ChavrusaTextFeatureFlags.shared.effectiveSafariToolbarSearchEnabled {
+                ToolbarItemGroup(placement: .bottomBar) {
+                    iOSReaderBottomToolbarView(
+                        viewModel: viewModel,
+                        onShowTableOfContents: toggleTableOfContents,
+                        tableOfContentsIsPresented: tableOfContentsIsPresented
+                    )
+                }
             }
         }
         .onChange(of: initialContentId) { _, newValue in

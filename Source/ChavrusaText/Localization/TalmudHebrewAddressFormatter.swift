@@ -34,6 +34,24 @@ enum TalmudHebrewAddressFormatter: Sendable {
         return "\(dafHebrew) \(amudStr)"
     }
 
+    /// Formats a full Talmud tractate reference (e.g., workTitle: "שבת", address: "12a")
+    /// into canonical Hebrew notation ("שבת דף י״ב ע״א" or "שבת י״ב ע״א").
+    static func formatWorkAndAddress(
+        workTitle: String,
+        address: String,
+        includeDafWord: Bool = true
+    ) -> String {
+        let cleanWork = workTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        let formattedAddress = format(address: address)
+        guard formattedAddress != address else {
+            return cleanWork.isEmpty ? address : "\(cleanWork) \(address)"
+        }
+        if cleanWork.isEmpty {
+            return includeDafWord ? "דף \(formattedAddress)" : formattedAddress
+        }
+        return includeDafWord ? "\(cleanWork) דף \(formattedAddress)" : "\(cleanWork) \(formattedAddress)"
+    }
+
     /// Converts a number to traditional Hebrew numeral with proper gersh/gershayim and special 15/16 handling.
     static func hebrewDafNumeral(from number: Int) -> String {
         guard number > 0 else { return "\(number)" }

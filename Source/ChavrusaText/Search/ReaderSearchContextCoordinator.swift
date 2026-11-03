@@ -38,7 +38,34 @@ struct ReaderSearchContext: Equatable, Sendable {
     }
 }
 
+enum SearchHistoryPresentationScope: Sendable {
+    case mainSearchTab
+    case inBookSearch
+}
+
 enum ReaderSearchContextCoordinator: Sendable {
+    /// Determines whether `SearchHistoryOverlay` is allowed in the given search surface.
+    /// - `.inBookSearch` (`iOSBookSearchView`): ALWAYS `false` (Plan E3 removes `SearchHistoryOverlay` from in-book search).
+    /// - `.mainSearchTab` (`SearchModeView` / `iOSMainView`): `true` when the search field is active/focused and results are empty.
+    static func shouldPresentSearchHistoryOverlay(
+        in scope: SearchHistoryPresentationScope,
+        isSearchFieldFocused: Bool,
+        isSearching: Bool = false,
+        hasResults: Bool = false,
+        showingHelp: Bool = false,
+        isDistanceFocused: Bool = false
+    ) -> Bool {
+        switch scope {
+        case .inBookSearch:
+            return false
+        case .mainSearchTab:
+            if showingHelp || isDistanceFocused {
+                return true
+            }
+            return isSearchFieldFocused && !isSearching && !hasResults
+        }
+    }
+
     /// Determines whether the bottom toolbar Clear 'X' button should be visible.
     /// Returns true ONLY if there is active search provenance (query text or highlight terms).
     /// Ordinary user text selection, linked-source focus, and persistent annotations do NOT trigger the search clear button.
