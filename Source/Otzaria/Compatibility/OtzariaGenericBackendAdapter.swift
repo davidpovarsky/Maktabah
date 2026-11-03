@@ -158,12 +158,14 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
 
     func navigationItems(for work: LibraryWork) async throws -> [LibraryNavigationItem] {
         let toc = try await tableOfContents(for: work)
+        #if !TESTING
         let useSemanticPolicy = await MainActor.run {
             ChavrusaTextFeatureFlags.shared.semanticSliderPolicyEnabled
         }
         if useSemanticPolicy {
             return ReaderNavigationDisplayPolicy.canonicalNavigationItems(from: toc)
         }
+        #endif
         var items: [LibraryNavigationItem] = []
         func collectLeaves(_ nodes: [LibraryTOCNode]) {
             for node in nodes {
