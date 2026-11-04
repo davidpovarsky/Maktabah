@@ -358,7 +358,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
     }
 
-    func testSourceToolbarPaletteSidebarAndOverview() throws {
+    func testSidebarPreservesOriginalTextKitViewport() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(recordViewport: true)
         assertReaderHasText()
@@ -395,6 +395,13 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(tocDot)
         capture("candidate-toc-sidebar")
         tap(libraryDot)
+    }
+
+    func testSourceToolbarPaletteAndOverview() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
         let field = app.textFields["reader-library-search-field"]
         tap(field)
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
