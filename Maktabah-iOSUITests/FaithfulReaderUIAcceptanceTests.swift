@@ -84,9 +84,46 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let rendered = text.value as? String ?? ""
         XCTAssertFalse(rendered.contains("Error Domain") || rendered.contains("Content ID not found") || rendered.contains("no such table"), "An error message must not count as book text")
     }
+
+    func exerciseNativeWindowResize(enabled: Bool) {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(enabled: enabled, scenario: "readerDetail")
+        assertReaderHasText()
+        let originalFrame = app.frame
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        capture(enabled ? "candidate-window-wide" : "baseline-window-wide")
+        // Apple's iPad windowing gesture: drag the system bottom-right handle.
+        // This must change the actual window, not an injected size class/frame.
+        let handle = app.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
+        let destination = app.coordinate(withNormalizedOffset: CGVector(dx: 0.55, dy: 0.7))
+        handle.press(forDuration: 0.5, thenDragTo: destination)
+        let resized = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
+            MainActor.assumeIsolated { app.frame.width < originalFrame.width - 80 }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [resized], timeout: 30), .completed,
+                       "The native iPad window must actually resize; a simulated width is not acceptance")
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator,
+                       "Window reflow must preserve the actual navigation unit")
+        XCTAssertTrue(app.buttons["reader-more-menu"].exists, "The original bottom toolbar must survive narrow window reflow")
+        let geometry = XCTAttachment(string: "wide=\(originalFrame)\nnarrow=\(app.frame)")
+        geometry.name = enabled ? "candidate-native-window-geometry" : "baseline-native-window-geometry"
+        geometry.lifetime = .keepAlways
+        add(geometry)
+        capture(enabled ? "candidate-window-narrow" : "baseline-window-narrow")
+        if enabled {
+            tap(app.textFields["reader-library-search-field"])
+            XCTAssertTrue(app.descendants(matching: .any)["reader-library-command-palette"].waitForExistence(timeout: 15))
+            capture("candidate-window-narrow-palette")
+        }
+    }
 }
 
 final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
+    func testOriginalWindowResizePreservesReader() {
+        exerciseNativeWindowResize(enabled: false)
+    }
+
     func testOriginalReaderThemes() {
         XCUIDevice.shared.orientation = .landscapeLeft
         for (name, index) in [("light", 0), ("dark", 4), ("sepia", 1)] {
@@ -151,6 +188,57 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testSystemReduceMotionKeepsOriginalPaletteUsable() {
+        let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        settings.launch()
+        let accessibility = settings.staticTexts["Accessibility"].firstMatch
+        for _ in 0..<6 {
+            if accessibility.exists && accessibility.isHittable { break }
+            settings.swipeUp()
+        }
+        XCTAssertTrue(accessibility.waitForExistence(timeout: 15))
+        accessibility.tap()
+        let motion = settings.staticTexts["Motion"].firstMatch
+        XCTAssertTrue(motion.waitForExistence(timeout: 15))
+        motion.tap()
+        let toggle = settings.switches["Reduce Motion"].firstMatch
+        XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+        let wasEnabled = (toggle.value as? String) == "1"
+        if !wasEnabled { toggle.tap() }
+        defer {
+            settings.activate()
+            if !wasEnabled && (toggle.value as? String) == "1" { toggle.tap() }
+            settings.terminate()
+        }
+        XCTAssertEqual(toggle.value as? String, "1", "The actual system preference must be enabled")
+        let reduced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [reduced], timeout: 15), .completed,
+                       "The native accessibility setting must actually reach this Simulator")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        tap(app.textFields["reader-library-search-field"])
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 10))
+        input.typeText("בראשית")
+        let book = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 30))
+        capture("candidate-system-reduce-motion-palette")
+        tap(book)
+        assertReaderHasText()
+        XCTAssertFalse(palette.exists)
+        XCTAssertTrue(app.textFields["reader-library-search-field"].exists)
+    }
+
+    func testWindowResizePreservesOriginalReaderAndSearch() {
+        exerciseNativeWindowResize(enabled: true)
+    }
+
     func testNewManagementScreensExposeMeaningfulAccessibilityDescriptions() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
