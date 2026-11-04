@@ -311,6 +311,8 @@ private extension iOSMainView {
 
         if BackendCoordinator.shared.activeBackendID == .otzaria {
             _ = try? await OtzariaBootstrapAdapter.restoreForAppLaunch()
+        } else if BackendCoordinator.shared.activeBackendID == .sefariaEmbedded {
+            try? await SefariaRuntimeManager.shared.ensureReady(timeoutSeconds: 30)
         }
 
         // Allow SwiftUI initial layout to finish
@@ -631,6 +633,9 @@ private extension iOSMainView {
     func openSmokeBook(for backend: BackendID, inspectorMode: SmokeInspectorMode) async {
         switch backend {
         case .sefaria, .sefariaEmbedded:
+            if backend == .sefariaEmbedded {
+                try? await SefariaRuntimeManager.shared.ensureReady(timeoutSeconds: 30)
+            }
             let genesisLocator = TextLocator(
                 backend: backend,
                 workKey: "Genesis",
