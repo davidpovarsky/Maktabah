@@ -66,6 +66,7 @@ jobs:
           git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/MaktabahUITestBase.swift" > Maktabah-iOSUITests/MaktabahUITestBase.swift
           git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/verify-faithful-xctest.py" > Scripts/CI/verify-faithful-xctest.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/build-faithful-prototype-reference.py" > Scripts/CI/build-faithful-prototype-reference.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/shutdown-faithful-simulator.py" > Scripts/CI/shutdown-faithful-simulator.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/collect-faithful-simulator-failure.py" > Scripts/CI/collect-faithful-simulator-failure.py
@@ -363,6 +364,7 @@ jobs:
             build/artifacts/test-simulator.log
             build/artifacts/result*.xcresult
             build/artifacts/test-simulator-*.log
+            build/artifacts/test-case-execution-*.json
             build/artifacts/miniTest10-native-fixture-install-*.json
             build/artifacts/faithful-ipad-matrix.json
             build/artifacts/simctl-ui-help.txt

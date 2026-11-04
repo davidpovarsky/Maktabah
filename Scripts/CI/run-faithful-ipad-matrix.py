@@ -96,6 +96,11 @@ for index, size in enumerate(["11", "13", "phone"]):
         device["missingOrFailedSuites"] = missing_suites
         if code == 0 and missing_suites:
             code = 1
+        verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
+                                       "--log", str(artifacts / f"test-simulator-{size}.log"),
+                                       "--out", str(artifacts / f"test-case-execution-{size}.json"), *selection])
+        if verification.returncode:
+            code = code or 1
         counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_text)]
         device["executedXCTestCount"] = max(counts, default=0)
         if code == 0 and device["executedXCTestCount"] < (1 if baseline or size == "phone" else 6):
@@ -134,10 +139,13 @@ for index, size in enumerate(["11", "13", "phone"]):
                     result = subprocess.run(large_command, env=environment, stdout=log, stderr=subprocess.STDOUT, text=True)
                 counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_path.read_text())]
                 device["largeText"]["executedXCTestCount"] = max(counts, default=0)
+                verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
+                                               "--log", str(log_path), "--out", str(artifacts / "test-case-execution-13-large-text.json"),
+                                               "FaithfulReaderLargeTextTests"])
                 if large_result.is_dir():
                     subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(large_result),
                                     "--output-path", str(artifacts / "visual-13-large-text")], check=True)
-                if result.returncode or not counts:
+                if result.returncode or not counts or verification.returncode:
                     device["largeText"]["status"] = "FAIL"
                     raise SystemExit("Largest-text real UI acceptance failed or did not execute")
                 device["largeText"]["status"] = "EXECUTED_PASS"

@@ -86,11 +86,14 @@ try:
             print(line, end="", flush=True)
         code = process.wait()
     text = (artifacts / "production-release-tests.log").read_text()
+    verification = subprocess.run([sys.executable, "Scripts/CI/verify-faithful-xctest.py",
+                                   "--log", str(artifacts / "production-release-tests.log"),
+                                   "--out", str(artifacts / "test-case-execution-production-release.json"), "FaithfulProductionReleaseTests"])
     report["executedXCTestCount"] = max([int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", text)], default=0)
     if result_path.is_dir():
         run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result_path), "--output-path", str(artifacts / "visual-production-release")])
     suite_passed = re.search(r"Test Suite '(?:[^']*\.)?FaithfulProductionReleaseTests' passed", text) is not None
-    if code or report["executedXCTestCount"] == 0 or not suite_passed:
+    if code or report["executedXCTestCount"] == 0 or not suite_passed or verification.returncode:
         raise SystemExit("The actual full-corpus Release UI acceptance failed or did not execute")
     report["status"] = "EXECUTED_PASS"
 finally:
