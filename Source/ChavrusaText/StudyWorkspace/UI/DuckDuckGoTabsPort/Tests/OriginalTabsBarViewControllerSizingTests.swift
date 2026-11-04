@@ -127,7 +127,9 @@ final class TabsBarViewControllerSizingTests: XCTestCase {
     @MainActor
     func testDraggingInNarrowStripStaysStillAtCenterAndScrollsTowardEdge() throws {
         let (controller, model) = makeOverflowingController()
-        controller.view.frame.size.width = 400
+        // Removed browser controls leave more room. Preserve the original narrow
+        // viewport precondition (one to two 120pt tabs) in this book-domain host.
+        controller.view.frame.size.width = 340
         controller.view.layoutIfNeeded()
         controller.refresh(tabsModel: model)
         let collectionView = controller.collectionView
@@ -252,7 +254,7 @@ final class TabsBarViewControllerSizingTests: XCTestCase {
 
     @MainActor
     func testFoldedTabSelectsImmediatelyWhileRevealingAndRequiresSecondTapWhenHalfCovered() async throws {
-        for width in [CGFloat(1024), 400] {
+        for width in [CGFloat(1024), 340] {
             let (controller, model) = makeOverflowingController()
             controller.view.frame.size.width = width
             controller.view.layoutIfNeeded()
@@ -313,7 +315,7 @@ final class TabsBarViewControllerSizingTests: XCTestCase {
 
     @MainActor
     func testPointerClickSelectsHalfCoveredTabImmediatelyAndLeavesTouchOnTheRevealPath() throws {
-        for width in [CGFloat(1024), 400] {
+        for width in [CGFloat(1024), 340] {
             let (controller, model) = makeOverflowingController()
             controller.view.frame.size.width = width
             controller.view.layoutIfNeeded()

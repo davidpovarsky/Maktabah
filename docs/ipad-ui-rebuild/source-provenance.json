@@ -181,7 +181,7 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
     "sha256": "04b31e8a5a8b1f8913298674a3435dfeec9776ff0df3849fc177d9d2c2fc9ceb",
     "reason": "Retain original hierarchy, sizing, reorder, selection, pointer, flare and foreground tests. Exclude the two AI-chat-only tests for removed browser features; adapt hierarchy count/model/delegate to book domain. No behavioral assertion weakened.",
-    "destinationSHA256": "a234f4a8e86d21e1665739e2c685691d869b916578a982dceecf7519a7728f07"
+    "destinationSHA256": "e961fd6d84eca2119e93c1f53c660c46963ef0e42cc0aeddf5b4f00f0317dc6b"
   },
   {
     "repo": "Owner Safari prototype",

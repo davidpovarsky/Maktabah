@@ -75,8 +75,7 @@ jobs:
           mkdir -p build/artifacts
           python3 Scripts/CI/select-ipad-simulator.py --out sim_udid.txt
           SIM_UDID=$(cat sim_udid.txt)
-          cd Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort
-          xcodebuild test -scheme DuckDuckGoBookTabs -destination "platform=iOS Simulator,id=$SIM_UDID" -resultBundlePath "$GITHUB_WORKSPACE/build/artifacts/duck-tabs.xcresult"
+          python3 Scripts/CI/test-faithful-tabs-in-app.py
           cd "$GITHUB_WORKSPACE/Source/ChavrusaText/Dependencies/CommandPalette"
           xcodebuild test -scheme CommandPalette -destination "platform=iOS Simulator,id=$SIM_UDID" -resultBundlePath "$GITHUB_WORKSPACE/build/artifacts/command-palette.xcresult"
 

@@ -61,7 +61,36 @@
  
      @MainActor
      func testTabStripStartsAtDefaultFirstTabLeadingMargin() {
-@@ -424,7 +392,7 @@
+@@ -159,7 +127,9 @@
+     @MainActor
+     func testDraggingInNarrowStripStaysStillAtCenterAndScrollsTowardEdge() throws {
+         let (controller, model) = makeOverflowingController()
+-        controller.view.frame.size.width = 400
++        // Removed browser controls leave more room. Preserve the original narrow
++        // viewport precondition (one to two 120pt tabs) in this book-domain host.
++        controller.view.frame.size.width = 340
+         controller.view.layoutIfNeeded()
+         controller.refresh(tabsModel: model)
+         let collectionView = controller.collectionView
+@@ -284,7 +254,7 @@
+ 
+     @MainActor
+     func testFoldedTabSelectsImmediatelyWhileRevealingAndRequiresSecondTapWhenHalfCovered() async throws {
+-        for width in [CGFloat(1024), 400] {
++        for width in [CGFloat(1024), 340] {
+             let (controller, model) = makeOverflowingController()
+             controller.view.frame.size.width = width
+             controller.view.layoutIfNeeded()
+@@ -345,7 +315,7 @@
+ 
+     @MainActor
+     func testPointerClickSelectsHalfCoveredTabImmediatelyAndLeavesTouchOnTheRevealPath() throws {
+-        for width in [CGFloat(1024), 400] {
++        for width in [CGFloat(1024), 340] {
+             let (controller, model) = makeOverflowingController()
+             controller.view.frame.size.width = width
+             controller.view.layoutIfNeeded()
+@@ -424,7 +394,7 @@
  
          // Simulate stale presentation; this checks recovery, not UIKit's background snapshot cycle.
          cell.applyCurrentStyle(isCurrent: false, isNextCurrent: false, hidesInactiveCloseButton: true,
@@ -70,7 +99,7 @@
          background.isHidden = true
          NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
  
-@@ -439,13 +407,13 @@
+@@ -439,13 +409,13 @@
      }
  
      @MainActor
@@ -87,7 +116,7 @@
          controller.refresh(tabsModel: model)
          controller.collectionView.layoutIfNeeded()
          return (controller, model)
-@@ -473,17 +441,7 @@
+@@ -473,17 +443,7 @@
      func tabsBar(_ controller: TabsBarViewController, didRemoveTabAtIndex index: Int) {}
      func tabsBar(_ controller: TabsBarViewController, didRequestCloseOtherTabsForTabAtIndex index: Int) {}
      func tabsBarDidRequestNewTab(_ controller: TabsBarViewController) {}
@@ -105,7 +134,7 @@
  }
  
  @MainActor
-@@ -494,7 +452,7 @@
+@@ -494,7 +454,7 @@
      var allowsMoveOperation: Bool { true }
      var isRestrictedToDraggingApplication: Bool { true }
      var progressIndicatorStyle: UIDropSessionProgressIndicatorStyle = .none
