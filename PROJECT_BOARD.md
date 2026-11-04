@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- CoreSimulator may create a legacy device profile that is absent from a runtime's `supportedDeviceTypes`, then hang during install/launch despite `bootstatus` succeeding. The faithful UI matrix now filters against that authoritative list and shuts down its preceding validation simulator before booting the next device. Do not treat successful `simctl create` as compatibility proof.
+
 - Read-only tab/group snapshots must read `fetchScrollPosition` / `fetchSelectedRange` into a local state copy. `ReaderViewModel.saveCurrentState()` also clears search and annotation events, so invoking it merely to update sidecar metadata can consume a pending search highlight before the original reader renders it. The faithful workspace adapter captures without that mutation.
 
 Useful technical discoveries, undocumented behavior, shortcuts, implementation tricks, platform behavior, or reusable knowledge discovered while working.
@@ -79,6 +81,8 @@ Things worth testing or researching before deciding whether to implement them.
 Important unresolved questions or uncertainties.
 
 ## Planned / Todo
+
+- [ ] Separate native bootstrap search-acceptance expectations by data profile. `OtzariaNativeBootstrapAcceptanceRunner` currently requires exactly `18_879` index documents in its optional search fixture, which is specific to miniTest10. Full production UI provisioning therefore uses the original digest/schema-verified installer with that optional fixture disabled; this is not full production search acceptance. Do not broaden DB/search-engine changes as part of the faithful UI rebuild.
 
 Concrete work that is worth doing but is not part of the current task.
 
