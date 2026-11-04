@@ -13,31 +13,31 @@ import Foundation
 /// Represents an independent document tab in the ChavrusaText study workspace.
 /// Each tab has its own unique `UUID` identity and reading state—even when the same book
 /// is opened across different tab groups or multiple times within the same group.
-public struct ReaderDocumentTab: Codable, Identifiable, Equatable, Sendable {
-    public let id: UUID
-    public var backend: BackendID
-    public var bookId: Int
-    public var bookTitle: String?
-    public var workKey: String?
-    public var sectionLocator: TextLocator?
-    public var focusLocator: TextLocator?
-    public var contentId: Int?
-    public var page: Int?
-    public var part: Int?
-    public var scrollPosition: CGPoint?
-    public var selectedRange: NSRange?
-    public var expandedNodeIDs: [Int]?
-    public var sidebarScrollPosition: CGPoint?
-    public var isSidebarCollapsed: Bool?
-    public var searchText: String?
-    public var searchModeRaw: Int?
-    public var nearDistance: Int?
-    public var highlightTerms: [String]?
-    public var isDormantUnavailable: Bool
-    public var createdAt: Date
-    public var updatedAt: Date
+struct ReaderDocumentTab: Codable, Identifiable, Equatable, Sendable {
+    let id: UUID
+    var backend: BackendID
+    var bookId: Int
+    var bookTitle: String?
+    var workKey: String?
+    var sectionLocator: TextLocator?
+    var focusLocator: TextLocator?
+    var contentId: Int?
+    var page: Int?
+    var part: Int?
+    var scrollPosition: CGPoint?
+    var selectedRange: NSRange?
+    var expandedNodeIDs: [Int]?
+    var sidebarScrollPosition: CGPoint?
+    var isSidebarCollapsed: Bool?
+    var searchText: String?
+    var searchModeRaw: Int?
+    var nearDistance: Int?
+    var highlightTerms: [String]?
+    var isDormantUnavailable: Bool
+    var createdAt: Date
+    var updatedAt: Date
 
-    public init(
+    init(
         id: UUID = UUID(),
         backend: BackendID = .otzaria,
         bookId: Int,
@@ -152,7 +152,7 @@ public struct ReaderDocumentTab: Codable, Identifiable, Equatable, Sendable {
     }
 
     /// Creates an independent duplicate of this tab with a fresh `UUID` while preserving its reading location.
-    public func duplicated(newID: UUID = UUID(), now: Date = Date()) -> ReaderDocumentTab {
+    func duplicated(newID: UUID = UUID(), now: Date = Date()) -> ReaderDocumentTab {
         var copy = self
         copy = ReaderDocumentTab(
             id: newID,

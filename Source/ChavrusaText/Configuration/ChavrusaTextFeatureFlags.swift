@@ -13,10 +13,10 @@ import Observation
 /// without removing user persistence or corrupting legacy `ios_reader_session.json`.
 @MainActor
 @Observable
-public final class ChavrusaTextFeatureFlags {
-    public static let shared = ChavrusaTextFeatureFlags()
+final class ChavrusaTextFeatureFlags {
+    static let shared = ChavrusaTextFeatureFlags()
 
-    public enum Key: String, CaseIterable, Sendable {
+    enum Key: String, CaseIterable, Sendable {
         case sidebarPagerEnabled = "chavrusa.feature.sidebarPagerEnabled"
         case safariToolbarSearchEnabled = "chavrusa.feature.safariToolbarSearchEnabled"
         case studyWorkspaceEnabled = "chavrusa.feature.studyWorkspaceEnabled"
@@ -28,72 +28,72 @@ public final class ChavrusaTextFeatureFlags {
     private let defaults: UserDefaults
 
     /// Plan A: Craft-style 2-screen sidebar pager (Library + TOC) in a 2-column NavigationSplitView.
-    public var sidebarPagerEnabled: Bool {
+    var sidebarPagerEnabled: Bool {
         didSet { defaults.set(sidebarPagerEnabled, forKey: Key.sidebarPagerEnabled.rawValue) }
     }
 
     /// Plan B: 3-group Safari-style viewer toolbar + expanding center library search with Gelatin motion.
-    public var safariToolbarSearchEnabled: Bool {
+    var safariToolbarSearchEnabled: Bool {
         didSet { defaults.set(safariToolbarSearchEnabled, forKey: Key.safariToolbarSearchEnabled.rawValue) }
     }
 
     /// Plan C1/C3: Study Profiles, Tab Groups, Overview, and sidecar workspace persistence.
-    public var studyWorkspaceEnabled: Bool {
+    var studyWorkspaceEnabled: Bool {
         didSet { defaults.set(studyWorkspaceEnabled, forKey: Key.studyWorkspaceEnabled.rawValue) }
     }
 
     /// Plan C2: DuckDuckGo-inspired UIKit collection-view document tab strip beneath the toolbar.
-    public var duckTabStripEnabled: Bool {
+    var duckTabStripEnabled: Bool {
         didSet { defaults.set(duckTabStripEnabled, forKey: Key.duckTabStripEnabled.rawValue) }
     }
 
     /// Plan D: Width-driven Inspector host & clean paper-matched background (preserving FloatingPanel + TorahInspectorKit).
-    public var inspectorHostRefinementEnabled: Bool {
+    var inspectorHostRefinementEnabled: Bool {
         didSet { defaults.set(inspectorHostRefinementEnabled, forKey: Key.inspectorHostRefinementEnabled.rawValue) }
     }
 
     /// Plan E2: Semantic navigation slider policy (chapter/daf/section granularity rather than paragraph line index).
-    public var semanticSliderPolicyEnabled: Bool {
+    var semanticSliderPolicyEnabled: Bool {
         didSet { defaults.set(semanticSliderPolicyEnabled, forKey: Key.semanticSliderPolicyEnabled.rawValue) }
     }
 
     // MARK: - Deterministic Flag Dependency Matrix
 
     /// Plan A is self-contained when enabled.
-    public var effectiveSidebarPagerEnabled: Bool {
+    var effectiveSidebarPagerEnabled: Bool {
         sidebarPagerEnabled
     }
 
     /// Plan B is self-contained when enabled; when false, the legacy sidebar `.searchable` and reader navigation bar remain active.
-    public var effectiveSafariToolbarSearchEnabled: Bool {
+    var effectiveSafariToolbarSearchEnabled: Bool {
         safariToolbarSearchEnabled
     }
 
     /// Plan C1/C3 (Study Profiles, Tab Groups, Overview, sidecar persistence).
     /// When false, zero workspace sidecar mutations or `StudyWorkspaceNavigationAdapter` projections occur.
-    public var effectiveStudyWorkspaceEnabled: Bool {
+    var effectiveStudyWorkspaceEnabled: Bool {
         studyWorkspaceEnabled
     }
 
     /// Plan C2 (40pt DuckDuckGo-style UIKit document tab strip).
     /// Can run standalone against `iOSNavigationManager.openTabs` or with `studyWorkspaceEnabled` for group operations.
-    public var effectiveDuckTabStripEnabled: Bool {
+    var effectiveDuckTabStripEnabled: Bool {
         duckTabStripEnabled
     }
 
     /// Plan D (Width-driven Inspector host & structural `.embeddedSheet` wide-column chrome).
-    public var effectiveInspectorHostRefinementEnabled: Bool {
+    var effectiveInspectorHostRefinementEnabled: Bool {
         inspectorHostRefinementEnabled
     }
 
     /// Plan E2 (Semantic TOC slider granularity).
-    public var effectiveSemanticSliderPolicyEnabled: Bool {
+    var effectiveSemanticSliderPolicyEnabled: Bool {
         semanticSliderPolicyEnabled
     }
 
     /// Top-level reader chrome replacement (Plan B Safari Toolbar, Plan C2 Duck Tab Strip, or Plan C1/C3 Study Workspace).
     /// When any of these are enabled, `ReaderWorkspaceChromeHost` wraps the reader detail area.
-    public var hasAnyReaderChromeUpgradeEnabled: Bool {
+    var hasAnyReaderChromeUpgradeEnabled: Bool {
         effectiveSafariToolbarSearchEnabled || effectiveDuckTabStripEnabled || effectiveStudyWorkspaceEnabled
     }
 
@@ -101,7 +101,7 @@ public final class ChavrusaTextFeatureFlags {
     /// flags default to `false` ensuring complete isolation and verifying default behavior.
     /// In live app sessions (such as the TestFlight experimental build), flags default to `true`
     /// so the user can test the UI upgrades immediately upon launch.
-    public init(
+    init(
         defaults: UserDefaults = .standard,
         environment: [String: String] = ProcessInfo.processInfo.environment,
         defaultState: Bool? = nil
@@ -151,7 +151,7 @@ public final class ChavrusaTextFeatureFlags {
     }
 
     /// Resets all feature flags to their safe production default (`false`).
-    public func resetToDefaults() {
+    func resetToDefaults() {
         for key in Key.allCases {
             defaults.removeObject(forKey: key.rawValue)
         }
@@ -164,7 +164,7 @@ public final class ChavrusaTextFeatureFlags {
     }
 
     /// Convenience helper for opt-in QA / preview sessions to enable all Plans A-E simultaneously.
-    public func enableAll() {
+    func enableAll() {
         sidebarPagerEnabled = true
         safariToolbarSearchEnabled = true
         studyWorkspaceEnabled = true

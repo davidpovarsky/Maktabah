@@ -130,9 +130,10 @@ struct ReaderDocumentTabsBarRepresentable: UIViewControllerRepresentable {
                         sectionLocator: vm.currentLocator ?? vm.readerState.currentLocator
                     )
                 } else {
-                    navigationManager.openTab(
-                        book: sourceTab.book,
-                        contentId: vm.currentID ?? sourceTab.initialContentId ?? (vm.currentContentId > 0 ? vm.currentContentId : nil)
+                    let contentId = vm.currentID ?? sourceTab.initialContentId ?? (vm.currentContentId > 0 ? vm.currentContentId : nil)
+                    navigationManager.openBook(
+                        sourceTab.book,
+                        options: OpenBookOptions(contentId: contentId)
                     )
                 }
             },

@@ -3,14 +3,14 @@ import Foundation
 /// Coordinator for defensive reader session restoration in ChavrusaText.
 /// Fixes SESSION-01 by ensuring `activeTabId` is only selected if it actually exists in
 /// the restored open tabs list, falling back safely without force-unwrapping to the first valid restored tab.
-public final class ReaderSessionRestoreCoordinator {
-    public struct RestoredSessionState<Tab: Identifiable> {
-        public let validTabs: [Tab]
-        public let activeTab: Tab?
-        public let activeTabId: Tab.ID?
-        public let wasStaleIdNormalized: Bool
+final class ReaderSessionRestoreCoordinator {
+    struct RestoredSessionState<Tab: Identifiable> {
+        let validTabs: [Tab]
+        let activeTab: Tab?
+        let activeTabId: Tab.ID?
+        let wasStaleIdNormalized: Bool
 
-        public init(
+        init(
             validTabs: [Tab],
             activeTab: Tab?,
             activeTabId: Tab.ID?,
@@ -23,11 +23,11 @@ public final class ReaderSessionRestoreCoordinator {
         }
     }
 
-    public init() {}
+    init() {}
 
     /// Resolves restored active tab defensively against the list of restored tabs.
     /// Never force-unwraps and requires only `Identifiable` conformance from Tab.
-    public func resolveActiveTab<Tab: Identifiable>(
+    func resolveActiveTab<Tab: Identifiable>(
         savedActiveId: Tab.ID?,
         restoredTabs: [Tab]
     ) -> RestoredSessionState<Tab> where Tab.ID: Equatable {
@@ -69,7 +69,7 @@ public final class ReaderSessionRestoreCoordinator {
 }
 
 extension ReaderSessionRestoreCoordinator.RestoredSessionState: Equatable where Tab: Equatable, Tab.ID: Equatable {
-    public static func == (
+    static func == (
         lhs: ReaderSessionRestoreCoordinator.RestoredSessionState<Tab>,
         rhs: ReaderSessionRestoreCoordinator.RestoredSessionState<Tab>
     ) -> Bool {

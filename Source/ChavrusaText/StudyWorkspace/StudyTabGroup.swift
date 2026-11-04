@@ -8,21 +8,21 @@
 import Foundation
 
 /// A named collection of `ReaderDocumentTab` identifiers belonging to a specific `StudyProfile`.
-public struct StudyTabGroup: Codable, Identifiable, Hashable, Sendable {
-    public static let defaultGroupID = UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
-    public static let defaultGroupName = "לימוד ראשי"
+struct StudyTabGroup: Codable, Identifiable, Hashable, Sendable {
+    static let defaultGroupID = UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
+    static let defaultGroupName = "לימוד ראשי"
 
-    public let id: UUID
-    public var profileID: UUID
-    public var name: String
-    public var sortOrder: Int
-    public var createdAt: Date
-    public var updatedAt: Date
-    public var tabIDs: [UUID]
-    public var activeTabID: UUID?
-    public var isPinned: Bool
+    let id: UUID
+    var profileID: UUID
+    var name: String
+    var sortOrder: Int
+    var createdAt: Date
+    var updatedAt: Date
+    var tabIDs: [UUID]
+    var activeTabID: UUID?
+    var isPinned: Bool
 
-    public init(
+    init(
         id: UUID = UUID(),
         profileID: UUID,
         name: String,
@@ -45,7 +45,7 @@ public struct StudyTabGroup: Codable, Identifiable, Hashable, Sendable {
     }
 
     /// Creates the default initial tab group for a profile.
-    public static func makeDefault(
+    static func makeDefault(
         profileID: UUID = StudyProfile.defaultProfileID,
         name: String = StudyTabGroup.defaultGroupName,
         tabIDs: [UUID] = [],

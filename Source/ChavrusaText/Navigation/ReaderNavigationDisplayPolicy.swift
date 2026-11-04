@@ -341,7 +341,7 @@ enum ReaderNavigationDisplayPolicy {
     /// - `ReaderLibraryToolbarHost` (Safari Top Toolbar)
     /// Guarantees that without an explicit user selection (`readerInspectorVisible == true` and selected line),
     /// neither Otzaria nor Sefaria displays an unrequested paragraph or line number.
-    public static func resolveUnifiedSemanticDisplayLabel(
+    static func resolveUnifiedSemanticDisplayLabel(
         sectionDisplayRef: String?,
         sectionHeRef: String?,
         activeNavigationItemTitle: String?,

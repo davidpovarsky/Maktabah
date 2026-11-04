@@ -74,7 +74,7 @@ enum TextPosition: Codable, Hashable, Sendable, CustomStringConvertible {
     }
 }
 
-struct TextLocator: Codable, Hashable, Sendable {
+struct TextLocator: Codable, Hashable, Sendable, CustomStringConvertible {
     let backend: BackendID
     let workKey: String
     let position: TextPosition
@@ -86,6 +86,15 @@ struct TextLocator: Codable, Hashable, Sendable {
         case .canonicalRef(let value): positionKey = "ref:\(value)"
         }
         return "\(backend.rawValue)|\(workKey)|\(positionKey)"
+    }
+
+    var description: String {
+        switch position {
+        case .legacyLine(let value):
+            return "שורה \(value)"
+        case .canonicalRef(let value):
+            return value
+        }
     }
 }
 

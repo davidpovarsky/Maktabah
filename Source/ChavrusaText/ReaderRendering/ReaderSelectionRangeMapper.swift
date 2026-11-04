@@ -1,19 +1,19 @@
 import Foundation
 
 /// Protocol for injecting text range mapping transformations (such as `ArabicRenderResult.remapSourceRange`).
-public protocol ReaderRangeMappingProvider: Sendable {
+protocol ReaderRangeMappingProvider: Sendable {
     func remapDisplayedRangeToSource(_ displayedRange: NSRange) -> NSRange?
 }
 
 /// Concrete adapter wrapping an existing ArabicRenderResult or closure.
-public struct ClosureRangeMappingProvider: @unchecked Sendable, ReaderRangeMappingProvider {
+struct ClosureRangeMappingProvider: @unchecked Sendable, ReaderRangeMappingProvider {
     private let transform: (NSRange) -> NSRange?
 
-    public init(transform: @escaping (NSRange) -> NSRange?) {
+    init(transform: @escaping (NSRange) -> NSRange?) {
         self.transform = transform
     }
 
-    public func remapDisplayedRangeToSource(_ displayedRange: NSRange) -> NSRange? {
+    func remapDisplayedRangeToSource(_ displayedRange: NSRange) -> NSRange? {
         transform(displayedRange)
     }
 }
@@ -22,7 +22,7 @@ public struct ClosureRangeMappingProvider: @unchecked Sendable, ReaderRangeMappi
 /// Fixes BUG-03 by validating selection bounds against source and display UTF-16 lengths,
 /// checking Unicode surrogate pair and grapheme cluster integrity, and requiring explicit
 /// mapping providers whenever display text differs from source text.
-public enum SelectionMappingError: Error, Equatable, LocalizedError {
+enum SelectionMappingError: Error, Equatable, LocalizedError {
     case emptySelection
     case negativeLocation(Int)
     case integerOverflow(location: Int, length: Int)
@@ -32,7 +32,7 @@ public enum SelectionMappingError: Error, Equatable, LocalizedError {
     case mappingProviderFailed(NSRange)
     case mappingRequiredAcrossDifferentRenders
 
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .emptySelection:
             return "Selection length must be greater than zero."
@@ -54,13 +54,13 @@ public enum SelectionMappingError: Error, Equatable, LocalizedError {
     }
 }
 
-public struct MappedSelection: Equatable {
-    public let sourceRange: NSRange
-    public let selectedText: String
-    public let fullSourceText: String
-    public let segmentIdentifier: String?
+struct MappedSelection: Equatable {
+    let sourceRange: NSRange
+    let selectedText: String
+    let fullSourceText: String
+    let segmentIdentifier: String?
 
-    public init(
+    init(
         sourceRange: NSRange,
         selectedText: String,
         fullSourceText: String,
@@ -73,11 +73,11 @@ public struct MappedSelection: Equatable {
     }
 }
 
-public final class ReaderSelectionRangeMapper {
-    public init() {}
+final class ReaderSelectionRangeMapper {
+    init() {}
 
     /// Validates and maps a displayed selection range into a validated source text range.
-    public func mapSelection(
+    func mapSelection(
         displayedRange: NSRange,
         sourceText: String,
         displayedText: String? = nil,

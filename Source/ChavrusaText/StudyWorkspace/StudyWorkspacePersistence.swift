@@ -9,20 +9,20 @@
 import Foundation
 
 /// Versioned snapshot of the entire study workspace across profiles, tab groups, and document tabs.
-public struct StudyWorkspaceSnapshot: Codable, Equatable, Sendable {
-    public static let currentSchemaVersion = 1
+struct StudyWorkspaceSnapshot: Codable, Equatable, Sendable {
+    static let currentSchemaVersion = 1
 
-    public var schemaVersion: Int
-    public var savedAt: Date
-    public var migratedFromLegacySession: Bool
-    public var lastActiveProfileID: UUID
-    public var lastActiveGroupID: UUID
-    public var profiles: [StudyProfile]
-    public var groups: [StudyTabGroup]
-    public var tabsByID: [UUID: ReaderDocumentTab]
-    public var sceneStatesByID: [String: StudySceneSelectionState]
+    var schemaVersion: Int
+    var savedAt: Date
+    var migratedFromLegacySession: Bool
+    var lastActiveProfileID: UUID
+    var lastActiveGroupID: UUID
+    var profiles: [StudyProfile]
+    var groups: [StudyTabGroup]
+    var tabsByID: [UUID: ReaderDocumentTab]
+    var sceneStatesByID: [String: StudySceneSelectionState]
 
-    public init(
+    init(
         schemaVersion: Int = StudyWorkspaceSnapshot.currentSchemaVersion,
         savedAt: Date = Date(),
         migratedFromLegacySession: Bool = false,
@@ -46,14 +46,14 @@ public struct StudyWorkspaceSnapshot: Codable, Equatable, Sendable {
 }
 
 /// Per-scene/window active profile and group selection state.
-public struct StudySceneSelectionState: Codable, Equatable, Sendable {
-    public let sceneID: String
-    public var activeProfileID: UUID
-    public var activeGroupID: UUID
-    public var isOverviewPresented: Bool
-    public var updatedAt: Date
+struct StudySceneSelectionState: Codable, Equatable, Sendable {
+    let sceneID: String
+    var activeProfileID: UUID
+    var activeGroupID: UUID
+    var isOverviewPresented: Bool
+    var updatedAt: Date
 
-    public init(
+    init(
         sceneID: String,
         activeProfileID: UUID = StudyProfile.defaultProfileID,
         activeGroupID: UUID = StudyTabGroup.defaultGroupID,
@@ -69,18 +69,18 @@ public struct StudySceneSelectionState: Codable, Equatable, Sendable {
 }
 
 /// Coordinates atomic persistence, last-good backup recovery, and sidecar separation from `ios_reader_session.json`.
-public final class StudyWorkspacePersistence: @unchecked Sendable {
-    public static let shared = StudyWorkspacePersistence()
+final class StudyWorkspacePersistence: @unchecked Sendable {
+    static let shared = StudyWorkspacePersistence()
 
-    public static let workspaceFilename = "study_workspace_v1.json"
-    public static let backupFilename = "study_workspace_v1.bak.json"
-    public static let legacySessionFilename = "ios_reader_session.json"
+    static let workspaceFilename = "study_workspace_v1.json"
+    static let backupFilename = "study_workspace_v1.bak.json"
+    static let legacySessionFilename = "ios_reader_session.json"
 
     private let fileManager: FileManager
     private let writer: SerializedSessionWriter
     private let customDirectoryURL: URL?
 
-    public init(
+    init(
         directoryURL: URL? = nil,
         fileManager: FileManager = .default,
         writer: SerializedSessionWriter = SerializedSessionWriter(queueLabel: "org.maktabah.studyWorkspace.writer")
@@ -90,7 +90,7 @@ public final class StudyWorkspacePersistence: @unchecked Sendable {
         self.writer = writer
     }
 
-    public var statesDirectoryURL: URL {
+    var statesDirectoryURL: URL {
         if let customDirectoryURL {
             if !fileManager.fileExists(atPath: customDirectoryURL.path) {
                 try? fileManager.createDirectory(at: customDirectoryURL, withIntermediateDirectories: true)
@@ -105,20 +105,20 @@ public final class StudyWorkspacePersistence: @unchecked Sendable {
         return dir
     }
 
-    public var workspaceFileURL: URL {
+    var workspaceFileURL: URL {
         statesDirectoryURL.appendingPathComponent(Self.workspaceFilename)
     }
 
-    public var backupFileURL: URL {
+    var backupFileURL: URL {
         statesDirectoryURL.appendingPathComponent(Self.backupFilename)
     }
 
-    public var legacySessionFileURL: URL {
+    var legacySessionFileURL: URL {
         statesDirectoryURL.appendingPathComponent(Self.legacySessionFilename)
     }
 
     /// Schedules a debounced atomic write of the snapshot and updates the `.bak` last-good copy.
-    public func scheduleSave(_ snapshot: StudyWorkspaceSnapshot, debounceInterval: TimeInterval = 0.4) {
+    func scheduleSave(_ snapshot: StudyWorkspaceSnapshot, debounceInterval: TimeInterval = 0.4) {
         let targetURL = workspaceFileURL
         let bakURL = backupFileURL
         let fm = fileManager
@@ -132,7 +132,7 @@ public final class StudyWorkspacePersistence: @unchecked Sendable {
     }
 
     /// Saves the snapshot immediately and synchronously (e.g., on scene backgrounding or explicit group mutation).
-    public func saveImmediately(_ snapshot: StudyWorkspaceSnapshot) throws {
+    func saveImmediately(_ snapshot: StudyWorkspaceSnapshot) throws {
         let targetURL = workspaceFileURL
         let bakURL = backupFileURL
         let fm = fileManager
@@ -147,7 +147,7 @@ public final class StudyWorkspacePersistence: @unchecked Sendable {
 
     /// Loads the workspace snapshot from disk, falling back to `.bak` if the primary file is corrupted.
     /// Returns `(snapshot, didRecoverFromBackup)`.
-    public func loadSnapshotWithRecovery() -> (snapshot: StudyWorkspaceSnapshot?, didRecoverFromBackup: Bool) {
+    func loadSnapshotWithRecovery() -> (snapshot: StudyWorkspaceSnapshot?, didRecoverFromBackup: Bool) {
         let decoder = JSONDecoder()
 
         if fileManager.fileExists(atPath: workspaceFileURL.path) {
@@ -171,7 +171,7 @@ public final class StudyWorkspacePersistence: @unchecked Sendable {
     }
 
     /// Normalizes a snapshot so that the default profile `"אישי"` and at least one group per profile always exist.
-    public static func normalize(_ snapshot: StudyWorkspaceSnapshot, now: Date = Date()) -> StudyWorkspaceSnapshot {
+    static func normalize(_ snapshot: StudyWorkspaceSnapshot, now: Date = Date()) -> StudyWorkspaceSnapshot {
         var result = snapshot
 
         if !result.profiles.contains(where: { $0.isDefault || $0.id == StudyProfile.defaultProfileID }) {

@@ -13,15 +13,15 @@
 import UIKit
 
 /// Represents the display model for a single cell in the document tab strip.
-public struct ReaderTabStripItemModel: Hashable, Identifiable, Sendable {
-    public let id: UUID
-    public let title: String
-    public let subtitle: String?
-    public let backend: BackendID
-    public let isSelected: Bool
-    public let isDormantUnavailable: Bool
+struct ReaderTabStripItemModel: Hashable, Identifiable, Sendable {
+    let id: UUID
+    let title: String
+    let subtitle: String?
+    let backend: BackendID
+    let isSelected: Bool
+    let isDormantUnavailable: Bool
 
-    public init(
+    init(
         id: UUID,
         title: String,
         subtitle: String? = nil,

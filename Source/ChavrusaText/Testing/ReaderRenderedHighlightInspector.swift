@@ -3,13 +3,13 @@ import Foundation
 import UIKit
 #endif
 
-public struct RenderedHighlightItem: Codable, Sendable, Equatable {
-    public let location: Int
-    public let length: Int
-    public let colorHex: String
-    public let provenance: String // "search", "annotation", "selection", "other"
+struct RenderedHighlightItem: Codable, Sendable, Equatable {
+    let location: Int
+    let length: Int
+    let colorHex: String
+    let provenance: String // "search", "annotation", "selection", "other"
 
-    public init(location: Int, length: Int, colorHex: String, provenance: String) {
+    init(location: Int, length: Int, colorHex: String, provenance: String) {
         self.location = location
         self.length = length
         self.colorHex = colorHex
@@ -17,16 +17,16 @@ public struct RenderedHighlightItem: Codable, Sendable, Equatable {
     }
 }
 
-public struct RenderedHighlightSnapshot: Codable, Sendable, Equatable {
-    public let searchHighlightCount: Int
-    public let annotationHighlightCount: Int
-    public let segmentSelectionCount: Int
-    public let totalHighlights: Int
-    public let locator: String?
-    public let renderGeneration: Int
-    public let highlights: [RenderedHighlightItem]
+struct RenderedHighlightSnapshot: Codable, Sendable, Equatable {
+    let searchHighlightCount: Int
+    let annotationHighlightCount: Int
+    let segmentSelectionCount: Int
+    let totalHighlights: Int
+    let locator: String?
+    let renderGeneration: Int
+    let highlights: [RenderedHighlightItem]
 
-    public init(
+    init(
         searchHighlightCount: Int,
         annotationHighlightCount: Int,
         segmentSelectionCount: Int,
@@ -44,7 +44,7 @@ public struct RenderedHighlightSnapshot: Codable, Sendable, Equatable {
         self.highlights = highlights
     }
 
-    public func toJSONString() -> String {
+    func toJSONString() -> String {
         guard let data = try? JSONEncoder().encode(self),
               let string = String(data: data, encoding: .utf8) else {
             return "{}"
@@ -52,17 +52,17 @@ public struct RenderedHighlightSnapshot: Codable, Sendable, Equatable {
         return string
     }
 
-    public static func fromJSONString(_ string: String) -> RenderedHighlightSnapshot? {
+    static func fromJSONString(_ string: String) -> RenderedHighlightSnapshot? {
         guard let data = string.data(using: .utf8) else { return nil }
         return try? JSONDecoder().decode(RenderedHighlightSnapshot.self, from: data)
     }
 }
 
 #if canImport(UIKit)
-public enum ReaderRenderedHighlightInspector {
-    public static let diagnosticsAccessibilityIdentifier = "reader-rendered-highlight-diagnostics"
+enum ReaderRenderedHighlightInspector {
+    static let diagnosticsAccessibilityIdentifier = "reader-rendered-highlight-diagnostics"
 
-    public static func inspect(
+    static func inspect(
         textView: UITextView,
         searchRanges: [NSRange],
         currentLocator: String?,
@@ -130,7 +130,7 @@ public enum ReaderRenderedHighlightInspector {
         )
     }
 
-    public static func updateDiagnostics(
+    static func updateDiagnostics(
         for textView: UITextView,
         searchRanges: [NSRange],
         currentLocator: String?,

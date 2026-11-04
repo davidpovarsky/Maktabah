@@ -16,34 +16,34 @@ import SwiftUI
 #endif
 
 /// Represents the two pages of the Craft-style reader sidebar on iPad.
-public enum ReaderSidebarPage: String, CaseIterable, Identifiable, Codable, Sendable {
+enum ReaderSidebarPage: String, CaseIterable, Identifiable, Codable, Sendable {
     case library
     case toc
 
-    public var id: String { rawValue }
+    var id: String { rawValue }
 
-    public var hebrewTitle: String {
+    var hebrewTitle: String {
         switch self {
         case .library: return "ספרייה"
         case .toc: return "תוכן עניינים"
         }
     }
 
-    public var englishTitle: String {
+    var englishTitle: String {
         switch self {
         case .library: return "Library"
         case .toc: return "Table of Contents"
         }
     }
 
-    public var systemImage: String {
+    var systemImage: String {
         switch self {
         case .library: return "books.vertical"
         case .toc: return "list.bullet.indent"
         }
     }
 
-    public func localizedTitle(prefersHebrew: Bool = true) -> String {
+    func localizedTitle(prefersHebrew: Bool = true) -> String {
         prefersHebrew ? hebrewTitle : englishTitle
     }
 }
@@ -52,24 +52,24 @@ public enum ReaderSidebarPage: String, CaseIterable, Identifiable, Codable, Send
 /// active sidebar page (`.library` vs `.toc`), and available detail width for Plan D Inspector layout.
 @MainActor
 @Observable
-public final class ReaderSidebarStateCoordinator {
+final class ReaderSidebarStateCoordinator {
     /// Minimum detail reader width required to present the Inspector as a side-by-side trailing panel
     /// rather than a compact bottom `FloatingPanel`.
-    public static let minimumWideInspectorReaderWidth: CGFloat = 700
+    static let minimumWideInspectorReaderWidth: CGFloat = 700
 
-    public var selectedPage: ReaderSidebarPage
-    public var sidebarVisible: Bool
-    public var availableReaderWidth: CGFloat
-    public var hasActiveReaderTab: Bool
+    var selectedPage: ReaderSidebarPage
+    var sidebarVisible: Bool
+    var availableReaderWidth: CGFloat
+    var hasActiveReaderTab: Bool
 
     #if os(iOS)
     /// Two-way adapter for legacy 3-column `NavigationSplitView` visibility when `sidebarPagerEnabled == false`.
     /// When set by `iPadLayout`, actions like `showTOC()`, `showLibrary()`, and `closeSidebar()`
     /// directly drive `columnVisibility` and `preferredCompactColumn`.
-    public var onUpdateLegacySplitVisibility: ((NavigationSplitViewVisibility, NavigationSplitViewColumn?) -> Void)?
+    var onUpdateLegacySplitVisibility: ((NavigationSplitViewVisibility, NavigationSplitViewColumn?) -> Void)?
     #endif
 
-    public init(
+    init(
         selectedPage: ReaderSidebarPage = .library,
         sidebarVisible: Bool = true,
         availableReaderWidth: CGFloat = 1024,
@@ -84,7 +84,7 @@ public final class ReaderSidebarStateCoordinator {
     // MARK: - Sidebar Page & Visibility Actions
 
     /// Opens the sidebar (if hidden) and switches directly to the Table of Contents page.
-    public func showTOC() {
+    func showTOC() {
         selectedPage = .toc
         sidebarVisible = true
         #if os(iOS)
@@ -93,7 +93,7 @@ public final class ReaderSidebarStateCoordinator {
     }
 
     /// Opens the sidebar (if hidden) and switches directly to the Library tree page.
-    public func showLibrary() {
+    func showLibrary() {
         selectedPage = .library
         sidebarVisible = true
         #if os(iOS)
@@ -102,7 +102,7 @@ public final class ReaderSidebarStateCoordinator {
     }
 
     /// Switches to the specified page without collapsing the sidebar.
-    public func selectPage(_ page: ReaderSidebarPage) {
+    func selectPage(_ page: ReaderSidebarPage) {
         selectedPage = page
         if !sidebarVisible {
             sidebarVisible = true
@@ -114,7 +114,7 @@ public final class ReaderSidebarStateCoordinator {
     }
 
     /// Toggles sidebar visibility while preserving `selectedPage`.
-    public func toggleSidebar() {
+    func toggleSidebar() {
         sidebarVisible.toggle()
         #if os(iOS)
         if sidebarVisible {
@@ -127,7 +127,7 @@ public final class ReaderSidebarStateCoordinator {
     }
 
     /// Collapses the sidebar while preserving `selectedPage` for the next open.
-    public func closeSidebar() {
+    func closeSidebar() {
         sidebarVisible = false
         #if os(iOS)
         onUpdateLegacySplitVisibility?(.detailOnly, .detail)
@@ -136,7 +136,7 @@ public final class ReaderSidebarStateCoordinator {
 
     /// Updates active reader tab presence; if all tabs are closed while on `.toc`, keeps `.toc`
     /// with an empty-state placeholder or allows user to swipe back to `.library`.
-    public func updateActiveReaderTabPresence(_ hasActiveTab: Bool) {
+    func updateActiveReaderTabPresence(_ hasActiveTab: Bool) {
         hasActiveReaderTab = hasActiveTab
     }
 
@@ -146,14 +146,14 @@ public final class ReaderSidebarStateCoordinator {
     /// `wideWorkspace` Inspector panel (`panelResizeHandle` + `inspectorPanel`) instead of the compact
     /// `FloatingPanel` bottom sheet.
     /// Does NOT depend on legacy 3-column `NavigationSplitViewVisibility.all`.
-    public func prefersWideInspectorPanel(horizontalSizeClassIsCompact: Bool = false) -> Bool {
+    func prefersWideInspectorPanel(horizontalSizeClassIsCompact: Bool = false) -> Bool {
         Self.prefersWideInspectorPanel(
             forReaderWidth: availableReaderWidth,
             horizontalSizeClassIsCompact: horizontalSizeClassIsCompact
         )
     }
 
-    public static func prefersWideInspectorPanel(
+    static func prefersWideInspectorPanel(
         forReaderWidth width: CGFloat,
         horizontalSizeClassIsCompact: Bool = false
     ) -> Bool {
@@ -163,7 +163,7 @@ public final class ReaderSidebarStateCoordinator {
 
     #if os(iOS)
     /// Maps `sidebarVisible` to/from SwiftUI's 2-column `NavigationSplitViewVisibility`.
-    public var splitViewVisibilityBinding: Binding<NavigationSplitViewVisibility> {
+    var splitViewVisibilityBinding: Binding<NavigationSplitViewVisibility> {
         Binding(
             get: { [weak self] in
                 guard let self else { return .all }

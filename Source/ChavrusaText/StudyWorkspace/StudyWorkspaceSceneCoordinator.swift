@@ -13,12 +13,12 @@ import Observation
 /// Each iPad window/scene owns a distinct `sceneID` and a scene-isolated `StudyWorkspaceNavigationAdapter`.
 @MainActor
 @Observable
-public final class StudyWorkspaceSceneCoordinator {
-    public let sceneID: String
-    public private(set) var activeProfileID: UUID
-    public private(set) var activeGroupID: UUID
-    public var isOverviewPresented: Bool = false
-    public var isProfileManagementPresented: Bool = false
+final class StudyWorkspaceSceneCoordinator {
+    let sceneID: String
+    private(set) var activeProfileID: UUID
+    private(set) var activeGroupID: UUID
+    var isOverviewPresented: Bool = false
+    var isProfileManagementPresented: Bool = false
 
     private unowned let store: StudyWorkspaceStore
 
@@ -27,7 +27,7 @@ public final class StudyWorkspaceSceneCoordinator {
     let navigationAdapter: StudyWorkspaceNavigationAdapter
     #endif
 
-    public init(
+    init(
         sceneID: String = UUID().uuidString,
         store: StudyWorkspaceStore? = nil
     ) {
@@ -53,7 +53,7 @@ public final class StudyWorkspaceSceneCoordinator {
     /// - If `persistedSceneID` (`@SceneStorage`) is non-empty, returns it immediately.
     /// - Otherwise returns `sessionFallbackID` (`@State` UUID created once per view lifetime)
     ///   so repeated `body` evaluations never generate transient scene IDs.
-    public static func resolveStableSceneID(
+    static func resolveStableSceneID(
         persistedSceneID: String,
         sessionFallbackID: String
     ) -> String {
@@ -68,7 +68,7 @@ public final class StudyWorkspaceSceneCoordinator {
     /// Lazily acquires a `StudyWorkspaceSceneCoordinator` ONLY when `effectiveStudyWorkspaceEnabled` is active.
     /// When `studyWorkspaceEnabled` is disabled (`false`), returns `nil` without initializing `StudyWorkspaceStore`,
     /// running `StudyWorkspaceMigration`, or performing any disk I/O, even if standalone Duck Tab Strip is active.
-    public static func acquireIfEnabled(
+    static func acquireIfEnabled(
         persistedSceneID: inout String,
         sessionFallbackID: String,
         existingCoordinator: StudyWorkspaceSceneCoordinator?,
@@ -93,32 +93,32 @@ public final class StudyWorkspaceSceneCoordinator {
         return StudyWorkspaceSceneCoordinator(sceneID: stableID, store: resolvedStore)
     }
 
-    public var activeProfile: StudyProfile {
+    var activeProfile: StudyProfile {
         store.profile(for: activeProfileID) ?? store.defaultProfile
     }
 
-    public var activeGroup: StudyTabGroup {
+    var activeGroup: StudyTabGroup {
         store.group(for: activeGroupID)
             ?? store.groups(for: activeProfile.id).first
             ?? store.defaultGroup(for: activeProfile.id)
     }
 
-    public var groupsInActiveProfile: [StudyTabGroup] {
+    var groupsInActiveProfile: [StudyTabGroup] {
         store.groups(for: activeProfile.id)
     }
 
-    public var tabsInActiveGroup: [ReaderDocumentTab] {
+    var tabsInActiveGroup: [ReaderDocumentTab] {
         store.tabs(in: activeGroup.id)
     }
 
-    public var activeTab: ReaderDocumentTab? {
+    var activeTab: ReaderDocumentTab? {
         guard let activeTabID = activeGroup.activeTabID else {
             return tabsInActiveGroup.first
         }
         return store.tab(for: activeTabID) ?? tabsInActiveGroup.first
     }
 
-    public func selectProfile(_ profileID: UUID) {
+    func selectProfile(_ profileID: UUID) {
         guard let profile = store.profile(for: profileID) else { return }
         activeProfileID = profile.id
         let profileGroups = store.groups(for: profile.id)
@@ -129,7 +129,7 @@ public final class StudyWorkspaceSceneCoordinator {
         syncToStore()
     }
 
-    public func selectGroup(_ groupID: UUID) {
+    func selectGroup(_ groupID: UUID) {
         guard let group = store.group(for: groupID) else { return }
         activeProfileID = group.profileID
         activeGroupID = group.id
@@ -143,8 +143,7 @@ public final class StudyWorkspaceSceneCoordinator {
     /// 3. Captures live state of the previous group and projects target group onto `navigationManager` via `navigationAdapter`.
     /// 4. If projection succeeds: commits `activeProfileID`, `activeGroupID`, syncs to store, and returns `true`.
     /// 5. If projection fails: rolls back `navigationManager` and coordinator selection to snapshot, syncs to store, and returns `false`.
-    @discardableResult
-    public func transitionToGroup(
+    @discardableResult func transitionToGroup(
         _ targetGroupID: UUID,
         in navigationManager: iOSNavigationManager,
         forceWhenDisabled: Bool = false
@@ -180,7 +179,7 @@ public final class StudyWorkspaceSceneCoordinator {
     }
     #endif
 
-    public func selectTab(_ tabID: UUID, closeOverviewIfNeeded: Bool = false) {
+    func selectTab(_ tabID: UUID, closeOverviewIfNeeded: Bool = false) {
         store.setActiveTab(tabID, inGroup: activeGroup.id)
         if closeOverviewIfNeeded {
             isOverviewPresented = false
@@ -188,12 +187,12 @@ public final class StudyWorkspaceSceneCoordinator {
         syncToStore()
     }
 
-    public func toggleOverview() {
+    func toggleOverview() {
         isOverviewPresented.toggle()
         syncToStore()
     }
 
-    public func refreshFromStore() {
+    func refreshFromStore() {
         let state = store.sceneSelection(for: sceneID)
         activeProfileID = state.activeProfileID
         activeGroupID = state.activeGroupID

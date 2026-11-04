@@ -2,8 +2,8 @@ import Foundation
 
 /// Localization resolver for ChavrusaText UI.
 /// Provides authoritative Hebrew/English translations for tabs, navigation structures, and TOC titles.
-public struct ChavrusaTextLocalizationResolver: Sendable {
-    public enum TabKey: String, CaseIterable, Sendable {
+struct ChavrusaTextLocalizationResolver: Sendable {
+    enum TabKey: String, CaseIterable, Sendable {
         case library = "Library"
         case search = "Search"
         case narrators = "Narrators"
@@ -12,7 +12,7 @@ public struct ChavrusaTextLocalizationResolver: Sendable {
     }
 
     /// Resolves the localized title for a tab key using the specified bundle, table, and optional forced locale.
-    public static func resolveTabTitle(
+    static func resolveTabTitle(
         for key: TabKey,
         bundle: Bundle = .main,
         tableName: String? = nil,
@@ -54,7 +54,7 @@ public struct ChavrusaTextLocalizationResolver: Sendable {
 
     /// Resolves Sefaria navigation structure identifiers (e.g. "Chapters", "Folios", "Parashot")
     /// into traditional Hebrew when `prefersHebrew` is true, or English when false.
-    public static func resolveNavigationStructureTitle(for key: String, prefersHebrew: Bool) -> String {
+    static func resolveNavigationStructureTitle(for key: String, prefersHebrew: Bool) -> String {
         if prefersHebrew {
             switch key.trimmingCharacters(in: .whitespacesAndNewlines) {
             case "Chapters": return "פרקים"
@@ -146,7 +146,7 @@ public struct ChavrusaTextLocalizationResolver: Sendable {
     }
 
     /// Formats a Hebrew book count with proper singular/plural grammar ("ספר אחד" instead of "1 ספרים").
-    public static func formatHebrewBookCount(_ count: Int) -> String {
+    static func formatHebrewBookCount(_ count: Int) -> String {
         switch count {
         case 0:
             return "אין ספרים"

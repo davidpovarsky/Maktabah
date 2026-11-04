@@ -5,8 +5,8 @@ import Foundation
 /// guaranteeing that stale queued writes cannot overwrite newer immediate writes,
 /// and ensuring atomic replacement preserving last-good data without deletion gaps.
 /// P3-2: Adds observable error tracking for asynchronous writes and guarantees temporary cleanup.
-public final class SerializedSessionWriter: @unchecked Sendable {
-    public static let shared = SerializedSessionWriter()
+final class SerializedSessionWriter: @unchecked Sendable {
+    static let shared = SerializedSessionWriter()
 
     private let ioQueue: DispatchQueue
     private let queueKey = DispatchSpecificKey<Void>()
@@ -16,10 +16,10 @@ public final class SerializedSessionWriter: @unchecked Sendable {
     private var pendingWorkItem: DispatchWorkItem?
 
     /// Observable error tracking for delayed asynchronous writes (P3-2).
-    public var onDelayedWriteError: (@Sendable (UInt64, Error) -> Void)?
-    public private(set) var lastDelayedWriteError: (revision: UInt64, errorMessage: String)?
+    var onDelayedWriteError: (@Sendable (UInt64, Error) -> Void)?
+    private(set) var lastDelayedWriteError: (revision: UInt64, errorMessage: String)?
 
-    public init(queueLabel: String = "org.maktabah.session.writer") {
+    init(queueLabel: String = "org.maktabah.session.writer") {
         self.ioQueue = DispatchQueue(label: queueLabel, qos: .utility)
         self.ioQueue.setSpecific(key: queueKey, value: ())
     }
@@ -31,7 +31,7 @@ public final class SerializedSessionWriter: @unchecked Sendable {
 
     /// Schedules a debounced save with a new monotonic revision.
     /// Routine saves execute asynchronously off the main thread.
-    public func scheduleSave(
+    func scheduleSave(
         to targetURL: URL,
         debounceInterval: TimeInterval = 0.5,
         producer: @escaping () throws -> Data
@@ -71,7 +71,7 @@ public final class SerializedSessionWriter: @unchecked Sendable {
     /// Performs an immediate synchronous save (e.g. on backgrounding or app quit).
     /// Guarantees write completes with the latest monotonic revision and propagates any disk/serialization errors.
     /// Reentrancy-safe: will not deadlock if invoked from within ioQueue.
-    public func saveImmediately(
+    func saveImmediately(
         to targetURL: URL,
         producer: () throws -> Data
     ) throws {
@@ -110,7 +110,7 @@ public final class SerializedSessionWriter: @unchecked Sendable {
     /// Clears the session file atomically and synchronously.
     /// Cancels any pending delayed saves, increments the monotonic revision to drop in-flight stale saves,
     /// and safely removes the destination file on the serial ioQueue.
-    public func clear(at targetURL: URL) throws {
+    func clear(at targetURL: URL) throws {
         lock.lock()
         currentRevision &+= 1
         let assignedRevision = currentRevision
@@ -224,7 +224,7 @@ public final class SerializedSessionWriter: @unchecked Sendable {
     }
 
     /// Accessor for testing revision tracking.
-    public var currentRevisions: (current: UInt64, committed: UInt64) {
+    var currentRevisions: (current: UInt64, committed: UInt64) {
         lock.lock()
         defer { lock.unlock() }
         return (currentRevision, lastCommittedRevision)

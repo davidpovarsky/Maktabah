@@ -1,14 +1,14 @@
 import Foundation
 
 /// Error types for annotation bridging and locator validation.
-public enum AnnotationBridgeError: Error, Equatable, LocalizedError {
+enum AnnotationBridgeError: Error, Equatable, LocalizedError {
     case missingLocator
     case emptyWorkKey
     case missingContentPosition
     case invalidRange(location: Int, length: Int, sourceLength: Int)
     case persistenceFailed(String)
 
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .missingLocator:
             return "Target TextLocator is missing; cannot bind annotation to backend."
@@ -25,15 +25,15 @@ public enum AnnotationBridgeError: Error, Equatable, LocalizedError {
 }
 
 /// Lightweight record representing an annotation persisted through the backend adapter.
-public struct PersistedAnnotationRecord: Equatable, Sendable {
-    public let id: String
-    public let locatorPersistenceKey: String
-    public let range: NSRange
-    public let selectedText: String
-    public let colorHex: String
-    public let createdAt: Date
+struct PersistedAnnotationRecord: Equatable, Sendable {
+    let id: String
+    let locatorPersistenceKey: String
+    let range: NSRange
+    let selectedText: String
+    let colorHex: String
+    let createdAt: Date
 
-    public init(
+    init(
         id: String,
         locatorPersistenceKey: String,
         range: NSRange,

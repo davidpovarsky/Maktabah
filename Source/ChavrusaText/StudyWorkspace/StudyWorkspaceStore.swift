@@ -14,17 +14,17 @@ import Observation
 /// 3. `ReaderDocumentTab` (independent document tab instances with unique `UUID`s)
 @MainActor
 @Observable
-public final class StudyWorkspaceStore {
+final class StudyWorkspaceStore {
     private static var _shared: StudyWorkspaceStore?
 
     /// Indicates whether the shared `StudyWorkspaceStore` singleton has been instantiated.
     /// When `studyWorkspaceEnabled` and `duckTabStripEnabled` are `false`, this remains `false`
     /// so zero eager initialization, legacy session migration, or disk writes occur.
-    public static var isSharedInstanceInitialized: Bool {
+    static var isSharedInstanceInitialized: Bool {
         _shared != nil
     }
 
-    public static var shared: StudyWorkspaceStore {
+    static var shared: StudyWorkspaceStore {
         if let existing = _shared {
             return existing
         }
@@ -34,22 +34,22 @@ public final class StudyWorkspaceStore {
     }
 
     /// Resets the shared singleton reference for isolated unit testing.
-    public static func resetSharedForTesting() {
+    static func resetSharedForTesting() {
         _shared = nil
     }
 
-    public private(set) var profiles: [StudyProfile]
-    public private(set) var groups: [StudyTabGroup]
-    public private(set) var tabsByID: [UUID: ReaderDocumentTab]
-    public private(set) var lastActiveProfileID: UUID
-    public private(set) var lastActiveGroupID: UUID
-    public private(set) var sceneStatesByID: [String: StudySceneSelectionState]
-    public private(set) var migratedFromLegacySession: Bool
-    public private(set) var didRecoverFromBackupOnLaunch: Bool = false
+    private(set) var profiles: [StudyProfile]
+    private(set) var groups: [StudyTabGroup]
+    private(set) var tabsByID: [UUID: ReaderDocumentTab]
+    private(set) var lastActiveProfileID: UUID
+    private(set) var lastActiveGroupID: UUID
+    private(set) var sceneStatesByID: [String: StudySceneSelectionState]
+    private(set) var migratedFromLegacySession: Bool
+    private(set) var didRecoverFromBackupOnLaunch: Bool = false
 
     private let persistence: StudyWorkspacePersistence
 
-    public init(
+    init(
         persistence: StudyWorkspacePersistence = .shared,
         legacySessionProvider: (() -> iOSReaderSession?)? = nil,
         fallbackBackend: BackendID = .otzaria
@@ -85,43 +85,43 @@ public final class StudyWorkspaceStore {
 
     // MARK: - Queries
 
-    public var defaultProfile: StudyProfile {
+    var defaultProfile: StudyProfile {
         profiles.first(where: \.isDefault)
             ?? profiles.first(where: { $0.id == StudyProfile.defaultProfileID })
             ?? profiles.first
             ?? StudyProfile.makeDefault()
     }
 
-    public var activeProfile: StudyProfile {
+    var activeProfile: StudyProfile {
         profile(for: lastActiveProfileID) ?? defaultProfile
     }
 
-    public var activeGroup: StudyTabGroup {
+    var activeGroup: StudyTabGroup {
         group(for: lastActiveGroupID)
             ?? groups(for: activeProfile.id).first
             ?? defaultGroup(for: activeProfile.id)
     }
 
-    public var activeTabs: [ReaderDocumentTab] {
+    var activeTabs: [ReaderDocumentTab] {
         tabs(in: activeGroup.id)
     }
 
-    public var activeTab: ReaderDocumentTab? {
+    var activeTab: ReaderDocumentTab? {
         guard let activeTabID = activeGroup.activeTabID else {
             return activeTabs.first
         }
         return tabsByID[activeTabID] ?? activeTabs.first
     }
 
-    public func profile(for id: UUID) -> StudyProfile? {
+    func profile(for id: UUID) -> StudyProfile? {
         profiles.first { $0.id == id }
     }
 
-    public func group(for id: UUID) -> StudyTabGroup? {
+    func group(for id: UUID) -> StudyTabGroup? {
         groups.first { $0.id == id }
     }
 
-    public func groups(for profileID: UUID) -> [StudyTabGroup] {
+    func groups(for profileID: UUID) -> [StudyTabGroup] {
         groups
             .filter { $0.profileID == profileID }
             .sorted {
@@ -131,7 +131,7 @@ public final class StudyWorkspaceStore {
             }
     }
 
-    public func defaultGroup(for profileID: UUID) -> StudyTabGroup {
+    func defaultGroup(for profileID: UUID) -> StudyTabGroup {
         if let existing = groups(for: profileID).first {
             return existing
         }
@@ -141,18 +141,18 @@ public final class StudyWorkspaceStore {
         return created
     }
 
-    public func tab(for id: UUID) -> ReaderDocumentTab? {
+    func tab(for id: UUID) -> ReaderDocumentTab? {
         tabsByID[id]
     }
 
-    public func tabs(in groupID: UUID) -> [ReaderDocumentTab] {
+    func tabs(in groupID: UUID) -> [ReaderDocumentTab] {
         guard let group = group(for: groupID) else { return [] }
         return group.tabIDs.compactMap { tabsByID[$0] }
     }
 
     // MARK: - Scene Coordination
 
-    public func sceneSelection(for sceneID: String) -> StudySceneSelectionState {
+    func sceneSelection(for sceneID: String) -> StudySceneSelectionState {
         if let existing = sceneStatesByID[sceneID],
            profile(for: existing.activeProfileID) != nil,
            let grp = group(for: existing.activeGroupID),
@@ -169,7 +169,7 @@ public final class StudyWorkspaceStore {
         return state
     }
 
-    public func updateSceneSelection(_ state: StudySceneSelectionState) {
+    func updateSceneSelection(_ state: StudySceneSelectionState) {
         sceneStatesByID[state.sceneID] = state
         if profile(for: state.activeProfileID) != nil {
             lastActiveProfileID = state.activeProfileID
@@ -182,8 +182,7 @@ public final class StudyWorkspaceStore {
 
     // MARK: - Profile Operations
 
-    @discardableResult
-    public func createProfile(
+    @discardableResult func createProfile(
         name: String,
         icon: String = "books.vertical",
         colorName: String = "accentBlue",
@@ -224,7 +223,7 @@ public final class StudyWorkspaceStore {
         return newProfile
     }
 
-    public func updateProfile(
+    func updateProfile(
         _ profileID: UUID,
         name: String? = nil,
         icon: String? = nil,
@@ -247,7 +246,7 @@ public final class StudyWorkspaceStore {
         scheduleSave()
     }
 
-    public func selectProfile(_ profileID: UUID) {
+    func selectProfile(_ profileID: UUID) {
         guard let target = profile(for: profileID) else { return }
         lastActiveProfileID = target.id
         let targetGroups = groups(for: target.id)
@@ -260,8 +259,7 @@ public final class StudyWorkspaceStore {
 
     /// Deletes a non-default profile and safely falls back to the default `"אישי"` profile.
     /// Default profile `"אישי"` cannot be deleted.
-    @discardableResult
-    public func deleteProfile(_ profileID: UUID) -> Bool {
+    @discardableResult func deleteProfile(_ profileID: UUID) -> Bool {
         guard let target = profile(for: profileID), !target.isDefault, target.id != StudyProfile.defaultProfileID else {
             return false
         }
@@ -289,8 +287,7 @@ public final class StudyWorkspaceStore {
 
     // MARK: - Tab Group Operations
 
-    @discardableResult
-    public func createGroup(
+    @discardableResult func createGroup(
         name: String,
         inProfile profileID: UUID? = nil,
         fromCurrentTabsIn sourceGroupID: UUID? = nil,
@@ -339,7 +336,7 @@ public final class StudyWorkspaceStore {
         return newGroup
     }
 
-    public func renameGroup(_ groupID: UUID, newName: String) {
+    func renameGroup(_ groupID: UUID, newName: String) {
         let trimmed = newName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty,
               let idx = groups.firstIndex(where: { $0.id == groupID }) else { return }
@@ -348,14 +345,14 @@ public final class StudyWorkspaceStore {
         scheduleSave()
     }
 
-    public func togglePinGroup(_ groupID: UUID) {
+    func togglePinGroup(_ groupID: UUID) {
         guard let idx = groups.firstIndex(where: { $0.id == groupID }) else { return }
         groups[idx].isPinned.toggle()
         groups[idx].updatedAt = Date()
         scheduleSave()
     }
 
-    public func selectGroup(_ groupID: UUID) {
+    func selectGroup(_ groupID: UUID) {
         guard let target = group(for: groupID) else { return }
         lastActiveProfileID = target.profileID
         lastActiveGroupID = target.id
@@ -363,7 +360,7 @@ public final class StudyWorkspaceStore {
         scheduleSave()
     }
 
-    public func moveGroup(_ groupID: UUID, toProfile targetProfileID: UUID) {
+    func moveGroup(_ groupID: UUID, toProfile targetProfileID: UUID) {
         guard profile(for: targetProfileID) != nil,
               let idx = groups.firstIndex(where: { $0.id == groupID }) else { return }
         let oldProfileID = groups[idx].profileID
@@ -387,7 +384,7 @@ public final class StudyWorkspaceStore {
         scheduleSave()
     }
 
-    public func reorderGroups(inProfile profileID: UUID, orderedGroupIDs: [UUID]) {
+    func reorderGroups(inProfile profileID: UUID, orderedGroupIDs: [UUID]) {
         for (order, groupID) in orderedGroupIDs.enumerated() {
             if let idx = groups.firstIndex(where: { $0.id == groupID && $0.profileID == profileID }) {
                 groups[idx].sortOrder = order
@@ -398,8 +395,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Deletes a tab group and ensures its parent profile always retains at least one valid group.
-    @discardableResult
-    public func deleteGroup(_ groupID: UUID) -> StudyTabGroup {
+    @discardableResult func deleteGroup(_ groupID: UUID) -> StudyTabGroup {
         guard let target = group(for: groupID) else {
             return activeGroup
         }
@@ -433,8 +429,7 @@ public final class StudyWorkspaceStore {
     // MARK: - Document Tab Operations
 
     /// Appends or inserts a document tab into the specified group (defaults to `activeGroup.id`) and optionally activates it.
-    @discardableResult
-    public func addTab(
+    @discardableResult func addTab(
         _ tab: ReaderDocumentTab,
         toGroup groupID: UUID? = nil,
         at index: Int? = nil,
@@ -462,7 +457,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Updates an existing `ReaderDocumentTab` in place without mutating other tabs of the same book.
-    public func updateTab(_ tabID: UUID, mutate: (inout ReaderDocumentTab) -> Void) {
+    func updateTab(_ tabID: UUID, mutate: (inout ReaderDocumentTab) -> Void) {
         guard var existing = tabsByID[tabID] else { return }
         mutate(&existing)
         existing.updatedAt = Date()
@@ -470,7 +465,7 @@ public final class StudyWorkspaceStore {
         scheduleSave()
     }
 
-    public func setActiveTab(_ tabID: UUID, inGroup groupID: UUID? = nil) {
+    func setActiveTab(_ tabID: UUID, inGroup groupID: UUID? = nil) {
         let targetGroupID = groupID ?? activeGroup.id
         guard let groupIdx = groups.firstIndex(where: { $0.id == targetGroupID }),
               groups[groupIdx].tabIDs.contains(tabID) else { return }
@@ -480,7 +475,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Reorders tabs within a group (used by drag-and-drop in the DuckDuckGo-style tab strip).
-    public func reorderTabs(inGroup groupID: UUID? = nil, from sourceIndex: Int, to destinationIndex: Int) {
+    func reorderTabs(inGroup groupID: UUID? = nil, from sourceIndex: Int, to destinationIndex: Int) {
         let targetGroupID = groupID ?? activeGroup.id
         guard let groupIdx = groups.firstIndex(where: { $0.id == targetGroupID }) else { return }
         var ids = groups[groupIdx].tabIDs
@@ -496,7 +491,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Closes a tab in the specified group and selects the nearest remaining neighbor.
-    public func closeTab(_ tabID: UUID, inGroup groupID: UUID? = nil) {
+    func closeTab(_ tabID: UUID, inGroup groupID: UUID? = nil) {
         let targetGroupID = groupID ?? activeGroup.id
         guard let groupIdx = groups.firstIndex(where: { $0.id == targetGroupID }),
               let removedIndex = groups[groupIdx].tabIDs.firstIndex(of: tabID) else { return }
@@ -523,7 +518,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Closes all tabs in the group except `keepTabID`.
-    public func closeOtherTabs(keeping keepTabID: UUID, inGroup groupID: UUID? = nil) {
+    func closeOtherTabs(keeping keepTabID: UUID, inGroup groupID: UUID? = nil) {
         let targetGroupID = groupID ?? activeGroup.id
         guard let groupIdx = groups.firstIndex(where: { $0.id == targetGroupID }),
               groups[groupIdx].tabIDs.contains(keepTabID) else { return }
@@ -541,7 +536,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Moves a tab from `sourceGroupID` to `destinationGroupID` (preserving its `UUID` and state).
-    public func moveTab(
+    func moveTab(
         _ tabID: UUID,
         fromGroup sourceGroupID: UUID,
         toGroup destinationGroupID: UUID,
@@ -571,8 +566,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Copies a tab into `destinationGroupID` with a new independent `UUID` so both groups can evolve independently.
-    @discardableResult
-    public func copyTab(
+    @discardableResult func copyTab(
         _ tabID: UUID,
         toGroup destinationGroupID: UUID,
         activateInDestination: Bool = true
@@ -592,7 +586,7 @@ public final class StudyWorkspaceStore {
     }
 
     /// Marks a tab dormant/unavailable instead of deleting it when its book or backend is temporarily missing.
-    public func setTabDormantUnavailable(_ tabID: UUID, isDormant: Bool) {
+    func setTabDormantUnavailable(_ tabID: UUID, isDormant: Bool) {
         updateTab(tabID) { tab in
             tab.isDormantUnavailable = isDormant
         }
@@ -600,7 +594,7 @@ public final class StudyWorkspaceStore {
 
     // MARK: - Persistence Helpers
 
-    public func currentSnapshot() -> StudyWorkspaceSnapshot {
+    func currentSnapshot() -> StudyWorkspaceSnapshot {
         StudyWorkspaceSnapshot(
             schemaVersion: StudyWorkspaceSnapshot.currentSchemaVersion,
             savedAt: Date(),
@@ -614,11 +608,11 @@ public final class StudyWorkspaceStore {
         )
     }
 
-    public func scheduleSave() {
+    func scheduleSave() {
         persistence.scheduleSave(currentSnapshot())
     }
 
-    public func saveImmediately() throws {
+    func saveImmediately() throws {
         try persistence.saveImmediately(currentSnapshot())
     }
 
