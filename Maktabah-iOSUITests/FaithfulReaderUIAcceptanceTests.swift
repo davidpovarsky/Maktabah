@@ -485,10 +485,12 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         launchReader()
         assertReaderHasText()
         for _ in 0..<20 {
-            tap(findTabButton(hebrew: "היסטוריה", english: "History"))
-            tap(findTabButton(hebrew: "ספר", english: "Library"))
-            assertReaderHasText()
-            XCTAssertTrue(app.buttons["reader-more-menu"].exists, "Original bottom toolbar must remain present")
+            for (hebrew, english) in [("היסטוריה", "History"), ("חיפוש", "Search"), ("מוסרים", "Narrators")] {
+                tap(findTabButton(hebrew: hebrew, english: english))
+                tap(findTabButton(hebrew: "ספר", english: "Library"))
+                assertReaderHasText()
+                XCTAssertTrue(app.buttons["reader-more-menu"].exists, "Original bottom toolbar must remain present after every global-tab round trip")
+            }
         }
         for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
             XCUIDevice.shared.orientation = orientation
