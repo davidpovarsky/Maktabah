@@ -28,10 +28,17 @@ struct iOSReaderBottomToolbarView: View {
     var body: some View {
         let displaySubtitle: String = {
             if ChavrusaTextFeatureFlags.shared.effectiveSemanticSliderPolicyEnabled {
+                let activeNavTitle: String? = {
+                    if let idx = viewModel.currentNavigationIndex,
+                       viewModel.navigationItems.indices.contains(idx) {
+                        return viewModel.navigationItems[idx].title
+                    }
+                    return nil
+                }()
                 return ReaderNavigationDisplayPolicy.resolveUnifiedSemanticDisplayLabel(
                     sectionDisplayRef: viewModel.backendSection?.displayRef,
                     sectionHeRef: viewModel.backendSection?.heRef,
-                    activeNavigationItemTitle: viewModel.activeNavigationItem?.title,
+                    activeNavigationItemTitle: activeNavTitle,
                     explicitSelectedSegmentLocator: viewModel.selectedSegmentLocator,
                     fallbackSubtitle: viewModel.statusSubtitle
                 )
