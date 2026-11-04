@@ -220,6 +220,84 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let originalTitle = app.staticTexts["reader-header-title"].label
+        tap(app.buttons["כל הכרטיסיות"])
+        let documents = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"])
+        let container = URL(fileURLWithPath: documents).deletingLastPathComponent()
+        let sidecar = container.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/UITests/\(workspaceNamespace).json")
+        let saved = sidecar.appendingPathExtension("ui-failure-original")
+        let originalBytes = try Data(contentsOf: sidecar)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: saved.path))
+        // Block only this UUID-scoped test sidecar's atomic destination. The
+        // canonical session, corpus, notes and every other sidecar stay intact.
+        try FileManager.default.moveItem(at: sidecar, to: saved)
+        var blocked = false
+        var savedNeedsRestore = true
+        defer {
+            if savedNeedsRestore {
+                if blocked { XCTAssertNoThrow(try FileManager.default.removeItem(at: sidecar)) }
+                XCTAssertNoThrow(try FileManager.default.moveItem(at: saved, to: sidecar))
+            }
+        }
+        try FileManager.default.createDirectory(at: sidecar, withIntermediateDirectories: false)
+        blocked = true
+        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["קבוצה ריקה"])
+        let prompt = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(prompt.waitForExistence(timeout: 10))
+        prompt.textFields.firstMatch.typeText("קבוצה שאסור לשמור")
+        tap(prompt.buttons["שמירה"])
+        let error = app.alerts["לא ניתן לשנות את סביבת הלימוד"]
+        XCTAssertTrue(error.waitForExistence(timeout: 15), "The actual atomic-write error must be surfaced")
+        capture("candidate-actual-sidecar-write-failure")
+        tap(error.buttons["אישור"])
+        XCTAssertTrue(app.staticTexts[originalTitle].waitForExistence(timeout: 15), "Failure must retain the original group's real document")
+        XCTAssertEqual(try Data(contentsOf: saved), originalBytes, "The pre-failure bytes must remain intact")
+        try FileManager.default.removeItem(at: sidecar)
+        blocked = false
+        try FileManager.default.moveItem(at: saved, to: sidecar)
+        savedNeedsRestore = false
+        tap(app.buttons["סיום"])
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+        // Reopening synchronizes through the same real persistence path again.
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.staticTexts[originalTitle].waitForExistence(timeout: 15))
+        XCTAssertFalse(app.alerts["לא ניתן לשנות את סביבת הלימוד"].exists)
+        XCTAssertNoThrow(try Data(contentsOf: sidecar))
+        capture("candidate-sidecar-write-recovery")
+    }
+
+    func testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace() throws {
+        let documents = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"])
+        let container = URL(fileURLWithPath: documents).deletingLastPathComponent()
+        let sidecar = container.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/UITests/\(workspaceNamespace).json")
+        launchReader(enabled: false)
+        assertReaderHasText()
+        XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        app.terminate()
+        XCTAssertFalse(FileManager.default.fileExists(atPath: sidecar.path), "Disabled startup/shutdown must not create workspace state")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: sidecar.appendingPathExtension("bak").path))
+        launchReader()
+        assertReaderHasText()
+        XCTAssertTrue(app.descendants(matching: .any)["chavrusa-reader-host"].waitForExistence(timeout: 30))
+        app.terminate()
+        let enabledBytes = try Data(contentsOf: sidecar)
+        launchReader(enabled: false)
+        assertReaderHasText()
+        XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
+        capture("candidate-disabled-original-reader")
+        app.terminate()
+        XCTAssertEqual(try Data(contentsOf: sidecar), enabledBytes,
+                       "Disabled startup/shutdown must leave an existing workspace byte-identical")
+    }
+
     func testPointerHoverClickAndHardwareKeyboardDismissal() {
         XCTAssertTrue(XCUIDevice.shared.supportsPointerInteraction,
                       "The required iPad Simulator must support real pointer events")
