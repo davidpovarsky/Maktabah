@@ -560,6 +560,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(result)
         assertReaderHasText()
         XCTAssertFalse(palette.exists)
+        capture("candidate-library-opened-reader-no-fixture-selection")
         tap(app.buttons["כל הכרטיסיות"])
         XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
         XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)
