@@ -122,6 +122,28 @@ final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
     }
 }
 
+/// Selected separately after CoreSimulator confirms the largest text setting.
+final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
+    func testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize() {
+        let baseline = ProcessInfo.processInfo.environment["FAITHFUL_BASELINE"] == "true"
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(enabled: !baseline)
+        assertReaderHasText()
+        capture(baseline ? "baseline-large-text-reader" : "candidate-large-text-reader")
+        if baseline {
+            XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        } else {
+            tap(app.buttons["כל הכרטיסיות"])
+            XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
+            // The original safe AdaptiveTabContent uses a native menu for
+            // accessibility text sizes. It must still expose real membership.
+            tap(app.buttons["study-group-selector"])
+            XCTAssertTrue(app.buttons["כל הכרטיסיות"].waitForExistence(timeout: 10))
+            capture("candidate-large-text-group-menu")
+        }
+    }
+}
+
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     func testNewManagementScreensExposeMeaningfulAccessibilityDescriptions() throws {
         XCUIDevice.shared.orientation = .landscapeLeft

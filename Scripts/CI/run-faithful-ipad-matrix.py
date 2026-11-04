@@ -105,10 +105,42 @@ for index, size in enumerate(["11", "13", "phone"]):
                             "--output-path", str(artifacts / f"visual-{size}")], check=True)
         if code:
             raise SystemExit(code)
+        if size == "13":
+            help_result = subprocess.run(["xcrun", "simctl", "help", "ui"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=True)
+            (artifacts / "simctl-ui-help.txt").write_text(help_result.stdout)
+            requested_size = "accessibility-extra-extra-extra-large"
+            if "content_size" not in help_result.stdout or requested_size not in help_result.stdout:
+                raise SystemExit("Installed simctl cannot verify the required accessibility text-size configuration")
+            device["largeText"] = {"status": "NOT_RUN", "requested": requested_size}
+            try:
+                subprocess.run(["xcrun", "simctl", "ui", udid, "content_size", requested_size], check=True)
+                actual_size = subprocess.check_output(["xcrun", "simctl", "ui", udid, "content_size"], text=True).strip()
+                device["largeText"]["actual"] = actual_size
+                if requested_size not in actual_size:
+                    raise SystemExit("The requested system text-size setting was not actually applied")
+                large_result = artifacts / "result-13-large-text.xcresult"
+                large_command = [value for value in command if not value.startswith("-only-testing:")]
+                large_command[large_command.index("-resultBundlePath") + 1] = str(large_result)
+                large_command.append("-only-testing:Maktabah-iOSUITests/FaithfulReaderLargeTextTests")
+                environment["TEST_RUNNER_FAITHFUL_BASELINE"] = str(baseline).lower()
+                log_path = artifacts / "test-simulator-13-large-text.log"
+                with log_path.open("w") as log:
+                    result = subprocess.run(large_command, env=environment, stdout=log, stderr=subprocess.STDOUT, text=True)
+                counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_path.read_text())]
+                device["largeText"]["executedXCTestCount"] = max(counts, default=0)
+                if large_result.is_dir():
+                    subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(large_result),
+                                    "--output-path", str(artifacts / "visual-13-large-text")], check=True)
+                if result.returncode or not counts:
+                    device["largeText"]["status"] = "FAIL"
+                    raise SystemExit("Largest-text real UI acceptance failed or did not execute")
+                device["largeText"]["status"] = "EXECUTED_PASS"
+            finally:
+                subprocess.run(["xcrun", "simctl", "ui", udid, "content_size", "large"], check=True)
     finally:
         (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
         subprocess.run(["xcrun", "simctl", "shutdown", udid], check=False, capture_output=True)
         # Delete only the disposable simulator created above, never a user's/default device.
         subprocess.run(["xcrun", "simctl", "delete", udid], check=False, capture_output=True)
 
-print("Both required iPad sizes completed; production/Release and physical-device gates are separate.")
+print("Required iPad sizes, largest text configuration and iPhone completed; production/Release and physical-device gates are separate.")

@@ -67,6 +67,7 @@ jobs:
           git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/build-faithful-prototype-reference.py" > Scripts/CI/build-faithful-prototype-reference.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/shutdown-faithful-simulator.py" > Scripts/CI/shutdown-faithful-simulator.py
           mkdir -p tools/faithful-ui-reference
           git show "$TEST_SOURCE_SHA:tools/faithful-ui-reference/MyApp.swift" > tools/faithful-ui-reference/MyApp.swift
           mkdir -p build/artifacts
@@ -84,7 +85,7 @@ jobs:
           python3 Scripts/CI/test-faithful-tabs-in-app.py
           cd "$GITHUB_WORKSPACE/Source/ChavrusaText/Dependencies/CommandPalette"
           xcodebuild test -scheme CommandPalette -destination "platform=iOS Simulator,id=$SIM_UDID" -resultBundlePath "$GITHUB_WORKSPACE/build/artifacts/command-palette.xcresult"
-          xcrun simctl shutdown "$SIM_UDID"
+          python3 "$GITHUB_WORKSPACE/Scripts/CI/shutdown-faithful-simulator.py" "$SIM_UDID"
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -317,7 +318,7 @@ jobs:
 
           echo "Terminating standalone launch before running test runner..."
           xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
-          xcrun simctl shutdown "${SIM_UDID}"
+          python3 Scripts/CI/shutdown-faithful-simulator.py "${SIM_UDID}"
 
       - name: Build the supplied original prototype as an isolated visual oracle
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
@@ -353,6 +354,7 @@ jobs:
             build/artifacts/test-simulator-*.log
             build/artifacts/miniTest10-native-fixture-install-*.json
             build/artifacts/faithful-ipad-matrix.json
+            build/artifacts/simctl-ui-help.txt
             build/artifacts/prototype-reference-manifest.json
             build/artifacts/workspace-compile.log
             build/artifacts/workspace-test-results.log
