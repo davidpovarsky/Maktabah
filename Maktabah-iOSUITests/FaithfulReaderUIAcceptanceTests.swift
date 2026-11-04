@@ -92,6 +92,22 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let originalFrame = app.frame
         let originalLocator = app.staticTexts["reader-current-locator"].label
         capture(enabled ? "candidate-window-wide" : "baseline-window-wide")
+        defer {
+            let current = app.frame
+            if abs(current.width - originalFrame.width) > 2 || abs(current.height - originalFrame.height) > 2 {
+                let corner = app.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
+                let originalCorner = app.coordinate(withNormalizedOffset: .zero).withOffset(
+                    CGVector(dx: originalFrame.maxX - current.minX - 12, dy: originalFrame.maxY - current.minY - 12))
+                corner.press(forDuration: 0.5, thenDragTo: originalCorner)
+                let restored = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
+                    MainActor.assumeIsolated {
+                        abs(app.frame.width - originalFrame.width) < 2 && abs(app.frame.height - originalFrame.height) < 2
+                    }
+                }, object: nil)
+                XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 30), .completed,
+                               "Restore the actual window before other baseline/candidate cases")
+            }
+        }
         // Apple's iPad windowing gesture: drag the system bottom-right handle.
         // This must change the actual window, not an injected size class/frame.
         let handle = app.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
@@ -113,8 +129,12 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         capture(enabled ? "candidate-window-narrow" : "baseline-window-narrow")
         if enabled {
             tap(app.textFields["reader-library-search-field"])
-            XCTAssertTrue(app.descendants(matching: .any)["reader-library-command-palette"].waitForExistence(timeout: 15))
+            let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+            XCTAssertTrue(palette.waitForExistence(timeout: 15))
             capture("candidate-window-narrow-palette")
+            palette.textFields.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+            let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
+            XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed)
         }
     }
 
