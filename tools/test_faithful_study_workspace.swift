@@ -31,6 +31,10 @@ struct FaithfulStudyWorkspaceTests {
                    "Migration archives the original canonical bytes without modifying them")
         try expect(store.snapshot?.migratedLegacySession == true, "Legacy migration is explicitly recorded")
         try expect(store.selectedGroup(scene: "window-a")?.tabs.first == original, "Migration preserves identity, locator, scroll and selection")
+        let copied = original.reidentified()
+        try expect(copied.id != original.id && copied.session.bookId == original.session.bookId, "Copying the same book creates an independent document identity")
+        try expect(copied.session.locator == original.session.locator && copied.session.scrollPosition == original.session.scrollPosition && copied.session.selectedRange == original.session.selectedRange,
+                   "Copying preserves initial locator, viewport and selection without sharing a mutable session")
         let migrated = store.snapshot
         try store.attach(scene: "window-a", legacyTabs: [], activeID: nil)
         try expect(store.snapshot == migrated, "Attaching twice must not remigrate or erase the original tabs")

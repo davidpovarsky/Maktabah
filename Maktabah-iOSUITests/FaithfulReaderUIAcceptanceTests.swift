@@ -239,6 +239,48 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         capture("candidate-book-search-without-global-history")
     }
 
+    func testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let locator = app.staticTexts["reader-current-locator"]
+        let initial = locator.label
+        XCTAssertFalse(initial.isEmpty)
+        tap(app.buttons["כל הכרטיסיות"])
+        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["קבוצה מהכרטיסיות הנוכחיות"])
+        let alert = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        alert.textFields.firstMatch.typeText("מיקום שני")
+        tap(alert.buttons["שמירה"])
+        let selector = app.segmentedControls["study-group-selector"]
+        XCTAssertTrue(selector.buttons["מיקום שני"].waitForExistence(timeout: 15))
+        tap(app.buttons["סיום"])
+        assertReaderHasText()
+        XCTAssertEqual(locator.label, initial)
+        let next = app.buttons.matching(NSPredicate(format: "label == 'העמוד הבא' OR label == 'Next Page'")).firstMatch
+        XCTAssertTrue(next.isEnabled, "The genuine fixture book must have another navigation unit")
+        tap(next)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label != %@", initial), object: locator)], timeout: 30), .completed)
+        let second = locator.label
+        XCTAssertFalse(second.isEmpty)
+        for _ in 0..<20 {
+            for (name, expected) in [("כל הכרטיסיות", initial), ("מיקום שני", second)] {
+                tap(app.buttons["כל הכרטיסיות"])
+                tap(selector.buttons[name])
+                tap(app.buttons["סיום"])
+                assertReaderHasText()
+                XCTAssertEqual(locator.label, expected, "Each group must restore its own actual canonical locator")
+            }
+        }
+        capture("candidate-independent-group-locations")
+        app.terminate()
+        launchReader(scenario: "catalog")
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, second, "The selected group's actual locator must survive cold relaunch")
+    }
+
     func testThreeProfilesWithThreeGroupsThroughNativeManagement() {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()

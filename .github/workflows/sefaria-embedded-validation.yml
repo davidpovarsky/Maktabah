@@ -11,6 +11,14 @@ on:
         required: true
         type: boolean
         default: true
+      validation_runner:
+        description: Xcode 27 acceptance, or macOS 26 SDK diagnostics (cannot satisfy iPadOS 27 gate)
+        required: true
+        type: choice
+        default: xcode-27
+        options:
+          - xcode-27
+          - macos-26
       source_ref:
         description: Optional immutable baseline SHA for original-app visual comparison; empty builds this commit
         required: false
@@ -28,7 +36,7 @@ concurrency:
 jobs:
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
-    runs-on: xcode-27
+    runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 210
 
     steps:
@@ -125,6 +133,10 @@ jobs:
           echo "=== Running 317 Swift Component & RPC Contract Tests ==="
           chmod +x Scripts/run-chavrusa-component-tests.sh
           bash Scripts/run-chavrusa-component-tests.sh
+
+      - name: Test actual workspace persistence and canonical navigation presentation
+        if: ${{ inputs.source_ref == '' }}
+        run: python3 Scripts/CI/test-faithful-workspace.py
 
       - name: Setup Ruby and CocoaPods
         uses: ruby/setup-ruby@v1
@@ -328,6 +340,8 @@ jobs:
             build/artifacts/miniTest10-native-fixture-install-*.json
             build/artifacts/faithful-ipad-matrix.json
             build/artifacts/prototype-reference-manifest.json
+            build/artifacts/workspace-compile.log
+            build/artifacts/workspace-test-results.log
             build/artifacts/visual-*
             build/artifacts/duck-tabs.xcresult
             build/artifacts/command-palette.xcresult

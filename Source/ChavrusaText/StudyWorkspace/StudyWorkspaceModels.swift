@@ -11,6 +11,16 @@ struct ReaderDocumentTab: Codable, Equatable, Identifiable, Sendable {
     var id: UUID { session.id }
     var backend: BackendID
     var session: iOSReaderTabSession
+
+    func reidentified() -> ReaderDocumentTab {
+        let s = session
+        return .init(backend: backend, session: .init(
+            id: UUID(), bookId: s.bookId, bookTitle: s.bookTitle, backendLocator: s.backendLocator,
+            contentId: s.contentId, locator: s.locator, page: s.page, part: s.part, scrollPosition: s.scrollPosition,
+            selectedRange: s.selectedRange, expandedNodeIDs: s.expandedNodeIDs, sidebarScrollPosition: s.sidebarScrollPosition,
+            isSidebarCollapsed: s.isSidebarCollapsed, searchText: s.searchText, searchModeRaw: s.searchModeRaw,
+            nearDistance: s.nearDistance, highlightTerms: s.highlightTerms))
+    }
 }
 
 struct StudyTabGroup: Codable, Equatable, Identifiable, Sendable {

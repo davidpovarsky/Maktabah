@@ -225,6 +225,9 @@ final class StudyWorkspaceNavigationAdapter {
         let book = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
             id: state.bookId, backendLocator: state.backendLocator?.workKey,
             title: state.bookTitle, in: document.backend)
+        guard (book.backendLocator?.backend ?? .otzaria) == document.backend else {
+            throw StudyWorkspaceError.backendMismatch
+        }
         let vm = ReaderViewModel(book: book)
         vm.recordHistory = false
         vm.readerState.scrollPosition = state.scrollPosition
@@ -242,17 +245,5 @@ final class StudyWorkspaceNavigationAdapter {
         vm.needsScrollRestore = true
         // Loading is deferred until this tab becomes live, after any backend commit.
         return .init(id: state.id, book: book, initialContentId: state.contentId, viewModel: vm)
-    }
-}
-
-extension ReaderDocumentTab {
-    func reidentified() -> ReaderDocumentTab {
-        let s = session
-        return .init(backend: backend, session: .init(
-            id: UUID(), bookId: s.bookId, bookTitle: s.bookTitle, backendLocator: s.backendLocator,
-            contentId: s.contentId, locator: s.locator, page: s.page, part: s.part, scrollPosition: s.scrollPosition,
-            selectedRange: s.selectedRange, expandedNodeIDs: s.expandedNodeIDs, sidebarScrollPosition: s.sidebarScrollPosition,
-            isSidebarCollapsed: s.isSidebarCollapsed, searchText: s.searchText, searchModeRaw: s.searchModeRaw,
-            nearDistance: s.nearDistance, highlightTerms: s.highlightTerms))
     }
 }
