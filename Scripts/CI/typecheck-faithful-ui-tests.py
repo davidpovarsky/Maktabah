@@ -9,8 +9,10 @@ artifacts.mkdir(parents=True, exist_ok=True)
 sdk = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], text=True).strip())
 platform = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-platform-path"], text=True).strip())
 version = subprocess.check_output(["xcodebuild", "-version"], text=True).strip()
-command = ["xcrun", "swiftc", "-typecheck", "-module-name", "Maktabah_iOSUITests", "-swift-version", "6",
+command = ["xcrun", "swiftc", "-typecheck", "-module-name", "Maktabah_iOSUITests", "-swift-version", "6", "-enable-testing",
+           "-D", "DEBUG", "-module-alias", "Testing=_Testing_Unavailable",
            "-target", "arm64-apple-ios18.6-simulator", "-sdk", str(sdk),
+           "-Isystem", str(platform / "Developer/usr/lib"),
            "-F", str(platform / "Developer/Library/Frameworks"), "-F", str(sdk / "Developer/Library/Frameworks"),
            "-module-cache-path", "build/UIAcceptanceModuleCache"]
 # Exact upcoming-feature flags from the real app UI-test SwiftDriver invocation.
