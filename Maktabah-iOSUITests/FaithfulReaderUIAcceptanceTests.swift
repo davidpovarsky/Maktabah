@@ -442,6 +442,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(palette.waitForExistence(timeout: 15))
         let paletteField = palette.textFields.firstMatch
         XCTAssertTrue(paletteField.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 15), "Capture the genuine full software keyboard, not a keyboard-free preview")
         paletteField.typeText("בראשית")
         let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 30), "Actual canonical-library books must appear in original CommandPalette")
@@ -613,6 +614,10 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         XCTAssertTrue(palette.waitForExistence(timeout: 30))
         let input = palette.textFields.firstMatch
         XCTAssertTrue(input.waitForExistence(timeout: 20))
+        let count = palette.staticTexts.matching(NSPredicate(format: "label MATCHES %@", "^[0-9]+ commands?$")).firstMatch
+        XCTAssertTrue(count.waitForExistence(timeout: 30), "The original palette must expose its genuine command membership")
+        let commandCount = Int(count.label.split(separator: " ").first.map(String.init) ?? "") ?? 0
+        XCTAssertGreaterThanOrEqual(commandCount, 100, "The production UI must exercise at least 100 real library results")
         input.typeText("ברכות")
         let book = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "ברכות")).firstMatch
         XCTAssertTrue(book.waitForExistence(timeout: 60), "Full production catalog must supply an actual book")
