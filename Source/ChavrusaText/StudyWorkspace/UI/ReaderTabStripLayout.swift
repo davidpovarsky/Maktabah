@@ -40,10 +40,19 @@ final class ReaderTabStripLayout: UICollectionViewFlowLayout {
         true
     }
 
+    var tabItemCount: Int = 0
+
     override func prepare() {
         super.prepare()
         guard let collectionView else { return }
-        let count = collectionView.numberOfItems(inSection: 0)
+        let count: Int
+        if tabItemCount > 0 {
+            count = tabItemCount
+        } else if collectionView.numberOfSections > 0 {
+            count = collectionView.numberOfItems(inSection: 0)
+        } else {
+            count = 0
+        }
         let availableWidth = max(0, collectionView.bounds.width - (Self.horizontalInset * 2))
         let computedWidth = Self.calculateTabWidth(
             forTabCount: count,

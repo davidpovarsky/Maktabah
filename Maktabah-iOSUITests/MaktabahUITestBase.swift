@@ -54,6 +54,7 @@ class MaktabahUITestBase: XCTestCase {
         scenario: String? = nil,
         backend: String = "sefaria",
         extraArgs: [String] = [],
+        extraEnv: [String: String] = [:],
         language: String = "he",
         locale: String = "he_IL"
     ) -> XCUIApplication {
@@ -111,6 +112,9 @@ class MaktabahUITestBase: XCTestCase {
         ] + extraArgs
 
         app.launchArguments = args
+        for (k, v) in extraEnv {
+            env[k] = v
+        }
         for (k, v) in env {
             app.launchEnvironment[k] = v
         }
@@ -124,6 +128,7 @@ class MaktabahUITestBase: XCTestCase {
         _ scenario: String,
         backend: String = "sefaria",
         extraArgs: [String] = [],
+        extraEnv: [String: String] = [:],
         language: String = "he",
         locale: String = "he_IL"
     ) -> XCUIApplication {
@@ -132,6 +137,7 @@ class MaktabahUITestBase: XCTestCase {
             scenario: scenario,
             backend: backend,
             extraArgs: extraArgs,
+            extraEnv: extraEnv,
             language: language,
             locale: locale
         )

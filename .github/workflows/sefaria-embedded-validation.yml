@@ -276,6 +276,7 @@ jobs:
             -destination "${DESTINATION}" \
             -derivedDataPath build/DerivedData \
             -only-testing:Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests \
+            -only-testing:Maktabah-iOSUITests/ChavrusaTextiPadUIAcceptanceTests \
             -resultBundlePath build/artifacts/result.xcresult \
             2>&1 | tee build/artifacts/test-simulator.log || TEST_EXIT=$?
 

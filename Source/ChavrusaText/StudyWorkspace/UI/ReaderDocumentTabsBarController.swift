@@ -116,6 +116,10 @@ final class ReaderDocumentTabsBarController: UIViewController,
             }
             return cell
         }
+
+        var initialSnapshot = NSDiffableDataSourceSnapshot<Int, UUID>()
+        initialSnapshot.appendSections([0])
+        dataSource.apply(initialSnapshot, animatingDifferences: false)
     }
 
     func apply(
@@ -124,6 +128,8 @@ final class ReaderDocumentTabsBarController: UIViewController,
         activeGroupID: UUID?,
         animated: Bool = true
     ) {
+        loadViewIfNeeded()
+
         self.availableGroups = availableGroups
         self.activeGroupID = activeGroupID
 
@@ -137,13 +143,20 @@ final class ReaderDocumentTabsBarController: UIViewController,
 
         self.itemsByID = newMap
         self.orderedIDs = newIDs
+        self.layout.tabItemCount = newIDs.count
 
-        guard dataSource != nil else { return }
+        guard let dataSource else { return }
 
         var snapshot = NSDiffableDataSourceSnapshot<Int, UUID>()
         snapshot.appendSections([0])
         snapshot.appendItems(newIDs, toSection: 0)
-        snapshot.reconfigureItems(newIDs)
+
+        let existingIDs = Set(dataSource.snapshot().itemIdentifiers)
+        let toReconfigure = newIDs.filter { existingIDs.contains($0) }
+        if !toReconfigure.isEmpty {
+            snapshot.reconfigureItems(toReconfigure)
+        }
+
         dataSource.apply(snapshot, animatingDifferences: animated)
         layout.invalidateLayout()
 
@@ -152,7 +165,10 @@ final class ReaderDocumentTabsBarController: UIViewController,
             let indexPath = IndexPath(item: selectedIndex, section: 0)
             DispatchQueue.main.async { [weak self] in
                 guard let self,
-                      selectedIndex < self.collectionView.numberOfItems(inSection: 0) else { return }
+                      self.collectionView.numberOfSections > 0,
+                      selectedIndex < self.collectionView.numberOfItems(inSection: 0),
+                      self.orderedIDs.indices.contains(selectedIndex),
+                      self.orderedIDs[selectedIndex] == newSelectedID else { return }
                 self.collectionView.scrollToItem(
                     at: indexPath,
                     at: .centeredHorizontally,
