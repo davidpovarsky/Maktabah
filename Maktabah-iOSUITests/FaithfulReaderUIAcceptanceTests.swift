@@ -32,13 +32,28 @@ final class SafariPrototypeReferenceTests: XCTestCase {
 /// A unique sidecar namespace isolates tests without changing canonical sessions/data.
 class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
+    private var viewportURL: URL?
+    struct Viewport: Decodable { let source: Int; let offset: Double; let object: Int }
     func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0) {
+        let prefix = ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"].map {
+            URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
+        }
+        viewportURL = prefix.map { URL(fileURLWithPath: $0 + ".viewport.json") }
         launchWithTier(.smoke, scenario: scenario, backend: backend, extraArgs: [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)
-        ], language: language, locale: language == "he" ? "he_IL" : "en_US")
+        ], language: language, locale: language == "he" ? "he_IL" : "en_US",
+        extraEnvironment: prefix.map { ["MAKTABAH_SMOKE_READY_FILE": $0] } ?? [:])
         dismissAlertsIfNeeded()
+    }
+    func viewport() throws -> Viewport {
+        let url = try XCTUnwrap(viewportURL, "The matrix must supply the original renderer's existing DEBUG report directory")
+        let exists = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: url.path)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [exists], timeout: 15), .completed)
+        return try JSONDecoder().decode(Viewport.self, from: Data(contentsOf: url))
     }
     func tap(_ element: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertTrue(element.waitForExistence(timeout: 30), file: file, line: line)
@@ -139,7 +154,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
     }
 
-    func testSourceToolbarPaletteSidebarAndOverview() {
+    func testSourceToolbarPaletteSidebarAndOverview() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
         assertReaderHasText()
@@ -152,6 +167,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
         let originalReaderWidth = app.textViews["reader-text"].frame.width
         let originalLocator = app.staticTexts["reader-current-locator"].label
+        let originalViewport = try viewport()
         for _ in 0..<20 {
             tap(tocDot)
             XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
@@ -159,6 +175,10 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertTrue(app.descendants(matching: .any)["library-column"].exists)
             XCTAssertEqual(app.textViews["reader-text"].frame.width, originalReaderWidth, accuracy: 1, "Sidebar page changes must preserve reader width")
             XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator, "Sidebar page changes must not navigate the book")
+            let actual = try viewport()
+            XCTAssertEqual(actual.object, originalViewport.object, "The original TextKit view must survive sidebar page changes")
+            XCTAssertEqual(actual.source, originalViewport.source, "The first visible source character must remain anchored")
+            XCTAssertEqual(actual.offset, originalViewport.offset, accuracy: 1, "Sidebar page changes must not shift the book viewport")
         }
         let pager = app.descendants(matching: .any)["reader-sidebar-pager"]
         for _ in 0..<20 {

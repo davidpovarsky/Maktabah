@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -72,8 +73,11 @@ for index, size in enumerate(["11", "13", "phone"]):
                    "-destination", f"platform=iOS Simulator,id={udid}", "-derivedDataPath", "build/DerivedData",
                    "-resultBundlePath", str(result)]
         command.extend(f"-only-testing:Maktabah-iOSUITests/{suite}" for suite in selection)
+        environment = os.environ.copy()
+        container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True).strip()
+        environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
         with (artifacts / f"test-simulator-{size}.log").open("w") as log:
-            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
+            process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
             for line in process.stdout:
                 log.write(line)
                 print(line, end="", flush=True)
@@ -84,6 +88,10 @@ for index, size in enumerate(["11", "13", "phone"]):
         if code == 0 and device["executedXCTestCount"] < (1 if baseline or size == "phone" else 6):
             raise SystemExit("Expected black-box XCTest cases were not actually executed")
         device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
+        viewport_reports = artifacts / f"viewport-reports-{size}"
+        viewport_reports.mkdir(parents=True, exist_ok=True)
+        for source in (Path(container) / "Documents").glob("faithful-*.viewport.json"):
+            shutil.copyfile(source, viewport_reports / source.name)
         # Attachments are exported even after a failing test for honest diagnosis.
         if result.is_dir():
             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),

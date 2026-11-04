@@ -63,6 +63,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$BASELINE_SOURCE_SHA"
           git fetch --no-tags --depth=1 origin "$TEST_SOURCE_SHA"
           git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift" > Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+          git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/MaktabahUITestBase.swift" > Maktabah-iOSUITests/MaktabahUITestBase.swift
           git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/build-faithful-prototype-reference.py" > Scripts/CI/build-faithful-prototype-reference.py
@@ -358,6 +359,7 @@ jobs:
             build/artifacts/production-release-acceptance.json
             build/artifacts/production-native-fixture-install.json
             build/artifacts/visual-*
+            build/artifacts/viewport-reports-*
             build/artifacts/duck-tabs.xcresult
             build/artifacts/command-palette.xcresult
             build/artifacts/app-source-sha.txt

@@ -55,7 +55,8 @@ class MaktabahUITestBase: XCTestCase {
         backend: String = "sefaria",
         extraArgs: [String] = [],
         language: String = "he",
-        locale: String = "he_IL"
+        locale: String = "he_IL",
+        extraEnvironment: [String: String] = [:]
     ) -> XCUIApplication {
         let app = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
         var args: [String] = []
@@ -111,6 +112,7 @@ class MaktabahUITestBase: XCTestCase {
         ] + extraArgs
 
         app.launchArguments = args
+        env.merge(extraEnvironment) { _, extra in extra }
         for (k, v) in env {
             app.launchEnvironment[k] = v
         }
