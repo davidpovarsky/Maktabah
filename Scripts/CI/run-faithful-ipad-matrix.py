@@ -90,6 +90,12 @@ for index, size in enumerate(["11", "13", "phone"]):
                 print(line, end="", flush=True)
             code = process.wait()
         log_text = (artifacts / f"test-simulator-{size}.log").read_text()
+        missing_suites = [suite for suite in selection if not re.search(
+            r"Test Suite '(?:[^']*\.)?" + re.escape(suite) + r"' passed", log_text)]
+        device["requiredSuites"] = selection
+        device["missingOrFailedSuites"] = missing_suites
+        if code == 0 and missing_suites:
+            code = 1
         counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_text)]
         device["executedXCTestCount"] = max(counts, default=0)
         if code == 0 and device["executedXCTestCount"] < (1 if baseline or size == "phone" else 6):
@@ -104,7 +110,7 @@ for index, size in enumerate(["11", "13", "phone"]):
             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
                             "--output-path", str(artifacts / f"visual-{size}")], check=True)
         if code:
-            raise SystemExit(code)
+            raise SystemExit(f"Native UI suites failed or did not execute: {missing_suites}; xcodebuild status {code}")
         if size == "13":
             help_result = subprocess.run(["xcrun", "simctl", "help", "ui"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=True)
             (artifacts / "simctl-ui-help.txt").write_text(help_result.stdout)
