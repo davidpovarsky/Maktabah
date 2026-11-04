@@ -24,6 +24,11 @@ on:
         required: false
         type: string
         default: ''
+      run_production_release:
+        description: After the Debug UI matrix, validate a Release binary over the full native production corpus
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   actions: read
@@ -37,7 +42,7 @@ jobs:
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
-    timeout-minutes: 210
+    timeout-minutes: 360
 
     steps:
       - name: Checkout Repository with Submodules
@@ -322,6 +327,13 @@ jobs:
           VALIDATING_BASELINE: ${{ inputs.source_ref != '' }}
           GH_TOKEN: ${{ github.token }}
         run: python3 Scripts/CI/run-faithful-ipad-matrix.py
+      - name: Full native production corpus and Release UI acceptance
+        if: ${{ inputs.run_production_release && inputs.source_ref == '' }}
+        timeout-minutes: 120
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/run-faithful-production-release.py
+
       - name: Upload Build & Verification Manifests
         if: always()
         uses: actions/upload-artifact@v4
@@ -341,6 +353,10 @@ jobs:
             build/artifacts/prototype-reference-manifest.json
             build/artifacts/workspace-compile.log
             build/artifacts/workspace-test-results.log
+            build/artifacts/production-release.xcresult
+            build/artifacts/production-release-tests.log
+            build/artifacts/production-release-acceptance.json
+            build/artifacts/production-native-fixture-install.json
             build/artifacts/visual-*
             build/artifacts/duck-tabs.xcresult
             build/artifacts/command-palette.xcresult

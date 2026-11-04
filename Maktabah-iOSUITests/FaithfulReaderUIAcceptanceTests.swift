@@ -317,3 +317,48 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
     }
 }
+
+/// Run only against a Release binary over the full native production install.
+/// No smoke scenario, bootstrap bypass, feature override or test namespace.
+final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
+    func testRealProductionLibraryReaderAndGroupRestore() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchWithTier(.production, backend: "otzaria")
+        dismissAlertsIfNeeded()
+        tap(findTabButton(hebrew: "ספר", english: "Library"))
+        tap(app.textFields["reader-library-search-field"])
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 30))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 20))
+        input.typeText("ברכות")
+        let book = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "ברכות")).firstMatch
+        XCTAssertTrue(book.waitForExistence(timeout: 60), "Full production catalog must supply an actual book")
+        capture("release-production-library-palette")
+        tap(book)
+        assertReaderHasText()
+        for _ in 0..<20 {
+            tap(findTabButton(hebrew: "היסטוריה", english: "History"))
+            tap(findTabButton(hebrew: "ספר", english: "Library"))
+            assertReaderHasText()
+            XCTAssertTrue(app.buttons["reader-more-menu"].exists)
+        }
+        capture("release-production-reader")
+        tap(app.buttons["כל הכרטיסיות"])
+        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["קבוצה ריקה"])
+        let alert = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        alert.textFields.firstMatch.typeText("בדיקת Release")
+        tap(alert.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        tap(app.buttons["סיום"])
+        app.terminate()
+        launchWithTier(.production, backend: "otzaria")
+        tap(findTabButton(hebrew: "ספר", english: "Library"))
+        XCTAssertFalse(app.textViews["reader-text"].exists)
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 30))
+        capture("release-production-empty-group-restored")
+    }
+}
