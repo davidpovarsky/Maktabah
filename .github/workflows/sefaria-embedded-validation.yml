@@ -30,7 +30,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.source_ref || 'candidate' }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}
   cancel-in-progress: true
 
 jobs:
