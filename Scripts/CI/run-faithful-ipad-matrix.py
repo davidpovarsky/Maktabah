@@ -76,6 +76,7 @@ for index, size in enumerate(["11", "13", "phone"]):
                 selection.extend(["SefariaEmbeddedAcceptanceTests", "Build8401SevenDefectsAcceptanceTests", "PullNavigationAcceptanceTests"])
         result = artifacts / f"result-{size}.xcresult"
         command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
+                   "-parallel-testing-enabled", "NO",
                    "-destination", f"platform=iOS Simulator,id={udid}", "-derivedDataPath", "build/DerivedData",
                    "-resultBundlePath", str(result)]
         command.extend(f"-only-testing:Maktabah-iOSUITests/{suite}" for suite in selection)

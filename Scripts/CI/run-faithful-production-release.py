@@ -76,6 +76,7 @@ try:
     run(["xcrun", "simctl", "install", udid, str(release_app)], timeout=600)
     result_path = artifacts / "production-release.xcresult"
     command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
+               "-parallel-testing-enabled", "NO",
                "-configuration", "Release", "-derivedDataPath", "build/ReleaseDerivedData", "-destination", f"platform=iOS Simulator,id={udid}",
                "-resultBundlePath", str(result_path), "-only-testing:Maktabah-iOSUITests/FaithfulProductionReleaseTests"]
     with (artifacts / "production-release-tests.log").open("w") as log:
