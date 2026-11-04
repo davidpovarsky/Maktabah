@@ -1,0 +1,25 @@
+--- iOS/DuckDuckGo/TabSwitcher/TabsBarView.swift
++++ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift
+@@ -120,6 +120,7 @@
+         var attributes = originalAttributes.compactMap { layoutAttributesForItem(at: $0.indexPath) }
+         guard let collectionView,
+               let index = currentIndex?(),
++              collectionView.numberOfSections > 0, index >= 0,
+               index < collectionView.numberOfItems(inSection: 0) else {
+             return attributes
+         }
+@@ -139,11 +140,14 @@
+ 
+     func frameForCurrentTabAtRest() -> CGRect? {
+         guard let index = currentIndex?(), let collectionView,
++              collectionView.numberOfSections > 0,
+               index >= 0, index < collectionView.numberOfItems(inSection: 0) else { return nil }
+         return attributesForItem(at: IndexPath(item: index, section: 0), dragOffset: 0)?.frame
+     }
+ 
+     private func attributesForItem(at indexPath: IndexPath, dragOffset: CGFloat) -> UICollectionViewLayoutAttributes? {
++        guard let collectionView, indexPath.section >= 0, indexPath.section < collectionView.numberOfSections,
++              indexPath.item >= 0, indexPath.item < collectionView.numberOfItems(inSection: indexPath.section) else { return nil }
+         guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes,
+               let collectionView else {
+             return super.layoutAttributesForItem(at: indexPath)

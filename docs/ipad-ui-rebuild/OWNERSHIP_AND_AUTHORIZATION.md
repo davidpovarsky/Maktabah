@@ -1,0 +1,30 @@
+# Faithful iPad UI rebuild — ownership and authorization
+
+Execution: `[נועם | DEV] [MAIN_SESSION]`, NORMAL; no delegated agents.
+
+Owner request in this chat, 2026-11-04: “קרא את מסמך הפרומפט בחבילה המצורפת ובצע בשלמות!!”. The adopted specification is `AGENT_EXECUTION_PROMPT.md` in `ChavrusaText_Faithful_UI_Rebuild_COMPLETE_PACKAGE_2026-11-04.zip`, particularly §4 stages 3, 6, 7 and the exact file map `RESTORE_AND_FILE_BY_FILE_PLAN.md`. Those authorize the listed minimal connections, real Xcode/simulator verification and experimental production-data TestFlight after acceptance. No main merge or Asana writes. Historical source changes are not used as authorization.
+
+Baseline: `f092f3996927251d105dfb9243dfac487b196534`. Original checkout: `59b01fa2d604facbcc3b3b1075a6283e7f1115db`, left untouched. New branch: `experiment/ipad-ui-faithful-from-9401`.
+
+Current upstream HEAD inspected read-only using `git ls-remote upstream HEAD`: `46e893c65139fbb1e582d6595b0d220ea912324a`. Baseline architecture reference remains `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`; this is not an upstream sync.
+
+| File / namespace | Ownership | Authorized change | Why an adapter alone is insufficient | Verification / rollback |
+|---|---|---|---|---|
+| `Source/ChavrusaText/ReaderHost`, `ToolbarSearch`, `StudyWorkspace`, `Navigation/ReaderNavigationDisplayPolicy.swift` | DOWNSTREAM_OWNED | New composition, ports, sidecar state and presentation policy | Primary implementation home | Focused state tests + real UI; disable feature |
+| Original third-party files within downstream ports and local licensed SwiftPM fork | VENDORED_UPSTREAM | Pinned source, documented minimal domain/public-API adaptations | Browser domain and private runtime cannot ship | Exact source diffs/hashes, original tests, screenshots |
+| `Source/UI/iOS/Views/iPadLayout.swift` | SHARED_INTEGRATION_SEAM / protected | Only viewerTabContent host connection, original body as flags-off fallback | Root composition is private to this view | Compare all other tab source; restore base hunk |
+| `Source/Features/Reader/iOS/iOSReaderTabView.swift` | SHARED_INTEGRATION_SEAM / protected | Default-true legacy strip flag; optional sidebar callback injection | Avoid rendering two document strips | Flags on/off, 0/1/N tabs |
+| `Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift` | SHARED_INTEGRATION_SEAM / protected | Optional TOC coordinator; route existing actions; iPad-only chrome flag | Existing private TOC actions own original handlers | Reader/Inspector/bottom bar regression |
+| `Source/Features/Reader/iOS/iOSReaderView.swift` | SHARED_INTEGRATION_SEAM / protected | Only if required: optional toolbar routing | Original private actions must remain canonical | Preserve bottom bar and original defaults |
+| `Source/Features/Library/iOS/iOSLibraryView.swift` | SHARED_INTEGRATION_SEAM / protected | Only if required: reuse existing toolbar as grouped native content | Private menus should not be duplicated | Import/selection/options regression |
+| `Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift` | UPSTREAM_OWNED / protected | Remove only in-book SearchHistoryOverlay callsite | Incorrect overlay is attached here | Global Search unchanged |
+| `Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift`, `iOSReaderBottomToolbarView.swift` | SHARED_INTEGRATION_SEAM / protected | Semantic label bridge only | Original status labels are rendered here | Otzaria unit/selection tests |
+| `Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift` | DOWNSTREAM_OWNED | Optional, default-preserving Inspector chrome options | Kit owns its headings | Existing FloatingPanel retained |
+| `Maktabah.xcodeproj/project.pbxproj`, `Package.resolved` | SHARED_INTEGRATION_SEAM / protected | Deterministic iOS-only file/resources/package membership | New types need target membership | Xcode project parse/build; no signing changes |
+| `Scripts/CI/prepare-swift-packages.py` | DOWNSTREAM_OWNED build adapter | Match the independently tested Inspector pin in restored package caches | Its old hardcoded pin would replace the new lockfile during CI | Exact revision-only change, then Xcode resolution |
+| `.github/workflows/sefaria-embedded-validation.yml`, `Scripts/CI/prepare-faithful-ipad-fixtures.py`, new black-box/native/portable tests | DOWNSTREAM_OWNED validation | Execute requested source-port/real UI gates and immutable-baseline comparison; install genuine small fixtures via original installer | Existing validation only exercised four embedded tests and its launch screenshot was still loading | No new trigger; production corpus and release gates remain separate |
+| All other original app sources, session/navigation managers, themes, renderers, iPhone, databases | UPSTREAM_OWNED or legacy protected | None | Existing APIs reused | Source diff must be empty |
+
+Each implemented protected hunk will be recorded in `PROTECTED_HUNKS.diff`, not treated as a blanket exception for future work. No boundary verifier/signature policy changes are authorized or planned. Runtime and physical-device acceptance remain distinct from compilation and distribution.
+
+Inspector package pin `19d1b35397af4f10ae70cfb3f444c9de87383b53` was adopted only after its existing package tests passed on macOS and the real iOS Simulator: 26 Swift Testing tests per platform, https://github.com/davidpovarsky/TorahInspectorKit/actions/runs/41859651045. The earlier `macos-15` attempt acquired no runner and is not counted as verification.

@@ -42,7 +42,7 @@ struct iOSReaderNavigationPopoverView: View {
                     }
                     .disabled(viewModel.backendSection?.previous == nil)
                     
-                    Text(viewModel.backendSection.map {
+                    ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.backendSection.map {
                         LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)
                     } ?? "")
                         .font(.headline)
@@ -65,7 +65,7 @@ struct iOSReaderNavigationPopoverView: View {
                     let safeIdx = min(max(0, Int(localNav)), viewModel.navigationItems.count - 1)
                     VStack(spacing: 8) {
                         if isSlidingNav {
-                            Text(viewModel.navigationItems[safeIdx].title)
+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems[safeIdx].locator, fallback: viewModel.navigationItems[safeIdx].title)
                                 .font(.headline)
                                 .foregroundColor(.accentColor)
                                 .lineLimit(1)
@@ -84,12 +84,12 @@ struct iOSReaderNavigationPopoverView: View {
                         }
 
                         HStack {
-                            Text(viewModel.navigationItems.first?.title ?? "")
+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.first?.locator, fallback: viewModel.navigationItems.first?.title ?? "")
                                 .font(.caption2)
                                 .foregroundColor(.secondary)
                                 .lineLimit(1)
                             Spacer()
-                            Text(viewModel.navigationItems.last?.title ?? "")
+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.last?.locator, fallback: viewModel.navigationItems.last?.title ?? "")
                                 .font(.caption2)
                                 .foregroundColor(.secondary)
                                 .lineLimit(1)

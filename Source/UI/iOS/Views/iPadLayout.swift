@@ -100,40 +100,69 @@ struct iPadLayout: View {
 
     @ViewBuilder
     private var viewerTabContent: some View {
-        NavigationSplitView(
-            columnVisibility: $columnVisibility,
-            preferredCompactColumn: $preferredLibraryCompactColumn
-        ) {
-            NavigationStack {
-                iOSLibraryView()
-                    .navigationTitle(iOSTab.viewer.title)
-                    .toolbarGeneral(showSettings: $showSettings)
-            }
-            .searchable(
-                text: Bindable(bManager.libraryViewModel).searchQuery,
-                placement: .toolbar,
-                prompt: String(localized: "Search Library")
-            )
-            .toolbarBackground(Color.appBackground, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .background(Color.appBackground)
-            .accessibilityElement(children: .contain)
-            .accessibilityIdentifier("library-column")
-        } content: {
-            activeReaderTableOfContents
-                .accessibilityElement(children: .contain)
-                .accessibilityIdentifier("toc-column")
-        } detail: {
-            iOSReaderTabView(
+        if ChavrusaTextReaderUI.isEnabled {
+            ChavrusaReaderHost(
+                manager: bManager,
                 columnVisibility: $columnVisibility,
                 preferredCompactColumn: $preferredLibraryCompactColumn
-            )
+            ) {
+                NavigationStack {
+                    iOSLibraryView(groupsToolbarActions: true)
+                        .navigationTitle(iOSTab.viewer.title)
+                        .toolbarGeneral(showSettings: $showSettings)
+                }
+                .toolbarBackground(Color.appBackground, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .background(Color.appBackground)
+                .accessibilityIdentifier("library-column")
+            } contents: {
+                NavigationStack { activeReaderTableOfContents }
+                    .accessibilityIdentifier("toc-column")
+            } reader: {
+                iOSReaderTabView(
+                    columnVisibility: $columnVisibility,
+                    preferredCompactColumn: $preferredLibraryCompactColumn,
+                    showsLegacyDocumentTabs: false
+                )
+                .background(Color.appBackground)
+                .accessibilityIdentifier("reader-detail-column")
+            }
+        } else {
+            NavigationSplitView(
+                columnVisibility: $columnVisibility,
+                preferredCompactColumn: $preferredLibraryCompactColumn
+            ) {
+                NavigationStack {
+                    iOSLibraryView()
+                        .navigationTitle(iOSTab.viewer.title)
+                        .toolbarGeneral(showSettings: $showSettings)
+                }
+                .searchable(
+                    text: Bindable(bManager.libraryViewModel).searchQuery,
+                    placement: .toolbar,
+                    prompt: String(localized: "Search Library")
+                )
+                .toolbarBackground(Color.appBackground, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
                 .background(Color.appBackground)
                 .accessibilityElement(children: .contain)
-                .accessibilityIdentifier("reader-detail-column")
+                .accessibilityIdentifier("library-column")
+            } content: {
+                activeReaderTableOfContents
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("toc-column")
+            } detail: {
+                iOSReaderTabView(
+                    columnVisibility: $columnVisibility,
+                    preferredCompactColumn: $preferredLibraryCompactColumn
+                )
+                    .background(Color.appBackground)
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("reader-detail-column")
+            }
+            .navigationSplitViewStyle(.balanced)
+            .background(Color.appBackground.ignoresSafeArea())
         }
-        .navigationSplitViewStyle(.balanced)
-        .background(Color.appBackground.ignoresSafeArea())
     }
 
     @ViewBuilder

@@ -5,13 +5,16 @@ struct iOSReaderTabView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var preferredCompactColumn: NavigationSplitViewColumn
+    let showsLegacyDocumentTabs: Bool
 
     init(
         columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all),
-        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail)
+        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail),
+        showsLegacyDocumentTabs: Bool = true
     ) {
         self._columnVisibility = columnVisibility
         self._preferredCompactColumn = preferredCompactColumn
+        self.showsLegacyDocumentTabs = showsLegacyDocumentTabs
     }
 
     private var activeTab: iOSNavigationManager.ReaderTab? {
@@ -34,11 +37,11 @@ struct iOSReaderTabView: View {
                 )
                 .id(activeTab.id)
                 .toolbar {
-                    if isRegularLayout, bManager.openTabs.count > 1 {
+                    if showsLegacyDocumentTabs, isRegularLayout, bManager.openTabs.count > 1 {
                         ToolbarItem(placement: .principal) {
                             ReaderTabsView()
                         }
-                    } else if bManager.openTabs.count > 1 {
+                    } else if showsLegacyDocumentTabs, bManager.openTabs.count > 1 {
                         ToolbarItem(placement: .topBarTrailing) {
                             ReaderTabsView()
                         }

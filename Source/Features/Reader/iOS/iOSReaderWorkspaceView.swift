@@ -82,6 +82,7 @@ struct iOSReaderWorkspaceView: View {
 
     @Environment(iOSNavigationManager.self) private var navigationManager
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(\.layoutDirection) private var layoutDirection
 
     @State private var compactContentsRequested = false
@@ -139,7 +140,10 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var contentsIsOpen: Bool {
-        libraryColumnVisibility != .detailOnly
+        if let sidebarCoordinator {
+            return sidebarCoordinator.page == .contents && libraryColumnVisibility != .detailOnly
+        }
+        return libraryColumnVisibility != .detailOnly
     }
 
     private var shouldPresentPanelInContent: Bool {
@@ -332,18 +336,20 @@ struct iOSReaderWorkspaceView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                VStack(spacing: 1) {
-                    Text(readerHeaderTitle)
-                        .font(.headline)
-                        .lineLimit(1)
-                        .accessibilityIdentifier("reader-header-visible-title")
-                    if !readerHeaderSubtitle.isEmpty {
-                        Text(readerHeaderSubtitle)
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
+            if sidebarCoordinator == nil {
+                ToolbarItem(placement: .principal) {
+                    VStack(spacing: 1) {
+                        Text(readerHeaderTitle)
+                            .font(.headline)
                             .lineLimit(1)
-                            .accessibilityIdentifier("reader-header-subtitle")
+                            .accessibilityIdentifier("reader-header-visible-title")
+                        if !readerHeaderSubtitle.isEmpty {
+                            Text(readerHeaderSubtitle)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                                .accessibilityIdentifier("reader-header-subtitle")
+                        }
                     }
                 }
             }
@@ -532,6 +538,12 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func presentContents() {
+        if let sidebarCoordinator {
+            sidebarCoordinator.showContents()
+            preferredCompactColumn = .sidebar
+            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) { libraryColumnVisibility = .all }
+            return
+        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
                 compactContentsRequested = true
@@ -548,6 +560,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func closeContents() {
+        if sidebarCoordinator != nil {
+            preferredCompactColumn = .detail
+            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) { libraryColumnVisibility = .detailOnly }
+            return
+        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                 compactContentsRequested = false

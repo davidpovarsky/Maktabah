@@ -17,6 +17,7 @@ struct iOSReaderView: View {
     var viewModel: ReaderViewModel
     var textViewState = TextViewState.shared
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(iOSNavigationManager.self) var bManager
 
     var isRegularLayout: Bool {
@@ -131,7 +132,7 @@ struct iOSReaderView: View {
             }
         }
         .toolbar {
-            if shouldShowPrimarySidebarButton {
+            if shouldShowPrimarySidebarButton, sidebarCoordinator == nil {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         withAnimation {
@@ -145,7 +146,7 @@ struct iOSReaderView: View {
                 }
             }
 
-            if (!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1) {
+            if sidebarCoordinator == nil && ((!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1)) {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         bManager.showingTabsList.toggle()

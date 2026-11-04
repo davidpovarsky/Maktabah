@@ -1,0 +1,186 @@
+[
+  {
+    "repo": "ScrollableTabBar",
+    "original": "Sources/ScrollableTabBar/ScrollableTabBar.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+    "sha256": "7f029400d9365eb095a8b32e02b188f0eabd6bd4a85572eb3b8d4771b4d966fc",
+    "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+    "destinationSHA256": "a6db2cc014017eec30fda9991f251f686feadc2b5e454494b73e1f7ba6e27b0f"
+  },
+  {
+    "repo": "ScrollableTabBar",
+    "original": "Sources/ScrollableTabBar/ScrollableTabBarDelegate.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+    "sha256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+    "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+    "destinationSHA256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38"
+  },
+  {
+    "repo": "ScrollableTabBar",
+    "original": "Sources/ScrollableTabBar/AdaptiveTabContent.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+    "sha256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+    "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+    "destinationSHA256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Model/Command.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/Command.swift",
+    "sha256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+    "reason": "Identical original source.",
+    "destinationSHA256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Model/CommandShortcut.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/CommandShortcut.swift",
+    "sha256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+    "reason": "Identical original source.",
+    "destinationSHA256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Recents/RecentCommands.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Recents/RecentCommands.swift",
+    "sha256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+    "reason": "Identical original source.",
+    "destinationSHA256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Search/CommandPaletteResults.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteResults.swift",
+    "sha256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+    "reason": "Identical original source.",
+    "destinationSHA256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+    "sha256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+    "reason": "Identical original source.",
+    "destinationSHA256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Search/FuzzyMatcher.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift",
+    "sha256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+    "reason": "Identical original source.",
+    "destinationSHA256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+    "sha256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+    "reason": "Identical original source.",
+    "destinationSHA256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "sha256": "d33809cb1628b7418f11625c5107f2510298472ecbef11e28c2c855b48ea5b3c",
+    "reason": "Optional bidirectional queryBinding, default nil; no appearance or fuzzy-search changes.",
+    "destinationSHA256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Views/PaletteComponents.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift",
+    "sha256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+    "reason": "Identical original source.",
+    "destinationSHA256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Package.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+    "sha256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+    "reason": "Identical source",
+    "destinationSHA256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarLayout.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+    "sha256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+    "reason": "Identical source",
+    "destinationSHA256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabFlaredBackgroundView.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+    "sha256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+    "reason": "Identical source",
+    "destinationSHA256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabFlareBackgroundController.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+    "sha256": "69bdf8e28cc9428f0293f3931e8b6c77c3f67a2acd807339720c0fd2feaf79cd",
+    "reason": "Identical source",
+    "destinationSHA256": "69bdf8e28cc9428f0293f3931e8b6c77c3f67a2acd807339720c0fd2feaf79cd"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarView.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+    "sha256": "b6445ea87271f769da5948ebc6ad9665f90659452246b91bfc5ba4245eff6cc2",
+    "reason": "Guard section/item existence before section-0 accesses and layout queries; all accordion calculations unchanged.",
+    "destinationSHA256": "d1ba8b28a3b42c8ddbb96d4f38628b7a2b9a611a19f8cff24acddaa956b791be"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+    "sha256": "fd600406b508106fbb2d0297f3ea3ef67926f238de7ff0ddd0217d5769d26c32",
+    "reason": "Remove browser imports/TabObserver, adapt model/title/favicon/theme and close glyph to book domain; preserve layout, separators, pointer/hover, close visibility, drag placeholder, animation and flare geometry.",
+    "destinationSHA256": "ff58e16e4ec54eca6334daf583e264babfb92c858f5fb20f0a71398a434eecd6"
+  },
+  {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "reason": "Exact SafariGlass, GlassButtonGroup, GelatinMotionOnly and View modifier code; only access levels widened for downstream composition. Demo app/state/screens excluded.",
+    "destinationSHA256": "7d9a12e2fffcc6cc4ccb97d8201062abaf4a463b695f0a7ee24b6f36f822f4a2"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarViewController.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+    "sha256": "2aba6f273860245081a2d88bdd20902acc6099907907989e1d88d7356444ddf3",
+    "reason": "Keep original width policy, accordion selection/reveal, pointer, drag/drop/reorder, context menu, flare lifecycle and cell rendering; remove browser/fire/AI/analytics/app dependencies, route callbacks to book tabs and original library. Add current-membership guards.",
+    "destinationSHA256": "c0dbaf8bfbe904f4b3d9249cf511642d02bffbd8715c8a8f0495d15f4dd0ab17"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "SharedPackages/UIComponents/Sources/UIComponents/iOS/FadeOutLabel.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+    "sha256": "25b3e118b3abc5acfe0aea411f371056d219ca344edc204137f41e26fd663aa7",
+    "reason": "Rename only, to avoid host type collisions. Original gradient renderer unchanged.",
+    "destinationSHA256": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarLayoutTests.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift",
+    "sha256": "8e823b02a50adfd826e852495834e69e984fd75fda34780750be7e0dc5ad5245",
+    "reason": "All original layout/accordion/hover/close/flare assertions retained. Only test module, theme and book-domain model construction adapted.",
+    "destinationSHA256": "ad26afe377a4322056b2c06ede3cca4182fa6f42fbc5f8ad783f651ebd682db8"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarViewControllerSizingTests.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
+    "sha256": "04b31e8a5a8b1f8913298674a3435dfeec9776ff0df3849fc177d9d2c2fc9ceb",
+    "reason": "Retain original hierarchy, sizing, reorder, selection, pointer, flare and foreground tests. Exclude the two AI-chat-only tests for removed browser features; adapt hierarchy count/model/delegate to book domain. No behavioral assertion weakened.",
+    "destinationSHA256": "b00cf213cd79d936f824a3f38c2c646cc1a479d862f24563bb35e047f625be20"
+  }
+]

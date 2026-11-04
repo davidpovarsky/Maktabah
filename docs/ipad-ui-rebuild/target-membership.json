@@ -1,0 +1,36 @@
+{
+  "iosOnlySources": [
+    "Navigation/ReaderNavigationDisplayPolicy.swift",
+    "ReaderHost/ChavrusaReaderHost.swift",
+    "ReaderHost/ReaderSidebarPageCoordinator.swift",
+    "ReaderHost/ReaderSidebarPager.swift",
+    "StudyWorkspace/StudyWorkspaceModels.swift",
+    "StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "StudyWorkspace/StudyWorkspacePersistence.swift",
+    "StudyWorkspace/StudyWorkspaceStore.swift",
+    "StudyWorkspace/UI/DocumentTabsHost.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderBookTabsModel.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+    "StudyWorkspace/UI/ScrollableGroupsHost.swift",
+    "StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+    "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+    "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+    "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarLogger.swift",
+    "StudyWorkspace/UI/StudyGroupsOverview.swift",
+    "StudyWorkspace/UI/StudyProfileManagementView.swift",
+    "StudyWorkspace/UI/StudyProfileMenu.swift",
+    "ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "ToolbarSearch/ReaderToolbarActionAdapter.swift",
+    "ToolbarSearch/SafariToolbarSourcePort.swift"
+  ],
+  "resources": [
+    "Source/ChavrusaText/ThirdPartyNotices"
+  ],
+  "localSwiftPM": "Source/ChavrusaText/Dependencies/CommandPalette"
+}

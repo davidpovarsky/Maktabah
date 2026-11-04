@@ -25,12 +25,11 @@ struct iOSReaderBottomToolbarView: View {
     }
 
     var body: some View {
-        Button(
-            viewModel.statusSubtitle,
-            action: {
-                showingNavigation.toggle()
-            }
-        )
+        Button {
+            showingNavigation.toggle()
+        } label: {
+            ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.statusSubtitle)
+        }
         .popover(isPresented: $showingNavigation) {
             iOSReaderNavigationPopoverView(viewModel: viewModel)
                 .presentationCompactAdaptation(.popover)

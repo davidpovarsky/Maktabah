@@ -1,0 +1,83 @@
+import Foundation
+
+struct StudyProfile: Codable, Equatable, Identifiable, Sendable {
+    var id: UUID
+    var name: String
+    var symbol: String
+    var order: Int
+}
+
+struct ReaderDocumentTab: Codable, Equatable, Identifiable, Sendable {
+    var id: UUID { session.id }
+    var backend: BackendID
+    var session: iOSReaderTabSession
+}
+
+struct StudyTabGroup: Codable, Equatable, Identifiable, Sendable {
+    var id: UUID
+    var profileID: UUID
+    var name: String
+    var order: Int
+    var tabs: [ReaderDocumentTab]
+    var activeTabID: UUID?
+}
+
+struct StudySceneSelection: Codable, Equatable, Sendable {
+    var profileID: UUID
+    var groupID: UUID
+    var activeTabIDsByGroup: [UUID: UUID]? = nil
+}
+
+struct StudyWorkspaceSnapshot: Codable, Equatable, Sendable {
+    static let currentVersion = 1
+    var version = currentVersion
+    var revision: UInt64 = 0
+    var migratedLegacySession = false
+    var profiles: [StudyProfile] = []
+    var groups: [StudyTabGroup] = []
+    var scenes: [String: StudySceneSelection] = [:]
+
+    func validate() throws {
+        guard version == Self.currentVersion else { throw StudyWorkspaceError.unsupportedVersion }
+        guard !profiles.isEmpty, !groups.isEmpty,
+              Set(profiles.map(\.id)).count == profiles.count,
+              Set(groups.map(\.id)).count == groups.count else { throw StudyWorkspaceError.invalidMembership }
+        let profileIDs = Set(profiles.map(\.id))
+        guard profiles.allSatisfy({ profile in
+            !profile.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && groups.contains(where: { $0.profileID == profile.id })
+        }), groups.allSatisfy({ !$0.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        let allTabIDs = groups.flatMap { $0.tabs.map(\.id) }
+        guard Set(allTabIDs).count == allTabIDs.count else { throw StudyWorkspaceError.invalidMembership }
+        for group in groups {
+            guard profileIDs.contains(group.profileID),
+                  Set(group.tabs.map(\.id)).count == group.tabs.count,
+                  group.activeTabID.map({ id in group.tabs.contains { $0.id == id } }) ?? true
+            else { throw StudyWorkspaceError.invalidMembership }
+            for tab in group.tabs {
+                guard tab.session.backendLocator.map({ $0.backend == tab.backend }) ?? true,
+                      tab.session.locator.map({ $0.backend == tab.backend }) ?? true else { throw StudyWorkspaceError.backendMismatch }
+            }
+        }
+        for selection in scenes.values {
+            guard groups.contains(where: { $0.id == selection.groupID && $0.profileID == selection.profileID })
+            else { throw StudyWorkspaceError.invalidMembership }
+        }
+    }
+}
+
+enum StudyWorkspaceError: Error, LocalizedError {
+    case unsupportedVersion, invalidMembership, unavailableBook, backendMismatch, groupNotEmpty, lastProfile, lastGroup
+    var errorDescription: String? {
+        switch self {
+        case .unsupportedVersion: "גרסת קובץ סביבת הלימוד אינה נתמכת. הנתונים נשמרו."
+        case .invalidMembership: "לא ניתן לקרוא את סביבת הלימוד. הנתונים הקיימים נשמרו."
+        case .unavailableBook: "ספר בקבוצה אינו זמין כעת. קבוצת הכרטיסיות הנוכחית נשמרה."
+        case .backendMismatch: "יש לעבור למקור הספרייה המתאים לפני פתיחת קבוצה זו."
+        case .groupNotEmpty: "הקבוצה מכילה כרטיסיות."
+        case .lastProfile: "יש להשאיר לפחות פרופיל אחד."
+        case .lastGroup: "יש להשאיר לפחות קבוצת כרטיסיות אחת בפרופיל."
+        }
+    }
+}

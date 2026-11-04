@@ -11,13 +11,18 @@ on:
         required: true
         type: boolean
         default: true
+      source_ref:
+        description: Optional immutable baseline SHA for original-app visual comparison; empty builds this commit
+        required: false
+        type: string
+        default: ''
 
 permissions:
   actions: read
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.source_ref || 'candidate' }}
   cancel-in-progress: true
 
 jobs:
@@ -32,6 +37,36 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 1
+          ref: ${{ inputs.source_ref || github.sha }}
+
+      - name: Stage black-box visual tests for an immutable baseline
+        if: ${{ inputs.source_ref != '' }}
+        env:
+          TEST_SOURCE_SHA: ${{ github.sha }}
+          BASELINE_SOURCE_SHA: ${{ inputs.source_ref }}
+        run: |
+          set -euo pipefail
+          test "$BASELINE_SOURCE_SHA" = f092f3996927251d105dfb9243dfac487b196534
+          test "$(git rev-parse HEAD)" = "$BASELINE_SOURCE_SHA"
+          git fetch --no-tags --depth=1 origin "$TEST_SOURCE_SHA"
+          git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift" > Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+          git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
+          mkdir -p build/artifacts
+          git rev-parse HEAD > build/artifacts/app-source-sha.txt
+          printf '%s\n' "$TEST_SOURCE_SHA" > build/artifacts/black-box-test-source-sha.txt
+
+      - name: Test original source ports on the actual iPad SDK
+        if: ${{ inputs.source_ref == '' && (github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests) }}
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          mkdir -p build/artifacts
+          python3 Scripts/CI/select-ipad-simulator.py --out sim_udid.txt
+          SIM_UDID=$(cat sim_udid.txt)
+          cd Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort
+          xcodebuild test -scheme DuckDuckGoBookTabs -destination "platform=iOS Simulator,id=$SIM_UDID" -resultBundlePath "$GITHUB_WORKSPACE/build/artifacts/duck-tabs.xcresult"
+          cd "$GITHUB_WORKSPACE/Source/ChavrusaText/Dependencies/CommandPalette"
+          xcodebuild test -scheme CommandPalette -destination "platform=iOS Simulator,id=$SIM_UDID" -resultBundlePath "$GITHUB_WORKSPACE/build/artifacts/command-palette.xcresult"
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -161,6 +196,13 @@ jobs:
           bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
           python3 Scripts/CI/prepare-swift-packages.py
 
+      - name: Resolve exact candidate Swift packages
+        if: ${{ inputs.source_ref == '' }}
+        run: |
+          set -euo pipefail
+          xcodebuild -resolvePackageDependencies -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
+          plutil -lint Maktabah.xcodeproj/project.pbxproj
+
       - name: Build Maktabah-iOS for iPad Simulator
         run: |
           echo "=== Building Maktabah-iOS for Simulator ==="
@@ -218,6 +260,7 @@ jobs:
           fi
 
       - name: Boot iPad Simulator and Verify App Launch
+        timeout-minutes: 15
         run: |
           set -euo pipefail
           echo "=== Discovering available iPad Simulator ==="
@@ -253,7 +296,18 @@ jobs:
           echo "Terminating standalone launch before running test runner..."
           xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
 
-      - name: Run Xcode Simulator Unit Tests
+      - name: Prepare genuine native data for black-box reader UI
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
+        timeout-minutes: 10
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/prepare-faithful-ipad-fixtures.py
+
+      - name: Run black-box iPad acceptance and visual comparison capture
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
+        timeout-minutes: 45
+        env:
+          VALIDATING_BASELINE: ${{ inputs.source_ref != '' }}
         run: |
           set -euo pipefail
           echo "=== Running Unit Tests on iPad Simulator ==="
@@ -270,12 +324,21 @@ jobs:
           fi
           echo "Testing on destination: ${DESTINATION}"
           TEST_EXIT=0
+          TEST_SELECTION=(-only-testing:Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests)
+          if [ "$VALIDATING_BASELINE" != true ]; then
+            TEST_SELECTION+=(
+              -only-testing:Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests
+              -only-testing:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests
+              -only-testing:Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests
+              -only-testing:Maktabah-iOSUITests/PullNavigationAcceptanceTests
+            )
+          fi
           xcodebuild test-without-building \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -destination "${DESTINATION}" \
             -derivedDataPath build/DerivedData \
-            -only-testing:Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests \
+            "${TEST_SELECTION[@]}" \
             -resultBundlePath build/artifacts/result.xcresult \
             2>&1 | tee build/artifacts/test-simulator.log || TEST_EXIT=$?
 
@@ -307,3 +370,10 @@ jobs:
             build/artifacts/simulator-app.log
             build/artifacts/test-simulator.log
             build/artifacts/result.xcresult
+            build/artifacts/duck-tabs.xcresult
+            build/artifacts/command-palette.xcresult
+            build/artifacts/app-source-sha.txt
+            build/artifacts/black-box-test-source-sha.txt
+            build/artifacts/miniTest10-native-fixture-install.json
+            docs/ipad-ui-rebuild
+            SOURCE_TO_PORT_DIFF.md

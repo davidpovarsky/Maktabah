@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Read-only tab/group snapshots must read `fetchScrollPosition` / `fetchSelectedRange` into a local state copy. `ReaderViewModel.saveCurrentState()` also clears search and annotation events, so invoking it merely to update sidecar metadata can consume a pending search highlight before the original reader renders it. The faithful workspace adapter captures without that mutation.
+
 Useful technical discoveries, undocumented behavior, shortcuts, implementation tricks, platform behavior, or reusable knowledge discovered while working.
 
 - CocoaPods PBXTargetDependency Matching in Build Verifiers: Build scripts parsing `project.pbxproj` (such as `verify-otzaria-xcode-project.py`) must isolate target matching strictly within the `PBXNativeTarget` section (`isa = PBXNativeTarget; name = "Maktabah-iOS";`). Matching comments like `/* Maktabah-iOS */` indiscriminately matches `PBXTargetDependency` proxies from test targets (such as `Maktabah-iOSUITests`), causing false-positive verification errors regarding missing files.

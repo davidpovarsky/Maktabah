@@ -65,12 +65,6 @@ struct iOSBookSearchView: View {
                     showIntegrationState: false
                 )
             }
-            .overlay(alignment: .bottom) {
-                SearchHistoryOverlay(
-                    viewModel: viewModel,
-                    isVisible: .constant(nil)
-                )
-            }
         }
         .searchable(
             text: $viewModel.query,

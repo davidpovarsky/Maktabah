@@ -1,0 +1,11 @@
+--- Sources/ScrollableTabBar/ScrollableTabBar.swift
++++ Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift
+@@ -277,7 +277,6 @@
+         items: [ScrollableTabBarPresentationItem],
+         selectedIndex: Int?
+     ) -> any ScrollableTabBarContent {
+-        SystemFloatingTabContent.makeIfAvailable(items: items, selectedIndex: selectedIndex)
+-            ?? AdaptiveTabContent(items: items)
++        AdaptiveTabContent(items: items)
+     }
+ }

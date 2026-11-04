@@ -1,0 +1,18 @@
+--- SharedPackages/UIComponents/Sources/UIComponents/iOS/FadeOutLabel.swift
++++ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift
+@@ -1,5 +1,5 @@
+ //
+-//  FadeOutLabel.swift
++//  ReaderTabFadeOutLabel.swift
+ //
+ //  Copyright © 2025 DuckDuckGo. All rights reserved.
+ //
+@@ -21,7 +21,7 @@
+ import UIKit
+ 
+ // Based on https://stackoverflow.com/a/53847223/73479
+-public class FadeOutLabel: UILabel {
++public class ReaderTabFadeOutLabel: UILabel {
+ 
+     override public var textColor: UIColor! {
+         get { primaryColor }
