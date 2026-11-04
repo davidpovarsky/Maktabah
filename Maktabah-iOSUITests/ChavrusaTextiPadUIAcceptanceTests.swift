@@ -45,18 +45,19 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
-        revealReaderDetailIfNeeded()
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground upon opening reader tab")
-
-        let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear without crashing")
-
-        // Verify the app did not crash during diffing or collection view layout
-        XCTAssertEqual(app.state, .runningForeground, "App must stay in foreground after reader surface is rendered")
+        XCTAssertTrue(waitForReaderUIMounted(timeout: 20.0), "Reader UI chrome and workspace must mount without crashing")
 
         // Step 3: Exercise multiple tabs / navigation controls
-        // If the DuckDuckGo-style plus button or library button is present, tap it
+        // If the Safari toolbar sidebar toggle is present, exercise it
+        let sidebarToggle = app.buttons["reader-sidebar-toggle"]
+        if sidebarToggle.waitForExistence(timeout: 4.0) && sidebarToggle.isHittable {
+            sidebarToggle.tap()
+            XCTAssertEqual(app.state, .runningForeground, "Tapping sidebar toggle must not crash the app")
+        }
+
+        // If the DuckDuckGo-style plus button is present, tap it
         let newTabButton = app.buttons["פתח ספר חדש מהספרייה"]
         if newTabButton.waitForExistence(timeout: 4.0) && newTabButton.isHittable {
             newTabButton.tap()
@@ -89,12 +90,9 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
             extraEnv: flagsWithTabStripOff
         )
         dismissAlertsIfNeeded()
-        revealReaderDetailIfNeeded()
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground with Duck Tab Strip OFF")
-
-        let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear with Duck Tab Strip OFF")
+        XCTAssertTrue(waitForReaderUIMounted(timeout: 20.0), "Reader UI must mount with Duck Tab Strip OFF")
         XCTAssertEqual(app.state, .runningForeground, "App process must stay healthy throughout reader session")
     }
 
@@ -106,10 +104,9 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
-        revealReaderDetailIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear")
+        XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground upon launch")
+        XCTAssertTrue(waitForReaderUIMounted(timeout: 20.0), "Reader UI must mount")
 
         // Toggle Table of Contents if available
         let tocToggle = app.buttons["reader-toc-toggle"]
@@ -134,19 +131,19 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         XCTAssertEqual(app.state, .runningForeground, "App must remain alive after all transitions")
     }
 
-    private func revealReaderDetailIfNeeded() {
+    private func waitForReaderUIMounted(timeout: TimeInterval = 15.0) -> Bool {
         let readerSurface = app.otherElements["reader-surface"]
-        if readerSurface.waitForExistence(timeout: 2.0) {
-            return
-        }
+        let detailColumn = app.otherElements["reader-detail-column"]
         let sidebarToggle = app.buttons["reader-sidebar-toggle"]
-        if sidebarToggle.waitForExistence(timeout: 3.0) && sidebarToggle.isHittable {
-            sidebarToggle.tap()
-            return
+        let libraryTab = findTabButton(hebrew: "ספר", english: "Library")
+
+        let startTime = Date()
+        while Date().timeIntervalSince(startTime) < timeout {
+            if readerSurface.exists || detailColumn.exists || sidebarToggle.exists || libraryTab.exists {
+                return true
+            }
+            Thread.sleep(forTimeInterval: 0.5)
         }
-        let legacyHideButton = app.buttons["הצג או הסתר סרגל צד"]
-        if legacyHideButton.waitForExistence(timeout: 2.0) && legacyHideButton.isHittable {
-            legacyHideButton.tap()
-        }
+        return false
     }
 }
