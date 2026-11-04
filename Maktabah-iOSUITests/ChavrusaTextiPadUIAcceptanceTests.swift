@@ -40,11 +40,12 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
 
         // Step 2: Launch into Reader (1 tab open) with all feature flags ON
         launchWithScenario(
-            "reader",
+            "readerDetail",
             backend: "sefaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
+        revealReaderDetailIfNeeded()
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground upon opening reader tab")
 
@@ -83,11 +84,12 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         flagsWithTabStripOff["CHAVRUSA_FEATURE_DUCKTABSTRIPENABLED"] = "0"
 
         launchWithScenario(
-            "reader",
+            "readerDetail",
             backend: "sefaria",
             extraEnv: flagsWithTabStripOff
         )
         dismissAlertsIfNeeded()
+        revealReaderDetailIfNeeded()
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground with Duck Tab Strip OFF")
 
@@ -99,11 +101,12 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
     /// Verifies reader TOC and study inspector transitions with all feature flags enabled.
     func testChavrusaText_iPad_AllFlagsON_ReaderTOCAndInspectorTransitions() throws {
         launchWithScenario(
-            "reader",
+            "readerDetail",
             backend: "sefaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
+        revealReaderDetailIfNeeded()
 
         let readerSurface = app.descendants(matching: .any)["reader-surface"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear")
@@ -129,5 +132,12 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         }
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain alive after all transitions")
+    }
+
+    private func revealReaderDetailIfNeeded() {
+        let hideSidebarButton = app.buttons["הסתרת סרגל הצד"]
+        if hideSidebarButton.waitForExistence(timeout: 2.0) && hideSidebarButton.isHittable {
+            hideSidebarButton.tap()
+        }
     }
 }

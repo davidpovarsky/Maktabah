@@ -339,11 +339,17 @@ private extension iOSMainView {
         case "reader", "readerTOC", "readerDetail":
             selectedTab = .viewer
             columnVisibility = scenario == "readerDetail" ? .detailOnly : .all
+            if scenario == "readerDetail" {
+                sidebarCoordinator.sidebarVisible = false
+            }
             await openSmokeBook(for: backend, inspectorMode: .none)
 
         case "inspector", "studyCommentaries", "studyFloating", "studyFloatingFull", "studyLinks", "studyNotes", "studyCompactLarge", "compactStudyToTOC":
             selectedTab = .viewer
             columnVisibility = ["studyCommentaries", "studyLinks", "studyNotes"].contains(scenario) ? .detailOnly : .all
+            if ["studyCommentaries", "studyLinks", "studyNotes"].contains(scenario) {
+                sidebarCoordinator.sidebarVisible = false
+            }
             await openSmokeBook(for: backend, inspectorMode: .inspector)
 
         case "commentator":
