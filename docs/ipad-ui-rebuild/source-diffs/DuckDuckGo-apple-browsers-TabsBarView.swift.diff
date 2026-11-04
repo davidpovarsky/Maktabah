@@ -8,7 +8,7 @@
                index < collectionView.numberOfItems(inSection: 0) else {
              return attributes
          }
-@@ -139,11 +140,14 @@
+@@ -139,13 +140,15 @@
  
      func frameForCurrentTabAtRest() -> CGRect? {
          guard let index = currentIndex?(), let collectionView,
@@ -18,8 +18,11 @@
      }
  
      private func attributesForItem(at indexPath: IndexPath, dragOffset: CGFloat) -> UICollectionViewLayoutAttributes? {
+-        guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes,
+-              let collectionView else {
 +        guard let collectionView, indexPath.section >= 0, indexPath.section < collectionView.numberOfSections,
 +              indexPath.item >= 0, indexPath.item < collectionView.numberOfItems(inSection: indexPath.section) else { return nil }
-         guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes,
-               let collectionView else {
++        guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
              return super.layoutAttributesForItem(at: indexPath)
+         }
+         let leading = collectionView.bounds.minX + collectionView.adjustedContentInset.left

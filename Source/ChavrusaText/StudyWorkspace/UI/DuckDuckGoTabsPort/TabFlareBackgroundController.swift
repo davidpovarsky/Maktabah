@@ -21,8 +21,10 @@ import UIKit
 
 /// Draws the active tab's flared background and keeps it in place through the current tab's
 /// context-menu preview and reorder drag.
+@MainActor
 final class TabFlareBackgroundController {
 
+    @MainActor
     private final class WeakDisplayLinkProxy {
         weak var target: TabFlareBackgroundController?
 
@@ -80,7 +82,7 @@ final class TabFlareBackgroundController {
         collectionView.insertSubview(view, at: 0)
     }
 
-    deinit {
+    isolated deinit {
         stopReorderTracking()
     }
 

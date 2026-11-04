@@ -32,6 +32,7 @@ struct StudyProfileMenu: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
+            .disabled(workspace.isSwitching)
             .accessibilityLabel("פרופיל לימוד")
             .accessibilityIdentifier("study-profile-menu")
         }

@@ -32,7 +32,7 @@ struct StudyGroupsOverview: View {
             }
             .navigationTitle("כל הכרטיסיות")
             .safeAreaInset(edge: .top) {
-                ScrollableGroupsHost(groups: workspace.groups, selectedID: workspace.selection?.groupID) { id in
+                ScrollableGroupsHost(groups: workspace.groups, selectedID: workspace.selection?.groupID, isEnabled: !workspace.isSwitching) { id in
                     Task {
                         do { try await workspace.switchGroup(to: id, manager: manager) }
                         catch { workspace.errorMessage = error.localizedDescription }
@@ -83,6 +83,10 @@ struct StudyGroupsOverview: View {
             }
         }
         .onAppear { workspace.synchronize(manager) }
+        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
+            get: { workspace.errorMessage != nil }, set: { if !$0 { workspace.errorMessage = nil } })) {
+            Button("אישור") { workspace.errorMessage = nil }
+        } message: { Text(workspace.errorMessage ?? "") }
         .accessibilityIdentifier("study-groups-overview")
     }
 

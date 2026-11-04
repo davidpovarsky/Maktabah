@@ -20,6 +20,7 @@
 import UIKit
 import Combine
 
+@MainActor
 protocol TabsBarDelegate: AnyObject {
     func tabsBar(_ controller: TabsBarViewController, didSelectTabAtIndex index: Int)
     func tabsBar(_ controller: TabsBarViewController, didRemoveTabAtIndex index: Int)

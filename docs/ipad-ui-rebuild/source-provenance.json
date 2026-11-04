@@ -124,8 +124,8 @@
     "original": "iOS/DuckDuckGo/TabSwitcher/TabFlareBackgroundController.swift",
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
     "sha256": "69bdf8e28cc9428f0293f3931e8b6c77c3f67a2acd807339720c0fd2feaf79cd",
-    "reason": "Identical source",
-    "destinationSHA256": "69bdf8e28cc9428f0293f3931e8b6c77c3f67a2acd807339720c0fd2feaf79cd"
+    "reason": "Swift 6 SDK requires UIKit owner/display-link proxy and teardown to remain on MainActor. Only isolation annotations change; all flare geometry, scrolling, animation and lifecycle logic are original.",
+    "destinationSHA256": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -133,23 +133,23 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
     "sha256": "b6445ea87271f769da5948ebc6ad9665f90659452246b91bfc5ba4245eff6cc2",
     "reason": "Guard section/item existence before section-0 accesses and layout queries; all accordion calculations unchanged.",
-    "destinationSHA256": "d1ba8b28a3b42c8ddbb96d4f38628b7a2b9a611a19f8cff24acddaa956b791be"
+    "destinationSHA256": "7a31f5ec7a6e23b5d76387c64bec91ef0d0a6ef83c422d769c63d8b691455b25"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
     "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarCell.swift",
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
     "sha256": "fd600406b508106fbb2d0297f3ea3ef67926f238de7ff0ddd0217d5769d26c32",
-    "reason": "Remove browser imports/TabObserver, adapt model/title/favicon/theme and close glyph to book domain; preserve layout, separators, pointer/hover, close visibility, drag placeholder, animation and flare geometry.",
-    "destinationSHA256": "ff58e16e4ec54eca6334daf583e264babfb92c858f5fb20f0a71398a434eecd6"
+    "reason": "Replace browser imports/TabObserver with book-domain observer; adapt model/title/favicon/theme and close glyph; preserve layout, separators, pointer/hover, close visibility, drag placeholder, animation and flare geometry.",
+    "destinationSHA256": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503"
   },
   {
     "repo": "Owner Safari prototype",
     "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
     "destination": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "reason": "Exact SafariGlass, GlassButtonGroup, GelatinMotionOnly and View modifier code; only access levels widened for downstream composition. Demo app/state/screens excluded.",
-    "destinationSHA256": "7d9a12e2fffcc6cc4ccb97d8201062abaf4a463b695f0a7ee24b6f36f822f4a2"
+    "reason": "Exact SafariGlass, GlassButtonGroup and original motion equations/gestures/springs. Widen access levels; bypass touch deformation under Reduce Motion. Demo app/state/screens excluded.",
+    "destinationSHA256": "fa4d911c69d5ea9181d371c91448d272f3b868e2332e4504cd79aadf7439de81"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -157,7 +157,7 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
     "sha256": "2aba6f273860245081a2d88bdd20902acc6099907907989e1d88d7356444ddf3",
     "reason": "Keep original width policy, accordion selection/reveal, pointer, drag/drop/reorder, context menu, flare lifecycle and cell rendering; remove browser/fire/AI/analytics/app dependencies, route callbacks to book tabs and original library. Add current-membership guards.",
-    "destinationSHA256": "c0dbaf8bfbe904f4b3d9249cf511642d02bffbd8715c8a8f0495d15f4dd0ab17"
+    "destinationSHA256": "e9d8150667a0e0912197eaadc5c1bedda9a6dd7e7744c4d3dee9b09c4ad59ace"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -182,5 +182,21 @@
     "sha256": "04b31e8a5a8b1f8913298674a3435dfeec9776ff0df3849fc177d9d2c2fc9ceb",
     "reason": "Retain original hierarchy, sizing, reorder, selection, pointer, flare and foreground tests. Exclude the two AI-chat-only tests for removed browser features; adapt hierarchy count/model/delegate to book domain. No behavioral assertion weakened.",
     "destinationSHA256": "b00cf213cd79d936f824a3f38c2c646cc1a479d862f24563bb35e047f625be20"
+  },
+  {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered unchanged except the documented query binding.",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "destinationSHA256": "d32c3ba7b6f2365fdb5c204aec41c339ae7e43b05fc3a6b915a31c5b798c1288"
+  },
+  {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+    "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation.",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "destinationSHA256": "b0e16d5800e8818edec10dd3eacdaf8e8e6554b8c74e88fa71401dcf651421a7"
   }
 ]

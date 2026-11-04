@@ -1,6 +1,6 @@
 --- iOS/DuckDuckGo/TabSwitcher/TabsBarViewController.swift
 +++ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift
-@@ -19,41 +19,17 @@
+@@ -19,41 +19,18 @@
  
  import UIKit
  import Combine
@@ -18,6 +18,7 @@
 -protocol TabsBarDelegate: NSObjectProtocol {
 -    
 +
++@MainActor
 +protocol TabsBarDelegate: AnyObject {
      func tabsBar(_ controller: TabsBarViewController, didSelectTabAtIndex index: Int)
      func tabsBar(_ controller: TabsBarViewController, didRemoveTabAtIndex index: Int)
@@ -45,7 +46,7 @@
      struct Constants {
  
          static let buttonWidth: CGFloat = 44
-@@ -73,152 +49,49 @@
+@@ -73,152 +50,49 @@
          static let aiChatMenuButtonImagePadding: CGFloat = 6
          static let aiChatMenuButtonContentInsets = NSDirectionalEdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10)
      }
@@ -212,7 +213,7 @@
          collectionView.clipsToBounds = true
          collectionView.delegate = self
          collectionView.dataSource = self
-@@ -229,28 +102,11 @@
+@@ -229,28 +103,11 @@
          let tabClick = UITapGestureRecognizer(target: self, action: #selector(selectTabWithPointer))
          tabClick.delegate = self
          collectionView.addGestureRecognizer(tabClick)
@@ -241,7 +242,7 @@
          addTabButtonBackground.translatesAutoresizingMaskIntoConstraints = false
          addTabButton.translatesAutoresizingMaskIntoConstraints = false
          view.addSubview(addTabButtonBackground)
-@@ -260,34 +116,38 @@
+@@ -260,34 +117,38 @@
          NSLayoutConstraint.activate([
              leadingConstraint,
              addTabButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -294,7 +295,7 @@
      }
  
      override func viewWillDisappear(_ animated: Bool) {
-@@ -295,144 +155,15 @@
+@@ -295,144 +156,15 @@
          tabAwaitingSelection = nil
      }
  
@@ -442,7 +443,7 @@
              refresh(tabsModel: tabsModel, scrollToSelected: scrollToSelected)
              return
          }
-@@ -452,33 +183,6 @@
+@@ -452,33 +184,6 @@
          refreshTabSwitcherButton()
      }
  
@@ -476,7 +477,7 @@
      private func scrollToSelectedTab() {
          DispatchQueue.main.async {
              guard let currentIndex = self.currentIndex else { return }
-@@ -488,14 +192,13 @@
+@@ -488,14 +193,13 @@
  
      private func scrollToTab(at indexPath: IndexPath, animated: Bool = true) {
          // Reveal the tab's original position with a glimpse of any neighbors beyond it.
@@ -494,7 +495,7 @@
      func scrollCurrentTabIntoView() {
          DispatchQueue.main.async {
              guard let currentIndex = self.currentIndex else { return }
-@@ -505,7 +208,6 @@
+@@ -505,7 +209,6 @@
          }
      }
  
@@ -502,7 +503,7 @@
      private func isPartiallyClipped(at indexPath: IndexPath) -> Bool {
          guard let attributes = collectionView.layoutAttributesForItem(at: indexPath) else { return false }
          if indexPath.item != currentIndex,
-@@ -547,8 +249,6 @@
+@@ -547,8 +250,6 @@
          collectionView.contentInset.right = layout.addTabButtonContentInsetRight + (layout.isFloored ? rampWidth : 0)
      }
  
@@ -511,7 +512,7 @@
      private func maxItemWidth(forStripWidth availableWidth: CGFloat) -> CGFloat {
          let half = availableWidth * Constants.narrowMaxItemWidthFraction
          guard let window = view.window, let windowScene = window.windowScene,
-@@ -561,26 +261,6 @@
+@@ -561,26 +262,6 @@
          return min(half, landscapeFullStripWidth * Constants.maxItemWidthFraction)
      }
  
@@ -538,7 +539,7 @@
      private func reloadData() {
          tabAwaitingSelection = nil
          collectionView.reloadData()
-@@ -589,169 +269,20 @@
+@@ -589,169 +270,20 @@
          flareBackground.update()
      }
  
@@ -710,7 +711,7 @@
  }
  
  extension TabsBarViewController: UIGestureRecognizerDelegate {
-@@ -810,7 +341,6 @@
+@@ -810,7 +342,6 @@
              animatesSelectionReveal = exposedWidth < cell.bounds.width - 0.001
          }
          defer { animatesSelectionReveal = false }
@@ -718,7 +719,7 @@
          delegate?.tabsBar(self, didSelectTabAtIndex: indexPath.row)
      }
  
-@@ -885,7 +415,7 @@
+@@ -885,7 +416,7 @@
  
      /// Gives the lifted tab a card background.
      private var tabLiftBackgroundColor: UIColor {
@@ -727,7 +728,7 @@
      }
  
      private func applyTabLiftStyle(to parameters: UIPreviewParameters, cell: UICollectionViewCell, backgroundColor: UIColor) {
-@@ -899,6 +429,7 @@
+@@ -899,6 +430,7 @@
  extension TabsBarViewController: UICollectionViewDragDelegate {
  
      func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
@@ -735,7 +736,7 @@
          tabAwaitingSelection = nil
          guard tabsModel?.get(tabAt: indexPath.row) != nil,
                let cell = collectionView.cellForItem(at: indexPath) as? TabsBarCell else { return [] }
-@@ -984,15 +515,17 @@
+@@ -984,15 +516,17 @@
  
      func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
          reorderDropSession = nil
@@ -755,7 +756,7 @@
          collectionView.performBatchUpdates({
              tabsModel.move(tab: tab, to: destinationIndexPath.row)
              collectionView.moveItem(at: sourceIndexPath, to: destinationIndexPath)
-@@ -1032,7 +565,6 @@
+@@ -1032,7 +566,6 @@
      private func refreshVisibleCellStyles() {
          tabAwaitingSelection = nil
          collectionView.collectionViewLayout.invalidateLayout()
@@ -763,7 +764,7 @@
          let current = currentIndex
          let hidesInactiveCloseButton = isStripOverflowing
          for indexPath in collectionView.indexPathsForVisibleItems {
-@@ -1054,8 +586,8 @@
+@@ -1054,8 +587,8 @@
      private func makeTabContextMenu(forTabAt index: Int) -> UIMenu? {
          guard let tab = tabsModel?.get(tabAt: index) else { return nil }
  
@@ -774,7 +775,7 @@
                                  attributes: .destructive) { [weak self] _ in
              self?.closeTabFromContextMenu(tab)
          }
-@@ -1064,8 +596,8 @@
+@@ -1064,8 +597,8 @@
              return UIMenu(children: [closeTab])
          }
  
@@ -785,7 +786,7 @@
                                        attributes: .destructive) { [weak self] _ in
              self?.closeOtherTabsFromContextMenu(keeping: tab)
          }
-@@ -1073,18 +605,16 @@
+@@ -1073,18 +606,16 @@
          return UIMenu(children: [closeTab, closeOtherTabs])
      }
  
@@ -806,7 +807,7 @@
          guard let index = tabsModel?.indexOf(tab: tab) else { return }
          delegate?.tabsBar(self, didRequestCloseOtherTabsForTabAtIndex: index)
      }
-@@ -1104,14 +634,12 @@
+@@ -1104,14 +635,12 @@
          
          guard let model = tabsModel?.get(tabAt: indexPath.row) else {
              assertionFailure("TabsBarViewController: failed to load tab at \(indexPath.row) of \(tabsCount)")
@@ -823,7 +824,7 @@
          cell.onRemove = { [weak self, weak model] in
              guard let self = self, let model = model,
                  let tabIndex = self.tabsModel?.indexOf(tab: model)
-@@ -1132,7 +660,6 @@
+@@ -1132,7 +661,6 @@
  extension TabsBarViewController {
  
      private func decorate() {
@@ -831,7 +832,7 @@
          view.backgroundColor = theme.tabsBarBackgroundColor
          view.tintColor = theme.barTintColor
          // Clear so the flare behind the cells shows through.
-@@ -1147,158 +674,3 @@
+@@ -1147,158 +675,3 @@
  
  }
  

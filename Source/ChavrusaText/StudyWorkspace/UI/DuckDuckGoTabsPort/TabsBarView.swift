@@ -148,8 +148,7 @@ final class TabsBarCollectionViewLayout: UICollectionViewFlowLayout {
     private func attributesForItem(at indexPath: IndexPath, dragOffset: CGFloat) -> UICollectionViewLayoutAttributes? {
         guard let collectionView, indexPath.section >= 0, indexPath.section < collectionView.numberOfSections,
               indexPath.item >= 0, indexPath.item < collectionView.numberOfItems(inSection: indexPath.section) else { return nil }
-        guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes,
-              let collectionView else {
+        guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else {
             return super.layoutAttributesForItem(at: indexPath)
         }
         let leading = collectionView.bounds.minX + collectionView.adjustedContentInset.left

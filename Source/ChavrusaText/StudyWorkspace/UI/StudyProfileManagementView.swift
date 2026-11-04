@@ -62,6 +62,10 @@ struct StudyProfileManagementView: View {
             }
         }
         .accessibilityIdentifier("study-profile-management")
+        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
+            get: { workspace.errorMessage != nil }, set: { if !$0 { workspace.errorMessage = nil } })) {
+            Button("אישור") { workspace.errorMessage = nil }
+        } message: { Text(workspace.errorMessage ?? "") }
     }
 
     private func profileEditor(_ profile: StudyProfile?) -> some View {

@@ -1,11 +1,26 @@
 import UIKit
 
+@MainActor
+protocol ReaderBookTabObserver: AnyObject { func didChange(tab: ReaderBookTabAdapter) }
+
 /// Book-domain dependencies for the licensed DuckDuckGo source port.
 @MainActor
 final class ReaderBookTabAdapter: Equatable {
     let id: UUID
-    var title: String
+    var title: String {
+        didSet { if title != oldValue { observers.compactMap(\.value).forEach { $0.didChange(tab: self) } } }
+    }
+    private final class WeakObserver {
+        weak var value: (any ReaderBookTabObserver)?
+        init(_ value: any ReaderBookTabObserver) { self.value = value }
+    }
+    private var observers: [WeakObserver] = []
     init(id: UUID, title: String) { self.id = id; self.title = title }
+    func addObserver(_ observer: any ReaderBookTabObserver) {
+        observers.removeAll { $0.value == nil || $0.value === observer }
+        observers.append(WeakObserver(observer))
+    }
+    func removeObserver(_ observer: any ReaderBookTabObserver) { observers.removeAll { $0.value == nil || $0.value === observer } }
     nonisolated static func == (lhs: ReaderBookTabAdapter, rhs: ReaderBookTabAdapter) -> Bool { lhs === rhs }
 }
 

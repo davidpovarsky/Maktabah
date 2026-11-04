@@ -11,6 +11,7 @@ final class StudyWorkspaceNavigationAdapter {
     var errorMessage: String?
     private var liveGroupID: UUID?
     private var liveBackend: BackendID?
+    private var checkpointTask: Task<Void, Never>?
     private var cache: [UUID: [BackendID: [iOSNavigationManager.ReaderTab]]] = [:]
 
     init(sceneID: String, store: StudyWorkspaceStore = .shared) {
@@ -44,6 +45,10 @@ final class StudyWorkspaceNavigationAdapter {
 
     func synchronize(_ manager: iOSNavigationManager) {
         guard attached, !isSwitching, let id = liveGroupID, let backend = liveBackend else { return }
+        checkpointTask?.cancel()
+        checkpointTask = nil
+        let retainedGroupIDs = Set(store.snapshot?.groups.map(\.id) ?? [])
+        cache = cache.filter { retainedGroupIDs.contains($0.key) }
         do {
             let currentBackend = BackendCoordinator.shared.activeBackendID
             // A backend switch publishes fresh tabs. Capture retained outgoing instances first.
@@ -55,6 +60,17 @@ final class StudyWorkspaceNavigationAdapter {
                 try persistProjection(manager.openTabs, activeID: manager.activeTabId, groupID: id, backend: currentBackend)
             }
         } catch { errorMessage = error.localizedDescription }
+    }
+
+    func scheduleCheckpoint(_ manager: iOSNavigationManager) {
+        guard attached, !isSwitching else { return }
+        checkpointTask?.cancel()
+        checkpointTask = Task { @MainActor [weak self] in
+            do { try await Task.sleep(for: .milliseconds(300)) }
+            catch { return }
+            guard !Task.isCancelled else { return }
+            self?.synchronize(manager)
+        }
     }
 
     func reconcileSceneSelection(_ manager: iOSNavigationManager) async {

@@ -3,6 +3,18 @@ import XCTest
 
 final class TabsLifecycleTests: XCTestCase {
     @MainActor
+    func testBookTitleChangesUpdateTheOriginalCellWithoutReloadingIt() throws {
+        let model = ReaderBookTabAdapter(id: UUID(), title: "כותרת זמנית")
+        let cell = TabsBarCell(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        cell.update(model: model, isCurrent: true, isNextCurrent: false, hidesInactiveCloseButton: false, isFireModeEnabled: false, withTheme: ReaderTabsTheme())
+        let label = try XCTUnwrap(cell.accessibilityElements?.first as? UILabel)
+        XCTAssertEqual(label.text, "כותרת זמנית")
+        model.title = "בראשית"
+        XCTAssertEqual(label.text, "בראשית")
+        XCTAssertEqual(cell.removeButton.accessibilityLabel, "סגור בראשית")
+    }
+
+    @MainActor
     func testEmptySingleManyEmptyLifecycleAndStaleLayoutQueries() {
         let controller = TabsBarViewController()
         controller.loadViewIfNeeded()

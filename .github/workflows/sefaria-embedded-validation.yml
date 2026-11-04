@@ -29,7 +29,7 @@ jobs:
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
     runs-on: xcode-27
-    timeout-minutes: 120
+    timeout-minutes: 210
 
     steps:
       - name: Checkout Repository with Submodules
@@ -51,6 +51,7 @@ jobs:
           git fetch --no-tags --depth=1 origin "$TEST_SOURCE_SHA"
           git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift" > Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
           git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
           mkdir -p build/artifacts
           git rev-parse HEAD > build/artifacts/app-source-sha.txt
           printf '%s\n' "$TEST_SOURCE_SHA" > build/artifacts/black-box-test-source-sha.txt
@@ -296,67 +297,13 @@ jobs:
           echo "Terminating standalone launch before running test runner..."
           xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
 
-      - name: Prepare genuine native data for black-box reader UI
+      - name: Run genuine native UI and visual matrix on 11 and 13 inch iPads
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
-        timeout-minutes: 10
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python3 Scripts/CI/prepare-faithful-ipad-fixtures.py
-
-      - name: Run black-box iPad acceptance and visual comparison capture
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
-        timeout-minutes: 45
+        timeout-minutes: 110
         env:
           VALIDATING_BASELINE: ${{ inputs.source_ref != '' }}
-        run: |
-          set -euo pipefail
-          echo "=== Running Unit Tests on iPad Simulator ==="
-          export PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
-          export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
-          export RCT_NO_LAUNCH_PACKAGER=1
-          export SKIP_BUNDLING=1
-          export GOOGLE_SERVICES_FILE="${PWD}/Source/GoogleService-Info.plist"
-          if [ -f sim_udid.txt ]; then
-            SIM_UDID=$(cat sim_udid.txt)
-            DESTINATION="platform=iOS Simulator,id=${SIM_UDID}"
-          else
-            DESTINATION="platform=iOS Simulator,name=iPad (10th generation)"
-          fi
-          echo "Testing on destination: ${DESTINATION}"
-          TEST_EXIT=0
-          TEST_SELECTION=(-only-testing:Maktabah-iOSUITests/FaithfulReaderVisualBaselineTests)
-          if [ "$VALIDATING_BASELINE" != true ]; then
-            TEST_SELECTION+=(
-              -only-testing:Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests
-              -only-testing:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests
-              -only-testing:Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests
-              -only-testing:Maktabah-iOSUITests/PullNavigationAcceptanceTests
-            )
-          fi
-          xcodebuild test-without-building \
-            -workspace Maktabah.xcworkspace \
-            -scheme Maktabah-iOS \
-            -destination "${DESTINATION}" \
-            -derivedDataPath build/DerivedData \
-            "${TEST_SELECTION[@]}" \
-            -resultBundlePath build/artifacts/result.xcresult \
-            2>&1 | tee build/artifacts/test-simulator.log || TEST_EXIT=$?
-
-          if [ "$TEST_EXIT" -ne 0 ]; then
-            echo "=== Simulator Crash Reports ==="
-            ls -la ~/Library/Logs/DiagnosticReports/ || true
-            for f in ~/Library/Logs/DiagnosticReports/*; do
-              [ -f "$f" ] || continue
-              echo "--- $f ---"
-              head -n 60 "$f"
-            done
-            echo "=== Simulator App System Logs ==="
-            if [ -n "${SIM_UDID:-}" ]; then
-              xcrun simctl spawn "${SIM_UDID}" log show --predicate 'process == "Maktabah" OR process == "Maktabah-iOSUITests-Runner"' --style syslog --last 5m | tail -n 100 || true
-            fi
-            exit "$TEST_EXIT"
-          fi
-
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/run-faithful-ipad-matrix.py
       - name: Upload Build & Verification Manifests
         if: always()
         uses: actions/upload-artifact@v4
@@ -369,7 +316,11 @@ jobs:
             build/artifacts/simulator-launch.png
             build/artifacts/simulator-app.log
             build/artifacts/test-simulator.log
-            build/artifacts/result.xcresult
+            build/artifacts/result*.xcresult
+            build/artifacts/test-simulator-*.log
+            build/artifacts/miniTest10-native-fixture-install-*.json
+            build/artifacts/faithful-ipad-matrix.json
+            build/artifacts/visual-*
             build/artifacts/duck-tabs.xcresult
             build/artifacts/command-palette.xcresult
             build/artifacts/app-source-sha.txt

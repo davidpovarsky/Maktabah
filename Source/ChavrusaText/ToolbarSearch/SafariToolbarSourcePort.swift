@@ -38,17 +38,23 @@ struct GlassButtonGroup<Content: View>: View {
 // Local adaptation of the movement/press behavior from Polarizz/Gelatin (MIT).
 // Color adjustments are deliberately ABSENT: no brightness or saturation changes.
 private struct GelatinMotionOnly: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var currentOffset: CGSize = .zero
     @State private var currentStretch: CGSize = CGSize(width: 1, height: 1)
     @State private var isPressed = false
 
+    @ViewBuilder
     func body(content: Content) -> some View {
-        content
+        if reduceMotion {
+            content
+        } else {
+            content
             .offset(currentOffset)
             .scaleEffect(x: currentStretch.width, y: currentStretch.height)
             .scaleEffect(isPressed ? CGFloat(1.01) : CGFloat(1))
             .simultaneousGesture(dragGesture)
             .simultaneousGesture(pressGesture)
+        }
     }
 
     private var dragGesture: some Gesture {

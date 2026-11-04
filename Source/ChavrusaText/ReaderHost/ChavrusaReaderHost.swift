@@ -72,6 +72,9 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .navigationSplitViewStyle(.balanced)
         .background(Color.appBackground.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
+        .background {
+            if let workspace { StudyWorkspaceCheckpointObserver(manager: manager, workspace: workspace) }
+        }
         .overlay(alignment: .top) {
             if searchIsExpanded {
                 GeometryReader { geometry in
@@ -109,7 +112,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             if let workspace { StudyProfileManagementView(workspace: workspace, manager: manager) }
         }
         .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
-            get: { workspace?.errorMessage != nil }, set: { if !$0 { workspace?.errorMessage = nil } })) {
+            get: { workspace?.errorMessage != nil && !showsOverview && !showsProfiles }, set: { if !$0 && !showsOverview && !showsProfiles { workspace?.errorMessage = nil } })) {
             Button("אישור") { workspace?.errorMessage = nil }
         } message: { Text(workspace?.errorMessage ?? "") }
         .accessibilityIdentifier("chavrusa-reader-host")
@@ -134,5 +137,20 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         sidebar.showLibrary()
         preferredCompactColumn = .sidebar
         withAnimation(.snappy) { columnVisibility = .all }
+    }
+}
+
+/// Keep high-frequency viewport observation out of the split-view/toolbar invalidation graph.
+private struct StudyWorkspaceCheckpointObserver: View {
+    let manager: iOSNavigationManager
+    let workspace: StudyWorkspaceNavigationAdapter
+    var body: some View {
+        Color.clear
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+            .onChange(of: manager.activeReaderViewModel?.currentLocator) { _, _ in workspace.scheduleCheckpoint(manager) }
+            .onChange(of: manager.activeReaderViewModel?.currentID) { _, _ in workspace.scheduleCheckpoint(manager) }
+            .onChange(of: manager.activeReaderViewModel?.readerState.scrollPosition) { _, _ in workspace.scheduleCheckpoint(manager) }
+            .onChange(of: manager.activeReaderViewModel?.readerState.selectedRange) { _, _ in workspace.scheduleCheckpoint(manager) }
     }
 }

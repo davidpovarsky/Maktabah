@@ -46,7 +46,7 @@
          removeButton.isPointerInteractionEnabled = true
          removeButton.pointerStyleProvider = { [weak self] button, _, _ in
              self?.pointerStyle(for: button)
-@@ -273,19 +268,17 @@
+@@ -273,12 +268,12 @@
          
      }
  
@@ -60,15 +60,8 @@
 +                withTheme theme: ReaderTabsTheme) {
          accessibilityElements = [label, removeButton]
  
--        self.model?.removeObserver(self)
- 
-         self.model = model
-         self.isFireModeEnabled = isFireModeEnabled
--        model.addObserver(self)
- 
-         label.primaryColor = theme.barTintColor
-         applyCurrentStyle(isCurrent: isCurrent, isNextCurrent: isNextCurrent, hidesInactiveCloseButton: hidesInactiveCloseButton, withTheme: theme)
-@@ -293,7 +286,7 @@
+         self.model?.removeObserver(self)
+@@ -293,7 +288,7 @@
          applyModel(model)
      }
  
@@ -77,7 +70,7 @@
          self.isCurrent = isCurrent
          updateZPosition(isCurrent ? 2 : min(layer.zPosition, 0))
          // Edge tabs overlap; an opaque inactive tab keeps the covered title from showing through.
-@@ -360,14 +353,13 @@
+@@ -360,12 +355,12 @@
          labelRemoveButtonConstraint?.isActive = showsCloseButton
      }
  
@@ -90,11 +83,9 @@
 -    func configurePlaceholder(withTheme theme: Theme) {
 +    func configurePlaceholder(withTheme theme: ReaderTabsTheme) {
          backgroundColor = .clear
--        self.model?.removeObserver(self)
+         self.model?.removeObserver(self)
          self.model = nil
-         onRemove = nil
- 
-@@ -385,53 +377,12 @@
+@@ -385,51 +380,17 @@
          removeButton.isHidden = true
      }
  
@@ -139,18 +130,19 @@
 -        return UserText.closeHomeTab
 -    }
 -    
--}
--
--extension TabsBarCell: TabObserver {
--    func didChange(tab: Tab) {
--        guard tab == self.model else { return }
--        applyModel(tab)
 +    private func applyModel(_ model: ReaderBookTabAdapter) {
 +        faviconImage.image = UIImage(systemName: "book.closed")
 +        label.text = model.title
 +        label.accessibilityLabel = model.title
 +        label.accessibilityIdentifier = "reader-document-tab-" + model.id.uuidString
 +        removeButton.accessibilityLabel = "סגור " + model.title
-     }
++    }
  }
  
+-extension TabsBarCell: TabObserver {
+-    func didChange(tab: Tab) {
++extension TabsBarCell: ReaderBookTabObserver {
++    func didChange(tab: ReaderBookTabAdapter) {
+         guard tab == self.model else { return }
+         applyModel(tab)
+     }

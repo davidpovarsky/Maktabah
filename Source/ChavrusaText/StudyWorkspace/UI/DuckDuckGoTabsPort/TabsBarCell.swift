@@ -276,9 +276,11 @@ class TabsBarCell: UICollectionViewCell {
                 withTheme theme: ReaderTabsTheme) {
         accessibilityElements = [label, removeButton]
 
+        self.model?.removeObserver(self)
 
         self.model = model
         self.isFireModeEnabled = isFireModeEnabled
+        model.addObserver(self)
 
         label.primaryColor = theme.barTintColor
         applyCurrentStyle(isCurrent: isCurrent, isNextCurrent: isNextCurrent, hidesInactiveCloseButton: hidesInactiveCloseButton, withTheme: theme)
@@ -360,6 +362,7 @@ class TabsBarCell: UICollectionViewCell {
     /// cell is left visually empty and non-interactive; a subsequent refresh replaces it.
     func configurePlaceholder(withTheme theme: ReaderTabsTheme) {
         backgroundColor = .clear
+        self.model?.removeObserver(self)
         self.model = nil
         onRemove = nil
 
@@ -383,6 +386,13 @@ class TabsBarCell: UICollectionViewCell {
         label.accessibilityLabel = model.title
         label.accessibilityIdentifier = "reader-document-tab-" + model.id.uuidString
         removeButton.accessibilityLabel = "סגור " + model.title
+    }
+}
+
+extension TabsBarCell: ReaderBookTabObserver {
+    func didChange(tab: ReaderBookTabAdapter) {
+        guard tab == self.model else { return }
+        applyModel(tab)
     }
 }
 
