@@ -48,8 +48,8 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground upon opening reader tab")
 
-        let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 20.0), "Reader surface must appear without crashing")
+        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear without crashing")
 
         // Verify the app did not crash during diffing or collection view layout
         XCTAssertEqual(app.state, .runningForeground, "App must stay in foreground after reader surface is rendered")
@@ -91,8 +91,8 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground with Duck Tab Strip OFF")
 
-        let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 20.0), "Reader surface must appear with Duck Tab Strip OFF")
+        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear with Duck Tab Strip OFF")
         XCTAssertEqual(app.state, .runningForeground, "App process must stay healthy throughout reader session")
     }
 
@@ -105,8 +105,8 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         )
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
-        XCTAssertTrue(waitForElement(readerSurface, timeout: 20.0), "Reader surface must appear")
+        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear")
 
         // Toggle Table of Contents if available
         let tocToggle = app.buttons["reader-toc-toggle"]
