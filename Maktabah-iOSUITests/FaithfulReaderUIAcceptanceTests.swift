@@ -147,7 +147,9 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         capture("candidate-reader-landscape")
         let tocDot = app.buttons["reader-sidebar-page-1"]
         let libraryDot = app.buttons["reader-sidebar-page-0"]
-        if !tocDot.exists { tap(app.buttons["reader-host-sidebar-toggle"]) }
+        if !tocDot.exists || !tocDot.frame.intersects(app.frame) || tocDot.frame.isEmpty {
+            tap(app.buttons["reader-host-sidebar-toggle"])
+        }
         let originalReaderWidth = app.textViews["reader-text"].frame.width
         let originalLocator = app.staticTexts["reader-current-locator"].label
         for _ in 0..<20 {
@@ -232,7 +234,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     func testHistoryRemainsGlobalAndIsAbsentFromBookSearch() {
-        let query = "בדיקת היסטוריה ייחודית"
+        let query = "בדיקת היסטוריה " + UUID().uuidString
         launchReader(scenario: "search")
         let globalInput = app.textFields.firstMatch
         tap(globalInput)
