@@ -24,20 +24,31 @@ runtimes = [runtime for runtime in sim_json("list", "runtimes", "available")["ru
             and runtime["version"].split(".")[0] == "27"]
 if not runtimes:
     raise SystemExit("Required iPadOS 27 runtime is unavailable; older Simulator results cannot satisfy this gate")
-runtime = max(runtimes, key=lambda value: tuple(map(int, value["version"].split("."))))
+runtimes.sort(key=lambda value: tuple(map(int, value["version"].split("."))), reverse=True)
 device_types = sim_json("list", "devicetypes")["devicetypes"]
 baseline = os.environ.get("VALIDATING_BASELINE") == "true"
 app_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
 report = {"appSHA": app_sha, "testSHA": os.environ.get("GITHUB_SHA"), "baseline": baseline,
-          "configuration": "Debug", "dataProfile": "miniTest10", "runtime": runtime, "devices": []}
+          "configuration": "Debug", "dataProfile": "miniTest10", "devices": []}
+
+def create_compatible_ipad(size):
+    candidates = [value for value in device_types if "iPad Pro" in value["name"] and f"{size}-inch" in value["name"]]
+    # Some installed device profiles (e.g. RAM variants) are incompatible with
+    # an otherwise available runtime. Let CoreSimulator verify each exact pair.
+    candidates.sort(key=lambda value: ("16GB" in value["identifier"], value["identifier"]))
+    failures = []
+    for runtime in runtimes:
+        for device_type in candidates:
+            result = subprocess.run(["xcrun", "simctl", "create", f"Faithful {size}-inch {uuid.uuid4().hex[:8]}",
+                                     device_type["identifier"], runtime["identifier"]], text=True, capture_output=True)
+            if result.returncode == 0:
+                return result.stdout.strip(), device_type, runtime, failures
+            failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
+    raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
 
 for index, size in enumerate(["11", "13"]):
-    device_type = next((value for value in device_types if "iPad Pro" in value["name"] and f"{size}-inch" in value["name"]), None)
-    if device_type is None:
-        raise SystemExit(f"Required {size}-inch iPad Pro device type is unavailable")
-    udid = subprocess.check_output(["xcrun", "simctl", "create", f"Faithful {size}-inch {uuid.uuid4().hex[:8]}",
-                                    device_type["identifier"], runtime["identifier"]], text=True).strip()
-    device = {"size": size, "type": device_type, "udid": udid, "status": "NOT_RUN"}
+    udid, device_type, runtime, failures = create_compatible_ipad(size)
+    device = {"size": size, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
     report["devices"].append(device)
     try:
         subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
