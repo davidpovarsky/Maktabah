@@ -17,6 +17,7 @@ artifacts = root / "build/artifacts"
 artifacts.mkdir(parents=True, exist_ok=True)
 report = {"appSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
           "configuration": "Release", "dataProfile": "production", "status": "NOT_RUN"}
+(artifacts / "production-release-acceptance.json").write_text(json.dumps(report, indent=2))
 def run(command, **kwargs):
     return subprocess.run(command, check=True, **kwargs)
 def sim_json(*args):
@@ -96,7 +97,15 @@ try:
     if code or report["executedXCTestCount"] == 0 or not suite_passed or verification.returncode:
         raise SystemExit("The actual full-corpus Release UI acceptance failed or did not execute")
     report["status"] = "EXECUTED_PASS"
+except BaseException as error:
+    report["status"] = "FAIL"
+    report["error"] = f"{type(error).__name__}: {error}"
+    try:
+        subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, "production"], check=False, timeout=150)
+    except subprocess.TimeoutExpired:
+        report["diagnostics"] = "TIMEOUT"
+    raise
 finally:
     (artifacts / "production-release-acceptance.json").write_text(json.dumps(report, indent=2))
-    subprocess.run(["xcrun", "simctl", "shutdown", udid], check=False, capture_output=True)
-    subprocess.run(["xcrun", "simctl", "delete", udid], check=False, capture_output=True)
+    subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
+    subprocess.run(["xcrun", "simctl", "delete", udid], check=True, capture_output=True, timeout=120)

@@ -286,6 +286,10 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         launchReader()
         assertReaderHasText()
         XCTAssertTrue(app.descendants(matching: .any)["chavrusa-reader-host"].waitForExistence(timeout: 30))
+        let created = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: sidecar.path)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [created], timeout: 15), .completed)
         app.terminate()
         let enabledBytes = try Data(contentsOf: sidecar)
         launchReader(enabled: false)
