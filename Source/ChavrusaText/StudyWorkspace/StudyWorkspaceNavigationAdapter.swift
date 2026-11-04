@@ -32,14 +32,10 @@ final class StudyWorkspaceNavigationAdapter {
             let backend = BackendCoordinator.shared.activeBackendID
             try store.attach(scene: sceneID, legacyTabs: capture(manager.openTabs, backend: backend), activeID: manager.activeTabId)
             attached = true
-            if let selected = group, !selected.tabs.isEmpty {
+            if let selected = group {
                 // Restore the sidecar's selected group; never import the canonical session twice.
                 try await switchGroup(to: selected.id, manager: manager)
-            } else {
-                liveGroupID = group?.id
-                liveBackend = backend
-                if let id = liveGroupID { cache[id, default: [:]][backend] = manager.openTabs }
-            }
+            } else { throw StudyWorkspaceError.invalidMembership }
         } catch { errorMessage = error.localizedDescription }
     }
 

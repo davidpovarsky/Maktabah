@@ -1,14 +1,43 @@
 import XCTest
 
+/// Runs the supplied prototype in its own app, never demo code in Maktabah.
+final class SafariPrototypeReferenceTests: XCTestCase {
+    func testOriginalCompactAndExpandedToolbarOracle() {
+        continueAfterFailure = false
+        let prototype = XCUIApplication(bundleIdentifier: "com.example.safaritoolbarsearch")
+        prototype.launchArguments = ["-AppleLanguages", "(he)", "-AppleLocale", "he_IL"]
+        prototype.launch()
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            let field = prototype.textFields["חיפוש או הזנת כתובת"]
+            XCTAssertTrue(field.waitForExistence(timeout: 30))
+            let compact = XCTAttachment(screenshot: prototype.screenshot())
+            compact.name = "prototype-compact-\(orientation.isLandscape ? "landscape" : "portrait")"
+            compact.lifetime = .keepAlways
+            add(compact)
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        prototype.textFields["חיפוש או הזנת כתובת"].tap()
+        let result = prototype.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 15), "The original CommandPalette must actually expand")
+        let expanded = XCTAttachment(screenshot: prototype.screenshot())
+        expanded.name = "prototype-expanded-command-palette"
+        expanded.lifetime = .keepAlways
+        add(expanded)
+        prototype.terminate()
+    }
+}
+
 /// Black-box tests use the actual production-default flags and original views.
 /// A unique sidecar namespace isolates tests without changing canonical sessions/data.
 class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
-    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria") {
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0) {
         launchWithTier(.smoke, scenario: scenario, backend: backend, extraArgs: [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
-            "-studyWorkspaceTestingNamespace", workspaceNamespace
-        ])
+            "-studyWorkspaceTestingNamespace", workspaceNamespace,
+            "-textViewBackgroundColorLight", String(background)
+        ], language: language, locale: language == "he" ? "he_IL" : "en_US")
         dismissAlertsIfNeeded()
     }
     func tap(_ element: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
@@ -37,21 +66,52 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
 }
 
 final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
+    func testOriginalReaderThemes() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        for (name, index) in [("light", 0), ("dark", 4), ("sepia", 1)] {
+            launchReader(enabled: false, scenario: "readerDetail", background: index)
+            assertReaderHasText()
+            capture("baseline-reader-theme-\(name)")
+        }
+    }
+
     func testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots() {
-        for scenario in ["catalog", "reader", "readerTOC", "search", "annotationsList", "studyCommentaries"] {
+        for scenario in ["catalog", "reader", "readerDetail", "readerTOC", "search", "annotationsList", "studyCommentaries"] {
             launchReader(enabled: false, scenario: scenario)
             XCTAssertTrue(findTabButton(hebrew: "ספר", english: "Library").waitForExistence(timeout: 60))
-            if ["reader", "readerTOC", "studyCommentaries"].contains(scenario) { assertReaderHasText() }
+            if ["reader", "readerDetail", "readerTOC", "studyCommentaries"].contains(scenario) { assertReaderHasText() }
             for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
                 XCUIDevice.shared.orientation = orientation
                 capture("baseline-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
             }
             XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
         }
+        launchReader(enabled: false, scenario: "readerDetail", language: "en")
+        assertReaderHasText()
+        capture("baseline-reader-detail-en")
     }
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testCandidateReaderThemes() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        for (name, index) in [("light", 0), ("dark", 4), ("sepia", 1)] {
+            launchReader(scenario: "readerDetail", background: index)
+            assertReaderHasText()
+            capture("candidate-reader-theme-\(name)")
+        }
+    }
+
+    func testEnglishReaderAndOriginalPaletteInLeftToRightLayout() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(scenario: "readerDetail", language: "en")
+        assertReaderHasText()
+        capture("candidate-reader-detail-en")
+        tap(app.textFields["reader-library-search-field"])
+        XCTAssertTrue(app.descendants(matching: .any)["reader-library-command-palette"].waitForExistence(timeout: 15))
+        capture("candidate-command-palette-en")
+    }
+
     func testCandidateUnchangedScreensAndTrimmedOriginalInspector() {
         for scenario in ["search", "annotationsList", "studyCommentaries"] {
             launchReader(scenario: scenario)
@@ -73,11 +133,15 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let tocDot = app.buttons["reader-sidebar-page-1"]
         let libraryDot = app.buttons["reader-sidebar-page-0"]
         if !tocDot.exists { tap(app.buttons["reader-host-sidebar-toggle"]) }
+        let originalReaderWidth = app.textViews["reader-text"].frame.width
+        let originalLocator = app.staticTexts["reader-current-locator"].label
         for _ in 0..<20 {
             tap(tocDot)
             XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
             tap(libraryDot)
             XCTAssertTrue(app.descendants(matching: .any)["library-column"].exists)
+            XCTAssertEqual(app.textViews["reader-text"].frame.width, originalReaderWidth, accuracy: 1, "Sidebar page changes must preserve reader width")
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator, "Sidebar page changes must not navigate the book")
         }
         let pager = app.descendants(matching: .any)["reader-sidebar-pager"]
         for _ in 0..<20 {
@@ -145,9 +209,34 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["סיום"])
         app.terminate()
         launchReader(scenario: "catalog")
+        XCTAssertTrue(app.buttons["כל הכרטיסיות"].waitForExistence(timeout: 30))
+        XCTAssertFalse(app.textViews["reader-text"].exists, "The empty sidecar group must suppress stale legacy-session resurrection")
         tap(app.buttons["כל הכרטיסיות"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Empty selection must survive app relaunch without importing old tabs again")
         XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)
+    }
+
+    func testHistoryRemainsGlobalAndIsAbsentFromBookSearch() {
+        let query = "בדיקת היסטוריה ייחודית"
+        launchReader(scenario: "search")
+        let globalInput = app.textFields.firstMatch
+        tap(globalInput)
+        globalInput.typeText(query + "\n")
+        tap(globalInput)
+        let historyRow = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch
+        XCTAssertTrue(historyRow.waitForExistence(timeout: 20), "A submitted global query must appear in the original global history")
+        capture("candidate-global-search-history")
+        app.terminate()
+        launchReader()
+        assertReaderHasText()
+        let bottomToolbar = app.toolbars.containing(.button, identifier: "reader-more-menu").firstMatch
+        let bookSearch = bottomToolbar.buttons.matching(NSPredicate(format: "label == 'חיפוש' OR label == 'Search'")).firstMatch
+        tap(bookSearch)
+        let bookInput = app.searchFields.firstMatch
+        tap(bookInput)
+        XCTAssertFalse(app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch.exists,
+                       "The same genuine history query must not be offered inside book-local search")
+        capture("candidate-book-search-without-global-history")
     }
 
     func testThreeProfilesWithThreeGroupsThroughNativeManagement() {

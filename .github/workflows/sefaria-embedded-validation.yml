@@ -52,6 +52,9 @@ jobs:
           git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift" > Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
           git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/build-faithful-prototype-reference.py" > Scripts/CI/build-faithful-prototype-reference.py
+          mkdir -p tools/faithful-ui-reference
+          git show "$TEST_SOURCE_SHA:tools/faithful-ui-reference/MyApp.swift" > tools/faithful-ui-reference/MyApp.swift
           mkdir -p build/artifacts
           git rev-parse HEAD > build/artifacts/app-source-sha.txt
           printf '%s\n' "$TEST_SOURCE_SHA" > build/artifacts/black-box-test-source-sha.txt
@@ -297,6 +300,10 @@ jobs:
           echo "Terminating standalone launch before running test runner..."
           xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
 
+      - name: Build the supplied original prototype as an isolated visual oracle
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
+        run: python3 Scripts/CI/build-faithful-prototype-reference.py
+
       - name: Run genuine native UI and visual matrix on 11 and 13 inch iPads
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
         timeout-minutes: 110
@@ -320,6 +327,7 @@ jobs:
             build/artifacts/test-simulator-*.log
             build/artifacts/miniTest10-native-fixture-install-*.json
             build/artifacts/faithful-ipad-matrix.json
+            build/artifacts/prototype-reference-manifest.json
             build/artifacts/visual-*
             build/artifacts/duck-tabs.xcresult
             build/artifacts/command-palette.xcresult

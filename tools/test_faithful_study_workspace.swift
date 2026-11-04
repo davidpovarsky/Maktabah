@@ -99,6 +99,18 @@ struct FaithfulStudyWorkspaceTests {
         try expect(ReaderNavigationDisplayPolicy.title(workTitle: "שבת", navigationUnitTitle: "ג:", explicitSelectionRef: "שבת ג: פסקה ב") == "שבת ג: פסקה ב", "Only explicit selection may expose paragraph position")
         try expect(ReaderNavigationDisplayPolicy.title(workTitle: "שבת", navigationUnitTitle: nil, explicitSelectionRef: nil) == "שבת", "Missing unit never fabricates a paragraph")
         try expect(ReaderNavigationDisplayPolicy.title(workTitle: "תהילים", navigationUnitTitle: "פרק א", explicitSelectionRef: nil) == "תהילים, פרק א", "Book-specific unit titles are used without forcing Talmud structure")
+        let ancestry: [ReaderNavigationDisplayPolicy.Entry] = [
+            .init(id: 1, parentID: nil, title: "שבת"),
+            .init(id: 2, parentID: 1, title: "פרק ראשון"),
+            .init(id: 3, parentID: 2, title: "ג:"),
+            .init(id: 4, parentID: 3, title: "פסקה ב")
+        ]
+        try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 4, entries: ancestry) == "ג:", "Actual ancestry chooses the nearest daf, not the highest chapter")
+        try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 3, entries: ancestry) == "ג:", "A leaf daf retains its original amud punctuation")
+        try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 2, entries: ancestry) == "פרק ראשון", "A genuine chapter uses its own canonical title")
+        try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 1, entries: ancestry) == nil, "Root work metadata cannot fabricate a section")
+        try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 2, entries: [.init(id: 1, parentID: nil, title: "ספר"), .init(id: 2, parentID: 1, title: "פסקה ב")]) == nil, "A paragraph leaf alone must not become a navigation unit")
+        try expect(ReaderNavigationDisplayPolicy.navigationUnitTitle(containing: 4, entries: [.init(id: 1, parentID: nil, title: "ספר"), .init(id: 3, parentID: 1, title: "הלכות שבת"), .init(id: 4, parentID: 3, title: "פסקה א")]) == "הלכות שבת", "Book-specific branching section names need no fixed hierarchy depth")
         print("PASS: \(checks) workspace persistence/migration/rollback/scene/semantic-location checks")
     }
 

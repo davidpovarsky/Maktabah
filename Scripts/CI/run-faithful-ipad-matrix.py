@@ -12,6 +12,7 @@ root = Path.cwd()
 artifacts = root / "build/artifacts"
 artifacts.mkdir(parents=True, exist_ok=True)
 app = root / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
+prototype = root / "build/SafariPrototypeReference/DerivedData/Build/Products/Debug-iphonesimulator/SafariPrototypeReference.app"
 if not app.is_dir():
     raise SystemExit("The actual built app is missing")
 
@@ -42,11 +43,12 @@ for index, size in enumerate(["11", "13"]):
         subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
         subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
         subprocess.run(["xcrun", "simctl", "install", udid, str(app)], check=True, timeout=180)
+        subprocess.run(["xcrun", "simctl", "install", udid, str(prototype)], check=True, timeout=180)
         (root / "sim_udid.txt").write_text(udid)
         subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], check=True)
         fixture_report = artifacts / "miniTest10-native-fixture-install.json"
         fixture_report.rename(artifacts / f"miniTest10-native-fixture-install-{size}.json")
-        selection = ["FaithfulReaderVisualBaselineTests"]
+        selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
         if not baseline:
             selection.append("FaithfulReaderUIAcceptanceTests")
             if index == 0:
