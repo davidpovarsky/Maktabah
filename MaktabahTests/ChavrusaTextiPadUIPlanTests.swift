@@ -342,6 +342,33 @@ struct ChavrusaTextiPadUIPlanTests {
         let widthFor30 = ReaderTabStripLayout.calculateTabWidth(forTabCount: 30, availableWidth: 800)
         #expect(widthFor30 == ReaderTabStripLayout.minTabWidth)
     }
+
+    @Test("Plan C2: ReaderDocumentTabsBarController transitions across 0, 1, and multiple tabs without section assertion crashes")
+    @MainActor
+    func testReaderDocumentTabsBarControllerLifecycle() {
+        let controller = ReaderDocumentTabsBarController()
+        controller.loadViewIfNeeded()
+
+        // 0 tabs initially
+        controller.apply(items: [], availableGroups: [], activeGroupID: nil, animated: false)
+
+        // 1 tab added
+        let tab1 = ReaderTabStripItemModel(id: UUID(), title: "Genesis", isSelected: true)
+        controller.apply(items: [tab1], availableGroups: [], activeGroupID: nil, animated: false)
+
+        // Multiple tabs added
+        let tab2 = ReaderTabStripItemModel(id: UUID(), title: "Exodus", isSelected: false)
+        let tab3 = ReaderTabStripItemModel(id: UUID(), title: "Leviticus", isSelected: false)
+        controller.apply(items: [tab1, tab2, tab3], availableGroups: [], activeGroupID: nil, animated: false)
+
+        // Tab selection change
+        let tab2Selected = ReaderTabStripItemModel(id: tab2.id, title: "Exodus", isSelected: true)
+        let tab1Unselected = ReaderTabStripItemModel(id: tab1.id, title: "Genesis", isSelected: false)
+        controller.apply(items: [tab1Unselected, tab2Selected, tab3], availableGroups: [], activeGroupID: nil, animated: false)
+
+        // Transition back to 0 tabs
+        controller.apply(items: [], availableGroups: [], activeGroupID: nil, animated: false)
+    }
     #endif
 
     @Test("Plan D: Inspector presentation policy depends on available width rather than 3-column visibility")
