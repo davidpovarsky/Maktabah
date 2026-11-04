@@ -182,7 +182,13 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         for scenario in ["search", "annotationsList", "studyCommentaries"] {
             launchReader(scenario: scenario)
             XCTAssertTrue(findTabButton(hebrew: "ספר", english: "Library").waitForExistence(timeout: 60))
-            if scenario == "studyCommentaries" { assertReaderHasText() }
+            if scenario == "studyCommentaries" {
+                assertReaderHasText()
+                XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-panel"].waitForExistence(timeout: 30), "The original Inspector must actually be presented")
+                XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].waitForExistence(timeout: 15), "Original study-tool actions must remain available")
+                XCTAssertFalse(app.staticTexts["כלי לימוד"].exists, "The redundant visual study-tools heading must be removed")
+                XCTAssertFalse(app.staticTexts["קטע נבחר"].exists, "The redundant visual selected-segment heading must be removed")
+            }
             for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
                 XCUIDevice.shared.orientation = orientation
                 capture("candidate-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
