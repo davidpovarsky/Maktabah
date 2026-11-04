@@ -180,7 +180,7 @@
     "original": "iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarViewControllerSizingTests.swift",
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
     "sha256": "04b31e8a5a8b1f8913298674a3435dfeec9776ff0df3849fc177d9d2c2fc9ceb",
-    "reason": "Retain original hierarchy, sizing, reorder, selection, pointer, flare and foreground tests. Exclude the two AI-chat-only tests for removed browser features; adapt hierarchy count/model/delegate to book domain. No behavioral assertion weakened.",
+    "reason": "Retain original hierarchy, sizing, reorder, selection, pointer, flare and foreground assertions. Exclude only two AI-chat-only tests for removed browser features. Use a real UIApplication test host, immutable nonisolated Progress, and 340pt narrow fixtures (including the original pointer conditional) to preserve the strict one-to-two-tab viewport after browser controls are removed. No behavioral assertion weakened.",
     "destinationSHA256": "8b5002462ce45aa379b69e5a7c69afbf4507f93e75f16bd106a8126fad392994"
   },
   {
