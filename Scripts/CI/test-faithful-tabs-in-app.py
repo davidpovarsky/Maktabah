@@ -69,4 +69,4 @@ scheme += reference("Tests", "FaithfulTabsTests.xctest") + '</TestableReference>
 subprocess.run(["plutil", "-lint", str(project / "project.pbxproj")], check=True)
 udid = (root / "sim_udid.txt").read_text().strip()
 subprocess.run(["xcodebuild", "test", "-project", str(project), "-scheme", "FaithfulTabsTests", "-destination", f"platform=iOS Simulator,id={udid}",
-                "-resultBundlePath", str(root / "build/artifacts/duck-tabs.xcresult")], check=True)
+                "-resultBundlePath", str(root / "build/artifacts/duck-tabs.xcresult"), "ONLY_ACTIVE_ARCH=YES", "ARCHS=arm64"], check=True)
