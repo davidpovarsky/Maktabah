@@ -45,6 +45,12 @@ jobs:
     timeout-minutes: 360
 
     steps:
+      - name: Require Debug UI acceptance before the production Release gate
+        if: ${{ inputs.run_production_release && !inputs.run_simulator_tests }}
+        run: |
+          echo "::error::Production Release acceptance requires the real Debug UI matrix in the same run."
+          exit 1
+
       - name: Checkout Repository with Submodules
         uses: actions/checkout@v4
         with:
@@ -327,6 +333,7 @@ jobs:
         run: python3 Scripts/CI/build-faithful-prototype-reference.py
 
       - name: Run genuine native UI and visual matrix on 11 and 13 inch iPads
+        id: faithful_ui_matrix
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
         timeout-minutes: 110
         env:
@@ -334,7 +341,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 Scripts/CI/run-faithful-ipad-matrix.py
       - name: Full native production corpus and Release UI acceptance
-        if: ${{ inputs.run_production_release && inputs.source_ref == '' }}
+        if: ${{ inputs.run_production_release && inputs.source_ref == '' && steps.faithful_ui_matrix.outcome == 'success' }}
         timeout-minutes: 120
         env:
           GH_TOKEN: ${{ github.token }}
