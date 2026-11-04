@@ -123,6 +123,20 @@ final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testNewManagementScreensExposeMeaningfulAccessibilityDescriptions() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
+        try app.performAccessibilityAudit(for: .sufficientElementDescription)
+        tap(app.buttons["סיום"])
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["ניהול פרופילי לימוד"])
+        XCTAssertTrue(app.descendants(matching: .any)["study-profile-management"].waitForExistence(timeout: 15))
+        try app.performAccessibilityAudit(for: .sufficientElementDescription)
+    }
+
     func testCandidateReaderThemes() {
         XCUIDevice.shared.orientation = .landscapeLeft
         for (name, index) in [("light", 0), ("dark", 4), ("sepia", 1)] {

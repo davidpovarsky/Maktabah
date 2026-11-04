@@ -20,6 +20,7 @@ struct StudyProfileManagementView: View {
                             Button("עריכה", systemImage: "pencil") { editing = profile }
                             Button("מחיקה", systemImage: "trash", role: .destructive) { deleting = profile }
                         } label: { Image(systemName: "ellipsis.circle").frame(width: 44, height: 44) }
+                        .accessibilityLabel("פעולות בפרופיל \(profile.name)")
                     }
                 }
                 .onMove { source, destination in
@@ -104,6 +105,7 @@ private struct StudyGroupManagementView: View {
                                     }
                                 }
                             } label: { Image(systemName: "ellipsis.circle").frame(width: 44, height: 44) }
+                            .accessibilityLabel("פעולות בקבוצה \(group.name)")
                         }
                     }
                     .onMove { source, destination in

@@ -120,6 +120,7 @@ struct StudyGroupsOverview: View {
                         Button("העתק אל \(target.name)") { workspace.moveTab(document.id, to: target.id, copy: true, manager: manager) }
                     }
                 } label: { Image(systemName: "ellipsis").frame(width: 44, height: 44) }
+                .accessibilityLabel("פעולות בכרטיסייה \(document.session.bookTitle ?? "ספר")")
                 Spacer()
                 Button(role: .destructive) {
                     if manager.openTabs.contains(where: { $0.id == document.id }) {
