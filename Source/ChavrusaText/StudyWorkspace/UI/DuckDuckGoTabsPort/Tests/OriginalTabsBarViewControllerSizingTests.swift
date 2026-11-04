@@ -452,7 +452,7 @@ private final class TabsDragDropSession: NSObject, UIDragSession, UIDropSession 
     var allowsMoveOperation: Bool { true }
     var isRestrictedToDraggingApplication: Bool { true }
     var progressIndicatorStyle: UIDropSessionProgressIndicatorStyle = .none
-    var progress = Progress(totalUnitCount: 0)
+    nonisolated let progress = Progress(totalUnitCount: 0)
     private let locationView: UIView
     var point: CGPoint
 
