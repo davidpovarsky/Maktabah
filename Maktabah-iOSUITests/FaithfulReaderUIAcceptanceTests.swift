@@ -373,6 +373,10 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["ניהול פרופילי לימוד"])
         XCTAssertTrue(app.descendants(matching: .any)["study-profile-management"].waitForExistence(timeout: 15))
         try app.performAccessibilityAudit(for: .sufficientElementDescription)
+        tap(app.buttons["פרופיל לימוד חדש"])
+        XCTAssertTrue(app.textFields["שם הפרופיל"].waitForExistence(timeout: 15))
+        try app.performAccessibilityAudit(for: .sufficientElementDescription)
+        tap(app.buttons["ביטול"])
     }
 
     func testCandidateReaderThemes() {

@@ -140,6 +140,8 @@ private struct StudyProfileEditor: View {
     @State private var name: String
     @State private var symbol: String
     private let symbols = ["person.crop.circle", "book.closed", "books.vertical", "graduationcap", "star"]
+    private let symbolLabels = ["person.crop.circle": "אישי", "book.closed": "ספר", "books.vertical": "ספרים",
+                                "graduationcap": "לימוד", "star": "מועדף"]
     init(profile: StudyProfile?, onSave: @escaping (String, String) -> Bool) {
         self.profile = profile; self.onSave = onSave
         _name = State(initialValue: profile?.name ?? "")
@@ -150,7 +152,9 @@ private struct StudyProfileEditor: View {
             Form {
                 TextField("שם הפרופיל", text: $name)
                 Picker("סמל", selection: $symbol) {
-                    ForEach(symbols, id: \.self) { Image(systemName: $0).tag($0) }
+                    ForEach(symbols, id: \.self) { choice in
+                        Image(systemName: choice).accessibilityLabel(symbolLabels[choice] ?? choice).tag(choice)
+                    }
                 }
             }
             .navigationTitle(profile == nil ? "פרופיל חדש" : "עריכת פרופיל")
