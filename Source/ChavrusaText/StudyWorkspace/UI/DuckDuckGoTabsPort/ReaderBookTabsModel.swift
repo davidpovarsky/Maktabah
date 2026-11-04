@@ -54,5 +54,5 @@ struct ReaderTabsTheme {
 }
 
 extension CGFloat {
-    func clamped(to range: ClosedRange<CGFloat>) -> CGFloat { min(max(self, range.lowerBound), range.upperBound) }
+    func clamped(to range: ClosedRange<CGFloat>) -> CGFloat { Swift.min(Swift.max(self, range.lowerBound), range.upperBound) }
 }

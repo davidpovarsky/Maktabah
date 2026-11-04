@@ -477,6 +477,30 @@ index b1da0865..2bc7d236 100644
          if !useWideLayout {
              withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                  compactContentsRequested = false
+diff --git a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
+index a89ca4e0..80cb974d 100644
+--- a/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
++++ b/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift
+@@ -15,6 +15,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
+     let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
+     let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
+     @ObservedObject private var backendCoordinator = BackendCoordinator.shared
++    @Environment(\.chavrusaReaderSidebar) private var faithfulReaderSidebar
+ 
+     var body: some View {
+         @Bindable var viewModel = viewModel
+@@ -30,6 +31,11 @@ struct OtzariaReaderSourcesInspectorHost: View {
+                 entryMode: .relationships,
+                 chrome: chrome,
+                 selectedTool: $selectedTool,
++                presentationOptions: .init(
++                    showsStudyToolsTitle: faithfulReaderSidebar == nil,
++                    showsSelectedSegmentTitle: faithfulReaderSidebar == nil,
++                    usesMinimalChrome: faithfulReaderSidebar != nil
++                ),
+                 onClose: {
+                     viewModel.closeReaderInspector()
+                 },
 diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
 index 64f9da17..849bde74 100644
 --- a/Source/UI/iOS/Views/iPadLayout.swift
