@@ -28,7 +28,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         // Step 1: Launch with 0 tabs (catalog scenario) and all feature flags ON
         launchWithScenario(
             "catalog",
-            backend: "sefaria",
+            backend: "otzaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
@@ -41,7 +41,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         // Step 2: Launch into Reader (1 tab open) with all feature flags ON
         launchWithScenario(
             "reader",
-            backend: "sefaria",
+            backend: "otzaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
@@ -84,7 +84,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
 
         launchWithScenario(
             "reader",
-            backend: "sefaria",
+            backend: "otzaria",
             extraEnv: flagsWithTabStripOff
         )
         dismissAlertsIfNeeded()
@@ -100,7 +100,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
     func testChavrusaText_iPad_AllFlagsON_ReaderTOCAndInspectorTransitions() throws {
         launchWithScenario(
             "reader",
-            backend: "sefaria",
+            backend: "otzaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
