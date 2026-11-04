@@ -11,7 +11,7 @@ final class SafariPrototypeReferenceTests: XCTestCase {
             XCUIDevice.shared.orientation = orientation
             let field = prototype.textFields["חיפוש או הזנת כתובת"]
             XCTAssertTrue(field.waitForExistence(timeout: 30))
-            let compact = XCTAttachment(screenshot: prototype.screenshot())
+            let compact = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
             compact.name = "prototype-compact-\(orientation.isLandscape ? "landscape" : "portrait")"
             compact.lifetime = .keepAlways
             add(compact)
@@ -20,7 +20,7 @@ final class SafariPrototypeReferenceTests: XCTestCase {
         prototype.textFields["חיפוש או הזנת כתובת"].tap()
         let result = prototype.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 15), "The original CommandPalette must actually expand")
-        let expanded = XCTAttachment(screenshot: prototype.screenshot())
+        let expanded = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         expanded.name = "prototype-expanded-command-palette"
         expanded.lifetime = .keepAlways
         add(expanded)
@@ -64,7 +64,10 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
     func capture(_ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot())
+        // Capture the display rather than XCTest's app-rectangle crop: the
+        // iPadOS 27 landscape app crop can retain portrait dimensions and clip
+        // the trailing toolbar. Preserve the complete system/window chrome.
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name
         attachment.lifetime = .keepAlways
         add(attachment)
