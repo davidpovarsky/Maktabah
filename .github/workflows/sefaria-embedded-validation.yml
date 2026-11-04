@@ -73,6 +73,7 @@ jobs:
           git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/verify-faithful-xctest.py" > Scripts/CI/verify-faithful-xctest.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/typecheck-faithful-ui-tests.py" > Scripts/CI/typecheck-faithful-ui-tests.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/build-faithful-prototype-reference.py" > Scripts/CI/build-faithful-prototype-reference.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/shutdown-faithful-simulator.py" > Scripts/CI/shutdown-faithful-simulator.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/collect-faithful-simulator-failure.py" > Scripts/CI/collect-faithful-simulator-failure.py
@@ -81,6 +82,10 @@ jobs:
           mkdir -p build/artifacts
           git rev-parse HEAD > build/artifacts/app-source-sha.txt
           printf '%s\n' "$TEST_SOURCE_SHA" > build/artifacts/black-box-test-source-sha.txt
+
+      - name: Typecheck black-box UI tests before building the app
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
+        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
 
       - name: Test original source ports on the actual iPad SDK
         if: ${{ inputs.source_ref == '' && (github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests) }}
@@ -372,6 +377,7 @@ jobs:
             build/artifacts/result*.xcresult
             build/artifacts/test-simulator-*.log
             build/artifacts/test-case-execution-*.json
+            build/artifacts/ui-acceptance-typecheck.*
             build/artifacts/miniTest10-native-fixture-install-*.json
             build/artifacts/faithful-ipad-matrix.json
             build/artifacts/simctl-ui-help.txt
