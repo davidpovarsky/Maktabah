@@ -200,6 +200,40 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testPointerHoverClickAndHardwareKeyboardDismissal() {
+        XCTAssertTrue(XCUIDevice.shared.supportsPointerInteraction,
+                      "The required iPad Simulator must support real pointer events")
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let field = app.textFields["reader-library-search-field"]
+        XCTAssertTrue(field.waitForExistence(timeout: 30))
+        let fieldPoint = field.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        fieldPoint.hover()
+        capture("candidate-pointer-over-compact-search")
+        fieldPoint.click()
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 10))
+        input.typeText("בראשית")
+        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 30))
+        input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
+        XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed,
+                       "The original palette's Escape handler must dismiss through keyboard focus")
+        XCTAssertEqual(field.value as? String, "בראשית", "Collapse must retain the canonical library query")
+        fieldPoint.click()
+        XCTAssertTrue(result.waitForExistence(timeout: 30))
+        let resultPoint = result.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        resultPoint.hover()
+        capture("candidate-pointer-over-library-result")
+        resultPoint.click()
+        assertReaderHasText()
+        XCTAssertFalse(palette.exists)
+    }
+
     func testGroupCopyMoveRenameAndDeleteThroughRealMenus() {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
