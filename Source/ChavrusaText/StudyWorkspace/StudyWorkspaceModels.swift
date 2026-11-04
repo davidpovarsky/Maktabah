@@ -32,6 +32,14 @@ struct StudyTabGroup: Codable, Equatable, Identifiable, Sendable {
     var activeTabID: UUID?
 }
 
+enum StudyWorkspaceProjectionPolicy {
+    static func backend(restoring committedBackend: BackendID?, requestedID: UUID?, documents: [ReaderDocumentTab], fallback: BackendID) -> BackendID {
+        // Startup respects the canonical backend owner's committed source.
+        // An explicit group/document selection may request another source.
+        committedBackend ?? documents.first(where: { $0.id == requestedID })?.backend ?? documents.first?.backend ?? fallback
+    }
+}
+
 struct StudySceneSelection: Codable, Equatable, Sendable {
     var profileID: UUID
     var groupID: UUID

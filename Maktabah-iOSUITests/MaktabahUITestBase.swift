@@ -29,6 +29,7 @@ public struct TestRenderedHighlightSnapshot: Codable, Sendable {
 
 class MaktabahUITestBase: XCTestCase {
     var app: XCUIApplication!
+    private let workspaceTestNamespace = UUID().uuidString
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -110,6 +111,11 @@ class MaktabahUITestBase: XCTestCase {
             "-AppleLanguages", "(\(language))",
             "-AppleLocale", locale
         ] + extraArgs
+        if tier != .production && !args.contains("-studyWorkspaceTestingNamespace") {
+            // Isolate sidecars across independent tests while preserving state
+            // across relaunches within a test. All reader features stay enabled.
+            args += ["-studyWorkspaceTestingNamespace", workspaceTestNamespace]
+        }
 
         app.launchArguments = args
         env.merge(extraEnvironment) { _, extra in extra }

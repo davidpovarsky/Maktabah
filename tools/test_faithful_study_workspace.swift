@@ -32,6 +32,12 @@ struct FaithfulStudyWorkspaceTests {
         try expect(store.snapshot?.migratedLegacySession == true, "Legacy migration is explicitly recorded")
         try expect(store.selectedGroup(scene: "window-a")?.tabs.first == original, "Migration preserves identity, locator, scroll and selection")
         let copied = original.reidentified()
+        try expect(StudyWorkspaceProjectionPolicy.backend(restoring: .sefaria, requestedID: original.id, documents: [original], fallback: .otzaria) == .sefaria,
+                   "Cold restore must not override the canonical committed library backend")
+        try expect(StudyWorkspaceProjectionPolicy.backend(restoring: nil, requestedID: original.id, documents: [original], fallback: .sefaria) == .otzaria,
+                   "An explicit group selection may request its saved document backend")
+        try expect(StudyWorkspaceProjectionPolicy.backend(restoring: nil, requestedID: nil, documents: [original], fallback: .sefariaEmbedded) == .otzaria,
+                   "A populated group with no active ID must open its genuine first document, not an empty foreign projection")
         try expect(copied.id != original.id && copied.session.bookId == original.session.bookId, "Copying the same book creates an independent document identity")
         try expect(copied.session.locator == original.session.locator && copied.session.scrollPosition == original.session.scrollPosition && copied.session.selectedRange == original.session.selectedRange,
                    "Copying preserves initial locator, viewport and selection without sharing a mutable session")

@@ -37,10 +37,16 @@ def create_compatible_ipad(size):
                   ("iPhone" in value["name"] if size == "phone" else "iPad Pro" in value["name"] and f"{size}-inch" in value["name"])]
     # Some installed device profiles (e.g. RAM variants) are incompatible with
     # an otherwise available runtime. Let CoreSimulator verify each exact pair.
-    candidates.sort(key=lambda value: ("16GB" in value["identifier"], value["identifier"]))
+    def preference(value):
+        generation = re.search(r"(?:-M|iPhone-)([0-9]+)", value["identifier"])
+        return ("16GB" in value["identifier"], -int(generation[1]) if generation else 0, value["identifier"])
+    candidates.sort(key=preference)
     failures = []
     for runtime in runtimes:
+        supported = {value["identifier"] for value in runtime.get("supportedDeviceTypes", [])}
         for device_type in candidates:
+            if device_type["identifier"] not in supported:
+                continue
             result = subprocess.run(["xcrun", "simctl", "create", f"Faithful {size}-inch {uuid.uuid4().hex[:8]}",
                                      device_type["identifier"], runtime["identifier"]], text=True, capture_output=True)
             if result.returncode == 0:
@@ -55,7 +61,7 @@ for index, size in enumerate(["11", "13", "phone"]):
     try:
         subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
         subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
-        subprocess.run(["xcrun", "simctl", "install", udid, str(app)], check=True, timeout=180)
+        subprocess.run(["xcrun", "simctl", "install", udid, str(app)], check=True, timeout=600)
         subprocess.run(["xcrun", "simctl", "install", udid, str(prototype)], check=True, timeout=180)
         (root / "sim_udid.txt").write_text(udid)
         subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], check=True)

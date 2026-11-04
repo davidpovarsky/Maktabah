@@ -84,6 +84,7 @@ jobs:
           python3 Scripts/CI/test-faithful-tabs-in-app.py
           cd "$GITHUB_WORKSPACE/Source/ChavrusaText/Dependencies/CommandPalette"
           xcodebuild test -scheme CommandPalette -destination "platform=iOS Simulator,id=$SIM_UDID" -resultBundlePath "$GITHUB_WORKSPACE/build/artifacts/command-palette.xcresult"
+          xcrun simctl shutdown "$SIM_UDID"
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -316,6 +317,7 @@ jobs:
 
           echo "Terminating standalone launch before running test runner..."
           xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
+          xcrun simctl shutdown "${SIM_UDID}"
 
       - name: Build the supplied original prototype as an isolated visual oracle
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}

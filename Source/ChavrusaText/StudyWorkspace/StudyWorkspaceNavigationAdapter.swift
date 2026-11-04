@@ -34,7 +34,7 @@ final class StudyWorkspaceNavigationAdapter {
             attached = true
             if let selected = group {
                 // Restore the sidecar's selected group; never import the canonical session twice.
-                try await switchGroup(to: selected.id, manager: manager)
+                try await switchGroup(to: selected.id, manager: manager, restoringBackend: backend)
             } else { throw StudyWorkspaceError.invalidMembership }
         } catch { errorMessage = error.localizedDescription }
     }
@@ -75,7 +75,7 @@ final class StudyWorkspaceNavigationAdapter {
         catch { errorMessage = error.localizedDescription }
     }
 
-    func switchGroup(to id: UUID, documentID: UUID? = nil, manager: iOSNavigationManager) async throws {
+    func switchGroup(to id: UUID, documentID: UUID? = nil, manager: iOSNavigationManager, restoringBackend: BackendID? = nil) async throws {
         guard !isSwitching, store.snapshot?.groups.contains(where: { $0.id == id }) == true else { throw StudyWorkspaceError.invalidMembership }
         isSwitching = true
         defer { isSwitching = false }
@@ -89,7 +89,8 @@ final class StudyWorkspaceNavigationAdapter {
         }
         guard let target = store.snapshot?.groups.first(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
         let requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
-        let desiredBackend = target.tabs.first(where: { $0.id == requested })?.backend ?? previousBackend
+        let desiredBackend = StudyWorkspaceProjectionPolicy.backend(restoring: restoringBackend, requestedID: requested,
+                                                                   documents: target.tabs, fallback: previousBackend)
         let documents = target.tabs.filter { $0.backend == desiredBackend }
         let retained = cache[id]?[desiredBackend] ?? []
         // Resolve every book before mutating either coordinator; no partial group publication.

@@ -45,7 +45,10 @@ types = [value for value in sim_json("list", "devicetypes")["devicetypes"] if "i
 types.sort(key=lambda value: ("16GB" in value["identifier"], value["identifier"]))
 udid = None
 for runtime in runtimes:
+    supported = {value["identifier"] for value in runtime.get("supportedDeviceTypes", [])}
     for device_type in types:
+        if device_type["identifier"] not in supported:
+            continue
         result = subprocess.run(["xcrun", "simctl", "create", "Faithful Release " + uuid.uuid4().hex[:8],
                                  device_type["identifier"], runtime["identifier"]], capture_output=True, text=True)
         if result.returncode == 0:
@@ -60,7 +63,7 @@ try:
     run(["xcrun", "simctl", "boot", udid], timeout=90)
     run(["xcrun", "simctl", "bootstatus", udid, "-b"], timeout=900)
     debug_app = root / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
-    run(["xcrun", "simctl", "install", udid, str(debug_app)], timeout=180)
+    run(["xcrun", "simctl", "install", udid, str(debug_app)], timeout=600)
     (root / "sim_udid.txt").write_text(udid)
     # The existing native installer validates digest/schema/quick_check and
     # installs into the ordinary managed app container. Its DEBUG entry point
@@ -70,7 +73,7 @@ try:
     report["nativeInstallation"] = {key: install.get(key) for key in ["passed", "profileID", "shaMatched", "bookCount", "lineCount", "extractedBytes", "searchArtifactsRequested"]}
     if install.get("extractedBytes", 0) < 1_500_000_000:
         raise SystemExit("The full production corpus was not provisioned")
-    run(["xcrun", "simctl", "install", udid, str(release_app)], timeout=180)
+    run(["xcrun", "simctl", "install", udid, str(release_app)], timeout=600)
     result_path = artifacts / "production-release.xcresult"
     command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
                "-configuration", "Release", "-derivedDataPath", "build/ReleaseDerivedData", "-destination", f"platform=iOS Simulator,id={udid}",

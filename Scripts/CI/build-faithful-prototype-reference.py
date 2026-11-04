@@ -19,6 +19,12 @@ output = root / "build/SafariPrototypeReference"
 project = output / "SafariPrototypeReference.xcodeproj"
 project.mkdir(parents=True, exist_ok=True)
 pin = "9ed36f80b81783433d3e5cc5e75987f71d71bd53"
+original_package = output / "OriginalCommandPalette"
+if not original_package.exists():
+    subprocess.run(["git", "clone", "--no-checkout", "https://github.com/halilozel1903/CommandPalette.git", str(original_package)], check=True)
+    subprocess.run(["git", "-C", str(original_package), "checkout", "--detach", pin], check=True)
+if subprocess.check_output(["git", "-C", str(original_package), "rev-parse", "HEAD"], text=True).strip() != pin:
+    raise SystemExit("The isolated prototype dependency does not match its immutable original pin")
 
 # Stable identifiers, one application target, no signing or production changes.
 objects = {
@@ -35,7 +41,7 @@ objects = {
     "011": 'isa = XCConfigurationList; buildConfigurations = (REF013); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug;',
     "012": 'isa = XCBuildConfiguration; name = Debug; buildSettings = { SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SWIFT_VERSION = 6.0; };',
     "013": 'isa = XCBuildConfiguration; name = Debug; buildSettings = { PRODUCT_NAME = "$(TARGET_NAME)"; PRODUCT_BUNDLE_IDENTIFIER = com.example.safaritoolbarsearch; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"; TARGETED_DEVICE_FAMILY = "1,2"; SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor; CODE_SIGNING_ALLOWED = NO; };',
-    "020": f'isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/halilozel1903/CommandPalette.git"; requirement = {{ kind = revision; revision = {pin}; }};',
+    "020": f'isa = XCLocalSwiftPackageReference; relativePath = {json.dumps(str(original_package))};',
     "021": 'isa = XCSwiftPackageProductDependency; package = REF020; productName = CommandPalette;',
     "022": 'isa = PBXBuildFile; fileRef = REF005;',
     "023": 'isa = PBXBuildFile; productRef = REF021;',
