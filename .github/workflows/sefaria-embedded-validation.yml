@@ -68,6 +68,7 @@ jobs:
           git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/build-faithful-prototype-reference.py" > Scripts/CI/build-faithful-prototype-reference.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/shutdown-faithful-simulator.py" > Scripts/CI/shutdown-faithful-simulator.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/collect-faithful-simulator-failure.py" > Scripts/CI/collect-faithful-simulator-failure.py
           mkdir -p tools/faithful-ui-reference
           git show "$TEST_SOURCE_SHA:tools/faithful-ui-reference/MyApp.swift" > tools/faithful-ui-reference/MyApp.swift
           mkdir -p build/artifacts
@@ -349,6 +350,7 @@ jobs:
             build/jsbundle/main.jsbundle
             build/artifacts/simulator-launch.png
             build/artifacts/simulator-app.log
+            build/artifacts/simulator-failure-*
             build/artifacts/test-simulator.log
             build/artifacts/result*.xcresult
             build/artifacts/test-simulator-*.log

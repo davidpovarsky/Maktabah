@@ -14,7 +14,7 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
-- CoreSimulator may create a legacy device profile that is absent from a runtime's `supportedDeviceTypes`, then hang during install/launch despite `bootstatus` succeeding. The faithful UI matrix now filters against that authoritative list and shuts down its preceding validation simulator before booting the next device. Do not treat successful `simctl create` as compatibility proof.
+- CoreSimulator runtime/device compatibility and install readiness are separate checks. One M5/27.1 pair was rejected at creation; a later 11-inch/27.0 pair was listed as supported but still timed out during install/launch. Filter `supportedDeviceTypes`, record the exact pair, keep only the current validation simulator active, and collect service diagnostics on timeout. Do not attribute the latter failure to an unsupported profile without evidence.
 
 - Read-only tab/group snapshots must read `fetchScrollPosition` / `fetchSelectedRange` into a local state copy. `ReaderViewModel.saveCurrentState()` also clears search and annotation events, so invoking it merely to update sidecar metadata can consume a pending search highlight before the original reader renders it. The faithful workspace adapter captures without that mutation.
 

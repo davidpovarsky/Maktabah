@@ -137,10 +137,18 @@ for index, size in enumerate(["11", "13", "phone"]):
                 device["largeText"]["status"] = "EXECUTED_PASS"
             finally:
                 subprocess.run(["xcrun", "simctl", "ui", udid, "content_size", "large"], check=True)
+    except BaseException as error:
+        device["status"] = "FAIL"
+        device["error"] = f"{type(error).__name__}: {error}"
+        try:
+            subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, size], check=False, timeout=150)
+        except subprocess.TimeoutExpired:
+            device["diagnostics"] = "TIMEOUT"
+        raise
     finally:
         (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
-        subprocess.run(["xcrun", "simctl", "shutdown", udid], check=False, capture_output=True)
+        subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
         # Delete only the disposable simulator created above, never a user's/default device.
-        subprocess.run(["xcrun", "simctl", "delete", udid], check=False, capture_output=True)
+        subprocess.run(["xcrun", "simctl", "delete", udid], check=True, capture_output=True, timeout=120)
 
 print("Required iPad sizes, largest text configuration and iPhone completed; production/Release and physical-device gates are separate.")
