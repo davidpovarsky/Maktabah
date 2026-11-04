@@ -71,6 +71,10 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         attachment.name = name
         attachment.lifetime = .keepAlways
         add(attachment)
+        let hierarchy = XCTAttachment(string: "appFrame=\(app.frame)\norientation=\(XCUIDevice.shared.orientation.rawValue)\n\(app.debugDescription)")
+        hierarchy.name = name + "-ui-tree"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
     }
     func assertReaderHasText() {
         let text = app.textViews["reader-text"]
