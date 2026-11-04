@@ -75,13 +75,18 @@ try:
     if install.get("extractedBytes", 0) < 1_500_000_000:
         raise SystemExit("The full production corpus was not provisioned")
     run(["xcrun", "simctl", "install", udid, str(release_app)], timeout=600)
+    container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True).strip()
+    environment = os.environ.copy()
+    # Read-only test observation of the ordinary production sidecar. This is
+    # runner environment, not an app feature override or a testing namespace.
+    environment["TEST_RUNNER_FAITHFUL_PRODUCTION_WORKSPACE_FILE"] = str(Path(container) / "Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json")
     result_path = artifacts / "production-release.xcresult"
     command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
                "-parallel-testing-enabled", "NO",
                "-configuration", "Release", "-derivedDataPath", "build/ReleaseDerivedData", "-destination", f"platform=iOS Simulator,id={udid}",
                "-resultBundlePath", str(result_path), "-only-testing:Maktabah-iOSUITests/FaithfulProductionReleaseTests"]
     with (artifacts / "production-release-tests.log").open("w") as log:
-        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
+        process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
         for line in process.stdout:
             log.write(line)
             print(line, end="", flush=True)

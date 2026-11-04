@@ -716,6 +716,108 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
 /// Run only against a Release binary over the full native production install.
 /// No smoke scenario, bootstrap bypass, feature override or test namespace.
 final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
+    private func productionDocumentCount() -> Int? {
+        guard let path = ProcessInfo.processInfo.environment["FAITHFUL_PRODUCTION_WORKSPACE_FILE"],
+              let bytes = try? Data(contentsOf: URL(fileURLWithPath: path)),
+              let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+              let scenes = value["scenes"] as? [String: [String: Any]],
+              let groupID = scenes.values.first?["groupID"] as? String,
+              let groups = value["groups"] as? [[String: Any]],
+              let group = groups.first(where: { $0["id"] as? String == groupID }),
+              let tabs = group["tabs"] as? [[String: Any]] else { return nil }
+        return tabs.count
+    }
+
+    private func requireProductionDocumentCount(_ count: Int) {
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
+            MainActor.assumeIsolated { productionDocumentCount() == count }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 30), .completed,
+                       "The actual production projection must persist exactly \(count) documents")
+    }
+
+    private func replacePaletteQuery(_ query: String, in input: XCUIElement) {
+        input.typeKey(XCUIKeyboardKey(rawValue: "a"), modifierFlags: .command)
+        input.typeText(query)
+        XCTAssertEqual(input.value as? String, query)
+    }
+
+    private func openProductionBook(named title: String) {
+        tap(app.textFields["reader-library-search-field"])
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 20))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        replacePaletteQuery(title, in: input)
+        let result = palette.buttons.matching(NSPredicate(format: "label == %@", title)).firstMatch
+        XCTAssertTrue(result.waitForExistence(timeout: 30), "Select an actual title obtained from the production palette")
+        tap(result)
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 60))
+        let rendered = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value MATCHES %@", "(?s).+"), object: text)
+        XCTAssertEqual(XCTWaiter.wait(for: [rendered], timeout: 30), .completed)
+        let value = text.value as? String ?? ""
+        XCTAssertFalse(value.contains("Error Domain") || value.contains("Content ID not found") || value.contains("no such table"))
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        let selectedTitle = strip.descendants(matching: .any).matching(
+            NSPredicate(format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", title)).firstMatch
+        XCTAssertTrue(selectedTitle.waitForExistence(timeout: 15), "The genuine selected document must appear in the original-source tab strip")
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { !selectedTitle.frame.isEmpty && selectedTitle.frame.intersects(strip.frame) }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed, "The selected real book tab must be inside the strip viewport")
+    }
+
+    private func exerciseThirtyRealProductionDocuments(initialTitle: String) {
+        requireProductionDocumentCount(1)
+        tap(app.textFields["reader-library-search-field"])
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 20))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        replacePaletteQuery("משנה", in: input)
+        let results = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "משנה"))
+        XCTAssertTrue(results.firstMatch.waitForExistence(timeout: 30))
+        var titles: [String] = []
+        for _ in 0..<20 {
+            for result in results.allElementsBoundByIndex {
+                let title = result.label
+                if title != initialTitle && !titles.contains(title) { titles.append(title) }
+            }
+            if titles.count >= 29 { break }
+            palette.scrollViews.firstMatch.swipeUp()
+        }
+        XCTAssertGreaterThanOrEqual(titles.count, 29, "Obtain 29 distinct genuine titles from the visible production UI; no invented book IDs")
+        input.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+        let chosen = Array(titles.prefix(29))
+        let membership = XCTAttachment(string: chosen.joined(separator: "\n"))
+        membership.name = "release-production-thirty-real-document-titles"
+        membership.lifetime = .keepAlways
+        add(membership)
+        for repetition in 1...2 {
+            requireProductionDocumentCount(1)
+            for (index, title) in chosen.enumerated() {
+                openProductionBook(named: title)
+                requireProductionDocumentCount(index + 2)
+                if index == 0 { capture("release-production-tabs-2-cycle-\(repetition)") }
+            }
+            requireProductionDocumentCount(30)
+            capture("release-production-tabs-30-cycle-\(repetition)")
+            tap(app.buttons["כל הכרטיסיות"])
+            for remaining in stride(from: 29, through: 0, by: -1) {
+                let close = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "סגור ")).firstMatch
+                tap(close)
+                requireProductionDocumentCount(remaining)
+                if remaining <= 1 { capture("release-production-tabs-\(remaining)-cycle-\(repetition)") }
+            }
+            XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+            tap(app.buttons["סיום"])
+            XCTAssertFalse(app.textViews["reader-text"].exists)
+            openProductionBook(named: initialTitle)
+            requireProductionDocumentCount(1)
+        }
+    }
+
     func testRealProductionLibraryReaderAndGroupRestore() {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchWithTier(.production, backend: "otzaria")
@@ -736,6 +838,7 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         capture("release-production-library-palette")
         tap(book)
         assertReaderHasText()
+        let initialTitle = app.staticTexts["reader-header-title"].label
         for _ in 0..<20 {
             tap(findTabButton(hebrew: "היסטוריה", english: "History"))
             tap(findTabButton(hebrew: "ספר", english: "Library"))
@@ -743,6 +846,7 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
             XCTAssertTrue(app.buttons["reader-more-menu"].exists)
         }
         capture("release-production-reader")
+        exerciseThirtyRealProductionDocuments(initialTitle: initialTitle)
         tap(app.buttons["כל הכרטיסיות"])
         tap(app.buttons["קבוצות כרטיסיות"])
         tap(app.buttons["קבוצה ריקה"])
