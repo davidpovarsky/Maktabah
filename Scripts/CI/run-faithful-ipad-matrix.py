@@ -32,7 +32,8 @@ report = {"appSHA": app_sha, "testSHA": os.environ.get("GITHUB_SHA"), "baseline"
           "configuration": "Debug", "dataProfile": "miniTest10", "devices": []}
 
 def create_compatible_ipad(size):
-    candidates = [value for value in device_types if "iPad Pro" in value["name"] and f"{size}-inch" in value["name"]]
+    candidates = [value for value in device_types if
+                  ("iPhone" in value["name"] if size == "phone" else "iPad Pro" in value["name"] and f"{size}-inch" in value["name"])]
     # Some installed device profiles (e.g. RAM variants) are incompatible with
     # an otherwise available runtime. Let CoreSimulator verify each exact pair.
     candidates.sort(key=lambda value: ("16GB" in value["identifier"], value["identifier"]))
@@ -46,7 +47,7 @@ def create_compatible_ipad(size):
             failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
     raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
 
-for index, size in enumerate(["11", "13"]):
+for index, size in enumerate(["11", "13", "phone"]):
     udid, device_type, runtime, failures = create_compatible_ipad(size)
     device = {"size": size, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
     report["devices"].append(device)
@@ -60,7 +61,9 @@ for index, size in enumerate(["11", "13"]):
         fixture_report = artifacts / "miniTest10-native-fixture-install.json"
         fixture_report.rename(artifacts / f"miniTest10-native-fixture-install-{size}.json")
         selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
-        if not baseline:
+        if size == "phone":
+            selection = ["FaithfulReaderIPhoneTests"]
+        elif not baseline:
             selection.append("FaithfulReaderUIAcceptanceTests")
             if index == 0:
                 selection.extend(["SefariaEmbeddedAcceptanceTests", "Build8401SevenDefectsAcceptanceTests", "PullNavigationAcceptanceTests"])
@@ -78,7 +81,7 @@ for index, size in enumerate(["11", "13"]):
         log_text = (artifacts / f"test-simulator-{size}.log").read_text()
         counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_text)]
         device["executedXCTestCount"] = max(counts, default=0)
-        if code == 0 and device["executedXCTestCount"] < (1 if baseline else 6):
+        if code == 0 and device["executedXCTestCount"] < (1 if baseline or size == "phone" else 6):
             raise SystemExit("Expected black-box XCTest cases were not actually executed")
         device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
         # Attachments are exported even after a failing test for honest diagnosis.

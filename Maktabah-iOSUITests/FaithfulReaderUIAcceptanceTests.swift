@@ -92,6 +92,21 @@ final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
     }
 }
 
+final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
+    func testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting() {
+        XCUIDevice.shared.orientation = .portrait
+        for enabled in [false, true] {
+            launchReader(enabled: enabled)
+            assertReaderHasText()
+            XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+            XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
+            XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
+            XCTAssertTrue(app.buttons["reader-more-menu"].exists)
+            capture("iphone-original-reader-ipad-flag-\(enabled)")
+        }
+    }
+}
+
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     func testCandidateReaderThemes() {
         XCUIDevice.shared.orientation = .landscapeLeft
