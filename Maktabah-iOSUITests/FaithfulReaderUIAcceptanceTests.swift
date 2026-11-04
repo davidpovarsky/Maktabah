@@ -117,6 +117,18 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             capture("candidate-window-narrow-palette")
         }
     }
+
+    func selectStudyGroup(named name: String) {
+        let selector = app.segmentedControls["study-group-selector"]
+        if selector.exists {
+            tap(selector.buttons[name])
+        } else {
+            // The source's public AdaptiveTabContent can choose its native
+            // Menu in a compact sheet/window or accessibility text size.
+            tap(app.buttons["study-group-selector"])
+            tap(app.buttons[name])
+        }
+    }
 }
 
 final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
@@ -188,6 +200,62 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testGroupCopyMoveRenameAndDeleteThroughRealMenus() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let bookTitle = app.staticTexts["reader-header-title"].label
+        tap(app.buttons["כל הכרטיסיות"])
+        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["קבוצה ריקה"])
+        let nameAlert = app.alerts["שם קבוצת הכרטיסיות"]
+        XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
+        nameAlert.textFields.firstMatch.typeText("יעד העברה")
+        tap(nameAlert.buttons["שמירה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        selectStudyGroup(named: "כל הכרטיסיות")
+        let cardActions = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "פעולות בכרטיסייה ")).firstMatch
+        tap(cardActions)
+        tap(app.buttons["העתק אל יעד העברה"])
+        selectStudyGroup(named: "יעד העברה")
+        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Copy must create a real document card in its destination")
+        tap(app.buttons["סגור \(bookTitle)"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        selectStudyGroup(named: "כל הכרטיסיות")
+        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Closing the copied document must preserve its source")
+        tap(cardActions)
+        tap(app.buttons["העבר אל יעד העברה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Move must remove the source card")
+        selectStudyGroup(named: "יעד העברה")
+        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15))
+        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["שינוי שם הקבוצה"])
+        XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
+        let nameField = nameAlert.textFields.firstMatch
+        nameField.tap()
+        nameField.press(forDuration: 1)
+        let selectAll = app.menuItems.matching(NSPredicate(format: "label == 'בחר הכול' OR label == 'Select All'")).firstMatch
+        if selectAll.exists { selectAll.tap() }
+        else {
+            let selectAllButton = app.buttons.matching(NSPredicate(format: "label == 'בחר הכול' OR label == 'Select All'")).firstMatch
+            tap(selectAllButton)
+        }
+        nameField.typeText("יעד ששמו עודכן")
+        XCTAssertEqual(nameField.value as? String, "יעד ששמו עודכן")
+        tap(nameAlert.buttons["שמירה"])
+        selectStudyGroup(named: "יעד ששמו עודכן")
+        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Rename must preserve membership")
+        capture("candidate-group-move-copy-rename")
+        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["מחיקת קבוצה"])
+        // The second tap is the native destructive confirmation, not the Menu.
+        tap(app.buttons["מחיקת קבוצה"])
+        XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
+        selectStudyGroup(named: "כל הכרטיסיות")
+        XCTAssertFalse(app.staticTexts[bookTitle].exists)
+        capture("candidate-deleted-group-retains-replacement")
+    }
+
     func testSystemReduceMotionKeepsOriginalPaletteUsable() {
         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
         settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
