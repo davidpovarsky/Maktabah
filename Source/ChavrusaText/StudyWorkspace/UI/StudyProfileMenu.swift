@@ -19,6 +19,7 @@ struct StudyProfileMenu: View {
                     } label: {
                         Label(profile.name, systemImage: workspace.profile?.id == profile.id ? "checkmark" : profile.symbol)
                     }
+                    .accessibilityAddTraits(workspace.profile?.id == profile.id ? .isSelected : [])
                 }
                 Divider()
                 Button("ניהול פרופילי לימוד", systemImage: "person.crop.circle.badge.plus", action: onManage)

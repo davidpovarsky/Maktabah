@@ -14,8 +14,9 @@ struct StudyProfileManagementView: View {
                 ForEach((workspace.store.snapshot?.profiles ?? []).sorted { $0.order < $1.order }) { profile in
                     HStack {
                         Label(profile.name, systemImage: profile.symbol)
+                            .accessibilityAddTraits(workspace.profile?.id == profile.id ? .isSelected : [])
                         Spacer()
-                        if workspace.profile?.id == profile.id { Image(systemName: "checkmark") }
+                        if workspace.profile?.id == profile.id { Image(systemName: "checkmark").accessibilityHidden(true) }
                         Menu {
                             Button("עריכה", systemImage: "pencil") { editing = profile }
                             Button("מחיקה", systemImage: "trash", role: .destructive) { deleting = profile }
