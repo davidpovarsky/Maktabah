@@ -30,7 +30,7 @@ on:
         type: boolean
         default: false
       ui_sdk_check_only:
-        description: Only typecheck the black-box XCTest sources; never counts as app/runtime acceptance
+        description: Only check XCTest SDK compilation and portable workspace contracts; no app/runtime acceptance
         required: true
         type: boolean
         default: false
@@ -45,7 +45,7 @@ concurrency:
 
 jobs:
   ui-sdk-check-only:
-    name: Focused XCTest SDK typecheck (no app/runtime acceptance)
+    name: Focused SDK and workspace checks (no app/runtime acceptance)
     if: ${{ inputs.ui_sdk_check_only }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 15
@@ -58,12 +58,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Typecheck black-box tests with the actual iPad SDK
         run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
+      - name: Verify actual portable workspace contracts on macOS
+        run: python3 Scripts/CI/test-faithful-workspace.py
       - name: Upload exact SDK and compiler diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: faithful-ui-sdk-check
-          path: build/artifacts/ui-acceptance-typecheck.*
+          path: |
+            build/artifacts/ui-acceptance-typecheck.*
+            build/artifacts/workspace-compile.log
+            build/artifacts/workspace-test-results.log
 
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime

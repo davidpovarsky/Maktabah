@@ -24,6 +24,7 @@ result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOU
 report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
           "xcode": version, "sdk": str(sdk), "target": "arm64-apple-ios18.6-simulator",
           "status": "TYPECHECK_PASS" if result.returncode == 0 else "FAIL",
+          "warningCount": result.stdout.count("warning:"),
           "notRuntimeAcceptance": True}
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 print(json.dumps(report, indent=2))
