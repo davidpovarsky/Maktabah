@@ -339,6 +339,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 Scripts/CI/run-faithful-production-release.py
 
+      - name: Capture preflight Simulator failure before artifact upload
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f sim_udid.txt ] && [ ! -f build/artifacts/faithful-ipad-matrix.json ]; then
+            python3 Scripts/CI/collect-faithful-simulator-failure.py "$(cat sim_udid.txt)" preflight
+          fi
+
       - name: Upload Build & Verification Manifests
         if: always()
         uses: actions/upload-artifact@v4
