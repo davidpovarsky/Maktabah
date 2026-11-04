@@ -29,18 +29,45 @@ on:
         required: true
         type: boolean
         default: false
+      ui_sdk_check_only:
+        description: Only typecheck the black-box XCTest sources; never counts as app/runtime acceptance
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   actions: read
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}
   cancel-in-progress: true
 
 jobs:
+  ui-sdk-check-only:
+    name: Focused XCTest SDK typecheck (no app/runtime acceptance)
+    if: ${{ inputs.ui_sdk_check_only }}
+    runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
+    timeout-minutes: 15
+    steps:
+      - name: Reject conflicting acceptance inputs
+        if: ${{ inputs.run_production_release || inputs.source_ref != '' }}
+        run: |
+          echo "::error::SDK-only mode cannot request baseline or production acceptance."
+          exit 1
+      - uses: actions/checkout@v4
+      - name: Typecheck black-box tests with the actual iPad SDK
+        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
+      - name: Upload exact SDK and compiler diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faithful-ui-sdk-check
+          path: build/artifacts/ui-acceptance-typecheck.*
+
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
+    if: ${{ !inputs.ui_sdk_check_only }}
     runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
     timeout-minutes: 360
 
