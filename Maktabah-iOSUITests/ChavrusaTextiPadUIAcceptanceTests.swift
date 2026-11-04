@@ -135,9 +135,18 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
     }
 
     private func revealReaderDetailIfNeeded() {
-        let hideSidebarButton = app.buttons["הסתרת סרגל הצד"]
-        if hideSidebarButton.waitForExistence(timeout: 2.0) && hideSidebarButton.isHittable {
-            hideSidebarButton.tap()
+        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        if readerSurface.waitForExistence(timeout: 2.0) {
+            return
+        }
+        let sidebarToggle = app.buttons["reader-sidebar-toggle"]
+        if sidebarToggle.waitForExistence(timeout: 3.0) && sidebarToggle.isHittable {
+            sidebarToggle.tap()
+            return
+        }
+        let legacyHideButton = app.buttons["הצג או הסתר סרגל צד"]
+        if legacyHideButton.waitForExistence(timeout: 2.0) && legacyHideButton.isHittable {
+            legacyHideButton.tap()
         }
     }
 }

@@ -82,6 +82,7 @@ struct ReaderLibraryToolbarHost: View {
             .buttonStyle(.plain)
             .help("הצג/הסתר סרגל צד")
             .accessibilityLabel("הצג או הסתר סרגל צד")
+            .accessibilityIdentifier("reader-sidebar-toggle")
 
             Button {
                 withAnimation(.snappy(duration: 0.25)) {
@@ -101,6 +102,7 @@ struct ReaderLibraryToolbarHost: View {
             .disabled(navigationManager.activeTab == nil)
             .help("תוכן עניינים")
             .accessibilityLabel("פתח תוכן עניינים בסרגל הצד")
+            .accessibilityIdentifier("reader-toc-toggle")
 
             if ChavrusaTextFeatureFlags.shared.effectiveStudyWorkspaceEnabled, let sceneCoordinator {
                 Divider()
@@ -364,6 +366,7 @@ struct ReaderLibraryToolbarHost: View {
                 .buttonStyle(.plain)
                 .help("כלי לימוד ומפרשים")
                 .accessibilityLabel(activeVM.readerInspectorVisible ? "הסתר כלי לימוד" : "הצג כלי לימוד")
+                .accessibilityIdentifier("reader-study-toggle")
             }
 
             Divider()

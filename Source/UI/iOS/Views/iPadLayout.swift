@@ -95,6 +95,25 @@ struct iPadLayout: View {
                 bManager.searchViewModel.setSelectedBooks(newIds)
             }
         }
+        .onAppear {
+            if columnVisibility == .detailOnly {
+                sidebarCoordinator.sidebarVisible = false
+            } else if columnVisibility == .all || columnVisibility == .doubleColumn {
+                sidebarCoordinator.sidebarVisible = true
+            }
+        }
+        .onChange(of: columnVisibility) { _, newVisibility in
+            let shouldBeVisible = (newVisibility != .detailOnly)
+            if sidebarCoordinator.sidebarVisible != shouldBeVisible {
+                sidebarCoordinator.sidebarVisible = shouldBeVisible
+            }
+        }
+        .onChange(of: sidebarCoordinator.sidebarVisible) { _, isVisible in
+            let target: NavigationSplitViewVisibility = isVisible ? .all : .detailOnly
+            if columnVisibility != target {
+                columnVisibility = target
+            }
+        }
     }
 
     // MARK: - Tab Contents
