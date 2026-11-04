@@ -28,7 +28,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         // Step 1: Launch with 0 tabs (catalog scenario) and all feature flags ON
         launchWithScenario(
             "catalog",
-            backend: "sefaria",
+            backend: "otzaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
@@ -40,8 +40,8 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
 
         // Step 2: Launch into Reader (1 tab open) with all feature flags ON
         launchWithScenario(
-            "readerDetail",
-            backend: "sefaria",
+            "reader",
+            backend: "otzaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
@@ -49,7 +49,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground upon opening reader tab")
 
-        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        let readerSurface = app.otherElements["reader-surface"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear without crashing")
 
         // Verify the app did not crash during diffing or collection view layout
@@ -84,8 +84,8 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         flagsWithTabStripOff["CHAVRUSA_FEATURE_DUCKTABSTRIPENABLED"] = "0"
 
         launchWithScenario(
-            "readerDetail",
-            backend: "sefaria",
+            "reader",
+            backend: "otzaria",
             extraEnv: flagsWithTabStripOff
         )
         dismissAlertsIfNeeded()
@@ -93,7 +93,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
 
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground with Duck Tab Strip OFF")
 
-        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        let readerSurface = app.otherElements["reader-surface"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear with Duck Tab Strip OFF")
         XCTAssertEqual(app.state, .runningForeground, "App process must stay healthy throughout reader session")
     }
@@ -101,14 +101,14 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
     /// Verifies reader TOC and study inspector transitions with all feature flags enabled.
     func testChavrusaText_iPad_AllFlagsON_ReaderTOCAndInspectorTransitions() throws {
         launchWithScenario(
-            "readerDetail",
-            backend: "sefaria",
+            "reader",
+            backend: "otzaria",
             extraEnv: allFeatureFlagsEnabled
         )
         dismissAlertsIfNeeded()
         revealReaderDetailIfNeeded()
 
-        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        let readerSurface = app.otherElements["reader-surface"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 30.0), "Reader surface must appear")
 
         // Toggle Table of Contents if available
@@ -135,7 +135,7 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
     }
 
     private func revealReaderDetailIfNeeded() {
-        let readerSurface = app.descendants(matching: .any)["reader-surface"]
+        let readerSurface = app.otherElements["reader-surface"]
         if readerSurface.waitForExistence(timeout: 2.0) {
             return
         }
