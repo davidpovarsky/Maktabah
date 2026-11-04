@@ -34,8 +34,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
     struct Viewport: Decodable { let source: Int; let offset: Double; let object: Int }
-    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0) {
-        let prefix = ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"].map {
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false) {
+        // The baseline's optional DEBUG file exporter asserts on write errors
+        // during rotation. Enable it only for the source/object stability case
+        // that consumes it; visual/rotation cases exercise ordinary rendering.
+        let prefix = (recordViewport ? ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"] : nil).map {
             URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
         }
         viewportURL = prefix.map { URL(fileURLWithPath: $0 + ".viewport.json") }
@@ -198,7 +201,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
 
     func testSourceToolbarPaletteSidebarAndOverview() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader()
+        launchReader(recordViewport: true)
         assertReaderHasText()
         XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
         capture("candidate-reader-landscape")

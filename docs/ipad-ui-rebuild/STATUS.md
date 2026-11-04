@@ -1,8 +1,21 @@
 # Faithful iPad rebuild — execution status
 
-2026-11-04, `[נועם | DEV] [MAIN_SESSION]`, NORMAL, no subagents, no Asana writes.
+2026-11-05, `[נועם | DEV] [MAIN_SESSION]`, NORMAL, no subagents, no Asana writes.
 
 This is implementation in progress, not a completion or visual-parity claim.
+
+## Current evidence (supersedes historical progress below)
+
+- Portable workspace checks: **37 passed**, including preservation of the canonical backend during cold group projection. Existing portable components: **379/379 passed**.
+- Actual SDK runs verified **36 hosted UIKit tests and 45 original CommandPalette Swift Testing tests**, zero failures. Full app build-for-testing has passed on `5f042e04` and `fec7b6b7`. Kit run `41859651045` passed 26 tests on macOS and 26 on iOS Simulator.
+- Extended baseline `41918768696`: app is immutable `f092f399`, black-box source `ea09178a`. Native miniTest10 provisioning passed with SHA verification and ten books. **SafariPrototypeReferenceTests passed** and exported actual compact portrait/landscape and expanded palette screenshots. The original reader rendered genuine text and exported theme screenshots. Baseline acceptance nevertheless **failed**: the app terminated after a reader orientation change, and crash reports were exported. Diagnosis is in progress; neither iPad-size gate is satisfied.
+- Earlier install/launch timeouts happened before UI tests. The older profile used in those runs was listed as supported; incompatibility is **not** an established cause. The separate rejected M5/27.1 device-creation attempt is documented below.
+- Candidate `41920862706` tests `92bf35ac`; source tests and the 37 workspace checks passed, and full app build is running. Later diagnostics and test improvements are not evidence from this run.
+- Cleanup now checks actual simulator state and accepts an already Shutdown device. This fixes the cleanup-only failure in `41918763783`; it does not establish UI acceptance.
+- Largest text, native accessibility description audits, iPhone, full production Release and remaining interaction/visual gates are prepared or pending, not passed. Narrow/Stage Manager, Reduce Motion, focus and pointer evidence remains open. Physical VoiceOver testing remains necessary because Apple documents it as unavailable in Simulator.
+- No new TestFlight has been dispatched. Required visual/runtime/production gates must pass first. No main merge or Asana writes.
+
+## Historical progress
 
 - Original checkout `C:\Users\DAVID\Code\Maktabah` remains on `59b01fa2d604facbcc3b3b1075a6283e7f1115db` with its existing untracked artifacts retained.
 - Candidate worktree `C:\Users\DAVID\Code\Maktabah-ipad-ui-faithful-rebuild`, branch `experiment/ipad-ui-faithful-from-9401`, starts exactly at `f092f3996927251d105dfb9243dfac487b196534`.
