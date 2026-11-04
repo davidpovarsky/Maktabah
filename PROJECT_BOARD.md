@@ -96,6 +96,8 @@ Use Markdown checkboxes where useful:
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
 
+- [x] Archive the previous experimental study workspace before faithful rebuild migration (2026-11-05, `[נועם | DEV] [MAIN_SESSION]`). The old build used `Maktabah/States/study_workspace_v1.json` and `study_workspace_v1.bak.json`, while the rebuild uses a separate sidecar path. Both old files are copied as opaque bytes, never decoded, imported or overwritten; repeat attach preserves the first archive. Four additional real persistence checks passed locally (41 total). Apple runtime validation remains separate.
+
 - [x] ChavrusaText Sefaria-Mobile Embedded Final Preflight & TestFlight Delivery (Build 9401)
   - Implemented: 2026-11-01
   - Commit/PR: `f243d06` / `experiment/sefaria-mobile-original-embedded-20261029`

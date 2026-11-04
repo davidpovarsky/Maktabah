@@ -6,7 +6,7 @@ This is implementation in progress, not a completion or visual-parity claim.
 
 ## Current evidence (supersedes historical progress below)
 
-- Portable workspace checks: **37 passed**, including preservation of the canonical backend during cold group projection. Existing portable components: **379/379 passed**.
+- Portable workspace checks: **41 passed locally**, including preservation of the canonical backend during cold group projection and opaque archival of the prior experimental sidecar/backup. The current Mac runs contain the earlier 37-check version. Existing portable components: **379/379 passed**.
 - Actual SDK runs verified **36 hosted UIKit tests and 45 original CommandPalette Swift Testing tests**, zero failures. Full app build-for-testing has passed on `5f042e04` and `fec7b6b7`. Kit run `41859651045` passed 26 tests on macOS and 26 on iOS Simulator.
 - Extended baseline `41918768696`: app is immutable `f092f399`, black-box source `ea09178a`. Native miniTest10 provisioning passed with SHA verification and ten books. **SafariPrototypeReferenceTests passed** and exported actual compact portrait/landscape and expanded palette screenshots. The original reader rendered genuine text and exported theme screenshots. Baseline acceptance nevertheless **failed**: the app terminated after a reader orientation change, and crash reports were exported. Diagnosis is in progress; neither iPad-size gate is satisfied.
 - Earlier install/launch timeouts happened before UI tests. The older profile used in those runs was listed as supported; incompatibility is **not** an established cause. The separate rejected M5/27.1 device-creation attempt is documented below.

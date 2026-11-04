@@ -25,7 +25,15 @@ struct StudyWorkspacePersistence {
 
     func archiveBeforeMigration(canonicalSessionURL: URL) throws {
         let fm = FileManager.default
-        for (source, name) in [(canonicalSessionURL, "pre-workspace-ios-reader-session.json"), (url, "pre-workspace-sidecar.json")] {
+        let legacyDirectory = canonicalSessionURL.deletingLastPathComponent()
+        // Previous experimental builds used these names beside the canonical
+        // session. Archive opaque bytes only; do not import an unknown schema
+        // or reuse the previous UI/state implementation.
+        let sources = [(canonicalSessionURL, "pre-workspace-ios-reader-session.json"),
+                       (url, "pre-workspace-sidecar.json"),
+                       (legacyDirectory.appendingPathComponent("study_workspace_v1.json"), "pre-rebuild-study-workspace-v1.json"),
+                       (legacyDirectory.appendingPathComponent("study_workspace_v1.bak.json"), "pre-rebuild-study-workspace-v1.bak.json")]
+        for (source, name) in sources {
             let destination = url.deletingLastPathComponent().appendingPathComponent(name)
             guard fm.fileExists(atPath: source.path), !fm.fileExists(atPath: destination.path) else { continue }
             let bytes = try Data(contentsOf: source)

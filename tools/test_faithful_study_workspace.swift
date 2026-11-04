@@ -17,6 +17,12 @@ struct FaithfulStudyWorkspaceTests {
         let canonicalURL = directory.appendingPathComponent("ios_reader_session.json")
         let canonical = Data("canonical session must stay byte-identical".utf8)
         try canonical.write(to: canonicalURL)
+        let priorSidecarURL = directory.appendingPathComponent("study_workspace_v1.json")
+        let priorBackupURL = directory.appendingPathComponent("study_workspace_v1.bak.json")
+        let priorSidecar = Data("opaque prior study workspace, schema deliberately not imported".utf8)
+        let priorBackup = Data("opaque prior study backup".utf8)
+        try priorSidecar.write(to: priorSidecarURL)
+        try priorBackup.write(to: priorBackupURL)
         let persistence = StudyWorkspacePersistence(url: directory.appendingPathComponent("StudyWorkspace/workspace-v1.json"))
         let store = StudyWorkspaceStore(persistence: persistence, canonicalSessionURL: canonicalURL)
         try expect(!FileManager.default.fileExists(atPath: persistence.url.deletingLastPathComponent().path), "Constructing an unused store must not create files")
@@ -29,6 +35,15 @@ struct FaithfulStudyWorkspaceTests {
         try store.attach(scene: "window-a", legacyTabs: [original], activeID: originalTabID)
         try expect(tryData(persistence.url.deletingLastPathComponent().appendingPathComponent("pre-workspace-ios-reader-session.json")) == canonical,
                    "Migration archives the original canonical bytes without modifying them")
+        let priorArchiveURL = persistence.url.deletingLastPathComponent().appendingPathComponent("pre-rebuild-study-workspace-v1.json")
+        try expect(tryData(priorArchiveURL) == priorSidecar, "Migration archives the actual previous experimental sidecar without interpreting it")
+        try expect(tryData(persistence.url.deletingLastPathComponent().appendingPathComponent("pre-rebuild-study-workspace-v1.bak.json")) == priorBackup,
+                   "Migration also preserves the previous experimental backup")
+        try expect(tryData(priorSidecarURL) == priorSidecar && tryData(priorBackupURL) == priorBackup,
+                   "Archival leaves both prior experimental files byte-identical")
+        try Data("a later old-build write".utf8).write(to: priorSidecarURL)
+        try persistence.archiveBeforeMigration(canonicalSessionURL: canonicalURL)
+        try expect(tryData(priorArchiveURL) == priorSidecar, "Repeated attach never overwrites the pre-rebuild archive")
         try expect(store.snapshot?.migratedLegacySession == true, "Legacy migration is explicitly recorded")
         try expect(store.selectedGroup(scene: "window-a")?.tabs.first == original, "Migration preserves identity, locator, scroll and selection")
         let copied = original.reidentified()
