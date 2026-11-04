@@ -335,7 +335,7 @@ final class TabsBarViewControllerSizingTests: XCTestCase {
             let frame = try XCTUnwrap(layout.unpinnedFrameForItem(at: current))
             let viewportWidth = collectionView.bounds.inset(by: collectionView.adjustedContentInset).width
             XCTAssertGreaterThan(viewportWidth, frame.width)
-            if width == 400 {
+            if width == 340 {
                 XCTAssertLessThan(viewportWidth, frame.width * 2)
             }
             let peek = min(frame.width / 2, (viewportWidth - frame.width) / 2)

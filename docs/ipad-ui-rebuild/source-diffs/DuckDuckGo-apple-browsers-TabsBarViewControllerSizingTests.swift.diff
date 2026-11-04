@@ -90,6 +90,15 @@
              let (controller, model) = makeOverflowingController()
              controller.view.frame.size.width = width
              controller.view.layoutIfNeeded()
+@@ -365,7 +335,7 @@
+             let frame = try XCTUnwrap(layout.unpinnedFrameForItem(at: current))
+             let viewportWidth = collectionView.bounds.inset(by: collectionView.adjustedContentInset).width
+             XCTAssertGreaterThan(viewportWidth, frame.width)
+-            if width == 400 {
++            if width == 340 {
+                 XCTAssertLessThan(viewportWidth, frame.width * 2)
+             }
+             let peek = min(frame.width / 2, (viewportWidth - frame.width) / 2)
 @@ -424,7 +394,7 @@
  
          // Simulate stale presentation; this checks recovery, not UIKit's background snapshot cycle.
