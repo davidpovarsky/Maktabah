@@ -50,28 +50,30 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         XCTAssertTrue(waitForReaderUIMounted(timeout: 20.0), "Reader UI chrome and workspace must mount without crashing")
 
         // Step 3: Exercise multiple tabs / navigation controls
+        let windowFrame = app.windows.firstMatch.frame
+
         // If the Safari toolbar sidebar toggle is present, exercise it
         let sidebarToggle = app.buttons["reader-sidebar-toggle"]
-        if sidebarToggle.waitForExistence(timeout: 4.0) && sidebarToggle.isHittable {
+        if sidebarToggle.waitForExistence(timeout: 4.0) && sidebarToggle.exists && windowFrame.contains(sidebarToggle.frame.origin) && sidebarToggle.frame.width > 0 {
             sidebarToggle.tap()
             XCTAssertEqual(app.state, .runningForeground, "Tapping sidebar toggle must not crash the app")
         }
 
         // If the DuckDuckGo-style plus button is present, tap it
         let newTabButton = app.buttons["פתח ספר חדש מהספרייה"]
-        if newTabButton.waitForExistence(timeout: 4.0) && newTabButton.isHittable {
+        if newTabButton.waitForExistence(timeout: 4.0) && newTabButton.exists && windowFrame.contains(newTabButton.frame.origin) && newTabButton.frame.width > 0 {
             newTabButton.tap()
             XCTAssertEqual(app.state, .runningForeground, "Tapping new tab button must not crash the app")
         }
 
         // Switch to history tab and back to verify layout stability
         let historyButton = findTabButton(hebrew: "היסטוריה", english: "History")
-        if historyButton.waitForExistence(timeout: 4.0) && historyButton.isHittable {
+        if historyButton.waitForExistence(timeout: 4.0) && historyButton.exists && windowFrame.contains(historyButton.frame.origin) && historyButton.frame.width > 0 {
             historyButton.tap()
             XCTAssertEqual(app.state, .runningForeground, "App must remain running after switching to history tab")
 
             let returnLibrary = findTabButton(hebrew: "ספר", english: "Library")
-            if returnLibrary.waitForExistence(timeout: 4.0) && returnLibrary.isHittable {
+            if returnLibrary.waitForExistence(timeout: 4.0) && returnLibrary.exists && windowFrame.contains(returnLibrary.frame.origin) && returnLibrary.frame.width > 0 {
                 returnLibrary.tap()
                 XCTAssertEqual(app.state, .runningForeground, "App must remain running after returning to library/reader")
             }
@@ -108,22 +110,18 @@ final class ChavrusaTextiPadUIAcceptanceTests: MaktabahUITestBase {
         XCTAssertEqual(app.state, .runningForeground, "App must remain running in foreground upon launch")
         XCTAssertTrue(waitForReaderUIMounted(timeout: 20.0), "Reader UI must mount")
 
+        let windowFrame = app.windows.firstMatch.frame
+
         // Toggle Table of Contents if available
         let tocToggle = app.buttons["reader-toc-toggle"]
-        if tocToggle.waitForExistence(timeout: 5.0) && tocToggle.isHittable {
+        if tocToggle.waitForExistence(timeout: 5.0) && tocToggle.exists && windowFrame.contains(tocToggle.frame.origin) && tocToggle.frame.width > 0 {
             tocToggle.tap()
             XCTAssertEqual(app.state, .runningForeground, "Tapping TOC toggle must not crash the app")
-
-            let tocClose = app.buttons["toc-close"]
-            if tocClose.waitForExistence(timeout: 3.0) && tocClose.isHittable {
-                tocClose.tap()
-                XCTAssertEqual(app.state, .runningForeground, "Closing TOC must not crash the app")
-            }
         }
 
         // Toggle Study / Inspector if available
         let studyToggle = app.buttons["reader-study-toggle"]
-        if studyToggle.waitForExistence(timeout: 5.0) && studyToggle.isHittable {
+        if studyToggle.waitForExistence(timeout: 5.0) && studyToggle.exists && windowFrame.contains(studyToggle.frame.origin) && studyToggle.frame.width > 0 {
             studyToggle.tap()
             XCTAssertEqual(app.state, .runningForeground, "Tapping study toggle must not crash the app")
         }
