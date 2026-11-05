@@ -18,6 +18,14 @@ artifacts.mkdir(parents=True, exist_ok=True)
 report = {"appSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
           "configuration": "Release", "dataProfile": "production", "status": "NOT_RUN"}
 (artifacts / "production-release-acceptance.json").write_text(json.dumps(report, indent=2))
+matrix = json.loads((artifacts / "faithful-ipad-matrix.json").read_text())
+devices = {value["size"]: value for value in matrix.get("devices", [])}
+if (matrix.get("appSHA") != report["appSHA"] or matrix.get("baseline")
+        or matrix.get("fullMatrixAcceptance") is not True
+        or set(devices) != {"11", "13", "phone"}
+        or any(value.get("status") != "EXECUTED_PASS" for value in devices.values())
+        or devices["13"].get("largeText", {}).get("status") != "EXECUTED_PASS"):
+    raise SystemExit("Release requires the successful full native matrix on this exact app SHA; diagnostics cannot satisfy it")
 def run(command, **kwargs):
     return subprocess.run(command, check=True, **kwargs)
 def sim_json(*args):

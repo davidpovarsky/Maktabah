@@ -528,9 +528,18 @@ index b1da0865..ca7c3d9f 100644
              withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                  compactContentsRequested = false
 diff --git a/Source/Features/Search/iOS/SearchComponents.swift b/Source/Features/Search/iOS/SearchComponents.swift
-index f2d54d4e..77a55120 100644
+index f2d54d4e..35628d17 100644
 --- a/Source/Features/Search/iOS/SearchComponents.swift
 +++ b/Source/Features/Search/iOS/SearchComponents.swift
+@@ -53,7 +53,7 @@ struct SearchHistoryOverlay: View {
+             .interpolatingSpring(stiffness: 250, damping: 24),
+             value: isShowing
+         )
+-        .onChange(of: shouldShow) { _, newValue in
++        .onChange(of: shouldShow, initial: true) { _, newValue in
+             isShowing = newValue
+         }
+         .onAppear {
 @@ -311,26 +311,31 @@ struct UnifiedSearchInputControls: View {
  struct SearchInputBar: View {
      @Binding var text: String

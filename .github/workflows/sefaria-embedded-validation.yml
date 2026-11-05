@@ -34,6 +34,11 @@ on:
         required: true
         type: boolean
         default: false
+      ui_diagnostic_cases:
+        description: Optional comma-separated Suite/testMethod diagnostics on 11-inch only; never satisfies the full matrix or Release gate
+        required: false
+        type: string
+        default: ''
 
 permissions:
   actions: read
@@ -377,10 +382,11 @@ jobs:
         timeout-minutes: 180
         env:
           VALIDATING_BASELINE: ${{ inputs.source_ref != '' }}
+          FAITHFUL_DIAGNOSTIC_CASES: ${{ inputs.ui_diagnostic_cases }}
           GH_TOKEN: ${{ github.token }}
         run: python3 Scripts/CI/run-faithful-ipad-matrix.py
       - name: Full native production corpus and Release UI acceptance
-        if: ${{ inputs.run_production_release && inputs.source_ref == '' && steps.faithful_ui_matrix.outcome == 'success' }}
+        if: ${{ inputs.run_production_release && inputs.source_ref == '' && inputs.ui_diagnostic_cases == '' && steps.faithful_ui_matrix.outcome == 'success' }}
         timeout-minutes: 120
         env:
           GH_TOKEN: ${{ github.token }}

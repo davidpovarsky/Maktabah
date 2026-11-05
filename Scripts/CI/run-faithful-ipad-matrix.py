@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import runpy
 import shutil
 from pathlib import Path
 import subprocess
@@ -29,9 +30,18 @@ if not runtimes:
 runtimes.sort(key=lambda value: tuple(map(int, value["version"].split("."))), reverse=True)
 device_types = sim_json("list", "devicetypes")["devicetypes"]
 baseline = os.environ.get("VALIDATING_BASELINE") == "true"
+diagnostic_cases = [item.strip() for item in os.environ.get("FAITHFUL_DIAGNOSTIC_CASES", "").split(",") if item.strip()]
+if diagnostic_cases:
+    verify_selection = runpy.run_path("Scripts/CI/verify-faithful-xctest.py")["verify"]
+    declarations = verify_selection("", diagnostic_cases)["suites"]
+    if (len(set(diagnostic_cases)) != len(diagnostic_cases)
+            or any(not re.fullmatch(r"\w+/test\w+", item) for item in diagnostic_cases)
+            or any(len(value["expected"]) != 1 for value in declarations)):
+        raise SystemExit("Every diagnostic selection must name one declared, unique Suite/testMethod")
 app_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
 report = {"appSHA": app_sha, "testSHA": os.environ.get("GITHUB_SHA"), "baseline": baseline,
-          "configuration": "Debug", "dataProfile": "miniTest10", "devices": []}
+          "configuration": "Debug", "dataProfile": "miniTest10", "devices": [],
+          "fullMatrixAcceptance": not bool(diagnostic_cases), "diagnosticCases": diagnostic_cases}
 
 def create_compatible_ipad(size):
     candidates = [value for value in device_types if
@@ -55,7 +65,7 @@ def create_compatible_ipad(size):
             failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
     raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
 
-for index, size in enumerate(["11", "13", "phone"]):
+for index, size in enumerate(["11"] if diagnostic_cases else ["11", "13", "phone"]):
     udid, device_type, runtime, failures = create_compatible_ipad(size)
     device = {"size": size, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
     report["devices"].append(device)
@@ -134,6 +144,8 @@ for index, size in enumerate(["11", "13", "phone"]):
             selection.append("FaithfulReaderUIAcceptanceTests")
             if index == 0:
                 selection.extend(["SefariaEmbeddedAcceptanceTests", "Build8401SevenDefectsAcceptanceTests", "PullNavigationAcceptanceTests"])
+        if diagnostic_cases:
+            selection = diagnostic_cases
         result = artifacts / f"result-{size}.xcresult"
         command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
                    "-parallel-testing-enabled", "NO",
@@ -151,7 +163,7 @@ for index, size in enumerate(["11", "13", "phone"]):
                 print(line, end="", flush=True)
             code = process.wait()
         log_text = (artifacts / f"test-simulator-{size}.log").read_text()
-        missing_suites = [suite for suite in selection if not re.search(
+        missing_suites = [suite for suite in sorted({item.split("/")[0] for item in selection}) if not re.search(
             r"Test Suite '(?:[^']*\.)?" + re.escape(suite) + r"' passed", log_text)]
         device["requiredSuites"] = selection
         device["missingOrFailedSuites"] = missing_suites
@@ -164,7 +176,8 @@ for index, size in enumerate(["11", "13", "phone"]):
             code = code or 1
         counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_text)]
         device["executedXCTestCount"] = max(counts, default=0)
-        if code == 0 and device["executedXCTestCount"] < (1 if baseline or size == "phone" else 6):
+        minimum_count = len(diagnostic_cases) if diagnostic_cases else (1 if baseline or size == "phone" else 6)
+        if code == 0 and device["executedXCTestCount"] < minimum_count:
             raise SystemExit("Expected black-box XCTest cases were not actually executed")
         device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
         viewport_reports = artifacts / f"viewport-reports-{size}"
@@ -236,4 +249,7 @@ for index, size in enumerate(["11", "13", "phone"]):
 failed = [device["size"] for device in report["devices"] if device["status"] != "EXECUTED_PASS"]
 if failed:
     raise SystemExit(f"Native acceptance failed for {failed}; see per-device logs and the complete matrix. Release is prohibited.")
-print("Required iPad sizes, largest text configuration and iPhone completed; production/Release and physical-device gates are separate.")
+if diagnostic_cases:
+    print("Selected 11-inch diagnostics completed. Full matrix, largest text, iPhone and Release acceptance remain NOT_RUN.")
+else:
+    print("Required iPad sizes, largest text configuration and iPhone completed; production/Release and physical-device gates are separate.")

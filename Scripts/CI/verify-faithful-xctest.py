@@ -14,8 +14,10 @@ def verify(log, suites, source_directory=Path("Maktabah-iOSUITests")):
         end = declarations[index + 1].start() if index + 1 < len(declarations) else len(sources)
         methods[declaration[1]] = re.findall(r"(?m)^\s+func\s+(test\w+)\s*\(", sources[declaration.end():end])
     results = []
-    for suite in suites:
-        expected = methods.get(suite, [])
+    for selection in suites:
+        suite, separator, selected_method = selection.partition("/")
+        declared = methods.get(suite, [])
+        expected = [selected_method] if separator and selected_method in declared else ([] if separator else declared)
         passed, failed = [], []
         for method in expected:
             # Xcode's Objective-C XCTest display name and its dotted equivalent.
@@ -26,7 +28,7 @@ def verify(log, suites, source_directory=Path("Maktabah-iOSUITests")):
             if "failed" in statuses:
                 failed.append(method)
         missing = [method for method in expected if method not in passed]
-        results.append({"suite": suite, "expected": expected, "passed": passed, "failed": failed, "missing": missing,
+        results.append({"suite": suite, "selection": selection, "expected": expected, "passed": passed, "failed": failed, "missing": missing,
                         "status": "EXECUTED_PASS" if expected and not missing and not failed else "FAIL"})
     return {"suites": results, "status": "EXECUTED_PASS" if results and all(value["status"] == "EXECUTED_PASS" for value in results) else "FAIL"}
 

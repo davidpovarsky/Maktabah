@@ -108,7 +108,22 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
     }
 
     func testA3_OrdinaryReaderHasNoClearSearchHighlightButton() throws {
-        // Launch normal reader without search provenance
+        // The preceding cases deliberately persist a search-origin Genesis
+        // tab. Opening that same retained tab is not a fresh ordinary reader.
+        // Close its real documents through native controls before reopening;
+        // do not clear defaults, change the renderer or synthesize diagnostics.
+        launchWithScenario("reader", backend: "sefaria")
+        dismissAlertsIfNeeded()
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        XCTAssertTrue(strip.waitForExistence(timeout: 20))
+        let closeActions = strip.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "סגור "))
+        for _ in 0..<20 {
+            guard let close = closeActions.allElementsBoundByIndex.first(where: { $0.isHittable }) else { break }
+            close.tap()
+        }
+        XCTAssertEqual(closeActions.count, 0, "Ordinary reading must start without retained search-origin documents")
+        app.terminate()
+        // Launch normal reader without search provenance.
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
 

@@ -53,7 +53,7 @@ struct SearchHistoryOverlay: View {
             .interpolatingSpring(stiffness: 250, damping: 24),
             value: isShowing
         )
-        .onChange(of: shouldShow) { _, newValue in
+        .onChange(of: shouldShow, initial: true) { _, newValue in
             isShowing = newValue
         }
         .onAppear {
