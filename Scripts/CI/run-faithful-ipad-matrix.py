@@ -170,8 +170,6 @@ for index, size in enumerate(["11", "13", "phone"]):
         if result.is_dir():
             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
                             "--output-path", str(artifacts / f"visual-{size}")], check=True)
-        if code:
-            raise SystemExit(f"Native UI suites failed or did not execute: {missing_suites}; xcodebuild status {code}")
         if size == "13":
             help_result = subprocess.run(["xcrun", "simctl", "help", "ui"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=True)
             (artifacts / "simctl-ui-help.txt").write_text(help_result.stdout)
@@ -191,6 +189,7 @@ for index, size in enumerate(["11", "13", "phone"]):
                 large_command.append("-only-testing:Maktabah-iOSUITests/FaithfulReaderLargeTextTests")
                 environment["TEST_RUNNER_FAITHFUL_BASELINE"] = str(baseline).lower()
                 log_path = artifacts / "test-simulator-13-large-text.log"
+                phase("RUNNING_LARGEST_TEXT_XCTEST", ordinarySuitesStatus=device["status"])
                 with log_path.open("w") as log:
                     result = subprocess.run(large_command, env=environment, stdout=log, stderr=subprocess.STDOUT, text=True)
                 counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_path.read_text())]
@@ -207,6 +206,8 @@ for index, size in enumerate(["11", "13", "phone"]):
                 device["largeText"]["status"] = "EXECUTED_PASS"
             finally:
                 subprocess.run(["xcrun", "simctl", "ui", udid, "content_size", "large"], check=True)
+        if code:
+            raise SystemExit(f"Native UI suites failed or did not execute: {missing_suites}; xcodebuild status {code}")
     except (Exception, SystemExit) as error:
         device["status"] = "FAIL"
         device["error"] = f"{type(error).__name__}: {error}"
