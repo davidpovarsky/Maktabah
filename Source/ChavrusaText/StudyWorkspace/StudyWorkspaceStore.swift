@@ -45,14 +45,24 @@ final class StudyWorkspaceStore {
             initial.groups = [group]
             initial.migratedLegacySession = true
             initial.scenes[scene] = .init(profileID: profile.id, groupID: group.id)
+            initial.lastActiveSceneID = scene
             try persistence.save(initial)
             snapshot = initial
         } else if snapshot?.scenes[scene] == nil {
             try transaction { value in
-                guard let group = value.groups.sorted(by: { $0.order < $1.order }).first else {
-                    throw StudyWorkspaceError.invalidMembership
+                let previous = value.lastActiveSceneID.flatMap { value.scenes[$0] }
+                    ?? (value.scenes.count == 1 ? value.scenes.values.first : nil)
+                if let previous {
+                    // Preserve an older UUID-based scene's selected group,
+                    // including an empty group, without touching its records.
+                    value.scenes[scene] = previous
+                } else {
+                    guard let group = value.groups.sorted(by: { $0.order < $1.order }).first else {
+                        throw StudyWorkspaceError.invalidMembership
+                    }
+                    value.scenes[scene] = .init(profileID: group.profileID, groupID: group.id)
                 }
-                value.scenes[scene] = .init(profileID: group.profileID, groupID: group.id)
+                value.lastActiveSceneID = scene
             }
         }
     }

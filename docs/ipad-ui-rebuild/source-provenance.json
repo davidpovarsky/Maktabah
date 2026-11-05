@@ -84,8 +84,8 @@
     "original": "Sources/CommandPalette/Views/CommandPaletteView.swift",
     "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
     "sha256": "d33809cb1628b7418f11625c5107f2510298472ecbef11e28c2c855b48ea5b3c",
-    "reason": "Optional bidirectional queryBinding, default nil; no appearance or fuzzy-search changes.",
-    "destinationSHA256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f"
+    "reason": "Optional bidirectional queryBinding, default nil; iOS original esc KeyCap wrapped in a plain native cancel Button with keyboardShortcut, retaining original pixels and dismiss action. No fuzzy-search changes. Native Escape verification pending.",
+    "destinationSHA256": "2de530b024a87858a586f7aabf5f8e0e6fafdb0560aa928586bbaadbf0a53d80"
   },
   {
     "repo": "CommandPalette",
@@ -187,7 +187,7 @@
     "repo": "Owner Safari prototype",
     "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
     "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
-    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered unchanged except the documented query binding.",
+    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
     "destinationSHA256": "9aa75cc5bf6d61c8813f837ab2f142167bf1de545977c161a9a36c2f22b13e69"
   },

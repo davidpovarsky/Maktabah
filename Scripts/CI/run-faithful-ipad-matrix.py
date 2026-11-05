@@ -86,14 +86,23 @@ for index, size in enumerate(["11", "13", "phone"]):
                 phase("INSTALLED", bundle=bundle, attempt=attempt + 1)
                 return
             except subprocess.TimeoutExpired as error:
+                record["timedOutPhase"] = device.get("phase")
                 record.update(status="INSTALL_TIMEOUT", error=str(error))
                 phase("INSTALL_TIMEOUT", bundle=bundle, attempt=attempt + 1)
                 if attempt:
                     raise
                 # Preserve the first timeout and exact native service evidence.
                 phase("COLLECTING_INSTALL_DIAGNOSTICS", bundle=bundle)
-                subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, size],
-                               check=False, timeout=150)
+                try:
+                    subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, size],
+                                   check=False, timeout=150)
+                except subprocess.TimeoutExpired:
+                    # Run 42014227785 showed diagnostics itself timing out and
+                    # aborting the single authorized install recovery. Retain
+                    # partial evidence and the timeout; actual reinstall, launch
+                    # and every native XCTest remain required for acceptance.
+                    record["diagnostics"] = "TIMEOUT"
+                    phase("INSTALL_DIAGNOSTICS_TIMEOUT", bundle=bundle)
                 for diagnostic in artifacts.glob(f"simulator-failure-{size}*"):
                     diagnostic.rename(diagnostic.with_name(diagnostic.name.replace(
                         f"simulator-failure-{size}", f"simulator-install-recovery-{size}-{bundle}", 1)))
@@ -116,9 +125,8 @@ for index, size in enumerate(["11", "13", "phone"]):
         install_owned_app(app, "com.davidpovarsky.chavrusatext", 600)
         (root / "sim_udid.txt").write_text(udid)
         phase("PROVISIONING_NATIVE_FIXTURES")
-        subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], check=True, timeout=720)
-        fixture_report = artifacts / "miniTest10-native-fixture-install.json"
-        fixture_report.rename(artifacts / f"miniTest10-native-fixture-install-{size}.json")
+        subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--artifact-label", size],
+                       check=True, timeout=720)
         selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
         if size == "phone":
             selection = ["FaithfulReaderIPhoneTests"]

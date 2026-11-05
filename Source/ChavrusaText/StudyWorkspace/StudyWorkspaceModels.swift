@@ -54,9 +54,13 @@ struct StudyWorkspaceSnapshot: Codable, Equatable, Sendable {
     var profiles: [StudyProfile] = []
     var groups: [StudyTabGroup] = []
     var scenes: [String: StudySceneSelection] = [:]
+    /// Startup fallback for a newly created/restored system scene; an exact
+    /// existing scene selection always wins. Optional for existing v1 files.
+    var lastActiveSceneID: String? = nil
 
     func validate() throws {
         guard version == Self.currentVersion else { throw StudyWorkspaceError.unsupportedVersion }
+        guard lastActiveSceneID.map({ scenes[$0] != nil }) ?? true else { throw StudyWorkspaceError.invalidMembership }
         guard !profiles.isEmpty, !groups.isEmpty,
               Set(profiles.map(\.id)).count == profiles.count,
               Set(groups.map(\.id)).count == groups.count else { throw StudyWorkspaceError.invalidMembership }

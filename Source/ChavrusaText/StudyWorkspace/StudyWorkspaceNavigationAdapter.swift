@@ -115,6 +115,7 @@ final class StudyWorkspaceNavigationAdapter {
                 else { activeIDs.removeValue(forKey: id) }
                 scene.activeTabIDsByGroup = activeIDs
                 value.scenes[sceneID] = scene
+                value.lastActiveSceneID = sceneID
             }
             manager.openTabs = staged
             for document in documents {
@@ -199,6 +200,7 @@ final class StudyWorkspaceNavigationAdapter {
                 else if merged.isEmpty { activeIDs.removeValue(forKey: groupID) }
                 scene.activeTabIDsByGroup = activeIDs
                 value.scenes[sceneID] = scene
+                value.lastActiveSceneID = sceneID
             }
         }
         cache[groupID, default: [:]][backend] = tabs

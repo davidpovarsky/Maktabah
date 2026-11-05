@@ -113,7 +113,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         // The genuine 9401 compact-window hierarchy exposes UIKit's native
         // bottom overflow instead of the reader's overflowed More item. Use
         // that actual control to measure chrome, never the full-height Toolbar.
-        let overflow = app.toolbars.buttons.matching(identifier: "BottomOverflowBarButtonItem")
+        let overflow = app.buttons.matching(identifier: "BottomOverflowBarButtonItem")
         XCTAssertEqual(overflow.count, 1, "The original bottom toolbar must expose one real native overflow action")
         return overflow.firstMatch
     }
@@ -371,7 +371,34 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         // assertion fails, so immutable baseline behavior can be compared.
         capture(enabled ? "candidate-global-search-history" : "baseline-global-search-history")
         let historyRow = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch
-        XCTAssertTrue(historyRow.waitForExistence(timeout: 20), "A submitted global query must appear in the original global history")
+        let historyIsVisible = historyRow.waitForExistence(timeout: 20)
+        // Observe only these two known preferences. Never dump all app defaults
+        // or seed a history entry: the native submit action remains the writer.
+        do {
+            let containers = try FileManager.default.contentsOfDirectory(at: workspaceContainerParent(), includingPropertiesForKeys: nil)
+            var observations: [[String: Any]] = []
+            for container in containers {
+                let preference = container.appendingPathComponent("Library/Preferences/com.davidpovarsky.chavrusatext.plist")
+                guard let data = try? Data(contentsOf: preference),
+                      let values = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] else { continue }
+                let history = values["SearchHistory"] as? [String] ?? []
+                observations.append(["historyCount": history.count, "submittedQueryPersisted": history.contains(query),
+                                     "recordSearchHistory": values["recordSearchHistory"] as? Bool ?? true])
+            }
+            let data = try JSONSerialization.data(withJSONObject: ["matchingPreferenceFiles": observations.count,
+                                                                   "observations": observations,
+                                                                   "nativeHistoryRowVisible": historyIsVisible], options: [.prettyPrinted, .sortedKeys])
+            let diagnostic = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+            diagnostic.name = "global-history-native-persistence-diagnostic"
+            diagnostic.lifetime = .keepAlways
+            add(diagnostic)
+        } catch {
+            let diagnostic = XCTAttachment(string: "Read-only history observation failed: \(error)")
+            diagnostic.name = "global-history-native-persistence-diagnostic-error"
+            diagnostic.lifetime = .keepAlways
+            add(diagnostic)
+        }
+        XCTAssertTrue(historyIsVisible, "A submitted global query must appear in the original global history")
         return query
     }
 }
@@ -497,10 +524,10 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertEqual(downloaded.value as? String, value)
         }
         tap(bar.buttons["Library Options"])
-        let options = app.collectionViews.containing(.button, identifier: "Select").firstMatch
+        let options = app.collectionViews.containing(.button, identifier: "Select…").firstMatch
         XCTAssertTrue(options.waitForExistence(timeout: 15))
         XCTAssertEqual(options.cells.buttons.count, 3, "Retain original Select, book-update and import actions")
-        tap(app.collectionViews.cells.buttons["Select"])
+        tap(options.cells.buttons["Select…"])
         XCTAssertTrue(bar.buttons["Done"].waitForExistence(timeout: 15))
         XCTAssertTrue(bar.buttons["Delete"].exists)
         XCTAssertFalse(bar.buttons["Delete"].isEnabled, "No unselected book may be deleted")
@@ -753,15 +780,21 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         selectStudyGroup(named: "כל הכרטיסיות")
         let cardActions = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "פעולות בכרטיסייה ")).firstMatch
         tap(cardActions)
-        tap(app.buttons["העתק אל יעד העברה"])
+        // SwiftUI inserts Unicode direction isolates around interpolated RTL
+        // names. Match the unchanged action and actual name independently.
+        tap(app.collectionViews.cells.buttons.matching(NSPredicate(
+            format: "label BEGINSWITH %@ AND label CONTAINS %@", "העתק אל ", "יעד העברה")).firstMatch)
         selectStudyGroup(named: "יעד העברה")
         XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Copy must create a real document card in its destination")
-        tap(app.buttons["סגור \(bookTitle)"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        tap(overview.buttons.matching(NSPredicate(
+            format: "label BEGINSWITH %@ AND label CONTAINS %@", "סגור ", bookTitle)).firstMatch)
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
         selectStudyGroup(named: "כל הכרטיסיות")
         XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Closing the copied document must preserve its source")
         tap(cardActions)
-        tap(app.buttons["העבר אל יעד העברה"])
+        tap(app.collectionViews.cells.buttons.matching(NSPredicate(
+            format: "label BEGINSWITH %@ AND label CONTAINS %@", "העבר אל ", "יעד העברה")).firstMatch)
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Move must remove the source card")
         selectStudyGroup(named: "יעד העברה")
         XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15))
@@ -816,11 +849,15 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             settings.activate()
             XCTAssertTrue(toggle.waitForExistence(timeout: 15))
             if ((toggle.value as? String) == "1") != wasEnabled { toggle.tap() }
-            XCTAssertEqual(toggle.value as? String, wasEnabled ? "1" : "0")
+            let restored = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "value == %@", wasEnabled ? "1" : "0"), object: toggle)
+            XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 15), .completed)
             settings.terminate()
         }
         addTeardownBlock { await restoration.run() }
-        XCTAssertEqual(toggle.value as? String, "1", "The actual system preference must be enabled")
+        let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "1"), object: toggle)
+        XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 15), .completed,
+                       "The actual system preference must be enabled")
         let reduced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled }
         }, object: nil)
@@ -974,8 +1011,19 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let pager = app.descendants(matching: .any)["reader-sidebar-pager"]
         for _ in 0..<20 {
             let wasContents = tocDot.isSelected
+            func changedPage() -> XCTNSPredicateExpectation {
+                XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                    MainActor.assumeIsolated { tocDot.isSelected != wasContents }
+                }, object: nil)
+            }
             pager.swipeLeft()
-            if tocDot.isSelected == wasContents { pager.swipeRight() }
+            // Wait for the real page transition before trying the opposite
+            // RTL direction; an immediate reverse gesture can undo it.
+            if XCTWaiter.wait(for: [changedPage()], timeout: 3) != .completed {
+                pager.swipeRight()
+                XCTAssertEqual(XCTWaiter.wait(for: [changedPage()], timeout: 15), .completed,
+                               "A genuine sidebar swipe must change the selected page")
+            }
             XCTAssertNotEqual(tocDot.isSelected, wasContents, "A sidebar swipe must change pages without changing the reader")
         }
         capture("candidate-library-sidebar")

@@ -139,7 +139,18 @@ public struct CommandPaletteView: View {
                 .accessibilityLabel(Text("Clear search"))
             }
 
+            #if os(iOS)
+            // Native cancel command also reaches the palette while UIKit's
+            // text input/IME owns Escape. Keep the original key cap pixels.
+            Button(action: onDismiss) {
+                KeyCap(label: "esc")
+            }
+            .buttonStyle(.plain)
+            .keyboardShortcut(.cancelAction)
+            .accessibilityLabel(Text("Dismiss command palette"))
+            #else
             KeyCap(label: "esc")
+            #endif
         }
         .padding(.horizontal, 18)
         .padding(.vertical, 15)

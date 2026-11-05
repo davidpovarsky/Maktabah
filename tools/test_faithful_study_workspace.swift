@@ -60,6 +60,50 @@ struct FaithfulStudyWorkspaceTests {
         try store.attach(scene: "window-a", legacyTabs: [], activeID: nil)
         try expect(store.snapshot == migrated, "Attaching twice must not remigrate or erase the original tabs")
 
+        // A cold launch must retain the selected group when the old build's
+        // generated scene UUID is replaced by UIKit's persistent session ID.
+        let scenePersistence = StudyWorkspacePersistence(url: directory.appendingPathComponent("scene-history/workspace.json"))
+        let legacySceneStore = StudyWorkspaceStore(persistence: scenePersistence, canonicalSessionURL: canonicalURL)
+        try legacySceneStore.attach(scene: "legacy-random-uuid", legacyTabs: [original], activeID: original.id)
+        let sceneProfile = legacySceneStore.snapshot!.profiles[0].id
+        let emptySceneGroup = try legacySceneStore.addGroup(profileID: sceneProfile, name: "empty selected group")
+        try legacySceneStore.transaction { value in
+            value.scenes["legacy-random-uuid"] = .init(profileID: sceneProfile, groupID: emptySceneGroup)
+        }
+        var oldSceneJSON = try JSONSerialization.jsonObject(with: Data(contentsOf: scenePersistence.url)) as! [String: Any]
+        oldSceneJSON.removeValue(forKey: "lastActiveSceneID")
+        try JSONSerialization.data(withJSONObject: oldSceneJSON).write(to: scenePersistence.url)
+        let nativeSceneStore = StudyWorkspaceStore(persistence: scenePersistence, canonicalSessionURL: canonicalURL)
+        try nativeSceneStore.attach(scene: "native-session-a", legacyTabs: [original], activeID: original.id)
+        try expect(nativeSceneStore.selectedGroup(scene: "native-session-a")?.id == emptySceneGroup,
+                   "Migrating a v1 scene identity retains its selected empty group instead of reviving legacy tabs")
+        try expect(nativeSceneStore.snapshot?.scenes["legacy-random-uuid"]?.groupID == emptySceneGroup,
+                   "Scene identity handoff does not delete or rewrite the older scene's selection")
+        try expect(nativeSceneStore.snapshot?.version == 1, "Optional scene continuity metadata reads existing v1 files")
+        let positioned = ReaderDocumentTab(backend: .otzaria, session: .init(
+            id: UUID(), bookId: 17, bookTitle: "שבת", contentId: 527,
+            locator: .init(backend: .otzaria, workKey: "book:17", position: .legacyLine(527))))
+        let positionedGroup = try nativeSceneStore.addGroup(profileID: sceneProfile, name: "independent position", tabs: [positioned], activeID: positioned.id)
+        try nativeSceneStore.transaction { value in
+            value.scenes["native-session-a"] = .init(profileID: sceneProfile, groupID: positionedGroup)
+            value.lastActiveSceneID = "native-session-a"
+        }
+        let coldSceneStore = StudyWorkspaceStore(persistence: scenePersistence, canonicalSessionURL: canonicalURL)
+        try coldSceneStore.attach(scene: "native-session-a", legacyTabs: [original], activeID: original.id)
+        try expect(coldSceneStore.selectedGroup(scene: "native-session-a")?.tabs.first == positioned,
+                   "Cold attach of the actual persistent session retains its document ID and independent locator")
+        try coldSceneStore.attach(scene: "native-session-b", legacyTabs: [], activeID: nil)
+        try coldSceneStore.transaction { value in
+            value.scenes["native-session-b"] = .init(profileID: sceneProfile, groupID: emptySceneGroup)
+            value.lastActiveSceneID = "native-session-b"
+        }
+        let twoWindowStore = StudyWorkspaceStore(persistence: scenePersistence, canonicalSessionURL: canonicalURL)
+        try twoWindowStore.attach(scene: "native-session-a", legacyTabs: [], activeID: nil)
+        try expect(twoWindowStore.selectedGroup(scene: "native-session-a")?.tabs.first == positioned,
+                   "An existing window never adopts another window's last-active selection")
+        try expect(twoWindowStore.selectedGroup(scene: "native-session-b")?.tabs.isEmpty == true,
+                   "The second window retains its own empty group across the first window's cold attach")
+
         let profileID = try store.addProfile(name: "לימוד", symbol: "book.closed")
         let groupID = try store.addGroup(profileID: profileID, name: "קבוצה ריקה")
         try store.attach(scene: "window-b", legacyTabs: [], activeID: nil)

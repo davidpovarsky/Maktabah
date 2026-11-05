@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// Viewer-only composition. The original library/TOC/reader arrive as view builders.
 struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
@@ -16,7 +17,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @State private var showsProfiles = false
     @State private var availableWidth: CGFloat = 640
     @State private var detailWidth: CGFloat = 640
-    @SceneStorage("ChavrusaText.studySceneID") private var sceneID = ""
+    @State private var sceneID = ""
     @Namespace private var searchMorph
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -54,28 +55,35 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             }
                 .toolbar(removing: .sidebarToggle)
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
-                            let wasOpen = sidebarIsOpen
-                            withAnimation(.snappy) {
-                                preferredCompactColumn = wasOpen ? .detail : .sidebar
-                                columnVisibility = wasOpen ? .detailOnly : .all
+                    // A compact split already has the native Back-to-sidebar
+                    // action. Duplicating it also displaced the search field
+                    // in the genuine 375pt system window.
+                    if horizontalSizeClass != .compact {
+                        ToolbarItem(placement: .topBarLeading) {
+                            ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
+                                let wasOpen = sidebarIsOpen
+                                withAnimation(.snappy) {
+                                    preferredCompactColumn = wasOpen ? .detail : .sidebar
+                                    columnVisibility = wasOpen ? .detailOnly : .all
+                                }
                             }
                         }
+                        .readerSourceGlassBackground()
                     }
-                    .readerSourceGlassBackground()
                     ToolbarItem(placement: .principal) {
                         if !searchIsExpanded {
                             SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
                                                      quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
-                                .frame(minWidth: detailWidth < 740 ? 100 : 150, idealWidth: detailWidth < 740 ? 200 : 350, maxWidth: 520)
+                                .frame(minWidth: detailWidth < 740 ? 100 : 150,
+                                       idealWidth: horizontalSizeClass == .compact ? 150 : (detailWidth < 740 ? 200 : 350),
+                                       maxWidth: horizontalSizeClass == .compact ? 180 : 520)
                                 .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
                         } else {
                             Color.clear.frame(width: min(350, max(150, availableWidth - 220)), height: 52).accessibilityHidden(true)
                         }
                     }
                     .readerSourceGlassBackground()
-                    ToolbarItem(placement: .topBarTrailing) {
+                    ToolbarItem(placement: horizontalSizeClass == .compact ? .secondaryAction : .topBarTrailing) {
                         if let workspace { StudyProfileMenu(workspace: workspace, manager: manager, compact: detailWidth < 740) { showsProfiles = true } }
                     }
                     .readerSourceGlassBackground()
@@ -87,6 +95,11 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .background(Color.appBackground.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
         .background {
+            ReaderSceneIdentityReader { identifier in
+                if sceneID != identifier { sceneID = identifier }
+            }
+            .frame(width: 0, height: 0)
+            .accessibilityHidden(true)
             if let workspace { StudyWorkspaceCheckpointObserver(manager: manager, workspace: workspace) }
             #if DEBUG
             ReaderViewportAcceptanceObserver().frame(width: 0, height: 0).accessibilityHidden(true)
@@ -110,9 +123,8 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .onChange(of: quickAddressFocused) { _, focused in
             if focused { quickAddressFocused = false; openSearch() }
         }
-        .task {
-            guard workspace == nil else { return }
-            if sceneID.isEmpty { sceneID = UUID().uuidString }
+        .task(id: sceneID) {
+            guard workspace == nil, !sceneID.isEmpty else { return }
             manager.restoreSessionIfNeeded()
             let adapter = StudyWorkspaceNavigationAdapter(sceneID: sceneID, store: StudyWorkspaceStore.forCurrentProcess())
             workspace = adapter
@@ -169,6 +181,40 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         sidebar.showLibrary()
         preferredCompactColumn = .sidebar
         withAnimation(.snappy) { columnVisibility = .all }
+    }
+}
+
+/// UIKit owns the durable identity of the actual containing window. Do not
+/// choose an arbitrary connected scene or generate another ID on cold launch.
+private struct ReaderSceneIdentityReader: UIViewRepresentable {
+    let resolve: (String) -> Void
+    func makeUIView(context: Context) -> ReaderSceneIdentityView {
+        let view = ReaderSceneIdentityView()
+        view.isUserInteractionEnabled = false
+        view.onResolve = resolve
+        return view
+    }
+    func updateUIView(_ view: ReaderSceneIdentityView, context: Context) {
+        view.onResolve = resolve
+        view.publishIdentity()
+    }
+}
+
+private final class ReaderSceneIdentityView: UIView {
+    var onResolve: ((String) -> Void)?
+    private var publishedID: String?
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        publishIdentity()
+    }
+    func publishIdentity() {
+        guard let identifier = window?.windowScene?.session.persistentIdentifier,
+              identifier != publishedID else { return }
+        publishedID = identifier
+        Task { @MainActor [weak self] in
+            guard self?.window?.windowScene?.session.persistentIdentifier == identifier else { return }
+            self?.onResolve?(identifier)
+        }
     }
 }
 
