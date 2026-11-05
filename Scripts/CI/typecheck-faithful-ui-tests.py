@@ -9,6 +9,18 @@ artifacts.mkdir(parents=True, exist_ok=True)
 sdk = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], text=True).strip())
 platform = Path(subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-platform-path"], text=True).strip())
 version = subprocess.check_output(["xcodebuild", "-version"], text=True).strip()
+# Targeted read-only SDK evidence: current documentation introduces a VoiceOver
+# automation service, but its actual platform/Simulator availability must come
+# from this installed toolchain rather than an older Simulator guide.
+voiceover = []
+for frameworks in [platform / "Developer/Library/Frameworks", sdk / "Developer/Library/Frameworks"]:
+    headers = frameworks / "XCUIAutomation.framework/Headers"
+    if headers.is_dir():
+        for header in sorted(headers.glob("*.h")):
+            source = header.read_text()
+            if "VoiceOver" in source or "XCUI_SIMULATOR_UNAVAILABLE" in source:
+                voiceover.append(f"// {header}\n{source}")
+(artifacts / "xcuiautomation-voiceover-sdk.txt").write_text("\n".join(voiceover) or "XCUIAutomation headers not found in the checked SDK paths\n")
 command = ["xcrun", "swiftc", "-typecheck", "-module-name", "Maktabah_iOSUITests", "-swift-version", "6", "-enable-testing",
            "-D", "DEBUG", "-module-alias", "Testing=_Testing_Unavailable",
            "-target", "arm64-apple-ios18.6-simulator", "-sdk", str(sdk),

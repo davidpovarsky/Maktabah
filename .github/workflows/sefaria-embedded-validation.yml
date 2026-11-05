@@ -67,6 +67,7 @@ jobs:
           name: faithful-ui-sdk-check
           path: |
             build/artifacts/ui-acceptance-typecheck.*
+            build/artifacts/xcuiautomation-voiceover-sdk.txt
             build/artifacts/workspace-compile.log
             build/artifacts/workspace-test-results.log
 
