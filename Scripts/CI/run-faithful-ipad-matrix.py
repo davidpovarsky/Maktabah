@@ -58,11 +58,47 @@ for index, size in enumerate(["11", "13", "phone"]):
     udid, device_type, runtime, failures = create_compatible_ipad(size)
     device = {"size": size, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
     report["devices"].append(device)
+
+    def install_owned_app(path, bundle, timeout):
+        """Recover only a timed-out Simulator installation, never an XCTest."""
+        assert device["udid"] == udid
+        attempts = device.setdefault("installationAttempts", [])
+        for attempt in range(2):
+            record = {"bundle": bundle, "attempt": attempt + 1, "status": "STARTED"}
+            attempts.append(record)
+            try:
+                subprocess.run(["xcrun", "simctl", "install", udid, str(path)], check=True, timeout=timeout)
+                installed = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "app"],
+                                                    text=True, timeout=45).strip()
+                if not installed or not Path(installed).is_dir():
+                    raise RuntimeError(f"Native installer did not expose the actual {bundle} application container")
+                record.update(status="INSTALLED", appContainer=installed)
+                return
+            except subprocess.TimeoutExpired as error:
+                record.update(status="INSTALL_TIMEOUT", error=str(error))
+                (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
+                if attempt:
+                    raise
+                # Preserve the first timeout and exact native service evidence.
+                subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, size],
+                               check=False, timeout=150)
+                for diagnostic in artifacts.glob(f"simulator-failure-{size}*"):
+                    diagnostic.rename(diagnostic.with_name(diagnostic.name.replace(
+                        f"simulator-failure-{size}", f"simulator-install-recovery-{size}-{bundle}", 1)))
+                subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
+                subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
+                subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
     try:
         subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
         subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
-        subprocess.run(["xcrun", "simctl", "install", udid, str(app)], check=True, timeout=600)
-        subprocess.run(["xcrun", "simctl", "install", udid, str(prototype)], check=True, timeout=180)
+        # Verify the small independent oracle first, before the large app's
+        # installation/indexing. Both iPad sizes previously timed out installing
+        # this oracle after Maktabah, for baseline and candidate alike.
+        if size != "phone":
+            install_owned_app(prototype, "com.example.safaritoolbarsearch", 180)
+            subprocess.run(["xcrun", "simctl", "launch", udid, "com.example.safaritoolbarsearch"], check=True, timeout=90)
+            subprocess.run(["xcrun", "simctl", "terminate", udid, "com.example.safaritoolbarsearch"], check=True, timeout=60)
+        install_owned_app(app, "com.davidpovarsky.chavrusatext", 600)
         (root / "sim_udid.txt").write_text(udid)
         subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], check=True)
         fixture_report = artifacts / "miniTest10-native-fixture-install.json"
