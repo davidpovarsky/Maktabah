@@ -197,6 +197,6 @@
     "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
     "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "65cc70a951f6ed3b632632826a50d65c3d7c67759944cd6c6541459c1a14a9d3"
+    "destinationSHA256": "4825b2295dd24e16998bfdc2da38ee0459b7072a9ffae286198dde453ae4d149"
   }
 ]

@@ -55,6 +55,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                             }
                         }
                     }
+                    .readerSourceGlassBackground()
                     ToolbarItem(placement: .principal) {
                         if !searchIsExpanded {
                             SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
@@ -65,13 +66,16 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                             Color.clear.frame(width: min(350, max(150, availableWidth - 220)), height: 52).accessibilityHidden(true)
                         }
                     }
+                    .readerSourceGlassBackground()
                     ToolbarItem(placement: .topBarTrailing) {
                         if let workspace { StudyProfileMenu(workspace: workspace, manager: manager, compact: detailWidth < 740) { showsProfiles = true } }
                     }
+                    .readerSourceGlassBackground()
                 }
                 .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
         }
         .navigationSplitViewStyle(.balanced)
+        .toolbar(removing: .sidebarToggle)
         .background(Color.appBackground.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
         .background {

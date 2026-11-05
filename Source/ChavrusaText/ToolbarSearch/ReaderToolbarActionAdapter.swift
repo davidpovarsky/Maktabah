@@ -1,5 +1,15 @@
 import SwiftUI
 
+extension ToolbarContent {
+    /// The supplied GlassButtonGroup/SafariGlass already owns its background.
+    /// Keep native ToolbarItem placement without adding a second glass capsule.
+    @MainActor @ToolbarContentBuilder
+    func readerSourceGlassBackground() -> some ToolbarContent {
+        if #available(iOS 26.0, *) { sharedBackgroundVisibility(.hidden) }
+        else { self }
+    }
+}
+
 struct ReaderToolbarActionAdapter: View {
     @Environment(\.layoutDirection) private var layoutDirection
     let sidebarIsOpen: Bool

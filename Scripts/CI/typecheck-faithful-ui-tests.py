@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Cheap real-SDK compile of self-contained tests, including SIL isolation checks."""
 import json
+import hashlib
 from pathlib import Path
 import subprocess
 
@@ -43,4 +44,24 @@ report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], tex
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 print(json.dumps(report, indent=2))
 print(result.stdout)
-raise SystemExit(result.returncode)
+toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"),
+                   Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift")]
+toolbar_code = 0
+if all(path.is_file() for path in toolbar_sources):
+    # Compile the real self-contained app components, not substitute stubs.
+    # They do not exist in the immutable original baseline checkout.
+    toolbar_command = command[:-2].copy()
+    toolbar_command[toolbar_command.index("-module-name") + 1] = "FaithfulToolbarSDK"
+    toolbar_command[toolbar_command.index("-o") + 1] = "build/ToolbarSourceCheck.o"
+    toolbar_command.extend(map(str, toolbar_sources))
+    toolbar_result = subprocess.run(toolbar_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    toolbar_code = toolbar_result.returncode
+    (artifacts / "toolbar-sdk-compile.log").write_text(toolbar_result.stdout)
+    toolbar_report = {"sourceSHA": report["sourceSHA"], "xcode": version, "sdk": str(sdk),
+                      "status": "SDK_COMPILE_PASS" if toolbar_code == 0 else "FAIL",
+                      "includesCodeGeneration": True, "notRuntimeAcceptance": True,
+                      "sourceHashes": {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in toolbar_sources}}
+    (artifacts / "toolbar-sdk-compile.json").write_text(json.dumps(toolbar_report, indent=2))
+    print(json.dumps(toolbar_report, indent=2))
+    print(toolbar_result.stdout)
+raise SystemExit(result.returncode or toolbar_code)

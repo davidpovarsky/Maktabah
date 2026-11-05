@@ -68,6 +68,7 @@ jobs:
           path: |
             build/artifacts/ui-acceptance-typecheck.*
             build/artifacts/xcuiautomation-voiceover-sdk.txt
+            build/artifacts/toolbar-sdk-compile.*
             build/artifacts/workspace-compile.log
             build/artifacts/workspace-test-results.log
 
@@ -411,6 +412,7 @@ jobs:
             build/artifacts/test-simulator-*.log
             build/artifacts/test-case-execution-*.json
             build/artifacts/ui-acceptance-typecheck.*
+            build/artifacts/toolbar-sdk-compile.*
             build/artifacts/miniTest10-native-fixture-install-*.json
             build/artifacts/faithful-ipad-matrix.json
             build/artifacts/simctl-ui-help.txt

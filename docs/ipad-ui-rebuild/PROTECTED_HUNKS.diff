@@ -231,7 +231,7 @@ index 81228af9..fe4b9053 100644
      },
      {
 diff --git a/Source/Features/Library/iOS/iOSLibraryView.swift b/Source/Features/Library/iOS/iOSLibraryView.swift
-index ede65ecf..a63b5f95 100644
+index ede65ecf..ef138d94 100644
 --- a/Source/Features/Library/iOS/iOSLibraryView.swift
 +++ b/Source/Features/Library/iOS/iOSLibraryView.swift
 @@ -4,6 +4,7 @@ import UIKit
@@ -242,7 +242,7 @@ index ede65ecf..a63b5f95 100644
      @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
  
      var body: some View {
-@@ -119,6 +120,15 @@ struct iOSLibraryView: View {
+@@ -119,6 +120,16 @@ struct iOSLibraryView: View {
      private func toolbarContent(viewModel: LibraryViewModel) -> some ToolbarContent {
          if viewModel.isSelectionMode {
              selectionToolbarItems(viewModel: viewModel)
@@ -255,6 +255,7 @@ index ede65ecf..a63b5f95 100644
 +                }
 +                .labelStyle(.iconOnly)
 +            }
++            .readerSourceGlassBackground()
          } else {
              standardToolbarItems(viewModel: viewModel)
          }

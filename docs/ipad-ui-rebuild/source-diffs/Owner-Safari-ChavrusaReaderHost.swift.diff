@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,659 +1,165 @@
+@@ -1,659 +1,169 @@
  import SwiftUI
 -import CommandPalette
  
@@ -202,6 +202,7 @@
 +                            }
 +                        }
 +                    }
++                    .readerSourceGlassBackground()
 +                    ToolbarItem(placement: .principal) {
 +                        if !searchIsExpanded {
 +                            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
@@ -212,13 +213,16 @@
 +                            Color.clear.frame(width: min(350, max(150, availableWidth - 220)), height: 52).accessibilityHidden(true)
 +                        }
 +                    }
++                    .readerSourceGlassBackground()
 +                    ToolbarItem(placement: .topBarTrailing) {
 +                        if let workspace { StudyProfileMenu(workspace: workspace, manager: manager, compact: detailWidth < 740) { showsProfiles = true } }
 +                    }
++                    .readerSourceGlassBackground()
 +                }
 +                .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
 +        }
 +        .navigationSplitViewStyle(.balanced)
++        .toolbar(removing: .sidebarToggle)
 +        .background(Color.appBackground.ignoresSafeArea())
 +        .environment(\.chavrusaReaderSidebar, sidebar)
 +        .background {

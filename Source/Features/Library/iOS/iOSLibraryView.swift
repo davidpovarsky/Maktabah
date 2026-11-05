@@ -129,6 +129,7 @@ struct iOSLibraryView: View {
                 }
                 .labelStyle(.iconOnly)
             }
+            .readerSourceGlassBackground()
         } else {
             standardToolbarItems(viewModel: viewModel)
         }
