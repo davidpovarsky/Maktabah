@@ -107,6 +107,16 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertTrue(element.frame.intersects(app.frame), "Control must be inside the actual app viewport", file: file, line: line)
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
+    func readerBottomChromeAction() -> XCUIElement {
+        let more = app.buttons["reader-more-menu"]
+        if more.exists { return more }
+        // The genuine 9401 compact-window hierarchy exposes UIKit's native
+        // bottom overflow instead of the reader's overflowed More item. Use
+        // that actual control to measure chrome, never the full-height Toolbar.
+        let overflow = app.toolbars.buttons.matching(identifier: "BottomOverflowBarButtonItem")
+        XCTAssertEqual(overflow.count, 1, "The original bottom toolbar must expose one real native overflow action")
+        return overflow.firstMatch
+    }
     func capture(_ name: String, windowed: Bool = false) {
         let application = app!
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
@@ -178,7 +188,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                     $0.width > 0 && $0.height > 0 && $0.intersects(readerFrame)
                         && $0.intersection(readerFrame).width > readerFrame.width * 0.5
                 }
-                let bottomAction = app.buttons["reader-more-menu"]
+                let bottomAction = readerBottomChromeAction()
                 guard let navigationBottom = navigationFrames.map({ $0.maxY }).max(), bottomAction.exists else {
                     XCTFail("Cannot identify the original native chrome to isolate genuine book pixels"); return
                 }
@@ -290,7 +300,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         assertReaderHasText()
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator,
                        "Window reflow must preserve the actual navigation unit")
-        XCTAssertTrue(app.buttons["reader-more-menu"].exists, "The original bottom toolbar must survive narrow window reflow")
+        XCTAssertTrue(readerBottomChromeAction().exists, "The original bottom toolbar must survive narrow window reflow")
         let geometry = XCTAttachment(string: "wide=\(originalFrame)\nnarrow=\(app.frame)")
         geometry.name = enabled ? "candidate-native-window-geometry" : "baseline-native-window-geometry"
         geometry.lifetime = .keepAlways

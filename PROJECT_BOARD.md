@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Genuine 9401 compact-window captures in run 42008440372 show UIKit replacing the overflowed `reader-more-menu` with a native `BottomOverflowBarButtonItem` in the original bottom toolbar. Measure actual visible native controls for reader-body pixel checks; neither a missing overflowed child identifier nor a full-height Toolbar accessibility frame proves that the bottom bar disappeared. The 13-inch window was 375×557 with real text visible; retain its native screenshot/hierarchy as evidence.
+
 - iPadOS 27 cross-tab geometry needs actual flags-off/on comparison. In native 41960978106 captures, a viewer-only safeAreaInset for the 40pt document strip shifted global Search navigation from y=86pt to106pt, while candidate flags off matched immutable 9401. A downstream measured content stack and native navigation-frame assertions are prepared; do not classify this unapproved global movement as a transient screenshot difference.
 
 - Native XCTest acceptance must distinguish durable app state from a pre-install Simulator container UUID. Resolve UUID-scoped test sidecars in the actual installed data container; viewport observation must use the app's current Documents directory. Keep native system-setting/window restoration in XCTest teardown blocks, since an assertion abort can skip a Swift defer and contaminate later tests (including VoiceOver interpreting ordinary taps differently).
