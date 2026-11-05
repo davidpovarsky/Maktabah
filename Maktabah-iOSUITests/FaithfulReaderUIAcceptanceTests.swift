@@ -122,15 +122,17 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                     $0.width > 0 && $0.height > 0 && $0.intersects(readerFrame)
                         && $0.intersection(readerFrame).width > readerFrame.width * 0.5
                 }
-                let bottomBar = app.toolbars.containing(.button, identifier: "reader-more-menu").firstMatch
-                guard let navigationBottom = navigationFrames.map({ $0.maxY }).max(), bottomBar.exists else {
+                let bottomAction = app.buttons["reader-more-menu"]
+                guard let navigationBottom = navigationFrames.map({ $0.maxY }).max(), bottomAction.exists else {
                     XCTFail("Cannot identify the original native chrome to isolate genuine book pixels"); return
                 }
                 // UITextView extends behind native bars. Exclude their actual
                 // measured frames so title/status/tab labels cannot count as
                 // loaded book text when the original value is diagnostic JSON.
                 let top = max(readerFrame.minY, navigationBottom) + 12
-                let bottom = min(readerFrame.maxY, bottomBar.frame.minY) - 12
+                // On iPadOS 27 the accessibility Toolbar container spans the
+                // whole content area. Its real bottom action has precise bounds.
+                let bottom = min(readerFrame.maxY, bottomAction.frame.minY) - 12
                 let frame = CGRect(x: readerFrame.minX + 12, y: top,
                                    width: readerFrame.width - 24, height: bottom - top)
                 guard frame.width > 0, frame.height > 0 else {
@@ -435,12 +437,20 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         launchReader(enabled: false)
         assertReaderHasText()
         XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
+        let originalHighlights = try XCTUnwrap(getRenderedHighlightSnapshot())
+        capture("candidate-before-workspace-migration-original-reader")
         app.terminate()
         XCTAssertFalse(FileManager.default.fileExists(atPath: sidecar.path), "Disabled startup/shutdown must not create workspace state")
         XCTAssertFalse(FileManager.default.fileExists(atPath: sidecar.appendingPathExtension("bak").path))
         launchReader()
         assertReaderHasText()
         XCTAssertTrue(app.descendants(matching: .any)["chavrusa-reader-host"].waitForExistence(timeout: 30))
+        let migratedHighlights = try XCTUnwrap(getRenderedHighlightSnapshot())
+        XCTAssertEqual(migratedHighlights.searchHighlightCount, originalHighlights.searchHighlightCount)
+        XCTAssertEqual(migratedHighlights.annotationHighlightCount, originalHighlights.annotationHighlightCount)
+        XCTAssertEqual(migratedHighlights.segmentSelectionCount, originalHighlights.segmentSelectionCount,
+                       "Enabling the workspace must not create a fake paragraph selection")
+        capture("candidate-after-workspace-migration-original-reader")
         let created = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             FileManager.default.fileExists(atPath: sidecar.path)
         }, object: nil)
@@ -465,6 +475,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         assertReaderHasText()
         let field = app.textFields["reader-library-search-field"]
         XCTAssertTrue(field.waitForExistence(timeout: 30))
+        let originalFieldFrame = field.frame
         let fieldPoint = field.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
         fieldPoint.hover()
         capture("candidate-pointer-over-compact-search")
@@ -481,6 +492,11 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed,
                        "The original palette's Escape handler must dismiss through keyboard focus")
         XCTAssertEqual(field.value as? String, "בראשית", "Collapse must retain the canonical library query")
+        let restoredFieldFrame = field.frame
+        XCTAssertEqual(restoredFieldFrame.minX, originalFieldFrame.minX, accuracy: 1)
+        XCTAssertEqual(restoredFieldFrame.minY, originalFieldFrame.minY, accuracy: 1)
+        XCTAssertEqual(restoredFieldFrame.width, originalFieldFrame.width, accuracy: 1)
+        XCTAssertEqual(restoredFieldFrame.height, originalFieldFrame.height, accuracy: 1)
         fieldPoint.click()
         XCTAssertTrue(result.waitForExistence(timeout: 30))
         let resultPoint = result.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
@@ -708,6 +724,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let paletteField = palette.textFields.firstMatch
         XCTAssertTrue(paletteField.waitForExistence(timeout: 10))
         XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 15), "Capture the genuine full software keyboard, not a keyboard-free preview")
+        XCTAssertGreaterThan(app.keyboards.firstMatch.frame.height, 160,
+                             "A keyboard accessory strip alone does not prove the full software keyboard is visible")
         paletteField.typeText("בראשית")
         let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 30), "Actual canonical-library books must appear in original CommandPalette")
