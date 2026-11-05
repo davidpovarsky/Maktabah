@@ -6,12 +6,13 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     let contents: Contents
 
     var body: some View {
-        TabView(selection: $coordinator.page) {
-            library.tag(ReaderSidebarPageCoordinator.Page.library)
-            contents.tag(ReaderSidebarPageCoordinator.Page.contents)
-        }
-        .tabViewStyle(.page(indexDisplayMode: .never))
-        .safeAreaInset(edge: .bottom, spacing: 0) {
+        VStack(spacing: 0) {
+            TabView(selection: $coordinator.page) {
+                library.tag(ReaderSidebarPageCoordinator.Page.library)
+                contents.tag(ReaderSidebarPageCoordinator.Page.contents)
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .accessibilityIdentifier("reader-sidebar-pager")
             HStack(spacing: 0) {
                 pageButton(.library, title: "ספרייה")
                 pageButton(.contents, title: "תוכן עניינים")
@@ -19,7 +20,6 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
             .frame(maxWidth: .infinity)
             .background(.bar)
         }
-        .accessibilityIdentifier("reader-sidebar-pager")
     }
 
     private func pageButton(_ page: ReaderSidebarPageCoordinator.Page, title: String) -> some View {

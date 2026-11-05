@@ -425,6 +425,75 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    @MainActor
+    func testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(language: "en")
+        assertReaderHasText()
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let originalTitle = app.staticTexts["reader-header-title"].label
+        let libraryDot = app.buttons["reader-sidebar-page-0"]
+        if !libraryDot.exists || !libraryDot.frame.intersects(app.frame) {
+            tap(app.buttons["reader-host-sidebar-toggle"])
+        }
+        tap(libraryDot)
+        let library = app.otherElements["library-column"]
+        XCTAssertTrue(library.waitForExistence(timeout: 15))
+        let bar = app.navigationBars["Library"]
+        tap(bar.buttons["Group By"])
+        tap(app.collectionViews.cells.buttons["Category"])
+        let categoryLabels = Set(library.staticTexts.allElementsBoundByIndex.map { $0.label })
+        XCTAssertFalse(categoryLabels.isEmpty, "Observe the real canonical library tree")
+        tap(bar.buttons["Group By"])
+        tap(app.collectionViews.cells.buttons["Author"])
+        let regrouped = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let authors = Set(library.staticTexts.allElementsBoundByIndex.map { $0.label })
+                return !authors.isEmpty && authors != categoryLabels
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [regrouped], timeout: 30), .completed,
+                       "The original grouping action must actually change the library's visible membership")
+        tap(bar.buttons["Group By"])
+        tap(app.collectionViews.cells.buttons["Category"])
+        let downloaded = bar.buttons["Downloaded"]
+        if downloaded.exists {
+            // The original control is conditional on bundle mode. Exercise
+            // its real native state only where the original source offers it.
+            let selected = downloaded.isSelected
+            let value = downloaded.value as? String
+            tap(downloaded)
+            XCTAssertTrue(downloaded.isSelected != selected || (downloaded.value as? String) != value)
+            tap(downloaded)
+            XCTAssertEqual(downloaded.isSelected, selected)
+            XCTAssertEqual(downloaded.value as? String, value)
+        }
+        tap(bar.buttons["Library Options"])
+        let options = app.collectionViews.containing(.button, identifier: "Select").firstMatch
+        XCTAssertTrue(options.waitForExistence(timeout: 15))
+        XCTAssertEqual(options.cells.buttons.count, 3, "Retain original Select, book-update and import actions")
+        tap(app.collectionViews.cells.buttons["Select"])
+        XCTAssertTrue(bar.buttons["Done"].waitForExistence(timeout: 15))
+        XCTAssertTrue(bar.buttons["Delete"].exists)
+        XCTAssertFalse(bar.buttons["Delete"].isEnabled, "No unselected book may be deleted")
+        capture("candidate-original-library-selection-actions")
+        tap(bar.buttons["Done"])
+        tap(app.buttons["main-settings-button"])
+        XCTAssertTrue(app.buttons["settings-done-button"].waitForExistence(timeout: 15))
+        capture("candidate-original-settings")
+        tap(app.buttons["settings-done-button"])
+        tap(app.buttons["Book Info"])
+        let close = app.navigationBars.buttons["Close"]
+        XCTAssertTrue(close.waitForExistence(timeout: 30))
+        XCTAssertTrue(app.segmentedControls.firstMatch.exists, "The genuine unified book-info view must load")
+        capture("candidate-original-book-info")
+        tap(close)
+        assertReaderHasText()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, originalTitle)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+        XCTAssertTrue(app.buttons["reader-more-menu"].exists)
+    }
+
     func testOriginalBottomTOCActionOpensContentsFromLibraryPage() {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
