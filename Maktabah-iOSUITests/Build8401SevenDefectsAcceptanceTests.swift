@@ -160,6 +160,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
     func testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState() throws {
         launchWithScenario("readerTOC", backend: "sefaria")
         dismissAlertsIfNeeded()
+        revealTableOfContentsPageIfPresent()
 
         // TOC list or navigation items must appear
         let tocSearch = app.searchFields.firstMatch
@@ -195,6 +196,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
     func testF2_HebrewTOCStructureAndDafLabels() throws {
         launchWithScenario("readerTOC", backend: "sefaria", language: "he", locale: "he_IL")
         dismissAlertsIfNeeded()
+        revealTableOfContentsPageIfPresent()
 
         let tocSearch = app.searchFields.firstMatch
         XCTAssertTrue(waitForElement(tocSearch, timeout: 12.0), "TOC must be interactive")

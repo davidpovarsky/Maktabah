@@ -1313,6 +1313,7 @@
 		E2D27ABB6420FBA0155F9C29 /* SafariToolbarSourcePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */; };
 		1A92E5A3C0E241A340657AD4 /* ThirdPartyNotices in Resources */ = {isa = PBXBuildFile; fileRef = 177DC9EB2AB8099576B13411; };
 		1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */ = {isa = PBXBuildFile; productRef = BF8626D7580C7BB2D53851F8; };
+		81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2059,6 +2060,7 @@
 		FFF7EF2388CCE26B3FD09BEA /* ReaderToolbarActionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ReaderToolbarActionAdapter.swift"; sourceTree = "<group>"; };
 		8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/SafariToolbarSourcePort.swift"; sourceTree = "<group>"; };
 		177DC9EB2AB8099576B13411 /* ThirdPartyNotices */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ThirdPartyNotices; sourceTree = "<group>"; };
+		A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderViewportAcceptanceObserver.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2156,6 +2158,7 @@
 				E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */,
 				77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */,
 				65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */,
+				A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */,
 				936F8938E4E38CF6FBE52F2D /* ReaderNavigationDisplayPolicy.swift */,
 				CF0000000000000000000001 /* BackendAnnotationBridge.swift */,
 				CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */,
@@ -4766,6 +4769,7 @@
 			files = (
 				9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */,
 				9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */,
+				81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */,
 				54C89333E0A00A80869ADEB1 /* ReaderSidebarPageCoordinator.swift in Sources */,
 				A42DDBE8569676110112B7FE /* ReaderSidebarPager.swift in Sources */,
 				9188F501FA26158F8E9E93DE /* StudyWorkspaceModels.swift in Sources */,

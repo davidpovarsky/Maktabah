@@ -35,8 +35,8 @@ struct LibraryCommandPaletteAdapter: View {
 /// The owner's compactSearchField, with only library-domain text/icon/binding substituted.
 struct SafariLibrarySearchField: View {
     @Binding var query: String
+    var quickAddressFocused: FocusState<Bool>.Binding
     let onExpand: () -> Void
-    @FocusState private var quickAddressFocused: Bool
 
     var body: some View {
         HStack(spacing: 11) {
@@ -50,7 +50,7 @@ struct SafariLibrarySearchField: View {
                 .multilineTextAlignment(.center)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
-                .focused($quickAddressFocused)
+                .focused(quickAddressFocused)
                 .submitLabel(.search)
                 .onSubmit(onExpand)
                 .accessibilityLabel("חיפוש בספרייה")
@@ -64,8 +64,5 @@ struct SafariLibrarySearchField: View {
         .contentShape(RoundedRectangle(cornerRadius: 26))
         .onTapGesture(perform: onExpand)
         .modifier(SafariGlass(radius: 26))
-        .onChange(of: quickAddressFocused) { _, focused in
-            if focused { quickAddressFocused = false; onExpand() }
-        }
     }
 }

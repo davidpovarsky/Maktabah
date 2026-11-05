@@ -11,6 +11,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @State private var sidebar = ReaderSidebarPageCoordinator()
     @State private var workspace: StudyWorkspaceNavigationAdapter?
     @State private var searchIsExpanded = false
+    @FocusState private var quickAddressFocused: Bool
     @State private var showsOverview = false
     @State private var showsProfiles = false
     @State private var availableWidth: CGFloat = 640
@@ -56,7 +57,8 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                     }
                     ToolbarItem(placement: .principal) {
                         if !searchIsExpanded {
-                            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery, onExpand: openSearch)
+                            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
+                                                     quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
                                 .frame(minWidth: detailWidth < 740 ? 100 : 150, idealWidth: detailWidth < 740 ? 200 : 350, maxWidth: 520)
                                 .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
                         } else {
@@ -74,6 +76,9 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .environment(\.chavrusaReaderSidebar, sidebar)
         .background {
             if let workspace { StudyWorkspaceCheckpointObserver(manager: manager, workspace: workspace) }
+            #if DEBUG
+            ReaderViewportAcceptanceObserver().frame(width: 0, height: 0).accessibilityHidden(true)
+            #endif
         }
         .overlay(alignment: .top) {
             if searchIsExpanded {
@@ -90,6 +95,9 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         }
         .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { availableWidth = $0 }
         .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
+        .onChange(of: quickAddressFocused) { _, focused in
+            if focused { quickAddressFocused = false; openSearch() }
+        }
         .task {
             guard workspace == nil else { return }
             if sceneID.isEmpty { sceneID = UUID().uuidString }
@@ -115,6 +123,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             get: { workspace?.errorMessage != nil && !showsOverview && !showsProfiles }, set: { if !$0 && !showsOverview && !showsProfiles { workspace?.errorMessage = nil } })) {
             Button("אישור") { workspace?.errorMessage = nil }
         } message: { Text(workspace?.errorMessage ?? "") }
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("chavrusa-reader-host")
     }
 

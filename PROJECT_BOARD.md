@@ -76,7 +76,8 @@ Useful technical discoveries, undocumented behavior, shortcuts, implementation t
 
 Things worth testing or researching before deciding whether to implement them.
 
-- Baseline 9401's optional DEBUG `writeAcceptanceViewportReport` can assert during reader rotation when `MAKTABAH_SMOKE_READY_FILE` is supplied. Genuine crash attachment from run `41918768696` points to `iOSIbarotTextView.swift:153` in JSON/file export, called by safe-area scrolling. The test harness now opts into this exporter only for the fixed-orientation sidebar source/object stability case; normal visual/rotation tests retain the original renderer without activating the optional exporter. The underlying export error still needs exact diagnostics before a separately approved protected-source fix; no renderer patch or rotation-test suppression is authorized by this observation.
+- Baseline 9401's optional DEBUG `writeAcceptanceViewportReport` can assert during rotation **and sidebar width reflow** when `MAKTABAH_SMOKE_READY_FILE` is supplied (`41918768696`, `41926195676`, protected `iOSIbarotTextView.swift:153`). Do not activate it for acceptance. The faithful rebuild prepares a downstream read-only observer of the existing native source-anchor metadata, with fresh request IDs; protected renderer remains unchanged. Exact original JSON/file failure still needs diagnosis before any separately approved renderer fix.
+- Native `reader-text.value` in 9401 is diagnostic JSON, not book text, because `ReaderRenderedHighlightInspector` overrides UITextView accessibility. Never count its string length as rendered-content evidence. The rebuild preserves the native text value and existing dedicated diagnostics child; immutable-baseline verification requires physical screenshot evidence, with test-side pixel text-region detection prepared. Neither diagnostic counts nor a host identifier prove visible text.
 
 ## Open Questions
 

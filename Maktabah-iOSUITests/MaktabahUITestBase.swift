@@ -157,6 +157,21 @@ class MaktabahUITestBase: XCTestCase {
         return nil
     }
 
+    /// Follow the actual two-page sidebar when present; original 9401 already
+    /// presents its TOC in the middle column and needs no extra interaction.
+    func revealTableOfContentsPageIfPresent() {
+        let page = app.buttons["reader-sidebar-page-1"]
+        if page.exists {
+            if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+                let toggle = app.buttons["reader-host-sidebar-toggle"]
+                XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+                toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            }
+            XCTAssertTrue(page.waitForExistence(timeout: 10))
+            page.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        }
+    }
+
     func dismissAlertsIfNeeded() {
         if app.alerts.count > 0 {
             let alert = app.alerts.firstMatch

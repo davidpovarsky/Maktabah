@@ -144,7 +144,8 @@ public enum ReaderRenderedHighlightInspector {
         )
         let jsonString = snapshot.toJSONString()
 
-        textView.accessibilityValue = jsonString
+        // Keep UITextView's native book-text value available to VoiceOver and
+        // UI tests. Structured diagnostics belong to their existing child.
 
         let subview: UIView
         if let existing = textView.subviews.first(where: { $0.accessibilityIdentifier == diagnosticsAccessibilityIdentifier }) {

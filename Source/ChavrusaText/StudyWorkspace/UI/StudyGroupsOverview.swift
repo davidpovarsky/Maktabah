@@ -54,6 +54,8 @@ struct StudyGroupsOverview: View {
                         }
                         Button("מחיקת קבוצה", systemImage: "trash", role: .destructive) { confirmsDelete = true }
                     } label: { Label("קבוצות כרטיסיות", systemImage: "ellipsis.circle") }
+                    .accessibilityLabel("פעולות בקבוצת הכרטיסיות")
+                    .accessibilityIdentifier("study-group-actions-menu")
                 }
             }
             .alert("שם קבוצת הכרטיסיות", isPresented: $showsNamePrompt) {

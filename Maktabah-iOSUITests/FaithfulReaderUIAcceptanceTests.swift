@@ -1,4 +1,5 @@
 import XCTest
+import Vision
 
 /// Runs the supplied prototype in its own app, never demo code in Maktabah.
 final class SafariPrototypeReferenceTests: XCTestCase {
@@ -33,11 +34,10 @@ final class SafariPrototypeReferenceTests: XCTestCase {
 class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
-    struct Viewport: Decodable { let source: Int; let offset: Double; let object: Int }
+    struct Viewport: Decodable { let source: Int; let offset: Double; let object: Int; let requestID: String }
     func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false) {
-        // The baseline's optional DEBUG file exporter asserts on write errors
-        // during rotation. Enable it only for the source/object stability case
-        // that consumes it; visual/rotation cases exercise ordinary rendering.
+        // The downstream observer reads the actual original source anchor;
+        // never activate the baseline renderer's crash-prone file exporter.
         let prefix = (recordViewport ? ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"] : nil).map {
             URL(fileURLWithPath: $0).appendingPathComponent("faithful-\(scenario)-" + UUID().uuidString).path
         }
@@ -47,13 +47,18 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)
         ], language: language, locale: language == "he" ? "he_IL" : "en_US",
-        extraEnvironment: prefix.map { ["MAKTABAH_SMOKE_READY_FILE": $0] } ?? [:])
+        extraEnvironment: prefix.map { ["CHAVRUSA_READER_VIEWPORT_REPORT": $0] } ?? [:])
         dismissAlertsIfNeeded()
     }
     func viewport() throws -> Viewport {
-        let url = try XCTUnwrap(viewportURL, "The matrix must supply the original renderer's existing DEBUG report directory")
+        let url = try XCTUnwrap(viewportURL, "The matrix must supply the viewport observation directory")
+        let request = UUID().uuidString
+        let prefix = String(url.path.dropLast(".viewport.json".count))
+        try request.write(toFile: prefix + ".request", atomically: true, encoding: .utf8)
         let exists = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            FileManager.default.fileExists(atPath: url.path)
+            guard let data = try? Data(contentsOf: url),
+                  let report = try? JSONDecoder().decode(Viewport.self, from: data) else { return false }
+            return report.requestID == request && report.offset.isFinite
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [exists], timeout: 15), .completed)
         return try JSONDecoder().decode(Viewport.self, from: Data(contentsOf: url))
@@ -64,6 +69,18 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
     func capture(_ name: String) {
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
+            MainActor.assumeIsolated {
+                let frame = app.frame
+                let landscape = XCUIDevice.shared.orientation.isLandscape
+                guard frame.width > 0, frame.height > 0,
+                      (frame.width > frame.height) == landscape else { return false }
+                let bottomMenu = app.buttons["reader-more-menu"]
+                return !bottomMenu.exists || frame.contains(bottomMenu.frame)
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed,
+                       "Capture only after native rotation and the original bottom toolbar settle inside the window")
         // Capture the display rather than XCTest's app-rectangle crop: the
         // iPadOS 27 landscape app crop can retain portrait dimensions and clip
         // the trailing toolbar. Preserve the complete system/window chrome.
@@ -81,12 +98,42 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertTrue(text.waitForExistence(timeout: 60), "The original TextKit reader must render")
         let predicate = NSPredicate(format: "value MATCHES %@", "(?s).{31,}")
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: predicate, object: text)], timeout: 30), .completed,
-                       "The original reader must contain genuine book text, not only a host identifier")
+                       "Wait for a populated reader; structured diagnostics alone are not text evidence")
         let title = app.staticTexts["reader-header-title"]
         XCTAssertTrue(title.waitForExistence(timeout: 10))
         XCTAssertFalse(["", "ספר", "Book 1"].contains(title.label), "A fabricated placeholder is not a genuine loaded book")
         let rendered = text.value as? String ?? ""
         XCTAssertFalse(rendered.contains("Error Domain") || rendered.contains("Content ID not found") || rendered.contains("no such table"), "An error message must not count as book text")
+        if TestRenderedHighlightSnapshot.fromJSON(rendered) != nil {
+            // Immutable 9401 replaces the native value with diagnostic JSON.
+            // Detect actual printed glyphs inside the reader body, excluding
+            // headers/toolbars. This does not OCR Hebrew or infer book identity;
+            // the canonical title and native screenshots remain separate proof.
+            do {
+                let image = XCUIScreen.main.screenshot().image
+                let format = UIGraphicsImageRendererFormat()
+                format.scale = image.scale
+                let normalized = UIGraphicsImageRenderer(size: image.size, format: format).image { _ in
+                    image.draw(in: CGRect(origin: .zero, size: image.size))
+                }
+                let frame = text.frame.intersection(app.frame).insetBy(dx: 12, dy: 40)
+                let pixels = CGRect(x: frame.minX * normalized.scale, y: frame.minY * normalized.scale,
+                                    width: frame.width * normalized.scale, height: frame.height * normalized.scale)
+                guard let crop = normalized.cgImage?.cropping(to: pixels) else {
+                    XCTFail("Cannot inspect the actual reader pixels"); return
+                }
+                let request = VNDetectTextRectanglesRequest()
+                request.reportCharacterBoxes = true
+                try VNImageRequestHandler(cgImage: crop).perform([request])
+                let lines = request.results ?? []
+                XCTAssertGreaterThanOrEqual(lines.count, 2, "The immutable baseline must display multiple real text lines")
+                XCTAssertGreaterThanOrEqual(lines.reduce(0) { $0 + ($1.characterBoxes?.count ?? 0) }, 30,
+                                            "A JSON accessibility value or empty/loading reader is not rendered book-text evidence")
+            } catch { XCTFail("Could not inspect actual reader text pixels: \(error)") }
+        } else {
+            XCTAssertFalse(rendered.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("{"),
+                           "Native reader value must be book text, not diagnostic JSON")
+        }
     }
 
     func exerciseNativeWindowResize(enabled: Bool) {
@@ -250,7 +297,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
         try FileManager.default.createDirectory(at: sidecar, withIntermediateDirectories: false)
         blocked = true
-        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["קבוצה ריקה"])
         let prompt = app.alerts["שם קבוצת הכרטיסיות"]
         XCTAssertTrue(prompt.waitForExistence(timeout: 10))
@@ -346,7 +393,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         assertReaderHasText()
         let bookTitle = app.staticTexts["reader-header-title"].label
         tap(app.buttons["כל הכרטיסיות"])
-        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["קבוצה ריקה"])
         let nameAlert = app.alerts["שם קבוצת הכרטיסיות"]
         XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
@@ -368,7 +415,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Move must remove the source card")
         selectStudyGroup(named: "יעד העברה")
         XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15))
-        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["שינוי שם הקבוצה"])
         XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
         let nameField = nameAlert.textFields.firstMatch
@@ -386,7 +433,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         selectStudyGroup(named: "יעד ששמו עודכן")
         XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Rename must preserve membership")
         capture("candidate-group-move-copy-rename")
-        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["מחיקת קבוצה"])
         // The second tap is the native destructive confirmation, not the Menu.
         tap(app.buttons["מחיקת קבוצה"])
@@ -594,7 +641,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         launchReader()
         assertReaderHasText()
         tap(app.buttons["כל הכרטיסיות"])
-        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["קבוצה ריקה"])
         let alert = app.alerts["שם קבוצת הכרטיסיות"]
         XCTAssertTrue(alert.waitForExistence(timeout: 10))
@@ -617,7 +664,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         launchReader(scenario: "search")
         let globalInput = app.textFields.firstMatch
         tap(globalInput)
-        globalInput.typeText(query + "\n")
+        globalInput.typeText(query)
+        // Submit through the original input bar's play button, not a soft-key
+        // newline whose handling depends on the active hardware keyboard.
+        let start = app.buttons.matching(NSPredicate(format: "label == 'התחל חיפוש' OR label == 'Start Search'")).allElementsBoundByIndex
+            .filter { $0.frame.intersects(globalInput.frame.insetBy(dx: -70, dy: -20)) }
+        XCTAssertEqual(start.count, 1, "Identify the real input-bar submit action uniquely")
+        guard let submit = start.first else { return }
+        tap(submit)
         tap(globalInput)
         let historyRow = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch
         XCTAssertTrue(historyRow.waitForExistence(timeout: 20), "A submitted global query must appear in the original global history")
@@ -643,7 +697,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let initial = locator.label
         XCTAssertFalse(initial.isEmpty)
         tap(app.buttons["כל הכרטיסיות"])
-        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["קבוצה מהכרטיסיות הנוכחיות"])
         let alert = app.alerts["שם קבוצת הכרטיסיות"]
         XCTAssertTrue(alert.waitForExistence(timeout: 10))
@@ -697,7 +751,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             tap(app.buttons[profileName])
             tap(app.buttons["כל הכרטיסיות"])
             for suffix in ["א", "ב"] {
-                tap(app.buttons["קבוצות כרטיסיות"])
+                tap(app.buttons["study-group-actions-menu"])
                 tap(app.buttons["קבוצה ריקה"])
                 let alert = app.alerts["שם קבוצת הכרטיסיות"]
                 XCTAssertTrue(alert.waitForExistence(timeout: 10))
@@ -849,7 +903,7 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         capture("release-production-reader")
         exerciseThirtyRealProductionDocuments(initialTitle: initialTitle)
         tap(app.buttons["כל הכרטיסיות"])
-        tap(app.buttons["קבוצות כרטיסיות"])
+        tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["קבוצה ריקה"])
         let alert = app.alerts["שם קבוצת הכרטיסיות"]
         XCTAssertTrue(alert.waitForExistence(timeout: 10))

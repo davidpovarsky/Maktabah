@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,659 +1,156 @@
+@@ -1,659 +1,165 @@
  import SwiftUI
 -import CommandPalette
  
@@ -25,6 +25,7 @@
 +    @State private var sidebar = ReaderSidebarPageCoordinator()
 +    @State private var workspace: StudyWorkspaceNavigationAdapter?
 +    @State private var searchIsExpanded = false
++    @FocusState private var quickAddressFocused: Bool
 +    @State private var showsOverview = false
 +    @State private var showsProfiles = false
 +    @State private var availableWidth: CGFloat = 640
@@ -203,7 +204,8 @@
 +                    }
 +                    ToolbarItem(placement: .principal) {
 +                        if !searchIsExpanded {
-+                            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery, onExpand: openSearch)
++                            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
++                                                     quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
 +                                .frame(minWidth: detailWidth < 740 ? 100 : 150, idealWidth: detailWidth < 740 ? 200 : 350, maxWidth: 520)
 +                                .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
 +                        } else {
@@ -221,6 +223,9 @@
 +        .environment(\.chavrusaReaderSidebar, sidebar)
 +        .background {
 +            if let workspace { StudyWorkspaceCheckpointObserver(manager: manager, workspace: workspace) }
++            #if DEBUG
++            ReaderViewportAcceptanceObserver().frame(width: 0, height: 0).accessibilityHidden(true)
++            #endif
 +        }
 +        .overlay(alignment: .top) {
 +            if searchIsExpanded {
@@ -250,6 +255,12 @@
 -            quickAddress = newPage.address
 +        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { availableWidth = $0 }
 +        .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
++        .onChange(of: quickAddressFocused) { _, focused in
++            if focused { quickAddressFocused = false; openSearch() }
+         }
+-        .sheet(isPresented: $showsDownloads) {
+-            SimplePanel(title: "הורדות", symbol: "arrow.down.circle", message: "אין הורדות חדשות בהדגמה הזאת.")
+-                .presentationDetents([.medium])
 +        .task {
 +            guard workspace == nil else { return }
 +            if sceneID.isEmpty { sceneID = UUID().uuidString }
@@ -258,22 +269,19 @@
 +            workspace = adapter
 +            await adapter.attach(manager)
          }
--        .sheet(isPresented: $showsDownloads) {
--            SimplePanel(title: "הורדות", symbol: "arrow.down.circle", message: "אין הורדות חדשות בהדגמה הזאת.")
+-        .sheet(isPresented: $showsProfile) {
+-            SimplePanel(title: "פרופיל אישי", symbol: "person.crop.circle", message: "כאן ניתן לשלב את תפריט המשתמש של האפליקציה שלך.")
 -                .presentationDetents([.medium])
 +        .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }
 +        .onChange(of: manager.activeTabId) { _, _ in workspace?.synchronize(manager) }
 +        .onChange(of: workspace?.selection?.groupID) { _, _ in
 +            Task { await workspace?.reconcileSceneSelection(manager) }
          }
--        .sheet(isPresented: $showsProfile) {
--            SimplePanel(title: "פרופיל אישי", symbol: "person.crop.circle", message: "כאן ניתן לשלב את תפריט המשתמש של האפליקציה שלך.")
--                .presentationDetents([.medium])
 +        .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in workspace?.synchronize(manager) }
 +        .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
 +        .sheet(isPresented: $showsOverview) {
 +            if let workspace { StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: openLibrary) }
-         }
++        }
 +        .sheet(isPresented: $showsProfiles) {
 +            if let workspace { StudyProfileManagementView(workspace: workspace, manager: manager) }
 +        }
@@ -281,6 +289,7 @@
 +            get: { workspace?.errorMessage != nil && !showsOverview && !showsProfiles }, set: { if !$0 && !showsOverview && !showsProfiles { workspace?.errorMessage = nil } })) {
 +            Button("אישור") { workspace?.errorMessage = nil }
 +        } message: { Text(workspace?.errorMessage ?? "") }
++        .accessibilityElement(children: .contain)
 +        .accessibilityIdentifier("chavrusa-reader-host")
      }
  

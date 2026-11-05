@@ -189,7 +189,7 @@
     "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
     "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered unchanged except the documented query binding.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "d32c3ba7b6f2365fdb5c204aec41c339ae7e43b05fc3a6b915a31c5b798c1288"
+    "destinationSHA256": "a70abfd8d445e983eaa58cf25d22ae0476236d139dcd2a01a91ab630c8958356"
   },
   {
     "repo": "Owner Safari prototype",
@@ -197,6 +197,6 @@
     "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
     "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "b0e16d5800e8818edec10dd3eacdaf8e8e6554b8c74e88fa71401dcf651421a7"
+    "destinationSHA256": "65cc70a951f6ed3b632632826a50d65c3d7c67759944cd6c6541459c1a14a9d3"
   }
 ]
