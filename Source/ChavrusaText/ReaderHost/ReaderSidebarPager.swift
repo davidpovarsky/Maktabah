@@ -2,14 +2,14 @@ import SwiftUI
 
 struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Bindable var coordinator: ReaderSidebarPageCoordinator
-    let library: Library
-    let contents: Contents
+    let library: (Bool) -> Library
+    let contents: (Bool) -> Contents
 
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $coordinator.page) {
-                library.tag(ReaderSidebarPageCoordinator.Page.library)
-                contents.tag(ReaderSidebarPageCoordinator.Page.contents)
+                library(coordinator.page == .library).tag(ReaderSidebarPageCoordinator.Page.library)
+                contents(coordinator.page == .contents).tag(ReaderSidebarPageCoordinator.Page.contents)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .accessibilityIdentifier("reader-sidebar-pager")

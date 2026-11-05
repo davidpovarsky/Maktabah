@@ -106,19 +106,23 @@ struct iPadLayout: View {
                 manager: bManager,
                 columnVisibility: $columnVisibility,
                 preferredCompactColumn: $preferredLibraryCompactColumn
-            ) {
+            ) { isActive in
                 NavigationStack {
                     iOSLibraryView(groupsToolbarActions: true)
                         .navigationTitle(iOSTab.viewer.title)
                         .toolbarGeneral(showSettings: $showSettings)
+                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
                 }
                 .toolbarBackground(Color.appBackground, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .background(Color.appBackground)
                 .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("library-column")
-            } contents: {
-                NavigationStack { activeReaderTableOfContents }
+            } contents: { isActive in
+                NavigationStack {
+                    activeReaderTableOfContents
+                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
+                }
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("toc-column")
             } reader: {

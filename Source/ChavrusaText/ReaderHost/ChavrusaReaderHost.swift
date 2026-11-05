@@ -5,8 +5,8 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @Bindable var manager: iOSNavigationManager
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var preferredCompactColumn: NavigationSplitViewColumn
-    let library: Library
-    let contents: Contents
+    let library: (Bool) -> Library
+    let contents: (Bool) -> Contents
     let reader: Reader
     @State private var sidebar = ReaderSidebarPageCoordinator()
     @State private var workspace: StudyWorkspaceNavigationAdapter?
@@ -28,11 +28,11 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
 
     init(manager: iOSNavigationManager, columnVisibility: Binding<NavigationSplitViewVisibility>,
          preferredCompactColumn: Binding<NavigationSplitViewColumn>,
-         @ViewBuilder library: () -> Library, @ViewBuilder contents: () -> Contents, @ViewBuilder reader: () -> Reader) {
+         @ViewBuilder library: @escaping (Bool) -> Library, @ViewBuilder contents: @escaping (Bool) -> Contents, @ViewBuilder reader: () -> Reader) {
         self.manager = manager
         _columnVisibility = columnVisibility
         _preferredCompactColumn = preferredCompactColumn
-        self.library = library(); self.contents = contents(); self.reader = reader()
+        self.library = library; self.contents = contents; self.reader = reader()
     }
 
     var body: some View {

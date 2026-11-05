@@ -50,7 +50,9 @@ report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], tex
 print(json.dumps(report, indent=2))
 print(result.stdout)
 toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"),
-                   Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift")]
+                   Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"),
+                   Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"),
+                   Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift")]
 toolbar_code = 0
 if all(path.is_file() for path in toolbar_sources):
     # Compile the real self-contained app components, not substitute stubs.

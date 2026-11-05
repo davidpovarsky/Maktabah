@@ -541,7 +541,7 @@ index 5b96b54d..8547847a 100644
                      bManager: bManager,
                      selectedTab: $selectedTab,
 diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
-index 64f9da17..36fb927f 100644
+index 64f9da17..42cd0f42 100644
 --- a/Source/UI/iOS/Views/iPadLayout.swift
 +++ b/Source/UI/iOS/Views/iPadLayout.swift
 @@ -17,6 +17,7 @@ struct iPadLayout: View {
@@ -552,7 +552,7 @@ index 64f9da17..36fb927f 100644
  
      var body: some View {
          TabView(selection: $selectedTab) {
-@@ -100,40 +101,72 @@ struct iPadLayout: View {
+@@ -100,40 +101,76 @@ struct iPadLayout: View {
  
      @ViewBuilder
      private var viewerTabContent: some View {
@@ -587,19 +587,23 @@ index 64f9da17..36fb927f 100644
                  columnVisibility: $columnVisibility,
                  preferredCompactColumn: $preferredLibraryCompactColumn
 -            )
-+            ) {
++            ) { isActive in
 +                NavigationStack {
 +                    iOSLibraryView(groupsToolbarActions: true)
 +                        .navigationTitle(iOSTab.viewer.title)
 +                        .toolbarGeneral(showSettings: $showSettings)
++                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
 +                }
 +                .toolbarBackground(Color.appBackground, for: .navigationBar)
 +                .toolbarBackground(.visible, for: .navigationBar)
 +                .background(Color.appBackground)
 +                .accessibilityElement(children: .contain)
 +                .accessibilityIdentifier("library-column")
-+            } contents: {
-+                NavigationStack { activeReaderTableOfContents }
++            } contents: { isActive in
++                NavigationStack {
++                    activeReaderTableOfContents
++                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
++                }
 +                    .accessibilityElement(children: .contain)
 +                    .accessibilityIdentifier("toc-column")
 +            } reader: {
@@ -653,7 +657,7 @@ index 64f9da17..36fb927f 100644
      }
  
      @ViewBuilder
-@@ -145,7 +178,12 @@ struct iPadLayout: View {
+@@ -145,7 +182,12 @@ struct iPadLayout: View {
                  bookTitle: tab.book.book,
                  onClose: closeTableOfContents,
                  embedsNavigationStack: false,
