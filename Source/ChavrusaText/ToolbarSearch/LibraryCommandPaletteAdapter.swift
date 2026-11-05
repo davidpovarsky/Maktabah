@@ -54,7 +54,7 @@ struct SafariLibrarySearchField: View {
                 // A native toolbar's TextField consumes its ancestor's tap.
                 // Observe the same tap without replacing the original field
                 // or changing the supplied source's appearance/focus behavior.
-                .simultaneousGesture(TapGesture().onEnded(onExpand))
+                .simultaneousGesture(TapGesture().onEnded { _ in onExpand() })
                 .submitLabel(.search)
                 .onSubmit(onExpand)
                 .accessibilityLabel("חיפוש בספרייה")

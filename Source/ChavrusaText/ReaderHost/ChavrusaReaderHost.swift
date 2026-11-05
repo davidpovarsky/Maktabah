@@ -40,15 +40,18 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             ReaderSidebarPager(coordinator: sidebar, library: library, contents: contents)
                 .navigationSplitViewColumnWidth(min: 240, ideal: 300, max: 420)
         } detail: {
-            reader
-                .safeAreaInset(edge: .top, spacing: 0) {
-                    DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
-                                     onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
-                                     onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
-                                     onOpenLibrary: openLibrary, onOverview: { showsOverview = true })
-                        .frame(height: TabsBarViewController.Constants.buttonHeight)
-                        .accessibilityIdentifier("reader-document-tabs")
-                }
+            // A measured document strip belongs to this detail column's
+            // content. A safe-area preference here also shifted native bars
+            // in other global tabs by 20pt on the actual iPadOS 27 captures.
+            VStack(spacing: 0) {
+                DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
+                                 onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
+                                 onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
+                                 onOpenLibrary: openLibrary, onOverview: { showsOverview = true })
+                    .frame(height: TabsBarViewController.Constants.buttonHeight)
+                    .accessibilityIdentifier("reader-document-tabs")
+                reader
+            }
                 .toolbar(removing: .sidebarToggle)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
