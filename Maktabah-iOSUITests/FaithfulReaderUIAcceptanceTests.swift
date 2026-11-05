@@ -274,6 +274,54 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testNativeVoiceOverSpeaksRealOverviewAndPaletteControls() throws {
+        guard #available(iOS 27.0, *) else {
+            XCTFail("The required iPadOS 27 VoiceOver service is unavailable"); return
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let bookTitle = app.staticTexts["reader-header-title"].label
+        let service = XCUIDevice.shared.voiceOverService
+        let wasEnabled = service.isEnabled
+        defer { if !wasEnabled { XCTAssertNoThrow(try service.disable()) } }
+
+        func assertSpoken(_ expected: [String], name: String) throws {
+            if !service.isEnabled { try service.enable() }
+            XCTAssertTrue(service.isEnabled, "VoiceOver itself must actually run")
+            var speech: [String] = []
+            defer {
+                let output = XCTAttachment(string: speech.joined(separator: "\n"))
+                output.name = name
+                output.lifetime = .keepAlways
+                add(output)
+            }
+            for _ in 0..<80 {
+                speech.append(try service.moveForward().utterance)
+                if expected.allSatisfy({ phrase in speech.contains { $0.contains(phrase) } }) { break }
+            }
+            for phrase in expected {
+                XCTAssertTrue(speech.contains { $0.contains(phrase) }, "Actual VoiceOver speech must include \(phrase)")
+            }
+            // Return to ordinary XCTest pointer/touch interaction between
+            // surfaces. Never substitute an accessibility audit for speech.
+            try service.disable()
+        }
+
+        tap(app.buttons["כל הכרטיסיות"])
+        XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
+        try assertSpoken(["סיום", "פעולות בקבוצת הכרטיסיות", bookTitle], name: "candidate-native-voiceover-overview-speech")
+        tap(app.buttons["סיום"])
+        tap(app.textFields["reader-library-search-field"])
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        XCTAssertTrue(palette.waitForExistence(timeout: 15))
+        let input = palette.textFields.firstMatch
+        XCTAssertTrue(input.waitForExistence(timeout: 10))
+        input.typeText("בראשית")
+        XCTAssertTrue(palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch.waitForExistence(timeout: 30))
+        try assertSpoken(["בראשית", "Clear search"], name: "candidate-native-voiceover-palette-speech")
+    }
+
     func testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
