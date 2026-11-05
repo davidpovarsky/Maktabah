@@ -276,6 +276,7 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    @MainActor
     func testNativeVoiceOverSpeaksRealOverviewAndPaletteControls() throws {
         guard #available(iOS 27.0, *) else {
             XCTFail("The required iPadOS 27 VoiceOver service is unavailable"); return
@@ -286,8 +287,12 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let bookTitle = app.staticTexts["reader-header-title"].label
         let service = XCUIDevice.shared.voiceOverService
         let wasEnabled = service.isEnabled
-        defer { if !wasEnabled { XCTAssertNoThrow(try service.disable()) } }
+        defer {
+            if wasEnabled { if !service.isEnabled { XCTAssertNoThrow(try service.enable()) } }
+            else { XCTAssertNoThrow(try service.disable()) }
+        }
 
+        @MainActor
         func assertSpoken(_ expected: [String], name: String) throws {
             if !service.isEnabled { try service.enable() }
             XCTAssertTrue(service.isEnabled, "VoiceOver itself must actually run")
