@@ -220,10 +220,11 @@ private final class ReaderSceneIdentityView: UIView {
     func publishIdentity() {
         guard let identifier = window?.windowScene?.session.persistentIdentifier,
               identifier != publishedID else { return }
-        publishedID = identifier
         Task { @MainActor [weak self] in
-            guard self?.window?.windowScene?.session.persistentIdentifier == identifier else { return }
-            self?.onResolve?(identifier)
+            guard let self, self.window?.windowScene?.session.persistentIdentifier == identifier,
+                  self.publishedID != identifier else { return }
+            self.publishedID = identifier
+            self.onResolve?(identifier)
         }
     }
 }
