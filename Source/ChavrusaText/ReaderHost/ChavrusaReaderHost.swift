@@ -20,6 +20,10 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @Namespace private var searchMorph
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    private var sidebarIsOpen: Bool {
+        horizontalSizeClass == .compact ? preferredCompactColumn == .sidebar : columnVisibility != .detailOnly
+    }
     private var morphSpring: Animation { .spring(response: 0.47, dampingFraction: 0.84) }
 
     init(manager: iOSNavigationManager, columnVisibility: Binding<NavigationSplitViewVisibility>,
@@ -48,10 +52,11 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 .toolbar(removing: .sidebarToggle)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        ReaderToolbarActionAdapter(sidebarIsOpen: columnVisibility != .detailOnly) {
+                        ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
+                            let wasOpen = sidebarIsOpen
                             withAnimation(.snappy) {
-                                preferredCompactColumn = columnVisibility == .detailOnly ? .sidebar : .detail
-                                columnVisibility = columnVisibility == .detailOnly ? .all : .detailOnly
+                                preferredCompactColumn = wasOpen ? .detail : .sidebar
+                                columnVisibility = wasOpen ? .detailOnly : .all
                             }
                         }
                     }
@@ -111,7 +116,10 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             await adapter.attach(manager)
         }
         .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }
-        .onChange(of: manager.activeTabId) { _, _ in workspace?.synchronize(manager) }
+        .onChange(of: manager.activeTabId) { _, _ in
+            workspace?.synchronize(manager)
+            if horizontalSizeClass == .compact { preferredCompactColumn = .detail }
+        }
         .onChange(of: workspace?.selection?.groupID) { _, _ in
             Task { await workspace?.reconcileSceneSelection(manager) }
         }

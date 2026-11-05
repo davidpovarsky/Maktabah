@@ -2,6 +2,7 @@
   "iosOnlySources": [
     "Navigation/ReaderNavigationDisplayPolicy.swift",
     "ReaderHost/ChavrusaReaderHost.swift",
+    "ReaderHost/ChavrusaReaderWorkspaceLayout.swift",
     "ReaderHost/ReaderSidebarPageCoordinator.swift",
     "ReaderHost/ReaderSidebarPager.swift",
     "StudyWorkspace/StudyWorkspaceModels.swift",

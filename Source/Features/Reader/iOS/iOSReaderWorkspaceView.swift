@@ -149,7 +149,10 @@ struct iOSReaderWorkspaceView: View {
     private var shouldPresentPanelInContent: Bool {
         // Both pages occupy the same sidebar. Selecting a page must not switch
         // between two structural reader branches and recreate its TextKit view.
-        if sidebarCoordinator != nil { return useWideLayout && librarySidebarIsOpen }
+        if sidebarCoordinator != nil {
+            return (horizontalSizeClass != .regular && UIDevice.current.userInterfaceIdiom == .pad)
+                || (useWideLayout && librarySidebarIsOpen)
+        }
         return useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }
 
@@ -295,7 +298,18 @@ struct iOSReaderWorkspaceView: View {
     @ViewBuilder
     private var workspaceDetail: some View {
         GeometryReader { geometry in
-            if useWideLayout {
+            if sidebarCoordinator != nil {
+                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - 430))
+                ChavrusaReaderWorkspaceLayout(
+                    reader: readerSurface,
+                    panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel),
+                    resizeHandle: panelResizeHandle(allowedMaximum: maximum),
+                    panelWidth: min(max(panelWidth, Self.minimumPanelWidth), maximum),
+                    showPanel: showPanel,
+                    floats: shouldPresentPanelInContent,
+                    floatingState: $floatingPanelState
+                )
+            } else if useWideLayout {
                 if shouldPresentPanelInContent {
                     floatingWorkspace
                 } else {

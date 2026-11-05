@@ -89,7 +89,7 @@ struct iOSMainView: View {
         @Bindable var bManager = navigationManager
 
         Group {
-            if horizontalSizeClass == .regular {
+            if horizontalSizeClass == .regular || (MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled) {
                 iPadLayout(
                     bManager: bManager,
                     selectedTab: $selectedTab,

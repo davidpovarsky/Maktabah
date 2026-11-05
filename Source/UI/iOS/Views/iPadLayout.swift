@@ -17,6 +17,7 @@ struct iPadLayout: View {
     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
     @StateObject private var historyViewModel = HistoryViewModel.shared
     @StateObject private var backendCoordinator = BackendCoordinator.shared
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -100,7 +101,7 @@ struct iPadLayout: View {
 
     @ViewBuilder
     private var viewerTabContent: some View {
-        if ChavrusaTextReaderUI.isEnabled {
+        if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad {
             ChavrusaReaderHost(
                 manager: bManager,
                 columnVisibility: $columnVisibility,
@@ -177,7 +178,12 @@ struct iPadLayout: View {
                 bookTitle: tab.book.book,
                 onClose: closeTableOfContents,
                 embedsNavigationStack: false,
-                onSelect: tab.viewModel.didSelectTOCNode
+                onSelect: { id in
+                    tab.viewModel.didSelectTOCNode(id: id)
+                    if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad && horizontalSizeClass == .compact {
+                        closeTableOfContents()
+                    }
+                }
             )
             .toolbar(removing: .sidebarToggle)
             .onAppear {

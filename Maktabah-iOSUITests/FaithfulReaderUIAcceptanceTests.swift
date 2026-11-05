@@ -1,6 +1,15 @@
 import XCTest
 import Vision
 
+/// XCTest executes teardown blocks even when an assertion aborts a test method.
+/// Keep Simulator-wide state restoration independent of that method's stack.
+@MainActor
+private final class NativeUIRestoration {
+    let restore: @MainActor () -> Void
+    init(_ restore: @escaping @MainActor () -> Void) { self.restore = restore }
+    func run() { restore() }
+}
+
 /// Runs the supplied prototype in its own app, never demo code in Maktabah.
 final class SafariPrototypeReferenceTests: XCTestCase {
     func testOriginalCompactAndExpandedToolbarOracle() {
@@ -68,16 +77,16 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertTrue(element.frame.intersects(app.frame), "Control must be inside the actual app viewport", file: file, line: line)
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
-    func capture(_ name: String) {
+    func capture(_ name: String, windowed: Bool = false) {
         let application = app!
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated {
                 let frame = application.frame
                 let landscape = XCUIDevice.shared.orientation.isLandscape
                 guard frame.width > 0, frame.height > 0,
-                      (frame.width > frame.height) == landscape else { return false }
+                      (windowed || (frame.width > frame.height) == landscape) else { return false }
                 let bottomMenu = application.buttons["reader-more-menu"]
-                return !bottomMenu.exists || frame.contains(bottomMenu.frame)
+                return !bottomMenu.exists || (windowed ? bottomMenu.frame.width > 0 && bottomMenu.frame.height > 0 : frame.contains(bottomMenu.frame))
             }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed,
@@ -97,6 +106,16 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     func assertReaderHasText() {
         let text = app.textViews["reader-text"]
         XCTAssertTrue(text.waitForExistence(timeout: 60), "The original TextKit reader must render")
+        let application = app!
+        let laidOut = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let frame = text.frame
+                return frame.width > 80 && frame.height > 80 && frame.minX.isFinite && frame.minY.isFinite
+                    && frame.width <= application.frame.width + 1 && frame.height <= application.frame.height + 1
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [laidOut], timeout: 30), .completed,
+                       "The actual reader must finish native window reflow before inspecting its pixels")
         let predicate = NSPredicate(format: "value MATCHES %@", "(?s).{31,}")
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: predicate, object: text)], timeout: 30), .completed,
                        "Wait for a populated reader; structured diagnostics alone are not text evidence")
@@ -111,13 +130,20 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             // headers/toolbars. This does not OCR Hebrew or infer book identity;
             // the canonical title and native screenshots remain separate proof.
             do {
-                let image = XCUIScreen.main.screenshot().image
+                // The public element screenshot resolves its native window
+                // context. App/element coordinates and a full display screenshot
+                // diverge once iPadOS places a resized window over the desktop.
+                let image = text.screenshot().image
+                guard let rawImage = image.cgImage else { XCTFail("The native text screenshot has no pixels"); return }
+                let rotated = [.left, .right, .leftMirrored, .rightMirrored].contains(image.imageOrientation)
+                let displaySize = CGSize(width: CGFloat(rotated ? rawImage.height : rawImage.width) / image.scale,
+                                         height: CGFloat(rotated ? rawImage.width : rawImage.height) / image.scale)
                 let format = UIGraphicsImageRendererFormat()
                 format.scale = image.scale
-                let normalized = UIGraphicsImageRenderer(size: image.size, format: format).image { _ in
-                    image.draw(in: CGRect(origin: .zero, size: image.size))
+                let normalized = UIGraphicsImageRenderer(size: displaySize, format: format).image { _ in
+                    image.draw(in: CGRect(origin: .zero, size: displaySize))
                 }
-                let readerFrame = text.frame.intersection(app.frame)
+                let readerFrame = text.frame
                 let navigationFrames = app.navigationBars.allElementsBoundByIndex.map { $0.frame }.filter {
                     $0.width > 0 && $0.height > 0 && $0.intersects(readerFrame)
                         && $0.intersection(readerFrame).width > readerFrame.width * 0.5
@@ -133,13 +159,19 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 // On iPadOS 27 the accessibility Toolbar container spans the
                 // whole content area. Its real bottom action has precise bounds.
                 let bottom = min(readerFrame.maxY, bottomAction.frame.minY) - 12
-                let frame = CGRect(x: readerFrame.minX + 12, y: top,
+                let frame = CGRect(x: 12, y: top - readerFrame.minY,
                                    width: readerFrame.width - 24, height: bottom - top)
                 guard frame.width > 0, frame.height > 0 else {
                     XCTFail("The original reader has no visible book body between its native bars"); return
                 }
-                let pixels = CGRect(x: frame.minX * normalized.scale, y: frame.minY * normalized.scale,
-                                    width: frame.width * normalized.scale, height: frame.height * normalized.scale)
+                let pixelsPerPointX = displaySize.width * normalized.scale / readerFrame.width
+                let pixelsPerPointY = displaySize.height * normalized.scale / readerFrame.height
+                let pixels = CGRect(x: frame.minX * pixelsPerPointX, y: frame.minY * pixelsPerPointY,
+                                    width: frame.width * pixelsPerPointX, height: frame.height * pixelsPerPointY)
+                let geometry = XCTAttachment(string: "app=\(app.frame)\nreader=\(readerFrame)\nimageSize=\(image.size)\nimageOrientation=\(image.imageOrientation.rawValue)\ndisplaySize=\(displaySize)\nbookPixels=\(pixels)")
+                geometry.name = "native-reader-pixel-observation-geometry"
+                geometry.lifetime = .keepAlways
+                add(geometry)
                 guard let crop = normalized.cgImage?.cropping(to: pixels) else {
                     XCTFail("Cannot inspect the actual reader pixels"); return
                 }
@@ -161,6 +193,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }
     }
 
+    @MainActor
     func exerciseNativeWindowResize(enabled: Bool) {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(enabled: enabled, scenario: "readerDetail")
@@ -169,13 +202,40 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let application = app!
         let originalLocator = app.staticTexts["reader-current-locator"].label
         capture(enabled ? "candidate-window-wide" : "baseline-window-wide")
-        defer {
-            let current = app.frame
+        let restoration = NativeUIRestoration {
+            let current = application.frame
             if abs(current.width - originalFrame.width) > 2 || abs(current.height - originalFrame.height) > 2 {
-                let corner = app.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
-                let originalCorner = app.coordinate(withNormalizedOffset: .zero).withOffset(
-                    CGVector(dx: originalFrame.maxX - current.minX - 12, dy: originalFrame.maxY - current.minY - 12))
-                corner.press(forDuration: 0.5, thenDragTo: originalCorner)
+                let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                // The actual 9401 resize video locates the system window
+                // controls at (42, 32) inside the resized native window.
+                // Open Apple's controls, then select its public Full Screen
+                // action; do not drag using mismatched desktop/app coordinates.
+                application.coordinate(withNormalizedOffset: .zero)
+                    .withOffset(CGVector(dx: 42, dy: 32)).tap()
+                let labels = ["Full Screen", "Enter Full Screen", "Zoom", "מסך מלא", "הצג במסך מלא"]
+                let predicate = NSPredicate(format: "label IN %@", labels)
+                let candidates = [application.buttons, application.menuItems, springboard.buttons, springboard.menuItems]
+                var selected = false
+                for query in candidates {
+                    let action = query.matching(predicate).firstMatch
+                    if action.waitForExistence(timeout: 3), action.isHittable {
+                        action.tap()
+                        selected = true
+                        break
+                    }
+                }
+                if !selected {
+                    XCTContext.runActivity(named: "Native window controls unavailable") { activity in
+                        let tree = XCTAttachment(string: application.debugDescription + "\nSPRINGBOARD\n" + springboard.debugDescription)
+                        tree.lifetime = .keepAlways
+                        activity.add(tree)
+                        let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+                        screen.lifetime = .keepAlways
+                        activity.add(screen)
+                    }
+                    XCTFail("Cannot restore the actual window through its native Full Screen action")
+                    return
+                }
                 let restored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
                     MainActor.assumeIsolated {
                         abs(application.frame.width - originalFrame.width) < 2 && abs(application.frame.height - originalFrame.height) < 2
@@ -185,6 +245,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                                "Restore the actual window before other baseline/candidate cases")
             }
         }
+        addTeardownBlock { await restoration.run() }
         // Apple's iPad windowing gesture: drag the system bottom-right handle.
         // This must change the actual window, not an injected size class/frame.
         let handle = app.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
@@ -195,6 +256,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [resized], timeout: 30), .completed,
                        "The native iPad window must actually resize; a simulated width is not acceptance")
+        capture(enabled ? "candidate-window-narrow" : "baseline-window-narrow", windowed: true)
         assertReaderHasText()
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator,
                        "Window reflow must preserve the actual navigation unit")
@@ -203,12 +265,14 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         geometry.name = enabled ? "candidate-native-window-geometry" : "baseline-native-window-geometry"
         geometry.lifetime = .keepAlways
         add(geometry)
-        capture(enabled ? "candidate-window-narrow" : "baseline-window-narrow")
         if enabled {
-            tap(app.textFields["reader-library-search-field"])
+            let field = app.textFields["reader-library-search-field"]
+            XCTAssertTrue(field.waitForExistence(timeout: 15))
+            XCTAssertTrue(field.isHittable, "The actual library field must remain reachable in the native narrow window")
+            field.tap()
             let palette = app.descendants(matching: .any)["reader-library-command-palette"]
             XCTAssertTrue(palette.waitForExistence(timeout: 15))
-            capture("candidate-window-narrow-palette")
+            capture("candidate-window-narrow-palette", windowed: true)
             palette.textFields.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
             let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
             XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed)
@@ -229,6 +293,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
 }
 
 final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
+    @MainActor
     func testOriginalWindowResizePreservesReader() {
         exerciseNativeWindowResize(enabled: false)
     }
@@ -335,9 +400,12 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let bookTitle = app.staticTexts["reader-header-title"].label
         let service = XCUIDevice.shared.voiceOverService
         let wasEnabled = service.isEnabled
-        defer {
+        addTeardownBlock {
+            try await MainActor.run {
+            let service = XCUIDevice.shared.voiceOverService
             if wasEnabled { if !service.isEnabled { XCTAssertNoThrow(try service.enable()) } }
             else { XCTAssertNoThrow(try service.disable()) }
+            }
         }
 
         @MainActor
@@ -563,6 +631,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         capture("candidate-deleted-group-retains-replacement")
     }
 
+    @MainActor
     func testSystemReduceMotionKeepsOriginalPaletteUsable() {
         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
         settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
@@ -581,11 +650,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(toggle.waitForExistence(timeout: 15))
         let wasEnabled = (toggle.value as? String) == "1"
         if !wasEnabled { toggle.tap() }
-        defer {
+        let restoration = NativeUIRestoration {
             settings.activate()
-            if !wasEnabled && (toggle.value as? String) == "1" { toggle.tap() }
+            XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+            if ((toggle.value as? String) == "1") != wasEnabled { toggle.tap() }
+            XCTAssertEqual(toggle.value as? String, wasEnabled ? "1" : "0")
             settings.terminate()
         }
+        addTeardownBlock { await restoration.run() }
         XCTAssertEqual(toggle.value as? String, "1", "The actual system preference must be enabled")
         let reduced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled }
@@ -610,6 +682,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.textFields["reader-library-search-field"].exists)
     }
 
+    @MainActor
     func testWindowResizePreservesOriginalReaderAndSearch() {
         exerciseNativeWindowResize(enabled: true)
     }
