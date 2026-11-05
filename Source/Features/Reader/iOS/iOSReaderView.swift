@@ -83,6 +83,9 @@ struct iOSReaderView: View {
 
     private var tableOfContentsIsPresented: Bool {
         guard let columnVisibility else { return false }
+        if let sidebarCoordinator {
+            return sidebarCoordinator.page == .contents && columnVisibility.wrappedValue != .detailOnly
+        }
         return columnVisibility.wrappedValue != .detailOnly
     }
 

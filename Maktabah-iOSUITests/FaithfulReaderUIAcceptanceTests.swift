@@ -276,6 +276,30 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testOriginalBottomTOCActionOpensContentsFromLibraryPage() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let libraryPage = app.buttons["reader-sidebar-page-0"]
+        if !libraryPage.exists || !libraryPage.frame.intersects(app.frame) {
+            tap(app.buttons["reader-host-sidebar-toggle"])
+        }
+        tap(libraryPage)
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let readerWidth = app.textViews["reader-text"].frame.width
+        tap(app.buttons["reader-more-menu"])
+        tap(app.buttons["reader-toc-toggle"])
+        let contentsPage = app.buttons["reader-sidebar-page-1"]
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isSelected == true"), object: contentsPage)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed,
+                       "The original TOC action must select Contents, rather than hiding an open Library page")
+        XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
+        XCTAssertTrue(app.frame.contains(contentsPage.frame), "Contents must actually remain on screen")
+        XCTAssertEqual(app.textViews["reader-text"].frame.width, readerWidth, accuracy: 1)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+        capture("candidate-original-bottom-toc-action")
+    }
+
     @MainActor
     func testNativeVoiceOverSpeaksRealOverviewAndPaletteControls() throws {
         guard #available(iOS 27.0, *) else {
