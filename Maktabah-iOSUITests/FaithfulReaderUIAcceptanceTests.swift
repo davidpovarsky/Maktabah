@@ -1374,8 +1374,10 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
             requireProductionDocumentCount(30)
             capture("release-production-tabs-30-cycle-\(repetition)")
             tap(app.buttons["כל הכרטיסיות"])
+            let overview = app.descendants(matching: .any)["study-groups-overview"]
+            XCTAssertTrue(overview.waitForExistence(timeout: 15))
             for remaining in stride(from: 29, through: 0, by: -1) {
-                let close = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "סגור ")).firstMatch
+                let close = overview.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "סגור ")).firstMatch
                 tap(close)
                 requireProductionDocumentCount(remaining)
                 if remaining <= 1 { capture("release-production-tabs-\(remaining)-cycle-\(repetition)") }
@@ -1429,6 +1431,9 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
         app.terminate()
         launchWithTier(.production, backend: "otzaria")
         tap(findTabButton(hebrew: "ספר", english: "Library"))
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: app.textViews["reader-text"])], timeout: 30), .completed,
+                       "The ordinary production sidecar must finish restoring its empty group")
         XCTAssertFalse(app.textViews["reader-text"].exists)
         tap(app.buttons["כל הכרטיסיות"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 30))
