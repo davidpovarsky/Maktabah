@@ -154,18 +154,22 @@ for index, size in enumerate(["11", "13", "phone"]):
                 device["largeText"]["status"] = "EXECUTED_PASS"
             finally:
                 subprocess.run(["xcrun", "simctl", "ui", udid, "content_size", "large"], check=True)
-    except BaseException as error:
+    except (Exception, SystemExit) as error:
         device["status"] = "FAIL"
         device["error"] = f"{type(error).__name__}: {error}"
         try:
             subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, size], check=False, timeout=150)
         except subprocess.TimeoutExpired:
             device["diagnostics"] = "TIMEOUT"
-        raise
+        # Retain a hard failure, but still execute the other required native
+        # configurations so one device does not hide the iPhone/13-inch result.
     finally:
         (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
         subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
         # Delete only the disposable simulator created above, never a user's/default device.
         subprocess.run(["xcrun", "simctl", "delete", udid], check=True, capture_output=True, timeout=120)
 
+failed = [device["size"] for device in report["devices"] if device["status"] != "EXECUTED_PASS"]
+if failed:
+    raise SystemExit(f"Native acceptance failed for {failed}; see per-device logs and the complete matrix. Release is prohibited.")
 print("Required iPad sizes, largest text configuration and iPhone completed; production/Release and physical-device gates are separate.")

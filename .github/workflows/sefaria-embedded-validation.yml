@@ -374,7 +374,7 @@ jobs:
       - name: Run genuine native UI and visual matrix on 11 and 13 inch iPads
         id: faithful_ui_matrix
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
-        timeout-minutes: 110
+        timeout-minutes: 180
         env:
           VALIDATING_BASELINE: ${{ inputs.source_ref != '' }}
           GH_TOKEN: ${{ github.token }}
