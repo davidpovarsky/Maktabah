@@ -942,46 +942,57 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         capture("candidate-command-palette-en")
     }
 
-    func testCandidateUnchangedScreensAndTrimmedOriginalInspector() {
-        for scenario in ["search", "annotationsList", "studyCommentaries"] {
-            if scenario != "studyCommentaries" {
-                for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
-                    XCUIDevice.shared.orientation = orientation
-                    launchReader(enabled: false, scenario: scenario)
-                    capture("candidate-flags-off-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
-                    let originalBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
-                        .sorted { $0.0 < $1.0 }
-                    XCTAssertFalse(originalBars.isEmpty, "Observe the actual original navigation geometry")
-                    launchReader(scenario: scenario)
-                    capture("candidate-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
-                    let candidateBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
-                        .sorted { $0.0 < $1.0 }
-                    XCTAssertEqual(candidateBars.count, originalBars.count)
-                    for (original, candidate) in zip(originalBars, candidateBars) {
-                        XCTAssertEqual(candidate.0, original.0)
-                        XCTAssertEqual(candidate.1.minX, original.1.minX, accuracy: 1)
-                        XCTAssertEqual(candidate.1.minY, original.1.minY, accuracy: 1,
-                                       "A viewer-only document strip must not shift another global tab's native navigation")
-                        XCTAssertEqual(candidate.1.width, original.1.width, accuracy: 1)
-                        XCTAssertEqual(candidate.1.height, original.1.height, accuracy: 1)
-                    }
-                }
-                continue
-            }
-            launchReader(scenario: scenario)
-            XCTAssertTrue(findTabButton(hebrew: "ספר", english: "Library").waitForExistence(timeout: 60))
-            if scenario == "studyCommentaries" {
-                assertReaderHasText()
-                XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-panel"].waitForExistence(timeout: 30), "The original Inspector must actually be presented")
-                XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].waitForExistence(timeout: 15), "Original study-tool actions must remain available")
-                XCTAssertFalse(app.staticTexts["כלי לימוד"].exists, "The redundant visual study-tools heading must be removed")
-                XCTAssertFalse(app.staticTexts["קטע נבחר"].exists, "The redundant visual selected-segment heading must be removed")
-            }
-            for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
-                XCUIDevice.shared.orientation = orientation
-                capture("candidate-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
-            }
+    func testCandidateGlobalSearchLandscapeMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("search", orientation: .landscapeLeft)
+    }
+    func testCandidateGlobalSearchPortraitMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("search", orientation: .portrait)
+    }
+    func testCandidateAnnotationsLandscapeMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("annotationsList", orientation: .landscapeLeft)
+    }
+    func testCandidateAnnotationsPortraitMatchesOriginalNavigation() {
+        exerciseUnchangedOriginalScreen("annotationsList", orientation: .portrait)
+    }
+    func testCandidateTrimmedOriginalInspectorLandscape() {
+        exerciseTrimmedOriginalInspector(orientation: .landscapeLeft)
+    }
+    func testCandidateTrimmedOriginalInspectorPortrait() {
+        exerciseTrimmedOriginalInspector(orientation: .portrait)
+    }
+
+    private func exerciseUnchangedOriginalScreen(_ scenario: String, orientation: UIDeviceOrientation) {
+        XCUIDevice.shared.orientation = orientation
+        launchReader(enabled: false, scenario: scenario)
+        capture("candidate-flags-off-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
+        let originalBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
+            .sorted { $0.0 < $1.0 }
+        XCTAssertFalse(originalBars.isEmpty, "Observe the actual original navigation geometry")
+        launchReader(scenario: scenario)
+        capture("candidate-\(scenario)-\(orientation.isLandscape ? "landscape" : "portrait")")
+        let candidateBars = app.navigationBars.allElementsBoundByIndex.map { ($0.identifier, $0.frame) }
+            .sorted { $0.0 < $1.0 }
+        XCTAssertEqual(candidateBars.count, originalBars.count)
+        for (original, candidate) in zip(originalBars, candidateBars) {
+            XCTAssertEqual(candidate.0, original.0)
+            XCTAssertEqual(candidate.1.minX, original.1.minX, accuracy: 1)
+            XCTAssertEqual(candidate.1.minY, original.1.minY, accuracy: 1,
+                           "A viewer-only document strip must not shift another global tab's native navigation")
+            XCTAssertEqual(candidate.1.width, original.1.width, accuracy: 1)
+            XCTAssertEqual(candidate.1.height, original.1.height, accuracy: 1)
         }
+    }
+
+    private func exerciseTrimmedOriginalInspector(orientation: UIDeviceOrientation) {
+        XCUIDevice.shared.orientation = orientation
+        launchReader(scenario: "studyCommentaries")
+        XCTAssertTrue(findTabButton(hebrew: "ספר", english: "Library").waitForExistence(timeout: 60))
+        assertReaderHasText()
+        XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-panel"].waitForExistence(timeout: 30), "The original Inspector must actually be presented")
+        XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].waitForExistence(timeout: 15), "Original study-tool actions must remain available")
+        XCTAssertFalse(app.staticTexts["כלי לימוד"].exists, "The redundant visual study-tools heading must be removed")
+        XCTAssertFalse(app.staticTexts["קטע נבחר"].exists, "The redundant visual selected-segment heading must be removed")
+        capture("candidate-studyCommentaries-\(orientation.isLandscape ? "landscape" : "portrait")")
     }
 
     @MainActor
