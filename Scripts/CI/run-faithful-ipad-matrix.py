@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import uuid
+from datetime import datetime, timezone
 
 root = Path.cwd()
 artifacts = root / "build/artifacts"
@@ -18,7 +19,7 @@ if not app.is_dir():
     raise SystemExit("The actual built app is missing")
 
 def sim_json(*args):
-    return json.loads(subprocess.check_output(["xcrun", "simctl", *args, "-j"], text=True))
+    return json.loads(subprocess.check_output(["xcrun", "simctl", *args, "-j"], text=True, timeout=60))
 
 runtimes = [runtime for runtime in sim_json("list", "runtimes", "available")["runtimes"]
             if runtime.get("isAvailable") and runtime["identifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS")
@@ -48,7 +49,7 @@ def create_compatible_ipad(size):
             if device_type["identifier"] not in supported:
                 continue
             result = subprocess.run(["xcrun", "simctl", "create", f"Faithful {size}-inch {uuid.uuid4().hex[:8]}",
-                                     device_type["identifier"], runtime["identifier"]], text=True, capture_output=True)
+                                     device_type["identifier"], runtime["identifier"]], text=True, capture_output=True, timeout=90)
             if result.returncode == 0:
                 return result.stdout.strip(), device_type, runtime, failures
             failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
@@ -59,6 +60,13 @@ for index, size in enumerate(["11", "13", "phone"]):
     device = {"size": size, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
     report["devices"].append(device)
 
+    def phase(name, **details):
+        device["phase"] = name
+        device["phaseStartedAt"] = datetime.now(timezone.utc).isoformat()
+        device["phaseDetails"] = details
+        (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
+        print(f"Faithful {size}-inch: {name} {json.dumps(details)}", flush=True)
+
     def install_owned_app(path, bundle, timeout):
         """Recover only a timed-out Simulator installation, never an XCTest."""
         assert device["udid"] == udid
@@ -67,28 +75,34 @@ for index, size in enumerate(["11", "13", "phone"]):
             record = {"bundle": bundle, "attempt": attempt + 1, "status": "STARTED"}
             attempts.append(record)
             try:
+                phase("INSTALLING", bundle=bundle, attempt=attempt + 1, timeoutSeconds=timeout)
                 subprocess.run(["xcrun", "simctl", "install", udid, str(path)], check=True, timeout=timeout)
+                phase("VERIFYING_APP_CONTAINER", bundle=bundle, attempt=attempt + 1)
                 installed = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "app"],
                                                     text=True, timeout=45).strip()
                 if not installed or not Path(installed).is_dir():
                     raise RuntimeError(f"Native installer did not expose the actual {bundle} application container")
                 record.update(status="INSTALLED", appContainer=installed)
+                phase("INSTALLED", bundle=bundle, attempt=attempt + 1)
                 return
             except subprocess.TimeoutExpired as error:
                 record.update(status="INSTALL_TIMEOUT", error=str(error))
-                (artifacts / "faithful-ipad-matrix.json").write_text(json.dumps(report, indent=2))
+                phase("INSTALL_TIMEOUT", bundle=bundle, attempt=attempt + 1)
                 if attempt:
                     raise
                 # Preserve the first timeout and exact native service evidence.
+                phase("COLLECTING_INSTALL_DIAGNOSTICS", bundle=bundle)
                 subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, size],
                                check=False, timeout=150)
                 for diagnostic in artifacts.glob(f"simulator-failure-{size}*"):
                     diagnostic.rename(diagnostic.with_name(diagnostic.name.replace(
                         f"simulator-failure-{size}", f"simulator-install-recovery-{size}-{bundle}", 1)))
+                phase("RESTARTING_OWNED_SIMULATOR", bundle=bundle)
                 subprocess.run([sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], check=True, timeout=240)
                 subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
                 subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
     try:
+        phase("BOOTING", udid=udid)
         subprocess.run(["xcrun", "simctl", "boot", udid], check=True, timeout=90)
         subprocess.run(["xcrun", "simctl", "bootstatus", udid, "-b"], check=True, timeout=900)
         # Verify the small independent oracle first, before the large app's
@@ -96,11 +110,13 @@ for index, size in enumerate(["11", "13", "phone"]):
         # this oracle after Maktabah, for baseline and candidate alike.
         if size != "phone":
             install_owned_app(prototype, "com.example.safaritoolbarsearch", 180)
+            phase("VERIFYING_ORACLE_LAUNCH")
             subprocess.run(["xcrun", "simctl", "launch", udid, "com.example.safaritoolbarsearch"], check=True, timeout=90)
             subprocess.run(["xcrun", "simctl", "terminate", udid, "com.example.safaritoolbarsearch"], check=True, timeout=60)
         install_owned_app(app, "com.davidpovarsky.chavrusatext", 600)
         (root / "sim_udid.txt").write_text(udid)
-        subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], check=True)
+        phase("PROVISIONING_NATIVE_FIXTURES")
+        subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], check=True, timeout=720)
         fixture_report = artifacts / "miniTest10-native-fixture-install.json"
         fixture_report.rename(artifacts / f"miniTest10-native-fixture-install-{size}.json")
         selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
@@ -117,8 +133,9 @@ for index, size in enumerate(["11", "13", "phone"]):
                    "-resultBundlePath", str(result)]
         command.extend(f"-only-testing:Maktabah-iOSUITests/{suite}" for suite in selection)
         environment = os.environ.copy()
-        container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True).strip()
+        container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
+        phase("RUNNING_NATIVE_XCTEST", suites=selection)
         with (artifacts / f"test-simulator-{size}.log").open("w") as log:
             process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
             for line in process.stdout:
@@ -193,6 +210,8 @@ for index, size in enumerate(["11", "13", "phone"]):
     except (Exception, SystemExit) as error:
         device["status"] = "FAIL"
         device["error"] = f"{type(error).__name__}: {error}"
+        device["failedPhase"] = device.get("phase")
+        phase("FAILED", error=device["error"])
         try:
             subprocess.run([sys.executable, "Scripts/CI/collect-faithful-simulator-failure.py", udid, size], check=False, timeout=150)
         except subprocess.TimeoutExpired:

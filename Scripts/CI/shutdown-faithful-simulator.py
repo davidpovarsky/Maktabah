@@ -7,7 +7,7 @@ import uuid
 
 udid = str(uuid.UUID(sys.argv[1])).upper()
 def state():
-    inventory = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "-j"], text=True))
+    inventory = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "-j"], text=True, timeout=45))
     return next((device["state"] for devices in inventory["devices"].values() for device in devices
                  if device["udid"].upper() == udid), None)
 if state() == "Shutdown":

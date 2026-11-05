@@ -22,7 +22,7 @@ parser.add_argument("--profile", choices=["miniTest10", "production"], default="
 profile = parser.parse_args().profile
 udid = Path("sim_udid.txt").read_text().strip()
 bundle = "com.davidpovarsky.chavrusatext"
-container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "data"], text=True).strip())
+container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "data"], text=True, timeout=45).strip())
 report = container / "Documents" / ("faithful-fixture-" + str(uuid.uuid4()) + ".json")
 report.parent.mkdir(parents=True, exist_ok=True)
 environment = os.environ.copy()
