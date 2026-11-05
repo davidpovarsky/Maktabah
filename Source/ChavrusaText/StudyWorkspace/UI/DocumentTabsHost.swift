@@ -8,6 +8,7 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
     let onReorder: (UUID, Int) -> Void
     let onOpenLibrary: () -> Void
     let onOverview: () -> Void
+    let backgroundColor: UIColor
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
     func makeUIViewController(context: Context) -> TabsBarViewController {
@@ -28,7 +29,7 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
         coordinator.model.selectedID = selectedID
         coordinator.model.onMove = onReorder
         controller.loadViewIfNeeded()
-        controller.theme = ReaderTabsTheme(tabsBarBackgroundColor: UIColor(Color.appBackground), omniBarBackgroundColor: UIColor(Color.appBackground))
+        controller.theme = ReaderTabsTheme(tabsBarBackgroundColor: backgroundColor, omniBarBackgroundColor: backgroundColor)
         if oldIDs == tabs.map(\.id) {
             controller.refreshStyleInPlace(tabsModel: coordinator.model, scrollToSelected: true)
         } else {

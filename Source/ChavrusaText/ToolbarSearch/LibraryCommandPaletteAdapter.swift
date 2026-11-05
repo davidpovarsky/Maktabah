@@ -1,5 +1,8 @@
 import CommandPalette
 import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 
 struct LibraryCommandPaletteAdapter: View {
     @Bindable var manager: iOSNavigationManager
@@ -20,6 +23,16 @@ struct LibraryCommandPaletteAdapter: View {
     }
 
     var body: some View {
+        #if os(iOS)
+        EscapeCommandHost(onEscape: onDismiss) {
+            palette
+        }
+        #else
+        palette
+        #endif
+    }
+
+    private var palette: some View {
         CommandPaletteView(
             commands: commands,
             placeholder: "חפש ספר בספרייה…",
@@ -31,6 +44,68 @@ struct LibraryCommandPaletteAdapter: View {
         .accessibilityIdentifier("reader-library-command-palette")
     }
 }
+
+#if os(iOS)
+/// Keeps the original palette in the responder chain of a real UIKit key command.
+/// SwiftUI's cancel shortcut is consumed by the focused text input on iPadOS.
+private struct EscapeCommandHost<Content: View>: UIViewControllerRepresentable {
+    let onEscape: () -> Void
+    let content: Content
+
+    init(onEscape: @escaping () -> Void, @ViewBuilder content: () -> Content) {
+        self.onEscape = onEscape
+        self.content = content()
+    }
+
+    func makeUIViewController(context: Context) -> EscapeCommandHostingController<Content> {
+        EscapeCommandHostingController(rootView: content, onEscape: onEscape)
+    }
+
+    func updateUIViewController(_ controller: EscapeCommandHostingController<Content>, context: Context) {
+        controller.rootView = content
+        controller.onEscape = onEscape
+    }
+
+    func sizeThatFits(
+        _ proposal: ProposedViewSize,
+        uiViewController: EscapeCommandHostingController<Content>,
+        context: Context
+    ) -> CGSize? {
+        let width = min(proposal.width ?? 640, 640)
+        let measured = uiViewController.sizeThatFits(in: CGSize(width: width, height: 10_000))
+        return CGSize(width: width, height: measured.height)
+    }
+}
+
+private final class EscapeCommandHostingController<Content: View>: UIHostingController<Content> {
+    var onEscape: () -> Void
+
+    init(rootView: Content, onEscape: @escaping () -> Void) {
+        self.onEscape = onEscape
+        super.init(rootView: rootView)
+    }
+
+    @MainActor @preconcurrency required dynamic init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override var canBecomeFirstResponder: Bool { true }
+
+    override var keyCommands: [UIKeyCommand]? {
+        let command = UIKeyCommand(
+            input: UIKeyCommand.inputEscape,
+            modifierFlags: [],
+            action: #selector(handleEscape)
+        )
+        command.wantsPriorityOverSystemBehavior = true
+        return [command]
+    }
+
+    @objc private func handleEscape() {
+        onEscape()
+    }
+}
+#endif
 
 /// The owner's compactSearchField, with only library-domain text/icon/binding substituted.
 struct SafariLibrarySearchField: View {

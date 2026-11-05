@@ -31,6 +31,9 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         if #available(iOS 27.0, *) { return false }
         return horizontalSizeClass != .compact
     }
+    private var readerChromeColor: Color {
+        manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color
+    }
     private var morphSpring: Animation { .spring(response: 0.47, dampingFraction: 0.84) }
 
     init(manager: iOSNavigationManager, columnVisibility: Binding<NavigationSplitViewVisibility>,
@@ -54,16 +57,18 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
                                  onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
                                  onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
-                                 onOpenLibrary: openLibrary, onOverview: { showsOverview = true })
+                                 onOpenLibrary: openLibrary, onOverview: { showsOverview = true },
+                                 backgroundColor: UIColor(readerChromeColor))
                     .frame(height: TabsBarViewController.Constants.buttonHeight)
                     .accessibilityIdentifier("reader-document-tabs")
                 reader
             }
-                .toolbar(removing: .sidebarToggle)
+                .background(readerChromeColor)
+                .modifier(ReaderSidebarToggleRemoval())
                 // The measured strip ends the original reader's underlap.
                 // Preserve its actual reading theme behind the native bar.
-                .toolbarBackground(manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color,
-                                   for: .navigationBar)
+                .toolbarBackground(readerChromeColor, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
                 .toolbar {
                     // A compact split already has the native Back-to-sidebar
                     // action. Duplicating it also displaced the search field
@@ -80,19 +85,19 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                         }
                         .readerSourceGlassBackground()
                     }
-                    ToolbarItem(placement: .principal) {
-                        if !searchIsExpanded {
-                            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
-                                                     quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
-                                .frame(minWidth: detailWidth < 740 ? 100 : 150,
-                                       idealWidth: horizontalSizeClass == .compact ? 150 : (detailWidth < 740 ? 200 : 350),
-                                       maxWidth: horizontalSizeClass == .compact ? 180 : 520)
-                                .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
-                        } else {
-                            Color.clear.frame(width: min(350, max(150, availableWidth - 220)), height: 52).accessibilityHidden(true)
+                    if horizontalSizeClass == .compact {
+                        ToolbarItem(placement: .topBarLeading) {
+                            collapsedSearchField(minWidth: 72, idealWidth: 96, maxWidth: 112)
                         }
+                        .readerSourceGlassBackground()
+                    } else {
+                        ToolbarItem(placement: .principal) {
+                            collapsedSearchField(minWidth: detailWidth < 740 ? 100 : 150,
+                                                 idealWidth: detailWidth < 740 ? 200 : 350,
+                                                 maxWidth: 520)
+                        }
+                        .readerSourceGlassBackground()
                     }
-                    .readerSourceGlassBackground()
                     ToolbarItem(placement: horizontalSizeClass == .compact ? .secondaryAction : .topBarTrailing) {
                         if let workspace { StudyProfileMenu(workspace: workspace, manager: manager, compact: detailWidth < 740) { showsProfiles = true } }
                     }
@@ -101,8 +106,8 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
         }
         .navigationSplitViewStyle(.balanced)
-        .toolbar(removing: .sidebarToggle)
-        .background(Color.appBackground.ignoresSafeArea())
+        .modifier(ReaderSidebarToggleRemoval())
+        .background(readerChromeColor.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
         .background {
             ReaderSceneIdentityReader { identifier in
@@ -164,6 +169,20 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .accessibilityIdentifier("chavrusa-reader-host")
     }
 
+    @ViewBuilder
+    private func collapsedSearchField(minWidth: CGFloat, idealWidth: CGFloat, maxWidth: CGFloat) -> some View {
+        if !searchIsExpanded {
+            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
+                                     quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
+                .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth)
+                .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
+        } else {
+            Color.clear
+                .frame(width: min(maxWidth, max(minWidth, availableWidth - 220)), height: 52)
+                .accessibilityHidden(true)
+        }
+    }
+
     // Exact expandedSearch placement and matched geometry from the owner's prototype.
     private func expandedSearch(availableWidth: CGFloat) -> some View {
         VStack(spacing: 0) {
@@ -191,6 +210,17 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         sidebar.showLibrary()
         preferredCompactColumn = .sidebar
         withAnimation(.snappy) { columnVisibility = .all }
+    }
+}
+
+private struct ReaderSidebarToggleRemoval: ViewModifier {
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 27.0, *) {
+            content
+        } else {
+            content.toolbar(removing: .sidebarToggle)
+        }
     }
 }
 
