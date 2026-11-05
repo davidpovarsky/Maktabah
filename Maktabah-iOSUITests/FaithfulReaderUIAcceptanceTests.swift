@@ -102,6 +102,12 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(matches.count, 1)
         return try XCTUnwrap(matches.first)
     }
+    func attachWorkspaceSnapshot(_ name: String) throws {
+        let snapshot = XCTAttachment(data: try Data(contentsOf: workspaceSidecarURL()), uniformTypeIdentifier: "public.json")
+        snapshot.name = name
+        snapshot.lifetime = .keepAlways
+        add(snapshot)
+    }
     func tap(_ element: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertTrue(element.waitForExistence(timeout: 30), file: file, line: line)
         XCTAssertTrue(element.frame.intersects(app.frame), "Control must be inside the actual app viewport", file: file, line: line)
@@ -1083,7 +1089,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
     }
 
-    func testNewEmptyGroupAndRelaunchPersistence() {
+    func testNewEmptyGroupAndRelaunchPersistence() throws {
         launchReader()
         assertReaderHasText()
         tap(app.buttons["כל הכרטיסיות"])
@@ -1096,9 +1102,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
         capture("candidate-empty-group")
         tap(app.buttons["סיום"])
+        try attachWorkspaceSnapshot("empty-group-sidecar-before-cold-launch")
         app.terminate()
         launchReader(scenario: "catalog")
         XCTAssertTrue(app.buttons["כל הכרטיסיות"].waitForExistence(timeout: 30))
+        let emptyReader = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.textViews["reader-text"])
+        let restored = XCTWaiter.wait(for: [emptyReader], timeout: 30)
+        try attachWorkspaceSnapshot("empty-group-sidecar-after-cold-launch")
+        XCTAssertEqual(restored, .completed, "Wait for the actual asynchronous sidecar projection, retaining the empty-reader requirement")
         XCTAssertFalse(app.textViews["reader-text"].exists, "The empty sidecar group must suppress stale legacy-session resurrection")
         tap(app.buttons["כל הכרטיסיות"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Empty selection must survive app relaunch without importing old tabs again")
@@ -1120,7 +1131,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         capture("candidate-book-search-without-global-history")
     }
 
-    func testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch() {
+    func testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
         assertReaderHasText()
@@ -1155,9 +1166,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             }
         }
         capture("candidate-independent-group-locations")
+        try attachWorkspaceSnapshot("independent-locations-sidecar-before-cold-launch")
         app.terminate()
         launchReader(scenario: "catalog")
         assertReaderHasText()
+        let restored = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "label == %@", second), object: app.staticTexts["reader-current-locator"])], timeout: 30)
+        try attachWorkspaceSnapshot("independent-locations-sidecar-after-cold-launch")
+        XCTAssertEqual(restored, .completed, "The asynchronously hydrated reader must reach the exact independently retained locator")
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, second, "The selected group's actual locator must survive cold relaunch")
     }
 

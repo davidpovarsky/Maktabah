@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Native menu labels may insert Unicode bidi isolates around interpolated group names (`העבר אל ⁨שם⁩`), and the original Library action is `Select…`. Match the real menu's action prefix and group membership while keeping uniqueness/scope assertions; do not assume plain concatenated labels. Cold reader assertions must wait for the actual asynchronous sidecar projection, and retain before/after UUID-scoped sidecar attachments to distinguish stored-state loss from hydration timing.
+
 - Genuine 9401 compact-window captures in run 42008440372 show UIKit replacing the overflowed `reader-more-menu` with a native `BottomOverflowBarButtonItem` in the original bottom toolbar. Measure actual visible native controls for reader-body pixel checks; neither a missing overflowed child identifier nor a full-height Toolbar accessibility frame proves that the bottom bar disappeared. The 13-inch window was 375×557 with real text visible; retain its native screenshot/hierarchy as evidence.
 
 - iPadOS 27 cross-tab geometry needs actual flags-off/on comparison. In native 41960978106 captures, a viewer-only safeAreaInset for the 40pt document strip shifted global Search navigation from y=86pt to106pt, while candidate flags off matched immutable 9401. A downstream measured content stack and native navigation-frame assertions are prepared; do not classify this unapproved global movement as a transient screenshot difference.
