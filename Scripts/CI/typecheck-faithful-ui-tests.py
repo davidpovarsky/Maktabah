@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cheap real-SDK check of the self-contained black-box XCTest sources."""
+"""Cheap real-SDK compile of self-contained tests, including SIL isolation checks."""
 import json
 from pathlib import Path
 import subprocess
@@ -21,7 +21,8 @@ for frameworks in [platform / "Developer/Library/Frameworks", sdk / "Developer/L
             if "VoiceOver" in source or "XCUI_SIMULATOR_UNAVAILABLE" in source:
                 voiceover.append(f"// {header}\n{source}")
 (artifacts / "xcuiautomation-voiceover-sdk.txt").write_text("\n".join(voiceover) or "XCUIAutomation headers not found in the checked SDK paths\n")
-command = ["xcrun", "swiftc", "-typecheck", "-module-name", "Maktabah_iOSUITests", "-swift-version", "6", "-enable-testing",
+command = ["xcrun", "swiftc", "-c", "-whole-module-optimization", "-o", "build/UIAcceptanceCheck.o",
+           "-module-name", "Maktabah_iOSUITests", "-swift-version", "6", "-enable-testing",
            "-D", "DEBUG", "-module-alias", "Testing=_Testing_Unavailable",
            "-target", "arm64-apple-ios18.6-simulator", "-sdk", str(sdk),
            "-Isystem", str(platform / "Developer/usr/lib"),
@@ -35,7 +36,8 @@ result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOU
 (artifacts / "ui-acceptance-typecheck.log").write_text(result.stdout, encoding="utf-8")
 report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
           "xcode": version, "sdk": str(sdk), "target": "arm64-apple-ios18.6-simulator",
-          "status": "TYPECHECK_PASS" if result.returncode == 0 else "FAIL",
+          "status": "SDK_COMPILE_PASS" if result.returncode == 0 else "FAIL",
+          "includesCodeGeneration": True,
           "warningCount": result.stdout.count("warning:"),
           "notRuntimeAcceptance": True}
 (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")

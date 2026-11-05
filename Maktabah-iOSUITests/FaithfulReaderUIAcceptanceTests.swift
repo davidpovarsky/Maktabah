@@ -69,13 +69,14 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
     func capture(_ name: String) {
-        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
+        let application = app!
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated {
-                let frame = app.frame
+                let frame = application.frame
                 let landscape = XCUIDevice.shared.orientation.isLandscape
                 guard frame.width > 0, frame.height > 0,
                       (frame.width > frame.height) == landscape else { return false }
-                let bottomMenu = app.buttons["reader-more-menu"]
+                let bottomMenu = application.buttons["reader-more-menu"]
                 return !bottomMenu.exists || frame.contains(bottomMenu.frame)
             }
         }, object: nil)
@@ -141,6 +142,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         launchReader(enabled: enabled, scenario: "readerDetail")
         assertReaderHasText()
         let originalFrame = app.frame
+        let application = app!
         let originalLocator = app.staticTexts["reader-current-locator"].label
         capture(enabled ? "candidate-window-wide" : "baseline-window-wide")
         defer {
@@ -150,9 +152,9 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 let originalCorner = app.coordinate(withNormalizedOffset: .zero).withOffset(
                     CGVector(dx: originalFrame.maxX - current.minX - 12, dy: originalFrame.maxY - current.minY - 12))
                 corner.press(forDuration: 0.5, thenDragTo: originalCorner)
-                let restored = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
+                let restored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
                     MainActor.assumeIsolated {
-                        abs(app.frame.width - originalFrame.width) < 2 && abs(app.frame.height - originalFrame.height) < 2
+                        abs(application.frame.width - originalFrame.width) < 2 && abs(application.frame.height - originalFrame.height) < 2
                     }
                 }, object: nil)
                 XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 30), .completed,
@@ -164,8 +166,8 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let handle = app.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 1)).withOffset(CGVector(dx: -12, dy: -12))
         let destination = app.coordinate(withNormalizedOffset: CGVector(dx: 0.55, dy: 0.7))
         handle.press(forDuration: 0.5, thenDragTo: destination)
-        let resized = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
-            MainActor.assumeIsolated { app.frame.width < originalFrame.width - 80 }
+        let resized = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { application.frame.width < originalFrame.width - 80 }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [resized], timeout: 30), .completed,
                        "The native iPad window must actually resize; a simulated width is not acceptance")
@@ -840,7 +842,7 @@ final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
 
     private func requireProductionDocumentCount(_ count: Int) {
         let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
-            MainActor.assumeIsolated { productionDocumentCount() == count }
+            productionDocumentCount() == count
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 30), .completed,
                        "The actual production projection must persist exactly \(count) documents")
