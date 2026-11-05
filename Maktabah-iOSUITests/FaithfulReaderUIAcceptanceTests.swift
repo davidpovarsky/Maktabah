@@ -306,6 +306,24 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             palette.textFields.firstMatch.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
             let collapsed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: palette)
             XCTAssertEqual(XCTWaiter.wait(for: [collapsed], timeout: 15), .completed)
+            let beforeInspector = getRenderedHighlightSnapshot()
+            XCTAssertNotNil(beforeInspector)
+            let study = app.buttons["reader-study-toggle"]
+            XCTAssertTrue(study.waitForExistence(timeout: 15), "Original study tools must remain available in a real compact window")
+            study.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
+            XCTAssertTrue(inspector.waitForExistence(timeout: 30))
+            XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].exists)
+            capture("candidate-window-narrow-original-floating-inspector", windowed: true)
+            study.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: inspector)
+            XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 15), .completed)
+            assertReaderHasText()
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
+            let afterInspector = getRenderedHighlightSnapshot()
+            XCTAssertNotNil(afterInspector)
+            XCTAssertEqual(afterInspector?.segmentSelectionCount, beforeInspector?.segmentSelectionCount,
+                           "Opening the original Inspector in a compact window must not manufacture a book selection")
         }
     }
 
@@ -904,6 +922,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
     }
 
+    @MainActor
     func testSidebarPreservesOriginalTextKitViewport() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(recordViewport: true)
@@ -917,12 +936,24 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
         let originalReaderWidth = app.textViews["reader-text"].frame.width
         let originalLocator = app.staticTexts["reader-current-locator"].label
+        let library = app.otherElements["library-column"]
+        XCTAssertTrue(library.waitForExistence(timeout: 15))
+        library.swipeUp()
+        @MainActor func visibleLibraryLabels() -> [String] {
+            library.staticTexts.allElementsBoundByIndex.filter {
+                !$0.frame.isEmpty && $0.frame.intersects(library.frame)
+            }.map { $0.label }
+        }
+        let originalLibraryLabels = visibleLibraryLabels()
+        XCTAssertFalse(originalLibraryLabels.isEmpty, "Observe the actual scrolled library before changing sidebar pages")
         let originalViewport = try viewport()
         for _ in 0..<20 {
             tap(tocDot)
             XCTAssertTrue(app.descendants(matching: .any)["toc-column"].exists)
             tap(libraryDot)
             XCTAssertTrue(app.descendants(matching: .any)["library-column"].exists)
+            XCTAssertEqual(visibleLibraryLabels(), originalLibraryLabels,
+                           "Changing only the sidebar page must retain the original library's visible rows and scroll")
             XCTAssertEqual(app.textViews["reader-text"].frame.width, originalReaderWidth, accuracy: 1, "Sidebar page changes must preserve reader width")
             XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator, "Sidebar page changes must not navigate the book")
             let actual = try viewport()
