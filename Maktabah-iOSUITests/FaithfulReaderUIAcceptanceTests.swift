@@ -413,6 +413,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             add(diagnostic)
         }
         XCTAssertTrue(historyIsVisible, "A submitted global query must appear in the original global history")
+        XCTAssertTrue(historyRow.isHittable, "The submitted history row must actually be visible and usable above the native keyboard")
         return query
     }
 }
