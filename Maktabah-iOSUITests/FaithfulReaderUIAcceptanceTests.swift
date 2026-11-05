@@ -1159,21 +1159,65 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
 /// Run only against a Release binary over the full native production install.
 /// No smoke scenario, bootstrap bypass, feature override or test namespace.
 final class FaithfulProductionReleaseTests: FaithfulReaderUIBase {
-    private func productionDocumentCount() -> Int? {
-        guard let path = ProcessInfo.processInfo.environment["FAITHFUL_PRODUCTION_WORKSPACE_FILE"],
-              let bytes = try? Data(contentsOf: URL(fileURLWithPath: path)),
+    private var observedProductionWorkspace: (url: URL, groupID: UUID)?
+
+    private static func documentCount(in url: URL, groupID: UUID) -> Int? {
+        guard let bytes = try? Data(contentsOf: url),
               let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
-              let scenes = value["scenes"] as? [String: [String: Any]],
-              let groupID = scenes.values.first?["groupID"] as? String,
               let groups = value["groups"] as? [[String: Any]],
-              let group = groups.first(where: { $0["id"] as? String == groupID }),
+              let group = groups.first(where: { ($0["id"] as? String).flatMap(UUID.init(uuidString:)) == groupID }),
               let tabs = group["tabs"] as? [[String: Any]] else { return nil }
         return tabs.count
     }
 
+    private static func productionWorkspaces(in containers: URL, containing documentID: UUID) -> [(url: URL, groupID: UUID)] {
+        guard let directories = try? FileManager.default.contentsOfDirectory(at: containers, includingPropertiesForKeys: nil) else { return [] }
+        return directories.flatMap { directory -> [(url: URL, groupID: UUID)] in
+            let file = directory.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json")
+            guard let bytes = try? Data(contentsOf: file),
+                  let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                  let groups = value["groups"] as? [[String: Any]] else { return [] }
+            return groups.compactMap { group in
+                guard let id = (group["id"] as? String).flatMap(UUID.init(uuidString:)),
+                      let tabs = group["tabs"] as? [[String: Any]],
+                      tabs.contains(where: { tab in
+                          let session = tab["session"] as? [String: Any]
+                          return (session?["id"] as? String).flatMap(UUID.init(uuidString:)) == documentID
+                      }) else { return nil }
+                return (file, id)
+            }
+        }
+    }
+
     private func requireProductionDocumentCount(_ count: Int) {
-        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { [self] _, _ in
-            productionDocumentCount() == count
+        if observedProductionWorkspace == nil {
+            guard let hint = ProcessInfo.processInfo.environment["FAITHFUL_PRODUCTION_WORKSPACE_FILE"] else {
+                XCTFail("The production matrix must provide its native installation container hint"); return
+            }
+            let title = app.staticTexts["reader-header-title"].label
+            let tab = app.descendants(matching: .any).matching(NSPredicate(
+                format: "identifier BEGINSWITH %@ AND label == %@", "reader-document-tab-", title)).firstMatch
+            XCTAssertTrue(tab.waitForExistence(timeout: 15))
+            guard let documentID = UUID(uuidString: String(tab.identifier.dropFirst("reader-document-tab-".count))) else {
+                XCTFail("Observe the actual original-source tab's document identity"); return
+            }
+            var containers = URL(fileURLWithPath: hint)
+            for _ in 0..<6 { containers.deleteLastPathComponent() }
+            let root = containers
+            let located = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                Self.productionWorkspaces(in: root, containing: documentID).count == 1
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [located], timeout: 30), .completed,
+                           "Resolve the actual ordinary sidecar by the independently observed UI document, after XCTest installation")
+            let matches = Self.productionWorkspaces(in: root, containing: documentID)
+            XCTAssertEqual(matches.count, 1, "Do not choose a stale container or an arbitrary scene")
+            observedProductionWorkspace = matches.first
+        }
+        guard let observed = observedProductionWorkspace else {
+            XCTFail("The production workspace was not independently located"); return
+        }
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            Self.documentCount(in: observed.url, groupID: observed.groupID) == count
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 30), .completed,
                        "The actual production projection must persist exactly \(count) documents")
