@@ -229,7 +229,10 @@ final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
         }
         launchReader(enabled: false, scenario: "readerDetail", language: "en")
         assertReaderHasText()
-        capture("baseline-reader-detail-en")
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            capture("baseline-reader-detail-en-\(orientation.isLandscape ? "landscape" : "portrait")")
+        }
     }
 }
 
@@ -525,7 +528,11 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(scenario: "readerDetail", language: "en")
         assertReaderHasText()
-        capture("candidate-reader-detail-en")
+        for orientation in [UIDeviceOrientation.landscapeLeft, .portrait] {
+            XCUIDevice.shared.orientation = orientation
+            capture("candidate-reader-detail-en-\(orientation.isLandscape ? "landscape" : "portrait")")
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
         tap(app.textFields["reader-library-search-field"])
         XCTAssertTrue(app.descendants(matching: .any)["reader-library-command-palette"].waitForExistence(timeout: 15))
         capture("candidate-command-palette-en")

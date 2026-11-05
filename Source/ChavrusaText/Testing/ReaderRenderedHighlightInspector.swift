@@ -145,7 +145,11 @@ public enum ReaderRenderedHighlightInspector {
         let jsonString = snapshot.toJSONString()
 
         // Keep UITextView's native book-text value available to VoiceOver and
-        // UI tests. Structured diagnostics belong to their existing child.
+        // UI tests in the new iPad host. Preserve the original flags-off/phone
+        // path; structured diagnostics remain in their existing child.
+        if UIDevice.current.userInterfaceIdiom != .pad || !ChavrusaTextReaderUI.isEnabled {
+            textView.accessibilityValue = jsonString
+        }
 
         let subview: UIView
         if let existing = textView.subviews.first(where: { $0.accessibilityIdentifier == diagnosticsAccessibilityIdentifier }) {

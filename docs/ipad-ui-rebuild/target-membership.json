@@ -25,6 +25,7 @@
     "StudyWorkspace/UI/StudyGroupsOverview.swift",
     "StudyWorkspace/UI/StudyProfileManagementView.swift",
     "StudyWorkspace/UI/StudyProfileMenu.swift",
+    "Testing/ReaderViewportAcceptanceObserver.swift",
     "ToolbarSearch/LibraryCommandPaletteAdapter.swift",
     "ToolbarSearch/ReaderToolbarActionAdapter.swift",
     "ToolbarSearch/SafariToolbarSourcePort.swift"
