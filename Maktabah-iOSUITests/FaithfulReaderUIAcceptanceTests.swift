@@ -117,7 +117,25 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 let normalized = UIGraphicsImageRenderer(size: image.size, format: format).image { _ in
                     image.draw(in: CGRect(origin: .zero, size: image.size))
                 }
-                let frame = text.frame.intersection(app.frame).insetBy(dx: 12, dy: 40)
+                let readerFrame = text.frame.intersection(app.frame)
+                let navigationFrames = app.navigationBars.allElementsBoundByIndex.map { $0.frame }.filter {
+                    $0.width > 0 && $0.height > 0 && $0.intersects(readerFrame)
+                        && $0.intersection(readerFrame).width > readerFrame.width * 0.5
+                }
+                let bottomBar = app.toolbars.containing(.button, identifier: "reader-more-menu").firstMatch
+                guard let navigationBottom = navigationFrames.map({ $0.maxY }).max(), bottomBar.exists else {
+                    XCTFail("Cannot identify the original native chrome to isolate genuine book pixels"); return
+                }
+                // UITextView extends behind native bars. Exclude their actual
+                // measured frames so title/status/tab labels cannot count as
+                // loaded book text when the original value is diagnostic JSON.
+                let top = max(readerFrame.minY, navigationBottom) + 12
+                let bottom = min(readerFrame.maxY, bottomBar.frame.minY) - 12
+                let frame = CGRect(x: readerFrame.minX + 12, y: top,
+                                   width: readerFrame.width - 24, height: bottom - top)
+                guard frame.width > 0, frame.height > 0 else {
+                    XCTFail("The original reader has no visible book body between its native bars"); return
+                }
                 let pixels = CGRect(x: frame.minX * normalized.scale, y: frame.minY * normalized.scale,
                                     width: frame.width * normalized.scale, height: frame.height * normalized.scale)
                 guard let crop = normalized.cgImage?.cropping(to: pixels) else {
@@ -127,6 +145,10 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 request.reportCharacterBoxes = true
                 try VNImageRequestHandler(cgImage: crop).perform([request])
                 let lines = request.results ?? []
+                let body = XCTAttachment(image: UIImage(cgImage: crop))
+                body.name = "immutable-baseline-actual-book-body"
+                body.lifetime = .keepAlways
+                add(body)
                 XCTAssertGreaterThanOrEqual(lines.count, 2, "The immutable baseline must display multiple real text lines")
                 XCTAssertGreaterThanOrEqual(lines.reduce(0) { $0 + ($1.characterBoxes?.count ?? 0) }, 30,
                                             "A JSON accessibility value or empty/loading reader is not rendered book-text evidence")

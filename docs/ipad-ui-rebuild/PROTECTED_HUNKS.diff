@@ -411,7 +411,7 @@ index 9578ce48..974a3196 100644
                      Button {
                          bManager.showingTabsList.toggle()
 diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
-index b1da0865..2bc7d236 100644
+index b1da0865..b3147cf9 100644
 --- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 +++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 @@ -82,6 +82,7 @@ struct iOSReaderWorkspaceView: View {
@@ -422,7 +422,7 @@ index b1da0865..2bc7d236 100644
      @Environment(\.layoutDirection) private var layoutDirection
  
      @State private var compactContentsRequested = false
-@@ -139,7 +140,10 @@ struct iOSReaderWorkspaceView: View {
+@@ -139,11 +140,17 @@ struct iOSReaderWorkspaceView: View {
      }
  
      private var contentsIsOpen: Bool {
@@ -434,7 +434,15 @@ index b1da0865..2bc7d236 100644
      }
  
      private var shouldPresentPanelInContent: Bool {
-@@ -332,18 +336,20 @@ struct iOSReaderWorkspaceView: View {
+-        useWideLayout && librarySidebarIsOpen && contentsIsOpen
++        // Both pages occupy the same sidebar. Selecting a page must not switch
++        // between two structural reader branches and recreate its TextKit view.
++        if sidebarCoordinator != nil { return useWideLayout && librarySidebarIsOpen }
++        return useWideLayout && librarySidebarIsOpen && contentsIsOpen
+     }
+ 
+     private var showPanel: Bool {
+@@ -332,18 +339,20 @@ struct iOSReaderWorkspaceView: View {
          .accessibilityElement(children: .contain)
          .accessibilityIdentifier("reader-surface")
          .toolbar {
@@ -466,7 +474,7 @@ index b1da0865..2bc7d236 100644
                      }
                  }
              }
-@@ -532,6 +538,12 @@ struct iOSReaderWorkspaceView: View {
+@@ -532,6 +541,12 @@ struct iOSReaderWorkspaceView: View {
      }
  
      private func presentContents() {
@@ -479,7 +487,7 @@ index b1da0865..2bc7d236 100644
          if !useWideLayout {
              withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
                  compactContentsRequested = true
-@@ -548,6 +560,11 @@ struct iOSReaderWorkspaceView: View {
+@@ -548,6 +563,11 @@ struct iOSReaderWorkspaceView: View {
      }
  
      private func closeContents() {

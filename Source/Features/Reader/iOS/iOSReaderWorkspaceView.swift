@@ -147,7 +147,10 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var shouldPresentPanelInContent: Bool {
-        useWideLayout && librarySidebarIsOpen && contentsIsOpen
+        // Both pages occupy the same sidebar. Selecting a page must not switch
+        // between two structural reader branches and recreate its TextKit view.
+        if sidebarCoordinator != nil { return useWideLayout && librarySidebarIsOpen }
+        return useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }
 
     private var showPanel: Bool {
