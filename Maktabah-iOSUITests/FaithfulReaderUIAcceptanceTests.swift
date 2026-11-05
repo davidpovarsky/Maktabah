@@ -461,7 +461,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let service = XCUIDevice.shared.voiceOverService
         let wasEnabled = service.isEnabled
         addTeardownBlock {
-            await MainActor.run {
+            try await MainActor.run {
                 let service = XCUIDevice.shared.voiceOverService
                 if wasEnabled { if !service.isEnabled { XCTAssertNoThrow(try service.enable()) } }
                 else { XCTAssertNoThrow(try service.disable()) }
@@ -473,16 +473,25 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             if !service.isEnabled { try service.enable() }
             XCTAssertTrue(service.isEnabled, "VoiceOver itself must actually run")
             var speech: [String] = []
-            for _ in 0..<80 {
-                let utterance = try service.moveForward().utterance
-                speech.append(utterance)
-                // Preserve actual spoken output before any assertion abort;
-                // Swift defer does not reliably run after XCTest's abort.
-                XCTContext.runActivity(named: name) { activity in
-                    let output = XCTAttachment(string: utterance)
-                    output.name = name + "-\(speech.count)"
-                    output.lifetime = .keepAlways
-                    activity.add(output)
+            // Enabling VoiceOver can focus the Done action rather than the
+            // first RTL toolbar control. Forward navigation need not wrap;
+            // exercise both native directions before declaring a label absent.
+            for forward in [true, false] {
+                var previous: String?
+                var repeats = 0
+                for _ in 0..<80 {
+                    let utterance = try (forward ? service.moveForward() : service.moveBackward()).utterance
+                    speech.append(utterance)
+                    XCTContext.runActivity(named: name) { activity in
+                        let output = XCTAttachment(string: utterance)
+                        output.name = name + "-\(speech.count)"
+                        output.lifetime = .keepAlways
+                        activity.add(output)
+                    }
+                    if expected.allSatisfy({ phrase in speech.contains { $0.contains(phrase) } }) { break }
+                    repeats = previous == utterance ? repeats + 1 : 0
+                    previous = utterance
+                    if repeats >= 4 { break }
                 }
                 if expected.allSatisfy({ phrase in speech.contains { $0.contains(phrase) } }) { break }
             }
