@@ -25,6 +25,12 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     private var sidebarIsOpen: Bool {
         horizontalSizeClass == .compact ? preferredCompactColumn == .sidebar : columnVisibility != .detailOnly
     }
+    private var needsCustomSidebarToggle: Bool {
+        // iPadOS27 supplies the real split-view action even after toolbar
+        // removal preferences. A second action was visible in native captures.
+        if #available(iOS 27.0, *) { return false }
+        return horizontalSizeClass != .compact
+    }
     private var morphSpring: Animation { .spring(response: 0.47, dampingFraction: 0.84) }
 
     init(manager: iOSNavigationManager, columnVisibility: Binding<NavigationSplitViewVisibility>,
@@ -62,7 +68,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                     // A compact split already has the native Back-to-sidebar
                     // action. Duplicating it also displaced the search field
                     // in the genuine 375pt system window.
-                    if horizontalSizeClass != .compact {
+                    if needsCustomSidebarToggle {
                         ToolbarItem(placement: .topBarLeading) {
                             ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
                                 let wasOpen = sidebarIsOpen

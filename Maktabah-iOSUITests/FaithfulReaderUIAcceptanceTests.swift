@@ -123,6 +123,14 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(overflow.count, 1, "The original bottom toolbar must expose one real native overflow action")
         return overflow.firstMatch
     }
+    func readerSidebarToggle() -> XCUIElement {
+        let custom = app.buttons["reader-host-sidebar-toggle"]
+        let native = app.navigationBars.buttons.matching(NSPredicate(format:
+            "label IN %@", ["הצגת סרגל הצד", "הסתרת סרגל הצד", "Show Sidebar", "Hide Sidebar"]))
+        XCTAssertEqual((custom.exists ? 1 : 0) + native.count, 1,
+                       "Use one actual split-view sidebar action; duplicate custom/native toggles are forbidden")
+        return custom.exists ? custom : native.firstMatch
+    }
     func capture(_ name: String, windowed: Bool = false) {
         let application = app!
         let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
@@ -495,7 +503,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let originalTitle = app.staticTexts["reader-header-title"].label
         let libraryDot = app.buttons["reader-sidebar-page-0"]
         if !libraryDot.exists || !libraryDot.frame.intersects(app.frame) {
-            tap(app.buttons["reader-host-sidebar-toggle"])
+            tap(readerSidebarToggle())
         }
         tap(libraryDot)
         let library = app.otherElements["library-column"]
@@ -561,7 +569,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         assertReaderHasText()
         let libraryPage = app.buttons["reader-sidebar-page-0"]
         if !libraryPage.exists || !libraryPage.frame.intersects(app.frame) {
-            tap(app.buttons["reader-host-sidebar-toggle"])
+            tap(readerSidebarToggle())
         }
         tap(libraryPage)
         let originalLocator = app.staticTexts["reader-current-locator"].label
@@ -985,7 +993,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let tocDot = app.buttons["reader-sidebar-page-1"]
         let libraryDot = app.buttons["reader-sidebar-page-0"]
         if !tocDot.exists || !tocDot.frame.intersects(app.frame) || tocDot.frame.isEmpty {
-            tap(app.buttons["reader-host-sidebar-toggle"])
+            tap(readerSidebarToggle())
         }
         let originalReaderWidth = app.textViews["reader-text"].frame.width
         let originalLocator = app.staticTexts["reader-current-locator"].label
@@ -1042,6 +1050,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
         assertReaderHasText()
+        _ = readerSidebarToggle()
         XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
         let field = app.textFields["reader-library-search-field"]
         tap(field)
