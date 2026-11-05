@@ -24,7 +24,7 @@ struct SearchModeView: View {
             if !isSearching {
                 SearchInputBar(
                     text: Bindable(session).query,
-                    isFocused: _isSearchFieldFocused,
+                    focusBinding: $isSearchFieldFocused,
                     onSubmit: {
                         Task {
                             viewModel.addToHistory(session.query)

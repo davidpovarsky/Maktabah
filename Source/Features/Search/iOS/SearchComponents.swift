@@ -311,26 +311,31 @@ struct UnifiedSearchInputControls: View {
 struct SearchInputBar: View {
     @Binding var text: String
     @FocusState var isFocused: Bool
+    var focusBinding: FocusState<Bool>.Binding?
     @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false
     var onSubmit: () -> Void
 
     init(
         text: Binding<String>,
         isFocused: FocusState<Bool> = FocusState(),
+        focusBinding: FocusState<Bool>.Binding? = nil,
         onSubmit: @escaping () -> Void
     ) {
         self._text = text
         self._isFocused = isFocused
+        self.focusBinding = focusBinding
         self.onSubmit = onSubmit
     }
 
     init(
         viewModel: SearchViewModel,
         isFocused: FocusState<Bool> = FocusState(),
+        focusBinding: FocusState<Bool>.Binding? = nil,
         onSubmit: @escaping () -> Void
     ) {
         self._text = Binding(get: { viewModel.query }, set: { viewModel.query = $0 })
         self._isFocused = isFocused
+        self.focusBinding = focusBinding
         self.onSubmit = onSubmit
     }
 
@@ -340,7 +345,7 @@ struct SearchInputBar: View {
             prompt: Text(.searchInSelectedBooks)
                 .foregroundStyle(Color(useDefaultTheme ? .secondaryLabel : .iosTint))
         )
-        .focused($isFocused)
+        .focused(focusBinding ?? $isFocused)
         .submitLabel(.go)
         .onSubmit(onSubmit)
         .padding(.leading, 20)
@@ -362,8 +367,8 @@ struct SearchInputBar: View {
             .help("Start Search")
         }
         .shadow(
-            color: .black.opacity(isFocused ? 0.15 : 0.1),
-            radius: isFocused ? 8 : 15, x: 0, y: 2
+            color: .black.opacity((focusBinding?.wrappedValue ?? isFocused) ? 0.15 : 0.1),
+            radius: (focusBinding?.wrappedValue ?? isFocused) ? 8 : 15, x: 0, y: 2
         )
         .padding(.vertical)
         .padding(.horizontal, 20)

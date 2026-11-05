@@ -6,6 +6,8 @@ Owner request in this chat, 2026-11-04: “קרא את מסמך הפרומפט �
 
 Baseline: `f092f3996927251d105dfb9243dfac487b196534`. Original checkout: `59b01fa2d604facbcc3b3b1075a6283e7f1115db`, left untouched. New branch: `experiment/ipad-ui-faithful-from-9401`.
 
+Additional exact owner approval in this chat, 2026-11-05: “אשר את התיקון הנקודתי ובדיקתו”, answering the request to apply the prepared `PROPOSAL_ONLY_global_search_focus_binding.diff` to `SearchModeView.swift` and `SearchComponents.swift`. Immutable baseline run 42008440372 failed the genuine global-history case on both iPad sizes; its screenshot and hierarchy show a keyboard-focused input without the history overlay. Approval permits only the proposed optional `FocusState<Bool>.Binding` API, its default-preserving focus/shadow use, and the single parent call-site connection. No other global Search redesign or scope is authorized. The change still requires actual app compilation and native UI verification; the immutable baseline remains unchanged.
+
 Current upstream HEAD inspected read-only using `git ls-remote upstream HEAD`: `46e893c65139fbb1e582d6595b0d220ea912324a`. Baseline architecture reference remains `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`; this is not an upstream sync.
 
 | File / namespace | Ownership | Authorized change | Why an adapter alone is insufficient | Verification / rollback |
@@ -19,6 +21,7 @@ Current upstream HEAD inspected read-only using `git ls-remote upstream HEAD`: `
 | `Source/Features/Reader/iOS/iOSReaderView.swift` | SHARED_INTEGRATION_SEAM / protected | Only if required: optional toolbar routing | Original private actions must remain canonical | Preserve bottom bar and original defaults |
 | `Source/Features/Library/iOS/iOSLibraryView.swift` | SHARED_INTEGRATION_SEAM / protected | Only if required: reuse existing toolbar as grouped native content | Private menus should not be duplicated | Import/selection/options regression |
 | `Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift` | UPSTREAM_OWNED / protected | Remove only in-book SearchHistoryOverlay callsite | Incorrect overlay is attached here | Global Search unchanged |
+| `Source/Features/Search/iOS/SearchModeView.swift`, `SearchComponents.swift` | UPSTREAM_OWNED / protected; exact additional approval above | Optional public FocusState.Binding parameter; one parent binding connection; original defaults and appearance retained | Connect the real input focus to the parent's existing history-overlay condition; baseline captures show focus without that overlay | Actual full app build, global-history native case and unchanged-screen comparison; revert only these approved hunks |
 | `Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift`, `iOSReaderBottomToolbarView.swift` | SHARED_INTEGRATION_SEAM / protected | Semantic label bridge only | Original status labels are rendered here | Otzaria unit/selection tests |
 | `Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift` | DOWNSTREAM_OWNED | Optional, default-preserving Inspector chrome options | Kit owns its headings | Existing FloatingPanel retained |
 | `Maktabah.xcodeproj/project.pbxproj`, `Package.resolved` | SHARED_INTEGRATION_SEAM / protected | Deterministic iOS-only file/resources/package membership | New types need target membership | Xcode project parse/build; no signing changes |
