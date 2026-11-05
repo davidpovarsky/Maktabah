@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,659 +1,169 @@
+@@ -1,659 +1,185 @@
  import SwiftUI
 -import CommandPalette
  
@@ -12,8 +12,6 @@
 -        WindowGroup {
 -            ContentView()
 -        }
--    }
--}
 +/// Viewer-only composition. The original library/TOC/reader arrive as view builders.
 +struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
 +    @Bindable var manager: iOSNavigationManager
@@ -34,6 +32,11 @@
 +    @Namespace private var searchMorph
 +    @Environment(\.scenePhase) private var scenePhase
 +    @Environment(\.accessibilityReduceMotion) private var reduceMotion
++    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
++    private var sidebarIsOpen: Bool {
++        horizontalSizeClass == .compact ? preferredCompactColumn == .sidebar : columnVisibility != .detailOnly
+     }
+-}
 +    private var morphSpring: Animation { .spring(response: 0.47, dampingFraction: 0.84) }
  
 -enum DemoPage: String, CaseIterable, Identifiable {
@@ -195,10 +198,11 @@
 +                .toolbar(removing: .sidebarToggle)
 +                .toolbar {
 +                    ToolbarItem(placement: .topBarLeading) {
-+                        ReaderToolbarActionAdapter(sidebarIsOpen: columnVisibility != .detailOnly) {
++                        ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
++                            let wasOpen = sidebarIsOpen
 +                            withAnimation(.snappy) {
-+                                preferredCompactColumn = columnVisibility == .detailOnly ? .sidebar : .detail
-+                                columnVisibility = columnVisibility == .detailOnly ? .all : .detailOnly
++                                preferredCompactColumn = wasOpen ? .detail : .sidebar
++                                columnVisibility = wasOpen ? .detailOnly : .all
 +                            }
 +                        }
 +                    }
@@ -277,10 +281,13 @@
 -            SimplePanel(title: "פרופיל אישי", symbol: "person.crop.circle", message: "כאן ניתן לשלב את תפריט המשתמש של האפליקציה שלך.")
 -                .presentationDetents([.medium])
 +        .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }
-+        .onChange(of: manager.activeTabId) { _, _ in workspace?.synchronize(manager) }
++        .onChange(of: manager.activeTabId) { _, _ in
++            workspace?.synchronize(manager)
++            if horizontalSizeClass == .compact { preferredCompactColumn = .detail }
+         }
 +        .onChange(of: workspace?.selection?.groupID) { _, _ in
 +            Task { await workspace?.reconcileSceneSelection(manager) }
-         }
++        }
 +        .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in workspace?.synchronize(manager) }
 +        .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
 +        .sheet(isPresented: $showsOverview) {
@@ -442,19 +449,22 @@
          .frame(maxWidth: .infinity)
      }
 -
--    private func openSearch() {
--        guard !searchIsExpanded else { return }
+     private func openSearch() {
+         guard !searchIsExpanded else { return }
 -        let entered = quickAddress.trimmingCharacters(in: .whitespacesAndNewlines)
 -        initialSearchQuery = entered == browser.currentPage.address ? "" : entered
--        quickAddressFocused = false
+         quickAddressFocused = false
 -        withAnimation(morphSpring) { searchIsExpanded = true }
--    }
++        searchIsExpanded = true
+     }
 -
--    private func closeSearch() {
--        guard searchIsExpanded else { return }
+     private func closeSearch() {
+         guard searchIsExpanded else { return }
 -        withAnimation(morphSpring) { searchIsExpanded = false }
 -        quickAddress = browser.currentPage.address
--    }
++        searchIsExpanded = false
++        quickAddressFocused = false
+     }
 -
 -    // MARK: - Illustrative browser screen under the toolbar
 -
@@ -657,8 +667,6 @@
 -        .frame(maxWidth: .infinity, minHeight: 116, alignment: .topLeading)
 -        .padding(17)
 -        .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 18))
-+    private func openSearch() { guard !searchIsExpanded else { return }; searchIsExpanded = true }
-+    private func closeSearch() { guard searchIsExpanded else { return }; searchIsExpanded = false }
 +    private func openLibrary() {
 +        sidebar.showLibrary()
 +        preferredCompactColumn = .sidebar

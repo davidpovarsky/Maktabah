@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift
-@@ -1,278 +1,60 @@
+@@ -1,278 +1,64 @@
 +import CommandPalette
  import SwiftUI
 -import CommandPalette
@@ -308,6 +308,10 @@
                  .textInputAutocapitalization(.never)
 -                .focused($quickAddressFocused)
 +                .focused(quickAddressFocused)
++                // A native toolbar's TextField consumes its ancestor's tap.
++                // Observe the same tap without replacing the original field
++                // or changing the supplied source's appearance/focus behavior.
++                .simultaneousGesture(TapGesture().onEnded(onExpand))
                  .submitLabel(.search)
 -                .onSubmit(openSearch)
 -                .accessibilityLabel("חיפוש או הזנת כתובת")
@@ -318,7 +322,7 @@
              Image(systemName: "magnifyingglass")
                  .font(.system(size: 18, weight: .regular))
                  .foregroundStyle(.secondary)
-@@ -280,380 +62,7 @@
+@@ -280,380 +66,7 @@
          .padding(.horizontal, 16)
          .frame(height: 52)
          .contentShape(RoundedRectangle(cornerRadius: 26))

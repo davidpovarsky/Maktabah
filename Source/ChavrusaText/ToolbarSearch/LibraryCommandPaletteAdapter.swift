@@ -51,6 +51,10 @@ struct SafariLibrarySearchField: View {
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
                 .focused(quickAddressFocused)
+                // A native toolbar's TextField consumes its ancestor's tap.
+                // Observe the same tap without replacing the original field
+                // or changing the supplied source's appearance/focus behavior.
+                .simultaneousGesture(TapGesture().onEnded(onExpand))
                 .submitLabel(.search)
                 .onSubmit(onExpand)
                 .accessibilityLabel("חיפוש בספרייה")

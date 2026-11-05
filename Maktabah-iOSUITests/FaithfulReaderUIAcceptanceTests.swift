@@ -10,6 +10,16 @@ private final class NativeUIRestoration {
     func run() { restore() }
 }
 
+/// Find only this test's unique sidecar after XCTest's app installation. The
+/// pre-install container UUID is a hint to its parent, never a durable app ID.
+private func matchingTestSidecars(in containers: URL, namespace: String) -> [URL] {
+    guard UUID(uuidString: namespace) != nil,
+          let candidates = try? FileManager.default.contentsOfDirectory(at: containers, includingPropertiesForKeys: nil) else { return [] }
+    return candidates.map {
+        $0.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/UITests/\(namespace).json")
+    }.filter { FileManager.default.fileExists(atPath: $0.path) }
+}
+
 /// Runs the supplied prototype in its own app, never demo code in Maktabah.
 final class SafariPrototypeReferenceTests: XCTestCase {
     func testOriginalCompactAndExpandedToolbarOracle() {
@@ -60,7 +70,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         dismissAlertsIfNeeded()
     }
     func viewport() throws -> Viewport {
-        let url = try XCTUnwrap(viewportURL, "The matrix must supply the viewport observation directory")
+        let oldURL = try XCTUnwrap(viewportURL, "The matrix must supply the viewport observation directory")
+        let sidecar = try workspaceSidecarURL()
+        let container = sidecar.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let url = container.appendingPathComponent("Documents").appendingPathComponent(oldURL.lastPathComponent)
         let request = UUID().uuidString
         let prefix = String(url.path.dropLast(".viewport.json".count))
         try request.write(toFile: prefix + ".request", atomically: true, encoding: .utf8)
@@ -71,6 +85,22 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [exists], timeout: 15), .completed)
         return try JSONDecoder().decode(Viewport.self, from: Data(contentsOf: url))
+    }
+    func workspaceContainerParent() throws -> URL {
+        let documents = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"])
+        return URL(fileURLWithPath: documents).deletingLastPathComponent().deletingLastPathComponent()
+    }
+    func workspaceSidecarURL() throws -> URL {
+        let containers = try workspaceContainerParent()
+        let namespace = workspaceNamespace
+        let created = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            matchingTestSidecars(in: containers, namespace: namespace).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [created], timeout: 15), .completed,
+                       "Exactly one real sidecar for this UUID must exist in the installed app's current container")
+        let matches = matchingTestSidecars(in: containers, namespace: namespace)
+        XCTAssertEqual(matches.count, 1)
+        return try XCTUnwrap(matches.first)
     }
     func tap(_ element: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertTrue(element.waitForExistence(timeout: 30), file: file, line: line)
@@ -287,12 +317,42 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             // The source's public AdaptiveTabContent can choose its native
             // Menu in a compact sheet/window or accessibility text size.
             tap(app.buttons["study-group-selector"])
-            tap(app.buttons[name])
+            // The native popover is a collection of cells. The underlying
+            // overview toolbar also has a button named 'All Tabs'.
+            let options = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label == %@", name))
+            XCTAssertTrue(options.firstMatch.waitForExistence(timeout: 15))
+            XCTAssertEqual(options.count, 1, "Select the unique real group action in the native popover")
+            tap(options.element(boundBy: 0))
         }
+    }
+
+    @discardableResult
+    func exerciseGlobalHistorySubmission(enabled: Bool) -> String {
+        let query = "בדיקת היסטוריה " + UUID().uuidString
+        launchReader(enabled: enabled, scenario: "search")
+        let globalInput = app.textFields.firstMatch
+        tap(globalInput)
+        globalInput.typeText(query)
+        let start = app.buttons.matching(NSPredicate(format: "label == 'התחל חיפוש' OR label == 'Start Search'")).allElementsBoundByIndex
+            .filter { $0.frame.intersects(globalInput.frame.insetBy(dx: -70, dy: -20)) }
+        XCTAssertEqual(start.count, 1, "Identify the real input-bar submit action uniquely")
+        guard let submit = start.first else { return query }
+        tap(submit)
+        tap(globalInput)
+        // Capture the actual focused global screen even when the following
+        // assertion fails, so immutable baseline behavior can be compared.
+        capture(enabled ? "candidate-global-search-history" : "baseline-global-search-history")
+        let historyRow = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch
+        XCTAssertTrue(historyRow.waitForExistence(timeout: 20), "A submitted global query must appear in the original global history")
+        return query
     }
 }
 
 final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
+    func testOriginalGlobalSearchHistoryThroughNativeControls() {
+        exerciseGlobalHistorySubmission(enabled: false)
+    }
+
     @MainActor
     func testOriginalWindowResizePreservesReader() {
         exerciseNativeWindowResize(enabled: false)
@@ -401,10 +461,10 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let service = XCUIDevice.shared.voiceOverService
         let wasEnabled = service.isEnabled
         addTeardownBlock {
-            try await MainActor.run {
-            let service = XCUIDevice.shared.voiceOverService
-            if wasEnabled { if !service.isEnabled { XCTAssertNoThrow(try service.enable()) } }
-            else { XCTAssertNoThrow(try service.disable()) }
+            await MainActor.run {
+                let service = XCUIDevice.shared.voiceOverService
+                if wasEnabled { if !service.isEnabled { XCTAssertNoThrow(try service.enable()) } }
+                else { XCTAssertNoThrow(try service.disable()) }
             }
         }
 
@@ -413,14 +473,17 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             if !service.isEnabled { try service.enable() }
             XCTAssertTrue(service.isEnabled, "VoiceOver itself must actually run")
             var speech: [String] = []
-            defer {
-                let output = XCTAttachment(string: speech.joined(separator: "\n"))
-                output.name = name
-                output.lifetime = .keepAlways
-                add(output)
-            }
             for _ in 0..<80 {
-                speech.append(try service.moveForward().utterance)
+                let utterance = try service.moveForward().utterance
+                speech.append(utterance)
+                // Preserve actual spoken output before any assertion abort;
+                // Swift defer does not reliably run after XCTest's abort.
+                XCTContext.runActivity(named: name) { activity in
+                    let output = XCTAttachment(string: utterance)
+                    output.name = name + "-\(speech.count)"
+                    output.lifetime = .keepAlways
+                    activity.add(output)
+                }
                 if expected.allSatisfy({ phrase in speech.contains { $0.contains(phrase) } }) { break }
             }
             for phrase in expected {
@@ -452,25 +515,25 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let originalLocator = app.staticTexts["reader-current-locator"].label
         let originalTitle = app.staticTexts["reader-header-title"].label
         tap(app.buttons["כל הכרטיסיות"])
-        let documents = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"])
-        let container = URL(fileURLWithPath: documents).deletingLastPathComponent()
-        let sidecar = container.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/UITests/\(workspaceNamespace).json")
+        let sidecar = try workspaceSidecarURL()
         let saved = sidecar.appendingPathExtension("ui-failure-original")
         let originalBytes = try Data(contentsOf: sidecar)
         XCTAssertFalse(FileManager.default.fileExists(atPath: saved.path))
         // Block only this UUID-scoped test sidecar's atomic destination. The
         // canonical session, corpus, notes and every other sidecar stay intact.
         try FileManager.default.moveItem(at: sidecar, to: saved)
-        var blocked = false
-        var savedNeedsRestore = true
-        defer {
-            if savedNeedsRestore {
-                if blocked { XCTAssertNoThrow(try FileManager.default.removeItem(at: sidecar)) }
-                XCTAssertNoThrow(try FileManager.default.moveItem(at: saved, to: sidecar))
+        addTeardownBlock {
+            if FileManager.default.fileExists(atPath: saved.path) {
+                if FileManager.default.fileExists(atPath: sidecar.path) {
+                    let contents = try FileManager.default.contentsOfDirectory(atPath: sidecar.path)
+                    XCTAssertTrue(contents.isEmpty, "Only remove the empty directory created by this test")
+                    guard contents.isEmpty else { return }
+                    try FileManager.default.removeItem(at: sidecar)
+                }
+                try FileManager.default.moveItem(at: saved, to: sidecar)
             }
         }
         try FileManager.default.createDirectory(at: sidecar, withIntermediateDirectories: false)
-        blocked = true
         tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["קבוצה ריקה"])
         let prompt = app.alerts["שם קבוצת הכרטיסיות"]
@@ -484,9 +547,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.staticTexts[originalTitle].waitForExistence(timeout: 15), "Failure must retain the original group's real document")
         XCTAssertEqual(try Data(contentsOf: saved), originalBytes, "The pre-failure bytes must remain intact")
         try FileManager.default.removeItem(at: sidecar)
-        blocked = false
         try FileManager.default.moveItem(at: saved, to: sidecar)
-        savedNeedsRestore = false
         tap(app.buttons["סיום"])
         assertReaderHasText()
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator)
@@ -499,17 +560,15 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     func testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace() throws {
-        let documents = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"])
-        let container = URL(fileURLWithPath: documents).deletingLastPathComponent()
-        let sidecar = container.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/UITests/\(workspaceNamespace).json")
+        let containers = try workspaceContainerParent()
         launchReader(enabled: false)
         assertReaderHasText()
         XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
         let originalHighlights = try XCTUnwrap(getRenderedHighlightSnapshot())
         capture("candidate-before-workspace-migration-original-reader")
         app.terminate()
-        XCTAssertFalse(FileManager.default.fileExists(atPath: sidecar.path), "Disabled startup/shutdown must not create workspace state")
-        XCTAssertFalse(FileManager.default.fileExists(atPath: sidecar.appendingPathExtension("bak").path))
+        XCTAssertTrue(matchingTestSidecars(in: containers, namespace: workspaceNamespace).isEmpty,
+                      "Disabled startup/shutdown must not create workspace state in any installed app container")
         launchReader()
         assertReaderHasText()
         XCTAssertTrue(app.descendants(matching: .any)["chavrusa-reader-host"].waitForExistence(timeout: 30))
@@ -519,10 +578,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(migratedHighlights.segmentSelectionCount, originalHighlights.segmentSelectionCount,
                        "Enabling the workspace must not create a fake paragraph selection")
         capture("candidate-after-workspace-migration-original-reader")
-        let created = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            FileManager.default.fileExists(atPath: sidecar.path)
-        }, object: nil)
-        XCTAssertEqual(XCTWaiter.wait(for: [created], timeout: 15), .completed)
+        let sidecar = try workspaceSidecarURL()
         app.terminate()
         let enabledBytes = try Data(contentsOf: sidecar)
         launchReader(enabled: false)
@@ -531,7 +587,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
         capture("candidate-disabled-original-reader")
         app.terminate()
-        XCTAssertEqual(try Data(contentsOf: sidecar), enabledBytes,
+        XCTAssertEqual(try Data(contentsOf: workspaceSidecarURL()), enabledBytes,
                        "Disabled startup/shutdown must leave an existing workspace byte-identical")
     }
 
@@ -859,22 +915,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     func testHistoryRemainsGlobalAndIsAbsentFromBookSearch() {
-        let query = "בדיקת היסטוריה " + UUID().uuidString
-        launchReader(scenario: "search")
-        let globalInput = app.textFields.firstMatch
-        tap(globalInput)
-        globalInput.typeText(query)
-        // Submit through the original input bar's play button, not a soft-key
-        // newline whose handling depends on the active hardware keyboard.
-        let start = app.buttons.matching(NSPredicate(format: "label == 'התחל חיפוש' OR label == 'Start Search'")).allElementsBoundByIndex
-            .filter { $0.frame.intersects(globalInput.frame.insetBy(dx: -70, dy: -20)) }
-        XCTAssertEqual(start.count, 1, "Identify the real input-bar submit action uniquely")
-        guard let submit = start.first else { return }
-        tap(submit)
-        tap(globalInput)
-        let historyRow = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", query)).firstMatch
-        XCTAssertTrue(historyRow.waitForExistence(timeout: 20), "A submitted global query must appear in the original global history")
-        capture("candidate-global-search-history")
+        let query = exerciseGlobalHistorySubmission(enabled: true)
         app.terminate()
         launchReader()
         assertReaderHasText()
@@ -902,8 +943,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(alert.waitForExistence(timeout: 10))
         alert.textFields.firstMatch.typeText("מיקום שני")
         tap(alert.buttons["שמירה"])
-        let selector = app.segmentedControls["study-group-selector"]
-        XCTAssertTrue(selector.buttons["מיקום שני"].waitForExistence(timeout: 15))
+        selectStudyGroup(named: "מיקום שני")
         tap(app.buttons["סיום"])
         assertReaderHasText()
         XCTAssertEqual(locator.label, initial)
@@ -917,7 +957,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         for _ in 0..<20 {
             for (name, expected) in [("כל הכרטיסיות", initial), ("מיקום שני", second)] {
                 tap(app.buttons["כל הכרטיסיות"])
-                tap(selector.buttons[name])
+                selectStudyGroup(named: name)
                 tap(app.buttons["סיום"])
                 assertReaderHasText()
                 XCTAssertEqual(locator.label, expected, "Each group must restore its own actual canonical locator")
@@ -959,8 +999,24 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
                 XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
             }
             let selector = app.segmentedControls["study-group-selector"]
-            XCTAssertTrue(selector.waitForExistence(timeout: 15), "The original public-safe segmented selector must render in a regular iPad window")
-            XCTAssertEqual(selector.buttons.count, 3)
+            let expected = ["כל הכרטיסיות", "\(profileName) א", "\(profileName) ב"]
+            if selector.exists {
+                XCTAssertEqual(selector.buttons.count, 3)
+                for name in expected { XCTAssertTrue(selector.buttons[name].exists) }
+            } else {
+                // A native page sheet has compact traits even on a wide iPad.
+                // Inspect the original public fallback's actual menu membership.
+                let menu = app.buttons["study-group-selector"]
+                XCTAssertTrue(menu.waitForExistence(timeout: 15))
+                let selected = menu.value as? String
+                XCTAssertEqual(selected, "\(profileName) ב")
+                tap(menu)
+                let options = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label IN %@", expected))
+                XCTAssertTrue(options.firstMatch.waitForExistence(timeout: 15))
+                XCTAssertEqual(options.count, 3)
+                for name in expected { XCTAssertEqual(options.matching(NSPredicate(format: "label == %@", name)).count, 1) }
+                tap(options.matching(NSPredicate(format: "label == %@", "\(profileName) ב")).element(boundBy: 0))
+            }
             capture("candidate-profile-groups-\(profileName)")
             tap(app.buttons["סיום"])
         }

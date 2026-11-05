@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Native XCTest acceptance must distinguish durable app state from a pre-install Simulator container UUID. Resolve UUID-scoped test sidecars in the actual installed data container; viewport observation must use the app's current Documents directory. Keep native system-setting/window restoration in XCTest teardown blocks, since an assertion abort can skip a Swift defer and contaminate later tests (including VoiceOver interpreting ordinary taps differently).
+
 - CoreSimulator runtime/device compatibility and install readiness are separate checks. One M5/27.1 pair was rejected at creation; a later 11-inch/27.0 pair was listed as supported but still timed out during install/launch. Filter `supportedDeviceTypes`, record the exact pair, keep only the current validation simulator active, and collect service diagnostics on timeout. Do not attribute the latter failure to an unsupported profile without evidence.
 
 - Read-only tab/group snapshots must read `fetchScrollPosition` / `fetchSelectedRange` into a local state copy. `ReaderViewModel.saveCurrentState()` also clears search and annotation events, so invoking it merely to update sidecar metadata can consume a pending search highlight before the original reader renders it. The faithful workspace adapter captures without that mutation.

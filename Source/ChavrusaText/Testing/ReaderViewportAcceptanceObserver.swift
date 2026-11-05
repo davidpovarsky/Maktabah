@@ -26,7 +26,11 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
             guard let path = ProcessInfo.processInfo.environment["CHAVRUSA_READER_VIEWPORT_REPORT"], !path.isEmpty,
                   ProcessInfo.processInfo.environment["MAKTABAH_SMOKE_READY_FILE"] == nil else { return }
             probe = view
-            prefix = path
+            // XCTest can relocate the app's container during installation.
+            // Resolve this unique test basename inside the app's current real
+            // Documents directory, rather than trusting a pre-install UUID.
+            prefix = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                .appendingPathComponent(URL(fileURLWithPath: path).lastPathComponent).path
             let timer = Timer(timeInterval: 0.1, repeats: true) { [weak self] _ in
                 MainActor.assumeIsolated { self?.reportIfRequested() }
             }

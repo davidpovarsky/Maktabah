@@ -14,7 +14,7 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
@@ -49,7 +49,7 @@ final class PullNavigationAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]

@@ -32,7 +32,12 @@ command = ["xcrun", "swiftc", "-c", "-whole-module-optimization", "-o", "build/U
 # Exact upcoming-feature flags from the real app UI-test SwiftDriver invocation.
 for feature in ["MemberImportVisibility", "InferIsolatedConformances", "NonisolatedNonsendingByDefault"]:
     command.extend(["-enable-upcoming-feature", feature])
-command.extend(["Maktabah-iOSUITests/MaktabahUITestBase.swift", "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"])
+ui_sources = ["Maktabah-iOSUITests/MaktabahUITestBase.swift", "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+              "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+              "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift"]
+compiler_options = command.copy()
+command.extend(ui_sources)
 result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 (artifacts / "ui-acceptance-typecheck.log").write_text(result.stdout, encoding="utf-8")
 report = {"sourceSHA": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
@@ -50,7 +55,7 @@ toolbar_code = 0
 if all(path.is_file() for path in toolbar_sources):
     # Compile the real self-contained app components, not substitute stubs.
     # They do not exist in the immutable original baseline checkout.
-    toolbar_command = command[:-2].copy()
+    toolbar_command = compiler_options.copy()
     toolbar_command[toolbar_command.index("-module-name") + 1] = "FaithfulToolbarSDK"
     toolbar_command[toolbar_command.index("-o") + 1] = "build/ToolbarSourceCheck.o"
     toolbar_command.extend(map(str, toolbar_sources))

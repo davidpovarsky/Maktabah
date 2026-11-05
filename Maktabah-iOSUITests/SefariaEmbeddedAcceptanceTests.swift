@@ -95,7 +95,7 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("reader", backend: "sefariaEmbedded")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 20.0), "Reader surface must be presented for sefariaEmbedded")
     }
 

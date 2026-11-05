@@ -108,8 +108,11 @@ for index, size in enumerate(["11", "13", "phone"]):
         device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
         viewport_reports = artifacts / f"viewport-reports-{size}"
         viewport_reports.mkdir(parents=True, exist_ok=True)
-        for source in (Path(container) / "Documents").glob("faithful-*.viewport.json"):
-            shutil.copyfile(source, viewport_reports / source.name)
+        # XCTest can relocate the installed data container. Collect only the
+        # explicitly UUID-named read-only viewport reports from native app data.
+        for candidate in Path(container).parent.iterdir():
+            for source in (candidate / "Documents").glob("faithful-*.viewport.json"):
+                shutil.copyfile(source, viewport_reports / source.name)
         # Attachments are exported even after a failing test for honest diagnosis.
         if result.is_dir():
             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),

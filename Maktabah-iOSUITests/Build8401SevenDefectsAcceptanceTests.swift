@@ -17,7 +17,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("searchOpen", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must open for search result")
 
         // A1: Verify rendered search highlights in actual attributed text
@@ -89,7 +89,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
             }
         }
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must open upon selecting search result")
 
         // Clear button must appear
@@ -112,7 +112,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must exist")
 
         // Verify Clear 'X' button is NOT present for ordinary reading
@@ -131,7 +131,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]

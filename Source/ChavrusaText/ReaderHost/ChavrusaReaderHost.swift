@@ -152,8 +152,16 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         }
         .frame(maxWidth: .infinity)
     }
-    private func openSearch() { guard !searchIsExpanded else { return }; searchIsExpanded = true }
-    private func closeSearch() { guard searchIsExpanded else { return }; searchIsExpanded = false }
+    private func openSearch() {
+        guard !searchIsExpanded else { return }
+        quickAddressFocused = false
+        searchIsExpanded = true
+    }
+    private func closeSearch() {
+        guard searchIsExpanded else { return }
+        searchIsExpanded = false
+        quickAddressFocused = false
+    }
     private func openLibrary() {
         sidebar.showLibrary()
         preferredCompactColumn = .sidebar
