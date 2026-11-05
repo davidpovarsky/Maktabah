@@ -54,6 +54,10 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 reader
             }
                 .toolbar(removing: .sidebarToggle)
+                // The measured strip ends the original reader's underlap.
+                // Preserve its actual reading theme behind the native bar.
+                .toolbarBackground(manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color,
+                                   for: .navigationBar)
                 .toolbar {
                     // A compact split already has the native Back-to-sidebar
                     // action. Duplicating it also displaced the search field
