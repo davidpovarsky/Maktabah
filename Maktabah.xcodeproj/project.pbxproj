@@ -1300,6 +1300,7 @@
 		B458BF27E1EC14F3BD7EEC43 /* TabsBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */; };
 		373722936268814E211E604F /* TabsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */; };
 		06882F53F7AA51EFE8C26A29 /* TabsBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67D7696A0CFF108B321849F /* TabsBarViewController.swift */; };
+		D4A52E41F0A64A55A41C9B01 /* TabSwitcherPagePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */; };
 		B4D09656DB7A3C17C8B81470 /* ScrollableGroupsHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */; };
 		27766EFF8EBE9CECBB575F26 /* AdaptiveTabContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */; };
 		AEFC4F8B41B574552ECCFCE3 /* ScrollableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3790498EEB0FDBD6A27A60C /* ScrollableTabBar.swift */; };
@@ -1315,6 +1316,8 @@
 		1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */ = {isa = PBXBuildFile; productRef = BF8626D7580C7BB2D53851F8; };
 		81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */; };
 		AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */; };
+		E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
+		E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2049,6 +2052,7 @@
 		4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift"; sourceTree = "<group>"; };
 		75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift"; sourceTree = "<group>"; };
 		A67D7696A0CFF108B321849F /* TabsBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift"; sourceTree = "<group>"; };
+		D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift"; sourceTree = "<group>"; };
 		AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableGroupsHost.swift"; sourceTree = "<group>"; };
 		A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift"; sourceTree = "<group>"; };
 		D3790498EEB0FDBD6A27A60C /* ScrollableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift"; sourceTree = "<group>"; };
@@ -2063,6 +2067,7 @@
 		177DC9EB2AB8099576B13411 /* ThirdPartyNotices */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ThirdPartyNotices; sourceTree = "<group>"; };
 		A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderViewportAcceptanceObserver.swift"; sourceTree = "<group>"; };
 		D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ChavrusaReaderWorkspaceLayout.swift"; sourceTree = "<group>"; };
+		E81108000000000000000001 /* ReaderNavigationChromeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderNavigationChromeState.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2145,6 +2150,7 @@
 				A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */,
 				AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */,
 				A67D7696A0CFF108B321849F /* TabsBarViewController.swift */,
+				D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */,
 				75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */,
 				4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */,
 				F9FA9A93DAC6A31F64EE3AB1 /* TabsBarCell.swift */,
@@ -2159,6 +2165,7 @@
 				4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */,
 				E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */,
 				77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */,
+				E81108000000000000000001 /* ReaderNavigationChromeState.swift */,
 				65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */,
 				D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */,
 				A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */,
@@ -4080,6 +4087,7 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
 								CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
 				CF1000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
 				CF1000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */,
@@ -4771,6 +4779,7 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */,
+				E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */,
 				9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */,
 				AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */,
 				81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */,
@@ -4789,6 +4798,7 @@
 				B458BF27E1EC14F3BD7EEC43 /* TabsBarLayout.swift in Sources */,
 				373722936268814E211E604F /* TabsBarView.swift in Sources */,
 				06882F53F7AA51EFE8C26A29 /* TabsBarViewController.swift in Sources */,
+				D4A52E41F0A64A55A41C9B01 /* TabSwitcherPagePort.swift in Sources */,
 				B4D09656DB7A3C17C8B81470 /* ScrollableGroupsHost.swift in Sources */,
 				27766EFF8EBE9CECBB575F26 /* AdaptiveTabContent.swift in Sources */,
 				AEFC4F8B41B574552ECCFCE3 /* ScrollableTabBar.swift in Sources */,

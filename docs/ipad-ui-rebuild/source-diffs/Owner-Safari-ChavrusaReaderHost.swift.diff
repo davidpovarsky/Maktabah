@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,659 +1,245 @@
+@@ -1,659 +1,348 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -98,6 +98,7 @@
 +    @State private var availableWidth: CGFloat = 640
 +    @State private var detailWidth: CGFloat = 640
 +    @State private var sceneID = ""
++    @State private var navigationChrome = ReaderNavigationChromeState()
      @Namespace private var searchMorph
 -    @StateObject private var browser = BrowserDemoState()
 -
@@ -164,7 +165,13 @@
 +        if #available(iOS 27.0, *) { return false }
 +        return horizontalSizeClass != .compact
 +    }
++    private var readerChromeColor: Color {
++        manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color
++    }
 +    private var morphSpring: Animation { .spring(response: 0.47, dampingFraction: 0.84) }
++    private var chromeAnimation: Animation? {
++        reduceMotion ? nil : .spring(response: 0.34, dampingFraction: 0.90)
++    }
 +
 +    init(manager: iOSNavigationManager, columnVisibility: Binding<NavigationSplitViewVisibility>,
 +         preferredCompactColumn: Binding<NavigationSplitViewColumn>,
@@ -187,8 +194,13 @@
 +                DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
 +                                 onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
 +                                 onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
-+                                 onOpenLibrary: openLibrary, onOverview: { showsOverview = true })
-+                    .frame(height: TabsBarViewController.Constants.buttonHeight)
++                                 onOpenLibrary: openLibrary, onOverview: { showsOverview = true },
++                                 backgroundColor: UIColor(readerChromeColor))
++                    .frame(height: navigationChrome.isVisible ? TabsBarViewController.Constants.buttonHeight : 0)
++                    .opacity(navigationChrome.isVisible ? 1 : 0)
++                    .clipped()
++                    .allowsHitTesting(navigationChrome.isVisible)
++                    .accessibilityHidden(!navigationChrome.isVisible)
 +                    .accessibilityIdentifier("reader-document-tabs")
 +                reader
              }
@@ -209,11 +221,12 @@
 -                    .zIndex(1)
 -
 -                if searchIsExpanded {
-+                .toolbar(removing: .sidebarToggle)
++                .background(readerChromeColor)
++                .modifier(ReaderSidebarToggleRemoval())
 +                // The measured strip ends the original reader's underlap.
 +                // Preserve its actual reading theme behind the native bar.
-+                .toolbarBackground(manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color,
-+                                   for: .navigationBar)
++                .toolbarBackground(readerChromeColor, for: .navigationBar)
++                .toolbarBackground(.visible, for: .navigationBar)
 +                .toolbar {
 +                    // A compact split already has the native Back-to-sidebar
 +                    // action. Duplicating it also displaced the search field
@@ -230,19 +243,19 @@
 +                        }
 +                        .readerSourceGlassBackground()
 +                    }
-+                    ToolbarItem(placement: .principal) {
-+                        if !searchIsExpanded {
-+                            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
-+                                                     quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
-+                                .frame(minWidth: detailWidth < 740 ? 100 : 150,
-+                                       idealWidth: horizontalSizeClass == .compact ? 150 : (detailWidth < 740 ? 200 : 350),
-+                                       maxWidth: horizontalSizeClass == .compact ? 180 : 520)
-+                                .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
-+                        } else {
-+                            Color.clear.frame(width: min(350, max(150, availableWidth - 220)), height: 52).accessibilityHidden(true)
++                    if horizontalSizeClass == .compact {
++                        ToolbarItem(placement: .topBarLeading) {
++                            collapsedSearchField(minWidth: 72, idealWidth: 96, maxWidth: 112)
 +                        }
++                        .readerSourceGlassBackground()
++                    } else {
++                        ToolbarItem(placement: .principal) {
++                            collapsedSearchField(minWidth: detailWidth < 740 ? 100 : 150,
++                                                 idealWidth: detailWidth < 740 ? 200 : 350,
++                                                 maxWidth: 520)
++                        }
++                        .readerSourceGlassBackground()
 +                    }
-+                    .readerSourceGlassBackground()
 +                    ToolbarItem(placement: horizontalSizeClass == .compact ? .secondaryAction : .topBarTrailing) {
 +                        if let workspace { StudyProfileMenu(workspace: workspace, manager: manager, compact: detailWidth < 740) { showsProfiles = true } }
 +                    }
@@ -251,8 +264,9 @@
 +                .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
 +        }
 +        .navigationSplitViewStyle(.balanced)
-+        .toolbar(removing: .sidebarToggle)
-+        .background(Color.appBackground.ignoresSafeArea())
++        .toolbarVisibility(navigationChrome.isVisible ? .visible : .hidden, for: .tabBar)
++        .modifier(ReaderSidebarToggleRemoval())
++        .background(readerChromeColor.ignoresSafeArea())
 +        .environment(\.chavrusaReaderSidebar, sidebar)
 +        .background {
 +            ReaderSceneIdentityReader { identifier in
@@ -277,16 +291,64 @@
 -
                      expandedSearch(availableWidth: geometry.size.width)
 -                        .zIndex(3)
-                 }
++                }
 +                .zIndex(3)
++            }
++        }
++        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { availableWidth = $0 }
++        .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
++        .onChange(of: quickAddressFocused) { _, focused in
++            if focused { quickAddressFocused = false; openSearch() }
++        }
++        .task(id: sceneID) {
++            guard workspace == nil, !sceneID.isEmpty else { return }
++            manager.restoreSessionIfNeeded()
++            let adapter = StudyWorkspaceNavigationAdapter(sceneID: sceneID, store: StudyWorkspaceStore.forCurrentProcess())
++            workspace = adapter
++            await adapter.attach(manager)
++        }
++        .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }
++        .onChange(of: manager.activeTabId) { _, _ in
++            revealNavigationChrome()
++            workspace?.synchronize(manager)
++            if horizontalSizeClass == .compact { preferredCompactColumn = .detail }
++        }
++        .onChange(of: sidebarIsOpen) { _, open in
++            if open { revealNavigationChrome() }
++        }
++        .onChange(of: manager.activeReaderViewModel?.currentContentId) { _, _ in revealNavigationChrome() }
++        .onChange(of: manager.activeReaderViewModel?.readerInspectorVisible) { _, visible in
++            if visible == true { revealNavigationChrome() }
++        }
++        .onChange(of: manager.activeReaderViewModel?.isPopoverPresented) { _, presented in
++            if presented == true { revealNavigationChrome() }
++        }
++        .onChange(of: showsOverview) { _, showing in if showing { revealNavigationChrome() } }
++        .onChange(of: showsProfiles) { _, showing in if showing { revealNavigationChrome() } }
++        .onDisappear { navigationChrome.reveal() }
++        .onChange(of: workspace?.selection?.groupID) { _, _ in
++            Task { await workspace?.reconcileSceneSelection(manager) }
++        }
++        .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in workspace?.synchronize(manager) }
++        .onReceive(NotificationCenter.default.publisher(for: .chavrusaReaderDidScroll)) { note in
++            guard let source = note.object as? ReaderViewModel,
++                  source === manager.activeReaderViewModel,
++                  !searchIsExpanded, !showsOverview, !showsProfiles,
++                  source.isPopoverPresented == false, source.readerInspectorVisible == false,
++                  let translationY = note.userInfo?[ChavrusaReaderScrollKey.translationY] as? CGFloat,
++                  let isAtTop = note.userInfo?[ChavrusaReaderScrollKey.isAtTop] as? Bool
++            else { return }
++            if note.userInfo?[ChavrusaReaderScrollKey.beginsDrag] as? Bool == true {
++                navigationChrome.beginDragging()
++            } else {
++                withAnimation(chromeAnimation) {
++                    navigationChrome.consume(translationY: translationY, isAtTop: isAtTop)
+                 }
              }
 -            .animation(morphSpring, value: searchIsExpanded)
 -        }
 -        .preferredColorScheme(.light)
-+        }
-+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { availableWidth = $0 }
-+        .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
-         .onChange(of: quickAddressFocused) { _, focused in
+-        .onChange(of: quickAddressFocused) { _, focused in
 -            if focused {
 -                quickAddressFocused = false
 -                openSearch()
@@ -422,24 +484,7 @@
 -
 -    // MARK: - One search field expands into the existing CommandPalette
 -
-+            if focused { quickAddressFocused = false; openSearch() }
 +        }
-+        .task(id: sceneID) {
-+            guard workspace == nil, !sceneID.isEmpty else { return }
-+            manager.restoreSessionIfNeeded()
-+            let adapter = StudyWorkspaceNavigationAdapter(sceneID: sceneID, store: StudyWorkspaceStore.forCurrentProcess())
-+            workspace = adapter
-+            await adapter.attach(manager)
-+        }
-+        .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }
-+        .onChange(of: manager.activeTabId) { _, _ in
-+            workspace?.synchronize(manager)
-+            if horizontalSizeClass == .compact { preferredCompactColumn = .detail }
-+        }
-+        .onChange(of: workspace?.selection?.groupID) { _, _ in
-+            Task { await workspace?.reconcileSceneSelection(manager) }
-+        }
-+        .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in workspace?.synchronize(manager) }
 +        .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
 +        .sheet(isPresented: $showsOverview) {
 +            if let workspace { StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: openLibrary) }
@@ -453,6 +498,20 @@
 +        } message: { Text(workspace?.errorMessage ?? "") }
 +        .accessibilityElement(children: .contain)
 +        .accessibilityIdentifier("chavrusa-reader-host")
++    }
++
++    @ViewBuilder
++    private func collapsedSearchField(minWidth: CGFloat, idealWidth: CGFloat, maxWidth: CGFloat) -> some View {
++        if !searchIsExpanded {
++            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
++                                     quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
++                .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth)
++                .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
++        } else {
++            Color.clear
++                .frame(width: min(maxWidth, max(minWidth, availableWidth - 220)), height: 52)
++                .accessibilityHidden(true)
++        }
 +    }
 +
 +    // Exact expandedSearch placement and matched geometry from the owner's prototype.
@@ -487,6 +546,7 @@
          guard !searchIsExpanded else { return }
 -        let entered = quickAddress.trimmingCharacters(in: .whitespacesAndNewlines)
 -        initialSearchQuery = entered == browser.currentPage.address ? "" : entered
++        revealNavigationChrome()
          quickAddressFocused = false
 -        withAnimation(morphSpring) { searchIsExpanded = true }
 -    }
@@ -707,12 +767,58 @@
 -private struct SafariGlass: ViewModifier {
 -    let radius: CGFloat
 -
--    @ViewBuilder
--    func body(content: Content) -> some View {
++        searchIsExpanded = false
++        quickAddressFocused = false
++    }
++    private func openLibrary() {
++        revealNavigationChrome()
++        sidebar.showLibrary()
++        preferredCompactColumn = .sidebar
++        withAnimation(.snappy) { columnVisibility = .all }
++    }
++
++    private func revealNavigationChrome() {
++        withAnimation(chromeAnimation) {
++            navigationChrome.reveal()
++        }
++    }
++}
++
++extension Notification.Name {
++    static let chavrusaReaderDidScroll = Notification.Name("ChavrusaText.readerDidScroll")
++}
++
++enum ChavrusaReaderScrollKey {
++    static let translationY = "translationY"
++    static let isAtTop = "isAtTop"
++    static let beginsDrag = "beginsDrag"
++}
++
++/// Called only from the original scroll delegate's existing callbacks. No
++/// delegate replacement, content offset changes or renderer state writes.
++@MainActor
++enum ReaderNavigationChromeScrollReporter {
++    static func report(_ scrollView: UIScrollView, reader: ReaderViewModel, beginsDrag: Bool = false) {
++        guard !((scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false),
++              scrollView.window != nil,
++              beginsDrag || scrollView.isDragging || scrollView.isTracking else { return }
++        NotificationCenter.default.post(name: .chavrusaReaderDidScroll, object: reader, userInfo: [
++            ChavrusaReaderScrollKey.beginsDrag: beginsDrag,
++            ChavrusaReaderScrollKey.translationY: scrollView.panGestureRecognizer.translation(in: scrollView).y,
++            ChavrusaReaderScrollKey.isAtTop: scrollView.contentOffset.y <= -scrollView.adjustedContentInset.top + 2,
++        ])
++    }
++}
++
++private struct ReaderSidebarToggleRemoval: ViewModifier {
+     @ViewBuilder
+     func body(content: Content) -> some View {
 -        let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
 -        if #available(iOS 26.0, *) {
 -            content.glassEffect(.regular, in: shape)
--        } else {
++        if #available(iOS 27.0, *) {
++            content
+         } else {
 -            content
 -                .background(.regularMaterial, in: shape)
 -                .overlay(shape.strokeBorder(Color.primary.opacity(0.09), lineWidth: 0.7))
@@ -727,13 +833,8 @@
 -        self.content = content()
 -    }
 -
-+        searchIsExpanded = false
-+        quickAddressFocused = false
-+    }
-+    private func openLibrary() {
-+        sidebar.showLibrary()
-+        preferredCompactColumn = .sidebar
-+        withAnimation(.snappy) { columnVisibility = .all }
++            content.toolbar(removing: .sidebarToggle)
++        }
 +    }
 +}
 +

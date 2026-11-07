@@ -29,10 +29,18 @@
     "Testing/ReaderViewportAcceptanceObserver.swift",
     "ToolbarSearch/LibraryCommandPaletteAdapter.swift",
     "ToolbarSearch/ReaderToolbarActionAdapter.swift",
-    "ToolbarSearch/SafariToolbarSourcePort.swift"
+    "ToolbarSearch/SafariToolbarSourcePort.swift",
+    "StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift"
   ],
   "resources": [
     "Source/ChavrusaText/ThirdPartyNotices"
   ],
-  "localSwiftPM": "Source/ChavrusaText/Dependencies/CommandPalette"
+  "localSwiftPM": "Source/ChavrusaText/Dependencies/CommandPalette",
+  "sharedStateSources": [
+    "ReaderHost/ReaderNavigationChromeState.swift"
+  ],
+  "testSources": [
+    "MaktabahTests/ReaderNavigationChromeStateTests.swift",
+    "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/TabSwitcherPageTests.swift"
+  ]
 }

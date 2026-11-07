@@ -28,7 +28,7 @@ struct SearchHistoryOverlay: View {
 
     var body: some View {
         Group {
-            if isShowing {
+            if shouldShow {
                 VStack(spacing: 0) {
                     if !viewModel.searchHistory.isEmpty {
                         historyHeader

@@ -14,6 +14,23 @@ struct FaithfulStudyWorkspaceTests {
             guard value() else { throw CheckFailure(message: message) }
             checks += 1
         }
+        var chrome = ReaderNavigationChromeState()
+        chrome.beginDragging()
+        chrome.consume(translationY: -40, isAtTop: false)
+        try expect(!chrome.isVisible, "Downward manual pan hides bars")
+        for _ in 0..<20 { chrome.consume(translationY: -40, isAtTop: false) }
+        try expect(!chrome.isVisible, "Layout changes with unchanged pan cannot reveal bars")
+        chrome.beginDragging()
+        chrome.consume(translationY: 10, isAtTop: false)
+        try expect(!chrome.isVisible, "New gesture cannot inherit a stale direction")
+        chrome.consume(translationY: 20, isAtTop: false)
+        try expect(chrome.isVisible, "Upward manual pan restores bars")
+        chrome.consume(translationY: -40, isAtTop: false)
+        chrome.consume(translationY: -40, isAtTop: true)
+        try expect(chrome.isVisible, "Book top restores bars")
+        chrome.reveal()
+        chrome.consume(translationY: -900, isAtTop: false)
+        try expect(chrome.isVisible, "Explicit navigation reveal clears stale samples")
         let canonicalURL = directory.appendingPathComponent("ios_reader_session.json")
         let canonical = Data("canonical session must stay byte-identical".utf8)
         try canonical.write(to: canonicalURL)

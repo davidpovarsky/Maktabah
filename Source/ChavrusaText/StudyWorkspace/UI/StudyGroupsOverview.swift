@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct StudyGroupsOverview: View {
     @Bindable var workspace: StudyWorkspaceNavigationAdapter
@@ -10,17 +11,27 @@ struct StudyGroupsOverview: View {
     @State private var copiesCurrent = false
     @State private var renamesCurrent = false
     @State private var confirmsDelete = false
+    @AppStorage("chavrusa.study-tabs.layout") private var tabSwitcherLayoutRaw = ReaderTabSwitcherLayout.grid.rawValue
+
+    private var tabSwitcherLayout: ReaderTabSwitcherLayout {
+        ReaderTabSwitcherLayout(rawValue: tabSwitcherLayoutRaw) ?? .grid
+    }
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 190), spacing: 16)], spacing: 16) {
-                    ForEach(workspace.group?.tabs ?? []) { document in
-                        documentCard(document)
-                    }
-                }
-                .padding()
-            }
+            TabSwitcherPageHost(
+                documents: (workspace.group?.tabs ?? []).map {
+                    ReaderTabSwitcherDocument(id: $0.id, title: $0.session.bookTitle ?? "ספר", subtitle: $0.backend.displayName)
+                },
+                selectedID: workspace.group?.activeTabID,
+                layoutMode: tabSwitcherLayout,
+                onSelect: openDocument,
+                onClose: closeDocument,
+                onReorder: { document, index in
+                    workspace.reorder(document.id, to: index, manager: manager)
+                },
+                contextMenu: contextMenu
+            )
             .overlay {
                 if workspace.group?.tabs.isEmpty != false {
                     ContentUnavailableView {
@@ -45,6 +56,19 @@ struct StudyGroupsOverview: View {
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) { Button("סיום") { dismiss() } }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        tabSwitcherLayoutRaw = tabSwitcherLayout == .grid
+                            ? ReaderTabSwitcherLayout.list.rawValue
+                            : ReaderTabSwitcherLayout.grid.rawValue
+                    } label: {
+                        Label(
+                            tabSwitcherLayout == .grid ? "תצוגת רשימה" : "תצוגת רשת",
+                            systemImage: tabSwitcherLayout == .grid ? "list.bullet" : "square.grid.2x2"
+                        )
+                    }
+                    .accessibilityIdentifier("study-tabs-layout-toggle")
+                }
                 ToolbarItem(placement: .topBarLeading) {
                     Menu {
                         Button("קבוצה ריקה", systemImage: "plus") { prompt(copy: false) }
@@ -94,50 +118,59 @@ struct StudyGroupsOverview: View {
 
     private func prompt(copy: Bool) { renamesCurrent = false; copiesCurrent = copy; name = ""; showsNamePrompt = true }
 
-    private func documentCard(_ document: ReaderDocumentTab) -> some View {
-        VStack(spacing: 8) {
-            Button {
-                Task {
-                    do {
-                        guard let group = workspace.group else { return }
-                        try await workspace.switchGroup(to: group.id, documentID: document.id, manager: manager)
-                        dismiss()
-                    } catch { workspace.errorMessage = error.localizedDescription }
-                }
-            } label: {
-                VStack(spacing: 12) {
-                    Image(systemName: "book.closed").font(.largeTitle).foregroundStyle(.secondary)
-                    Text(document.session.bookTitle ?? "ספר").font(.headline).lineLimit(2)
-                    Text(document.backend.displayName).font(.caption).foregroundStyle(.secondary)
-                    Text("תצוגה מקדימה אינה זמינה").font(.caption2).foregroundStyle(.secondary)
-                }
-                .frame(maxWidth: .infinity, minHeight: 150)
-                .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            HStack {
-                Menu {
-                    ForEach((workspace.store.snapshot?.groups ?? []).filter { $0.id != workspace.group?.id }) { target in
-                        Button("העבר אל \(target.name)") { workspace.moveTab(document.id, to: target.id, copy: false, manager: manager) }
-                        Button("העתק אל \(target.name)") { workspace.moveTab(document.id, to: target.id, copy: true, manager: manager) }
-                    }
-                } label: { Image(systemName: "ellipsis").frame(width: 44, height: 44) }
-                .accessibilityLabel("פעולות בכרטיסייה \(document.session.bookTitle ?? "ספר")")
-                Spacer()
-                Button(role: .destructive) {
-                    if manager.openTabs.contains(where: { $0.id == document.id }) {
-                        manager.closeTab(id: document.id); workspace.synchronize(manager)
-                    } else if let group = workspace.group {
-                        do {
-                            try workspace.store.saveTabs(group.tabs.filter { $0.id != document.id }, activeID: group.activeTabID, groupID: group.id)
-                        } catch { workspace.errorMessage = error.localizedDescription }
-                    }
-                } label: { Image(systemName: "xmark").frame(width: 44, height: 44) }
-                .accessibilityLabel("סגור \(document.session.bookTitle ?? "ספר")")
+    private func openDocument(_ document: ReaderTabSwitcherDocument) {
+        Task {
+            do {
+                guard let group = workspace.group else { return }
+                try await workspace.switchGroup(to: group.id, documentID: document.id, manager: manager)
+                dismiss()
+            } catch {
+                workspace.errorMessage = error.localizedDescription
             }
         }
-        .padding(8)
-        .background(.background, in: RoundedRectangle(cornerRadius: 12))
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(uiColor: .separator), lineWidth: 1))
+    }
+
+    private func closeDocument(_ document: ReaderTabSwitcherDocument) {
+        if manager.openTabs.contains(where: { $0.id == document.id }) {
+            manager.closeTab(id: document.id)
+            workspace.synchronize(manager)
+        } else if let group = workspace.group {
+            do {
+                let remaining = group.tabs.filter { $0.id != document.id }
+                try workspace.store.saveTabs(
+                    remaining,
+                    activeID: group.activeTabID == document.id ? remaining.first?.id : group.activeTabID,
+                    groupID: group.id
+                )
+            } catch {
+                workspace.errorMessage = error.localizedDescription
+            }
+        }
+    }
+
+    private func contextMenu(_ document: ReaderTabSwitcherDocument) -> UIMenu? {
+        let targets = (workspace.store.snapshot?.groups ?? []).filter { $0.id != workspace.group?.id }
+        let move = UIMenu(
+            title: "העברה לקבוצה",
+            image: UIImage(systemName: "arrow.right.square"),
+            children: targets.map { target in
+                UIAction(title: target.name) { _ in
+                    workspace.moveTab(document.id, to: target.id, copy: false, manager: manager)
+                }
+            }
+        )
+        let copy = UIMenu(
+            title: "העתקה לקבוצה",
+            image: UIImage(systemName: "square.on.square"),
+            children: targets.map { target in
+                UIAction(title: target.name) { _ in
+                    workspace.moveTab(document.id, to: target.id, copy: true, manager: manager)
+                }
+            }
+        )
+        let close = UIAction(title: "סגירת כרטיסייה", image: UIImage(systemName: "xmark"), attributes: .destructive) { _ in
+            closeDocument(document)
+        }
+        return UIMenu(children: targets.isEmpty ? [close] : [move, copy, close])
     }
 }

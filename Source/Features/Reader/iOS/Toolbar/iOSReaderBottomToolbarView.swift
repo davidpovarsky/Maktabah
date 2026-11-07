@@ -35,7 +35,7 @@ struct iOSReaderBottomToolbarView: View {
                 .presentationCompactAdaptation(.popover)
         }
         .onChange(of: showingNavigation) { _, newValue in
-            viewModel.isPopoverPresented = newValue || showingOptions
+            viewModel.isPopoverPresented = newValue || showingOptions || showingSearch
         }
 
         Spacer()
@@ -141,7 +141,10 @@ struct iOSReaderBottomToolbarView: View {
                 .presentationCompactAdaptation(.popover)
         }
         .onChange(of: showingOptions) { _, newValue in
-            viewModel.isPopoverPresented = newValue || showingNavigation
+            viewModel.isPopoverPresented = newValue || showingNavigation || showingSearch
+        }
+        .onChange(of: showingSearch) { _, newValue in
+            viewModel.isPopoverPresented = newValue || showingNavigation || showingOptions
         }
         .sheet(isPresented: $showingSearch) {
             if let book = viewModel.currentBook {

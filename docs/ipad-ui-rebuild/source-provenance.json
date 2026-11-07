@@ -84,8 +84,8 @@
     "original": "Sources/CommandPalette/Views/CommandPaletteView.swift",
     "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
     "sha256": "d33809cb1628b7418f11625c5107f2510298472ecbef11e28c2c855b48ea5b3c",
-    "reason": "Optional bidirectional queryBinding, default nil; iOS original esc KeyCap wrapped in a plain native cancel Button with keyboardShortcut, retaining original pixels and dismiss action. No fuzzy-search changes. Native Escape verification pending.",
-    "destinationSHA256": "2de530b024a87858a586f7aabf5f8e0e6fafdb0560aa928586bbaadbf0a53d80"
+    "reason": "Optional bidirectional queryBinding, default nil; rendered source and original esc KeyCap retained. Escape is handled by the downstream UIKit responder-chain wrapper. No fuzzy-search changes. Native validation pending.",
+    "destinationSHA256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f"
   },
   {
     "repo": "CommandPalette",
@@ -189,7 +189,7 @@
     "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
     "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "9aa75cc5bf6d61c8813f837ab2f142167bf1de545977c161a9a36c2f22b13e69"
+    "destinationSHA256": "e8b0fe882fb7ff666c98cedcc88b4d602886e98526ac62d8d5c9d820448af5dc"
   },
   {
     "repo": "Owner Safari prototype",
@@ -197,6 +197,38 @@
     "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
     "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "20fb374cf16f40f07b0fc9ae98a741a53f6c2e1e3889ad161a6029d650d0eb6c"
+    "destinationSHA256": "81a73752e9118e3d26b632b5cd3af56101990bedd2fbf24122331df9980d33ba"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabSwitcherPageViewController.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original UICollectionView list/grid controller, 14pt spacing, adaptive one-to-four-column geometry, 664pt list cap, selection, swipe-close coordination, native context menus, and drag reorder. Replace the browser TabsModel, tracker header, Fire/AI/telemetry services, and browser previews with the stable-ID display callbacks to the canonical ReaderDocumentTab adapter and an honest unavailable-preview state.",
+    "sha256": "a12100a4c78e4d32da6df3ea7d137766a3da7a82fad2cdb84d4f371c12a9c8cf",
+    "destinationSHA256": "6fc7f4c2e42ae6972c1666b7913869b09fc1ffc0c410821e0378cf7696182da5"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabViewCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original card/border radii, shadow, close-button spacing animation, one-third-width swipe threshold, alpha and removal/cancel animations. Replace browser favicon, unread, screenshot, theme, analytics and AI state with book-domain title/backend state; mirror the existing horizontal swipe under RTL.",
+    "sha256": "6e8bb3fda08c289202c0abec6beeefb57a91bd420111c6f9506e768d97a88c57",
+    "destinationSHA256": "6fc7f4c2e42ae6972c1666b7913869b09fc1ffc0c410821e0378cf7696182da5"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabViewGridCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original 44pt header, 16pt leading icon, 12/8pt header padding, 8pt preview inset, 4pt bottom padding and close-container layout. Substitute a semantic book icon and explicit unavailable-preview content because the reader has no browser screenshot service.",
+    "sha256": "3c17cdbf42a3720645a558320f5fb28da29090f040f5d7a3c94745d43f6118ad",
+    "destinationSHA256": "6fc7f4c2e42ae6972c1666b7913869b09fc1ffc0c410821e0378cf7696182da5"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabViewListCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original list row's 16/12pt horizontal padding, 8pt vertical padding, 24pt icon, 8pt inter-item spacing, 44pt control height, title/subtitle stack and close control. Remove browser URL, unread and multi-select-only presentation while retaining the source cell hierarchy.",
+    "sha256": "efcdd9ebba2697b2ef8b7dcbf3f71f27e4b5c26a73d8a5da47123edc28e73ca5",
+    "destinationSHA256": "6fc7f4c2e42ae6972c1666b7913869b09fc1ffc0c410821e0378cf7696182da5"
   }
 ]

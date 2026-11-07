@@ -8,7 +8,7 @@ let package = Package(
     targets: [
         .target(name: "DuckDuckGoBookTabs", path: ".", exclude: ["Tests"], sources: [
             "TabsBarLayout.swift", "TabsBarView.swift", "TabsBarCell.swift", "TabsBarViewController.swift",
-            "TabFlareBackgroundController.swift", "TabFlaredBackgroundView.swift", "ReaderBookTabsModel.swift", "ReaderTabFadeOutLabel.swift"
+            "TabFlareBackgroundController.swift", "TabFlaredBackgroundView.swift", "ReaderBookTabsModel.swift", "ReaderTabFadeOutLabel.swift", "TabSwitcherPagePort.swift"
         ]),
         .testTarget(name: "DuckDuckGoBookTabsTests", dependencies: ["DuckDuckGoBookTabs"], path: "Tests")
     ]

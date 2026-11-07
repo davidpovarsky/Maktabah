@@ -10,7 +10,8 @@ root = Path(__file__).resolve().parents[2]
 original = (root / "Scripts/run-chavrusa-component-tests.sh").read_text(encoding="utf-8")
 sources = [value for value in re.findall(r'\$\{REPO_ROOT\}/([^"\r\n]+\.swift)', original)
            if value != "tools/test_chavrusa_text_components.swift"]
-sources += ["Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+sources += ["Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift",
+            "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
             "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
             "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
             "Source/ChavrusaText/Navigation/ReaderNavigationDisplayPolicy.swift",

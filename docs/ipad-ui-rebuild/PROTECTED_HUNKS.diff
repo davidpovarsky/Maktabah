@@ -1,11 +1,8 @@
 diff --git a/Maktabah.xcodeproj/project.pbxproj b/Maktabah.xcodeproj/project.pbxproj
-index aeb45b16..dbfaa8e4 100644
+index aeb45b16..69ee8a0c 100644
 --- a/Maktabah.xcodeproj/project.pbxproj
 +++ b/Maktabah.xcodeproj/project.pbxproj
-@@ -1283,6 +1283,38 @@
- 		FEA400030000000000000003 /* PlatformColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA400010000000000000001 /* PlatformColor+Hex.swift */; };
- 		FEA400040000000000000004 /* PlatformColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA400010000000000000001 /* PlatformColor+Hex.swift */; };
- 		FF34047318724E38BF0C64DD /* AnVC+TagPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F3B4745FB4F15962E767F /* AnVC+TagPopover.swift */; };
+@@ -1285,0 +1286,35 @@
 +		9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8938E4E38CF6FBE52F2D /* ReaderNavigationDisplayPolicy.swift */; };
 +		9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */; };
 +		54C89333E0A00A80869ADEB1 /* ReaderSidebarPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */; };
@@ -23,6 +20,7 @@ index aeb45b16..dbfaa8e4 100644
 +		B458BF27E1EC14F3BD7EEC43 /* TabsBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */; };
 +		373722936268814E211E604F /* TabsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */; };
 +		06882F53F7AA51EFE8C26A29 /* TabsBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67D7696A0CFF108B321849F /* TabsBarViewController.swift */; };
++		D4A52E41F0A64A55A41C9B01 /* TabSwitcherPagePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */; };
 +		B4D09656DB7A3C17C8B81470 /* ScrollableGroupsHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */; };
 +		27766EFF8EBE9CECBB575F26 /* AdaptiveTabContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */; };
 +		AEFC4F8B41B574552ECCFCE3 /* ScrollableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3790498EEB0FDBD6A27A60C /* ScrollableTabBar.swift */; };
@@ -38,13 +36,9 @@ index aeb45b16..dbfaa8e4 100644
 +		1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */ = {isa = PBXBuildFile; productRef = BF8626D7580C7BB2D53851F8; };
 +		81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */; };
 +		AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */; };
- /* End PBXBuildFile section */
- 
- /* Begin PBXContainerItemProxy section */
-@@ -2000,6 +2032,37 @@
- 		FEA200010000000000000001 /* AnnotationSortOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationSortOption.swift; sourceTree = "<group>"; };
- 		FEA300010000000000000001 /* RandomAccessCollection+Insertion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Insertion.swift"; sourceTree = "<group>"; };
- 		FEA400010000000000000001 /* PlatformColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlatformColor+Hex.swift"; sourceTree = "<group>"; };
++		E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
++		E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
+@@ -2002,0 +2038,33 @@
 +		936F8938E4E38CF6FBE52F2D /* ReaderNavigationDisplayPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderNavigationDisplayPolicy.swift"; sourceTree = "<group>"; };
 +		65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ChavrusaReaderHost.swift"; sourceTree = "<group>"; };
 +		77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarPageCoordinator.swift"; sourceTree = "<group>"; };
@@ -62,6 +56,7 @@ index aeb45b16..dbfaa8e4 100644
 +		4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift"; sourceTree = "<group>"; };
 +		75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift"; sourceTree = "<group>"; };
 +		A67D7696A0CFF108B321849F /* TabsBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift"; sourceTree = "<group>"; };
++		D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift"; sourceTree = "<group>"; };
 +		AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableGroupsHost.swift"; sourceTree = "<group>"; };
 +		A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift"; sourceTree = "<group>"; };
 +		D3790498EEB0FDBD6A27A60C /* ScrollableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift"; sourceTree = "<group>"; };
@@ -76,21 +71,10 @@ index aeb45b16..dbfaa8e4 100644
 +		177DC9EB2AB8099576B13411 /* ThirdPartyNotices */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ThirdPartyNotices; sourceTree = "<group>"; };
 +		A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderViewportAcceptanceObserver.swift"; sourceTree = "<group>"; };
 +		D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ChavrusaReaderWorkspaceLayout.swift"; sourceTree = "<group>"; };
- /* End PBXFileReference section */
- 
- /* Begin PBXFileSystemSynchronizedRootGroup section */
-@@ -2052,6 +2115,7 @@
- 		F30577472FA46222005732C6 /* Frameworks */ = {
- 			isa = PBXFrameworksBuildPhase;
- 			files = (
++		E81108000000000000000001 /* ReaderNavigationChromeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderNavigationChromeState.swift"; sourceTree = "<group>"; };
+@@ -2054,0 +2123 @@
 +				1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */,
- 				B30000000000000000000001 /* AnchoredPopup in Frameworks */,
- 				C30000000000000000000001 /* FloatingPanel in Frameworks */,
- 				A30000000000000000000001 /* TorahInspectorCore in Frameworks */,
-@@ -2068,6 +2132,37 @@
- 		CFEE00000000000000000001 /* ChavrusaText */ = {
- 			isa = PBXGroup;
- 			children = (
+@@ -2070,0 +2140,33 @@
 +				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
 +				8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */,
 +				FFF7EF2388CCE26B3FD09BEA /* ReaderToolbarActionAdapter.swift */,
@@ -104,6 +88,7 @@ index aeb45b16..dbfaa8e4 100644
 +				A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */,
 +				AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */,
 +				A67D7696A0CFF108B321849F /* TabsBarViewController.swift */,
++				D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */,
 +				75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */,
 +				4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */,
 +				F9FA9A93DAC6A31F64EE3AB1 /* TabsBarCell.swift */,
@@ -118,42 +103,22 @@ index aeb45b16..dbfaa8e4 100644
 +				4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */,
 +				E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */,
 +				77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */,
++				E81108000000000000000001 /* ReaderNavigationChromeState.swift */,
 +				65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */,
 +				D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */,
 +				A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */,
 +				936F8938E4E38CF6FBE52F2D /* ReaderNavigationDisplayPolicy.swift */,
- 				CF0000000000000000000001 /* BackendAnnotationBridge.swift */,
- 				CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */,
- 				CF0000000000000000000003 /* ChavrusaTextLocalizationResolver.swift */,
-@@ -3724,6 +3819,7 @@
- 			);
- 			name = "Maktabah-iOS";
- 			packageProductDependencies = (
+@@ -3726,0 +3829 @@
 +				BF8626D7580C7BB2D53851F8 /* CommandPalette */,
- 				B20000000000000000000001 /* AnchoredPopup */,
- 				C20000000000000000000001 /* FloatingPanel */,
- 				A20000000000000000000001 /* TorahInspectorCore */,
-@@ -3782,6 +3878,7 @@
- 			mainGroup = 4B32021F2EDAFE85003B95D1;
- 			minimizedProjectReferenceProxies = 1;
- 			packageReferences = (
+@@ -3784,0 +3888 @@
 +				66370DCD8947589AD0EB9BEB /* CommandPalette source fork */,
- 				B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */,
- 				C10000000000000000000001 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
- 				A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */,
-@@ -3906,6 +4003,7 @@
- 		F305774A2FA46222005732C6 /* Resources */ = {
- 			isa = PBXResourcesBuildPhase;
- 			files = (
+@@ -3908,0 +4013 @@
 +				1A92E5A3C0E241A340657AD4 /* ThirdPartyNotices in Resources */,
- 				DAF100000000000000000004 /* miniTest10.profile.json in Resources */,
- 				E5A100000000000000000001 /* dictionary.json in Resources */,
- 				E5A100000000000000000002 /* Acronyms.json in Resources */,
-@@ -4672,6 +4770,36 @@
- 		F30576E22FA46222005732C6 /* Sources */ = {
- 			isa = PBXSourcesBuildPhase;
- 			files = (
+@@ -3984,0 +4090 @@
++				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
+@@ -4674,0 +4781,32 @@
 +				9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */,
++				E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */,
 +				9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */,
 +				AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */,
 +				81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */,
@@ -172,6 +137,7 @@ index aeb45b16..dbfaa8e4 100644
 +				B458BF27E1EC14F3BD7EEC43 /* TabsBarLayout.swift in Sources */,
 +				373722936268814E211E604F /* TabsBarView.swift in Sources */,
 +				06882F53F7AA51EFE8C26A29 /* TabsBarViewController.swift in Sources */,
++				D4A52E41F0A64A55A41C9B01 /* TabSwitcherPagePort.swift in Sources */,
 +				B4D09656DB7A3C17C8B81470 /* ScrollableGroupsHost.swift in Sources */,
 +				27766EFF8EBE9CECBB575F26 /* AdaptiveTabContent.swift in Sources */,
 +				AEFC4F8B41B574552ECCFCE3 /* ScrollableTabBar.swift in Sources */,
@@ -183,13 +149,7 @@ index aeb45b16..dbfaa8e4 100644
 +				67E2A099AFC6265651BCEA70 /* LibraryCommandPaletteAdapter.swift in Sources */,
 +				8702AE816C32FB1A7642441F /* ReaderToolbarActionAdapter.swift in Sources */,
 +				E2D27ABB6420FBA0155F9C29 /* SafariToolbarSourcePort.swift in Sources */,
- 				F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */,
- 				B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */,
- 				C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */,
-@@ -6039,6 +6167,13 @@
- 		};
- /* End XCConfigurationList section */
- 
+@@ -6041,0 +6180,7 @@
 +/* Begin XCLocalSwiftPackageReference section */
 +        66370DCD8947589AD0EB9BEB /* CommandPalette source fork */ = {
 +            isa = XCLocalSwiftPackageReference;
@@ -197,59 +157,29 @@ index aeb45b16..dbfaa8e4 100644
 +        };
 +/* End XCLocalSwiftPackageReference section */
 +
- /* Begin XCRemoteSwiftPackageReference section */
- 		B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */ = {
- 			isa = XCRemoteSwiftPackageReference;
-@@ -6061,7 +6196,7 @@
- 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
- 			requirement = {
- 				kind = revision;
+@@ -6064 +6209 @@
 -				revision = 157676f511990756fa4cd8337c744903d4dc9ef6;
 +				revision = 19d1b35397af4f10ae70cfb3f444c9de87383b53;
- 			};
- 		};
- 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
-@@ -6152,6 +6287,11 @@
- 			package = F30576E12FA46222005732C6 /* XCRemoteSwiftPackageReference "zstd" */;
- 			productName = libzstd;
- 		};
+@@ -6154,0 +6300,5 @@
 +        BF8626D7580C7BB2D53851F8 /* CommandPalette */ = {
 +            isa = XCSwiftPackageProductDependency;
 +            package = 66370DCD8947589AD0EB9BEB /* CommandPalette source fork */;
 +            productName = CommandPalette;
 +        };
- /* End XCSwiftPackageProductDependency section */
- 	};
- 	rootObject = 4B3202202EDAFE85003B95D1 /* Project object */;
 diff --git a/Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved b/Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 index 81228af9..fe4b9053 100644
 --- a/Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 +++ b/Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
-@@ -32,7 +32,7 @@
-       "kind": "remoteSourceControl",
-       "location": "https://github.com/davidpovarsky/TorahInspectorKit.git",
-       "state": {
+@@ -35 +35 @@
 -        "revision": "157676f511990756fa4cd8337c744903d4dc9ef6"
 +        "revision": "19d1b35397af4f10ae70cfb3f444c9de87383b53"
-       }
-     },
-     {
 diff --git a/Source/Features/Library/iOS/iOSLibraryView.swift b/Source/Features/Library/iOS/iOSLibraryView.swift
 index ede65ecf..ef138d94 100644
 --- a/Source/Features/Library/iOS/iOSLibraryView.swift
 +++ b/Source/Features/Library/iOS/iOSLibraryView.swift
-@@ -4,6 +4,7 @@ import UIKit
- // MARK: - SwiftUI View
- 
- struct iOSLibraryView: View {
+@@ -6,0 +7 @@ struct iOSLibraryView: View {
 +    var groupsToolbarActions = false
-     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
- 
-     var body: some View {
-@@ -119,6 +120,16 @@ struct iOSLibraryView: View {
-     private func toolbarContent(viewModel: LibraryViewModel) -> some ToolbarContent {
-         if viewModel.isSelectionMode {
-             selectionToolbarItems(viewModel: viewModel)
+@@ -121,0 +123,10 @@ struct iOSLibraryView: View {
 +        } else if groupsToolbarActions {
 +            ToolbarItem(placement: .topBarTrailing) {
 +                GlassButtonGroup {
@@ -260,34 +190,22 @@ index ede65ecf..ef138d94 100644
 +                .labelStyle(.iconOnly)
 +            }
 +            .readerSourceGlassBackground()
-         } else {
-             standardToolbarItems(viewModel: viewModel)
-         }
 diff --git a/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift b/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
 index 6f19264c..9fa9a8a1 100644
 --- a/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
 +++ b/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
-@@ -65,12 +65,6 @@ struct iOSBookSearchView: View {
-                     showIntegrationState: false
-                 )
-             }
+@@ -68,6 +67,0 @@ struct iOSBookSearchView: View {
 -            .overlay(alignment: .bottom) {
 -                SearchHistoryOverlay(
 -                    viewModel: viewModel,
 -                    isVisible: .constant(nil)
 -                )
 -            }
-         }
-         .searchable(
-             text: $viewModel.query,
 diff --git a/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift b/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift
-index 95e0e8cb..f950a94d 100644
+index 95e0e8cb..de504b55 100644
 --- a/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift
 +++ b/Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift
-@@ -25,12 +25,11 @@ struct iOSReaderBottomToolbarView: View {
-     }
- 
-     var body: some View {
+@@ -28,6 +28,5 @@ struct iOSReaderBottomToolbarView: View {
 -        Button(
 -            viewModel.statusSubtitle,
 -            action: {
@@ -299,146 +217,78 @@ index 95e0e8cb..f950a94d 100644
 +        } label: {
 +            ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.statusSubtitle)
 +        }
-         .popover(isPresented: $showingNavigation) {
-             iOSReaderNavigationPopoverView(viewModel: viewModel)
-                 .presentationCompactAdaptation(.popover)
+@@ -39 +38 @@ struct iOSReaderBottomToolbarView: View {
+-            viewModel.isPopoverPresented = newValue || showingOptions
++            viewModel.isPopoverPresented = newValue || showingOptions || showingSearch
+@@ -145 +144,4 @@ struct iOSReaderBottomToolbarView: View {
+-            viewModel.isPopoverPresented = newValue || showingNavigation
++            viewModel.isPopoverPresented = newValue || showingNavigation || showingSearch
++        }
++        .onChange(of: showingSearch) { _, newValue in
++            viewModel.isPopoverPresented = newValue || showingNavigation || showingOptions
 diff --git a/Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift b/Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift
 index 6381e62d..e7fdeead 100644
 --- a/Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift
 +++ b/Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift
-@@ -42,7 +42,7 @@ struct iOSReaderNavigationPopoverView: View {
-                     }
-                     .disabled(viewModel.backendSection?.previous == nil)
-                     
+@@ -45 +45 @@ struct iOSReaderNavigationPopoverView: View {
 -                    Text(viewModel.backendSection.map {
 +                    ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.backendSection.map {
-                         LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)
-                     } ?? "")
-                         .font(.headline)
-@@ -65,7 +65,7 @@ struct iOSReaderNavigationPopoverView: View {
-                     let safeIdx = min(max(0, Int(localNav)), viewModel.navigationItems.count - 1)
-                     VStack(spacing: 8) {
-                         if isSlidingNav {
+@@ -68 +68 @@ struct iOSReaderNavigationPopoverView: View {
 -                            Text(viewModel.navigationItems[safeIdx].title)
 +                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems[safeIdx].locator, fallback: viewModel.navigationItems[safeIdx].title)
-                                 .font(.headline)
-                                 .foregroundColor(.accentColor)
-                                 .lineLimit(1)
-@@ -84,12 +84,12 @@ struct iOSReaderNavigationPopoverView: View {
-                         }
- 
-                         HStack {
+@@ -87 +87 @@ struct iOSReaderNavigationPopoverView: View {
 -                            Text(viewModel.navigationItems.first?.title ?? "")
 +                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.first?.locator, fallback: viewModel.navigationItems.first?.title ?? "")
-                                 .font(.caption2)
-                                 .foregroundColor(.secondary)
-                                 .lineLimit(1)
-                             Spacer()
+@@ -92 +92 @@ struct iOSReaderNavigationPopoverView: View {
 -                            Text(viewModel.navigationItems.last?.title ?? "")
 +                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.last?.locator, fallback: viewModel.navigationItems.last?.title ?? "")
-                                 .font(.caption2)
-                                 .foregroundColor(.secondary)
-                                 .lineLimit(1)
 diff --git a/Source/Features/Reader/iOS/iOSReaderTabView.swift b/Source/Features/Reader/iOS/iOSReaderTabView.swift
 index 21968285..d971d895 100644
 --- a/Source/Features/Reader/iOS/iOSReaderTabView.swift
 +++ b/Source/Features/Reader/iOS/iOSReaderTabView.swift
-@@ -5,13 +5,16 @@ struct iOSReaderTabView: View {
-     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-     @Binding var columnVisibility: NavigationSplitViewVisibility
-     @Binding var preferredCompactColumn: NavigationSplitViewColumn
+@@ -7,0 +8 @@ struct iOSReaderTabView: View {
 +    let showsLegacyDocumentTabs: Bool
- 
-     init(
-         columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all),
+@@ -11 +12,2 @@ struct iOSReaderTabView: View {
 -        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail)
 +        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail),
 +        showsLegacyDocumentTabs: Bool = true
-     ) {
-         self._columnVisibility = columnVisibility
-         self._preferredCompactColumn = preferredCompactColumn
+@@ -14,0 +17 @@ struct iOSReaderTabView: View {
 +        self.showsLegacyDocumentTabs = showsLegacyDocumentTabs
-     }
- 
-     private var activeTab: iOSNavigationManager.ReaderTab? {
-@@ -34,11 +37,11 @@ struct iOSReaderTabView: View {
-                 )
-                 .id(activeTab.id)
-                 .toolbar {
+@@ -37 +40 @@ struct iOSReaderTabView: View {
 -                    if isRegularLayout, bManager.openTabs.count > 1 {
 +                    if showsLegacyDocumentTabs, isRegularLayout, bManager.openTabs.count > 1 {
-                         ToolbarItem(placement: .principal) {
-                             ReaderTabsView()
-                         }
+@@ -41 +44 @@ struct iOSReaderTabView: View {
 -                    } else if bManager.openTabs.count > 1 {
 +                    } else if showsLegacyDocumentTabs, bManager.openTabs.count > 1 {
-                         ToolbarItem(placement: .topBarTrailing) {
-                             ReaderTabsView()
-                         }
 diff --git a/Source/Features/Reader/iOS/iOSReaderView.swift b/Source/Features/Reader/iOS/iOSReaderView.swift
 index 9578ce48..974a3196 100644
 --- a/Source/Features/Reader/iOS/iOSReaderView.swift
 +++ b/Source/Features/Reader/iOS/iOSReaderView.swift
-@@ -17,6 +17,7 @@ struct iOSReaderView: View {
-     var viewModel: ReaderViewModel
-     var textViewState = TextViewState.shared
-     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+@@ -19,0 +20 @@ struct iOSReaderView: View {
 +    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
-     @Environment(iOSNavigationManager.self) var bManager
- 
-     var isRegularLayout: Bool {
-@@ -82,6 +83,9 @@ struct iOSReaderView: View {
- 
-     private var tableOfContentsIsPresented: Bool {
-         guard let columnVisibility else { return false }
+@@ -84,0 +86,3 @@ struct iOSReaderView: View {
 +        if let sidebarCoordinator {
 +            return sidebarCoordinator.page == .contents && columnVisibility.wrappedValue != .detailOnly
 +        }
-         return columnVisibility.wrappedValue != .detailOnly
-     }
- 
-@@ -131,7 +135,7 @@ struct iOSReaderView: View {
-             }
-         }
-         .toolbar {
+@@ -134 +138 @@ struct iOSReaderView: View {
 -            if shouldShowPrimarySidebarButton {
 +            if shouldShowPrimarySidebarButton, sidebarCoordinator == nil {
-                 ToolbarItem(placement: .topBarLeading) {
-                     Button {
-                         withAnimation {
-@@ -145,7 +149,7 @@ struct iOSReaderView: View {
-                 }
-             }
- 
+@@ -148 +152 @@ struct iOSReaderView: View {
 -            if (!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1) {
 +            if sidebarCoordinator == nil && ((!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1)) {
-                 ToolbarItem(placement: .topBarTrailing) {
-                     Button {
-                         bManager.showingTabsList.toggle()
 diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 index b1da0865..ca7c3d9f 100644
 --- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
 +++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
-@@ -82,6 +82,7 @@ struct iOSReaderWorkspaceView: View {
- 
-     @Environment(iOSNavigationManager.self) private var navigationManager
-     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+@@ -84,0 +85 @@ struct iOSReaderWorkspaceView: View {
 +    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
-     @Environment(\.layoutDirection) private var layoutDirection
- 
-     @State private var compactContentsRequested = false
-@@ -139,11 +140,20 @@ struct iOSReaderWorkspaceView: View {
-     }
- 
-     private var contentsIsOpen: Bool {
+@@ -142 +143,4 @@ struct iOSReaderWorkspaceView: View {
 -        libraryColumnVisibility != .detailOnly
 +        if let sidebarCoordinator {
 +            return sidebarCoordinator.page == .contents && libraryColumnVisibility != .detailOnly
 +        }
 +        return libraryColumnVisibility != .detailOnly
-     }
- 
-     private var shouldPresentPanelInContent: Bool {
+@@ -146 +150,7 @@ struct iOSReaderWorkspaceView: View {
 -        useWideLayout && librarySidebarIsOpen && contentsIsOpen
 +        // Both pages occupy the same sidebar. Selecting a page must not switch
 +        // between two structural reader branches and recreate its TextKit view.
@@ -447,13 +297,7 @@ index b1da0865..ca7c3d9f 100644
 +                || (useWideLayout && librarySidebarIsOpen)
 +        }
 +        return useWideLayout && librarySidebarIsOpen && contentsIsOpen
-     }
- 
-     private var showPanel: Bool {
-@@ -288,7 +298,18 @@ struct iOSReaderWorkspaceView: View {
-     @ViewBuilder
-     private var workspaceDetail: some View {
-         GeometryReader { geometry in
+@@ -291 +301,12 @@ struct iOSReaderWorkspaceView: View {
 -            if useWideLayout {
 +            if sidebarCoordinator != nil {
 +                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - 430))
@@ -467,13 +311,7 @@ index b1da0865..ca7c3d9f 100644
 +                    floatingState: $floatingPanelState
 +                )
 +            } else if useWideLayout {
-                 if shouldPresentPanelInContent {
-                     floatingWorkspace
-                 } else {
-@@ -332,18 +353,20 @@ struct iOSReaderWorkspaceView: View {
-         .accessibilityElement(children: .contain)
-         .accessibilityIdentifier("reader-surface")
-         .toolbar {
+@@ -335,10 +356,5 @@ struct iOSReaderWorkspaceView: View {
 -            ToolbarItem(placement: .principal) {
 -                VStack(spacing: 1) {
 -                    Text(readerHeaderTitle)
@@ -489,7 +327,7 @@ index b1da0865..ca7c3d9f 100644
 +                    VStack(spacing: 1) {
 +                        Text(readerHeaderTitle)
 +                            .font(.headline)
-                             .lineLimit(1)
+@@ -346 +362,8 @@ struct iOSReaderWorkspaceView: View {
 -                            .accessibilityIdentifier("reader-header-subtitle")
 +                            .accessibilityIdentifier("reader-header-visible-title")
 +                        if !readerHeaderSubtitle.isEmpty {
@@ -499,141 +337,68 @@ index b1da0865..ca7c3d9f 100644
 +                                .lineLimit(1)
 +                                .accessibilityIdentifier("reader-header-subtitle")
 +                        }
-                     }
-                 }
-             }
-@@ -532,6 +555,12 @@ struct iOSReaderWorkspaceView: View {
-     }
- 
-     private func presentContents() {
+@@ -534,0 +558,6 @@ struct iOSReaderWorkspaceView: View {
 +        if let sidebarCoordinator {
 +            sidebarCoordinator.showContents()
 +            preferredCompactColumn = .sidebar
 +            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) { libraryColumnVisibility = .all }
 +            return
 +        }
-         if !useWideLayout {
-             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
-                 compactContentsRequested = true
-@@ -548,6 +577,11 @@ struct iOSReaderWorkspaceView: View {
-     }
- 
-     private func closeContents() {
+@@ -550,0 +580,5 @@ struct iOSReaderWorkspaceView: View {
 +        if sidebarCoordinator != nil {
 +            preferredCompactColumn = .detail
 +            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) { libraryColumnVisibility = .detailOnly }
 +            return
 +        }
-         if !useWideLayout {
-             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
-                 compactContentsRequested = false
 diff --git a/Source/Features/Search/iOS/SearchComponents.swift b/Source/Features/Search/iOS/SearchComponents.swift
-index f2d54d4e..35628d17 100644
+index f2d54d4e..05f7b870 100644
 --- a/Source/Features/Search/iOS/SearchComponents.swift
 +++ b/Source/Features/Search/iOS/SearchComponents.swift
-@@ -53,7 +53,7 @@ struct SearchHistoryOverlay: View {
-             .interpolatingSpring(stiffness: 250, damping: 24),
-             value: isShowing
-         )
+@@ -31 +31 @@ struct SearchHistoryOverlay: View {
+-            if isShowing {
++            if shouldShow {
+@@ -56 +56 @@ struct SearchHistoryOverlay: View {
 -        .onChange(of: shouldShow) { _, newValue in
 +        .onChange(of: shouldShow, initial: true) { _, newValue in
-             isShowing = newValue
-         }
-         .onAppear {
-@@ -311,26 +311,31 @@ struct UnifiedSearchInputControls: View {
- struct SearchInputBar: View {
-     @Binding var text: String
-     @FocusState var isFocused: Bool
+@@ -313,0 +314 @@ struct SearchInputBar: View {
 +    var focusBinding: FocusState<Bool>.Binding?
-     @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false
-     var onSubmit: () -> Void
- 
-     init(
-         text: Binding<String>,
-         isFocused: FocusState<Bool> = FocusState(),
+@@ -319,0 +321 @@ struct SearchInputBar: View {
 +        focusBinding: FocusState<Bool>.Binding? = nil,
-         onSubmit: @escaping () -> Void
-     ) {
-         self._text = text
-         self._isFocused = isFocused
+@@ -323,0 +326 @@ struct SearchInputBar: View {
 +        self.focusBinding = focusBinding
-         self.onSubmit = onSubmit
-     }
- 
-     init(
-         viewModel: SearchViewModel,
-         isFocused: FocusState<Bool> = FocusState(),
+@@ -329,0 +333 @@ struct SearchInputBar: View {
 +        focusBinding: FocusState<Bool>.Binding? = nil,
-         onSubmit: @escaping () -> Void
-     ) {
-         self._text = Binding(get: { viewModel.query }, set: { viewModel.query = $0 })
-         self._isFocused = isFocused
+@@ -333,0 +338 @@ struct SearchInputBar: View {
 +        self.focusBinding = focusBinding
-         self.onSubmit = onSubmit
-     }
- 
-@@ -340,7 +345,7 @@ struct SearchInputBar: View {
-             prompt: Text(.searchInSelectedBooks)
-                 .foregroundStyle(Color(useDefaultTheme ? .secondaryLabel : .iosTint))
-         )
+@@ -343 +348 @@ struct SearchInputBar: View {
 -        .focused($isFocused)
 +        .focused(focusBinding ?? $isFocused)
-         .submitLabel(.go)
-         .onSubmit(onSubmit)
-         .padding(.leading, 20)
-@@ -362,8 +367,8 @@ struct SearchInputBar: View {
-             .help("Start Search")
-         }
-         .shadow(
+@@ -365,2 +370,2 @@ struct SearchInputBar: View {
 -            color: .black.opacity(isFocused ? 0.15 : 0.1),
 -            radius: isFocused ? 8 : 15, x: 0, y: 2
 +            color: .black.opacity((focusBinding?.wrappedValue ?? isFocused) ? 0.15 : 0.1),
 +            radius: (focusBinding?.wrappedValue ?? isFocused) ? 8 : 15, x: 0, y: 2
-         )
-         .padding(.vertical)
-         .padding(.horizontal, 20)
 diff --git a/Source/Features/Search/iOS/SearchModeView.swift b/Source/Features/Search/iOS/SearchModeView.swift
 index 6e45959a..8e288253 100644
 --- a/Source/Features/Search/iOS/SearchModeView.swift
 +++ b/Source/Features/Search/iOS/SearchModeView.swift
-@@ -24,7 +24,7 @@ struct SearchModeView: View {
-             if !isSearching {
-                 SearchInputBar(
-                     text: Bindable(session).query,
+@@ -27 +27 @@ struct SearchModeView: View {
 -                    isFocused: _isSearchFieldFocused,
 +                    focusBinding: $isSearchFieldFocused,
-                     onSubmit: {
-                         Task {
-                             viewModel.addToHistory(session.query)
 diff --git a/Source/UI/iOS/Views/iOSMainView.swift b/Source/UI/iOS/Views/iOSMainView.swift
 index 5b96b54d..8547847a 100644
 --- a/Source/UI/iOS/Views/iOSMainView.swift
 +++ b/Source/UI/iOS/Views/iOSMainView.swift
-@@ -89,7 +89,7 @@ struct iOSMainView: View {
-         @Bindable var bManager = navigationManager
- 
-         Group {
+@@ -92 +92 @@ struct iOSMainView: View {
 -            if horizontalSizeClass == .regular {
 +            if horizontalSizeClass == .regular || (MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled) {
-                 iPadLayout(
-                     bManager: bManager,
-                     selectedTab: $selectedTab,
 diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
 index 64f9da17..42cd0f42 100644
 --- a/Source/UI/iOS/Views/iPadLayout.swift
 +++ b/Source/UI/iOS/Views/iPadLayout.swift
-@@ -17,6 +17,7 @@ struct iPadLayout: View {
-     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
-     @StateObject private var historyViewModel = HistoryViewModel.shared
-     @StateObject private var backendCoordinator = BackendCoordinator.shared
+@@ -19,0 +20 @@ struct iPadLayout: View {
 +    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
- 
-     var body: some View {
-         TabView(selection: $selectedTab) {
-@@ -100,40 +101,76 @@ struct iPadLayout: View {
- 
-     @ViewBuilder
-     private var viewerTabContent: some View {
+@@ -103,25 +104,3 @@ struct iPadLayout: View {
 -        NavigationSplitView(
 -            columnVisibility: $columnVisibility,
 -            preferredCompactColumn: $preferredLibraryCompactColumn
@@ -662,8 +427,7 @@ index 64f9da17..42cd0f42 100644
 +        if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad {
 +            ChavrusaReaderHost(
 +                manager: bManager,
-                 columnVisibility: $columnVisibility,
-                 preferredCompactColumn: $preferredLibraryCompactColumn
+@@ -130 +109,25 @@ struct iPadLayout: View {
 -            )
 +            ) { isActive in
 +                NavigationStack {
@@ -690,9 +454,7 @@ index 64f9da17..42cd0f42 100644
 +                    preferredCompactColumn: $preferredLibraryCompactColumn,
 +                    showsLegacyDocumentTabs: false
 +                )
-                 .background(Color.appBackground)
-                 .accessibilityElement(children: .contain)
-                 .accessibilityIdentifier("reader-detail-column")
+@@ -133,0 +137,36 @@ struct iPadLayout: View {
 +            }
 +        } else {
 +            NavigationSplitView(
@@ -729,16 +491,10 @@ index 64f9da17..42cd0f42 100644
 +            }
 +            .navigationSplitViewStyle(.balanced)
 +            .background(Color.appBackground.ignoresSafeArea())
-         }
+@@ -135,2 +173,0 @@ struct iPadLayout: View {
 -        .navigationSplitViewStyle(.balanced)
 -        .background(Color.appBackground.ignoresSafeArea())
-     }
- 
-     @ViewBuilder
-@@ -145,7 +182,12 @@ struct iPadLayout: View {
-                 bookTitle: tab.book.book,
-                 onClose: closeTableOfContents,
-                 embedsNavigationStack: false,
+@@ -148 +185,6 @@ struct iPadLayout: View {
 -                onSelect: tab.viewModel.didSelectTOCNode
 +                onSelect: { id in
 +                    tab.viewModel.didSelectTOCNode(id: id)
@@ -746,6 +502,11 @@ index 64f9da17..42cd0f42 100644
 +                        closeTableOfContents()
 +                    }
 +                }
-             )
-             .toolbar(removing: .sidebarToggle)
-             .onAppear {
+diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+index 23cd37e5..bf053911 100644
+--- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
++++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+@@ -1076,0 +1077 @@ struct iOSIbarotTextView: UIViewRepresentable {
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, beginsDrag: true)
+@@ -1110,0 +1112 @@ struct iOSIbarotTextView: UIViewRepresentable {
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel)

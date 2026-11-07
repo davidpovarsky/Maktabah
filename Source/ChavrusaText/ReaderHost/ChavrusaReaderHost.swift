@@ -18,6 +18,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @State private var availableWidth: CGFloat = 640
     @State private var detailWidth: CGFloat = 640
     @State private var sceneID = ""
+    @State private var navigationChrome = ReaderNavigationChromeState()
     @Namespace private var searchMorph
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -35,6 +36,9 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color
     }
     private var morphSpring: Animation { .spring(response: 0.47, dampingFraction: 0.84) }
+    private var chromeAnimation: Animation? {
+        reduceMotion ? nil : .spring(response: 0.34, dampingFraction: 0.90)
+    }
 
     init(manager: iOSNavigationManager, columnVisibility: Binding<NavigationSplitViewVisibility>,
          preferredCompactColumn: Binding<NavigationSplitViewColumn>,
@@ -59,7 +63,11 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                                  onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
                                  onOpenLibrary: openLibrary, onOverview: { showsOverview = true },
                                  backgroundColor: UIColor(readerChromeColor))
-                    .frame(height: TabsBarViewController.Constants.buttonHeight)
+                    .frame(height: navigationChrome.isVisible ? TabsBarViewController.Constants.buttonHeight : 0)
+                    .opacity(navigationChrome.isVisible ? 1 : 0)
+                    .clipped()
+                    .allowsHitTesting(navigationChrome.isVisible)
+                    .accessibilityHidden(!navigationChrome.isVisible)
                     .accessibilityIdentifier("reader-document-tabs")
                 reader
             }
@@ -106,6 +114,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
         }
         .navigationSplitViewStyle(.balanced)
+        .toolbarVisibility(navigationChrome.isVisible ? .visible : .hidden, for: .tabBar)
         .modifier(ReaderSidebarToggleRemoval())
         .background(readerChromeColor.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
@@ -147,13 +156,43 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         }
         .onChange(of: manager.openTabs.map(\.id)) { _, _ in workspace?.synchronize(manager) }
         .onChange(of: manager.activeTabId) { _, _ in
+            revealNavigationChrome()
             workspace?.synchronize(manager)
             if horizontalSizeClass == .compact { preferredCompactColumn = .detail }
         }
+        .onChange(of: sidebarIsOpen) { _, open in
+            if open { revealNavigationChrome() }
+        }
+        .onChange(of: manager.activeReaderViewModel?.currentContentId) { _, _ in revealNavigationChrome() }
+        .onChange(of: manager.activeReaderViewModel?.readerInspectorVisible) { _, visible in
+            if visible == true { revealNavigationChrome() }
+        }
+        .onChange(of: manager.activeReaderViewModel?.isPopoverPresented) { _, presented in
+            if presented == true { revealNavigationChrome() }
+        }
+        .onChange(of: showsOverview) { _, showing in if showing { revealNavigationChrome() } }
+        .onChange(of: showsProfiles) { _, showing in if showing { revealNavigationChrome() } }
+        .onDisappear { navigationChrome.reveal() }
         .onChange(of: workspace?.selection?.groupID) { _, _ in
             Task { await workspace?.reconcileSceneSelection(manager) }
         }
         .onReceive(NotificationCenter.default.publisher(for: .activeLibraryBackendDidChange)) { _ in workspace?.synchronize(manager) }
+        .onReceive(NotificationCenter.default.publisher(for: .chavrusaReaderDidScroll)) { note in
+            guard let source = note.object as? ReaderViewModel,
+                  source === manager.activeReaderViewModel,
+                  !searchIsExpanded, !showsOverview, !showsProfiles,
+                  source.isPopoverPresented == false, source.readerInspectorVisible == false,
+                  let translationY = note.userInfo?[ChavrusaReaderScrollKey.translationY] as? CGFloat,
+                  let isAtTop = note.userInfo?[ChavrusaReaderScrollKey.isAtTop] as? Bool
+            else { return }
+            if note.userInfo?[ChavrusaReaderScrollKey.beginsDrag] as? Bool == true {
+                navigationChrome.beginDragging()
+            } else {
+                withAnimation(chromeAnimation) {
+                    navigationChrome.consume(translationY: translationY, isAtTop: isAtTop)
+                }
+            }
+        }
         .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
         .sheet(isPresented: $showsOverview) {
             if let workspace { StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: openLibrary) }
@@ -198,6 +237,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     }
     private func openSearch() {
         guard !searchIsExpanded else { return }
+        revealNavigationChrome()
         quickAddressFocused = false
         searchIsExpanded = true
     }
@@ -207,9 +247,42 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         quickAddressFocused = false
     }
     private func openLibrary() {
+        revealNavigationChrome()
         sidebar.showLibrary()
         preferredCompactColumn = .sidebar
         withAnimation(.snappy) { columnVisibility = .all }
+    }
+
+    private func revealNavigationChrome() {
+        withAnimation(chromeAnimation) {
+            navigationChrome.reveal()
+        }
+    }
+}
+
+extension Notification.Name {
+    static let chavrusaReaderDidScroll = Notification.Name("ChavrusaText.readerDidScroll")
+}
+
+enum ChavrusaReaderScrollKey {
+    static let translationY = "translationY"
+    static let isAtTop = "isAtTop"
+    static let beginsDrag = "beginsDrag"
+}
+
+/// Called only from the original scroll delegate's existing callbacks. No
+/// delegate replacement, content offset changes or renderer state writes.
+@MainActor
+enum ReaderNavigationChromeScrollReporter {
+    static func report(_ scrollView: UIScrollView, reader: ReaderViewModel, beginsDrag: Bool = false) {
+        guard !((scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false),
+              scrollView.window != nil,
+              beginsDrag || scrollView.isDragging || scrollView.isTracking else { return }
+        NotificationCenter.default.post(name: .chavrusaReaderDidScroll, object: reader, userInfo: [
+            ChavrusaReaderScrollKey.beginsDrag: beginsDrag,
+            ChavrusaReaderScrollKey.translationY: scrollView.panGestureRecognizer.translation(in: scrollView).y,
+            ChavrusaReaderScrollKey.isAtTop: scrollView.contentOffset.y <= -scrollView.adjustedContentInset.top + 2,
+        ])
     }
 }
 

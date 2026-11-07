@@ -1082,14 +1082,57 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(palette.exists)
         capture("candidate-library-opened-reader-no-fixture-selection")
         tap(app.buttons["כל הכרטיסיות"])
-        XCTAssertTrue(app.descendants(matching: .any)["study-groups-overview"].waitForExistence(timeout: 15))
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        XCTAssertTrue(overview.waitForExistence(timeout: 15))
         XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)
+        XCTAssertTrue(overview.descendants(matching: .any).matching(
+            NSPredicate(format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-")
+        ).firstMatch.waitForExistence(timeout: 15), "The original DuckDuckGo grid cell must render the open book")
         capture("candidate-all-tabs-public-fallback")
+        tap(app.buttons["study-tabs-layout-toggle"])
+        XCTAssertTrue(overview.descendants(matching: .any).matching(
+            NSPredicate(format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")
+        ).firstMatch.waitForExistence(timeout: 15), "The original DuckDuckGo list cell must replace the grid cell")
+        capture("candidate-all-tabs-list")
         tap(app.buttons["סיום"])
         tap(app.buttons["study-profile-menu"])
         tap(app.buttons["ניהול פרופילי לימוד"])
         XCTAssertTrue(app.descendants(matching: .any)["study-profile-management"].waitForExistence(timeout: 15))
         capture("candidate-profile-management")
+    }
+
+    func testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader()
+        assertReaderHasText()
+        let text = app.textViews["reader-text"]
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        XCTAssertTrue(strip.waitForExistence(timeout: 30))
+
+        text.swipeUp()
+        let hidden = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"),
+            object: strip
+        )
+        XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 15), .completed,
+                       "A deliberate downward reader scroll must collapse the document strip")
+        let globalHistory = findTabButton(hebrew: "היסטוריה", english: "History")
+        XCTAssertTrue(!globalHistory.exists || !globalHistory.isHittable,
+                      "The system global tab bar should collapse with reader chrome when supported")
+
+        text.swipeDown()
+        XCTAssertTrue(strip.waitForExistence(timeout: 15),
+                      "Upward reader scrolling must restore the document strip")
+        XCTAssertTrue(findTabButton(hebrew: "היסטוריה", english: "History").waitForExistence(timeout: 15))
+
+        text.swipeUp()
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: strip
+        )], timeout: 15), .completed)
+        tap(readerSidebarToggle())
+        XCTAssertTrue(strip.waitForExistence(timeout: 15),
+                      "Opening the sidebar must restore reader navigation chrome")
+        capture("candidate-reader-scroll-chrome-restored")
     }
 
     func testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar() {

@@ -34,7 +34,11 @@ add("AppProduct", 'isa = PBXFileReference; explicitFileType = wrapper.applicatio
 add("TestProduct", 'isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FaithfulTabsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR;')
 test_names = []
 port = root / "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort"
-for path in sorted((port / "Tests").glob("*.swift")):
+test_sources = sorted((port / "Tests").glob("*.swift")) + [
+    root / "Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift",
+    root / "MaktabahTests/ReaderNavigationChromeStateTests.swift",
+]
+for path in test_sources:
     name = path.stem
     test_names.append(name)
     add(name, 'isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ' + quoted(path) + '; sourceTree = "<absolute>";')
