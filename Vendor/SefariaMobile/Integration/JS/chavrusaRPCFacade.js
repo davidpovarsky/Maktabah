@@ -179,6 +179,9 @@ export class ChavrusaRPCFacade {
       switch (method) {
         // --- DIAGNOSTICS & RUNTIME ---
         case 'diagnostic.echo': {
+          if (params?.delayMs) {
+            await new Promise(resolve => setTimeout(resolve, Math.min(5000, Math.max(0, Number(params.delayMs) || 0))));
+          }
           if (params?.injectStaleGeneration) {
             return {
               protocolVersion: '1.0', requestID, status: 'success',

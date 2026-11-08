@@ -1,5 +1,5 @@
 import Foundation
-import SQLite3
+import CryptoKit
 
 final class OtzariaSearchIndexManager: @unchecked Sendable {
     static let shared = OtzariaSearchIndexManager()
@@ -10,6 +10,9 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
     private let pdfFreshnessFileName = "otzaria_pdf_freshness.json"
     private let semanticArtifactFileName = "otzaria_semantic_artifact.json"
     private let sentinelFileName = ".otzaria_index_building"
+
+    private let fingerprintLock = NSLock()
+    private var cachedFingerprint: (stamp: String, identity: String)?
 
     private init() {}
 
@@ -45,28 +48,50 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
     }
 
     func currentFingerprint(databasePath: String) throws -> OtzariaIndexFingerprint {
+        // The digest is authoritative; file metadata only avoids hashing an
+        // unchanged read-only connection generation again. SQLite data_version
+        // invalidates the cache after writes by another connection.
+        fingerprintLock.lock()
+        defer { fingerprintLock.unlock() }
         let url = URL(fileURLWithPath: databasePath)
-        let values = try url.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey])
-        func identity(_ database: SQLiteDatabase) throws -> String? {
-            let caps = try OtzariaDatabaseCapabilities(database: database)
-            let metadata = caps.schemaMetadata.merging(caps.databaseMetadata) { first, _ in first }
-            guard let hash = metadata["content_hash"], !hash.isEmpty else { return nil }
-            return [metadata["db_schema_version"] ?? String(caps.userVersion), metadata["db_version"] ?? "", hash].joined(separator: "|")
+        let wal = URL(fileURLWithPath: databasePath + "-wal")
+        func stamp() throws -> (String, UInt64, TimeInterval) {
+            let values = try url.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey, .fileResourceIdentifierKey])
+            let size = UInt64(values.fileSize ?? 0)
+            let modified = values.contentModificationDate?.timeIntervalSince1970 ?? 0
+            let generation = OtzariaMaktabahBridge.shared.generationSnapshot()
+            let dataVersion = databasePath == OtzariaMaktabahBridge.shared.databasePath
+                ? try OtzariaMaktabahBridge.shared.withDatabase { database in
+                    try database.fetch(query: "PRAGMA data_version") { $0.int(at: 0) }.first ?? 0
+                } : 0
+            let walValues = try? wal.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey])
+            let key = "\(databasePath)|\(size)|\(modified)|\(String(describing: values.fileResourceIdentifier))|\(generation)|\(dataVersion)|\(walValues?.fileSize ?? 0)|\(walValues?.contentModificationDate?.timeIntervalSince1970 ?? 0)"
+            return (key, size, modified)
         }
-        let contentIdentity: String?
-        if databasePath == OtzariaMaktabahBridge.shared.databasePath {
-            contentIdentity = try OtzariaMaktabahBridge.shared.withDatabase(identity)
+        let before = try stamp()
+        let contentIdentity: String
+        if let cachedFingerprint, cachedFingerprint.stamp == before.0 {
+            contentIdentity = cachedFingerprint.identity
         } else {
-            // Installation validation can precede activation. A short-lived
-            // read-only identity probe must inspect the requested file itself.
-            contentIdentity = try identity(SQLiteDatabase(path: databasePath, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX))
+            func hash(_ path: URL) throws -> String {
+                let handle = try FileHandle(forReadingFrom: path)
+                defer { try? handle.close() }
+                var hasher = SHA256()
+                while let data = try handle.read(upToCount: 1_048_576), !data.isEmpty {
+                    try Task.checkCancellation()
+                    hasher.update(data: data)
+                }
+                return hasher.finalize().map { String(format: "%02x", $0) }.joined()
+            }
+            let mainHash = try hash(url)
+            if FileManager.default.fileExists(atPath: wal.path) {
+                contentIdentity = "sha256-wal:\(mainHash):\(try hash(wal))"
+            } else { contentIdentity = "sha256:\(mainHash)" }
+            guard try stamp().0 == before.0 else { throw CancellationError() }
+            cachedFingerprint = (before.0, contentIdentity)
         }
-        return OtzariaIndexFingerprint(
-            databasePath: databasePath,
-            fileSize: UInt64(values.fileSize ?? 0),
-            modificationTime: values.contentModificationDate?.timeIntervalSince1970 ?? 0,
-            contentIdentity: contentIdentity
-        )
+        return OtzariaIndexFingerprint(databasePath: databasePath, fileSize: before.1,
+            modificationTime: before.2, contentIdentity: contentIdentity)
     }
 
     func makeIdentity(databasePath: String, catalogueHash: String) throws -> OtzariaIndexBuildIdentity {

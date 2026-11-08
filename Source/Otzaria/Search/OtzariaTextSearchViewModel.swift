@@ -100,7 +100,22 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 return
             }
         }
-        if manager.isIndexCurrent(databasePath: path) {
+        let databaseGeneration = OtzariaMaktabahBridge.shared.generationSnapshot()
+        status = .checkingPackage
+        Task.detached(priority: .utility) {
+            let current = manager.isIndexCurrent(databasePath: path)
+            await MainActor.run {
+                guard path == OtzariaMaktabahBridge.shared.databasePath,
+                      databaseGeneration == OtzariaMaktabahBridge.shared.generationSnapshot(),
+                      !self.isIndexing, !self.isInstallingArtifact else { return }
+                self.applyRefreshedStatus(databasePath: path, indexIsCurrent: current)
+            }
+        }
+    }
+
+    private func applyRefreshedStatus(databasePath path: String, indexIsCurrent: Bool) {
+        let manager = OtzariaSearchIndexManager.shared
+        if indexIsCurrent {
             do {
                 status = .ready(documentCount: try repository.documentCount(databasePath: path))
                 indexStatusDetail = buildInfoDetail()

@@ -17,6 +17,7 @@ actor SefariaJSRPCBridge {
     static let shared = SefariaJSRPCBridge()
 
     private struct InFlightRequest {
+        let method: String
         let continuation: CheckedContinuation<SefariaRPCResponse, any Error>
         let generation: UInt64
         let timeoutTask: Task<Void, Never>
@@ -24,6 +25,7 @@ actor SefariaJSRPCBridge {
 
     private var transport: (any SefariaJSTransport)?
     private var inFlightRequests: [String: InFlightRequest] = [:]
+    func hasPendingRequest(method: String) -> Bool { inFlightRequests.values.contains { $0.method == method } }
     private var eventListeners: [String: [@Sendable (SefariaRPCEvent) -> Void]] = [:]
 
     private(set) var isReady: Bool = false
@@ -194,6 +196,7 @@ actor SefariaJSRPCBridge {
             await self?.handleTimeout(requestID: requestID, method: method, timeoutMs: timeoutMs)
         }
         inFlightRequests[requestID] = InFlightRequest(
+            method: method,
             continuation: continuation,
             generation: generation,
             timeoutTask: timeoutTask

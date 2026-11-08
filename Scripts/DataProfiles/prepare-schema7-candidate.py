@@ -32,7 +32,11 @@ def main():
     with sqlite3.connect(f'file:{args.source.as_posix()}?mode=ro', uri=True) as database:
         metadata = dict(database.execute('SELECT key,value FROM schema_meta'))
     assert metadata['db_schema_version'] == '7' and metadata['db_version'] == '36'
-    assert metadata['content_hash'] == '704560e8c73480b7926b8e8b16f4bc93f13dfdcfaf8122fef8d31ac3cbe6f452'
+    # The authenticated official v36 file stamps release/schema only.
+    # Do not invent a schema_meta content_hash from a separate delta manifest.
+    if 'content_hash' in metadata:
+        assert metadata['content_hash'] == '704560e8c73480b7926b8e8b16f4bc93f13dfdcfaf8122fef8d31ac3cbe6f452'
+    (args.output / 'official-schema-metadata.json').write_text(json.dumps(metadata, indent=2))
     seed = json.loads(Path('Scripts/DataProfiles/miniTest10.seed.json').read_text())
     seed['profileVersion'] = 7
     seed['source'] = dict(repository='Otzaria/SeforimLibrary', releaseTag=release['tag_name'], releaseID=release['id'],

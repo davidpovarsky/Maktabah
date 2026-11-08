@@ -24,7 +24,7 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
         // Wait until accessibilityValue or accessibilityLabel contains SUCCESS or FAILURE
         let predicate = NSPredicate(format: "value CONTAINS 'SUCCESS' OR value CONTAINS 'FAILURE' OR label CONTAINS 'SUCCESS' OR label CONTAINS 'FAILURE'")
         let expectation = XCTNSPredicateExpectation(predicate: predicate, object: resultElement)
-        let waitResult = XCTWaiter().wait(for: [expectation], timeout: 120.0)
+        let waitResult = XCTWaiter().wait(for: [expectation], timeout: 240.0)
         XCTAssertEqual(waitResult, .completed, "Acceptance runner timed out waiting for diagnostic completion")
 
         let rawString: String? = {
@@ -71,7 +71,9 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
             "searchOpenResult",
             "fullReactSurface",
             "normalAppBootstrap",
-            "backendSwitchRegression"
+            "backendSwitchRegression",
+            "backendRealTextRegression",
+            "realSwitchCancelsRPC"
         ]
 
         for stage in requiredStages {
@@ -101,6 +103,52 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
         }
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: hebrewText, object: text)], timeout: 60), .completed)
         XCTAssertTrue(app.staticTexts["reader-current-locator"].label.contains("sefariaEmbedded"))
+    }
+
+    func testEmbeddedSefariaReaderBackgroundAndRelaunch() throws {
+        launchWithScenario("reader", backend: "sefariaEmbedded")
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 60))
+        let readable = NSPredicate { _, _ in
+            (text.value as? String ?? "").unicodeScalars.filter { (0x05D0...0x05EA).contains($0.value) }.count > 30
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: readable, object: text)], timeout: 60), .completed)
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCUIDevice.shared.press(.home)
+        app.activate()
+        XCTAssertTrue(text.waitForExistence(timeout: 20))
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        XCTAssertTrue(readable.evaluate(with: text))
+        app.terminate()
+        app.launch()
+        XCTAssertTrue(text.waitForExistence(timeout: 60))
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: readable, object: text)], timeout: 60), .completed)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+    }
+
+    func testEmbeddedSefariaTranslationSearchPreview() throws {
+        try verifyBilingualPreview(mode: "translation")
+    }
+
+    func testEmbeddedSefariaBothLanguagesSearchPreview() throws {
+        try verifyBilingualPreview(mode: "both")
+    }
+
+    private func verifyBilingualPreview(mode: String) throws {
+        launchWithScenario("searchResults", backend: "sefariaEmbedded", extraArgs: ["-libraryReaderTextMode.v1", mode])
+        let toggle = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'search-result-preview-toggle-' AND identifier CONTAINS 'sefariaEmbedded|Genesis|'")).firstMatch
+        XCTAssertTrue(toggle.waitForExistence(timeout: 60), "The live Hebrew query must return a canonical Genesis hit")
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let translation = app.staticTexts.matching(NSPredicate(format: "identifier BEGINSWITH 'search-preview-translation-'")).firstMatch
+        XCTAssertTrue(translation.waitForExistence(timeout: 60), "The real bilingual passage must load a translation")
+        XCTAssertGreaterThan(translation.label.unicodeScalars.filter { (65...90).contains($0.value) || (97...122).contains($0.value) }.count, 15)
+        let source = app.staticTexts.matching(NSPredicate(format: "identifier BEGINSWITH 'search-preview-source-'")).firstMatch
+        if mode == "both" {
+            XCTAssertTrue(source.exists)
+            XCTAssertGreaterThan(source.label.unicodeScalars.filter { (0x05D0...0x05EA).contains($0.value) }.count, 15)
+        } else {
+            XCTAssertFalse(source.exists, "Translation mode must not expose the source when the requested translation exists")
+        }
     }
 
     func testEmbeddedSefariaHebrewTOC() throws {

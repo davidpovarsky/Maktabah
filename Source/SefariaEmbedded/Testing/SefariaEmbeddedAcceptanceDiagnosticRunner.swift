@@ -222,7 +222,7 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             let dur12 = Int(Date().timeIntervalSince(startT12) * 1000)
             report.stages["searchOpenResult"] = .init(
                 passed: true,
-                details: "Successfully resolved and opened search result '\(openedSection.displayRef)' with \(openedSection.segments.count) segments in native reader",
+                details: "Resolved real search hit '\(openedSection.displayRef)' to \(openedSection.segments.count) native model segments; UI opening is checked separately",
                 durationMs: dur12
             )
             NSLog("[SefariaAcceptance] Stage 12: searchOpenResult passed (%d ms)", dur12)
@@ -272,6 +272,47 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             report.stages["backendSwitchRegression"] = .init(passed: true, details: "3-backend switch regression completed cleanly", durationMs: dur15)
             NSLog("[SefariaAcceptance] Stage 15: backendSwitchRegression passed (%d ms)", dur15)
 
+            // Real provider reads are separate from the UIKit snapshot checks above.
+            let realStart = Date()
+            guard OtzariaMaktabahBridge.shared.isEnabled else {
+                throw SefariaRPCError(code: "OTZARIA_FIXTURE_UNAVAILABLE", message: "Three-source acceptance requires the genuine installed SQLite corpus")
+            }
+            for backend: BackendID in [.otzaria, .sefaria, .sefariaEmbedded, .otzaria, .sefariaEmbedded] {
+                try await BackendCoordinator.shared.commitCheckedAsync(backend)
+                let locator = backend == .otzaria
+                    ? TextLocator(backend: backend, workKey: "book:1", position: .legacyLine(0))
+                    : TextLocator(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+                let section = try await BackendCoordinator.shared.section(at: locator)
+                guard section.locator.backend == backend,
+                      section.segments.allSatisfy({ $0.locator.backend == backend }),
+                      section.segments.contains(where: { $0.primaryText.unicodeScalars.contains(where: { (0x05D0...0x05EA).contains($0.value) }) }) else {
+                    throw SefariaRPCError(code: "REAL_BACKEND_TEXT_MISMATCH", message: "Real source text/identity was lost after switching to \(backend.rawValue)")
+                }
+            }
+            report.stages["backendRealTextRegression"] = .init(passed: true,
+                details: "Read genuine Hebrew text through all three registered providers across five committed source switches",
+                durationMs: Int(Date().timeIntervalSince(realStart) * 1000))
+
+            let delayed = Task {
+                try await SefariaJSRPCBridge.shared.call(method: "diagnostic.echo",
+                    paramsJson: "{\"message\":\"switch-cancellation\",\"delayMs\":5000}", timeoutMs: 10000)
+            }
+            defer { delayed.cancel() }
+            for _ in 0..<200 {
+                if await SefariaJSRPCBridge.shared.hasPendingRequest(method: "diagnostic.echo") { break }
+                try await Task.sleep(for: .milliseconds(5))
+            }
+            guard await SefariaJSRPCBridge.shared.hasPendingRequest(method: "diagnostic.echo") else {
+                delayed.cancel()
+                throw SefariaRPCError(code: "DELAYED_RPC_NOT_PENDING", message: "The real delayed bridge request was not registered")
+            }
+            try await BackendCoordinator.shared.commitCheckedAsync(.sefaria)
+            var cancelled = false
+            do { _ = try await delayed.value }
+            catch let error as SefariaRPCError where error.code == "CANCELLED" { cancelled = true }
+            guard cancelled else { throw SefariaRPCError(code: "SWITCH_RPC_NOT_CANCELLED", message: "Switching sources accepted an obsolete in-flight RPC") }
+            try await BackendCoordinator.shared.commitCheckedAsync(.sefariaEmbedded)
+            report.stages["realSwitchCancelsRPC"] = .init(passed: true, details: "A registered real Hermes RPC was cancelled by a committed source switch")
             report.status = "SUCCESS"
         } catch {
             report.status = "FAILURE"
