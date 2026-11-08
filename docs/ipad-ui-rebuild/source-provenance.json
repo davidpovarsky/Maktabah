@@ -189,7 +189,7 @@
     "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
     "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "e8b0fe882fb7ff666c98cedcc88b4d602886e98526ac62d8d5c9d820448af5dc"
+    "destinationSHA256": "4821a4e833e95cd5f57c5a6fc69c3acde26993cecb165dae07aad1d28672a132"
   },
   {
     "repo": "Owner Safari prototype",

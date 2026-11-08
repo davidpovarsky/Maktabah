@@ -95,13 +95,23 @@ private final class EscapeCommandHostingController<Content: View>: UIHostingCont
         let command = UIKeyCommand(
             input: UIKeyCommand.inputEscape,
             modifierFlags: [],
-            action: #selector(handleEscape)
+            action: #selector(handleEscape(_:))
         )
         command.wantsPriorityOverSystemBehavior = true
-        return [command]
+        // Keep the original SwiftUI hosting controller's other commands.
+        return [command] + (super.keyCommands ?? [])
     }
 
-    @objc private func handleEscape() {
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(handleEscape(_:)) {
+            return viewIfLoaded?.window != nil
+        }
+        return super.canPerformAction(action, withSender: sender)
+    }
+
+    @objc private func handleEscape(_ command: UIKeyCommand) {
+        // Resign the palette's real input before removing its hosting view.
+        view.endEditing(true)
         onEscape()
     }
 }

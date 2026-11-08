@@ -114,14 +114,22 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
     func readerBottomChromeAction() -> XCUIElement {
-        let more = app.buttons["reader-more-menu"]
-        if more.exists { return more }
+        let more = app.buttons.matching(identifier: "reader-more-menu").allElementsBoundByIndex.filter {
+            !$0.frame.isEmpty && $0.frame.intersects(app.frame) && $0.isHittable
+        }
+        if let action = more.first {
+            XCTAssertEqual(more.count, 1, "Observe one real visible reader More action")
+            return action
+        }
         // The genuine 9401 compact-window hierarchy exposes UIKit's native
         // bottom overflow instead of the reader's overflowed More item. Use
         // that actual control to measure chrome, never the full-height Toolbar.
         let overflow = app.buttons.matching(identifier: "BottomOverflowBarButtonItem")
-        XCTAssertEqual(overflow.count, 1, "The original bottom toolbar must expose one real native overflow action")
-        return overflow.firstMatch
+        let visible = overflow.allElementsBoundByIndex.filter {
+            !$0.frame.isEmpty && $0.frame.intersects(app.frame) && $0.isHittable
+        }
+        XCTAssertEqual(visible.count, 1, "The original bottom toolbar must expose one real visible native overflow action")
+        return visible.first ?? overflow.firstMatch
     }
     func readerSidebarToggle() -> XCUIElement {
         let custom = app.buttons["reader-host-sidebar-toggle"]
@@ -139,8 +147,17 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 let landscape = XCUIDevice.shared.orientation.isLandscape
                 guard frame.width > 0, frame.height > 0,
                       (windowed || (frame.width > frame.height) == landscape) else { return false }
-                let bottomMenu = application.buttons["reader-more-menu"]
-                return !bottomMenu.exists || (windowed ? bottomMenu.frame.width > 0 && bottomMenu.frame.height > 0 : frame.contains(bottomMenu.frame))
+                let reader = application.textViews["reader-text"]
+                guard reader.exists && reader.isHittable else { return true }
+                let more = application.buttons.matching(identifier: "reader-more-menu").allElementsBoundByIndex.filter {
+                    !$0.frame.isEmpty && $0.frame.intersects(frame) && $0.isHittable
+                }
+                let overflow = application.buttons.matching(identifier: "BottomOverflowBarButtonItem").allElementsBoundByIndex.filter {
+                    !$0.frame.isEmpty && $0.frame.intersects(frame) && $0.isHittable
+                }
+                let actions = more.isEmpty ? overflow : more
+                guard actions.count == 1, let bottomMenu = actions.first else { return false }
+                return windowed ? bottomMenu.frame.width > 0 && bottomMenu.frame.height > 0 : frame.contains(bottomMenu.frame)
             }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed,
@@ -252,10 +269,12 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader(enabled: enabled, scenario: "readerDetail")
         assertReaderHasText()
-        let originalFrame = app.frame
         let application = app!
         let originalLocator = app.staticTexts["reader-current-locator"].label
         capture(enabled ? "candidate-window-wide" : "baseline-window-wide")
+        // Measure after the same strict native rotation/toolbar settling used
+        // by the actual screenshot, rather than keeping an earlier frame.
+        let originalFrame = app.frame
         let restoration = NativeUIRestoration {
             let current = application.frame
             if abs(current.width - originalFrame.width) > 2 || abs(current.height - originalFrame.height) > 2 {
@@ -466,7 +485,9 @@ final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
             XCTAssertFalse(app.descendants(matching: .any)["chavrusa-reader-host"].exists)
             XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
             XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
-            XCTAssertTrue(app.buttons["reader-more-menu"].exists)
+            let originalBottomAction = readerBottomChromeAction()
+            XCTAssertTrue(originalBottomAction.exists)
+            XCTAssertTrue(app.frame.contains(originalBottomAction.frame))
             capture("iphone-original-reader-ipad-flag-\(enabled)")
             if enabled && ProcessInfo.processInfo.environment["FAITHFUL_BASELINE"] != "true" {
                 tap(app.buttons["reader-book-tabs-overview"])
@@ -841,13 +862,9 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
         let nameField = nameAlert.textFields.firstMatch
         nameField.tap()
-        nameField.press(forDuration: 1)
-        let selectAll = app.menuItems.matching(NSPredicate(format: "label == 'בחר הכול' OR label == 'Select All'")).firstMatch
-        if selectAll.exists { selectAll.tap() }
-        else {
-            let selectAllButton = app.buttons.matching(NSPredicate(format: "label == 'בחר הכול' OR label == 'Select All'")).firstMatch
-            tap(selectAllButton)
-        }
+        // Exercise the native input's Select All command without relying on
+        // a particular OS translation of its transient editing-menu item.
+        nameField.typeKey("a", modifierFlags: .command)
         nameField.typeText("יעד ששמו עודכן")
         XCTAssertEqual(nameField.value as? String, "יעד ששמו עודכן")
         tap(nameAlert.buttons["שמירה"])
@@ -881,21 +898,22 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         motion.tap()
         let toggle = settings.switches["Reduce Motion"].firstMatch
         XCTAssertTrue(toggle.waitForExistence(timeout: 15))
-        let wasEnabled = (toggle.value as? String) == "1"
+        // Verify the actual system preference, independent of the Settings
+        // switch's localized accessibility value on this OS version.
+        let wasEnabled = UIAccessibility.isReduceMotionEnabled
         if !wasEnabled { toggle.tap() }
         let restoration = NativeUIRestoration {
             settings.activate()
             XCTAssertTrue(toggle.waitForExistence(timeout: 15))
-            if ((toggle.value as? String) == "1") != wasEnabled { toggle.tap() }
+            if UIAccessibility.isReduceMotionEnabled != wasEnabled { toggle.tap() }
             let restored = XCTNSPredicateExpectation(
-                predicate: NSPredicate(format: "value == %@", wasEnabled ? "1" : "0"), object: toggle)
+                predicate: NSPredicate { _, _ in
+                    MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled == wasEnabled }
+                }, object: nil)
             XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 15), .completed)
             settings.terminate()
         }
         addTeardownBlock { await restoration.run() }
-        let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "1"), object: toggle)
-        XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 15), .completed,
-                       "The actual system preference must be enabled")
         let reduced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled }
         }, object: nil)
@@ -1087,7 +1105,6 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         assertReaderHasText()
         let initialTitle = app.staticTexts["reader-header-title"].label
         XCTAssertFalse(initialTitle.isEmpty)
-        _ = readerSidebarToggle()
         XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
         let field = app.textFields["reader-library-search-field"]
         tap(field)
@@ -1179,6 +1196,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
                        "Swipe close must persist the exact surviving document IDs")
         capture("candidate-overview-original-swipe-close")
         tap(app.buttons["סיום"])
+        _ = readerSidebarToggle()
         tap(app.buttons["study-profile-menu"])
         tap(app.buttons["ניהול פרופילי לימוד"])
         XCTAssertTrue(app.descendants(matching: .any)["study-profile-management"].waitForExistence(timeout: 15))

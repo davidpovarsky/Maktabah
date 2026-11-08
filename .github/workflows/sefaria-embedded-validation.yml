@@ -35,7 +35,7 @@ on:
         type: boolean
         default: false
       ui_diagnostic_cases:
-        description: Optional comma-separated Suite/testMethod diagnostics on 11-inch only; never satisfies the full matrix or Release gate
+        description: Optional exact Suite/testMethod diagnostics (phone suite on iPhone, others on 11-inch); never satisfies the full matrix or Release gate
         required: false
         type: string
         default: ''
@@ -379,7 +379,7 @@ jobs:
       - name: Run genuine native UI and visual matrix on 11 and 13 inch iPads
         id: faithful_ui_matrix
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
-        timeout-minutes: 180
+        timeout-minutes: 210
         env:
           VALIDATING_BASELINE: ${{ inputs.source_ref != '' }}
           FAITHFUL_DIAGNOSTIC_CASES: ${{ inputs.ui_diagnostic_cases }}
@@ -400,6 +400,30 @@ jobs:
           if [ -f sim_udid.txt ] && [ ! -f build/artifacts/faithful-ipad-matrix.json ]; then
             python3 Scripts/CI/collect-faithful-simulator-failure.py "$(cat sim_udid.txt)" preflight
           fi
+
+      - name: Upload stable native screenshots and execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faithful-native-evidence
+          path: |
+            build/artifacts/app-source-sha.txt
+            build/artifacts/black-box-test-source-sha.txt
+            build/artifacts/faithful-ipad-matrix.json
+            build/artifacts/test-simulator*.log
+            build/artifacts/test-case-execution-*.json
+            build/artifacts/miniTest10-native-fixture-install*.json
+            build/artifacts/prototype-reference-manifest.json
+            build/artifacts/production-release-acceptance.json
+            build/artifacts/production-native-fixture-install.json
+            build/artifacts/production-release-tests.log
+            build/artifacts/viewport-reports-*/**/*.json
+            build/artifacts/visual-*/**/*.json
+            build/artifacts/visual-*/**/*.png
+            build/artifacts/visual-*/**/*.txt
+            build/artifacts/simulator-failure-*.png
+            build/artifacts/simulator-failure-*.json
+            build/artifacts/simulator-failure-*.log
 
       - name: Upload Build & Verification Manifests
         if: always()
@@ -438,3 +462,4 @@ jobs:
             build/artifacts/miniTest10-native-fixture-install.json
             docs/ipad-ui-rebuild
             SOURCE_TO_PORT_DIFF.md
+            !build/artifacts/**/*.xcresult/Staging/**

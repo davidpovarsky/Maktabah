@@ -6,14 +6,28 @@ This is implementation in progress, not a completion or visual-parity claim.
 
 ## Current continuation — 2026-11-08
 
+
+### Observed Native result and corrective follow-up
+
+Exact candidate `77707561a6c2cec4879ff225c233c785eb337c5c`, run [42430865109](https://github.com/davidpovarsky/Maktabah/actions/runs/42430865109), **FAILED**. Full app build, bundled resources, actual Simulator install/launch and original Safari-oracle build passed. Actual hosted component results: 39 UIKit XCTest cases, 4 chrome-state Swift Testing cases, 45 CommandPalette Swift Testing cases, 379 existing portable assertions and 61 workspace contracts passed. These are not app UI or visual acceptance.
+
+- 11-inch: 44 actual app/oracle XCTest cases, 16 failed. 13-inch: 31 actual ordinary cases, 14 failed. Largest-text execution failed; its exact per-case report was not recovered. iPhone: one actual case failed before the compact overview was reached. No complete-matrix pass.
+- Actual passes include candidate main-search history/in-book isolation, VoiceOver, same-book independent group locations/cold restoration, three profiles with three groups, I/O rollback/recovery, flag-off sidecar isolation, themes/Inspector, twenty global-tab round trips, Pull-to-Navigate and embedded acceptance. Their precise per-device scope remains in the console log; none substitutes for the failed complete matrix.
+- Observed failures include scroll chrome collapse, sidebar/Library/TOC identity/action observations, hardware Escape, narrow search reachability, a landscape global Search navigation-frame difference, rename text-selection interaction, system Reduce Motion observation and flags-off/phone original-toolbar observations.
+- The 180-minute matrix window expired during final phone-result processing. Upload then failed on a disappearing `result-phone.xcresult/Staging/.../testmanagerd.log`; the run produced **no downloadable artifacts**. Its console log was retained locally. No fresh screenshot acceptance is claimed.
+- Follow-up changes are prepared, not Native passes: explicitly eligible UIKit Escape action with original key commands retained; containment of the downstream pager accessibility identifier; real native Command-A for rename; real UIAccessibility Reduce Motion state verification; the existing original native bottom-overflow fallback used for visible toolbar observations and phone parity. Viewport containment remains strict, and original app views/actions are unchanged.
+- Diagnostic selections now route actual phone methods to an actual phone and all other methods to 11-inch, retaining declaration/actual-case verification. Full default coverage is unchanged. Stable screenshots/logs/JSON upload separately before raw xcresults, transient Staging files are excluded, and the full matrix has a 210-minute window. Diagnostic success cannot satisfy the full matrix or open the production Release gate.
+- Production corpus/Release and TestFlight **NOT_RUN**. Next: focused real-device diagnostics with usable screenshots/hierarchies, correct remaining defects, then complete exact-SHA gates and visual review before distribution.
+
+
 `[נועם | DEV] [MAIN_SESSION]`, NORMAL. All 18 initial dirty/untracked files were preserved in an external snapshot before editing. Branch remains `experiment/ipad-ui-faithful-from-9401`; parent `e815a6da`. No Asana writes, main merge, reset or source-checkout changes.
 
 - EXECUTED_PASS: 61 portable workspace/state checks on Windows Swift 6.3.3, including actual extracted chrome state. This does not validate UIKit/SwiftUI.
 - EXECUTED_PASS: Swift syntax parsing of changed state, host and overview sources; `git diff --check` clean. Real Xcode checks remain necessary.
 - Source review found and corrected the prepared overview's non-source 190–420pt card-height policy and list close-button hierarchy. The original 2.7-row / 140–209pt geometry, title/close accessibility order, animations and reuse behavior are retained with book-domain display data.
-- The same prepared chrome state now consumes user pan translation to avoid feedback from its own safe-area changes. The existing delegate reports via two narrow downstream calls; original Pull-to-Navigate and scroll offset/selection handling are retained. Navigation/search/Inspector/sidebar/group presentation reveals chrome.
+- The same prepared chrome state now consumes user pan translation to avoid feedback from its own safe-area changes. The existing delegate reports via three narrow downstream calls; original Pull-to-Navigate and scroll offset/selection handling are retained. Navigation/search/Inspector/sidebar/group presentation reveals chrome.
 - `MaktabahTests` is already a synchronized Xcode group. The actual new state test and source are additionally executed in the existing Simulator source-port test host; the overview is included in its actual Swift package, with lifecycle/list/grid/width tests.
-- NOT_RUN: current-SHA native tests, screenshot acceptance, full production Release and signed TestFlight. Previous SDK-only run 42102701608 covers the parent only and is not runtime acceptance.
+- The subsequent current-SHA Native failure is recorded above; the follow-up changes still require SDK/runtime verification, screenshot acceptance, production Release and TestFlight. Previous SDK-only run 42102701608 covers the parent only and is not runtime acceptance.
 
 - Additional review corrected mixed-backend overview reordering/checkpoints in the existing adapter; seven actual persistence/order contracts pass locally. A minimal optional visibility environment resolves the original reader's always-visible iPad child preference; flags-off defaults remain unchanged. Real menu tests now use the source long-press context menu, and source overview acceptance checks Grid/List plus RTL swipe-close against exact persisted UUID membership.
 - Superseded first validation candidate 466ed299 is running in 42427413998; it predates the child visibility correction and updated context-menu tests and cannot establish current acceptance.

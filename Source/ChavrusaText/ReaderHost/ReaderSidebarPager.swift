@@ -17,6 +17,9 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
             }
             .contentShape(Rectangle())
             .simultaneousGesture(sidebarSwipe)
+            // Own the pager identifier on a container, rather than letting
+            // it replace the original Library/Contents subtree identities.
+            .accessibilityElement(children: .contain)
             .accessibilityIdentifier("reader-sidebar-pager")
             HStack(spacing: 0) {
                 pageButton(.library, title: "ספרייה")

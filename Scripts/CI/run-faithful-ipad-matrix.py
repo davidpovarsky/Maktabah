@@ -65,7 +65,10 @@ def create_compatible_ipad(size):
             failures.append({"deviceType": device_type["identifier"], "runtime": runtime["identifier"], "error": result.stderr.strip()})
     raise SystemExit(f"No compatible {size}-inch iPad Pro / iPadOS 27 pair: {json.dumps(failures)}")
 
-for index, size in enumerate(["11"] if diagnostic_cases else ["11", "13", "phone"]):
+phone_case_prefix = "FaithfulReaderIPhoneTests/"
+diagnostic_sizes = (["11"] if any(not case.startswith(phone_case_prefix) for case in diagnostic_cases) else [])
+diagnostic_sizes += ["phone"] if any(case.startswith(phone_case_prefix) for case in diagnostic_cases) else []
+for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "13", "phone"]):
     udid, device_type, runtime, failures = create_compatible_ipad(size)
     device = {"size": size, "type": device_type, "runtime": runtime, "udid": udid, "status": "NOT_RUN", "incompatiblePairs": failures}
     report["devices"].append(device)
@@ -145,7 +148,8 @@ for index, size in enumerate(["11"] if diagnostic_cases else ["11", "13", "phone
             if index == 0:
                 selection.extend(["SefariaEmbeddedAcceptanceTests", "Build8401SevenDefectsAcceptanceTests", "PullNavigationAcceptanceTests"])
         if diagnostic_cases:
-            selection = diagnostic_cases
+            selection = [case for case in diagnostic_cases
+                         if case.startswith(phone_case_prefix) == (size == "phone")]
         result = artifacts / f"result-{size}.xcresult"
         command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace", "-scheme", "Maktabah-iOS",
                    "-parallel-testing-enabled", "NO",
@@ -176,7 +180,7 @@ for index, size in enumerate(["11"] if diagnostic_cases else ["11", "13", "phone
             code = code or 1
         counts = [int(value) for value in re.findall(r"Executed\s+([1-9][0-9]*)\s+tests?", log_text)]
         device["executedXCTestCount"] = max(counts, default=0)
-        minimum_count = len(diagnostic_cases) if diagnostic_cases else (1 if baseline or size == "phone" else 6)
+        minimum_count = len(selection) if diagnostic_cases else (1 if baseline or size == "phone" else 6)
         if code == 0 and device["executedXCTestCount"] < minimum_count:
             raise SystemExit("Expected black-box XCTest cases were not actually executed")
         device["status"] = "EXECUTED_PASS" if code == 0 else "FAIL"
