@@ -73,7 +73,8 @@ class NativeContainerRecoveryTests(unittest.TestCase):
                 database = root / "Otzaria/Profiles/miniTest10/database/seforim.db"
                 database.parent.mkdir(parents=True, exist_ok=True)
                 database.touch()
-                self.assertEqual(helper.mini_lexical_root(database, self.container), root / "Otzaria/SearchResources")
+                # macOS's /var temporary directory is a /private/var alias.
+                self.assertEqual(helper.mini_lexical_root(database, self.container), root.resolve() / "Otzaria/SearchResources")
 
     def test_foreign_application_receipt_cannot_seed_another_apps_cache(self):
         database = self.container.parent / "048C2DBD-433B-4D77-B7A5-C30B8599378B/Library/Application Support/Maktabah-Debug/Otzaria/Profiles/miniTest10/database/seforim.db"

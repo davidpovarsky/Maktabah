@@ -142,6 +142,10 @@ jobs:
           git rev-parse HEAD > build/artifacts/app-source-sha.txt
           printf '%s\n' "$TEST_SOURCE_SHA" > build/artifacts/black-box-test-source-sha.txt
 
+      - name: Verify fixture ownership and retained-package integrity before expensive work
+        if: ${{ inputs.source_ref == '' }}
+        run: python3 -m unittest Scripts.Tests.test_simulator_container_recovery Scripts.Tests.test_retained_otzaria_package
+
       - name: Typecheck black-box UI tests before building the app
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
         run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
@@ -217,9 +221,7 @@ jobs:
 
       - name: Test actual workspace persistence and canonical navigation presentation
         if: ${{ inputs.source_ref == '' }}
-        run: |
-          python3 -m unittest Scripts.Tests.test_simulator_container_recovery
-          python3 Scripts/CI/test-faithful-workspace.py
+        run: python3 Scripts/CI/test-faithful-workspace.py
 
       - name: Setup Ruby and CocoaPods
         uses: ruby/setup-ruby@v1
