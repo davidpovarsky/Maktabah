@@ -34,7 +34,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 presentationOptions: .init(
                     showsStudyToolsTitle: faithfulReaderSidebar == nil,
                     showsSelectedSegmentTitle: faithfulReaderSidebar == nil,
-                    usesMinimalChrome: faithfulReaderSidebar != nil
+                    usesMinimalChrome: false
                 ),
                 onClose: {
                     viewModel.closeReaderInspector()

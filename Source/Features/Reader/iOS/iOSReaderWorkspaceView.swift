@@ -150,8 +150,9 @@ struct iOSReaderWorkspaceView: View {
         // Both pages occupy the same sidebar. Selecting a page must not switch
         // between two structural reader branches and recreate its TextKit view.
         if sidebarCoordinator != nil {
-            return (horizontalSizeClass != .regular && UIDevice.current.userInterfaceIdiom == .pad)
-                || (useWideLayout && librarySidebarIsOpen)
+            // The faithful Inspector always overlays Reader through the existing
+            // FloatingPanel. Docking it reserves an opaque reading-theme column.
+            return true
         }
         return useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }

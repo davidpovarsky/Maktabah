@@ -78,7 +78,7 @@
      func tabViewCellDidBeginSwipe(_ cell: TabViewCell)
      func tabViewCellDidEndSwipe(_ cell: TabViewCell)
  }
-
+ 
 -class TabViewCell: UICollectionViewCell {
 -
 +/// The original DuckDuckGo card interaction and geometry with browser-only
@@ -99,7 +99,7 @@
 -        static let unselectedBorderWidth: CGFloat = 0.0
 -        static let previewPadding: CGFloat = 4.0
 -        static var previewCornerRadius: CGFloat { cellCornerRadius - previewPadding }
--
+-        
 +        static let borderRadius: CGFloat = 28
 +        static let cellCornerRadius: CGFloat = 26
 +        static let cellHeaderHeight: CGFloat = 40
@@ -122,7 +122,7 @@
          static let swipeAnimationDuration: TimeInterval = 0.2
          static let highlightAnimationDuration: TimeInterval = 0.15
      }
-
+ 
 -    var removeThreshold: CGFloat {
 -        return frame.width / 3
 -    }
@@ -135,7 +135,7 @@
 -    var isDeleting = false
 -    var canDelete = false
 -    var isSelectionModeEnabled = false
--
+-    
 -    var isFireTab: Bool {
 -        tab?.fireTab ?? false
 -    }
@@ -255,10 +255,10 @@
 +        transform = .identity
 +        isHidden = false
 +    }
-
+ 
      override func dragStateDidChange(_ dragState: UICollectionViewCell.DragState) {
          super.dragStateDidChange(dragState)
--
+-        
 -        switch dragState {
 -        case .none:
 -            selectionIndicator.isHidden = !isSelectionModeEnabled
@@ -339,7 +339,7 @@
 +        guard let documentID else { return }
 +        delegate?.deleteTab(id: documentID)
      }
-
+ 
      @objc private func removeButtonValueChange() {
 -        // When highlighted, set larger spacing between text and close button
 -        // to adjust for the highlight area, otherwise set text as close to the
@@ -352,7 +352,7 @@
 +            : Constants.removeButtonTextSpacingRegular
          layoutIfNeeded()
          textButtonSpacing?.constant = spacing
--
+-        
          UIView.animate(withDuration: Constants.highlightAnimationDuration,
 -                       delay: 0.0,
 +                       delay: 0,
@@ -360,7 +360,7 @@
              self.layoutIfNeeded()
          }
      }
-
+ 
 -    private func applyShadows() {
 -        layer.shadowColor = UIColor(designSystemColor: .shadowSecondary).cgColor
 -        layer.shadowOpacity = 1.0
@@ -453,7 +453,7 @@
 -    var logoImage: UIImage {
 -        Self.logoImage(for: tab)
 -    }
--
+-    
 -    var accentColor: UIColor {
 -        isFireTab ? UIColor(singleUseColor: .fireModeAccent) : UIColor(designSystemColor: .accentPrimary)
 -    }
@@ -627,7 +627,7 @@
              self.transform = .identity
          }
      }
-
+ 
 -    func refreshSelectionAppearance() {
 -        updateSelectionIndicator(selectionIndicator)
 -        updateCurrentTabBorder()
@@ -801,7 +801,7 @@
 -            accessibilityElements = [title as Any, removeButton as Any]
 -        }
 -    }
--
+-    
 -    override func prepareForReuse() {
 -        super.prepareForReuse()
 -        cancelThumbnailLoad()
@@ -908,9 +908,9 @@
 -        return true
 +        true
      }
-
+ 
      override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-@@ -700,18 +267,414 @@
+@@ -700,18 +267,433 @@
          let velocity = pan.velocity(in: self)
          return abs(velocity.y) < abs(velocity.x)
      }
@@ -1115,6 +1115,7 @@
 +    private var selectedID: UUID?
 +    private var layoutMode: ReaderTabSwitcherLayout = .grid
 +    private var lastLayoutSize: CGSize = .zero
++    private var dragMembership: [UUID]?
 +
 +    override func viewDidLoad() {
 +        super.viewDidLoad()
@@ -1261,23 +1262,41 @@
 +                        itemsForBeginning session: UIDragSession,
 +                        at indexPath: IndexPath) -> [UIDragItem] {
 +        guard documents.indices.contains(indexPath.item) else { return [] }
-+        let provider = NSItemProvider(object: documents[indexPath.item].id.uuidString as NSString)
-+        return [UIDragItem(itemProvider: provider)]
++        session.localContext = self
++        dragMembership = documents.map(\.id)
++        let item = UIDragItem(itemProvider: NSItemProvider())
++        item.localObject = documents[indexPath.item].id
++        return [item]
++    }
++
++    func collectionView(_ collectionView: UICollectionView, dragSessionDidEnd session: UIDragSession) {
++        dragMembership = nil
++    }
++
++    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
++        (session.localDragSession?.localContext as? TabSwitcherPageViewController) === self
 +    }
 +
 +    func collectionView(_ collectionView: UICollectionView,
 +                        dropSessionDidUpdate session: UIDropSession,
 +                        withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-+        UICollectionViewDropProposal(operation: session.localDragSession == nil ? .forbidden : .move, intent: .insertAtDestinationIndexPath)
++        let ownsSession = (session.localDragSession?.localContext as? TabSwitcherPageViewController) === self
++        return UICollectionViewDropProposal(operation: ownsSession && dragMembership == documents.map(\.id) ? .move : .forbidden,
++                                            intent: .insertAtDestinationIndexPath)
 +    }
 +
 +    func collectionView(_ collectionView: UICollectionView,
 +                        performDropWith coordinator: UICollectionViewDropCoordinator) {
-+        guard let item = coordinator.items.first,
++        guard (coordinator.session.localDragSession?.localContext as? TabSwitcherPageViewController) === self,
++              dragMembership == documents.map(\.id),
++              let item = coordinator.items.first,
 +              let source = item.sourceIndexPath,
-+              documents.indices.contains(source.item) else { return }
-+        let destinationItem = min(coordinator.destinationIndexPath?.item ?? documents.count - 1,
-+                                  max(0, documents.count - 1))
++              source.section == 0, documents.indices.contains(source.item),
++              let id = item.dragItem.localObject as? UUID,
++              documents[source.item].id == id,
++              let proposedDestination = coordinator.destinationIndexPath,
++              proposedDestination.section == 0 else { return }
++        let destinationItem = max(0, min(proposedDestination.item, documents.count - 1))
 +        let destination = IndexPath(item: destinationItem, section: 0)
 +        let document = documents.remove(at: source.item)
 +        documents.insert(document, at: destinationItem)
@@ -1287,8 +1306,8 @@
 +        } completion: { [weak self] _ in
 +            guard let self else { return }
 +            self.pageDelegate?.page(self, didReorderTab: document.id, to: destinationItem)
++            coordinator.drop(item.dragItem, toItemAt: destination)
 +        }
-+        coordinator.drop(item.dragItem, toItemAt: destination)
 +    }
 +}
 +

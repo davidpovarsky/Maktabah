@@ -62,13 +62,13 @@
 +    case grid
 +    case list
 +}
-
+ 
  enum TabSwitcherGridLayoutGeometry {
 -
      static let spacing: CGFloat = 14
      static let minimumColumnWidth: CGFloat = 150
      static let maximumColumnCount = 4
-@@ -52,95 +41,421 @@
+@@ -52,95 +41,422 @@
          let columnCount = min(maximumColumnCount, max(1, Int(contentWidth / minimumColumnWidth)))
          return max(0, contentWidth / CGFloat(columnCount) - spacing)
      }
@@ -495,7 +495,7 @@
 -}
 -
 -class TabSwitcherPageViewController: UIViewController {
--
+-    
 +    func page(_ page: TabSwitcherPageViewController, didDeleteTab id: UUID)
 +    func page(_ page: TabSwitcherPageViewController, didReorderTab id: UUID, to index: Int)
 +    func page(_ page: TabSwitcherPageViewController, contextMenuForTabAt index: Int) -> UIMenu?
@@ -566,14 +566,15 @@
 +    private var selectedID: UUID?
 +    private var layoutMode: ReaderTabSwitcherLayout = .grid
 +    private var lastLayoutSize: CGSize = .zero
-
++    private var dragMembership: [UUID]?
+ 
      override func viewDidLoad() {
          super.viewDidLoad()
 -
          let layout = UICollectionViewFlowLayout()
          layout.minimumLineSpacing = TabSwitcherGridLayoutGeometry.spacing
          layout.minimumInteritemSpacing = TabSwitcherGridLayoutGeometry.spacing
-@@ -159,553 +474,207 @@
+@@ -159,553 +475,225 @@
          collectionView.dragDelegate = self
          collectionView.dropDelegate = self
          collectionView.allowsSelection = true
@@ -605,7 +606,7 @@
 -        let backgroundView = UIView(frame: collectionView.frame)
 -        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleBackgroundTap(gesture:))))
 -        collectionView.backgroundView = backgroundView
--
+-        
 -        subscribeToTabChanges()
 -        subscribeToVoiceSessionChanges()
 -        bindTrackerCount()
@@ -616,7 +617,7 @@
 -    private var lastLayoutSize: CGSize = .zero
 +        view.accessibilityIdentifier = "duckduckgo-tab-switcher-page"
 +    }
-
+ 
      override func viewDidLayoutSubviews() {
          super.viewDidLayoutSubviews()
 -        let currentSize = view.bounds.size
@@ -626,12 +627,12 @@
 +        lastLayoutSize = view.bounds.size
          collectionView.collectionViewLayout.invalidateLayout()
      }
--
+-    
 -    override func viewWillAppear(_ animated: Bool) {
 -        super.viewWillAppear(animated)
 -        trackerCountViewModel?.refresh()
 -    }
--
+-    
 -    private func subscribeToTabChanges() {
 -        tabObserverCancellable = tabsModel.tabsPublisher
 -            .dropFirst()
@@ -719,7 +720,7 @@
 -    }
 -
 -    // MARK: - Tracker Count
--
+-    
 -    private func bindTrackerCount() {
 -        trackerCountCancellable = trackerCountViewModel?.$state
 -            .sink { [weak self] state in
@@ -773,7 +774,7 @@
 -    }
 -
 -    // MARK: - Public API
--
+-    
 -    var selectedTab: Tab? {
 -        return tabsModel.get(tabAt: currentSelection)
 -    }
@@ -834,7 +835,7 @@
 -            tabCell.updateCurrentTabBorder()
 -        }
 -    }
--
+-    
 -    func scrollToInitialTab() {
 -        guard let index = tabsModel.currentIndex,
 -              index < collectionView.numberOfItems(inSection: 0) else { return }
@@ -1044,7 +1045,7 @@
 -        return min(TabSwitcherViewController.Constants.cellMaxHeight,
 -                   max(TabSwitcherViewController.Constants.cellMinHeight, preferredHeight))
      }
-
+ 
      func collectionView(_ collectionView: UICollectionView,
                          layout collectionViewLayout: UICollectionViewLayout,
                          sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -1069,7 +1070,7 @@
 +        let spacing = (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset.left ?? 0
 +        return CGSize(width: max(0, min(664, collectionView.bounds.width - 2 * spacing)), height: 70)
      }
-
+ 
      func collectionView(_ collectionView: UICollectionView,
 -                        layout collectionViewLayout: UICollectionViewLayout,
 -                        referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -1089,7 +1090,7 @@
 +        }
 +    }
 +}
-
+ 
  extension TabSwitcherPageViewController: TabViewCellDelegate {
 -
 -    func deleteTab(tab: Tab) {
@@ -1162,10 +1163,6 @@
 -
 -    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: any UICollectionViewDropCoordinator) {
 -        guard let destination = coordinator.destinationIndexPath,
--              let item = coordinator.items.first,
--              let source = item.sourceIndexPath
--        else { return }
--
 +    func deleteTab(id: UUID) { removeDocument(id: id) }
 +    func tabViewCellDidBeginSwipe(_ cell: TabViewCell) { collectionView.isScrollEnabled = false }
 +    func tabViewCellDidEndSwipe(_ cell: TabViewCell) { collectionView.isScrollEnabled = true }
@@ -1176,23 +1173,44 @@
 +                        itemsForBeginning session: UIDragSession,
 +                        at indexPath: IndexPath) -> [UIDragItem] {
 +        guard documents.indices.contains(indexPath.item) else { return [] }
-+        let provider = NSItemProvider(object: documents[indexPath.item].id.uuidString as NSString)
-+        return [UIDragItem(itemProvider: provider)]
++        session.localContext = self
++        dragMembership = documents.map(\.id)
++        let item = UIDragItem(itemProvider: NSItemProvider())
++        item.localObject = documents[indexPath.item].id
++        return [item]
++    }
++
++    func collectionView(_ collectionView: UICollectionView, dragSessionDidEnd session: UIDragSession) {
++        dragMembership = nil
++    }
++
++    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
++        (session.localDragSession?.localContext as? TabSwitcherPageViewController) === self
 +    }
 +
 +    func collectionView(_ collectionView: UICollectionView,
 +                        dropSessionDidUpdate session: UIDropSession,
 +                        withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-+        UICollectionViewDropProposal(operation: session.localDragSession == nil ? .forbidden : .move, intent: .insertAtDestinationIndexPath)
++        let ownsSession = (session.localDragSession?.localContext as? TabSwitcherPageViewController) === self
++        return UICollectionViewDropProposal(operation: ownsSession && dragMembership == documents.map(\.id) ? .move : .forbidden,
++                                            intent: .insertAtDestinationIndexPath)
 +    }
 +
 +    func collectionView(_ collectionView: UICollectionView,
 +                        performDropWith coordinator: UICollectionViewDropCoordinator) {
-+        guard let item = coordinator.items.first,
++        guard (coordinator.session.localDragSession?.localContext as? TabSwitcherPageViewController) === self,
++              dragMembership == documents.map(\.id),
+               let item = coordinator.items.first,
+-              let source = item.sourceIndexPath
+-        else { return }
+-
 +              let source = item.sourceIndexPath,
-+              documents.indices.contains(source.item) else { return }
-+        let destinationItem = min(coordinator.destinationIndexPath?.item ?? documents.count - 1,
-+                                  max(0, documents.count - 1))
++              source.section == 0, documents.indices.contains(source.item),
++              let id = item.dragItem.localObject as? UUID,
++              documents[source.item].id == id,
++              let proposedDestination = coordinator.destinationIndexPath,
++              proposedDestination.section == 0 else { return }
++        let destinationItem = max(0, min(proposedDestination.item, documents.count - 1))
 +        let destination = IndexPath(item: destinationItem, section: 0)
 +        let document = documents.remove(at: source.item)
 +        documents.insert(document, at: destinationItem)
@@ -1211,30 +1229,31 @@
 -                collectionView.reloadItems(at: [IndexPath(row: self.currentSelection ?? 0, section: 0)])
 -            }
 -            self.pageDelegate?.page(self, didReorderTabs: ())
--            coordinator.drop(item.dragItem, toItemAt: destination)
--        }
--    }
--}
--
++            self.pageDelegate?.page(self, didReorderTab: document.id, to: destinationItem)
+             coordinator.drop(item.dragItem, toItemAt: destination)
+         }
+     }
+ }
+ 
 -// MARK: - UITapGestureRecognizer Helpers
 -
 -private extension UITapGestureRecognizer {
--
+-    
 -    func tappedInWhitespaceAtEndOfCollectionView(_ collectionView: UICollectionView) -> Bool {
 -        guard collectionView.indexPathForItem(at: self.location(in: collectionView)) == nil else { return false }
 -        let location = self.location(in: collectionView)
--
+-           
 -        // Now check if the tap is in the whitespace area at the end
 -        let lastSection = collectionView.numberOfSections - 1
 -        let lastItemIndex = collectionView.numberOfItems(inSection: lastSection) - 1
--
+-        
 -        // Get the frame of the last item
 -        // If there are no items in the last section, the entire area is whitespace
 -       guard lastItemIndex >= 0 else { return true }
--
+-        
 -        let lastItemIndexPath = IndexPath(item: lastItemIndex, section: lastSection)
 -        let lastItemFrame = collectionView.layoutAttributesForItem(at: lastItemIndexPath)?.frame ?? .zero
--
+-        
 -        // Check if the tap is below the last item.
 -        // Add 10px buffer to ensure it's whitespace.
 -        if location.y > lastItemFrame.maxY + 15 // below the bottom of the last item is definitely the end
@@ -1242,16 +1261,10 @@
 -            // The tap is in the whitespace area at the end
 -        return true
 -    }
--
+-    
 -        return false
 -    }
 -}
-+            self.pageDelegate?.page(self, didReorderTab: document.id, to: destinationItem)
-+        }
-+        coordinator.drop(item.dragItem, toItemAt: destination)
-+    }
-+}
-+
 +struct TabSwitcherPageHost: UIViewControllerRepresentable {
 +    let documents: [ReaderTabSwitcherDocument]
 +    let selectedID: UUID?

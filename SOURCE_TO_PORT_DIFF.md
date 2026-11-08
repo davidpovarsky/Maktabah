@@ -1,5 +1,7 @@
 # Source-to-port evidence — faithful iPad rebuild
 
+2026-11-08 visual-fidelity correction from `661d53e0`: see `docs/ipad-ui-rebuild/VISUAL_FIDELITY_CORRECTION.md` and `source-audit-20261108.json`. All 30 recorded original/port comparisons were repeated against immutable Git objects, including the pinned Inspector. Current exact patches supersede older adaptation descriptions below; Native visual acceptance remains pending until the new run is inspected.
+
 Base app: `f092f3996927251d105dfb9243dfac487b196534`. Execution: `[נועם | DEV] [MAIN_SESSION]`; no subagents. Source ports were built from immutable originals, not from the rejected experiment.
 
 Every imported file has a canonical original SHA-256 below and an exact textual patch in `docs/ipad-ui-rebuild/source-diffs/` when changed. Unchanged files have byte-equivalent normalized UTF-8 source. This is provenance evidence, not a claim that appearance or runtime acceptance passed.

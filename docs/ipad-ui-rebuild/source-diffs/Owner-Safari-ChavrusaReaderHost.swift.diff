@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,659 +1,350 @@
+@@ -1,253 +1,210 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -95,7 +95,6 @@
 +    @FocusState private var quickAddressFocused: Bool
 +    @State private var showsOverview = false
 +    @State private var showsProfiles = false
-+    @State private var availableWidth: CGFloat = 640
 +    @State private var detailWidth: CGFloat = 640
 +    @State private var sceneID = ""
 +    @State private var navigationChrome = ReaderNavigationChromeState()
@@ -153,6 +152,8 @@
 -            },
 -            Command("הגדרות", id: "tool.settings", subtitle: "בחירת פעולה לדוגמה", section: "פעולות", symbol: "gearshape", keywords: ["settings", "אפשרויות"]) {
 -                model.select("הגדרות")
+-            }
+-        ]
 +    @Environment(\.scenePhase) private var scenePhase
 +    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 +    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -180,34 +181,9 @@
 +        _columnVisibility = columnVisibility
 +        _preferredCompactColumn = preferredCompactColumn
 +        self.library = library; self.contents = contents; self.reader = reader()
-+    }
-+
-+    var body: some View {
-+        NavigationSplitView(columnVisibility: $columnVisibility, preferredCompactColumn: $preferredCompactColumn) {
-+            ReaderSidebarPager(coordinator: sidebar, library: library, contents: contents)
-+                .navigationSplitViewColumnWidth(min: 240, ideal: 300, max: 420)
-+        } detail: {
-+            // A measured document strip belongs to this detail column's
-+            // content. A safe-area preference here also shifted native bars
-+            // in other global tabs by 20pt on the actual iPadOS 27 captures.
-+            VStack(spacing: 0) {
-+                DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
-+                                 onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
-+                                 onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
-+                                 onOpenLibrary: openLibrary, onOverview: { showsOverview = true },
-+                                 backgroundColor: UIColor(readerChromeColor))
-+                    .frame(height: navigationChrome.isVisible ? TabsBarViewController.Constants.buttonHeight : 0)
-+                    .opacity(navigationChrome.isVisible ? 1 : 0)
-+                    .clipped()
-+                    .allowsHitTesting(navigationChrome.isVisible)
-+                    .accessibilityHidden(!navigationChrome.isVisible)
-+                    .accessibilityIdentifier("reader-document-tabs")
-+                reader
-             }
--        ]
--    }
--
--    var body: some View {
+     }
+ 
+     var body: some View {
 -        GeometryReader { geometry in
 -            let compact = geometry.size.width < 740
 -
@@ -221,43 +197,38 @@
 -                    .zIndex(1)
 -
 -                if searchIsExpanded {
++        NavigationSplitView(columnVisibility: $columnVisibility, preferredCompactColumn: $preferredCompactColumn) {
++            ReaderSidebarPager(coordinator: sidebar, library: library, contents: contents)
++                .navigationSplitViewColumnWidth(min: 240, ideal: 300, max: 420)
++        } detail: {
++            // A measured document strip belongs to this detail column's
++            // content. A safe-area preference here also shifted native bars
++            // in other global tabs by 20pt on the actual iPadOS 27 captures.
++            VStack(spacing: 0) {
++                DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
++                                 onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
++                                 onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
++                                 backgroundColor: UIColor(readerChromeColor))
++                    .frame(height: navigationChrome.isVisible && !manager.openTabs.isEmpty ? TabsBarViewController.Constants.buttonHeight : 0)
++                    .opacity(navigationChrome.isVisible && !manager.openTabs.isEmpty ? 1 : 0)
++                    .clipped()
++                    .allowsHitTesting(navigationChrome.isVisible && !manager.openTabs.isEmpty)
++                    .accessibilityHidden(!navigationChrome.isVisible || manager.openTabs.isEmpty)
++                    .accessibilityIdentifier("reader-document-tabs")
++                reader
++            }
 +                .background(readerChromeColor)
 +                .modifier(ReaderSidebarToggleRemoval())
-+                // The measured strip ends the original reader's underlap.
-+                // Preserve its actual reading theme behind the native bar.
-+                .toolbarBackground(readerChromeColor, for: .navigationBar)
-+                .toolbarBackground(.visible, for: .navigationBar)
++                // SafariGlass owns each surface. The opaque navigation-bar
++                // backing otherwise becomes a second layer under those groups.
++                .toolbarBackground(.hidden, for: .navigationBar)
 +                .toolbar {
-+                    // A compact split already has the native Back-to-sidebar
-+                    // action. Duplicating it also displaced the search field
-+                    // in the genuine 375pt system window.
-+                    if needsCustomSidebarToggle {
-+                        ToolbarItem(placement: .topBarLeading) {
-+                            ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
-+                                let wasOpen = sidebarIsOpen
-+                                withAnimation(.snappy) {
-+                                    preferredCompactColumn = wasOpen ? .detail : .sidebar
-+                                    columnVisibility = wasOpen ? .detailOnly : .all
-+                                }
-+                            }
-+                        }
-+                        .readerSourceGlassBackground()
-+                    }
-+                    if horizontalSizeClass == .compact {
-+                        ToolbarItem(placement: .topBarLeading) {
-+                            collapsedSearchField(minWidth: 72, idealWidth: 96, maxWidth: 112)
-+                        }
-+                        .readerSourceGlassBackground()
-+                    } else {
-+                        ToolbarItem(placement: .principal) {
-+                            collapsedSearchField(minWidth: detailWidth < 740 ? 100 : 150,
-+                                                 idealWidth: detailWidth < 740 ? 200 : 350,
-+                                                 maxWidth: 520)
-+                        }
-+                        .readerSourceGlassBackground()
-+                    }
-+                    ToolbarItem(placement: horizontalSizeClass == .compact ? .secondaryAction : .topBarTrailing) {
-+                        if let workspace { StudyProfileMenu(workspace: workspace, manager: manager, compact: detailWidth < 740) { showsProfiles = true } }
++                    // Keep the prototype's HStack and groups together inside
++                    // one native item; independent items change their spacing
++                    // and allow the system to overflow only part of the row.
++                    ToolbarItem(placement: .principal) {
++                        safariToolbar(compact: detailWidth < 740)
++                            .frame(width: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
 +                    }
 +                    .readerSourceGlassBackground()
 +                }
@@ -292,13 +263,37 @@
 -
                      expandedSearch(availableWidth: geometry.size.width)
 -                        .zIndex(3)
+-                }
+-            }
+-            .animation(morphSpring, value: searchIsExpanded)
+-        }
+-        .preferredColorScheme(.light)
 +                }
 +                .zIndex(3)
 +            }
 +        }
-+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { availableWidth = $0 }
 +        .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
-+        .onChange(of: quickAddressFocused) { _, focused in
+         .onChange(of: quickAddressFocused) { _, focused in
+-            if focused {
+-                quickAddressFocused = false
+-                openSearch()
+-            }
+-        }
+-        .onChange(of: browser.currentPage) { _, newPage in
+-            quickAddress = newPage.address
+-        }
+-        .sheet(isPresented: $showsDownloads) {
+-            SimplePanel(title: "הורדות", symbol: "arrow.down.circle", message: "אין הורדות חדשות בהדגמה הזאת.")
+-                .presentationDetents([.medium])
+-        }
+-        .sheet(isPresented: $showsProfile) {
+-            SimplePanel(title: "פרופיל אישי", symbol: "person.crop.circle", message: "כאן ניתן לשלב את תפריט המשתמש של האפליקציה שלך.")
+-                .presentationDetents([.medium])
+-        }
+-    }
+-
+-    // MARK: - Grouped top toolbar
+-
 +            if focused { quickAddressFocused = false; openSearch() }
 +        }
 +        .task(id: sceneID) {
@@ -344,35 +339,31 @@
 +            } else {
 +                withAnimation(chromeAnimation) {
 +                    navigationChrome.consume(translationY: translationY, isAtTop: isAtTop)
-                 }
-             }
--            .animation(morphSpring, value: searchIsExpanded)
--        }
--        .preferredColorScheme(.light)
--        .onChange(of: quickAddressFocused) { _, focused in
--            if focused {
--                quickAddressFocused = false
--                openSearch()
--            }
--        }
--        .onChange(of: browser.currentPage) { _, newPage in
--            quickAddress = newPage.address
--        }
--        .sheet(isPresented: $showsDownloads) {
--            SimplePanel(title: "הורדות", symbol: "arrow.down.circle", message: "אין הורדות חדשות בהדגמה הזאת.")
--                .presentationDetents([.medium])
--        }
--        .sheet(isPresented: $showsProfile) {
--            SimplePanel(title: "פרופיל אישי", symbol: "person.crop.circle", message: "כאן ניתן לשלב את תפריט המשתמש של האפליקציה שלך.")
--                .presentationDetents([.medium])
--        }
--    }
--
--    // MARK: - Grouped top toolbar
--
--    private func safariToolbar(compact: Bool) -> some View {
--        HStack(spacing: compact ? 6 : 11) {
--            GlassButtonGroup {
++                }
++            }
++        }
++        .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
++        .sheet(isPresented: $showsOverview) {
++            if let workspace { StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: openLibrary) }
++        }
++        .sheet(isPresented: $showsProfiles) {
++            if let workspace { StudyProfileManagementView(workspace: workspace, manager: manager) }
++        }
++        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
++            get: { workspace?.errorMessage != nil && !showsOverview && !showsProfiles }, set: { if !$0 && !showsOverview && !showsProfiles { workspace?.errorMessage = nil } })) {
++            Button("אישור") { workspace?.errorMessage = nil }
++        } message: { Text(workspace?.errorMessage ?? "") }
++        .accessibilityElement(children: .contain)
++        .accessibilityIdentifier("chavrusa-reader-host")
++    }
++
++    // Owner prototype safariToolbar(compact:): same 6/11pt spacing, 54pt
++    // row, 52pt glass groups and 39×44pt buttons. Browser-only share/download
++    // and back actions are omitted; the native split supplies its own sidebar
++    // action where required. The original Maktabah actions remain elsewhere.
+     private func safariToolbar(compact: Bool) -> some View {
+         HStack(spacing: compact ? 6 : 11) {
+             GlassButtonGroup {
 -                toolbarButton("square.on.square", title: "הצג את כל הכרטיסיות") {
 -                    withAnimation(.smooth(duration: 0.25)) { showsTabOverview.toggle() }
 -                }
@@ -386,7 +377,23 @@
 -                            .font(.system(size: 19, weight: .regular))
 -                            .frame(width: 39, height: 44)
 -                            .contentShape(Rectangle())
--                    }
++                toolbarButton("square.on.square", title: "כל הכרטיסיות", identifier: "reader-tabs-overview") {
++                    withAnimation(.smooth(duration: 0.25)) { showsOverview = true }
++                }
++                toolbarButton("plus", title: "פתח ספר מהספרייה", identifier: "reader-open-book", action: openLibrary)
++            }
++            collapsedSearchField
++                .frame(maxWidth: .infinity)
++            if let workspace {
++                StudyProfileMenu(workspace: workspace, manager: manager, compact: compact) { showsProfiles = true }
++            }
++            if needsCustomSidebarToggle {
++                ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
++                    let wasOpen = sidebarIsOpen
++                    withAnimation(.smooth(duration: 0.24)) {
++                        preferredCompactColumn = wasOpen ? .detail : .sidebar
++                        columnVisibility = wasOpen ? .detailOnly : .all
+                     }
 -                    .buttonStyle(.plain)
 -                    .accessibilityLabel("שתף קישור")
 -                    toolbarButton("arrow.down", title: "הורדות") {
@@ -435,13 +442,13 @@
 -            GlassButtonGroup {
 -                toolbarButton("sidebar.left", title: "הצג או הסתר סרגל צד") {
 -                    withAnimation(.smooth(duration: 0.24)) { showsSidebar.toggle() }
--                }
--            }
--        }
--        .environment(\.layoutDirection, .leftToRight)
--        .frame(height: 54)
--    }
--
+                 }
+             }
+         }
+@@ -255,37 +212,8 @@
+         .frame(height: 54)
+     }
+ 
 -    private var compactSearchField: some View {
 -        HStack(spacing: 11) {
 -            Image(systemName: "arrow.clockwise")
@@ -473,44 +480,33 @@
 -    }
 -
 -    private func toolbarButton(_ symbol: String, title: String, action: @escaping () -> Void) -> some View {
--        Button(action: action) {
--            Image(systemName: symbol)
--                .font(.system(size: 19, weight: .regular))
--                .frame(width: 39, height: 44)
--                .contentShape(Rectangle())
--        }
--        .buttonStyle(.plain)
--        .accessibilityLabel(title)
++    private func toolbarButton(_ symbol: String, title: String, identifier: String,
++                               action: @escaping () -> Void) -> some View {
+         Button(action: action) {
+             Image(systemName: symbol)
+                 .font(.system(size: 19, weight: .regular))
+@@ -294,366 +222,146 @@
+         }
+         .buttonStyle(.plain)
+         .accessibilityLabel(title)
 -    }
 -
 -    // MARK: - One search field expands into the existing CommandPalette
 -
-+        }
-+        .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
-+        .sheet(isPresented: $showsOverview) {
-+            if let workspace { StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: openLibrary) }
-+        }
-+        .sheet(isPresented: $showsProfiles) {
-+            if let workspace { StudyProfileManagementView(workspace: workspace, manager: manager) }
-+        }
-+        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
-+            get: { workspace?.errorMessage != nil && !showsOverview && !showsProfiles }, set: { if !$0 && !showsOverview && !showsProfiles { workspace?.errorMessage = nil } })) {
-+            Button("אישור") { workspace?.errorMessage = nil }
-+        } message: { Text(workspace?.errorMessage ?? "") }
-+        .accessibilityElement(children: .contain)
-+        .accessibilityIdentifier("chavrusa-reader-host")
++        .accessibilityIdentifier(identifier)
 +    }
 +
 +    @ViewBuilder
-+    private func collapsedSearchField(minWidth: CGFloat, idealWidth: CGFloat, maxWidth: CGFloat) -> some View {
++    private var collapsedSearchField: some View {
 +        if !searchIsExpanded {
 +            SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
 +                                     quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
-+                .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth)
++                .frame(maxWidth: .infinity)
 +                .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
 +        } else {
 +            Color.clear
-+                .frame(width: min(maxWidth, max(minWidth, availableWidth - 220)), height: 52)
++                .frame(height: 52)
++                .frame(maxWidth: .infinity)
 +                .accessibilityHidden(true)
 +        }
 +    }

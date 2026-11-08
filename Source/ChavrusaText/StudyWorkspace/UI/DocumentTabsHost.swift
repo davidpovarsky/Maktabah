@@ -6,13 +6,11 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
     let onSelect: (UUID) -> Void
     let onClose: (UUID) -> Void
     let onReorder: (UUID, Int) -> Void
-    let onOpenLibrary: () -> Void
-    let onOverview: () -> Void
     let backgroundColor: UIColor
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
     func makeUIViewController(context: Context) -> TabsBarViewController {
-        let controller = TabsBarViewController()
+        let controller = TabsBarViewController(showsToolbarButtons: false)
         controller.delegate = context.coordinator
         return controller
     }
@@ -53,7 +51,8 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
             guard let kept = model.get(tabAt: index) else { return }
             for tab in model.tabs where tab.id != kept.id { parent.onClose(tab.id) }
         }
-        func tabsBarDidRequestNewTab(_ controller: TabsBarViewController) { parent.onOpenLibrary() }
-        func tabsBarDidRequestTabSwitcher(_ controller: TabsBarViewController) { parent.onOverview() }
+        // These source-controller actions live in the Safari toolbar in the app.
+        func tabsBarDidRequestNewTab(_ controller: TabsBarViewController) {}
+        func tabsBarDidRequestTabSwitcher(_ controller: TabsBarViewController) {}
     }
 }

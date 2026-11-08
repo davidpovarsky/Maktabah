@@ -453,6 +453,7 @@ final class TabSwitcherPageViewController: UIViewController {
     private var selectedID: UUID?
     private var layoutMode: ReaderTabSwitcherLayout = .grid
     private var lastLayoutSize: CGSize = .zero
+    private var dragMembership: [UUID]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -599,23 +600,41 @@ extension TabSwitcherPageViewController: UICollectionViewDragDelegate, UICollect
                         itemsForBeginning session: UIDragSession,
                         at indexPath: IndexPath) -> [UIDragItem] {
         guard documents.indices.contains(indexPath.item) else { return [] }
-        let provider = NSItemProvider(object: documents[indexPath.item].id.uuidString as NSString)
-        return [UIDragItem(itemProvider: provider)]
+        session.localContext = self
+        dragMembership = documents.map(\.id)
+        let item = UIDragItem(itemProvider: NSItemProvider())
+        item.localObject = documents[indexPath.item].id
+        return [item]
+    }
+
+    func collectionView(_ collectionView: UICollectionView, dragSessionDidEnd session: UIDragSession) {
+        dragMembership = nil
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+        (session.localDragSession?.localContext as? TabSwitcherPageViewController) === self
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         dropSessionDidUpdate session: UIDropSession,
                         withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-        UICollectionViewDropProposal(operation: session.localDragSession == nil ? .forbidden : .move, intent: .insertAtDestinationIndexPath)
+        let ownsSession = (session.localDragSession?.localContext as? TabSwitcherPageViewController) === self
+        return UICollectionViewDropProposal(operation: ownsSession && dragMembership == documents.map(\.id) ? .move : .forbidden,
+                                            intent: .insertAtDestinationIndexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         performDropWith coordinator: UICollectionViewDropCoordinator) {
-        guard let item = coordinator.items.first,
+        guard (coordinator.session.localDragSession?.localContext as? TabSwitcherPageViewController) === self,
+              dragMembership == documents.map(\.id),
+              let item = coordinator.items.first,
               let source = item.sourceIndexPath,
-              documents.indices.contains(source.item) else { return }
-        let destinationItem = min(coordinator.destinationIndexPath?.item ?? documents.count - 1,
-                                  max(0, documents.count - 1))
+              source.section == 0, documents.indices.contains(source.item),
+              let id = item.dragItem.localObject as? UUID,
+              documents[source.item].id == id,
+              let proposedDestination = coordinator.destinationIndexPath,
+              proposedDestination.section == 0 else { return }
+        let destinationItem = max(0, min(proposedDestination.item, documents.count - 1))
         let destination = IndexPath(item: destinationItem, section: 0)
         let document = documents.remove(at: source.item)
         documents.insert(document, at: destinationItem)
@@ -625,8 +644,8 @@ extension TabSwitcherPageViewController: UICollectionViewDragDelegate, UICollect
         } completion: { [weak self] _ in
             guard let self else { return }
             self.pageDelegate?.page(self, didReorderTab: document.id, to: destinationItem)
+            coordinator.drop(item.dragItem, toItemAt: destination)
         }
-        coordinator.drop(item.dragItem, toItemAt: destination)
     }
 }
 

@@ -3,6 +3,29 @@ import XCTest
 
 final class TabsLifecycleTests: XCTestCase {
     @MainActor
+    func testToolbarHostedActionsLeaveTheOriginalStripOnlyBookCells() {
+        let controller = TabsBarViewController(showsToolbarButtons: false)
+        controller.loadViewIfNeeded()
+        controller.view.frame = CGRect(x: 0, y: 0, width: 650, height: 40)
+        let model = ReaderBookTabsModel()
+        for count in [0, 1, 2, 30, 1, 0] {
+            model.tabs = (0..<count).map { ReaderBookTabAdapter(id: UUID(), title: "ספר \($0)") }
+            model.selectedID = model.tabs.last?.id
+            controller.refresh(tabsModel: model)
+            controller.view.layoutIfNeeded()
+            XCTAssertTrue(controller.addTabButton.isHidden)
+            XCTAssertTrue(controller.buttonsStack.isHidden)
+            XCTAssertEqual(controller.buttonsStack.bounds.width, 0)
+            XCTAssertEqual(controller.collectionView.frame.maxX, controller.view.bounds.maxX, accuracy: 0.5)
+            XCTAssertEqual(controller.collectionView.numberOfItems(inSection: 0), count)
+            if count > 0 {
+                let layout = controller.collectionView.collectionViewLayout as! TabsBarCollectionViewLayout
+                XCTAssertNotNil(layout.frameForCurrentTabAtRest())
+            }
+        }
+    }
+
+    @MainActor
     func testBookTitleChangesUpdateTheOriginalCellWithoutReloadingIt() throws {
         let model = ReaderBookTabAdapter(id: UUID(), title: "כותרת זמנית")
         let cell = TabsBarCell(frame: CGRect(x: 0, y: 0, width: 200, height: 40))

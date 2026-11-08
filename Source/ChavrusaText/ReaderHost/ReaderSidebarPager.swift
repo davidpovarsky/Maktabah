@@ -7,26 +7,21 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Environment(\.layoutDirection) private var layoutDirection
 
     var body: some View {
-        VStack(spacing: 0) {
-            // PageTabViewStyle consumed the original UIKit trees' horizontal
-            // gesture without advancing on a real iPad. Keep both originals
-            // mounted and coordinate only which page is visible.
-            ZStack {
-                page(library(coordinator.page == .library), page: .library)
-                page(contents(coordinator.page == .contents), page: .contents)
-            }
-            .contentShape(Rectangle())
-            .simultaneousGesture(sidebarSwipe)
-            // Own the pager identifier on a container, rather than letting
-            // it replace the original Library/Contents subtree identities.
-            .accessibilityElement(children: .contain)
-            .accessibilityIdentifier("reader-sidebar-pager")
+        // Keep both original UIKit trees mounted; only change visibility.
+        ZStack {
+            page(library(coordinator.page == .library), page: .library)
+            page(contents(coordinator.page == .contents), page: .contents)
+        }
+        .contentShape(Rectangle())
+        .simultaneousGesture(sidebarSwipe)
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("reader-sidebar-pager")
+        .safeAreaInset(edge: .bottom, spacing: 0) {
             HStack(spacing: 0) {
                 pageButton(.library, title: "ספרייה")
                 pageButton(.contents, title: "תוכן עניינים")
             }
-            .frame(maxWidth: .infinity)
-            .background(.bar)
+            .foregroundStyle(.secondary)
         }
     }
 

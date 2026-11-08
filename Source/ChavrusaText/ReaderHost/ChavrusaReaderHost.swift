@@ -15,7 +15,6 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @FocusState private var quickAddressFocused: Bool
     @State private var showsOverview = false
     @State private var showsProfiles = false
-    @State private var availableWidth: CGFloat = 640
     @State private var detailWidth: CGFloat = 640
     @State private var sceneID = ""
     @State private var navigationChrome = ReaderNavigationChromeState()
@@ -61,53 +60,27 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
                                  onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
                                  onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
-                                 onOpenLibrary: openLibrary, onOverview: { showsOverview = true },
                                  backgroundColor: UIColor(readerChromeColor))
-                    .frame(height: navigationChrome.isVisible ? TabsBarViewController.Constants.buttonHeight : 0)
-                    .opacity(navigationChrome.isVisible ? 1 : 0)
+                    .frame(height: navigationChrome.isVisible && !manager.openTabs.isEmpty ? TabsBarViewController.Constants.buttonHeight : 0)
+                    .opacity(navigationChrome.isVisible && !manager.openTabs.isEmpty ? 1 : 0)
                     .clipped()
-                    .allowsHitTesting(navigationChrome.isVisible)
-                    .accessibilityHidden(!navigationChrome.isVisible)
+                    .allowsHitTesting(navigationChrome.isVisible && !manager.openTabs.isEmpty)
+                    .accessibilityHidden(!navigationChrome.isVisible || manager.openTabs.isEmpty)
                     .accessibilityIdentifier("reader-document-tabs")
                 reader
             }
                 .background(readerChromeColor)
                 .modifier(ReaderSidebarToggleRemoval())
-                // The measured strip ends the original reader's underlap.
-                // Preserve its actual reading theme behind the native bar.
-                .toolbarBackground(readerChromeColor, for: .navigationBar)
-                .toolbarBackground(.visible, for: .navigationBar)
+                // SafariGlass owns each surface. The opaque navigation-bar
+                // backing otherwise becomes a second layer under those groups.
+                .toolbarBackground(.hidden, for: .navigationBar)
                 .toolbar {
-                    // A compact split already has the native Back-to-sidebar
-                    // action. Duplicating it also displaced the search field
-                    // in the genuine 375pt system window.
-                    if needsCustomSidebarToggle {
-                        ToolbarItem(placement: .topBarLeading) {
-                            ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
-                                let wasOpen = sidebarIsOpen
-                                withAnimation(.snappy) {
-                                    preferredCompactColumn = wasOpen ? .detail : .sidebar
-                                    columnVisibility = wasOpen ? .detailOnly : .all
-                                }
-                            }
-                        }
-                        .readerSourceGlassBackground()
-                    }
-                    if horizontalSizeClass == .compact {
-                        ToolbarItem(placement: .topBarLeading) {
-                            collapsedSearchField(minWidth: 72, idealWidth: 96, maxWidth: 112)
-                        }
-                        .readerSourceGlassBackground()
-                    } else {
-                        ToolbarItem(placement: .principal) {
-                            collapsedSearchField(minWidth: detailWidth < 740 ? 100 : 150,
-                                                 idealWidth: detailWidth < 740 ? 200 : 350,
-                                                 maxWidth: 520)
-                        }
-                        .readerSourceGlassBackground()
-                    }
-                    ToolbarItem(placement: horizontalSizeClass == .compact ? .secondaryAction : .topBarTrailing) {
-                        if let workspace { StudyProfileMenu(workspace: workspace, manager: manager, compact: detailWidth < 740) { showsProfiles = true } }
+                    // Keep the prototype's HStack and groups together inside
+                    // one native item; independent items change their spacing
+                    // and allow the system to overflow only part of the row.
+                    ToolbarItem(placement: .principal) {
+                        safariToolbar(compact: detailWidth < 740)
+                            .frame(width: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
                     }
                     .readerSourceGlassBackground()
                 }
@@ -143,7 +116,6 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 .zIndex(3)
             }
         }
-        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { availableWidth = $0 }
         .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
         .onChange(of: quickAddressFocused) { _, focused in
             if focused { quickAddressFocused = false; openSearch() }
@@ -209,16 +181,61 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .accessibilityIdentifier("chavrusa-reader-host")
     }
 
+    // Owner prototype safariToolbar(compact:): same 6/11pt spacing, 54pt
+    // row, 52pt glass groups and 39×44pt buttons. Browser-only share/download
+    // and back actions are omitted; the native split supplies its own sidebar
+    // action where required. The original Maktabah actions remain elsewhere.
+    private func safariToolbar(compact: Bool) -> some View {
+        HStack(spacing: compact ? 6 : 11) {
+            GlassButtonGroup {
+                toolbarButton("square.on.square", title: "כל הכרטיסיות", identifier: "reader-tabs-overview") {
+                    withAnimation(.smooth(duration: 0.25)) { showsOverview = true }
+                }
+                toolbarButton("plus", title: "פתח ספר מהספרייה", identifier: "reader-open-book", action: openLibrary)
+            }
+            collapsedSearchField
+                .frame(maxWidth: .infinity)
+            if let workspace {
+                StudyProfileMenu(workspace: workspace, manager: manager, compact: compact) { showsProfiles = true }
+            }
+            if needsCustomSidebarToggle {
+                ReaderToolbarActionAdapter(sidebarIsOpen: sidebarIsOpen) {
+                    let wasOpen = sidebarIsOpen
+                    withAnimation(.smooth(duration: 0.24)) {
+                        preferredCompactColumn = wasOpen ? .detail : .sidebar
+                        columnVisibility = wasOpen ? .detailOnly : .all
+                    }
+                }
+            }
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        .frame(height: 54)
+    }
+
+    private func toolbarButton(_ symbol: String, title: String, identifier: String,
+                               action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .font(.system(size: 19, weight: .regular))
+                .frame(width: 39, height: 44)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(title)
+        .accessibilityIdentifier(identifier)
+    }
+
     @ViewBuilder
-    private func collapsedSearchField(minWidth: CGFloat, idealWidth: CGFloat, maxWidth: CGFloat) -> some View {
+    private var collapsedSearchField: some View {
         if !searchIsExpanded {
             SafariLibrarySearchField(query: Bindable(manager.libraryViewModel).searchQuery,
                                      quickAddressFocused: $quickAddressFocused, onExpand: openSearch)
-                .frame(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth)
+                .frame(maxWidth: .infinity)
                 .matchedGeometryEffect(id: "browser.search.surface", in: searchMorph)
         } else {
             Color.clear
-                .frame(width: min(maxWidth, max(minWidth, availableWidth - 220)), height: 52)
+                .frame(height: 52)
+                .frame(maxWidth: .infinity)
                 .accessibilityHidden(true)
         }
     }

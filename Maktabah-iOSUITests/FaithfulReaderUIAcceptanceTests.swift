@@ -1034,6 +1034,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(app.staticTexts["כלי לימוד"].exists, "The redundant visual study-tools heading must be removed")
         XCTAssertFalse(app.staticTexts["קטע נבחר"].exists, "The redundant visual selected-segment heading must be removed")
         capture("candidate-studyCommentaries-\(orientation.isLandscape ? "landscape" : "portrait")")
+        let readerWithPanel = app.textViews["reader-text"].frame
+        tap(app.buttons["torah-inspector-close"])
+        let inspector = app.descendants(matching: .any)["torah-inspector-panel"]
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: inspector
+        )], timeout: 15), .completed)
+        XCTAssertEqual(app.textViews["reader-text"].frame.width, readerWithPanel.width, accuracy: 1,
+                       "FloatingPanel must overlay Reader without reserving an opaque column")
     }
 
     @MainActor
@@ -1272,6 +1280,12 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
         capture("candidate-empty-group")
         tap(app.buttons["סיום"])
+        XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists,
+                       "An empty group must not expose a blank document strip")
+        XCTAssertTrue(app.buttons["reader-tabs-overview"].exists)
+        XCTAssertTrue(app.buttons["reader-open-book"].exists,
+                      "Both original Safari actions must remain available without books")
+        capture("candidate-library-no-open-books-toolbar")
         try attachWorkspaceSnapshot("empty-group-sidecar-before-cold-launch")
         app.terminate()
         launchReader(scenario: "catalog")
@@ -1281,6 +1295,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         try attachWorkspaceSnapshot("empty-group-sidecar-after-cold-launch")
         XCTAssertEqual(restored, .completed, "Wait for the actual asynchronous sidecar projection, retaining the empty-reader requirement")
         XCTAssertFalse(app.textViews["reader-text"].exists, "The empty sidecar group must suppress stale legacy-session resurrection")
+        XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
+        XCTAssertTrue(app.buttons["reader-open-book"].exists)
         tap(app.buttons["כל הכרטיסיות"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Empty selection must survive app relaunch without importing old tabs again")
         XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)

@@ -26,6 +26,19 @@ final class TabsBarView: UIView {
     let buttonsBackground = UIView()
 
     private var collectionViewLeading: NSLayoutConstraint?
+    private var buttonsStackLeading: NSLayoutConstraint?
+    private var buttonsStackTrailing: NSLayoutConstraint?
+    private lazy var hiddenButtonsWidth = buttonsStack.widthAnchor.constraint(equalToConstant: 0)
+
+    /// The host moves both source actions to the original Safari group.
+    /// Collapse their reserved space as well as hiding their views.
+    func setToolbarButtonsVisible(_ visible: Bool) {
+        buttonsStack.isHidden = !visible
+        buttonsBackground.isHidden = !visible
+        buttonsStackLeading?.constant = visible ? TabsBarViewController.Constants.leadingInset : 0
+        buttonsStackTrailing?.constant = visible ? -TabsBarViewController.Constants.leadingInset : 0
+        hiddenButtonsWidth.isActive = !visible
+    }
 
     /// Leading tab margin, expanded when window controls share the row.
     var firstTabLeadingMargin: CGFloat = TabsBarViewController.Constants.firstTabLeadingMargin {
@@ -79,6 +92,10 @@ final class TabsBarView: UIView {
             equalTo: leadingAnchor,
             constant: Self.collectionViewLeadingConstant(for: firstTabLeadingMargin))
         self.collectionViewLeading = collectionViewLeading
+        let buttonsStackLeading = buttonsStack.leadingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: TabsBarViewController.Constants.leadingInset)
+        let buttonsStackTrailing = buttonsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -TabsBarViewController.Constants.leadingInset)
+        self.buttonsStackLeading = buttonsStackLeading
+        self.buttonsStackTrailing = buttonsStackTrailing
 
         NSLayoutConstraint.activate([
             collectionViewLeading,
@@ -90,8 +107,8 @@ final class TabsBarView: UIView {
             buttonsBackground.topAnchor.constraint(equalTo: topAnchor),
             buttonsBackground.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            buttonsStack.leadingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: TabsBarViewController.Constants.leadingInset),
-            buttonsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -TabsBarViewController.Constants.leadingInset),
+            buttonsStackLeading,
+            buttonsStackTrailing,
             buttonsStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             buttonsStack.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
             buttonsStack.bottomAnchor.constraint(equalTo: bottomAnchor),

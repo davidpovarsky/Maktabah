@@ -532,3 +532,21 @@ index 23cd37e5..d8ebf7a0 100644
 +            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel)
 @@ -1146,0 +1149 @@ struct iOSIbarotTextView: UIViewRepresentable {
 +            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, reachedTop: true)
+
+# Visual fidelity continuation, 2026-11-08; delta from 661d53e0
+diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+index ca7c3d9f..90a3328f 100644
+--- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+@@ -150,8 +150,9 @@ struct iOSReaderWorkspaceView: View {
+         // Both pages occupy the same sidebar. Selecting a page must not switch
+         // between two structural reader branches and recreate its TextKit view.
+         if sidebarCoordinator != nil {
+-            return (horizontalSizeClass != .regular && UIDevice.current.userInterfaceIdiom == .pad)
+-                || (useWideLayout && librarySidebarIsOpen)
++            // The faithful Inspector always overlays Reader through the existing
++            // FloatingPanel. Docking it reserves an opaque reading-theme column.
++            return true
+         }
+         return useWideLayout && librarySidebarIsOpen && contentsIsOpen
+     }

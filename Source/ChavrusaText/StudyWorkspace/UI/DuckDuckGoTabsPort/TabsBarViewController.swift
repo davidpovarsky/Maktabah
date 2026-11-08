@@ -52,6 +52,7 @@ class TabsBarViewController: UIViewController {
     }
 
     private let tabsBarView = TabsBarView()
+    private let showsToolbarButtons: Bool
     var collectionView: UICollectionView { tabsBarView.collectionView }
     var buttonsStack: UIStackView { tabsBarView.buttonsStack }
     var buttonsBackground: UIView { tabsBarView.buttonsBackground }
@@ -81,7 +82,10 @@ class TabsBarViewController: UIViewController {
     var tabsCount: Int { tabsModel?.count ?? 0 }
     var currentIndex: Int? { tabsModel?.currentIndex }
     private var isStripOverflowing: Bool { currentLayout?.isFloored ?? false }
-    init() { super.init(nibName: nil, bundle: nil) }
+    init(showsToolbarButtons: Bool = true) {
+        self.showsToolbarButtons = showsToolbarButtons
+        super.init(nibName: nil, bundle: nil)
+    }
     @available(*, unavailable) required init?(coder: NSCoder) { nil }
     override func loadView() { view = tabsBarView }
     override func viewDidLoad() {
@@ -107,7 +111,10 @@ class TabsBarViewController: UIViewController {
         collectionView.register(TabsBarCell.self, forCellWithReuseIdentifier: TabsBarCell.reuseIdentifier)
         collectionView.contentInset.left = Constants.tabRampSize.width
         buttonsStack.spacing = Constants.stackSpacing
-        buttonsStack.addArrangedSubview(tabSwitcherButton)
+        if showsToolbarButtons { buttonsStack.addArrangedSubview(tabSwitcherButton) }
+        tabsBarView.setToolbarButtonsVisible(showsToolbarButtons)
+        addTabButton.isHidden = !showsToolbarButtons
+        addTabButtonBackground.isHidden = !showsToolbarButtons
         addTabButtonBackground.translatesAutoresizingMaskIntoConstraints = false
         addTabButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addTabButtonBackground)
@@ -235,8 +242,8 @@ class TabsBarViewController: UIViewController {
             tabsCount: tabsCount,
             minItemWidth: Constants.minItemWidth,
             maxItemWidth: maxItemWidth(forStripWidth: availableStripWidth),
-            buttonWidth: Constants.buttonWidth,
-            buttonGap: Constants.addTabButtonGap
+            buttonWidth: showsToolbarButtons ? Constants.buttonWidth : 0,
+            buttonGap: showsToolbarButtons ? Constants.addTabButtonGap : 0
         )
         currentLayout = layout
 
@@ -245,7 +252,7 @@ class TabsBarViewController: UIViewController {
         }
         // Room before the add button so the last tab's trailing fillet clears its opaque backdrop.
         let rampWidth = Constants.tabRampSize.width
-        let trailingFilletRoom = layout.isFloored ? 0 : max(0, rampWidth - Constants.addTabButtonGap)
+        let trailingFilletRoom = !showsToolbarButtons || layout.isFloored ? 0 : max(0, rampWidth - Constants.addTabButtonGap)
         addTabButtonLeadingConstraint?.constant = layout.addTabButtonLeadingOffset + leadingContentInset + trailingFilletRoom
         collectionView.contentInset.right = layout.addTabButtonContentInsetRight + (layout.isFloored ? rampWidth : 0)
     }
