@@ -420,7 +420,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
         currentTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
-                let page = try repository.search(databasePath: path, request: request)
+                let page = try await repository.search(databasePath: path, request: request)
                 let items = try repository.navigationItems(from: page)
                 try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
@@ -464,7 +464,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
         paginationTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
-                let page = try repository.search(databasePath: path, request: nextRequest)
+                let page = try await repository.search(databasePath: path, request: nextRequest)
                 let items = try repository.navigationItems(from: page)
                 try await MainActor.run {
                     guard self.searchGeneration == generation else { return }

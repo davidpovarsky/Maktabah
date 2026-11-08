@@ -14,6 +14,11 @@ OtzariaSearchEngineHandle otzaria_search_engine_new(const char *index_path);
 char *otzaria_search_engine_last_init_error(void);
 OtzariaSearchEngineHandle otzaria_search_engine_new_with_error(const char *index_path, char **out_error_json);
 void otzaria_search_engine_free(OtzariaSearchEngineHandle handle);
+/* Arc-backed cancellation registry; can outlive its engine. Retain until all
+ * concurrent cancel calls return. Cancel bypasses the engine mutex/worker queue. */
+void *otzaria_search_engine_cancellation_new(OtzariaSearchEngineHandle handle);
+void otzaria_search_engine_cancellation_cancel(void *cancellation, uint32_t request_id);
+void otzaria_search_engine_cancellation_free(void *cancellation);
 
 char *otzaria_search_engine_add_text_book_json(OtzariaSearchEngineHandle handle, const char *book_json);
 char *otzaria_search_engine_add_pdf_book_json(OtzariaSearchEngineHandle handle, const char *book_json);

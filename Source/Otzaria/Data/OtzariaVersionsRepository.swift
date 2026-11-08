@@ -13,10 +13,13 @@ struct OtzariaVersionsRepository: LibraryMetadataProviding, Sendable {
                 FROM book_version WHERE bookId = ?
                 ORDER BY \(column("priority")) DESC, versionTitle, id
                 """, parameters: [bookID]) { row in
-                let url = row.string(at: 1).flatMap(URL.init(string:)).flatMap { ["https", "http"].contains($0.scheme?.lowercased() ?? "") ? $0 : nil }
+                let url = row.string(at: 1).flatMap(URL.init(string:)).flatMap {
+                    ["https", "http"].contains($0.scheme?.lowercased() ?? "") && $0.host?.isEmpty == false && $0.user == nil ? $0 : nil
+                }
                 return TextVersionMetadata(title: row.string(at: 0) ?? "", language: "he", actualLanguage: "he",
                     sourceURL: url, license: row.string(at: 2), notes: row.string(at: 3) ?? row.string(at: 4), isPrimary: false,
-                    heTitle: row.string(at: 6), sourceIdentity: "otzaria-version:\(bookID):\(row.int(at: 5))")
+                    heTitle: row.string(at: 6).flatMap { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : $0 },
+                    sourceIdentity: "otzaria-version:\(bookID):\(row.int(at: 5))")
             }
         }
     }

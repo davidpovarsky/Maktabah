@@ -59,10 +59,40 @@ private func c_addLibraryBooks(_ handle: UnsafeMutableRawPointer?, _ json: Unsaf
 private func c_searchSnapshot(_ handle: UnsafeMutableRawPointer?) -> UnsafeMutablePointer<CChar>?
 @_silgen_name("otzaria_search_engine_release_memory")
 private func c_releaseMemory(_ handle: UnsafeMutableRawPointer?) -> UnsafeMutablePointer<CChar>?
+@_silgen_name("otzaria_search_engine_cancellation_new")
+private func c_cancellationNew(_ handle: UnsafeMutableRawPointer?) -> UnsafeMutableRawPointer?
+@_silgen_name("otzaria_search_engine_cancellation_cancel")
+private func c_cancellationCancel(_ handle: UnsafeMutableRawPointer?, _ requestID: UInt32)
+@_silgen_name("otzaria_search_engine_cancellation_free")
+private func c_cancellationFree(_ handle: UnsafeMutableRawPointer?)
+
+/// The immutable native pointer owns an upstream Arc registry, not the engine.
+/// A cancellation closure retains this object until its synchronous call ends.
+private final class OtzariaLexicalCancellation: @unchecked Sendable {
+    private let handle: UnsafeMutableRawPointer
+    private let lock = NSLock()
+    private var sequence: UInt64 = 0
+    init?(engine: UnsafeMutableRawPointer) {
+        guard let handle = c_cancellationNew(engine) else { return nil }
+        self.handle = handle
+    }
+    deinit { c_cancellationFree(handle) }
+    func nextID() throws -> UInt32 {
+        lock.lock()
+        defer { lock.unlock() }
+        guard sequence < UInt64(UInt32.max) else {
+            throw OtzariaSearchError.invalidEngineResponse("Cancellation request IDs exhausted; reopen the engine")
+        }
+        sequence += 1
+        return UInt32(sequence)
+    }
+    func cancel(_ id: UInt32) { c_cancellationCancel(handle, id) }
+}
 
 final class OtzariaSearchEngineBridge: @unchecked Sendable {
     private let queue = DispatchQueue(label: "com.goldcreative.otzaria.search-engine", qos: .userInitiated)
     private var handle: UnsafeMutableRawPointer?
+    private let lexicalCancellation: OtzariaLexicalCancellation
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
 
@@ -73,7 +103,12 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
             c_engineNewWithError(cPath, &errorPtr)
         }
         if let handle {
+            guard let cancellation = OtzariaLexicalCancellation(engine: handle) else {
+                c_engineFree(handle)
+                throw OtzariaSearchError.engineInitializationFailed(code: "CANCELLATION_INIT_FAILED", message: "Unable to create the native cancellation registry")
+            }
             self.handle = handle
+            self.lexicalCancellation = cancellation
             return
         }
         var errorCode = "UNKNOWN_INIT_ERROR"
@@ -105,6 +140,26 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
 
     func search(_ request: OtzariaSearchRequest) throws -> OtzariaSearchPage {
         try callJSON(operation: "search", payload: request, c_search)
+    }
+
+    func searchCancellable(_ request: OtzariaSearchRequest) async throws -> OtzariaSearchPage {
+        let cancellation = lexicalCancellation
+        let id = try cancellation.nextID()
+        var tagged = request
+        tagged.cancelRequestId = id
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            do {
+                let page = try search(tagged)
+                try Task.checkCancellation()
+                return page
+            } catch {
+                try Task.checkCancellation()
+                throw error
+            }
+        } onCancel: {
+            cancellation.cancel(id)
+        }
     }
 
     func bookCounts(_ request: OtzariaSearchRequest) throws -> OtzariaBookCounts {

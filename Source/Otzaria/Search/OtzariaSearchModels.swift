@@ -42,6 +42,7 @@ struct OtzariaSearchRequest: Codable, Sendable {
     var matchTaamim: Bool
     var grouping: OtzariaResultGrouping?
     var bookIds: [Int]?
+    var cancelRequestId: UInt32? = nil
 
     init(
         query: String,
@@ -98,7 +99,7 @@ struct OtzariaSearchRequest: Codable, Sendable {
         case scope, negativeScope, wordMatchMode, wordMatchCount, customSpacing
         case negativeCustomSpacing, alternativeWords, negativeAlternativeWords
         case searchOptions, negativeSearchOptions, matchNikud, matchTaamim, grouping
-        case mode, bookIds
+        case mode, bookIds, cancelRequestId
     }
 
     func encode(to encoder: Encoder) throws {
@@ -126,6 +127,7 @@ struct OtzariaSearchRequest: Codable, Sendable {
         try container.encode(matchTaamim, forKey: .matchTaamim)
         try container.encodeIfPresent(grouping, forKey: .grouping)
         try container.encodeIfPresent(bookIds, forKey: .bookIds)
+        try container.encodeIfPresent(cancelRequestId, forKey: .cancelRequestId)
     }
 }
 

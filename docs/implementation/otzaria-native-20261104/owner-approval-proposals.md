@@ -2,4 +2,18 @@
 
 The current user's explicit full execution/release authorization covers concrete source integration and build verification in this isolated branch. The original package's pre-approval-only constraints do not cancel that later instruction.
 
-Protected integration hunks are limited to search preview language/edition state, paired search-result rendering, and additive PBX file references/three app-source memberships. Existing native reader/navigation surfaces are retained. No upstream vendor source, protection guard, ledger, ownership policy or approval attestation is altered. Final protected hunks must be reviewed in the integration diff alongside synchronized UI changes before release.
+The protected changes attributable to this integration, relative to synchronized UI commit 661d53e0541779ae6c9ed7526cae5b1f273c708d, are:
+
+| File | Exact purpose | Alternatives and rollback |
+|---|---|---|
+| Maktabah.xcodeproj/project.pbxproj | Add source memberships for downstream repositories/helpers to all existing app targets | An unregistered Swift file cannot implement a runtime provider; do not create another app target. Revert these entries with their downstream files. |
+| Source/Features/Search/iOS/SearchResultsListView.swift | Source/translation/both preview visibility, correct selected language/edition, clear/retry/cancel state and protected-text export | Keep production row rendering; do not duplicate search UI or rewrite original search engine. Revert preview hooks with adapter changes. |
+| Source/Features/Reader/ViewModel/ReaderViewModel.swift | Own one downstream edition-selection store and export permission fact per reader | Shared global selection would leak across tabs; embedding edition in TextLocator would change persistence identity. Remove the two stored properties with the hook below. |
+| Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift | Request the explicitly selected edition, invalidate cached merged text appropriately, apply original note presentation and publish the matching generation/export policy | Do not rewrite reading-unit service or mutate SQLite. Revert the optional provider dispatch and matching state publications. |
+| Source/Features/Reader/iOS/ViewOptionsView.swift | Insert OtzariaVersionPicker into the existing native View Options surface | No replacement reader/settings screen; metadata-only inspector does not select reader text. Remove this one control insertion. |
+| Source/UI/iOS/Wrappers/iOSIbarotTextView.swift | Pass/export permission into the existing text view and suppress protected copy/share/export actions | Text content remains in the existing renderer. Hiding only a custom menu would leave UIKit actions active. Revert the permission input and action gating together. |
+| Source/Features/Reader/ViewModel/BookTOCViewModel.swift | Use the selected alternative structure's authoritative line coverage for current-location selection | Nearest-heading inference is not the line_alt_toc contract; changing canonical locators to entry IDs would corrupt navigation. Revert the one matching branch with the optional coverage field. |
+
+The existing native reader/navigation surfaces are retained. Imported original vendor source, protection guards, ownership policy, exception register and approval attestations are unchanged by this integration. This document records the user's current authorization and reviewable scope; it does not fabricate an Ed25519 owner signature or a named-agent review. The complete classified inventory, including the separate UI branch's imported work, is file-provenance.csv. Original source-port licenses/provenance remain with that UI integration.
+
+Runtime validation remains separate from authorization. Until actual Apple UI/processing evidence exists, these hunks are implemented but release acceptance remains open.

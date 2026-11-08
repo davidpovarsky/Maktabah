@@ -254,7 +254,7 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryVersionedTe
                 let order: OtzariaSearchOrder = request.options.sortOrder == .canonical
                     ? .catalogue
                     : .relevance
-                let page = try OtzariaTantivySearchRepository.shared.search(
+                let page = try await OtzariaTantivySearchRepository.shared.search(
                     databasePath: databasePath,
                     request: OtzariaSearchRequest(
                         query: request.query,

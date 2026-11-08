@@ -281,6 +281,14 @@ class BookTOCViewModel {
 
     func findMatchingNode(for locator: TextLocator) -> TOCNode? {
         let allNodes = Self.flattenNodes(tocNodes)
+        if locator.backend == .otzaria,
+           let coverage = navigationStructures.first(where: { $0.id == selectedStructureID })?.lineCoverage,
+           case .legacyLine(let line) = locator.position {
+            guard let anchor = coverage[line] else { return nil }
+            return allNodes.filter {
+                $0.backendLocator == TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(anchor))
+            }.max(by: { $0.level < $1.level })
+        }
         let flattened = allNodes.map { FlattenedTOCItem(id: $0.id, title: $0.bab, level: $0.level, locator: $0.backendLocator) }
         guard let matchingID = TOCReadingLocationTracker.findMatchingNodeID(for: locator, in: flattened) else {
             return nil

@@ -9,7 +9,7 @@ use search_engine::api::search_engine::{
     check_index_compatibility, compute_book_fingerprint, generate_highlight_pattern,
     generate_literal_highlight_pattern, normalize_pdf_text_for_indexing,
     normalize_text_for_indexing, sanitize_query, split_query_words, IndexCompatibility,
-    MergedSibling, PdfPageInput, ResultGrouping, ResultsOrder, SearchEngine, SearchPageResult,
+    MergedSibling, PdfPageInput, ResultGrouping, ResultsOrder, SearchEngine, SearchPageResult, LexicalCancellationHandle,
     SearchResult, SearchScope, SemanticBookInput, SemanticBookLineInput, SemanticConfigInput,
     SemanticExecutedMode, SemanticGroupingMode, SemanticLexicalMode, SemanticResultSource,
     SemanticRetrievalMode, SemanticSearchResponse, SemanticStatus, WordMatchMode, TextStorage, SemanticCancellationToken, BookOrderEntry, configure_line_source, TextStatus,
@@ -110,6 +110,8 @@ struct BridgeSearchRequest {
     word_match_count: Option<u32>,
     #[serde(default)]
     book_ids: Vec<u64>,
+    #[serde(default)]
+    cancel_request_id: Option<u32>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -389,6 +391,33 @@ fn with_engine<T>(
     body(&mut engine)
 }
 
+/// Owns an upstream Arc-backed registry independently of the engine lifetime.
+/// Creation requires a live engine; cancellation never takes the engine mutex.
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_cancellation_new(handle: *mut EngineHandle) -> *mut LexicalCancellationHandle {
+    catch_unwind(AssertUnwindSafe(|| {
+        with_engine(handle, |engine| {
+            Ok(Box::into_raw(Box::new(engine.lexical_cancellation_handle())))
+        })
+            .unwrap_or(ptr::null_mut())
+    })).unwrap_or(ptr::null_mut())
+}
+
+/// Caller retains this handle until every concurrent cancel call has returned.
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_cancellation_cancel(handle: *mut LexicalCancellationHandle, request_id: u32) {
+    let _ = catch_unwind(AssertUnwindSafe(|| {
+        if let Some(handle) = unsafe { handle.as_ref() } { handle.cancel(request_id); }
+    }));
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_cancellation_free(handle: *mut LexicalCancellationHandle) {
+    let _ = catch_unwind(AssertUnwindSafe(|| {
+        if !handle.is_null() { drop(unsafe { Box::from_raw(handle) }); }
+    }));
+}
+
 fn parse_json<T: for<'de> Deserialize<'de>>(value: *const c_char) -> Result<T, String> {
     serde_json::from_str(&c_str_to_string(value)?).map_err(|error| error.to_string())
 }
@@ -512,7 +541,7 @@ fn run_search(
             request.match_nikud,
             request.match_taamim,
             selected_grouping,
-        None,
+        request.cancel_request_id,
         ),
         "advanced" => engine.search_and_count_advanced(
             request.query,
@@ -536,7 +565,7 @@ fn run_search(
             selected_grouping,
             word_match(&request.word_match_mode)?,
             request.word_match_count,
-        None, None,
+        None, request.cancel_request_id,
         ),
         "" | "exact" => engine.search_and_count_exact(
             request.query,
@@ -547,7 +576,7 @@ fn run_search(
             request.match_nikud,
             request.match_taamim,
             selected_grouping,
-        None,
+        request.cancel_request_id,
         ),
         other => return Err(format!("unknown search mode '{other}'")),
     };
@@ -568,7 +597,7 @@ fn run_book_counts(
             request.distance.min(2) as u8,
             request.match_nikud,
             request.match_taamim,
-        None,
+        request.cancel_request_id,
         ),
         "advanced" => engine.count_by_book_advanced_with_status(
             request.query,
@@ -588,14 +617,14 @@ fn run_book_counts(
             scope(&request.negative_scope)?,
             word_match(&request.word_match_mode)?,
             request.word_match_count,
-        None, None,
+        None, request.cancel_request_id,
         ),
         "" | "exact" => engine.count_by_book_exact_with_status(
             request.query,
             request.facets,
             request.match_nikud,
             request.match_taamim,
-        None,
+        request.cancel_request_id,
         ),
         other => return Err(format!("unknown search mode '{other}'")),
     }
@@ -1735,6 +1764,44 @@ mod tests {
         }
         assert_eq!(identities.len(),210);
         otzaria_search_engine_free(handle);
+        std::fs::remove_dir_all(index).unwrap();
+    }
+
+    #[test]
+    fn lexical_cancellation_bypasses_busy_engine_and_owns_registry() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        let path = CString::new(index.to_string_lossy().as_bytes()).unwrap();
+        let handle = otzaria_search_engine_new(path.as_ptr());
+        assert!(!handle.is_null());
+        let cancellation = otzaria_search_engine_cancellation_new(handle);
+        assert!(!cancellation.is_null());
+        let guard = unsafe { &*handle }.engine.lock().unwrap();
+        let address = cancellation as usize;
+        let (send, receive) = std::sync::mpsc::channel();
+        let worker = std::thread::spawn(move || {
+            otzaria_search_engine_cancellation_cancel(address as *mut LexicalCancellationHandle, 77);
+            send.send(()).unwrap();
+        });
+        let completed = receive.recv_timeout(std::time::Duration::from_secs(2));
+        drop(guard);
+        worker.join().unwrap();
+        assert!(completed.is_ok(), "cancellation waited for the busy engine mutex");
+        for mode in ["exact", "fuzzy", "advanced"] {
+            let request = CString::new(json!({"query":"שלום", "mode":mode, "cancelRequestId":77}).to_string()).unwrap();
+            let result = decode_ffi(otzaria_search_engine_search_json(handle, request.as_ptr()));
+            assert_eq!(result["ok"], false, "{mode}: {result}");
+            assert!(result["error"].as_str().unwrap().contains("lexical search cancelled"), "{result}");
+            let count = decode_ffi(otzaria_search_engine_book_counts_json(handle, request.as_ptr()));
+            assert_eq!(count["ok"], false, "{mode}: {count}");
+            assert!(count["error"].as_str().unwrap().contains("lexical search cancelled"), "{count}");
+        }
+        let other = CString::new(r#"{"query":"שלום","mode":"exact","cancelRequestId":78}"#).unwrap();
+        assert_eq!(decode_ffi(otzaria_search_engine_search_json(handle, other.as_ptr()))["ok"], true);
+        otzaria_search_engine_free(handle);
+        // An in-flight Swift cancellation closure can retain the registry after close.
+        otzaria_search_engine_cancellation_cancel(cancellation, 79);
+        otzaria_search_engine_cancellation_free(cancellation);
         std::fs::remove_dir_all(index).unwrap();
     }
 

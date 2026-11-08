@@ -138,10 +138,10 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         OtzariaIndexFileLogger.log("exclusive indexing end databasePath=\(databasePath)")
     }
 
-    func search(databasePath: String, request: OtzariaSearchRequest) throws -> OtzariaSearchPage {
+    func search(databasePath: String, request: OtzariaSearchRequest) async throws -> OtzariaSearchPage {
         let generation = OtzariaMaktabahBridge.shared.generationSnapshot()
         let engine = try engine(databasePath: databasePath)
-        var page = try engine.search(request)
+        var page = try await engine.searchCancellable(request)
         guard generation == OtzariaMaktabahBridge.shared.generationSnapshot(),
               databasePath == OtzariaMaktabahBridge.shared.databasePath else { throw CancellationError() }
         page.sourceGeneration = generation

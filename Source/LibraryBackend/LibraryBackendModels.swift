@@ -251,6 +251,9 @@ struct LibraryNavigationStructure: Codable, Hashable, Identifiable, Sendable {
     let id: String
     let title: String
     let nodes: [LibraryTOCNode]
+    /// Canonical lineIndex to entry anchor, supplied only by an authoritative source.
+    /// An empty map means no verified current-location entry, not nearest-heading inference.
+    var lineCoverage: [Int: Int]? = nil
 }
 
 struct LibraryMetadataField: Codable, Hashable, Identifiable, Sendable {
