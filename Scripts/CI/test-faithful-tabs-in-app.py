@@ -37,6 +37,8 @@ port = root / "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort"
 test_sources = sorted((port / "Tests").glob("*.swift")) + [
     root / "Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift",
     root / "MaktabahTests/ReaderNavigationChromeStateTests.swift",
+    root / "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+    root / "MaktabahTests/ReaderOverviewPresentationTests.swift",
 ]
 for path in test_sources:
     name = path.stem

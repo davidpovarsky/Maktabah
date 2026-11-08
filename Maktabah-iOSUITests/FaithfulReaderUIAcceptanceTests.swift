@@ -203,6 +203,67 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }
     }
 
+    /// Actual application presentation/return, with the existing read-only
+    /// TextKit observer proving identity and the current source/pixel anchor.
+    func exerciseOverviewReplacement(orientation: UIDeviceOrientation, phone: Bool) throws {
+        XCUIDevice.shared.orientation = orientation
+        launchReader(recordViewport: true)
+        assertReaderHasText()
+        let reader = app.textViews["reader-text"]
+        let initial = try viewport()
+        reader.swipeUp()
+        let before = try viewport()
+        XCTAssertTrue(before.source != initial.source || abs(before.offset - initial.offset) > 5,
+                      "Preserve a genuine manually scrolled position, not just the opening page")
+        let title = app.staticTexts["reader-header-title"].label
+        let locator = app.staticTexts["reader-current-locator"].label
+        let readerFrame = reader.frame
+        let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
+        capture("replacement-reader-before-" + platform)
+        let actionID = phone ? "reader-book-tabs-overview" : "reader-tabs-overview"
+        for selectsCurrent in [false, true] {
+            tap(app.buttons[actionID])
+            let overview = app.descendants(matching: .any)["study-groups-overview"]
+            XCTAssertTrue(overview.waitForExistence(timeout: 20))
+            retainNativeEvidence("replacement-context-before-assertions-" + platform)
+            XCTAssertEqual(overview.frame.width, app.frame.width, accuracy: 2,
+                           "The source overview must occupy the reader context's whole width")
+            XCTAssertGreaterThanOrEqual(overview.frame.height, app.frame.height * 0.9,
+                                        "A centered partial-height sheet is not screen replacement")
+            XCTAssertFalse(reader.exists && reader.isHittable,
+                           "The covered original reader must not receive overview touches")
+            let toggle = app.buttons["study-tabs-layout-toggle"]
+            XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+            if toggle.label == "תצוגת רשת" { tap(toggle) }
+            let cells = overview.collectionViews.cells.matching(NSPredicate(
+                format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
+            XCTAssertEqual(cells.count, 1, "This fixture has one genuine active book")
+            capture("replacement-overview-grid-" + platform)
+            tap(toggle)
+            XCTAssertTrue(overview.collectionViews.cells.matching(NSPredicate(
+                format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")).firstMatch.waitForExistence(timeout: 10))
+            capture("replacement-overview-list-" + platform)
+            if selectsCurrent {
+                tap(overview.collectionViews.cells.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")).firstMatch)
+            } else {
+                tap(app.buttons["סיום"])
+            }
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == false"), object: overview)], timeout: 15), .completed)
+            assertReaderHasText()
+            let after = try viewport()
+            XCTAssertEqual(after.object, before.object, "Return must reuse the original TextKit instance")
+            XCTAssertEqual(after.source, before.source, "Return must preserve the first visible source character")
+            XCTAssertEqual(after.offset, before.offset, accuracy: 1, "Return must preserve the source pixel anchor")
+            XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+            XCTAssertEqual(reader.frame.width, readerFrame.width, accuracy: 1)
+            XCTAssertEqual(reader.frame.height, readerFrame.height, accuracy: 1)
+            capture("replacement-reader-return-\(selectsCurrent ? "selected" : "done")-" + platform)
+        }
+    }
+
     func assertReaderHasText() {
         let text = app.textViews["reader-text"]
         XCTAssertTrue(text.waitForExistence(timeout: 60), "The original TextKit reader must render")
@@ -536,6 +597,10 @@ final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
+    func testSourceOverviewReplacesReaderAndRestoresViewport() throws {
+        try exerciseOverviewReplacement(orientation: .portrait, phone: true)
+    }
+
     func testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting() {
         XCUIDevice.shared.orientation = .portrait
         for enabled in [false, true] {
@@ -597,6 +662,14 @@ final class FaithfulReaderLargeTextTests: FaithfulReaderUIBase {
 }
 
 final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
+    func testSourceOverviewReplacesReaderAndRestoresViewportLandscape() throws {
+        try exerciseOverviewReplacement(orientation: .landscapeLeft, phone: false)
+    }
+
+    func testSourceOverviewReplacesReaderAndRestoresViewportPortrait() throws {
+        try exerciseOverviewReplacement(orientation: .portrait, phone: false)
+    }
+
     @MainActor
     func testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable() {
         XCUIDevice.shared.orientation = .landscapeLeft

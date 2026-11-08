@@ -223,9 +223,9 @@
       "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
       "pin": "owner-provided archive",
       "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-      "normalizedPortSHA256": "775ffe1d94050c8bf8559e3cf1c52fd1d3accca5b3b1522ebe745df5b46f894c",
+      "normalizedPortSHA256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25",
       "identicalNormalizedSource": false,
-      "diffLines": 1012
+      "diffLines": 1019
     },
     {
       "original": "iOS/DuckDuckGo/TabSwitcher/TabSwitcherPageViewController.swift",
@@ -285,6 +285,15 @@
       "normalizedPortSHA256": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9",
       "identicalNormalizedSource": false,
       "diffLines": 767
+    },
+    {
+      "original": "iOS/DuckDuckGo/Main/MainViewController+Segues.swift",
+      "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+      "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
+      "originalSHA256": "78a3a1b88b49c29d7e5cbb880349c88f42679d4254a4f397b9acbc803f4b0f05",
+      "normalizedPortSHA256": "ce5fcf107a2df60dcdf74eab2eaff2ef304d02ace8493356ae59755fa36b5d80",
+      "identicalNormalizedSource": false,
+      "diffLines": 880
     },
     {
       "original": "Sources/TorahInspectorUI/TorahSegmentDetailView.swift",

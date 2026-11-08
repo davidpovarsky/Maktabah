@@ -52,7 +52,9 @@ print(result.stdout)
 toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"),
                    Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"),
                    Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"),
-                   Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift")]
+                   Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"),
+                   Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift"),
+                   Path("MaktabahTests/ReaderOverviewPresentationTests.swift")]
 # Include the real self-contained UIKit source port when checking a focused
 # correction such as the original UIFontDescriptor factories. No app/model
 # substitutes are used, and immutable baseline sources remain untouched.

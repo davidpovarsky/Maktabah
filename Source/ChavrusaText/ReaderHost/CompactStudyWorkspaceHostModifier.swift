@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Adds no phone reader chrome. The existing book-title action opens the same
-/// source overview, with a scene-lived adapter so dismissed sheets cannot lose
+/// source overview, with a scene-lived adapter so overview transitions cannot lose
 /// the reader's later checkpoints.
 struct CompactStudyWorkspaceHostModifier: ViewModifier {
     let manager: iOSNavigationManager
@@ -32,6 +32,9 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
                     if let workspace {
                         StudyWorkspaceCheckpointObserver(manager: manager, workspace: workspace)
                     }
+                    #if DEBUG
+                    ReaderViewportAcceptanceObserver().frame(width: 0, height: 0).accessibilityHidden(true)
+                    #endif
                 }
             }
             .task(id: sceneID) {
@@ -55,19 +58,24 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
             .onChange(of: manager.showingTabsList, initial: true) { _, showing in
                 if Self.isEnabled && showing { showsOverview = true }
             }
-            .sheet(isPresented: $showsOverview, onDismiss: {
-                manager.showingTabsList = false
-                workspace?.synchronize(manager)
-            }) {
-                if let workspace {
-                    StudyGroupsOverview(workspace: workspace, manager: manager) {
-                        manager.switchToMode(.viewer)
-                        // This is the same canonical binding used by the
-                        // original phone NavigationStack's Back action.
-                        manager.selectedBook = nil
+            .overlay {
+                if Self.isEnabled {
+                    ReaderOverviewPresentation(isPresented: $showsOverview, onDismiss: {
+                        manager.showingTabsList = false
+                        workspace?.synchronize(manager)
+                    }) {
+                        if let workspace {
+                            StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: {
+                                manager.switchToMode(.viewer)
+                                // Keep the original phone NavigationStack's Back action.
+                                manager.selectedBook = nil
+                            }, onClose: { showsOverview = false })
+                        } else {
+                            ProgressView().accessibilityLabel("טעינת סביבת הלימוד")
+                        }
                     }
-                } else {
-                    ProgressView().accessibilityLabel("טעינת סביבת הלימוד")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
                 }
             }
     }

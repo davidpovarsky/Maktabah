@@ -171,10 +171,10 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .onChange(of: manager.activeReaderViewModel?.isPopoverPresented) { _, presented in
             if presented == true { revealNavigationChrome() }
         }
-        .onChange(of: showsOverview) { _, showing in if showing { revealNavigationChrome() } }
+        .onChange(of: showsOverview) { _, showing in if showing { closeSearch() } }
         .onChange(of: showsProfiles) { _, showing in if showing { revealNavigationChrome() } }
         .onDisappear {
-            navigationChrome.reveal()
+            if !showsOverview { navigationChrome.reveal() }
             closeSearch()
         }
         .onChange(of: workspace?.selection?.groupID) { _, _ in
@@ -198,8 +198,15 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             }
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
-        .sheet(isPresented: $showsOverview) {
-            if let workspace { StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: openLibrary) }
+        .overlay {
+            ReaderOverviewPresentation(isPresented: $showsOverview) {
+                if let workspace {
+                    StudyGroupsOverview(workspace: workspace, manager: manager,
+                                        onOpenLibrary: openLibrary, onClose: { showsOverview = false })
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
         }
         .sheet(isPresented: $showsProfiles) {
             if let workspace { StudyProfileManagementView(workspace: workspace, manager: manager) }

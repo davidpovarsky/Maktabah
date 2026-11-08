@@ -197,7 +197,7 @@
     "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
     "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action. Restore safariToolbar(compact:) as one native principal item with original HStack/group spacing and original overview/plus actions; omit browser-only share/download/back; retain required native split sidebar/book-info items. Hide duplicate opaque navigation backing; zero empty document-strip height. Public window-origin bridge restores the original 7pt toolbar/6pt expanded-search placement below native global tabs; close search on disappearance to stop tracking.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "775ffe1d94050c8bf8559e3cf1c52fd1d3accca5b3b1522ebe745df5b46f894c"
+    "destinationSHA256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -246,5 +246,13 @@
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
     "reason": "Original sidebar toolbarButton geometry and GlassButtonGroup, with actual split action. Add nonvisual public-UIKit window-origin probes to bridge native toolbar and overlay coordinate graphs; no control drawing or reader mutation.",
     "destinationSHA256": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/Main/MainViewController+Segues.swift",
+    "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+    "sha256": "78a3a1b88b49c29d7e5cbb880349c88f42679d4254a4f397b9acbc803f4b0f05",
+    "destinationSHA256": "ce5fcf107a2df60dcdf74eab2eaff2ef304d02ace8493356ae59755fa36b5d80",
+    "reason": "Behavioral integration of the pinned segueToTabSwitcher overCurrentContext contract. A nonvisual context-sized UIKit anchor preserves the existing reader hierarchy; original source Grid/List are reused. No sheet, reader rehosting, offset/delegate writes or fabricated WebKit preview/transition. Browser-specific snapshot animation is omitted rather than replaced with invented motion."
   }
 ]

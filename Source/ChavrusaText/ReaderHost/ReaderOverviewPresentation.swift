@@ -1,0 +1,130 @@
+#if os(iOS) && canImport(UIKit)
+import SwiftUI
+import UIKit
+
+/// The pinned browser presents its overview over the current browser context.
+/// This context-sized anchor keeps the existing reader hierarchy in place;
+/// it neither rehosts the reader nor writes its scroll/selection state.
+struct ReaderOverviewPresentation<Overview: View>: UIViewControllerRepresentable {
+    @Binding var isPresented: Bool
+    let onDismiss: () -> Void
+    let overview: Overview
+
+    init(isPresented: Binding<Bool>, onDismiss: @escaping () -> Void = {},
+         @ViewBuilder overview: () -> Overview) {
+        _isPresented = isPresented
+        self.onDismiss = onDismiss
+        self.overview = overview()
+    }
+
+    func makeUIViewController(context: Context) -> ReaderOverviewPresentationController {
+        ReaderOverviewPresentationController()
+    }
+
+    func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
+        controller.configure(
+            isPresented: isPresented,
+            overview: AnyView(overview.environment(\.self, context.environment)),
+            onDismiss: {
+                isPresented = false
+                onDismiss()
+            }
+        )
+    }
+
+    static func dismantleUIViewController(_ controller: ReaderOverviewPresentationController, coordinator: ()) {
+        controller.tearDownPresentation()
+    }
+}
+
+final class ReaderOverviewPresentationController: UIViewController {
+    private var wantsOverview = false
+    private var overview = AnyView(EmptyView())
+    private var onDismiss: (() -> Void)?
+    private var hostingController: UIHostingController<AnyView>?
+    private var isTransitioning = false
+    private var updateScheduled = false
+
+    override func loadView() {
+        let anchor = UIView()
+        anchor.backgroundColor = .clear
+        anchor.isOpaque = false
+        anchor.isUserInteractionEnabled = false
+        view = anchor
+        definesPresentationContext = true
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scheduleUpdate()
+    }
+
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        scheduleUpdate()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scheduleUpdate()
+    }
+
+    func configure(isPresented: Bool, overview: AnyView, onDismiss: @escaping () -> Void) {
+        wantsOverview = isPresented
+        self.overview = overview
+        self.onDismiss = onDismiss
+        hostingController?.rootView = overview
+        scheduleUpdate()
+    }
+
+    func tearDownPresentation() {
+        wantsOverview = false
+        onDismiss = nil
+        overview = AnyView(EmptyView())
+        if hostingController != nil {
+            dismiss(animated: false)
+            hostingController = nil
+        }
+    }
+
+    private func scheduleUpdate() {
+        guard !updateScheduled else { return }
+        updateScheduled = true
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            self.updateScheduled = false
+            self.updatePresentation()
+        }
+    }
+
+    private func updatePresentation() {
+        guard let view = viewIfLoaded, view.window != nil,
+              view.bounds.width > 0, view.bounds.height > 0,
+              !isTransitioning else { return }
+        if wantsOverview, hostingController == nil, presentedViewController == nil {
+            let controller = UIHostingController(rootView: overview)
+            controller.modalPresentationStyle = .overCurrentContext
+            controller.isModalInPresentation = true
+            controller.view.backgroundColor = .systemBackground
+            controller.view.accessibilityViewIsModal = true
+            hostingController = controller
+            isTransitioning = true
+            // The browser's WebKit snapshot transition has no reader-domain
+            // equivalent. Change the whole context without inventing motion.
+            present(controller, animated: false) { [weak self] in
+                self?.isTransitioning = false
+                self?.scheduleUpdate()
+            }
+        } else if !wantsOverview, hostingController != nil {
+            isTransitioning = true
+            dismiss(animated: false) { [weak self] in
+                guard let self else { return }
+                self.hostingController = nil
+                self.isTransitioning = false
+                self.onDismiss?()
+                self.scheduleUpdate()
+            }
+        }
+    }
+}
+#endif

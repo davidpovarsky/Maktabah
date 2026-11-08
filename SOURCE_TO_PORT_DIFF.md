@@ -1,5 +1,7 @@
 # Source-to-port evidence — faithful iPad rebuild
 
+2026-11-09 owner correction: the overview replaces the reader context, without a sheet. See [presentation contract and runtime evidence](docs/ipad-ui-rebuild/OVERVIEW_CONTEXT_REPLACEMENT.md). Earlier sheet captures are rejected for this requirement.
+
 2026-11-08 visual-fidelity correction from `661d53e0`: see `docs/ipad-ui-rebuild/VISUAL_FIDELITY_CORRECTION.md` and `source-audit-20261108.json`. All 32 recorded original/port comparisons were repeated against immutable Git objects, including the pinned Inspector, toolbar action adapter and three original DesignResourcesKit UIFontDescriptor factories. Current exact patches supersede older adaptation descriptions below; Native visual acceptance remains pending until the new run is inspected.
 
 Base app: `f092f3996927251d105dfb9243dfac487b196534`. Execution: `[נועם | DEV] [MAIN_SESSION]`; no subagents. Source ports were built from immutable originals, not from the rejected experiment.

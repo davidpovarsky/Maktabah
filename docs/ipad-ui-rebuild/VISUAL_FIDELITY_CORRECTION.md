@@ -154,3 +154,11 @@ Original DuckDuckGo performs the model move **inside** `performBatchUpdates` alo
 Exact10401 Native evidence: `evidence/after-2fdb5927/`; its signed binary remains the verified experimental release. The accessibility/transaction corrections require their own SDK/runtime/delivery results before being attributed to a newer binary.
 
 The existing window method is renamed `testCandidateWindowResizePreservesOriginalReaderAndSearch` without changing its body or assertions, so XCTest executes its native window/source-action checks before the drag case that left the app unable to terminate in42519449183. The existing native Full Screen teardown remains mandatory. This retains exactly one window case and does not bypass a gate.
+
+## Owner correction — overview replaces the reader; sheet is incorrect
+
+The owner explicitly clarified on2026-11-08 that the overview must occupy the reader/browser screen, not a separate sheet. Actual pinned browser source `Main/MainViewController+Segues.swift` lines241/290/293/297 confirms `segueToTabSwitcher`, its custom `tabSwitcherTransition`, `.overCurrentContext` and `present(controller, animated:true)`; the source WebViewTransition uses the transition context's final frame for the overview. This is a full browser-context transition, not the floating SwiftUI sheet currently used by both reader hosts.
+
+The current `.sheet(isPresented:$showsOverview)` in ChavrusaReaderHost and CompactStudyWorkspaceHostModifier is an integration fidelity defect and must be replaced with source-faithful reader/overview presentation while retaining the reader's state/identity. No replacement presentation has yet been implemented or validated. Existing Grid/List ports remain reusable. Build10401 still contains the incorrect sheet and is not accepted for this clarified presentation requirement.
+
+Delivery42525488039/build10501 was CANCELLED before Archive; Archive, upload and Apple processing were all SKIPPED. The old-presentation Native diagnostic42525355274 was requested cancelled after this owner clarification. Do not report either as acceptance of the required replacement-screen behavior.

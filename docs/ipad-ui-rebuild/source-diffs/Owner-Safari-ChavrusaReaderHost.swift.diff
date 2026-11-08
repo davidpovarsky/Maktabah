@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,253 +1,241 @@
+@@ -1,253 +1,248 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -346,10 +346,10 @@
 +        .onChange(of: manager.activeReaderViewModel?.isPopoverPresented) { _, presented in
 +            if presented == true { revealNavigationChrome() }
 +        }
-+        .onChange(of: showsOverview) { _, showing in if showing { revealNavigationChrome() } }
++        .onChange(of: showsOverview) { _, showing in if showing { closeSearch() } }
 +        .onChange(of: showsProfiles) { _, showing in if showing { revealNavigationChrome() } }
 +        .onDisappear {
-+            navigationChrome.reveal()
++            if !showsOverview { navigationChrome.reveal() }
 +            closeSearch()
 +        }
 +        .onChange(of: workspace?.selection?.groupID) { _, _ in
@@ -373,8 +373,15 @@
 +            }
 +        }
 +        .onChange(of: scenePhase) { _, phase in if phase != .active { workspace?.synchronize(manager) } }
-+        .sheet(isPresented: $showsOverview) {
-+            if let workspace { StudyGroupsOverview(workspace: workspace, manager: manager, onOpenLibrary: openLibrary) }
++        .overlay {
++            ReaderOverviewPresentation(isPresented: $showsOverview) {
++                if let workspace {
++                    StudyGroupsOverview(workspace: workspace, manager: manager,
++                                        onOpenLibrary: openLibrary, onClose: { showsOverview = false })
++                }
++            }
++            .frame(maxWidth: .infinity, maxHeight: .infinity)
++            .ignoresSafeArea()
 +        }
 +        .sheet(isPresented: $showsProfiles) {
 +            if let workspace { StudyProfileManagementView(workspace: workspace, manager: manager) }
@@ -475,7 +482,7 @@
                  }
              }
          }
-@@ -255,37 +243,8 @@
+@@ -255,37 +250,8 @@
          .frame(height: 54)
      }
  
@@ -515,7 +522,7 @@
          Button(action: action) {
              Image(systemName: symbol)
                  .font(.system(size: 19, weight: .regular))
-@@ -294,366 +253,146 @@
+@@ -294,366 +260,146 @@
          }
          .buttonStyle(.plain)
          .accessibilityLabel(title)

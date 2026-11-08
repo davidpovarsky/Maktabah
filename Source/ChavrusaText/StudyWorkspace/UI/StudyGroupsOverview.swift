@@ -5,7 +5,7 @@ struct StudyGroupsOverview: View {
     @Bindable var workspace: StudyWorkspaceNavigationAdapter
     let manager: iOSNavigationManager
     let onOpenLibrary: () -> Void
-    @Environment(\.dismiss) private var dismiss
+    let onClose: () -> Void
     @State private var showsNamePrompt = false
     @State private var name = ""
     @State private var copiesCurrent = false
@@ -38,7 +38,7 @@ struct StudyGroupsOverview: View {
                     ContentUnavailableView {
                         Label("אין כרטיסיות בקבוצה", systemImage: "book.closed")
                     } actions: {
-                        Button("פתח ספר מהספרייה") { dismiss(); onOpenLibrary() }
+                        Button("פתח ספר מהספרייה") { onClose(); onOpenLibrary() }
                     }
                 }
             }
@@ -62,7 +62,7 @@ struct StudyGroupsOverview: View {
                     }
                     .readerSourceGlassBackground()
                 }
-                ToolbarItem(placement: .confirmationAction) { Button("סיום") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button("סיום") { onClose() } }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         tabSwitcherLayoutRaw = tabSwitcherLayout == .grid
@@ -129,11 +129,17 @@ struct StudyGroupsOverview: View {
     private func prompt(copy: Bool) { renamesCurrent = false; copiesCurrent = copy; name = ""; showsNamePrompt = true }
 
     private func openDocument(_ document: ReaderTabSwitcherDocument) {
+        // Like returning to the browser's already-selected tab: no navigation
+        // or restoration should run just to uncover its existing view.
+        if workspace.group?.activeTabID == document.id {
+            onClose()
+            return
+        }
         Task {
             do {
                 guard let group = workspace.group else { return }
                 try await workspace.switchGroup(to: group.id, documentID: document.id, manager: manager)
-                dismiss()
+                onClose()
             } catch {
                 workspace.errorMessage = error.localizedDescription
             }
