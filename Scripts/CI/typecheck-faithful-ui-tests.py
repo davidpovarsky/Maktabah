@@ -53,6 +53,15 @@ toolbar_sources = [Path("Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAd
                    Path("Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"),
                    Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"),
                    Path("Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift")]
+# Include the real self-contained UIKit source port when checking a focused
+# correction such as the original UIFontDescriptor factories. No app/model
+# substitutes are used, and immutable baseline sources remain untouched.
+tabs_port = Path("Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort")
+toolbar_sources.extend(tabs_port / name for name in [
+    "TabsBarLayout.swift", "TabsBarView.swift", "TabsBarCell.swift", "TabsBarViewController.swift",
+    "TabFlareBackgroundController.swift", "TabFlaredBackgroundView.swift", "ReaderBookTabsModel.swift",
+    "ReaderTabFadeOutLabel.swift", "TabSwitcherPagePort.swift",
+])
 toolbar_code = 0
 if all(path.is_file() for path in toolbar_sources):
     # Compile the real self-contained app components, not substitute stubs.

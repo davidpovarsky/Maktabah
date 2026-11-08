@@ -27,6 +27,31 @@ enum ReaderTabSwitcherLayout: String, CaseIterable {
     case list
 }
 
+// Original DesignResourcesKit/Fonts/Font.swift at the same DuckDuckGo pin.
+// Keep the source text-style descriptors and Dynamic Type behavior exactly.
+private extension UIFont {
+    static func daxBodySemibold() -> UIFont {
+        let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .body)
+        let newDescriptor = descriptor.addingAttributes([.traits: [
+            UIFontDescriptor.TraitKey.weight: UIFont.Weight.semibold]])
+        return UIFont(descriptor: newDescriptor, size: descriptor.pointSize)
+    }
+
+    static func daxSubheadSemibold() -> UIFont {
+        let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .subheadline)
+        let newDescriptor = descriptor.addingAttributes([.traits: [
+            UIFontDescriptor.TraitKey.weight: UIFont.Weight.semibold]])
+        return UIFont(descriptor: newDescriptor, size: descriptor.pointSize)
+    }
+
+    static func daxFootnoteSemibold() -> UIFont {
+        let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .footnote)
+        let newDescriptor = descriptor.addingAttributes([.traits: [
+            UIFontDescriptor.TraitKey.weight: UIFont.Weight.semibold]])
+        return UIFont(descriptor: newDescriptor, size: descriptor.pointSize)
+    }
+}
+
 enum TabSwitcherGridLayoutGeometry {
     static let spacing: CGFloat = 14
     static let minimumColumnWidth: CGFloat = 150
@@ -295,7 +320,7 @@ final class TabViewGridCell: TabViewCell {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     private func setupLayout() {
-        title.font = UIFontMetrics(forTextStyle: .footnote).scaledFont(for: .systemFont(ofSize: 13, weight: .semibold))
+        title.font = .daxFootnoteSemibold()
         let header = UIStackView(arrangedSubviews: [icon, title])
         header.translatesAutoresizingMaskIntoConstraints = false
         header.axis = .horizontal
@@ -381,10 +406,10 @@ final class TabViewListCell: TabViewCell {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     private func setupLayout() {
-        title.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))
+        title.font = .daxBodySemibold()
         title.setContentHuggingPriority(.defaultLow, for: .vertical)
         title.setContentCompressionResistancePriority(.init(751), for: .vertical)
-        subtitle.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: .systemFont(ofSize: 15, weight: .semibold))
+        subtitle.font = .daxSubheadSemibold()
         subtitle.isAccessibilityElement = false
         subtitle.setContentHuggingPriority(.init(252), for: .vertical)
 

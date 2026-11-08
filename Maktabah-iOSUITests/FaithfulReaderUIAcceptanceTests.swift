@@ -160,19 +160,23 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 return windowed ? bottomMenu.frame.width > 0 && bottomMenu.frame.height > 0 : frame.contains(bottomMenu.frame)
             }
         }, object: nil)
-        XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed,
-                       "Capture only after native rotation and the original bottom toolbar settle inside the window")
+        let settlement = XCTWaiter.wait(for: [settled], timeout: 20)
         // Capture the display rather than XCTest's app-rectangle crop: the
         // iPadOS 27 landscape app crop can retain portrait dimensions and clip
         // the trailing toolbar. Preserve the complete system/window chrome.
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-        attachment.name = name
+        // Preserve the genuine image and hierarchy even if the strict native
+        // settling assertion fails. An UNSETTLED capture is diagnostic evidence,
+        // never an automatic visual-acceptance pass.
+        attachment.name = settlement == .completed ? name : "UNSETTLED-" + name
         attachment.lifetime = .keepAlways
         add(attachment)
         let hierarchy = XCTAttachment(string: "appFrame=\(app.frame)\norientation=\(XCUIDevice.shared.orientation.rawValue)\n\(app.debugDescription)")
         hierarchy.name = name + "-ui-tree"
         hierarchy.lifetime = .keepAlways
         add(hierarchy)
+        XCTAssertEqual(settlement, .completed,
+                       "Capture only after native rotation and the original bottom toolbar settle inside the window")
     }
     func assertReaderHasText() {
         let text = app.textViews["reader-text"]
@@ -438,6 +442,24 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
 }
 
 final class FaithfulReaderVisualBaselineTests: FaithfulReaderUIBase {
+    func testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions() {
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchReader(enabled: false, scenario: "studyCommentaries")
+        XCTAssertTrue(app.textViews["reader-text"].waitForExistence(timeout: 60))
+        XCTAssertTrue(app.descendants(matching: .any)["torah-inspector-tools"].waitForExistence(timeout: 30))
+        // This is an actual original-app reference, independently retained
+        // before any bottom-toolbar/pixel assertion can abort the test.
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = "baseline-inspector-reference-before-reader-assertions"
+        image.lifetime = .keepAlways
+        add(image)
+        let hierarchy = XCTAttachment(string: app.debugDescription)
+        hierarchy.name = "baseline-inspector-reference-ui-tree"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        assertReaderHasText()
+    }
+
     func testOriginalGlobalSearchHistoryThroughNativeControls() {
         exerciseGlobalHistorySubmission(enabled: false)
     }

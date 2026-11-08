@@ -205,7 +205,7 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
     "reason": "Preserve the original UICollectionView list/grid controller, 14pt spacing, adaptive one-to-four-column geometry, 664pt list cap, selection, swipe-close coordination, native context menus, and drag reorder. Replace the browser TabsModel, tracker header, Fire/AI/telemetry services, and browser previews with the stable-ID display callbacks to the canonical ReaderDocumentTab adapter and an honest unavailable-preview state. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
     "sha256": "a12100a4c78e4d32da6df3ea7d137766a3da7a82fad2cdb84d4f371c12a9c8cf",
-    "destinationSHA256": "dd03a4a8ec146d40d7a3e13725c4c65aab0a7b738ac683bc0355f3877db90475"
+    "destinationSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -213,7 +213,7 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
     "reason": "Preserve the original card/border radii, shadow, close-button spacing animation, one-third-width swipe threshold, alpha and removal/cancel animations. Replace browser favicon, unread, screenshot, theme, analytics and AI state with book-domain title/backend state; mirror the existing horizontal swipe under RTL. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
     "sha256": "6e8bb3fda08c289202c0abec6beeefb57a91bd420111c6f9506e768d97a88c57",
-    "destinationSHA256": "dd03a4a8ec146d40d7a3e13725c4c65aab0a7b738ac683bc0355f3877db90475"
+    "destinationSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -221,7 +221,7 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
     "reason": "Preserve the original 44pt header, 16pt leading icon, 12/8pt header padding, 8pt preview inset, 4pt bottom padding and close-container layout. Substitute a semantic book icon and explicit unavailable-preview content because the reader has no browser screenshot service. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
     "sha256": "3c17cdbf42a3720645a558320f5fb28da29090f040f5d7a3c94745d43f6118ad",
-    "destinationSHA256": "dd03a4a8ec146d40d7a3e13725c4c65aab0a7b738ac683bc0355f3877db90475"
+    "destinationSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -229,6 +229,14 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
     "reason": "Preserve the original list row's 16/12pt horizontal padding, 8pt vertical padding, 24pt icon, 8pt inter-item spacing, 44pt control height, title/subtitle stack and close control. Remove browser URL, unread and multi-select-only presentation while retaining the source cell hierarchy. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
     "sha256": "efcdd9ebba2697b2ef8b7dcbf3f71f27e4b5c26a73d8a5da47123edc28e73ca5",
-    "destinationSHA256": "dd03a4a8ec146d40d7a3e13725c4c65aab0a7b738ac683bc0355f3877db90475"
+    "destinationSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "SharedPackages/Infrastructure/DesignResourcesKit/Sources/DesignResourcesKit/Fonts/Font.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "sha256": "9ca6e76e744090cb10984d40fe770de2051dd3b24d81f5fcefac2adaf7bd4b33",
+    "reason": "Copy exactly daxBodySemibold, daxSubheadSemibold and daxFootnoteSemibold UIFontDescriptor factories; private file scope only. Replace earlier scaledFont approximations without a typeface or size redesign.",
+    "destinationSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03"
   }
 ]

@@ -4,7 +4,9 @@ Working tree: `Maktabah-ipad-ui-faithful-rebuild`; branch `experiment/ipad-ui-fa
 
 ## Original-source review
 
-`source-audit-20261108.json` records 30 actual pinned original/port comparisons. All original hashes match the previous manifest. Fourteen comparisons are normalized-text identical, including the entire original TorahSegmentDetailView at `19d1b35397af4f10ae70cfb3f444c9de87383b53`. All ten requested DuckDuckGo source files, the owner Safari Swift source/archive and Gelatin source exist. Changed source-to-port patches are refreshed under `source-diffs/`.
+`source-audit-20261108.json` records 31 actual pinned original/port comparisons. All previously recorded original hashes match the previous manifest. Fourteen comparisons are normalized-text identical, including the entire original TorahSegmentDetailView at `19d1b35397af4f10ae70cfb3f444c9de87383b53`. All ten requested DuckDuckGo source files, the owner Safari Swift source/archive and Gelatin source exist. Changed source-to-port patches are refreshed under `source-diffs/`.
+
+Further pinned-dependency review found the original `DesignResourcesKit/Fonts/Font.swift` factories in Git objects, even though that dependency folder is not checked out in the reference tree. Its `daxBodySemibold`, `daxSubheadSemibold` and `daxFootnoteSemibold` functions are now copied exactly, with private file scope, replacing the earlier UIFontMetrics/system-size approximations. Original SHA-256: `9ca6e76e744090cb10984d40fe770de2051dd3b24d81f5fcefac2adaf7bd4b33`. This follow-up is later than the initial `1a6515d3` full matrix; focused exact-source SDK/native verification is separate.
 
 | Component | Original and precise integration |
 |---|---|
@@ -28,4 +30,6 @@ Before evidence is the actual `661d53e0` run [42447373973](https://github.com/da
 
 New real UIKit coverage checks 0/1/2/30 book membership with toolbar-owned controls and no reserved trailing action area. Native coverage now checks overview/add reachability and strip absence for an empty group before/after relaunch, plus constant reader width across FloatingPanel closure. Existing strict regression assertions are retained.
 
-New candidate build/UIKit/UI/visual results: pending. TestFlight: not dispatched. A source comparison or Windows compile cannot establish UIKit/SwiftUI visual acceptance.
+The screenshot helper now retains actual screenshots/hierarchies **before** its unchanged strict native-settling assertion, labelling timed-out images `UNSETTLED-`. Such images are diagnostic, never automatic acceptance. A separate original-Inspector case retains its source screenshot before the unchanged reader/pixel assertions can abort. No failing assertion was removed or relaxed. The focused SDK compiler now includes all nine actual source-port files alongside the existing real standalone toolbar/pager sources; no stubs or replacement app views.
+
+New candidate build/UIKit/UI/visual results: pending. Local portable suites: 379/379 assertions and 61/61 workspace checks passed. TestFlight: not dispatched. A source comparison or Windows compile cannot establish UIKit/SwiftUI visual acceptance.
