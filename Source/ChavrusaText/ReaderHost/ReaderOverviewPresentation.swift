@@ -5,7 +5,7 @@ import UIKit
 /// The pinned browser presents its overview over the current browser context.
 /// This context-sized anchor keeps the existing reader hierarchy in place;
 /// it neither rehosts the reader nor writes its scroll/selection state.
-struct ReaderOverviewPresentation<Overview: View>: UIViewControllerRepresentable {
+struct ReaderOverviewPresentation<Overview: View>: View {
     @Binding var isPresented: Bool
     let onDismiss: () -> Void
     let overview: Overview
@@ -16,6 +16,19 @@ struct ReaderOverviewPresentation<Overview: View>: UIViewControllerRepresentable
         self.onDismiss = onDismiss
         self.overview = overview()
     }
+
+    var body: some View {
+        ReaderOverviewPresentationAnchor(isPresented: $isPresented, onDismiss: onDismiss, overview: overview)
+            // A transparent representable still has a SwiftUI hosting layer.
+            // The closed presentation must not intercept reader pan gestures.
+            .allowsHitTesting(isPresented)
+    }
+}
+
+private struct ReaderOverviewPresentationAnchor<Overview: View>: UIViewControllerRepresentable {
+    @Binding var isPresented: Bool
+    let onDismiss: () -> Void
+    let overview: Overview
 
     func makeUIViewController(context: Context) -> ReaderOverviewPresentationController {
         ReaderOverviewPresentationController()

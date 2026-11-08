@@ -291,9 +291,9 @@
       "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "78a3a1b88b49c29d7e5cbb880349c88f42679d4254a4f397b9acbc803f4b0f05",
-      "normalizedPortSHA256": "ce5fcf107a2df60dcdf74eab2eaff2ef304d02ace8493356ae59755fa36b5d80",
+      "normalizedPortSHA256": "a4201665f82ff2b2cd7df1ed1d4656e71054f4ba90a5ff6512eb8de39c097ee8",
       "identicalNormalizedSource": false,
-      "diffLines": 880
+      "diffLines": 876
     },
     {
       "original": "Sources/TorahInspectorUI/TorahSegmentDetailView.swift",

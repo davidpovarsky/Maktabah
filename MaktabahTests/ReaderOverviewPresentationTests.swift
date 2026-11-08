@@ -7,6 +7,35 @@ import XCTest
 #endif
 
 final class ReaderOverviewPresentationTests: XCTestCase {
+    private struct ScrollProbe: UIViewRepresentable {
+        let scroll: UIScrollView
+        func makeUIView(context: Context) -> UIScrollView { scroll }
+        func updateUIView(_ view: UIScrollView, context: Context) {}
+    }
+
+    @MainActor
+    func testClosedSwiftUIPresentationAllowsTouchesToReachTheReader() throws {
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let oldKey = scene.windows.first(where: \.isKeyWindow)
+        let window = UIWindow(windowScene: scene)
+        let scroll = UIScrollView()
+        scroll.contentSize = CGSize(width: window.bounds.width, height: window.bounds.height * 5)
+        let host = UIHostingController(rootView: ScrollProbe(scroll: scroll).overlay {
+            ReaderOverviewPresentation(isPresented: .constant(false)) { Text("Overview") }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+        })
+        window.rootViewController = host
+        window.makeKeyAndVisible()
+        defer { window.isHidden = true; oldKey?.makeKeyAndVisible() }
+        waitUntil("The actual SwiftUI reader must attach before hit testing") {
+            scroll.window === window && scroll.bounds.width > 80 && scroll.bounds.height > 80
+        }
+        let hit = try XCTUnwrap(window.hitTest(CGPoint(x: window.bounds.midX, y: window.bounds.midY), with: nil))
+        XCTAssertTrue(hit === scroll || hit.isDescendant(of: scroll),
+                      "The closed SwiftUI presentation layer must not block the original reader's gestures")
+    }
+
     private struct Fixture {
         let window: UIWindow
         let previousKeyWindow: UIWindow?

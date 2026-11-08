@@ -53,8 +53,12 @@ final class SafariPrototypeReferenceTests: XCTestCase {
 class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
-    struct Viewport: Decodable { let source: Int; let offset: Double; let object: Int; let requestID: String }
-    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false) {
+    struct Viewport: Codable {
+        let source: Int; let offset: Double; let object: Int; let requestID: String
+        let contentHeight: Double?; let viewportHeight: Double?; let contentOffsetY: Double?
+        let topInset: Double?; let bottomInset: Double?
+    }
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil) {
         // The downstream observer reads the actual original source anchor;
         // never activate the baseline renderer's crash-prone file exporter.
         let prefix = (recordViewport ? ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"] : nil).map {
@@ -65,7 +69,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)
-        ], language: language, locale: language == "he" ? "he_IL" : "en_US",
+        ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []), language: language, locale: language == "he" ? "he_IL" : "en_US",
         extraEnvironment: prefix.map { ["CHAVRUSA_READER_VIEWPORT_REPORT": $0] } ?? [:])
         dismissAlertsIfNeeded()
     }
@@ -85,6 +89,12 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [exists], timeout: 15), .completed)
         return try JSONDecoder().decode(Viewport.self, from: Data(contentsOf: url))
+    }
+    func attachViewport(_ value: Viewport, named name: String) throws {
+        let attachment = XCTAttachment(data: try JSONEncoder().encode(value), uniformTypeIdentifier: "public.json")
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
     func workspaceContainerParent() throws -> URL {
         let documents = try XCTUnwrap(ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"])
@@ -207,19 +217,29 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     /// TextKit observer proving identity and the current source/pixel anchor.
     func exerciseOverviewReplacement(orientation: UIDeviceOrientation, phone: Bool) throws {
         XCUIDevice.shared.orientation = orientation
-        launchReader(recordViewport: true)
+        // The genuine linked-book smoke unit is short at its default size.
+        // Use the existing supported 48pt reader preference, never mock text
+        // or a programmatically assigned scroll offset, to obtain overflow.
+        launchReader(recordViewport: true, fontSize: 48)
         assertReaderHasText()
         let reader = app.textViews["reader-text"]
+        let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
         let initial = try viewport()
-        reader.swipeUp()
+        try attachViewport(initial, named: "replacement-viewport-opening-" + platform)
+        capture("replacement-reader-before-pan-" + platform)
+        let scrollable = try XCTUnwrap(initial.contentHeight) - XCTUnwrap(initial.viewportHeight)
+            + XCTUnwrap(initial.topInset) + XCTUnwrap(initial.bottomInset)
+        XCTAssertGreaterThan(scrollable, 100, "The genuine reader fixture must actually overflow before scrolling")
+        reader.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.72))
+            .press(forDuration: 0.05, thenDragTo: reader.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.42)))
         let before = try viewport()
+        try attachViewport(before, named: "replacement-viewport-scrolled-" + platform)
+        capture("replacement-reader-before-" + platform)
         XCTAssertTrue(before.source != initial.source || abs(before.offset - initial.offset) > 5,
                       "Preserve a genuine manually scrolled position, not just the opening page")
         let title = app.staticTexts["reader-header-title"].label
         let locator = app.staticTexts["reader-current-locator"].label
         let readerFrame = reader.frame
-        let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
-        capture("replacement-reader-before-" + platform)
         let actionID = phone ? "reader-book-tabs-overview" : "reader-tabs-overview"
         for selectsCurrent in [false, true] {
             tap(app.buttons[actionID])
@@ -253,6 +273,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 predicate: NSPredicate(format: "exists == false"), object: overview)], timeout: 15), .completed)
             assertReaderHasText()
             let after = try viewport()
+            try attachViewport(after, named: "replacement-viewport-return-\(selectsCurrent ? "selected" : "done")-" + platform)
             XCTAssertEqual(after.object, before.object, "Return must reuse the original TextKit instance")
             XCTAssertEqual(after.source, before.source, "Return must preserve the first visible source character")
             XCTAssertEqual(after.offset, before.offset, accuracy: 1, "Return must preserve the source pixel anchor")
