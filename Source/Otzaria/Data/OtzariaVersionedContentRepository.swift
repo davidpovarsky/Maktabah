@@ -20,14 +20,13 @@ struct OtzariaVersionedContentRepository: Sendable {
             let bookID = try OtzariaCanonicalLineLocatorResolver.bookID(for: original.locator.workKey, database: database, capabilities: capabilities)
             var query = "SELECT id, hasContent FROM book_version WHERE bookId = ? AND versionTitle = ?"
             var parameters: [Any] = [bookID, version.title]
-            if let identity = version.sourceIdentity {
-                let prefix = "otzaria-version:\(bookID):"
-                guard identity.hasPrefix(prefix), let versionID = Int(identity.dropFirst(prefix.count)), versionID > 0 else {
-                    throw LibraryBackendError.invalidLocator
-                }
-                query += " AND id = ?"
-                parameters.append(versionID)
+            let prefix = "otzaria-version:\(bookID):"
+            guard let identity = version.sourceIdentity, identity.hasPrefix(prefix),
+                  let versionID = Int(identity.dropFirst(prefix.count)), versionID > 0 else {
+                throw LibraryBackendError.invalidLocator
             }
+            query += " AND id = ?"
+            parameters.append(versionID)
             let versions = try database.fetch(query: query + " LIMIT 2", parameters: parameters) { ($0.int(at: 0), $0.int(at: 1)) }
             guard versions.count == 1, let edition = versions.first, edition.1 == 1 else {
                 throw LibraryBackendError.capabilityUnavailable

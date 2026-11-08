@@ -92,6 +92,8 @@ jobs:
       - name: Install Sefaria-Mobile JS Dependencies
         if: hashFiles('Vendor/SefariaMobile/Upstream/package.json') != ''
         working-directory: Vendor/SefariaMobile/Upstream
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           bash ../../../Scripts/CI/install-embedded-js-dependencies.sh
 

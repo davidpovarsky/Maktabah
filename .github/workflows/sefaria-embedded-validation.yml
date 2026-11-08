@@ -157,6 +157,8 @@ jobs:
 
       - name: Install Sefaria-Mobile JS Dependencies
         working-directory: Vendor/SefariaMobile/Upstream
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           echo "=== Running npm ci in Sefaria-Mobile Upstream ==="
           bash ../../../Scripts/CI/install-embedded-js-dependencies.sh

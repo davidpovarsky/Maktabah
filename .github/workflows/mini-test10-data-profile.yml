@@ -130,6 +130,8 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
       - name: Prepare the shipping embedded runtime and resources
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: bash Scripts/CI/prepare-embedded-artifact-app.sh
 
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87

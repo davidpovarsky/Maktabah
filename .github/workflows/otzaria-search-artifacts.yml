@@ -131,6 +131,8 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
       - name: Prepare the shipping embedded runtime and resources
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: bash Scripts/CI/prepare-embedded-artifact-app.sh
 
       - name: Identify exact Rust toolchain
@@ -349,7 +351,9 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "Verified artifact release $TAG already exists; refusing a duplicate rebuild publication."
           else
-            gh release create "$TAG" build/otzaria-artifact/* --title "Otzaria search data $SOURCE_TAG" --notes "Prebuilt Otzaria Tantivy search data. Artifact identity: $IDENTITY"
+            gh release create "$TAG" build/otzaria-artifact/* --target "$GITHUB_SHA" --title "Otzaria search data $SOURCE_TAG" --notes "Prebuilt Otzaria Tantivy search data. Artifact identity: $IDENTITY"
+            git fetch origin "refs/tags/$TAG:refs/tags/$TAG"
+            test "$(git rev-list -n 1 "$TAG")" = "$GITHUB_SHA"
           fi
           printf '%s\n' "$TAG" > build/logs/otzaria-search-release-tag.txt
       - name: Live Activity · refresh

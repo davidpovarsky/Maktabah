@@ -17,8 +17,23 @@ if [ "$(uname -s)" = Darwin ] && [ "$(uname -m)" = arm64 ]; then
   export npm_config_sharp_libvips_local_prebuilds="$PREBUILDS"
   download_verified() {
     local url="$1" destination="$2" algorithm="$3" expected="$4"
-    curl --fail --location --retry 4 --retry-delay 5 --retry-connrefused \
-      --connect-timeout 20 --max-time 120 --output "$destination.partial" "$url"
+    if [ -n "${GH_TOKEN:-}" ] && [[ "$url" =~ ^https://github.com/([^/]+/[^/]+)/releases/download/([^/]+)/([^/]+)$ ]]; then
+      local repository="${BASH_REMATCH[1]}" tag="${BASH_REMATCH[2]}" asset="${BASH_REMATCH[3]}"
+      for download_attempt in 1 2 3; do
+        if gh release download "$tag" --repo "$repository" --pattern "$asset" \
+             --clobber --output "$destination.partial" > "$destination.download.log" 2>&1; then
+          break
+        fi
+        cat "$destination.download.log"
+        if [ "$download_attempt" = 3 ] || ! grep -Eiq '504|503|502|500|429|timeout|timed out|connection|EOF' "$destination.download.log"; then
+          return 1
+        fi
+        sleep "$((download_attempt * 5))"
+      done
+    else
+      curl --fail --location --retry 4 --retry-delay 5 --retry-connrefused --retry-all-errors \
+        --connect-timeout 20 --max-time 120 --output "$destination.partial" "$url"
+    fi
     node -e 'const fs=require("fs"),c=require("crypto");const [p,a,e]=process.argv.slice(1);if(c.createHash(a).update(fs.readFileSync(p)).digest("hex")!==e)throw Error("Pinned native dependency integrity mismatch")' "$destination.partial" "$algorithm" "$expected"
     mv "$destination.partial" "$destination"
     echo "Verified pinned native dependency: $(basename "$destination")"

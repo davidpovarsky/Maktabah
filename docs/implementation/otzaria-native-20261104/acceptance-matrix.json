@@ -339,11 +339,14 @@
       "id": "VERS-02",
       "scenario": "version ID belongs to another book",
       "expected": "בקשה נדחית, אין קריאת תוכן זר",
-      "status": "NOT_RUN",
-      "scope": "required acceptance",
-      "actual": null,
+      "status": "EXECUTED_PASS",
+      "scope": "Real native SQLite production-repository fixture",
+      "actual": "Unqualified edition metadata is rejected; a foreign book version ID is rejected; identical titles retain different original IDs. 54 assertions passed after reproducing and fixing the unqualified-title regression.",
       "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "evidence": [
+        "tools/test_otzaria_schema7.swift",
+        "qa-results.md"
+      ]
     },
     {
       "id": "VERS-03",
@@ -383,11 +386,14 @@
       "id": "VERS-06",
       "scenario": "two books same edition title",
       "expected": "version ID remains scoped by book identity",
-      "status": "NOT_RUN",
-      "scope": "required acceptance",
-      "actual": null,
+      "status": "EXECUTED_PASS",
+      "scope": "Real native SQLite production-repository fixture",
+      "actual": "Unqualified edition metadata is rejected; a foreign book version ID is rejected; identical titles retain different original IDs. 54 assertions passed after reproducing and fixing the unqualified-title regression.",
       "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "evidence": [
+        "tools/test_otzaria_schema7.swift",
+        "qa-results.md"
+      ]
     },
     {
       "id": "VERS-07",

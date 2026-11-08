@@ -44,6 +44,24 @@ import SQLite3
         try check(edition.segments.map(\.primaryText) == ["edition-A", ""], "Missing edition segment is empty, never merged or foreign text")
         let second = try await OtzariaVersionedContentRepository(context: context).section(original, version: versions[1])
         try check(second.segments.map(\.primaryText) == ["", "edition-B"], "Switching edition does not retain previous edition text")
+        let unqualifiedVersion = TextVersionMetadata(title: versions[0].title, language: "he", actualLanguage: nil,
+            sourceURL: nil, license: nil, notes: nil, isPrimary: false)
+        do {
+            _ = try await OtzariaVersionedContentRepository(context: context).section(original, version: unqualifiedVersion)
+            try check(false, "An edition title without its original source identity must not choose a local edition")
+        } catch LibraryBackendError.invalidLocator {
+            try check(true, "An edition title without an original source identity is rejected")
+        }
+        let foreignVersions = try await OtzariaVersionsRepository(context: context).versions(for: "two.txt")
+        try check(foreignVersions.count == 1 && foreignVersions[0].title == versions[0].title
+                  && foreignVersions[0].sourceIdentity != versions[0].sourceIdentity,
+                  "Identical edition names in different books retain different original IDs")
+        do {
+            _ = try await OtzariaVersionedContentRepository(context: context).section(original, version: foreignVersions[0])
+            try check(false, "An edition belonging to another book must not read local or foreign text")
+        } catch LibraryBackendError.invalidLocator {
+            try check(true, "An edition ID belonging to another book is rejected")
+        }
         let topics = try await OtzariaTopicsRepository(context: context).topics(for: loc)
         try check(topics.first?.titleHe == "בריאה" && topics.first?.titleEn == nil, "Topics retain original language without an invented translation")
         let real = try OtzariaCanonicalLineLocatorResolver.locator(bookID: 1, lineIndex: 7, database: db)
