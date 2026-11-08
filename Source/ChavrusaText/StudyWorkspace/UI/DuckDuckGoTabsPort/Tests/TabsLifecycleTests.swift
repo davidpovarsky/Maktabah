@@ -3,6 +3,28 @@ import XCTest
 
 final class TabsLifecycleTests: XCTestCase {
     @MainActor
+    func testInjectedReaderThemeUpdatesTheLoadedNativeStrip() throws {
+        let controller = TabsBarViewController(showsToolbarButtons: false)
+        controller.loadViewIfNeeded()
+        controller.view.frame = CGRect(x: 0, y: 0, width: 650, height: 40)
+        let tab = ReaderBookTabAdapter(id: UUID(), title: "ספר")
+        let model = ReaderBookTabsModel(tabs: [tab], currentIndex: 0)
+        controller.refresh(tabsModel: model)
+        controller.view.layoutIfNeeded()
+        let theme = ReaderTabsTheme(tabsBarBackgroundColor: .brown, omniBarBackgroundColor: .brown)
+        controller.theme = theme
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.view.backgroundColor, .brown)
+        XCTAssertEqual(controller.collectionView.numberOfItems(inSection: 0), 1)
+        XCTAssertEqual(model.selectedID, tab.id)
+        let cell = try XCTUnwrap(controller.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)))
+        controller.theme = theme
+        controller.view.layoutIfNeeded()
+        XCTAssertTrue(cell === controller.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)),
+                      "An unchanged theme must preserve the original cell and active interactions")
+    }
+
+    @MainActor
     func testToolbarHostedActionsLeaveTheOriginalStripOnlyBookCells() {
         let controller = TabsBarViewController(showsToolbarButtons: false)
         controller.loadViewIfNeeded()

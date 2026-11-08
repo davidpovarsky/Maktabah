@@ -157,7 +157,7 @@
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
     "sha256": "2aba6f273860245081a2d88bdd20902acc6099907907989e1d88d7356444ddf3",
     "reason": "Keep original width policy, accordion selection/reveal, pointer, drag/drop/reorder, context menu, flare lifecycle and cell rendering; remove browser/fire/AI/analytics/app dependencies, route callbacks to book tabs and original library. Add current-membership guards. Optional showsToolbarButtons=false moves source actions to Safari; pass zero button reservation into the unchanged source TabsBarLayout. Default true preserves original controller tests.",
-    "destinationSHA256": "442185736863bfa97328ce7cf25d8d62b71cef43598d15a87abb605a082bfd08"
+    "destinationSHA256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",

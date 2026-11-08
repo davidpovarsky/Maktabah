@@ -66,7 +66,22 @@ class TabsBarViewController: UIViewController {
     private weak var tabAwaitingSelection: ReaderBookTabAdapter?
     private var animatesSelectionReveal = false
     private let addTabButtonBackground = UIView()
-    var theme = ReaderTabsTheme()
+    var theme = ReaderTabsTheme() {
+        didSet {
+            guard isViewLoaded else { return }
+            let previous = [oldValue.tabsBarBackgroundColor, oldValue.omniBarBackgroundColor,
+                            oldValue.barTintColor, oldValue.tabsBarSeparatorColor]
+            let current = [theme.tabsBarBackgroundColor, theme.omniBarBackgroundColor,
+                           theme.barTintColor, theme.tabsBarSeparatorColor]
+            guard zip(previous, current).contains(where: {
+                !$0.0.resolvedColor(with: traitCollection).isEqual($0.1.resolvedColor(with: traitCollection))
+            }) else { return }
+            // The host injects the original reader theme after view loading.
+            // Reuse source decoration on an actual color change, otherwise
+            // the unoccupied strip retains its initial system-white backing.
+            decorate()
+        }
+    }
     private lazy var flareBackground = TabFlareBackgroundController(
         collectionView: collectionView,
         topCornerRadius: TabsBarCell.cornerRadius,

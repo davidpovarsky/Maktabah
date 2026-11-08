@@ -178,9 +178,9 @@
       "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "2aba6f273860245081a2d88bdd20902acc6099907907989e1d88d7356444ddf3",
-      "normalizedPortSHA256": "442185736863bfa97328ce7cf25d8d62b71cef43598d15a87abb605a082bfd08",
+      "normalizedPortSHA256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
       "identicalNormalizedSource": false,
-      "diffLines": 1016
+      "diffLines": 1031
     },
     {
       "original": "SharedPackages/UIComponents/Sources/UIComponents/iOS/FadeOutLabel.swift",
