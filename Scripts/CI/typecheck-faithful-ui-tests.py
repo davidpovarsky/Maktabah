@@ -4,6 +4,10 @@ import json
 import hashlib
 from pathlib import Path
 import subprocess
+import sys
+
+if Path("Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift").is_file():
+    subprocess.run([sys.executable, "Scripts/CI/verify-otzaria-xcode-project.py"], check=True)
 
 artifacts = Path("build/artifacts")
 artifacts.mkdir(parents=True, exist_ok=True)

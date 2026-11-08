@@ -14,7 +14,7 @@ Both iPad and enabled-phone hosts replace their overview sheet entry. Source Gri
 
 ## Ownership and checks
 
-Production edits are downstream: new ReaderOverviewPresentation.swift, ChavrusaReaderHost.swift, CompactStudyWorkspaceHostModifier.swift and StudyGroupsOverview.swift. Original reader/library/search/notes/bottom bar/navigation managers, pins and project settings remain unchanged from this correction's start.
+Production Swift edits are downstream: new ReaderOverviewPresentation.swift, ChavrusaReaderHost.swift, CompactStudyWorkspaceHostModifier.swift and StudyGroupsOverview.swift. Original reader/library/search/notes/bottom bar/navigation managers, pins and project settings remain unchanged from this correction's start. The protected project has exactly four additive iOS membership entries for the new adapter, under the existing owner-authorized registration seam; see OWNERSHIP_AND_AUTHORIZATION.md and PROTECTED_HUNKS.diff.
 
 Actual UIKit tests inspect style, absence of a sheet controller, context bounds, touch routing, retained scroll view/exact offset across repeated returns, and close-before-attachment behavior. The existing UIApplication-hosted source test workflow compiles/runs the real adapter.
 
@@ -22,4 +22,10 @@ Three actual-app cases cover iPad landscape/portrait and conventional iPhone: ge
 
 ## Verification and delivery
 
-PENDING. Local syntax checks are preliminary. Actual Xcode SDK, UIKit tests and app Simulator captures remain required. Do not dispatch the corrected TestFlight upload before the replacement cases and captures have been reviewed. Other Native failures must retain their exact SHA and cannot be called a full quality pass.
+App source: `20bff505d3ee735d43201a35f4f9cd2e1fd56894`.
+
+- **SDK PASS:** [42528223635](https://github.com/davidpovarsky/Maktabah/actions/runs/42528223635), Xcode27.1 / 27A9275, real iPhoneSimulator27.1 SDK, object-code generation of the actual adapter/component-test sources and black-box UI tests. All61 workspace contracts passed. This is not runtime/visual acceptance.
+- **UIKit source/component PASS:** [42528226791](https://github.com/davidpovarsky/Maktabah/actions/runs/42528226791), actual Simulator step completed successfully at 2026-11-08 22:19:43 UTC. Final console verifies43 UIKit cases/zero failures, including both ReaderOverviewPresentationTests, plus4 chrome-state and45 CommandPalette tests. All61 workspace contracts passed.
+- **Actual app build FAIL / UI NOT_RUN at20bff505:** the same Native run failed because ReaderOverviewPresentation.swift was missing from the explicit app Sources phase. Self-contained SDK/component checks did not establish production membership. Four additive registration entries correct this; the existing Sources-phase verifier now runs before the costly faithful SDK/component/app stages and checks this adapter. No presentation-code or test-assertion change. The previous run produced no replacement screenshots and is not app/visual acceptance.
+- **Actual-app capture/return acceptance PENDING on the registration correction:** do not dispatch the corrected TestFlight upload before the three replacement cases and full-frame captures have been reviewed. The next exact diagnostic selection contains these three cases; the unrelated broad toolbar/drag case was not reached in the failed build and is not counted as executed. Other Native failures must retain their exact SHA and cannot be called a full quality pass.
+- **Corrected delivery NOT_DISPATCHED.**

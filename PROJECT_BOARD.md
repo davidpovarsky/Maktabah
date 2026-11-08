@@ -8,6 +8,8 @@ Do not turn this into a duplicate issue tracker or a dump of temporary thoughts.
 
 Quick captures that still need classification.
 
+- ChavrusaText production sources have explicit Xcode membership; only MaktabahTests is synchronized. Real standalone SDK/component compilation can pass while the actual app cannot find a newly added type (Native42528226791). Keep the existing Sources-phase verifier in the early faithful SDK check; the overview bridge now has explicit iOS-only membership. No synchronized-group migration is needed.
+
 ## Ideas & Opportunities
 
 Potential improvements, features, optimizations, or architectural ideas.

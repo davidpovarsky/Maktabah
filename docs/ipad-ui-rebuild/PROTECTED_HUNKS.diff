@@ -550,3 +550,17 @@ index ca7c3d9f..90a3328f 100644
          }
          return useWideLayout && librarySidebarIsOpen && contentsIsOpen
      }
+
+# Overview adapter iOS-only membership correction, 2026-11-09; delta from 20bff505
+diff --git a/Maktabah.xcodeproj/project.pbxproj b/Maktabah.xcodeproj/project.pbxproj
+index 053b1a10..e362c40f 100644
+--- a/Maktabah.xcodeproj/project.pbxproj
++++ b/Maktabah.xcodeproj/project.pbxproj
+@@ -1321,0 +1322 @@
++		E81109000000000000000002 /* ReaderOverviewPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81109000000000000000001; };
+@@ -2072,0 +2074 @@
++		E81109000000000000000001 /* ReaderOverviewPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderOverviewPresentation.swift"; sourceTree = "<group>"; };
+@@ -2171,0 +2174 @@
++				E81109000000000000000001 /* ReaderOverviewPresentation.swift */,
+@@ -4786,0 +4790 @@
++				E81109000000000000000002 /* ReaderOverviewPresentation.swift in Sources */,

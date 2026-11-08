@@ -60,6 +60,11 @@ frameworks = phase_body(phase_id("Frameworks"), "Frameworks")
 resources = phase_body(phase_id("Resources"), "Resources")
 
 missing = []
+# The real app uses explicit ChavrusaText membership even though MaktabahTests
+# is synchronized. A standalone SDK compile cannot establish target membership.
+overview_bridge = root / "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift"
+if overview_bridge.is_file() and "/* ReaderOverviewPresentation.swift in Sources */" not in sources:
+    missing.append(overview_bridge.relative_to(root).as_posix())
 for source in sorted((root / "Source" / "Otzaria").rglob("*.swift")):
     if "Experimental" in source.parts:
         continue
