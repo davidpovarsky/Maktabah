@@ -1,5 +1,5 @@
 {
-  "checkpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+  "checkpoint": "e0600395658f3d83d50a50ea936f4954bfd01b62",
   "note": "Case-level status is conservative. Portable/native repository evidence does not satisfy an unexecuted UI, device, performance or legal gate. Build artifact logs are local ignored files; immutable CI run URLs are added as runs finish.",
   "cases": [
     {
@@ -342,7 +342,7 @@
       "status": "EXECUTED_PASS",
       "scope": "Real native SQLite production-repository fixture",
       "actual": "Unqualified edition metadata is rejected; a foreign book version ID is rejected; identical titles retain different original IDs. 54 assertions passed after reproducing and fixing the unqualified-title regression.",
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "sourceCheckpoint": "e0600395658f3d83d50a50ea936f4954bfd01b62",
       "evidence": [
         "tools/test_otzaria_schema7.swift",
         "qa-results.md"
@@ -389,7 +389,7 @@
       "status": "EXECUTED_PASS",
       "scope": "Real native SQLite production-repository fixture",
       "actual": "Unqualified edition metadata is rejected; a foreign book version ID is rejected; identical titles retain different original IDs. 54 assertions passed after reproducing and fixing the unqualified-title regression.",
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "sourceCheckpoint": "e0600395658f3d83d50a50ea936f4954bfd01b62",
       "evidence": [
         "tools/test_otzaria_schema7.swift",
         "qa-results.md"
