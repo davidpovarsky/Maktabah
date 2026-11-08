@@ -33,7 +33,11 @@ if [ -n "$LEXICAL_DB" ] && [ -f "$LEXICAL_DB" ]; then
 import datetime, hashlib, json, pathlib, sys
 src = pathlib.Path(sys.argv[1])
 container = pathlib.Path(sys.argv[2])
-dest_dir = container / "Library" / "Application Support" / "Otzaria" / "SearchResources"
+# This workflow builds Debug; match AppConfig.appSupportDir's ordinary root.
+dest_dir = container / "Library" / "Application Support" / "Maktabah-Debug" / "Otzaria" / "SearchResources"
+assert dest_dir.resolve().is_relative_to(container.resolve())
+assert src.stat().st_size == 57122816
+assert hashlib.sha256(src.read_bytes()).hexdigest() == "b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f"
 dest_dir.mkdir(parents=True, exist_ok=True)
 dest_file = dest_dir / "lexical.db"
 dest_file.write_bytes(src.read_bytes())
@@ -153,7 +157,7 @@ python3 - "$INSTALL" <<'PY'
 import json,sys
 r=json.load(open(sys.argv[1])); assert r['passed'], r
 assert r['bookCount']==10 and r['lineCount']==18879, r
-assert r['profileID']=='miniTest10' and r['profileVersion']==6, r
+assert r['profileID']=='miniTest10' and r['profileVersion']==7, r
 assert r['lexicalReady'] and r['otzariaIndexDocuments']==18879, r
 assert r['otzariaSearchResults']>0 and r['zayitSearchResults']>0, r
 assert r['zayitArtifactIdentity'], r
@@ -173,7 +177,7 @@ cp "$RESTORE" "$REPORT_DIR/miniTest10-bootstrap-restore.json"
 python3 - "$RESTORE" <<'PY'
 import json,sys
 r=json.load(open(sys.argv[1])); assert r['passed'] and r['restoreAfterRelaunch'], r
-assert r['profileID']=='miniTest10' and r['profileVersion']==6, r
+assert r['profileID']=='miniTest10' and r['profileVersion']==7, r
 assert r['otzariaIndexDocuments']==18879 and r['otzariaSearchResults']>0, r
 assert r['zayitArtifactIdentity'] and r['zayitSearchResults']>0, r
 PY

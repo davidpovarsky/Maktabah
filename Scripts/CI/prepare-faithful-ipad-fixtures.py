@@ -8,9 +8,11 @@ count, so production provisioning does not request that fixture. No raw database
 replacement, digest bypass or generated mock text is used. No token is logged.
 """
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
+from datetime import datetime, timezone
 import shutil
 import subprocess
 import sys
@@ -28,6 +30,31 @@ bundle = "com.davidpovarsky.chavrusatext"
 container = Path(subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, bundle, "data"], text=True, timeout=45).strip())
 report = container / "Documents" / ("faithful-fixture-" + str(uuid.uuid4()) + ".json")
 report.parent.mkdir(parents=True, exist_ok=True)
+# The installer receives the real shared lexical file through its normal
+# validated cache, at AppConfig's actual Debug app-support root. The matrix and
+# production provisioning both launch the Debug installer binary first.
+if profile == "miniTest10":
+    lexical = Path("build/native-fixtures/lexical.db")
+    expected_lexical_sha = "b42e36626802629fed178068e8cf11f0f034d6f24ae3b72ac9999b9311bf299f"
+    lexical.parent.mkdir(parents=True, exist_ok=True)
+    if not lexical.is_file():
+        subprocess.run(["gh", "release", "download", "v0.3.0", "--repo", "Otzaria/SeforimMagicIndexer",
+                        "--pattern", "lexical.db", "--output", str(lexical)], check=True, timeout=300)
+    if lexical.stat().st_size != 57122816 or hashlib.sha256(lexical.read_bytes()).hexdigest() != expected_lexical_sha:
+        raise SystemExit("Pinned original lexical.db checksum/size mismatch")
+    resources = container / "Library/Application Support/Maktabah-Debug/Otzaria/SearchResources"
+    if not resources.resolve().is_relative_to(container.resolve()):
+        raise SystemExit("Lexical fixture target escaped the owned app container")
+    resources.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(lexical, resources / "lexical.db")
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    (resources / "lexical.db.release.json").write_text(json.dumps({
+        "tagName": "v0.3.0", "assetID": 458055169,
+        "assetURL": "https://github.com/Otzaria/SeforimMagicIndexer/releases/download/v0.3.0/lexical.db",
+        "size": 57122816, "sha256": expected_lexical_sha, "installedAt": now, "checkedAt": now,
+    }))
+    print("Seeded original checksum-verified lexical resource at the ordinary Debug storage path")
+
 environment = os.environ.copy()
 for key, value in {
     "OTZARIA_DATA_PROFILE": profile,
