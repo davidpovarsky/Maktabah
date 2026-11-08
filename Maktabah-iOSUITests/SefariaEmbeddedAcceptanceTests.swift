@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
+final class SefariaEmbeddedAcceptanceTests: FaithfulReaderUIBase {
 
     func testEmbeddedSefariaFullAcceptanceDiagnostic() throws {
         launchWithTier(
@@ -161,6 +161,7 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
 
     private func verifyTOC(language: String, firstChapter: String, secondChapter: String) throws {
         launchWithScenario("readerTOC", backend: "sefariaEmbedded", language: language)
+        tap(readerBottomChromeAction())
         let toggle = app.buttons["reader-toc-toggle"]
         XCTAssertTrue(toggle.waitForExistence(timeout: 60))
         toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
@@ -175,9 +176,9 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
 
     func testEmbeddedSefariaInspectorRealContent() throws {
         launchWithScenario("studyCommentaries", backend: "sefariaEmbedded")
-        let group = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-commentary-group-'")).firstMatch
+        let group = app.otherElements.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-commentary-group-'")).firstMatch
         XCTAssertTrue(group.waitForExistence(timeout: 60), "Genesis must have real commentary groups")
-        group.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        tap(group.buttons.firstMatch)
         let source = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-source-'")).firstMatch
         XCTAssertTrue(source.waitForExistence(timeout: 30))
         source.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
@@ -197,7 +198,7 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
             (text.value as? String ?? "").unicodeScalars.filter { (0x05D0...0x05EA).contains($0.value) }.count > 30
         }
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: readable, object: text)], timeout: 60), .completed)
-        let group = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-commentary-group-'")).firstMatch
+        let group = app.otherElements.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-commentary-group-'")).firstMatch
         XCTAssertFalse(group.exists, "The ordinary reader scenario must not preselect a source passage")
         text.coordinate(withNormalizedOffset: CGVector(dx: 0.8, dy: 0.12)).tap()
         XCTAssertTrue(group.waitForExistence(timeout: 60), "A native tap on the real Hebrew passage must load its inspector relationships")

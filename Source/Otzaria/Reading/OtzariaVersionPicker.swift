@@ -10,7 +10,7 @@ struct OtzariaVersionPicker: View {
 
     var body: some View {
         Group {
-            if !versions.isEmpty, let locator = reader.currentBook?.backendLocator {
+            if let locator = reader.otzariaEditionLocator, locator.backend == .otzaria {
                 Picker(hebrew ? "מהדורת טקסט" : "Text edition", selection: Binding<TextVersionMetadata?>(
                     get: { reader.selectedOtzariaVersion(for: locator) },
                     set: { reader.selectOtzariaVersion($0, for: locator) }
@@ -20,16 +20,18 @@ struct OtzariaVersionPicker: View {
                         Text(hebrew ? version.heTitle ?? version.title : version.title).tag(Optional(version))
                     }
                 }
+                // Keep a real Form row mounted while its task loads metadata.
+                .disabled(versions.isEmpty)
                 .accessibilityIdentifier("reader-otzaria-edition")
             }
             if let error { Text(error).foregroundStyle(.secondary) }
         }
-        .task(id: [reader.currentBook?.backendLocator?.backend.rawValue ?? "",
-                   reader.currentBook?.backendLocator?.workKey ?? "",
+        .task(id: [reader.otzariaEditionLocator?.backend.rawValue ?? "",
+                   reader.otzariaEditionLocator?.workKey ?? "",
                    String(OtzariaMaktabahBridge.shared.generationSnapshot())]) {
             versions = []
             error = nil
-            guard let locator = reader.currentBook?.backendLocator, locator.backend == .otzaria else { return }
+            guard let locator = reader.otzariaEditionLocator, locator.backend == .otzaria else { return }
             do {
                 let loaded = try await BackendCoordinator.shared.versions(for: locator.workKey)
                 try Task.checkCancellation()
@@ -41,6 +43,11 @@ struct OtzariaVersionPicker: View {
 }
 
 extension ReaderViewModel {
+    /// The canonical destination also exists when legacy BooksData has no backend locator.
+    var otzariaEditionLocator: TextLocator? {
+        currentDestination?.sectionLocator ?? backendSection?.locator ?? currentBook?.backendLocator
+    }
+
     func selectedOtzariaVersion(for locator: TextLocator) -> TextVersionMetadata? {
         guard locator.backend == .otzaria else { return nil }
         return otzariaVersionSelection.selection(workKey: locator.workKey,
@@ -48,7 +55,9 @@ extension ReaderViewModel {
     }
 
     func selectOtzariaVersion(_ version: TextVersionMetadata?, for locator: TextLocator) {
-        guard locator.backend == .otzaria, currentBook?.backendLocator?.workKey == locator.workKey else { return }
+        guard locator.backend == .otzaria,
+              otzariaEditionLocator?.backend == .otzaria,
+              otzariaEditionLocator?.workKey == locator.workKey else { return }
         otzariaVersionSelection.select(version, workKey: locator.workKey,
             generation: OtzariaMaktabahBridge.shared.generationSnapshot())
         let destination = currentDestination ?? .init(sectionLocator: backendSection?.locator ?? locator, focusLocator: selectedSegmentLocator)

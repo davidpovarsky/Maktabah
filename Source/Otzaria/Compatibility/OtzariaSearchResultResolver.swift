@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 enum OtzariaSearchResultResolver {
     private static let tablePrefix = "otzaria:"
@@ -29,3 +32,20 @@ enum OtzariaSearchResultResolver {
         return libraryDataManager.getBook([bookId]).first
     }
 }
+
+#if canImport(UIKit)
+extension SearchResultItem {
+    /// Check the current database policy at the export boundary, including collapsed snippets.
+    @MainActor
+    func copySearchResultToPasteboard(includingSource: Bool) async {
+        if let locator = backendLocator, locator.backend == .otzaria {
+            let generation = OtzariaMaktabahBridge.shared.generationSnapshot()
+            guard (try? await OtzariaLineDecorationRepository().allowsTextExport(workKey: locator.workKey)) == true,
+                  !Task.isCancelled,
+                  generation == OtzariaMaktabahBridge.shared.generationSnapshot() else { return }
+        }
+        let parts = includingSource ? [attributedText.string, bookTitle] : [attributedText.string]
+        UIPasteboard.general.string = parts.filter { !$0.isEmpty }.joined(separator: "\n")
+    }
+}
+#endif

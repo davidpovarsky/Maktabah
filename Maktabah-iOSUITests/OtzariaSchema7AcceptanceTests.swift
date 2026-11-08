@@ -1,6 +1,6 @@
 import XCTest
 
-/// Uses the authenticated miniTest10 v7 corpus and the ordinary reader controls.
+/// Uses the authenticated miniTest10 v9 corpus and the ordinary reader controls.
 final class OtzariaSchema7AcceptanceTests: FaithfulReaderUIBase {
     func testNativeEditionSelectionMissingPassageAndMergedRecovery() {
         XCUIDevice.shared.orientation = .landscapeLeft
@@ -14,7 +14,7 @@ final class OtzariaSchema7AcceptanceTests: FaithfulReaderUIBase {
         let locator = app.staticTexts["reader-current-locator"].label
         XCTAssertTrue(locator.contains("otzaria"))
 
-        // v7's first actual relationship opens Sefer HaChinukh at lineIndex 523.
+        // v9's first actual relationship opens Sefer HaChinukh at lineIndex 523.
         // Its Torat Emet edition has real content there; Minchat Chinukh has no
         // version_line at that passage. These are original data, not substitutes.
         chooseEdition("ספר החינוך, תורת אמת", expecting: "נוסח משולב")
@@ -48,6 +48,9 @@ final class OtzariaSchema7AcceptanceTests: FaithfulReaderUIBase {
             if form.exists { form.swipeUp() } else { popover.swipeUp() }
         }
         XCTAssertTrue(picker.waitForExistence(timeout: 10))
+        let loaded = NSPredicate { _, _ in picker.isEnabled }
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: loaded, object: picker)], timeout: 30), .completed,
+                       "The actual metadata request must finish before choosing an edition")
         XCTAssertTrue(picker.label.contains(previous) || (picker.value as? String ?? "").contains(previous),
                       "The native control must retain the actual reader's edition choice")
         tap(picker)

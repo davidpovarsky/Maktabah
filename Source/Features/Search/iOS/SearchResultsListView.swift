@@ -92,6 +92,8 @@ struct SearchResultsListView: View {
                                 .foregroundStyle(.secondary)
                                 .padding(.top, 4)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(String(localized: "Preview full search result"))
@@ -110,15 +112,12 @@ struct SearchResultsListView: View {
                     Button(String(localized: "Open", defaultValue: "פתח"), systemImage: "book") { onSelect(item) }
                     Button(String(localized: "Copy", defaultValue: "העתק"), systemImage: "doc.on.doc") {
                         #if canImport(UIKit)
-                        UIPasteboard.general.string = item.attributedText.string
+                        Task { await item.copySearchResultToPasteboard(includingSource: false) }
                         #endif
                     }
                     Button(String(localized: "Copy with source", defaultValue: "העתק עם מקור"), systemImage: "text.quote") {
-                        let source = item.bookTitle
-                        let body = item.attributedText.string
-                        let combined = [body, source].filter { !$0.isEmpty }.joined(separator: "\n")
                         #if canImport(UIKit)
-                        UIPasteboard.general.string = combined
+                        Task { await item.copySearchResultToPasteboard(includingSource: true) }
                         #endif
                     }
                     if let onSearchInBook {
