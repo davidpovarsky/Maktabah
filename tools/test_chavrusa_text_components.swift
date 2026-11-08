@@ -14,6 +14,20 @@ func assertCondition(_ condition: Bool, _ message: String, file: StaticString = 
     }
 }
 
+private actor CancellationProbeSearchProvider: LibrarySearchProviding {
+    private(set) var started = false
+    private(set) var cancelled = false
+    func search(_ request: LibrarySearchRequest) async throws -> LibrarySearchPage {
+        started = true
+        do { try await Task.sleep(nanoseconds: 2_000_000_000) }
+        catch {
+            cancelled = Task.isCancelled
+            throw error
+        }
+        return .init(hits: [], total: 0, nextOffset: nil)
+    }
+}
+
 @main
 struct TestRunner {
     @MainActor
@@ -2222,6 +2236,32 @@ struct TestRunner {
             store.clear()
             assertCondition(store.records.isEmpty && store.consumedCount == 0, "Search generation clear removes all transient pairings")
         } catch { assertCondition(false, "Otzaria reference/identity regression: \(error)") }
+
+        print("\n--- 42. Caller cancellation reaches the actual backend provider ---")
+        let cancellationSuite = "test.provider-cancellation.\(UUID().uuidString)"
+        let cancellationDefaults = UserDefaults(suiteName: cancellationSuite)!
+        defer { cancellationDefaults.removePersistentDomain(forName: cancellationSuite) }
+        let cancellationCoordinator = BackendCoordinator(defaults: cancellationDefaults)
+        let cancellationProvider = CancellationProbeSearchProvider()
+        cancellationCoordinator.register(.init(id: cancellationCoordinator.activeBackendID,
+            sourceDescription: "Cancellation probe", capabilities: [.search], search: cancellationProvider,
+            usesNativeMaktabahDataPath: false, invalidateTransientState: {}))
+        let providerTask = Task {
+            try await cancellationCoordinator.search(.init(query: "שלום", offset: 0, limit: 10))
+        }
+        for _ in 0..<1000 {
+            if await cancellationProvider.started { break }
+            await Task.yield()
+        }
+        assertCondition(await cancellationProvider.started, "Actual provider entered before cancelling its caller")
+        providerTask.cancel()
+        do {
+            _ = try await providerTask.value
+            assertCondition(false, "Cancelled caller must not receive a successful backend page")
+        } catch is CancellationError {
+            assertCondition(true, "Provider cancellation is returned as cancellation, not empty success")
+        } catch { assertCondition(false, "Unexpected provider cancellation error: \(error)") }
+        assertCondition(await cancellationProvider.cancelled, "Caller cancellation reaches the running provider task")
 
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")

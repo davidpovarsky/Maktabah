@@ -675,9 +675,14 @@ final class BackendCoordinator {
         let task = Task<T, Error> { try await operation() }
         inFlightCancellations[id] = { task.cancel() }
         defer { inFlightCancellations.removeValue(forKey: id) }
-        let result = try await task.value
-        try validate(requestGeneration)
-        return result
+        return try await withTaskCancellationHandler {
+            let result = try await task.value
+            try Task.checkCancellation()
+            try validate(requestGeneration)
+            return result
+        } onCancel: {
+            task.cancel()
+        }
     }
 }
 

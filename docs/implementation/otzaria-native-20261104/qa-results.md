@@ -1,6 +1,6 @@
 # Verification evidence
 
-- Portable production Swift component contracts: 497/497 assertions passed, including 87 key/hash assertions for all 43 pinned RefKey fixtures and actual total/group-count pagination rules. These are not Apple SDK or Hermes evidence.
+- Portable production Swift component contracts: 500/500 assertions passed, including 87 key/hash assertions for all 43 pinned RefKey fixtures actual total/group-count pagination rules, and cancellation propagated from a caller through BackendCoordinator into its running provider. These are not Apple SDK or Hermes evidence.
 - Production JavaScript dispatcher fixtures: 23 passed. These exercise production dispatch/mapping and explicit offline/remote fixture transports, not a Hermes runtime.
 - Real native SQLite/zstd production-repository fixtures: 51 assertions passed against minimal fixtures and the authenticated v36 mini database, including all seven original footnote lines, Hebrew edition metadata and true edition IDs. The line_alt_toc coverage assertion also passes against canonical rows and rejects a foreign book.
 - Rust locked native tests: existing stress test over 1024 bounded engine lifetimes passed; schema10 SQLite source and snapshot/memory ABI tests passed (2/2); corrected schema10 compatibility/grouping test passed (1/1). No production semantic mock enabled.
@@ -12,7 +12,7 @@
 - Native CI 42454286791 built all three Apple Rust slices; the fixture compile then failed because ZSTDContextWrapper.swift was missing from the harness input (corrected).
 - Native CI 42456093752 passed the native SQLite fixture stage, then failed app compilation on BackendComposition OptionSet inference (corrected). Its run_simulator_tests=false dispatch cannot establish UI acceptance.
 - Mini database preparation [42456560269](https://github.com/davidpovarsky/Maktabah/actions/runs/42456560269) passed: authenticated v36 download, identical raw/compressed subset built twice, foreign-key/integrity and table parity checks.
-- Current app/SDK diagnostic: [42458201624](https://github.com/davidpovarsky/Maktabah/actions/runs/42458201624), source 23d98a7d, not yet complete and not final-candidate coverage.
+- App/SDK diagnostic: [42458201624](https://github.com/davidpovarsky/Maktabah/actions/runs/42458201624), source 23d98a7d: real app and XCTest binaries compiled successfully; the later launch stage failed because the preflight chose an iPhone-specific runtime with an incompatible iPad type. The creation helper now filters supported types, tries compatible pairs, and preserves run-owned cleanup. An inventory fixture verifies that logic; actual Simulator launch must still pass in the next run.
 - Current full schema10 artifact generation: [42458333213](https://github.com/davidpovarsky/Maktabah/actions/runs/42458333213), source 99474b5c, not yet complete.
 - Final combined branch, production archive, upload and App Store Connect processing: pending. Physical-device QA: not verified.
 
