@@ -25,9 +25,10 @@ Scripts/CI/prepare-faithful-ipad-fixtures.py,DOWNSTREAM_OWNED,A,M,Pinned Maktaba
 Scripts/CI/prepare-swift-package-pins.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/prepare-swift-packages.py,DOWNSTREAM_OWNED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/resolve-swift-packages.sh,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Scripts/CI/resolve_simulator_container.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/run-backend-functional-acceptance.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/run-faithful-ipad-matrix.py,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Scripts/CI/run-faithful-production-release.py,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Scripts/CI/run-faithful-production-release.py,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/run-otzaria-schema7-tests.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/shutdown-faithful-simulator.py,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/test-faithful-tabs-in-app.py,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -39,6 +40,7 @@ Scripts/DataProfiles/miniTest10.seed.json,DOWNSTREAM_OWNED,M,M,Pinned Maktabah t
 Scripts/DataProfiles/prepare-schema7-candidate.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/Tests/test_data_profiles.py,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/Tests/test_package_otzaria_search_artifact.py,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Scripts/Tests/test_simulator_container_recovery.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/build-otzaria-data-profile.py,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/package-otzaria-search-artifact.py,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/run-chavrusa-component-tests.sh,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0

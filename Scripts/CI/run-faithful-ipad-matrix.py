@@ -10,6 +10,7 @@ import subprocess
 import sys
 import uuid
 from datetime import datetime, timezone
+from resolve_simulator_container import app_data_container
 
 root = Path.cwd()
 artifacts = root / "build/artifacts"
@@ -139,7 +140,7 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
         (root / "sim_udid.txt").write_text(udid)
         phase("PROVISIONING_NATIVE_FIXTURES")
         subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--artifact-label", size],
-                       check=True, timeout=720)
+                       check=True, timeout=1800)
         selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
         if size == "phone":
             selection = ["FaithfulReaderIPhoneTests"]
@@ -157,7 +158,8 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
                    "-resultBundlePath", str(result)]
         command.extend(f"-only-testing:Maktabah-iOSUITests/{suite}" for suite in selection)
         environment = os.environ.copy()
-        container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True, timeout=45).strip()
+        container = str(app_data_container(udid, "com.davidpovarsky.chavrusatext",
+            artifacts / f"post-fixture-container-{size}.json"))
         environment["TEST_RUNNER_FAITHFUL_VIEWPORT_DIRECTORY"] = str(Path(container) / "Documents")
         phase("RUNNING_NATIVE_XCTEST", suites=selection)
         with (artifacts / f"test-simulator-{size}.log").open("w") as log:

@@ -11,6 +11,7 @@ import re
 import subprocess
 import sys
 import uuid
+from resolve_simulator_container import app_data_container
 
 root = Path.cwd()
 artifacts = root / "build/artifacts"
@@ -77,13 +78,14 @@ try:
     # The existing native installer validates digest/schema/quick_check and
     # installs into the ordinary managed app container. Its DEBUG entry point
     # is used only to provision data, then the Release app replaces the binary.
-    run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production"], timeout=3900)
+    run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production"], timeout=4500)
     install = json.loads((artifacts / "production-native-fixture-install.json").read_text())
     report["nativeInstallation"] = {key: install.get(key) for key in ["passed", "profileID", "shaMatched", "bookCount", "lineCount", "extractedBytes", "searchArtifactsRequested"]}
     if install.get("extractedBytes", 0) < 1_500_000_000:
         raise SystemExit("The full production corpus was not provisioned")
     run(["xcrun", "simctl", "install", udid, str(release_app)], timeout=600)
-    container = subprocess.check_output(["xcrun", "simctl", "get_app_container", udid, "com.davidpovarsky.chavrusatext", "data"], text=True).strip()
+    container = str(app_data_container(udid, "com.davidpovarsky.chavrusatext",
+        artifacts / "post-fixture-container-production.json"))
     environment = os.environ.copy()
     # Read-only test observation of the ordinary production sidecar. This is
     # runner environment, not an app feature override or a testing namespace.

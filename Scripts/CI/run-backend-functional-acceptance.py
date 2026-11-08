@@ -35,7 +35,7 @@ def main():
         run(["xcrun", "simctl", "boot", udid], 90)
         run(["xcrun", "simctl", "bootstatus", udid, "-b"], 900)
         run(["xcrun", "simctl", "install", udid, str(app)], 600)
-        run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], 720)
+        run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py"], 1800)
         command = ["xcodebuild", "test-without-building", "-workspace", "Maktabah.xcworkspace",
                    "-scheme", "Maktabah-iOS", "-parallel-testing-enabled", "NO",
                    "-destination", f"platform=iOS Simulator,id={udid}",

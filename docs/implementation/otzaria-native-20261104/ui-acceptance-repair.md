@@ -1,5 +1,7 @@
 # Native UI acceptance repair — in progress
 
+Attribution: [מיה | Native UX] [MAIN_SESSION]; CI fixture repairs [נועם | Engineering] [MAIN_SESSION]. No delegated agent work.
+
 The user explicitly included the previously deferred UI failures in this session's scope on 2026-11-08. They must be repaired and rerun before this integration's TestFlight upload; the other chat's manual-beta exception is not acceptance here.
 
 ## Actual baseline
@@ -32,3 +34,13 @@ The baseline collapse video shows the genuine linked passage fitting within the 
 The focused SDK workflow compiles actual XCTest, sidebar/toolbar sources and the two changed source packages. Compilation is not runtime acceptance. Real source/edition interactions, all required iPad sizes, Dynamic Type, phone, windowing, accessibility, production Release and final source synchronization remain required. Reader chrome collapse, narrow-window controls and phone overview must not be called repaired until their real interactions pass.
 
 No TestFlight upload from this integration has been dispatched.
+
+## Native harness result and repair
+
+[Run 42482169586](https://github.com/davidpovarsky/Maktabah/actions/runs/42482169586) built the full app and tests at 302b62b4, including the regular-width phone action, but failed before any required source/edition XCTest: CoreSimulator's data-container query timed out after 45 seconds following installation on a newly created run-owned iPad. The broad UI and Release stages did not execute. The failure is not a UI assertion result.
+
+Container discovery now retains its exact attempt receipt and permits one recovery using the visual matrix's existing scoped shutdown/boot procedure. It accepts only a UUID, validates the actual returned application directory within that Simulator, and does not retry an installer rejection, an absent app or any XCTest. Eight focused fault-injection/path tests pass, including persistent timeout, non-transient failure, another application's path, and the distinct genuine App Group/private storage layouts.
+
+The fixture also no longer guesses that signing always selects Maktabah-Debug storage. The actual baseline native report used a Shared/AppGroup path. It first completes a real digest-checked database installation, obtains the canonical storage path from that native receipt, seeds the unchanged checksum-verified lexical resource there, then runs the real installer with both indexes and searches required. Both native receipts are retained and must agree on the final database path. No database is copied by this harness, no production storage override is provided, and no required interaction is skipped.
+
+miniTest10-v9 is [published immutably](https://github.com/davidpovarsky/Maktabah/releases/tag/otzaria-miniTest10-v9) at builder 013f0a9a6a11006478b7b2781e3522e6766888b1. All 66 server asset digests/sizes match the verified build artifacts; the original schema10 metadata sidecars were decompressed and checked. Native HTTP bootstrap/relaunch/search is pending [42484697648](https://github.com/davidpovarsky/Maktabah/actions/runs/42484697648). The originating build 42480483741 passed native corpus indexing/reopen but failed its GitHub Actions publication with HTTP403; manual publication does not turn that workflow into a pass.

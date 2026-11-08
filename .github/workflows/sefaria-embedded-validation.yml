@@ -216,7 +216,9 @@ jobs:
 
       - name: Test actual workspace persistence and canonical navigation presentation
         if: ${{ inputs.source_ref == '' }}
-        run: python3 Scripts/CI/test-faithful-workspace.py
+        run: |
+          python3 -m unittest Scripts.Tests.test_simulator_container_recovery
+          python3 Scripts/CI/test-faithful-workspace.py
 
       - name: Setup Ruby and CocoaPods
         uses: ruby/setup-ruby@v1
@@ -470,6 +472,8 @@ jobs:
             build/artifacts/test-simulator*.log
             build/artifacts/test-case-execution-*.json
             build/artifacts/miniTest10-native-fixture-install*.json
+            build/artifacts/*-native-fixture-container*.json
+            build/artifacts/post-fixture-container*.json
             build/artifacts/prototype-reference-manifest.json
             build/artifacts/production-release-acceptance.json
             build/artifacts/production-native-fixture-install.json
