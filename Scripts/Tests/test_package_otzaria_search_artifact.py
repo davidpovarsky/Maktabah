@@ -34,9 +34,10 @@ class PackageableFilesTests(unittest.TestCase):
             for name in original | local:
                 (index / name).write_bytes(b'{"original":true}')
             (index / ".otzaria_index_building").touch()
+            (index / "otzaria_book_order.lock").touch()
             files, omitted = PACKAGER.packageable_files(index)
             self.assertEqual({path.name for path in files}, original)
-            self.assertFalse(omitted)
+            self.assertEqual({path.name for path in omitted}, {"otzaria_book_order.lock"})
 
     def test_runtime_locks_are_not_counted_as_extracted_files(self):
         with tempfile.TemporaryDirectory() as temporary:

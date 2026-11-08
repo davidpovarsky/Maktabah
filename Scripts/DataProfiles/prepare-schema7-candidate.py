@@ -38,7 +38,7 @@ def main():
         assert metadata['content_hash'] == '704560e8c73480b7926b8e8b16f4bc93f13dfdcfaf8122fef8d31ac3cbe6f452'
     (args.output / 'official-schema-metadata.json').write_text(json.dumps(metadata, indent=2))
     seed = json.loads(Path('Scripts/DataProfiles/miniTest10.seed.json').read_text())
-    seed['profileVersion'] = 8
+    seed['profileVersion'] = 9
     seed['source'] = dict(repository='Otzaria/SeforimLibrary', releaseTag=release['tag_name'], releaseID=release['id'],
         assetID=asset['id'], assetName=asset['name'], assetBytes=asset['size'], assetSHA256=asset['digest'][7:],
         databaseBytes=args.source.stat().st_size, databaseSHA256=sha(args.source))
@@ -55,7 +55,7 @@ def main():
     (args.output / 'database-parity.json').write_text(parity)
     facts = json.loads(database.with_suffix('.provenance.json').read_text())
     profile = json.loads(Path('Source/Otzaria/DataProfiles/miniTest10.profile.json').read_text())
-    profile.update(profileVersion=8, releaseBaseURL='https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-miniTest10-v8',
+    profile.update(profileVersion=9, releaseBaseURL='https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-miniTest10-v9',
         databaseCompressedBytes=facts['compressedBytes'], databaseCompressedSHA256=facts['compressedSHA256'])
     profile['sourceDatabase'] = {key: value for key, value in seed['source'].items() if key not in ['assetBytes', 'assetSHA256']}
     profile['sourceDatabase'].update(sourceAssetBytes=asset['size'], sourceAssetSHA256=asset['digest'][7:],

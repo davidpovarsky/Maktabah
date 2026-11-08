@@ -345,6 +345,20 @@ jobs:
           compression-level: 0
           retention-days: 3
           if-no-files-found: error
+      - name: Retain closed source index if later packaging fails
+        if: ${{ failure() && inputs.existing_release_tag == '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: otzaria-search-index-recovery
+          path: |
+            build/artifacts/otzaria-corpus-index.*/**
+            build/logs/otzaria-corpus-acceptance.json
+            build/logs/otzaria-index-path.txt
+            build/logs/otzaria-build-duration.txt
+            build/logs/source-release.json
+            build/logs/magic-release.json
+          retention-days: 3
+          if-no-files-found: warn
       - name: Live Activity · refresh
         if: ${{ inputs.publish_release && (inputs.existing_release_tag == '' || inputs.repair_manifest_layout) }}
         uses: davidpovarsky/github-automation/live-refresh@main

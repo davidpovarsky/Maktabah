@@ -23,8 +23,8 @@
   ],
   "otzariaManifestAssetName": "otzaria-search-manifest.json",
   "profileID": "miniTest10",
-  "profileVersion": 8,
-  "releaseBaseURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-miniTest10-v8",
+  "profileVersion": 9,
+  "releaseBaseURL": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-miniTest10-v9",
   "sharedLexicalDatabase": {
     "bytes": 57122816,
     "releaseTag": "v0.3.0",

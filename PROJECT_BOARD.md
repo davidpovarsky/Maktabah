@@ -154,3 +154,5 @@ Example:
 ## Archive
 
 Older completed/superseded items that still have historical value.
+
+- Schema10 engine-sidecar packaging: preserve original `otzaria_index_meta.json`, `otzaria_book_numbers.json` and `otzaria_book_order.json` when distributing indexes. A blanket `otzaria_*` exclusion removes the text recipe and stable IDs/order. The original zero-byte `otzaria_book_order.lock` is a runtime lock, not empty data. Regressions cover both distinctions; native installation remains a separate mandatory gate.

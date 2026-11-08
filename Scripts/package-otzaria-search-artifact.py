@@ -25,7 +25,7 @@ DOWNSTREAM_STATE_FILENAMES = {
 ENGINE_RUNTIME_FILENAMES = {
     "otzaria_index_meta.json", "otzaria_book_numbers.json", "otzaria_book_order.json",
 }
-RUNTIME_LOCK_FILENAMES = {".tantivy-meta.lock", ".tantivy-writer.lock"}
+RUNTIME_LOCK_FILENAMES = {".tantivy-meta.lock", ".tantivy-writer.lock", "otzaria_book_order.lock"}
 FORBIDDEN_MANAGED_FILENAMES = {".managed.json"}
 
 

@@ -25,7 +25,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: mini-test10-data-profile-v8
+  group: mini-test10-data-profile-v9
   cancel-in-progress: false
 
 jobs:
@@ -65,8 +65,8 @@ jobs:
     timeout-minutes: 240
     env:
       PROFILE_ID: miniTest10
-      PROFILE_VERSION: "8"
-      PROFILE_TAG: otzaria-miniTest10-v8
+      PROFILE_VERSION: "9"
+      PROFILE_TAG: otzaria-miniTest10-v9
       SOURCE_TAG: v36-20261101064231
       SOURCE_ASSET_NAME: seforim-schema7.db.zst
       SOURCE_ASSET_SHA256: 9b1623035853f6d67f8553a953cf48de60643ece1bc6658e6a3fb80f379c47ba
@@ -581,7 +581,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/miniTest10/otzaria
-          key: ${{ runner.os }}-mini-otzaria-v8-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/OtzariaSearchEngine/**', 'Scripts/package-otzaria-search-artifact.py') }}
+          key: ${{ runner.os }}-mini-otzaria-v9-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/OtzariaSearchEngine/**', 'Scripts/package-otzaria-search-artifact.py') }}
 
       - name: Live Activity · refresh
         if: steps.release-check.outputs.reused != 'true' && steps.otzaria-artifact-cache.outputs.cache-hit != 'true'
@@ -649,7 +649,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/miniTest10/zayit
-          key: ${{ runner.os }}-mini-zayit-v8-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/ZayitSearchPort/**', 'Scripts/package-zayit-search-artifact.py') }}
+          key: ${{ runner.os }}-mini-zayit-v9-${{ env.MINI_DATABASE_SHA256 }}-${{ env.LEXICAL_SHA256 }}-${{ hashFiles('Vendor/ZayitSearchPort/**', 'Scripts/package-zayit-search-artifact.py') }}
 
       - name: Live Activity · refresh
         if: steps.release-check.outputs.reused != 'true' && steps.zayit-artifact-cache.outputs.cache-hit != 'true'

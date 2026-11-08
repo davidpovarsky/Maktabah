@@ -32,7 +32,7 @@ def main() -> None:
     profile = json.loads(args.profile.read_text(encoding="utf-8"))
     db_hash = sha256(args.database)
     archive_hash = sha256(args.archive)
-    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] in [6, 7, 8]
+    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] in [6, 7, 8, 9]
     assert profile["sharedLexicalDatabase"] == {
         "bytes": 57122816,
         "releaseTag": "v0.3.0",
