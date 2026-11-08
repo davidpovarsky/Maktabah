@@ -1,6 +1,13 @@
 import SwiftUI
 import UIKit
 
+private struct ReaderContentBoundsKey: PreferenceKey {
+    static var defaultValue: Anchor<CGRect>? { nil }
+    static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
+        value = nextValue() ?? value
+    }
+}
+
 /// Viewer-only composition. The original library/TOC/reader arrive as view builders.
 struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @Bindable var manager: iOSNavigationManager
@@ -71,6 +78,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                     .accessibilityIdentifier("reader-document-tabs")
                 reader
             }
+                .anchorPreference(key: ReaderContentBoundsKey.self, value: .bounds) { $0 }
                 .background(readerChromeColor)
                 .modifier(ReaderSidebarToggleRemoval())
                 // The measured strip ends the original reader's underlap.
@@ -114,7 +122,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
         }
         .navigationSplitViewStyle(.balanced)
-        .toolbarVisibility(navigationChrome.isVisible ? .visible : .hidden, for: .tabBar)
+        .toolbarVisibility(navigationChrome.isVisible ? .automatic : .hidden, for: .tabBar)
         .modifier(ReaderSidebarToggleRemoval())
         .background(readerChromeColor.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
@@ -130,8 +138,8 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             ReaderViewportAcceptanceObserver().frame(width: 0, height: 0).accessibilityHidden(true)
             #endif
         }
-        .overlay(alignment: .top) {
-            if searchIsExpanded {
+        .overlayPreferenceValue(ReaderContentBoundsKey.self) { contentBounds in
+            if searchIsExpanded, let contentBounds {
                 GeometryReader { geometry in
                     Color.black.opacity(0.13)
                         .ignoresSafeArea()
@@ -139,6 +147,9 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                         .onTapGesture(perform: closeSearch)
                         .transition(.opacity)
                     expandedSearch(availableWidth: geometry.size.width)
+                        // Anchor to the real detail content below native bars,
+                        // including iPad's floating global tabs and window chrome.
+                        .padding(.top, max(0, geometry[contentBounds].minY))
                 }
                 .zIndex(3)
             }

@@ -8,7 +8,11 @@ struct iOSTabBarVisibilityPolicy: ViewModifier {
     @ViewBuilder
     func body(content: Content) -> some View {
         if MaktabahApp.isIpad {
-            content.toolbarVisibility(readerChromeVisible == false ? .hidden : .visible, for: .tabBar)
+            if let readerChromeVisible {
+                content.toolbarVisibility(readerChromeVisible ? .automatic : .hidden, for: .tabBar)
+            } else {
+                content
+            }
         } else {
             content.toolbarVisibility(hiddenOnPhone ? .hidden : .visible, for: .tabBar)
         }

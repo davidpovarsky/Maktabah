@@ -65,6 +65,12 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
                   let offset = fields["offset"].flatMap(Double.init), offset.isFinite,
                   let object = fields["object"].flatMap(Int.init) else { return }
             let report: [String: Any] = ["source": source, "offset": offset, "object": object,
+                                          "reduceMotion": UIAccessibility.isReduceMotionEnabled,
+                                          "isRestoringScroll": text.isRestoringScroll,
+                                          "scrollOffsetY": text.contentOffset.y,
+                                          "contentHeight": text.contentSize.height,
+                                          "viewportHeight": text.bounds.height,
+                                          "panTranslationY": text.panGestureRecognizer.translation(in: text).y,
                                           "requestID": request, "capturedAt": Date().timeIntervalSince1970]
             do {
                 let data = try JSONSerialization.data(withJSONObject: report, options: [.sortedKeys])

@@ -75,6 +75,7 @@ class TabViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     private var canDelete = false
     private var isDeleting = false
     private var startX: CGFloat = 0
+    private var swipeGesture: UIPanGestureRecognizer?
 
     let card = UIView()
     let border = UIView()
@@ -155,6 +156,7 @@ class TabViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         buttonContainer.addSubview(removeButton)
 
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(handleSwipe(recognizer:)))
+        swipeGesture = swipe
         swipe.delegate = self
         addGestureRecognizer(swipe)
     }
@@ -183,11 +185,15 @@ class TabViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         alpha = 1
         transform = .identity
         isHidden = false
+        swipeGesture?.isEnabled = true
     }
 
     override func dragStateDidChange(_ dragState: UICollectionViewCell.DragState) {
         super.dragStateDidChange(dragState)
         border.isHidden = dragState != .none
+        // A lifted card belongs to UIKit's drag session. Its horizontal
+        // swipe-to-close recognizer must not consume the same movement.
+        swipeGesture?.isEnabled = dragState == .none
     }
 
     @objc private func deleteTab() {
@@ -453,6 +459,7 @@ final class TabSwitcherPageViewController: UIViewController {
     private var selectedID: UUID?
     private var layoutMode: ReaderTabSwitcherLayout = .grid
     private var lastLayoutSize: CGSize = .zero
+    private let dragOwner = UUID()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -522,11 +529,9 @@ final class TabSwitcherPageViewController: UIViewController {
     private func removeDocument(id: UUID) {
         guard let index = documents.firstIndex(where: { $0.id == id }) else { return }
         documents.remove(at: index)
+        pageDelegate?.page(self, didDeleteTab: id)
         collectionView.performBatchUpdates {
             collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
-        } completion: { [weak self] _ in
-            guard let self else { return }
-            self.pageDelegate?.page(self, didDeleteTab: id)
         }
     }
 }
@@ -599,32 +604,42 @@ extension TabSwitcherPageViewController: UICollectionViewDragDelegate, UICollect
                         itemsForBeginning session: UIDragSession,
                         at indexPath: IndexPath) -> [UIDragItem] {
         guard documents.indices.contains(indexPath.item) else { return [] }
-        let provider = NSItemProvider(object: documents[indexPath.item].id.uuidString as NSString)
-        return [UIDragItem(itemProvider: provider)]
+        let id = documents[indexPath.item].id
+        let item = UIDragItem(itemProvider: NSItemProvider(object: id.uuidString as NSString))
+        item.localObject = id
+        session.localContext = dragOwner
+        return [item]
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+        session.localDragSession?.localContext as? UUID == dragOwner
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         dropSessionDidUpdate session: UIDropSession,
                         withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-        UICollectionViewDropProposal(operation: session.localDragSession == nil ? .forbidden : .move, intent: .insertAtDestinationIndexPath)
+        UICollectionViewDropProposal(operation: self.collectionView(collectionView, canHandle: session) ? .move : .forbidden,
+                                     intent: .insertAtDestinationIndexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         performDropWith coordinator: UICollectionViewDropCoordinator) {
         guard let item = coordinator.items.first,
-              let source = item.sourceIndexPath,
-              documents.indices.contains(source.item) else { return }
+              self.collectionView(collectionView, canHandle: coordinator.session),
+              let id = item.dragItem.localObject as? UUID,
+              let sourceIndex = documents.firstIndex(where: { $0.id == id }) else { return }
+        let source = IndexPath(item: sourceIndex, section: 0)
         let destinationItem = min(coordinator.destinationIndexPath?.item ?? documents.count - 1,
                                   max(0, documents.count - 1))
         let destination = IndexPath(item: destinationItem, section: 0)
         let document = documents.remove(at: source.item)
         documents.insert(document, at: destinationItem)
+        // Persist the authoritative order before SwiftUI can update this
+        // controller with an old projection during the native drop animation.
+        pageDelegate?.page(self, didReorderTab: document.id, to: destinationItem)
         collectionView.performBatchUpdates {
             collectionView.deleteItems(at: [source])
             collectionView.insertItems(at: [destination])
-        } completion: { [weak self] _ in
-            guard let self else { return }
-            self.pageDelegate?.page(self, didReorderTab: document.id, to: destinationItem)
         }
         coordinator.drop(item.dragItem, toItemAt: destination)
     }

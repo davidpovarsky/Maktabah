@@ -22,7 +22,11 @@ public struct CommandPaletteView: View {
     @ObservedObject private var recents: RecentCommandsStore
     @State private var query: String
     @State private var selection: CommandPaletteSelection
+    #if os(iOS)
+    @State private var isSearchFieldFocused = false
+    #else
     @FocusState private var isSearchFieldFocused: Bool
+    #endif
 
     /// Creates a palette.
     /// - Parameters:
@@ -105,6 +109,14 @@ public struct CommandPaletteView: View {
                 .font(.system(size: 18, weight: .medium))
                 .foregroundStyle(.secondary)
 
+            #if os(iOS)
+            PaletteNativeSearchField(
+                text: $query,
+                isFocused: $isSearchFieldFocused,
+                placeholder: placeholder, onSubmit: runSelection, onEscape: onDismiss,
+                onMoveUp: { selection.moveUp() }, onMoveDown: { selection.moveDown() }
+            )
+            #else
             TextField(placeholder, text: $query)
                 .textFieldStyle(.plain)
                 .font(.system(size: 20))
@@ -127,6 +139,7 @@ public struct CommandPaletteView: View {
                     onDismiss()
                     return .handled
                 }
+            #endif
 
             if !query.isEmpty {
                 Button {

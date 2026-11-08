@@ -145,7 +145,9 @@ struct iOSTOCView: View {
                                 )
                             }
                         }
-                        .searchable(text: $searchText, prompt: String(localized: "Search Contents"))
+                        .searchable(text: $searchText,
+                                    placement: .navigationBarDrawer(displayMode: .always),
+                                    prompt: String(localized: "Search Contents"))
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {

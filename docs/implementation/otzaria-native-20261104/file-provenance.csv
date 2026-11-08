@@ -5,7 +5,7 @@ path,classification,combined_from_base,integration_relative_to_ui,basis
 .github/workflows/sefaria-embedded-validation.yml,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift,DOWNSTREAM_OWNED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Maktabah-iOSUITests/ChavrusaTextiPadUIAcceptanceTests.swift,DOWNSTREAM_OWNED,,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Maktabah-iOSUITests/MaktabahUITestBase.swift,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Maktabah-iOSUITests/OtzariaSchema7AcceptanceTests.swift,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift,DOWNSTREAM_OWNED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -59,8 +59,9 @@ Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/Co
 Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteNativeSearchField.swift,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/Dependencies/CommandPalette/Tests/CommandPaletteTests/CommandPaletteResultsTests.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/Dependencies/CommandPalette/Tests/CommandPaletteTests/CommandShortcutTests.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/Dependencies/CommandPalette/Tests/CommandPaletteTests/Fixtures.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -78,7 +79,7 @@ Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift,DOWNSTREA
 Source/ChavrusaText/ReaderHost/ReaderInspectorHostPolicy.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift,DOWNSTREAM_OWNED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ReaderSidebarStateCoordinator.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ReaderWorkspaceChromeHost.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift,DOWNSTREAM_OWNED,,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -100,7 +101,7 @@ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderBookTabsModel.swi
 Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -125,7 +126,7 @@ Source/ChavrusaText/StudyWorkspace/UI/StudyProfileCapsule.swift,DOWNSTREAM_OWNED
 Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift,DOWNSTREAM_OWNED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/Testing/ReaderRenderedHighlightInspector.swift,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ThirdPartyNotices/CommandPalette.txt,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ThirdPartyNotices/DuckDuckGo-apple-browsers.txt,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ThirdPartyNotices/Gelatin.txt,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -133,7 +134,7 @@ Source/ChavrusaText/ThirdPartyNotices/NOTICE.txt,DOWNSTREAM_OWNED,A,,Pinned Makt
 Source/ChavrusaText/ThirdPartyNotices/ScrollableTabBar.txt,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ToolbarSearch/ExpandableLibrarySearchCoordinator.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ToolbarSearch/GelatinMotionOnly.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ToolbarSearch/ReaderLibraryCommandPaletteHost.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ToolbarSearch/ReaderLibraryToolbarHost.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -144,6 +145,7 @@ Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift,UPSTREAM_OWNED_
 Source/Features/Reader/ViewModel/ReaderViewModel.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/iOS/ViewOptionsView.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/iOS/iOSReaderTabView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/iOS/iOSReaderView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -200,9 +202,9 @@ Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift,DOWNSTREAM_OW
 Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift,PROTECTED_NAMESPACE_DOWNSTREAM_FILE,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift,PROTECTED_NAMESPACE_DOWNSTREAM_FILE,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/UI/iOS/Views/iOSMainView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/UI/iOS/Views/iPadLayout.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/UI/iOS/Views/iPadLayout.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/UI/iOS/Wrappers/iOSIbarotTextView.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ZayitSearch/UnifiedSearchWorkspaceView.swift,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -230,6 +232,7 @@ docs/implementation/otzaria-native-20261104/specification/03_FILE_OWNERSHIP_AND_
 docs/implementation/otzaria-native-20261104/specification/04_QA_ACCEPTANCE_AND_ROLLBACK_HE.md,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/implementation/otzaria-native-20261104/specification/05_PINNED_SOURCES_AND_LICENSES_HE.md,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/implementation/otzaria-native-20261104/specification/SHA256_MANIFEST.txt,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+docs/implementation/otzaria-native-20261104/ui-acceptance-repair.md,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/implementation/otzaria-native-20261104/unimplemented-parity-gaps.md,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/OWNERSHIP_AND_AUTHORIZATION.md,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/OWNER_IPAD_CHECKS.he.md,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0

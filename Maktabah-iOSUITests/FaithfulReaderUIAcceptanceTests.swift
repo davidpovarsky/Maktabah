@@ -53,7 +53,12 @@ final class SafariPrototypeReferenceTests: XCTestCase {
 class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
-    struct Viewport: Decodable { let source: Int; let offset: Double; let object: Int; let requestID: String }
+    struct Viewport: Decodable {
+        let source: Int; let offset: Double; let object: Int; let requestID: String
+        let reduceMotion: Bool?
+        let isRestoringScroll: Bool?
+        let scrollOffsetY: Double?; let contentHeight: Double?; let viewportHeight: Double?; let panTranslationY: Double?
+    }
     func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false) {
         // The downstream observer reads the actual original source anchor;
         // never activate the baseline renderer's crash-prone file exporter.
@@ -160,8 +165,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
                 return windowed ? bottomMenu.frame.width > 0 && bottomMenu.frame.height > 0 : frame.contains(bottomMenu.frame)
             }
         }, object: nil)
-        XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed,
-                       "Capture only after native rotation and the original bottom toolbar settle inside the window")
+        let settleResult = XCTWaiter.wait(for: [settled], timeout: 20)
         // Capture the display rather than XCTest's app-rectangle crop: the
         // iPadOS 27 landscape app crop can retain portrait dimensions and clip
         // the trailing toolbar. Preserve the complete system/window chrome.
@@ -173,6 +177,8 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         hierarchy.name = name + "-ui-tree"
         hierarchy.lifetime = .keepAlways
         add(hierarchy)
+        XCTAssertEqual(settleResult, .completed,
+                       "Capture only after native rotation and the original bottom toolbar settle inside the window")
     }
     func assertReaderHasText() {
         let text = app.textViews["reader-text"]
@@ -278,37 +284,10 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let restoration = NativeUIRestoration {
             let current = application.frame
             if abs(current.width - originalFrame.width) > 2 || abs(current.height - originalFrame.height) > 2 {
-                let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-                // The actual 9401 resize video locates the system window
-                // controls at (42, 32) inside the resized native window.
-                // Open Apple's controls, then select its public Full Screen
-                // action; do not drag using mismatched desktop/app coordinates.
-                application.coordinate(withNormalizedOffset: .zero)
-                    .withOffset(CGVector(dx: 42, dy: 32)).tap()
-                let labels = ["Full Screen", "Enter Full Screen", "Zoom", "מסך מלא", "הצג במסך מלא"]
-                let predicate = NSPredicate(format: "label IN %@", labels)
-                let candidates = [application.buttons, application.menuItems, springboard.buttons, springboard.menuItems]
-                var selected = false
-                for query in candidates {
-                    let action = query.matching(predicate).firstMatch
-                    if action.waitForExistence(timeout: 3), action.isHittable {
-                        action.tap()
-                        selected = true
-                        break
-                    }
-                }
-                if !selected {
-                    XCTContext.runActivity(named: "Native window controls unavailable") { activity in
-                        let tree = XCTAttachment(string: application.debugDescription + "\nSPRINGBOARD\n" + springboard.debugDescription)
-                        tree.lifetime = .keepAlways
-                        activity.add(tree)
-                        let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
-                        screen.lifetime = .keepAlways
-                        activity.add(screen)
-                    }
-                    XCTFail("Cannot restore the actual window through its native Full Screen action")
-                    return
-                }
+                // Apple's documented iPad Globe-F shortcut restores the real
+                // system window without guessing traffic-light coordinates.
+                application.activate()
+                application.typeKey("f", modifierFlags: [.function])
                 let restored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
                     MainActor.assumeIsolated {
                         abs(application.frame.width - originalFrame.width) < 2 && abs(application.frame.height - originalFrame.height) < 2
@@ -596,9 +575,11 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         capture("candidate-original-settings")
         tap(app.buttons["settings-done-button"])
         tap(app.buttons["Book Info"])
-        let close = app.navigationBars.buttons["Close"]
+        let bookInfo = app.popovers.firstMatch
+        XCTAssertTrue(bookInfo.waitForExistence(timeout: 30), "The original book-info card must be presented")
+        let close = bookInfo.buttons["Close"]
         XCTAssertTrue(close.waitForExistence(timeout: 30))
-        XCTAssertTrue(app.segmentedControls.firstMatch.exists, "The genuine unified book-info view must load")
+        XCTAssertTrue(bookInfo.segmentedControls.firstMatch.exists, "The genuine unified book-info view must load")
         capture("candidate-original-book-info")
         tap(close)
         assertReaderHasText()
@@ -882,7 +863,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    func testSystemReduceMotionKeepsOriginalPaletteUsable() {
+    func testSystemReduceMotionKeepsOriginalPaletteUsable() throws {
         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
         settings.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         settings.launch()
@@ -898,30 +879,32 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         motion.tap()
         let toggle = settings.switches["Reduce Motion"].firstMatch
         XCTAssertTrue(toggle.waitForExistence(timeout: 15))
-        // Verify the actual system preference, independent of the Settings
-        // switch's localized accessibility value on this OS version.
-        let wasEnabled = UIAccessibility.isReduceMotionEnabled
-        if !wasEnabled { toggle.tap() }
+        let originalValue = try XCTUnwrap(toggle.value as? String)
+        XCTAssertTrue(["0", "1"].contains(originalValue), "Read the real native system switch state")
         let restoration = NativeUIRestoration {
             settings.activate()
             XCTAssertTrue(toggle.waitForExistence(timeout: 15))
-            if UIAccessibility.isReduceMotionEnabled != wasEnabled { toggle.tap() }
+            if (toggle.value as? String) != originalValue { toggle.tap() }
             let restored = XCTNSPredicateExpectation(
                 predicate: NSPredicate { _, _ in
-                    MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled == wasEnabled }
+                    MainActor.assumeIsolated { (toggle.value as? String) == originalValue }
                 }, object: nil)
             XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 15), .completed)
             settings.terminate()
         }
         addTeardownBlock { await restoration.run() }
+        if originalValue == "0" { toggle.tap() }
         let reduced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            MainActor.assumeIsolated { UIAccessibility.isReduceMotionEnabled }
+            MainActor.assumeIsolated { (toggle.value as? String) == "1" }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [reduced], timeout: 15), .completed,
                        "The native accessibility setting must actually reach this Simulator")
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader()
+        launchReader(recordViewport: true)
         assertReaderHasText()
+        // The background XCTest runner can retain its cached accessibility
+        // state. Read the actual foreground application's system API instead.
+        XCTAssertEqual(try viewport().reduceMotion, true)
         tap(app.textFields["reader-library-search-field"])
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 15))
@@ -1213,6 +1196,11 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(strip.waitForExistence(timeout: 30))
 
         text.swipeUp()
+        let actualScroll = try viewport()
+        let scrollEvidence = XCTAttachment(string: String(describing: actualScroll))
+        scrollEvidence.name = "actual-reader-scroll-viewport"
+        scrollEvidence.lifetime = .keepAlways
+        add(scrollEvidence)
         let hidden = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"),
             object: strip

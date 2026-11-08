@@ -1,24 +1,14 @@
 import SwiftUI
+import UIKit
 
 struct ReaderSidebarPager<Library: View, Contents: View>: View {
     @Bindable var coordinator: ReaderSidebarPageCoordinator
     let library: (Bool) -> Library
     let contents: (Bool) -> Contents
-    @Environment(\.layoutDirection) private var layoutDirection
 
     var body: some View {
         VStack(spacing: 0) {
-            // PageTabViewStyle consumed the original UIKit trees' horizontal
-            // gesture without advancing on a real iPad. Keep both originals
-            // mounted and coordinate only which page is visible.
-            ZStack {
-                page(library(coordinator.page == .library), page: .library)
-                page(contents(coordinator.page == .contents), page: .contents)
-            }
-            .contentShape(Rectangle())
-            .simultaneousGesture(sidebarSwipe)
-            // Own the pager identifier on a container, rather than letting
-            // it replace the original Library/Contents subtree identities.
+            NativeReaderSidebarPager(selection: $coordinator.page, library: library, contents: contents)
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("reader-sidebar-pager")
             HStack(spacing: 0) {
@@ -28,29 +18,6 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
             .frame(maxWidth: .infinity)
             .background(.bar)
         }
-    }
-
-    private func page<PageContent: View>(
-        _ content: PageContent,
-        page: ReaderSidebarPageCoordinator.Page
-    ) -> some View {
-        content
-            .opacity(coordinator.page == page ? 1 : 0)
-            .allowsHitTesting(coordinator.page == page)
-            .accessibilityHidden(coordinator.page != page)
-    }
-
-    private var sidebarSwipe: some Gesture {
-        DragGesture(minimumDistance: 24)
-            .onEnded { value in
-                let horizontal = value.translation.width
-                let vertical = value.translation.height
-                guard abs(horizontal) >= 44, abs(horizontal) > abs(vertical) * 1.25 else { return }
-                let movesForward = layoutDirection == .rightToLeft ? horizontal > 0 : horizontal < 0
-                withAnimation(.snappy) {
-                    coordinator.page = movesForward ? .contents : .library
-                }
-            }
     }
 
     private func pageButton(_ page: ReaderSidebarPageCoordinator.Page, title: String) -> some View {
@@ -66,5 +33,89 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
         .accessibilityLabel(title)
         .accessibilityAddTraits(coordinator.page == page ? .isSelected : [])
         .accessibilityIdentifier("reader-sidebar-page-\(page.rawValue)")
+    }
+}
+
+/// Each original NavigationStack has its own hosting boundary. Keeping both
+/// stacks in one SwiftUI ZStack also merges the hidden page's toolbar/search
+/// preferences into the visible one. UIKit retains both pages without sharing
+/// their SwiftUI preference graphs or recreating their library/TOC viewports.
+private struct NativeReaderSidebarPager<Library: View, Contents: View>: UIViewControllerRepresentable {
+    typealias Page = ReaderSidebarPageCoordinator.Page
+    @Binding var selection: Page
+    let library: (Bool) -> Library
+    let contents: (Bool) -> Contents
+
+    func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
+
+    func makeUIViewController(context: Context) -> UIPageViewController {
+        let controller = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        controller.view.backgroundColor = .clear
+        // Page ordering is mapped explicitly below; hosted content keeps the
+        // complete SwiftUI environment, including its own RTL direction.
+        controller.view.semanticContentAttribute = .forceLeftToRight
+        controller.dataSource = context.coordinator
+        controller.delegate = context.coordinator
+        context.coordinator.update(parent: self, environment: context.environment)
+        controller.setViewControllers([context.coordinator.host(for: selection)], direction: .forward, animated: false)
+        return controller
+    }
+
+    func updateUIViewController(_ controller: UIPageViewController, context: Context) {
+        let coordinator = context.coordinator
+        coordinator.update(parent: self, environment: context.environment)
+        let target = coordinator.host(for: selection)
+        guard !coordinator.isTransitioning, controller.viewControllers?.first !== target else { return }
+        let old = controller.viewControllers?.first.flatMap { coordinator.visualIndex(of: $0) } ?? 0
+        let next = coordinator.visualIndex(of: target) ?? 0
+        controller.setViewControllers([target], direction: next > old ? .forward : .reverse, animated: false)
+    }
+
+    @MainActor final class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+        var parent: NativeReaderSidebarPager
+        let libraryHost = UIHostingController(rootView: AnyView(EmptyView()))
+        let contentsHost = UIHostingController(rootView: AnyView(EmptyView()))
+        var isTransitioning = false
+        private var isRTL = false
+
+        init(parent: NativeReaderSidebarPager) {
+            self.parent = parent
+            super.init()
+            libraryHost.view.backgroundColor = .clear
+            contentsHost.view.backgroundColor = .clear
+        }
+
+        func update(parent: NativeReaderSidebarPager, environment: EnvironmentValues) {
+            self.parent = parent
+            isRTL = environment.layoutDirection == .rightToLeft
+            // UIKit owns which page is visible. Each independent stack keeps
+            // its normal bar geometry while offscreen, preserving its viewport.
+            libraryHost.rootView = AnyView(parent.library(true).environment(\.self, environment))
+            contentsHost.rootView = AnyView(parent.contents(true).environment(\.self, environment))
+        }
+
+        func host(for page: Page) -> UIViewController { page == .library ? libraryHost : contentsHost }
+        private var visualOrder: [UIViewController] {
+            isRTL ? [contentsHost, libraryHost] : [libraryHost, contentsHost]
+        }
+        func visualIndex(of controller: UIViewController) -> Int? { visualOrder.firstIndex { $0 === controller } }
+
+        func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+            guard let index = visualIndex(of: viewController), index > 0 else { return nil }
+            return visualOrder[index - 1]
+        }
+        func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+            guard let index = visualIndex(of: viewController), index + 1 < visualOrder.count else { return nil }
+            return visualOrder[index + 1]
+        }
+        func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+            isTransitioning = true
+        }
+        func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool,
+                                previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+            isTransitioning = false
+            guard completed, let visible = pageViewController.viewControllers?.first else { return }
+            parent.selection = visible === libraryHost ? .library : .contents
+        }
     }
 }
