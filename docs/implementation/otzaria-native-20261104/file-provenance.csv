@@ -15,7 +15,7 @@ Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved,UPS
 MaktabahTests/ChavrusaTextiPadUIPlanTests.swift,DOWNSTREAM_OWNED,,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 MaktabahTests/ReaderNavigationChromeStateTests.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 PROJECT_BOARD.md,DOWNSTREAM_OWNED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-SOURCE_TO_PORT_DIFF.md,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+SOURCE_TO_PORT_DIFF.md,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/build-faithful-prototype-reference.py,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/collect-faithful-simulator-failure.py,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/install-embedded-js-dependencies.sh,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -238,6 +238,7 @@ docs/ipad-ui-rebuild/OWNERSHIP_AND_AUTHORIZATION.md,DOWNSTREAM_OWNED,A,,Pinned M
 docs/ipad-ui-rebuild/OWNER_IPAD_CHECKS.he.md,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/PROTECTED_HUNKS.diff,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/STATUS.md,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/source-diffs/CommandPalette-CommandPaletteView.swift.diff,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/source-diffs/DuckDuckGo-apple-browsers-FadeOutLabel.swift.diff,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/source-diffs/DuckDuckGo-apple-browsers-TabFlareBackgroundController.swift.diff,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -254,7 +255,7 @@ docs/ipad-ui-rebuild/source-diffs/Owner-Safari-ChavrusaReaderHost.swift.diff,DOW
 docs/ipad-ui-rebuild/source-diffs/Owner-Safari-LibraryCommandPaletteAdapter.swift.diff,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/source-diffs/Owner-Safari-SafariToolbarSourcePort.swift.diff,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/source-diffs/ScrollableTabBar-ScrollableTabBar.swift.diff,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-docs/ipad-ui-rebuild/source-provenance.json,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+docs/ipad-ui-rebuild/source-provenance.json,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 docs/ipad-ui-rebuild/target-membership.json,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 tools/OtzariaReferenceKeyFixtureTests.swift,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 tools/PortableSQLiteLegacyBoundary.swift,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0

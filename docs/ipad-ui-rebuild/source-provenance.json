@@ -84,8 +84,10 @@
     "original": "Sources/CommandPalette/Views/CommandPaletteView.swift",
     "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
     "sha256": "d33809cb1628b7418f11625c5107f2510298472ecbef11e28c2c855b48ea5b3c",
-    "reason": "Optional bidirectional queryBinding, default nil; rendered source and original esc KeyCap retained. Escape is handled by the downstream UIKit responder-chain wrapper. No fuzzy-search changes. Native validation pending.",
-    "destinationSHA256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f"
+    "reason": "Optional bidirectional query binding, default nil; original search/filter/results model and esc KeyCap retained. iOS uses the native first-responder input in additive PaletteNativeSearchField.swift for Escape, return and arrow actions. macOS input unchanged.",
+    "destinationSHA256": "17ff8e11655271b9c775936e08ffff317a17b3b0777053fb1a3517be939957e9",
+    "continuationPatch": "docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff",
+    "continuationBase": "661d53e0541779ae6c9ed7526cae5b1f273c708d"
   },
   {
     "repo": "CommandPalette",
@@ -187,48 +189,60 @@
     "repo": "Owner Safari prototype",
     "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
     "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
-    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation.",
+    "reason": "Retain prototype search surface and canonical library binding. Remove the ineffective extra UIKit Escape host; command keys now belong to the actual palette text-input responder.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "4821a4e833e95cd5f57c5a6fc69c3acde26993cecb165dae07aad1d28672a132"
+    "destinationSHA256": "fb12e6a12a92ac72b628332664818d43c5e5dc1c1a296ee8051beaababea432f",
+    "continuationPatch": "docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff",
+    "continuationBase": "661d53e0541779ae6c9ed7526cae5b1f273c708d"
   },
   {
     "repo": "Owner Safari prototype",
     "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
     "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
-    "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action.",
+    "reason": "Retain prototype palette surface, matched geometry and motion. Anchor expansion below actual native detail bars. Use automatic visible native tab-bar policy and original hidden policy while scrolling; independent persistent native sidebar pages isolate original navigation/search preferences.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "c386e56adaa12b974c786fca78b439796c02dbc40f51b37453451d328ff8cb0e"
+    "destinationSHA256": "3465ae4eea87b39f5bf03d5c2de922e7ed507284dfb50e28b338d37589e04d38",
+    "continuationPatch": "docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff",
+    "continuationBase": "661d53e0541779ae6c9ed7526cae5b1f273c708d"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
     "original": "iOS/DuckDuckGo/TabSwitcher/TabSwitcherPageViewController.swift",
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
-    "reason": "Preserve the original UICollectionView list/grid controller, 14pt spacing, adaptive one-to-four-column geometry, 664pt list cap, selection, swipe-close coordination, native context menus, and drag reorder. Replace the browser TabsModel, tracker header, Fire/AI/telemetry services, and browser previews with the stable-ID display callbacks to the canonical ReaderDocumentTab adapter and an honest unavailable-preview state.",
+    "reason": "Preserve the original UICollectionView list/grid controller, 14pt spacing, adaptive one-to-four-column geometry, 664pt list cap, selection, swipe-close coordination, native context menus, and drag reorder. Replace the browser TabsModel, tracker header, Fire/AI/telemetry services, and browser previews with the stable-ID display callbacks to the canonical ReaderDocumentTab adapter and an honest unavailable-preview state. Keep source geometry/visual hierarchy. Own local native drop sessions, resolve dragged UUID against live membership, disable swipe while UIKit owns a lifted drag and publish authoritative order/deletion before batch animation.",
     "sha256": "a12100a4c78e4d32da6df3ea7d137766a3da7a82fad2cdb84d4f371c12a9c8cf",
-    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+    "destinationSHA256": "2a9035fe2e63779db18c9f362dde621f6d6325dda3ef32a6d102d06513ea3d5c",
+    "continuationPatch": "docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff",
+    "continuationBase": "661d53e0541779ae6c9ed7526cae5b1f273c708d"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
     "original": "iOS/DuckDuckGo/TabSwitcher/TabViewCell.swift",
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
-    "reason": "Preserve the original card/border radii, shadow, close-button spacing animation, one-third-width swipe threshold, alpha and removal/cancel animations. Replace browser favicon, unread, screenshot, theme, analytics and AI state with book-domain title/backend state; mirror the existing horizontal swipe under RTL.",
+    "reason": "Preserve the original card/border radii, shadow, close-button spacing animation, one-third-width swipe threshold, alpha and removal/cancel animations. Replace browser favicon, unread, screenshot, theme, analytics and AI state with book-domain title/backend state; mirror the existing horizontal swipe under RTL. Keep source geometry/visual hierarchy. Own local native drop sessions, resolve dragged UUID against live membership, disable swipe while UIKit owns a lifted drag and publish authoritative order/deletion before batch animation.",
     "sha256": "6e8bb3fda08c289202c0abec6beeefb57a91bd420111c6f9506e768d97a88c57",
-    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+    "destinationSHA256": "2a9035fe2e63779db18c9f362dde621f6d6325dda3ef32a6d102d06513ea3d5c",
+    "continuationPatch": "docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff",
+    "continuationBase": "661d53e0541779ae6c9ed7526cae5b1f273c708d"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
     "original": "iOS/DuckDuckGo/TabSwitcher/TabViewGridCell.swift",
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
-    "reason": "Preserve the original 44pt header, 16pt leading icon, 12/8pt header padding, 8pt preview inset, 4pt bottom padding and close-container layout. Substitute a semantic book icon and explicit unavailable-preview content because the reader has no browser screenshot service.",
+    "reason": "Preserve the original 44pt header, 16pt leading icon, 12/8pt header padding, 8pt preview inset, 4pt bottom padding and close-container layout. Substitute a semantic book icon and explicit unavailable-preview content because the reader has no browser screenshot service. Keep source geometry/visual hierarchy. Own local native drop sessions, resolve dragged UUID against live membership, disable swipe while UIKit owns a lifted drag and publish authoritative order/deletion before batch animation.",
     "sha256": "3c17cdbf42a3720645a558320f5fb28da29090f040f5d7a3c94745d43f6118ad",
-    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+    "destinationSHA256": "2a9035fe2e63779db18c9f362dde621f6d6325dda3ef32a6d102d06513ea3d5c",
+    "continuationPatch": "docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff",
+    "continuationBase": "661d53e0541779ae6c9ed7526cae5b1f273c708d"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
     "original": "iOS/DuckDuckGo/TabSwitcher/TabViewListCell.swift",
     "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
-    "reason": "Preserve the original list row's 16/12pt horizontal padding, 8pt vertical padding, 24pt icon, 8pt inter-item spacing, 44pt control height, title/subtitle stack and close control. Remove browser URL, unread and multi-select-only presentation while retaining the source cell hierarchy.",
+    "reason": "Preserve the original list row's 16/12pt horizontal padding, 8pt vertical padding, 24pt icon, 8pt inter-item spacing, 44pt control height, title/subtitle stack and close control. Remove browser URL, unread and multi-select-only presentation while retaining the source cell hierarchy. Keep source geometry/visual hierarchy. Own local native drop sessions, resolve dragged UUID against live membership, disable swipe while UIKit owns a lifted drag and publish authoritative order/deletion before batch animation.",
     "sha256": "efcdd9ebba2697b2ef8b7dcbf3f71f27e4b5c26a73d8a5da47123edc28e73ca5",
-    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+    "destinationSHA256": "2a9035fe2e63779db18c9f362dde621f6d6325dda3ef32a6d102d06513ea3d5c",
+    "continuationPatch": "docs/ipad-ui-rebuild/source-diffs/20261108-native-acceptance-repair.diff",
+    "continuationBase": "661d53e0541779ae6c9ed7526cae5b1f273c708d"
   }
 ]

@@ -19,3 +19,16 @@ The existing native reader/navigation surfaces are retained. Original vendor sou
 The unmodified strict boundary checker was run against base 59b01fa2 and checkpoint b55fc1fc. It reports FAIL with 18 findings: 7 pending proposals, 10 unsigned protected modifications, and the Markdown exception entry arriving alongside protected changes. Its signed-register requirements cannot authenticate an approval made in chat. The report is retained at build/integration-verification/upstream-boundary-report.json; no checker, trust key or register was changed to obtain green. This is an open provenance-check finding, separate from the user's explicit current authorization to implement, synchronize and upload a TestFlight build. No merge to main/dev is performed.
 
 Runtime validation remains separate from authorization. Until actual Apple UI/processing evidence exists, these hunks are implemented but release acceptance remains open.
+
+## Explicitly expanded native UI repair scope
+
+The user's reply, “לתקן כאן גם את כשלי הממשק הקיימים”, adds the thirteen prior iPad failures and the phone regression to this session. UI implementation remains in downstream `Source/ChavrusaText` components. The exact additional connections relative to 661d53e0 are:
+
+| File | Purpose and alternative | Regression/rollback scope |
+|---|---|---|
+| Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift | Keep the existing native searchable drawer visible inside its independently hosted navigation stack. Duplicating TOC search would lose the existing canonical query/navigation behavior. | Original TOC search, Hebrew/daf tracking, sidebar viewport; revert only the placement argument. |
+| Source/UI/iOS/Views/iPadLayout.swift | Restore the original Library query's native searchable drawer in the enabled sidebar stack. Inactive TOC preferences must not supply the Library's search field. | Original Library filtering and persistent sidebar page; remove the searchable modifier with its downstream hosting change. |
+| Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift | Fork-only co-located helper: use automatic visibility when downstream chrome is visible and retain the original policy if no downstream state is present. | Flags-on/off global-search geometry and collapse; revert helper and host visibility together. |
+| Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift | Fork-only co-located workspace: one modifier connects a downstream regular-width phone title action to the existing manager's showingTabsList binding. The original iOSReaderView is not edited for this repair. | Same iPhone Duo overview Grid/List and return-to-reader; remove the single modifier and its downstream definition together. |
+
+The current unchanged cryptographic checker reports **19 findings** at application checkpoint 302b62b4 (WORKTREE with documentation updates): eight pending proposals, ten unsigned upstream modifications and the inherited Markdown-register coupling finding. This supersedes the earlier count of eighteen; it does not authenticate chat authorization or establish runtime acceptance. Evidence: `build/integration-verification/upstream-boundary-ui-repair.json`. Original policy, checker, trust keys and signed exception data remain unchanged by this session.
