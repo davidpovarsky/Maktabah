@@ -48,6 +48,8 @@ class ReaderViewModel: ViewModelBase {
     // MARK: - Backend Navigation & Multi-Backend State
 
     var backendSection: LibraryTextSection?
+    var otzariaVersionSelection = OtzariaVersionSelectionStore()
+    var allowsReaderTextExport = true
     var currentDestination: LibraryReaderDestination?
     var searchText: String = ""
     var currentLocator: TextLocator? { readerState.currentLocator }

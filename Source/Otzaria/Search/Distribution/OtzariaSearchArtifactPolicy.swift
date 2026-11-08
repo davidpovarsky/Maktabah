@@ -26,6 +26,8 @@ enum OtzariaSearchArtifactPolicy {
         build: OtzariaSearchEngineBuildInfo
     ) -> Bool {
         identity.database.fileSize == currentDatabase.fileSize
+            && currentDatabase.contentIdentity != nil
+            && identity.database.contentIdentity == currentDatabase.contentIdentity
             && identity.upstreamCommit == build.upstreamCommit
             && identity.engineVersion == build.engineVersion
             && identity.indexSchemaVersion == build.indexSchemaVersion

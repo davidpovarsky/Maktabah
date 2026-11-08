@@ -1,4 +1,5 @@
 import Foundation
+import SQLite3
 
 final class OtzariaSearchIndexManager: @unchecked Sendable {
     static let shared = OtzariaSearchIndexManager()
@@ -46,10 +47,25 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
     func currentFingerprint(databasePath: String) throws -> OtzariaIndexFingerprint {
         let url = URL(fileURLWithPath: databasePath)
         let values = try url.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey])
+        func identity(_ database: SQLiteDatabase) throws -> String? {
+            let caps = try OtzariaDatabaseCapabilities(database: database)
+            let metadata = caps.schemaMetadata.merging(caps.databaseMetadata) { first, _ in first }
+            guard let hash = metadata["content_hash"], !hash.isEmpty else { return nil }
+            return [metadata["db_schema_version"] ?? String(caps.userVersion), metadata["db_version"] ?? "", hash].joined(separator: "|")
+        }
+        let contentIdentity: String?
+        if databasePath == OtzariaMaktabahBridge.shared.databasePath {
+            contentIdentity = try OtzariaMaktabahBridge.shared.withDatabase(identity)
+        } else {
+            // Installation validation can precede activation. A short-lived
+            // read-only identity probe must inspect the requested file itself.
+            contentIdentity = try identity(SQLiteDatabase(path: databasePath, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX))
+        }
         return OtzariaIndexFingerprint(
             databasePath: databasePath,
             fileSize: UInt64(values.fileSize ?? 0),
-            modificationTime: values.contentModificationDate?.timeIntervalSince1970 ?? 0
+            modificationTime: values.contentModificationDate?.timeIntervalSince1970 ?? 0,
+            contentIdentity: contentIdentity
         )
     }
 

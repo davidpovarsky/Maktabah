@@ -309,6 +309,7 @@ struct SearchResultContextPreview: View {
     @State private var isLoading = false
     @State private var retryToken = 0
     @State private var activeLoadToken = UUID()
+    @State private var allowsTextExport = false
 
     private var isHebrewBackend: Bool {
         item.archive == "Otzaria" || item.archive == "Sefaria" || item.archive == "Zayit" || item.backendLocator != nil
@@ -346,7 +347,7 @@ struct SearchResultContextPreview: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
-                    .textSelection(.enabled)
+                    .modifier(SearchPreviewTextSelection(allowed: allowsTextExport))
                 } else if isLoading {
                     ProgressView(String(localized: "Loading full text…", defaultValue: "טוען טקסט מלא…"))
                         .frame(maxWidth: .infinity, minHeight: 160)
@@ -396,6 +397,7 @@ struct SearchResultContextPreview: View {
             isLoading = false
             fullSegments = []
             previewError = nil
+            allowsTextExport = false
             guard let locator = item.backendLocator else {
                 if item.attributedText.string.isEmpty {
                     previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
@@ -412,8 +414,12 @@ struct SearchResultContextPreview: View {
                         sourceURL: nil, license: nil, notes: nil, isPrimary: language == "he")
                 } else { version = nil }
                 let section = try await BackendCoordinator.shared.section(at: locator, version: version)
+                let allowsExport = locator.backend == .otzaria
+                    ? try await OtzariaLineDecorationRepository().allowsTextExport(workKey: locator.workKey)
+                    : true
                 try Task.checkCancellation()
                 guard activeLoadToken == loadToken else { return }
+                allowsTextExport = allowsExport
                 fullSegments = section.segments.compactMap { segment in
                     let primary = segment.primaryText.readerPlainText
                     let translation = segment.translation?.readerPlainText
@@ -440,4 +446,12 @@ private struct SearchPreviewSegment: Identifiable {
     let id: String
     let primary: String
     let translation: String?
+}
+
+private struct SearchPreviewTextSelection: ViewModifier {
+    let allowed: Bool
+    @ViewBuilder func body(content: Content) -> some View {
+        if allowed { content.textSelection(.enabled) }
+        else { content.textSelection(.disabled) }
+    }
 }

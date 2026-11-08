@@ -278,7 +278,8 @@ jobs:
             SIM_UDID=$(cat sim_udid.txt)
             DESTINATION="platform=iOS Simulator,id=${SIM_UDID}"
           else
-            DESTINATION="platform=iOS Simulator,name=iPad (10th generation)"
+            echo "::error::Run-owned simulator receipt is missing"
+            exit 1
           fi
           echo "Testing on destination: ${DESTINATION}"
           TEST_EXIT=0
@@ -320,6 +321,7 @@ jobs:
             build/sefaria-source-manifest.json
             build/sefaria-app-bundle-manifest.json
             build/jsbundle/main.jsbundle
+            build/artifacts/simulator-isolation.json
             build/artifacts/simulator-launch.png
             build/artifacts/simulator-app.log
             build/artifacts/test-simulator.log

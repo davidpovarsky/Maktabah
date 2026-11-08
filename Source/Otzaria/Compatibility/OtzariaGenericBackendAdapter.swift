@@ -114,6 +114,11 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryVersionedTe
     func normalizedLocator(for input: String) async throws -> TextLocator {
         let pieces = input.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
         guard let first = pieces.first, let bookID = Int(first), bookID > 0 else { throw LibraryBackendError.invalidLocator }
+        if pieces.count == 2, Int(pieces[1]) == nil {
+            let candidates = try await OtzariaReferenceResolutionRepository().resolve(workKey: "book:\(bookID)", reference: pieces[1])
+            guard candidates.count == 1, let locator = candidates.first else { throw LibraryBackendError.invalidLocator }
+            return locator
+        }
         return try await OtzariaSchemaAwareReadContext.shared.read { database, _ in
             if pieces.count == 1 {
                 guard let line = try database.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex LIMIT 1", parameters: [bookID], mapping: { $0.int(at: 0) }).first else { throw LibraryBackendError.invalidLocator }

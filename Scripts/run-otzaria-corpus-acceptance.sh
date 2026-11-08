@@ -26,32 +26,10 @@ if [ "${OTZARIA_CORPUS_ACCEPTANCE_SKIP_BUILD:-0}" != "1" ]; then
     CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
 fi
 
-UDID="$(python3 <<'PY'
-import json
-import subprocess
-
-def simctl(*arguments):
-    return json.loads(subprocess.check_output(["xcrun", "simctl", *arguments, "-j"]))
-
-runtimes = {
-    runtime["identifier"]: tuple(int(part) for part in runtime["version"].split("."))
-    for runtime in simctl("list", "runtimes", "available")["runtimes"]
-    if runtime.get("isAvailable") and "iOS" in runtime["identifier"]
-}
-devices = simctl("list", "devices", "available")["devices"]
-candidates = []
-for runtime, version in runtimes.items():
-    for device in devices.get(runtime, []):
-        if device.get("isAvailable"):
-            iphone_preference = 1 if device.get("name", "").startswith("iPhone") else 0
-            candidates.append((version, iphone_preference, device["udid"]))
-if not candidates:
-    raise SystemExit("No compatible available iOS Simulator device")
-print(max(candidates)[2])
-PY
-)"
-echo "Using compatible iOS Simulator $UDID"
-cleanup() { xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true; }
+SIM_RECEIPT="$ROOT/build/artifacts/corpus-simulator-isolation.json"
+python3 "$ROOT/Scripts/CI/isolated-ipad-simulator.py" --major 0 --receipt "$SIM_RECEIPT" --out "$ROOT/build/artifacts/corpus-sim-udid.txt"
+UDID="$(cat "$ROOT/build/artifacts/corpus-sim-udid.txt")"
+cleanup() { python3 "$ROOT/Scripts/CI/isolated-ipad-simulator.py" --cleanup --receipt "$SIM_RECEIPT"; }
 trap cleanup EXIT
 
 xcrun simctl boot "$UDID" >/dev/null 2>&1 || true

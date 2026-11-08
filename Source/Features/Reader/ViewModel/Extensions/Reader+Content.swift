@@ -125,6 +125,7 @@ extension ReaderViewModel {
             focusLocator: effectiveFocus
         )
         selectedSegmentLocator = effectiveFocus
+        allowsReaderTextExport = effectiveSection.backend != .otzaria
         backendLoadTask?.cancel()
         state = .loading
         let scrollTarget: ReaderScrollTarget? = pendingReaderScrollTarget == .top ? .top : (pendingReaderScrollTarget == .bottom ? .bottom : nil)
@@ -137,12 +138,21 @@ extension ReaderViewModel {
         backendLoadTask = Task { @MainActor [weak self] in
             guard let self else { return }
             do {
-                let section = try await BackendCoordinator.shared.section(at: effectiveSection)
+                #if os(iOS)
+                let version = self.selectedOtzariaVersion(for: effectiveSection)
+                #else
+                let version: TextVersionMetadata? = nil
+                #endif
+                let section = try await BackendCoordinator.shared.section(at: effectiveSection, version: version)
+                let allowsExport = effectiveSection.backend == .otzaria
+                    ? try await OtzariaLineDecorationRepository().allowsTextExport(workKey: effectiveSection.workKey)
+                    : true
                 try Task.checkCancellation()
                 guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
                     return
                 }
                 self.backendSection = section
+                self.allowsReaderTextExport = allowsExport
                 let renderModel = MaktabahBackendAdapter.renderModel(
                     from: section,
                     preferredMode: TextViewState.shared.readerTextMode
@@ -152,7 +162,7 @@ extension ReaderViewModel {
                 }
                 self.backendRenderModel = renderModel
                 let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
-                if let bookID = self.currentBook?.id {
+                if version == nil, let bookID = self.currentBook?.id {
                     BookPageCache.shared.set(bookId: bookID, content: content)
                 }
                 self.updateContentState(with: content)

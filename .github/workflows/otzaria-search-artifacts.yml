@@ -25,10 +25,10 @@ on:
         type: boolean
         default: false
       source_release_tag:
-        description: Target Otzaria/SeforimLibrary release tag (e.g. v32-20261010190601, or latest)
+        description: Target Otzaria/SeforimLibrary release tag (e.g. v36-20261101064231, or latest)
         required: false
         type: string
-        default: "v32-20261010190601"
+        default: "v36-20261101064231"
       existing_release_tag:
         description: Verify an existing artifact release without rebuilding the corpus
         required: false
@@ -259,7 +259,7 @@ jobs:
           python3 Scripts/package-otzaria-search-artifact.py \
             --index "$INDEX" \
             --database "$RUNNER_TEMP/seforim.db" \
-            --database-asset-name "${ASSET_NAME:-seforim-schema6.db.zst}" \
+            --database-asset-name "${ASSET_NAME:?official schema asset is required}" \
             --release-json build/logs/source-release.json \
             --magic-release-json build/logs/magic-release.json \
             --acceptance-json build/logs/otzaria-corpus-acceptance.json \

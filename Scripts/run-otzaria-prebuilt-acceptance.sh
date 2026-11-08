@@ -18,44 +18,10 @@ mkdir -p "$REPORT_DIR"
 test -d "$APP"; test -f "$DATABASE"; test -f "$MANIFEST"; test -d "$PACKAGE"
 
 # Select intended stable iOS 18 iPhone simulator
-UDID="$(python3 <<'PY'
-import json, subprocess, sys
-
-def simctl(*arguments):
-    return json.loads(subprocess.check_output(["xcrun", "simctl", *arguments, "-j"]))
-
-runtimes = {}
-for r in simctl("list", "runtimes", "available").get("runtimes", []):
-    if r.get("isAvailable") and "iOS" in r.get("identifier", ""):
-        parts = [int(p) for p in r["version"].split(".") if p.isdigit()]
-        runtimes[r["identifier"]] = tuple(parts)
-
-devices_data = simctl("list", "devices", "available").get("devices", {})
-candidates = []
-for runtime_id, devices in devices_data.items():
-    version = runtimes.get(runtime_id)
-    if not version:
-        continue
-    # Priority for iOS 18
-    is_ios18 = 1 if (len(version) > 0 and version[0] == 18) else 0
-    for d in devices:
-        if d.get("isAvailable") and d.get("name", "").startswith("iPhone"):
-            candidates.append((is_ios18, version, d.get("name", ""), d["udid"]))
-
-if not candidates:
-    raise SystemExit("No available iPhone simulator on a compatible iOS runtime")
-
-candidates.sort(reverse=True)
-best = candidates[0]
-sys.stderr.write(f"Selected simulator: {best[2]} (iOS {'.'.join(map(str, best[1]))}, UDID: {best[3]})\n")
-print(best[3])
-PY
-)"
-
-cleanup() {
-  xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
-  xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
-}
+SIM_RECEIPT="$ROOT/build/artifacts/prebuilt-simulator-isolation.json"
+python3 "$ROOT/Scripts/CI/isolated-ipad-simulator.py" --major 0 --receipt "$SIM_RECEIPT" --out "$ROOT/build/artifacts/prebuilt-sim-udid.txt"
+UDID="$(cat "$ROOT/build/artifacts/prebuilt-sim-udid.txt")"
+cleanup() { python3 "$ROOT/Scripts/CI/isolated-ipad-simulator.py" --cleanup --receipt "$SIM_RECEIPT"; }
 trap cleanup EXIT
 
 xcrun simctl boot "$UDID" >/dev/null 2>&1 || true

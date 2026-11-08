@@ -1651,7 +1651,7 @@ mod tests {
 
         let exact_request = CString::new(
             json!({
-                "query": "×©×œ×•×", "mode": "exact", "facets": ["/"],
+                "query": "שלום", "mode": "exact", "facets": ["/"],
                 "limit": 20, "offset": 0, "order": "catalogue"
             })
             .to_string(),
@@ -1704,6 +1704,37 @@ mod tests {
         let compatibility = decode_ffi(otzaria_search_engine_check_compatibility(path.as_ptr()));
         assert_eq!(compatibility["value"]["compatible"], true);
         assert_eq!(compatibility["value"]["requiredSchemaVersion"], 10);
+        std::fs::remove_dir_all(index).unwrap();
+    }
+
+    #[test]
+    fn schema10_hebrew_pagination_preserves_210_raw_identities() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        let path = CString::new(index.to_string_lossy().as_bytes()).unwrap();
+        let handle = otzaria_search_engine_new(path.as_ptr());
+        assert!(!handle.is_null());
+        let text = (0..210).map(|i| format!("שלום עולם שורה {i}")).collect::<Vec<_>>().join("\n");
+        let book = CString::new(json!({"title":"ספר בדיקה","topics":"/fixtures","filePath":"id:1","catalogueOrder":0,"text":text}).to_string()).unwrap();
+        let added = decode_ffi(otzaria_search_engine_add_text_book_json(handle, book.as_ptr()));
+        assert_eq!(added["ok"], true, "{added}");
+        assert_eq!(decode_ffi(otzaria_search_engine_commit(handle))["ok"], true);
+        let mut identities = std::collections::HashSet::new();
+        for (offset, expected) in [(0,100), (100,100), (200,10)] {
+            let request = CString::new(json!({"query":"שלום","mode":"exact","facets":["/fixtures"],"limit":100,"offset":offset,"order":"catalogue"}).to_string()).unwrap();
+            let response = decode_ffi(otzaria_search_engine_search_json(handle, request.as_ptr()));
+            assert_eq!(response["ok"], true, "{response}");
+            assert_eq!(response["value"]["totalCount"], 210);
+            let hits = response["value"]["results"].as_array().unwrap();
+            assert_eq!(hits.len(), expected);
+            for hit in hits {
+                assert_eq!(hit["filePath"], "id:1");
+                assert!(hit["text"].as_str().unwrap().contains("שלום"));
+                assert!(identities.insert((hit["id"].to_string(),hit["segment"].to_string())));
+            }
+        }
+        assert_eq!(identities.len(),210);
+        otzaria_search_engine_free(handle);
         std::fs::remove_dir_all(index).unwrap();
     }
 

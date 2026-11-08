@@ -383,6 +383,7 @@ struct OtzariaIndexFingerprint: Codable, Equatable, Sendable {
     let databasePath: String
     let fileSize: UInt64
     let modificationTime: TimeInterval
+    var contentIdentity: String? = nil
 }
 
 struct OtzariaHighlightPattern: Codable, Equatable, Sendable {

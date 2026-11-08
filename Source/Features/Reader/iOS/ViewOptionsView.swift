@@ -139,6 +139,9 @@ struct ViewOptionsView: View {
                 }
 
                 ThemeSection("Display") {
+                    if let readerViewModel {
+                        OtzariaVersionPicker(reader: readerViewModel)
+                    }
                     if let modes = readerViewModel?.availableReaderTextModes, !modes.isEmpty {
                         Picker("Text", selection: readerTextModeBinding) {
                             ForEach(modes) { mode in

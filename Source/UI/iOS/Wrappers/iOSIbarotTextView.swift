@@ -3,6 +3,7 @@ import UIKit
 
 /// A customized UITextView designed specifically for Arabic text and annotations, mirroring AppKit's IbarotTextView behavior.
 class iOSCustomIbarotTextView: UITextView {
+    var allowsTextExport = true
     var onHighlight: ((NSRange, String) -> Void)?
     var onUnderline: ((NSRange, String) -> Void)?
 
@@ -158,10 +159,18 @@ class iOSCustomIbarotTextView: UITextView {
     // MARK: - Actions for UIMenuController (Pre-iOS 16)
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if !allowsTextExport, ["copy:", "cut:", "share:", "print:"].contains(NSStringFromSelector(action)) {
+            return false
+        }
         if action == #selector(highlightSelection) || action == #selector(underlineSelection) {
             return selectedRange.length > 0
         }
         return super.canPerformAction(action, withSender: sender)
+    }
+
+    override func copy(_ sender: Any?) {
+        guard allowsTextExport else { return }
+        super.copy(sender)
     }
 
     @objc func highlightSelection() {
@@ -568,6 +577,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         container.clipsToBounds = true
 
         let textView = iOSCustomIbarotTextView()
+        textView.allowsTextExport = viewModel.allowsReaderTextExport
         textView.accessibilityIdentifier = "reader-text"
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = context.coordinator
@@ -623,6 +633,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
 
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let textView = uiView.subviews.first as? iOSCustomIbarotTextView else { return }
+        textView.allowsTextExport = viewModel.allowsReaderTextExport
 
         context.coordinator.parent = self
         updateTextAlignmentAndSemantics(for: textView)
@@ -1235,8 +1246,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
                 buildNewAnnotationMenuChildren(sourceRange: sourceRange, sourceText: sourceText)
             }
 
-            var actions = suggestedActions
-            if let shareContent = shareContent(sourceText: sourceText, sourceRange: sourceRange) {
+            var actions = parent.viewModel.allowsReaderTextExport ? suggestedActions : []
+            if parent.viewModel.allowsReaderTextExport, let shareContent = shareContent(sourceText: sourceText, sourceRange: sourceRange) {
                 let shareAction = UIAction(
                     title: String(localized: "Share with Reference"),
                     image: UIImage(systemName: "square.and.arrow.up")

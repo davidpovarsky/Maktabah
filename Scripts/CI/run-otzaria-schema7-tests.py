@@ -21,6 +21,7 @@ sources += [
  'Source/Otzaria/Search/OtzariaSearchLineIndexResolver.swift',
  'Source/Otzaria/Navigation/OtzariaReferenceResolutionRepository.swift',
  'Source/Otzaria/Data/OtzariaWorkMetadataEnricher.swift',
+ 'Source/Otzaria/Reading/OtzariaVersionSelectionStore.swift',
  'tools/test_otzaria_schema7.swift',
 ]
 link = []

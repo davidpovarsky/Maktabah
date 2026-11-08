@@ -13,6 +13,9 @@ struct OtzariaDivineNameSpan: Sendable {
     let noteIndex: Int?
     let charStart: Int
     let packedSpan: Int
+    var length: Int { packedSpan >> 7 }
+    var sourceCode: Int { (packedSpan >> 4) & 7 }
+    var kindCode: Int { packedSpan & 15 }
 }
 
 struct OtzariaLineDecorations: Sendable {
@@ -25,6 +28,16 @@ struct OtzariaLineDecorations: Sendable {
 /// Exposes schema7 source facts; does not guess substitutions or alter user annotations.
 struct OtzariaLineDecorationRepository: Sendable {
     var context: OtzariaSchemaAwareReadContext = .shared
+    func allowsTextExport(workKey: String) async throws -> Bool {
+        try await context.read { database, capabilities in
+            guard capabilities.hasTable("book_protection") else { return true }
+            let bookID = try OtzariaCanonicalLineLocatorResolver.bookID(for: workKey, database: database, capabilities: capabilities)
+            // Every schema7 protection row has level >= 1. Unknown levels remain
+            // readable, but cannot authorize copy/share/export.
+            return try database.fetch(query: "SELECT 1 FROM book_protection WHERE bookId = ? LIMIT 1",
+                parameters: [bookID]) { $0.int(at: 0) }.isEmpty
+        }
+    }
     func decorations(for locator: TextLocator) async throws -> OtzariaLineDecorations {
         guard locator.backend == .otzaria, case .legacyLine(let lineIndex) = locator.position else {
             throw LibraryBackendError.invalidLocator
