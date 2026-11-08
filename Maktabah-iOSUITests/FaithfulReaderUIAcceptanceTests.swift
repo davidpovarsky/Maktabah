@@ -997,7 +997,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    func testWindowResizePreservesOriginalReaderAndSearch() {
+    func testCandidateWindowResizePreservesOriginalReaderAndSearch() {
         exerciseNativeWindowResize(enabled: true)
     }
 
