@@ -352,6 +352,7 @@ struct iOSReaderWorkspaceView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
+        .modifier(PhoneRegularReaderOverviewAction(bookTitle: book.book))
         .toolbar {
             if sidebarCoordinator == nil {
                 ToolbarItem(placement: .principal) {

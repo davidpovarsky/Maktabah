@@ -1,5 +1,29 @@
 import SwiftUI
 
+/// The original phone title action is supplied only in compact width. A phone
+/// with a regular-width window still needs that same action to open its tabs.
+struct PhoneRegularReaderOverviewAction: ViewModifier {
+    let bookTitle: String
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(iOSNavigationManager.self) private var manager
+
+    func body(content: Content) -> some View {
+        content.toolbar {
+            if !MaktabahApp.isIpad, ChavrusaTextReaderUI.isEnabled, horizontalSizeClass == .regular {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { manager.showingTabsList.toggle() } label: {
+                        Text(bookTitle)
+                            .lineLimit(1)
+                            .frame(maxWidth: 190)
+                            .contentShape(Rectangle())
+                    }
+                    .accessibilityIdentifier("reader-book-tabs-overview")
+                }
+            }
+        }
+    }
+}
+
 /// Adds no phone reader chrome. The existing book-title action opens the same
 /// source overview, with a scene-lived adapter so dismissed sheets cannot lose
 /// the reader's later checkpoints.

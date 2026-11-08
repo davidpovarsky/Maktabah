@@ -75,7 +75,7 @@ Source/ChavrusaText/Navigation/ReaderSessionRestoreCoordinator.swift,DOWNSTREAM_
 Source/ChavrusaText/Navigation/SerializedSessionWriter.swift,DOWNSTREAM_OWNED,,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ChavrusaReaderWorkspaceLayout.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ReaderInspectorHostPolicy.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ReaderNavigationChromeState.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -149,7 +149,7 @@ Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift,UPSTREAM_OWNED_PROTECTED,M,M
 Source/Features/Reader/iOS/ViewOptionsView.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/iOS/iOSReaderTabView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/iOS/iOSReaderView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
-Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift,PROTECTED_NAMESPACE_DOWNSTREAM_FILE,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift,PROTECTED_NAMESPACE_DOWNSTREAM_FILE,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Search/iOS/SearchComponents.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Search/iOS/SearchModeView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Search/iOS/SearchResultsListView.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0

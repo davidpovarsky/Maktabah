@@ -23,6 +23,12 @@ Native search placement follows Apple's [search-interface documentation](https:/
 
 ## Open gates
 
+[SDK run 42481871742](https://github.com/davidpovarsky/Maktabah/actions/runs/42481871742) passed at e873d13c7dd334ab7d9f4056a0f32ea1fb30f6ce: actual XCTest code generation, original sidebar/toolbar source compilation, the modified CommandPalette and DuckDuckGoBookTabs packages, and all 66 portable workspace checks. This is not app/runtime acceptance.
+
+The baseline phone receipt identifies an actual iPhone Duo, not a conventional compact-width phone. Its regular-width reader lacks the original compact-only title action. A downstream modifier supplies that same native title action and manager binding only for enabled regular-width phones, through the existing downstream reader-surface composition. It does not change the original iOSReaderView condition or flags-off behavior. Runtime proof remains pending on the same device selection.
+
+The baseline collapse video shows the genuine linked passage fitting within the iPad viewport at the normal 19pt reader preference. The scrolling case now uses the reader's supported 48pt preference and requires measured native content height to exceed its viewport by 100pt before performing the unchanged collapse/restore assertions. Other launches explicitly use the normal 19pt preference. No generated content or simulated scroll event is introduced.
+
 The focused SDK workflow compiles actual XCTest, sidebar/toolbar sources and the two changed source packages. Compilation is not runtime acceptance. Real source/edition interactions, all required iPad sizes, Dynamic Type, phone, windowing, accessibility, production Release and final source synchronization remain required. Reader chrome collapse, narrow-window controls and phone overview must not be called repaired until their real interactions pass.
 
 No TestFlight upload from this integration has been dispatched.

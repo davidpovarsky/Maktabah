@@ -59,7 +59,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let isRestoringScroll: Bool?
         let scrollOffsetY: Double?; let contentHeight: Double?; let viewportHeight: Double?; let panTranslationY: Double?
     }
-    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false) {
+    func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, textSize: Int = 19) {
         // The downstream observer reads the actual original source anchor;
         // never activate the baseline renderer's crash-prone file exporter.
         let prefix = (recordViewport ? ProcessInfo.processInfo.environment["FAITHFUL_VIEWPORT_DIRECTORY"] : nil).map {
@@ -69,7 +69,8 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         launchWithTier(.smoke, scenario: scenario, backend: backend, extraArgs: [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
             "-studyWorkspaceTestingNamespace", workspaceNamespace,
-            "-textViewBackgroundColorLight", String(background)
+            "-textViewBackgroundColorLight", String(background),
+            "-textViewFontSize", String(textSize)
         ], language: language, locale: language == "he" ? "he_IL" : "en_US",
         extraEnvironment: prefix.map { ["CHAVRUSA_READER_VIEWPORT_REPORT": $0] } ?? [:])
         dismissAlertsIfNeeded()
@@ -1188,10 +1189,17 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
 
     func testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader(recordViewport: true)
+        // The genuine linked mini-corpus passage can fit entirely at 19pt on
+        // an iPad. Exercise real scrolling using the reader's supported 48pt
+        // preference, rather than asking an unscrollable page to scroll.
+        launchReader(recordViewport: true, textSize: 48)
         assertReaderHasText()
         let text = app.textViews["reader-text"]
-        let originalObject = try viewport().object
+        let initialViewport = try viewport()
+        let originalObject = initialViewport.object
+        XCTAssertGreaterThan(try XCTUnwrap(initialViewport.contentHeight),
+                             try XCTUnwrap(initialViewport.viewportHeight) + 100,
+                             "The genuine passage must actually extend beyond the reader viewport")
         let strip = app.descendants(matching: .any)["reader-document-tabs"]
         XCTAssertTrue(strip.waitForExistence(timeout: 30))
 
