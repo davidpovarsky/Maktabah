@@ -35,7 +35,8 @@ for feature in ["MemberImportVisibility", "InferIsolatedConformances", "Nonisola
 ui_sources = ["Maktabah-iOSUITests/MaktabahUITestBase.swift", "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
               "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
               "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
-              "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift"]
+              "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+              "Maktabah-iOSUITests/OtzariaSchema7AcceptanceTests.swift"]
 compiler_options = command.copy()
 command.extend(ui_sources)
 result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)

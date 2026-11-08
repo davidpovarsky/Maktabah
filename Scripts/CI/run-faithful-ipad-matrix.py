@@ -146,7 +146,7 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
         elif not baseline:
             selection.append("FaithfulReaderUIAcceptanceTests")
             if index == 0:
-                selection.extend(["SefariaEmbeddedAcceptanceTests", "Build8401SevenDefectsAcceptanceTests", "PullNavigationAcceptanceTests"])
+                selection.extend(["SefariaEmbeddedAcceptanceTests", "OtzariaSchema7AcceptanceTests", "Build8401SevenDefectsAcceptanceTests", "PullNavigationAcceptanceTests"])
         if diagnostic_cases:
             selection = [case for case in diagnostic_cases
                          if case.startswith(phone_case_prefix) == (size == "phone")]

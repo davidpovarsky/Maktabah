@@ -1,5 +1,5 @@
 {
-  "checkpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+  "checkpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
   "note": "Case-level status is conservative. Portable/native repository evidence does not satisfy an unexecuted UI, device, performance or legal gate. Build artifact logs are local ignored files; immutable CI run URLs are added as runs finish.",
   "cases": [
     {
@@ -36,7 +36,7 @@
       "id": "GIT-04",
       "scenario": "`Scripts/CI/verify-upstream-boundary.py` תחת תרחיש מאושר",
       "expected": "הגנה אינה עוקפת אישורי Ed25519; כשל בכל protected hunk לא מאושר",
-      "status": "FAIL",
+      "status": "EXECUTED_FAIL",
       "scope": "strict cryptographic boundary checker",
       "actual": "Unmodified checker reports 18 findings at b55fc1fc: 7 pending proposals, 10 unsigned protected modifications and a preserved UI-branch Markdown exception entry. Current explicit user authorization is documented separately and is not a fabricated signature.",
       "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
@@ -51,9 +51,11 @@
       "expected": "בדיקת PBX membership: אין סימון PASS אם קובץ אינו חלק מ־Compile Sources; בלי אישור שינוי project file = `BLOCKED_OWNER`",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "PBX membership verifier passes for 108 Otzaria Swift sources; exact protected project diff is disclosed separately in owner-approval-proposals.md. Strict cryptographic boundary status remains FAIL in GIT-04.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "GIT-06",
@@ -91,9 +93,11 @@
       "expected": "ספרייה, מחברים, טקסט ו־TOC רגיל נטענים; optional tables לא מפילות app",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Minimal optional-schema repositories execute successfully; full native library/author/TOC app interaction remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "DB-02",
@@ -101,9 +105,11 @@
       "expected": "capability flags מזהים line_note, book_version, alt_toc וכו' במדויק",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Native synthetic and authenticated schema7 capability probes pass for versions/alternate navigation; full capability matrix is not claimed complete.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "DB-03",
@@ -133,9 +139,11 @@
       "expected": "פענוח בדיוק פעם אחת, אין בלבול UTF8/HTML, אין crash על frame מושחת",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Actual native zstd decoder verifies Hebrew UTF8 and rejects corrupted frames. Full dictionary/once-only app rendering remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "DB-06",
@@ -235,9 +243,11 @@
       "expected": "אין אינסוף recursion/קריסה; diagnostic + graceful skip",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Native repository fixture excludes foreign anchors, orphan entries and cycles. UI diagnostics/deep-data acceptance remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "TOC-06",
@@ -245,9 +255,11 @@
       "expected": "מעקב highlight לאותו structure על בסיס lineID→entryID, בלי out-of-scope lookup",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "line_alt_toc fixture verifies canonical line coverage and excludes foreign lines; native current-node highlight interaction remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "TOC-07",
@@ -317,9 +329,11 @@
       "expected": "title/he title/source/license/notes/priority mapped without fake default",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Authenticated mini database verifies priority, original Hebrew title and true SQLite edition identity; complete source/license/notes mapping QA remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "VERS-02",
@@ -393,9 +407,11 @@
       "expected": "tab scoped, switch backend does not leak selected edition",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Production selection-store fixture proves independent tabs and resets across work/database generations. Native tab/backend switching is still pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "VERS-09",
@@ -421,11 +437,13 @@
       "id": "META-01",
       "scenario": "`book_topic`",
       "expected": "returning actual book topics, stable deterministic slug, Hebrew name, no invented English",
-      "status": "NOT_RUN",
-      "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "status": "EXECUTED_PASS",
+      "scope": "Production topics repository native SQLite fixture",
+      "actual": "Original Hebrew topic title, absent English, deterministic original topic identity and scoped book join exercised.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "tools/test_otzaria_schema7.swift"
+      ]
     },
     {
       "id": "META-02",
@@ -433,9 +451,11 @@
       "expected": "actual SQLite joins; absent optional tables yield empty fields",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Native fixture verifies original publication-place joins and minimal metadata; all optional date/place variants are not claimed complete.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "META-03",
@@ -535,9 +555,11 @@
       "expected": "visible char positions map to valid UTF16 NSRange; no offsets inside tag",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Verified Hebrew range maps to UTF16; source/display transformation mismatch returns no guessed highlight. Full native HTML/niqqud interaction remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "LINK-07",
@@ -617,9 +639,11 @@
       "expected": "decode with existing dictionary codec if needed; invalid blob safe",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "All seven compressed original v36 footnote lines are restored through production repositories; malformed note-body/dictionary cases are not all executed.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "TEXT-03",
@@ -637,11 +661,13 @@
       "id": "TEXT-04",
       "scenario": "book protection flag unknown",
       "expected": "fail closed for restricted actions until semantics established",
-      "status": "NOT_RUN",
-      "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "status": "EXECUTED_PASS",
+      "scope": "Production permission repository against real native SQLite fixture",
+      "actual": "Unknown protection level 99 denies text export; an unrestricted book remains exportable. Native copy/share/drag interaction is still a separate pending UI gate.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "tools/test_otzaria_schema7.swift"
+      ]
     },
     {
       "id": "TEXT-05",
@@ -669,11 +695,13 @@
       "id": "SEARCH-02",
       "scenario": "feature flags SQLite",
       "expected": "exactly one of `sqlite-bundled`/`sqlite-host`, valid on Apple targets",
-      "status": "NOT_RUN",
-      "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "status": "EXECUTED_PASS",
+      "scope": "Pinned feature configuration and actual Apple framework build",
+      "actual": "Exactly sqlite-bundled is enabled; all three Apple slices compiled in native 42462535543. No semantic mock feature enabled.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "https://github.com/davidpovarsky/Maktabah/actions/runs/42462535543"
+      ]
     },
     {
       "id": "SEARCH-03",
@@ -691,11 +719,13 @@
       "id": "SEARCH-04",
       "scenario": "cargo lock / pristine checkout",
       "expected": "reproducible --locked; upstream source unchanged",
-      "status": "NOT_RUN",
-      "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "status": "EXECUTED_PASS",
+      "scope": "Locked Rust source and resource validation",
+      "actual": "Locked bridge tests and pristine exact upstream pin/resource-manifest validation passed.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py"
+      ]
     },
     {
       "id": "SEARCH-05",
@@ -723,9 +753,11 @@
       "expected": "raw hit metadata and UI result match at offset 100+, same source/work and line",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Actual Rust Hebrew fixture returns 100/100/10 hits at offsets 0/100/200 with 210 unique raw identities; production Swift paired records retain metadata. Native UI offset-101 interaction remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "SEARCH-08",
@@ -733,9 +765,11 @@
       "expected": "stable unique identities independent of array offset",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Rust 210-hit pagination and Swift duplicate-title paired identity fixtures pass; native UI large-hit rendering remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "SEARCH-09",
@@ -783,9 +817,11 @@
       "expected": "no UI freeze/invalid pointer/stale result after cancel",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Native Rust registry cancels while engine mutex is held, isolates request IDs and survives engine close; caller cancellation reaches the running Swift provider. Native UI responsiveness remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "SEARCH-14",
@@ -813,9 +849,11 @@
       "expected": "memory releases with safe handle lifetime; subsequent query correct",
       "status": "NOT_RUN",
       "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "actual": "Locked bounded-lifetime and snapshot/memory native Rust tests passed. Actual background/foreground memory-pressure UI test remains pending.",
+      "sourceCheckpoint": "1992504e9a4916ec2c80ae74890f1b18f09f1679",
+      "evidence": [
+        "qa-results.md"
+      ]
     },
     {
       "id": "SEARCH-17",
