@@ -353,14 +353,29 @@ enum LibraryPresentationPolicy {
     }
 }
 
+/// Canonical language codes at every backend boundary. Unknown languages remain intact.
+enum LibraryLanguage {
+    static func normalized(_ value: String?) -> String? {
+        guard let value = value?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(),
+              !value.isEmpty else { return nil }
+        switch value {
+        case "he", "hebrew", "iw": return "he"
+        case "en", "english": return "en"
+        case "ar", "arabic": return "ar"
+        case "arc", "aramaic": return "arc"
+        default: return value
+        }
+    }
+}
+
 enum LibraryTextDirection: String, Codable, Hashable, Sendable {
     case leftToRight
     case rightToLeft
     case natural
 
     static func inferred(from language: String?) -> Self {
-        switch language?.lowercased() {
-        case "he", "hebrew", "ar", "arabic", "arc", "aramaic": .rightToLeft
+        switch LibraryLanguage.normalized(language) {
+        case "he", "ar", "arc": .rightToLeft
         case nil, "": .natural
         default: .leftToRight
         }
@@ -747,6 +762,8 @@ struct LibrarySearchHit: Codable, Hashable, Identifiable, Sendable {
     let score: Double?
     var versionTitle: String? = nil
     var language: String? = nil
+    var workTitle: String? = nil
+    var heWorkTitle: String? = nil
     var id: String {
         "\(locator.persistenceKey)|\(versionTitle ?? "")|\(language ?? "")"
     }

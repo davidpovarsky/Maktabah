@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataProviding, Sendable {
+final class SefariaEmbeddedTextAdapter: LibraryVersionedTextProviding, LibraryMetadataProviding, Sendable {
     static let shared = SefariaEmbeddedTextAdapter()
 
     private init() {}
@@ -16,6 +16,15 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
     // MARK: - LibraryTextProviding
 
     func section(at locator: TextLocator) async throws -> LibraryTextSection {
+        try await loadSection(at: locator, version: nil)
+    }
+
+    func section(at locator: TextLocator, version: TextVersionMetadata) async throws -> LibraryTextSection {
+        try await loadSection(at: locator, version: version)
+    }
+
+    private func loadSection(at locator: TextLocator, version: TextVersionMetadata?) async throws -> LibraryTextSection {
+        guard locator.backend == .sefariaEmbedded else { throw LibraryBackendError.invalidLocator }
         try await SefariaRuntimeManager.shared.ensureReady()
 
         let canonicalRef: String
@@ -26,11 +35,17 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
             canonicalRef = locator.workKey
         }
 
-        let params: [String: Any] = [
+        var params: [String: Any] = [
             "ref": canonicalRef,
             "context": true,
-            "fallbackOnDefaultVersions": true,
+            "fallbackOnDefaultVersions": version == nil,
         ]
+        if let version {
+            guard let language = LibraryLanguage.normalized(version.language), ["he", "en"].contains(language) else {
+                throw LibraryBackendError.capabilityUnavailable
+            }
+            params["versions"] = [language: version.title]
+        }
 
         let paramsData = try JSONSerialization.data(withJSONObject: params)
         let paramsJson = String(data: paramsData, encoding: .utf8)
@@ -49,6 +64,13 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
         }
 
         let textContent = (json["textContent"] as? [String: Any]) ?? json
+        if let version {
+            let key = LibraryLanguage.normalized(version.language) == "he" ? "heVersionTitle" : "versionTitle"
+            guard textContent[key] as? String == version.title else {
+                throw SefariaRPCError(code: "VERSION_UNAVAILABLE",
+                    message: "The requested edition '\(version.title)' is unavailable for this passage.", retryable: true)
+            }
+        }
         let sectionRef = (textContent["sectionRef"] as? String) ?? canonicalRef
         let heSectionRef = textContent["heSectionRef"] as? String
 
@@ -172,16 +194,16 @@ final class SefariaEmbeddedTextAdapter: LibraryTextProviding, LibraryMetadataPro
               let resultJson = response.resultJson,
               let data = resultJson.data(using: .utf8),
               let versionsArray = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
-            return []
+            throw response.error ?? LibraryBackendError.invalidResponse("Sefaria versions returned invalid payload")
         }
 
         return versionsArray.compactMap { (dict: [String: Any]) -> TextVersionMetadata? in
             guard let title = dict["versionTitle"] as? String else { return nil }
-            let lang = (dict["language"] as? String) ?? "he"
+            guard let lang = LibraryLanguage.normalized(dict["language"] as? String) else { return nil }
             return TextVersionMetadata(
                 title: title,
                 language: lang,
-                actualLanguage: dict["actualLanguage"] as? String,
+                actualLanguage: LibraryLanguage.normalized(dict["actualLanguage"] as? String),
                 sourceURL: (dict["versionSource"] as? String).flatMap { URL(string: $0) },
                 license: dict["license"] as? String,
                 notes: dict["versionNotes"] as? String,

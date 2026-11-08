@@ -8,6 +8,11 @@ protocol LibraryTextProviding: Sendable {
     func section(at locator: TextLocator) async throws -> LibraryTextSection
 }
 
+/// Optional edition support; existing text providers and persisted locators stay compatible.
+protocol LibraryVersionedTextProviding: LibraryTextProviding {
+    func section(at locator: TextLocator, version: TextVersionMetadata) async throws -> LibraryTextSection
+}
+
 protocol LibraryNavigationProviding: Sendable {
     func normalizedLocator(for input: String) async throws -> TextLocator
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode]

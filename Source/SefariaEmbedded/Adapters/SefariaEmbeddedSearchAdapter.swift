@@ -63,15 +63,16 @@ final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
         }
         let start = (json["start"] as? Int) ?? request.offset
 
-        let hits: [LibrarySearchHit] = rawHits.compactMap { hitDict in
-            guard let ref = hitDict["ref"] as? String else { return nil }
+        let hits: [LibrarySearchHit] = try rawHits.map { hitDict in
+            guard let ref = hitDict["ref"] as? String,
+                  let workKey = hitDict["workKey"] as? String, !workKey.isEmpty else {
+                throw LibraryBackendError.invalidResponse("Sefaria search hit is missing its canonical identity")
+            }
             let heRef = hitDict["heRef"] as? String
             let snippet = (hitDict["snippet"] as? String) ?? ""
             let score = hitDict["score"] as? Double
             let version = hitDict["version"] as? String
-            let language = hitDict["language"] as? String
-
-            let workKey = (hitDict["workKey"] as? String) ?? (hitDict["title"] as? String) ?? (ref.components(separatedBy: " ").first ?? ref)
+            let language = LibraryLanguage.normalized(hitDict["language"] as? String)
             let locator = TextLocator(
                 backend: .sefariaEmbedded,
                 workKey: workKey,
@@ -85,7 +86,9 @@ final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
                 snippet: snippet,
                 score: score,
                 versionTitle: version,
-                language: language
+                language: language,
+                workTitle: hitDict["title"] as? String,
+                heWorkTitle: hitDict["heTitle"] as? String
             )
         }
 

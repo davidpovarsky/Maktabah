@@ -118,7 +118,21 @@ enum MaktabahBackendAdapter {
         var page = 0
         var part = 0
 
-        if hit.locator.backend == .sefaria {
+        if hit.locator.backend == .sefariaEmbedded {
+            let canonicalTitle = hit.workTitle ?? hit.locator.workKey
+            let hebrewTitle = hit.heWorkTitle ?? LegacyIdentityRegistry.shared.title(for: workLocator)
+            bookTitle = LibraryPresentationPolicy.prefersHebrew()
+                ? (hebrewTitle ?? canonicalTitle) : canonicalTitle
+            if LibraryPresentationPolicy.prefersHebrew(), let hebrewTitle,
+               let heRef = hit.heRef, heRef.hasPrefix(hebrewTitle) {
+                locationDisplayText = String(heRef.dropFirst(hebrewTitle.count)).trimmingCharacters(in: .whitespaces)
+            } else if hit.displayRef.hasPrefix(hit.locator.workKey) {
+                locationDisplayText = String(hit.displayRef.dropFirst(hit.locator.workKey.count)).trimmingCharacters(in: .whitespaces)
+            } else {
+                locationDisplayText = hit.displayRef
+            }
+            if locationDisplayText?.isEmpty == true { locationDisplayText = nil }
+        } else if hit.locator.backend == .sefaria {
             let engWork = hit.locator.workKey
             let engLocation: String? = if hit.displayRef.hasPrefix(engWork) {
                 hit.displayRef.dropFirst(engWork.count).trimmingCharacters(in: .whitespaces)
@@ -188,7 +202,7 @@ enum MaktabahBackendAdapter {
             locationDisplayText: locationDisplayText,
             highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms,
             versionTitle: hit.versionTitle,
-            resultLanguage: hit.language
+            resultLanguage: LibraryLanguage.normalized(hit.language)
         )
     }
 

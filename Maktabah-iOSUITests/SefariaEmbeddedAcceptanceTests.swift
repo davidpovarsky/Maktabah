@@ -66,6 +66,7 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
             "textLoadBerakhot",
             "textOriginRemote",
             "navigationTextToc",
+            "relatedContent",
             "searchLive",
             "searchOpenResult",
             "fullReactSurface",
@@ -91,9 +92,73 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
     }
 
     func testEmbeddedSefariaReaderPresentation() throws {
-        // Cold-launch reader with sefariaEmbedded requires prewarmed Hermes runtime;
-        // text loading and React reader surface are verified under testEmbeddedSefariaFullAcceptanceDiagnostic.
-        throw XCTSkip("Requires prewarmed Hermes runtime; covered comprehensively by testEmbeddedSefariaFullAcceptanceDiagnostic")
+        launchWithScenario("reader", backend: "sefariaEmbedded")
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 60))
+        let hebrewText = NSPredicate { _, _ in
+            let value = text.value as? String ?? ""
+            return value.unicodeScalars.filter { (0x05D0...0x05EA).contains($0.value) }.count > 30
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: hebrewText, object: text)], timeout: 60), .completed)
+        XCTAssertTrue(app.staticTexts["reader-current-locator"].label.contains("sefariaEmbedded"))
+    }
+
+    func testEmbeddedSefariaHebrewTOC() throws {
+        try verifyTOC(language: "he", firstChapter: "פרק א׳", secondChapter: "פרק ב׳")
+    }
+
+    func testEmbeddedSefariaEnglishTOC() throws {
+        try verifyTOC(language: "en", firstChapter: "Chapter 1", secondChapter: "Chapter 2")
+    }
+
+    private func verifyTOC(language: String, firstChapter: String, secondChapter: String) throws {
+        launchWithScenario("readerTOC", backend: "sefariaEmbedded", language: language)
+        let toggle = app.buttons["reader-toc-toggle"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 60))
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        XCTAssertTrue(app.buttons[firstChapter].waitForExistence(timeout: 30))
+        let next = app.buttons[secondChapter]
+        XCTAssertTrue(next.waitForExistence(timeout: 15))
+        next.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let locator = app.staticTexts["reader-current-locator"]
+        let expected = NSPredicate(format: "label CONTAINS %@ AND label CONTAINS %@", "sefariaEmbedded", "Genesis 2")
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: expected, object: locator)], timeout: 30), .completed)
+    }
+
+    func testEmbeddedSefariaInspectorRealContent() throws {
+        launchWithScenario("studyCommentaries", backend: "sefariaEmbedded")
+        let group = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-commentary-group-'")).firstMatch
+        XCTAssertTrue(group.waitForExistence(timeout: 60), "Genesis must have real commentary groups")
+        group.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let source = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-source-'")).firstMatch
+        XCTAssertTrue(source.waitForExistence(timeout: 30))
+        source.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let open = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-open-'")).firstMatch
+        XCTAssertTrue(open.waitForExistence(timeout: 30), "A real related source must be openable")
+        open.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let locator = app.staticTexts["reader-current-locator"]
+        let expected = NSPredicate(format: "label CONTAINS %@ AND NOT label CONTAINS %@", "sefariaEmbedded", "|Genesis|")
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: expected, object: locator)], timeout: 30), .completed)
+    }
+
+    func testEmbeddedSefariaHebrewSearchExpansion() throws {
+        launchWithScenario("searchResults", backend: "sefariaEmbedded")
+        let toggle = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'search-result-preview-toggle'")).firstMatch
+        XCTAssertTrue(toggle.waitForExistence(timeout: 60), "Live search must return a real result")
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let preview = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'search-result-expanded-preview-'")).firstMatch
+        XCTAssertTrue(preview.waitForExistence(timeout: 20))
+        let content = NSPredicate { _, _ in
+            preview.staticTexts.allElementsBoundByIndex.contains { element in
+                element.label.unicodeScalars.filter { (0x05D0...0x05EA).contains($0.value) }.count > 30
+            }
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: content, object: preview)], timeout: 60), .completed,
+            "Expanded full text must contain actual Hebrew, not just a title or loading label")
+        let open = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'search-result-open-'")).firstMatch
+        XCTAssertTrue(open.exists)
+        open.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        XCTAssertTrue(app.textViews["reader-text"].waitForExistence(timeout: 30))
     }
 
     func testThreeBackendSwitchRegression() throws {

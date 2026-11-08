@@ -44,6 +44,10 @@ swiftc -parse-as-library \
   "${REPO_ROOT}/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift" \
   "${REPO_ROOT}/Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift" \
   "${REPO_ROOT}/Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift" \
+  "${REPO_ROOT}/Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift" \
+  "${REPO_ROOT}/Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift" \
+  "${REPO_ROOT}/Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift" \
+  "${REPO_ROOT}/Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift" \
   "${REPO_ROOT}/tools/test_chavrusa_text_components.swift" \
   -o "${OUT_BIN}"
 
@@ -53,3 +57,6 @@ if [[ "${OUT_BIN}" != /* && "${OUT_BIN}" != .* && "${OUT_BIN}" != [a-zA-Z]:* ]];
 else
   "${OUT_BIN}"
 fi
+
+echo "=== Verifying Production Sefaria JavaScript Mapping Contracts ==="
+node "${REPO_ROOT}/tools/test_sefaria_facade.mjs"

@@ -76,8 +76,9 @@ final class MaktabahTorahInspectorSession {
     ) -> TorahInspectorSelection? {
         if coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded {
             if let locator = sefariaLocator,
-               locator.backend == .sefaria,
+               locator.backend == coordinator.activeBackendID,
                let sectionLocator = readerViewModel?.backendSection?.locator,
+               sectionLocator.backend == locator.backend,
                locator != sectionLocator {
                 let reference = Self.reference(for: locator)
                 let sectionReference = Self.reference(for: sectionLocator)
@@ -159,11 +160,12 @@ final class MaktabahTorahInspectorSession {
     private func currentUnitSelection() -> TorahInspectorSelection? {
         guard let viewModel = readerViewModel else { return nil }
         if (coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded),
-           let locator = viewModel.backendSection?.locator {
+           let locator = viewModel.backendSection?.locator,
+           locator.backend == coordinator.activeBackendID {
             let reference = Self.reference(for: locator)
             remember(locator, for: reference)
             return TorahInspectorSelection(
-                providerID: BackendID.sefaria.rawValue,
+                providerID: locator.backend.rawValue,
                 canonicalRef: reference,
                 scope: .section
             )

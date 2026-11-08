@@ -14,6 +14,44 @@ import { loadTextOffline, textFromRefData } from '../../Upstream/offline';
 import { ERRORS } from '../../Upstream/errors';
 import api from '../../Upstream/api';
 
+export function normalizedLanguage(language) {
+  const value = typeof language === 'string' ? language.trim().toLowerCase() : '';
+  if (['he', 'hebrew', 'iw'].includes(value)) { return 'he'; }
+  if (['en', 'english'].includes(value)) { return 'en'; }
+  return value || null;
+}
+
+function canonicalBookForRef(ref) {
+  const title = global.Sefaria?.textTitleForRef?.(ref);
+  if (!title) {
+    const error = new Error(`Sefaria cannot resolve canonical book for '${ref}'`);
+    error.code = 'INVALID_CANONICAL_BOOK';
+    throw error;
+  }
+  return title;
+}
+
+function relatedWithCanonicalBooks(payload) {
+  function links(value) {
+    if (Array.isArray(value)) {
+      return value.map(row => {
+        if (Array.isArray(row)) { return links(row); }
+        const ref = row?.sourceRef || row?.ref;
+        return { ...row, workKey: canonicalBookForRef(ref) };
+      });
+    }
+    if (value && typeof value === 'object') {
+      return Object.fromEntries(Object.entries(value).map(([key, rows]) => [key, links(rows)]));
+    }
+    throw new Error('Sefaria returned an invalid links collection');
+  }
+  if (Array.isArray(payload)) { return links(payload); }
+  if (payload && Object.prototype.hasOwnProperty.call(payload, 'links')) {
+    return { ...payload, links: links(payload.links) };
+  }
+  throw new Error('Sefaria related response is missing links');
+}
+
 /**
  * Loads text while rigorously tracking provenance (offline vs remote).
  * Does not invent an origin from response shape.
@@ -204,13 +242,19 @@ export class ChavrusaRPCFacade {
           result = await OfflineOnline.textToc(params.title);
           break;
 
+        case 'navigation.normalize': {
+          const ref = global.Sefaria?.normRef ? global.Sefaria.normRef(params.ref) : params.ref;
+          result = { ref, title: canonicalBookForRef(ref) };
+          break;
+        }
+
         case 'navigation.refUpOne':
           result = global.Sefaria?.refUpOne ? global.Sefaria.refUpOne(params.ref) : params.ref;
           break;
 
         // --- RELATIONSHIPS ---
         case 'relationships.links':
-          result = await OfflineOnline.loadRelated(params.ref, params.online !== false);
+          result = relatedWithCanonicalBooks(await OfflineOnline.loadRelated(params.ref, params.online !== false));
           break;
 
         // --- SEARCH ---
@@ -246,16 +290,20 @@ export class ChavrusaRPCFacade {
               if (!snippet) {
                 snippet = source.text || source.he || '';
               }
-              const bookTitle = source.title || (global.Sefaria?.textTitleForRef ? global.Sefaria.textTitleForRef(source.ref) : null) || source.ref;
+              const bookTitle = canonicalBookForRef(source.ref);
+              const metadata = global.Sefaria?.index?.(bookTitle);
+              const language = normalizedLanguage(source.lang || source.language)
+                || (hit._id?.includes('[he]') ? 'he' : hit._id?.includes('[en]') ? 'en' : null);
               return {
                 ref: source.ref,
                 heRef: source.heRef,
                 title: bookTitle,
                 workKey: bookTitle,
+                heTitle: metadata?.heTitle || null,
                 snippet: snippet,
                 score: hit._score,
                 version: source.version,
-                language: hit._id?.includes('[he]') ? 'hebrew' : 'english',
+                language,
               };
             }),
             total: (typeof rawSearchData?.hits?.total === 'number')
@@ -450,9 +498,9 @@ export class ChavrusaRPCFacade {
         status: 'error',
         resultJson: null,
         error: {
-          code: 'EXECUTION_ERROR',
+          code: err?.code || 'EXECUTION_ERROR',
           message: err?.message || String(err),
-          retryable: false,
+          retryable: err?.code !== 'INVALID_CANONICAL_BOOK',
         },
         sessionGeneration,
         backendID: 'sefariaEmbedded',

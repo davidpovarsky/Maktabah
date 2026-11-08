@@ -2144,6 +2144,50 @@ struct TestRunner {
             assertCondition(failClosed, "Zero segments detected as invalid corrupt payload, triggering fail-closed without fake fallback")
         }
 
+        print("\n--- 40. Embedded Sefaria mapping regressions ---")
+        do {
+            assertCondition(LibraryLanguage.normalized(" Hebrew ") == "he", "Hebrew aliases normalize")
+            assertCondition(LibraryLanguage.normalized("ENGLISH") == "en", "English aliases normalize")
+            assertCondition(LibraryLanguage.normalized("fr") == "fr", "Other languages retained")
+            let schema: [String: Any] = ["sectionNames": ["Chapter", "Verse"],
+                "heSectionNames": ["פרק", "פסוק"], "lengths": [50, 1533]]
+            let record: [String: Any] = ["title": "Genesis", "heTitle": "בראשית", "schema": schema,
+                "alts": ["Parasha": ["nodes": [["title": "Bereshit", "heTitle": "בראשית",
+                    "wholeRef": "Genesis 1:1-6:8", "refs": ["Genesis 1:1-2:3"]]]]]]
+            let he = try SefariaEmbeddedNavigationAdapter.structures(record, workKey: "Genesis", hebrew: true)
+            let en = try SefariaEmbeddedNavigationAdapter.structures(record, workKey: "Genesis", hebrew: false)
+            assertCondition(he[0].nodes.count == 50, "All 50 Genesis chapters mapped")
+            assertCondition(he[0].nodes.first?.title == "פרק א׳", "Original Hebrew section label and numeral")
+            assertCondition(en[0].nodes.first?.title == "Chapter 1", "English TOC uses English label")
+            assertCondition(he[0].nodes.map(\.locator) == en[0].nodes.map(\.locator), "Language cannot change canonical navigation")
+            assertCondition(he[1].nodes.first?.locator.position == .canonicalRef("Genesis 1:1-6:8"), "Parasha uses wholeRef, not a guessed title reference")
+            let talmud: [String: Any] = ["schema": ["sectionNames": ["Daf"], "heSectionNames": ["דף"],
+                "addressTypes": ["Talmud"], "lengths": [127]]]
+            let dapim = try SefariaEmbeddedNavigationAdapter.structures(talmud, workKey: "Berakhot", hebrew: true)[0].nodes
+            assertCondition(dapim.first?.locator.position == .canonicalRef("Berakhot 2a"), "Talmud starts at 2a")
+            assertCondition(dapim.last?.locator.position == .canonicalRef("Berakhot 64a"), "Talmud addresses preserve Sefaria indexing")
+            let link: [String: Any] = ["sourceRef": "Rashi on Genesis 1:1:1", "index_title": "Rashi on Genesis",
+                "sourceHeRef": "רש״י על בראשית א׳:א׳:א׳", "anchorRefExpanded": ["Genesis 1:1"],
+                "collectiveTitle": ["he": "רש״י", "en": "Rashi"], "displayedText": ["he": ["בראשית", "פירוש"], "en": "Comment"]]
+            let payload = try JSONSerialization.data(withJSONObject: ["links": [link],
+                "topics": [["topic": "creation", "title": ["he": "בריאה", "en": "Creation"]]]])
+            let links = try SefariaEmbeddedRelationshipsAdapter.parseLinks(payload)
+            assertCondition(links.first?.locator.backend == .sefariaEmbedded, "Related source keeps embedded identity")
+            assertCondition(links.first?.locator.workKey == "Rashi on Genesis", "Canonical book separated from segment ref")
+            assertCondition(links.first?.primaryText == "בראשית\nפירוש", "Nested displayedText preserved")
+            assertCondition(links.first?.anchorRefs == ["Genesis 1:1"], "Expanded anchors preserved")
+            let topics = try SefariaEmbeddedRelationshipsAdapter.parseTopics(payload)
+            assertCondition(topics.first?.titleHe == "בריאה", "Original bilingual topic titles mapped")
+            let empty = try SefariaEmbeddedRelationshipsAdapter.parseLinks(Data("{\"links\":[]}".utf8))
+            assertCondition(empty.isEmpty, "Valid zero-link response remains empty")
+            for bad in ["{}", "null", "{\"links\":{\"unexpected\":42}}", "{\"links\":[{\"ref\":\"Genesis 1:1\"}]}"] {
+                do {
+                    _ = try SefariaEmbeddedRelationshipsAdapter.parseLinks(Data(bad.utf8))
+                    assertCondition(false, "Malformed links must throw, not return empty")
+                } catch { assertCondition(true, "Malformed links distinguished from no links") }
+            }
+        } catch { assertCondition(false, "Embedded mapping failed: \(error)") }
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

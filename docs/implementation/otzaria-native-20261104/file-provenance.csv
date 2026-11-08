@@ -1,0 +1,19 @@
+path,classification,basis
+Scripts/run-chavrusa-component-tests.sh,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/Features/Search/iOS/SearchResultsListView.swift,UPSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/LibraryBackend/BackendCoordinator.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/LibraryBackend/LibraryBackendModels.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/LibraryBackend/LibraryBackendProtocols.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/LibraryBackend/MaktabahBackendAdapter.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/Otzaria/Search/OtzariaSearchModels.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/Otzaria/Search/OtzariaTextSearchViewModel.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/SefariaEmbedded/Adapters/SefariaEmbeddedSearchAdapter.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/SefariaEmbedded/Adapters/SefariaEmbeddedTextAdapter.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Source/ZayitSearch/UnifiedSearchWorkspaceView.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2
+tools/test_chavrusa_text_components.swift,DOWNSTREAM_OWNED,Pinned upstream tree; base 59b01fa2

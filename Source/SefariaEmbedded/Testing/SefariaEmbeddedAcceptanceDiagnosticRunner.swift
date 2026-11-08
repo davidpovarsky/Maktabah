@@ -176,38 +176,37 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             report.stages["navigationTextToc"] = .init(passed: true, details: "Genesis navigation structure has \(defaultStruct.nodes.count) nodes", durationMs: dur10)
             NSLog("[SefariaAcceptance] Stage 10: navigationTextToc passed (%d ms)", dur10)
 
+            let relatedStart = Date()
+            let sources = try await BackendCoordinator.shared.links(for: genLocator)
+            guard let source = sources.first(where: { $0.locator.backend == .sefariaEmbedded && !$0.locator.workKey.isEmpty }) else {
+                throw SefariaRPCError(code: "RELATED_EMPTY", message: "Genesis 1:1 returned no valid related sources")
+            }
+            let commentary = try await BackendCoordinator.shared.section(at: source.locator)
+            guard commentary.segments.contains(where: { !$0.primaryText.isEmpty || $0.translation?.isEmpty == false }) else {
+                throw SefariaRPCError(code: "RELATED_CONTENT_EMPTY", message: "Related source could not be read")
+            }
+            report.stages["relatedContent"] = .init(passed: true,
+                details: "Loaded \(sources.count) real sources; opened \(source.displayRef)",
+                durationMs: Int(Date().timeIntervalSince(relatedStart) * 1000))
+
             // Stage 11: searchLive real query execution
             let startT11 = Date()
             NSLog("[SefariaAcceptance] Stage 11: searchLive started")
-            var liveHit: LibrarySearchHit? = nil
-            do {
-                let searchReq = LibrarySearchRequest(query: "בראשית", offset: 0, limit: 10)
-                let searchPage = try await SefariaEmbeddedSearchAdapter.shared.search(searchReq)
-                liveHit = searchPage.hits.first
-                let dur11 = Int(Date().timeIntervalSince(startT11) * 1000)
-                report.stages["searchLive"] = .init(
-                    passed: true,
-                    details: "Search executed successfully: total=\(searchPage.total), page hits=\(searchPage.hits.count)",
-                    durationMs: dur11
-                )
-                NSLog("[SefariaAcceptance] Stage 11: searchLive passed: %ld hits (%d ms)", searchPage.hits.count, dur11)
-            } catch {
-                let dur11 = Int(Date().timeIntervalSince(startT11) * 1000)
-                // If remote endpoint blocked by runner network policy, record exact diagnosis
-                report.stages["searchLive"] = .init(
-                    passed: true,
-                    details: "Search service handled gracefully: \(error.localizedDescription)",
-                    durationMs: dur11
-                )
-                NSLog("[SefariaAcceptance] Stage 11: searchLive completed with notice: %@", error.localizedDescription)
+            let searchReq = LibrarySearchRequest(query: "בראשית", offset: 0, limit: 10)
+            let searchPage = try await SefariaEmbeddedSearchAdapter.shared.search(searchReq)
+            guard let liveHit = searchPage.hits.first(where: { LibraryLanguage.normalized($0.language) == "he" }) else {
+                throw SefariaRPCError(code: "SEARCH_NO_HEBREW_RESULT", message: "Live Hebrew search did not return a Hebrew hit")
             }
+            let dur11 = Int(Date().timeIntervalSince(startT11) * 1000)
+            report.stages["searchLive"] = .init(passed: true,
+                details: "Live search returned \(searchPage.hits.count) hits, Hebrew hit: \(liveHit.displayRef)", durationMs: dur11)
 
             // Stage 12: searchOpenResult opening hit in native reader
             let startT12 = Date()
             NSLog("[SefariaAcceptance] Stage 12: searchOpenResult started")
-            let hitToOpen = liveHit?.locator ?? TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
+            let hitToOpen = liveHit.locator
             let openedSection = try await SefariaEmbeddedTextAdapter.shared.section(at: hitToOpen)
-            guard !openedSection.segments.isEmpty else {
+            guard openedSection.segments.contains(where: { $0.primaryText.unicodeScalars.contains(where: { (0x05D0...0x05EA).contains($0.value) }) }) else {
                 throw SefariaRPCError(code: "SEARCH_OPEN_EMPTY", message: "Opened search result contained no readable segments")
             }
             let dur12 = Int(Date().timeIntervalSince(startT12) * 1000)
@@ -228,7 +227,7 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             let dur13 = Int(Date().timeIntervalSince(startT13) * 1000)
             report.stages["fullReactSurface"] = .init(
                 passed: true,
-                details: "Original Sefaria React Native surface created cleanly with renderFullUI=true without key window disruption",
+                details: "React surface creation only; native user interaction is verified separately by UI tests",
                 durationMs: dur13
             )
             NSLog("[SefariaAcceptance] Stage 13: fullReactSurface passed (%d ms)", dur13)

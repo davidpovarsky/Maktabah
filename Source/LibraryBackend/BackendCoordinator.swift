@@ -570,6 +570,15 @@ final class BackendCoordinator {
         return try await perform { try await provider.normalizedLocator(for: input) }
     }
 
+    func section(at locator: TextLocator, version: TextVersionMetadata?) async throws -> LibraryTextSection {
+        guard let version else { return try await section(at: locator) }
+        guard locator.backend == activeBackendID else { throw LibraryBackendError.staleRequest }
+        guard let provider = registrations[activeBackendID]?.text as? any LibraryVersionedTextProviding else {
+            throw LibraryBackendError.capabilityUnavailable
+        }
+        return try await perform { try await provider.section(at: locator, version: version) }
+    }
+
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
         guard work.locator.backend == activeBackendID,
               let provider = registrations[activeBackendID]?.navigation else {
