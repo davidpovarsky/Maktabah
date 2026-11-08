@@ -82,7 +82,11 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                     // and allow the system to overflow only part of the row.
                     ToolbarItem(placement: .principal) {
                         safariToolbar(compact: detailWidth < 740)
-                            .frame(width: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
+                            // The native principal hosting view can be narrower than
+                            // the detail column. A fixed width drew source buttons
+                            // outside its hit-test bounds (recorded on real 27.x).
+                            // Accept its proposal while retaining the source row.
+                            .frame(minWidth: 0, maxWidth: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
                             .background(alignment: .topLeading) {
                                 ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { toolbarWindowY = $0 }
                                     .frame(width: 0, height: 0)

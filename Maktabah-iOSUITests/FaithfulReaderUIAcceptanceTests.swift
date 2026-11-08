@@ -178,6 +178,31 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         XCTAssertEqual(settlement, .completed,
                        "Capture only after native rotation and the original bottom toolbar settle inside the window")
     }
+    /// Diagnostic retention before an action/assertion; never a visual pass.
+    func retainNativeEvidence(_ name: String) {
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = "DIAGNOSTIC-" + name
+        image.lifetime = .keepAlways
+        add(image)
+        let tree = XCTAttachment(string: "appFrame=\(app.frame)\n\(app.debugDescription)")
+        tree.name = "DIAGNOSTIC-" + name + "-ui-tree"
+        tree.lifetime = .keepAlways
+        add(tree)
+    }
+
+    func assertSourceActionsInsideNativeToolbarHost() {
+        let hosts = app.navigationBars.staticTexts.containing(.button, identifier: "reader-tabs-overview")
+        XCTAssertEqual(hosts.count, 1, "Identify the actual native principal hosting container uniquely")
+        let host = hosts.firstMatch
+        XCTAssertTrue(host.exists)
+        for identifier in ["reader-tabs-overview", "reader-open-book"] {
+            let action = app.buttons[identifier]
+            XCTAssertTrue(action.exists)
+            XCTAssertTrue(host.frame.insetBy(dx: -1, dy: -1).contains(action.frame),
+                          "Source actions must stay inside the native title view's real hit-test bounds")
+        }
+    }
+
     func assertReaderHasText() {
         let text = app.textViews["reader-text"]
         XCTAssertTrue(text.waitForExistence(timeout: 60), "The original TextKit reader must render")
@@ -333,6 +358,18 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [resized], timeout: 30), .completed,
                        "The native iPad window must actually resize; a simulated width is not acceptance")
+        if enabled {
+            // Exercise the source toolbar before the separate original bottom-
+            // toolbar settling gate. Its existing strict assertion stays below.
+            retainNativeEvidence("candidate-narrow-toolbar-before-action")
+            assertSourceActionsInsideNativeToolbarHost()
+            tap(app.buttons["reader-tabs-overview"])
+            let overview = app.descendants(matching: .any)["study-groups-overview"]
+            retainNativeEvidence("candidate-narrow-overview-after-action")
+            XCTAssertTrue(overview.waitForExistence(timeout: 15))
+            capture("candidate-narrow-source-overview", windowed: true)
+            tap(app.buttons["סיום"])
+        }
         capture(enabled ? "candidate-window-narrow" : "baseline-window-narrow", windowed: true)
         assertReaderHasText()
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, originalLocator,
@@ -1136,6 +1173,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let initialTitle = app.staticTexts["reader-header-title"].label
         XCTAssertFalse(initialTitle.isEmpty)
         XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
+        assertSourceActionsInsideNativeToolbarHost()
         let field = app.textFields["reader-library-search-field"]
         tap(field)
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
@@ -1158,6 +1196,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(palette.exists)
         capture("candidate-library-opened-reader-no-fixture-selection")
         tap(app.buttons["כל הכרטיסיות"])
+        retainNativeEvidence("candidate-overview-after-toolbar-action")
         let overview = app.descendants(matching: .any)["study-groups-overview"]
         XCTAssertTrue(overview.waitForExistence(timeout: 15))
         XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)

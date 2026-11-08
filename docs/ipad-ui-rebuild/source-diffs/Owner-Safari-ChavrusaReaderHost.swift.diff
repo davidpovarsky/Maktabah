@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,253 +1,232 @@
+@@ -1,253 +1,236 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -229,7 +229,11 @@
 +                    // and allow the system to overflow only part of the row.
 +                    ToolbarItem(placement: .principal) {
 +                        safariToolbar(compact: detailWidth < 740)
-+                            .frame(width: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
++                            // The native principal hosting view can be narrower than
++                            // the detail column. A fixed width drew source buttons
++                            // outside its hit-test bounds (recorded on real 27.x).
++                            // Accept its proposal while retaining the source row.
++                            .frame(minWidth: 0, maxWidth: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
 +                            .background(alignment: .topLeading) {
 +                                ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { toolbarWindowY = $0 }
 +                                    .frame(width: 0, height: 0)
@@ -466,7 +470,7 @@
                  }
              }
          }
-@@ -255,37 +234,8 @@
+@@ -255,37 +238,8 @@
          .frame(height: 54)
      }
  
@@ -506,7 +510,7 @@
          Button(action: action) {
              Image(systemName: symbol)
                  .font(.system(size: 19, weight: .regular))
-@@ -294,366 +244,146 @@
+@@ -294,366 +248,146 @@
          }
          .buttonStyle(.plain)
          .accessibilityLabel(title)

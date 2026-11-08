@@ -56,7 +56,11 @@ report["runtimePreference"] = "matching-installed-SDK-then-newest-available-27.x
 
 def create_compatible_ipad(size):
     candidates = [value for value in device_types if
-                  ("iPhone" in value["name"] if size == "phone" else "iPad Pro" in value["name"] and f"{size}-inch" in value["name"])]
+                  (bool(re.search(r"iPhone-[0-9]+(?:-|$)", value["identifier"])) if size == "phone" else "iPad Pro" in value["name"] and f"{size}-inch" in value["name"])]
+    # Use a numbered conventional iPhone for the existing compact-phone gate.
+    # The SDK-matched runtime exposed only iPhone Duo in run42510775166;
+    # its different native size classes/toolbars do not test this gate's
+    # conventional portrait-phone contract. Record the exact selected device.
     # Some installed device profiles (e.g. RAM variants) are incompatible with
     # an otherwise available runtime. Let CoreSimulator verify each exact pair.
     def preference(value):

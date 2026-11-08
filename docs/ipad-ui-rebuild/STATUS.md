@@ -1,5 +1,18 @@
 # Faithful iPad rebuild — execution status
 
+## Latest owner-authorized visual correction — 2026-11-08
+
+`[נועם | DEV] [MAIN_SESSION]` / `[רוני | QA] [MAIN_SESSION]`, NORMAL, one primary session. No Asana writes, reset or main merge. App commit `dd7b1eb5119544ed28c12d1ea4a3653dddce9842`, branch `experiment/ipad-ui-faithful-from-9401`. [Detailed changes, original-source comparisons, full file inventory and evidence](VISUAL_FIDELITY_CORRECTION.md).
+
+- **Experimental delivery SUCCESS:** version `1.0.0 (10301)`, [run 42510779413](https://github.com/davidpovarsky/Maktabah/actions/runs/42510779413). Signed Archive/export/IPA validation/upload passed; Apple processing **VALID**, not expired, observed 2026-11-08 19:18:48 UTC. [TestFlight administration](https://appstoreconnect.apple.com/apps/6809559414/testflight). Tester assignment/installation availability not separately verified. This is the owner's explicit experimental exception, not Production quality approval.
+- Source audit: 32 actual pinned original/port comparisons; 14 normalized-text identical. Original Inspector package/pin unchanged. Safari original composition, original rounded Inspector with existing FloatingPanel, toolbar-owned overview/add, empty-strip zero height, source overview fonts/drop ordering and transparent sidebar dots restored in downstream adapters.
+- **PASS:** 379 portable assertions, 61 workspace contracts, exact-current Xcode27.1 object-code generation/UI-test compilation [42510176334](https://github.com/davidpovarsky/Maktabah/actions/runs/42510176334).
+- **Original reference PASS:** immutable `f092f399…`, four actually executed selected 11-inch methods, genuine source Safari/Inspector/native-screen/theme screenshots, [42504883842](https://github.com/davidpovarsky/Maktabah/actions/runs/42504883842). This diagnostic reference does not establish current app acceptance.
+- **IN PROGRESS:** final-source 10-case iPad/phone Native diagnostic [42510775166](https://github.com/davidpovarsky/Maktabah/actions/runs/42510775166); earlier `1a6515d3` full matrix [42500460296](https://github.com/davidpovarsky/Maktabah/actions/runs/42500460296). Latest screenshots/complete Native quality result remain pending. SDK-only and delivery success do not replace them.
+
+Historical entries below retain the evidence and limitations of their exact earlier commits; their old delivery status does not describe build10301.
+
+
 2026-11-05, `[נועם | DEV] [MAIN_SESSION]`, NORMAL, no subagents, no Asana writes.
 
 This is implementation in progress, not a completion or visual-parity claim.
