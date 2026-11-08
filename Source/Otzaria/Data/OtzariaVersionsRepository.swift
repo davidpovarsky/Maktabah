@@ -9,13 +9,14 @@ struct OtzariaVersionsRepository: LibraryMetadataProviding, Sendable {
             func column(_ name: String) -> String { capabilities.hasColumn(name, in: "book_version") ? name : "NULL" }
             return try database.fetch(query: """
                 SELECT versionTitle, \(column("versionSource")), \(column("license")),
-                       \(column("heVersionNotes")), \(column("versionNotes"))
+                       \(column("heVersionNotes")), \(column("versionNotes")), id, \(column("heVersionTitle"))
                 FROM book_version WHERE bookId = ?
                 ORDER BY \(column("priority")) DESC, versionTitle, id
                 """, parameters: [bookID]) { row in
                 let url = row.string(at: 1).flatMap(URL.init(string:)).flatMap { ["https", "http"].contains($0.scheme?.lowercased() ?? "") ? $0 : nil }
                 return TextVersionMetadata(title: row.string(at: 0) ?? "", language: "he", actualLanguage: "he",
-                    sourceURL: url, license: row.string(at: 2), notes: row.string(at: 3) ?? row.string(at: 4), isPrimary: true)
+                    sourceURL: url, license: row.string(at: 2), notes: row.string(at: 3) ?? row.string(at: 4), isPrimary: false,
+                    heTitle: row.string(at: 6), sourceIdentity: "otzaria-version:\(bookID):\(row.int(at: 5))")
             }
         }
     }

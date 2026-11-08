@@ -303,6 +303,8 @@ struct TextVersionMetadata: Codable, Hashable, Sendable {
     let license: String?
     let notes: String?
     let isPrimary: Bool
+    var heTitle: String? = nil
+    var sourceIdentity: String? = nil
 }
 
 struct LibraryTextSegment: Codable, Hashable, Identifiable, Sendable {

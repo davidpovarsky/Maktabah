@@ -152,6 +152,7 @@ import SQLite3
             try check(refs.contains(.init(backend: .otzaria, workKey: "book:1", position: .legacyLine(2))), "Real schema7 reference hashes locate Genesis 1:1 at canonical lineIndex 2")
             let actualVersions = try await OtzariaVersionsRepository(context: actualContext).versions(for: "book:1")
             try check(actualVersions.count == 4 && actualVersions.first?.title == "Miqra according to the Masorah", "Real SQLite edition metadata preserves original priority")
+            try check(actualVersions.first?.heTitle == "מקרא על פי המסורה" && actualVersions.first?.sourceIdentity == "otzaria-version:1:3", "Edition display uses original Hebrew while selection retains the true SQLite edition ID")
             let actualLoc = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(1))
             let actualSection = LibraryTextSection(locator: actualLoc, displayRef: "בראשית", heRef: nil,
                 segments: [1,97].map { .init(locator: .init(backend: .otzaria, workKey: "book:1", position: .legacyLine($0)), heRef: nil, primaryText: "merged-must-not-leak", translation: nil) },

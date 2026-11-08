@@ -100,6 +100,8 @@ SIMCTL_CHILD_OTZARIA_SHARED_ROOT_OVERRIDE="$CONTAINER/Library/Application Suppor
 WAIT_ROUNDS="${OTZARIA_CORPUS_ACCEPTANCE_WAIT_ROUNDS:-720}"
 for _ in $(seq 1 "$WAIT_ROUNDS"); do
   if [ -f "$RESULT" ]; then
+    python3 -c 'import json,sys; assert json.load(open(sys.argv[1]))["passed"]' "$RESULT"
+    xcrun simctl terminate "$UDID" "$BUNDLE_ID" >/dev/null 2>&1 || true
     if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_REPORT_COPY:-}" ]; then
       cp "$RESULT" "$OTZARIA_CORPUS_ACCEPTANCE_REPORT_COPY"
     fi
@@ -110,8 +112,12 @@ for _ in $(seq 1 "$WAIT_ROUNDS"); do
       fi
       INDEX_PATH="$(find "$INDEX_ROOT" -mindepth 1 -maxdepth 1 -type d ! -name '*.building' ! -name '*.previous' ! -name '*.installing' | head -1)"
       test -n "$INDEX_PATH"
-      find "$INDEX_PATH" -name ".managed.json" -delete 2>/dev/null || true
-      printf '%s\n' "$INDEX_PATH" > "$OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE"
+      # Packaging runs after this script exits and its owned simulator is deleted.
+      # Export closed index files outside the simulator before cleanup.
+      EXPORTED_INDEX="$(mktemp -d "$ROOT/build/artifacts/otzaria-corpus-index.XXXXXX")"
+      cp -R "$INDEX_PATH/." "$EXPORTED_INDEX/"
+      find "$EXPORTED_INDEX" -name ".managed.json" -delete
+      printf '%s\n' "$EXPORTED_INDEX" > "$OTZARIA_CORPUS_ACCEPTANCE_INDEX_PATH_FILE"
     fi
     if [ -n "${OTZARIA_CORPUS_ACCEPTANCE_DURATION_FILE:-}" ]; then
       printf '%s\n' "$(( $(date +%s) - STARTED_AT ))" > "$OTZARIA_CORPUS_ACCEPTANCE_DURATION_FILE"

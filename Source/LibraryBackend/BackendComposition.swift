@@ -14,8 +14,8 @@ enum BackendComposition {
             sourceDescription: "Use the existing local Otzaria library.",
             capabilities: [.catalog, .reading, .navigation, .search, .authors, .links, .workMetadata],
             runtimeCapabilities: {
-                [.catalog, .reading, .navigation, .search, .authors, .links, .workMetadata]
-                    .union(OtzariaMaktabahBridge.shared.metadataCapabilities)
+                let base: BackendCapabilities = [.catalog, .reading, .navigation, .search, .authors, .links, .workMetadata]
+                return base.union(OtzariaMaktabahBridge.shared.metadataCapabilities)
             },
             catalog: otzaria,
             text: otzaria,

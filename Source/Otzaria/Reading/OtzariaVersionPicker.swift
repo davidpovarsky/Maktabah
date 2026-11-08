@@ -17,7 +17,7 @@ struct OtzariaVersionPicker: View {
                 )) {
                     Text(hebrew ? "נוסח משולב" : "Merged text").tag(Optional<TextVersionMetadata>.none)
                     ForEach(versions, id: \.self) { version in
-                        Text(version.title).tag(Optional(version))
+                        Text(hebrew ? version.heTitle ?? version.title : version.title).tag(Optional(version))
                     }
                 }
                 .accessibilityIdentifier("reader-otzaria-edition")

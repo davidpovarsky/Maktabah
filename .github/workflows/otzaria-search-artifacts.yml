@@ -114,13 +114,25 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Set up Node for the real embedded runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Set up CocoaPods for the real embedded runtime
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Prepare the shipping embedded runtime and resources
+        run: bash Scripts/CI/prepare-embedded-artifact-app.sh
+
       - name: Build pinned engines and simulator app
         run: |
           bash Vendor/OtzariaSearchEngine/build_xcframework.sh
           bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
-          xcodebuild -resolvePackageDependencies -project Maktabah.xcodeproj -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
+          xcodebuild -resolvePackageDependencies -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
           xcodebuild build \
-            -project Maktabah.xcodeproj \
+            -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -configuration Debug \
             -sdk iphonesimulator \
