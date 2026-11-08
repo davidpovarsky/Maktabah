@@ -24,7 +24,9 @@ struct OtzariaVersionPicker: View {
             }
             if let error { Text(error).foregroundStyle(.secondary) }
         }
-        .task(id: reader.currentBook?.backendLocator?.workKey) {
+        .task(id: [reader.currentBook?.backendLocator?.backend.rawValue ?? "",
+                   reader.currentBook?.backendLocator?.workKey ?? "",
+                   String(OtzariaMaktabahBridge.shared.generationSnapshot())]) {
             versions = []
             error = nil
             guard let locator = reader.currentBook?.backendLocator, locator.backend == .otzaria else { return }
