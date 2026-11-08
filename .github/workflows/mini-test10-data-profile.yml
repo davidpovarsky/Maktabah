@@ -14,6 +14,11 @@ on:
         required: true
         type: boolean
         default: true
+      prepare_database_only:
+        description: Measure the pinned schema7 subset without publishing or building the app
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   actions: read
@@ -24,7 +29,38 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  prepare:
+    if: ${{ inputs.prepare_database_only }}
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic compression tools
+        run: |
+          brew list zstd >/dev/null 2>&1 || brew install zstd
+          python3 -m venv "$RUNNER_TEMP/schema7-python"
+          "$RUNNER_TEMP/schema7-python/bin/python" -m pip install zstandard==0.23.0
+          echo "$RUNNER_TEMP/schema7-python/bin" >> "$GITHUB_PATH"
+      - name: Authenticate the pinned official source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p build/schema7-candidate "$RUNNER_TEMP/schema7-source"
+          gh api repos/Otzaria/SeforimLibrary/releases/tags/v36-20261101064231 > build/schema7-candidate/official-release.json
+          gh release download v36-20261101064231 --repo Otzaria/SeforimLibrary --pattern seforim-schema7.db.zst --dir "$RUNNER_TEMP/schema7-source"
+          test "$(shasum -a 256 "$RUNNER_TEMP/schema7-source/seforim-schema7.db.zst" | cut -d' ' -f1)" = 9b1623035853f6d67f8553a953cf48de60643ece1bc6658e6a3fb80f379c47ba
+          zstd -d --long=31 --no-progress "$RUNNER_TEMP/schema7-source/seforim-schema7.db.zst" -o "$RUNNER_TEMP/schema7-source/seforim.db"
+          python3 Scripts/DataProfiles/prepare-schema7-candidate.py --source "$RUNNER_TEMP/schema7-source/seforim.db" --release build/schema7-candidate/official-release.json --output build/schema7-candidate
+      - name: Upload measured candidate and provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mini-schema7-database-candidate
+          path: build/schema7-candidate
+          compression-level: 0
+
   build-verify-publish:
+    if: ${{ !inputs.prepare_database_only }}
     runs-on: macos-26
     timeout-minutes: 240
     env:
