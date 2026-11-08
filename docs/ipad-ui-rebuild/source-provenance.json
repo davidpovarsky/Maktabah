@@ -197,7 +197,7 @@
     "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
     "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "e6c95c01377ed76352552118ba9d9f2d80393152a8512d7f1a1b62c85aad6571"
+    "destinationSHA256": "c386e56adaa12b974c786fca78b439796c02dbc40f51b37453451d328ff8cb0e"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",

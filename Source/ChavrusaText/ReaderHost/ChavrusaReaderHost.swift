@@ -275,14 +275,15 @@ enum ChavrusaReaderScrollKey {
 /// delegate replacement, content offset changes or renderer state writes.
 @MainActor
 enum ReaderNavigationChromeScrollReporter {
-    static func report(_ scrollView: UIScrollView, reader: ReaderViewModel, beginsDrag: Bool = false) {
+    static func report(_ scrollView: UIScrollView, reader: ReaderViewModel, beginsDrag: Bool = false, reachedTop: Bool = false) {
+        let isAtTop = scrollView.contentOffset.y <= -scrollView.adjustedContentInset.top + 2
         guard !((scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false),
               scrollView.window != nil,
-              beginsDrag || scrollView.isDragging || scrollView.isTracking else { return }
+              beginsDrag || reachedTop || scrollView.isDragging || scrollView.isTracking || (scrollView.isDecelerating && isAtTop) else { return }
         NotificationCenter.default.post(name: .chavrusaReaderDidScroll, object: reader, userInfo: [
             ChavrusaReaderScrollKey.beginsDrag: beginsDrag,
             ChavrusaReaderScrollKey.translationY: scrollView.panGestureRecognizer.translation(in: scrollView).y,
-            ChavrusaReaderScrollKey.isAtTop: scrollView.contentOffset.y <= -scrollView.adjustedContentInset.top + 2,
+            ChavrusaReaderScrollKey.isAtTop: isAtTop,
         ])
     }
 }
@@ -300,7 +301,7 @@ private struct ReaderSidebarToggleRemoval: ViewModifier {
 
 /// UIKit owns the durable identity of the actual containing window. Do not
 /// choose an arbitrary connected scene or generate another ID on cold launch.
-private struct ReaderSceneIdentityReader: UIViewRepresentable {
+struct ReaderSceneIdentityReader: UIViewRepresentable {
     let resolve: (String) -> Void
     func makeUIView(context: Context) -> ReaderSceneIdentityView {
         let view = ReaderSceneIdentityView()
@@ -314,7 +315,7 @@ private struct ReaderSceneIdentityReader: UIViewRepresentable {
     }
 }
 
-private final class ReaderSceneIdentityView: UIView {
+final class ReaderSceneIdentityView: UIView {
     var onResolve: ((String) -> Void)?
     private var publishedID: String?
     override func didMoveToWindow() {
@@ -334,7 +335,7 @@ private final class ReaderSceneIdentityView: UIView {
 }
 
 /// Keep high-frequency viewport observation out of the split-view/toolbar invalidation graph.
-private struct StudyWorkspaceCheckpointObserver: View {
+struct StudyWorkspaceCheckpointObserver: View {
     let manager: iOSNavigationManager
     let workspace: StudyWorkspaceNavigationAdapter
     var body: some View {

@@ -1146,6 +1146,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
         }
 
         func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, reachedTop: true)
             updateLastKnownScrollPosition(from: scrollView)
         }
 

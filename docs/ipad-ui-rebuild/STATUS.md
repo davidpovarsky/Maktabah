@@ -8,7 +8,7 @@ This is implementation in progress, not a completion or visual-parity claim.
 
 `[נועם | DEV] [MAIN_SESSION]`, NORMAL. All 18 initial dirty/untracked files were preserved in an external snapshot before editing. Branch remains `experiment/ipad-ui-faithful-from-9401`; parent `e815a6da`. No Asana writes, main merge, reset or source-checkout changes.
 
-- EXECUTED_PASS: 60 portable workspace/state checks on Windows Swift 6.3.3, including actual extracted chrome state. This does not validate UIKit/SwiftUI.
+- EXECUTED_PASS: 61 portable workspace/state checks on Windows Swift 6.3.3, including actual extracted chrome state. This does not validate UIKit/SwiftUI.
 - EXECUTED_PASS: Swift syntax parsing of changed state, host and overview sources; `git diff --check` clean. Real Xcode checks remain necessary.
 - Source review found and corrected the prepared overview's non-source 190–420pt card-height policy and list close-button hierarchy. The original 2.7-row / 140–209pt geometry, title/close accessibility order, animations and reuse behavior are retained with book-domain display data.
 - The same prepared chrome state now consumes user pan translation to avoid feedback from its own safe-area changes. The existing delegate reports via two narrow downstream calls; original Pull-to-Navigate and scroll offset/selection handling are retained. Navigation/search/Inspector/sidebar/group presentation reveals chrome.
@@ -17,6 +17,9 @@ This is implementation in progress, not a completion or visual-parity claim.
 
 - Additional review corrected mixed-backend overview reordering/checkpoints in the existing adapter; seven actual persistence/order contracts pass locally. A minimal optional visibility environment resolves the original reader's always-visible iPad child preference; flags-off defaults remain unchanged. Real menu tests now use the source long-press context menu, and source overview acceptance checks Grid/List plus RTL swipe-close against exact persisted UUID membership.
 - Superseded first validation candidate 466ed299 is running in 42427413998; it predates the child visibility correction and updated context-menu tests and cannot establish current acceptance.
+
+- The 68df5fd5 app completed the full Simulator build and reached actual UI matrix execution in 42428195592. This run predates the phone compact overview and final mixed-order deletion/top-completion refinements; it cannot establish their acceptance.
+- The enabled phone uses the original book-title/tabs action and unchanged iPhoneLayout, with a scene-lived downstream workspace host and the same source Grid/List overview. The original sheet remains the fallback. Native phone coverage now opens both layouts and returns to the original reader; source overview coverage performs real drag reorder and RTL swipe-close, checking persisted UUIDs.
 
 ## Current verified status — 2026-11-05
 

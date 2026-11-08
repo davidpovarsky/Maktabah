@@ -468,6 +468,28 @@ final class FaithfulReaderIPhoneTests: FaithfulReaderUIBase {
             XCTAssertFalse(app.textFields["reader-library-search-field"].exists)
             XCTAssertTrue(app.buttons["reader-more-menu"].exists)
             capture("iphone-original-reader-ipad-flag-\(enabled)")
+            if enabled && ProcessInfo.processInfo.environment["FAITHFUL_BASELINE"] != "true" {
+                tap(app.buttons["reader-book-tabs-overview"])
+                let overview = app.descendants(matching: .any)["study-groups-overview"]
+                XCTAssertTrue(overview.waitForExistence(timeout: 20))
+                let toggle = app.buttons["study-tabs-layout-toggle"]
+                XCTAssertTrue(toggle.waitForExistence(timeout: 15))
+                if toggle.label == "תצוגת רשת" { tap(toggle) }
+                let grid = overview.collectionViews.cells.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-")).firstMatch
+                XCTAssertTrue(grid.waitForExistence(timeout: 15))
+                XCTAssertGreaterThan(grid.frame.width, 0)
+                XCTAssertGreaterThanOrEqual(grid.frame.minX, app.frame.minX)
+                XCTAssertLessThanOrEqual(grid.frame.maxX, app.frame.maxX)
+                capture("iphone-compact-original-tab-grid")
+                tap(toggle)
+                XCTAssertTrue(overview.collectionViews.cells.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")).firstMatch.waitForExistence(timeout: 15))
+                capture("iphone-compact-original-tab-list")
+                tap(app.buttons["סיום"])
+                assertReaderHasText()
+                XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists)
+            }
         }
     }
 }
@@ -1063,6 +1085,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
         assertReaderHasText()
+        let initialTitle = app.staticTexts["reader-header-title"].label
+        XCTAssertFalse(initialTitle.isEmpty)
         _ = readerSidebarToggle()
         XCTAssertTrue(app.descendants(matching: .any)["reader-document-tabs"].waitForExistence(timeout: 30))
         let field = app.textFields["reader-library-search-field"]
@@ -1075,7 +1099,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertGreaterThan(app.keyboards.firstMatch.frame.height, 160,
                              "A keyboard accessory strip alone does not prove the full software keyboard is visible")
         paletteField.typeText("בראשית")
-        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch
+        let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@ AND NOT label CONTAINS %@", "בראשית", initialTitle)).firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 30), "Actual canonical-library books must appear in original CommandPalette")
         capture("candidate-command-palette-keyboard")
         tap(result)
@@ -1116,6 +1140,28 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         }
         let original = try XCTUnwrap(persistedTabs(containing: closedID))
         let closedCard = overview.collectionViews.cells["tab-switcher-grid-cell-" + closedID.uuidString]
+        @Sendable func persistedOrder() -> [UUID]? {
+            guard let bytes = try? Data(contentsOf: sidecarURL),
+                  let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                  let groups = value["groups"] as? [[String: Any]],
+                  let group = groups.first(where: { $0["id"] as? String == original.groupID }),
+                  let tabs = group["tabs"] as? [[String: Any]] else { return nil }
+            return tabs.compactMap { ($0["session"] as? [String: Any])?["id"] as? String }.compactMap(UUID.init(uuidString:))
+        }
+        let beforeDrag = try XCTUnwrap(persistedOrder())
+        let gridCells = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
+        XCTAssertGreaterThanOrEqual(gridCells.count, 2, "Open two distinct canonical books before testing actual source drag reorder")
+        let destination = gridCells.element(boundBy: gridCells.count - 1)
+        closedCard.press(forDuration: 0.6, thenDragTo: destination)
+        let reordered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let order = persistedOrder() else { return false }
+            return Set(order) == Set(beforeDrag) && order != beforeDrag
+                && order.filter { $0 != closedID } == beforeDrag.filter { $0 != closedID }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [reordered], timeout: 15), .completed,
+                       "A real source drag must persist a new order without losing IDs or disturbing the other books")
+        capture("candidate-overview-original-drag-reorder")
         closedCard.swipeRight()
         let removed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: closedCard)
         XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 15), .completed,

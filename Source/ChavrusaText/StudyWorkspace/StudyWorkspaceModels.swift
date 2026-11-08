@@ -36,12 +36,13 @@ enum StudyWorkspaceProjectionPolicy {
     /// Replace the live backend's slots in order without moving foreign-source
     /// documents to the front whenever a reading checkpoint is saved.
     static func merging(live: [ReaderDocumentTab], into saved: [ReaderDocumentTab], backend: BackendID) -> [ReaderDocumentTab] {
+        let liveIDs = Set(live.map(\.id))
         var next = 0
         var result: [ReaderDocumentTab] = []
         for document in saved {
             if document.backend != backend {
                 result.append(document)
-            } else if live.indices.contains(next) {
+            } else if liveIDs.contains(document.id), live.indices.contains(next) {
                 result.append(live[next])
                 next += 1
             }

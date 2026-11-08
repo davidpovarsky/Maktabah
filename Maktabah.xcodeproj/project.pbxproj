@@ -1318,6 +1318,7 @@
 		AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */; };
 		E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
 		E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
+		E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000005; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2068,6 +2069,7 @@
 		A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderViewportAcceptanceObserver.swift"; sourceTree = "<group>"; };
 		D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ChavrusaReaderWorkspaceLayout.swift"; sourceTree = "<group>"; };
 		E81108000000000000000001 /* ReaderNavigationChromeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderNavigationChromeState.swift"; sourceTree = "<group>"; };
+		E81108000000000000000005 /* CompactStudyWorkspaceHostModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/CompactStudyWorkspaceHostModifier.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2166,6 +2168,7 @@
 				E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */,
 				77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */,
 				E81108000000000000000001 /* ReaderNavigationChromeState.swift */,
+				E81108000000000000000005 /* CompactStudyWorkspaceHostModifier.swift */,
 				65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */,
 				D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */,
 				A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */,
@@ -4780,6 +4783,7 @@
 			files = (
 				9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */,
 				E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */,
+				E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */,
 				9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */,
 				AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */,
 				81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */,

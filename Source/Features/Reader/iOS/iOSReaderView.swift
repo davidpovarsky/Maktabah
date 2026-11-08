@@ -159,6 +159,7 @@ struct iOSReaderView: View {
                             .frame(maxWidth: 190)
                             .contentShape(Rectangle())
                     }
+                    .accessibilityIdentifier("reader-book-tabs-overview")
                 }
             }
 

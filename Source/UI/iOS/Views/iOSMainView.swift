@@ -133,7 +133,7 @@ struct iOSMainView: View {
         .sheet(item: $bManager.selectedBookForInfo) { book in
             iOSBookInfoView(book: book)
         }
-        .sheet(isPresented: $bManager.showingTabsList) {
+        .sheet(isPresented: CompactStudyWorkspaceHostModifier.legacyTabsPresentation($bManager.showingTabsList)) {
             iOSReaderTabsPopoverView(bManager: bManager, isPresented: $bManager.showingTabsList)
                 .environment(navigationManager)
         }
@@ -169,6 +169,7 @@ struct iOSMainView: View {
                 .opacity(0.02)
                 .allowsHitTesting(false)
         }
+        .modifier(CompactStudyWorkspaceHostModifier(manager: navigationManager))
         #if DEBUG
         .task {
             await performSmokeAutomationIfNeeded()

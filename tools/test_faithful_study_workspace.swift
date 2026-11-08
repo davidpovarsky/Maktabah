@@ -81,6 +81,8 @@ struct FaithfulStudyWorkspaceTests {
                    "Native strip reorder updates its own slots without moving foreign documents")
         try expect(StudyWorkspaceProjectionPolicy.merging(live: [], into: mixed, backend: .otzaria) == [foreign],
                    "Closing every live tab preserves foreign-source books")
+        try expect(StudyWorkspaceProjectionPolicy.merging(live: [copied], into: mixed, backend: .otzaria) == [foreign, copied],
+                   "Closing an early live tab must not pull a later tab across a foreign book")
         let mixedPersistence = StudyWorkspacePersistence(url: directory.appendingPathComponent("mixed-workspace.json"))
         let mixedStore = StudyWorkspaceStore(persistence: mixedPersistence, canonicalSessionURL: canonicalURL)
         try mixedStore.attach(scene: "mixed-window", legacyTabs: mixed, activeID: original.id)

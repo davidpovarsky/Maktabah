@@ -11,6 +11,7 @@ struct StudyGroupsOverview: View {
     @State private var copiesCurrent = false
     @State private var renamesCurrent = false
     @State private var confirmsDelete = false
+    @State private var showsProfiles = false
     @AppStorage("chavrusa.study-tabs.layout") private var tabSwitcherLayoutRaw = ReaderTabSwitcherLayout.grid.rawValue
 
     private var tabSwitcherLayout: ReaderTabSwitcherLayout {
@@ -55,6 +56,12 @@ struct StudyGroupsOverview: View {
                 .padding(.horizontal)
             }
             .toolbar {
+                if !MaktabahApp.isIpad {
+                    ToolbarItem(placement: .secondaryAction) {
+                        StudyProfileMenu(workspace: workspace, manager: manager, compact: true) { showsProfiles = true }
+                    }
+                    .readerSourceGlassBackground()
+                }
                 ToolbarItem(placement: .confirmationAction) { Button("סיום") { dismiss() } }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -109,6 +116,9 @@ struct StudyGroupsOverview: View {
             }
         }
         .onAppear { workspace.synchronize(manager) }
+        .sheet(isPresented: $showsProfiles) {
+            StudyProfileManagementView(workspace: workspace, manager: manager)
+        }
         .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
             get: { workspace.errorMessage != nil }, set: { if !$0 { workspace.errorMessage = nil } })) {
             Button("אישור") { workspace.errorMessage = nil }
