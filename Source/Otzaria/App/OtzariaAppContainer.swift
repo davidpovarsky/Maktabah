@@ -130,9 +130,15 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     private let unitModeKey = "otzaria_reader_unit_mode"
     private let lock = NSRecursiveLock()
     private(set) var dbGeneration: UInt64 = 0
+    func generationSnapshot() -> UInt64 { lock.withLock { dbGeneration } }
     private var database: SQLiteDatabase?
     private var openedDatabaseURL: URL?
     private var readingUnitService: OtzariaReadingUnitService?
+    private var detectedCapabilities: OtzariaDatabaseCapabilities?
+
+    var metadataCapabilities: BackendCapabilities {
+        lock.withLock { detectedCapabilities?.hasVersions == true ? [.versions] : [] }
+    }
 
     private init() {}
 
@@ -160,6 +166,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
         dbGeneration &+= 1
         clearAllCaches()
         database = candidate
+        detectedCapabilities = try? OtzariaDatabaseCapabilities(database: candidate)
         openedDatabaseURL = url
         readingUnitService = nil
         lock.unlock()
@@ -193,6 +200,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
         clearAllCaches()
         database = nil
         openedDatabaseURL = nil
+        detectedCapabilities = nil
         readingUnitService = nil
         lock.unlock()
     }
@@ -209,6 +217,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
         database = nil
         openedDatabaseURL = nil
         database = try SQLiteDatabase(path: url.path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+        if let database { detectedCapabilities = try OtzariaDatabaseCapabilities(database: database) }
         openedDatabaseURL = url
         readingUnitService = nil
         return true
@@ -574,80 +583,7 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     }
 
     func workMetadata(for bookId: Int) -> LibraryWorkMetadata? {
-        lock.lock()
-        defer { lock.unlock() }
-        guard let db = try? requireDatabase() else { return nil }
-        guard let schema = try? OtzariaBookSchemaCompatibility.projection(in: db) else { return nil }
-
-        return try? db.fetch(query: """
-            SELECT b.title,
-                   COALESCE(b.heShortDesc, ''),
-                   COALESCE(\(schema.filePath), ''),
-                   COALESCE(s.name, ''),
-                   COALESCE(\(schema.fileType), ''),
-                   COALESCE(\(schema.volume), ''),
-                   COALESCE(\(schema.pages), ''),
-                   COALESCE(b.totalLines, 0),
-                   COALESCE((
-                       SELECT group_concat(a.name, ', ')
-                       FROM book_author ba
-                       JOIN author a ON a.id = ba.authorId
-                       WHERE ba.bookId = b.id
-                   ), ''),
-                   COALESCE((
-                       SELECT c.title
-                       FROM category c
-                       WHERE c.id = b.categoryId
-                   ), '')
-            FROM book b
-            LEFT JOIN source s ON s.id = b.sourceId
-            WHERE b.id = ?
-            LIMIT 1
-        """, parameters: [bookId], mapping: { row -> LibraryWorkMetadata in
-            let title = row.string(at: 0) ?? ""
-            let shortDescription = row.string(at: 1) ?? ""
-            let sourceName = row.string(at: 3) ?? ""
-            let fileType = row.string(at: 4) ?? ""
-            let volume = row.string(at: 5) ?? ""
-            let pages = row.string(at: 6) ?? ""
-            let totalLines = row.int(at: 7)
-            let authorsString = row.string(at: 8) ?? ""
-            let categoryName = row.string(at: 9) ?? ""
-
-            let authorsList = authorsString.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
-            var fields: [LibraryMetadataField] = []
-            if !authorsString.isEmpty {
-                fields.append(LibraryMetadataField(key: "authors", label: "מחבר", value: authorsString))
-            }
-            if !categoryName.isEmpty {
-                fields.append(LibraryMetadataField(key: "category", label: "קטגוריה", value: categoryName))
-            }
-            if !sourceName.isEmpty {
-                fields.append(LibraryMetadataField(key: "source", label: "מקור", value: sourceName))
-            }
-            if !volume.isEmpty {
-                fields.append(LibraryMetadataField(key: "volume", label: "כרך", value: volume))
-            }
-            if !pages.isEmpty {
-                fields.append(LibraryMetadataField(key: "pages", label: "עמודים", value: pages))
-            }
-            if totalLines > 0 {
-                fields.append(LibraryMetadataField(key: "lines", label: "שורות", value: "\(totalLines)"))
-            }
-            if !fileType.isEmpty {
-                fields.append(LibraryMetadataField(key: "fileType", label: "סוג קובץ", value: fileType))
-            }
-
-            return LibraryWorkMetadata(
-                workKey: "book:\(bookId)",
-                title: title,
-                heTitle: title,
-                authors: authorsList,
-                description: shortDescription.isEmpty ? nil : shortDescription,
-                categories: categoryName.isEmpty ? [] : [categoryName],
-                factualFields: fields
-            )
-        }).first
+        try? withDatabase { try OtzariaWorkMetadataEnricher.baseMetadata(bookId: bookId, db: $0) }
     }
 
     func getContent(bookId: Int, contentId: Int) -> BookContent? {

@@ -44,6 +44,12 @@ enum OtzariaSchema {
         static let versionLine = "version_line"
         static let schemaMetadata = "schema_meta"
         static let databaseMetadata = "db_meta"
+        static let lineNote = "line_note"
+        static let lineDivineName = "line_divine_name"
+        static let lineNoteDivineName = "line_note_divine_name"
+        static let bookBanner = "book_banner"
+        static let banner = "banner"
+        static let bookProtection = "book_protection"
     }
 
     static let knownTables: Set<String> = [
@@ -59,7 +65,8 @@ enum OtzariaSchema {
         Table.bookAcronym, Table.alternateTOCStructure, Table.alternateTOCEntry,
         Table.lineAlternateTOC, Table.defaultCommentator, Table.defaultTargum,
         Table.bookVersion, Table.versionLine, Table.schemaMetadata,
-        Table.databaseMetadata
+        Table.databaseMetadata, Table.lineNote, Table.lineDivineName,
+        Table.lineNoteDivineName, Table.bookBanner, Table.banner, Table.bookProtection
     ]
 
     static let requiredTables: Set<String> = [
@@ -102,6 +109,8 @@ struct OtzariaDatabaseCapabilities: Equatable, Sendable {
     }
     var hasVersions: Bool {
         hasTable(OtzariaSchema.Table.bookVersion) && hasTable(OtzariaSchema.Table.versionLine)
+            && ["id", "bookId", "versionTitle", "hasContent"].allSatisfy { hasColumn($0, in: "book_version") }
+            && ["versionId", "lineId", "content"].allSatisfy { hasColumn($0, in: "version_line") }
     }
 
     init(database: OpaquePointer) throws {

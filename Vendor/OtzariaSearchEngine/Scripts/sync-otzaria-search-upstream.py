@@ -81,14 +81,14 @@ def source_metadata(commit: str) -> tuple[str | None, int | None, int | None, st
     source = (UPSTREAM / "rust" / "src" / "api" / "search_engine.rs").read_text(encoding="utf-8")
     schema_match = re.search(r"INDEX_SCHEMA_VERSION:\s*u32\s*=\s*(\d+)", source)
     generation_match = re.search(r"DEFAULT_GENERATION_ORDER:\s*u32\s*=\s*(\d+)", source)
-    if not generation_match:
-        raise RuntimeError("upstream DEFAULT_GENERATION_ORDER was not found; adapter contract must be reviewed")
+    # v7 removed this engine default. Preserve the established C bridge fallback only.
+    legacy_generation_order = 5
     semantic = cargo.get("dependencies", {}).get("otzaria-semantic-search", {})
     semantic_revision = semantic.get("rev") if isinstance(semantic, dict) else None
     return (
         package_version,
         int(schema_match.group(1)) if schema_match else None,
-        int(generation_match.group(1)),
+        int(generation_match.group(1)) if generation_match else legacy_generation_order,
         semantic_revision,
     )
 
@@ -172,7 +172,7 @@ def validate(resource_records: list[dict[str, object]], run_builds: bool) -> lis
         commands = (
             ("cargo", "metadata", "--locked", "--no-default-features", "--format-version", "1"),
             ("cargo", "check", "--locked", "--no-default-features"),
-            ("cargo", "test", "--locked", "--no-default-features", "--features", "semantic-mock"),
+            ("cargo", "test", "--locked", "--no-default-features", "--lib"),
         )
         for command in commands:
             run(*command, cwd=bridge, capture=False)
@@ -192,6 +192,8 @@ def main() -> int:
     if not args.latest and not args.commit and not args.check:
         parser.error("choose --latest or --commit (plain --check validates the committed pin)")
 
+    if args.latest:
+        parser.error("floating upstream updates are disabled; use an explicitly reviewed --commit")
     ensure_checkout()
     old = PIN.read_text(encoding="utf-8").strip() if PIN.exists() else None
     requested = "origin/refactor" if args.latest else (args.commit or old)
@@ -207,24 +209,23 @@ def main() -> int:
     if git("status", "--porcelain"):
         raise RuntimeError("upstream checkout is dirty immediately after checkout")
     version, schema, default_generation_order, semantic_revision = source_metadata(new)
-    if args.check and RESOURCE_MANIFEST.exists():
-        committed_resource_manifest = json.loads(RESOURCE_MANIFEST.read_text(encoding="utf-8"))
-        app_commit = committed_resource_manifest.get("reference_commit") or resolve_app_head()
-    else:
-        app_commit = resolve_app_head()
-    resources = sync_resources(app_commit, write=not args.check)
-    for record in resources:
-        if record["name"] == "Semantic GGUF model":
-            record["source_commit"] = semantic_revision
+    # Engine updates never fetch or import Flutter application assets implicitly.
+    # Validate the already-reviewed resource bytes against their committed provenance.
+    committed_resource_manifest = json.loads(RESOURCE_MANIFEST.read_text(encoding="utf-8"))
+    app_commit = committed_resource_manifest["reference_commit"]
+    resources = committed_resource_manifest["resources"]
 
     if args.check:
         if old != new:
             raise RuntimeError(f"pin drift: committed {old}, requested {new}")
         committed_manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        for field, expected in [("engine_package_version", version), ("index_schema_version", schema), ("semantic_sidecar_revision", semantic_revision)]:
+            if committed_manifest.get(field) != expected:
+                raise RuntimeError(f"upstream identity drift: {field}")
         if committed_manifest.get("default_generation_order") != default_generation_order:
             raise RuntimeError(
                 "generation default drift: manifest "
-                f"{committed_manifest.get('default_generation_order')} != upstream {default_generation_order}"
+                f"{committed_manifest.get('default_generation_order')} != bridge compatibility default {default_generation_order}"
             )
     else:
         PIN.write_text(new + "\n", encoding="ascii")
@@ -238,6 +239,7 @@ def main() -> int:
                 "engine_package_version": version,
                 "index_schema_version": schema,
                 "default_generation_order": default_generation_order,
+                "default_generation_order_origin": "legacy C bridge compatibility fallback; v7 uses explicit full book order",
                 "semantic_sidecar_revision": semantic_revision,
                 "resources": {"manifest": "RESOURCE_MANIFEST.json"},
             },

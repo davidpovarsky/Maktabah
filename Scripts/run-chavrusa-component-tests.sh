@@ -35,6 +35,9 @@ swiftc -parse-as-library \
   "${REPO_ROOT}/Source/Sefaria/Offline/SefariaOfflinePaths.swift" \
   "${REPO_ROOT}/Source/Otzaria/Search/OtzariaSearchMode.swift" \
   "${REPO_ROOT}/Source/Otzaria/Search/OtzariaSearchModels.swift" \
+  "${REPO_ROOT}/Source/Otzaria/Navigation/OtzariaReferenceKey.swift" \
+  "${REPO_ROOT}/tools/OtzariaReferenceKeyFixtureTests.swift" \
+  "${REPO_ROOT}/Source/Otzaria/Search/OtzariaSearchResultIdentityStore.swift" \
   "${REPO_ROOT}/Source/LibraryBackend/LibraryBackendProtocols.swift" \
   "${REPO_ROOT}/Source/LibraryBackend/LibraryBackendModels.swift" \
   "${REPO_ROOT}/Source/LibraryBackend/LibraryPresentationPolicy+Display.swift" \

@@ -49,6 +49,16 @@ private func c_helper(_ json: UnsafePointer<CChar>) -> UnsafeMutablePointer<CCha
 private func c_semantic(_ handle: UnsafeMutableRawPointer?, _ json: UnsafePointer<CChar>) -> UnsafeMutablePointer<CChar>?
 @_silgen_name("otzaria_search_engine_free_string")
 private func c_freeString(_ value: UnsafeMutablePointer<CChar>?)
+@_silgen_name("otzaria_search_engine_set_book_order_json")
+private func c_setBookOrder(_ handle: UnsafeMutableRawPointer?, _ json: UnsafePointer<CChar>) -> UnsafeMutablePointer<CChar>?
+@_silgen_name("otzaria_search_engine_configure_library_source_json")
+private func c_configureLibrarySource(_ json: UnsafePointer<CChar>) -> UnsafeMutablePointer<CChar>?
+@_silgen_name("otzaria_search_engine_add_library_books_json")
+private func c_addLibraryBooks(_ handle: UnsafeMutableRawPointer?, _ json: UnsafePointer<CChar>) -> UnsafeMutablePointer<CChar>?
+@_silgen_name("otzaria_search_engine_search_snapshot_json")
+private func c_searchSnapshot(_ handle: UnsafeMutableRawPointer?) -> UnsafeMutablePointer<CChar>?
+@_silgen_name("otzaria_search_engine_release_memory")
+private func c_releaseMemory(_ handle: UnsafeMutableRawPointer?) -> UnsafeMutablePointer<CChar>?
 
 final class OtzariaSearchEngineBridge: @unchecked Sendable {
     private let queue = DispatchQueue(label: "com.goldcreative.otzaria.search-engine", qos: .userInitiated)
@@ -169,6 +179,23 @@ final class OtzariaSearchEngineBridge: @unchecked Sendable {
     func setBulkIndexing(_ enabled: Bool) throws {
         let _: Bool = try call(operation: "setBulkIndexing") { c_setBulkIndexing($0, enabled) }
     }
+
+    func setBookOrder(_ entries: [OtzariaBookOrderEntry]) throws {
+        let _: UInt64 = try callJSON(operation: "setBookOrder", payload: entries, c_setBookOrder)
+    }
+
+    static func configureLibrarySource(databaseURL: URL) throws {
+        let data = try JSONEncoder().encode(["databasePath": databaseURL.path])
+        guard let json = String(data: data, encoding: .utf8) else { throw OtzariaSearchError.invalidEngineResponse("Invalid library source path") }
+        let _: Bool = try json.withCString { try decodeStatic(operation: "configureLibrarySource", raw: c_configureLibrarySource($0)) }
+    }
+
+    func addLibraryBooks(_ books: [OtzariaLibraryIndexInput]) throws -> [OtzariaLibraryIndexResult] {
+        try callJSON(operation: "addLibraryBooks", payload: books, c_addLibraryBooks)
+    }
+
+    func searchSnapshot() throws -> String { try call(operation: "searchSnapshot", c_searchSnapshot) }
+    func releaseMemory() throws { let _: Bool = try call(operation: "releaseMemory", c_releaseMemory) }
 
     func clear() throws { let _: Bool = try call(operation: "clear", c_clear) }
     func commit() throws { let _: Bool = try call(operation: "commit", c_commit) }

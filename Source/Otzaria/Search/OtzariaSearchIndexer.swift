@@ -236,6 +236,11 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
             let contentProjection = OtzariaLineContentCompatibility.projection(capabilities: capabilities)
             let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
             liveEngine = engine
+            try OtzariaSearchEngineBridge.configureLibrarySource(databaseURL: URL(fileURLWithPath: databasePath))
+            try engine.setBookOrder(plan.books.enumerated().map { ordinal, book in
+                OtzariaBookOrderEntry(filePath: Self.filePath(forBookId: book.id),
+                    catalogueOrder: UInt32(clamping: ordinal), generationOrder: generationOrder)
+            })
             try engine.setBulkIndexing(true)
             let existingFingerprints = try engine.bookFingerprints()
             var unchangedBooks = 0
@@ -303,13 +308,11 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                     activeSourceIdentity = nil
                     continue
                 }
-                let lines = try loadLines(
-                    bookId: book.id,
-                    db: db,
-                    projection: contentProjection,
-                    decoder: contentDecoder
-                )
-                let measuredBytes = UInt64(lines.reduce(0) { $0 + $1.content.utf8.count })
+                let isPDF = book.fileType.lowercased().contains("pdf")
+                // Text books are read and decoded by the pinned Rust SQLite source in bounded batches.
+                let lines = isPDF ? try loadLines(bookId: book.id, db: db,
+                    projection: contentProjection, decoder: contentDecoder) : []
+                let measuredBytes = isPDF ? UInt64(lines.reduce(0) { $0 + $1.content.utf8.count }) : book.estimatedBytes
                 let oversized = OtzariaSearchIndexingPolicy.isOversized(
                     documents: book.totalLines,
                     bytes: measuredBytes,
@@ -318,12 +321,12 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                 )
                 if oversized {
                     OtzariaIndexFileLogger.log(
-                        "oversized book isolated id=\(book.id) ordinal=\(ordinal) documents=\(lines.count) bytes=\(measuredBytes) " +
+                        "oversized book isolated id=\(book.id) ordinal=\(ordinal) documents=\(book.totalLines) bytes=\(measuredBytes) " +
                         "memoryBefore=\(OtzariaIndexFileLogger.memoryFootprint)"
                     )
                 }
                 let added: UInt32
-                if book.fileType.lowercased().contains("pdf") {
+                if isPDF {
                     // Upstream deliberately stores PDF fingerprint 0. Zero is
                     // never accepted as evidence of freshness: this local
                     // identity covers the DB-backed pages and index metadata.
@@ -360,34 +363,17 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
                         pdfFreshnessChanged = true
                     }
                 } else {
-                    // Preserve the raw stored book markup and let upstream do
-                    // heading tracking, normalization and fingerprinting.
-                    let text = lines.map(\.content).joined(separator: "\n")
-                    let fingerprint = try OtzariaSearchEngineBridge.computeBookFingerprint(
-                        text: text,
-                        title: book.title,
-                        topics: topics,
-                        catalogueOrder: UInt32(clamping: ordinal),
-                        generationOrder: generationOrder,
-                        extraFacets: extraFacets
-                    )
-                    if existingFingerprints[sourceKey] == fingerprint {
-                        unchangedBooks += 1
-                        added = 0
-                    } else {
-                        // Delete + add share the same writer transaction. This
-                        // also makes replay after commit-before-checkpoint safe.
-                        try engine.deleteFilePaths([sourceKey])
-                        added = try engine.addTextBook(
-                            title: book.title,
-                            topics: topics,
-                            filePath: sourceKey,
-                            catalogueOrder: UInt32(clamping: ordinal),
-                            generationOrder: generationOrder,
-                            text: text,
-                            extraFacets: extraFacets
-                        )
+                    // The original Rust source handles row ordering, compressed text, notes and storage fallback.
+                    // A delete/add remains inside this batch's existing commit/rollback boundary.
+                    try engine.deleteFilePaths([sourceKey])
+                    let response = try engine.addLibraryBooks([.init(bookId: book.id, title: book.title,
+                        topics: topics, filePath: sourceKey, extraFacets: extraFacets.isEmpty ? nil : extraFacets)])
+                    guard let result = response.first, response.count == 1, result.bookId == book.id,
+                          result.status == "indexed" else {
+                        throw OtzariaSearchError.invalidEngineResponse(
+                            "Library source could not index book \(book.id): \(response.first?.status ?? "no response") \(response.first?.error ?? "")")
                     }
+                    added = result.documents
                 }
 
                 booksWritten += 1
@@ -731,5 +717,5 @@ final class OtzariaSearchIndexer: @unchecked Sendable {
         return nil
     }
 
-    private static func filePath(forBookId id: Int) -> String { "otzaria-book:\(id)" }
+    private static func filePath(forBookId id: Int) -> String { "id:\(id)" }
 }

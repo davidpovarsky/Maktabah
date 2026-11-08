@@ -85,6 +85,8 @@ struct LibraryBackendRegistration: Sendable {
     let id: BackendID
     let sourceDescription: String
     let capabilities: BackendCapabilities
+    let runtimeCapabilities: (@Sendable () -> BackendCapabilities)?
+    var effectiveCapabilities: BackendCapabilities { runtimeCapabilities?() ?? capabilities }
     let catalog: (any LibraryCatalogProviding)?
     let text: (any LibraryTextProviding)?
     let navigation: (any LibraryNavigationProviding)?
@@ -104,6 +106,7 @@ struct LibraryBackendRegistration: Sendable {
         id: BackendID,
         sourceDescription: String,
         capabilities: BackendCapabilities,
+        runtimeCapabilities: (@Sendable () -> BackendCapabilities)? = nil,
         catalog: (any LibraryCatalogProviding)? = nil,
         text: (any LibraryTextProviding)? = nil,
         navigation: (any LibraryNavigationProviding)? = nil,
@@ -120,6 +123,7 @@ struct LibraryBackendRegistration: Sendable {
         self.id = id
         self.sourceDescription = sourceDescription
         self.capabilities = capabilities
+        self.runtimeCapabilities = runtimeCapabilities
         self.catalog = catalog
         self.text = text
         self.navigation = navigation

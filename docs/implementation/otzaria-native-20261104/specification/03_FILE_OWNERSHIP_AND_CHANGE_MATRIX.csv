@@ -1,0 +1,75 @@
+﻿phase,path,ownership,required_action,xcode_membership,authorization_gate,validation
+G0,AGENTS.md,PROJECT_RULES,READ ONLY ownership and workflow,EXISTING,NO_EDIT,policy alignment
+G0,PROJECT_AGENT_GUIDANCE.md,PROJECT_RULES,READ ONLY local work guidance,EXISTING,NO_EDIT,policy alignment
+G0,docs/architecture/UPSTREAM_INTEGRITY_POLICY.md,POLICY_PROTECTED,READ ONLY no exceptions inferred,EXISTING,OWNER_EXACT_FOR_EDIT,strict provenance
+G0,docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json,POLICY_PROTECTED,READ ONLY proposed exceptions are not approved,EXISTING,OWNER_EXACT_FOR_EDIT,attestations
+G0,docs/ai-team/ASANA_POLICY.md,PROJECT_RULES,READ ONLY Asana update prohibited without explicit request,EXISTING,NO_EDIT,Asana untouched
+G0,Maktabah.xcodeproj/project.pbxproj,UPSTREAM_OWNED_PROTECTED,New Swift file PBX membership only by exact owner-approved hunk; otherwise DO NOT EDIT,EXISTING,OWNER_EXACT_HUNK,project target membership
+G0,Source/UI/iOS/MaktabahApp.swift,UPSTREAM_OWNED_PROTECTED,READ ONLY composition existing; no new UI,EXISTING,OWNER_EXACT_HUNK,app startup
+G0,Source/Features/Reader/ViewModel/BookTOCViewModel.swift,UPSTREAM_OWNED_PROTECTED,READ ONLY generic alt TOC already supported,EXISTING,OWNER_EXACT_HUNK,TOC navigation
+G0,Source/Features/Reader/iOS/iOSReaderView.swift,UPSTREAM_OWNED_PROTECTED,READ ONLY retain existing native reader,EXISTING,OWNER_EXACT_HUNK,iPad reader
+G0,Source/Core/SearchEngine/SearchEngine.swift,UPSTREAM_OWNED_PROTECTED,READ ONLY no semantic rewrite,EXISTING,OWNER_EXACT_HUNK,original Maktabah unaffected
+G0,Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift,DOWNSTREAM_OWNED,Audit renderFullUI call sites; no regular visible RN UI,EXISTING,SCOPE_ONLY,native UI only
+G0,Source/Sefaria/App/SefariaBackend.swift,DOWNSTREAM_OWNED,READ ONLY preserve old Sefaria registration,EXISTING,NO_EDIT,legacy Sefaria
+G0,Source/SefariaEmbedded/App/SefariaMobileEmbeddedBackend.swift,DOWNSTREAM_OWNED,READ ONLY preserve new Sefaria registration,EXISTING,NO_EDIT,embedded Sefaria
+P1,Source/Otzaria/Compatibility/OtzariaGenericBackendAdapter.swift,DOWNSTREAM_OWNED,Fix fake line locators; register alt TOC and enriched work metadata; maintain native path,EXISTING,none,real lineIndex navigation
+P1,Source/Otzaria/Reading/OtzariaCanonicalLineLocatorResolver.swift,DOWNSTREAM_NEW,Validated book+lineIndex to canonical TextLocator,NEW,PBX_TARGET_MEMBERSHIP_OWNER,locator fixture
+P1,Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift,DOWNSTREAM_OWNED,Return actual topics and real version metadata where possible,EXISTING,none,topics and versions
+P1,Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift,DOWNSTREAM_OWNED,Fix legacy vs embedded Sefaria identity condition,EXISTING,none,both Sefaria paths
+P1,Source/Otzaria/Search/OtzariaTextSearchViewModel.swift,DOWNSTREAM_OWNED,Keep exact raw+display hit association during loadMore,EXISTING,none,101+ search results
+P1,Source/ZayitSearch/UnifiedSearchWorkspaceView.swift,DOWNSTREAM_OWNED,Remove positional enginePage results lookup and unstable view hit identity,EXISTING,none,search navigation
+P1,Source/ZayitSearch/UnifiedSearchSessionController.swift,DOWNSTREAM_OWNED,Audit stable result route and cancellation no title guess,EXISTING,SCOPE_REVIEW,Zayit regression
+P1,Source/Otzaria/Search/OtzariaSearchResultIdentityStore.swift,DOWNSTREAM_NEW,Join raw hit with presentation and stable ID,NEW,PBX_TARGET_MEMBERSHIP_OWNER,pagination binding
+P2,Source/Otzaria/Data/OtzariaSchema.swift,DOWNSTREAM_OWNED,Detect schema7 tables optional columns and capabilities,EXISTING,none,feature probing
+P2,Source/Otzaria/Data/OtzariaSchemaAwareReadContext.swift,DOWNSTREAM_NEW,Shared read snapshot capability cache bound to DB generation,NEW,PBX_TARGET_MEMBERSHIP_OWNER,read concurrency
+P3,Source/Otzaria/Navigation/OtzariaAlternativeTOCRepository.swift,DOWNSTREAM_NEW,Build normal+alternative TOC from official DB tables,NEW,PBX_TARGET_MEMBERSHIP_OWNER,alt TOC fixtures
+P3,Source/Otzaria/Navigation/OtzariaReferenceResolutionRepository.swift,DOWNSTREAM_NEW,FNV RefKey line_ref and normalized line_dh gated by fixtures,NEW,PBX_TARGET_MEMBERSHIP_OWNER,exact refs
+P4,Source/Otzaria/Data/OtzariaWorkMetadataEnricher.swift,DOWNSTREAM_NEW,Factual metadata joins dates places bases default commentators,NEW,PBX_TARGET_MEMBERSHIP_OWNER,metadata no fabrication
+P4,Source/Otzaria/Data/OtzariaTopicsRepository.swift,DOWNSTREAM_NEW,book_topic join topic with stable ID,NEW,PBX_TARGET_MEMBERSHIP_OWNER,topics selection
+P4,Source/Otzaria/Reading/OtzariaLineSourcesService.swift,DOWNSTREAM_OWNED,Extend anchor metadata only; do not replace existing coverage and suppression,EXISTING,none,links and ranges
+P4,Source/Otzaria/Reading/OtzariaLinkAnchorRepository.swift,DOWNSTREAM_NEW,Read per-side char link anchors with coverage visibility,NEW,PBX_TARGET_MEMBERSHIP_OWNER,anchor fixture
+P4,Source/Otzaria/Reading/OtzariaSourceToDisplayRangeMap.swift,DOWNSTREAM_NEW,Visible offset to UTF16 with HTML and footnote mapping,NEW,PBX_TARGET_MEMBERSHIP_OWNER,range mapping
+P5,Source/Otzaria/Data/OtzariaVersionsRepository.swift,DOWNSTREAM_NEW,Implement LibraryMetadataProviding versions and related,NEW,PBX_TARGET_MEMBERSHIP_OWNER,edition metadata
+P5,Source/Otzaria/Data/OtzariaVersionedContentRepository.swift,DOWNSTREAM_NEW,LEFT JOIN version_line by verified same book version; no missing fallback,NEW,PBX_TARGET_MEMBERSHIP_OWNER,two versions missing text
+P5,Source/LibraryBackend/LibraryBackendProtocols.swift,DOWNSTREAM_OWNED,Optionally add companion versioned protocol without changing existing calls,EXISTING,PROVENANCE_VERIFY,source compatibility
+P5,Source/LibraryBackend/LibraryBackendModels.swift,DOWNSTREAM_OWNED,Keep persisted TextLocator unchanged; add only additive models if necessary,EXISTING,PROVENANCE_VERIFY,serialization snapshots
+P5,Source/LibraryBackend/BackendComposition.swift,DOWNSTREAM_OWNED,Register valid metadata and capabilities; never false availability,EXISTING,none,backend capabilities
+P5,Source/LibraryBackend/BackendCoordinator.swift,DOWNSTREAM_OWNED,Only if required add optional downstream version provider accessor with default,EXISTING,PROVENANCE_VERIFY,generation guard
+P5,Source/Otzaria/Reading/OtzariaVersionSelectionStore.swift,DOWNSTREAM_NEW,Version selection per backend work and tab without locator mutation,NEW,PBX_TARGET_MEMBERSHIP_OWNER,tab state restore
+P6,Source/Otzaria/Data/OtzariaLineDecorationRepository.swift,DOWNSTREAM_NEW,Read footnotes names protection; no guessed render transform,NEW,PBX_TARGET_MEMBERSHIP_OWNER,schema7 notes names
+P6,Source/Otzaria/Reading/OtzariaReadingUnitService.swift,DOWNSTREAM_OWNED,Avoid huge units; preserve exact line anchors and lazy paging,EXISTING,none,large book performance
+P7,Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_COMMIT,DOWNSTREAM_PIN,Update exact approved SHA only; no floating ref,EXISTING,LICENSE_AUDIT,pin exact
+P7,Vendor/OtzariaSearchEngine/Upstream/UPSTREAM_MANIFEST.json,DOWNSTREAM_PIN,Update pinned source schema10 and revision metadata,EXISTING,LICENSE_AUDIT,manifest parity
+P7,Vendor/OtzariaSearchEngine/Upstream/RESOURCE_MANIFEST.json,DOWNSTREAM_PIN,Revalidate resource hashes without importing restricted assets,EXISTING,LICENSE_AUDIT,asset license
+P7,Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml,DOWNSTREAM_OWNED,"Pin sqlite-bundled exactly and Rust engine 7.0.1, no onnx mobile mock",EXISTING,none,cargo compile
+P7,Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock,DOWNSTREAM_OWNED,Regenerate locked dependencies for exact upstream pin,EXISTING,none,cargo --locked
+P7,Vendor/OtzariaSearchEngine/ios_bridge/src/lib.rs,DOWNSTREAM_OWNED,Port C JSON Rust shim to v7 signatures; add cancellation snapshot memory optional,EXISTING,none,ABI tests
+P7,Vendor/OtzariaSearchEngine/include/otzaria_search_engine.h,DOWNSTREAM_OWNED,Preserve old exported names and add verified new C ABI symbols,EXISTING,none,header parity
+P7,Source/Otzaria/Search/OtzariaSearchEngineBridge.swift,DOWNSTREAM_OWNED,Update Swift C signatures and FFI memory lifetime,EXISTING,none,bridge tests
+P7,Source/Otzaria/Search/OtzariaSearchModels.swift,DOWNSTREAM_OWNED,Map new search engine payload to existing neutral model,EXISTING,none,search encoding
+P7,Source/Otzaria/Search/OtzariaTantivySearchRepository.swift,DOWNSTREAM_OWNED,Connect pinned engine and database source path; reject missing source identity,EXISTING,none,result parity
+P7,Source/Otzaria/Search/OtzariaSearchIndexer.swift,DOWNSTREAM_OWNED,Batched canonical library indexing and versioned path fingerprints,EXISTING,none,index full mini
+P7,Vendor/OtzariaSearchEngine/build_xcframework.sh,DOWNSTREAM_OWNED,Keep clean 3-arch builds only with owner build authorization,EXISTING,BUILD_AUTHORIZATION,macOS arch slices
+P7,Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py,DOWNSTREAM_OWNED,Disable unreviewed --latest automatic app resource pull; exact pin and rights gate,EXISTING,LICENSE_AUDIT,no floating dependencies
+P7,Vendor/OtzariaSearchEngine/Scripts/verify-api-parity.py,DOWNSTREAM_OWNED,Retain three-way Swift C Rust ABI symbol parity checker,EXISTING,none,ABI parity
+P7,Vendor/OtzariaSearchEngine/README.md,DOWNSTREAM_DOC,Update semantic ONNX desktop-only and source pin,EXISTING,none,doc current
+P7,Vendor/OtzariaSearchEngine/PARITY.md,DOWNSTREAM_DOC,Record version migration and test evidence not old stale parity,EXISTING,none,parity results
+P8,Source/Otzaria/Search/OtzariaSearchIndexManager.swift,DOWNSTREAM_OWNED,Enforce engine schema10 and DB identity; safe previous/building rollback,EXISTING,none,index integrity
+P8,Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift,DOWNSTREAM_OWNED,Never bypass source schema hash or profile manifest validation,EXISTING,none,artifact gate
+P8,Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift,DOWNSTREAM_OWNED,Update lexical metadata if new schema or source requires additive fields,EXISTING,none,manifest decode
+P8,Source/Otzaria/Search/Distribution/OtzariaSearchArtifactReleaseClient.swift,DOWNSTREAM_OWNED,Keep downstream matched asset release discovery; no guessed upstream tar,EXISTING,none,index match
+P8,Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift,DOWNSTREAM_OWNED,Keep seforim-schemaN.db.zst support and v36 digest identity,EXISTING,none,asset detection
+P8,Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift,DOWNSTREAM_OWNED,Keep read verify stage atomic swap and rollback,EXISTING,none,installation recovery
+P8,Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift,DOWNSTREAM_OWNED,Library readiness independent of optional search index,EXISTING,none,read without index
+P8,Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift,DOWNSTREAM_OWNED,Keep miniTest10 vs production parity by profile only,EXISTING,none,profile parity
+P8,docs/otzaria-search-artifacts.md,DOWNSTREAM_DOC,Update v7 schema10 and release artifact contract,EXISTING,none,documentation
+P9,Source/Otzaria/Updates/OtzariaDeltaUpdateService.swift,DOWNSTREAM_NEW_DEFERRED,Not in initial scope; native Swift manifest hash staged update only if authorized,NEW,SEPARATE_OWNER_AUTH_PLUS_PBX,delta negative tests
+P10,Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift,PROJECT_TEST,Extend tests with approved test-build environment,EXISTING,TEST_AUTHORIZATION,3 backend switch
+P10,Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift,PROJECT_TEST,"Include v36 schema7 no-index reader, search schema10",EXISTING,TEST_AUTHORIZATION,device regression
+P10,Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift,PROJECT_TEST,Ensure embedded source unaffected and no RN visible UI,EXISTING,TEST_AUTHORIZATION,Sefaria embedded
+P10,Vendor/SefariaNativeTests/UnifiedSearchArchitectureTests.swift,PROJECT_TEST,Search result alignment no offset mismatch and cancellation,EXISTING,none,pagination fixture
+P10,Vendor/SefariaNativeTests/OtzariaPerformanceUnitTests.swift,PROJECT_TEST,Measure bounded reading and metadata SQLite calls,EXISTING,none,performance gate
+P10,Vendor/OtzariaSearchEngine/Tests,DOWNSTREAM_TEST,Add Rust/Swift ABI parity and indexed engine migration fixture,NEW_FILES,TEST_MEMBERSHIP_CHECK,Rust and Swift bridge
+P11,.github/workflows/upstream-boundary-guard.yml,PROJECT_POLICY_PROTECTED,READ ONLY no workflow trigger broadening,EXISTING,OWNER_EXACT_HUNK,source guard
+P11,Scripts/CI/verify-upstream-boundary.py,POLICY_PROTECTED,READ ONLY execute guard as permitted no bypass,EXISTING,OWNER_EXACT_HUNK,upstream guard
+P11,docs/implementation/otzaria-native-20261104,DOWNSTREAM_DOC_NEW,Write baseline QA owner proposals decisions rollback and blockers,NEW_DOCS,none,delivery evidence

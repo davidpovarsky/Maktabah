@@ -3,6 +3,9 @@ import Foundation
 
 @MainActor
 final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
+    typealias ResultRecord = OtzariaSearchResultIdentityStore<SearchResultItem>.Record
+
+    @Published private(set) var searchRecords: [ResultRecord] = []
     @Published var query = ""
     @Published var negativeQuery = ""
     @Published var results: [SearchResultItem] = []
@@ -47,6 +50,16 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     private let artifactService = OtzariaSearchArtifactService.shared
     private var currentTask: Task<Void, Never>?
     private var searchGeneration: Int = 0
+    private var paginationTask: Task<Void, Never>?
+    private var resultStore = OtzariaSearchResultIdentityStore<SearchResultItem>()
+
+    private func store(page: OtzariaSearchPage, items: [SearchResultItem], replacing: Bool) throws {
+        try resultStore.apply(hits: page.results, items: items, replacing: replacing)
+        searchRecords = resultStore.records
+        results = searchRecords.map(\.item)
+        enginePage = page
+        hasMore = page.truncated && !page.results.isEmpty
+    }
 
     func refreshStatus() {
         guard !isIndexing, !isInstallingArtifact else { return }
@@ -352,8 +365,14 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     func search() {
         searchGeneration += 1
+        paginationTask?.cancel()
+        isLoadingMore = false
         let generation = searchGeneration
         currentTask?.cancel()
+        resultStore.clear()
+        searchRecords = []
+        results = []
+        enginePage = nil
 
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { clear(); return }
@@ -380,12 +399,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         currentTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
                 let page = try repository.search(databasePath: path, request: request)
-                let items = repository.navigationItems(from: page)
-                await MainActor.run {
+                let items = try repository.navigationItems(from: page)
+                try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
-                    self.enginePage = page
-                    self.results = items
-                    self.hasMore = page.truncated
+                    try self.store(page: page, items: items, replacing: true)
                     self.isSearching = false
                 }
             } catch {
@@ -395,6 +412,8 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     self.errorMessage = error.localizedDescription
                     self.enginePage = nil
                     self.results = []
+                    self.searchRecords = []
+                    self.resultStore.clear()
                     self.hasMore = false
                     self.isSearching = false
                 }
@@ -410,18 +429,16 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
         isLoadingMore = true
         let generation = searchGeneration
-        let offset = results.count
+        let offset = resultStore.consumedCount
         let request = makeSearchRequest(query: trimmed, offset: offset, limit: 100)
 
-        Task.detached(priority: .userInitiated) { [repository] in
+        paginationTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
                 let page = try repository.search(databasePath: path, request: request)
-                let items = repository.navigationItems(from: page)
-                await MainActor.run {
+                let items = try repository.navigationItems(from: page)
+                try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
-                    self.enginePage = page
-                    self.results.append(contentsOf: items)
-                    self.hasMore = page.truncated
+                    try self.store(page: page, items: items, replacing: false)
                     self.isLoadingMore = false
                 }
             } catch {
@@ -429,6 +446,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 await MainActor.run {
                     guard self.searchGeneration == generation else { return }
                     self.isLoadingMore = false
+                    self.errorMessage = error.localizedDescription
                 }
             }
         }
@@ -437,12 +455,16 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     func clear() {
         searchGeneration += 1
         currentTask?.cancel()
+        paginationTask?.cancel()
         query = ""
         results = []
+        searchRecords = []
+        resultStore.clear()
         enginePage = nil
         errorMessage = nil
         hasMore = false
         isLoadingMore = false
+        isSearching = false
     }
 
     func indexLogCopyText() -> String {

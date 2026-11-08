@@ -21,15 +21,7 @@ enum OtzariaInspectorDocumentMapper {
             },
             previous: previousStartLineIndex.map { lineLocator(bookID: unit.bookId, lineIndex: $0) },
             next: nextStartLineIndex.map { lineLocator(bookID: unit.bookId, lineIndex: $0) },
-            versions: [TextVersionMetadata(
-                title: "Otzaria local library",
-                language: "he",
-                actualLanguage: "he",
-                sourceURL: nil,
-                license: nil,
-                notes: nil,
-                isPrimary: true
-            )],
+            versions: [], // The merged reading unit is not an invented named edition.
             links: [],
             origin: .offline
         )
@@ -103,8 +95,7 @@ struct OtzariaInspectorRelationshipsProvider: LibraryRelationshipsProviding, @un
     }
 
     func topics(for locator: TextLocator) async throws -> [LibraryRelatedTopic] {
-        guard locator.backend == .otzaria else { throw LibraryBackendError.invalidLocator }
-        return []
+        try await OtzariaTopicsRepository().topics(for: locator)
     }
 
     static func map(_ source: OtzariaLinkedSource) -> LibraryRelatedSource {

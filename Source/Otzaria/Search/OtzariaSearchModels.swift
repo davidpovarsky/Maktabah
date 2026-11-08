@@ -148,6 +148,12 @@ struct OtzariaEngineSearchResult: Codable, Hashable, Sendable {
     let filePath: String
     let mergedCount: UInt32
     let merged: [OtzariaMergedSibling]
+    var textStatus: String? = nil
+
+    /// Independent of pagination position, display title, and grouping order.
+    var stableIdentity: String {
+        "\(filePath.utf8.count):\(filePath):\(id):\(segment):\(isPdf)"
+    }
 }
 
 struct OtzariaSearchPage: Codable, Sendable {
@@ -155,6 +161,30 @@ struct OtzariaSearchPage: Codable, Sendable {
     let groupCount: UInt32?
     let truncated: Bool
     let results: [OtzariaEngineSearchResult]
+    var sourceGeneration: UInt64? = nil
+}
+
+struct OtzariaBookOrderEntry: Codable, Sendable {
+    let filePath: String
+    let catalogueOrder: UInt32
+    let generationOrder: UInt32
+}
+
+struct OtzariaLibraryIndexInput: Codable, Sendable {
+    let bookId: Int
+    let title: String
+    let topics: String
+    let filePath: String
+    let extraFacets: [String]?
+    var sourceHash: UInt64? = nil
+}
+
+struct OtzariaLibraryIndexResult: Codable, Sendable {
+    let bookId: Int
+    let documents: UInt32
+    let contentHash: UInt64
+    let status: String
+    let error: String?
 }
 
 struct OtzariaBookCounts: Codable, Sendable {

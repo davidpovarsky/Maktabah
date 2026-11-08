@@ -21,6 +21,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
         if indexingDatabasePaths.contains(databasePath) {
             throw OtzariaSearchError.invalidEngineResponse("Otzaria Tantivy indexing is in progress for this database.")
         }
+        try OtzariaSearchEngineBridge.configureLibrarySource(databaseURL: URL(fileURLWithPath: databasePath))
         if let cached = engineCache[databasePath] {
             return cached
         }
@@ -138,25 +139,53 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     }
 
     func search(databasePath: String, request: OtzariaSearchRequest) throws -> OtzariaSearchPage {
+        let generation = OtzariaMaktabahBridge.shared.generationSnapshot()
         let engine = try engine(databasePath: databasePath)
-        return try engine.search(request)
+        var page = try engine.search(request)
+        guard generation == OtzariaMaktabahBridge.shared.generationSnapshot(),
+              databasePath == OtzariaMaktabahBridge.shared.databasePath else { throw CancellationError() }
+        page.sourceGeneration = generation
+        return page
     }
 
-    func navigationItems(from page: OtzariaSearchPage) -> [SearchResultItem] {
-        page.results.map { result in
+    func navigationItems(from page: OtzariaSearchPage) throws -> [SearchResultItem] {
+        guard page.sourceGeneration == OtzariaMaktabahBridge.shared.generationSnapshot() else { throw CancellationError() }
+        guard page.results.allSatisfy({ $0.textStatus == nil || $0.textStatus == "ok" }) else {
+            throw OtzariaSearchError.invalidEngineResponse("The search index no longer matches the available library text. Repair or rebuild the matching index.")
+        }
+        let canonical: [String: [UInt64: Int]] = try OtzariaMaktabahBridge.shared.withDatabase { database in
+            let capabilities = try OtzariaDatabaseCapabilities(database: database)
+            let groups = Dictionary(grouping: page.results.filter { !$0.isPdf }, by: \.filePath)
+            var result: [String: [UInt64: Int]] = [:]
+            for (path, hits) in groups {
+                guard let bookID = bookId(from: path) else { throw LibraryBackendError.invalidLocator }
+                result[path] = try OtzariaSearchLineIndexResolver.resolve(ordinals: Set(hits.map(\.segment)),
+                    bookID: bookID, database: database, capabilities: capabilities)
+            }
+            return result
+        }
+        return try page.results.map { result in
             let (attrText, highlightTerms) = highlightedText(from: result.text)
-            let bkid = bookId(from: result.filePath) ?? 0
+            guard let bkid = bookId(from: result.filePath), bkid > 0 else { throw LibraryBackendError.invalidLocator }
+            let line: Int
+            if result.isPdf {
+                guard let pageIndex = Int(exactly: result.segment) else { throw LibraryBackendError.invalidLocator }
+                line = pageIndex
+            } else {
+                guard let actual = canonical[result.filePath]?[result.segment] else { throw LibraryBackendError.invalidLocator }
+                line = actual
+            }
             let locator = TextLocator(
                 backend: .otzaria,
                 workKey: "book:\(bkid)",
-                position: .legacyLine(Int(result.segment))
+                position: .legacyLine(line)
             )
             return SearchResultItem(
                 archive: "Otzaria",
                 tableName: "otzaria:\(bkid)",
                 bookId: bkid,
                 bookTitle: result.title,
-                page: Int(result.segment),
+                page: line,
                 part: 0,
                 attributedText: attrText,
                 backendLocator: locator,
@@ -167,8 +196,9 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     }
 
     private func bookId(from filePath: String) -> Int? {
-        guard filePath.hasPrefix("otzaria-book:") else { return nil }
-        return Int(filePath.dropFirst("otzaria-book:".count))
+        let prefix = filePath.hasPrefix("id:") ? "id:" : "otzaria-book:"
+        guard filePath.hasPrefix(prefix) else { return nil }
+        return Int(filePath.dropFirst(prefix.count))
     }
 
     private func highlightedText(from html: String) -> (NSAttributedString, [String]) {

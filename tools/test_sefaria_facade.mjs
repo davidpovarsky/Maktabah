@@ -6,11 +6,11 @@ import vm from 'node:vm';
 // This verifies mapping/contracts only, and is not a Hermes or live-network acceptance test.
 let source = fs.readFileSync('Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js', 'utf8');
 source = source.replace(/^import .*;\r?\n/gm, '').replace(/^export /gm, '');
-let related = { links: [{ ref: 'Rashi on Genesis 1:1:1' }], topics: [] };
+let related = { links: [{ ref: 'Rashi on Genesis 1:1:1', anchorRef: 'Genesis 1:1' }], topics: [] };
 let relatedError = null;
 const sandbox = {
   console, NativeModules: {}, AsyncStorage: {}, DownloadControl: {},
-  loadTextOffline: () => {}, textFromRefData: () => {}, ERRORS: {}, api: {},
+  loadTextOffline: async () => ({ textContent: { sectionRef: 'Genesis 1' } }), textFromRefData: () => {}, ERRORS: {}, api: {},
   OfflineOnline: { loadRelated: async () => { if (relatedError) throw relatedError; return related; } },
   global: { Sefaria: {
     textTitleForRef: ref => ref?.startsWith('Rashi on Genesis') ? 'Rashi on Genesis' : ref?.startsWith('Genesis') ? 'Genesis' : null,

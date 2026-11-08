@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [features]
-default = ["semantic"]
+default = []
 semantic = ["search_engine/semantic"]
 semantic-mock = ["search_engine/semantic-mock"]
 
@@ -13,7 +13,7 @@ name = "otzaria_search_engine_ios"
 crate-type = ["staticlib"]
 
 [dependencies]
-search_engine = { path = "../Checkout/otzaria_search_engine/rust", default-features = false }
+search_engine = { path = "../Checkout/otzaria_search_engine/rust", default-features = false, features = ["sqlite-bundled"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 libc = "0.2"
@@ -26,3 +26,8 @@ serde_json = "1.0"
 # upstream patch here; the source itself remains in the pristine checkout.
 [patch.crates-io]
 tantivy-fst = { path = "../Checkout/otzaria_search_engine/rust/vendor/tantivy-fst" }
+
+tantivy = { git = "https://github.com/Otzaria/tantivy", rev = "8b8832069b871e11fe0fd0da1c4c2de8c270596f" }
+
+[dev-dependencies]
+rusqlite = { version = "=0.32.1", features = ["bundled"] }

@@ -35,6 +35,12 @@ char *otzaria_search_engine_set_dictionaries_json(OtzariaSearchEngineHandle hand
 char *otzaria_search_engine_helper_json(const char *request_json);
 char *otzaria_search_engine_semantic_json(OtzariaSearchEngineHandle handle, const char *request_json);
 
+char *otzaria_search_engine_set_book_order_json(OtzariaSearchEngineHandle handle, const char *request_json);
+char *otzaria_search_engine_configure_library_source_json(const char *request_json);
+char *otzaria_search_engine_add_library_books_json(OtzariaSearchEngineHandle handle, const char *request_json);
+char *otzaria_search_engine_search_snapshot_json(OtzariaSearchEngineHandle handle);
+char *otzaria_search_engine_release_memory(OtzariaSearchEngineHandle handle);
+
 void otzaria_search_engine_free_string(char *value);
 
 #ifdef __cplusplus

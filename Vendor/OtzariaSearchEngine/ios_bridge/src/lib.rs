@@ -12,8 +12,9 @@ use search_engine::api::search_engine::{
     MergedSibling, PdfPageInput, ResultGrouping, ResultsOrder, SearchEngine, SearchPageResult,
     SearchResult, SearchScope, SemanticBookInput, SemanticBookLineInput, SemanticConfigInput,
     SemanticExecutedMode, SemanticGroupingMode, SemanticLexicalMode, SemanticResultSource,
-    SemanticRetrievalMode, SemanticSearchResponse, SemanticStatus, WordMatchMode,
+    SemanticRetrievalMode, SemanticSearchResponse, SemanticStatus, WordMatchMode, TextStorage, SemanticCancellationToken, BookOrderEntry, configure_line_source, TextStatus,
 };
+use search_engine::api::library_indexing::{LibraryBookInput, LibraryBookSource, IndexingCancellationToken, LibraryBookStatus};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::cell::RefCell;
@@ -182,6 +183,11 @@ struct HelperRequest {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct SemanticRequest {
+    #[serde(default)] pooling: Option<String>,
+    #[serde(default)] max_tokens: Option<u32>,
+    #[serde(default)] model_quantization: Option<String>,
+    #[serde(default)] embedding_text_version: Option<u32>,
+    #[serde(default)] onnx_runtime_path: Option<String>,
     operation: String,
     root_dir: Option<String>,
     model_path: Option<String>,
@@ -249,6 +255,7 @@ struct BridgeSearchResult {
     file_path: String,
     merged_count: u32,
     merged: Vec<BridgeMergedSibling>,
+    text_status: String,
 }
 
 #[derive(Serialize)]
@@ -435,6 +442,9 @@ fn bridge_sibling(value: MergedSibling) -> BridgeMergedSibling {
 
 fn bridge_result(value: SearchResult) -> BridgeSearchResult {
     BridgeSearchResult {
+        text_status: match value.text_status {
+            TextStatus::Ok => "ok", TextStatus::Stale => "stale", TextStatus::Unavailable => "unavailable",
+        }.to_owned(),
         title: value.title,
         reference: value.reference,
         text: value.text,
@@ -502,6 +512,7 @@ fn run_search(
             request.match_nikud,
             request.match_taamim,
             selected_grouping,
+        None,
         ),
         "advanced" => engine.search_and_count_advanced(
             request.query,
@@ -525,6 +536,7 @@ fn run_search(
             selected_grouping,
             word_match(&request.word_match_mode)?,
             request.word_match_count,
+        None, None,
         ),
         "" | "exact" => engine.search_and_count_exact(
             request.query,
@@ -535,6 +547,7 @@ fn run_search(
             request.match_nikud,
             request.match_taamim,
             selected_grouping,
+        None,
         ),
         other => return Err(format!("unknown search mode '{other}'")),
     };
@@ -555,6 +568,7 @@ fn run_book_counts(
             request.distance.min(2) as u8,
             request.match_nikud,
             request.match_taamim,
+        None,
         ),
         "advanced" => engine.count_by_book_advanced_with_status(
             request.query,
@@ -574,12 +588,14 @@ fn run_book_counts(
             scope(&request.negative_scope)?,
             word_match(&request.word_match_mode)?,
             request.word_match_count,
+        None, None,
         ),
         "" | "exact" => engine.count_by_book_exact_with_status(
             request.query,
             request.facets,
             request.match_nikud,
             request.match_taamim,
+        None,
         ),
         other => return Err(format!("unknown search mode '{other}'")),
     }
@@ -620,6 +636,7 @@ fn run_facet_counts(
             scope(&request.negative_scope)?,
             word_match(&request.word_match_mode)?,
             request.word_match_count,
+        None,
         ),
         "" | "exact" => engine.get_facet_counts_exact_with_status(
             request.query,
@@ -910,20 +927,18 @@ pub extern "C" fn otzaria_search_engine_add_text_book_json(
                     book.title,
                     book.topics,
                     book.file_path,
-                    book.catalogue_order,
-                    book.generation_order,
                     bytes,
                     book.extra_facets,
+                    TextStorage::InIndex, None, None,
                 )
             } else {
                 engine.add_text_book(
                     book.title,
                     book.topics,
                     book.file_path,
-                    book.catalogue_order,
-                    book.generation_order,
                     book.text.unwrap_or_default(),
                     book.extra_facets,
+                    TextStorage::InIndex, None, None,
                 )
             }
             .map_err(|error| format!("{error:#}"))
@@ -953,8 +968,6 @@ pub extern "C" fn otzaria_search_engine_add_pdf_book_json(
                     book.title,
                     book.topics,
                     book.file_path,
-                    book.catalogue_order,
-                    book.generation_order,
                     pages,
                     book.extra_facets,
                 )
@@ -1126,6 +1139,7 @@ pub extern "C" fn otzaria_search_engine_helper_json(request_json: *const c_char)
                     request.custom_spacing,
                     request.alternative_words,
                     request.search_options,
+                None,
                 ) {
                     Some(pattern) => {
                         json!({ "combinedPattern": pattern.combined_pattern, "wordPatterns": pattern.word_patterns, "wordBoundaryEligible": pattern.word_boundary_eligible })
@@ -1137,8 +1151,6 @@ pub extern "C" fn otzaria_search_engine_helper_json(request_json: *const c_char)
                 request.input,
                 request.title,
                 request.topics,
-                request.catalogue_order,
-                request.generation_order,
                 request.extra_facets
             ))),
             other => Err(format!("unknown helper operation '{other}'")),
@@ -1160,6 +1172,11 @@ pub extern "C" fn otzaria_search_engine_semantic_json(
                 model_path: request.model_path.ok_or("missing modelPath")?,
                 model_id: request.model_id.ok_or("missing modelId")?,
                 embedding_dim: request.embedding_dim.ok_or("missing embeddingDim")?,
+                pooling: request.pooling.ok_or("missing verified pooling")?,
+                max_tokens: request.max_tokens.ok_or("missing verified maxTokens")?,
+                model_quantization: request.model_quantization.ok_or("missing verified modelQuantization")?,
+                embedding_text_version: request.embedding_text_version.ok_or("missing verified embeddingTextVersion")?,
+                onnx_runtime_path: request.onnx_runtime_path,
             }).map(semantic_status_json).map_err(|error| format!("{error:#}")),
             "disable" => { engine.disable_semantic(); Ok(semantic_status_json(engine.semantic_status())) }
             "status" => Ok(semantic_status_json(engine.semantic_status())),
@@ -1205,12 +1222,77 @@ pub extern "C" fn otzaria_search_engine_semantic_json(
                     lexical_mode, request.fuzzy_max_distance.unwrap_or_default().min(2), retrieval_mode,
                     semantic_grouping(request.grouping.as_deref())?, request.match_nikud.unwrap_or(false),
                     request.match_taamim.unwrap_or(false),
+                None, &SemanticCancellationToken::new(),
                 ).map(semantic_response_json).map_err(|error| format!("{error:#}"))
             }
             other => Err(format!("unknown semantic operation '{other}'")),
         }
         })
     })
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct BookOrderInput { file_path: String, catalogue_order: u32, generation_order: u32 }
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct LibraryInput {
+    book_id: i64, title: String, topics: String, file_path: String,
+    #[serde(default)] extra_facets: Option<Vec<String>>,
+    #[serde(default)] source_hash: Option<u64>,
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_set_book_order_json(handle: *mut EngineHandle, request_json: *const c_char) -> *mut c_char {
+    boundary("set_book_order", || {
+        let entries: Vec<BookOrderInput> = parse_json(request_json)?;
+        with_engine(handle, |engine| engine.set_book_order(entries.into_iter().map(|e| BookOrderEntry {
+            file_path: e.file_path, catalogue_order: e.catalogue_order, generation_order: e.generation_order,
+        }).collect()).map_err(|e| format!("{e:#}")))
+    })
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_configure_library_source_json(request_json: *const c_char) -> *mut c_char {
+    boundary("configure_library_source", || {
+        let value: Value = parse_json(request_json)?;
+        let path = value["databasePath"].as_str().ok_or("missing databasePath")?;
+        configure_line_source(path.to_owned()).map(|_| true).map_err(|e| format!("{e:#}"))
+    })
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_add_library_books_json(handle: *mut EngineHandle, request_json: *const c_char) -> *mut c_char {
+    boundary("add_library_books", || {
+        let inputs: Vec<LibraryInput> = parse_json(request_json)?;
+        let books = inputs.into_iter().map(|b| LibraryBookInput {
+            source: LibraryBookSource::Library, attached_slug: None, book_id: b.book_id,
+            db_title: Some(b.title.clone()), title: b.title, topics: b.topics,
+            file_path: b.file_path, extra_facets: b.extra_facets, source_hash: b.source_hash,
+            text_storage: TextStorage::LibraryDb,
+        }).collect();
+        with_engine(handle, |engine| {
+            engine.open_index_writer().map_err(|e| format!("{e:#}"))?;
+            engine.add_library_books(books, &IndexingCancellationToken::new())
+            .map(|rows| rows.into_iter().map(|r| json!({
+                "bookId": r.book_id, "documents": r.docs, "contentHash": r.content_hash,
+                "status": match r.status { LibraryBookStatus::Indexed => "indexed", LibraryBookStatus::Missing => "missing",
+                    LibraryBookStatus::Unavailable => "unavailable", LibraryBookStatus::Failed => "failed", LibraryBookStatus::Cancelled => "cancelled" },
+                "error": r.error,
+            })).collect::<Vec<_>>()).map_err(|e| format!("{e:#}"))
+        })
+    })
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_search_snapshot_json(handle: *mut EngineHandle) -> *mut c_char {
+    boundary("search_snapshot", || with_engine(handle, |engine| Ok(engine.search_snapshot())))
+}
+
+#[no_mangle]
+pub extern "C" fn otzaria_search_engine_release_memory(handle: *mut EngineHandle) -> *mut c_char {
+    boundary("release_memory", || with_engine(handle, |engine| { engine.release_memory(); Ok(true) }))
 }
 
 #[no_mangle]
@@ -1281,7 +1363,7 @@ mod tests {
             value["value"]["upstreamCommit"],
             env!("OTZARIA_UPSTREAM_COMMIT")
         );
-        assert_eq!(value["value"]["indexSchemaVersion"], 4);
+        assert_eq!(value["value"]["indexSchemaVersion"], 10);
         assert_eq!(value["value"]["defaultGenerationOrder"], 5);
     }
 
@@ -1336,7 +1418,7 @@ mod tests {
     }
 
     #[test]
-    fn omitted_generation_order_uses_the_pinned_upstream_default() {
+    fn omitted_generation_order_preserves_the_legacy_bridge_default() {
         let text: BridgeTextBook = serde_json::from_value(json!({
             "title": "default", "topics": "/", "filePath": "default",
             "catalogueOrder": 0, "text": "fixture"
@@ -1621,7 +1703,7 @@ mod tests {
 
         let compatibility = decode_ffi(otzaria_search_engine_check_compatibility(path.as_ptr()));
         assert_eq!(compatibility["value"]["compatible"], true);
-        assert_eq!(compatibility["value"]["requiredSchemaVersion"], 4);
+        assert_eq!(compatibility["value"]["requiredSchemaVersion"], 10);
         std::fs::remove_dir_all(index).unwrap();
     }
 
@@ -1696,4 +1778,61 @@ mod tests {
         otzaria_search_engine_free(handle);
         std::fs::remove_dir_all(index).unwrap();
     }
+    #[test]
+    fn schema10_book_order_snapshot_and_memory_ffi() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        let path = CString::new(index.to_string_lossy().as_bytes()).unwrap();
+        let handle = otzaria_search_engine_new(path.as_ptr());
+        assert!(!handle.is_null());
+        let before = decode_ffi(otzaria_search_engine_search_snapshot_json(handle));
+        assert_eq!(before["ok"], true);
+        let order = CString::new(r#"[{"filePath":"id:1","catalogueOrder":2,"generationOrder":7},{"filePath":"id:2","catalogueOrder":1,"generationOrder":3}]"#).unwrap();
+        assert_eq!(decode_ffi(otzaria_search_engine_set_book_order_json(handle, order.as_ptr()))["ok"], true);
+        let after = decode_ffi(otzaria_search_engine_search_snapshot_json(handle));
+        assert_ne!(before["value"], after["value"], "Order changes invalidate the search snapshot");
+        assert_eq!(decode_ffi(otzaria_search_engine_release_memory(handle))["value"], true);
+        assert_eq!(decode_ffi(otzaria_search_engine_release_memory(ptr::null_mut()))["ok"], false);
+        otzaria_search_engine_free(handle);
+        std::fs::remove_dir_all(index).unwrap();
+    }
+
+    #[test]
+    fn schema10_sqlite_source_keeps_raw_text_ordinals() {
+        let index = temporary_index();
+        std::fs::create_dir_all(&index).unwrap();
+        let database_path = index.join("fixture.sqlite");
+        {
+            let database = rusqlite::Connection::open(&database_path).unwrap();
+            database.execute_batch("CREATE TABLE book(id INTEGER PRIMARY KEY,title TEXT);
+CREATE TABLE line(id INTEGER PRIMARY KEY,bookId INTEGER,lineIndex INTEGER,content TEXT,heRef TEXT);
+INSERT INTO book VALUES(1,'One');
+INSERT INTO line VALUES(100,1,7,'alpha
+beta','ref7'),(101,1,11,'gamma','ref11');").unwrap();
+        }
+        let config = CString::new(json!({"databasePath": database_path.to_string_lossy()}).to_string()).unwrap();
+        assert_eq!(decode_ffi(otzaria_search_engine_configure_library_source_json(config.as_ptr()))["ok"], true);
+        let path = CString::new(index.join("search").to_string_lossy().as_bytes()).unwrap();
+        std::fs::create_dir_all(index.join("search")).unwrap();
+        let handle = otzaria_search_engine_new(path.as_ptr());
+        assert!(!handle.is_null());
+        let books = CString::new(r#"[{"bookId":1,"title":"One","topics":"/","filePath":"id:1"}]"#).unwrap();
+        let indexed = decode_ffi(otzaria_search_engine_add_library_books_json(handle, books.as_ptr()));
+        assert_eq!(indexed["ok"], true, "{indexed}");
+        assert_eq!(indexed["value"][0]["status"], "indexed", "{indexed}");
+        assert_eq!(decode_ffi(otzaria_search_engine_commit(handle))["ok"], true);
+        for (query, ordinal) in [("alpha",0),("beta",1),("gamma",2)] {
+            let request = CString::new(json!({"query":query,"mode":"exact","limit":10}).to_string()).unwrap();
+            let result = decode_ffi(otzaria_search_engine_search_json(handle, request.as_ptr()));
+            assert_eq!(result["ok"], true, "{result}");
+            assert_eq!(result["value"]["results"][0]["filePath"], "id:1", "{result}");
+            assert_eq!(result["value"]["results"][0]["segment"], ordinal, "{result}");
+            assert_eq!(result["value"]["results"][0]["textStatus"], "ok");
+        }
+        otzaria_search_engine_free(handle);
+        search_engine::api::search_engine::suspend_line_source().unwrap();
+        std::fs::remove_dir_all(index).unwrap();
+        search_engine::api::search_engine::resume_line_source().unwrap();
+    }
+
 }

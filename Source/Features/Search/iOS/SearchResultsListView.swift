@@ -303,17 +303,19 @@ struct SearchResultRow: View {
 struct SearchResultContextPreview: View {
     let item: SearchResultItem
     var onOpen: (() -> Void)? = nil
+    @State private var textViewState = TextViewState.shared
     @State private var fullSegments: [SearchPreviewSegment] = []
     @State private var previewError: String?
     @State private var isLoading = false
     @State private var retryToken = 0
+    @State private var activeLoadToken = UUID()
 
     private var isHebrewBackend: Bool {
         item.archive == "Otzaria" || item.archive == "Sefaria" || item.archive == "Zayit" || item.backendLocator != nil
     }
 
     private var readerMode: LibraryReaderTextMode {
-        TextViewState.shared.readerTextMode
+        textViewState.readerTextMode
     }
 
     var body: some View {
@@ -389,6 +391,9 @@ struct SearchResultContextPreview: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
         .task(id: "\(item.stableID):\(retryToken)") {
+            let loadToken = UUID()
+            activeLoadToken = loadToken
+            isLoading = false
             fullSegments = []
             previewError = nil
             guard let locator = item.backendLocator else {
@@ -398,7 +403,7 @@ struct SearchResultContextPreview: View {
                 return
             }
             isLoading = true
-            defer { isLoading = false }
+            defer { if activeLoadToken == loadToken { isLoading = false } }
             do {
                 let version: TextVersionMetadata?
                 if locator.backend == .sefariaEmbedded, let title = item.versionTitle,
@@ -408,6 +413,7 @@ struct SearchResultContextPreview: View {
                 } else { version = nil }
                 let section = try await BackendCoordinator.shared.section(at: locator, version: version)
                 try Task.checkCancellation()
+                guard activeLoadToken == loadToken else { return }
                 fullSegments = section.segments.compactMap { segment in
                     let primary = segment.primaryText.readerPlainText
                     let translation = segment.translation?.readerPlainText
@@ -424,7 +430,7 @@ struct SearchResultContextPreview: View {
             } catch is CancellationError {
                 return
             } catch {
-                previewError = error.localizedDescription
+                if activeLoadToken == loadToken { previewError = error.localizedDescription }
             }
         }
     }

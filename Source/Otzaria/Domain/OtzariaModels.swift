@@ -66,6 +66,7 @@ struct OtzariaTOCEntry: Identifiable, Hashable, Sendable {
 }
 
 struct OtzariaLinkedSource: Identifiable, Hashable, Sendable {
+    var anchors: [OtzariaLinkAnchor] = []
     let id: Int
     let connectionType: String
     let linkedLineId: Int

@@ -320,20 +320,19 @@ struct UnifiedSearchWorkspaceView: View {
                 )
             }
         }
-        let engineResults = otzaria.enginePage?.results ?? []
-        return otzaria.results.enumerated().map { offset, item in
-            let engine = engineResults.indices.contains(offset) ? engineResults[offset] : nil
+        return otzaria.searchRecords.map { record in
+            let item = record.item
+            let engine = record.hit
             let descriptor = HighlightDescriptor(
                 literalTerms: (try? OtzariaSearchEngineBridge.splitQueryWords(query)) ?? [query],
                 matchedTerms: [], upstreamPattern: highlightPattern,
                 engine: .otzaria, fallbackQuery: query
             )
-            let snippet = engine.map { SearchInlineMarkupSanitizer.segments(from: $0.text) }
-                ?? [.init(text: item.attributedText.string, highlighted: false)]
+            let snippet = SearchInlineMarkupSanitizer.segments(from: engine.text)
             return UnifiedSearchResult(
-                id: "otzaria:\(item.bookId):\(item.page):\(offset)", engine: .otzaria,
-                stableBookIdentity: engine?.filePath ?? "book:\(item.bookId)",
-                title: item.bookTitle, reference: engine?.reference ?? "",
+                id: "otzaria:\(record.id)", engine: .otzaria,
+                stableBookIdentity: engine.filePath,
+                title: item.bookTitle, reference: engine.reference,
                 snippet: snippet,
                 highlight: descriptor, payload: .library(item, engine)
             )

@@ -99,6 +99,16 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             guard genCheckResp.isSuccess, genCheckResp.sessionGeneration == currentEpoch else {
                 throw SefariaRPCError(code: "GENERATION_CHECK_FAILED", message: "Generation check returned wrong epoch")
             }
+            var staleRejected = false
+            do {
+                _ = try await SefariaJSRPCBridge.shared.call(method: "diagnostic.echo",
+                    paramsJson: "{\"injectStaleGeneration\":true}", generation: currentEpoch)
+            } catch let error as SefariaRPCError where error.code == "STALE_GENERATION" {
+                staleRejected = true
+            }
+            guard staleRejected else {
+                throw SefariaRPCError(code: "STALE_RESPONSE_ACCEPTED", message: "A stale response was accepted by the native bridge")
+            }
             let dur4 = Int(Date().timeIntervalSince(startT4) * 1000)
             report.stages["lateGenerationRejected"] = .init(passed: true, details: "Active session epoch (\(currentEpoch)) strictly verified; stale generations rejected fail-closed", durationMs: dur4)
             NSLog("[SefariaAcceptance] Stage 4: lateGenerationRejected passed (%d ms)", dur4)

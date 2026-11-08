@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D27346EBB6AEA6187675B4E4 /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */; };
+		34A828BC9415BD9FBAA2DCF2 /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */; };
+		C9DA201B3476342902E77B6F /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */; };
+		7F2CA667CEA97364E5D729D9 /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */; };
+		F3506C86260F4AD600355F0F /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */; };
+		74AF4778E912D06D2376BE68 /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */; };
+		B7966733BD959746DEB9D76E /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */; };
+		197096FE82856DA8DCA6992B /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */; };
+		8EC020428524CEFF5487B3E0 /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */; };
+		777D61C0A8C766FEAA489421 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */; };
+		7FA347D38FA4B0D8E5A31EC1 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */; };
+		471E074680C6530135FDD0D4 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */; };
+		FCCFF0FC532E81E7C2A2F38C /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */; };
+		E77EBF2559B5437E74AA1219 /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */; };
+		74D18103CE042220621FFD88 /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */; };
+		D59A27E07DB7D2E7FA58536F /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */; };
+		D1DA4586B90163E06459C89B /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */; };
+		6E554AE60D1F43E197D3B831 /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */; };
+		6A43E56CD957FC01BFD9F961 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */; };
+		E5B9F7546AB91E31C66918B5 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */; };
+		F4FA49FF4AD90F3A6C3CD8DF /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */; };
+		2D32741FA67FC379BAC931F9 /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */; };
+		DB10B9F2CE9387C5D835B5C5 /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */; };
+		627398A33F929E3A96046DBD /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */; };
+		69D5E4B2E77B26AB6551DDBA /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */; };
+		8F39116A5CA9AA2028AFE88F /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */; };
+		BE9D559F062F584F2B4FE0E9 /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */; };
 		CF3000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
 		CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
 		CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
@@ -1364,6 +1391,21 @@
 		FEA400030000000000000003 /* PlatformColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA400010000000000000001 /* PlatformColor+Hex.swift */; };
 		FEA400040000000000000004 /* PlatformColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA400010000000000000001 /* PlatformColor+Hex.swift */; };
 		FF34047318724E38BF0C64DD /* AnVC+TagPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F3B4745FB4F15962E767F /* AnVC+TagPopover.swift */; };
+		1CDB8A1DB51E0EA60DE1D184 /* OtzariaWorkMetadataEnricher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */; };
+		7516B334674CEC6EE068BFC7 /* OtzariaWorkMetadataEnricher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */; };
+		80EDF021796ECFAE119E5CC9 /* OtzariaWorkMetadataEnricher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */; };
+		6565707098E3C61D2309E8D9 /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
+		55D3AADC0A886AD9B05FAB82 /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
+		5BB1FB37579270DFB4A554AE /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
+		70A289D30DABF47F875D10F5 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
+		30A577EB2FC12E229EFBC018 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
+		7E372F138D12EE26C6E69170 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
+		CE9D6D94A790EF687F661C11 /* OtzariaReferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */; };
+		7BD007415879D32BA9718DB0 /* OtzariaReferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */; };
+		300D5FF36670EC41EBF09413 /* OtzariaReferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */; };
+		E61AE4FF66FD55EFA820C74C /* OtzariaReferenceResolutionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */; };
+		A4F4D136C1109534003C3F0B /* OtzariaReferenceResolutionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */; };
+		1D2FB43D5AF825BED3EDBEF5 /* OtzariaReferenceResolutionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1435,6 +1477,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaLineDecorationRepository.swift; sourceTree = "<group>"; };
+		B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaSchemaAwareReadContext.swift; sourceTree = "<group>"; };
+		AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaTopicsRepository.swift; sourceTree = "<group>"; };
+		262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaVersionedContentRepository.swift; sourceTree = "<group>"; };
+		2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaVersionsRepository.swift; sourceTree = "<group>"; };
+		5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaAlternativeTOCRepository.swift; sourceTree = "<group>"; };
+		FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaCanonicalLineLocatorResolver.swift; sourceTree = "<group>"; };
+		054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaLinkAnchorRepository.swift; sourceTree = "<group>"; };
+		735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaSourceToDisplayRangeMap.swift; sourceTree = "<group>"; };
 		F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0000000000000000000001 /* BackendAnnotationBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/BackendAnnotationBridge.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/ReaderAnnotationRefreshCoordinator.swift"; sourceTree = "<group>"; };
@@ -2108,6 +2159,11 @@
 		FEA200010000000000000001 /* AnnotationSortOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationSortOption.swift; sourceTree = "<group>"; };
 		FEA300010000000000000001 /* RandomAccessCollection+Insertion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Insertion.swift"; sourceTree = "<group>"; };
 		FEA400010000000000000001 /* PlatformColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlatformColor+Hex.swift"; sourceTree = "<group>"; };
+		AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaWorkMetadataEnricher.swift; sourceTree = "<group>"; };
+		70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchResultIdentityStore.swift; sourceTree = "<group>"; };
+		A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchLineIndexResolver.swift; sourceTree = "<group>"; };
+		74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaReferenceKey.swift; sourceTree = "<group>"; };
+		F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaReferenceResolutionRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2296,6 +2352,20 @@
 		0A7AF0000000000000000000 /* Otzaria */ = {
 			isa = PBXGroup;
 			children = (
+				F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */,
+				74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */,
+				A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */,
+				70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */,
+				AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */,
+				7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */,
+				B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */,
+				AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */,
+				262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */,
+				2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */,
+				5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */,
+				FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */,
+				054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */,
+				735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */,
 				A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */,
 				A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */,
 				A40000000000000000000003 /* OtzariaRelationshipClassifier.swift */,
@@ -4197,6 +4267,20 @@
 				CE1000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE1000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE1000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				E61AE4FF66FD55EFA820C74C /* OtzariaReferenceResolutionRepository.swift in Sources */,
+				CE9D6D94A790EF687F661C11 /* OtzariaReferenceKey.swift in Sources */,
+				70A289D30DABF47F875D10F5 /* OtzariaSearchLineIndexResolver.swift in Sources */,
+				6565707098E3C61D2309E8D9 /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				1CDB8A1DB51E0EA60DE1D184 /* OtzariaWorkMetadataEnricher.swift in Sources */,
+				D27346EBB6AEA6187675B4E4 /* OtzariaLineDecorationRepository.swift in Sources */,
+				7F2CA667CEA97364E5D729D9 /* OtzariaSchemaAwareReadContext.swift in Sources */,
+				B7966733BD959746DEB9D76E /* OtzariaTopicsRepository.swift in Sources */,
+				777D61C0A8C766FEAA489421 /* OtzariaVersionedContentRepository.swift in Sources */,
+				FCCFF0FC532E81E7C2A2F38C /* OtzariaVersionsRepository.swift in Sources */,
+				D59A27E07DB7D2E7FA58536F /* OtzariaAlternativeTOCRepository.swift in Sources */,
+				6A43E56CD957FC01BFD9F961 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
+				2D32741FA67FC379BAC931F9 /* OtzariaLinkAnchorRepository.swift in Sources */,
+				69D5E4B2E77B26AB6551DDBA /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
 				CE1000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
 				CE1000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
 				CE1000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
@@ -4566,6 +4650,20 @@
 				CE2000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE2000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE2000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				A4F4D136C1109534003C3F0B /* OtzariaReferenceResolutionRepository.swift in Sources */,
+				7BD007415879D32BA9718DB0 /* OtzariaReferenceKey.swift in Sources */,
+				30A577EB2FC12E229EFBC018 /* OtzariaSearchLineIndexResolver.swift in Sources */,
+				55D3AADC0A886AD9B05FAB82 /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				7516B334674CEC6EE068BFC7 /* OtzariaWorkMetadataEnricher.swift in Sources */,
+				34A828BC9415BD9FBAA2DCF2 /* OtzariaLineDecorationRepository.swift in Sources */,
+				F3506C86260F4AD600355F0F /* OtzariaSchemaAwareReadContext.swift in Sources */,
+				197096FE82856DA8DCA6992B /* OtzariaTopicsRepository.swift in Sources */,
+				7FA347D38FA4B0D8E5A31EC1 /* OtzariaVersionedContentRepository.swift in Sources */,
+				E77EBF2559B5437E74AA1219 /* OtzariaVersionsRepository.swift in Sources */,
+				D1DA4586B90163E06459C89B /* OtzariaAlternativeTOCRepository.swift in Sources */,
+				E5B9F7546AB91E31C66918B5 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
+				DB10B9F2CE9387C5D835B5C5 /* OtzariaLinkAnchorRepository.swift in Sources */,
+				8F39116A5CA9AA2028AFE88F /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
 				CE2000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
 				CE2000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
 				CE2000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
@@ -4950,6 +5048,20 @@
 				CE3000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE3000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE3000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				1D2FB43D5AF825BED3EDBEF5 /* OtzariaReferenceResolutionRepository.swift in Sources */,
+				300D5FF36670EC41EBF09413 /* OtzariaReferenceKey.swift in Sources */,
+				7E372F138D12EE26C6E69170 /* OtzariaSearchLineIndexResolver.swift in Sources */,
+				5BB1FB37579270DFB4A554AE /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				80EDF021796ECFAE119E5CC9 /* OtzariaWorkMetadataEnricher.swift in Sources */,
+				C9DA201B3476342902E77B6F /* OtzariaLineDecorationRepository.swift in Sources */,
+				74AF4778E912D06D2376BE68 /* OtzariaSchemaAwareReadContext.swift in Sources */,
+				8EC020428524CEFF5487B3E0 /* OtzariaTopicsRepository.swift in Sources */,
+				471E074680C6530135FDD0D4 /* OtzariaVersionedContentRepository.swift in Sources */,
+				74D18103CE042220621FFD88 /* OtzariaVersionsRepository.swift in Sources */,
+				6E554AE60D1F43E197D3B831 /* OtzariaAlternativeTOCRepository.swift in Sources */,
+				F4FA49FF4AD90F3A6C3CD8DF /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
+				627398A33F929E3A96046DBD /* OtzariaLinkAnchorRepository.swift in Sources */,
+				BE9D559F062F584F2B4FE0E9 /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
 				CE3000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
 				CE3000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
 				CE3000000000000000000018 /* SefariaUpdateManager.swift in Sources */,

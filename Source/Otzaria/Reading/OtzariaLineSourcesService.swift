@@ -247,7 +247,14 @@ extension OtzariaMaktabahBridge {
                     }
                 }
 
-                return byIdentity.values.sorted {
+                let anchors = try OtzariaLinkAnchorRepository.anchors(
+                    linkIDs: byIdentity.values.map(\.id), bookID: bookID,
+                    lines: Set(sourceLineIndices), database: db, capabilities: capabilities)
+                return byIdentity.values.map { source in
+                    var source = source
+                    source.anchors = (anchors[source.id] ?? []).filter { $0.side == source.matchedSide }
+                    return source
+                }.sorted {
                     let left = ($0.linkedBookOrderIndex ?? Int.max, $0.linkedLineIndex, $0.id)
                     let right = ($1.linkedBookOrderIndex ?? Int.max, $1.linkedLineIndex, $1.id)
                     return left < right

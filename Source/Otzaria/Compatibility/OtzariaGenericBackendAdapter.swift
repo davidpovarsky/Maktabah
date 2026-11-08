@@ -2,7 +2,7 @@ import Foundation
 
 /// Generic facade over the existing, lock-protected Otzaria bridge. It intentionally
 /// leaves Maktabah's established Otzaria presentation path in place.
-struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProviding,
+struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryVersionedTextProviding,
     LibrarySearchProviding, LibraryNavigationProviding, LibraryAuthorsProviding,
     LibraryWorkMetadataProviding, @unchecked Sendable {
 
@@ -78,17 +78,10 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
             let current = TextLocator(backend: .otzaria, workKey: locator.workKey, position: .legacyLine(content.id))
             let previous = OtzariaMaktabahBridge.shared.getPreviousContent(bookId: bookID, before: content.id)
             let next = OtzariaMaktabahBridge.shared.getNextContent(bookId: bookID, after: content.id)
-            // Split into per-paragraph segments for granular selection when reading units are unavailable.
-            let paragraphs = content.nash.components(separatedBy: "\n").enumerated().compactMap { offset, text -> LibraryTextSegment? in
-                let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !trimmed.isEmpty else { return nil }
-                let segLocator = TextLocator(backend: .otzaria, workKey: locator.workKey,
-                    position: .legacyLine(content.id + offset))
-                return .init(locator: segLocator, heRef: content.heRef, primaryText: trimmed, translation: nil)
-            }
-            let segments = paragraphs.isEmpty
-                ? [LibraryTextSegment(locator: current, heRef: content.heRef, primaryText: content.nash, translation: nil)]
-                : paragraphs
+            // A newline inside a SQLite line is not another canonical lineIndex.
+            // Keep the real anchor when structured reading units are unavailable.
+            let segments = [LibraryTextSegment(locator: current, heRef: content.heRef,
+                primaryText: content.nash, translation: nil)]
             return LibraryTextSection(locator: current, displayRef: content.heRef ?? "\(content.id)",
                 heRef: content.heRef,
                 segments: segments,
@@ -106,11 +99,31 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
         #endif
     }
 
+    func section(at locator: TextLocator, version: TextVersionMetadata) async throws -> LibraryTextSection {
+        let original = try await section(at: locator)
+        return try await OtzariaVersionedContentRepository().section(original, version: version)
+    }
+
+    func navigationStructures(for work: LibraryWork) async throws -> [LibraryNavigationStructure] {
+        let defaultNodes = try await tableOfContents(for: work)
+        let hebrew = LibraryPresentationPolicy.prefersHebrew()
+        let alternatives = try await OtzariaAlternativeTOCRepository().structures(for: work.locator.workKey, hebrew: hebrew)
+        return [LibraryNavigationStructure(id: "default", title: hebrew ? "סדר רגיל" : "Default", nodes: defaultNodes)] + alternatives
+    }
+
     func normalizedLocator(for input: String) async throws -> TextLocator {
-        let pieces = input.split(separator: "|", maxSplits: 1).map(String.init)
-        guard let bookID = Int(pieces[0]) else { throw LibraryBackendError.invalidLocator }
-        let line = pieces.count == 2 ? Int(pieces[1]) ?? 0 : 0
-        return TextLocator(backend: .otzaria, workKey: "book:\(bookID)", position: .legacyLine(line))
+        let pieces = input.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
+        guard let first = pieces.first, let bookID = Int(first), bookID > 0 else { throw LibraryBackendError.invalidLocator }
+        return try await OtzariaSchemaAwareReadContext.shared.read { database, _ in
+            if pieces.count == 1 {
+                guard let line = try database.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex LIMIT 1", parameters: [bookID], mapping: { $0.int(at: 0) }).first else { throw LibraryBackendError.invalidLocator }
+                return try OtzariaCanonicalLineLocatorResolver.locator(bookID: bookID, lineIndex: line, database: database)
+            }
+            if let line = Int(pieces[1]), line >= 0 {
+                return try OtzariaCanonicalLineLocatorResolver.locator(bookID: bookID, lineIndex: line, database: database)
+            }
+            throw LibraryBackendError.invalidLocator
+        }
     }
 
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode] {
@@ -248,7 +261,7 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
                         bookIds: sortedBookIDs
                     )
                 )
-                let items = OtzariaTantivySearchRepository.shared.navigationItems(from: page)
+                let items = try OtzariaTantivySearchRepository.shared.navigationItems(from: page)
                 let hits = items.map { item in
                     LibrarySearchHit(
                         locator: TextLocator(
@@ -306,22 +319,6 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryTextProvidi
     }
 
     func workMetadata(for workKey: String) async throws -> LibraryWorkMetadata? {
-        #if os(iOS)
-        let bookID: Int?
-        if workKey.hasPrefix("book:"),
-           let parsed = Int(workKey.dropFirst("book:".count)) {
-            bookID = parsed
-        } else if let parsed = Int(workKey) {
-            bookID = parsed
-        } else if let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: workKey, expectedBookId: 0) {
-            bookID = resolved.id
-        } else {
-            bookID = nil
-        }
-        guard let bookID else { return nil }
-        return OtzariaMaktabahBridge.shared.workMetadata(for: bookID)
-        #else
-        throw LibraryBackendError.capabilityUnavailable
-        #endif
+        try await OtzariaWorkMetadataEnricher().metadata(for: workKey, hebrew: LibraryPresentationPolicy.prefersHebrew())
     }
 }

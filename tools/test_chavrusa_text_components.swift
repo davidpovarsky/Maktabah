@@ -2188,6 +2188,35 @@ struct TestRunner {
             }
         } catch { assertCondition(false, "Embedded mapping failed: \(error)") }
 
+        print("\n--- 41. Pinned Otzaria reference codec and paginated hit identities ---")
+        do {
+            let verified = try runOtzariaReferenceKeyFixtureTests()
+            totalAssertions += verified
+            passedAssertions += verified
+            func hit(_ index: Int) -> OtzariaEngineSearchResult {
+                .init(title: "Same Title", reference: "ref \(index)", text: "snippet \(index)",
+                    id: UInt64(index), segment: UInt64(index), isPdf: false, filePath: "id:1", mergedCount: 1, merged: [])
+            }
+            var store = OtzariaSearchResultIdentityStore<String>()
+            try store.apply(hits: [], items: [], replacing: true)
+            assertCondition(store.records.isEmpty, "Zero-hit page has no fabricated results")
+            try store.apply(hits: (0..<100).map(hit), items: (0..<100).map { "display \($0)" }, replacing: true)
+            let first = store.records[0].id
+            try store.apply(hits: [hit(100)], items: ["display 100"], replacing: false)
+            assertCondition(store.records.count == 101 && store.records[0].hit.reference == "ref 0", "Result 1 keeps its metadata after result 101 loads")
+            try store.apply(hits: (101..<210).map(hit), items: (101..<210).map { "display \($0)" }, replacing: false)
+            assertCondition(store.records.count == 210 && store.records[150].item == "display 150", "210 paired results preserve display associations")
+            try store.apply(hits: [hit(100)], items: ["updated"], replacing: false)
+            assertCondition(store.records.count == 210 && store.records[100].item == "updated", "Duplicate raw identity refreshes its own presentation")
+            assertCondition(store.records[0].id == first && store.consumedCount == 211, "Stable identities and raw pagination offset are independent of deduplication")
+            do {
+                try store.apply(hits: [hit(500)], items: [], replacing: false)
+                assertCondition(false, "Pairing mismatch must fail")
+            } catch { assertCondition(store.records.count == 210, "Malformed page cannot corrupt existing pairs") }
+            store.clear()
+            assertCondition(store.records.isEmpty && store.consumedCount == 0, "Search generation clear removes all transient pairings")
+        } catch { assertCondition(false, "Otzaria reference/identity regression: \(error)") }
+
         print("\n==========================================")
         print("SUMMARY: \(passedAssertions) of \(totalAssertions) assertions passed (0 failures).")
         print("RESULT: ALL SUITES PASSED SUCCESSFULLY")

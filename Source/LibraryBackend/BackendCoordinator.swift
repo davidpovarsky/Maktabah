@@ -280,7 +280,7 @@ final class BackendCoordinator {
     }
 
     var activeCapabilities: BackendCapabilities {
-        registrations[activeBackendID]?.capabilities ?? []
+        registrations[activeBackendID]?.effectiveCapabilities ?? []
     }
 
     var capabilities: BackendCapabilities {

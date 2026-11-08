@@ -52,6 +52,35 @@ function relatedWithCanonicalBooks(payload) {
   throw new Error('Sefaria related response is missing links');
 }
 
+export async function loadRelatedPreservingOfflineData(ref, online = true) {
+  if (!global.Sefaria?.debugNoLibrary || !online) {
+    try {
+      // A valid local zero-link response is complete data, not a reason to hit the network.
+      const loaded = await loadTextOffline(ref);
+      const sectionRef = loaded?.textContent?.sectionRef;
+      if (typeof sectionRef !== 'string' || !sectionRef) {
+        throw new Error('Offline text is missing its canonical section reference');
+      }
+      const related = await OfflineOnline.loadRelated(sectionRef, false);
+      if (ref === sectionRef) { return related; }
+      const rows = Array.isArray(related) ? related : related?.links;
+      if (!Array.isArray(rows)) { throw new Error('Offline related data is missing links'); }
+      const links = rows.filter(link => link.anchorRef === ref || link.anchorRefExpanded?.includes(ref));
+      return Array.isArray(related) ? links : { ...related, links };
+    } catch (error) {
+      if (error !== ERRORS.MISSING_OFFLINE_DATA && error !== ERRORS.CANT_GET_SECTION_FROM_DATA) {
+        throw error;
+      }
+      if (!online) {
+        const unavailable = new Error('This passage has no installed offline data. Connect and download it, then retry.');
+        unavailable.code = 'OFFLINE_DATA_UNAVAILABLE';
+        throw unavailable;
+      }
+    }
+  }
+  return OfflineOnline.loadRelated(ref, true);
+}
+
 /**
  * Loads text while rigorously tracking provenance (offline vs remote).
  * Does not invent an origin from response shape.
@@ -150,6 +179,13 @@ export class ChavrusaRPCFacade {
       switch (method) {
         // --- DIAGNOSTICS & RUNTIME ---
         case 'diagnostic.echo': {
+          if (params?.injectStaleGeneration) {
+            return {
+              protocolVersion: '1.0', requestID, status: 'success',
+              resultJson: JSON.stringify({ echoedMessage: params?.message || '' }),
+              error: null, sessionGeneration: sessionGeneration + 1, backendID: 'sefariaEmbedded',
+            };
+          }
           if (params?.injectError) {
             return {
               protocolVersion: '1.0',
@@ -254,7 +290,7 @@ export class ChavrusaRPCFacade {
 
         // --- RELATIONSHIPS ---
         case 'relationships.links':
-          result = relatedWithCanonicalBooks(await OfflineOnline.loadRelated(params.ref, params.online !== false));
+          result = relatedWithCanonicalBooks(await loadRelatedPreservingOfflineData(params.ref, params.online !== false));
           break;
 
         // --- SEARCH ---
