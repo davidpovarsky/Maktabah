@@ -93,7 +93,7 @@ jobs:
         if: hashFiles('Vendor/SefariaMobile/Upstream/package.json') != ''
         working-directory: Vendor/SefariaMobile/Upstream
         run: |
-          npm ci --legacy-peer-deps
+          bash ../../../Scripts/CI/install-embedded-js-dependencies.sh
 
       - name: Install CocoaPods
         run: |

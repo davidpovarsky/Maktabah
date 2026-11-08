@@ -7,7 +7,7 @@ test -s Vendor/SefariaMobile/Upstream/package-lock.json || {
   echo "The pinned Sefaria submodule is not initialized; recursive checkout is required." >&2
   exit 1
 }
-(cd Vendor/SefariaMobile/Upstream && npm ci --legacy-peer-deps)
+bash Scripts/CI/install-embedded-js-dependencies.sh
 for name in node_modules package.json app.json metro.config.js babel.config.js; do
   ln -sfn "$ROOT/Vendor/SefariaMobile/Upstream/$name" "$ROOT/$name"
 done

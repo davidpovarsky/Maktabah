@@ -159,7 +159,7 @@ jobs:
         working-directory: Vendor/SefariaMobile/Upstream
         run: |
           echo "=== Running npm ci in Sefaria-Mobile Upstream ==="
-          npm ci --legacy-peer-deps
+          bash ../../../Scripts/CI/install-embedded-js-dependencies.sh
 
       - name: Build Metro JS Production Bundle
         run: |
