@@ -1,0 +1,45 @@
+--- Sources/CommandPalette/Views/CommandPaletteView.swift
++++ Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift
+@@ -16,6 +16,7 @@
+     private let commands: [Command]
+     private let placeholder: String
+     private let autofocus: Bool
++    private let queryBinding: Binding<String>?
+     private let onDismiss: () -> Void
+
+     @ObservedObject private var recents: RecentCommandsStore
+@@ -39,18 +40,20 @@
+         initialQuery: String = "",
+         initialSelection: Command.ID? = nil,
+         autofocus: Bool = true,
++        queryBinding: Binding<String>? = nil,
+         onDismiss: @escaping () -> Void = {}
+     ) {
+         let store = recents ?? .shared
+         self.commands = commands
+         self.placeholder = placeholder
+         self.autofocus = autofocus
++        self.queryBinding = queryBinding
+         self.onDismiss = onDismiss
+         self._recents = ObservedObject(wrappedValue: store)
+-        self._query = State(initialValue: initialQuery)
++        self._query = State(initialValue: queryBinding?.wrappedValue ?? initialQuery)
+
+         let rows = CommandPaletteResults.rows(for: CommandPaletteResults.sections(
+-            for: initialQuery, in: commands, recentIDs: store.ids
++            for: queryBinding?.wrappedValue ?? initialQuery, in: commands, recentIDs: store.ids
+         ))
+         var selection = CommandPaletteSelection(rows: rows)
+         if let initialSelection {
+@@ -76,7 +79,11 @@
+                 isSearchFieldFocused = true
+             }
+         }
++        .onChange(of: queryBinding?.wrappedValue) { _, value in
++            if let value, value != query { query = value }
++        }
+         .onChange(of: query) { _, _ in
++            if queryBinding?.wrappedValue != query { queryBinding?.wrappedValue = query }
+             // A new search selects its best match.
+             selection.update(rows: makeRows())
+         }

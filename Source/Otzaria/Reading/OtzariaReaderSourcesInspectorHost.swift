@@ -10,13 +10,12 @@ struct OtzariaReaderSourcesInspectorHost: View {
     @Binding var selectedTool: TorahStudyTool
     let showsCloseButton: Bool
     let chrome: TorahInspectorChrome
-    var showsStudyToolsTitle: Bool = true
-    var showsSelectedSegmentTitle: Bool = true
     var contentID: UUID = UUID()
     let onAddNote: ((TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
     let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
     let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
     @ObservedObject private var backendCoordinator = BackendCoordinator.shared
+    @Environment(\.chavrusaReaderSidebar) private var faithfulReaderSidebar
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -32,6 +31,11 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 entryMode: .relationships,
                 chrome: chrome,
                 selectedTool: $selectedTool,
+                presentationOptions: .init(
+                    showsStudyToolsTitle: faithfulReaderSidebar == nil,
+                    showsSelectedSegmentTitle: faithfulReaderSidebar == nil,
+                    usesMinimalChrome: faithfulReaderSidebar != nil
+                ),
                 onClose: {
                     viewModel.closeReaderInspector()
                 },
@@ -42,9 +46,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 onAddNote: onAddNote,
                 onOpenNote: onOpenNote,
                 onDeleteNote: onDeleteNote,
-                showsCloseButton: showsCloseButton,
-                showsStudyToolsTitle: showsStudyToolsTitle,
-                showsSelectedSegmentTitle: showsSelectedSegmentTitle
+                showsCloseButton: showsCloseButton
             )
             .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue):\(contentID)")
             .onChange(of: backendCoordinator.generation) { _, _ in

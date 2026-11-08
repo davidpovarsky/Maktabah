@@ -43,7 +43,7 @@ RESOLVED_PACKAGES_V2 = {
             "kind": "remoteSourceControl",
             "location": "https://github.com/davidpovarsky/TorahInspectorKit.git",
             "state": {
-                "revision": "480734f2a6ee53b58858e25cb70cbcb1a7b71d06"
+                "revision": "19d1b35397af4f10ae70cfb3f444c9de87383b53"
             }
         },
         {

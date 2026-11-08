@@ -7,33 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D27346EBB6AEA6187675B4E4 /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */; };
-		34A828BC9415BD9FBAA2DCF2 /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */; };
-		C9DA201B3476342902E77B6F /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */; };
-		7F2CA667CEA97364E5D729D9 /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */; };
-		F3506C86260F4AD600355F0F /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */; };
-		74AF4778E912D06D2376BE68 /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */; };
-		B7966733BD959746DEB9D76E /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */; };
-		197096FE82856DA8DCA6992B /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */; };
-		8EC020428524CEFF5487B3E0 /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */; };
-		777D61C0A8C766FEAA489421 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */; };
-		7FA347D38FA4B0D8E5A31EC1 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */; };
-		471E074680C6530135FDD0D4 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */; };
-		FCCFF0FC532E81E7C2A2F38C /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */; };
-		E77EBF2559B5437E74AA1219 /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */; };
-		74D18103CE042220621FFD88 /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */; };
-		D59A27E07DB7D2E7FA58536F /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */; };
-		D1DA4586B90163E06459C89B /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */; };
-		6E554AE60D1F43E197D3B831 /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */; };
-		6A43E56CD957FC01BFD9F961 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */; };
-		E5B9F7546AB91E31C66918B5 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */; };
-		F4FA49FF4AD90F3A6C3CD8DF /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */; };
-		2D32741FA67FC379BAC931F9 /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */; };
-		DB10B9F2CE9387C5D835B5C5 /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */; };
-		627398A33F929E3A96046DBD /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */; };
-		69D5E4B2E77B26AB6551DDBA /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */; };
-		8F39116A5CA9AA2028AFE88F /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */; };
-		BE9D559F062F584F2B4FE0E9 /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */; };
 		CF3000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
 		CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
 		CF2000000000000000000001 /* BackendAnnotationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000001 /* BackendAnnotationBridge.swift */; };
@@ -130,87 +103,6 @@
 		CE3000000000000000000037 /* ChavrusaSefariaBridgeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */; };
 		CF1000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */; };
 		CF2000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */; };
-		CF1000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */; };
-		CF2000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */; };
-		CF3000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */; };
-		CF1000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */; };
-		CF2000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */; };
-		CF3000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */; };
-		CF1000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */; };
-		CF2000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */; };
-		CF3000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */; };
-		CF1000000000000000000016 /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000016 /* ReaderSidebarPager.swift */; };
-		CF2000000000000000000016 /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000016 /* ReaderSidebarPager.swift */; };
-		CF3000000000000000000016 /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000016 /* ReaderSidebarPager.swift */; };
-		CF1000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */; };
-		CF2000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */; };
-		CF3000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */; };
-		CF1000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */; };
-		CF2000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */; };
-		CF3000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */; };
-		CF1000000000000000000019 /* ReaderDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000019 /* ReaderDocumentTab.swift */; };
-		CF2000000000000000000019 /* ReaderDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000019 /* ReaderDocumentTab.swift */; };
-		CF3000000000000000000019 /* ReaderDocumentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000019 /* ReaderDocumentTab.swift */; };
-		CF100000000000000000001A /* StudyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001A /* StudyProfile.swift */; };
-		CF200000000000000000001A /* StudyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001A /* StudyProfile.swift */; };
-		CF300000000000000000001A /* StudyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001A /* StudyProfile.swift */; };
-		CF100000000000000000001B /* StudyTabGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001B /* StudyTabGroup.swift */; };
-		CF200000000000000000001B /* StudyTabGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001B /* StudyTabGroup.swift */; };
-		CF300000000000000000001B /* StudyTabGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001B /* StudyTabGroup.swift */; };
-		CF100000000000000000001C /* StudyWorkspaceMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001C /* StudyWorkspaceMigration.swift */; };
-		CF200000000000000000001C /* StudyWorkspaceMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001C /* StudyWorkspaceMigration.swift */; };
-		CF300000000000000000001C /* StudyWorkspaceMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001C /* StudyWorkspaceMigration.swift */; };
-		CF100000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */; };
-		CF200000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */; };
-		CF300000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */; };
-		CF100000000000000000001E /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001E /* StudyWorkspacePersistence.swift */; };
-		CF200000000000000000001E /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001E /* StudyWorkspacePersistence.swift */; };
-		CF300000000000000000001E /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001E /* StudyWorkspacePersistence.swift */; };
-		CF100000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */; };
-		CF200000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */; };
-		CF300000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */; };
-		CF1000000000000000000020 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000020 /* StudyWorkspaceStore.swift */; };
-		CF2000000000000000000020 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000020 /* StudyWorkspaceStore.swift */; };
-		CF3000000000000000000020 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000020 /* StudyWorkspaceStore.swift */; };
-		CF1000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */; };
-		CF2000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */; };
-		CF3000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */; };
-		CF1000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */; };
-		CF2000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */; };
-		CF3000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */; };
-		CF1000000000000000000023 /* ReaderTabStripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000023 /* ReaderTabStripCell.swift */; };
-		CF2000000000000000000023 /* ReaderTabStripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000023 /* ReaderTabStripCell.swift */; };
-		CF3000000000000000000023 /* ReaderTabStripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000023 /* ReaderTabStripCell.swift */; };
-		CF1000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000024 /* ReaderTabStripFlareView.swift */; };
-		CF2000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000024 /* ReaderTabStripFlareView.swift */; };
-		CF3000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000024 /* ReaderTabStripFlareView.swift */; };
-		CF1000000000000000000025 /* ReaderTabStripLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000025 /* ReaderTabStripLayout.swift */; };
-		CF2000000000000000000025 /* ReaderTabStripLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000025 /* ReaderTabStripLayout.swift */; };
-		CF3000000000000000000025 /* ReaderTabStripLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000025 /* ReaderTabStripLayout.swift */; };
-		CF1000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000026 /* StudyGroupSelectorHost.swift */; };
-		CF2000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000026 /* StudyGroupSelectorHost.swift */; };
-		CF3000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000026 /* StudyGroupSelectorHost.swift */; };
-		CF1000000000000000000027 /* StudyGroupsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000027 /* StudyGroupsOverview.swift */; };
-		CF2000000000000000000027 /* StudyGroupsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000027 /* StudyGroupsOverview.swift */; };
-		CF3000000000000000000027 /* StudyGroupsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000027 /* StudyGroupsOverview.swift */; };
-		CF1000000000000000000028 /* StudyProfileCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000028 /* StudyProfileCapsule.swift */; };
-		CF2000000000000000000028 /* StudyProfileCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000028 /* StudyProfileCapsule.swift */; };
-		CF3000000000000000000028 /* StudyProfileCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000028 /* StudyProfileCapsule.swift */; };
-		CF1000000000000000000029 /* StudyProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000029 /* StudyProfileManagementView.swift */; };
-		CF2000000000000000000029 /* StudyProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000029 /* StudyProfileManagementView.swift */; };
-		CF3000000000000000000029 /* StudyProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0000000000000000000029 /* StudyProfileManagementView.swift */; };
-		CF100000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */; };
-		CF200000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */; };
-		CF300000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */; };
-		CF100000000000000000002B /* GelatinMotionOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002B /* GelatinMotionOnly.swift */; };
-		CF200000000000000000002B /* GelatinMotionOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002B /* GelatinMotionOnly.swift */; };
-		CF300000000000000000002B /* GelatinMotionOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002B /* GelatinMotionOnly.swift */; };
-		CF100000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */; };
-		CF200000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */; };
-		CF300000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */; };
-		CF100000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */; };
-		CF200000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */; };
-		CF300000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */; };
 		F3F000040000000000000004 /* iOSReaderSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000030000000000000003 /* iOSReaderSessionTests.swift */; };
 		F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F000010000000000000001 /* iOSReaderSessionManager.swift */; };
 		B30000000000000000000001 /* AnchoredPopup in Frameworks */ = {isa = PBXBuildFile; productRef = B20000000000000000000001 /* AnchoredPopup */; };
@@ -1391,27 +1283,93 @@
 		FEA400030000000000000003 /* PlatformColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA400010000000000000001 /* PlatformColor+Hex.swift */; };
 		FEA400040000000000000004 /* PlatformColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA400010000000000000001 /* PlatformColor+Hex.swift */; };
 		FF34047318724E38BF0C64DD /* AnVC+TagPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F3B4745FB4F15962E767F /* AnVC+TagPopover.swift */; };
+		9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8938E4E38CF6FBE52F2D /* ReaderNavigationDisplayPolicy.swift */; };
+		9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */; };
+		54C89333E0A00A80869ADEB1 /* ReaderSidebarPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */; };
+		A42DDBE8569676110112B7FE /* ReaderSidebarPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */; };
+		9188F501FA26158F8E9E93DE /* StudyWorkspaceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */; };
+		80083054F71F56EACF16965B /* StudyWorkspaceNavigationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */; };
+		0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */; };
+		B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */; };
+		4AC1B94E53D4565B1277EB5E /* DocumentTabsHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C836B89C31C005A845669 /* DocumentTabsHost.swift */; };
+		2BA4D3E268150206B50CE829 /* ReaderBookTabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FCA5A550FADFADA13D7A3D /* ReaderBookTabsModel.swift */; };
+		A88154B857645A7CAF251D72 /* ReaderTabFadeOutLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3327565FE0F4D12098FBBD3D /* ReaderTabFadeOutLabel.swift */; };
+		38C96A84386F0016B7A601BC /* TabFlareBackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C01E7176393B5B0D7665E8 /* TabFlareBackgroundController.swift */; };
+		A3A18E0B9AD657F0D8296069 /* TabFlaredBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2000839543761BF5B6CC2D99 /* TabFlaredBackgroundView.swift */; };
+		40976A0F3230C723817E927F /* TabsBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA9A93DAC6A31F64EE3AB1 /* TabsBarCell.swift */; };
+		B458BF27E1EC14F3BD7EEC43 /* TabsBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */; };
+		373722936268814E211E604F /* TabsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */; };
+		06882F53F7AA51EFE8C26A29 /* TabsBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67D7696A0CFF108B321849F /* TabsBarViewController.swift */; };
+		D4A52E41F0A64A55A41C9B01 /* TabSwitcherPagePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */; };
+		B4D09656DB7A3C17C8B81470 /* ScrollableGroupsHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */; };
+		27766EFF8EBE9CECBB575F26 /* AdaptiveTabContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */; };
+		AEFC4F8B41B574552ECCFCE3 /* ScrollableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3790498EEB0FDBD6A27A60C /* ScrollableTabBar.swift */; };
+		70E70071414FAFB025390309 /* ScrollableTabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FAC96DD74F0A003A519BA8 /* ScrollableTabBarDelegate.swift */; };
+		578F593EBB0C771B1DED7256 /* ScrollableTabBarLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558C5D5920F522CDB26EE8DF /* ScrollableTabBarLogger.swift */; };
+		B741EC4C8C472A7A371DCE77 /* StudyGroupsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D20BD71491ED132E258AF8 /* StudyGroupsOverview.swift */; };
+		80E9B690D08AB3785749746D /* StudyProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B77FA849F20DBDD154A88D /* StudyProfileManagementView.swift */; };
+		C8907C01A4606C30C61AD66F /* StudyProfileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2BCD087B33BE38B6DD03DB /* StudyProfileMenu.swift */; };
+		67E2A099AFC6265651BCEA70 /* LibraryCommandPaletteAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8856B82060847C21109F3917 /* LibraryCommandPaletteAdapter.swift */; };
+		8702AE816C32FB1A7642441F /* ReaderToolbarActionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7EF2388CCE26B3FD09BEA /* ReaderToolbarActionAdapter.swift */; };
+		E2D27ABB6420FBA0155F9C29 /* SafariToolbarSourcePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */; };
+		1A92E5A3C0E241A340657AD4 /* ThirdPartyNotices in Resources */ = {isa = PBXBuildFile; fileRef = 177DC9EB2AB8099576B13411; };
+		1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */ = {isa = PBXBuildFile; productRef = BF8626D7580C7BB2D53851F8; };
+		81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */; };
+		AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */; };
+		E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
+		E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000001; };
+		E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81108000000000000000005; };
+		81FE5BF6E0CBA2016A6FC11E /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0A21B9C411228F9322422 /* OtzariaLineDecorationRepository.swift */; };
+		8E8F24A6E0946844A021DEC5 /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0A21B9C411228F9322422 /* OtzariaLineDecorationRepository.swift */; };
+		646B174A1F27F56D5693635D /* OtzariaLineDecorationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F0A21B9C411228F9322422 /* OtzariaLineDecorationRepository.swift */; };
+		9C6BFA2AD7CEE4E6720D080E /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FCD2866B00950D259F7C38 /* OtzariaSchemaAwareReadContext.swift */; };
+		9D6AF8853037DAFC4193C4DD /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FCD2866B00950D259F7C38 /* OtzariaSchemaAwareReadContext.swift */; };
+		93DA4236F16DF3EB5BD23602 /* OtzariaSchemaAwareReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FCD2866B00950D259F7C38 /* OtzariaSchemaAwareReadContext.swift */; };
+		0538E09839F9D4CF660D91E7 /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEF60D81557209B5F5A7018 /* OtzariaTopicsRepository.swift */; };
+		D48AA3739BF7882C93008F13 /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEF60D81557209B5F5A7018 /* OtzariaTopicsRepository.swift */; };
+		9679C0E5FD7922EF744383D1 /* OtzariaTopicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEF60D81557209B5F5A7018 /* OtzariaTopicsRepository.swift */; };
+		380994DF2CE6F494ACCDCAC7 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F6798ED02AE38D1FD7B92 /* OtzariaVersionedContentRepository.swift */; };
+		D0975DC8F29FBBDD4B6D13A1 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F6798ED02AE38D1FD7B92 /* OtzariaVersionedContentRepository.swift */; };
+		487D999D1F84238A41611687 /* OtzariaVersionedContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896F6798ED02AE38D1FD7B92 /* OtzariaVersionedContentRepository.swift */; };
+		8FC9EBAAACFAEF7E859B6DCD /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CE5F664DBFD480F63D2638 /* OtzariaVersionsRepository.swift */; };
+		FA0B80FFBD21B36A5B2861B9 /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CE5F664DBFD480F63D2638 /* OtzariaVersionsRepository.swift */; };
+		2AF6D6CBCD1EB4979E1100F3 /* OtzariaVersionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CE5F664DBFD480F63D2638 /* OtzariaVersionsRepository.swift */; };
 		1CDB8A1DB51E0EA60DE1D184 /* OtzariaWorkMetadataEnricher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */; };
 		7516B334674CEC6EE068BFC7 /* OtzariaWorkMetadataEnricher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */; };
 		80EDF021796ECFAE119E5CC9 /* OtzariaWorkMetadataEnricher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */; };
-		6565707098E3C61D2309E8D9 /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
-		55D3AADC0A886AD9B05FAB82 /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
-		5BB1FB37579270DFB4A554AE /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
-		70A289D30DABF47F875D10F5 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
-		30A577EB2FC12E229EFBC018 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
-		7E372F138D12EE26C6E69170 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
+		5E249842CB3041C17D278643 /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAC0A161F11244D562C390B /* OtzariaAlternativeTOCRepository.swift */; };
+		F87A742DDF174E06F0C40F64 /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAC0A161F11244D562C390B /* OtzariaAlternativeTOCRepository.swift */; };
+		0C98BFEC2FD14C0C645A4D12 /* OtzariaAlternativeTOCRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAC0A161F11244D562C390B /* OtzariaAlternativeTOCRepository.swift */; };
 		CE9D6D94A790EF687F661C11 /* OtzariaReferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */; };
 		7BD007415879D32BA9718DB0 /* OtzariaReferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */; };
 		300D5FF36670EC41EBF09413 /* OtzariaReferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */; };
 		E61AE4FF66FD55EFA820C74C /* OtzariaReferenceResolutionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */; };
 		A4F4D136C1109534003C3F0B /* OtzariaReferenceResolutionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */; };
 		1D2FB43D5AF825BED3EDBEF5 /* OtzariaReferenceResolutionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */; };
-		A05B15D895585913C38861FC /* OtzariaVersionSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */; };
-		7ACCE0049A982951DEDEC560 /* OtzariaVersionSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */; };
-		733F935D4872CB10DE6A0469 /* OtzariaVersionSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */; };
+		F71466AE85AA114380AD7FDA /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA71B51DC9D35C1FD1E8BE8C /* OtzariaCanonicalLineLocatorResolver.swift */; };
+		AEFFD88AF1C73574E48D8BE4 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA71B51DC9D35C1FD1E8BE8C /* OtzariaCanonicalLineLocatorResolver.swift */; };
+		CB0F8712074BE83AFFDF9976 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA71B51DC9D35C1FD1E8BE8C /* OtzariaCanonicalLineLocatorResolver.swift */; };
+		B9D163A00B3D3937DF053C1C /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E854255706A8B5114CD4A2B1 /* OtzariaLinkAnchorRepository.swift */; };
+		7DCE4DC44B495BF8D589F65C /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E854255706A8B5114CD4A2B1 /* OtzariaLinkAnchorRepository.swift */; };
+		1DD735061A1F6E6EA9CCEB03 /* OtzariaLinkAnchorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E854255706A8B5114CD4A2B1 /* OtzariaLinkAnchorRepository.swift */; };
+		1CA38110519BA11463CED5CF /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043042F20C3FA99A915D98B /* OtzariaSourceToDisplayRangeMap.swift */; };
+		BE81440CD01B2A84EC977F9E /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043042F20C3FA99A915D98B /* OtzariaSourceToDisplayRangeMap.swift */; };
+		33A543776D6D7D0C70BF0F89 /* OtzariaSourceToDisplayRangeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043042F20C3FA99A915D98B /* OtzariaSourceToDisplayRangeMap.swift */; };
 		14DBBB8D825E508A5E2B67F0 /* OtzariaVersionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1727C9BD3BA8083CE863B66F /* OtzariaVersionPicker.swift */; };
 		8B962188E30DE0D46FCEFF99 /* OtzariaVersionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1727C9BD3BA8083CE863B66F /* OtzariaVersionPicker.swift */; };
 		EEBD4C261392039E55EC5ACD /* OtzariaVersionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1727C9BD3BA8083CE863B66F /* OtzariaVersionPicker.swift */; };
+		A05B15D895585913C38861FC /* OtzariaVersionSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */; };
+		7ACCE0049A982951DEDEC560 /* OtzariaVersionSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */; };
+		733F935D4872CB10DE6A0469 /* OtzariaVersionSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */; };
+		70A289D30DABF47F875D10F5 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
+		30A577EB2FC12E229EFBC018 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
+		7E372F138D12EE26C6E69170 /* OtzariaSearchLineIndexResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */; };
+		6565707098E3C61D2309E8D9 /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
+		55D3AADC0A886AD9B05FAB82 /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
+		5BB1FB37579270DFB4A554AE /* OtzariaSearchResultIdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */; };
+		AF75075B37E71C8EFB08D011 /* StudyWorkspaceLegacyImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928B258EE8B5F6A47B68968; };
+		4EF881C16DABE08EAA56A068 /* StudyWorkspaceLegacyImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928B258EE8B5F6A47B68968; };
+		69B30CC10C1D2D610A65BF83 /* StudyWorkspaceLegacyImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928B258EE8B5F6A47B68968; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1483,15 +1441,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaLineDecorationRepository.swift; sourceTree = "<group>"; };
-		B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaSchemaAwareReadContext.swift; sourceTree = "<group>"; };
-		AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaTopicsRepository.swift; sourceTree = "<group>"; };
-		262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaVersionedContentRepository.swift; sourceTree = "<group>"; };
-		2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaVersionsRepository.swift; sourceTree = "<group>"; };
-		5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaAlternativeTOCRepository.swift; sourceTree = "<group>"; };
-		FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaCanonicalLineLocatorResolver.swift; sourceTree = "<group>"; };
-		054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaLinkAnchorRepository.swift; sourceTree = "<group>"; };
-		735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaSourceToDisplayRangeMap.swift; sourceTree = "<group>"; };
 		F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0000000000000000000001 /* BackendAnnotationBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/BackendAnnotationBridge.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/ReaderAnnotationRefreshCoordinator.swift"; sourceTree = "<group>"; };
@@ -1511,33 +1460,6 @@
 		CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderContentLoadCoordinator.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderRenderedHighlightInspector.swift"; sourceTree = "<group>"; };
 		CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/BackendSessionIntegrityRepair.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration/ChavrusaTextFeatureFlags.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderNavigationDisplayPolicy.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderInspectorHostPolicy.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000016 /* ReaderSidebarPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarPager.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarStateCoordinator.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderWorkspaceChromeHost.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000019 /* ReaderDocumentTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/ReaderDocumentTab.swift"; sourceTree = "<group>"; };
-		CF000000000000000000001A /* StudyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyProfile.swift"; sourceTree = "<group>"; };
-		CF000000000000000000001B /* StudyTabGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyTabGroup.swift"; sourceTree = "<group>"; };
-		CF000000000000000000001C /* StudyWorkspaceMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceMigration.swift"; sourceTree = "<group>"; };
-		CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"; sourceTree = "<group>"; };
-		CF000000000000000000001E /* StudyWorkspacePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspacePersistence.swift"; sourceTree = "<group>"; };
-		CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceSceneCoordinator.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000020 /* StudyWorkspaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceStore.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderDocumentTabsBarController.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderDocumentTabsBarRepresentable.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000023 /* ReaderTabStripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderTabStripCell.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000024 /* ReaderTabStripFlareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderTabStripFlareView.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000025 /* ReaderTabStripLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ReaderTabStripLayout.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000026 /* StudyGroupSelectorHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyGroupSelectorHost.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000027 /* StudyGroupsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyGroupsOverview.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000028 /* StudyProfileCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyProfileCapsule.swift"; sourceTree = "<group>"; };
-		CF0000000000000000000029 /* StudyProfileManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyProfileManagementView.swift"; sourceTree = "<group>"; };
-		CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ExpandableLibrarySearchCoordinator.swift"; sourceTree = "<group>"; };
-		CF000000000000000000002B /* GelatinMotionOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/GelatinMotionOnly.swift"; sourceTree = "<group>"; };
-		CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ReaderLibraryCommandPaletteHost.swift"; sourceTree = "<group>"; };
-		CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ReaderLibraryToolbarHost.swift"; sourceTree = "<group>"; };
 		CE000000000000000000002A /* SefariaRPCModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bridge/SefariaRPCModels.swift"; sourceTree = "<group>"; };
 		CE000000000000000000002B /* SefariaJSRPCBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bridge/SefariaJSRPCBridge.swift"; sourceTree = "<group>"; };
 		CE000000000000000000002C /* SefariaRuntimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Runtime/SefariaRuntimeManager.swift"; sourceTree = "<group>"; };
@@ -2165,13 +2087,57 @@
 		FEA200010000000000000001 /* AnnotationSortOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationSortOption.swift; sourceTree = "<group>"; };
 		FEA300010000000000000001 /* RandomAccessCollection+Insertion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Insertion.swift"; sourceTree = "<group>"; };
 		FEA400010000000000000001 /* PlatformColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlatformColor+Hex.swift"; sourceTree = "<group>"; };
+		936F8938E4E38CF6FBE52F2D /* ReaderNavigationDisplayPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderNavigationDisplayPolicy.swift"; sourceTree = "<group>"; };
+		65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ChavrusaReaderHost.swift"; sourceTree = "<group>"; };
+		77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarPageCoordinator.swift"; sourceTree = "<group>"; };
+		E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderSidebarPager.swift"; sourceTree = "<group>"; };
+		4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceModels.swift"; sourceTree = "<group>"; };
+		6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"; sourceTree = "<group>"; };
+		7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspacePersistence.swift"; sourceTree = "<group>"; };
+		38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceStore.swift"; sourceTree = "<group>"; };
+		990C836B89C31C005A845669 /* DocumentTabsHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DocumentTabsHost.swift"; sourceTree = "<group>"; };
+		C9FCA5A550FADFADA13D7A3D /* ReaderBookTabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderBookTabsModel.swift"; sourceTree = "<group>"; };
+		3327565FE0F4D12098FBBD3D /* ReaderTabFadeOutLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift"; sourceTree = "<group>"; };
+		E1C01E7176393B5B0D7665E8 /* TabFlareBackgroundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift"; sourceTree = "<group>"; };
+		2000839543761BF5B6CC2D99 /* TabFlaredBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift"; sourceTree = "<group>"; };
+		F9FA9A93DAC6A31F64EE3AB1 /* TabsBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift"; sourceTree = "<group>"; };
+		4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift"; sourceTree = "<group>"; };
+		75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift"; sourceTree = "<group>"; };
+		A67D7696A0CFF108B321849F /* TabsBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift"; sourceTree = "<group>"; };
+		D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift"; sourceTree = "<group>"; };
+		AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableGroupsHost.swift"; sourceTree = "<group>"; };
+		A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift"; sourceTree = "<group>"; };
+		D3790498EEB0FDBD6A27A60C /* ScrollableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift"; sourceTree = "<group>"; };
+		F6FAC96DD74F0A003A519BA8 /* ScrollableTabBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift"; sourceTree = "<group>"; };
+		558C5D5920F522CDB26EE8DF /* ScrollableTabBarLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarLogger.swift"; sourceTree = "<group>"; };
+		10D20BD71491ED132E258AF8 /* StudyGroupsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyGroupsOverview.swift"; sourceTree = "<group>"; };
+		C1B77FA849F20DBDD154A88D /* StudyProfileManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyProfileManagementView.swift"; sourceTree = "<group>"; };
+		FE2BCD087B33BE38B6DD03DB /* StudyProfileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/StudyProfileMenu.swift"; sourceTree = "<group>"; };
+		8856B82060847C21109F3917 /* LibraryCommandPaletteAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/LibraryCommandPaletteAdapter.swift"; sourceTree = "<group>"; };
+		FFF7EF2388CCE26B3FD09BEA /* ReaderToolbarActionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/ReaderToolbarActionAdapter.swift"; sourceTree = "<group>"; };
+		8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolbarSearch/SafariToolbarSourcePort.swift"; sourceTree = "<group>"; };
+		177DC9EB2AB8099576B13411 /* ThirdPartyNotices */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ThirdPartyNotices; sourceTree = "<group>"; };
+		A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing/ReaderViewportAcceptanceObserver.swift"; sourceTree = "<group>"; };
+		D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ChavrusaReaderWorkspaceLayout.swift"; sourceTree = "<group>"; };
+		E81108000000000000000001 /* ReaderNavigationChromeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/ReaderNavigationChromeState.swift"; sourceTree = "<group>"; };
+		E81108000000000000000005 /* CompactStudyWorkspaceHostModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReaderHost/CompactStudyWorkspaceHostModifier.swift"; sourceTree = "<group>"; };
+		B0F0A21B9C411228F9322422 /* OtzariaLineDecorationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaLineDecorationRepository.swift; sourceTree = "<group>"; };
+		44FCD2866B00950D259F7C38 /* OtzariaSchemaAwareReadContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaSchemaAwareReadContext.swift; sourceTree = "<group>"; };
+		7AEF60D81557209B5F5A7018 /* OtzariaTopicsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaTopicsRepository.swift; sourceTree = "<group>"; };
+		896F6798ED02AE38D1FD7B92 /* OtzariaVersionedContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaVersionedContentRepository.swift; sourceTree = "<group>"; };
+		A4CE5F664DBFD480F63D2638 /* OtzariaVersionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaVersionsRepository.swift; sourceTree = "<group>"; };
 		AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OtzariaWorkMetadataEnricher.swift; sourceTree = "<group>"; };
-		70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchResultIdentityStore.swift; sourceTree = "<group>"; };
-		A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchLineIndexResolver.swift; sourceTree = "<group>"; };
+		6BAC0A161F11244D562C390B /* OtzariaAlternativeTOCRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaAlternativeTOCRepository.swift; sourceTree = "<group>"; };
 		74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaReferenceKey.swift; sourceTree = "<group>"; };
 		F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation/OtzariaReferenceResolutionRepository.swift; sourceTree = "<group>"; };
-		166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaVersionSelectionStore.swift; sourceTree = "<group>"; };
+		BA71B51DC9D35C1FD1E8BE8C /* OtzariaCanonicalLineLocatorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaCanonicalLineLocatorResolver.swift; sourceTree = "<group>"; };
+		E854255706A8B5114CD4A2B1 /* OtzariaLinkAnchorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaLinkAnchorRepository.swift; sourceTree = "<group>"; };
+		0043042F20C3FA99A915D98B /* OtzariaSourceToDisplayRangeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaSourceToDisplayRangeMap.swift; sourceTree = "<group>"; };
 		1727C9BD3BA8083CE863B66F /* OtzariaVersionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaVersionPicker.swift; sourceTree = "<group>"; };
+		166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaVersionSelectionStore.swift; sourceTree = "<group>"; };
+		A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchLineIndexResolver.swift; sourceTree = "<group>"; };
+		70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchResultIdentityStore.swift; sourceTree = "<group>"; };
+		2928B258EE8B5F6A47B68968 /* StudyWorkspaceLegacyImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/StudyWorkspace/StudyWorkspaceLegacyImport.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2224,6 +2190,7 @@
 		F30577472FA46222005732C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				1C985DC975CED210B2EE1259 /* CommandPalette in Frameworks */,
 				B30000000000000000000001 /* AnchoredPopup in Frameworks */,
 				C30000000000000000000001 /* FloatingPanel in Frameworks */,
 				A30000000000000000000001 /* TorahInspectorCore in Frameworks */,
@@ -2240,6 +2207,41 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				2928B258EE8B5F6A47B68968 /* StudyWorkspaceLegacyImport.swift */,
+				177DC9EB2AB8099576B13411 /* ThirdPartyNotices */,
+				8445728C5933CEAAACE4E089 /* SafariToolbarSourcePort.swift */,
+				FFF7EF2388CCE26B3FD09BEA /* ReaderToolbarActionAdapter.swift */,
+				8856B82060847C21109F3917 /* LibraryCommandPaletteAdapter.swift */,
+				FE2BCD087B33BE38B6DD03DB /* StudyProfileMenu.swift */,
+				C1B77FA849F20DBDD154A88D /* StudyProfileManagementView.swift */,
+				10D20BD71491ED132E258AF8 /* StudyGroupsOverview.swift */,
+				558C5D5920F522CDB26EE8DF /* ScrollableTabBarLogger.swift */,
+				F6FAC96DD74F0A003A519BA8 /* ScrollableTabBarDelegate.swift */,
+				D3790498EEB0FDBD6A27A60C /* ScrollableTabBar.swift */,
+				A9CD773E256C5222DD86C2FA /* AdaptiveTabContent.swift */,
+				AF9881B4C552C498BD515889 /* ScrollableGroupsHost.swift */,
+				A67D7696A0CFF108B321849F /* TabsBarViewController.swift */,
+				D4A52E41F0A64A55A41C9B02 /* TabSwitcherPagePort.swift */,
+				75B1F0EDBB1B2737873F44B2 /* TabsBarView.swift */,
+				4D7F10D0C2447E67B19574BA /* TabsBarLayout.swift */,
+				F9FA9A93DAC6A31F64EE3AB1 /* TabsBarCell.swift */,
+				2000839543761BF5B6CC2D99 /* TabFlaredBackgroundView.swift */,
+				E1C01E7176393B5B0D7665E8 /* TabFlareBackgroundController.swift */,
+				3327565FE0F4D12098FBBD3D /* ReaderTabFadeOutLabel.swift */,
+				C9FCA5A550FADFADA13D7A3D /* ReaderBookTabsModel.swift */,
+				990C836B89C31C005A845669 /* DocumentTabsHost.swift */,
+				38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */,
+				7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */,
+				6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */,
+				4C0551A9F2C4FEF69B0442D1 /* StudyWorkspaceModels.swift */,
+				E7CD2E3E306E8AA1C0DA7F9C /* ReaderSidebarPager.swift */,
+				77905F3E4D45774DC0C1B55F /* ReaderSidebarPageCoordinator.swift */,
+				E81108000000000000000001 /* ReaderNavigationChromeState.swift */,
+				E81108000000000000000005 /* CompactStudyWorkspaceHostModifier.swift */,
+				65D9DAF56C9B7C6FABF7770A /* ChavrusaReaderHost.swift */,
+				D637C2DEA0B71F94BDA9BA3B /* ChavrusaReaderWorkspaceLayout.swift */,
+				A76E95E42B83F0BFD3F87B95 /* ReaderViewportAcceptanceObserver.swift */,
+				936F8938E4E38CF6FBE52F2D /* ReaderNavigationDisplayPolicy.swift */,
 				CF0000000000000000000001 /* BackendAnnotationBridge.swift */,
 				CF0000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift */,
 				CF0000000000000000000003 /* ChavrusaTextLocalizationResolver.swift */,
@@ -2258,33 +2260,6 @@
 				CF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */,
 				CF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */,
 				CF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */,
-				CF0000000000000000000013 /* ChavrusaTextFeatureFlags.swift */,
-				CF0000000000000000000014 /* ReaderNavigationDisplayPolicy.swift */,
-				CF0000000000000000000015 /* ReaderInspectorHostPolicy.swift */,
-				CF0000000000000000000016 /* ReaderSidebarPager.swift */,
-				CF0000000000000000000017 /* ReaderSidebarStateCoordinator.swift */,
-				CF0000000000000000000018 /* ReaderWorkspaceChromeHost.swift */,
-				CF0000000000000000000019 /* ReaderDocumentTab.swift */,
-				CF000000000000000000001A /* StudyProfile.swift */,
-				CF000000000000000000001B /* StudyTabGroup.swift */,
-				CF000000000000000000001C /* StudyWorkspaceMigration.swift */,
-				CF000000000000000000001D /* StudyWorkspaceNavigationAdapter.swift */,
-				CF000000000000000000001E /* StudyWorkspacePersistence.swift */,
-				CF000000000000000000001F /* StudyWorkspaceSceneCoordinator.swift */,
-				CF0000000000000000000020 /* StudyWorkspaceStore.swift */,
-				CF0000000000000000000021 /* ReaderDocumentTabsBarController.swift */,
-				CF0000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift */,
-				CF0000000000000000000023 /* ReaderTabStripCell.swift */,
-				CF0000000000000000000024 /* ReaderTabStripFlareView.swift */,
-				CF0000000000000000000025 /* ReaderTabStripLayout.swift */,
-				CF0000000000000000000026 /* StudyGroupSelectorHost.swift */,
-				CF0000000000000000000027 /* StudyGroupsOverview.swift */,
-				CF0000000000000000000028 /* StudyProfileCapsule.swift */,
-				CF0000000000000000000029 /* StudyProfileManagementView.swift */,
-				CF000000000000000000002A /* ExpandableLibrarySearchCoordinator.swift */,
-				CF000000000000000000002B /* GelatinMotionOnly.swift */,
-				CF000000000000000000002C /* ReaderLibraryCommandPaletteHost.swift */,
-				CF000000000000000000002D /* ReaderLibraryToolbarHost.swift */,
 			);
 			path = ChavrusaText;
 			sourceTree = "<group>";
@@ -2360,22 +2335,22 @@
 		0A7AF0000000000000000000 /* Otzaria */ = {
 			isa = PBXGroup;
 			children = (
-				1727C9BD3BA8083CE863B66F /* OtzariaVersionPicker.swift */,
+				70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */,
+				A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */,
 				166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */,
+				1727C9BD3BA8083CE863B66F /* OtzariaVersionPicker.swift */,
+				0043042F20C3FA99A915D98B /* OtzariaSourceToDisplayRangeMap.swift */,
+				E854255706A8B5114CD4A2B1 /* OtzariaLinkAnchorRepository.swift */,
+				BA71B51DC9D35C1FD1E8BE8C /* OtzariaCanonicalLineLocatorResolver.swift */,
 				F69C5C9E231A402A89EBE2B3 /* OtzariaReferenceResolutionRepository.swift */,
 				74A957184048041FEDDB430C /* OtzariaReferenceKey.swift */,
-				A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */,
-				70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */,
+				6BAC0A161F11244D562C390B /* OtzariaAlternativeTOCRepository.swift */,
 				AF5D4C1C0229DD3A10AE8EC5 /* OtzariaWorkMetadataEnricher.swift */,
-				7709F796F2A5B8EF486A5530 /* OtzariaLineDecorationRepository.swift */,
-				B1F5318DDB6327932DC5B73E /* OtzariaSchemaAwareReadContext.swift */,
-				AB32EBBC672C8A3B79DC72F2 /* OtzariaTopicsRepository.swift */,
-				262C1C38544A34F55BFED3EF /* OtzariaVersionedContentRepository.swift */,
-				2DF70348AC43BF5D68C4EDB5 /* OtzariaVersionsRepository.swift */,
-				5CB18DC3FCDAF4EE33A01750 /* OtzariaAlternativeTOCRepository.swift */,
-				FF7B1A909BA00831BCC0F828 /* OtzariaCanonicalLineLocatorResolver.swift */,
-				054DA0B8B2D72248B4A5DE36 /* OtzariaLinkAnchorRepository.swift */,
-				735771242B147D783350AE64 /* OtzariaSourceToDisplayRangeMap.swift */,
+				A4CE5F664DBFD480F63D2638 /* OtzariaVersionsRepository.swift */,
+				896F6798ED02AE38D1FD7B92 /* OtzariaVersionedContentRepository.swift */,
+				7AEF60D81557209B5F5A7018 /* OtzariaTopicsRepository.swift */,
+				44FCD2866B00950D259F7C38 /* OtzariaSchemaAwareReadContext.swift */,
+				B0F0A21B9C411228F9322422 /* OtzariaLineDecorationRepository.swift */,
 				A40000000000000000000001 /* MaktabahTorahInspectorAdapter.swift */,
 				A40000000000000000000002 /* OtzariaInspectorRelationshipsProvider.swift */,
 				A40000000000000000000003 /* OtzariaRelationshipClassifier.swift */,
@@ -3939,6 +3914,7 @@
 			);
 			name = "Maktabah-iOS";
 			packageProductDependencies = (
+				BF8626D7580C7BB2D53851F8 /* CommandPalette */,
 				B20000000000000000000001 /* AnchoredPopup */,
 				C20000000000000000000001 /* FloatingPanel */,
 				A20000000000000000000001 /* TorahInspectorCore */,
@@ -3997,6 +3973,7 @@
 			mainGroup = 4B32021F2EDAFE85003B95D1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				66370DCD8947589AD0EB9BEB /* CommandPalette source fork */,
 				B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */,
 				C10000000000000000000001 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				A10000000000000000000001 /* XCRemoteSwiftPackageReference "TorahInspectorKit" */,
@@ -4121,6 +4098,7 @@
 		F305774A2FA46222005732C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				1A92E5A3C0E241A340657AD4 /* ThirdPartyNotices in Resources */,
 				DAF100000000000000000004 /* miniTest10.profile.json in Resources */,
 				E5A100000000000000000001 /* dictionary.json in Resources */,
 				E5A100000000000000000002 /* Acronyms.json in Resources */,
@@ -4197,6 +4175,7 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				E81108000000000000000003 /* ReaderNavigationChromeState.swift in Sources */,
 								CF1000000000000000000001 /* BackendAnnotationBridge.swift in Sources */,
 				CF1000000000000000000002 /* ReaderAnnotationRefreshCoordinator.swift in Sources */,
 				CF1000000000000000000003 /* ChavrusaTextLocalizationResolver.swift in Sources */,
@@ -4214,33 +4193,6 @@
 				CF1000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
 				CF1000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
 				CF1000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */,
-				CF1000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */,
-				CF1000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */,
-				CF1000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */,
-				CF1000000000000000000016 /* ReaderSidebarPager.swift in Sources */,
-				CF1000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */,
-				CF1000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */,
-				CF1000000000000000000019 /* ReaderDocumentTab.swift in Sources */,
-				CF100000000000000000001A /* StudyProfile.swift in Sources */,
-				CF100000000000000000001B /* StudyTabGroup.swift in Sources */,
-				CF100000000000000000001C /* StudyWorkspaceMigration.swift in Sources */,
-				CF100000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */,
-				CF100000000000000000001E /* StudyWorkspacePersistence.swift in Sources */,
-				CF100000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */,
-				CF1000000000000000000020 /* StudyWorkspaceStore.swift in Sources */,
-				CF1000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */,
-				CF1000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */,
-				CF1000000000000000000023 /* ReaderTabStripCell.swift in Sources */,
-				CF1000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */,
-				CF1000000000000000000025 /* ReaderTabStripLayout.swift in Sources */,
-				CF1000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */,
-				CF1000000000000000000027 /* StudyGroupsOverview.swift in Sources */,
-				CF1000000000000000000028 /* StudyProfileCapsule.swift in Sources */,
-				CF1000000000000000000029 /* StudyProfileManagementView.swift in Sources */,
-				CF100000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */,
-				CF100000000000000000002B /* GelatinMotionOnly.swift in Sources */,
-				CF100000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */,
-				CF100000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */,
 				CE100000000000000000002A /* SefariaRPCModels.swift in Sources */,
 				CE100000000000000000002B /* SefariaJSRPCBridge.swift in Sources */,
 				CE100000000000000000002C /* SefariaRuntimeManager.swift in Sources */,
@@ -4277,22 +4229,23 @@
 				CE1000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE1000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE1000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
-				14DBBB8D825E508A5E2B67F0 /* OtzariaVersionPicker.swift in Sources */,
+				AF75075B37E71C8EFB08D011 /* StudyWorkspaceLegacyImport.swift in Sources */,
+				6565707098E3C61D2309E8D9 /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				70A289D30DABF47F875D10F5 /* OtzariaSearchLineIndexResolver.swift in Sources */,
 				A05B15D895585913C38861FC /* OtzariaVersionSelectionStore.swift in Sources */,
+				14DBBB8D825E508A5E2B67F0 /* OtzariaVersionPicker.swift in Sources */,
+				1CA38110519BA11463CED5CF /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
+				B9D163A00B3D3937DF053C1C /* OtzariaLinkAnchorRepository.swift in Sources */,
+				F71466AE85AA114380AD7FDA /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
 				E61AE4FF66FD55EFA820C74C /* OtzariaReferenceResolutionRepository.swift in Sources */,
 				CE9D6D94A790EF687F661C11 /* OtzariaReferenceKey.swift in Sources */,
-				70A289D30DABF47F875D10F5 /* OtzariaSearchLineIndexResolver.swift in Sources */,
-				6565707098E3C61D2309E8D9 /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				5E249842CB3041C17D278643 /* OtzariaAlternativeTOCRepository.swift in Sources */,
 				1CDB8A1DB51E0EA60DE1D184 /* OtzariaWorkMetadataEnricher.swift in Sources */,
-				D27346EBB6AEA6187675B4E4 /* OtzariaLineDecorationRepository.swift in Sources */,
-				7F2CA667CEA97364E5D729D9 /* OtzariaSchemaAwareReadContext.swift in Sources */,
-				B7966733BD959746DEB9D76E /* OtzariaTopicsRepository.swift in Sources */,
-				777D61C0A8C766FEAA489421 /* OtzariaVersionedContentRepository.swift in Sources */,
-				FCCFF0FC532E81E7C2A2F38C /* OtzariaVersionsRepository.swift in Sources */,
-				D59A27E07DB7D2E7FA58536F /* OtzariaAlternativeTOCRepository.swift in Sources */,
-				6A43E56CD957FC01BFD9F961 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
-				2D32741FA67FC379BAC931F9 /* OtzariaLinkAnchorRepository.swift in Sources */,
-				69D5E4B2E77B26AB6551DDBA /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
+				8FC9EBAAACFAEF7E859B6DCD /* OtzariaVersionsRepository.swift in Sources */,
+				380994DF2CE6F494ACCDCAC7 /* OtzariaVersionedContentRepository.swift in Sources */,
+				0538E09839F9D4CF660D91E7 /* OtzariaTopicsRepository.swift in Sources */,
+				9C6BFA2AD7CEE4E6720D080E /* OtzariaSchemaAwareReadContext.swift in Sources */,
+				81FE5BF6E0CBA2016A6FC11E /* OtzariaLineDecorationRepository.swift in Sources */,
 				CE1000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
 				CE1000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
 				CE1000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
@@ -4599,33 +4552,6 @@
 				CF2000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
 				CF2000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
 				CF2000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */,
-				CF2000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */,
-				CF2000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */,
-				CF2000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */,
-				CF2000000000000000000016 /* ReaderSidebarPager.swift in Sources */,
-				CF2000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */,
-				CF2000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */,
-				CF2000000000000000000019 /* ReaderDocumentTab.swift in Sources */,
-				CF200000000000000000001A /* StudyProfile.swift in Sources */,
-				CF200000000000000000001B /* StudyTabGroup.swift in Sources */,
-				CF200000000000000000001C /* StudyWorkspaceMigration.swift in Sources */,
-				CF200000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */,
-				CF200000000000000000001E /* StudyWorkspacePersistence.swift in Sources */,
-				CF200000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */,
-				CF2000000000000000000020 /* StudyWorkspaceStore.swift in Sources */,
-				CF2000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */,
-				CF2000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */,
-				CF2000000000000000000023 /* ReaderTabStripCell.swift in Sources */,
-				CF2000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */,
-				CF2000000000000000000025 /* ReaderTabStripLayout.swift in Sources */,
-				CF2000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */,
-				CF2000000000000000000027 /* StudyGroupsOverview.swift in Sources */,
-				CF2000000000000000000028 /* StudyProfileCapsule.swift in Sources */,
-				CF2000000000000000000029 /* StudyProfileManagementView.swift in Sources */,
-				CF200000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */,
-				CF200000000000000000002B /* GelatinMotionOnly.swift in Sources */,
-				CF200000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */,
-				CF200000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */,
 				CE200000000000000000002A /* SefariaRPCModels.swift in Sources */,
 				CE200000000000000000002B /* SefariaJSRPCBridge.swift in Sources */,
 				CE200000000000000000002C /* SefariaRuntimeManager.swift in Sources */,
@@ -4662,22 +4588,23 @@
 				CE2000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE2000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE2000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
-				8B962188E30DE0D46FCEFF99 /* OtzariaVersionPicker.swift in Sources */,
+				4EF881C16DABE08EAA56A068 /* StudyWorkspaceLegacyImport.swift in Sources */,
+				55D3AADC0A886AD9B05FAB82 /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				30A577EB2FC12E229EFBC018 /* OtzariaSearchLineIndexResolver.swift in Sources */,
 				7ACCE0049A982951DEDEC560 /* OtzariaVersionSelectionStore.swift in Sources */,
+				8B962188E30DE0D46FCEFF99 /* OtzariaVersionPicker.swift in Sources */,
+				BE81440CD01B2A84EC977F9E /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
+				7DCE4DC44B495BF8D589F65C /* OtzariaLinkAnchorRepository.swift in Sources */,
+				AEFFD88AF1C73574E48D8BE4 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
 				A4F4D136C1109534003C3F0B /* OtzariaReferenceResolutionRepository.swift in Sources */,
 				7BD007415879D32BA9718DB0 /* OtzariaReferenceKey.swift in Sources */,
-				30A577EB2FC12E229EFBC018 /* OtzariaSearchLineIndexResolver.swift in Sources */,
-				55D3AADC0A886AD9B05FAB82 /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				F87A742DDF174E06F0C40F64 /* OtzariaAlternativeTOCRepository.swift in Sources */,
 				7516B334674CEC6EE068BFC7 /* OtzariaWorkMetadataEnricher.swift in Sources */,
-				34A828BC9415BD9FBAA2DCF2 /* OtzariaLineDecorationRepository.swift in Sources */,
-				F3506C86260F4AD600355F0F /* OtzariaSchemaAwareReadContext.swift in Sources */,
-				197096FE82856DA8DCA6992B /* OtzariaTopicsRepository.swift in Sources */,
-				7FA347D38FA4B0D8E5A31EC1 /* OtzariaVersionedContentRepository.swift in Sources */,
-				E77EBF2559B5437E74AA1219 /* OtzariaVersionsRepository.swift in Sources */,
-				D1DA4586B90163E06459C89B /* OtzariaAlternativeTOCRepository.swift in Sources */,
-				E5B9F7546AB91E31C66918B5 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
-				DB10B9F2CE9387C5D835B5C5 /* OtzariaLinkAnchorRepository.swift in Sources */,
-				8F39116A5CA9AA2028AFE88F /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
+				FA0B80FFBD21B36A5B2861B9 /* OtzariaVersionsRepository.swift in Sources */,
+				D0975DC8F29FBBDD4B6D13A1 /* OtzariaVersionedContentRepository.swift in Sources */,
+				D48AA3739BF7882C93008F13 /* OtzariaTopicsRepository.swift in Sources */,
+				9D6AF8853037DAFC4193C4DD /* OtzariaSchemaAwareReadContext.swift in Sources */,
+				8E8F24A6E0946844A021DEC5 /* OtzariaLineDecorationRepository.swift in Sources */,
 				CE2000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
 				CE2000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
 				CE2000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
@@ -4973,6 +4900,39 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				9FC1E4DC41DC2B4B1F7EF5CC /* ReaderNavigationDisplayPolicy.swift in Sources */,
+				E81108000000000000000002 /* ReaderNavigationChromeState.swift in Sources */,
+				E81108000000000000000004 /* CompactStudyWorkspaceHostModifier.swift in Sources */,
+				9F48806573E5763B8F00A49F /* ChavrusaReaderHost.swift in Sources */,
+				AD59215416546C4D4F912C89 /* ChavrusaReaderWorkspaceLayout.swift in Sources */,
+				81A016942A00CF70CFAA6A68 /* ReaderViewportAcceptanceObserver.swift in Sources */,
+				54C89333E0A00A80869ADEB1 /* ReaderSidebarPageCoordinator.swift in Sources */,
+				A42DDBE8569676110112B7FE /* ReaderSidebarPager.swift in Sources */,
+				9188F501FA26158F8E9E93DE /* StudyWorkspaceModels.swift in Sources */,
+				80083054F71F56EACF16965B /* StudyWorkspaceNavigationAdapter.swift in Sources */,
+				0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */,
+				B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */,
+				4AC1B94E53D4565B1277EB5E /* DocumentTabsHost.swift in Sources */,
+				2BA4D3E268150206B50CE829 /* ReaderBookTabsModel.swift in Sources */,
+				A88154B857645A7CAF251D72 /* ReaderTabFadeOutLabel.swift in Sources */,
+				38C96A84386F0016B7A601BC /* TabFlareBackgroundController.swift in Sources */,
+				A3A18E0B9AD657F0D8296069 /* TabFlaredBackgroundView.swift in Sources */,
+				40976A0F3230C723817E927F /* TabsBarCell.swift in Sources */,
+				B458BF27E1EC14F3BD7EEC43 /* TabsBarLayout.swift in Sources */,
+				373722936268814E211E604F /* TabsBarView.swift in Sources */,
+				06882F53F7AA51EFE8C26A29 /* TabsBarViewController.swift in Sources */,
+				D4A52E41F0A64A55A41C9B01 /* TabSwitcherPagePort.swift in Sources */,
+				B4D09656DB7A3C17C8B81470 /* ScrollableGroupsHost.swift in Sources */,
+				27766EFF8EBE9CECBB575F26 /* AdaptiveTabContent.swift in Sources */,
+				AEFC4F8B41B574552ECCFCE3 /* ScrollableTabBar.swift in Sources */,
+				70E70071414FAFB025390309 /* ScrollableTabBarDelegate.swift in Sources */,
+				578F593EBB0C771B1DED7256 /* ScrollableTabBarLogger.swift in Sources */,
+				B741EC4C8C472A7A371DCE77 /* StudyGroupsOverview.swift in Sources */,
+				80E9B690D08AB3785749746D /* StudyProfileManagementView.swift in Sources */,
+				C8907C01A4606C30C61AD66F /* StudyProfileMenu.swift in Sources */,
+				67E2A099AFC6265651BCEA70 /* LibraryCommandPaletteAdapter.swift in Sources */,
+				8702AE816C32FB1A7642441F /* ReaderToolbarActionAdapter.swift in Sources */,
+				E2D27ABB6420FBA0155F9C29 /* SafariToolbarSourcePort.swift in Sources */,
 				F3F000020000000000000002 /* iOSReaderSessionManager.swift in Sources */,
 				B40000000000000000000001 /* iOSBookInfoAnchoredCard.swift in Sources */,
 				C40000000000000000000001 /* iOSReaderWorkspaceView.swift in Sources */,
@@ -4997,33 +4957,6 @@
 				CF3000000000000000000010 /* ReaderContentLoadCoordinator.swift in Sources */,
 				CF3000000000000000000011 /* ReaderRenderedHighlightInspector.swift in Sources */,
 				CF3000000000000000000012 /* BackendSessionIntegrityRepair.swift in Sources */,
-				CF3000000000000000000013 /* ChavrusaTextFeatureFlags.swift in Sources */,
-				CF3000000000000000000014 /* ReaderNavigationDisplayPolicy.swift in Sources */,
-				CF3000000000000000000015 /* ReaderInspectorHostPolicy.swift in Sources */,
-				CF3000000000000000000016 /* ReaderSidebarPager.swift in Sources */,
-				CF3000000000000000000017 /* ReaderSidebarStateCoordinator.swift in Sources */,
-				CF3000000000000000000018 /* ReaderWorkspaceChromeHost.swift in Sources */,
-				CF3000000000000000000019 /* ReaderDocumentTab.swift in Sources */,
-				CF300000000000000000001A /* StudyProfile.swift in Sources */,
-				CF300000000000000000001B /* StudyTabGroup.swift in Sources */,
-				CF300000000000000000001C /* StudyWorkspaceMigration.swift in Sources */,
-				CF300000000000000000001D /* StudyWorkspaceNavigationAdapter.swift in Sources */,
-				CF300000000000000000001E /* StudyWorkspacePersistence.swift in Sources */,
-				CF300000000000000000001F /* StudyWorkspaceSceneCoordinator.swift in Sources */,
-				CF3000000000000000000020 /* StudyWorkspaceStore.swift in Sources */,
-				CF3000000000000000000021 /* ReaderDocumentTabsBarController.swift in Sources */,
-				CF3000000000000000000022 /* ReaderDocumentTabsBarRepresentable.swift in Sources */,
-				CF3000000000000000000023 /* ReaderTabStripCell.swift in Sources */,
-				CF3000000000000000000024 /* ReaderTabStripFlareView.swift in Sources */,
-				CF3000000000000000000025 /* ReaderTabStripLayout.swift in Sources */,
-				CF3000000000000000000026 /* StudyGroupSelectorHost.swift in Sources */,
-				CF3000000000000000000027 /* StudyGroupsOverview.swift in Sources */,
-				CF3000000000000000000028 /* StudyProfileCapsule.swift in Sources */,
-				CF3000000000000000000029 /* StudyProfileManagementView.swift in Sources */,
-				CF300000000000000000002A /* ExpandableLibrarySearchCoordinator.swift in Sources */,
-				CF300000000000000000002B /* GelatinMotionOnly.swift in Sources */,
-				CF300000000000000000002C /* ReaderLibraryCommandPaletteHost.swift in Sources */,
-				CF300000000000000000002D /* ReaderLibraryToolbarHost.swift in Sources */,
 				CE3000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE3000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE3000000000000000000003 /* BackendCoordinator.swift in Sources */,
@@ -5062,22 +4995,23 @@
 				CE3000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE3000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE3000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
-				EEBD4C261392039E55EC5ACD /* OtzariaVersionPicker.swift in Sources */,
+				69B30CC10C1D2D610A65BF83 /* StudyWorkspaceLegacyImport.swift in Sources */,
+				5BB1FB37579270DFB4A554AE /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				7E372F138D12EE26C6E69170 /* OtzariaSearchLineIndexResolver.swift in Sources */,
 				733F935D4872CB10DE6A0469 /* OtzariaVersionSelectionStore.swift in Sources */,
+				EEBD4C261392039E55EC5ACD /* OtzariaVersionPicker.swift in Sources */,
+				33A543776D6D7D0C70BF0F89 /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
+				1DD735061A1F6E6EA9CCEB03 /* OtzariaLinkAnchorRepository.swift in Sources */,
+				CB0F8712074BE83AFFDF9976 /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
 				1D2FB43D5AF825BED3EDBEF5 /* OtzariaReferenceResolutionRepository.swift in Sources */,
 				300D5FF36670EC41EBF09413 /* OtzariaReferenceKey.swift in Sources */,
-				7E372F138D12EE26C6E69170 /* OtzariaSearchLineIndexResolver.swift in Sources */,
-				5BB1FB37579270DFB4A554AE /* OtzariaSearchResultIdentityStore.swift in Sources */,
+				0C98BFEC2FD14C0C645A4D12 /* OtzariaAlternativeTOCRepository.swift in Sources */,
 				80EDF021796ECFAE119E5CC9 /* OtzariaWorkMetadataEnricher.swift in Sources */,
-				C9DA201B3476342902E77B6F /* OtzariaLineDecorationRepository.swift in Sources */,
-				74AF4778E912D06D2376BE68 /* OtzariaSchemaAwareReadContext.swift in Sources */,
-				8EC020428524CEFF5487B3E0 /* OtzariaTopicsRepository.swift in Sources */,
-				471E074680C6530135FDD0D4 /* OtzariaVersionedContentRepository.swift in Sources */,
-				74D18103CE042220621FFD88 /* OtzariaVersionsRepository.swift in Sources */,
-				6E554AE60D1F43E197D3B831 /* OtzariaAlternativeTOCRepository.swift in Sources */,
-				F4FA49FF4AD90F3A6C3CD8DF /* OtzariaCanonicalLineLocatorResolver.swift in Sources */,
-				627398A33F929E3A96046DBD /* OtzariaLinkAnchorRepository.swift in Sources */,
-				BE9D559F062F584F2B4FE0E9 /* OtzariaSourceToDisplayRangeMap.swift in Sources */,
+				2AF6D6CBCD1EB4979E1100F3 /* OtzariaVersionsRepository.swift in Sources */,
+				487D999D1F84238A41611687 /* OtzariaVersionedContentRepository.swift in Sources */,
+				9679C0E5FD7922EF744383D1 /* OtzariaTopicsRepository.swift in Sources */,
+				93DA4236F16DF3EB5BD23602 /* OtzariaSchemaAwareReadContext.swift in Sources */,
+				646B174A1F27F56D5693635D /* OtzariaLineDecorationRepository.swift in Sources */,
 				CE3000000000000000000016 /* OtzariaBackendActivation.swift in Sources */,
 				CE3000000000000000000017 /* SefariaArchiveValidator.swift in Sources */,
 				CE3000000000000000000018 /* SefariaUpdateManager.swift in Sources */,
@@ -6383,6 +6317,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+        66370DCD8947589AD0EB9BEB /* CommandPalette source fork */ = {
+            isa = XCLocalSwiftPackageReference;
+            relativePath = Source/ChavrusaText/Dependencies/CommandPalette;
+        };
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		B10000000000000000000001 /* XCRemoteSwiftPackageReference "AnchoredPopup" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -6405,7 +6346,7 @@
 			repositoryURL = "https://github.com/davidpovarsky/TorahInspectorKit.git";
 			requirement = {
 				kind = revision;
-				revision = 480734f2a6ee53b58858e25cb70cbcb1a7b71d06;
+				revision = 19d1b35397af4f10ae70cfb3f444c9de87383b53;
 			};
 		};
 		CEF000000000000000000001 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
@@ -6496,6 +6437,11 @@
 			package = F30576E12FA46222005732C6 /* XCRemoteSwiftPackageReference "zstd" */;
 			productName = libzstd;
 		};
+        BF8626D7580C7BB2D53851F8 /* CommandPalette */ = {
+            isa = XCSwiftPackageProductDependency;
+            package = 66370DCD8947589AD0EB9BEB /* CommandPalette source fork */;
+            productName = CommandPalette;
+        };
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B3202202EDAFE85003B95D1 /* Project object */;

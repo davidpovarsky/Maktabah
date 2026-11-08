@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct iOSReaderBottomToolbarView: View {
-    @Environment(ReaderSidebarStateCoordinator.self) private var sidebarCoordinator: ReaderSidebarStateCoordinator?
     @Bindable var viewModel: ReaderViewModel
     var onShowTableOfContents: (() -> Void)? = nil
     var tableOfContentsIsPresented = false
@@ -26,37 +25,17 @@ struct iOSReaderBottomToolbarView: View {
     }
 
     var body: some View {
-        let displaySubtitle: String = {
-            if ChavrusaTextFeatureFlags.shared.effectiveSemanticSliderPolicyEnabled {
-                let activeNavTitle: String? = {
-                    if let idx = viewModel.currentNavigationIndex,
-                       viewModel.navigationItems.indices.contains(idx) {
-                        return viewModel.navigationItems[idx].title
-                    }
-                    return nil
-                }()
-                return ReaderNavigationDisplayPolicy.resolveUnifiedSemanticDisplayLabel(
-                    sectionDisplayRef: viewModel.backendSection?.displayRef,
-                    sectionHeRef: viewModel.backendSection?.heRef,
-                    activeNavigationItemTitle: activeNavTitle,
-                    explicitSelectedSegmentLocator: viewModel.selectedSegmentLocator,
-                    fallbackSubtitle: viewModel.statusSubtitle
-                )
-            }
-            return viewModel.statusSubtitle
-        }()
-        Button(
-            displaySubtitle,
-            action: {
-                showingNavigation.toggle()
-            }
-        )
+        Button {
+            showingNavigation.toggle()
+        } label: {
+            ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.statusSubtitle)
+        }
         .popover(isPresented: $showingNavigation) {
             iOSReaderNavigationPopoverView(viewModel: viewModel)
                 .presentationCompactAdaptation(.popover)
         }
         .onChange(of: showingNavigation) { _, newValue in
-            viewModel.isPopoverPresented = newValue || showingOptions
+            viewModel.isPopoverPresented = newValue || showingOptions || showingSearch
         }
 
         Spacer()
@@ -104,13 +83,7 @@ struct iOSReaderBottomToolbarView: View {
             .help(String(localized: "Text Options"))
 
             Button(action: {
-                if ChavrusaTextFeatureFlags.shared.effectiveSidebarPagerEnabled, let sidebarCoordinator {
-                    if sidebarCoordinator.sidebarVisible && sidebarCoordinator.selectedPage == .toc {
-                        sidebarCoordinator.closeSidebar()
-                    } else {
-                        sidebarCoordinator.showTOC()
-                    }
-                } else if let onShowTableOfContents {
+                if let onShowTableOfContents {
                     onShowTableOfContents()
                 } else {
                     DispatchQueue.main.async {
@@ -168,7 +141,10 @@ struct iOSReaderBottomToolbarView: View {
                 .presentationCompactAdaptation(.popover)
         }
         .onChange(of: showingOptions) { _, newValue in
-            viewModel.isPopoverPresented = newValue || showingNavigation
+            viewModel.isPopoverPresented = newValue || showingNavigation || showingSearch
+        }
+        .onChange(of: showingSearch) { _, newValue in
+            viewModel.isPopoverPresented = newValue || showingNavigation || showingOptions
         }
         .sheet(isPresented: $showingSearch) {
             if let book = viewModel.currentBook {

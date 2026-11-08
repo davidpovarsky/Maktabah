@@ -1,0 +1,6 @@
+ChavrusaText iPad UI source ports
+DuckDuckGo apple-browsers: Copyright 2020, 2026 DuckDuckGo; Apache-2.0. Modified for book-domain integration and lifecycle safety.
+CommandPalette: Copyright 2026 Halil Özel; MIT. Optional query binding added.
+ScrollableTabBar: Copyright 2026 Kazuki Nakashima; MIT. Original public fallback only.
+Gelatin: Copyright 2025 Paul Wong; MIT. Owner-provided motion-only adaptation.
+Full license texts are bundled beside this notice.

@@ -3,11 +3,12 @@ import SwiftUI
 
 struct iOSTabBarVisibilityPolicy: ViewModifier {
     let hiddenOnPhone: Bool
+    @Environment(\.chavrusaReaderNavigationChromeVisible) private var readerChromeVisible
 
     @ViewBuilder
     func body(content: Content) -> some View {
         if MaktabahApp.isIpad {
-            content.toolbarVisibility(.visible, for: .tabBar)
+            content.toolbarVisibility(readerChromeVisible == false ? .hidden : .visible, for: .tabBar)
         } else {
             content.toolbarVisibility(hiddenOnPhone ? .hidden : .visible, for: .tabBar)
         }

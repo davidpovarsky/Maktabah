@@ -4,6 +4,7 @@ import UIKit
 // MARK: - SwiftUI View
 
 struct iOSLibraryView: View {
+    var groupsToolbarActions = false
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
 
     var body: some View {
@@ -119,6 +120,16 @@ struct iOSLibraryView: View {
     private func toolbarContent(viewModel: LibraryViewModel) -> some ToolbarContent {
         if viewModel.isSelectionMode {
             selectionToolbarItems(viewModel: viewModel)
+        } else if groupsToolbarActions {
+            ToolbarItem(placement: .topBarTrailing) {
+                GlassButtonGroup {
+                    groupByMenu(viewModel: viewModel)
+                    if AppConfig.isUsingBundleMode { downloadedFilterToggle(viewModel: viewModel) }
+                    optionsMenu(viewModel: viewModel)
+                }
+                .labelStyle(.iconOnly)
+            }
+            .readerSourceGlassBackground()
         } else {
             standardToolbarItems(viewModel: viewModel)
         }

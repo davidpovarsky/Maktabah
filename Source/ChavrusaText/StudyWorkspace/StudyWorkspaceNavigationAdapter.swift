@@ -1,326 +1,264 @@
-//
-//  StudyWorkspaceNavigationAdapter.swift
-//  Maktabah
-//
-//  Downstream-owned adapter projecting active StudyTabGroup tabs to/from iOSNavigationManager
-//  while preserving live ReaderViewModel instances across group and profile switches.
-//
+import SwiftUI
 
-import Foundation
-import Observation
-
-#if os(iOS)
-/// Synchronizes a scene's active `StudyTabGroup` in `StudyWorkspaceStore` with `iOSNavigationManager.openTabs`
-/// without requiring invasive changes to `iOSNavigationManager`.
-/// Each `StudyWorkspaceSceneCoordinator` owns a dedicated `StudyWorkspaceNavigationAdapter` instance with an
-/// isolated `liveViewModelsByTabID` cache so multiple iPad scenes never collide on `ReaderViewModel` instances.
-@MainActor
-@Observable
+/// Projects saved groups through the existing navigation/backend coordinators.
+/// Retains existing tab objects in memory; only cold, inactive tabs need hydration.
+@MainActor @Observable
 final class StudyWorkspaceNavigationAdapter {
-    static let shared = StudyWorkspaceNavigationAdapter(sceneID: "default-main-scene")
-
     let sceneID: String
-    private let store: StudyWorkspaceStore
-    private var liveViewModelsByTabID: [UUID: ReaderViewModel] = [:]
-    private(set) var isApplyingProjection: Bool = false
-    private(set) var projectionGeneration: UInt64 = 0
+    let store: StudyWorkspaceStore
+    private(set) var attached = false
+    private(set) var isSwitching = false
+    var errorMessage: String?
+    private var liveGroupID: UUID?
+    private var liveBackend: BackendID?
+    private var checkpointTask: Task<Void, Never>?
+    private var cache: [UUID: [BackendID: [iOSNavigationManager.ReaderTab]]] = [:]
 
-    init(
-        sceneID: String = "default-main-scene",
-        store: StudyWorkspaceStore? = nil
-    ) {
+    init(sceneID: String, store: StudyWorkspaceStore = .shared) {
         self.sceneID = sceneID
-        self.store = store ?? .shared
+        self.store = store
     }
 
-    var cachedViewModelCount: Int {
-        liveViewModelsByTabID.count
+    var selection: StudySceneSelection? { store.snapshot?.scenes[sceneID] }
+    var group: StudyTabGroup? { store.selectedGroup(scene: sceneID) }
+    var profile: StudyProfile? { store.snapshot?.profiles.first { $0.id == selection?.profileID } }
+    var groups: [StudyTabGroup] {
+        (store.snapshot?.groups.filter { $0.profileID == selection?.profileID } ?? []).sorted { $0.order < $1.order }
     }
 
-    /// Captures the current live state of `navigationManager.openTabs` into the specified group
-    /// before switching groups or persisting.
-    /// Does nothing if `studyWorkspaceEnabled` is false (unless `forceWhenDisabled` is true for explicit unit testing)
-    /// or if a projection transaction is currently in flight.
-    func captureLiveState(
-        from navigationManager: iOSNavigationManager,
-        intoGroup groupID: UUID? = nil,
-        forceWhenDisabled: Bool = false
-    ) {
-        guard forceWhenDisabled || ChavrusaTextFeatureFlags.shared.effectiveStudyWorkspaceEnabled else { return }
-        guard !isApplyingProjection else { return }
-        performCaptureLiveState(from: navigationManager, intoGroup: groupID)
+    func attach(_ manager: iOSNavigationManager) async {
+        guard !attached else { return }
+        do {
+            let backend = BackendCoordinator.shared.activeBackendID
+            try store.attach(scene: sceneID, legacyTabs: capture(manager.openTabs, backend: backend), activeID: manager.activeTabId)
+            attached = true
+            if let selected = group {
+                // Restore the sidecar's selected group; never import the canonical session twice.
+                try await switchGroup(to: selected.id, manager: manager, restoringBackend: backend)
+            } else { throw StudyWorkspaceError.invalidMembership }
+        } catch { errorMessage = error.localizedDescription }
     }
 
-    private func performCaptureLiveState(
-        from navigationManager: iOSNavigationManager,
-        intoGroup groupID: UUID? = nil
-    ) {
-        let defaultSceneGroupID = store.sceneSelection(for: sceneID).activeGroupID
-        let targetGroupID = groupID ?? defaultSceneGroupID
-        guard store.group(for: targetGroupID) != nil else { return }
-
-        let activeBackend = BackendCoordinator.shared.activeBackendID
-        var syncedTabIDs: [UUID] = []
-
-        for readerTab in navigationManager.openTabs {
-            let vm = readerTab.viewModel
-            if navigationManager.activeTabId == readerTab.id {
-                vm.saveCurrentState()
+    func synchronize(_ manager: iOSNavigationManager) {
+        guard attached, !isSwitching, let id = liveGroupID, let backend = liveBackend else { return }
+        checkpointTask?.cancel()
+        checkpointTask = nil
+        let retainedGroupIDs = Set(store.snapshot?.groups.map(\.id) ?? [])
+        cache = cache.filter { retainedGroupIDs.contains($0.key) }
+        do {
+            let currentBackend = BackendCoordinator.shared.activeBackendID
+            // A backend switch publishes fresh tabs. Capture retained outgoing instances first.
+            let outgoing = currentBackend == backend ? manager.openTabs : (cache[id]?[backend] ?? [])
+            try persistProjection(outgoing, activeID: currentBackend == backend ? manager.activeTabId : nil, groupID: id, backend: backend)
+            liveBackend = currentBackend
+            cache[id, default: [:]][currentBackend] = manager.openTabs
+            if currentBackend != backend {
+                try persistProjection(manager.openTabs, activeID: manager.activeTabId, groupID: id, backend: currentBackend)
             }
-            liveViewModelsByTabID[readerTab.id] = vm
+        } catch { errorMessage = error.localizedDescription }
+    }
 
-            let state = vm.readerState
-            let locator = vm.currentLocator ?? state.currentLocator ?? readerTab.book.backendLocator
-            let resolvedBackend = locator?.backend ?? activeBackend
-            let resolvedWorkKey = locator?.workKey ?? readerTab.book.backendLocator?.workKey
-
-            let existing = store.tab(for: readerTab.id)
-            let updatedTab = ReaderDocumentTab(
-                id: readerTab.id,
-                backend: resolvedBackend,
-                bookId: readerTab.book.id,
-                bookTitle: readerTab.book.title,
-                workKey: resolvedWorkKey,
-                sectionLocator: locator,
-                focusLocator: vm.selectedSegmentLocator,
-                contentId: vm.currentID ?? readerTab.initialContentId ?? state.currentID ?? (vm.currentContentId > 0 ? vm.currentContentId : nil),
-                page: vm.currentPage ?? state.currentPage,
-                part: vm.currentPart ?? state.currentPart,
-                scrollPosition: state.scrollPosition ?? vm.fetchScrollPosition?(),
-                selectedRange: state.selectedRange ?? vm.fetchSelectedRange?(),
-                expandedNodeIDs: state.expandedNodeIDs,
-                sidebarScrollPosition: state.sidebarScrollPosition,
-                isSidebarCollapsed: state.isSidebarCollapsed,
-                searchText: vm.searchText.isEmpty ? nil : vm.searchText,
-                searchModeRaw: vm.searchMode?.rawValue,
-                nearDistance: vm.nearDistance,
-                highlightTerms: vm.highlightTerms,
-                isDormantUnavailable: existing?.isDormantUnavailable ?? false,
-                createdAt: existing?.createdAt ?? Date(),
-                updatedAt: Date()
-            )
-
-            if store.tab(for: readerTab.id) != nil {
-                store.updateTab(readerTab.id) { tab in
-                    tab = updatedTab
-                }
-            } else {
-                store.addTab(updatedTab, toGroup: targetGroupID, activate: navigationManager.activeTabId == readerTab.id)
-            }
-            syncedTabIDs.append(readerTab.id)
-        }
-
-        // Preserve any dormant/unavailable tabs in the group that are not currently active in `openTabs`
-        let currentGroupTabs = store.tabs(in: targetGroupID)
-        for docTab in currentGroupTabs where docTab.isDormantUnavailable && !syncedTabIDs.contains(docTab.id) {
-            syncedTabIDs.append(docTab.id)
-        }
-
-        // Remove tabs that were closed via `navigationManager.closeTab`
-        for docTab in currentGroupTabs where !docTab.isDormantUnavailable && !syncedTabIDs.contains(docTab.id) {
-            store.closeTab(docTab.id, inGroup: targetGroupID)
-        }
-
-        if let activeID = navigationManager.activeTabId, syncedTabIDs.contains(activeID) {
-            store.setActiveTab(activeID, inGroup: targetGroupID)
+    func scheduleCheckpoint(_ manager: iOSNavigationManager) {
+        guard attached, !isSwitching else { return }
+        checkpointTask?.cancel()
+        checkpointTask = Task { @MainActor [weak self] in
+            do { try await Task.sleep(for: .milliseconds(300)) }
+            catch { return }
+            guard !Task.isCancelled else { return }
+            self?.synchronize(manager)
         }
     }
 
-    /// Projects the tabs of `targetGroupID` onto `navigationManager.openTabs` in a strict, non-reentrant transaction:
-    /// 1. `captureLiveState(previousGroup)`
-    /// 2. `projectGroup(nextGroup)`
-    /// 3. `resolveActiveTab`
-    /// 4. `persist`
-    /// If `targetGroupID` is invalid or projection fails, rolls back `navigationManager` to its pre-transaction snapshot.
-    @discardableResult
-    func projectGroup(
-        _ targetGroupID: UUID,
-        onto navigationManager: iOSNavigationManager,
-        previousGroupID: UUID? = nil,
-        forceWhenDisabled: Bool = false
-    ) -> Bool {
-        guard forceWhenDisabled || ChavrusaTextFeatureFlags.shared.effectiveStudyWorkspaceEnabled else { return false }
-        guard !isApplyingProjection else { return false }
+    func reconcileSceneSelection(_ manager: iOSNavigationManager) async {
+        guard attached, !isSwitching, let id = selection?.groupID, id != liveGroupID else { return }
+        do { try await switchGroup(to: id, manager: manager) }
+        catch { errorMessage = error.localizedDescription }
+    }
 
-        // Snapshot pre-transaction state for rollback safety
-        let snapshotOpenTabs = navigationManager.openTabs
-        let snapshotActiveTabId = navigationManager.activeTabId
-        let snapshotSelectedBook = navigationManager.selectedBook
-        let snapshotSelectedContentId = navigationManager.selectedContentId
-
-        guard let targetGroup = store.group(for: targetGroupID) else {
-            navigationManager.openTabs = snapshotOpenTabs
-            navigationManager.activeTabId = snapshotActiveTabId
-            navigationManager.selectedBook = snapshotSelectedBook
-            navigationManager.selectedContentId = snapshotSelectedContentId
-            return false
+    func switchGroup(to id: UUID, documentID: UUID? = nil, manager: iOSNavigationManager, restoringBackend: BackendID? = nil) async throws {
+        guard !isSwitching, store.snapshot?.groups.contains(where: { $0.id == id }) == true else { throw StudyWorkspaceError.invalidMembership }
+        isSwitching = true
+        defer { isSwitching = false }
+        let previousTabs = manager.openTabs
+        let previousActive = manager.activeTabId
+        let previousBackend = BackendCoordinator.shared.activeBackendID
+        let previousGroup = liveGroupID
+        if let previousGroup, store.snapshot?.groups.contains(where: { $0.id == previousGroup }) == true {
+            try persistProjection(previousTabs, activeID: previousActive, groupID: previousGroup, backend: previousBackend)
+            cache[previousGroup, default: [:]][previousBackend] = previousTabs
         }
-
-        isApplyingProjection = true
-        projectionGeneration &+= 1
-        defer { isApplyingProjection = false }
-
-        // Step 1: Capture live state of previous group before mutating navigationManager
-        if let previousGroupID, previousGroupID != targetGroupID {
-            performCaptureLiveState(from: navigationManager, intoGroup: previousGroupID)
+        guard let target = store.snapshot?.groups.first(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
+        let requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
+        let desiredBackend = StudyWorkspaceProjectionPolicy.backend(restoring: restoringBackend, requestedID: requested,
+                                                                   documents: target.tabs, fallback: previousBackend)
+        let documents = target.tabs.filter { $0.backend == desiredBackend }
+        let retained = cache[id]?[desiredBackend] ?? []
+        // Resolve every book before mutating either coordinator; no partial group publication.
+        let staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
+            if let existing = retained.first(where: { $0.id == document.id }) { return existing }
+            if let existing = previousTabs.first(where: { $0.id == document.id }), previousBackend == desiredBackend { return existing }
+            return try hydrate(document)
         }
-
-        // Step 2: Update scene selection for this sceneID and build projected tabs
-        store.updateSceneSelection(
-            StudySceneSelectionState(
-                sceneID: sceneID,
-                activeProfileID: targetGroup.profileID,
-                activeGroupID: targetGroup.id,
-                isOverviewPresented: store.sceneStatesByID[sceneID]?.isOverviewPresented ?? false,
-                updatedAt: Date()
-            )
-        )
-        let groupTabs = store.tabs(in: targetGroupID)
-        let activeBackend = BackendCoordinator.shared.activeBackendID
-        let ldm = LibraryDataManager.shared
-
-        var projectedTabs: [iOSNavigationManager.ReaderTab] = []
-
-        for docTab in groupTabs {
-            // If the tab belongs to a different backend, keep it safely in the group as dormant
-            // rather than injecting a foreign locator into the active backend's reader list.
-            if docTab.backend != activeBackend {
-                store.setTabDormantUnavailable(docTab.id, isDormant: true)
-                continue
+        do {
+            if desiredBackend != previousBackend {
+                try await BackendCoordinator.shared.commitCheckedAsync(desiredBackend)
+                guard BackendCoordinator.shared.activeBackendID == desiredBackend else { throw StudyWorkspaceError.backendMismatch }
             }
-
-            let resolvedBook = ldm.booksById[docTab.bookId]
-                ?? (docTab.sectionLocator.flatMap { loc in ldm.booksById.values.first(where: { $0.backendLocator?.workKey == loc.workKey }) })
-                ?? ldm.getBook([docTab.bookId]).first
-
-            let book: BooksData
-            if let resolvedBook {
-                book = resolvedBook
-                if docTab.isDormantUnavailable {
-                    store.setTabDormantUnavailable(docTab.id, isDormant: false)
-                }
-            } else {
-                // Keep tab resiliently with a placeholder BooksData and mark dormant flag if book catalog is missing it
-                let fallbackLocator = docTab.sectionLocator
-                    ?? docTab.workKey.map { TextLocator(backend: docTab.backend, workKey: $0, position: .legacyLine(0)) }
-                book = BooksData(
-                    id: docTab.bookId,
-                    title: docTab.bookTitle ?? "ספר \(docTab.bookId)",
-                    backendLocator: fallbackLocator
-                )
+            try store.transaction { value in
+                guard let current = value.groups.first(where: { $0.id == id }), current.tabs == target.tabs,
+                      current.profileID == target.profileID else { throw StudyWorkspaceError.invalidMembership }
+                var scene = value.scenes[sceneID] ?? .init(profileID: target.profileID, groupID: id)
+                scene.profileID = target.profileID
+                scene.groupID = id
+                var activeIDs = scene.activeTabIDsByGroup ?? [:]
+                if let active = staged.first(where: { $0.id == requested }) ?? staged.first { activeIDs[id] = active.id }
+                else { activeIDs.removeValue(forKey: id) }
+                scene.activeTabIDsByGroup = activeIDs
+                value.scenes[sceneID] = scene
+                value.lastActiveSceneID = sceneID
             }
-
-            let vm: ReaderViewModel
-            if let cachedVM = liveViewModelsByTabID[docTab.id] {
-                vm = cachedVM
-                vm.currentBook = book
-            } else if let existingOpen = navigationManager.openTabs.first(where: { $0.id == docTab.id }) {
-                vm = existingOpen.viewModel
-                liveViewModelsByTabID[docTab.id] = vm
-            } else {
-                let newVM = ReaderViewModel(book: book)
-                newVM.recordHistory = false
-                newVM.needsScrollRestore = true
-                if let pos = docTab.scrollPosition { newVM.readerState.scrollPosition = pos }
-                if let range = docTab.selectedRange { newVM.readerState.selectedRange = range }
-                if let exp = docTab.expandedNodeIDs { newVM.readerState.expandedNodeIDs = exp }
-                if let col = docTab.isSidebarCollapsed { newVM.readerState.isSidebarCollapsed = col }
-                if let sidePos = docTab.sidebarScrollPosition { newVM.readerState.sidebarScrollPosition = sidePos }
-                if let search = docTab.searchText { newVM.searchText = search }
-                if let modeRaw = docTab.searchModeRaw, let mode = SearchMode(rawValue: modeRaw) { newVM.searchMode = mode }
-                if let near = docTab.nearDistance { newVM.nearDistance = near }
-                if let terms = docTab.highlightTerms { newVM.highlightTerms = terms }
-
-                if let locator = docTab.sectionLocator {
-                    newVM.loadBackendContent(locator)
-                } else if let contentId = docTab.contentId {
-                    newVM.loadInitialContent(initialContentId: contentId)
+            manager.openTabs = staged
+            for document in documents {
+                guard let tab = staged.first(where: { $0.id == document.id }), tab.viewModel.contentText.isEmpty else { continue }
+                if let locator = document.session.locator {
+                    tab.viewModel.loadBackendContent(locator)
                 } else {
-                    newVM.loadInitialContent(initialContentId: nil)
+                    tab.viewModel.loadInitialContent(initialContentId: document.session.contentId)
                 }
-                newVM.loadTOC(book: book)
-                liveViewModelsByTabID[docTab.id] = newVM
-                vm = newVM
+                tab.viewModel.loadTOC(book: tab.book)
             }
-
-            projectedTabs.append(
-                iOSNavigationManager.ReaderTab(
-                    id: docTab.id,
-                    book: book,
-                    initialContentId: docTab.contentId,
-                    viewModel: vm
-                )
-            )
+            if let active = requested.flatMap({ id in staged.first { $0.id == id } }) ?? staged.first {
+                manager.selectTab(id: active.id)
+                active.viewModel.needsScrollRestore = true
+            } else {
+                // Use the canonical close path to normalize an empty projection.
+                manager.openTabs = previousTabs
+                for tab in previousTabs { manager.closeTab(id: tab.id) }
+            }
+            liveGroupID = id
+            liveBackend = desiredBackend
+            cache[id, default: [:]][desiredBackend] = staged
+            manager.persistCurrentSession(immediate: true)
+        } catch {
+            if BackendCoordinator.shared.activeBackendID != previousBackend {
+                do { try await BackendCoordinator.shared.commitCheckedAsync(previousBackend) }
+                catch { errorMessage = "לא ניתן לשחזר את מקור הספרייה: \(error.localizedDescription)" }
+            }
+            manager.openTabs = previousTabs
+            if let previousActive { manager.selectTab(id: previousActive) }
+            manager.persistCurrentSession(immediate: true)
+            throw error
         }
-
-        // Step 3: Resolve active tab and commit to navigationManager
-        navigationManager.openTabs = projectedTabs
-        let targetActiveID = store.group(for: targetGroupID)?.activeTabID
-        let resolution = ReaderSessionRestoreCoordinator().resolveActiveTab(
-            savedActiveId: targetActiveID,
-            restoredTabs: projectedTabs
-        )
-        navigationManager.activeTabId = resolution.activeTabId
-        if let activeTab = resolution.activeTab {
-            navigationManager.selectedBook = activeTab.book
-            navigationManager.selectedContentId = activeTab.initialContentId ?? activeTab.viewModel.currentContentId
-            store.setActiveTab(activeTab.id, inGroup: targetGroupID)
-        } else {
-            navigationManager.selectedBook = nil
-            navigationManager.selectedContentId = nil
-        }
-
-        // Step 4: Persist session
-        navigationManager.persistCurrentSession(immediate: false)
-        store.scheduleSave()
-        return true
     }
 
-    /// Opens a fresh independent document tab for `book` in the scene's active group even if another tab for the same book exists.
-    @discardableResult
-    func openIndependentTab(
-        for book: BooksData,
-        in navigationManager: iOSNavigationManager,
-        groupID: UUID? = nil,
-        contentId: Int? = nil,
-        sectionLocator: TextLocator? = nil
-    ) -> ReaderDocumentTab {
-        let activeBackend = book.backendLocator?.backend ?? BackendCoordinator.shared.activeBackendID
-        let targetGroupID = groupID ?? store.sceneSelection(for: sceneID).activeGroupID
-        let docTab = ReaderDocumentTab(
-            id: UUID(),
-            backend: activeBackend,
-            bookId: book.id,
-            bookTitle: book.title,
-            workKey: book.backendLocator?.workKey,
-            sectionLocator: sectionLocator ?? book.backendLocator,
-            contentId: contentId
-        )
+    func moveTab(_ id: UUID, to targetID: UUID, copy: Bool, manager: iOSNavigationManager) {
+        synchronize(manager)
+        guard let sourceID = liveGroupID, sourceID != targetID else { return }
+        do {
+            try store.transaction { value in
+                guard let source = value.groups.firstIndex(where: { $0.id == sourceID }),
+                      let target = value.groups.firstIndex(where: { $0.id == targetID }),
+                      let tab = value.groups[source].tabs.first(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
+                value.groups[target].tabs.append(copy ? tab.reidentified() : tab)
+                if !copy {
+                    value.groups[source].tabs.removeAll { $0.id == id }
+                    if value.groups[source].activeTabID == id { value.groups[source].activeTabID = value.groups[source].tabs.first?.id }
+                }
+            }
+            if !copy { manager.closeTab(id: id) }
+        } catch { errorMessage = error.localizedDescription }
+    }
 
+    func reorder(_ id: UUID, to index: Int, manager: iOSNavigationManager) {
+        guard let old = manager.openTabs.firstIndex(where: { $0.id == id }), manager.openTabs.indices.contains(index) else { return }
+        manager.openTabs.insert(manager.openTabs.remove(at: old), at: index)
+        manager.persistCurrentSession(immediate: true)
+        synchronize(manager)
+    }
+
+    func reorderDocument(_ id: UUID, to index: Int, manager: iOSNavigationManager) {
+        synchronize(manager)
+        guard let groupID = liveGroupID else { return }
+        do {
+            try store.reorderDocument(id, to: index, groupID: groupID)
+            guard let saved = group else { return }
+            let positions = Dictionary(uniqueKeysWithValues: saved.tabs.enumerated().map { ($0.element.id, $0.offset) })
+            manager.openTabs.sort { positions[$0.id, default: .max] < positions[$1.id, default: .max] }
+            if let backend = liveBackend { cache[groupID, default: [:]][backend] = manager.openTabs }
+            manager.persistCurrentSession(immediate: true)
+        } catch { errorMessage = error.localizedDescription }
+    }
+
+    func createGroup(name: String, fromCurrent: Bool, manager: iOSNavigationManager) async {
+        synchronize(manager)
+        guard let profileID = selection?.profileID else { return }
+        do {
+            let tabs = fromCurrent ? (group?.tabs ?? []).map { $0.reidentified() } : []
+            let id = try store.addGroup(profileID: profileID, name: name, tabs: tabs, activeID: tabs.first?.id)
+            try await switchGroup(to: id, manager: manager)
+        } catch { errorMessage = error.localizedDescription }
+    }
+
+    private func persistProjection(_ tabs: [iOSNavigationManager.ReaderTab], activeID: UUID?, groupID: UUID, backend: BackendID) throws {
+        guard let saved = store.snapshot?.groups.first(where: { $0.id == groupID }) else { throw StudyWorkspaceError.invalidMembership }
+        let merged = StudyWorkspaceProjectionPolicy.merging(live: capture(tabs, backend: backend), into: saved.tabs, backend: backend)
+        try store.transaction { value in
+            guard let index = value.groups.firstIndex(where: { $0.id == groupID }) else { throw StudyWorkspaceError.invalidMembership }
+            value.groups[index].tabs = merged
+            value.groups[index].activeTabID = (activeID ?? saved.activeTabID).flatMap { id in merged.contains { $0.id == id } ? id : nil }
+            if var scene = value.scenes[sceneID] {
+                var activeIDs = scene.activeTabIDsByGroup ?? [:]
+                if let activeID, merged.contains(where: { $0.id == activeID }) { activeIDs[groupID] = activeID }
+                else if merged.isEmpty { activeIDs.removeValue(forKey: groupID) }
+                scene.activeTabIDsByGroup = activeIDs
+                value.scenes[sceneID] = scene
+                value.lastActiveSceneID = sceneID
+            }
+        }
+        cache[groupID, default: [:]][backend] = tabs
+    }
+
+    private func capture(_ tabs: [iOSNavigationManager.ReaderTab], backend: BackendID) -> [ReaderDocumentTab] {
+        tabs.map { tab in
+            let vm = tab.viewModel
+            var state = vm.readerState
+            state.scrollPosition = vm.fetchScrollPosition?() ?? state.scrollPosition
+            state.selectedRange = vm.fetchSelectedRange?() ?? state.selectedRange
+            return ReaderDocumentTab(backend: backend, session: .init(
+                id: tab.id, bookId: tab.book.id, bookTitle: tab.book.title, backendLocator: tab.book.backendLocator,
+                contentId: vm.currentID ?? tab.initialContentId ?? state.currentID, locator: vm.currentLocator ?? state.currentLocator,
+                page: vm.currentPage ?? state.currentPage, part: vm.currentPart ?? state.currentPart,
+                scrollPosition: state.scrollPosition, selectedRange: state.selectedRange, expandedNodeIDs: state.expandedNodeIDs,
+                sidebarScrollPosition: state.sidebarScrollPosition, isSidebarCollapsed: state.isSidebarCollapsed,
+                searchText: vm.searchText, searchModeRaw: vm.searchMode?.rawValue, nearDistance: vm.nearDistance,
+                highlightTerms: vm.highlightTerms))
+        }
+    }
+
+    private func hydrate(_ document: ReaderDocumentTab) throws -> iOSNavigationManager.ReaderTab {
+        let state = document.session
+        let book = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
+            id: state.bookId, backendLocator: state.backendLocator?.workKey,
+            title: state.bookTitle, in: document.backend)
+        guard (book.backendLocator?.backend ?? .otzaria) == document.backend else {
+            throw StudyWorkspaceError.backendMismatch
+        }
         let vm = ReaderViewModel(book: book)
-        if let locator = docTab.sectionLocator {
-            vm.loadBackendContent(locator)
-        } else {
-            vm.loadInitialContent(initialContentId: contentId)
-        }
-        vm.loadTOC(book: book)
-        liveViewModelsByTabID[docTab.id] = vm
-
-        if ChavrusaTextFeatureFlags.shared.effectiveStudyWorkspaceEnabled {
-            store.addTab(docTab, toGroup: targetGroupID, activate: true)
-        }
-        let readerTab = iOSNavigationManager.ReaderTab(
-            id: docTab.id,
-            book: book,
-            initialContentId: contentId,
-            viewModel: vm
-        )
-        navigationManager.openTabs.append(readerTab)
-        navigationManager.activeTabId = readerTab.id
-        navigationManager.selectedBook = book
-        navigationManager.selectedContentId = contentId ?? vm.currentContentId
-        navigationManager.persistCurrentSession(immediate: false)
-        return docTab
+        vm.recordHistory = false
+        vm.readerState.scrollPosition = state.scrollPosition
+        vm.readerState.selectedRange = state.selectedRange
+        vm.readerState.expandedNodeIDs = state.expandedNodeIDs ?? []
+        vm.readerState.sidebarScrollPosition = state.sidebarScrollPosition
+        vm.readerState.isSidebarCollapsed = state.isSidebarCollapsed ?? false
+        vm.readerState.currentLocator = state.locator
+        vm.readerState.currentPage = state.page
+        vm.readerState.currentPart = state.part
+        vm.searchText = state.searchText ?? ""
+        vm.searchMode = state.searchModeRaw.flatMap(SearchMode.init(rawValue:))
+        vm.nearDistance = state.nearDistance ?? 10
+        vm.highlightTerms = state.highlightTerms
+        vm.needsScrollRestore = true
+        // Loading is deferred until this tab becomes live, after any backend commit.
+        return .init(id: state.id, book: book, initialContentId: state.contentId, viewModel: vm)
     }
 }
-#endif

@@ -1,0 +1,51 @@
+--- iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarLayoutTests.swift
++++ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift
+@@ -19,7 +19,7 @@
+ 
+ import UIKit
+ import XCTest
+-@testable import DuckDuckGo
++@testable import DuckDuckGoBookTabs
+ 
+ final class TabsBarLayoutTests: XCTestCase {
+ 
+@@ -45,7 +45,7 @@
+             cell.layer.add(stackingAnimation, forKey: "zPosition")
+             if applyStyle {
+                 cell.applyCurrentStyle(isCurrent: true, isNextCurrent: false, hidesInactiveCloseButton: true,
+-                                       withTheme: ThemeManager.shared.currentTheme)
++                                       withTheme: ReaderTabsTheme())
+             } else {
+                 cell.apply(attributes)
+             }
+@@ -320,10 +320,10 @@
+     func testPartlyCoveredTabHidesCloseButtonAndRejectsStaleCloseActions() throws {
+         let (collectionView, _) = makeCollectionView(currentIndex: { 2 }, contentOffset: 200)
+         let cell = try XCTUnwrap(collectionView.cellForItem(at: IndexPath(item: 4, section: 0)) as? TabsBarCell)
+-        let tab = Tab()
++        let tab = ReaderBookTabAdapter(id: UUID(), title: "ספר")
+         defer { withExtendedLifetime(tab) {} }
+         cell.update(model: tab, isCurrent: false, isNextCurrent: false, hidesInactiveCloseButton: false,
+-                    isFireModeEnabled: false, withTheme: ThemeManager.shared.currentTheme)
++                    isFireModeEnabled: false, withTheme: ReaderTabsTheme())
+         var closeCount = 0
+         cell.onRemove = { closeCount += 1 }
+         cell.layoutIfNeeded()
+@@ -349,7 +349,7 @@
+         XCTAssertFalse(cell.removeButton.isHidden)
+         cell.removeButton.sendActions(for: .touchUpInside)
+         XCTAssertEqual(closeCount, 2)
+-        cell.configurePlaceholder(withTheme: ThemeManager.shared.currentTheme)
++        cell.configurePlaceholder(withTheme: ReaderTabsTheme())
+         cell.setNeedsLayout()
+         cell.layoutIfNeeded()
+         XCTAssertTrue(cell.removeButton.isHidden)
+@@ -429,7 +429,7 @@
+         (cell as? TabsBarCell)?.applyCurrentStyle(isCurrent: indexPath.item == selectedIndex(),
+                                                 isNextCurrent: indexPath.item + 1 == selectedIndex(),
+                                                 hidesInactiveCloseButton: false,
+-                                                withTheme: ThemeManager.shared.currentTheme)
++                                                withTheme: ReaderTabsTheme())
+         return cell
+     }
+ }

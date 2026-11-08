@@ -42,46 +42,12 @@ struct iOSReaderNavigationPopoverView: View {
                     }
                     .disabled(viewModel.backendSection?.previous == nil)
                     
-                    if ChavrusaTextFeatureFlags.shared.effectiveSemanticSliderPolicyEnabled {
-                        let activeNavTitle = viewModel.navigationItems.indices.contains(Int(localNav))
-                            ? viewModel.navigationItems[Int(localNav)].title
-                            : nil
-                        let explicitUserSelection = ReaderNavigationDisplayPolicy.resolveExplicitUserSelectedSegmentLocator(
-                            selectedSegmentLocator: viewModel.selectedSegmentLocator,
-                            otzariaSelectedLineIndex: viewModel.otzariaSelectedLineAnchor?.lineIndex,
-                            otzariaBookId: viewModel.otzariaSelectedLineAnchor?.bookId,
-                            destinationFocusLocator: viewModel.currentDestination?.focusLocator,
-                            searchHighlightFocusLocator: viewModel.searchHighlightFocusLocator,
-                            isInspectorVisible: viewModel.readerInspectorVisible
-                        )
-                        let header = ReaderNavigationDisplayPolicy.formattedCurrentSectionLabel(
-                            sectionDisplayRef: viewModel.backendSection?.displayRef,
-                            sectionHeRef: viewModel.backendSection?.heRef,
-                            activeNavigationItemTitle: activeNavTitle,
-                            explicitSelectedSegmentLocator: explicitUserSelection
-                        )
-                        VStack(spacing: 4) {
-                            Text(header.sectionTitle)
-                                .font(.headline)
-                                .multilineTextAlignment(.center)
-                                .frame(maxWidth: .infinity)
-                            if let badge = header.selectedSegmentBadge {
-                                Text(badge)
-                                    .font(.caption.weight(.medium))
-                                    .foregroundStyle(.secondary)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 2)
-                                    .background(Capsule().fill(Color.secondary.opacity(0.14)))
-                            }
-                        }
-                    } else {
-                        Text(viewModel.backendSection.map {
-                            LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)
-                        } ?? "")
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                    }
+                    ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.backendSection.map {
+                        LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)
+                    } ?? "")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
                     
                     Button {
                         if let next = viewModel.backendSection?.next {
@@ -99,7 +65,7 @@ struct iOSReaderNavigationPopoverView: View {
                     let safeIdx = min(max(0, Int(localNav)), viewModel.navigationItems.count - 1)
                     VStack(spacing: 8) {
                         if isSlidingNav {
-                            Text(viewModel.navigationItems[safeIdx].title)
+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems[safeIdx].locator, fallback: viewModel.navigationItems[safeIdx].title)
                                 .font(.headline)
                                 .foregroundColor(.accentColor)
                                 .lineLimit(1)
@@ -118,12 +84,12 @@ struct iOSReaderNavigationPopoverView: View {
                         }
 
                         HStack {
-                            Text(viewModel.navigationItems.first?.title ?? "")
+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.first?.locator, fallback: viewModel.navigationItems.first?.title ?? "")
                                 .font(.caption2)
                                 .foregroundColor(.secondary)
                                 .lineLimit(1)
                             Spacer()
-                            Text(viewModel.navigationItems.last?.title ?? "")
+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.last?.locator, fallback: viewModel.navigationItems.last?.title ?? "")
                                 .font(.caption2)
                                 .foregroundColor(.secondary)
                                 .lineLimit(1)

@@ -17,7 +17,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("searchOpen", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must open for search result")
 
         // A1: Verify rendered search highlights in actual attributed text
@@ -89,7 +89,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
             }
         }
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must open upon selecting search result")
 
         // Clear button must appear
@@ -108,11 +108,26 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
     }
 
     func testA3_OrdinaryReaderHasNoClearSearchHighlightButton() throws {
-        // Launch normal reader without search provenance
+        // The preceding cases deliberately persist a search-origin Genesis
+        // tab. Opening that same retained tab is not a fresh ordinary reader.
+        // Close its real documents through native controls before reopening;
+        // do not clear defaults, change the renderer or synthesize diagnostics.
+        launchWithScenario("reader", backend: "sefaria")
+        dismissAlertsIfNeeded()
+        let strip = app.descendants(matching: .any)["reader-document-tabs"]
+        XCTAssertTrue(strip.waitForExistence(timeout: 20))
+        let closeActions = strip.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "סגור "))
+        for _ in 0..<20 {
+            guard let close = closeActions.allElementsBoundByIndex.first(where: { $0.isHittable }) else { break }
+            close.tap()
+        }
+        XCTAssertEqual(closeActions.count, 0, "Ordinary reading must start without retained search-origin documents")
+        app.terminate()
+        // Launch normal reader without search provenance.
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 15.0), "Reader surface must exist")
 
         // Verify Clear 'X' button is NOT present for ordinary reading
@@ -131,7 +146,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
         launchWithScenario("reader", backend: "sefaria")
         dismissAlertsIfNeeded()
 
-        let readerSurface = app.otherElements["reader-surface"]
+        let readerSurface = app.textViews["reader-text"]
         XCTAssertTrue(waitForElement(readerSurface, timeout: 12.0), "Reader surface must exist")
 
         let headerTitle = app.staticTexts["reader-header-title"]
@@ -160,6 +175,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
     func testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState() throws {
         launchWithScenario("readerTOC", backend: "sefaria")
         dismissAlertsIfNeeded()
+        revealTableOfContentsPageIfPresent()
 
         // TOC list or navigation items must appear
         let tocSearch = app.searchFields.firstMatch
@@ -195,6 +211,7 @@ final class Build8401SevenDefectsAcceptanceTests: MaktabahUITestBase {
     func testF2_HebrewTOCStructureAndDafLabels() throws {
         launchWithScenario("readerTOC", backend: "sefaria", language: "he", locale: "he_IL")
         dismissAlertsIfNeeded()
+        revealTableOfContentsPageIfPresent()
 
         let tocSearch = app.searchFields.firstMatch
         XCTAssertTrue(waitForElement(tocSearch, timeout: 12.0), "TOC must be interactive")

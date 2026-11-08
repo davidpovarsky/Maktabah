@@ -11,27 +11,133 @@ on:
         required: true
         type: boolean
         default: true
+      validation_runner:
+        description: Xcode 27 acceptance, or macOS 26 SDK diagnostics (cannot satisfy iPadOS 27 gate)
+        required: true
+        type: choice
+        default: xcode-27
+        options:
+          - xcode-27
+          - macos-26
+      source_ref:
+        description: Optional immutable baseline SHA for original-app visual comparison; empty builds this commit
+        required: false
+        type: string
+        default: ''
+      run_production_release:
+        description: After the Debug UI matrix, validate a Release binary over the full native production corpus
+        required: true
+        type: boolean
+        default: false
+      ui_sdk_check_only:
+        description: Only check XCTest SDK compilation and portable workspace contracts; no app/runtime acceptance
+        required: true
+        type: boolean
+        default: false
+      ui_diagnostic_cases:
+        description: Optional exact Suite/testMethod diagnostics (phone suite on iPhone, others on 11-inch); never satisfies the full matrix or Release gate
+        required: false
+        type: string
+        default: ''
 
 permissions:
   actions: read
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}
   cancel-in-progress: true
 
 jobs:
+  ui-sdk-check-only:
+    name: Focused SDK and workspace checks (no app/runtime acceptance)
+    if: ${{ inputs.ui_sdk_check_only }}
+    runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
+    timeout-minutes: 15
+    steps:
+      - name: Reject conflicting acceptance inputs
+        if: ${{ inputs.run_production_release || inputs.source_ref != '' }}
+        run: |
+          echo "::error::SDK-only mode cannot request baseline or production acceptance."
+          exit 1
+      - uses: actions/checkout@v4
+      - name: Typecheck black-box tests with the actual iPad SDK
+        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
+      - name: Verify actual portable workspace contracts on macOS
+        run: python3 Scripts/CI/test-faithful-workspace.py
+      - name: Upload exact SDK and compiler diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faithful-ui-sdk-check
+          path: |
+            build/artifacts/ui-acceptance-typecheck.*
+            build/artifacts/xcuiautomation-voiceover-sdk.txt
+            build/artifacts/toolbar-sdk-compile.*
+            build/artifacts/workspace-compile.log
+            build/artifacts/workspace-test-results.log
+
   validate-sefaria-embedded:
     name: Validate Sefaria-Mobile Embedded Build and Runtime
-    runs-on: xcode-27
-    timeout-minutes: 120
+    if: ${{ !inputs.ui_sdk_check_only }}
+    runs-on: ${{ inputs.validation_runner || 'xcode-27' }}
+    timeout-minutes: 360
 
     steps:
+      - name: Require Debug UI acceptance before the production Release gate
+        if: ${{ inputs.run_production_release && !inputs.run_simulator_tests }}
+        run: |
+          echo "::error::Production Release acceptance requires the real Debug UI matrix in the same run."
+          exit 1
+
       - name: Checkout Repository with Submodules
         uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 1
+          ref: ${{ inputs.source_ref || github.sha }}
+
+      - name: Stage black-box visual tests for an immutable baseline
+        if: ${{ inputs.source_ref != '' }}
+        env:
+          TEST_SOURCE_SHA: ${{ github.sha }}
+          BASELINE_SOURCE_SHA: ${{ inputs.source_ref }}
+        run: |
+          set -euo pipefail
+          test "$BASELINE_SOURCE_SHA" = f092f3996927251d105dfb9243dfac487b196534
+          test "$(git rev-parse HEAD)" = "$BASELINE_SOURCE_SHA"
+          git fetch --no-tags --depth=1 origin "$TEST_SOURCE_SHA"
+          git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift" > Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+          git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/MaktabahUITestBase.swift" > Maktabah-iOSUITests/MaktabahUITestBase.swift
+          git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/verify-faithful-xctest.py" > Scripts/CI/verify-faithful-xctest.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/typecheck-faithful-ui-tests.py" > Scripts/CI/typecheck-faithful-ui-tests.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/build-faithful-prototype-reference.py" > Scripts/CI/build-faithful-prototype-reference.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/shutdown-faithful-simulator.py" > Scripts/CI/shutdown-faithful-simulator.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/collect-faithful-simulator-failure.py" > Scripts/CI/collect-faithful-simulator-failure.py
+          mkdir -p tools/faithful-ui-reference
+          git show "$TEST_SOURCE_SHA:tools/faithful-ui-reference/MyApp.swift" > tools/faithful-ui-reference/MyApp.swift
+          mkdir -p build/artifacts
+          git rev-parse HEAD > build/artifacts/app-source-sha.txt
+          printf '%s\n' "$TEST_SOURCE_SHA" > build/artifacts/black-box-test-source-sha.txt
+
+      - name: Typecheck black-box UI tests before building the app
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
+        run: python3 Scripts/CI/typecheck-faithful-ui-tests.py
+
+      - name: Test original source ports on the actual iPad SDK
+        if: ${{ inputs.source_ref == '' && (github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests) }}
+        timeout-minutes: 20
+        run: |
+          set -euo pipefail
+          mkdir -p build/artifacts
+          python3 Scripts/CI/isolated-ipad-simulator.py --out sim_udid.txt --major "${VALIDATION_IOS_MAJOR:-27}"
+          SIM_UDID=$(cat sim_udid.txt)
+          python3 Scripts/CI/test-faithful-tabs-in-app.py
+          cd "$GITHUB_WORKSPACE/Source/ChavrusaText/Dependencies/CommandPalette"
+          xcodebuild test -scheme CommandPalette -destination "platform=iOS Simulator,id=$SIM_UDID" -resultBundlePath "$GITHUB_WORKSPACE/build/artifacts/command-palette.xcresult"
+          python3 "$GITHUB_WORKSPACE/Scripts/CI/isolated-ipad-simulator.py" --cleanup
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
@@ -86,6 +192,10 @@ jobs:
           echo "=== Running 317 Swift Component & RPC Contract Tests ==="
           chmod +x Scripts/run-chavrusa-component-tests.sh
           bash Scripts/run-chavrusa-component-tests.sh
+
+      - name: Test actual workspace persistence and canonical navigation presentation
+        if: ${{ inputs.source_ref == '' }}
+        run: python3 Scripts/CI/test-faithful-workspace.py
 
       - name: Setup Ruby and CocoaPods
         uses: ruby/setup-ruby@v1
@@ -173,6 +283,13 @@ jobs:
           bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
           python3 Scripts/CI/prepare-swift-packages.py
 
+      - name: Resolve exact candidate Swift packages
+        if: ${{ inputs.source_ref == '' }}
+        run: |
+          set -euo pipefail
+          xcodebuild -resolvePackageDependencies -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
+          plutil -lint Maktabah.xcodeproj/project.pbxproj
+
       - name: Build Maktabah-iOS for iPad Simulator
         run: |
           echo "=== Building Maktabah-iOS for Simulator ==="
@@ -230,11 +347,12 @@ jobs:
           fi
 
       - name: Boot iPad Simulator and Verify App Launch
+        timeout-minutes: 15
         run: |
           set -euo pipefail
           echo "=== Discovering available iPad Simulator ==="
           xcrun simctl list runtimes
-          python3 Scripts/CI/isolated-ipad-simulator.py --out sim_udid.txt
+          python3 Scripts/CI/isolated-ipad-simulator.py --out sim_udid.txt --major "${VALIDATION_IOS_MAJOR:-27}"
           SIM_UDID=$(cat sim_udid.txt)
           echo "Booting simulator: ${SIM_UDID}"
           xcrun simctl boot "${SIM_UDID}" || true
@@ -264,53 +382,64 @@ jobs:
 
           echo "Terminating standalone launch before running test runner..."
           xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
+          python3 Scripts/CI/shutdown-faithful-simulator.py "${SIM_UDID}"
 
-      - name: Run Xcode Simulator Unit Tests
+      - name: Build the supplied original prototype as an isolated visual oracle
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
+        run: python3 Scripts/CI/build-faithful-prototype-reference.py
+
+      - name: Run genuine native UI and visual matrix on 11 and 13 inch iPads
+        id: faithful_ui_matrix
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
+        timeout-minutes: 210
+        env:
+          VALIDATING_BASELINE: ${{ inputs.source_ref != '' }}
+          FAITHFUL_DIAGNOSTIC_CASES: ${{ inputs.ui_diagnostic_cases }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/run-faithful-ipad-matrix.py
+      - name: Full native production corpus and Release UI acceptance
+        if: ${{ inputs.run_production_release && inputs.source_ref == '' && inputs.ui_diagnostic_cases == '' && steps.faithful_ui_matrix.outcome == 'success' }}
+        timeout-minutes: 120
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/run-faithful-production-release.py
+
+      - name: Capture preflight Simulator failure before artifact upload
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          set -euo pipefail
-          echo "=== Running Unit Tests on iPad Simulator ==="
-          export PROJECT_ROOT="${PWD}/Vendor/SefariaMobile/Upstream"
-          export NODE_PATH="${PWD}/Vendor/SefariaMobile/Upstream/node_modules"
-          export RCT_NO_LAUNCH_PACKAGER=1
-          export SKIP_BUNDLING=1
-          export GOOGLE_SERVICES_FILE="${PWD}/Source/GoogleService-Info.plist"
-          if [ -f sim_udid.txt ]; then
-            SIM_UDID=$(cat sim_udid.txt)
-            DESTINATION="platform=iOS Simulator,id=${SIM_UDID}"
-          else
-            echo "::error::Run-owned simulator receipt is missing"
-            exit 1
-          fi
-          echo "Testing on destination: ${DESTINATION}"
-          TEST_EXIT=0
-          xcodebuild test-without-building \
-            -workspace Maktabah.xcworkspace \
-            -scheme Maktabah-iOS \
-            -destination "${DESTINATION}" \
-            -derivedDataPath build/DerivedData \
-            -only-testing:Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests \
-            -only-testing:Maktabah-iOSUITests/ChavrusaTextiPadUIAcceptanceTests \
-            -resultBundlePath build/artifacts/result.xcresult \
-            2>&1 | tee build/artifacts/test-simulator.log || TEST_EXIT=$?
-
-          if [ "$TEST_EXIT" -ne 0 ]; then
-            echo "=== Simulator Crash Reports ==="
-            ls -la ~/Library/Logs/DiagnosticReports/ || true
-            for f in ~/Library/Logs/DiagnosticReports/*; do
-              [ -f "$f" ] || continue
-              echo "--- $f ---"
-              head -n 60 "$f"
-            done
-            echo "=== Simulator App System Logs ==="
-            if [ -n "${SIM_UDID:-}" ]; then
-              xcrun simctl spawn "${SIM_UDID}" log show --predicate 'process == "Maktabah" OR process == "Maktabah-iOSUITests-Runner"' --style syslog --last 5m | tail -n 100 || true
-            fi
-            exit "$TEST_EXIT"
+          if [ -f sim_udid.txt ] && [ ! -f build/artifacts/faithful-ipad-matrix.json ]; then
+            python3 Scripts/CI/collect-faithful-simulator-failure.py "$(cat sim_udid.txt)" preflight
           fi
 
-      - name: Clean up only this run-owned iPad simulator
+      - name: Clean up only this run-owned preflight simulator
         if: always()
         run: python3 Scripts/CI/isolated-ipad-simulator.py --cleanup
+
+      - name: Upload stable native screenshots and execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faithful-native-evidence
+          path: |
+            build/artifacts/app-source-sha.txt
+            build/artifacts/black-box-test-source-sha.txt
+            build/artifacts/faithful-ipad-matrix.json
+            build/artifacts/test-simulator*.log
+            build/artifacts/test-case-execution-*.json
+            build/artifacts/miniTest10-native-fixture-install*.json
+            build/artifacts/prototype-reference-manifest.json
+            build/artifacts/production-release-acceptance.json
+            build/artifacts/production-native-fixture-install.json
+            build/artifacts/production-release-tests.log
+            build/artifacts/viewport-reports-*/**/*.json
+            build/artifacts/visual-*/**/*.json
+            build/artifacts/visual-*/**/*.png
+            build/artifacts/visual-*/**/*.txt
+            build/artifacts/simulator-failure-*.png
+            build/artifacts/simulator-failure-*.json
+            build/artifacts/simulator-failure-*.log
 
       - name: Upload Build & Verification Manifests
         if: always()
@@ -324,5 +453,30 @@ jobs:
             build/artifacts/simulator-isolation.json
             build/artifacts/simulator-launch.png
             build/artifacts/simulator-app.log
+            build/artifacts/simulator-failure-*
             build/artifacts/test-simulator.log
-            build/artifacts/result.xcresult
+            build/artifacts/result*.xcresult
+            build/artifacts/test-simulator-*.log
+            build/artifacts/test-case-execution-*.json
+            build/artifacts/ui-acceptance-typecheck.*
+            build/artifacts/toolbar-sdk-compile.*
+            build/artifacts/miniTest10-native-fixture-install-*.json
+            build/artifacts/faithful-ipad-matrix.json
+            build/artifacts/simctl-ui-help.txt
+            build/artifacts/prototype-reference-manifest.json
+            build/artifacts/workspace-compile.log
+            build/artifacts/workspace-test-results.log
+            build/artifacts/production-release.xcresult
+            build/artifacts/production-release-tests.log
+            build/artifacts/production-release-acceptance.json
+            build/artifacts/production-native-fixture-install.json
+            build/artifacts/visual-*
+            build/artifacts/viewport-reports-*
+            build/artifacts/duck-tabs.xcresult
+            build/artifacts/command-palette.xcresult
+            build/artifacts/app-source-sha.txt
+            build/artifacts/black-box-test-source-sha.txt
+            build/artifacts/miniTest10-native-fixture-install.json
+            docs/ipad-ui-rebuild
+            SOURCE_TO_PORT_DIFF.md
+            !build/artifacts/**/*.xcresult/Staging/**

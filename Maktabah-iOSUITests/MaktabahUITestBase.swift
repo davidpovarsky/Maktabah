@@ -29,6 +29,7 @@ public struct TestRenderedHighlightSnapshot: Codable, Sendable {
 
 class MaktabahUITestBase: XCTestCase {
     var app: XCUIApplication!
+    private let workspaceTestNamespace = UUID().uuidString
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -56,7 +57,8 @@ class MaktabahUITestBase: XCTestCase {
         extraArgs: [String] = [],
         extraEnv: [String: String] = [:],
         language: String = "he",
-        locale: String = "he_IL"
+        locale: String = "he_IL",
+        extraEnvironment: [String: String] = [:]
     ) -> XCUIApplication {
         let app = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
         var args: [String] = []
@@ -110,11 +112,15 @@ class MaktabahUITestBase: XCTestCase {
             "-AppleLanguages", "(\(language))",
             "-AppleLocale", locale
         ] + extraArgs
+        if tier != .production && !args.contains("-studyWorkspaceTestingNamespace") {
+            // Isolate sidecars across independent tests while preserving state
+            // across relaunches within a test. All reader features stay enabled.
+            args += ["-studyWorkspaceTestingNamespace", workspaceTestNamespace]
+        }
 
         app.launchArguments = args
-        for (k, v) in extraEnv {
-            env[k] = v
-        }
+        env.merge(extraEnv) { _, extra in extra }
+        env.merge(extraEnvironment) { _, extra in extra }
         for (k, v) in env {
             app.launchEnvironment[k] = v
         }
@@ -137,7 +143,6 @@ class MaktabahUITestBase: XCTestCase {
             scenario: scenario,
             backend: backend,
             extraArgs: extraArgs,
-            extraEnv: extraEnv,
             language: language,
             locale: locale
         )
@@ -153,6 +158,21 @@ class MaktabahUITestBase: XCTestCase {
             return TestRenderedHighlightSnapshot.fromJSON(val)
         }
         return nil
+    }
+
+    /// Follow the actual two-page sidebar when present; original 9401 already
+    /// presents its TOC in the middle column and needs no extra interaction.
+    func revealTableOfContentsPageIfPresent() {
+        let page = app.buttons["reader-sidebar-page-1"]
+        if page.exists {
+            if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+                let toggle = app.buttons["reader-host-sidebar-toggle"]
+                XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+                toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+            }
+            XCTAssertTrue(page.waitForExistence(timeout: 10))
+            page.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        }
     }
 
     func dismissAlertsIfNeeded() {

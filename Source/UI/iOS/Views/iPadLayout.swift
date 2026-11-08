@@ -17,7 +17,7 @@ struct iPadLayout: View {
     @AppStorage("lastSelectedTab") private var savedSelectedTab: iOSTab = .viewer
     @StateObject private var historyViewModel = HistoryViewModel.shared
     @StateObject private var backendCoordinator = BackendCoordinator.shared
-    @State private var sidebarCoordinator = ReaderSidebarStateCoordinator()
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -95,37 +95,46 @@ struct iPadLayout: View {
                 bManager.searchViewModel.setSelectedBooks(newIds)
             }
         }
-        .onAppear {
-            if columnVisibility == .detailOnly {
-                sidebarCoordinator.sidebarVisible = false
-            } else if columnVisibility == .all || columnVisibility == .doubleColumn {
-                sidebarCoordinator.sidebarVisible = true
-            }
-        }
-        .onChange(of: columnVisibility) { _, newVisibility in
-            let shouldBeVisible = (newVisibility != .detailOnly)
-            if sidebarCoordinator.sidebarVisible != shouldBeVisible {
-                sidebarCoordinator.sidebarVisible = shouldBeVisible
-            }
-        }
-        .onChange(of: sidebarCoordinator.sidebarVisible) { _, isVisible in
-            let target: NavigationSplitViewVisibility = isVisible ? .all : .detailOnly
-            if columnVisibility != target {
-                columnVisibility = target
-            }
-        }
     }
 
     // MARK: - Tab Contents
 
     @ViewBuilder
     private var viewerTabContent: some View {
-        if ChavrusaTextFeatureFlags.shared.effectiveSidebarPagerEnabled {
-            ReaderTwoColumnSplitHost(
-                sidebarCoordinator: sidebarCoordinator,
-                preferredCompactColumn: $preferredLibraryCompactColumn,
-                showSettings: $showSettings
-            )
+        if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad {
+            ChavrusaReaderHost(
+                manager: bManager,
+                columnVisibility: $columnVisibility,
+                preferredCompactColumn: $preferredLibraryCompactColumn
+            ) { isActive in
+                NavigationStack {
+                    iOSLibraryView(groupsToolbarActions: true)
+                        .navigationTitle(iOSTab.viewer.title)
+                        .toolbarGeneral(showSettings: $showSettings)
+                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
+                }
+                .toolbarBackground(Color.appBackground, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .background(Color.appBackground)
+                .accessibilityElement(children: .contain)
+                .accessibilityIdentifier("library-column")
+            } contents: { isActive in
+                NavigationStack {
+                    activeReaderTableOfContents
+                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
+                }
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("toc-column")
+            } reader: {
+                iOSReaderTabView(
+                    columnVisibility: $columnVisibility,
+                    preferredCompactColumn: $preferredLibraryCompactColumn,
+                    showsLegacyDocumentTabs: false
+                )
+                .background(Color.appBackground)
+                .accessibilityElement(children: .contain)
+                .accessibilityIdentifier("reader-detail-column")
+            }
         } else {
             NavigationSplitView(
                 columnVisibility: $columnVisibility,
@@ -153,8 +162,7 @@ struct iPadLayout: View {
             } detail: {
                 iOSReaderTabView(
                     columnVisibility: $columnVisibility,
-                    preferredCompactColumn: $preferredLibraryCompactColumn,
-                    sidebarCoordinator: sidebarCoordinator
+                    preferredCompactColumn: $preferredLibraryCompactColumn
                 )
                     .background(Color.appBackground)
                     .accessibilityElement(children: .contain)
@@ -162,16 +170,6 @@ struct iPadLayout: View {
             }
             .navigationSplitViewStyle(.balanced)
             .background(Color.appBackground.ignoresSafeArea())
-            .onAppear {
-                sidebarCoordinator.onUpdateLegacySplitVisibility = { visibility, compactColumn in
-                    withAnimation(.snappy(duration: 0.25)) {
-                        columnVisibility = visibility
-                        if let compactColumn {
-                            preferredLibraryCompactColumn = compactColumn
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -184,7 +182,12 @@ struct iPadLayout: View {
                 bookTitle: tab.book.book,
                 onClose: closeTableOfContents,
                 embedsNavigationStack: false,
-                onSelect: tab.viewModel.didSelectTOCNode
+                onSelect: { id in
+                    tab.viewModel.didSelectTOCNode(id: id)
+                    if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad && horizontalSizeClass == .compact {
+                        closeTableOfContents()
+                    }
+                }
             )
             .toolbar(removing: .sidebarToggle)
             .onAppear {

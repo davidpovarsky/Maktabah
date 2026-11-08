@@ -81,14 +81,13 @@ struct iOSReaderWorkspaceView: View {
     @Binding private var preferredCompactColumn: NavigationSplitViewColumn
 
     @Environment(iOSNavigationManager.self) private var navigationManager
-    @Environment(ReaderSidebarStateCoordinator.self) private var sidebarCoordinator: ReaderSidebarStateCoordinator?
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(\.layoutDirection) private var layoutDirection
 
     @State private var compactContentsRequested = false
     @State private var compactUsesContentsFallback = false
     @State private var panelWidth = Self.defaultPanelWidth
-    @State private var measuredWorkspaceWidth: CGFloat = 0
     @State private var dragStartWidth: CGFloat?
     @State private var showPanelSheet = false
     @State private var compactPanelDetent: PresentationDetent = .medium
@@ -141,16 +140,20 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var contentsIsOpen: Bool {
-        libraryColumnVisibility != .detailOnly
+        if let sidebarCoordinator {
+            return sidebarCoordinator.page == .contents && libraryColumnVisibility != .detailOnly
+        }
+        return libraryColumnVisibility != .detailOnly
     }
 
     private var shouldPresentPanelInContent: Bool {
-        ReaderInspectorHostPolicy.shouldPresentPanelInContent(
-            availableWidth: measuredWorkspaceWidth > 0 ? measuredWorkspaceWidth : (sidebarCoordinator?.availableReaderWidth ?? 0),
-            isCompactHorizontalSizeClass: !useWideLayout,
-            isAllColumnsVisibleInLegacySplit: useWideLayout && librarySidebarIsOpen && contentsIsOpen,
-            inspectorHostRefinementEnabled: ChavrusaTextFeatureFlags.shared.effectiveInspectorHostRefinementEnabled
-        )
+        // Both pages occupy the same sidebar. Selecting a page must not switch
+        // between two structural reader branches and recreate its TextKit view.
+        if sidebarCoordinator != nil {
+            return (horizontalSizeClass != .regular && UIDevice.current.userInterfaceIdiom == .pad)
+                || (useWideLayout && librarySidebarIsOpen)
+        }
+        return useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }
 
     private var showPanel: Bool {
@@ -295,31 +298,29 @@ struct iOSReaderWorkspaceView: View {
     @ViewBuilder
     private var workspaceDetail: some View {
         GeometryReader { geometry in
-            Group {
-                if useWideLayout {
-                    if shouldPresentPanelInContent {
-                        floatingWorkspace
-                    } else {
-                        wideWorkspace(totalWidth: geometry.size.width)
-                    }
-                } else if compactContentsRequested {
-                    tocColumn
+            if sidebarCoordinator != nil {
+                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - 430))
+                ChavrusaReaderWorkspaceLayout(
+                    reader: readerSurface,
+                    panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel),
+                    resizeHandle: panelResizeHandle(allowedMaximum: maximum),
+                    panelWidth: min(max(panelWidth, Self.minimumPanelWidth), maximum),
+                    showPanel: showPanel,
+                    floats: shouldPresentPanelInContent,
+                    floatingState: $floatingPanelState
+                )
+            } else if useWideLayout {
+                if shouldPresentPanelInContent {
+                    floatingWorkspace
                 } else {
-                    readerSurface
+                    wideWorkspace(totalWidth: geometry.size.width)
                 }
-            }
-            .onAppear {
-                measuredWorkspaceWidth = geometry.size.width
-            }
-            .onChange(of: geometry.size.width) { _, newWidth in
-                let previousShouldPresentInContent = shouldPresentPanelInContent
-                measuredWorkspaceWidth = newWidth
-                if previousShouldPresentInContent != shouldPresentPanelInContent {
-                    updatePanelPresentation(animated: true)
-                }
+            } else if compactContentsRequested {
+                tocColumn
+            } else {
+                readerSurface
             }
         }
-        .background(ReaderInspectorHostPolicy.resolvedWorkspaceBackgroundColor())
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-workspace")
     }
@@ -352,18 +353,20 @@ struct iOSReaderWorkspaceView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                VStack(spacing: 1) {
-                    Text(readerHeaderTitle)
-                        .font(.headline)
-                        .lineLimit(1)
-                        .accessibilityIdentifier("reader-header-visible-title")
-                    if !readerHeaderSubtitle.isEmpty {
-                        Text(readerHeaderSubtitle)
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
+            if sidebarCoordinator == nil {
+                ToolbarItem(placement: .principal) {
+                    VStack(spacing: 1) {
+                        Text(readerHeaderTitle)
+                            .font(.headline)
                             .lineLimit(1)
-                            .accessibilityIdentifier("reader-header-subtitle")
+                            .accessibilityIdentifier("reader-header-visible-title")
+                        if !readerHeaderSubtitle.isEmpty {
+                            Text(readerHeaderSubtitle)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                                .accessibilityIdentifier("reader-header-subtitle")
+                        }
                     }
                 }
             }
@@ -405,10 +408,7 @@ struct iOSReaderWorkspaceView: View {
             if showPanel {
                 panelResizeHandle(allowedMaximum: allowedMaximum)
                     .transition(.opacity)
-                inspectorPanel(
-                    showsCloseButton: true,
-                    chrome: ReaderInspectorHostPolicy.resolvedWideWorkspaceInspectorChrome()
-                )
+                inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
                     .environment(\.layoutDirection, layoutDirection)
                     .frame(width: actualPanelWidth)
                     .transition(.opacity)
@@ -421,7 +421,7 @@ struct iOSReaderWorkspaceView: View {
 
     private func panelResizeHandle(allowedMaximum: CGFloat) -> some View {
         Rectangle()
-            .fill(ReaderInspectorHostPolicy.resolvedWorkspaceBackgroundColor())
+            .fill(.clear)
             .frame(width: 18)
             .overlay {
                 Capsule()
@@ -458,16 +458,13 @@ struct iOSReaderWorkspaceView: View {
         showsCloseButton: Bool,
         chrome: TorahInspectorChrome
     ) -> some View {
-        let hideTitles = ChavrusaTextFeatureFlags.shared.effectiveInspectorHostRefinementEnabled
-        return OtzariaReaderSourcesInspectorHost(
+        OtzariaReaderSourcesInspectorHost(
             viewModel: viewModel,
             navigationManager: navigationManager,
             inspectorSession: $inspectorSession,
             selectedTool: $selectedTool,
             showsCloseButton: showsCloseButton,
             chrome: chrome,
-            showsStudyToolsTitle: !hideTitles,
-            showsSelectedSegmentTitle: !hideTitles,
             contentID: inspectorContentID,
             onAddNote: { selection, completion in
                 pendingNotesDidChange = completion
@@ -558,16 +555,16 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func presentContents() {
+        if let sidebarCoordinator {
+            sidebarCoordinator.showContents()
+            preferredCompactColumn = .sidebar
+            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) { libraryColumnVisibility = .all }
+            return
+        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
                 compactContentsRequested = true
                 compactUsesContentsFallback = true
-            }
-            return
-        }
-        if ChavrusaTextFeatureFlags.shared.effectiveSidebarPagerEnabled, let sidebarCoordinator {
-            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
-                sidebarCoordinator.showTOC()
             }
             return
         }
@@ -580,16 +577,15 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func closeContents() {
+        if sidebarCoordinator != nil {
+            preferredCompactColumn = .detail
+            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) { libraryColumnVisibility = .detailOnly }
+            return
+        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                 compactContentsRequested = false
                 compactUsesContentsFallback = false
-            }
-            return
-        }
-        if ChavrusaTextFeatureFlags.shared.effectiveSidebarPagerEnabled, let sidebarCoordinator {
-            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
-                sidebarCoordinator.closeSidebar()
             }
             return
         }
@@ -608,14 +604,6 @@ struct iOSReaderWorkspaceView: View {
         if showPanel {
             viewModel.closeReaderInspector()
         } else {
-            if viewModel.selectedSegmentLocator == nil && viewModel.otzariaSelectedLineAnchor == nil {
-                let fallbackLocator = viewModel.currentLocator
-                    ?? viewModel.readerState.currentLocator
-                    ?? viewModel.backendSection?.locator
-                if let fallbackLocator {
-                    viewModel.selectedSegmentLocator = fallbackLocator
-                }
-            }
             viewModel.readerInspectorVisible = true
         }
     }

@@ -1,0 +1,234 @@
+[
+  {
+    "repo": "ScrollableTabBar",
+    "original": "Sources/ScrollableTabBar/ScrollableTabBar.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+    "sha256": "7f029400d9365eb095a8b32e02b188f0eabd6bd4a85572eb3b8d4771b4d966fc",
+    "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+    "destinationSHA256": "a6db2cc014017eec30fda9991f251f686feadc2b5e454494b73e1f7ba6e27b0f"
+  },
+  {
+    "repo": "ScrollableTabBar",
+    "original": "Sources/ScrollableTabBar/ScrollableTabBarDelegate.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+    "sha256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+    "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+    "destinationSHA256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38"
+  },
+  {
+    "repo": "ScrollableTabBar",
+    "original": "Sources/ScrollableTabBar/AdaptiveTabContent.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+    "sha256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+    "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+    "destinationSHA256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Model/Command.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/Command.swift",
+    "sha256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+    "reason": "Identical original source.",
+    "destinationSHA256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Model/CommandShortcut.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/CommandShortcut.swift",
+    "sha256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+    "reason": "Identical original source.",
+    "destinationSHA256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Recents/RecentCommands.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Recents/RecentCommands.swift",
+    "sha256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+    "reason": "Identical original source.",
+    "destinationSHA256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Search/CommandPaletteResults.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteResults.swift",
+    "sha256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+    "reason": "Identical original source.",
+    "destinationSHA256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+    "sha256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+    "reason": "Identical original source.",
+    "destinationSHA256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Search/FuzzyMatcher.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift",
+    "sha256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+    "reason": "Identical original source.",
+    "destinationSHA256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+    "sha256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+    "reason": "Identical original source.",
+    "destinationSHA256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+    "sha256": "d33809cb1628b7418f11625c5107f2510298472ecbef11e28c2c855b48ea5b3c",
+    "reason": "Optional bidirectional queryBinding, default nil; rendered source and original esc KeyCap retained. Escape is handled by the downstream UIKit responder-chain wrapper. No fuzzy-search changes. Native validation pending.",
+    "destinationSHA256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Sources/CommandPalette/Views/PaletteComponents.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift",
+    "sha256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+    "reason": "Identical original source.",
+    "destinationSHA256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d"
+  },
+  {
+    "repo": "CommandPalette",
+    "original": "Package.swift",
+    "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+    "sha256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+    "reason": "Identical source",
+    "destinationSHA256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarLayout.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+    "sha256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+    "reason": "Identical source",
+    "destinationSHA256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabFlaredBackgroundView.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+    "sha256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+    "reason": "Identical source",
+    "destinationSHA256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabFlareBackgroundController.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+    "sha256": "69bdf8e28cc9428f0293f3931e8b6c77c3f67a2acd807339720c0fd2feaf79cd",
+    "reason": "Swift 6 SDK requires UIKit owner/display-link proxy and teardown to remain on MainActor. Only isolation annotations change; all flare geometry, scrolling, animation and lifecycle logic are original.",
+    "destinationSHA256": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarView.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+    "sha256": "b6445ea87271f769da5948ebc6ad9665f90659452246b91bfc5ba4245eff6cc2",
+    "reason": "Guard section/item existence before section-0 accesses and layout queries; all accordion calculations unchanged.",
+    "destinationSHA256": "7a31f5ec7a6e23b5d76387c64bec91ef0d0a6ef83c422d769c63d8b691455b25"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+    "sha256": "fd600406b508106fbb2d0297f3ea3ef67926f238de7ff0ddd0217d5769d26c32",
+    "reason": "Replace browser imports/TabObserver with book-domain observer; adapt model/title/favicon/theme and close glyph; preserve layout, separators, pointer/hover, close visibility, drag placeholder, animation and flare geometry.",
+    "destinationSHA256": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503"
+  },
+  {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "reason": "Exact SafariGlass, GlassButtonGroup and original motion equations/gestures/springs. Widen access levels; bypass touch deformation under Reduce Motion. Demo app/state/screens excluded.",
+    "destinationSHA256": "fa4d911c69d5ea9181d371c91448d272f3b868e2332e4504cd79aadf7439de81"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarViewController.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+    "sha256": "2aba6f273860245081a2d88bdd20902acc6099907907989e1d88d7356444ddf3",
+    "reason": "Keep original width policy, accordion selection/reveal, pointer, drag/drop/reorder, context menu, flare lifecycle and cell rendering; remove browser/fire/AI/analytics/app dependencies, route callbacks to book tabs and original library. Add current-membership guards.",
+    "destinationSHA256": "e9d8150667a0e0912197eaadc5c1bedda9a6dd7e7744c4d3dee9b09c4ad59ace"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "SharedPackages/UIComponents/Sources/UIComponents/iOS/FadeOutLabel.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+    "sha256": "25b3e118b3abc5acfe0aea411f371056d219ca344edc204137f41e26fd663aa7",
+    "reason": "Rename only, to avoid host type collisions. Original gradient renderer unchanged.",
+    "destinationSHA256": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarLayoutTests.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift",
+    "sha256": "8e823b02a50adfd826e852495834e69e984fd75fda34780750be7e0dc5ad5245",
+    "reason": "All original layout/accordion/hover/close/flare assertions retained. Only test module, theme and book-domain model construction adapted.",
+    "destinationSHA256": "ad26afe377a4322056b2c06ede3cca4182fa6f42fbc5f8ad783f651ebd682db8"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarViewControllerSizingTests.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
+    "sha256": "04b31e8a5a8b1f8913298674a3435dfeec9776ff0df3849fc177d9d2c2fc9ceb",
+    "reason": "Retain original hierarchy, sizing, reorder, selection, pointer, flare and foreground assertions. Exclude only two AI-chat-only tests for removed browser features. Use a real UIApplication test host, immutable nonisolated Progress, and 340pt narrow fixtures (including the original pointer conditional) to preserve the strict one-to-two-tab viewport after browser controls are removed. No behavioral assertion weakened.",
+    "destinationSHA256": "8b5002462ce45aa379b69e5a7c69afbf4507f93e75f16bd106a8126fad392994"
+  },
+  {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation.",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "destinationSHA256": "4821a4e833e95cd5f57c5a6fc69c3acde26993cecb165dae07aad1d28672a132"
+  },
+  {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+    "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action.",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "destinationSHA256": "c386e56adaa12b974c786fca78b439796c02dbc40f51b37453451d328ff8cb0e"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabSwitcherPageViewController.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original UICollectionView list/grid controller, 14pt spacing, adaptive one-to-four-column geometry, 664pt list cap, selection, swipe-close coordination, native context menus, and drag reorder. Replace the browser TabsModel, tracker header, Fire/AI/telemetry services, and browser previews with the stable-ID display callbacks to the canonical ReaderDocumentTab adapter and an honest unavailable-preview state.",
+    "sha256": "a12100a4c78e4d32da6df3ea7d137766a3da7a82fad2cdb84d4f371c12a9c8cf",
+    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabViewCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original card/border radii, shadow, close-button spacing animation, one-third-width swipe threshold, alpha and removal/cancel animations. Replace browser favicon, unread, screenshot, theme, analytics and AI state with book-domain title/backend state; mirror the existing horizontal swipe under RTL.",
+    "sha256": "6e8bb3fda08c289202c0abec6beeefb57a91bd420111c6f9506e768d97a88c57",
+    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabViewGridCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original 44pt header, 16pt leading icon, 12/8pt header padding, 8pt preview inset, 4pt bottom padding and close-container layout. Substitute a semantic book icon and explicit unavailable-preview content because the reader has no browser screenshot service.",
+    "sha256": "3c17cdbf42a3720645a558320f5fb28da29090f040f5d7a3c94745d43f6118ad",
+    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+  },
+  {
+    "repo": "DuckDuckGo-apple-browsers",
+    "original": "iOS/DuckDuckGo/TabSwitcher/TabViewListCell.swift",
+    "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+    "reason": "Preserve the original list row's 16/12pt horizontal padding, 8pt vertical padding, 24pt icon, 8pt inter-item spacing, 44pt control height, title/subtitle stack and close control. Remove browser URL, unread and multi-select-only presentation while retaining the source cell hierarchy.",
+    "sha256": "efcdd9ebba2697b2ef8b7dcbf3f71f27e4b5c26a73d8a5da47123edc28e73ca5",
+    "destinationSHA256": "e495a94fafecc4d7fc4df7e7bacc8d785ce6c8b419726df3268c0456663ebdc9"
+  }
+]

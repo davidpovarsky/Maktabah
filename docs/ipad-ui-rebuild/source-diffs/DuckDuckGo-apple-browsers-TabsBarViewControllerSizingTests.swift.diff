@@ -1,0 +1,154 @@
+--- iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarViewControllerSizingTests.swift
++++ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift
+@@ -19,9 +19,8 @@
+ 
+ import XCTest
+ import UIKit
+-import Core
+-
+-@testable import DuckDuckGo
++
++@testable import DuckDuckGoBookTabs
+ 
+ final class TabsBarViewControllerSizingTests: XCTestCase {
+ 
+@@ -40,10 +39,7 @@
+         XCTAssertIdentical(controller.collectionView.delegate, controller)
+         XCTAssertIdentical(controller.collectionView.dataSource, controller)
+         XCTAssertEqual(controller.buttonsStack.spacing, TabsBarViewController.Constants.stackSpacing)
+-        XCTAssertEqual(controller.buttonsStack.arrangedSubviews.count, 4)
+-        XCTAssertIdentical(controller.buttonsStack.arrangedSubviews[0], controller.aiChatChip)
+-        XCTAssertIdentical(controller.buttonsStack.arrangedSubviews[1], controller.aiChatMenuButton)
+-        XCTAssertIdentical(controller.buttonsStack.arrangedSubviews[2], controller.fireButton)
++        XCTAssertEqual(controller.buttonsStack.arrangedSubviews.count, 1)
+         // addTabButton is positioned manually outside buttonsStack, see recomputeItemSize()/TabsBarLayout.
+         XCTAssertFalse(controller.buttonsStack.arrangedSubviews.contains(controller.addTabButton))
+         XCTAssertIdentical(controller.addTabButton.superview, controller.view)
+@@ -51,35 +47,7 @@
+ 
+     // MARK: - Duck.ai chrome controls
+ 
+-    @MainActor
+-    func testAIChatMenuButtonIsTheDuckAIPill() throws {
+-        let controller = TabsBarViewController.create()
+-        controller.loadViewIfNeeded()
+-
+-        let configuration = try XCTUnwrap(controller.aiChatMenuButton.configuration)
+-        XCTAssertEqual(configuration.title, UserText.actionOpenAIChat)
+-        let icon = try XCTUnwrap(configuration.image)
+-        XCTAssertEqual(icon.size, CGSize(width: 16, height: 16))
+-        XCTAssertEqual(icon.renderingMode, .alwaysTemplate)
+-        XCTAssertEqual(configuration.background.cornerRadius, TabsBarViewController.Constants.aiChatMenuButtonCornerRadius)
+-        XCTAssertEqual(controller.aiChatMenuButton.accessibilityLabel, UserText.accessibilityLabelOpenAIChat)
+-    }
+-
+-    @MainActor
+-    func testWhenContextualSessionIsActiveThenAIChatMenuButtonSwapsToTheDownGlyph() throws {
+-        let controller = TabsBarViewController.create()
+-        controller.loadViewIfNeeded()
+-        let closedGlyph = try XCTUnwrap(controller.aiChatMenuButton.configuration?.image?.pngData())
+-
+-        controller.updateAIChatMenuButtonForContextualChat(hasContextualSession: true)
+-
+-        let openGlyph = try XCTUnwrap(controller.aiChatMenuButton.configuration?.image?.pngData())
+-        XCTAssertNotEqual(openGlyph, closedGlyph)
+-
+-        controller.updateAIChatMenuButtonForContextualChat(hasContextualSession: false)
+-
+-        XCTAssertEqual(try XCTUnwrap(controller.aiChatMenuButton.configuration?.image?.pngData()), closedGlyph)
+-    }
++
+ 
+     @MainActor
+     func testTabStripStartsAtDefaultFirstTabLeadingMargin() {
+@@ -159,7 +127,9 @@
+     @MainActor
+     func testDraggingInNarrowStripStaysStillAtCenterAndScrollsTowardEdge() throws {
+         let (controller, model) = makeOverflowingController()
+-        controller.view.frame.size.width = 400
++        // Removed browser controls leave more room. Preserve the original narrow
++        // viewport precondition (one to two 120pt tabs) in this book-domain host.
++        controller.view.frame.size.width = 340
+         controller.view.layoutIfNeeded()
+         controller.refresh(tabsModel: model)
+         let collectionView = controller.collectionView
+@@ -284,7 +254,7 @@
+ 
+     @MainActor
+     func testFoldedTabSelectsImmediatelyWhileRevealingAndRequiresSecondTapWhenHalfCovered() async throws {
+-        for width in [CGFloat(1024), 400] {
++        for width in [CGFloat(1024), 340] {
+             let (controller, model) = makeOverflowingController()
+             controller.view.frame.size.width = width
+             controller.view.layoutIfNeeded()
+@@ -345,7 +315,7 @@
+ 
+     @MainActor
+     func testPointerClickSelectsHalfCoveredTabImmediatelyAndLeavesTouchOnTheRevealPath() throws {
+-        for width in [CGFloat(1024), 400] {
++        for width in [CGFloat(1024), 340] {
+             let (controller, model) = makeOverflowingController()
+             controller.view.frame.size.width = width
+             controller.view.layoutIfNeeded()
+@@ -365,7 +335,7 @@
+             let frame = try XCTUnwrap(layout.unpinnedFrameForItem(at: current))
+             let viewportWidth = collectionView.bounds.inset(by: collectionView.adjustedContentInset).width
+             XCTAssertGreaterThan(viewportWidth, frame.width)
+-            if width == 400 {
++            if width == 340 {
+                 XCTAssertLessThan(viewportWidth, frame.width * 2)
+             }
+             let peek = min(frame.width / 2, (viewportWidth - frame.width) / 2)
+@@ -424,7 +394,7 @@
+ 
+         // Simulate stale presentation; this checks recovery, not UIKit's background snapshot cycle.
+         cell.applyCurrentStyle(isCurrent: false, isNextCurrent: false, hidesInactiveCloseButton: true,
+-                               withTheme: ThemeManager.shared.currentTheme)
++                               withTheme: ReaderTabsTheme())
+         background.isHidden = true
+         NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+ 
+@@ -439,13 +409,13 @@
+     }
+ 
+     @MainActor
+-    private func makeOverflowingController() -> (TabsBarViewController, TabsModel) {
++    private func makeOverflowingController() -> (TabsBarViewController, ReaderBookTabsModel) {
+         let controller = TabsBarViewController.create()
+         controller.loadViewIfNeeded()
+         controller.view.frame = CGRect(x: 0, y: 0, width: 1024, height: 40)
+         controller.view.layoutIfNeeded()
+-        let tabs = (0..<17).map { _ in Tab(desktop: true, fireTab: false) }
+-        let model = TabsModel(tabs: tabs, currentIndex: 8, desktop: true)
++        let tabs = (0..<17).map { _ in ReaderBookTabAdapter(id: UUID(), title: "ספר") }
++        let model = ReaderBookTabsModel(tabs: tabs, currentIndex: 8)
+         controller.refresh(tabsModel: model)
+         controller.collectionView.layoutIfNeeded()
+         return (controller, model)
+@@ -473,17 +443,7 @@
+     func tabsBar(_ controller: TabsBarViewController, didRemoveTabAtIndex index: Int) {}
+     func tabsBar(_ controller: TabsBarViewController, didRequestCloseOtherTabsForTabAtIndex index: Int) {}
+     func tabsBarDidRequestNewTab(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestForgetAll(_ controller: TabsBarViewController, fireRequest: FireRequest) {}
+-    func tabsBarDidRequestFireEducationDialog(_ controller: TabsBarViewController) {}
+     func tabsBarDidRequestTabSwitcher(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestNewFireTab(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestNewNormalTab(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestNewChat(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestAIChat(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestToggleAIChatContextualSheet(_ controller: TabsBarViewController) {}
+-    func tabsBarDidPressAIChatMenuButton(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestOpenAISettings(_ controller: TabsBarViewController) {}
+-    func tabsBarDidRequestDismissContextualSheet(_ controller: TabsBarViewController, completion: @escaping () -> Void) { completion() }
+ }
+ 
+ @MainActor
+@@ -494,7 +454,7 @@
+     var allowsMoveOperation: Bool { true }
+     var isRestrictedToDraggingApplication: Bool { true }
+     var progressIndicatorStyle: UIDropSessionProgressIndicatorStyle = .none
+-    var progress = Progress(totalUnitCount: 0)
++    nonisolated let progress = Progress(totalUnitCount: 0)
+     private let locationView: UIView
+     var point: CGPoint
+ 

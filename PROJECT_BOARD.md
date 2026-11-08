@@ -14,6 +14,18 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Native menu labels may insert Unicode bidi isolates around interpolated group names (`העבר אל ⁨שם⁩`), and the original Library action is `Select…`. Match the real menu's action prefix and group membership while keeping uniqueness/scope assertions; do not assume plain concatenated labels. Cold reader assertions must wait for the actual asynchronous sidecar projection, and retain before/after UUID-scoped sidecar attachments to distinguish stored-state loss from hydration timing.
+
+- Genuine 9401 compact-window captures in run 42008440372 show UIKit replacing the overflowed `reader-more-menu` with a native `BottomOverflowBarButtonItem` in the original bottom toolbar. Measure actual visible native controls for reader-body pixel checks; neither a missing overflowed child identifier nor a full-height Toolbar accessibility frame proves that the bottom bar disappeared. The 13-inch window was 375×557 with real text visible; retain its native screenshot/hierarchy as evidence.
+
+- iPadOS 27 cross-tab geometry needs actual flags-off/on comparison. In native 41960978106 captures, a viewer-only safeAreaInset for the 40pt document strip shifted global Search navigation from y=86pt to106pt, while candidate flags off matched immutable 9401. A downstream measured content stack and native navigation-frame assertions are prepared; do not classify this unapproved global movement as a transient screenshot difference.
+
+- Native XCTest acceptance must distinguish durable app state from a pre-install Simulator container UUID. Resolve UUID-scoped test sidecars in the actual installed data container; viewport observation must use the app's current Documents directory. Keep native system-setting/window restoration in XCTest teardown blocks, since an assertion abort can skip a Swift defer and contaminate later tests (including VoiceOver interpreting ordinary taps differently).
+
+- CoreSimulator runtime/device compatibility and install readiness are separate checks. One M5/27.1 pair was rejected at creation; a later 11-inch/27.0 pair was listed as supported but still timed out during install/launch. Filter `supportedDeviceTypes`, record the exact pair, keep only the current validation simulator active, and collect service diagnostics on timeout. Do not attribute the latter failure to an unsupported profile without evidence.
+
+- Read-only tab/group snapshots must read `fetchScrollPosition` / `fetchSelectedRange` into a local state copy. `ReaderViewModel.saveCurrentState()` also clears search and annotation events, so invoking it merely to update sidecar metadata can consume a pending search highlight before the original reader renders it. The faithful workspace adapter captures without that mutation.
+
 Useful technical discoveries, undocumented behavior, shortcuts, implementation tricks, platform behavior, or reusable knowledge discovered while working.
 
 - Swift App-Target Access Control: Types and members in iOS application targets (Maktabah-iOS) must avoid public modifiers when referencing internal models (BackendID, iOSReaderSession, TextLocator). App targets are compiled as a single module where default internal visibility provides clean access across all files without triggering Swift interface boundary errors.
@@ -73,11 +85,18 @@ Useful technical discoveries, undocumented behavior, shortcuts, implementation t
 
 Things worth testing or researching before deciding whether to implement them.
 
+- Baseline 9401's optional DEBUG `writeAcceptanceViewportReport` can assert during rotation **and sidebar width reflow** when `MAKTABAH_SMOKE_READY_FILE` is supplied (`41918768696`, `41926195676`, protected `iOSIbarotTextView.swift:153`). Do not activate it for acceptance. The faithful rebuild prepares a downstream read-only observer of the existing native source-anchor metadata, with fresh request IDs; protected renderer remains unchanged. Exact original JSON/file failure still needs diagnosis before any separately approved renderer fix.
+- Native `reader-text.value` in 9401 is diagnostic JSON, not book text, because `ReaderRenderedHighlightInspector` overrides UITextView accessibility. Never count its string length as rendered-content evidence. The rebuild preserves the native text value and existing dedicated diagnostics child; immutable-baseline verification requires physical screenshot evidence, with test-side pixel text-region detection prepared. Neither diagnostic counts nor a host identifier prove visible text.
+
 ## Open Questions
 
 Important unresolved questions or uncertainties.
 
 ## Planned / Todo
+
+- [ ] Verify a genuinely compact iPad window below the regular-width size class in the faithful rebuild. `iOSMainView` currently chooses `iPhoneLayout` solely by size class, which can discard the new iPad host when a physical iPad window becomes compact. The prepared window drag currently targets 55% of landscape width and may remain regular. Check actual geometry first; if needed use only the package-authorized minimal Scene routing hook, preserving phone/flags-off defaults and the existing FloatingPanel. Do not fake the size class or broadly rewrite root navigation.
+
+- [ ] Separate native bootstrap search-acceptance expectations by data profile. `OtzariaNativeBootstrapAcceptanceRunner` currently requires exactly `18_879` index documents in its optional search fixture, which is specific to miniTest10. Full production UI provisioning therefore uses the original digest/schema-verified installer with that optional fixture disabled; this is not full production search acceptance. Do not broaden DB/search-engine changes as part of the faithful UI rebuild.
 
 Concrete work that is worth doing but is not part of the current task.
 
@@ -88,6 +107,8 @@ Use Markdown checkboxes where useful:
 ## Done
 
 Completed items that are still useful to retain because they document an important decision, discovery, or implementation.
+
+- [x] Archive the previous experimental study workspace before faithful rebuild migration (2026-11-05, `[נועם | DEV] [MAIN_SESSION]`). The old build used `Maktabah/States/study_workspace_v1.json` and `study_workspace_v1.bak.json`, while the rebuild uses a separate sidecar path. Both old files are copied as opaque bytes, never decoded, imported or overwritten; repeat attach preserves the first archive. Four additional real persistence checks passed locally (41 total). Apple runtime validation remains separate.
 
 - [x] ChavrusaText Sefaria-Mobile Embedded Final Preflight & TestFlight Delivery (Build 9401)
   - Implemented: 2026-11-01

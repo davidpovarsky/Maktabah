@@ -40,7 +40,7 @@ if platform.system() == 'Windows':
           '-Xlinker',str(max(zstd_libs,key=lambda p:p.stat().st_mtime))]
  binary = OUT/'schema7-tests.exe'
 elif platform.system() == 'Darwin':
- sources += ['Source/Core/Database/ZstdDecompressor.swift', 'Source/Core/Configuration/AppLogger.swift']
+ sources += ['Source/Core/Database/ZstdDecompressor.swift', 'Source/Core/Database/ZSTDContextWrapper.swift', 'Source/Core/Configuration/AppLogger.swift']
  prefix = subprocess.check_output(['brew','--prefix','zstd'],text=True).strip()
  link += ['-L',prefix+'/lib','-lzstd']
  binary = OUT/'schema7-tests'

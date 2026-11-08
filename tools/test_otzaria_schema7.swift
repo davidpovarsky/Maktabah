@@ -103,6 +103,31 @@ import SQLite3
         tabA.select(noteVersion, workKey: "book:1", generation: 1)
         try check(tabA.selection(workKey: "book:1", generation: 1) == noteVersion && tabB.selection(workKey: "book:1", generation: 1) == nil, "Edition choices belong to one reader tab")
         try check(tabA.selection(workKey: "book:1", generation: 2) == nil && tabA.selection(workKey: "book:2", generation: 1) == nil, "Edition choice cannot cross database generations or books")
+        try sql("CREATE TABLE line_note(lineId INTEGER,noteIndex INTEGER,charPos INTEGER,hasMarker INTEGER,body TEXT)")
+        try sql("INSERT INTO book VALUES(4,'Notes','notes.txt')")
+        try sql("INSERT INTO line VALUES(400,4,0,'alpha','n0'),(401,4,1,'gamma','n1')")
+        try sql("INSERT INTO line_note VALUES(400,0,5,0,'note' || char(10) || 'continuation')")
+        let noteMap = try OtzariaSearchLineIndexResolver.resolve(ordinals: [0,1,2], bookID: 4, database: db, capabilities: .init(database: db))
+        try check(noteMap == [0:0,1:0,2:1], "Restored note newlines preserve the original Rust raw-text ordinal mapping")
+        let decorations = try await OtzariaLineDecorationRepository(context: context).decorations(for: .init(backend: .otzaria, workKey: "book:4", position: .legacyLine(0)))
+        try check(decorations.notes.first?.body == "note\ncontinuation" && decorations.notes.first?.charPosition == 5,
+                  "Edition footnotes retain original body and insertion coordinates")
+        try sql("CREATE TABLE zstd_dict(id INTEGER PRIMARY KEY,dict BLOB)")
+        try db.execute(query: "INSERT INTO zstd_dict VALUES(1,?)", parameters: [Data("raw dictionary seed".utf8)])
+        let compressedText = "בראשית ברא אלהים את השמים ואת הארץ"
+        let input = Data(compressedText.utf8)
+        var frame = Data(count: ZSTD_compressBound(input.count))
+        let compressedBytes = frame.withUnsafeMutableBytes { output in
+            input.withUnsafeBytes { source in ZSTD_compress(output.baseAddress, output.count, source.baseAddress, source.count, 3) }
+        }
+        try check(ZSTD_isError(compressedBytes) == 0, "Fixture compression uses the actual native zstd library")
+        frame.count = compressedBytes
+        let decoder = try OtzariaLineContentDecoder(database: db, capabilities: .init(database: db))
+        try check(try decoder.decode(frame: frame) == compressedText, "Production decoder preserves compressed Hebrew UTF8")
+        do {
+            _ = try decoder.decode(frame: Data([1,2,3]))
+            try check(false, "Corrupt compressed rows must fail")
+        } catch OtzariaLineContentError.invalidFrameSize { try check(true, "Corrupt compressed frames never become empty text") }
         print("PASS: \(assertions) real SQLite production repository fixture assertions; not a Hermes or device acceptance claim")
     }
 }

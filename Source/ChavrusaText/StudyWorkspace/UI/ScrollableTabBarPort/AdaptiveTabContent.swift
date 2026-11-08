@@ -1,0 +1,175 @@
+import UIKit
+
+@MainActor
+final class AdaptiveTabContent: ScrollableTabBarContent {
+    var view: UIView { adaptiveView }
+    var selectionHandler: ((AnyHashable) -> Void)?
+    var intrinsicHeight: CGFloat {
+        max(scrollableTabBarMinimumHeight, adaptiveView.intrinsicContentSize.height)
+    }
+    let adaptiveView: AdaptiveTabView
+    let segmentedControl: UISegmentedControl
+    let menuButton: UIButton
+    private var items: [ScrollableTabBarPresentationItem]
+
+    init(items: [ScrollableTabBarPresentationItem]) {
+        self.items = items
+        segmentedControl = UISegmentedControl(frame: .zero)
+        menuButton = UIButton(type: .system)
+        menuButton.showsMenuAsPrimaryAction = true
+        adaptiveView = AdaptiveTabView(
+            segmentedControl: segmentedControl,
+            menuButton: menuButton
+        )
+        _ = setItems(items, selectedIndex: nil)
+        segmentedControl.addAction(
+            UIAction { [weak self] _ in
+                self?.valueChanged()
+            },
+            for: .valueChanged
+        )
+    }
+
+    func setItems(_ items: [ScrollableTabBarPresentationItem], selectedIndex: Int?) -> Bool {
+        self.items = items
+        segmentedControl.removeAllSegments()
+        for (index, item) in items.enumerated() {
+            let action = UIAction(title: item.title, image: item.image) { _ in }
+            action.accessibilityIdentifier = item.accessibilityIdentifier
+            segmentedControl.insertSegment(action: action, at: index, animated: false)
+        }
+        adaptiveView.isHidden = items.isEmpty
+        return true
+    }
+
+    func render(
+        selectedIndex: Int?,
+        isEnabled: Bool,
+        accessibilityLabel: String?,
+        accessibilityIdentifier: String?
+    ) {
+        let selectedItem = selectedIndex.map { items[$0] }
+        segmentedControl.isEnabled = isEnabled && !items.isEmpty
+        segmentedControl.selectedSegmentIndex = selectedIndex ?? UISegmentedControl.noSegment
+        segmentedControl.accessibilityLabel = accessibilityLabel
+        segmentedControl.accessibilityValue = selectedItem?.title
+        segmentedControl.accessibilityIdentifier = accessibilityIdentifier
+        for index in items.indices {
+            segmentedControl.setEnabled(isEnabled, forSegmentAt: index)
+        }
+
+        var buttonConfiguration = menuButton.configuration ?? .plain()
+        buttonConfiguration.title = selectedItem?.title
+        buttonConfiguration.image = UIImage(systemName: "chevron.down")
+        buttonConfiguration.imagePlacement = .trailing
+        buttonConfiguration.imagePadding = 6
+        menuButton.configuration = buttonConfiguration
+        menuButton.isEnabled = isEnabled && !items.isEmpty
+        menuButton.accessibilityLabel = accessibilityLabel
+        menuButton.accessibilityValue = selectedItem?.title
+        menuButton.accessibilityIdentifier = accessibilityIdentifier
+        menuButton.menu = UIMenu(
+            options: .singleSelection,
+            children: items.enumerated().map { index, item in
+                let action = UIAction(
+                    title: item.title,
+                    image: item.image,
+                    state: index == selectedIndex ? .on : .off
+                ) { [weak self] _ in
+                    self?.selectionHandler?(item.id)
+                }
+                action.accessibilityIdentifier = item.accessibilityIdentifier
+                return action
+            }
+        )
+        adaptiveView.invalidateIntrinsicContentSize()
+    }
+
+    func heightThatFits(_ size: CGSize) -> CGFloat {
+        max(scrollableTabBarMinimumHeight, adaptiveView.sizeThatFits(size).height)
+    }
+
+    private func valueChanged() {
+        guard items.indices.contains(segmentedControl.selectedSegmentIndex) else {
+            scrollableTabBarLogger.fault(
+                "UISegmentedControl selected an item outside ScrollableTabBar's membership."
+            )
+            return
+        }
+        selectionHandler?(items[segmentedControl.selectedSegmentIndex].id)
+    }
+}
+
+@MainActor
+final class AdaptiveTabView: UIView {
+    enum Presentation: Equatable {
+        case segmented
+        case menu
+    }
+
+    private(set) var presentation: Presentation
+    private let segmentedControl: UISegmentedControl
+    private let menuButton: UIButton
+
+    init(segmentedControl: UISegmentedControl, menuButton: UIButton) {
+        self.segmentedControl = segmentedControl
+        self.menuButton = menuButton
+        presentation = Self.presentation(for: UITraitCollection())
+        super.init(frame: .zero)
+
+        isAccessibilityElement = false
+        let stackView = UIStackView(arrangedSubviews: [segmentedControl, menuButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+        updatePresentation()
+        registerForTraitChanges([
+            UITraitHorizontalSizeClass.self,
+            UITraitPreferredContentSizeCategory.self,
+        ]) { (self: AdaptiveTabView, _) in
+            self.updatePresentation()
+        }
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    override var intrinsicContentSize: CGSize {
+        activeControl.intrinsicContentSize
+    }
+
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        activeControl.sizeThatFits(size)
+    }
+
+    static func presentation(for traitCollection: UITraitCollection) -> Presentation {
+        if traitCollection.horizontalSizeClass == .regular,
+           traitCollection.preferredContentSizeCategory.isAccessibilityCategory == false {
+            return .segmented
+        }
+        return .menu
+    }
+
+    private var activeControl: UIControl {
+        switch presentation {
+        case .segmented:
+            segmentedControl
+        case .menu:
+            menuButton
+        }
+    }
+
+    private func updatePresentation() {
+        presentation = Self.presentation(for: traitCollection)
+        segmentedControl.isHidden = presentation != .segmented
+        menuButton.isHidden = presentation != .menu
+        invalidateIntrinsicContentSize()
+    }
+}

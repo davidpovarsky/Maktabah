@@ -17,6 +17,7 @@ struct iOSReaderView: View {
     var viewModel: ReaderViewModel
     var textViewState = TextViewState.shared
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(iOSNavigationManager.self) var bManager
 
     var isRegularLayout: Bool {
@@ -82,6 +83,9 @@ struct iOSReaderView: View {
 
     private var tableOfContentsIsPresented: Bool {
         guard let columnVisibility else { return false }
+        if let sidebarCoordinator {
+            return sidebarCoordinator.page == .contents && columnVisibility.wrappedValue != .detailOnly
+        }
         return columnVisibility.wrappedValue != .detailOnly
     }
 
@@ -131,7 +135,7 @@ struct iOSReaderView: View {
             }
         }
         .toolbar {
-            if shouldShowPrimarySidebarButton {
+            if shouldShowPrimarySidebarButton, sidebarCoordinator == nil {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         withAnimation {
@@ -145,7 +149,7 @@ struct iOSReaderView: View {
                 }
             }
 
-            if (!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1) {
+            if sidebarCoordinator == nil && ((!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1)) {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         bManager.showingTabsList.toggle()
@@ -155,6 +159,7 @@ struct iOSReaderView: View {
                             .frame(maxWidth: 190)
                             .contentShape(Rectangle())
                     }
+                    .accessibilityIdentifier("reader-book-tabs-overview")
                 }
             }
 
@@ -175,14 +180,12 @@ struct iOSReaderView: View {
                 }
             }
 
-            if !ChavrusaTextFeatureFlags.shared.effectiveSafariToolbarSearchEnabled {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    iOSReaderBottomToolbarView(
-                        viewModel: viewModel,
-                        onShowTableOfContents: toggleTableOfContents,
-                        tableOfContentsIsPresented: tableOfContentsIsPresented
-                    )
-                }
+            ToolbarItemGroup(placement: .bottomBar) {
+                iOSReaderBottomToolbarView(
+                    viewModel: viewModel,
+                    onShowTableOfContents: toggleTableOfContents,
+                    tableOfContentsIsPresented: tableOfContentsIsPresented
+                )
             }
         }
         .onChange(of: initialContentId) { _, newValue in

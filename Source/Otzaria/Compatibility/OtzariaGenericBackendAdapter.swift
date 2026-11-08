@@ -178,7 +178,7 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryVersionedTe
         let toc = try await tableOfContents(for: work)
         #if !TESTING
         let useSemanticPolicy = await MainActor.run {
-            ChavrusaTextFeatureFlags.shared.semanticSliderPolicyEnabled
+            ChavrusaTextReaderUI.isEnabled
         }
         if useSemanticPolicy {
             return ReaderNavigationDisplayPolicy.canonicalNavigationItems(from: toc)
