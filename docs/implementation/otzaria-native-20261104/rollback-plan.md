@@ -11,3 +11,5 @@ Workspace import is an explicit one-time conversion of the recognized legacy sch
 MiniTest10 v7 retains its immutable v36-derived identity. Do not relabel a v6 miniature, engine 7.0.0 official index, or schema4 artifact as the new profile. Production rollback must choose matching application/database/index identities. A missing compatible index leaves reading available.
 
 The cancellation registry has independent Arc ownership. Closing the engine waits for its serial operations, while a retained cancellation closure can finish safely against its own registry. Never free an opaque pointer manually from a UI cancellation path.
+
+For this delivery, set integration_source_branch=experiment/ipad-ui-faithful-from-9401 and expected_sha to the frozen release commit. Immediately before upload, the workflow fetches that branch without merging and verifies its current head is an ancestor of the signed checkout. A new outside commit or unverifiable history blocks upload; synchronize and revalidate a new candidate rather than uploading a stale archive. No force-push, automatic merge or modification of another working tree is performed by this guard.

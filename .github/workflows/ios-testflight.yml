@@ -20,6 +20,11 @@ on:
         description: Exact git commit SHA expected to be built and signed (fail-closed check)
         required: false
         type: string
+      integration_source_branch:
+        description: Optional parallel-work branch whose current commits must be included immediately before upload
+        required: false
+        type: string
+        default: ""
 
 permissions:
   actions: read
@@ -60,6 +65,10 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
+
+      - name: Verify source-sync guard contracts
+        if: ${{ inputs.upload_to_testflight && inputs.integration_source_branch != '' }}
+        run: python3 tools/test_preupload_integration_gate.py
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -1104,6 +1113,17 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Verify current parallel-work commits immediately before upload
+        if: ${{ inputs.upload_to_testflight && inputs.integration_source_branch != '' }}
+        env:
+          INTEGRATION_SOURCE_BRANCH: ${{ inputs.integration_source_branch }}
+          EXPECTED_RELEASE_SHA: ${{ inputs.expected_sha || github.sha }}
+        run: |
+          python3 Scripts/CI/verify-preupload-integration-source.py \
+            --source-branch "$INTEGRATION_SOURCE_BRANCH" \
+            --expected-sha "$EXPECTED_RELEASE_SHA" \
+            --report "$BUILD_DIR/logs/preupload-source-sync.json"
+
       - name: Upload to App Store Connect and TestFlight
         if: ${{ inputs.upload_to_testflight }}
         run: |
