@@ -21,6 +21,8 @@ cp "$GOOGLE_SERVICES_FILE" "$PROJECT_ROOT/ios/GoogleService-Info.plist"
 chmod -R +x "$NODE_PATH/.bin" "$NODE_PATH/expo/bin"
 pod install
 chmod -R +x "$ROOT/Pods/Target Support Files"
+mkdir -p build/logs
+git diff --binary -- Maktabah.xcodeproj/project.pbxproj Source/PrivacyInfo.xcprivacy > build/logs/cocoapods-generated.patch
 mkdir -p build/jsbundle
 (
   cd "$PROJECT_ROOT"

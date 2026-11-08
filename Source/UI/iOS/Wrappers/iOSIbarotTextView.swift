@@ -3,7 +3,9 @@ import UIKit
 
 /// A customized UITextView designed specifically for Arabic text and annotations, mirroring AppKit's IbarotTextView behavior.
 class iOSCustomIbarotTextView: UITextView {
-    var allowsTextExport = true
+    var allowsTextExport = true {
+        didSet { textDragInteraction?.isEnabled = allowsTextExport }
+    }
     var onHighlight: ((NSRange, String) -> Void)?
     var onUnderline: ((NSRange, String) -> Void)?
 

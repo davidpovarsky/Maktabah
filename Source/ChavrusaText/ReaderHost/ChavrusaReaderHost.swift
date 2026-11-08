@@ -201,12 +201,20 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .sheet(isPresented: $showsProfiles) {
             if let workspace { StudyProfileManagementView(workspace: workspace, manager: manager) }
         }
-        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
-            get: { workspace?.errorMessage != nil && !showsOverview && !showsProfiles }, set: { if !$0 && !showsOverview && !showsProfiles { workspace?.errorMessage = nil } })) {
+        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: workspaceErrorIsPresented) {
             Button("אישור") { workspace?.errorMessage = nil }
         } message: { Text(workspace?.errorMessage ?? "") }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("chavrusa-reader-host")
+    }
+
+    private var workspaceErrorIsPresented: Binding<Bool> {
+        Binding<Bool>(get: {
+            workspace?.errorMessage != nil && !showsOverview && !showsProfiles
+        }, set: { presented in
+            guard !presented, !showsOverview, !showsProfiles else { return }
+            workspace?.errorMessage = nil
+        })
     }
 
     @ViewBuilder

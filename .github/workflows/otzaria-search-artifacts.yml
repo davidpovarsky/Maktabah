@@ -83,10 +83,12 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - name: Select Xcode 26 and verify committed identity
+        id: xcode
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           bash Scripts/CI/select-xcode-26.sh
+          echo "id=$(xcodebuild -version | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
           python3 Vendor/OtzariaSearchEngine/Scripts/sync-otzaria-search-upstream.py --check --skip-validation
           df -h "$RUNNER_TEMP" "$GITHUB_WORKSPACE"
           AVAILABLE_KIB="$(df -Pk "$RUNNER_TEMP" | awk 'NR==2 {print $4}')"
@@ -129,10 +131,53 @@ jobs:
       - name: Prepare the shipping embedded runtime and resources
         run: bash Scripts/CI/prepare-embedded-artifact-app.sh
 
-      - name: Build pinned engines and simulator app
+      - name: Identify exact Rust toolchain
+        id: rustc
+        run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - name: Cache matching Otzaria framework
+        id: otzaria-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-otzaria-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.lock', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**', 'Vendor/OtzariaSearchEngine/include/**', 'Vendor/OtzariaSearchEngine/module.modulemap') }}
+      - name: Build exact Otzaria framework when uncached
+        if: steps.otzaria-cache.outputs.cache-hit != 'true'
+        run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+      - name: Verify exact Otzaria framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
+      - name: Preserve verified Otzaria framework before app acceptance
+        if: steps.otzaria-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ steps.otzaria-cache.outputs.cache-primary-key }}
+      - name: Cache matching Zayit framework
+        id: zayit-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ steps.xcode.outputs.id }}-zayit-framework-v3-${{ steps.rustc.outputs.id }}-${{ hashFiles('Vendor/ZayitSearchPort/Rust/Cargo.toml', 'Vendor/ZayitSearchPort/Rust/Cargo.lock', 'Vendor/ZayitSearchPort/Rust/src/**', 'Vendor/ZayitSearchPort/Rust/include/**', 'Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh') }}
+      - name: Build exact Zayit framework when uncached
+        if: steps.zayit-cache.outputs.cache-hit != 'true'
+        run: bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
+      - name: Verify exact Zayit framework
+        run: bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
+      - name: Preserve verified Zayit framework before app acceptance
+        if: steps.zayit-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ steps.zayit-cache.outputs.cache-primary-key }}
+      - name: Build simulator app
         run: |
-          bash Vendor/OtzariaSearchEngine/build_xcframework.sh
-          bash Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh
           xcodebuild -resolvePackageDependencies -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
           xcodebuild build \
             -workspace Maktabah.xcworkspace \
@@ -363,6 +408,9 @@ jobs:
       - name: Confirm package data was not added to git
         if: always()
         run: |
+          # Restore only the two known CocoaPods-generated edits in this disposable checkout.
+          # Their exact patch is retained in build/logs/cocoapods-generated.patch.
+          git restore --source=HEAD -- Maktabah.xcodeproj/project.pbxproj Source/PrivacyInfo.xcprivacy
           git checkout -- Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved 2>/dev/null || true
           git status --short --untracked-files=no
           test -z "$(git status --short --untracked-files=no)"

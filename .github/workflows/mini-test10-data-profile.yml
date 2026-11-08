@@ -784,6 +784,7 @@ jobs:
           name: miniTest10-data-profile-reports
           path: |
             build/miniTest10/logs
+            build/logs/cocoapods-generated.patch
             build/miniTest10/database/miniTest10-seforim.db.zst
             build/miniTest10/database/*.provenance.json
             build/miniTest10/otzaria/*
@@ -804,6 +805,8 @@ jobs:
         if: always()
         run: |
           git status --short --untracked-files=no
+          # Exact CocoaPods-generated edits are captured before restoring this CI checkout.
+          git restore --source=HEAD -- Maktabah.xcodeproj/project.pbxproj Source/PrivacyInfo.xcprivacy
           git checkout -- Maktabah.xcodeproj/project.xcworkspace 2>/dev/null || true
           test -z "$(git status --short --untracked-files=no)"
           test -z "$(git ls-files '*.db' '*.db.zst' 'build/miniTest10/*')"
