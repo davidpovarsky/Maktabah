@@ -141,6 +141,7 @@ Source/ChavrusaText/ToolbarSearch/ReaderLibraryCommandPaletteHost.swift,DOWNSTRE
 Source/ChavrusaText/ToolbarSearch/ReaderLibraryToolbarHost.swift,DOWNSTREAM_OWNED,D,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Source/Features/Annotations/Database/AnnotationRepository.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Library/iOS/iOSLibraryView.swift,UPSTREAM_OWNED_PROTECTED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/ViewModel/BookTOCViewModel.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift,UPSTREAM_OWNED_PROTECTED,M,M,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0

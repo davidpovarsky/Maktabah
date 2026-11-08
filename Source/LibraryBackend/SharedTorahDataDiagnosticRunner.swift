@@ -432,9 +432,15 @@ enum SharedTorahDataDiagnosticRunner {
                 .filter { annotation in created.contains { $0.id == annotation.id } }
             let ids = loaded.compactMap(\.id)
             let cloudIDs = loaded.compactMap(\.ckRecordId)
+            let persisted = try ids.compactMap { try AnnotationRepository.shared.loadAnnotationById($0) }
+            let persistedCloudIDs = persisted.compactMap(\.ckRecordId)
+            let cacheMatchesStorage = persisted.count == loaded.count && loaded.allSatisfy { annotation in
+                persisted.first(where: { $0.id == annotation.id })?.ckRecordId == annotation.ckRecordId
+            }
             let passed = loaded.count == 2
                 && Set(ids).count == 2
                 && Set(cloudIDs).count == 2
+                && cacheMatchesStorage
                 && loaded.contains(where: { $0.type == .highlight })
                 && loaded.contains(where: { $0.type == .underline })
                 && loaded.allSatisfy { $0.bkId == target.bookID && $0.note?.isEmpty == false }
@@ -442,7 +448,7 @@ enum SharedTorahDataDiagnosticRunner {
                 component: "Annotations write/read",
                 input: target.locator.persistenceKey,
                 expected: "highlight and note persist with stable annotation and canonical book IDs",
-                actual: "rows=\(loaded.count); ids=\(ids); bookIDs=\(loaded.map(\.bkId)); cloudIDs=\(cloudIDs.count)",
+                actual: "rows=\(loaded.count); ids=\(ids); bookIDs=\(loaded.map(\.bkId)); cloudIDs=\(cloudIDs.count); storedCloudIDs=\(persistedCloudIDs.count); cacheMatchesStorage=\(cacheMatchesStorage)",
                 passed: passed,
                 backend: backend,
                 locale: locale,
