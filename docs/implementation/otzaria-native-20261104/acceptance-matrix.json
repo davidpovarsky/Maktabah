@@ -1,0 +1,1183 @@
+{
+  "checkpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+  "note": "Case-level status is conservative. Portable/native repository evidence does not satisfy an unexecuted UI, device, performance or legal gate. Build artifact logs are local ignored files; immutable CI run URLs are added as runs finish.",
+  "cases": [
+    {
+      "id": "GIT-01",
+      "scenario": "Git worktree נקי לפני עבודה",
+      "expected": "שינויים אישיים קיימים לא נדרסו; SHA בסיס זהה `59b01fa2...`",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "GIT-02",
+      "scenario": "branch נוצר מאותו SHA",
+      "expected": "אין commit ל־dev/main, ואין force-reset/rebase של עבודה חיצונית",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "GIT-03",
+      "scenario": "`git diff --name-status` מול base",
+      "expected": "כל קובץ עם provenance, אין diff לא מורשה ב־upstream protected",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "GIT-04",
+      "scenario": "`Scripts/CI/verify-upstream-boundary.py` תחת תרחיש מאושר",
+      "expected": "הגנה אינה עוקפת אישורי Ed25519; כשל בכל protected hunk לא מאושר",
+      "status": "FAIL",
+      "scope": "strict cryptographic boundary checker",
+      "actual": "Unmodified checker reports 18 findings at b55fc1fc: 7 pending proposals, 10 unsigned protected modifications and a preserved UI-branch Markdown exception entry. Current explicit user authorization is documented separately and is not a fabricated signature.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/upstream-boundary-report.json",
+        "owner-approval-proposals.md"
+      ]
+    },
+    {
+      "id": "GIT-05",
+      "scenario": "קובצי Swift חדשים ב־target",
+      "expected": "בדיקת PBX membership: אין סימון PASS אם קובץ אינו חלק מ־Compile Sources; בלי אישור שינוי project file = `BLOCKED_OWNER`",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "GIT-06",
+      "scenario": "אין שינויים ב־Asana",
+      "expected": "רישום read-only בלבד; אף task לא עודכן, לא נסגר ולא הוכפל",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "GIT-07",
+      "scenario": "תלות upstream ומילונים pinned",
+      "expected": "שום `--latest`/remote moving branch; hash-lock נשמר; resource license מאומת",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "GIT-08",
+      "scenario": "Swift UI מקורי",
+      "expected": "Source/Core, Features, UI, Extensions נשארים ללא שינוי חדש ללא אישור פרטני",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-01",
+      "scenario": "SQLite בסיסי schema מינימלי",
+      "expected": "ספרייה, מחברים, טקסט ו־TOC רגיל נטענים; optional tables לא מפילות app",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-02",
+      "scenario": "schema7 מלא סינתטי",
+      "expected": "capability flags מזהים line_note, book_version, alt_toc וכו' במדויק",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-03",
+      "scenario": "`line.id != lineIndex`",
+      "expected": "Locator מחזיר `lineIndex`, אף פעם לא משתמש ב־rowId כ־lineIndex",
+      "status": "EXECUTED_PASS",
+      "scope": "real SQLite",
+      "actual": "Canonical lineIndex 7 differs from PK 100; PK rejected; real Genesis 1:1 resolves to canonical lineIndex 2.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "DB-04",
+      "scenario": "lineIndex חסר/חור בין שורות",
+      "expected": "next/prev משתמשים בשורה קיימת; לא +1 עיוור שיוצר תוכן לא אמיתי",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-05",
+      "scenario": "`line_content` דחוס ו־zstd_dict",
+      "expected": "פענוח בדיוק פעם אחת, אין בלבול UTF8/HTML, אין crash על frame מושחת",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-06",
+      "scenario": "tiny DB ללא `book_version`",
+      "expected": "הצגת ספר תקינה; versions unavailable במפורש ולא גרסה מומצאת",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-07",
+      "scenario": "hash/schema/size mismatches",
+      "expected": "DB invalid fail-closed, last good file לא מוחלף",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-08",
+      "scenario": "DB external עם security-scoped URL",
+      "expected": "נתונים read-only, לא הופך managed, לא מוחק/משכתב",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-09",
+      "scenario": "מעבר פרופיל miniTest10→production→external",
+      "expected": "caches schema ו־DB identity מתאפסים נכון ואין נתוני ספרים מעורבים",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DB-10",
+      "scenario": "מספרים וכותרות כפולים",
+      "expected": "מזהים מוגדרים לפי מקור, bookId ולא title matching עמום",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-01",
+      "scenario": "TOC רגיל ועמוד ראשון",
+      "expected": "heading→real line; לא מציג תחילת ספר אם נבחר פרק",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-02",
+      "scenario": "alt_toc_structure קיים",
+      "expected": "רואים default + named alt structures באותו `navigationStructures`",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-03",
+      "scenario": "alt_toc_entry parent/child",
+      "expected": "עומק היררכי נשמר, מיון וקישור TOC text תקינים",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-04",
+      "scenario": "alt entry ללא line anchor + descendant",
+      "expected": "first valid child target בלבד; לא entry.id או line PK",
+      "status": "EXECUTED_PASS",
+      "scope": "real SQLite",
+      "actual": "Header with no anchor uses a validated descendant; invalid foreign anchor with a local child is excluded.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "TOC-05",
+      "scenario": "parent cycle / orphan / missing text",
+      "expected": "אין אינסוף recursion/קריסה; diagnostic + graceful skip",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-06",
+      "scenario": "`line_alt_toc` matching active entry",
+      "expected": "מעקב highlight לאותו structure על בסיס lineID→entryID, בלי out-of-scope lookup",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-07",
+      "scenario": "שני entries עם אותו title",
+      "expected": "ניווט לפי IDs ו־lineIndex אמיתי, לא title equality",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-08",
+      "scenario": "ספר ללא alt TOC",
+      "expected": "default בלבד, פאנל תוכן עניינים ממשיך להתנהג כרגיל",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-09",
+      "scenario": "`line_ref` normalized FNV hash",
+      "expected": "matches golden fixture from official RefKey exactly; if unavailable feature off",
+      "status": "EXECUTED_PASS",
+      "scope": "portable Swift",
+      "actual": "87 assertions across all 43 original pinned RefKey/hash vectors passed.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/releasecheck-components-results.log"
+      ]
+    },
+    {
+      "id": "TOC-10",
+      "scenario": "`line_dh` prefix query",
+      "expected": "bounded indexed results + correct `lineIndex`, `dhDisplay` for text",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-11",
+      "scenario": "iPad slider level paragraph",
+      "expected": "לא קופץ לרמת פסקה ללא בחירה מפורשת (Asana `1220120627071765`)",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TOC-12",
+      "scenario": "reader previous/next book edge",
+      "expected": "אין first-page wrapping ואין legacy fallback אם reached boundary",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "VERS-01",
+      "scenario": "`book_version` metadata",
+      "expected": "title/he title/source/license/notes/priority mapped without fake default",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "VERS-02",
+      "scenario": "version ID belongs to another book",
+      "expected": "בקשה נדחית, אין קריאת תוכן זר",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "VERS-03",
+      "scenario": "missing `version_line` row",
+      "expected": "חסר במהדורה נשאר חסר; **אין** טקסט merged fallback",
+      "status": "EXECUTED_PASS",
+      "scope": "real SQLite",
+      "actual": "Absent edition row remains empty and never reads merged or foreign content.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "VERS-04",
+      "scenario": "book without versions",
+      "expected": "default merged text unchanged, no artificial version label",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "VERS-05",
+      "scenario": "two versions same book",
+      "expected": "content differs correctly, selected edition scoped properly",
+      "status": "EXECUTED_PASS",
+      "scope": "real SQLite",
+      "actual": "Switching two real fixture editions produces different expected text with no stale edition body.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "VERS-06",
+      "scenario": "two books same edition title",
+      "expected": "version ID remains scoped by book identity",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "VERS-07",
+      "scenario": "headings absent in version lines",
+      "expected": "כותרות מטופלות לפי חוזה מסד, לא מוצגות כטקסט מהדורה משוכפל",
+      "status": "EXECUTED_PASS",
+      "scope": "real authenticated v36 subset",
+      "actual": "The absent version heading remains empty; the actual compressed edition body is read at original line 97.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "VERS-08",
+      "scenario": "multi-tab per-version choice",
+      "expected": "tab scoped, switch backend does not leak selected edition",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "VERS-09",
+      "scenario": "old saved locator decode",
+      "expected": "persists/restores unchanged; version field does not mutate TextLocator",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "VERS-10",
+      "scenario": "version picker native UI unavailable",
+      "expected": "provider exists but feature explicitly `BLOCKED_OWNER`; no new Otzaria UI",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "META-01",
+      "scenario": "`book_topic`",
+      "expected": "returning actual book topics, stable deterministic slug, Hebrew name, no invented English",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "META-02",
+      "scenario": "pub dates and places",
+      "expected": "actual SQLite joins; absent optional tables yield empty fields",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "META-03",
+      "scenario": "base text and dependents",
+      "expected": "correct direction and stable linked book ids",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "META-04",
+      "scenario": "default_commentator/default_targum",
+      "expected": "order by numeric position, not alphabetical",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "META-05",
+      "scenario": "book acronyms / collective title",
+      "expected": "metadata intact without duplicating books or falsely merging same title",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "META-06",
+      "scenario": "inaccessible/protected book",
+      "expected": "no leaking restricted content into copy/export/preview/search suggestion",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-01",
+      "scenario": "forward commentary",
+      "expected": "actual linked book and line id; body loaded lazily on selection",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-02",
+      "scenario": "inverse commentary",
+      "expected": "reverse orientation correct; distinction commentary vs quotation preserved",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-03",
+      "scenario": "`link_range` with coverage",
+      "expected": "every covered line shows related link without duplicate source, as per existing logic",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-04",
+      "scenario": "`link_suppressed_side` side0/side1",
+      "expected": "hidden side not shown even from reverse lookup",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-05",
+      "scenario": "`link_anchor` charStart/End",
+      "expected": "anchors only on original first side line, not range coverage line",
+      "status": "EXECUTED_PASS",
+      "scope": "real SQLite",
+      "actual": "Original-side starting-line anchor retained; range coverage line does not inherit offsets.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "LINK-06",
+      "scenario": "HTML inline formatting and niqqud",
+      "expected": "visible char positions map to valid UTF16 NSRange; no offsets inside tag",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-07",
+      "scenario": "schema7 `line_note` body before anchor",
+      "expected": "source→display map adjusts for extracted note body; if unable to map, no word highlight",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-08",
+      "scenario": "corrupt/missing anchor",
+      "expected": "link still visible if allowed; never highlight unrelated text",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-09",
+      "scenario": "same text, different books",
+      "expected": "navigation chooses `bookId + lineIndex`, not title",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-10",
+      "scenario": "2k+ related sources",
+      "expected": "bounded SQL/window/pagination and list virtualization; no N+1 main thread",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-11",
+      "scenario": "Inspector selection embedded Sefaria",
+      "expected": "`.sefariaEmbedded` remains same backend id, no silently demoted `.sefaria`",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LINK-12",
+      "scenario": "user comments unrelated to original footnotes",
+      "expected": "personal notes stay persisted, no table writes caused by reading source footnotes",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TEXT-01",
+      "scenario": "`line_note` with/without sup marker",
+      "expected": "noteIndex/charPos/hasMarker mapped without user annotations collision",
+      "status": "EXECUTED_PASS",
+      "scope": "real SQLite and native Swift",
+      "actual": "Original note index, position, marker, entity/inline/block/surrogate handling tested; all seven actual v36 extracted footnote lines restored.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "TEXT-02",
+      "scenario": "zstd note body",
+      "expected": "decode with existing dictionary codec if needed; invalid blob safe",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TEXT-03",
+      "scenario": "divine name spans",
+      "expected": "exact spec and accepted fixture before apply; no guessed text substitution",
+      "status": "BLOCKED",
+      "scope": "NOT_SUPPORTED_YET substitution",
+      "actual": "Original source text is retained; packed span facts decoded, no unverified religious replacement.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/schema7-results.log"
+      ]
+    },
+    {
+      "id": "TEXT-04",
+      "scenario": "book protection flag unknown",
+      "expected": "fail closed for restricted actions until semantics established",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "TEXT-05",
+      "scenario": "Hebrew RTL, HTML, cantillation",
+      "expected": "copy and selection ranges not corrupted by rendering transformations",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-01",
+      "scenario": "Rust engine version build-info",
+      "expected": "exact pinned commit, version7.0.1, schema10 returned by compiled bridge",
+      "status": "EXECUTED_PASS",
+      "scope": "native Rust C ABI",
+      "actual": "Compiled build_info test verifies exact pin 225a6d5d, engine 7.0.1 and schema10.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "build/integration-verification/final-rust-tests.log"
+      ]
+    },
+    {
+      "id": "SEARCH-02",
+      "scenario": "feature flags SQLite",
+      "expected": "exactly one of `sqlite-bundled`/`sqlite-host`, valid on Apple targets",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-03",
+      "scenario": "C/Swift/Rust ABI parity",
+      "expected": "`verify-api-parity.py` passes with all exported symbols matched",
+      "status": "EXECUTED_PASS",
+      "scope": "static ABI",
+      "actual": "32 C header, Swift declarations and Rust exports match.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "Vendor/OtzariaSearchEngine/Scripts/verify-api-parity.py"
+      ]
+    },
+    {
+      "id": "SEARCH-04",
+      "scenario": "cargo lock / pristine checkout",
+      "expected": "reproducible --locked; upstream source unchanged",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-05",
+      "scenario": "old schema4 index",
+      "expected": "`rebuild_required` or incompatible; cannot open by forged manifest",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-06",
+      "scenario": "v7 index rebuilt for fixture",
+      "expected": "stable book counts, paths, canonical references and query results",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-07",
+      "scenario": "101st hit after load more",
+      "expected": "raw hit metadata and UI result match at offset 100+, same source/work and line",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-08",
+      "scenario": "200+ hits and duplicate titles",
+      "expected": "stable unique identities independent of array offset",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-09",
+      "scenario": "exact vs fuzzy vs advanced Hebrew",
+      "expected": "matches engine official v7 expected fixture and highlight behavior",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-10",
+      "scenario": "Hebrew niqqud and quote variants",
+      "expected": "original Rust lexical semantics preserved, no Swift custom post-tokenizer",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-11",
+      "scenario": "proximity / word match / negative query",
+      "expected": "options are not silently dropped across C JSON or Swift encoders",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-12",
+      "scenario": "filtered category / book IDs",
+      "expected": "facet and scope match corpus, no `bookId=0` fallthrough",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-13",
+      "scenario": "cancel while search thread busy",
+      "expected": "no UI freeze/invalid pointer/stale result after cancel",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-14",
+      "scenario": "backend switch while search active",
+      "expected": "generation guard discards stale work and restores per-source search state",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-15",
+      "scenario": "index and DB mismatched version",
+      "expected": "no false status ready and no reused corrupted index",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-16",
+      "scenario": "engine memory pressure / foreground",
+      "expected": "memory releases with safe handle lifetime; subsequent query correct",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-17",
+      "scenario": "semantic in iOS",
+      "expected": "reports unsupported/unavailable; never claims model loaded or mock semantics",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "SEARCH-18",
+      "scenario": "resource hash mismatch",
+      "expected": "incompatible/controlled fallback, never sync from unlicensed origin",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-01",
+      "scenario": "v36 asset name `seforim-schema7.db.zst`",
+      "expected": "selected correctly by release parser; expected digest verified",
+      "status": "EXECUTED_PASS",
+      "scope": "macOS authenticated database preparation",
+      "actual": "v36 schema7 selected, full raw/compressed SHA verified; canonical miniature built twice identically with SQLite integrity/FK/table parity.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": [
+        "https://github.com/davidpovarsky/Maktabah/actions/runs/42456560269"
+      ]
+    },
+    {
+      "id": "BOOT-02",
+      "scenario": "interrupted transfer and HTTP Range",
+      "expected": "resume only on same digest/etag/identity; bad range restarts clean",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-03",
+      "scenario": "corrupt archive or out of space",
+      "expected": "last valid DB preserved, structured error and no fake download status",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-04",
+      "scenario": "atomic DB promote rollback",
+      "expected": "interrupted swap recovered using `.previous`/staging state",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-05",
+      "scenario": "install DB without index",
+      "expected": "reader/TOC/library usable even when search artifact absent",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-06",
+      "scenario": "index artifact from old engine/schema",
+      "expected": "rejected without crashing or forcing DB redownload",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-07",
+      "scenario": "full DB vs miniTest10",
+      "expected": "same implementation, profile only changes paths and manifest identities",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-08",
+      "scenario": "external DB with managed search",
+      "expected": "never mutate external path; index under separate namespace",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "BOOT-09",
+      "scenario": "corrupt downstream release manifest",
+      "expected": "reject digest mismatch/zip slip/oversized parts; staging wiped safely",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DELTA-01",
+      "scenario": "optional future: patch chain selection",
+      "expected": "only known edges/versions/manifest, no unverified path",
+      "status": "BLOCKED",
+      "scope": "explicitly deferred optional future phase",
+      "actual": "Delta updater is outside the current authorized initial implementation phase.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DELTA-02",
+      "scenario": "optional future: logical hash before/after",
+      "expected": "same as official contract; if not proven, reject + full DB fallback",
+      "status": "BLOCKED",
+      "scope": "explicitly deferred optional future phase",
+      "actual": "Delta updater is outside the current authorized initial implementation phase.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DELTA-03",
+      "scenario": "optional future: SQLite FK with DELETE/UPSERT",
+      "expected": "no `INSERT OR REPLACE`, no unintended cascade",
+      "status": "BLOCKED",
+      "scope": "explicitly deferred optional future phase",
+      "actual": "Delta updater is outside the current authorized initial implementation phase.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "DELTA-04",
+      "scenario": "optional future: power cut during apply",
+      "expected": "old DB opens after recovery; index unaffected",
+      "status": "BLOCKED",
+      "scope": "explicitly deferred optional future phase",
+      "actual": "Delta updater is outside the current authorized initial implementation phase.",
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-01",
+      "scenario": "existing Maktabah iPad three-column library",
+      "expected": "no new Flutter UI, same navigation placement/presentation",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-02",
+      "scenario": "iPhone shell, iPad toolbar, themes",
+      "expected": "no changed UI components, no scroll reset on switch",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-03",
+      "scenario": "session tabs during Otzaria↔Sefaria↔Embedded",
+      "expected": "prepare/publish preserved, no destructive state",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-04",
+      "scenario": "Reader highlight after search",
+      "expected": "selected segment actually rendered, no removed context",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-05",
+      "scenario": "result → Rashi/Talmud section",
+      "expected": "load full right unit then focus selected line, not just isolated hit",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-06",
+      "scenario": "TOC current-node follow after swipe/reader scroll",
+      "expected": "correct active item, no jump to first heading",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-07",
+      "scenario": "embedded Sefaria selection and footnote",
+      "expected": "correct `.sefariaEmbedded` key, works without visible RN components",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-08",
+      "scenario": "Sefaria Hebrew labels for references",
+      "expected": "Hebrew TOC when source supplies, no false translation, not touched by Otzaria edits",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-09",
+      "scenario": "search clear X / reader search history",
+      "expected": "no regression against previous bugs, in-book search history distinct from main",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "UI-10",
+      "scenario": "annotation, favorites and history roundtrip",
+      "expected": "source-qualified locators persist across relaunch/backend change",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "PERF-01",
+      "scenario": "large library first opening",
+      "expected": "no full-corpus allocation to display one book; responsive cancel",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "PERF-02",
+      "scenario": "\"דרשות הר\\\"ן\" large unit",
+      "expected": "bounded reading, no UI freeze or worst-case unbounded HTML",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "PERF-03",
+      "scenario": "high-frequency scroll/reader paging",
+      "expected": "UI thread disk work measured; no sustained stalls or screen jumping",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "PERF-04",
+      "scenario": "2k links metadata/preview",
+      "expected": "metadata-first, progressive content fetch, no N+1 per line",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "PERF-05",
+      "scenario": "30 backend switches/read cancels",
+      "expected": "no stale read after generation change, no memory leak/cross source",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "PERF-06",
+      "scenario": "physical iPad full corpus vs mini",
+      "expected": "measure p50/p95 load, memory, frame drops, app crashes; label actual not presumed",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LEGAL-01",
+      "scenario": "license source map",
+      "expected": "Rust MIT notices; SeforimLibrary AGPL notices; Flutter Personal Use not copied",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LEGAL-02",
+      "scenario": "dictionary/resources provenance",
+      "expected": "only files whose redistribution terms allow intended use shipped",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "LEGAL-03",
+      "scenario": "book texts/data rights",
+      "expected": "verify separate permissions; code license cannot grant data rights",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "RELEASE-01",
+      "scenario": "CI/Archive/IPA/TestFlight",
+      "expected": "`NOT_RUN` without separate owner action; do not upload while open gates",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    },
+    {
+      "id": "RELEASE-02",
+      "scenario": "report all owners and blockers",
+      "expected": "no hidden patch; missing tests remain `NOT_RUN/BLOCKED`",
+      "status": "NOT_RUN",
+      "scope": "required acceptance",
+      "actual": null,
+      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
+      "evidence": []
+    }
+  ]
+}

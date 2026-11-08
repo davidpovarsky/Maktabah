@@ -48,7 +48,8 @@ struct OtzariaAlternativeTOCRepository: Sendable {
                 let nodes = try roots.compactMap { try node($0, depth: 0) }
                 let title = hebrew ? (structure.3 ?? structure.2 ?? structure.1) : (structure.2 ?? structure.3 ?? structure.1)
                 var result = LibraryNavigationStructure(id: "otzaria-alt:\(structure.0):\(structure.1)", title: title, nodes: nodes)
-                if capabilities.hasTable("line_alt_toc") {
+                result.lineCoverage = [:]
+                if ["lineId", "structureId", "altTocEntryId"].allSatisfy({ capabilities.hasColumn($0, in: "line_alt_toc") }) {
                     var coverage: [Int: Int] = [:]
                     var ambiguous = Set<Int>()
                     var afterID = Int.min

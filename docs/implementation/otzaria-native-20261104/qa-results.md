@@ -7,6 +7,7 @@
 - All 15 focused Rust bridge tests pass (the already-passed 1024-lifetime stress test was not repeated). New native Rust cancellation test passed: cancellation completes with the engine mutex held; exact/fuzzy/advanced search and counts honor the cancelled ID; a different ID is unaffected; the registry survives engine close safely.
 - C header/Swift declarations/Rust exports: all 32 symbols match.
 - Upstream checkout exact pin and committed resource hashes: passed; checkout pristine.
+- Strict unchanged boundary checker against base 59b01fa2: FAIL (18 findings at b55fc1fc). Chat authorization is recorded separately; no signed approval is fabricated and no guard is weakened. See owner-approval-proposals.md for exact origins and protected scope. This check is not claimed green.
 - Initial iPad CI 42449700127 built app/test binaries and launched app; cancelled during UI tests to replace shared simulator selection with a run-owned simulator. UI acceptance is NOT VERIFIED by that run.
 - Native CI 42454286791 built all three Apple Rust slices; the fixture compile then failed because ZSTDContextWrapper.swift was missing from the harness input (corrected).
 - Native CI 42456093752 passed the native SQLite fixture stage, then failed app compilation on BackendComposition OptionSet inference (corrected). Its run_simulator_tests=false dispatch cannot establish UI acceptance.
@@ -16,3 +17,5 @@
 - Final combined branch, production archive, upload and App Store Connect processing: pending. Physical-device QA: not verified.
 
 Local logs are ignored under build/integration-verification. CI evidence must be linked after the final run; this file must not label a cancelled run as passed.
+
+The original 115 acceptance cases are tracked individually in acceptance-matrix.json. Unexecuted UI/device/performance/legal cases remain NOT_RUN; original religious substitution and the explicitly deferred delta phase are marked BLOCKED rather than counted as passed.

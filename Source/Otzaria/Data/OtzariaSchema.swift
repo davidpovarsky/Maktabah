@@ -106,6 +106,9 @@ struct OtzariaDatabaseCapabilities: Equatable, Sendable {
     var hasAlternateTOC: Bool {
         hasTable(OtzariaSchema.Table.alternateTOCStructure)
             && hasTable(OtzariaSchema.Table.alternateTOCEntry)
+            && ["id", "bookId", "key", "title", "heTitle"].allSatisfy { hasColumn($0, in: "alt_toc_structure") }
+            && ["id", "structureId", "parentId", "textId", "level", "lineId"].allSatisfy { hasColumn($0, in: "alt_toc_entry") }
+            && ["id", "text"].allSatisfy { hasColumn($0, in: "tocText") }
     }
     var hasVersions: Bool {
         hasTable(OtzariaSchema.Table.bookVersion) && hasTable(OtzariaSchema.Table.versionLine)
