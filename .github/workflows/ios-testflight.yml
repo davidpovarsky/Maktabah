@@ -334,7 +334,7 @@ jobs:
           if [ -d "Maktabah.xcworkspace" ]; then
             CONTAINER_ARGS=(-workspace Maktabah.xcworkspace)
           fi
-          xcodebuild -resolvePackageDependencies \
+          bash Scripts/CI/resolve-swift-packages.sh \
             "${CONTAINER_ARGS[@]}" \
             -scheme "$SCHEME" \
             -clonedSourcePackagesDirPath build/SourcePackages

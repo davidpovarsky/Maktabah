@@ -178,7 +178,7 @@ jobs:
           key: ${{ steps.zayit-cache.outputs.cache-primary-key }}
       - name: Build simulator app
         run: |
-          xcodebuild -resolvePackageDependencies -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
+          bash Scripts/CI/resolve-swift-packages.sh -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
           xcodebuild build \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \

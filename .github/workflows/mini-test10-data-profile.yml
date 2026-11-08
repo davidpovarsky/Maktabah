@@ -525,7 +525,7 @@ jobs:
           github_token: ${{ github.token }}
       - name: Resolve Swift packages
         run: |
-          xcodebuild -resolvePackageDependencies \
+          bash Scripts/CI/resolve-swift-packages.sh \
             -workspace Maktabah.xcworkspace \
             -scheme Maktabah-iOS \
             -clonedSourcePackagesDirPath build/SourcePackages

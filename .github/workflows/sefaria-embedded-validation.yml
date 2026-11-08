@@ -297,7 +297,7 @@ jobs:
         if: ${{ inputs.source_ref == '' }}
         run: |
           set -euo pipefail
-          xcodebuild -resolvePackageDependencies -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
+          bash Scripts/CI/resolve-swift-packages.sh -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
           plutil -lint Maktabah.xcodeproj/project.pbxproj
 
       - name: Build Maktabah-iOS for iPad Simulator
