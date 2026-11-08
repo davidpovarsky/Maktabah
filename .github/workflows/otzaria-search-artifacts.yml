@@ -334,6 +334,15 @@ jobs:
             --peak-build-bytes "$PEAK" \
             --build-duration-seconds "$DURATION"
           python3 -m json.tool build/otzaria-artifact/otzaria-search-manifest.json >/dev/null
+      - name: Retain verified package before release publication
+        if: ${{ inputs.existing_release_tag == '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: otzaria-search-verified-package
+          path: build/otzaria-artifact/*
+          compression-level: 0
+          retention-days: 3
+          if-no-files-found: error
       - name: Live Activity · refresh
         if: ${{ inputs.publish_release && (inputs.existing_release_tag == '' || inputs.repair_manifest_layout) }}
         uses: davidpovarsky/github-automation/live-refresh@main
