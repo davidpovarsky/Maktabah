@@ -35,9 +35,6 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 1
       - name: Install deterministic compression tools
         run: |
           brew list zstd >/dev/null 2>&1 || brew install zstd
@@ -91,6 +88,9 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          submodules: recursive
+          fetch-depth: 1
 
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -120,6 +120,18 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Set up Node for the real embedded runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Set up CocoaPods for the real embedded runtime
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Prepare the shipping embedded runtime and resources
+        run: bash Scripts/CI/prepare-embedded-artifact-app.sh
+
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
         with:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
@@ -407,6 +419,15 @@ jobs:
           bash Scripts/CI/verify-xcframework.sh Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework otzaria_search_engine.h
           cargo check --locked --features semantic --manifest-path Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml
 
+      - name: Preserve verified Otzaria framework before app acceptance
+        if: steps.otzaria-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ steps.otzaria-cache.outputs.cache-primary-key }}
+
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -416,6 +437,7 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - name: Cache Zayit framework
+        id: zayit-cache
         uses: actions/cache@v4
         with:
           path: |
@@ -465,6 +487,15 @@ jobs:
       - name: Verify Zayit framework
         run: bash Scripts/CI/verify-xcframework.sh Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework maktabah_zayit_search.h
 
+      - name: Preserve verified Zayit framework before app acceptance
+        if: steps.zayit-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
+            Vendor/ZayitSearchPort/Rust/target
+          key: ${{ steps.zayit-cache.outputs.cache-primary-key }}
+
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true
@@ -492,18 +523,6 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Set up Node for the real embedded runtime
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Set up CocoaPods for the real embedded runtime
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-      - name: Prepare the shipping embedded runtime and resources
-        run: bash Scripts/CI/prepare-embedded-artifact-app.sh
-
       - name: Resolve Swift packages
         run: |
           xcodebuild -resolvePackageDependencies \
