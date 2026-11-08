@@ -45,7 +45,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}
+  group: sefaria-embedded-val-${{ github.ref }}-${{ inputs.ui_sdk_check_only && 'ui-sdk-only' || inputs.source_ref || 'candidate' }}-${{ inputs.validation_runner || 'xcode-27' }}-${{ inputs.ui_diagnostic_cases != '' && 'diagnostic' || 'matrix' }}
   cancel-in-progress: true
 
 jobs:

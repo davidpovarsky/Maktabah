@@ -270,7 +270,12 @@
       "originalSHA256": "9ca6e76e744090cb10984d40fe770de2051dd3b24d81f5fcefac2adaf7bd4b33",
       "normalizedPortSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03",
       "identicalNormalizedSource": false,
-      "diffLines": 837
+      "diffLines": 837,
+      "exactCopiedFunctionsIgnoringIndentation": {
+        "daxBodySemibold": true,
+        "daxSubheadSemibold": true,
+        "daxFootnoteSemibold": true
+      }
     },
     {
       "original": "Sources/TorahInspectorUI/TorahSegmentDetailView.swift",

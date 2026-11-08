@@ -33,3 +33,13 @@ New real UIKit coverage checks 0/1/2/30 book membership with toolbar-owned contr
 The screenshot helper now retains actual screenshots/hierarchies **before** its unchanged strict native-settling assertion, labelling timed-out images `UNSETTLED-`. Such images are diagnostic, never automatic acceptance. A separate original-Inspector case retains its source screenshot before the unchanged reader/pixel assertions can abort. No failing assertion was removed or relaxed. The focused SDK compiler now includes all nine actual source-port files alongside the existing real standalone toolbar/pager sources; no stubs or replacement app views.
 
 New candidate build/UIKit/UI/visual results: pending. Local portable suites: 379/379 assertions and 61/61 workspace checks passed. TestFlight: not dispatched. A source comparison or Windows compile cannot establish UIKit/SwiftUI visual acceptance.
+
+## Validation follow-up
+
+The complete initial `1a6515d3` matrix remains running. The original `f092f399…` reference run 42500710349 built successfully but failed before XCTest: installing the tiny original Safari oracle timed out on runtime 27.2, then `simctl list devices -j` timed out during the recorded owned-device restart. No screenshot or app-acceptance result is claimed from that failed infrastructure attempt.
+
+Available-runner evidence confirms runtimes 27.0, 27.1 and 27.2 and a successful original preflight on 27.0. Subsequent comparisons prefer the installed SDK's matching 27.x runtime, retaining the 27-major gate, supported-device checks, immutable reference SHA and exact case verification. This does not assert 27.2 is unsupported or identify the root cause of the service timeout. The superseded retry 42504499979 was cancelled before Native tests; replacement reference 42504883842 uses this explicit SDK-matched preference.
+
+Manual diagnostics have a separate concurrency suffix from a full matrix so verifying the final font correction does not cancel an already-running complete matrix. No automatic trigger, test assertion, test selection default, release gate or diagnostic `fullMatrixAcceptance=false` safeguard is changed. This workflow is fork-owned (absent from the pinned upstream tree).
+
+Experimental signed production-profile TestFlight run 42505423827 targets exact app source `c9386186093e499a8952e39f70f677c6eb264c79`, build 10201. The owner's current attachment explicitly permits experimental delivery without a complete green Native gate. This is not Production approval; archive/export/signature/upload/Apple processing still must pass. Subsequent changes are verification metadata/CI only; app source is identical.
