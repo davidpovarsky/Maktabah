@@ -357,7 +357,7 @@ jobs:
           github_token: ${{ github.token }}
       - name: Cache Otzaria framework
         id: otzaria-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
@@ -438,7 +438,7 @@ jobs:
           github_token: ${{ github.token }}
       - name: Cache Zayit framework
         id: zayit-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework

@@ -237,7 +237,7 @@ jobs:
 
       - name: Cache pinned Otzaria framework and build products
         id: otzaria-framework-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework

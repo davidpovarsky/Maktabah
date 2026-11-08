@@ -136,7 +136,7 @@ jobs:
         run: echo "id=$(rustc -Vv | shasum -a 256 | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - name: Cache matching Otzaria framework
         id: otzaria-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
@@ -157,7 +157,7 @@ jobs:
           key: ${{ steps.otzaria-cache.outputs.cache-primary-key }}
       - name: Cache matching Zayit framework
         id: zayit-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework
