@@ -361,6 +361,7 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
         databaseURL: URL,
         lexicalURL: URL
     ) async throws {
+        try OtzariaSearchEngineBridge.configureLibrarySource(databaseURL: databaseURL)
         let otzaria = try OtzariaSearchEngineBridge(
             indexURL: OtzariaSearchIndexManager.shared.indexURL(for: databaseURL.path)
         )
@@ -374,6 +375,11 @@ private extension OtzariaNativeBootstrapAcceptanceRunner {
             order: .relevance,
             wordMatchMode: .all
         ))
+        guard otzariaPage.results.contains(where: {
+            $0.textStatus == "ok" && !$0.text.isEmpty && $0.filePath.hasPrefix("id:")
+        }) else {
+            throw OtzariaSearchError.invalidEngineResponse("The installed index did not hydrate real text from its matching SQLite source")
+        }
         report.otzariaSearchResults = UInt64(otzariaPage.totalCount)
 
         let zayitStorage = try ZayitSearchArtifactStorage()
