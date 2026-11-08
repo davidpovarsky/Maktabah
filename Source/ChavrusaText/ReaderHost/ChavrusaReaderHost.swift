@@ -70,8 +70,10 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                     .opacity(navigationChrome.isVisible && !manager.openTabs.isEmpty ? 1 : 0)
                     .clipped()
                     .allowsHitTesting(navigationChrome.isVisible && !manager.openTabs.isEmpty)
-                    .accessibilityHidden(!navigationChrome.isVisible || manager.openTabs.isEmpty)
                     .accessibilityIdentifier("reader-document-tabs")
+                    // Hide the identifier container too, not only its UIKit
+                    // descendants. The empty strip already has zero height.
+                    .accessibilityHidden(!navigationChrome.isVisible || manager.openTabs.isEmpty)
                 reader
             }
                 .background(readerChromeColor)

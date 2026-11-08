@@ -1,6 +1,6 @@
 --- iOS/DuckDuckGo/TabSwitcher/TabViewGridCell.swift
 +++ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift
-@@ -1,152 +1,724 @@
+@@ -1,152 +1,727 @@
  //
 -//  TabViewGridCell.swift
 -//  DuckDuckGo
@@ -789,9 +789,12 @@
 +              proposedDestination.section == 0 else { return }
 +        let destinationItem = max(0, min(proposedDestination.item, documents.count - 1))
 +        let destination = IndexPath(item: destinationItem, section: 0)
-+        let document = documents.remove(at: source.item)
-+        documents.insert(document, at: destinationItem)
++        let document = documents[source.item]
 +        collectionView.performBatchUpdates {
++            // Keep the source's model move inside the same UIKit transaction
++            // as its delete/insert; pre-mutating breaks drag layout snapshots.
++            documents.remove(at: source.item)
++            documents.insert(document, at: destinationItem)
 +            collectionView.deleteItems(at: [source])
 +            collectionView.insertItems(at: [destination])
 +        } completion: { [weak self] _ in

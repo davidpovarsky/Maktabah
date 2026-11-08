@@ -1243,7 +1243,14 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-"))
         XCTAssertGreaterThanOrEqual(gridCells.count, 2, "Open two distinct canonical books before testing actual source drag reorder")
         let destination = gridCells.element(boundBy: gridCells.count - 1)
+        XCTAssertNotEqual(closedCard.identifier, destination.identifier,
+                          "The real drag destination must be a different source card")
         closedCard.press(forDuration: 0.6, thenDragTo: destination)
+        retainNativeEvidence("candidate-overview-after-real-drag")
+        let orderObservation = XCTAttachment(string: "before=\(beforeDrag)\nafter=\(String(describing: persistedOrder()))")
+        orderObservation.name = "actual-source-drag-persisted-order"
+        orderObservation.lifetime = .keepAlways
+        add(orderObservation)
         let reordered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             guard let order = persistedOrder() else { return false }
             return Set(order) == Set(beforeDrag) && order != beforeDrag
@@ -1286,6 +1293,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(strip.waitForExistence(timeout: 30))
 
         text.swipeUp()
+        retainNativeEvidence("candidate-reader-after-downward-scroll")
         let hidden = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"),
             object: strip
@@ -1345,6 +1353,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
         capture("candidate-empty-group")
         tap(app.buttons["סיום"])
+        retainNativeEvidence("candidate-empty-group-after-dismissal")
         XCTAssertFalse(app.descendants(matching: .any)["reader-document-tabs"].exists,
                        "An empty group must not expose a blank document strip")
         XCTAssertTrue(app.buttons["reader-tabs-overview"].exists)

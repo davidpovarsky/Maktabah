@@ -223,54 +223,54 @@
       "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
       "pin": "owner-provided archive",
       "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-      "normalizedPortSHA256": "13a04f18568ad90156a36b698e73ff4a0f2421258016f16de1725436a2152b06",
+      "normalizedPortSHA256": "775ffe1d94050c8bf8559e3cf1c52fd1d3accca5b3b1522ebe745df5b46f894c",
       "identicalNormalizedSource": false,
-      "diffLines": 1010
+      "diffLines": 1012
     },
     {
       "original": "iOS/DuckDuckGo/TabSwitcher/TabSwitcherPageViewController.swift",
       "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "a12100a4c78e4d32da6df3ea7d137766a3da7a82fad2cdb84d4f371c12a9c8cf",
-      "normalizedPortSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03",
+      "normalizedPortSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
       "identicalNormalizedSource": false,
-      "diffLines": 1340
+      "diffLines": 1343
     },
     {
       "original": "iOS/DuckDuckGo/TabSwitcher/TabViewCell.swift",
       "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "6e8bb3fda08c289202c0abec6beeefb57a91bd420111c6f9506e768d97a88c57",
-      "normalizedPortSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03",
+      "normalizedPortSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
       "identicalNormalizedSource": false,
-      "diffLines": 1386
+      "diffLines": 1389
     },
     {
       "original": "iOS/DuckDuckGo/TabSwitcher/TabViewGridCell.swift",
       "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "3c17cdbf42a3720645a558320f5fb28da29090f040f5d7a3c94745d43f6118ad",
-      "normalizedPortSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03",
+      "normalizedPortSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
       "identicalNormalizedSource": false,
-      "diffLines": 852
+      "diffLines": 855
     },
     {
       "original": "iOS/DuckDuckGo/TabSwitcher/TabViewListCell.swift",
       "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "efcdd9ebba2697b2ef8b7dcbf3f71f27e4b5c26a73d8a5da47123edc28e73ca5",
-      "normalizedPortSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03",
+      "normalizedPortSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
       "identicalNormalizedSource": false,
-      "diffLines": 826
+      "diffLines": 829
     },
     {
       "original": "SharedPackages/Infrastructure/DesignResourcesKit/Sources/DesignResourcesKit/Fonts/Font.swift",
       "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "9ca6e76e744090cb10984d40fe770de2051dd3b24d81f5fcefac2adaf7bd4b33",
-      "normalizedPortSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03",
+      "normalizedPortSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
       "identicalNormalizedSource": false,
-      "diffLines": 837,
+      "diffLines": 840,
       "exactCopiedFunctionsIgnoringIndentation": {
         "daxBodySemibold": true,
         "daxSubheadSemibold": true,
