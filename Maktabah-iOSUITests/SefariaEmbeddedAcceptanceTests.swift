@@ -189,6 +189,21 @@ final class SefariaEmbeddedAcceptanceTests: MaktabahUITestBase {
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: expected, object: locator)], timeout: 30), .completed)
     }
 
+    func testEmbeddedSefariaTapOpensInspector() throws {
+        launchWithScenario("reader", backend: "sefariaEmbedded")
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 60))
+        let readable = NSPredicate { _, _ in
+            (text.value as? String ?? "").unicodeScalars.filter { (0x05D0...0x05EA).contains($0.value) }.count > 30
+        }
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: readable, object: text)], timeout: 60), .completed)
+        let group = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'torah-inspector-commentary-group-'")).firstMatch
+        XCTAssertFalse(group.exists, "The ordinary reader scenario must not preselect a source passage")
+        text.coordinate(withNormalizedOffset: CGVector(dx: 0.8, dy: 0.12)).tap()
+        XCTAssertTrue(group.waitForExistence(timeout: 60), "A native tap on the real Hebrew passage must load its inspector relationships")
+        XCTAssertTrue(app.staticTexts["reader-current-locator"].label.contains("sefariaEmbedded"))
+    }
+
     func testEmbeddedSefariaHebrewSearchExpansion() throws {
         launchWithScenario("searchResults", backend: "sefariaEmbedded")
         let toggle = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'search-result-preview-toggle'")).firstMatch
