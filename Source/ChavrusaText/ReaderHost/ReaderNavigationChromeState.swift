@@ -1,5 +1,21 @@
 import Foundation
 
+#if canImport(SwiftUI)
+import SwiftUI
+
+private struct ReaderNavigationChromeVisibilityKey: EnvironmentKey {
+    static let defaultValue: Bool? = nil
+}
+
+extension EnvironmentValues {
+    /// Nil keeps the original platform policy for flags-off views and iPhone.
+    var chavrusaReaderNavigationChromeVisible: Bool? {
+        get { self[ReaderNavigationChromeVisibilityKey.self] }
+        set { self[ReaderNavigationChromeVisibilityKey.self] = newValue }
+    }
+}
+#endif
+
 /// Uses the user's pan distance rather than contentOffset changes caused by
 /// safe-area/layout updates, restoration or programmatic navigation.
 struct ReaderNavigationChromeState {

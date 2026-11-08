@@ -91,6 +91,18 @@ final class StudyWorkspaceStore {
         }
     }
 
+    func reorderDocument(_ id: UUID, to destination: Int, groupID: UUID) throws {
+        try transaction { value in
+            guard let group = value.groups.firstIndex(where: { $0.id == groupID }),
+                  let source = value.groups[group].tabs.firstIndex(where: { $0.id == id }),
+                  value.groups[group].tabs.indices.contains(destination) else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+            let document = value.groups[group].tabs.remove(at: source)
+            value.groups[group].tabs.insert(document, at: destination)
+        }
+    }
+
     @discardableResult
     func addProfile(name: String, symbol: String) throws -> UUID {
         let id = UUID()

@@ -176,6 +176,19 @@ final class StudyWorkspaceNavigationAdapter {
         synchronize(manager)
     }
 
+    func reorderDocument(_ id: UUID, to index: Int, manager: iOSNavigationManager) {
+        synchronize(manager)
+        guard let groupID = liveGroupID else { return }
+        do {
+            try store.reorderDocument(id, to: index, groupID: groupID)
+            guard let saved = group else { return }
+            let positions = Dictionary(uniqueKeysWithValues: saved.tabs.enumerated().map { ($0.element.id, $0.offset) })
+            manager.openTabs.sort { positions[$0.id, default: .max] < positions[$1.id, default: .max] }
+            if let backend = liveBackend { cache[groupID, default: [:]][backend] = manager.openTabs }
+            manager.persistCurrentSession(immediate: true)
+        } catch { errorMessage = error.localizedDescription }
+    }
+
     func createGroup(name: String, fromCurrent: Bool, manager: iOSNavigationManager) async {
         synchronize(manager)
         guard let profileID = selection?.profileID else { return }
@@ -188,8 +201,7 @@ final class StudyWorkspaceNavigationAdapter {
 
     private func persistProjection(_ tabs: [iOSNavigationManager.ReaderTab], activeID: UUID?, groupID: UUID, backend: BackendID) throws {
         guard let saved = store.snapshot?.groups.first(where: { $0.id == groupID }) else { throw StudyWorkspaceError.invalidMembership }
-        let foreign = saved.tabs.filter { $0.backend != backend }
-        let merged = foreign + capture(tabs, backend: backend)
+        let merged = StudyWorkspaceProjectionPolicy.merging(live: capture(tabs, backend: backend), into: saved.tabs, backend: backend)
         try store.transaction { value in
             guard let index = value.groups.firstIndex(where: { $0.id == groupID }) else { throw StudyWorkspaceError.invalidMembership }
             value.groups[index].tabs = merged

@@ -28,7 +28,7 @@ struct StudyGroupsOverview: View {
                 onSelect: openDocument,
                 onClose: closeDocument,
                 onReorder: { document, index in
-                    workspace.reorder(document.id, to: index, manager: manager)
+                    workspace.reorderDocument(document.id, to: index, manager: manager)
                 },
                 contextMenu: contextMenu
             )

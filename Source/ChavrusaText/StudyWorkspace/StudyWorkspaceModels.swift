@@ -33,6 +33,23 @@ struct StudyTabGroup: Codable, Equatable, Identifiable, Sendable {
 }
 
 enum StudyWorkspaceProjectionPolicy {
+    /// Replace the live backend's slots in order without moving foreign-source
+    /// documents to the front whenever a reading checkpoint is saved.
+    static func merging(live: [ReaderDocumentTab], into saved: [ReaderDocumentTab], backend: BackendID) -> [ReaderDocumentTab] {
+        var next = 0
+        var result: [ReaderDocumentTab] = []
+        for document in saved {
+            if document.backend != backend {
+                result.append(document)
+            } else if live.indices.contains(next) {
+                result.append(live[next])
+                next += 1
+            }
+        }
+        result.append(contentsOf: live.dropFirst(next))
+        return result
+    }
+
     static func backend(restoring committedBackend: BackendID?, requestedID: UUID?, documents: [ReaderDocumentTab], fallback: BackendID) -> BackendID {
         // Startup respects the canonical backend owner's committed source.
         // An explicit group/document selection may request another source.

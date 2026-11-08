@@ -73,6 +73,30 @@ struct FaithfulStudyWorkspaceTests {
         try expect(copied.id != original.id && copied.session.bookId == original.session.bookId, "Copying the same book creates an independent document identity")
         try expect(copied.session.locator == original.session.locator && copied.session.scrollPosition == original.session.scrollPosition && copied.session.selectedRange == original.session.selectedRange,
                    "Copying preserves initial locator, viewport and selection without sharing a mutable session")
+        let foreign = ReaderDocumentTab(backend: .sefariaEmbedded, session: .init(id: UUID(), bookId: 42, bookTitle: "Genesis"))
+        let mixed = [original, foreign, copied]
+        try expect(StudyWorkspaceProjectionPolicy.merging(live: [original, copied], into: mixed, backend: .otzaria) == mixed,
+                   "Saving an unchanged backend must preserve interleaved foreign-book order")
+        try expect(StudyWorkspaceProjectionPolicy.merging(live: [copied, original], into: mixed, backend: .otzaria) == [copied, foreign, original],
+                   "Native strip reorder updates its own slots without moving foreign documents")
+        try expect(StudyWorkspaceProjectionPolicy.merging(live: [], into: mixed, backend: .otzaria) == [foreign],
+                   "Closing every live tab preserves foreign-source books")
+        let mixedPersistence = StudyWorkspacePersistence(url: directory.appendingPathComponent("mixed-workspace.json"))
+        let mixedStore = StudyWorkspaceStore(persistence: mixedPersistence, canonicalSessionURL: canonicalURL)
+        try mixedStore.attach(scene: "mixed-window", legacyTabs: mixed, activeID: original.id)
+        let mixedGroupID = mixedStore.selectedGroup(scene: "mixed-window")!.id
+        try mixedStore.reorderDocument(foreign.id, to: 0, groupID: mixedGroupID)
+        try expect(mixedStore.selectedGroup(scene: "mixed-window")?.tabs == [foreign, original, copied],
+                   "Overview reorder moves a real foreign-source document without replacing sessions")
+        try expect(mixedStore.selectedGroup(scene: "mixed-window")?.activeTabID == original.id,
+                   "Overview reorder preserves active document identity")
+        let mixedColdStore = StudyWorkspaceStore(persistence: mixedPersistence, canonicalSessionURL: canonicalURL)
+        try expect(mixedColdStore.selectedGroup(scene: "mixed-window")?.tabs == [foreign, original, copied],
+                   "Mixed-source overview order survives reload")
+        let beforeBadOrder = mixedStore.snapshot
+        do { try mixedStore.reorderDocument(foreign.id, to: 30, groupID: mixedGroupID) }
+        catch StudyWorkspaceError.invalidMembership { }
+        try expect(mixedStore.snapshot == beforeBadOrder, "Invalid reorder leaves persistent and visible state intact")
         let migrated = store.snapshot
         try store.attach(scene: "window-a", legacyTabs: [], activeID: nil)
         try expect(store.snapshot == migrated, "Attaching twice must not remigrate or erase the original tabs")

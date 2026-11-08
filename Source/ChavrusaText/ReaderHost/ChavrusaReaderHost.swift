@@ -118,6 +118,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         .modifier(ReaderSidebarToggleRemoval())
         .background(readerChromeColor.ignoresSafeArea())
         .environment(\.chavrusaReaderSidebar, sidebar)
+        .environment(\.chavrusaReaderNavigationChromeVisible, navigationChrome.isVisible)
         .background {
             ReaderSceneIdentityReader { identifier in
                 if sceneID != identifier { sceneID = identifier }

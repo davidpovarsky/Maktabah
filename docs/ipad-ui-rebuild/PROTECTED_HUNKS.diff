@@ -385,6 +385,15 @@ index 6e45959a..8e288253 100644
 @@ -27 +27 @@ struct SearchModeView: View {
 -                    isFocused: _isSearchFieldFocused,
 +                    focusBinding: $isSearchFieldFocused,
+diff --git a/Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift b/Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift
+index d647b4da..b9896936 100644
+--- a/Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift
++++ b/Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift
+@@ -5,0 +6 @@ struct iOSTabBarVisibilityPolicy: ViewModifier {
++    @Environment(\.chavrusaReaderNavigationChromeVisible) private var readerChromeVisible
+@@ -10 +11 @@ struct iOSTabBarVisibilityPolicy: ViewModifier {
+-            content.toolbarVisibility(.visible, for: .tabBar)
++            content.toolbarVisibility(readerChromeVisible == false ? .hidden : .visible, for: .tabBar)
 diff --git a/Source/UI/iOS/Views/iOSMainView.swift b/Source/UI/iOS/Views/iOSMainView.swift
 index 5b96b54d..8547847a 100644
 --- a/Source/UI/iOS/Views/iOSMainView.swift

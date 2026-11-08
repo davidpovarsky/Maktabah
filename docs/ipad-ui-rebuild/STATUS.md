@@ -8,12 +8,15 @@ This is implementation in progress, not a completion or visual-parity claim.
 
 `[נועם | DEV] [MAIN_SESSION]`, NORMAL. All 18 initial dirty/untracked files were preserved in an external snapshot before editing. Branch remains `experiment/ipad-ui-faithful-from-9401`; parent `e815a6da`. No Asana writes, main merge, reset or source-checkout changes.
 
-- EXECUTED_PASS: 53 portable workspace/state checks on Windows Swift 6.3.3, including actual extracted chrome state. This does not validate UIKit/SwiftUI.
+- EXECUTED_PASS: 60 portable workspace/state checks on Windows Swift 6.3.3, including actual extracted chrome state. This does not validate UIKit/SwiftUI.
 - EXECUTED_PASS: Swift syntax parsing of changed state, host and overview sources; `git diff --check` clean. Real Xcode checks remain necessary.
 - Source review found and corrected the prepared overview's non-source 190–420pt card-height policy and list close-button hierarchy. The original 2.7-row / 140–209pt geometry, title/close accessibility order, animations and reuse behavior are retained with book-domain display data.
 - The same prepared chrome state now consumes user pan translation to avoid feedback from its own safe-area changes. The existing delegate reports via two narrow downstream calls; original Pull-to-Navigate and scroll offset/selection handling are retained. Navigation/search/Inspector/sidebar/group presentation reveals chrome.
 - `MaktabahTests` is already a synchronized Xcode group. The actual new state test and source are additionally executed in the existing Simulator source-port test host; the overview is included in its actual Swift package, with lifecycle/list/grid/width tests.
 - NOT_RUN: current-SHA native tests, screenshot acceptance, full production Release and signed TestFlight. Previous SDK-only run 42102701608 covers the parent only and is not runtime acceptance.
+
+- Additional review corrected mixed-backend overview reordering/checkpoints in the existing adapter; seven actual persistence/order contracts pass locally. A minimal optional visibility environment resolves the original reader's always-visible iPad child preference; flags-off defaults remain unchanged. Real menu tests now use the source long-press context menu, and source overview acceptance checks Grid/List plus RTL swipe-close against exact persisted UUID membership.
+- Superseded first validation candidate 466ed299 is running in 42427413998; it predates the child visibility correction and updated context-menu tests and cannot establish current acceptance.
 
 ## Current verified status — 2026-11-05
 

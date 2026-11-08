@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,659 +1,348 @@
+@@ -1,659 +1,349 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -268,6 +268,7 @@
 +        .modifier(ReaderSidebarToggleRemoval())
 +        .background(readerChromeColor.ignoresSafeArea())
 +        .environment(\.chavrusaReaderSidebar, sidebar)
++        .environment(\.chavrusaReaderNavigationChromeVisible, navigationChrome.isVisible)
 +        .background {
 +            ReaderSceneIdentityReader { identifier in
 +                if sceneID != identifier { sceneID = identifier }

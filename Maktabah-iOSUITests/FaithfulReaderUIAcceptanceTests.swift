@@ -793,26 +793,27 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(nameAlert.buttons["שמירה"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
         selectStudyGroup(named: "כל הכרטיסיות")
-        let cardActions = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "פעולות בכרטיסייה ")).firstMatch
-        tap(cardActions)
-        // SwiftUI inserts Unicode direction isolates around interpolated RTL
-        // names. Match the unchanged action and actual name independently.
-        tap(app.collectionViews.cells.buttons.matching(NSPredicate(
-            format: "label BEGINSWITH %@ AND label CONTAINS %@", "העתק אל ", "יעד העברה")).firstMatch)
+        let card = app.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@ AND label CONTAINS %@", "tab-switcher-", bookTitle)).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
+        card.press(forDuration: 1)
+        tap(app.buttons["העתקה לקבוצה"])
+        tap(app.collectionViews.cells.buttons["יעד העברה"])
         selectStudyGroup(named: "יעד העברה")
-        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Copy must create a real document card in its destination")
+        XCTAssertTrue(card.waitForExistence(timeout: 15), "Copy must create a real document card in its destination")
         let overview = app.descendants(matching: .any)["study-groups-overview"]
         tap(overview.buttons.matching(NSPredicate(
             format: "label BEGINSWITH %@ AND label CONTAINS %@", "סגור ", bookTitle)).firstMatch)
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
         selectStudyGroup(named: "כל הכרטיסיות")
-        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Closing the copied document must preserve its source")
-        tap(cardActions)
-        tap(app.collectionViews.cells.buttons.matching(NSPredicate(
-            format: "label BEGINSWITH %@ AND label CONTAINS %@", "העבר אל ", "יעד העברה")).firstMatch)
+        XCTAssertTrue(card.waitForExistence(timeout: 15), "Closing the copied document must preserve its source")
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
+        card.press(forDuration: 1)
+        tap(app.buttons["העברה לקבוצה"])
+        tap(app.collectionViews.cells.buttons["יעד העברה"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15), "Move must remove the source card")
         selectStudyGroup(named: "יעד העברה")
-        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15))
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
         tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["שינוי שם הקבוצה"])
         XCTAssertTrue(nameAlert.waitForExistence(timeout: 10))
@@ -829,7 +830,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(nameField.value as? String, "יעד ששמו עודכן")
         tap(nameAlert.buttons["שמירה"])
         selectStudyGroup(named: "יעד ששמו עודכן")
-        XCTAssertTrue(app.staticTexts[bookTitle].waitForExistence(timeout: 15), "Rename must preserve membership")
+        XCTAssertTrue(card.waitForExistence(timeout: 15), "Rename must preserve membership")
         capture("candidate-group-move-copy-rename")
         tap(app.buttons["study-group-actions-menu"])
         tap(app.buttons["מחיקת קבוצה"])
@@ -837,7 +838,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["מחיקת קבוצה"])
         XCTAssertTrue(app.staticTexts["אין כרטיסיות בקבוצה"].waitForExistence(timeout: 15))
         selectStudyGroup(named: "כל הכרטיסיות")
-        XCTAssertFalse(app.staticTexts[bookTitle].exists)
+        XCTAssertFalse(card.exists)
         capture("candidate-deleted-group-retains-replacement")
     }
 
@@ -1058,7 +1059,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(libraryDot)
     }
 
-    func testSourceToolbarPaletteAndOverview() {
+    func testSourceToolbarPaletteAndOverview() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchReader()
         assertReaderHasText()
@@ -1085,6 +1086,9 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let overview = app.descendants(matching: .any)["study-groups-overview"]
         XCTAssertTrue(overview.waitForExistence(timeout: 15))
         XCTAssertTrue(app.descendants(matching: .any)["study-group-selector"].exists)
+        let layoutToggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(layoutToggle.waitForExistence(timeout: 15))
+        if layoutToggle.label == "תצוגת רשת" { tap(layoutToggle) }
         XCTAssertTrue(overview.descendants(matching: .any).matching(
             NSPredicate(format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-")
         ).firstMatch.waitForExistence(timeout: 15), "The original DuckDuckGo grid cell must render the open book")
@@ -1094,6 +1098,40 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
             NSPredicate(format: "identifier BEGINSWITH %@", "tab-switcher-list-cell-")
         ).firstMatch.waitForExistence(timeout: 15), "The original DuckDuckGo list cell must replace the grid cell")
         capture("candidate-all-tabs-list")
+        tap(layoutToggle)
+        let card = overview.collectionViews.cells.matching(NSPredicate(
+            format: "identifier BEGINSWITH %@", "tab-switcher-grid-cell-")).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 15))
+        let closedID = try XCTUnwrap(UUID(uuidString: String(card.identifier.dropFirst("tab-switcher-grid-cell-".count))))
+        let sidecarURL = try workspaceSidecarURL()
+        func persistedTabs(containing id: UUID) throws -> (groupID: String, ids: Set<UUID>)? {
+            let value = try JSONSerialization.jsonObject(with: Data(contentsOf: sidecarURL)) as? [String: Any]
+            let groups = value?["groups"] as? [[String: Any]] ?? []
+            for group in groups {
+                let tabs = group["tabs"] as? [[String: Any]] ?? []
+                let ids = Set(tabs.compactMap { ($0["session"] as? [String: Any])?["id"] as? String }.compactMap(UUID.init(uuidString:)))
+                if ids.contains(id), let groupID = group["id"] as? String { return (groupID, ids) }
+            }
+            return nil
+        }
+        let original = try XCTUnwrap(persistedTabs(containing: closedID))
+        let closedCard = overview.collectionViews.cells["tab-switcher-grid-cell-" + closedID.uuidString]
+        closedCard.swipeRight()
+        let removed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: closedCard)
+        XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 15), .completed,
+                       "The source RTL swipe must remove the exact original card")
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let bytes = try? Data(contentsOf: sidecarURL),
+                  let value = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+                  let groups = value["groups"] as? [[String: Any]],
+                  let group = groups.first(where: { $0["id"] as? String == original.groupID }),
+                  let tabs = group["tabs"] as? [[String: Any]] else { return false }
+            let ids = Set(tabs.compactMap { ($0["session"] as? [String: Any])?["id"] as? String }.compactMap(UUID.init(uuidString:)))
+            return ids == original.ids.subtracting([closedID])
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 15), .completed,
+                       "Swipe close must persist the exact surviving document IDs")
+        capture("candidate-overview-original-swipe-close")
         tap(app.buttons["סיום"])
         tap(app.buttons["study-profile-menu"])
         tap(app.buttons["ניהול פרופילי לימוד"])
@@ -1101,11 +1139,12 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         capture("candidate-profile-management")
     }
 
-    func testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll() {
+    func testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll() throws {
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader()
+        launchReader(recordViewport: true)
         assertReaderHasText()
         let text = app.textViews["reader-text"]
+        let originalObject = try viewport().object
         let strip = app.descendants(matching: .any)["reader-document-tabs"]
         XCTAssertTrue(strip.waitForExistence(timeout: 30))
 
@@ -1120,6 +1159,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(!globalHistory.exists || !globalHistory.isHittable,
                       "The system global tab bar should collapse with reader chrome when supported")
 
+        XCTAssertEqual(try viewport().object, originalObject, "Collapsing chrome must retain the original TextKit instance")
+        capture("candidate-reader-scroll-chrome-hidden")
         text.swipeDown()
         XCTAssertTrue(strip.waitForExistence(timeout: 15),
                       "Upward reader scrolling must restore the document strip")
@@ -1132,6 +1173,7 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         tap(readerSidebarToggle())
         XCTAssertTrue(strip.waitForExistence(timeout: 15),
                       "Opening the sidebar must restore reader navigation chrome")
+        XCTAssertEqual(try viewport().object, originalObject, "Restoring chrome must retain the original TextKit instance")
         capture("candidate-reader-scroll-chrome-restored")
     }
 
