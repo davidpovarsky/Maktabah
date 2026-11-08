@@ -245,8 +245,18 @@ jobs:
           key: ${{ runner.os }}-${{ runner.arch }}-otzaria-source-v7-${{ hashFiles('Vendor/OtzariaSearchEngine/Upstream/**', 'Vendor/OtzariaSearchEngine/Resources/**', 'Vendor/OtzariaSearchEngine/ios_bridge/Cargo.*', 'Vendor/OtzariaSearchEngine/ios_bridge/build.rs', 'Vendor/OtzariaSearchEngine/ios_bridge/src/**', 'Vendor/OtzariaSearchEngine/include/**', 'Vendor/OtzariaSearchEngine/build_xcframework.sh') }}
 
       - name: Build Otzaria framework from the exact source pin
+        id: otzaria-source-build
         if: steps.otzaria-framework-cache.outputs.cache-hit != 'true'
         run: bash Vendor/OtzariaSearchEngine/build_xcframework.sh
+
+      - name: Preserve verified source framework before independent app checks
+        if: steps.otzaria-framework-cache.outputs.cache-hit != 'true' && steps.otzaria-source-build.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework
+            Vendor/OtzariaSearchEngine/ios_bridge/target
+          key: ${{ steps.otzaria-framework-cache.outputs.cache-primary-key }}
 
       - name: Verify current C Swift Rust ABI
         run: python3 Vendor/OtzariaSearchEngine/Scripts/verify-api-parity.py

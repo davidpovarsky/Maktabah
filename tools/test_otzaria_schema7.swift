@@ -113,7 +113,7 @@ import SQLite3
         try check(decorations.notes.first?.body == "note\ncontinuation" && decorations.notes.first?.charPosition == 5,
                   "Edition footnotes retain original body and insertion coordinates")
         try sql("CREATE TABLE zstd_dict(id INTEGER PRIMARY KEY,dict BLOB)")
-        try db.execute(query: "INSERT INTO zstd_dict VALUES(1,?)", parameters: [Data("raw dictionary seed".utf8)])
+        try sql("INSERT INTO zstd_dict VALUES(1,X'7261772064696374696f6e6172792073656564')")
         let compressedText = "בראשית ברא אלהים את השמים ואת הארץ"
         let input = Data(compressedText.utf8)
         var frame = Data(count: ZSTD_compressBound(input.count))

@@ -13,7 +13,7 @@ OUT_BIN="${1:-${RUNNER_TEMP:-/tmp}/chavrusa_component_tests}"
 
 echo "=== Compiling ChavrusaText Portable Component & Sefaria-Embedded Tests ==="
 
-swiftc -parse-as-library \
+swiftc -whole-module-optimization -parse-as-library \
   "${REPO_ROOT}/Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift" \
   "${REPO_ROOT}/Source/ChavrusaText/ReaderRendering/ReaderSelectionRangeMapper.swift" \
   "${REPO_ROOT}/Source/ChavrusaText/Annotations/BackendAnnotationBridge.swift" \

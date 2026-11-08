@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify that a miniTest10 database is a faithful schema-6 subset."""
+"""Verify that a miniTest10 database is a faithful pinned schema subset."""
 
 from __future__ import annotations
 
@@ -139,7 +139,12 @@ def main() -> None:
             ("link_suppressed_side", f"linkId IN ({link_marker})", source_links),
             ("book_version", f"bookId IN ({book_marker})", books),
         )
-        for table, where, parameters in filters:
+        source_tables = {row[0] for row in source.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        extra = [(table, f"lineId IN ({line_marker})", source_lines) for table in ("line_note", "line_divine_name", "line_note_divine_name") if table in source_tables]
+        extra += [(table, f"bookId IN ({book_marker})", books) for table in ("book_protection", "book_banner") if table in source_tables]
+        if "banner" in source_tables:
+            extra.append(("banner", f"id IN (SELECT bannerId FROM book_banner WHERE bookId IN ({book_marker}))", books))
+        for table, where, parameters in [*filters, *extra]:
             expected = table_digest(source, table, where, parameters)
             actual = table_digest(mini, table, where, parameters)
             if actual != expected:
@@ -178,8 +183,8 @@ def main() -> None:
         integrity = mini.execute("PRAGMA integrity_check").fetchone()[0]
         if mini_books != list(books) or len(mini_books) != 10:
             raise RuntimeError(f"book set mismatch: {mini_books}")
-        if schema_meta.get("db_schema_version") != "6":
-            raise RuntimeError(f"expected schema 6, got {schema_meta}")
+        if schema_meta != dict(source.execute("SELECT key, value FROM schema_meta")):
+            raise RuntimeError(f"source schema/content metadata differs: {schema_meta}")
         if foreign_keys or integrity != "ok":
             raise RuntimeError(f"database validation failed: fk={foreign_keys[:3]} integrity={integrity}")
 

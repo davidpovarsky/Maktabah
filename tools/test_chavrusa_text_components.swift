@@ -19,7 +19,7 @@ struct TestRunner {
     @MainActor
     static func main() async {
         print("=== ChavrusaText Component Tests — Batch B Final Repair Gate ===")
-        print("Toolchain: Windows Swift 6.3.3 | Target: Foundation-portable smoke test")
+        print("Target: Foundation-portable production component contracts (host Swift compiler)")
 
         // 1. SerializedSessionWriter Tests (including Defect 4 atomic clear & failure paths)
         print("\n--- 1. Testing SerializedSessionWriter ---")

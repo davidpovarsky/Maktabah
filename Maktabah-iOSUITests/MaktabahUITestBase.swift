@@ -143,6 +143,7 @@ class MaktabahUITestBase: XCTestCase {
             scenario: scenario,
             backend: backend,
             extraArgs: extraArgs,
+            extraEnv: extraEnv,
             language: language,
             locale: locale
         )

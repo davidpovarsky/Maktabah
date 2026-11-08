@@ -222,6 +222,16 @@ class MiniDatabaseBuilder:
             books + books,
         )
 
+        # Schema7 additions are copied through canonical IDs, including the
+        # original note bodies and restriction facts; a mini profile is not a
+        # stripped schema6 presentation of a schema7 source.
+        for table in ("line_note", "line_divine_name", "line_note_divine_name"):
+            counts[table] = self.copy(table, f"lineId IN (SELECT id FROM line WHERE bookId IN ({book_in}))", books)
+        for table in ("book_protection", "book_banner"):
+            counts[table] = self.copy(table, f"bookId IN ({book_in})", books)
+        if "book_banner" in self.source_tables:
+            counts["banner"] = self.copy("banner", f"id IN (SELECT bannerId FROM book_banner WHERE bookId IN ({book_in}))", books)
+
         self.output.commit()
         self.recreate_indexes_and_fts()
         source_user_version = int(self.source.execute("PRAGMA user_version").fetchone()[0])
