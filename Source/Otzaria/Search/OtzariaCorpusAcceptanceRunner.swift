@@ -82,6 +82,7 @@ enum OtzariaCorpusAcceptanceRunner {
                 }
             )
             let manager = OtzariaSearchIndexManager.shared
+            try OtzariaSearchEngineBridge.configureLibrarySource(databaseURL: URL(fileURLWithPath: databasePath))
             let engine = try OtzariaSearchEngineBridge(indexURL: manager.indexURL(for: databasePath))
             defer { engine.close() }
             let paths = try engine.indexedFilePaths()
@@ -121,7 +122,7 @@ enum OtzariaCorpusAcceptanceRunner {
                     limit: 10
                 ))
                 guard page.totalCount > 0,
-                      page.results.contains(where: { $0.filePath == "otzaria-book:\(book.id)" }) else {
+                      page.results.contains(where: { $0.filePath == "id:\(book.id)" && $0.textStatus == "ok" }) else {
                     throw OtzariaSearchError.invalidEngineResponse(
                         "Reopen search failed for facet \(facet), book \(book.id), query \(query)"
                     )

@@ -28,6 +28,40 @@ struct OtzariaLineDecorations: Sendable {
 /// Exposes schema7 source facts; does not guess substitutions or alter user annotations.
 struct OtzariaLineDecorationRepository: Sendable {
     var context: OtzariaSchemaAwareReadContext = .shared
+    func restoringNotes(in section: LibraryTextSection) async throws -> LibraryTextSection {
+        guard section.locator.backend == .otzaria else { throw LibraryBackendError.invalidLocator }
+        return try await context.read { database, capabilities in
+            guard capabilities.hasTable("line_note") else { return section }
+            let bookID = try OtzariaCanonicalLineLocatorResolver.bookID(for: section.locator.workKey, database: database, capabilities: capabilities)
+            let indices = section.segments.compactMap { segment -> Int? in
+                if case .legacyLine(let line) = segment.locator.position { return line }
+                return nil
+            }
+            guard indices.count == section.segments.count else { throw LibraryBackendError.invalidLocator }
+            let decoder = try OtzariaLineContentDecoder(database: database, capabilities: capabilities)
+            var notes: [Int: [OtzariaLineNote]] = [:]
+            for offset in stride(from: 0, to: indices.count, by: 400) {
+                try Task.checkCancellation()
+                let lines = Array(indices[offset..<min(offset + 400, indices.count)])
+                let placeholders = Array(repeating: "?", count: lines.count).joined(separator: ",")
+                let rows = try database.fetch(query: """
+                    SELECT l.lineIndex,n.noteIndex,n.charPos,n.hasMarker,n.body FROM line_note n JOIN line l ON l.id=n.lineId
+                    WHERE l.bookId=? AND l.lineIndex IN (\(placeholders)) ORDER BY l.lineIndex,n.noteIndex
+                    """, parameters: [bookID] + lines.map { $0 as Any }) { row in
+                    OtzariaLineNote(lineIndex: row.int(at: 0), noteIndex: row.int(at: 1), charPosition: row.int(at: 2),
+                        hasMarker: row.int(at: 3) != 0, body: try decoder.decode(row: row, at: 4))
+                }
+                for row in rows { notes[row.lineIndex, default: []].append(row) }
+            }
+            let segments = try zip(section.segments, indices).map { segment, line in
+                LibraryTextSegment(locator: segment.locator, heRef: segment.heRef,
+                    primaryText: try OtzariaInlineNotePresentation.restoring(notes[line] ?? [], in: segment.primaryText),
+                    translation: segment.translation)
+            }
+            return .init(locator: section.locator, displayRef: section.displayRef, heRef: section.heRef,
+                segments: segments, previous: section.previous, next: section.next, versions: section.versions, links: section.links, origin: section.origin)
+        }
+    }
     func allowsTextExport(workKey: String) async throws -> Bool {
         try await context.read { database, capabilities in
             guard capabilities.hasTable("book_protection") else { return true }

@@ -4,8 +4,9 @@ import FoundationNetworking
 #endif
 
 struct OtzariaLibraryReleaseClient: Sendable {
+    static let pinnedProductionReleaseTag = "v36-20261101064231"
     static let latestReleaseURL = URL(
-        string: "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/latest"
+        string: "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/tags/\(pinnedProductionReleaseTag)"
     )!
 
     private let session: URLSession

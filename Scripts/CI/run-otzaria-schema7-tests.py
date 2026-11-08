@@ -22,6 +22,7 @@ sources += [
  'Source/Otzaria/Navigation/OtzariaReferenceResolutionRepository.swift',
  'Source/Otzaria/Data/OtzariaWorkMetadataEnricher.swift',
  'Source/Otzaria/Reading/OtzariaVersionSelectionStore.swift',
+ 'Source/Otzaria/Reading/OtzariaInlineNotePresentation.swift',
  'tools/test_otzaria_schema7.swift',
 ]
 link = []
@@ -52,7 +53,7 @@ result = subprocess.run(command,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,
 (OUT/'schema7-compile.log').write_text(result.stdout,encoding='utf-8')
 print(result.stdout[-14000:])
 if result.returncode: raise SystemExit(result.returncode)
-result = subprocess.run([str(binary)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,encoding='utf-8',errors='replace')
+result = subprocess.run([str(binary), *sys.argv[1:]],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,encoding='utf-8',errors='replace')
 (OUT/'schema7-results.log').write_text(result.stdout,encoding='utf-8')
 print(result.stdout[-14000:])
 raise SystemExit(result.returncode)

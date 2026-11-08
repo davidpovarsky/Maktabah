@@ -1,5 +1,14 @@
 import Foundation
 
+enum OtzariaVersionContentError: LocalizedError {
+    case unavailableForPassage
+    var errorDescription: String? {
+        LibraryPresentationPolicy.prefersHebrew()
+            ? "למהדורה שנבחרה אין טקסט זמין במקטע זה. ניתן לבחור מהדורה אחרת או לחזור לנוסח המשולב."
+            : "The selected edition has no available text for this passage. Choose another edition or return to the merged text."
+    }
+}
+
 struct OtzariaVersionedContentRepository: Sendable {
     var context: OtzariaSchemaAwareReadContext = .shared
     /// Missing version_line rows are preserved as empty edition segments, never replaced with merged text.
@@ -40,6 +49,7 @@ struct OtzariaVersionedContentRepository: Sendable {
                 LibraryTextSegment(locator: segment.locator, heRef: segment.heRef,
                     primaryText: textByLine[line] ?? "", translation: nil)
             }
+            guard segments.contains(where: { !$0.primaryText.isEmpty }) else { throw OtzariaVersionContentError.unavailableForPassage }
             return LibraryTextSection(locator: original.locator, displayRef: original.displayRef, heRef: original.heRef,
                 segments: segments, previous: original.previous, next: original.next, versions: [version], links: original.links, origin: .offline)
         }

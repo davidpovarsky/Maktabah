@@ -43,7 +43,7 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryVersionedTe
         #endif
     }
 
-    func section(at locator: TextLocator) async throws -> LibraryTextSection {
+    private func undecoratedSection(at locator: TextLocator) async throws -> LibraryTextSection {
         #if os(iOS)
         let backgroundTask = Task.detached(priority: .userInitiated) { () -> LibraryTextSection in
             try Task.checkCancellation()
@@ -97,6 +97,10 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryVersionedTe
         #else
         throw LibraryBackendError.capabilityUnavailable
         #endif
+    }
+
+    func section(at locator: TextLocator) async throws -> LibraryTextSection {
+        try await OtzariaLineDecorationRepository().restoringNotes(in: undecoratedSection(at: locator))
     }
 
     func section(at locator: TextLocator, version: TextVersionMetadata) async throws -> LibraryTextSection {

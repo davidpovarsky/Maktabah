@@ -112,6 +112,21 @@ import SQLite3
         let decorations = try await OtzariaLineDecorationRepository(context: context).decorations(for: .init(backend: .otzaria, workKey: "book:4", position: .legacyLine(0)))
         try check(decorations.notes.first?.body == "note\ncontinuation" && decorations.notes.first?.charPosition == 5,
                   "Edition footnotes retain original body and insertion coordinates")
+        func note(_ position: Int, marker: Bool = false, body: String = "הערה", index: Int = 0) -> OtzariaLineNote {
+            .init(lineIndex: 7, noteIndex: index, charPosition: position, hasMarker: marker, body: body)
+        }
+        try check(try OtzariaInlineNotePresentation.restoring([note(2)], in: "אבגד") == "אב<i class=\"footnote\">הערה</i>גד", "Native footnote restoration uses original visible UTF16 coordinates")
+        try check(try OtzariaInlineNotePresentation.restoring([note(2)], in: "<b>א&amp;</b>ב") == "<b>א&amp;</b><i class=\"footnote\">הערה</i>ב", "Entities count once and inline closing tags stay with their text")
+        try check(try OtzariaInlineNotePresentation.restoring([note(-1, marker: true)], in: "א<sup class=\"footnote-marker\">1</sup>ב") == "א<sup class=\"footnote-marker\">1</sup><i class=\"footnote\">הערה</i>ב", "An extracted marker retains its own note body")
+        try check(try OtzariaInlineNotePresentation.restoring([note(1)], in: "א</p><p>ב") == "א<i class=\"footnote\">הערה</i></p><p>ב", "Restoration does not cross paragraph boundaries")
+        let restored = "א<i class=\"footnote\">הערה</i>ב"
+        try check(try OtzariaInlineNotePresentation.restoring([note(1)], in: restored) == restored, "Already restored original footnotes are not duplicated")
+        try check(try OtzariaInlineNotePresentation.restoring([note(2)], in: "😀א") == "😀<i class=\"footnote\">הערה</i>א", "Astral characters retain their original two UTF16 units")
+        do {
+            _ = try OtzariaInlineNotePresentation.restoring([note(1)], in: "😀א")
+            try check(false, "Split scalar insertion must not be guessed")
+        } catch LibraryBackendError.invalidResponse { try check(true, "A split scalar insertion fails explicitly") }
+        try check(try OtzariaInlineNotePresentation.restoring([note(1, body: "ראשון"), note(1, body: "שני", index: 1)], in: "אב") == "א<i class=\"footnote\">ראשון</i><i class=\"footnote\">שני</i>ב", "Notes sharing an insertion point keep their original order")
         try sql("CREATE TABLE zstd_dict(id INTEGER PRIMARY KEY,dict BLOB)")
         try sql("INSERT INTO zstd_dict VALUES(1,X'7261772064696374696f6e6172792073656564')")
         let compressedText = "בראשית ברא אלהים את השמים ואת הארץ"
@@ -128,6 +143,36 @@ import SQLite3
             _ = try decoder.decode(frame: Data([1,2,3]))
             try check(false, "Corrupt compressed rows must fail")
         } catch OtzariaLineContentError.invalidFrameSize { try check(true, "Corrupt compressed frames never become empty text") }
+        if let path = CommandLine.arguments.dropFirst().first {
+            let actual = try SQLiteDatabase(path: path, flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX)
+            let actualContext = OtzariaSchemaAwareReadContext(database: actual)
+            let actualCaps = try OtzariaDatabaseCapabilities(database: actual)
+            try check(actualCaps.hasVersions && actualCaps.hasAlternateTOC, "Authenticated v36 subset exposes actual schema7 capabilities")
+            let refs = try await OtzariaReferenceResolutionRepository(context: actualContext).resolve(workKey: "book:1", reference: "בראשית, א, א")
+            try check(refs.contains(.init(backend: .otzaria, workKey: "book:1", position: .legacyLine(2))), "Real schema7 reference hashes locate Genesis 1:1 at canonical lineIndex 2")
+            let actualVersions = try await OtzariaVersionsRepository(context: actualContext).versions(for: "book:1")
+            try check(actualVersions.count == 4 && actualVersions.first?.title == "Miqra according to the Masorah", "Real SQLite edition metadata preserves original priority")
+            let actualLoc = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(1))
+            let actualSection = LibraryTextSection(locator: actualLoc, displayRef: "בראשית", heRef: nil,
+                segments: [1,97].map { .init(locator: .init(backend: .otzaria, workKey: "book:1", position: .legacyLine($0)), heRef: nil, primaryText: "merged-must-not-leak", translation: nil) },
+                previous: nil, next: nil, versions: [], links: [], origin: .offline)
+            let actualEdition = try await OtzariaVersionedContentRepository(context: actualContext).section(actualSection, version: actualVersions[0])
+            try check(actualEdition.segments[0].primaryText.isEmpty && actualEdition.segments[1].primaryText.unicodeScalars.contains(where: { (0x05D0...0x05EA).contains($0.value) }), "Real compressed edition reads its body and leaves an absent heading empty")
+            let actualDecoder = try OtzariaLineContentDecoder(database: actual, capabilities: actualCaps)
+            let projection = OtzariaLineContentCompatibility.projection(capabilities: actualCaps)
+            let noteLines = try actual.fetch(query: "SELECT DISTINCT l.lineIndex, \(projection.expression) FROM line l \(projection.join) JOIN line_note n ON n.lineId=l.id WHERE l.bookId=1 ORDER BY l.lineIndex") { row in
+                (row.int(at: 0), try actualDecoder.decode(row: row, at: 1))
+            }
+            try check(noteLines.count == 7, "Actual v36 miniature preserves all seven extracted footnote lines")
+            for (line, source) in noteLines {
+                let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(line))
+                let content = LibraryTextSection(locator: locator, displayRef: "בראשית", heRef: nil,
+                    segments: [.init(locator: locator, heRef: nil, primaryText: source, translation: nil)], previous: nil, next: nil, versions: [], links: [], origin: .offline)
+                let originalNotes = try await OtzariaLineDecorationRepository(context: actualContext).decorations(for: locator)
+                let presented = try await OtzariaLineDecorationRepository(context: actualContext).restoringNotes(in: content)
+                try check(presented.segments[0].locator == locator && originalNotes.notes.allSatisfy({ presented.segments[0].primaryText.contains($0.body) }), "Real compressed footnote restored without changing canonical anchor \(line)")
+            }
+        }
         print("PASS: \(assertions) real SQLite production repository fixture assertions; not a Hermes or device acceptance claim")
     }
 }

@@ -26,6 +26,8 @@ struct OtzariaWorkMetadataEnricher: Sendable {
                 query: "SELECT b.title FROM book b JOIN default_commentator d ON d.commentatorBookId = b.id WHERE d.bookId = ? ORDER BY d.position")
             try append(key: "defaultTargums", he: "תרגומי ברירת מחדל", en: "Default translations", tables: ["default_targum"],
                 query: "SELECT b.title FROM book b JOIN default_targum d ON d.targumBookId = b.id WHERE d.bookId = ? ORDER BY d.position")
+            try append(key: "bookBanner", he: "הודעת המקור", en: "Source notice", tables: ["book_banner", "banner"],
+                query: "SELECT b.text FROM banner b JOIN book_banner bb ON bb.bannerId=b.id WHERE bb.bookId=? ORDER BY b.id")
             for (column, label) in [("dependenceType", hebrew ? "סוג זיקה" : "Dependence"), ("collectiveTitleHe", hebrew ? "שם כולל" : "Collective title")] where capabilities.hasColumn(column, in: "book") {
                 if let value = try database.fetch(query: "SELECT \(column) FROM book WHERE id = ?", parameters: [bookID], mapping: { $0.string(at: 0) }).first ?? nil, !value.isEmpty {
                     fields.append(.init(key: column, label: label, value: value))

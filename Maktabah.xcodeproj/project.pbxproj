@@ -1370,6 +1370,9 @@
 		AF75075B37E71C8EFB08D011 /* StudyWorkspaceLegacyImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928B258EE8B5F6A47B68968; };
 		4EF881C16DABE08EAA56A068 /* StudyWorkspaceLegacyImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928B258EE8B5F6A47B68968; };
 		69B30CC10C1D2D610A65BF83 /* StudyWorkspaceLegacyImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928B258EE8B5F6A47B68968; };
+		3FA6BA1590ABBA754BA62FDF /* OtzariaInlineNotePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7413B85A67C846AEDB1CC5C; };
+		A92913EFF1E8E0C326653CD3 /* OtzariaInlineNotePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7413B85A67C846AEDB1CC5C; };
+		7E9B8347FB6715E722CF83B5 /* OtzariaInlineNotePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7413B85A67C846AEDB1CC5C; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2138,6 +2141,7 @@
 		A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchLineIndexResolver.swift; sourceTree = "<group>"; };
 		70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search/OtzariaSearchResultIdentityStore.swift; sourceTree = "<group>"; };
 		2928B258EE8B5F6A47B68968 /* StudyWorkspaceLegacyImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/StudyWorkspace/StudyWorkspaceLegacyImport.swift; sourceTree = SOURCE_ROOT; };
+		A7413B85A67C846AEDB1CC5C /* OtzariaInlineNotePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reading/OtzariaInlineNotePresentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2335,6 +2339,7 @@
 		0A7AF0000000000000000000 /* Otzaria */ = {
 			isa = PBXGroup;
 			children = (
+				A7413B85A67C846AEDB1CC5C /* OtzariaInlineNotePresentation.swift */,
 				70218866A2AE2B7276DDD937 /* OtzariaSearchResultIdentityStore.swift */,
 				A661AD6055AA9EBD193701A8 /* OtzariaSearchLineIndexResolver.swift */,
 				166F2F6003B018D63186F34D /* OtzariaVersionSelectionStore.swift */,
@@ -4229,6 +4234,7 @@
 				CE1000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE1000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE1000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				3FA6BA1590ABBA754BA62FDF /* OtzariaInlineNotePresentation.swift in Sources */,
 				AF75075B37E71C8EFB08D011 /* StudyWorkspaceLegacyImport.swift in Sources */,
 				6565707098E3C61D2309E8D9 /* OtzariaSearchResultIdentityStore.swift in Sources */,
 				70A289D30DABF47F875D10F5 /* OtzariaSearchLineIndexResolver.swift in Sources */,
@@ -4588,6 +4594,7 @@
 				CE2000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE2000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE2000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				A92913EFF1E8E0C326653CD3 /* OtzariaInlineNotePresentation.swift in Sources */,
 				4EF881C16DABE08EAA56A068 /* StudyWorkspaceLegacyImport.swift in Sources */,
 				55D3AADC0A886AD9B05FAB82 /* OtzariaSearchResultIdentityStore.swift in Sources */,
 				30A577EB2FC12E229EFBC018 /* OtzariaSearchLineIndexResolver.swift in Sources */,
@@ -4995,6 +5002,7 @@
 				CE3000000000000000000013 /* SefariaHybridStore.swift in Sources */,
 				CE3000000000000000000014 /* SefariaBackend.swift in Sources */,
 				CE3000000000000000000015 /* OtzariaGenericBackendAdapter.swift in Sources */,
+				7E9B8347FB6715E722CF83B5 /* OtzariaInlineNotePresentation.swift in Sources */,
 				69B30CC10C1D2D610A65BF83 /* StudyWorkspaceLegacyImport.swift in Sources */,
 				5BB1FB37579270DFB4A554AE /* OtzariaSearchResultIdentityStore.swift in Sources */,
 				7E372F138D12EE26C6E69170 /* OtzariaSearchLineIndexResolver.swift in Sources */,

@@ -32,7 +32,7 @@ def main() -> None:
     profile = json.loads(args.profile.read_text(encoding="utf-8"))
     db_hash = sha256(args.database)
     archive_hash = sha256(args.archive)
-    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] == 6
+    assert profile["profileID"] == "miniTest10" and profile["profileVersion"] in [6, 7]
     assert profile["sharedLexicalDatabase"] == {
         "bytes": 57122816,
         "releaseTag": "v0.3.0",
@@ -56,14 +56,26 @@ def main() -> None:
         foreign_keys = database.execute("PRAGMA foreign_key_check").fetchall()
         integrity = database.execute("PRAGMA integrity_check").fetchone()[0]
     assert books == EXPECTED_BOOKS
-    assert lines == 18879 and line_content == lines and links == 4851
-    assert link_coverage == 1608 and suppressed_sides == 526 and dictionaries == 1
-    assert schema_meta.get("db_schema_version") == "6" and schema_meta.get("db_version") == "32"
+    if profile["profileVersion"] == 6:
+        assert lines == 18879 and line_content == lines and links == 4851
+        assert link_coverage == 1608 and suppressed_sides == 526 and dictionaries == 1
+        assert schema_meta.get("db_schema_version") == "6" and schema_meta.get("db_version") == "32"
+    else:
+        assert profile["sourceDatabase"]["releaseTag"] == "v36-20261101064231"
+        assert schema_meta.get("db_schema_version") == "7" and schema_meta.get("db_version") == "36"
+        expected = profile["databaseSchema"]["counts"]
+        with sqlite3.connect(f"file:{args.database.as_posix()}?mode=ro", uri=True) as database:
+            tables = {row[0] for row in database.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+            for table, count in expected.items():
+                assert table.replace('_', '').isalnum()
+                actual = database.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0] if table in tables else 0
+                assert actual == count, (table, actual, count)
+        assert expected["line_note"] == 7 and expected["line_divine_name"] == 1479 and expected["version_line"] == 40463
     assert not foreign_keys and integrity == "ok"
 
     if args.otzaria_manifest:
         manifest = json.loads(args.otzaria_manifest.read_text())
-        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 6
+        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == profile["profileVersion"]
         assert manifest["sourceDatabase"]["databaseSHA256"] == db_hash
         assert manifest["sourceDatabase"]["databaseBytes"] == args.database.stat().st_size
         assert manifest["sourceDatabase"]["bookCount"] == 10
@@ -79,7 +91,7 @@ def main() -> None:
         assert lexical["sha256"] == profile["sharedLexicalDatabase"]["sha256"]
     if args.zayit_manifest:
         manifest = json.loads(args.zayit_manifest.read_text())
-        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == 6
+        assert manifest["profileID"] == "miniTest10" and manifest["profileVersion"] == profile["profileVersion"]
         assert manifest["requiredDatabase"]["canonicalSHA256"] == db_hash
         assert manifest["requiredDatabase"]["compressedAssetSHA256"] == archive_hash
         assert manifest["requiredDatabase"]["bytes"] == args.database.stat().st_size

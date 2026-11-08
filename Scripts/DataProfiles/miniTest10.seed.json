@@ -1,18 +1,29 @@
 {
   "profileID": "miniTest10",
-  "profileVersion": 6,
+  "profileVersion": 7,
   "source": {
     "repository": "Otzaria/SeforimLibrary",
-    "releaseTag": "v32-20261010190601",
-    "releaseID": 409213893,
-    "assetID": 629048655,
-    "assetName": "seforim-schema6.db.zst",
-    "assetBytes": 1850679582,
-    "assetSHA256": "6661911ac0a0d68b8b8bf931fabf7df3934ae0a82fc573d3d5eec999514f0c44",
-    "databaseBytes": 3821240320,
-    "databaseSHA256": "2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765"
+    "releaseTag": "v36-20261101064231",
+    "releaseID": 430840632,
+    "assetID": 699514342,
+    "assetName": "seforim-schema7.db.zst",
+    "assetBytes": 2034190634,
+    "assetSHA256": "9b1623035853f6d67f8553a953cf48de60643ece1bc6658e6a3fb80f379c47ba",
+    "databaseBytes": 4178067456,
+    "databaseSHA256": "c60fbd02b4cf7bda00dc5af16aa48b8bfe193b1121d29c9a048dc348ff42e9d6"
   },
-  "bookIDs": [1, 28, 40, 103, 382, 3152, 3163, 3276, 3764, 3891],
+  "bookIDs": [
+    1,
+    28,
+    40,
+    103,
+    382,
+    3152,
+    3163,
+    3276,
+    3764,
+    3891
+  ],
   "goldenQueries": [
     "בראשית ברא",
     "לחתוך צנון בסכין בשרי",

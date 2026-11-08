@@ -164,6 +164,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
             }
             let manager = OtzariaSearchIndexManager.shared
             let finalURL = manager.indexURL(for: databasePath)
+            try OtzariaSearchEngineBridge.configureLibrarySource(databaseURL: URL(fileURLWithPath: databasePath))
             let engine = try OtzariaSearchEngineBridge(indexURL: finalURL)
             defer { engine.close() }
             let documentCount = try engine.documentCount()
@@ -182,7 +183,8 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                     limit: 10
                 ))
                 guard page.totalCount > 0,
-                      page.results.first?.filePath.hasPrefix("otzaria-book:") == true,
+                      page.results.first?.filePath.hasPrefix("id:") == true,
+                      page.results.allSatisfy({ $0.textStatus == "ok" }),
                       page.results.first?.text.isEmpty == false else {
                     throw OtzariaSearchArtifactError.validationFailed("\(mode.rawValue) search failed")
                 }
