@@ -22,6 +22,7 @@ Scripts/CI/install-embedded-js-dependencies.sh,DOWNSTREAM_OWNED,A,A,Pinned Makta
 Scripts/CI/isolated-ipad-simulator.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/prepare-embedded-artifact-app.sh,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/prepare-faithful-ipad-fixtures.py,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+Scripts/CI/prepare-swift-package-pins.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/prepare-swift-packages.py,DOWNSTREAM_OWNED,M,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/resolve-swift-packages.sh,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 Scripts/CI/run-faithful-ipad-matrix.py,DOWNSTREAM_OWNED,A,,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
@@ -259,3 +260,4 @@ tools/test_faithful_study_workspace.swift,DOWNSTREAM_OWNED,A,M,Pinned Maktabah t
 tools/test_otzaria_schema7.swift,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 tools/test_preupload_integration_gate.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
 tools/test_sefaria_facade.mjs,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0
+tools/test_swift_package_pins.py,DOWNSTREAM_OWNED,A,A,Pinned Maktabah tree a0ed0df9; integration base 59b01fa2; synchronized UI 661d53e0

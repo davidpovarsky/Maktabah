@@ -331,6 +331,8 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - name: Resolve Swift packages
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           CONTAINER_ARGS=(-project "$PROJECT_PATH")
           if [ -d "Maktabah.xcworkspace" ]; then

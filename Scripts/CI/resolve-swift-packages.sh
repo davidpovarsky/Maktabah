@@ -5,9 +5,15 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
 mkdir -p build/logs
 LOGS="$(mktemp -d "$ROOT/build/logs/package-resolution.XXXXXX")"
+if [ "$(uname -s)" = Darwin ]; then
+  python3 Scripts/CI/prepare-swift-package-pins.py "$@"
+fi
 for attempt in 1 2 3; do
-  if xcodebuild -resolvePackageDependencies "$@" > "$LOGS/attempt-$attempt.log" 2>&1; then
+  if xcodebuild -resolvePackageDependencies -onlyUsePackageVersionsFromResolvedFile "$@" > "$LOGS/attempt-$attempt.log" 2>&1; then
     cat "$LOGS/attempt-$attempt.log"
+    if [ "$(uname -s)" = Darwin ]; then
+      python3 Scripts/CI/prepare-swift-package-pins.py --verify "$@"
+    fi
     exit 0
   else
     result=$?

@@ -526,6 +526,8 @@ jobs:
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
       - name: Resolve Swift packages
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           bash Scripts/CI/resolve-swift-packages.sh \
             -workspace Maktabah.xcworkspace \

@@ -297,6 +297,8 @@ jobs:
 
       - name: Resolve exact candidate Swift packages
         if: ${{ inputs.source_ref == '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           bash Scripts/CI/resolve-swift-packages.sh -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages
