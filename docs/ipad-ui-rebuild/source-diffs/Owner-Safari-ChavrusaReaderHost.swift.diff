@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,253 +1,236 @@
+@@ -1,253 +1,239 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -168,6 +168,9 @@
 +        if #available(iOS 27.0, *) { return false }
 +        return horizontalSizeClass != .compact
 +    }
++    private var toolbarIdealWidth: CGFloat {
++        max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100))
++    }
 +    private var readerChromeColor: Color {
 +        manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color
 +    }
@@ -233,7 +236,7 @@
 +                            // the detail column. A fixed width drew source buttons
 +                            // outside its hit-test bounds (recorded on real 27.x).
 +                            // Accept its proposal while retaining the source row.
-+                            .frame(minWidth: 0, maxWidth: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
++                            .frame(minWidth: 0, idealWidth: toolbarIdealWidth, maxWidth: toolbarIdealWidth)
 +                            .background(alignment: .topLeading) {
 +                                ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { toolbarWindowY = $0 }
 +                                    .frame(width: 0, height: 0)
@@ -470,7 +473,7 @@
                  }
              }
          }
-@@ -255,37 +238,8 @@
+@@ -255,37 +241,8 @@
          .frame(height: 54)
      }
  
@@ -510,7 +513,7 @@
          Button(action: action) {
              Image(systemName: symbol)
                  .font(.system(size: 19, weight: .regular))
-@@ -294,366 +248,146 @@
+@@ -294,366 +251,146 @@
          }
          .buttonStyle(.plain)
          .accessibilityLabel(title)

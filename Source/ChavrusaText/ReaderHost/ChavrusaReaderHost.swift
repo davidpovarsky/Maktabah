@@ -33,6 +33,9 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         if #available(iOS 27.0, *) { return false }
         return horizontalSizeClass != .compact
     }
+    private var toolbarIdealWidth: CGFloat {
+        max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100))
+    }
     private var readerChromeColor: Color {
         manager.openTabs.isEmpty ? Color.appBackground : TextViewState.shared.backgroundColor.color
     }
@@ -86,7 +89,7 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                             // the detail column. A fixed width drew source buttons
                             // outside its hit-test bounds (recorded on real 27.x).
                             // Accept its proposal while retaining the source row.
-                            .frame(minWidth: 0, maxWidth: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
+                            .frame(minWidth: 0, idealWidth: toolbarIdealWidth, maxWidth: toolbarIdealWidth)
                             .background(alignment: .topLeading) {
                                 ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { toolbarWindowY = $0 }
                                     .frame(width: 0, height: 0)
