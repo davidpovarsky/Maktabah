@@ -398,6 +398,13 @@ jobs:
           xcrun simctl terminate "${SIM_UDID}" com.davidpovarsky.chavrusatext || true
           python3 Scripts/CI/shutdown-faithful-simulator.py "${SIM_UDID}"
 
+      - name: Verify required source and edition interactions on an owned iPad
+        if: ${{ inputs.source_ref == '' && (github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests) }}
+        timeout-minutes: 45
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/run-backend-functional-acceptance.py
+
       - name: Build the supplied original prototype as an isolated visual oracle
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_simulator_tests }}
         run: python3 Scripts/CI/build-faithful-prototype-reference.py
@@ -423,7 +430,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -f sim_udid.txt ] && [ ! -f build/artifacts/faithful-ipad-matrix.json ]; then
+          if [ -f sim_udid.txt ] && [ ! -f build/artifacts/faithful-ipad-matrix.json ] && [ ! -f build/artifacts/backend-functional-acceptance.json ]; then
             python3 Scripts/CI/collect-faithful-simulator-failure.py "$(cat sim_udid.txt)" preflight
           fi
 
@@ -438,6 +445,7 @@ jobs:
           name: faithful-native-evidence
           path: |
             build/artifacts/app-source-sha.txt
+            build/artifacts/backend-functional-*
             build/artifacts/black-box-test-source-sha.txt
             build/artifacts/faithful-ipad-matrix.json
             build/artifacts/test-simulator*.log
@@ -465,6 +473,7 @@ jobs:
             build/sefaria-app-bundle-manifest.json
             build/jsbundle/main.jsbundle
             build/artifacts/simulator-isolation.json
+            build/artifacts/backend-functional-*
             build/artifacts/simulator-launch.png
             build/artifacts/simulator-app.log
             build/artifacts/simulator-failure-*
