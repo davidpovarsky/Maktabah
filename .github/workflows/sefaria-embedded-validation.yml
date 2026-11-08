@@ -129,6 +129,7 @@ jobs:
           git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift" > Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
           git show "$TEST_SOURCE_SHA:Maktabah-iOSUITests/MaktabahUITestBase.swift" > Maktabah-iOSUITests/MaktabahUITestBase.swift
           git show "$TEST_SOURCE_SHA:Scripts/CI/prepare-faithful-ipad-fixtures.py" > Scripts/CI/prepare-faithful-ipad-fixtures.py
+          git show "$TEST_SOURCE_SHA:Scripts/CI/resolve_simulator_container.py" > Scripts/CI/resolve_simulator_container.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/run-faithful-ipad-matrix.py" > Scripts/CI/run-faithful-ipad-matrix.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/verify-faithful-xctest.py" > Scripts/CI/verify-faithful-xctest.py
           git show "$TEST_SOURCE_SHA:Scripts/CI/typecheck-faithful-ui-tests.py" > Scripts/CI/typecheck-faithful-ui-tests.py

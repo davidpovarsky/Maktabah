@@ -19,6 +19,16 @@ on:
         default: false
   workflow_dispatch:
     inputs:
+      verified_artifact_run_id:
+        description: Optional successful full-corpus run whose retained package is published without rebuilding
+        required: false
+        type: string
+        default: ""
+      verified_builder_sha:
+        description: Required exact original builder SHA when publishing a retained package
+        required: false
+        type: string
+        default: ""
       publish_release:
         description: Publish verified package as a dedicated public data release
         required: true
@@ -49,7 +59,71 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  publish-retained-package:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.verified_artifact_run_id != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_RUN: ${{ inputs.verified_artifact_run_id }}
+      EXPECTED_BUILDER: ${{ inputs.verified_builder_sha }}
+      PUBLISH: ${{ inputs.publish_release }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate the exact successful source run
+        run: |
+          set -euo pipefail
+          test "$PUBLISH" = true
+          [[ "$SOURCE_RUN" =~ ^[0-9]+$ ]]
+          [[ "$EXPECTED_BUILDER" =~ ^[0-9a-f]{40}$ ]]
+          mkdir -p build/publication
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN" > build/publication/source-run.json
+          python3 -m unittest Scripts.Tests.test_retained_otzaria_package
+      - uses: actions/download-artifact@v4
+        with:
+          name: otzaria-search-verified-package
+          path: build/verified-package
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.verified_artifact_run_id }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: otzaria-search-artifact-reports
+          path: build/verified-reports
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.verified_artifact_run_id }}
+      - name: Verify every retained byte and native receipt before publication
+        run: |
+          set -euo pipefail
+          if ! command -v zstd >/dev/null; then sudo apt-get update && sudo apt-get install -y zstd; fi
+          python3 Scripts/CI/verify-retained-otzaria-package.py \
+            --package build/verified-package --reports build/verified-reports \
+            --source-run build/publication/source-run.json --expected-builder "$EXPECTED_BUILDER" \
+            --out build/publication/verification.json
+          TAG="$(python3 -c 'import json; print(json.load(open("build/publication/verification.json"))["tag"])')"
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" > build/publication/original-tag.json
+          python3 - <<'PY'
+          import json, os
+          tag = json.load(open("build/publication/original-tag.json"))["object"]
+          assert tag["type"] == "commit" and tag["sha"] == os.environ["EXPECTED_BUILDER"], "Immutable tag is not the verified original builder"
+          PY
+          test -z "$(gh release list --limit 100 --json tagName --jq '.[] | select(.tagName == "'"$TAG"'") | .tagName')"
+          gh release create "$TAG" build/verified-package/* --verify-tag \
+            --title 'Otzaria search data v36/schema7' \
+            --notes "Unchanged package from verified native corpus run $SOURCE_RUN at $EXPECTED_BUILDER. HTTP release acceptance is recorded separately."
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > build/publication/published-release.json
+          python3 Scripts/CI/verify-retained-otzaria-package.py \
+            --package build/verified-package --reports build/verified-reports \
+            --source-run build/publication/source-run.json --expected-builder "$EXPECTED_BUILDER" \
+            --published-release build/publication/published-release.json --out build/publication/verification.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: otzaria-retained-package-publication
+          path: build/publication
+          if-no-files-found: error
+
   lexical-artifact:
+    if: ${{ !inputs.verified_artifact_run_id }}
     runs-on: macos-26
     timeout-minutes: 720
     steps:

@@ -14,6 +14,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Search-package version metadata has a legacy label mismatch: the locked Otzaria/tantivy fork at `8b8832069b871e11fe0fd0da1c4c2de8c270596f` and original native `otzaria_index_meta.json` identify Tantivy 0.26.2, while the distribution manifest's `lexicalEngine.tantivyVersion` still says 0.26.1. Native Otzaria 7.0.1/schema10 package install/reopen passed in 42480486024; preserve that tested engine/lock rather than changing dependencies to match the label. A future metadata correction should report the locked/native value, retain original sidecars and preserve immutable published bytes.
+
 - Native menu labels may insert Unicode bidi isolates around interpolated group names (`העבר אל ⁨שם⁩`), and the original Library action is `Select…`. Match the real menu's action prefix and group membership while keeping uniqueness/scope assertions; do not assume plain concatenated labels. Cold reader assertions must wait for the actual asynchronous sidecar projection, and retain before/after UUID-scoped sidecar attachments to distinguish stored-state loss from hydration timing.
 
 - Genuine 9401 compact-window captures in run 42008440372 show UIKit replacing the overflowed `reader-more-menu` with a native `BottomOverflowBarButtonItem` in the original bottom toolbar. Measure actual visible native controls for reader-body pixel checks; neither a missing overflowed child identifier nor a full-height Toolbar accessibility frame proves that the bottom bar disappeared. The 13-inch window was 375×557 with real text visible; retain its native screenshot/hierarchy as evidence.

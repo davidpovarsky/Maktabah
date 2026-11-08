@@ -25,7 +25,7 @@ def mini_lexical_root(database_path, container):
 
 def app_data_container(udid, bundle, receipt):
     # Never accept an alias such as 'booted', which could target another job.
-    uuid.UUID(udid)
+    udid = str(uuid.UUID(udid)).upper()
     attempts = []
     receipt = Path(receipt)
     receipt.parent.mkdir(parents=True, exist_ok=True)
