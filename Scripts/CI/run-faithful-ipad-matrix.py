@@ -27,7 +27,16 @@ runtimes = [runtime for runtime in sim_json("list", "runtimes", "available")["ru
             and runtime["version"].split(".")[0] == "27"]
 if not runtimes:
     raise SystemExit("Required iPadOS 27 runtime is unavailable; older Simulator results cannot satisfy this gate")
-runtimes.sort(key=lambda value: tuple(map(int, value["version"].split("."))), reverse=True)
+# Prefer the installed SDK's matching runtime before a newer installed runtime.
+# The 27.x gate and exact supported-device checks below remain mandatory.
+# Record this choice rather than silently selecting a newer runtime variant.
+sdk_version = subprocess.check_output(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-version"],
+                                      text=True, timeout=60).strip()
+sdk_major_minor = tuple(map(int, sdk_version.split(".")[:2]))
+runtimes.sort(key=lambda value: (
+    tuple(map(int, value["version"].split(".")[:2])) == sdk_major_minor,
+    tuple(map(int, value["version"].split(".")))
+), reverse=True)
 device_types = sim_json("list", "devicetypes")["devicetypes"]
 baseline = os.environ.get("VALIDATING_BASELINE") == "true"
 diagnostic_cases = [item.strip() for item in os.environ.get("FAITHFUL_DIAGNOSTIC_CASES", "").split(",") if item.strip()]
@@ -42,6 +51,8 @@ app_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip
 report = {"appSHA": app_sha, "testSHA": os.environ.get("GITHUB_SHA"), "baseline": baseline,
           "configuration": "Debug", "dataProfile": "miniTest10", "devices": [],
           "fullMatrixAcceptance": not bool(diagnostic_cases), "diagnosticCases": diagnostic_cases}
+report["simulatorSDKVersion"] = sdk_version
+report["runtimePreference"] = "matching-installed-SDK-then-newest-available-27.x"
 
 def create_compatible_ipad(size):
     candidates = [value for value in device_types if
