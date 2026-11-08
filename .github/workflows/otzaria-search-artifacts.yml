@@ -65,6 +65,8 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 1
+      - name: Verify original engine files survive packaging
+        run: python3 -m unittest Scripts.Tests.test_package_otzaria_search_artifact Scripts.Tests.test_data_profiles
       - name: Live Activity · refresh
         uses: davidpovarsky/github-automation/live-refresh@main
         continue-on-error: true

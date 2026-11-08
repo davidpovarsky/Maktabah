@@ -747,11 +747,15 @@
       "id": "SEARCH-06",
       "scenario": "v7 index rebuilt for fixture",
       "expected": "stable book counts, paths, canonical references and query results",
-      "status": "NOT_RUN",
-      "scope": "required acceptance",
-      "actual": null,
-      "sourceCheckpoint": "b55fc1fc3e5016764589f7976dc190852084f989",
-      "evidence": []
+      "status": "EXECUTED_PASS",
+      "scope": "genuine shipping-app simulator corpus build and reopen",
+      "actual": "Pinned engine 7.0.1/schema10 indexed and reopened all 18,879 mini documents and all 7,660,127 full documents (8,148 source paths/books), zero quarantine, four real source/facet reopen searches in each corpus. This proves corpus/index behavior only; package publication and native reinstall portability remain separate pending gates.",
+      "sourceCheckpoint": "3d8fc3420e02c7b0a154ac74dfbc0d385f01fcfa",
+      "evidence": [
+        "https://github.com/davidpovarsky/Maktabah/actions/runs/42463274386",
+        "https://github.com/davidpovarsky/Maktabah/actions/runs/42468694097",
+        "qa-results.md"
+      ]
     },
     {
       "id": "SEARCH-07",

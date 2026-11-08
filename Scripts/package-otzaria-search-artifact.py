@@ -12,7 +12,19 @@ import subprocess
 import time
 
 CHUNK_BYTES = 512 * 1024 * 1024
-EXCLUDED_PREFIXES = ("otzaria_", ".otzaria_")
+EXCLUDED_PREFIXES = (".otzaria_",)
+# These belong to the downstream install/build session. The engine's original
+# otzaria_* files contain its text recipe, stable book IDs and catalogue order;
+# excluding that whole prefix produces an index schema10 cannot reopen.
+DOWNSTREAM_STATE_FILENAMES = {
+    "otzaria_search_identity.json", "otzaria_search_checkpoint.json",
+    "otzaria_search_failures.json", "otzaria_pdf_freshness.json",
+    "otzaria_semantic_artifact.json", "otzaria_lexical_build_metrics.json",
+    "otzaria_prebuilt_installation.json",
+}
+ENGINE_RUNTIME_FILENAMES = {
+    "otzaria_index_meta.json", "otzaria_book_numbers.json", "otzaria_book_order.json",
+}
 RUNTIME_LOCK_FILENAMES = {".tantivy-meta.lock", ".tantivy-writer.lock"}
 FORBIDDEN_MANAGED_FILENAMES = {".managed.json"}
 
@@ -74,7 +86,7 @@ def packageable_files(index: Path) -> tuple[list[Path], list[Path]]:
             raise RuntimeError(f"forbidden runtime management file present in index: {path.name}")
     candidates = sorted(
         path for path in all_files
-        if not path.name.startswith(EXCLUDED_PREFIXES)
+        if not path.name.startswith(EXCLUDED_PREFIXES) and path.name not in DOWNSTREAM_STATE_FILENAMES
     )
     empty_files = [path for path in candidates if path.stat().st_size == 0]
     unexpected_empty_files = [
@@ -90,6 +102,17 @@ def packageable_files(index: Path) -> tuple[list[Path], list[Path]]:
     if not files:
         raise RuntimeError("index contains no packageable files")
     return files, empty_files
+
+
+def validate_engine_metadata(index: Path, files: list[Path], upstream: dict) -> None:
+    represented = {path.relative_to(index).as_posix() for path in files}
+    missing = ENGINE_RUNTIME_FILENAMES - represented
+    if missing:
+        raise RuntimeError(f"original schema10 engine metadata is missing from package: {sorted(missing)}")
+    metadata = json.loads((index / "otzaria_index_meta.json").read_text())
+    if (metadata.get("schema_version") != upstream["index_schema_version"]
+            or metadata.get("engine_version") != upstream["engine_package_version"]):
+        raise RuntimeError("original engine metadata differs from the pinned engine/schema")
 
 
 def main() -> None:
@@ -120,6 +143,7 @@ def main() -> None:
     optimize = json.loads(optimize_path.read_text()) if optimize_path.exists() else {}
 
     files, empty_files = packageable_files(args.index)
+    validate_engine_metadata(args.index, files, upstream)
 
     parts = []
     part_number = 0

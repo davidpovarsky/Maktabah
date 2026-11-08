@@ -22,6 +22,22 @@ ZAYIT_SPEC.loader.exec_module(ZAYIT_PACKAGER)
 
 
 class PackageableFilesTests(unittest.TestCase):
+    def test_original_schema10_metadata_and_book_id_order_survive_packaging(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            index = Path(temporary)
+            original = {"otzaria_index_meta.json", "otzaria_book_numbers.json", "otzaria_book_order.json",
+                        "otzaria_future_engine_sidecar.json", "meta.json", "segment.store"}
+            local = {"otzaria_search_identity.json", "otzaria_search_checkpoint.json",
+                     "otzaria_search_failures.json", "otzaria_lexical_build_metrics.json",
+                     "otzaria_prebuilt_installation.json", "otzaria_pdf_freshness.json",
+                     "otzaria_semantic_artifact.json"}
+            for name in original | local:
+                (index / name).write_bytes(b'{"original":true}')
+            (index / ".otzaria_index_building").touch()
+            files, omitted = PACKAGER.packageable_files(index)
+            self.assertEqual({path.name for path in files}, original)
+            self.assertFalse(omitted)
+
     def test_runtime_locks_are_not_counted_as_extracted_files(self):
         with tempfile.TemporaryDirectory() as temporary:
             index = Path(temporary)
@@ -36,6 +52,25 @@ class PackageableFilesTests(unittest.TestCase):
                 {path.name for path in omitted},
                 PACKAGER.RUNTIME_LOCK_FILENAMES,
             )
+
+    def test_schema10_package_rejects_missing_original_metadata_before_compression(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            index = Path(temporary)
+            (index / "meta.json").write_bytes(b"{}")
+            with self.assertRaisesRegex(RuntimeError, "original schema10 engine metadata is missing"):
+                PACKAGER.validate_engine_metadata(index, [index / "meta.json"],
+                    {"index_schema_version": 10, "engine_package_version": "7.0.1"})
+
+    def test_schema10_package_rejects_foreign_engine_recipe(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            index = Path(temporary)
+            for name in PACKAGER.ENGINE_RUNTIME_FILENAMES:
+                (index / name).write_bytes(b"{}")
+            metadata = index / "otzaria_index_meta.json"
+            metadata.write_text('{"schema_version":10,"engine_version":"7.0.0"}')
+            with self.assertRaisesRegex(RuntimeError, "differs from the pinned engine/schema"):
+                PACKAGER.validate_engine_metadata(index, list(index.iterdir()),
+                    {"index_schema_version": 10, "engine_package_version": "7.0.1"})
 
     def test_unknown_empty_file_is_rejected(self):
         with tempfile.TemporaryDirectory() as temporary:
