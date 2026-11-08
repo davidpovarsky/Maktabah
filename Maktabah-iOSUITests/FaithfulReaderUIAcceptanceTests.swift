@@ -1149,6 +1149,10 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         let result = palette.buttons.matching(NSPredicate(format: "label CONTAINS %@ AND NOT label CONTAINS %@", "בראשית", initialTitle)).firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 30), "Actual canonical-library books must appear in original CommandPalette")
         capture("candidate-command-palette-keyboard")
+        let globalHistory = findTabButton(hebrew: "היסטוריה", english: "History")
+        XCTAssertTrue(globalHistory.exists)
+        XCTAssertGreaterThanOrEqual(paletteField.frame.minY, globalHistory.frame.maxY - 1,
+                                   "The actual expanded input must clear the original global tabs instead of rendering underneath them")
         tap(result)
         assertReaderHasText()
         XCTAssertFalse(palette.exists)

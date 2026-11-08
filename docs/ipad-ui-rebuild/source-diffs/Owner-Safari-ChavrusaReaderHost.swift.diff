@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,253 +1,210 @@
+@@ -1,253 +1,232 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -96,6 +96,8 @@
 +    @State private var showsOverview = false
 +    @State private var showsProfiles = false
 +    @State private var detailWidth: CGFloat = 640
++    @State private var toolbarWindowY: CGFloat = 0
++    @State private var searchOverlayWindowY: CGFloat = 0
 +    @State private var sceneID = ""
 +    @State private var navigationChrome = ReaderNavigationChromeState()
      @Namespace private var searchMorph
@@ -196,7 +198,6 @@
 -                    .padding(.top, 7)
 -                    .zIndex(1)
 -
--                if searchIsExpanded {
 +        NavigationSplitView(columnVisibility: $columnVisibility, preferredCompactColumn: $preferredCompactColumn) {
 +            ReaderSidebarPager(coordinator: sidebar, library: library, contents: contents)
 +                .navigationSplitViewColumnWidth(min: 240, ideal: 300, max: 420)
@@ -229,6 +230,11 @@
 +                    ToolbarItem(placement: .principal) {
 +                        safariToolbar(compact: detailWidth < 740)
 +                            .frame(width: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
++                            .background(alignment: .topLeading) {
++                                ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { toolbarWindowY = $0 }
++                                    .frame(width: 0, height: 0)
++                                    .accessibilityHidden(true)
++                            }
 +                    }
 +                    .readerSourceGlassBackground()
 +                }
@@ -252,8 +258,8 @@
 +            #endif
 +        }
 +        .overlay(alignment: .top) {
-+            if searchIsExpanded {
-+                GeometryReader { geometry in
++            GeometryReader { geometry in
+                 if searchIsExpanded {
                      Color.black.opacity(0.13)
                          .ignoresSafeArea()
                          .contentShape(Rectangle())
@@ -268,9 +274,21 @@
 -            .animation(morphSpring, value: searchIsExpanded)
 -        }
 -        .preferredColorScheme(.light)
++                        // The prototype toolbar has 7pt top padding; its
++                        // expandedSearch retains its original 6pt padding.
++                        // Both anchors use actual UIWindow coordinates because
++                        // native toolbar hosting has its own SwiftUI graph.
++                        .offset(y: toolbarWindowY - searchOverlayWindowY - 7)
 +                }
-+                .zIndex(3)
 +            }
++            .background(alignment: .topLeading) {
++                ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { searchOverlayWindowY = $0 }
++                    .frame(width: 0, height: 0)
++                    .accessibilityHidden(true)
++            }
++            .allowsHitTesting(searchIsExpanded)
++            .accessibilityHidden(!searchIsExpanded)
++            .zIndex(3)
 +        }
 +        .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
          .onChange(of: quickAddressFocused) { _, focused in
@@ -321,7 +339,10 @@
 +        }
 +        .onChange(of: showsOverview) { _, showing in if showing { revealNavigationChrome() } }
 +        .onChange(of: showsProfiles) { _, showing in if showing { revealNavigationChrome() } }
-+        .onDisappear { navigationChrome.reveal() }
++        .onDisappear {
++            navigationChrome.reveal()
++            closeSearch()
++        }
 +        .onChange(of: workspace?.selection?.groupID) { _, _ in
 +            Task { await workspace?.reconcileSceneSelection(manager) }
 +        }
@@ -445,7 +466,7 @@
                  }
              }
          }
-@@ -255,37 +212,8 @@
+@@ -255,37 +234,8 @@
          .frame(height: 54)
      }
  
@@ -485,7 +506,7 @@
          Button(action: action) {
              Image(systemName: symbol)
                  .font(.system(size: 19, weight: .regular))
-@@ -294,366 +222,146 @@
+@@ -294,366 +244,146 @@
          }
          .buttonStyle(.plain)
          .accessibilityLabel(title)

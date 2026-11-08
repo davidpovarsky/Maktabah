@@ -214,18 +214,18 @@
       "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
       "pin": "owner-provided archive",
       "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-      "normalizedPortSHA256": "4821a4e833e95cd5f57c5a6fc69c3acde26993cecb165dae07aad1d28672a132",
+      "normalizedPortSHA256": "2f7b6765c4eb500f53b74a7261c372ad3c9d738d40f104705f4f02c938fdb0e2",
       "identicalNormalizedSource": false,
-      "diffLines": 775
+      "diffLines": 783
     },
     {
       "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
       "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
       "pin": "owner-provided archive",
       "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-      "normalizedPortSHA256": "68c9fa437276fb99715abaa2029a67859592503bd6a44a4377636ee61123a8ff",
+      "normalizedPortSHA256": "4826b86842716aa23778941670df173801fb86a97fd3e7d510edfc453161a259",
       "identicalNormalizedSource": false,
-      "diffLines": 982
+      "diffLines": 1003
     },
     {
       "original": "iOS/DuckDuckGo/TabSwitcher/TabSwitcherPageViewController.swift",
@@ -276,6 +276,15 @@
         "daxSubheadSemibold": true,
         "daxFootnoteSemibold": true
       }
+    },
+    {
+      "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+      "destination": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+      "pin": "owner-provided archive",
+      "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "normalizedPortSHA256": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9",
+      "identicalNormalizedSource": false,
+      "diffLines": 767
     },
     {
       "original": "Sources/TorahInspectorUI/TorahSegmentDetailView.swift",

@@ -187,17 +187,17 @@
     "repo": "Owner Safari prototype",
     "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
     "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
-    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation.",
+    "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation. UIKit hosting background is clear/nonopaque so only the original rounded palette paints its material and shadow.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "4821a4e833e95cd5f57c5a6fc69c3acde26993cecb165dae07aad1d28672a132"
+    "destinationSHA256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a"
   },
   {
     "repo": "Owner Safari prototype",
     "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
     "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
-    "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action. Restore safariToolbar(compact:) as one native principal item with original HStack/group spacing and original overview/plus actions; omit browser-only share/download/back; retain required native split sidebar/book-info items. Hide duplicate opaque navigation backing; zero empty document-strip height.",
+    "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action. Restore safariToolbar(compact:) as one native principal item with original HStack/group spacing and original overview/plus actions; omit browser-only share/download/back; retain required native split sidebar/book-info items. Hide duplicate opaque navigation backing; zero empty document-strip height. Public window-origin bridge restores the original 7pt toolbar/6pt expanded-search placement below native global tabs; close search on disappearance to stop tracking.",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "destinationSHA256": "68c9fa437276fb99715abaa2029a67859592503bd6a44a4377636ee61123a8ff"
+    "destinationSHA256": "4826b86842716aa23778941670df173801fb86a97fd3e7d510edfc453161a259"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",
@@ -238,5 +238,13 @@
     "sha256": "9ca6e76e744090cb10984d40fe770de2051dd3b24d81f5fcefac2adaf7bd4b33",
     "reason": "Copy exactly daxBodySemibold, daxSubheadSemibold and daxFootnoteSemibold UIFontDescriptor factories; private file scope only. Replace earlier scaledFont approximations without a typeface or size redesign.",
     "destinationSHA256": "71c7f2d4f871b22d3e3e2bc2f43065ba45ce1e7f7e942f0746a54aa57b332b03"
+  },
+  {
+    "repo": "Owner Safari prototype",
+    "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+    "destination": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+    "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+    "reason": "Original sidebar toolbarButton geometry and GlassButtonGroup, with actual split action. Add nonvisual public-UIKit window-origin probes to bridge native toolbar and overlay coordinate graphs; no control drawing or reader mutation.",
+    "destinationSHA256": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9"
   }
 ]

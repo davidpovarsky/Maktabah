@@ -89,6 +89,14 @@ private final class EscapeCommandHostingController<Content: View>: UIHostingCont
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // The original palette owns its rounded material and shadow. The
+        // UIKit bridge must not paint a rectangle outside that source shape.
+        view.backgroundColor = .clear
+        view.isOpaque = false
+    }
+
     override var canBecomeFirstResponder: Bool { true }
 
     override var keyCommands: [UIKeyCommand]? {

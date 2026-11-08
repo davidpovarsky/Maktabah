@@ -16,6 +16,8 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     @State private var showsOverview = false
     @State private var showsProfiles = false
     @State private var detailWidth: CGFloat = 640
+    @State private var toolbarWindowY: CGFloat = 0
+    @State private var searchOverlayWindowY: CGFloat = 0
     @State private var sceneID = ""
     @State private var navigationChrome = ReaderNavigationChromeState()
     @Namespace private var searchMorph
@@ -81,6 +83,11 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                     ToolbarItem(placement: .principal) {
                         safariToolbar(compact: detailWidth < 740)
                             .frame(width: max(0, detailWidth - (needsCustomSidebarToggle ? 38 : 100)))
+                            .background(alignment: .topLeading) {
+                                ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { toolbarWindowY = $0 }
+                                    .frame(width: 0, height: 0)
+                                    .accessibilityHidden(true)
+                            }
                     }
                     .readerSourceGlassBackground()
                 }
@@ -104,17 +111,29 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
             #endif
         }
         .overlay(alignment: .top) {
-            if searchIsExpanded {
-                GeometryReader { geometry in
+            GeometryReader { geometry in
+                if searchIsExpanded {
                     Color.black.opacity(0.13)
                         .ignoresSafeArea()
                         .contentShape(Rectangle())
                         .onTapGesture(perform: closeSearch)
                         .transition(.opacity)
                     expandedSearch(availableWidth: geometry.size.width)
+                        // The prototype toolbar has 7pt top padding; its
+                        // expandedSearch retains its original 6pt padding.
+                        // Both anchors use actual UIWindow coordinates because
+                        // native toolbar hosting has its own SwiftUI graph.
+                        .offset(y: toolbarWindowY - searchOverlayWindowY - 7)
                 }
-                .zIndex(3)
             }
+            .background(alignment: .topLeading) {
+                ReaderToolbarOriginReader(tracksPosition: searchIsExpanded) { searchOverlayWindowY = $0 }
+                    .frame(width: 0, height: 0)
+                    .accessibilityHidden(true)
+            }
+            .allowsHitTesting(searchIsExpanded)
+            .accessibilityHidden(!searchIsExpanded)
+            .zIndex(3)
         }
         .animation(reduceMotion ? nil : morphSpring, value: searchIsExpanded)
         .onChange(of: quickAddressFocused) { _, focused in
@@ -145,7 +164,10 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
         }
         .onChange(of: showsOverview) { _, showing in if showing { revealNavigationChrome() } }
         .onChange(of: showsProfiles) { _, showing in if showing { revealNavigationChrome() } }
-        .onDisappear { navigationChrome.reveal() }
+        .onDisappear {
+            navigationChrome.reveal()
+            closeSearch()
+        }
         .onChange(of: workspace?.selection?.groupID) { _, _ in
             Task { await workspace?.reconcileSceneSelection(manager) }
         }
