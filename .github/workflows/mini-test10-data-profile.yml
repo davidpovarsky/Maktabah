@@ -559,21 +559,6 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
-      - name: Build unsigned mini-default iOS device app and verify bundle
-        run: |
-          set -euo pipefail
-          xcodebuild build -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -configuration Release \
-            -sdk iphoneos -destination 'generic/platform=iOS' \
-            -derivedDataPath build/MiniTest10DeviceBuild -clonedSourcePackagesDirPath build/SourcePackages \
-            -disableAutomaticPackageResolution OTZARIA_DEFAULT_DATA_PROFILE="$PROFILE_ID" \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
-          DEVICE_APP="build/MiniTest10DeviceBuild/Build/Products/Release-iphoneos/Maktabah.app"
-          test -d "$DEVICE_APP"
-          test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$DEVICE_APP/Info.plist")" = "$PROFILE_ID"
-          test ! -e "$DEVICE_APP/seforim.db"
-          test ! -e "$DEVICE_APP/lexical.db"
-          rm -rf -- build/MiniTest10DeviceBuild
-
       - name: Live Activity · refresh
         if: steps.release-check.outputs.reused != 'true'
         uses: davidpovarsky/github-automation/live-refresh@main
@@ -778,6 +763,21 @@ jobs:
           device_id: ${{ secrets.NOTIFY_DEVICE_ID }}
           token: ${{ secrets.NOTIFY_DEVICE_TOKEN }}
           github_token: ${{ github.token }}
+      - name: Build unsigned mini-default iOS device app and verify bundle
+        run: |
+          set -euo pipefail
+          xcodebuild build -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' \
+            -derivedDataPath build/MiniTest10DeviceBuild -clonedSourcePackagesDirPath build/SourcePackages \
+            -disableAutomaticPackageResolution OTZARIA_DEFAULT_DATA_PROFILE="$PROFILE_ID" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
+          DEVICE_APP="build/MiniTest10DeviceBuild/Build/Products/Release-iphoneos/Maktabah.app"
+          test -d "$DEVICE_APP"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :OtzariaDefaultDataProfile' "$DEVICE_APP/Info.plist")" = "$PROFILE_ID"
+          test ! -e "$DEVICE_APP/seforim.db"
+          test ! -e "$DEVICE_APP/lexical.db"
+          rm -rf -- build/MiniTest10DeviceBuild
+
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
