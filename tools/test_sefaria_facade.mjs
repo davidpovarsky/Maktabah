@@ -8,10 +8,13 @@ let source = fs.readFileSync('Vendor/SefariaMobile/Integration/JS/chavrusaRPCFac
 source = source.replace(/^import .*;\r?\n/gm, '').replace(/^export /gm, '');
 let related = { links: [{ ref: 'Rashi on Genesis 1:1:1', anchorRef: 'Genesis 1:1' }], topics: [] };
 let relatedError = null;
+let offlineError = null;
+let relatedCalls = [];
 const sandbox = {
   console, NativeModules: {}, AsyncStorage: {}, DownloadControl: {},
-  loadTextOffline: async () => ({ textContent: { sectionRef: 'Genesis 1' } }), textFromRefData: () => {}, ERRORS: {}, api: {},
-  OfflineOnline: { loadRelated: async () => { if (relatedError) throw relatedError; return related; } },
+  loadTextOffline: async () => { if (offlineError) throw offlineError; return { textContent: { sectionRef: 'Genesis 1' } }; },
+  textFromRefData: () => {}, ERRORS: { MISSING_OFFLINE_DATA: 'missing', CANT_GET_SECTION_FROM_DATA: 'no-section' }, api: {},
+  OfflineOnline: { loadRelated: async (ref, online) => { relatedCalls.push({ ref, online }); if (relatedError) throw relatedError; return related; } },
   global: { Sefaria: {
     textTitleForRef: ref => ref?.startsWith('Rashi on Genesis') ? 'Rashi on Genesis' : ref?.startsWith('Genesis') ? 'Genesis' : null,
     index: title => ({ title, heTitle: title === 'Genesis' ? 'בראשית' : 'רש״י על בראשית' }),
@@ -44,4 +47,26 @@ const failure = await call('relationships.links');
 check(failure.status, 'error');
 check(failure.error.retryable, true);
 check(failure.resultJson, null);
+relatedError = null;
+relatedCalls = [];
+related = { links: [] };
+check((await call('relationships.links', { ref: 'Genesis 1:1' })).status, 'success');
+check(relatedCalls.length, 1);
+check(relatedCalls[0].online, false);
+check(relatedCalls[0].ref, 'Genesis 1');
+offlineError = sandbox.ERRORS.MISSING_OFFLINE_DATA;
+relatedCalls = [];
+check((await call('relationships.links', { ref: 'Genesis 1:1' })).status, 'success');
+check(relatedCalls[0].online, true);
+check((await call('relationships.links', { ref: 'Genesis 1:1', online: false })).error.code, 'OFFLINE_DATA_UNAVAILABLE');
+offlineError = new Error('Corrupt installed data');
+relatedCalls = [];
+check((await call('relationships.links', { ref: 'Genesis 1:1' })).status, 'error');
+check(relatedCalls.length, 0);
+offlineError = null;
+check((await call('diagnostic.echo', { injectStaleGeneration: true })).sessionGeneration, 4);
+sandbox.global.Sefaria.search.execute_query = async () => ({ malformed: true });
+check((await call('search.query', { query: 'בדיקה' })).status, 'error');
+sandbox.global.Sefaria.search.execute_query = async () => ({ hits: { hits: [], total: 0 } });
+check(JSON.parse((await call('search.query', { query: 'בדיקה' })).resultJson).hits.length, 0);
 console.log(`PASS: ${count} production JavaScript dispatcher contract assertions (unit fixtures; no Hermes claim)`);

@@ -310,10 +310,12 @@ export class ChavrusaRPCFacade {
             sort_type: params.sortType || 'relevance',
           };
           const rawSearchData = await global.Sefaria.search.execute_query(queryProps);
-          const rawHits = rawSearchData?.hits?.hits || [];
+          const rawHits = rawSearchData?.hits?.hits;
+          if (!Array.isArray(rawHits)) { throw new Error('Search response is missing its hit array'); }
           const processedHits = global.Sefaria.search.process_text_hits
             ? global.Sefaria.search.process_text_hits(rawHits)
             : rawHits;
+          if (!Array.isArray(processedHits)) { throw new Error('Search processing returned malformed hits'); }
 
           result = {
             hits: processedHits.map(hit => {

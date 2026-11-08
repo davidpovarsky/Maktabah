@@ -2200,6 +2200,12 @@ struct TestRunner {
             var store = OtzariaSearchResultIdentityStore<String>()
             try store.apply(hits: [], items: [], replacing: true)
             assertCondition(store.records.isEmpty, "Zero-hit page has no fabricated results")
+            let exactPage = OtzariaSearchPage(totalCount: 210, groupCount: nil, truncated: false, results: [hit(0)])
+            assertCondition(exactPage.hasNextPage(consumed: 100), "Exact search continues past 100 even when Rust collection is not truncated")
+            assertCondition(!exactPage.hasNextPage(consumed: 210), "Exact pagination stops at the actual total")
+            let groupedPage = OtzariaSearchPage(totalCount: 210, groupCount: 2, truncated: false, results: [hit(0)])
+            assertCondition(groupedPage.hasNextPage(consumed: 1) && !groupedPage.hasNextPage(consumed: 2), "Grouped pagination counts groups instead of raw document total")
+            assertCondition(!OtzariaSearchPage(totalCount: 210, groupCount: nil, truncated: true, results: []).hasNextPage(consumed: 0), "An empty page cannot create an endless pagination loop")
             try store.apply(hits: (0..<100).map(hit), items: (0..<100).map { "display \($0)" }, replacing: true)
             let first = store.records[0].id
             try store.apply(hits: [hit(100)], items: ["display 100"], replacing: false)

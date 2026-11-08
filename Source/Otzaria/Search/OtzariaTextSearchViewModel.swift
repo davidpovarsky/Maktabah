@@ -52,13 +52,14 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     private var searchGeneration: Int = 0
     private var paginationTask: Task<Void, Never>?
     private var resultStore = OtzariaSearchResultIdentityStore<SearchResultItem>()
+    private var executedRequest: OtzariaSearchRequest?
 
     private func store(page: OtzariaSearchPage, items: [SearchResultItem], replacing: Bool) throws {
         try resultStore.apply(hits: page.results, items: items, replacing: replacing)
         searchRecords = resultStore.records
         results = searchRecords.map(\.item)
         enginePage = page
-        hasMore = page.truncated && !page.results.isEmpty
+        hasMore = page.hasNextPage(consumed: resultStore.consumedCount)
     }
 
     func refreshStatus() {
@@ -374,6 +375,10 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         results = []
         enginePage = nil
 
+        executedRequest = nil
+        isSearching = false
+        hasMore = false
+
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { clear(); return }
         guard let path = OtzariaMaktabahBridge.shared.databasePath else {
@@ -395,6 +400,8 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         errorMessage = nil
         hasMore = false
         let request = makeSearchRequest(query: trimmed, offset: 0, limit: 100)
+        executedRequest = request
+        let backendGeneration = BackendCoordinator.shared.generation
 
         currentTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
@@ -402,6 +409,12 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 let items = try repository.navigationItems(from: page)
                 try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
+                    guard BackendCoordinator.shared.generation == backendGeneration,
+                          page.sourceGeneration == OtzariaMaktabahBridge.shared.generationSnapshot(),
+                          path == OtzariaMaktabahBridge.shared.databasePath else {
+                        self.clear()
+                        return
+                    }
                     try self.store(page: page, items: items, replacing: true)
                     self.isSearching = false
                 }
@@ -424,20 +437,28 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     func loadNextPage() {
         guard hasMore, !isLoadingMore else { return }
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
+        guard !trimmed.isEmpty, var request = executedRequest, request.query == trimmed else { return }
         guard let path = OtzariaMaktabahBridge.shared.databasePath else { return }
 
         isLoadingMore = true
         let generation = searchGeneration
         let offset = resultStore.consumedCount
-        let request = makeSearchRequest(query: trimmed, offset: offset, limit: 100)
+        request.offset = offset
+        let nextRequest = request
+        let backendGeneration = BackendCoordinator.shared.generation
 
         paginationTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
-                let page = try repository.search(databasePath: path, request: request)
+                let page = try repository.search(databasePath: path, request: nextRequest)
                 let items = try repository.navigationItems(from: page)
                 try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
+                    guard BackendCoordinator.shared.generation == backendGeneration,
+                          page.sourceGeneration == OtzariaMaktabahBridge.shared.generationSnapshot(),
+                          path == OtzariaMaktabahBridge.shared.databasePath else {
+                        self.clear()
+                        return
+                    }
                     try self.store(page: page, items: items, replacing: false)
                     self.isLoadingMore = false
                 }
@@ -460,6 +481,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         results = []
         searchRecords = []
         resultStore.clear()
+        executedRequest = nil
         enginePage = nil
         errorMessage = nil
         hasMore = false

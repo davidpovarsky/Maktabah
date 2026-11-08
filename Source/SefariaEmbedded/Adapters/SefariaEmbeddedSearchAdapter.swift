@@ -52,7 +52,9 @@ final class SefariaEmbeddedSearchAdapter: LibrarySearchProviding, Sendable {
             throw response.error ?? SefariaRPCError(code: "SEARCH_FAILED", message: "Search query execution failed")
         }
 
-        let rawHits = (json["hits"] as? [[String: Any]]) ?? []
+        guard let rawHits = json["hits"] as? [[String: Any]] else {
+            throw LibraryBackendError.invalidResponse("Sefaria search returned malformed hits")
+        }
         let total: Int
         if let totalInt = json["total"] as? Int {
             total = totalInt

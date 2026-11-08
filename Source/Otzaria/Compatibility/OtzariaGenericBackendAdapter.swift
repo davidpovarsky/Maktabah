@@ -285,7 +285,7 @@ struct OtzariaGenericBackendAdapter: LibraryCatalogProviding, LibraryVersionedTe
                 return .init(
                     hits: hits,
                     total: total,
-                    nextOffset: page.truncated || consumed < total ? consumed : nil
+                    nextOffset: page.hasNextPage(consumed: consumed) ? consumed : nil
                 )
             }
         }

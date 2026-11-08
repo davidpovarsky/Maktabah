@@ -162,6 +162,12 @@ struct OtzariaSearchPage: Codable, Sendable {
     let truncated: Bool
     let results: [OtzariaEngineSearchResult]
     var sourceGeneration: UInt64? = nil
+
+    /// Rust's `truncated` describes collection budgets, not page availability.
+    /// Grouped offsets count groups; ungrouped offsets count raw hits.
+    func hasNextPage(consumed: Int) -> Bool {
+        !results.isEmpty && consumed < Int(groupCount ?? totalCount)
+    }
 }
 
 struct OtzariaBookOrderEntry: Codable, Sendable {

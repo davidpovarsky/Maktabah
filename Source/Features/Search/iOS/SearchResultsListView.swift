@@ -5,7 +5,8 @@ struct SearchResultGroup: Identifiable {
     var versions: [SearchResultItem]
 
     var primaryItem: SearchResultItem {
-        versions.first(where: { LibraryLanguage.normalized($0.resultLanguage) == "he" || $0.resultLanguage == nil })
+        versions.first(where: { LibraryLanguage.normalized($0.resultLanguage) == "he" })
+            ?? versions.first(where: { LibraryLanguage.normalized($0.resultLanguage) == nil })
             ?? versions[0]
     }
 }
@@ -58,7 +59,8 @@ struct SearchResultsListView: View {
         List {
             let groups = groupedResults
             ForEach(Array(groups.enumerated()), id: \.element.id) { index, group in
-                let activeIdx = selectedVersionIndex[group.id] ?? 0
+                let preferredIndex = group.versions.firstIndex(where: { $0.stableID == group.primaryItem.stableID }) ?? 0
+                let activeIdx = selectedVersionIndex[group.id] ?? preferredIndex
                 let item = group.versions.indices.contains(activeIdx) ? group.versions[activeIdx] : group.primaryItem
                 let isExpanded = expandedResultIDs.contains(group.id)
 
@@ -77,7 +79,7 @@ struct SearchResultsListView: View {
                                 isExpanded: isExpanded,
                                 versionCount: group.versions.count,
                                 selectedVersionIndex: Binding(
-                                    get: { selectedVersionIndex[group.id] ?? 0 },
+                                    get: { selectedVersionIndex[group.id] ?? preferredIndex },
                                     set: { selectedVersionIndex[group.id] = $0 }
                                 ),
                                 versions: group.versions,
@@ -332,12 +334,14 @@ struct SearchResultContextPreview: View {
                             VStack(alignment: .leading, spacing: 6) {
                                 if showPrimary && !segment.primary.isEmpty {
                                     Text(segment.primary)
+                                        .accessibilityIdentifier("search-preview-source-\(segment.id)")
                                         .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
                                         .multilineTextAlignment(.leading)
                                         .environment(\.layoutDirection, segment.primary.isParagraphRTL ? .rightToLeft : .leftToRight)
                                 }
                                 if showTranslation, let translation = segment.translation, !translation.isEmpty {
                                     Text(translation)
+                                        .accessibilityIdentifier("search-preview-translation-\(segment.id)")
                                         .font(.body)
                                         .multilineTextAlignment(.leading)
                                         .environment(\.layoutDirection, translation.isParagraphRTL ? .rightToLeft : .leftToRight)
@@ -382,13 +386,6 @@ struct SearchResultContextPreview: View {
         }
         .frame(maxWidth: .infinity, minHeight: 180, alignment: .leading)
         .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-        .overlay(alignment: .topLeading) {
-            Color.clear
-                .frame(maxWidth: .infinity, maxHeight: 1)
-                .accessibilityElement(children: .ignore)
-                .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
-                .accessibilityLabel(String(localized: "Expanded search preview", defaultValue: "תצוגה מקדימה מורחבת"))
-        }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
         .task(id: "\(item.stableID):\(retryToken)") {
