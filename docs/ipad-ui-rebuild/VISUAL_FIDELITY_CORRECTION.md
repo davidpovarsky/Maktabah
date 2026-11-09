@@ -1,5 +1,7 @@
 # Visual fidelity correction — 2026-11-08
 
+Current overview correction: **experimental TestFlight1.0.0 (10601), Apple VALID**, source70810eec. It replaces the rejected10401 overview sheet. Six real landscape/phone returns and full-frame review passed; portrait/full quality remain unverified. [Current authoritative delivery/evidence](OVERVIEW_CONTEXT_DELIVERY_10601.md). Older delivery sections below are historical.
+
 Working tree: `Maktabah-ipad-ui-faithful-rebuild`; branch `experiment/ipad-ui-faithful-from-9401`; start SHA `661d53e0541779ae6c9ed7526cae5b1f273c708d`. Primary session, no subagents, no Asana writes, no reset or main merge.
 
 ## Original-source review

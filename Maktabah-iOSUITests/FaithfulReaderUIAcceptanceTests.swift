@@ -246,8 +246,8 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             for attempt in 1...2 {
                 let documentY = try XCTUnwrap(positioned.contentOffsetY) + XCTUnwrap(positioned.topInset)
                 if positioned.source > 0 && documentY > 5 { break }
-                // A short real pan stays inside the original text view and
-                // avoids selection/long-press and end-of-document navigation.
+                // A short real pan targets the original text view. Its own
+                // pull navigation may advance a section before positioning.
                 // Never assign an offset or use the stale contentSize cache.
                 let start = reader.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7))
                 let end = start.withOffset(CGVector(dx: 0, dy: -min(220, reader.frame.height * 0.3)))
