@@ -22,6 +22,7 @@ struct SearchResultsListView: View {
     var nearDistance: Int = 10
     let onSelect: (SearchResultItem) -> Void
 
+    @AppStorage("useDefaultTheme") private var useDefaultTheme = false
     @State private var expandedResultIDs: Set<String> = []
     @State private var selectedVersionIndex: [String: Int] = [:]
 
@@ -125,6 +126,7 @@ struct SearchResultsListView: View {
                         }
                     }
                 }
+                .listRowBackground(useDefaultTheme ? nil : Color.appBackground)
                 .listRowSeparator(.visible)
                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                 .id(group.id)
@@ -142,6 +144,7 @@ struct SearchResultsListView: View {
                         .padding(.vertical, 8)
                     Spacer()
                 }
+                .listRowBackground(useDefaultTheme ? nil : Color.appBackground)
                 .listRowSeparator(.hidden)
             } else if hasMore {
                 Button(action: { onLoadMore?() }) {
@@ -155,10 +158,13 @@ struct SearchResultsListView: View {
                     }
                 }
                 .buttonStyle(.plain)
+                .listRowBackground(useDefaultTheme ? nil : Color.appBackground)
                 .listRowSeparator(.hidden)
             }
         }
         .listStyle(.plain)
+        .scrollContentBackground(useDefaultTheme ? .automatic : .hidden)
+        .background(Color.appBackground.ignoresSafeArea())
     }
 }
 

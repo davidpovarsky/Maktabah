@@ -18,20 +18,27 @@ struct StudyGroupsOverview: View {
         ReaderTabSwitcherLayout(rawValue: tabSwitcherLayoutRaw) ?? .grid
     }
 
+    private var selectedDocumentID: UUID? {
+        guard let group = workspace.group else { return nil }
+        return workspace.selection?.activeTabIDsByGroup?[group.id] ?? group.activeTabID
+    }
+
     var body: some View {
         NavigationStack {
             TabSwitcherPageHost(
                 documents: (workspace.group?.tabs ?? []).map {
                     ReaderTabSwitcherDocument(id: $0.id, title: $0.session.bookTitle ?? "ספר", subtitle: $0.backend.displayName)
                 },
-                selectedID: workspace.group?.activeTabID,
+                selectedID: selectedDocumentID,
                 layoutMode: tabSwitcherLayout,
                 onSelect: openDocument,
                 onClose: closeDocument,
                 onReorder: { document, index in
                     workspace.reorderDocument(document.id, to: index, manager: manager)
                 },
-                contextMenu: contextMenu
+                contextMenu: contextMenu,
+                surfaceColor: .appBackground,
+                cardColor: .appCellBackground
             )
             .overlay {
                 if workspace.group?.tabs.isEmpty != false {
@@ -43,6 +50,10 @@ struct StudyGroupsOverview: View {
                 }
             }
             .navigationTitle("כל הכרטיסיות")
+            .navigationBarTitleDisplayMode(.inline)
+            .background(Color.appBackground.ignoresSafeArea())
+            .toolbarBackground(Color.appBackground, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .safeAreaInset(edge: .top) {
                 ScrollableGroupsHost(groups: workspace.groups, selectedID: workspace.selection?.groupID, isEnabled: !workspace.isSwitching) { id in
                     Task {
@@ -132,7 +143,7 @@ struct StudyGroupsOverview: View {
     private func openDocument(_ document: ReaderTabSwitcherDocument) {
         // Like returning to the browser's already-selected tab: no navigation
         // or restoration should run just to uncover its existing view.
-        if workspace.group?.activeTabID == document.id {
+        if selectedDocumentID == document.id && manager.activeTabId == document.id {
             onClose()
             return
         }

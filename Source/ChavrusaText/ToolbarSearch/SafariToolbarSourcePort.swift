@@ -9,7 +9,7 @@ struct SafariGlass: ViewModifier {
     func body(content: Content) -> some View {
         let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
         if #available(iOS 26.0, *) {
-            content.glassEffect(.regular, in: shape)
+            content.glassEffect(.regular.interactive(), in: shape)
         } else {
             content
                 .background(.regularMaterial, in: shape)

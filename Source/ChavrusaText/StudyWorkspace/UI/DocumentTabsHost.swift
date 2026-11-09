@@ -7,11 +7,26 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
     let onClose: (UUID) -> Void
     let onReorder: (UUID, Int) -> Void
     let backgroundColor: UIColor
+    let inactiveBackgroundColor: UIColor
+    let onOpenLibrary: () -> Void
+    let onOverview: () -> Void
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
     func makeUIViewController(context: Context) -> TabsBarViewController {
-        let controller = TabsBarViewController(showsToolbarButtons: false)
+        let controller = TabsBarViewController(showsToolbarButtons: true)
         controller.delegate = context.coordinator
+        controller.addTabButton.accessibilityIdentifier = "reader-open-book"
+        controller.tabSwitcherButton.accessibilityIdentifier = "reader-tabs-overview"
+        // Public native glass belongs to each actual source UIButton, with no
+        // extra group backing. Keep the original controller's targets/geometry.
+        if #available(iOS 26.0, *) {
+            for button in [controller.addTabButton, controller.tabSwitcherButton] {
+                var configuration = UIButton.Configuration.glass()
+                configuration.image = button.image(for: .normal)
+                configuration.contentInsets = .zero
+                button.configuration = configuration
+            }
+        }
         return controller
     }
     func updateUIViewController(_ controller: TabsBarViewController, context: Context) {
@@ -27,7 +42,7 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
         coordinator.model.selectedID = selectedID
         coordinator.model.onMove = onReorder
         controller.loadViewIfNeeded()
-        controller.theme = ReaderTabsTheme(tabsBarBackgroundColor: backgroundColor, omniBarBackgroundColor: backgroundColor)
+        controller.theme = ReaderTabsTheme(tabsBarBackgroundColor: inactiveBackgroundColor, omniBarBackgroundColor: backgroundColor)
         if oldIDs == tabs.map(\.id) {
             controller.refreshStyleInPlace(tabsModel: coordinator.model, scrollToSelected: true)
         } else {
@@ -51,8 +66,8 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
             guard let kept = model.get(tabAt: index) else { return }
             for tab in model.tabs where tab.id != kept.id { parent.onClose(tab.id) }
         }
-        // These source-controller actions live in the Safari toolbar in the app.
-        func tabsBarDidRequestNewTab(_ controller: TabsBarViewController) {}
-        func tabsBarDidRequestTabSwitcher(_ controller: TabsBarViewController) {}
+        // Original source controls own their layout, hover/press and hit targets.
+        func tabsBarDidRequestNewTab(_ controller: TabsBarViewController) { parent.onOpenLibrary() }
+        func tabsBarDidRequestTabSwitcher(_ controller: TabsBarViewController) { parent.onOverview() }
     }
 }

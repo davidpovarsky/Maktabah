@@ -114,7 +114,7 @@ enum StudyWorkspaceError: Error, LocalizedError {
         case .unsupportedVersion: "גרסת קובץ סביבת הלימוד אינה נתמכת. הנתונים נשמרו."
         case .invalidMembership: "לא ניתן לקרוא את סביבת הלימוד. הנתונים הקיימים נשמרו."
         case .unavailableBook: "ספר בקבוצה אינו זמין כעת. קבוצת הכרטיסיות הנוכחית נשמרה."
-        case .backendMismatch: "יש לעבור למקור הספרייה המתאים לפני פתיחת קבוצה זו."
+        case .backendMismatch: "זהות הספר אינה תואמת למקור הספרייה המבוקש. סביבת הלימוד נשמרה."
         case .groupNotEmpty: "הקבוצה מכילה כרטיסיות."
         case .lastProfile: "יש להשאיר לפחות פרופיל אחד."
         case .lastGroup: "יש להשאיר לפחות קבוצת כרטיסיות אחת בפרופיל."

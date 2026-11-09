@@ -479,6 +479,19 @@ final class TabSwitcherPageViewController: UIViewController {
     private var layoutMode: ReaderTabSwitcherLayout = .grid
     private var lastLayoutSize: CGSize = .zero
     private var dragMembership: [UUID]?
+    var surfaceColor: UIColor = .systemGroupedBackground
+    var cardColor: UIColor = .secondarySystemBackground
+
+    func applyTheme(surface: UIColor, card: UIColor) {
+        surfaceColor = surface
+        cardColor = card
+        loadViewIfNeeded()
+        view.backgroundColor = surface
+        collectionView.backgroundView?.backgroundColor = surface
+        for case let cell as TabViewCell in collectionView.visibleCells {
+            cell.card.backgroundColor = card
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -573,6 +586,7 @@ extension TabSwitcherPageViewController: UICollectionViewDataSource {
         if documents.indices.contains(indexPath.item) {
             let document = documents[indexPath.item]
             cell.configure(document: document, isCurrent: document.id == selectedID)
+            cell.card.backgroundColor = cardColor
             cell.accessibilityIdentifier = "tab-switcher-\(layoutMode.rawValue)-cell-\(document.id.uuidString)"
         }
         return cell
@@ -685,6 +699,8 @@ struct TabSwitcherPageHost: UIViewControllerRepresentable {
     let onClose: (ReaderTabSwitcherDocument) -> Void
     let onReorder: (ReaderTabSwitcherDocument, Int) -> Void
     let contextMenu: (ReaderTabSwitcherDocument) -> UIMenu?
+    var surfaceColor: UIColor = .systemGroupedBackground
+    var cardColor: UIColor = .secondarySystemBackground
 
     func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
 
@@ -696,6 +712,7 @@ struct TabSwitcherPageHost: UIViewControllerRepresentable {
 
     func updateUIViewController(_ controller: TabSwitcherPageViewController, context: Context) {
         context.coordinator.parent = self
+        controller.applyTheme(surface: surfaceColor, card: cardColor)
         controller.update(documents: documents, selectedID: selectedID, layoutMode: layoutMode)
     }
 

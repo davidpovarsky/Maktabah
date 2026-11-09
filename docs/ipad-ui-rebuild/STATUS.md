@@ -1,5 +1,16 @@
 # Faithful iPad rebuild — execution status
 
+## Seven-defect experimental candidate — 2026-11-09
+
+`[נועם | DEV] [MAIN_SESSION]`, NORMAL. Current work starts from clean `cd5e8fef38ea2f8cfc9e3f27fbc995ade94934ec` on `experiment/ipad-ui-faithful-from-9401`. [Pre-edit ownership/cause matrix](SEVEN_FIXES_20261109.md), [owner-approved exact protected hooks](SEVEN_FIXES_APPROVED_HOOKS.diff), and [current source audit](source-audit-seven-fixes-20261109.json). This entry supersedes the historical floating-Inspector requirement for this candidate.
+
+Implemented code corrections: detail-width/Dynamic Type-aware side docking using the same reader; conditional Search List/cell surfaces; inline library title; genuine strip-owned add/overview controls without duplicates; differentiated flare/background planes; full-context overview with scene-specific selection and theme injection; native source-button glass plus interactive SafariGlass; target-provider staging and backend/work/local-ID validation before group hydration, outgoing-only cleanup, retained transient reader state, and network-independent rollback through the existing coordinator.
+
+The complete gap's pixel cause and source screenshot parity remain unproven. Exact newer owner screenshots were not attached with the directive; existing reference screenshots and pinned original sources were inspected. Browser preview services are still unavailable for books: honest book fallback retained. No source controller/layout/flare or reader replacement. No Simulator execution, test/gate changes, Asana writes, main merge, pin/signing/entitlement changes or data reset.
+
+Portable suites recompiled from current source and passed locally: 379 component assertions, 61 workspace checks, and 57 identity/catalog/transition/persistence assertions. All 12 production Swift files plus the new test passed parsing; target membership, 32 source/destination hashes and exact protected-proposal comparison passed. Source audit count is 13/32 ports. BUG03 and BUG04 remain PARTIAL for the documented top-gap/toolbar relationship and visual-fidelity limits; other corrections are implemented, pending device acceptance. Generic-device archive/upload/Apple processing are still pending at this source-document commit. All physical checks, including portrait, multitasking, visual parity and exact scroll/selection restoration, remain `OWNER_ACCEPTANCE_PENDING`; all native cases are `NOT_RUN — physical-iPad owner review requested`.
+
+
 ## Current overview replacement / experimental TestFlight — 2026-11-09
 
 `[נועם | DEV] [MAIN_SESSION]` / `[רוני | QA] [MAIN_SESSION]`, NORMAL. **Delivered1.0.0 (10601), Apple VALID** at2026-11-09T08:31:17.612731+00:00, from `70810eec46ad1fec6f30d983bf31e5f922dacb61` on `experiment/ipad-ui-faithful-from-9401`. [Full current evidence, changed files, signing inventory and limits](OVERVIEW_CONTEXT_DELIVERY_10601.md). [Delivery run](https://github.com/davidpovarsky/Maktabah/actions/runs/42581923971).

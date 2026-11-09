@@ -103,7 +103,7 @@
      func tabViewCellDidBeginSwipe(_ cell: TabViewCell)
      func tabViewCellDidEndSwipe(_ cell: TabViewCell)
  }
- 
+
 -class TabViewCell: UICollectionViewCell {
 -
 +/// The original DuckDuckGo card interaction and geometry with browser-only
@@ -147,7 +147,7 @@
          static let swipeAnimationDuration: TimeInterval = 0.2
          static let highlightAnimationDuration: TimeInterval = 0.15
      }
- 
+
 -    var removeThreshold: CGFloat {
 -        return frame.width / 3
 -    }
@@ -280,7 +280,7 @@
 +        transform = .identity
 +        isHidden = false
 +    }
- 
+
      override func dragStateDidChange(_ dragState: UICollectionViewCell.DragState) {
          super.dragStateDidChange(dragState)
 -        
@@ -364,7 +364,7 @@
 +        guard let documentID else { return }
 +        delegate?.deleteTab(id: documentID)
      }
- 
+
      @objc private func removeButtonValueChange() {
 -        // When highlighted, set larger spacing between text and close button
 -        // to adjust for the highlight area, otherwise set text as close to the
@@ -385,7 +385,7 @@
              self.layoutIfNeeded()
          }
      }
- 
+
 -    private func applyShadows() {
 -        layer.shadowColor = UIColor(designSystemColor: .shadowSecondary).cgColor
 -        layer.shadowOpacity = 1.0
@@ -652,7 +652,7 @@
              self.transform = .identity
          }
      }
- 
+
 -    func refreshSelectionAppearance() {
 -        updateSelectionIndicator(selectionIndicator)
 -        updateCurrentTabBorder()
@@ -933,9 +933,9 @@
 -        return true
 +        true
      }
- 
+
      override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-@@ -700,18 +292,436 @@
+@@ -700,18 +292,453 @@
          let velocity = pan.velocity(in: self)
          return abs(velocity.y) < abs(velocity.x)
      }
@@ -1141,6 +1141,19 @@
 +    private var layoutMode: ReaderTabSwitcherLayout = .grid
 +    private var lastLayoutSize: CGSize = .zero
 +    private var dragMembership: [UUID]?
++    var surfaceColor: UIColor = .systemGroupedBackground
++    var cardColor: UIColor = .secondarySystemBackground
++
++    func applyTheme(surface: UIColor, card: UIColor) {
++        surfaceColor = surface
++        cardColor = card
++        loadViewIfNeeded()
++        view.backgroundColor = surface
++        collectionView.backgroundView?.backgroundColor = surface
++        for case let cell as TabViewCell in collectionView.visibleCells {
++            cell.card.backgroundColor = card
++        }
++    }
 +
 +    override func viewDidLoad() {
 +        super.viewDidLoad()
@@ -1235,6 +1248,7 @@
 +        if documents.indices.contains(indexPath.item) {
 +            let document = documents[indexPath.item]
 +            cell.configure(document: document, isCurrent: document.id == selectedID)
++            cell.card.backgroundColor = cardColor
 +            cell.accessibilityIdentifier = "tab-switcher-\(layoutMode.rawValue)-cell-\(document.id.uuidString)"
 +        }
 +        return cell
@@ -1347,6 +1361,8 @@
 +    let onClose: (ReaderTabSwitcherDocument) -> Void
 +    let onReorder: (ReaderTabSwitcherDocument, Int) -> Void
 +    let contextMenu: (ReaderTabSwitcherDocument) -> UIMenu?
++    var surfaceColor: UIColor = .systemGroupedBackground
++    var cardColor: UIColor = .secondarySystemBackground
 +
 +    func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
 +
@@ -1358,6 +1374,7 @@
 +
 +    func updateUIViewController(_ controller: TabSwitcherPageViewController, context: Context) {
 +        context.coordinator.parent = self
++        controller.applyTheme(surface: surfaceColor, card: cardColor)
 +        controller.update(documents: documents, selectedID: selectedID, layoutMode: layoutMode)
 +    }
 +

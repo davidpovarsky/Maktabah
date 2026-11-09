@@ -1,0 +1,117 @@
+--- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+@@ -85,6 +85,8 @@
+     @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
+     @Environment(\.layoutDirection) private var layoutDirection
+
++    @ScaledMetric(relativeTo: .body) private var minimumReaderWidth: CGFloat = 430
++    @State private var workspaceWidth: CGFloat = 0
+     @State private var compactContentsRequested = false
+     @State private var compactUsesContentsFallback = false
+     @State private var panelWidth = Self.defaultPanelWidth
+@@ -150,9 +152,8 @@
+         // Both pages occupy the same sidebar. Selecting a page must not switch
+         // between two structural reader branches and recreate its TextKit view.
+         if sidebarCoordinator != nil {
+-            // The faithful Inspector always overlays Reader through the existing
+-            // FloatingPanel. Docking it reserves an opaque reading-theme column.
+-            return true
++            // Geometry is the usable detail column, after the library sidebar.
++            return workspaceWidth < minimumReaderWidth + Self.minimumPanelWidth + 18
+         }
+         return useWideLayout && librarySidebarIsOpen && contentsIsOpen
+     }
+@@ -260,6 +261,8 @@
+         .onChange(of: horizontalSizeClass) { _, _ in
+             updatePanelPresentation()
+         }
++        .onChange(of: workspaceWidth) { _, _ in updatePanelPresentation() }
++        .onChange(of: minimumReaderWidth) { _, _ in updatePanelPresentation() }
+         .onChange(of: floatingPanelState) { _, newState in
+             if shouldPresentPanelInContent, newState == .hidden, showPanel {
+                 viewModel.closeReaderInspector()
+@@ -300,7 +303,7 @@
+     private var workspaceDetail: some View {
+         GeometryReader { geometry in
+             if sidebarCoordinator != nil {
+-                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - 430))
++                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - minimumReaderWidth - 18))
+                 ChavrusaReaderWorkspaceLayout(
+                     reader: readerSurface,
+                     panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel),
+@@ -324,6 +327,7 @@
+         }
+         .accessibilityElement(children: .contain)
+         .accessibilityIdentifier("reader-workspace")
++        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { workspaceWidth = $0 }
+     }
+
+     private var readerSurface: some View {
+@@ -619,7 +623,7 @@
+                 if floatingPanelState == nil || floatingPanelState == .hidden {
+                     floatingPanelState = .half
+                 }
+-            } else if useWideLayout {
++            } else if sidebarCoordinator != nil || useWideLayout {
+                 showPanelSheet = false
+                 floatingPanelState = .hidden
+             } else {
+@@ -646,7 +650,7 @@
+             presentContents()
+             return
+         }
+-        if !useWideLayout, showPanel {
++        if sidebarCoordinator == nil, !useWideLayout, showPanel {
+             viewModel.closeReaderInspector()
+         }
+     }
+--- a/Source/Features/Search/iOS/SearchResultsListView.swift
++++ b/Source/Features/Search/iOS/SearchResultsListView.swift
+@@ -22,6 +22,7 @@
+     var nearDistance: Int = 10
+     let onSelect: (SearchResultItem) -> Void
+
++    @AppStorage("useDefaultTheme") private var useDefaultTheme = false
+     @State private var expandedResultIDs: Set<String> = []
+     @State private var selectedVersionIndex: [String: Int] = [:]
+
+@@ -125,6 +126,7 @@
+                         }
+                     }
+                 }
++                .listRowBackground(useDefaultTheme ? nil : Color.appBackground)
+                 .listRowSeparator(.visible)
+                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                 .id(group.id)
+@@ -142,6 +144,7 @@
+                         .padding(.vertical, 8)
+                     Spacer()
+                 }
++                .listRowBackground(useDefaultTheme ? nil : Color.appBackground)
+                 .listRowSeparator(.hidden)
+             } else if hasMore {
+                 Button(action: { onLoadMore?() }) {
+@@ -155,10 +158,13 @@
+                     }
+                 }
+                 .buttonStyle(.plain)
++                .listRowBackground(useDefaultTheme ? nil : Color.appBackground)
+                 .listRowSeparator(.hidden)
+             }
+         }
+         .listStyle(.plain)
++        .scrollContentBackground(useDefaultTheme ? .automatic : .hidden)
++        .background(Color.appBackground.ignoresSafeArea())
+     }
+ }
+
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -110,6 +110,7 @@
+                 NavigationStack {
+                     iOSLibraryView(groupsToolbarActions: true)
+                         .navigationTitle(iOSTab.viewer.title)
++                        .navigationBarTitleDisplayMode(.inline)
+                         .toolbarGeneral(showSettings: $showSettings)
+                         .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
+                 }

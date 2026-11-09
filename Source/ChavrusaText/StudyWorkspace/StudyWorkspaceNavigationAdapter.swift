@@ -78,7 +78,14 @@ final class StudyWorkspaceNavigationAdapter {
     func switchGroup(to id: UUID, documentID: UUID? = nil, manager: iOSNavigationManager, restoringBackend: BackendID? = nil) async throws {
         guard !isSwitching, store.snapshot?.groups.contains(where: { $0.id == id }) == true else { throw StudyWorkspaceError.invalidMembership }
         isSwitching = true
-        defer { isSwitching = false }
+        defer {
+            isSwitching = false
+            // A separately initiated backend change can finish while preflight
+            // awaits I/O. Its notification was suppressed; reconcile it now.
+            if attached, liveBackend != nil, liveBackend != BackendCoordinator.shared.activeBackendID {
+                synchronize(manager)
+            }
+        }
         let previousTabs = manager.openTabs
         let previousActive = manager.activeTabId
         let previousBackend = BackendCoordinator.shared.activeBackendID
@@ -93,12 +100,54 @@ final class StudyWorkspaceNavigationAdapter {
                                                                    documents: target.tabs, fallback: previousBackend)
         let documents = target.tabs.filter { $0.backend == desiredBackend }
         let retained = cache[id]?[desiredBackend] ?? []
+        // Warm the target provider without publishing it or clearing outgoing tabs.
+        let generation = BackendCoordinator.shared.generation
+        if !documents.isEmpty || desiredBackend != previousBackend {
+            try await BackendCoordinator.shared.stageCatalog(for: desiredBackend)
+        }
+        try Task.checkCancellation()
+        guard BackendCoordinator.shared.activeBackendID == previousBackend,
+              BackendCoordinator.shared.generation == generation,
+              store.snapshot?.groups.first(where: { $0.id == id }) == target else {
+            throw BackendTransitionError.transitionSuperseded
+        }
         // Resolve every book before mutating either coordinator; no partial group publication.
         let staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
-            if let existing = retained.first(where: { $0.id == document.id }) { return existing }
-            if let existing = previousTabs.first(where: { $0.id == document.id }), previousBackend == desiredBackend { return existing }
+            if let existing = retained.first(where: { $0.id == document.id }), matches(existing, document: document) { return existing }
+            if let existing = previousTabs.first(where: { $0.id == document.id }), previousBackend == desiredBackend,
+               matches(existing, document: document) { return existing }
             return try hydrate(document)
         }
+        // The canonical backend participant clears transient source/search UI.
+        // These same cached reader objects must remain intact for return/rollback.
+        let restoreOutgoingState: [() -> Void] = desiredBackend == previousBackend ? [] : previousTabs.map { tab in
+            let vm = tab.viewModel
+            let inspectorVisible = vm.readerInspectorVisible
+            let segment = vm.selectedSegmentLocator
+            let line = vm.otzariaSelectedLineAnchor
+            let links = vm.otzariaLinkedSources
+            let sourceError = vm.otzariaSourcesError
+            let searchText = vm.searchText
+            let searchMode = vm.searchMode
+            let highlightTerms = vm.highlightTerms
+            let focus = vm.searchHighlightFocusLocator
+            let annotationEvent = vm.annotationEvent
+            let searchEvent = vm.searchEvent
+            return {
+                vm.readerInspectorVisible = inspectorVisible
+                vm.selectedSegmentLocator = segment
+                vm.otzariaSelectedLineAnchor = line
+                vm.otzariaLinkedSources = links
+                vm.otzariaSourcesError = sourceError
+                vm.searchText = searchText
+                vm.searchMode = searchMode
+                vm.highlightTerms = highlightTerms
+                vm.searchHighlightFocusLocator = focus
+                vm.annotationEvent = annotationEvent
+                vm.searchEvent = searchEvent
+            }
+        }
+        defer { restoreOutgoingState.forEach { $0() } }
         do {
             if desiredBackend != previousBackend {
                 try await BackendCoordinator.shared.commitCheckedAsync(desiredBackend)
@@ -128,12 +177,19 @@ final class StudyWorkspaceNavigationAdapter {
                 tab.viewModel.loadTOC(book: tab.book)
             }
             if let active = requested.flatMap({ id in staged.first { $0.id == id } }) ?? staged.first {
-                manager.selectTab(id: active.id)
+                // The outgoing projection was already checkpointed. Publish
+                // selection without selectTab saving/clearing retained events.
+                manager.activeTabId = active.id
+                manager.selectedBook = active.book
+                manager.selectedContentId = active.viewModel.currentContentId
                 active.viewModel.needsScrollRestore = true
             } else {
-                // Use the canonical close path to normalize an empty projection.
-                manager.openTabs = previousTabs
-                for tab in previousTabs { manager.closeTab(id: tab.id) }
+                // Never reinsert/close foreign outgoing books under the newly
+                // committed backend. Their live instances remain in the cache.
+                manager.activeTabId = nil
+                manager.selectedBook = nil
+                manager.selectedContentId = nil
+                manager.showingTabsList = false
             }
             liveGroupID = id
             liveBackend = desiredBackend
@@ -141,11 +197,20 @@ final class StudyWorkspaceNavigationAdapter {
             manager.persistCurrentSession(immediate: true)
         } catch {
             if BackendCoordinator.shared.activeBackendID != previousBackend {
-                do { try await BackendCoordinator.shared.commitCheckedAsync(previousBackend) }
-                catch { errorMessage = "לא ניתן לשחזר את מקור הספרייה: \(error.localizedDescription)" }
+                // The outgoing catalog was already live/staged. Rollback must
+                // not require another network fetch just to restore it.
+                do { try BackendCoordinator.shared.commitChecked(previousBackend) }
+                catch {
+                    errorMessage = "לא ניתן לשחזר את מקור הספרייה: \(error.localizedDescription)"
+                    // Keep the coordinator's current canonical projection
+                    // coherent; outgoing live tabs remain cached, never lost.
+                    throw error
+                }
             }
             manager.openTabs = previousTabs
-            if let previousActive { manager.selectTab(id: previousActive) }
+            manager.activeTabId = previousActive
+            manager.selectedBook = previousTabs.first(where: { $0.id == previousActive })?.book
+            manager.selectedContentId = previousTabs.first(where: { $0.id == previousActive })?.viewModel.currentContentId
             manager.persistCurrentSession(immediate: true)
             throw error
         }
@@ -235,13 +300,21 @@ final class StudyWorkspaceNavigationAdapter {
         }
     }
 
+    private func matches(_ tab: iOSNavigationManager.ReaderTab, document: ReaderDocumentTab) -> Bool {
+        TargetBackendBookIdentity.matches(id: tab.book.id, locator: tab.book.backendLocator,
+            requestedID: document.session.bookId, workKey: document.session.backendLocator?.workKey,
+            backend: document.backend, stagedCatalog: BackendCoordinator.shared.stagedCatalogs[document.backend])
+    }
+
     private func hydrate(_ document: ReaderDocumentTab) throws -> iOSNavigationManager.ReaderTab {
         let state = document.session
         let book = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
-            id: state.bookId, backendLocator: state.backendLocator?.workKey,
+            id: state.bookId, backendLocator: state.backendLocator?.workKey ?? state.locator?.workKey,
             title: state.bookTitle, in: document.backend)
-        guard (book.backendLocator?.backend ?? .otzaria) == document.backend else {
-            throw StudyWorkspaceError.backendMismatch
+        guard TargetBackendBookIdentity.matches(id: book.id, locator: book.backendLocator,
+            requestedID: state.bookId, workKey: state.backendLocator?.workKey, backend: document.backend) else {
+            throw BackendTransitionError.foreignBackendLocator(
+                locator: book.backendLocator?.persistenceKey ?? "missing book locator", expectedBackend: document.backend)
         }
         let vm = ReaderViewModel(book: book)
         vm.recordHistory = false

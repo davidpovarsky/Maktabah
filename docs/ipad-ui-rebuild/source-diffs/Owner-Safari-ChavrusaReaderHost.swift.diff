@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift
-@@ -1,253 +1,248 @@
+@@ -1,253 +1,251 @@
  import SwiftUI
 -import CommandPalette
 -
@@ -187,7 +187,7 @@
 +        _preferredCompactColumn = preferredCompactColumn
 +        self.library = library; self.contents = contents; self.reader = reader()
      }
- 
+
      var body: some View {
 -        GeometryReader { geometry in
 -            let compact = geometry.size.width < 740
@@ -212,7 +212,10 @@
 +                DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
 +                                 onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
 +                                 onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
-+                                 backgroundColor: UIColor(readerChromeColor))
++                                 backgroundColor: UIColor(readerChromeColor),
++                                 inactiveBackgroundColor: .appSecondaryBackground,
++                                 onOpenLibrary: openLibrary,
++                                 onOverview: { withAnimation(.smooth(duration: 0.25)) { showsOverview = true } })
 +                    .frame(height: navigationChrome.isVisible && !manager.openTabs.isEmpty ? TabsBarViewController.Constants.buttonHeight : 0)
 +                    .opacity(navigationChrome.isVisible && !manager.openTabs.isEmpty ? 1 : 0)
 +                    .clipped()
@@ -400,7 +403,7 @@
 +    // action where required. The original Maktabah actions remain elsewhere.
      private func safariToolbar(compact: Bool) -> some View {
          HStack(spacing: compact ? 6 : 11) {
-             GlassButtonGroup {
+-            GlassButtonGroup {
 -                toolbarButton("square.on.square", title: "הצג את כל הכרטיסיות") {
 -                    withAnimation(.smooth(duration: 0.25)) { showsTabOverview.toggle() }
 -                }
@@ -414,13 +417,14 @@
 -                            .font(.system(size: 19, weight: .regular))
 -                            .frame(width: 39, height: 44)
 -                            .contentShape(Rectangle())
-+                toolbarButton("square.on.square", title: "כל הכרטיסיות", identifier: "reader-tabs-overview") {
-+                    withAnimation(.smooth(duration: 0.25)) { showsOverview = true }
-+                }
-+                toolbarButton("plus", title: "פתח ספר מהספרייה", identifier: "reader-open-book", action: openLibrary)
-+            }
 +            collapsedSearchField
 +                .frame(maxWidth: .infinity)
++            if manager.openTabs.isEmpty {
++                GlassButtonGroup {
++                    toolbarButton("square.on.square", title: "כל הכרטיסיות", identifier: "reader-tabs-overview") { showsOverview = true }
++                    toolbarButton("plus", title: "פתח ספר מהספרייה", identifier: "reader-open-book", action: openLibrary)
++                }
++            }
 +            if let workspace {
 +                StudyProfileMenu(workspace: workspace, manager: manager, compact: compact) { showsProfiles = true }
 +            }
@@ -482,10 +486,10 @@
                  }
              }
          }
-@@ -255,37 +250,8 @@
+@@ -255,37 +253,8 @@
          .frame(height: 54)
      }
- 
+
 -    private var compactSearchField: some View {
 -        HStack(spacing: 11) {
 -            Image(systemName: "arrow.clockwise")
@@ -522,7 +526,7 @@
          Button(action: action) {
              Image(systemName: symbol)
                  .font(.system(size: 19, weight: .regular))
-@@ -294,366 +260,146 @@
+@@ -294,366 +263,146 @@
          }
          .buttonStyle(.plain)
          .accessibilityLabel(title)

@@ -1,6 +1,6 @@
 --- iOS/DuckDuckGo/TabSwitcher/TabViewListCell.swift
 +++ Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift
-@@ -1,133 +1,727 @@
+@@ -1,133 +1,744 @@
  //
 -//  TabViewListCell.swift
 -//  DuckDuckGo
@@ -424,9 +424,9 @@
 -        static let unreadSize: CGFloat = 10
 -        static let unreadOffset: CGFloat = 6
      }
- 
+
      static let reuseIdentifier = "TabViewListCell"
- 
+
      override init(frame: CGRect) {
          super.init(frame: frame)
 +        setupSharedLayout()
@@ -581,6 +581,19 @@
 +    private var layoutMode: ReaderTabSwitcherLayout = .grid
 +    private var lastLayoutSize: CGSize = .zero
 +    private var dragMembership: [UUID]?
++    var surfaceColor: UIColor = .systemGroupedBackground
++    var cardColor: UIColor = .secondarySystemBackground
++
++    func applyTheme(surface: UIColor, card: UIColor) {
++        surfaceColor = surface
++        cardColor = card
++        loadViewIfNeeded()
++        view.backgroundColor = surface
++        collectionView.backgroundView?.backgroundColor = surface
++        for case let cell as TabViewCell in collectionView.visibleCells {
++            cell.card.backgroundColor = card
++        }
++    }
 +
 +    override func viewDidLoad() {
 +        super.viewDidLoad()
@@ -675,6 +688,7 @@
 +        if documents.indices.contains(indexPath.item) {
 +            let document = documents[indexPath.item]
 +            cell.configure(document: document, isCurrent: document.id == selectedID)
++            cell.card.backgroundColor = cardColor
 +            cell.accessibilityIdentifier = "tab-switcher-\(layoutMode.rawValue)-cell-\(document.id.uuidString)"
 +        }
 +        return cell
@@ -787,6 +801,8 @@
 +    let onClose: (ReaderTabSwitcherDocument) -> Void
 +    let onReorder: (ReaderTabSwitcherDocument, Int) -> Void
 +    let contextMenu: (ReaderTabSwitcherDocument) -> UIMenu?
++    var surfaceColor: UIColor = .systemGroupedBackground
++    var cardColor: UIColor = .secondarySystemBackground
 +
 +    func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
 +
@@ -798,6 +814,7 @@
 +
 +    func updateUIViewController(_ controller: TabSwitcherPageViewController, context: Context) {
 +        context.coordinator.parent = self
++        controller.applyTheme(surface: surfaceColor, card: cardColor)
 +        controller.update(documents: documents, selectedID: selectedID, layoutMode: layoutMode)
 +    }
 +

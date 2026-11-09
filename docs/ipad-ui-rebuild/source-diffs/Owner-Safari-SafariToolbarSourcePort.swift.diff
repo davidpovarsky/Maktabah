@@ -1,6 +1,6 @@
 --- 01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift
 +++ Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift
-@@ -1,544 +1,8 @@
+@@ -1,551 +1,15 @@
 +// Owner-provided SafariToolbarSearch.swiftpm, 2026-10-29. Gelatin motion adaptation: MIT (bundled).
  import SwiftUI
 -import CommandPalette
@@ -540,21 +540,29 @@
 -        .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 18))
 -    }
 -}
- 
+
  // A single Liquid Glass backing per toolbar group (iPadOS 26+), with a material fallback.
 -private struct SafariGlass: ViewModifier {
 +struct SafariGlass: ViewModifier {
      let radius: CGFloat
- 
+
      @ViewBuilder
+     func body(content: Content) -> some View {
+         let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
+         if #available(iOS 26.0, *) {
+-            content.glassEffect(.regular, in: shape)
++            content.glassEffect(.regular.interactive(), in: shape)
+         } else {
+             content
+                 .background(.regularMaterial, in: shape)
 @@ -554,7 +18,7 @@
      }
  }
- 
+
 -private struct GlassButtonGroup<Content: View>: View {
 +struct GlassButtonGroup<Content: View>: View {
      let content: Content
- 
+
      init(@ViewBuilder content: () -> Content) {
 @@ -574,17 +38,23 @@
  // Local adaptation of the movement/press behavior from Polarizz/Gelatin (MIT).
@@ -564,7 +572,7 @@
      @State private var currentOffset: CGSize = .zero
      @State private var currentStretch: CGSize = CGSize(width: 1, height: 1)
      @State private var isPressed = false
- 
+
 +    @ViewBuilder
      func body(content: Content) -> some View {
 -        content
@@ -579,19 +587,19 @@
              .simultaneousGesture(pressGesture)
 +        }
      }
- 
+
      private var dragGesture: some Gesture {
 @@ -630,30 +100,9 @@
      }
  }
- 
+
 -private extension View {
 +extension View {
      func gelatinMotionOnly() -> some View {
          modifier(GelatinMotionOnly())
      }
  }
- 
+
 -private struct SimplePanel: View {
 -    let title: String
 -    let symbol: String

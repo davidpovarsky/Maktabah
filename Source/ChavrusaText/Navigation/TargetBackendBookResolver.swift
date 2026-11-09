@@ -69,6 +69,39 @@ enum SefariaBookIdentityValidator: Sendable {
     }
 }
 
+/// Shared by the actual resolver and portable collision regression tests.
+/// Numeric IDs are backend-local; a missing locator never proves provenance.
+enum TargetBackendBookIdentity {
+    static func workKey(_ value: String?, in backend: BackendID) throws -> String? {
+        guard var key = value?.trimmingCharacters(in: .whitespacesAndNewlines), !key.isEmpty else { return nil }
+        for source in BackendID.allCases where key.hasPrefix(source.rawValue + ":") {
+            guard source == backend else {
+                throw BackendTransitionError.foreignBackendLocator(locator: key, expectedBackend: backend)
+            }
+            key = String(key.dropFirst(source.rawValue.count + 1))
+            break
+        }
+        return key.isEmpty ? nil : key
+    }
+
+    static func matches(id: Int, locator: TextLocator?, requestedID: Int,
+                        workKey: String?, backend: BackendID,
+                        stagedCatalog: [String: LibraryWork]? = nil) -> Bool {
+        guard let locator, locator.backend == backend, id == requestedID else { return false }
+        // A complete target refresh also governs retained/live reader objects.
+        // An authentic old locator does not prove that a deleted work exists.
+        if let stagedCatalog, stagedCatalog[locator.workKey] == nil { return false }
+        if let workKey {
+            // Otzaria's original persisted numeric alias may resolve to its
+            // authentic file-path key; the bridge still verifies the local ID.
+            return locator.workKey == workKey ||
+                (backend == .otzaria && id == requestedID &&
+                 (workKey == "book:\(requestedID)" || workKey == String(requestedID)))
+        }
+        return id == requestedID
+    }
+}
+
 #if canImport(UIKit)
 @MainActor
 protocol TargetBackendBookResolverProtocol: Sendable {
@@ -91,143 +124,59 @@ final class ChavrusaTextTargetBackendBookResolver: TargetBackendBookResolverProt
         in backend: BackendID
     ) throws -> BooksData {
         let ldm = LibraryDataManager.shared
-        var matchedBook: BooksData?
+        let key = try TargetBackendBookIdentity.workKey(backendLocator, in: backend)
+        func matches(_ book: BooksData) -> Bool {
+            TargetBackendBookIdentity.matches(id: book.id, locator: book.backendLocator,
+                requestedID: id, workKey: key, backend: backend,
+                stagedCatalog: BackendCoordinator.shared.stagedCatalogs[backend])
+        }
+        // A successfully staged catalog is authoritative for this transition;
+        // a deleted work cannot fall through to a stale global registry entry.
+        if backend != .otzaria, let key, let staged = BackendCoordinator.shared.stagedCatalogs[backend], staged[key] == nil {
+            throw BackendTransitionError.unresolvableBook(bookId: id, title: title ?? key, locator: backendLocator)
+        }
+        // A live entry is usable only with authentic backend AND work identity.
+        if let book = ldm.booksById[id], matches(book) { return book }
+        if let key, let book = ldm.booksById.values.first(where: {
+            $0.backendLocator?.workKey == key && matches($0)
+        }) { return book }
 
-        switch backend {
-        case .otzaria:
-            if let locator = backendLocator {
-                guard !locator.hasPrefix("sefaria:") else {
-                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .otzaria)
+        if backend == .otzaria {
+            // Query Otzaria itself; never fall back to getBook's active catalog.
+            if let key {
+                if let book = try OtzariaMaktabahBridge.shared.resolveBook(stableKey: key, expectedBookId: id), matches(book) {
+                    return book
                 }
+            } else if let book = try OtzariaMaktabahBridge.shared.fetchBook(byId: id), matches(book) {
+                return book
             }
-            if let book = ldm.booksById[id] {
-                matchedBook = book
-            } else if let locator = backendLocator,
-                      let book = ldm.booksById.values.first(where: {
-                          $0.backendLocator?.workKey == locator ||
-                          "\($0.backendLocator?.backend.rawValue ?? ""):\($0.backendLocator?.workKey ?? "")" == locator
-                      }) {
-                matchedBook = book
-            } else if let book = ldm.getBook([id]).first {
-                matchedBook = book
-            } else if let book = try? OtzariaMaktabahBridge.shared.fetchBook(byId: id) {
-                matchedBook = book
-            } else if let locator = backendLocator,
-                      let resolved = try? OtzariaMaktabahBridge.shared.resolveBook(stableKey: locator, expectedBookId: id) {
-                matchedBook = resolved
+        } else {
+            let registered = LegacyIdentityRegistry.shared.locator(for: id)
+            let workKey = key ?? (registered?.backend == backend ? registered?.workKey : nil)
+            if let catalog = BackendCoordinator.shared.stagedCatalogs[backend],
+               workKey.flatMap({ catalog[$0] }) == nil {
+                throw BackendTransitionError.unresolvableBook(bookId: id, title: title ?? "Book \(id)", locator: backendLocator)
             }
-
-        case .sefaria:
-            if let locator = backendLocator {
-                guard !locator.hasPrefix("otzaria:") else {
-                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .sefaria)
-                }
+            if let workKey, let work = BackendCoordinator.shared.stagedCatalogs[backend]?[workKey] {
+                // Metadata comes exclusively from the staged target provider.
+                // Keep the saved backend-local ID and document UUID unchanged.
+                return BooksData(id: id,
+                    book: LibraryPresentationPolicy.workTitle(title: work.title, heTitle: work.heTitle),
+                    archive: 0, muallif: 0, bithoqoh: work.description ?? "", info: work.title,
+                    backendLocator: work.locator, backendSearchPath: work.searchPath)
             }
-            if let book = ldm.booksById[id], book.backendLocator?.backend == .sefaria {
-                matchedBook = book
-            } else if let locator = backendLocator,
-                      let book = ldm.booksById.values.first(where: {
-                          $0.backendLocator?.workKey == locator && $0.backendLocator?.backend == .sefaria
-                      }) {
-                matchedBook = book
-            } else {
-                // Hazard 2 Fix: Fail closed against invented identities and placeholder strings.
-                // Disallow "Book \(id)" placeholders and unverified title-based syntheses.
-                let rawWorkKey: String? = {
-                    if let locator = backendLocator {
-                        let stripped = locator.hasPrefix("sefaria:") ? String(locator.dropFirst("sefaria:".count)) : locator
-                        return stripped.trimmingCharacters(in: .whitespacesAndNewlines)
-                    }
-                    if let registered = LegacyIdentityRegistry.shared.locator(for: id), registered.backend == .sefaria {
-                        return registered.workKey
-                    }
-                    return nil
-                }()
-
-                guard let workKey = rawWorkKey,
-                      !workKey.isEmpty,
-                      !workKey.lowercased().hasPrefix("book "),
-                      workKey != "Book \(id)" else {
-                    throw BackendTransitionError.unresolvableBook(
-                        bookId: id,
-                        title: title ?? "Book \(id)",
-                        locator: backendLocator
-                    )
+            // Synchronous legacy opens may precede async staging. Only an
+            // independently verified offline/registered Sefaria work is eligible.
+            if backend == .sefaria, let workKey {
+                let locator = TextLocator(backend: backend, workKey: workKey,
+                    position: .canonicalRef(SefariaRef.canonicalInput(workKey)))
+                if SefariaBookIdentityValidator.isAuthoritative(workKey: workKey, id: id, textLocator: locator) {
+                    return BooksData(id: id, book: LegacyIdentityRegistry.shared.title(for: locator) ?? workKey,
+                        archive: 0, muallif: 0, bithoqoh: "", info: workKey, backendLocator: locator)
                 }
-
-                let canonical = SefariaRef.canonicalInput(workKey)
-                let textLocator = TextLocator(backend: .sefaria, workKey: workKey, position: .canonicalRef(canonical))
-
-                // Authoritative validation: work must be registered in cross-backend index,
-                // legacy identity registry, or exist in verified local offline package storage.
-                let isAuthoritative = SefariaBookIdentityValidator.isAuthoritative(
-                    workKey: workKey,
-                    id: id,
-                    textLocator: textLocator
-                )
-
-                guard isAuthoritative else {
-                    throw BackendTransitionError.unresolvableBook(
-                        bookId: id,
-                        title: title ?? workKey,
-                        locator: backendLocator
-                    )
-                }
-
-                matchedBook = MaktabahBackendAdapter.resolveBook(for: textLocator, in: ldm)
-            }
-
-        case .sefariaEmbedded:
-            if let locator = backendLocator {
-                guard !locator.hasPrefix("otzaria:") else {
-                    throw BackendTransitionError.foreignBackendLocator(locator: locator, expectedBackend: .sefariaEmbedded)
-                }
-            }
-            if let book = ldm.booksById[id], book.backendLocator?.backend == .sefariaEmbedded {
-                matchedBook = book
-            } else if let locator = backendLocator,
-                      let book = ldm.booksById.values.first(where: {
-                          $0.backendLocator?.workKey == locator && $0.backendLocator?.backend == .sefariaEmbedded
-                      }) {
-                matchedBook = book
-            } else {
-                let rawWorkKey: String? = {
-                    if let locator = backendLocator {
-                        let stripped = locator.hasPrefix("sefariaEmbedded:") ? String(locator.dropFirst("sefariaEmbedded:".count)) :
-                                       (locator.hasPrefix("sefaria:") ? String(locator.dropFirst("sefaria:".count)) : locator)
-                        return stripped.trimmingCharacters(in: .whitespacesAndNewlines)
-                    }
-                    if let registered = LegacyIdentityRegistry.shared.locator(for: id), registered.backend == .sefariaEmbedded {
-                        return registered.workKey
-                    }
-                    return nil
-                }()
-
-                guard let workKey = rawWorkKey,
-                      !workKey.isEmpty,
-                      !workKey.lowercased().hasPrefix("book "),
-                      workKey != "Book \(id)" else {
-                    throw BackendTransitionError.unresolvableBook(
-                        bookId: id,
-                        title: title ?? "Book \(id)",
-                        locator: backendLocator
-                    )
-                }
-
-                let canonical = SefariaRef.canonicalInput(workKey)
-                let textLocator = TextLocator(backend: .sefariaEmbedded, workKey: workKey, position: .canonicalRef(canonical))
-                matchedBook = MaktabahBackendAdapter.resolveBook(for: textLocator, in: ldm)
             }
         }
-
-        guard let valid = matchedBook else {
-            throw BackendTransitionError.unresolvableBook(
-                bookId: id,
-                title: title ?? "Book \(id)",
-                locator: backendLocator
-            )
-        }
-        return valid
+        throw BackendTransitionError.unresolvableBook(bookId: id, title: title ?? "Book \(id)", locator: backendLocator)
     }
 }
 #endif

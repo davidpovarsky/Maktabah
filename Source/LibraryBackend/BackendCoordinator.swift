@@ -252,6 +252,9 @@ final class BackendCoordinator {
     private var switchParticipants: [WeakSwitchParticipant] = []
 
     private var registrations: [BackendID: LibraryBackendRegistration] = [:]
+    // Target-provider metadata only. Staging never replaces the active library,
+    // publishes a backend, cancels requests, or changes session/defaults.
+    private(set) var stagedCatalogs: [BackendID: [String: LibraryWork]] = [:]
     private var inFlightCancellations: [UUID: @Sendable () -> Void] = [:]
     private let defaults: UserDefaults
 
@@ -432,7 +435,7 @@ final class BackendCoordinator {
         }
 
         // PHASE 2: ATOMIC COORDINATOR COMMIT
-        let oldRegistrations = registrations.values
+        let outgoingRegistration = registrations[currentBackend]
         pendingBackendID = nil
         defaults.set(targetBackend.rawValue, forKey: Self.selectionDefaultsKey)
         inFlightCancellations.values.forEach { $0() }
@@ -441,10 +444,13 @@ final class BackendCoordinator {
         activeBackendID = targetBackend
         transitionPhase = .idle
 
+        let committedGeneration = generation
         Task {
-            for registration in oldRegistrations {
-                await registration.invalidateTransientState()
-            }
+            // Invalidating the destination after publication can cancel its
+            // newly loaded reader requests (especially Embedded JS RPC).
+            // A queued cleanup from a superseded transition must also stop.
+            guard self.generation == committedGeneration, self.activeBackendID == targetBackend else { return }
+            await outgoingRegistration?.invalidateTransientState()
         }
 
         // PHASE 3: NON-THROWING PARTICIPANT PUBLICATION (New activeBackendID is active)
@@ -494,6 +500,8 @@ final class BackendCoordinator {
         // PHASE 1: ASYNC PREPARE (Preflight and stage while currentBackend is STILL ACTIVE)
         var preparedTransitions: [ObjectIdentifier: PreparedBackendTransition?] = [:]
         do {
+            try await stageCatalog(for: targetBackend)
+            try Task.checkCancellation()
             for participant in activeParticipants {
                 let transition = try await participant.prepareTransitionAsync(from: currentBackend, to: targetBackend, token: thisToken)
                 preparedTransitions[ObjectIdentifier(participant)] = transition
@@ -518,7 +526,7 @@ final class BackendCoordinator {
         }
 
         // PHASE 2: ATOMIC COORDINATOR COMMIT
-        let oldRegistrations = registrations.values
+        let outgoingRegistration = registrations[currentBackend]
         pendingBackendID = nil
         defaults.set(targetBackend.rawValue, forKey: Self.selectionDefaultsKey)
         inFlightCancellations.values.forEach { $0() }
@@ -527,10 +535,13 @@ final class BackendCoordinator {
         activeBackendID = targetBackend
         transitionPhase = .idle
 
+        let committedGeneration = generation
         Task {
-            for registration in oldRegistrations {
-                await registration.invalidateTransientState()
-            }
+            // Invalidating the destination after publication can cancel its
+            // newly loaded reader requests (especially Embedded JS RPC).
+            // A queued cleanup from a superseded transition must also stop.
+            guard self.generation == committedGeneration, self.activeBackendID == targetBackend else { return }
+            await outgoingRegistration?.invalidateTransientState()
         }
 
         // PHASE 3: NON-THROWING PARTICIPANT PUBLICATION (New activeBackendID is active)
@@ -546,6 +557,36 @@ final class BackendCoordinator {
         for participant in activeParticipants {
             participant.completeTransition(to: targetBackend)
         }
+    }
+
+    /// Read the registered TARGET provider without using the outgoing catalog.
+    /// Complete the isolated index before replacing a previous staged value.
+    func stageCatalog(for backend: BackendID) async throws {
+        if registrations.isEmpty { return }
+        guard let registration = registrations[backend] else {
+            throw BackendTransitionError.capabilityUnavailable(backend)
+        }
+        if registration.usesNativeMaktabahDataPath { return }
+        guard let provider = registration.catalog else {
+            throw BackendTransitionError.missingTargetCatalog(backend)
+        }
+        let nodes = try await provider.catalog(forceRefresh: false)
+        try Task.checkCancellation()
+        var works: [String: LibraryWork] = [:]
+        func collect(_ nodes: [LibraryCatalogNode]) throws {
+            for node in nodes {
+                if let work = node.work {
+                    guard work.locator.backend == backend else {
+                        throw BackendTransitionError.foreignBackendLocator(
+                            locator: work.locator.persistenceKey, expectedBackend: backend)
+                    }
+                    works[work.locator.workKey] = work
+                }
+                try collect(node.children)
+            }
+        }
+        try collect(nodes)
+        stagedCatalogs[backend] = works
     }
 
     func catalog(forceRefresh: Bool = false) async throws -> [LibraryCatalogNode] {

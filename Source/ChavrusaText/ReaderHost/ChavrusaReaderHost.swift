@@ -65,7 +65,10 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
                 DocumentTabsHost(tabs: manager.openTabs, selectedID: manager.activeTabId,
                                  onSelect: { manager.selectTab(id: $0) }, onClose: { manager.closeTab(id: $0) },
                                  onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
-                                 backgroundColor: UIColor(readerChromeColor))
+                                 backgroundColor: UIColor(readerChromeColor),
+                                 inactiveBackgroundColor: .appSecondaryBackground,
+                                 onOpenLibrary: openLibrary,
+                                 onOverview: { withAnimation(.smooth(duration: 0.25)) { showsOverview = true } })
                     .frame(height: navigationChrome.isVisible && !manager.openTabs.isEmpty ? TabsBarViewController.Constants.buttonHeight : 0)
                     .opacity(navigationChrome.isVisible && !manager.openTabs.isEmpty ? 1 : 0)
                     .clipped()
@@ -225,14 +228,14 @@ struct ChavrusaReaderHost<Library: View, Contents: View, Reader: View>: View {
     // action where required. The original Maktabah actions remain elsewhere.
     private func safariToolbar(compact: Bool) -> some View {
         HStack(spacing: compact ? 6 : 11) {
-            GlassButtonGroup {
-                toolbarButton("square.on.square", title: "כל הכרטיסיות", identifier: "reader-tabs-overview") {
-                    withAnimation(.smooth(duration: 0.25)) { showsOverview = true }
-                }
-                toolbarButton("plus", title: "פתח ספר מהספרייה", identifier: "reader-open-book", action: openLibrary)
-            }
             collapsedSearchField
                 .frame(maxWidth: .infinity)
+            if manager.openTabs.isEmpty {
+                GlassButtonGroup {
+                    toolbarButton("square.on.square", title: "כל הכרטיסיות", identifier: "reader-tabs-overview") { showsOverview = true }
+                    toolbarButton("plus", title: "פתח ספר מהספרייה", identifier: "reader-open-book", action: openLibrary)
+                }
+            }
             if let workspace {
                 StudyProfileMenu(workspace: workspace, manager: manager, compact: compact) { showsProfiles = true }
             }

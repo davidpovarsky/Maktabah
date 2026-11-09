@@ -110,6 +110,7 @@ struct iPadLayout: View {
                 NavigationStack {
                     iOSLibraryView(groupsToolbarActions: true)
                         .navigationTitle(iOSTab.viewer.title)
+                        .navigationBarTitleDisplayMode(.inline)
                         .toolbarGeneral(showSettings: $showSettings)
                         .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
                 }
