@@ -1,5 +1,6 @@
 #if os(iOS) && canImport(UIKit)
 import SwiftUI
+import Combine
 import UIKit
 import XCTest
 #if canImport(Maktabah_Debug)
