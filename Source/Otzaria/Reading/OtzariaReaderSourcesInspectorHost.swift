@@ -15,7 +15,6 @@ struct OtzariaReaderSourcesInspectorHost: View {
     let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
     let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?
     @ObservedObject private var backendCoordinator = BackendCoordinator.shared
-    @Environment(\.chavrusaReaderSidebar) private var faithfulReaderSidebar
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -31,11 +30,6 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 entryMode: .relationships,
                 chrome: chrome,
                 selectedTool: $selectedTool,
-                presentationOptions: .init(
-                    showsStudyToolsTitle: faithfulReaderSidebar == nil,
-                    showsSelectedSegmentTitle: faithfulReaderSidebar == nil,
-                    usesMinimalChrome: false
-                ),
                 onClose: {
                     viewModel.closeReaderInspector()
                 },

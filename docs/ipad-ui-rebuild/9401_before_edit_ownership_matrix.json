@@ -1,0 +1,353 @@
+{
+  "baseline_sha": "f243d06603cbe506de8f27ea8b9a479af4415e2e",
+  "feature_base_sha": "905439c9b41144ab34e7071e067ec09bc474d4f3",
+  "upstream_sha": "46e893c65139fbb1e582d6595b0d220ea912324a",
+  "snapshot": "Immutable pre-edit Git objects; reproducible independently of working tree.",
+  "changed_original_visual_files": [
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "1801e9885b81e5a3c88dec6ad7db19bb7ab70050",
+      "baseline_blob": "ede65ecf6d6117a1fe48c8bd51f51e229c2c3be9",
+      "feature_blob": "ef138d9473b711edd67f40f69823e5e63033982f",
+      "action": "Restore original toolbar; remove grouped replacement.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "visual",
+          "diff": "@@ -4,6 +4,7 @@ import UIKit\n // MARK: - SwiftUI View\n \n struct iOSLibraryView: View {\n+    var groupsToolbarActions = false\n     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager\n \n     var body: some View {\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -119,6 +120,16 @@ struct iOSLibraryView: View {\n     private func toolbarContent(viewModel: LibraryViewModel) -> some ToolbarContent {\n         if viewModel.isSelectionMode {\n             selectionToolbarItems(viewModel: viewModel)\n+        } else if groupsToolbarActions {\n+            ToolbarItem(placement: .topBarTrailing) {\n+                GlassButtonGroup {\n+                    groupByMenu(viewModel: viewModel)\n+                    if AppConfig.isUsingBundleMode { downloadedFilterToggle(viewModel: viewModel) }\n+                    optionsMenu(viewModel: viewModel)\n+                }\n+                .labelStyle(.iconOnly)\n+            }\n+            .readerSourceGlassBackground()\n         } else {\n             standardToolbarItems(viewModel: viewModel)\n         }\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "3519f971897ee248a0f744a8b04ea28b29ef6d3b",
+      "baseline_blob": "6f19264c9248b1a06c3bfa57092f90bc319965e8",
+      "feature_blob": "9fa9a8a105b6bf451836a9fbf89dffdb4c878f4b",
+      "action": "Restore original search history overlay; retain engine.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "visual",
+          "diff": "@@ -65,12 +65,6 @@ struct iOSBookSearchView: View {\n                     showIntegrationState: false\n                 )\n             }\n-            .overlay(alignment: .bottom) {\n-                SearchHistoryOverlay(\n-                    viewModel: viewModel,\n-                    isVisible: .constant(nil)\n-                )\n-            }\n         }\n         .searchable(\n             text: $viewModel.query,\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "77895eed242e9e83128d83d4551757c00df6f397",
+      "baseline_blob": "95e0e8cb3085b82fffc23f77c89e2f3c3ea879ec",
+      "feature_blob": "de504b55304909dc804606aa7e4b3c80a52f5bc5",
+      "action": "Canonical navigation label and showingSearch popover-state correctness.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -25,18 +25,17 @@ struct iOSReaderBottomToolbarView: View {\n     }\n \n     var body: some View {\n-        Button(\n-            viewModel.statusSubtitle,\n-            action: {\n-                showingNavigation.toggle()\n-            }\n-        )\n+        Button {\n+            showingNavigation.toggle()\n+        } label: {\n+            ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.statusSubtitle)\n+        }\n         .popover(isPresented: $showingNavigation) {\n             iOSReaderNavigationPopoverView(viewModel: viewModel)\n                 .presentationCompactAdaptation(.popover)\n         }\n         .onChange(of: showingNavigation) { _, newValue in\n-            viewModel.isPopoverPresented = newValue || showingOptions\n+            viewModel.isPopoverPresented = newValue || showingOptions || showingSearch\n         }\n \n         Spacer()\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -142,7 +141,10 @@ struct iOSReaderBottomToolbarView: View {\n                 .presentationCompactAdaptation(.popover)\n         }\n         .onChange(of: showingOptions) { _, newValue in\n-            viewModel.isPopoverPresented = newValue || showingNavigation\n+            viewModel.isPopoverPresented = newValue || showingNavigation || showingSearch\n+        }\n+        .onChange(of: showingSearch) { _, newValue in\n+            viewModel.isPopoverPresented = newValue || showingNavigation || showingOptions\n         }\n         .sheet(isPresented: $showingSearch) {\n             if let book = viewModel.currentBook {\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "b8b2085032c21d1f6be833e3ac371b17dd37a574",
+      "baseline_blob": "6381e62df4fe0dace12efb44987a7bcbf7d3c6a2",
+      "feature_blob": "e7fdeeada1226cf42552b3b4484234e44d478293",
+      "action": "Canonical backend navigation references; native geometry unchanged.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -42,7 +42,7 @@ struct iOSReaderNavigationPopoverView: View {\n                     }\n                     .disabled(viewModel.backendSection?.previous == nil)\n                     \n-                    Text(viewModel.backendSection.map {\n+                    ReaderNavigationDisplayLabel(viewModel: viewModel, fallback: viewModel.backendSection.map {\n                         LibraryPresentationPolicy.reference(displayRef: $0.displayRef, heRef: $0.heRef)\n                     } ?? \"\")\n                         .font(.headline)\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -65,7 +65,7 @@ struct iOSReaderNavigationPopoverView: View {\n                     let safeIdx = min(max(0, Int(localNav)), viewModel.navigationItems.count - 1)\n                     VStack(spacing: 8) {\n                         if isSlidingNav {\n-                            Text(viewModel.navigationItems[safeIdx].title)\n+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems[safeIdx].locator, fallback: viewModel.navigationItems[safeIdx].title)\n                                 .font(.headline)\n                                 .foregroundColor(.accentColor)\n                                 .lineLimit(1)\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -84,12 +84,12 @@ struct iOSReaderNavigationPopoverView: View {\n                         }\n \n                         HStack {\n-                            Text(viewModel.navigationItems.first?.title ?? \"\")\n+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.first?.locator, fallback: viewModel.navigationItems.first?.title ?? \"\")\n                                 .font(.caption2)\n                                 .foregroundColor(.secondary)\n                                 .lineLimit(1)\n                             Spacer()\n-                            Text(viewModel.navigationItems.last?.title ?? \"\")\n+                            ReaderNavigationDisplayLabel(viewModel: viewModel, locator: viewModel.navigationItems.last?.locator, fallback: viewModel.navigationItems.last?.title ?? \"\")\n                                 .font(.caption2)\n                                 .foregroundColor(.secondary)\n                                 .lineLimit(1)\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "bffaad8230f560cb68324572bcf76efa5395ce37",
+      "baseline_blob": "21968285d3de6fc1fa1dd1614084c3e1a099436b",
+      "feature_blob": "d971d8952bf62aeb6fb9f5aa1faa7c96e1e15b08",
+      "action": "Restore original ReaderTabsView and its placement.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "visual",
+          "diff": "@@ -5,13 +5,16 @@ struct iOSReaderTabView: View {\n     @Environment(\\.horizontalSizeClass) private var horizontalSizeClass\n     @Binding var columnVisibility: NavigationSplitViewVisibility\n     @Binding var preferredCompactColumn: NavigationSplitViewColumn\n+    let showsLegacyDocumentTabs: Bool\n \n     init(\n         columnVisibility: Binding<NavigationSplitViewVisibility> = .constant(.all),\n-        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail)\n+        preferredCompactColumn: Binding<NavigationSplitViewColumn> = .constant(.detail),\n+        showsLegacyDocumentTabs: Bool = true\n     ) {\n         self._columnVisibility = columnVisibility\n         self._preferredCompactColumn = preferredCompactColumn\n+        self.showsLegacyDocumentTabs = showsLegacyDocumentTabs\n     }\n \n     private var activeTab: iOSNavigationManager.ReaderTab? {\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -34,11 +37,11 @@ struct iOSReaderTabView: View {\n                 )\n                 .id(activeTab.id)\n                 .toolbar {\n-                    if isRegularLayout, bManager.openTabs.count > 1 {\n+                    if showsLegacyDocumentTabs, isRegularLayout, bManager.openTabs.count > 1 {\n                         ToolbarItem(placement: .principal) {\n                             ReaderTabsView()\n                         }\n-                    } else if bManager.openTabs.count > 1 {\n+                    } else if showsLegacyDocumentTabs, bManager.openTabs.count > 1 {\n                         ToolbarItem(placement: .topBarTrailing) {\n                             ReaderTabsView()\n                         }\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "e7c8ddd1fcd9092ac3537afa7b53330631150ed8",
+      "baseline_blob": "9578ce48ac743cdca1fb02ca03a3dfc9b2c53824",
+      "feature_blob": "fe3d4813211b97b724c3d260b8184d7495486360",
+      "action": "Restore original toolbar buttons; propose TOC state hook separately.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -17,6 +17,7 @@ struct iOSReaderView: View {\n     var viewModel: ReaderViewModel\n     var textViewState = TextViewState.shared\n     @Environment(\\.horizontalSizeClass) private var horizontalSizeClass\n+    @Environment(\\.chavrusaReaderSidebar) private var sidebarCoordinator\n     @Environment(iOSNavigationManager.self) var bManager\n \n     var isRegularLayout: Bool {\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -82,6 +83,9 @@ struct iOSReaderView: View {\n \n     private var tableOfContentsIsPresented: Bool {\n         guard let columnVisibility else { return false }\n+        if let sidebarCoordinator {\n+            return sidebarCoordinator.page == .contents && columnVisibility.wrappedValue != .detailOnly\n+        }\n         return columnVisibility.wrappedValue != .detailOnly\n     }\n \n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -131,7 +135,7 @@ struct iOSReaderView: View {\n             }\n         }\n         .toolbar {\n-            if shouldShowPrimarySidebarButton {\n+            if shouldShowPrimarySidebarButton, sidebarCoordinator == nil {\n                 ToolbarItem(placement: .topBarLeading) {\n                     Button {\n                         withAnimation {\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -145,7 +149,7 @@ struct iOSReaderView: View {\n                 }\n             }\n \n-            if (!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1) {\n+            if sidebarCoordinator == nil && ((!isRegularLayout && !ipad) || (!isRegularLayout && bManager.openTabs.count > 1)) {\n                 ToolbarItem(placement: .topBarTrailing) {\n                     Button {\n                         bManager.showingTabsList.toggle()\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -155,6 +159,7 @@ struct iOSReaderView: View {\n                             .frame(maxWidth: 190)\n                             .contentShape(Rectangle())\n                     }\n+                    .accessibilityIdentifier(\"reader-book-tabs-overview\")\n                 }\n             }\n \n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null,
+      "baseline_blob": "b1da0865cbf084f00b25e0456784569b34663a47",
+      "feature_blob": "c42ab4afc156e67053beb24814dc41731505b1e7",
+      "action": "Restore actual original workspace functions; additional hook pending.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -82,10 +82,13 @@ struct iOSReaderWorkspaceView: View {\n \n     @Environment(iOSNavigationManager.self) private var navigationManager\n     @Environment(\\.horizontalSizeClass) private var horizontalSizeClass\n+    @Environment(\\.chavrusaReaderSidebar) private var sidebarCoordinator\n     @Environment(\\.layoutDirection) private var layoutDirection\n \n     @State private var compactContentsRequested = false\n     @State private var compactUsesContentsFallback = false\n+    @ScaledMetric private var minimumReaderWidth: CGFloat = 430\n+    @State private var detailColumnWidth: CGFloat = 0\n     @State private var panelWidth = Self.defaultPanelWidth\n     @State private var dragStartWidth: CGFloat?\n     @State private var showPanelSheet = false\n"
+        },
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -139,11 +142,21 @@ struct iOSReaderWorkspaceView: View {\n     }\n \n     private var contentsIsOpen: Bool {\n-        libraryColumnVisibility != .detailOnly\n+        if let sidebarCoordinator {\n+            return sidebarCoordinator.page == .contents && libraryColumnVisibility != .detailOnly\n+        }\n+        return libraryColumnVisibility != .detailOnly\n     }\n \n     private var shouldPresentPanelInContent: Bool {\n-        useWideLayout && librarySidebarIsOpen && contentsIsOpen\n+        // Both pages occupy the same sidebar. Selecting a page must not switch\n+        // between two structural reader branches and recreate its TextKit view.\n+        if sidebarCoordinator != nil {\n+            return !ChavrusaReaderWorkspaceWidthPolicy.canDock(\n+                detailWidth: detailColumnWidth, minimumReaderWidth: minimumReaderWidth\n+            )\n+        }\n+        return useWideLayout && librarySidebarIsOpen && contentsIsOpen\n     }\n \n     private var showPanel: Bool {\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -249,6 +262,9 @@ struct iOSReaderWorkspaceView: View {\n         .onChange(of: horizontalSizeClass) { _, _ in\n             updatePanelPresentation()\n         }\n+        .onChange(of: shouldPresentPanelInContent) { _, _ in\n+            updatePanelPresentation()\n+        }\n         .onChange(of: floatingPanelState) { _, newState in\n             if shouldPresentPanelInContent, newState == .hidden, showPanel {\n                 viewModel.closeReaderInspector()\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -288,7 +304,18 @@ struct iOSReaderWorkspaceView: View {\n     @ViewBuilder\n     private var workspaceDetail: some View {\n         GeometryReader { geometry in\n-            if useWideLayout {\n+            if sidebarCoordinator != nil {\n+                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - minimumReaderWidth - 18))\n+                ChavrusaReaderWorkspaceLayout(\n+                    reader: readerSurface,\n+                    panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel),\n+                    resizeHandle: panelResizeHandle(allowedMaximum: maximum),\n+                    panelWidth: min(max(panelWidth, Self.minimumPanelWidth), maximum),\n+                    showPanel: showPanel,\n+                    floats: shouldPresentPanelInContent,\n+                    floatingState: $floatingPanelState\n+                )\n+            } else if useWideLayout {\n                 if shouldPresentPanelInContent {\n                     floatingWorkspace\n                 } else {\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -302,6 +329,7 @@ struct iOSReaderWorkspaceView: View {\n         }\n         .accessibilityElement(children: .contain)\n         .accessibilityIdentifier(\"reader-workspace\")\n+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailColumnWidth = $0 }\n     }\n \n     private var readerSurface: some View {\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -332,18 +360,20 @@ struct iOSReaderWorkspaceView: View {\n         .accessibilityElement(children: .contain)\n         .accessibilityIdentifier(\"reader-surface\")\n         .toolbar {\n-            ToolbarItem(placement: .principal) {\n-                VStack(spacing: 1) {\n-                    Text(readerHeaderTitle)\n-                        .font(.headline)\n-                        .lineLimit(1)\n-                        .accessibilityIdentifier(\"reader-header-visible-title\")\n-                    if !readerHeaderSubtitle.isEmpty {\n-                        Text(readerHeaderSubtitle)\n-                            .font(.caption2)\n-                            .foregroundStyle(.secondary)\n+            if sidebarCoordinator == nil {\n+                ToolbarItem(placement: .principal) {\n+                    VStack(spacing: 1) {\n+                        Text(readerHeaderTitle)\n+                            .font(.headline)\n                             .lineLimit(1)\n-                            .accessibilityIdentifier(\"reader-header-subtitle\")\n+                            .accessibilityIdentifier(\"reader-header-visible-title\")\n+                        if !readerHeaderSubtitle.isEmpty {\n+                            Text(readerHeaderSubtitle)\n+                                .font(.caption2)\n+                                .foregroundStyle(.secondary)\n+                                .lineLimit(1)\n+                                .accessibilityIdentifier(\"reader-header-subtitle\")\n+                        }\n                     }\n                 }\n             }\n"
+        },
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -532,6 +562,12 @@ struct iOSReaderWorkspaceView: View {\n     }\n \n     private func presentContents() {\n+        if let sidebarCoordinator {\n+            sidebarCoordinator.showContents()\n+            preferredCompactColumn = .sidebar\n+            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) { libraryColumnVisibility = .all }\n+            return\n+        }\n         if !useWideLayout {\n             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {\n                 compactContentsRequested = true\n"
+        },
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -548,6 +584,11 @@ struct iOSReaderWorkspaceView: View {\n     }\n \n     private func closeContents() {\n+        if sidebarCoordinator != nil {\n+            preferredCompactColumn = .detail\n+            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) { libraryColumnVisibility = .detailOnly }\n+            return\n+        }\n         if !useWideLayout {\n             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {\n                 compactContentsRequested = false\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -584,7 +625,7 @@ struct iOSReaderWorkspaceView: View {\n                 if floatingPanelState == nil || floatingPanelState == .hidden {\n                     floatingPanelState = .half\n                 }\n-            } else if useWideLayout {\n+            } else if sidebarCoordinator != nil || useWideLayout {\n                 showPanelSheet = false\n                 floatingPanelState = .hidden\n             } else {\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "06246b43616fc0d5827c990b28e9769b9ebc5295",
+      "baseline_blob": "f2d54d4ecb370af011054fa1dfe65a8350d1575f",
+      "feature_blob": "05f7b870a52ca30a1df8442f46abcc03e589acec",
+      "action": "Actual FocusState binding and search-history visibility correction.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -28,7 +28,7 @@ struct SearchHistoryOverlay: View {\n \n     var body: some View {\n         Group {\n-            if isShowing {\n+            if shouldShow {\n                 VStack(spacing: 0) {\n                     if !viewModel.searchHistory.isEmpty {\n                         historyHeader\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -53,7 +53,7 @@ struct SearchHistoryOverlay: View {\n             .interpolatingSpring(stiffness: 250, damping: 24),\n             value: isShowing\n         )\n-        .onChange(of: shouldShow) { _, newValue in\n+        .onChange(of: shouldShow, initial: true) { _, newValue in\n             isShowing = newValue\n         }\n         .onAppear {\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -311,26 +311,31 @@ struct UnifiedSearchInputControls: View {\n struct SearchInputBar: View {\n     @Binding var text: String\n     @FocusState var isFocused: Bool\n+    var focusBinding: FocusState<Bool>.Binding?\n     @AppStorage(\"useDefaultTheme\") private var useDefaultTheme: Bool = false\n     var onSubmit: () -> Void\n \n     init(\n         text: Binding<String>,\n         isFocused: FocusState<Bool> = FocusState(),\n+        focusBinding: FocusState<Bool>.Binding? = nil,\n         onSubmit: @escaping () -> Void\n     ) {\n         self._text = text\n         self._isFocused = isFocused\n+        self.focusBinding = focusBinding\n         self.onSubmit = onSubmit\n     }\n \n     init(\n         viewModel: SearchViewModel,\n         isFocused: FocusState<Bool> = FocusState(),\n+        focusBinding: FocusState<Bool>.Binding? = nil,\n         onSubmit: @escaping () -> Void\n     ) {\n         self._text = Binding(get: { viewModel.query }, set: { viewModel.query = $0 })\n         self._isFocused = isFocused\n+        self.focusBinding = focusBinding\n         self.onSubmit = onSubmit\n     }\n \n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -340,7 +345,7 @@ struct SearchInputBar: View {\n             prompt: Text(.searchInSelectedBooks)\n                 .foregroundStyle(Color(useDefaultTheme ? .secondaryLabel : .iosTint))\n         )\n-        .focused($isFocused)\n+        .focused(focusBinding ?? $isFocused)\n         .submitLabel(.go)\n         .onSubmit(onSubmit)\n         .padding(.leading, 20)\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -362,8 +367,8 @@ struct SearchInputBar: View {\n             .help(\"Start Search\")\n         }\n         .shadow(\n-            color: .black.opacity(isFocused ? 0.15 : 0.1),\n-            radius: isFocused ? 8 : 15, x: 0, y: 2\n+            color: .black.opacity((focusBinding?.wrappedValue ?? isFocused) ? 0.15 : 0.1),\n+            radius: (focusBinding?.wrappedValue ?? isFocused) ? 8 : 15, x: 0, y: 2\n         )\n         .padding(.vertical)\n         .padding(.horizontal, 20)\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "119a56590c91b95037fdc5d9e2999a6ed671a734",
+      "baseline_blob": "6e45959aa5f828127eeac199471f060463865c0a",
+      "feature_blob": "8e2882537e0ab3b65debb870d249e205ca1502b5",
+      "action": "Pass the actual FocusState binding to the current search input.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -24,7 +24,7 @@ struct SearchModeView: View {\n             if !isSearching {\n                 SearchInputBar(\n                     text: Bindable(session).query,\n-                    isFocused: _isSearchFieldFocused,\n+                    focusBinding: $isSearchFieldFocused,\n                     onSubmit: {\n                         Task {\n                             viewModel.addToHistory(session.query)\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "1ae742e7c369a5797db7c08ed22c36d63bfbe4d5",
+      "baseline_blob": "1354ba65a888ad38683e1f39bf57a13a81034046",
+      "feature_blob": "34c3d6a711d81404f8ed7a9edd9a872e5a5d77c9",
+      "action": "Retain required dynamic theme surface corrections; list structure unchanged.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -125,6 +125,7 @@ struct SearchResultsListView: View {\n                         }\n                     }\n                 }\n+                .listRowBackground(Color.appBackground)\n                 .listRowSeparator(.visible)\n                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))\n                 .id(group.id)\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -142,6 +143,7 @@ struct SearchResultsListView: View {\n                         .padding(.vertical, 8)\n                     Spacer()\n                 }\n+                .listRowBackground(Color.appBackground)\n                 .listRowSeparator(.hidden)\n             } else if hasMore {\n                 Button(action: { onLoadMore?() }) {\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -155,10 +157,13 @@ struct SearchResultsListView: View {\n                     }\n                 }\n                 .buttonStyle(.plain)\n+                .listRowBackground(Color.appBackground)\n                 .listRowSeparator(.hidden)\n             }\n         }\n         .listStyle(.plain)\n+        .scrollContentBackground(.hidden)\n+        .background(Color.appBackground)\n     }\n }\n \n"
+        }
+      ]
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null,
+      "baseline_blob": "a89ca4e0b5459d170ec3bdb20fbdfb34c2361384",
+      "feature_blob": "9e42d4baf4aae2364f1bc865d53a5f41f0dc7a77",
+      "action": "Restore original inspector headings and chrome.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "visual",
+          "diff": "@@ -15,6 +15,7 @@ struct OtzariaReaderSourcesInspectorHost: View {\n     let onOpenNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?\n     let onDeleteNote: ((TorahInspectorNote, TorahInspectorSelection, @escaping TorahInspectorHostActions.NotesDidChange) -> Void)?\n     @ObservedObject private var backendCoordinator = BackendCoordinator.shared\n+    @Environment(\\.chavrusaReaderSidebar) private var faithfulReaderSidebar\n \n     var body: some View {\n         @Bindable var viewModel = viewModel\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -30,6 +31,11 @@ struct OtzariaReaderSourcesInspectorHost: View {\n                 entryMode: .relationships,\n                 chrome: chrome,\n                 selectedTool: $selectedTool,\n+                presentationOptions: .init(\n+                    showsStudyToolsTitle: faithfulReaderSidebar == nil,\n+                    showsSelectedSegmentTitle: faithfulReaderSidebar == nil,\n+                    usesMinimalChrome: false\n+                ),\n                 onClose: {\n                     viewModel.closeReaderInspector()\n                 },\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/iOSTabBarVisibilityPolicy.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "upstream_blob": null,
+      "baseline_blob": "d647b4da1b5bb3a7bc5b2023cdd3efc57db77741",
+      "feature_blob": "b9896936c5cd3101934f0fa52e2e1f053e3b63b0",
+      "action": "Restore always-visible iPad tabs; preserve phone branch.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "visual",
+          "diff": "@@ -3,11 +3,12 @@ import SwiftUI\n \n struct iOSTabBarVisibilityPolicy: ViewModifier {\n     let hiddenOnPhone: Bool\n+    @Environment(\\.chavrusaReaderNavigationChromeVisible) private var readerChromeVisible\n \n     @ViewBuilder\n     func body(content: Content) -> some View {\n         if MaktabahApp.isIpad {\n-            content.toolbarVisibility(.visible, for: .tabBar)\n+            content.toolbarVisibility(readerChromeVisible == false ? .hidden : .visible, for: .tabBar)\n         } else {\n             content.toolbarVisibility(hiddenOnPhone ? .hidden : .visible, for: .tabBar)\n         }\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "ec4d54c3eeb2272a79d8be3bbe843d943368d222",
+      "baseline_blob": "5b96b54da1d7bd3733b01a0663ed049103ade249",
+      "feature_blob": "d601e433fd214b772469e228c1877a518977913c",
+      "action": "Preserve compact iPad route, original iPad tabs sheet, and current phone behavior.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -89,7 +89,7 @@ struct iOSMainView: View {\n         @Bindable var bManager = navigationManager\n \n         Group {\n-            if horizontalSizeClass == .regular {\n+            if horizontalSizeClass == .regular || (MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled) {\n                 iPadLayout(\n                     bManager: bManager,\n                     selectedTab: $selectedTab,\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -133,7 +133,7 @@ struct iOSMainView: View {\n         .sheet(item: $bManager.selectedBookForInfo) { book in\n             iOSBookInfoView(book: book)\n         }\n-        .sheet(isPresented: $bManager.showingTabsList) {\n+        .sheet(isPresented: CompactStudyWorkspaceHostModifier.legacyTabsPresentation($bManager.showingTabsList)) {\n             iOSReaderTabsPopoverView(bManager: bManager, isPresented: $bManager.showingTabsList)\n                 .environment(navigationManager)\n         }\n"
+        },
+        {
+          "classification": "nonvisual_backend_semantic",
+          "diff": "@@ -169,6 +169,7 @@ struct iOSMainView: View {\n                 .opacity(0.02)\n                 .allowsHitTesting(false)\n         }\n+        .modifier(CompactStudyWorkspaceHostModifier(manager: navigationManager))\n         #if DEBUG\n         .task {\n             await performSmokeAutomationIfNeeded()\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "11842dfc000cd50562090694ca74e1a090ac28d8",
+      "baseline_blob": "64f9da17d651be152abe062c8d7ccdb9d95e79f5",
+      "feature_blob": "0e23bb26dc95f72bc740701bc96870cd6b9e32b4",
+      "action": "Original root/five tabs; only exceptions A/B at viewer composition.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -17,6 +17,7 @@ struct iPadLayout: View {\n     @AppStorage(\"lastSelectedTab\") private var savedSelectedTab: iOSTab = .viewer\n     @StateObject private var historyViewModel = HistoryViewModel.shared\n     @StateObject private var backendCoordinator = BackendCoordinator.shared\n+    @Environment(\\.horizontalSizeClass) private var horizontalSizeClass\n \n     var body: some View {\n         TabView(selection: $selectedTab) {\n"
+        },
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -100,40 +101,77 @@ struct iPadLayout: View {\n \n     @ViewBuilder\n     private var viewerTabContent: some View {\n-        NavigationSplitView(\n-            columnVisibility: $columnVisibility,\n-            preferredCompactColumn: $preferredLibraryCompactColumn\n-        ) {\n-            NavigationStack {\n-                iOSLibraryView()\n-                    .navigationTitle(iOSTab.viewer.title)\n-                    .toolbarGeneral(showSettings: $showSettings)\n-            }\n-            .searchable(\n-                text: Bindable(bManager.libraryViewModel).searchQuery,\n-                placement: .toolbar,\n-                prompt: String(localized: \"Search Library\")\n-            )\n-            .toolbarBackground(Color.appBackground, for: .navigationBar)\n-            .toolbarBackground(.visible, for: .navigationBar)\n-            .background(Color.appBackground)\n-            .accessibilityElement(children: .contain)\n-            .accessibilityIdentifier(\"library-column\")\n-        } content: {\n-            activeReaderTableOfContents\n-                .accessibilityElement(children: .contain)\n-                .accessibilityIdentifier(\"toc-column\")\n-        } detail: {\n-            iOSReaderTabView(\n+        if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad {\n+            ChavrusaReaderHost(\n+                manager: bManager,\n                 columnVisibility: $columnVisibility,\n                 preferredCompactColumn: $preferredLibraryCompactColumn\n-            )\n+            ) { isActive in\n+                NavigationStack {\n+                    iOSLibraryView(groupsToolbarActions: true)\n+                        .navigationTitle(iOSTab.viewer.title)\n+                        .navigationBarTitleDisplayMode(.inline)\n+                        .toolbarGeneral(showSettings: $showSettings)\n+                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)\n+                }\n+                .toolbarBackground(Color.appBackground, for: .navigationBar)\n+                .toolbarBackground(.visible, for: .navigationBar)\n+                .background(Color.appBackground)\n+                .accessibilityElement(children: .contain)\n+                .accessibilityIdentifier(\"library-column\")\n+            } contents: { isActive in\n+                NavigationStack {\n+                    activeReaderTableOfContents\n+                        .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)\n+                }\n+                    .accessibilityElement(children: .contain)\n+                    .accessibilityIdentifier(\"toc-column\")\n+            } reader: {\n+                iOSReaderTabView(\n+                    columnVisibility: $columnVisibility,\n+                    preferredCompactColumn: $preferredLibraryCompactColumn,\n+                    showsLegacyDocumentTabs: false\n+                )\n                 .background(Color.appBackground)\n                 .accessibilityElement(children: .contain)\n                 .accessibilityIdentifier(\"reader-detail-column\")\n+            }\n+        } else {\n+            NavigationSplitView(\n+                columnVisibility: $columnVisibility,\n+                preferredCompactColumn: $preferredLibraryCompactColumn\n+            ) {\n+                NavigationStack {\n+                    iOSLibraryView()\n+                        .navigationTitle(iOSTab.viewer.title)\n+                        .toolbarGeneral(showSettings: $showSettings)\n+                }\n+                .searchable(\n+                    text: Bindable(bManager.libraryViewModel).searchQuery,\n+                    placement: .toolbar,\n+                    prompt: String(localized: \"Search Library\")\n+                )\n+                .toolbarBackground(Color.appBackground, for: .navigationBar)\n+                .toolbarBackground(.visible, for: .navigationBar)\n+                .background(Color.appBackground)\n+                .accessibilityElement(children: .contain)\n+                .accessibilityIdentifier(\"library-column\")\n+            } content: {\n+                activeReaderTableOfContents\n+                    .accessibilityElement(children: .contain)\n+                    .accessibilityIdentifier(\"toc-column\")\n+            } detail: {\n+                iOSReaderTabView(\n+                    columnVisibility: $columnVisibility,\n+                    preferredCompactColumn: $preferredLibraryCompactColumn\n+                )\n+                    .background(Color.appBackground)\n+                    .accessibilityElement(children: .contain)\n+                    .accessibilityIdentifier(\"reader-detail-column\")\n+            }\n+            .navigationSplitViewStyle(.balanced)\n+            .background(Color.appBackground.ignoresSafeArea())\n         }\n-        .navigationSplitViewStyle(.balanced)\n-        .background(Color.appBackground.ignoresSafeArea())\n     }\n \n     @ViewBuilder\n"
+        },
+        {
+          "classification": "required_integration_hook",
+          "diff": "@@ -145,7 +183,12 @@ struct iPadLayout: View {\n                 bookTitle: tab.book.book,\n                 onClose: closeTableOfContents,\n                 embedsNavigationStack: false,\n-                onSelect: tab.viewModel.didSelectTOCNode\n+                onSelect: { id in\n+                    tab.viewModel.didSelectTOCNode(id: id)\n+                    if ChavrusaTextReaderUI.isEnabled && MaktabahApp.isIpad && horizontalSizeClass == .compact {\n+                        closeTableOfContents()\n+                    }\n+                }\n             )\n             .toolbar(removing: .sidebarToggle)\n             .onAppear {\n"
+        }
+      ]
+    },
+    {
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "upstream_blob": "273c0d145b1b76b1bd506b61d827c4ed8764d6fe",
+      "baseline_blob": "23cd37e5897b51b9d19839a089d8d3f4a0abc597",
+      "feature_blob": "d8ebf7a022739eefd90d99268bf2fed287022e15",
+      "action": "Remove scroll reporting used to hide replacement chrome.",
+      "downstream_alternative": "Preserve engine/provider code; reuse downstream coordinators.",
+      "hunks": [
+        {
+          "classification": "visual",
+          "diff": "@@ -1074,6 +1074,7 @@ struct iOSIbarotTextView: UIViewRepresentable {\n         // MARK: - Pull-to-Navigate Scroll Detection\n \n         func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {\n+            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, beginsDrag: true)\n             manualDragStartOffset = scrollView.contentOffset.y\n             didClearSearchForCurrentDrag = false\n         }\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -1108,6 +1109,7 @@ struct iOSIbarotTextView: UIViewRepresentable {\n             let bottomOverscroll = offsetY - effectiveMaxOffsetY\n \n             let isRestoring = (scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false\n+            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel)\n             let transition = pullStateMachine.handleScroll(\n                 topOverscroll: topOverscroll,\n                 bottomOverscroll: bottomOverscroll,\n"
+        },
+        {
+          "classification": "visual",
+          "diff": "@@ -1144,6 +1146,7 @@ struct iOSIbarotTextView: UIViewRepresentable {\n         }\n \n         func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {\n+            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, reachedTop: true)\n             updateLastKnownScrollPosition(from: scrollView)\n         }\n \n"
+        }
+      ]
+    }
+  ]
+}

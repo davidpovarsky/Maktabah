@@ -82,13 +82,10 @@ struct iOSReaderWorkspaceView: View {
 
     @Environment(iOSNavigationManager.self) private var navigationManager
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(\.layoutDirection) private var layoutDirection
 
     @State private var compactContentsRequested = false
     @State private var compactUsesContentsFallback = false
-    @ScaledMetric private var minimumReaderWidth: CGFloat = 430
-    @State private var detailColumnWidth: CGFloat = 0
     @State private var panelWidth = Self.defaultPanelWidth
     @State private var dragStartWidth: CGFloat?
     @State private var showPanelSheet = false
@@ -142,21 +139,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var contentsIsOpen: Bool {
-        if let sidebarCoordinator {
-            return sidebarCoordinator.page == .contents && libraryColumnVisibility != .detailOnly
-        }
-        return libraryColumnVisibility != .detailOnly
+        libraryColumnVisibility != .detailOnly
     }
 
     private var shouldPresentPanelInContent: Bool {
-        // Both pages occupy the same sidebar. Selecting a page must not switch
-        // between two structural reader branches and recreate its TextKit view.
-        if sidebarCoordinator != nil {
-            return !ChavrusaReaderWorkspaceWidthPolicy.canDock(
-                detailWidth: detailColumnWidth, minimumReaderWidth: minimumReaderWidth
-            )
-        }
-        return useWideLayout && librarySidebarIsOpen && contentsIsOpen
+        useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }
 
     private var showPanel: Bool {
@@ -262,9 +249,6 @@ struct iOSReaderWorkspaceView: View {
         .onChange(of: horizontalSizeClass) { _, _ in
             updatePanelPresentation()
         }
-        .onChange(of: shouldPresentPanelInContent) { _, _ in
-            updatePanelPresentation()
-        }
         .onChange(of: floatingPanelState) { _, newState in
             if shouldPresentPanelInContent, newState == .hidden, showPanel {
                 viewModel.closeReaderInspector()
@@ -304,18 +288,7 @@ struct iOSReaderWorkspaceView: View {
     @ViewBuilder
     private var workspaceDetail: some View {
         GeometryReader { geometry in
-            if sidebarCoordinator != nil {
-                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - minimumReaderWidth - 18))
-                ChavrusaReaderWorkspaceLayout(
-                    reader: readerSurface,
-                    panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel),
-                    resizeHandle: panelResizeHandle(allowedMaximum: maximum),
-                    panelWidth: min(max(panelWidth, Self.minimumPanelWidth), maximum),
-                    showPanel: showPanel,
-                    floats: shouldPresentPanelInContent,
-                    floatingState: $floatingPanelState
-                )
-            } else if useWideLayout {
+            if useWideLayout {
                 if shouldPresentPanelInContent {
                     floatingWorkspace
                 } else {
@@ -329,7 +302,6 @@ struct iOSReaderWorkspaceView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-workspace")
-        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailColumnWidth = $0 }
     }
 
     private var readerSurface: some View {
@@ -360,20 +332,18 @@ struct iOSReaderWorkspaceView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-surface")
         .toolbar {
-            if sidebarCoordinator == nil {
-                ToolbarItem(placement: .principal) {
-                    VStack(spacing: 1) {
-                        Text(readerHeaderTitle)
-                            .font(.headline)
+            ToolbarItem(placement: .principal) {
+                VStack(spacing: 1) {
+                    Text(readerHeaderTitle)
+                        .font(.headline)
+                        .lineLimit(1)
+                        .accessibilityIdentifier("reader-header-visible-title")
+                    if !readerHeaderSubtitle.isEmpty {
+                        Text(readerHeaderSubtitle)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
                             .lineLimit(1)
-                            .accessibilityIdentifier("reader-header-visible-title")
-                        if !readerHeaderSubtitle.isEmpty {
-                            Text(readerHeaderSubtitle)
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                                .accessibilityIdentifier("reader-header-subtitle")
-                        }
+                            .accessibilityIdentifier("reader-header-subtitle")
                     }
                 }
             }
@@ -562,12 +532,6 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func presentContents() {
-        if let sidebarCoordinator {
-            sidebarCoordinator.showContents()
-            preferredCompactColumn = .sidebar
-            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) { libraryColumnVisibility = .all }
-            return
-        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
                 compactContentsRequested = true
@@ -584,11 +548,6 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func closeContents() {
-        if sidebarCoordinator != nil {
-            preferredCompactColumn = .detail
-            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) { libraryColumnVisibility = .detailOnly }
-            return
-        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                 compactContentsRequested = false
@@ -625,7 +584,7 @@ struct iOSReaderWorkspaceView: View {
                 if floatingPanelState == nil || floatingPanelState == .hidden {
                     floatingPanelState = .half
                 }
-            } else if sidebarCoordinator != nil || useWideLayout {
+            } else if useWideLayout {
                 showPanelSheet = false
                 floatingPanelState = .hidden
             } else {
