@@ -1,0 +1,9 @@
+{
+  "raw_warning_line_count": 2712,
+  "distinct_warning_lines": 620,
+  "changed_source_warnings": [
+    "warning: Skipping duplicate build file in Compile Sources build phase: /Users/runner/work/Maktabah/Maktabah/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift (in target 'Maktabah-iOS' from project 'Maktabah')"
+  ],
+  "qualification": "Warnings reviewed from the actual workflow log. Counts include repeated builds and third-party/Cargo/build-system diagnostics; compilation success is not device acceptance.",
+  "workflow_annotation": "Node.js 20 action runtimes are deprecated and automatically run under Node.js 24; workflow was preserved per scope."
+}

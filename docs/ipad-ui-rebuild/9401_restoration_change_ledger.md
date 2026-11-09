@@ -12,7 +12,7 @@ Status: **SOURCE_VERIFIED_DEVICE_ACCEPTANCE_PENDING**, main session only, 2026-1
 - Feature worktree was clean; it was not edited or reset.
 - New worktree: `C:\Users\DAVID\Code\Maktabah-9401-exact-ui-restoration`.
 - New branch: `experiment/ipad-ui-exact-9401-restore`.
-- DELIVERY_SHA: **NOT_CREATED**. Device build/upload is the next authorized step after recording the passing preflight evidence.
+- DELIVERY_SHA: `0d2ac9c46fe33d5a650fcf9ee7e66b2aa8bd2a73`. Production TestFlight build 1.0.0 (11001) was archived/signed/exported/uploaded successfully and Apple processing is VALID; see `9401_TESTFLIGHT_11001.he.md` and `9401_evidence/delivery.json`.
 
 ## Source reinstatement and exceptions
 
@@ -54,7 +54,7 @@ The source gate accepts only the exact approved reader blob `67146db4a47746c8412
 - Static source gate: **PASS** on actual committed Git objects; this does not imply visual/device acceptance.
 - Existing project-membership verifier: executed; 91 Otzaria sources, both search frameworks and dictionaries verified. Added types live in already-member downstream files; project membership was not changed.
 - Windows Swift syntax parse: executed for the changed application files, including the profile menu. It is not Apple-framework typechecking.
-- Full app device SDK compilation, archive, signing, IPA, TestFlight upload/processing: **PENDING_BUILD** at preflight capture; final delivery evidence is recorded separately after the authorized workflow.
+- Full app device SDK compilation, archive, signing, IPA, TestFlight upload/processing: **SUCCESS** in run 42711662307, exact DELIVERY_SHA, production build 11001; Apple processing **VALID**. Full device/visual acceptance remains pending.
 - No simulator, simulator UI tests, xcodebuild test or physical-device interaction was run.
 - All actual reader durability, TOC/selection/rotation, themes, original tab layout/toolbar geometry and palette interaction acceptance: **OWNER_DEVICE_ACCEPTANCE_PENDING**. Neither hashes nor these portable tests prove UI acceptance.
 - Merge risk: six upstream-owned original paths are changed from FEATURE_BASE: iPadLayout, iOSLibraryView, iOSBookSearchView, iOSReaderTabView, iOSReaderView, and iOSIbarotTextView. iPadLayout and the approved four-line reader state hook remain non-identical to 9401; the other four are original blob reinstatements. Every changed path is listed below and the manifest records all non-identical baseline hunks; the one new protected reader hook was applied only after exact-hunk owner approval. Restore/reset nothing in existing worktrees. Recovery is to stop using this isolated branch; its source changes are separated into reviewable commits.

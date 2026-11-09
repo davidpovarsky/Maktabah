@@ -16,6 +16,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Production archive 11001 reports a duplicate Compile Sources entry for OtzariaReaderSourcesInspectorHost.swift. The project file is unchanged from the feature base; verify-otzaria-xcode-project.py checks membership presence but not uniqueness. A separately approved project-membership cleanup and duplicate-detection extension would prevent this warning; no project edit was made during UI restoration.
+
 - Restoring the original iPad reader must preserve the scene-lived StudyWorkspaceNavigationAdapter outside visible chrome. Its old ChavrusaReaderHost alone attached the sidecar/checkpoint lifecycle; detaching that host without a scene-level attachment silently loses later checkpoints and group reconciliation. The exact-9401 branch attaches it through the existing main-view modifier and exposes the same adapter to native profile actions; physical-device acceptance remains pending.
 
 - Native menu labels may insert Unicode bidi isolates around interpolated group names (`העבר אל ⁨שם⁩`), and the original Library action is `Select…`. Match the real menu's action prefix and group membership while keeping uniqueness/scope assertions; do not assume plain concatenated labels. Cold reader assertions must wait for the actual asynchronous sidecar projection, and retain before/after UUID-scoped sidecar attachments to distinguish stored-state loss from hydration timing.

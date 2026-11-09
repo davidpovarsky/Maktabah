@@ -3,7 +3,7 @@
   "baseline_9401_sha": "f243d06603cbe506de8f27ea8b9a479af4415e2e",
   "feature_base_sha": "905439c9b41144ab34e7071e067ec09bc474d4f3",
   "upstream_sha": "46e893c65139fbb1e582d6595b0d220ea912324a",
-  "source_commit": "730a5b833b1f147d175496d82b9ae7ecf836491d",
+  "source_commit": "0d2ac9c46fe33d5a650fcf9ee7e66b2aa8bd2a73",
   "source_commit_note": "Source/build blobs pinned to this commit. Later evidence-only commits must preserve every listed final_blob; verifier compares them to --ref.",
   "scope": "All original Source files (conservative superset of iPad visual dependencies), all current Source, vendor/build/workflow/lock contracts.",
   "status": "GIT_SOURCE_INVENTORY_NOT_DEVICE_ACCEPTANCE",

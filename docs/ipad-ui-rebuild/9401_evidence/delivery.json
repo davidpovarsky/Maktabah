@@ -1,0 +1,54 @@
+{
+  "baseline_9401_sha": "f243d06603cbe506de8f27ea8b9a479af4415e2e",
+  "feature_base_sha": "905439c9b41144ab34e7071e067ec09bc474d4f3",
+  "delivery_sha": "0d2ac9c46fe33d5a650fcf9ee7e66b2aa8bd2a73",
+  "branch": "experiment/ipad-ui-exact-9401-restore",
+  "worktree": "C:\\Users\\DAVID\\Code\\Maktabah-9401-exact-ui-restoration",
+  "data_profile": "production",
+  "workflow": ".github/workflows/ios-testflight.yml",
+  "dispatch_count": 1,
+  "run_id": 42711662307,
+  "run_number": 110,
+  "run_attempt": 1,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/42711662307",
+  "workflow_conclusion": "success",
+  "archive": "SUCCESS",
+  "signing_and_entitlements": "SUCCESS",
+  "ipa_export_and_validation": "SUCCESS",
+  "upload": "SUCCESS",
+  "apple": {
+    "appId": "6809559414",
+    "buildId": "3ad95949-abf0-46d4-afa5-62609dd80dea",
+    "buildNumber": "11001",
+    "bundleId": "com.davidpovarsky.chavrusatext",
+    "expired": false,
+    "observedAt": "2026-11-09T23:35:51.659265+00:00",
+    "processingState": "VALID",
+    "uploadedDate": "2026-11-09T15:34:25-08:00",
+    "version": "1.0.0"
+  },
+  "artifact": {
+    "id": 13721046690,
+    "name": "ChavrusaText-production-signed-ipa-11001",
+    "size_in_bytes": 94120359,
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/42711662307/artifacts/13721046690",
+    "ipa_sha256": "ee93a6811b654d2f1d4045d6ff246b7ee59ac1814a1d98d3b7dfb1aa9b0dab90"
+  },
+  "EXACT_9401_SOURCE_VERIFIED": {
+    "exact_visual_files_and_assets": 80,
+    "declared_exceptions": 9,
+    "source_gate": "PASS"
+  },
+  "RETAINED_FUNCTIONALITY_VERIFIED": {
+    "portable_workspace_checks": 61,
+    "portable_component_assertions": 379,
+    "source_tests": 20,
+    "device_ui": "NOT_RUN"
+  },
+  "DEVICE_BUILD_AND_UPLOAD": "SUCCESS_VALID",
+  "OWNER_DEVICE_ACCEPTANCE_PENDING": true,
+  "tester_assignment": "NOT_VERIFIED",
+  "installability": "NOT_VERIFIED",
+  "simulator_execution": "NOT_RUN",
+  "testflight_scope_note": "VALID processing does not prove visual parity, device interactions, tester assignment or installability."
+}
