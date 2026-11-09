@@ -217,31 +217,37 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     /// TextKit observer proving identity and the current source/pixel anchor.
     func exerciseOverviewReplacement(orientation: UIDeviceOrientation, phone: Bool) throws {
         XCUIDevice.shared.orientation = orientation
-        // The genuine linked-book smoke unit is short at its default size.
-        // Use the existing supported 48pt reader preference, never mock text
-        // or a programmatically assigned scroll offset, to obtain overflow.
+        let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
+        // The original linked-book navigation exposes a real nonzero source
+        // position with this supported preference. Do not assign an offset or
+        // infer document position from UIKit's stale contentSize cache.
         launchReader(recordViewport: true, fontSize: 48)
+        try exerciseOverviewAtCurrentPosition(platform: platform + "-nonzero", phone: phone, requiresNonzeroPosition: true)
+        // Also retain full-display visual proof at the original 19pt default.
+        launchReader(recordViewport: true, fontSize: 19)
+        try exerciseOverviewAtCurrentPosition(platform: platform, phone: phone, requiresNonzeroPosition: false)
+    }
+
+    private func exerciseOverviewAtCurrentPosition(platform: String, phone: Bool, requiresNonzeroPosition: Bool) throws {
         assertReaderHasText()
         let reader = app.textViews["reader-text"]
-        let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
         let initial = try viewport()
         try attachViewport(initial, named: "replacement-viewport-opening-" + platform)
-        capture("replacement-reader-before-pan-" + platform)
-        let scrollable = try XCTUnwrap(initial.contentHeight) - XCTUnwrap(initial.viewportHeight)
-            + XCTUnwrap(initial.topInset) + XCTUnwrap(initial.bottomInset)
-        XCTAssertGreaterThan(scrollable, 100, "The genuine reader fixture must actually overflow before scrolling")
-        reader.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.72))
-            .press(forDuration: 0.05, thenDragTo: reader.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.42)))
-        let before = try viewport()
-        try attachViewport(before, named: "replacement-viewport-scrolled-" + platform)
         capture("replacement-reader-before-" + platform)
-        XCTAssertTrue(before.source != initial.source || abs(before.offset - initial.offset) > 5,
-                      "Preserve a genuine manually scrolled position, not just the opening page")
+        // Observe again after the full-frame settling check, not a stale report
+        // from before native layout. The source/pixel anchor is authoritative.
+        let before = try viewport()
+        try attachViewport(before, named: "replacement-viewport-before-" + platform)
+        if requiresNonzeroPosition {
+            XCTAssertGreaterThan(before.source, 0, "Preserve a real visible source position beyond the opening character")
+            let documentY = try XCTUnwrap(before.contentOffsetY) + XCTUnwrap(before.topInset)
+            XCTAssertGreaterThan(documentY, 5, "The original reader must actually be positioned beyond the top")
+        }
         let title = app.staticTexts["reader-header-title"].label
         let locator = app.staticTexts["reader-current-locator"].label
         let readerFrame = reader.frame
         let actionID = phone ? "reader-book-tabs-overview" : "reader-tabs-overview"
-        for selectsCurrent in [false, true] {
+        for selectsCurrent in (requiresNonzeroPosition ? [false, true] : [false]) {
             tap(app.buttons[actionID])
             let overview = app.descendants(matching: .any)["study-groups-overview"]
             XCTAssertTrue(overview.waitForExistence(timeout: 20))
@@ -277,6 +283,8 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             XCTAssertEqual(after.object, before.object, "Return must reuse the original TextKit instance")
             XCTAssertEqual(after.source, before.source, "Return must preserve the first visible source character")
             XCTAssertEqual(after.offset, before.offset, accuracy: 1, "Return must preserve the source pixel anchor")
+            XCTAssertEqual(try XCTUnwrap(after.contentOffsetY), try XCTUnwrap(before.contentOffsetY), accuracy: 1,
+                           "Return must also preserve the original raw native content offset")
             XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
             XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
             XCTAssertEqual(reader.frame.width, readerFrame.width, accuracy: 1)

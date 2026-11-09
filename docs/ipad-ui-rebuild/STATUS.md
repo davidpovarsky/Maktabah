@@ -1,6 +1,15 @@
 # Faithful iPad rebuild — execution status
 
-## Latest owner-authorized visual correction — 2026-11-08
+## Current owner-directed overview replacement — 2026-11-09
+
+`[נועם | DEV] [MAIN_SESSION]` / `[רוני | QA] [MAIN_SESSION]`, NORMAL, same primary session. Current app source `f05b3f6cdaa596190a3099622ce86fdae3ddfe9c`, branch `experiment/ipad-ui-faithful-from-9401`. [Exact source contract, changed files and current evidence](OVERVIEW_CONTEXT_REPLACEMENT.md).
+
+- Replaces the overview sheet with the pinned browser's `.overCurrentContext` contract. The original reader remains mounted. Closed SwiftUI presentation is excluded from hit testing; active-card return closes without re-navigation. No original reader, scroll/delegate, library, search, notes, navigation-manager or package-pin edit in this correction; four additive iOS membership entries are recorded in PROTECTED_HUNKS.diff.
+- [Native42536115286](https://github.com/davidpovarsky/Maktabah/actions/runs/42536115286) passed SDK,44 actual UIKit/component cases (including the new closed-state SwiftUI touch case), full app build/install/launch. All3 app cases failed before opening the overview because the original reader's reported contentSize.height remained622 despite visibly larger text and genuine nonzero source/raw positions. The current QA-only correction checks the requested nonzero source/document position directly and retains exact object/source/pixel/raw offsets on return; it also captures normal19pt visuals. Production presentation code is unchanged fromf05b3f6c. Actual replacement/return acceptance and overview images remain pending.
+- Previous20bff505 passed43 UIKit +4 chrome +45 Palette +61 workspace checks but its app build failed on missing explicit membership. Registration correctionb126d011 built/installed/launched successfully and passed43/4/45/379 portable/61 workspace checks; all3 actual app cases stopped at their initial real-scroll precondition before opening the overview. They are not replacement acceptance. Current tests use original linked-book navigation at the supported48pt preference to require a real nonzero position, and19pt for ordinary visual evidence; no offset assignment, mock text or original reader repair.
+- Corrected TestFlight **NOT_DISPATCHED**. Build10401 is the rejected old-sheet presentation. Build10501 was cancelled before Archive/upload. Do not use either as proof of this fix. Full matrix/physical-device/Production quality approval remains separate; no Asana writes, delegation or main merge.
+
+## Historical owner-authorized visual correction — 2026-11-08
 
 `[נועם | DEV] [MAIN_SESSION]` / `[רוני | QA] [MAIN_SESSION]`, NORMAL, one primary session. No Asana writes, reset or main merge. Latest app commit `2fdb59277d0bd543d326e61ec6241c4ea25e08bf`, branch `experiment/ipad-ui-faithful-from-9401`. [Detailed changes, original-source comparisons, full file inventory and evidence](VISUAL_FIDELITY_CORRECTION.md).
 
