@@ -73,6 +73,8 @@ final class ReaderOverviewPresentationController: UIViewController {
     private var overview = AnyView(EmptyView())
     private var onDismiss: (() -> Void)?
     private var hostingController: UIHostingController<AnyView>?
+    private weak var presentationContext: UIViewController?
+    private var previousDefinesPresentationContext: Bool?
     private var isTransitioning = false
     private var updateScheduled = false
 
@@ -83,7 +85,6 @@ final class ReaderOverviewPresentationController: UIViewController {
         // SwiftUI excludes the closed wrapper from hit testing. When open,
         // UIKit's context must permit interaction with its presented content.
         view = anchor
-        definesPresentationContext = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -113,10 +114,11 @@ final class ReaderOverviewPresentationController: UIViewController {
         wantsOverview = false
         onDismiss = nil
         overview = AnyView(EmptyView())
-        if hostingController != nil {
-            dismiss(animated: false)
+        if let controller = hostingController {
+            controller.dismiss(animated: false)
             hostingController = nil
         }
+        restorePresentationContext()
     }
 
     private func scheduleUpdate() {
@@ -133,30 +135,46 @@ final class ReaderOverviewPresentationController: UIViewController {
         guard let view = viewIfLoaded, view.window != nil,
               view.bounds.width > 0, view.bounds.height > 0,
               !isTransitioning else { return }
-        if wantsOverview, hostingController == nil, presentedViewController == nil {
+        if wantsOverview, hostingController == nil {
+            guard let context = parent, context.presentedViewController == nil else { return }
             let controller = UIHostingController(rootView: overview)
             controller.modalPresentationStyle = .overCurrentContext
             controller.isModalInPresentation = true
             controller.view.backgroundColor = .systemBackground
             controller.view.accessibilityViewIsModal = true
+            // Present from the actual reader host, not from the transparent
+            // representable. Its platform-view subtree is not a separate
+            // SwiftUI accessibility presentation context.
+            presentationContext = context
+            previousDefinesPresentationContext = context.definesPresentationContext
+            context.definesPresentationContext = true
             hostingController = controller
             isTransitioning = true
             // The browser's WebKit snapshot transition has no reader-domain
             // equivalent. Change the whole context without inventing motion.
-            present(controller, animated: false) { [weak self] in
+            context.present(controller, animated: false) { [weak self] in
                 self?.isTransitioning = false
                 self?.scheduleUpdate()
             }
-        } else if !wantsOverview, hostingController != nil {
+        } else if !wantsOverview, let controller = hostingController {
             isTransitioning = true
-            dismiss(animated: false) { [weak self] in
+            controller.dismiss(animated: false) { [weak self] in
                 guard let self else { return }
                 self.hostingController = nil
+                self.restorePresentationContext()
                 self.isTransitioning = false
                 self.onDismiss?()
                 self.scheduleUpdate()
             }
         }
+    }
+
+    private func restorePresentationContext() {
+        if let context = presentationContext, let previousDefinesPresentationContext {
+            context.definesPresentationContext = previousDefinesPresentationContext
+        }
+        presentationContext = nil
+        previousDefinesPresentationContext = nil
     }
 
     #if DEBUG
@@ -179,7 +197,7 @@ final class ReaderOverviewPresentationController: UIViewController {
          "boundsWidth": Double(viewIfLoaded?.bounds.width ?? 0),
          "boundsHeight": Double(viewIfLoaded?.bounds.height ?? 0),
          "parentClass": parent.map { String(describing: type(of: $0)) } ?? "none",
-         "presentedClass": presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
+         "presentedClass": presentationContext?.presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
          "hasHostingController": hostingController != nil,
          "isTransitioning": isTransitioning,
          "presentedBoundsWidth": Double(hostingController?.viewIfLoaded?.bounds.width ?? 0),

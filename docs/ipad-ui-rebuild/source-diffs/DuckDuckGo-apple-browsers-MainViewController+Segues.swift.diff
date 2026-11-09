@@ -1,6 +1,6 @@
 --- iOS/DuckDuckGo/Main/MainViewController+Segues.swift
 +++ Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift
-@@ -1,18 +1,3 @@
+@@ -1,19 +1,2 @@
 -//
 -//  MainViewController+Segues.swift
 -//  DuckDuckGo
@@ -19,11 +19,10 @@
 -//  See the License for the specific language governing permissions and
 -//  limitations under the License.
 -//
+-
 +#if os(iOS) && canImport(UIKit)
 +import SwiftUI
-+import UIKit
-@@ -20,14 +5,7 @@
--import UIKit
+@@ -21,50 +4,21 @@
 -import Common
 -import FoundationExtensions
 -import Core
@@ -37,25 +36,12 @@
 -import DataBrokerProtection_iOS
 -import VPN
 -import PixelKit
-+/// The pinned browser presents its overview over the current browser context.
-+/// This context-sized anchor keeps the existing reader hierarchy in place;
-+/// it neither rehosts the reader nor writes its scroll/selection state.
-+struct ReaderOverviewPresentation<Overview: View>: View {
-+    @Binding var isPresented: Bool
-+    let onDismiss: () -> Void
-+    let overview: Overview
-@@ -35,4 +13,6 @@
+-
 -struct VPNEntryPoint {
 -    let screenSource: VPNConnectionWideEventData.ScreenSource
 -    let subscriptionFunnelOrigin: SubscriptionFunnelOrigin
 -    let subscriptionFunnelClickPixel: (_ isSubscriptionActive: Bool?) -> SubscriptionPixel
-+    init(isPresented: Binding<Bool>, onDismiss: @escaping () -> Void = {},
-+         @ViewBuilder overview: () -> Overview) {
-+        _isPresented = isPresented
-+        self.onDismiss = onDismiss
-+        self.overview = overview()
-+    }
-@@ -40,31 +20,5 @@
+-
 -    static let toolbar = VPNEntryPoint(
 -        screenSource: .toolbar,
 -        subscriptionFunnelOrigin: .toolbarVPN,
@@ -87,86 +73,54 @@
 -        self.screenSource = screenSource
 -        self.subscriptionFunnelOrigin = subscriptionFunnelOrigin
 -        self.subscriptionFunnelClickPixel = subscriptionFunnelClickPixel
++
++/// The pinned browser presents its overview over the current browser context.
++/// This context-sized anchor keeps the existing reader hierarchy in place;
++/// it neither rehosts the reader nor writes its scroll/selection state.
++struct ReaderOverviewPresentation<Overview: View>: View {
++    @Binding var isPresented: Bool
++    let onDismiss: () -> Void
++    let overview: Overview
++
++    init(isPresented: Binding<Bool>, onDismiss: @escaping () -> Void = {},
++         @ViewBuilder overview: () -> Overview) {
++        _isPresented = isPresented
++        self.onDismiss = onDismiss
++        self.overview = overview()
++    }
++
 +    var body: some View {
 +        ReaderOverviewPresentationAnchor(isPresented: $isPresented, onDismiss: onDismiss, overview: overview)
 +            // A transparent representable still has a SwiftUI hosting layer.
 +            // The closed presentation must not intercept reader pan gestures.
 +            .allowsHitTesting(isPresented)
-@@ -74 +28,4 @@
+@@ -74,500 +28,34 @@
 -extension MainViewController {
-+private struct ReaderOverviewPresentationAnchor<Overview: View>: UIViewControllerRepresentable {
-+    @Binding var isPresented: Bool
-+    let onDismiss: () -> Void
-+    let overview: Overview
-@@ -76,4 +33,4 @@
+-
 -    func segueToAppearanceSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .appearance)
 -        }, deepLinkTarget: .appearance)
-+    func makeUIViewController(context: Context) -> ReaderOverviewPresentationController {
-+        let controller = ReaderOverviewPresentationController()
-+        controller.loadViewIfNeeded()
-+        return controller
-@@ -82,4 +39,7 @@
+-    }
+-
 -    func segueToGeneralSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .general)
 -        }, deepLinkTarget: .general)
-+    func sizeThatFits(_ proposal: ProposedViewSize, uiViewController: ReaderOverviewPresentationController,
-+                      context: Context) -> CGSize? {
-+        guard let width = proposal.width, let height = proposal.height,
-+              width.isFinite, height.isFinite, width > 0, height > 0 else { return nil }
-+        // The clear UIKit anchor has no intrinsic content size. Its actual
-+        // view must accept the context proposal, not just its outer frame.
-+        return CGSize(width: width, height: height)
-@@ -88,4 +48,16 @@
+-    }
+-
 -    func segueToCustomizeAddressBarSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .customizeAddressBarButton)
 -        }, deepLinkTarget: .customizeAddressBarButton)
-+    func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
-+        controller.configure(
-+            isPresented: isPresented,
-+            // A new hosting controller owns its own navigation/accessibility
-+            // graph. Forward only semantic public values, never the source
-+            // host's complete environment and private graph ownership.
-+            overview: AnyView(overview
-+                .environment(\.locale, context.environment.locale)
-+                .environment(\.layoutDirection, context.environment.layoutDirection)
-+                .environment(\.colorScheme, context.environment.colorScheme)
-+                .environment(\.dynamicTypeSize, context.environment.dynamicTypeSize)),
-+            onDismiss: {
-+                isPresented = false
-+                onDismiss()
-+            }
-+        )
-@@ -94,4 +66,21 @@
+-    }
+-
 -    func segueToCustomizeToolbarSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .customizeToolbarButton)
 -        }, deepLinkTarget: .customizeToolbarButton)
-+    static func dismantleUIViewController(_ controller: ReaderOverviewPresentationController, coordinator: ()) {
-+        controller.tearDownPresentation()
-+    }
-+}
-+
-+final class ReaderOverviewPresentationController: UIViewController {
-+    private var wantsOverview = false
-+    private var overview = AnyView(EmptyView())
-+    private var onDismiss: (() -> Void)?
-+    private var hostingController: UIHostingController<AnyView>?
-+    private var isTransitioning = false
-+    private var updateScheduled = false
-+
-+    override func loadView() {
-+        let anchor = UIView()
-+        anchor.backgroundColor = .clear
-+        anchor.isOpaque = false
-+        // SwiftUI excludes the closed wrapper from hit testing. When open,
-+        // UIKit's context must permit interaction with its presented content.
-+        view = anchor
-+        definesPresentationContext = true
-@@ -100,23 +89,3 @@
+-    }
+-
 -    func segueToDaxOnboarding(completion: (() -> Void)? = nil) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -190,10 +144,8 @@
 -            onboardingViewModel: viewModel
 -        )
 -        present(controller, animated: false, completion: completion)
-+    override func viewDidAppear(_ animated: Bool) {
-+        super.viewDidAppear(animated)
-+        scheduleUpdate()
-@@ -125,10 +94,3 @@
+-    }
+-
 -    func segueToHomeRow() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -204,18 +156,14 @@
 -        }
 -        controller.modalPresentationStyle = .overCurrentContext
 -        present(controller, animated: true)
-+    override func didMove(toParent parent: UIViewController?) {
-+        super.didMove(toParent: parent)
-+        scheduleUpdate()
-@@ -137,4 +99,3 @@
+-    }
+-
 -    func segueToBookmarks() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
 -        launchBookmarksViewController()
-+    override func viewDidLayoutSubviews() {
-+        super.viewDidLayoutSubviews()
-+        scheduleUpdate()
-@@ -143,10 +104,6 @@
+-    }
+-
 -    func segueToEditCurrentBookmark() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -226,26 +174,16 @@
 -            return
 -        }
 -        segueToEditBookmark(bookmark)
-+    func configure(isPresented: Bool, overview: AnyView, onDismiss: @escaping () -> Void) {
-+        wantsOverview = isPresented
-+        self.overview = overview
-+        self.onDismiss = onDismiss
-+        hostingController?.rootView = overview
-+        scheduleUpdate()
-@@ -155,5 +112,7 @@
+-    }
+-
 -    func segueToEditBookmark(_ bookmark: BookmarkEntity) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
 -        launchBookmarksViewController {
 -            $0.openEditFormForBookmark(bookmark)
-+    func tearDownPresentation() {
-+        wantsOverview = false
-+        onDismiss = nil
-+        overview = AnyView(EmptyView())
-+        if hostingController != nil {
-+            dismiss(animated: false)
-+            hostingController = nil
-@@ -163,21 +122,7 @@
+-        }
+-    }
+-
 -    private func launchBookmarksViewController(completion: ((BookmarksViewController) -> Void)? = nil) {
 -        Logger.lifecycle.debug(#function)
 -
@@ -267,14 +205,9 @@
 -        controller.modalPresentationStyle = .automatic
 -        present(controller, animated: true) {
 -            completion?(bookmarks)
-+    private func scheduleUpdate() {
-+        guard !updateScheduled else { return }
-+        updateScheduled = true
-+        Task { @MainActor [weak self] in
-+            guard let self else { return }
-+            self.updateScheduled = false
-+            self.updatePresentation()
-@@ -187,189 +132,26 @@
+-        }
+-    }
+-
 -    func segueToReportBrokenSite(entryPoint: PrivacyDashboardEntryPoint = .report) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -464,65 +397,15 @@
 -                launchSettings(completion: {
 -                    $0.triggerDeepLinkNavigation(to: .subscriptionFlow())
 -                }, deepLinkTarget: .subscriptionFlow())
-+    private func updatePresentation() {
-+        guard let view = viewIfLoaded, view.window != nil,
-+              view.bounds.width > 0, view.bounds.height > 0,
-+              !isTransitioning else { return }
-+        if wantsOverview, hostingController == nil, presentedViewController == nil {
-+            let controller = UIHostingController(rootView: overview)
-+            controller.modalPresentationStyle = .overCurrentContext
-+            controller.isModalInPresentation = true
-+            controller.view.backgroundColor = .systemBackground
-+            controller.view.accessibilityViewIsModal = true
-+            hostingController = controller
-+            isTransitioning = true
-+            // The browser's WebKit snapshot transition has no reader-domain
-+            // equivalent. Change the whole context without inventing motion.
-+            present(controller, animated: false) { [weak self] in
-+                self?.isTransitioning = false
-+                self?.scheduleUpdate()
-+            }
-+        } else if !wantsOverview, hostingController != nil {
-+            isTransitioning = true
-+            dismiss(animated: false) { [weak self] in
-+                guard let self else { return }
-+                self.hostingController = nil
-+                self.isTransitioning = false
-+                self.onDismiss?()
-+                self.scheduleUpdate()
-@@ -380,4 +162,27 @@
+-            }
+-        }
+-    }
+-
 -    func segueToDebugSettings() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
 -        launchDebugSettings()
-+    #if DEBUG
-+    /// Read-only native facts for the existing acceptance observer. No UI or
-+    /// production reporter is installed, and no reader state is changed.
-+    var acceptancePresentationSnapshot: [String: Any] {
-+        var ancestors: [[String: Any]] = []
-+        var current = hostingController?.viewIfLoaded
-+        for _ in 0..<8 {
-+            guard let view = current else { break }
-+            ancestors.append(["class": String(describing: type(of: view)),
-+                              "hidden": view.isHidden, "alpha": Double(view.alpha),
-+                              "accessibilityHidden": view.accessibilityElementsHidden,
-+                              "interactionEnabled": view.isUserInteractionEnabled])
-+            current = view.superview
-+        }
-+        return ["wantsOverview": wantsOverview,
-+         "isViewLoaded": isViewLoaded,
-+         "isInWindow": viewIfLoaded?.window != nil,
-+         "boundsWidth": Double(viewIfLoaded?.bounds.width ?? 0),
-+         "boundsHeight": Double(viewIfLoaded?.bounds.height ?? 0),
-+         "parentClass": parent.map { String(describing: type(of: $0)) } ?? "none",
-+         "presentedClass": presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
-+         "hasHostingController": hostingController != nil,
-+         "isTransitioning": isTransitioning,
-+         "presentedBoundsWidth": Double(hostingController?.viewIfLoaded?.bounds.width ?? 0),
-+         "presentedBoundsHeight": Double(hostingController?.viewIfLoaded?.bounds.height ?? 0),
-+         "presentedInWindow": hostingController?.viewIfLoaded?.window != nil,
-+         "presentedViewAncestors": ancestors]
-@@ -385,305 +190 @@
+-    }
 -
 -    func segueToSettingsCookiePopupManagement() {
 -        Logger.lifecycle.debug(#function)
@@ -712,14 +595,141 @@
 -            },
 -            revocationHandler: { [weak self] site, permissionTypes in
 -                self?.tabManager.revokeSitePermissions(permissionTypes, for: site)
--            }
--        )
++private struct ReaderOverviewPresentationAnchor<Overview: View>: UIViewControllerRepresentable {
++    @Binding var isPresented: Bool
++    let onDismiss: () -> Void
++    let overview: Overview
++
++    func makeUIViewController(context: Context) -> ReaderOverviewPresentationController {
++        let controller = ReaderOverviewPresentationController()
++        controller.loadViewIfNeeded()
++        return controller
++    }
++
++    func sizeThatFits(_ proposal: ProposedViewSize, uiViewController: ReaderOverviewPresentationController,
++                      context: Context) -> CGSize? {
++        guard let width = proposal.width, let height = proposal.height,
++              width.isFinite, height.isFinite, width > 0, height > 0 else { return nil }
++        // The clear UIKit anchor has no intrinsic content size. Its actual
++        // view must accept the context proposal, not just its outer frame.
++        return CGSize(width: width, height: height)
++    }
++
++    func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
++        controller.configure(
++            isPresented: isPresented,
++            // A new hosting controller owns its own navigation/accessibility
++            // graph. Forward only semantic public values, never the source
++            // host's complete environment and private graph ownership.
++            overview: AnyView(overview
++                .environment(\.locale, context.environment.locale)
++                .environment(\.layoutDirection, context.environment.layoutDirection)
++                .environment(\.colorScheme, context.environment.colorScheme)
++                .environment(\.dynamicTypeSize, context.environment.dynamicTypeSize)),
++            onDismiss: {
++                isPresented = false
++                onDismiss()
+@@ -576,5 +64,94 @@
 -
 -        settingsViewModel.autoClearActionDelegate = self
 -        settingsViewModel.onRequestOpenDuckAIChat = { [weak self] in
 -            self?.dismiss(animated: true) {
 -                self?.loadUrlInNewTab(.duckAiSettings, inheritedAttribution: nil)
--            }
++    }
++
++    static func dismantleUIViewController(_ controller: ReaderOverviewPresentationController, coordinator: ()) {
++        controller.tearDownPresentation()
++    }
++}
++
++final class ReaderOverviewPresentationController: UIViewController {
++    private var wantsOverview = false
++    private var overview = AnyView(EmptyView())
++    private var onDismiss: (() -> Void)?
++    private var hostingController: UIHostingController<AnyView>?
++    private weak var presentationContext: UIViewController?
++    private var previousDefinesPresentationContext: Bool?
++    private var isTransitioning = false
++    private var updateScheduled = false
++
++    override func loadView() {
++        let anchor = UIView()
++        anchor.backgroundColor = .clear
++        anchor.isOpaque = false
++        // SwiftUI excludes the closed wrapper from hit testing. When open,
++        // UIKit's context must permit interaction with its presented content.
++        view = anchor
++    }
++
++    override func viewDidAppear(_ animated: Bool) {
++        super.viewDidAppear(animated)
++        scheduleUpdate()
++    }
++
++    override func didMove(toParent parent: UIViewController?) {
++        super.didMove(toParent: parent)
++        scheduleUpdate()
++    }
++
++    override func viewDidLayoutSubviews() {
++        super.viewDidLayoutSubviews()
++        scheduleUpdate()
++    }
++
++    func configure(isPresented: Bool, overview: AnyView, onDismiss: @escaping () -> Void) {
++        wantsOverview = isPresented
++        self.overview = overview
++        self.onDismiss = onDismiss
++        hostingController?.rootView = overview
++        scheduleUpdate()
++    }
++
++    func tearDownPresentation() {
++        wantsOverview = false
++        onDismiss = nil
++        overview = AnyView(EmptyView())
++        if let controller = hostingController {
++            controller.dismiss(animated: false)
++            hostingController = nil
++        }
++        restorePresentationContext()
++    }
++
++    private func scheduleUpdate() {
++        guard !updateScheduled else { return }
++        updateScheduled = true
++        Task { @MainActor [weak self] in
++            guard let self else { return }
++            self.updateScheduled = false
++            self.updatePresentation()
++        }
++    }
++
++    private func updatePresentation() {
++        guard let view = viewIfLoaded, view.window != nil,
++              view.bounds.width > 0, view.bounds.height > 0,
++              !isTransitioning else { return }
++        if wantsOverview, hostingController == nil {
++            guard let context = parent, context.presentedViewController == nil else { return }
++            let controller = UIHostingController(rootView: overview)
++            controller.modalPresentationStyle = .overCurrentContext
++            controller.isModalInPresentation = true
++            controller.view.backgroundColor = .systemBackground
++            controller.view.accessibilityViewIsModal = true
++            // Present from the actual reader host, not from the transparent
++            // representable. Its platform-view subtree is not a separate
++            // SwiftUI accessibility presentation context.
++            presentationContext = context
++            previousDefinesPresentationContext = context.definesPresentationContext
++            context.definesPresentationContext = true
++            hostingController = controller
++            isTransitioning = true
++            // The browser's WebKit snapshot transition has no reader-domain
++            // equivalent. Change the whole context without inventing motion.
++            context.present(controller, animated: false) { [weak self] in
++                self?.isTransitioning = false
++                self?.scheduleUpdate()
+@@ -582,36 +159,9 @@
 -        }
 -        settingsViewModel.onRequestOnboardingDuckAIChat = { [weak self] modelID in self?.requestOnboardingDuckAIChat(modelID: modelID) ?? false }
 -        PixelKit.fire(Pixel.Event.settingsPresented)
@@ -756,8 +766,16 @@
 -                present(navController, animated: true) {
 -                    completion?(settingsViewModel)
 -                }
--            }
--        }
++        } else if !wantsOverview, let controller = hostingController {
++            isTransitioning = true
++            controller.dismiss(animated: false) { [weak self] in
++                guard let self else { return }
++                self.hostingController = nil
++                self.restorePresentationContext()
++                self.isTransitioning = false
++                self.onDismiss?()
++                self.scheduleUpdate()
+@@ -620,70 +170,39 @@
 -
 -        doLaunch()
 -    }
@@ -828,8 +846,46 @@
 -        return currentViewController
 -    }
 -
++    }
++
++    private func restorePresentationContext() {
++        if let context = presentationContext, let previousDefinesPresentationContext {
++            context.definesPresentationContext = previousDefinesPresentationContext
++        }
++        presentationContext = nil
++        previousDefinesPresentationContext = nil
++    }
++
++    #if DEBUG
++    /// Read-only native facts for the existing acceptance observer. No UI or
++    /// production reporter is installed, and no reader state is changed.
++    var acceptancePresentationSnapshot: [String: Any] {
++        var ancestors: [[String: Any]] = []
++        var current = hostingController?.viewIfLoaded
++        for _ in 0..<8 {
++            guard let view = current else { break }
++            ancestors.append(["class": String(describing: type(of: view)),
++                              "hidden": view.isHidden, "alpha": Double(view.alpha),
++                              "accessibilityHidden": view.accessibilityElementsHidden,
++                              "interactionEnabled": view.isUserInteractionEnabled])
++            current = view.superview
++        }
++        return ["wantsOverview": wantsOverview,
++         "isViewLoaded": isViewLoaded,
++         "isInWindow": viewIfLoaded?.window != nil,
++         "boundsWidth": Double(viewIfLoaded?.bounds.width ?? 0),
++         "boundsHeight": Double(viewIfLoaded?.bounds.height ?? 0),
++         "parentClass": parent.map { String(describing: type(of: $0)) } ?? "none",
++         "presentedClass": presentationContext?.presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
++         "hasHostingController": hostingController != nil,
++         "isTransitioning": isTransitioning,
++         "presentedBoundsWidth": Double(hostingController?.viewIfLoaded?.bounds.width ?? 0),
++         "presentedBoundsHeight": Double(hostingController?.viewIfLoaded?.bounds.height ?? 0),
++         "presentedInWindow": hostingController?.viewIfLoaded?.window != nil,
++         "presentedViewAncestors": ancestors]
++    }
 +    #endif
-@@ -691,86 +192 @@
+@@ -691,86 +210 @@
 -
 -// Exists to fire a did disappear notification for settings when the controller did disappear
 -//  so that we get the event regardless of where in the UI hierarchy it happens.

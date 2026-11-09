@@ -252,7 +252,7 @@
     "original": "iOS/DuckDuckGo/Main/MainViewController+Segues.swift",
     "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
     "sha256": "78a3a1b88b49c29d7e5cbb880349c88f42679d4254a4f397b9acbc803f4b0f05",
-    "destinationSHA256": "f6c82a8291698e026da11f7e721639cbcf19634b4364ae018fbf61f5c981e4d6",
+    "destinationSHA256": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
     "reason": "Behavioral integration of the pinned segueToTabSwitcher overCurrentContext contract. A nonvisual context-sized UIKit anchor preserves the existing reader hierarchy; original source Grid/List are reused. No sheet, reader rehosting, offset/delegate writes or fabricated WebKit preview/transition. Browser-specific snapshot animation is omitted rather than replaced with invented motion."
   }
 ]

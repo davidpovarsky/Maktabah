@@ -99,19 +99,23 @@ final class ReaderOverviewPresentationTests: XCTestCase {
         XCTAssertTrue(anchor.view.window === window)
         XCTAssertGreaterThan(anchor.view.bounds.width, 80)
         XCTAssertGreaterThan(anchor.view.bounds.height, 80)
+        let context = try XCTUnwrap(anchor.parent)
+        let originalDefinesContext = context.definesPresentationContext
         scroll.contentOffset = CGPoint(x: 0, y: 481)
         for _ in 0..<2 {
             flag.report = nil
             flag.isPresented = true
             waitUntil("Changing the actual SwiftUI binding must present, with a real context-sized anchor") {
-                anchor.presentedViewController?.view.window === window && flag.report != nil
+                context.presentedViewController?.view.window === window && flag.report != nil
             }
             XCTAssertEqual(flag.report?.hostProbe, "fresh-host", "A new hosting graph must not inherit source-host ownership")
             XCTAssertEqual(flag.report?.locale, "he_IL")
             XCTAssertEqual(flag.report?.direction, .rightToLeft)
             XCTAssertEqual(flag.report?.scheme, .dark)
             XCTAssertEqual(flag.report?.typeSize, .accessibility2)
-            let shown = try XCTUnwrap(anchor.presentedViewController)
+            let shown = try XCTUnwrap(context.presentedViewController)
+            XCTAssertTrue(shown.presentingViewController === context)
+            XCTAssertFalse(shown.view.isDescendant(of: anchor.view), "The overview must be outside the representable's opaque accessibility subtree")
             XCTAssertEqual(shown.modalPresentationStyle, .overCurrentContext)
             XCTAssertFalse(shown.presentationController is UISheetPresentationController)
             XCTAssertEqual(shown.view.bounds.width, window.bounds.width, accuracy: 1)
@@ -119,7 +123,8 @@ final class ReaderOverviewPresentationTests: XCTestCase {
             let hit = try XCTUnwrap(window.hitTest(CGPoint(x: window.bounds.midX, y: window.bounds.midY), with: nil))
             XCTAssertTrue(hit === shown.view || hit.isDescendant(of: shown.view))
             flag.isPresented = false
-            waitUntil("The actual SwiftUI binding must return to its original reader") { anchor.presentedViewController == nil }
+            waitUntil("The actual SwiftUI binding must return to its original reader") { context.presentedViewController == nil }
+            XCTAssertEqual(context.definesPresentationContext, originalDefinesContext)
             XCTAssertTrue(scroll.window === window)
             XCTAssertEqual(scroll.contentOffset.y, 481, accuracy: 1)
         }
@@ -200,14 +205,17 @@ final class ReaderOverviewPresentationTests: XCTestCase {
         let fixture = try fixture()
         defer { cleanUp(fixture) }
         let originalOffset = fixture.scroll.contentOffset
+        let originalDefinesContext = fixture.root.definesPresentationContext
         var dismissals = 0
         let content = AnyView(Text("Original source overview").frame(maxWidth: .infinity, maxHeight: .infinity))
         for _ in 0..<3 {
             fixture.presenter.configure(isPresented: true, overview: content) { dismissals += 1 }
             waitUntil("The context presentation must actually attach") {
-                fixture.presenter.presentedViewController?.view.window === fixture.window
+                fixture.root.presentedViewController?.view.window === fixture.window
             }
-            let shown = try XCTUnwrap(fixture.presenter.presentedViewController)
+            let shown = try XCTUnwrap(fixture.root.presentedViewController)
+            XCTAssertTrue(shown.presentingViewController === fixture.root)
+            XCTAssertFalse(shown.view.isDescendant(of: fixture.presenter.view))
             XCTAssertEqual(shown.modalPresentationStyle, .overCurrentContext)
             XCTAssertFalse(shown.presentationController is UISheetPresentationController)
             XCTAssertEqual(shown.view.bounds.width, fixture.presenter.view.bounds.width, accuracy: 1)
@@ -220,8 +228,9 @@ final class ReaderOverviewPresentationTests: XCTestCase {
                           "The displayed overview must receive touches instead of the covered reader")
             fixture.presenter.configure(isPresented: false, overview: content) { dismissals += 1 }
             waitUntil("Closing must return to the same underlying context") {
-                fixture.presenter.presentedViewController == nil
+                fixture.root.presentedViewController == nil
             }
+            XCTAssertEqual(fixture.root.definesPresentationContext, originalDefinesContext)
             XCTAssertTrue(fixture.scroll.isDescendant(of: fixture.root.view))
             XCTAssertEqual(fixture.scroll.contentOffset, originalOffset)
         }
@@ -237,7 +246,7 @@ final class ReaderOverviewPresentationTests: XCTestCase {
         let fixture = try fixture(presenter: presenter)
         defer { cleanUp(fixture) }
         let obsolete = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-            MainActor.assumeIsolated { presenter.presentedViewController != nil }
+            MainActor.assumeIsolated { fixture.root.presentedViewController != nil }
         }, object: nil)
         obsolete.isInverted = true
         XCTAssertEqual(XCTWaiter.wait(for: [obsolete], timeout: 0.5), .completed)
