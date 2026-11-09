@@ -1,0 +1,102 @@
+{
+  "tested_commit": "fb4ceb5297355ff36ebd139f06b7960242c2826c",
+  "scope": "Static/source/portable checks only; not Apple SDK compilation or device acceptance.",
+  "commands": [
+    {
+      "command": [
+        "py",
+        "-3",
+        "Scripts/CI/verify-9401-exact-source.py"
+      ],
+      "exit_code": 0,
+      "output": "source-gate.json",
+      "sha256": "5d08a5f9c57f8220540cf6b348c355e9a78d0c404b7a0fb265ff72bf0ee44d2c"
+    },
+    {
+      "command": [
+        "py",
+        "-3",
+        "Scripts/CI/test-9401-exact-source.py"
+      ],
+      "exit_code": 0,
+      "output": "negative-controls.log",
+      "sha256": "5a2983304ae9889a35ab208976ddb5833f103e6b8718366ffa1b36fee475cbc7"
+    },
+    {
+      "command": [
+        "py",
+        "-3",
+        "Scripts/CI/verify-otzaria-xcode-project.py"
+      ],
+      "exit_code": 0,
+      "output": "project-membership.log",
+      "sha256": "977234debde7dacffe40263619324abdafd12b093e8aa54d120562ff7c64d8fd"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "905439c9b41144ab34e7071e067ec09bc474d4f3",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "output": "diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+        "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+        "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+        "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+        "Source/Features/Reader/iOS/iOSReaderView.swift",
+        "Source/UI/iOS/Views/iPadLayout.swift"
+      ],
+      "exit_code": 0,
+      "output": "swift-syntax-parse.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "portable_reports": [
+    {
+      "output": "workspace-compile.log",
+      "sha256": "35746c21d9db309873c00ddd69d22dbe794d0dbd3c7835e02920b3403277c4ff",
+      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim."
+    },
+    {
+      "output": "workspace-test-results.log",
+      "sha256": "ec42ba99fc5ddaa6086a99f2082484cad811eb5029d169dbe781b7890eb026b9",
+      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim."
+    },
+    {
+      "output": "9401-component-compile.log",
+      "sha256": "6249a2ae59b2e32110d7d29ca8cd56e83ecaf193e183dd2f6a30c46c587a7c57",
+      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim."
+    },
+    {
+      "output": "9401-component-results.log",
+      "sha256": "fdedefc8a7adc91d2bc2bbb41c0e7a6db3546afc84868bfd8b57241d36c590f2",
+      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim."
+    }
+  ],
+  "workspace_checks": 61,
+  "component_assertions": 379,
+  "source_tests": 20,
+  "device_acceptance": "OWNER_DEVICE_ACCEPTANCE_PENDING",
+  "simulator": "NOT_RUN",
+  "feature_base_sha": "905439c9b41144ab34e7071e067ec09bc474d4f3",
+  "baseline_9401_sha": "f243d06603cbe506de8f27ea8b9a479af4415e2e",
+  "upstream_sha": "46e893c65139fbb1e582d6595b0d220ea912324a",
+  "test_sources": {
+    "Scripts/CI/verify-9401-exact-source.py": "675661f91e5835ad3374ec2bed9fff486b63908495c09f507cb8d30f895cfeef",
+    "Scripts/CI/test-9401-exact-source.py": "10d67da69bbbac3831be8473bcf3e17b894b7003e69af7e2acdafec363ff1e08",
+    "Scripts/CI/test-faithful-workspace.py": "956279305c9abd414e24dc6eb139ce9cc0a510977cb5502328bba18cf78d4e64",
+    "Scripts/run-chavrusa-component-tests.sh": "817bbe4e6ede5ed51197b11d7dd538e9aa651aa42157108cd995fbc76615e698",
+    "tools/test_chavrusa_text_components.swift": "227e259a50f2c1fbfc0e3742285febd31c3229fd7577e42c06a18df8e3ef70c0",
+    "tools/test_faithful_study_workspace.swift": "b6a2c6d47c73eb6debde81936b94dba5419d8d248e9a18e12e91cf094b9c6458"
+  }
+}

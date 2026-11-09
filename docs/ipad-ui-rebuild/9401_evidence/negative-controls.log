@@ -1,0 +1,25 @@
+test_added_duplicate_title_bar (__main__.NegativeControls.test_added_duplicate_title_bar) ... ok
+test_backend_retention_drift (__main__.NegativeControls.test_backend_retention_drift) ... ok
+test_changed_approved_hunk_artifact (__main__.NegativeControls.test_changed_approved_hunk_artifact) ... ok
+test_changed_global_tab (__main__.NegativeControls.test_changed_global_tab) ... ok
+test_changed_original_inspector_toggle (__main__.NegativeControls.test_changed_original_inspector_toggle) ... ok
+test_changed_original_toc_blob (__main__.NegativeControls.test_changed_original_toc_blob) ... ok
+test_changed_profile_switch_action (__main__.NegativeControls.test_changed_profile_switch_action) ... ok
+test_enabled_duckduckgo_tabs (__main__.NegativeControls.test_enabled_duckduckgo_tabs) ... ok
+test_false_exact_claim (__main__.NegativeControls.test_false_exact_claim) ... ok
+test_forged_original_blob (__main__.NegativeControls.test_forged_original_blob) ... ok
+test_missing_exact_hunk_approval (__main__.NegativeControls.test_missing_exact_hunk_approval) ... ok
+test_missing_exception_authorization (__main__.NegativeControls.test_missing_exception_authorization) ... ok
+test_missing_feature_coordinator (__main__.NegativeControls.test_missing_feature_coordinator) ... ok
+test_no_false_positive_for_originals_and_required_connections (__main__.NegativeControls.test_no_false_positive_for_originals_and_required_connections) ... ok
+test_original_file_omission (__main__.NegativeControls.test_original_file_omission) ... ok
+test_removed_original_toolbar_button (__main__.NegativeControls.test_removed_original_toolbar_button) ... ok
+test_removed_profile_toolbar (__main__.NegativeControls.test_removed_profile_toolbar) ... ok
+test_replacement_palette (__main__.NegativeControls.test_replacement_palette) ... ok
+test_second_reader_instance (__main__.NegativeControls.test_second_reader_instance) ... ok
+test_visual_classification_bypass (__main__.NegativeControls.test_visual_classification_bypass) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 15.645s
+
+OK

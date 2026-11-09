@@ -1,0 +1,468 @@
+=== ChavrusaText Component Tests — Batch B Final Repair Gate ===
+Toolchain: Windows Swift 6.3.3 | Target: Foundation-portable smoke test
+
+--- 1. Testing SerializedSessionWriter ---
+  [PASS] Initial atomic write verified on disk
+  [PASS] CustomError propagated from saveImmediately
+  [PASS] Last-good file preserved after failure
+  [PASS] Stale delayed write dropped; fresh data preserved
+  [PASS] onDelayedWriteError triggered on async failure
+  [PASS] lastDelayedWriteError recorded
+  [PASS] Target file deleted on atomic clear
+  [PASS] Canceled delayed save did NOT resurrect file after clear
+  [PASS] Clearing non-existent file is safe and idempotent
+
+--- 2. Testing ReaderSelectionRangeMapper ---
+  [PASS] Extracted text matches 'שלום'
+  [PASS] Range matches [0..<4]
+  [PASS] Empty range rejected
+  [PASS] Negative location rejected
+  [PASS] Overflow detected: loc 9223372036854775805, len 10
+  [PASS] Out of bounds rejected: loc 8, len 5
+  [PASS] Split surrogate pair at start rejected
+  [PASS] Split surrogate pair at end rejected
+  [PASS] Rejects mismatched render without provider
+  [PASS] ClosureRangeMappingProvider remapped range correctly
+  [PASS] Extracted remapped source substring correctly
+
+--- 3. Testing ReaderPullNavigationStateMachine ---
+  [PASS] Initial state is idle
+  [PASS] State is dragging prev at 0.5
+  [PASS] Haptic triggered on arming
+  [PASS] State is armed prev
+  [PASS] Armed state preserved during bounce scroll
+  [PASS] Committed direction is prev
+  [PASS] State reset to idle after commit
+  [PASS] Retreating below threshold while tracking disarms to idle
+  [PASS] No navigation dispatched after retreat
+
+--- 4. Testing ReaderSessionRestoreCoordinator ---
+  [PASS] Valid saved ID resolved
+  [PASS] No normalization for valid ID
+  [PASS] Stale ID safely normalized to tab 1
+  [PASS] wasStaleIdNormalized is true
+  [PASS] Empty tabs resolve to nil active tab
+
+--- 5. Testing BackendAnnotationBridge ---
+  [PASS] Backend is otzaria
+  [PASS] WorkKey is berakhot
+  [PASS] Position is legacyLine(42)
+  [PASS] Fallback canonical workKey is book:202
+  [PASS] Position is legacyLine(15)
+  [PASS] Valid contentId >= 0 returns locator
+  [PASS] Sentinel contentId -1 cleanly rejected with nil
+  [PASS] missingContentPosition thrown for nil contentId
+  [PASS] missingLocator thrown for unknown backendID
+  [PASS] Missing locator properly rejected
+  [PASS] Persisted record text matches
+  [PASS] Readback matches persisted record
+
+--- 6. Testing ChavrusaTextLocalizationResolver ---
+  [PASS] History in Hebrew is היסטוריה
+  [PASS] Library in Hebrew is ספרייה
+  [PASS] Search in Hebrew is חיפוש
+  [PASS] Narrators in Hebrew is מוסרים
+  [PASS] Annotations in Hebrew is הערות
+  [PASS] History in English is History
+  [PASS] Library in English is Library
+  [PASS] Search in English is Search
+  [PASS] Narrators in English is Narrators
+  [PASS] Annotations in English is Annotations
+
+--- 7. Testing BackendNavigationAdapter ---
+  [PASS] Retrieved Otzaria snapshot matches
+  [PASS] Retrieved Sefaria snapshot matches
+  [PASS] Otzaria snapshot cleared
+  [PASS] Sefaria snapshot preserved after Otzaria cleared
+  [PASS] validateBackendID rejects path traversal attacks
+  [PASS] First visit to otzaria after clear is clean destination
+  [PASS] Transition state is outgoingSnapshotPersisted
+  [PASS] Transition state committed
+  [PASS] Transition state restored
+  [PASS] Transition state marked rolledBack: true on failure
+  [PASS] Observable error message recorded on failure
+  [PASS] corruptedSnapshot error thrown when incoming snapshot is invalid
+  [PASS] Transition rolled back on corrupted incoming snapshot
+  [PASS] Fresh adapter instance reads persisted snapshot from disk
+
+--- 8. Testing Defect 2 Typed Expression Regression ---
+  [PASS] vmCurrentID takes precedence
+  [PASS] tabInitialContentId selected when vmCurrentID nil
+  [PASS] stateCurrentID selected when earlier are nil
+  [PASS] vmCurrentContentId fallback when > 0
+  [PASS] vmCurrentContentId == 0 cleanly produces nil
+  [PASS] vmCurrentContentId < 0 cleanly produces nil
+
+--- 9. Testing BackendCoordinator Two-Phase Switch Orchestration ---
+  [PASS] Initial backend is .otzaria
+  [PASS] Prepare write failure properly propagated
+  [PASS] Participant prepare called once
+  [PASS] Participant publish NOT called on prepare failure
+  [PASS] Participant abort called on prepare failure
+  [PASS] Coordinator remains on initial backend after prepare failure
+  [PASS] Generation unchanged after prepare failure
+  [PASS] Notification NOT posted on prepare failure
+  [PASS] Defaults unchanged on prepare failure
+  [PASS] User tabs completely preserved on prepare failure
+  [PASS] Corrupted snapshot in prepare rejected fail-closed
+  [PASS] Participant abort called on corrupt snapshot
+  [PASS] Existing tabs untouched after corrupt snapshot in prepare
+  [PASS] Coordinator remains on initial backend
+  [PASS] Capability unavailable failure cleanly rejected
+  [PASS] Coordinator remains on initial backend after capabilityUnavailable
+  [PASS] Unresolved book correctly rejected during preflight
+  [PASS] Participant aborted on unresolvable book
+  [PASS] Tabs preserved on unresolvable book
+  [PASS] Foreign backend locator cleanly rejected fail-closed
+  [PASS] Foreign locator participant aborted
+  [PASS] Missing target catalog failure cleanly rejected
+  [PASS] Catalog failure participant aborted
+  [PASS] Coordinator commit returns true on successful switch
+  [PASS] Coordinator transitioned to .sefaria
+  [PASS] Generation incremented by 1
+  [PASS] Participant prepare called on success
+  [PASS] Participant publish called on success
+  [PASS] Participant complete called on success
+  [PASS] Participant abort NOT called on success
+  [PASS] Pre-staged tabs installed during non-throwing publish
+  [PASS] Notification posted EXACTLY ONCE on successful switch
+  [PASS] Defaults persisted on successful switch
+  [PASS] Switch back to .otzaria succeeded
+  [PASS] Switch back to .sefaria succeeded
+  [PASS] Final backend after rapid switch is .sefaria
+  [PASS] Generation incremented for each successful switch
+  [PASS] End-to-end switch using real BackendNavigationAdapter participant succeeded
+  [PASS] Backend coordinator active backend updated to .otzaria
+  [PASS] BackendNavigationAdapter state restored for otzaria
+  [PASS] Atomic switch with pre-resolved retained books succeeded
+  [PASS] Pre-resolved books installed without re-resolution
+  [PASS] Tabs preserved after partial restoration mismatch
+
+--- 10. Testing TalmudHebrewAddressFormatter & Localization ---
+  [PASS] 12a offset 20 -> י״ב ע״א
+  [PASS] 12b offset 21 -> י״ב ע״ב
+  [PASS] 15b offset 27 -> ט״ו ע״ב (special 15 handling)
+  [PASS] 16a offset 28 -> ט״ז ע״א (special 16 handling)
+  [PASS] address '12a' -> י״ב ע״א
+  [PASS] address '15b' -> ט״ו ע״ב
+  [PASS] address '2a' -> ב׳ ע״א with gersh
+  [PASS] Chapters in Hebrew is פרקים
+  [PASS] Chapters in English is Chapters
+  [PASS] Folios in Hebrew is דפים
+  [PASS] Parashot in Hebrew is פרשות
+  [PASS] Halakhot in Hebrew is הלכות
+
+--- 11. Testing ReaderDestinationResolver ---
+  [PASS] Rashi 15b:3:1 is detected as segment-level focus
+  [PASS] Rashi sectionLocator bounded to containing daf 15b
+  [PASS] Rashi focusLocator preserves exact segment hit
+  [PASS] Genesis 1:3 is detected as segment-level focus
+  [PASS] Genesis sectionLocator bounded to chapter 1
+  [PASS] Genesis focusLocator preserves verse 3
+  [PASS] Berakhot 15b is already a section, not a segment
+  [PASS] Section locator is Berakhot 15b
+  [PASS] Focus locator is nil for section-level locator
+
+--- 12. Testing ReaderBackendPagingCoordinator ---
+  [PASS] Next action loads next section with .top scroll target
+  [PASS] Prev action loads prev section with .bottom scroll target
+  [PASS] Boundary reached is safe no-op (no jump to first page)
+  [PASS] Non-backend book performs legacy fallback
+
+--- 13. Testing ReaderSearchContextCoordinator ---
+  [PASS] Active search highlight detected with search text
+  [PASS] Active search highlight detected with highlight terms
+  [PASS] Active search highlight detected with search text, terms, and focus locator
+  [PASS] Ordinary linked commentary focus without search origin does NOT trigger search highlight
+  [PASS] Ordinary reader segment selection does NOT trigger search highlight
+  [PASS] No active search highlight when all fields are empty
+  [PASS] Programmatic scroll NEVER clears search highlight
+  [PASS] Manual scroll below threshold does not clear search highlight
+  [PASS] Manual scroll above threshold clears search highlight
+  [PASS] Clear transient search state cleanly clears all search context
+
+--- 14. Testing TOCReadingLocationTracker ---
+  [PASS] Line 125 matches Section B at line 100 (closest heading at or before 125)
+  [PASS] Rashi on Berakhot 15b:3:1 matches TOC node 15b (ancestor)
+
+--- 15. Testing SefariaBookIdentityValidator ---
+  [PASS] standaloneArchive URL has isFileURL true by scheme
+  [PASS] Actual file does NOT exist on disk
+  [PASS] Nonexistent archive URL rejected fail-closed
+  [PASS] Placeholder 'Book 9999' rejected fail-closed
+  [PASS] Foreign Otzaria ID rejected fail-closed for Sefaria work
+  [PASS] Authoritative registered Sefaria work in LegacyIdentityRegistry validated successfully
+  [PASS] Cross-backend registered Sefaria work validated successfully
+  [PASS] Real file present on disk validated successfully
+
+--- 16. Testing ReaderContentLoadCoordinator ---
+  [PASS] Token A has generation 1
+  [PASS] Token A is initially active
+  [PASS] Token B has generation 2
+  [PASS] Token A is superseded when B begins
+  [PASS] Token B is active
+  [PASS] Token C has generation 3
+  [PASS] Token B is superseded when C begins
+  [PASS] Token C is active
+  [PASS] Stale response A cannot apply content to current book
+  [PASS] Stale response B cannot apply content to current book
+  [PASS] Fresh response C successfully applies content
+  [PASS] Navigation items request 1 is active
+  [PASS] Navigation items request 1 invalidated by request 2
+  [PASS] Navigation items request 2 is active
+  [PASS] Token C invalidated on coordinator reset
+  [PASS] Nav request invalidated on coordinator reset
+
+--- 17. Testing Structural TOC Matching & False-Positive Elimination ---
+  [PASS] Genesis 10:1 matches node 2 (Genesis 10), NEVER node 1 (Genesis 1)
+  [PASS] Genesis 10:1 strictly eliminated from false-positive prefix match on Genesis 1
+  [PASS] Berakhot 20a:5 matches node 21 (Berakhot 20a)
+  [PASS] Berakhot 20a:5 strictly eliminated from false-positive match on Berakhot 2a
+  [PASS] Exodus locator rejected with nil against Genesis/Berakhot TOC nodes
+
+--- 18. Testing ReaderBackendPagingCoordinator Structural Paging ---
+  [PASS] Next from line 125 advances to Chapter 3 at line 200
+  [PASS] Prev from line 125 retreats to Chapter 1 at line 0
+  [PASS] Prev from first page is safe no-op boundary reached
+  [PASS] Next from last page is safe no-op boundary reached
+
+--- 19. Testing Extended TalmudHebrewAddressFormatter ---
+  [PASS] 100 is ק׳ with single gersh
+  [PASS] 101 is ק״א
+  [PASS] 110 is ק״י
+  [PASS] 115 is special קט״ו
+  [PASS] 116 is special קט״ז
+  [PASS] 200 is ר׳
+  [PASS] Offset 227 (115b) is קט״ו ע״ב
+  [PASS] Offset 228 (116a) is קט״ז ע״א
+  [PASS] Address '115b' formatted correctly
+  [PASS] Unparseable address falls back gracefully
+
+--- 20. Testing ReaderDestinationResolver Commentary Bounding ---
+  [PASS] Rashi 15b:3:1 has isSegmentLevelFocus true
+  [PASS] Rashi 15b:3:1 bounded to containing folio section 15b
+  [PASS] Rashi 15b:3:1 preserves exact segment hit as focus locator
+  [PASS] Genesis 1:3 has isSegmentLevelFocus true
+  [PASS] Genesis 1:3 bounded to chapter 1
+  [PASS] Genesis 1:3 preserves verse 3 as focus
+  [PASS] Berakhot 15b is not segment-level focus
+  [PASS] Berakhot 15b section is self
+  [PASS] Berakhot 15b focus locator is nil
+
+--- 21. Testing RenderedHighlightSnapshot Diagnostics ---
+  [PASS] Snapshot encodes valid JSON
+  [PASS] Snapshot decodes losslessly with exact counts and items
+  [PASS] Decoded searchHighlightCount matches
+  [PASS] Decoded provenance matches search
+
+--- 22. Testing BackendSessionIntegrityRepair & Cross-Backend Isolation (Defect A) ---
+  [PASS] Detected Otzaria tab correctly
+  [PASS] Detected Sefaria tab correctly
+  [PASS] Otzaria tab does not match Sefaria backend
+  [PASS] Sefaria tab matches Sefaria backend
+  [PASS] Foreign tab identified and extracted (count == 1)
+  [PASS] Foreign tab is the Otzaria tab
+  [PASS] Sanitized session retains exactly 1 target tab
+  [PASS] Sanitized session retains the Sefaria tab
+  [PASS] Active tab normalized from foreign tab to remaining Sefaria tab
+  [PASS] Sanitized session tagged with sefaria backend
+  [PASS] Quarantined raw backup URL created
+  [PASS] Quarantined file exists on disk
+  [PASS] Quarantined file matches original raw bytes exactly
+  [PASS] All foreign tabs quarantined
+  [PASS] Sanitized tabs empty -> safe clean destination
+  [PASS] Active tab is nil for clean destination
+  [PASS] Legacy session without backend field decodes with backend == nil
+  [PASS] Versioned session decodes backend correctly
+
+--- 23. Testing Table of Contents Restoration & Idle State Protection (Defect B) ---
+  [PASS] Idle empty state shows Loading indicator, not empty state
+  [PASS] Idle empty state does not prematurely show 'No Table of Contents'
+  [PASS] Loading state shows Loading indicator
+  [PASS] Loading state does not show 'No Table of Contents'
+  [PASS] Loaded with nodes does not show loading
+  [PASS] Loaded with nodes does not show empty state
+  [PASS] Only confirmed loaded empty state shows 'No Table of Contents'
+
+--- 24. Testing Otzaria Search Engine Detailed Init Errors (Defect C) ---
+  [PASS] errorDescription contains error code MISSING_DIRECTORY
+  [PASS] errorDescription contains message
+  [PASS] errorDescription contains localized Hebrew prefix
+  [PASS] errorDescription contains error code CORRUPTED_METADATA
+  [PASS] engineNotAvailable updated to informative non-misleading description
+  [PASS] engineNotAvailable no longer blames missing XCFramework
+
+--- 25. Testing Three-Source Backend Identity & Localization ---
+  [PASS] BackendID.allCases contains exactly 3 cases
+  [PASS] otzaria rawValue is 'otzaria'
+  [PASS] sefaria rawValue is preserved as 'sefaria'
+  [PASS] sefariaEmbedded rawValue is 'sefariaEmbedded'
+  [PASS] otzaria displayName is 'אוצריא'
+  [PASS] sefaria displayName is 'ספריא (ישן)'
+  [PASS] sefariaEmbedded displayName is 'ספריא'
+  [PASS] en: Otzaria
+  [PASS] en: Sefaria (Legacy)
+  [PASS] en: Sefaria
+  [PASS] BackendID(rawValue: 'sefaria') decodes to .sefaria
+  [PASS] BackendID(rawValue: 'sefariaEmbedded') decodes to .sefariaEmbedded
+  [PASS] JSON decodes 'sefaria' to .sefaria
+  [PASS] JSON decodes 'sefariaEmbedded' to .sefariaEmbedded
+
+--- 26. Testing Three-Source TextLocator Persistence & Session Isolation ---
+  [PASS] Otzaria persistenceKey format
+  [PASS] Sefaria Legacy persistenceKey format
+  [PASS] Sefaria Embedded persistenceKey format
+  [PASS] Legacy and Embedded persistenceKeys do not collide
+  [PASS] tabOtzaria detected as .otzaria
+  [PASS] tabLegacy detected as .sefaria
+  [PASS] tabEmbedded detected as .sefariaEmbedded
+  [PASS] Embedded repair keeps only matching tabs
+  [PASS] Kept tab is sefariaEmbedded
+  [PASS] Foreign tabs count is 2 (otzaria + sefaria legacy)
+  [PASS] Sanitized session tagged sefariaEmbedded
+  [PASS] Legacy repair keeps only matching legacy tab
+  [PASS] Kept tab is sefaria
+  [PASS] Foreign tabs count is 2 (otzaria + sefariaEmbedded)
+  [PASS] Sanitized session tagged sefaria
+
+--- 27. Testing SefariaRPC Wire Models & JSON Boundary Roundtrip ---
+  [PASS] Envelope uses paramsJson, not legacy paramsData
+  [PASS] Envelope preserves UTF-8 Hebrew without Base64 corruption
+  [PASS] Decoded requestID matches
+  [PASS] Decoded sessionGeneration matches
+  [PASS] Decoded backendID matches
+  [PASS] Response isSuccess is true for status 'success'
+  [PASS] decodeResult losslessly recovers strongly typed Swift struct
+  [PASS] Response isSuccess is false for status 'error'
+  [PASS] Error code preserved
+
+--- 28. Testing SefariaEmbedded Protocol & Model Conformance ---
+  [PASS] OfflinePackage id is 'Torah'
+  [PASS] OfflinePackage compressedSize matches
+  [PASS] OfflinePackage indexTitles conta2026-11-10 00:20:14.461 components.exe[26348:8378] [SefariaJSRPCBridge] setTransport called (transport: Optional(components.TestRunner.(unknown context at $7ff71332bcb0).(unknown context at $7ff71332bd48).MockBridgeTransport))
+2026-11-10 00:20:14.462 components.exe[26348:7280] [SefariaJSRPCBridge] setTransport called (transport: nil)
+2026-11-10 00:20:14.465 components.exe[26348:8378] [SefariaJSRPCBridge] setTransport called (transport: Optional(components.TestRunner.(unknown context at $7ff71332bcb0).(unknown context at $7ff71332bd50).ConcurrentEchoTransport))
+ins 5 books
+  [PASS] Torah is not complete library
+  [PASS] COMPLETE LIBRARY marked isCompleteLibrary true
+  [PASS] Progress phase is downloading
+  [PASS] Progress completedBytes matches
+  [PASS] OfflineUpdateSummary hasUpdates is true when count > 0
+  [PASS] changedWorkCount is 3
+  [PASS] affectedPackageIDs contains Torah
+  [PASS] OfflineUpdateSummary hasUpdates is false when count == 0
+  [PASS] searchHit displayRef matches
+  [PASS] searchHit locator is sefariaEmbedded
+  [PASS] searchPage has 1 hit
+  [PASS] searchPage total is 100
+  [PASS] searchPage nextOffset is 20
+
+--- 29. Testing SefariaEmbedded Text & Relationship Structures ---
+  [PASS] segment primaryText preserved
+  [PASS] segment translation preserved
+  [PASS] segment sourceText compatibility alias
+  [PASS] section displayRef matches
+  [PASS] section has 1 segment
+  [PASS] section next locator matches
+  [PASS] section origin is offline
+  [PASS] related collectiveTitle matches
+  [PASS] related heCollectiveTitle matches
+  [PASS] related anchorRefs matches exact segment
+
+--- 30. Testing Sefaria Capability Readiness & Granular States ---
+  [PASS] initial hostReady is false
+  [PASS] initial catalogReady is false
+  [PASS] initial searchReady is false
+  [PASS] initial packagesReady is false
+  [PASS] initial isFullyReady is false
+  [PASS] hostReady alone is not fully ready
+  [PASS] catalogReady is not fully ready
+  [PASS] searchReady is not fully ready
+  [PASS] all capabilities true produces isFullyReady true
+  [PASS] custom init preserves isFullyReady
+
+--- 31. Testing Live Sefaria Transport & Progress Handshake ---
+  [PASS] event name matches downloadProgress
+  [PASS] event backend is sefariaEmbedded
+  [PASS] real completedBytes parsed accurately without fake numbers
+  [PASS] real totalBytes parsed accurately
+  [PASS] real progress fraction matches
+  [PASS] hasUpdates is true when count > 0
+  [PASS] changedWorkCount matches 2
+  [PASS] affectedPackageIDs contains 'Torah'
+  [PASS] exact canonical segment ref preserved
+  [PASS] heRef preserved without nil loss
+
+--- 32. Testing SefariaEmbedded Navigation Schema Parsing ---
+  [PASS] exact lengths [24] yields 24 chapters
+  [PASS] first node is Chapter 1
+  [PASS] missing lengths safely produces empty array (0 chapters) instead of hardcoded 50
+  [PASS] alternate structure Parasha parsed 2 nodes
+  [PASS] first Parasha node title is Bereshit
+
+--- 33. Testing SefariaEmbedded Text & Search Adapter Contracts ---
+  [PASS] segments array is empty
+  [PASS] zero-segment payload correctly triggers fail-closed error
+  [PASS] isOffline true resolves to .offline origin
+  [PASS] isOffline false resolves to .remote origin
+  [PASS] search hit workKey mapped to book title 'Genesis' not full ref 'Genesis 1:1'
+  [PASS] search hit position preserves full canonical ref 'Genesis 1:1'
+
+--- 34. Testing SefariaEmbedded Download Integrity & Safety ---
+  [PASS] no matching package found for obscure work
+  [PASS] does not fall back to COMPLETE LIBRARY
+  [PASS] progress for unrequested 'Mishnah' is not misrouted to 'Torah'
+  [PASS] progress for 'Torah' accurately routed to 'Torah' handler
+
+--- 35. Testing Objective-C KVC Safety Contract ---
+  [PASS] _expoAppDelegate cleanly returns self without dynamic key interception
+
+--- 36. Testing SefariaJSRPCBridge Generation Epoch & Call Validation ---
+  [PASS] sessionEpoch starts at 1
+  [PASS] bumpSessionEpoch increments to 2
+  [PASS] sessionEpoch reflects incremented value
+  [PASS] setSessionEpoch sets epoch to 42
+
+--- 37. Testing SefariaJSRPCBridge Strict Response Verification ---
+  [PASS] Mismatched generation rejected with STALE_GENERATION (STALE_GENERATION)
+  [PASS] Mismatched protocol rejected with PROTOCOL_VERSION_MISMATCH (PROTOCOL_VERSION_MISMATCH)
+  [PASS] Mismatched backend ID rejected with BACKEND_MISMATCH (BACKEND_MISMATCH)
+  [PASS] Valid response accepted successfully
+  [PASS] Valid response data matches
+
+--- 38. Testing SefariaJSRPCBridge Concurrent Parallel In-Flight Calls ---
+  [PASS] Concurrent call 13 received correct matching response
+  [PASS] Concurrent call 18 received correct matching respo2026-11-10 00:20:14.486 components.exe[26348:7c44] [SefariaJSRPCBridge] setTransport called (transport: nil)
+nse
+  [PASS] Concurrent call 7 received correct matching response
+  [PASS] Concurrent call 8 received correct matching response
+  [PASS] Concurrent call 0 received correct matching response
+  [PASS] Concurrent call 9 received correct matching response
+  [PASS] Concurrent call 15 received correct matching response
+  [PASS] Concurrent call 4 received correct matching response
+  [PASS] Concurrent call 12 received correct matching response
+  [PASS] Concurrent call 3 received correct matching response
+  [PASS] Concurrent call 2 received correct matching response
+  [PASS] Concurrent call 5 received correct matching response
+  [PASS] Concurrent call 6 received correct matching response
+  [PASS] Concurrent call 10 received correct matching response
+  [PASS] Concurrent call 16 received correct matching response
+  [PASS] Concurrent call 14 received correct matching response
+  [PASS] Concurrent call 17 received correct matching response
+  [PASS] Concurrent call 19 received correct matching response
+  [PASS] Concurrent call 11 received correct matching response
+  [PASS] Concurrent call 1 received correct matching response
+  [PASS] All 20 concurrent calls resolved successfully
+
+--- 39. Testing Truthful Text Provenance & Fallback Invariants ---
+  [PASS] Explicit 'offline' origin resolves to .offline
+  [PASS] Explicit 'remote' origin resolves to .remote
+  [PASS] Nested textContent 'offline' origin resolves to .offline
+  [PASS] Fallback isOffline: true resolves to .offline
+  [PASS] Fallback isOffline: false resolves to .remote
+  [PASS] Zero segments detected as invalid corrupt payload, triggering fail-closed without fake fallback
+
+==========================================
+SUMMARY: 379 of 379 assertions passed (0 failures).
+RESULT: ALL SUITES PASSED SUCCESSFULLY
+==========================================
