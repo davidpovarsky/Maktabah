@@ -10,6 +10,14 @@ import Foundation
 
 /// Numeric IDs are local catalog keys, never proof of cross-source identity.
 enum TargetBackendBookIdentity {
+    static func authoritativeWork(in catalog: [LibraryWork], backend: BackendID, workKey: String?,
+                                  id: Int, registered: TextLocator?, canonicalID: (LibraryWork) -> Int?) -> LibraryWork? {
+        let key = workKey ?? (registered?.backend == backend ? registered?.workKey : nil)
+        guard let key, let work = catalog.first(where: { $0.locator.backend == backend && $0.locator.workKey == key }),
+              canonicalID(work) == id || (registered?.backend == backend && registered?.workKey == key) else { return nil }
+        return work
+    }
+
     static func matches(id: Int, backend: BackendID, workKey: String?,
                         candidateID: Int, candidateBackend: BackendID?, candidateWorkKey: String?) -> Bool {
         guard id == candidateID, backend == candidateBackend else { return false }
@@ -143,10 +151,9 @@ final class ChavrusaTextTargetBackendBookResolver: TargetBackendBookResolverProt
         }
         if let catalog = preparedWorks[backend] {
             let registered = LegacyIdentityRegistry.shared.locator(for: id)
-            let key = requestedWorkKey ?? (registered?.backend == backend ? registered?.workKey : nil)
-            guard let key, let work = catalog.first(where: { $0.locator.workKey == key }),
-                  CrossBackendBookIdentityIndex.shared.canonicalID(for: work) == id ||
-                    (registered?.backend == backend && registered?.workKey == key) else {
+            guard let work = TargetBackendBookIdentity.authoritativeWork(in: catalog, backend: backend,
+                workKey: requestedWorkKey, id: id, registered: registered,
+                canonicalID: { CrossBackendBookIdentityIndex.shared.canonicalID(for: $0) }) else {
                 throw BackendTransitionError.unresolvableBook(bookId: id, title: title ?? requestedWorkKey ?? "Unavailable work", locator: backendLocator)
             }
             let book = BooksData(id: id,

@@ -82,6 +82,12 @@ def main():
     assert ".onChange(of: shouldPresentPanelInContent)" in workspace
     assert 'if shouldPresentPanelInContent, newState == .hidden, showPanel' in workspace
     assert workspace.count("ChavrusaReaderWorkspaceLayout(") == 1
+    adapter = read("Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift")
+    staging = adapter[adapter.index("let staged: [iOSNavigationManager.ReaderTab]"):adapter.index("beforeCommit:")]
+    assert staging.index("resolveBook(") < staging.index("retained.first"), "Cached books must still exist in the prepared target catalog"
+    assert staging.count("existing.book.backendLocator?.workKey == resolved.backendLocator?.workKey") == 2
+    switching = adapter[adapter.index("func switchGroup("):adapter.index("private func matches(")]
+    assert switching.index("beforeCommit:") < switching.index("let outgoingDocuments = capture("), "Capture the latest outgoing position after awaited target preparation"
     ipad = read("Source/UI/iOS/Views/iPadLayout.swift")
     assert 'iOSLibraryView(groupsToolbarActions: true)\n                        .navigationTitle(iOSTab.viewer.title)\n                        .navigationBarTitleDisplayMode(.inline)' in ipad
     layout = read("Source/ChavrusaText/ReaderHost/ChavrusaReaderWorkspaceLayout.swift")

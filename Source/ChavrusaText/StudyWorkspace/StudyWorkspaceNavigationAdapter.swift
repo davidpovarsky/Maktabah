@@ -87,7 +87,6 @@ final class StudyWorkspaceNavigationAdapter {
         let previousActive = manager.activeTabId
         let previousBackend = BackendCoordinator.shared.activeBackendID
         let previousGroup = liveGroupID
-        let outgoingDocuments = capture(previousTabs, backend: previousBackend)
         let previousGeneration = BackendCoordinator.shared.generation
         guard let target = store.snapshot?.groups.first(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
         let requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
@@ -103,12 +102,19 @@ final class StudyWorkspaceNavigationAdapter {
             // Every document is resolved against the target catalog while the
             // outgoing reader and committed backend are still intact.
             let staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
-                if let existing = retained.first(where: { $0.id == document.id }), matches(existing, document) { return existing }
+                let resolved = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
+                    id: document.session.bookId,
+                    backendLocator: document.session.backendLocator?.workKey ?? document.session.locator?.workKey,
+                    title: document.session.bookTitle, in: document.backend)
+                if let existing = retained.first(where: { $0.id == document.id }), matches(existing, document),
+                   existing.book.backendLocator?.workKey == resolved.backendLocator?.workKey { return existing }
                 if previousBackend == desiredBackend,
-                   let existing = previousTabs.first(where: { $0.id == document.id }), matches(existing, document) { return existing }
+                   let existing = previousTabs.first(where: { $0.id == document.id }), matches(existing, document),
+                   existing.book.backendLocator?.workKey == resolved.backendLocator?.workKey { return existing }
                 return try hydrate(document)
             }
             try await BackendCoordinator.shared.commitCheckedAsync(desiredBackend, beforeCommit: {
+                let outgoingDocuments = capture(previousTabs, backend: previousBackend)
                 try store.transaction { value in
                     guard let current = value.groups.first(where: { $0.id == id }), current.tabs == target.tabs,
                           current.profileID == target.profileID else { throw StudyWorkspaceError.invalidMembership }

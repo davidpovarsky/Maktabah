@@ -84,7 +84,7 @@ The real portable suite tests source width policy, original tab-width algorithm
 at 0/1/3/10 tabs and compact/wide widths, scene selection, actual coordinator
 preflight/publication/abort/cancellation, and actual snapshot disk bytes/cache.
 
-Final-code local gates: 61 strict repair assertions, 61 workspace contracts and
+Final-code local gates: 65 strict repair assertions, 61 workspace contracts and
 379 existing component assertions passed. Seven toolbar regression mutants were
 rejected; `git diff --check` passed. Exact logs are under `build/artifacts/`.
 Swift syntax parsing and actual iOS target membership check passed. Xcode generic
@@ -103,3 +103,21 @@ The final device build must compile the actual changed glass source.
 Simulator: NOT_RUN (owner instruction). All native UI and physical iPad checks:
 OWNER_ACCEPTANCE_PENDING. Experimental candidate dispatch follows final source
 and portable gates only; no visual fidelity claim or public App Store submission.
+
+### Pre-upload cache-validation correction
+
+The first source candidate `e1e4064b` was stopped during the Otzaria framework
+build in run 42682926929, before app signing/archive or Apple upload. Final run
+metadata is CANCELLED; Apple validation, upload and processing were SKIPPED.
+No TestFlight candidate was delivered from that run.
+
+Final review found retained tab instances could bypass target-work existence
+validation. All requested documents now resolve against the scoped catalog
+before any cached TextKit instance is reused. Qualified work identity preserves
+that instance; passage position is deliberately not used as work identity.
+The production authoritative-work selector is portable and tested for real
+target work, missing cached/registered work, wrong local ID and Sefaria versus
+Embedded collision. The source gate requires resolution before both cache
+paths. Outgoing sidecar positions are captured at the final persistence step,
+after awaited target preflight, so scrolling during preflight is retained.
+These changes are downstream only; no additional protected hunks or UI changes.

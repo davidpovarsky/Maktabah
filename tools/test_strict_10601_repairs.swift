@@ -53,6 +53,18 @@ private struct Catalog: LibraryCatalogProviding {
             candidateID: 7, candidateBackend: nil, candidateWorkKey: nil), "nil is never Otzaria/Sefaria evidence")
         try expect(!TargetBackendBookIdentity.matches(id: 7, backend: .sefaria, workKey: nil,
             candidateID: 7, candidateBackend: .sefaria, candidateWorkKey: "A"), "numeric ID alone cannot establish work identity")
+        let actualWork = LibraryWork(locator: .init(backend: .sefaria, workKey: "A", position: .canonicalRef("A")),
+            title: "A", heTitle: nil, categories: [], description: nil)
+        try expect(TargetBackendBookIdentity.authoritativeWork(in: [actualWork], backend: .sefaria,
+            workKey: "A", id: 7, registered: nil, canonicalID: { _ in 7 }) == actualWork, "real target work and ID resolve")
+        try expect(TargetBackendBookIdentity.authoritativeWork(in: [], backend: .sefaria,
+            workKey: "A", id: 7, registered: actualWork.locator, canonicalID: { _ in 7 }) == nil,
+            "registered/cached work missing from actual target catalog fails closed")
+        try expect(TargetBackendBookIdentity.authoritativeWork(in: [actualWork], backend: .sefariaEmbedded,
+            workKey: "A", id: 7, registered: actualWork.locator, canonicalID: { _ in 7 }) == nil,
+            "Sefaria catalog cannot authorize Embedded identity")
+        try expect(TargetBackendBookIdentity.authoritativeWork(in: [actualWork], backend: .sefaria,
+            workKey: "A", id: 8, registered: nil, canonicalID: { _ in 7 }) == nil, "target work with wrong local ID rejected")
 
         for readerWidth in [CGFloat(430), 645, 860] {
             let threshold = readerWidth + 318
