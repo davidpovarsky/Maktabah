@@ -115,6 +115,7 @@ struct StudyGroupsOverview: View {
                 }
             }
         }
+        .themeTint()
         .onAppear { workspace.synchronize(manager) }
         .sheet(isPresented: $showsProfiles) {
             StudyProfileManagementView(workspace: workspace, manager: manager)

@@ -1,11 +1,22 @@
 #if os(iOS) && canImport(UIKit)
 import SwiftUI
 import Combine
+import Foundation
 import UIKit
 import XCTest
 #if canImport(Maktabah_Debug)
 @testable import Maktabah_Debug
 #endif
+
+private struct ReaderOverviewHostProbeKey: EnvironmentKey {
+    static let defaultValue = "fresh-host"
+}
+private extension EnvironmentValues {
+    var readerOverviewHostProbe: String {
+        get { self[ReaderOverviewHostProbeKey.self] }
+        set { self[ReaderOverviewHostProbeKey.self] = newValue }
+    }
+}
 
 final class ReaderOverviewPresentationTests: XCTestCase {
     private struct ScrollProbe: UIViewRepresentable {
@@ -16,6 +27,31 @@ final class ReaderOverviewPresentationTests: XCTestCase {
 
     @MainActor private final class PresentationFlag: ObservableObject {
         @Published var isPresented = false
+        var report: HostedEnvironmentReport?
+    }
+
+    private struct HostedEnvironmentReport {
+        let hostProbe: String
+        let locale: String
+        let direction: LayoutDirection
+        let scheme: ColorScheme
+        let typeSize: DynamicTypeSize
+    }
+
+    private struct HostedEnvironmentProbe: View {
+        let flag: PresentationFlag
+        @Environment(\.readerOverviewHostProbe) private var hostProbe
+        @Environment(\.locale) private var locale
+        @Environment(\.layoutDirection) private var direction
+        @Environment(\.colorScheme) private var scheme
+        @Environment(\.dynamicTypeSize) private var typeSize
+        var body: some View {
+            Text("Source overview").frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onAppear {
+                    flag.report = HostedEnvironmentReport(hostProbe: hostProbe, locale: locale.identifier,
+                        direction: direction, scheme: scheme, typeSize: typeSize)
+                }
+        }
     }
 
     private struct SwiftUIPresentationProbe: View {
@@ -24,7 +60,7 @@ final class ReaderOverviewPresentationTests: XCTestCase {
         var body: some View {
             ScrollProbe(scroll: scroll).overlay {
                 ReaderOverviewPresentation(isPresented: $flag.isPresented) {
-                    Text("Source overview").frame(maxWidth: .infinity, maxHeight: .infinity)
+                    HostedEnvironmentProbe(flag: flag)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea()
@@ -41,7 +77,12 @@ final class ReaderOverviewPresentationTests: XCTestCase {
         scroll.contentInsetAdjustmentBehavior = .never
         scroll.contentSize = CGSize(width: window.bounds.width, height: window.bounds.height * 5)
         let flag = PresentationFlag()
-        let host = UIHostingController(rootView: SwiftUIPresentationProbe(flag: flag, scroll: scroll))
+        let host = UIHostingController(rootView: SwiftUIPresentationProbe(flag: flag, scroll: scroll)
+            .environment(\.readerOverviewHostProbe, "reader-host")
+            .environment(\.locale, Locale(identifier: "he_IL"))
+            .environment(\.layoutDirection, .rightToLeft)
+            .environment(\.colorScheme, .dark)
+            .environment(\.dynamicTypeSize, .accessibility2))
         window.rootViewController = host
         window.makeKeyAndVisible()
         host.view.layoutIfNeeded()
@@ -60,10 +101,16 @@ final class ReaderOverviewPresentationTests: XCTestCase {
         XCTAssertGreaterThan(anchor.view.bounds.height, 80)
         scroll.contentOffset = CGPoint(x: 0, y: 481)
         for _ in 0..<2 {
+            flag.report = nil
             flag.isPresented = true
             waitUntil("Changing the actual SwiftUI binding must present, with a real context-sized anchor") {
-                anchor.presentedViewController?.view.window === window
+                anchor.presentedViewController?.view.window === window && flag.report != nil
             }
+            XCTAssertEqual(flag.report?.hostProbe, "fresh-host", "A new hosting graph must not inherit source-host ownership")
+            XCTAssertEqual(flag.report?.locale, "he_IL")
+            XCTAssertEqual(flag.report?.direction, .rightToLeft)
+            XCTAssertEqual(flag.report?.scheme, .dark)
+            XCTAssertEqual(flag.report?.typeSize, .accessibility2)
             let shown = try XCTUnwrap(anchor.presentedViewController)
             XCTAssertEqual(shown.modalPresentationStyle, .overCurrentContext)
             XCTAssertFalse(shown.presentationController is UISheetPresentationController)

@@ -48,7 +48,14 @@ private struct ReaderOverviewPresentationAnchor<Overview: View>: UIViewControlle
     func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
         controller.configure(
             isPresented: isPresented,
-            overview: AnyView(overview.environment(\.self, context.environment)),
+            // A new hosting controller owns its own navigation/accessibility
+            // graph. Forward only semantic public values, never the source
+            // host's complete environment and private graph ownership.
+            overview: AnyView(overview
+                .environment(\.locale, context.environment.locale)
+                .environment(\.layoutDirection, context.environment.layoutDirection)
+                .environment(\.colorScheme, context.environment.colorScheme)
+                .environment(\.dynamicTypeSize, context.environment.dynamicTypeSize)),
             onDismiss: {
                 isPresented = false
                 onDismiss()
@@ -156,7 +163,17 @@ final class ReaderOverviewPresentationController: UIViewController {
     /// Read-only native facts for the existing acceptance observer. No UI or
     /// production reporter is installed, and no reader state is changed.
     var acceptancePresentationSnapshot: [String: Any] {
-        ["wantsOverview": wantsOverview,
+        var ancestors: [[String: Any]] = []
+        var current = hostingController?.viewIfLoaded
+        for _ in 0..<8 {
+            guard let view = current else { break }
+            ancestors.append(["class": String(describing: type(of: view)),
+                              "hidden": view.isHidden, "alpha": Double(view.alpha),
+                              "accessibilityHidden": view.accessibilityElementsHidden,
+                              "interactionEnabled": view.isUserInteractionEnabled])
+            current = view.superview
+        }
+        return ["wantsOverview": wantsOverview,
          "isViewLoaded": isViewLoaded,
          "isInWindow": viewIfLoaded?.window != nil,
          "boundsWidth": Double(viewIfLoaded?.bounds.width ?? 0),
@@ -164,7 +181,11 @@ final class ReaderOverviewPresentationController: UIViewController {
          "parentClass": parent.map { String(describing: type(of: $0)) } ?? "none",
          "presentedClass": presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
          "hasHostingController": hostingController != nil,
-         "isTransitioning": isTransitioning]
+         "isTransitioning": isTransitioning,
+         "presentedBoundsWidth": Double(hostingController?.viewIfLoaded?.bounds.width ?? 0),
+         "presentedBoundsHeight": Double(hostingController?.viewIfLoaded?.bounds.height ?? 0),
+         "presentedInWindow": hostingController?.viewIfLoaded?.window != nil,
+         "presentedViewAncestors": ancestors]
     }
     #endif
 }

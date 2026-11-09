@@ -119,7 +119,7 @@
 +        // The clear UIKit anchor has no intrinsic content size. Its actual
 +        // view must accept the context proposal, not just its outer frame.
 +        return CGSize(width: width, height: height)
-@@ -88,4 +48,9 @@
+@@ -88,4 +48,16 @@
 -    func segueToCustomizeAddressBarSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .customizeAddressBarButton)
@@ -127,13 +127,20 @@
 +    func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
 +        controller.configure(
 +            isPresented: isPresented,
-+            overview: AnyView(overview.environment(\.self, context.environment)),
++            // A new hosting controller owns its own navigation/accessibility
++            // graph. Forward only semantic public values, never the source
++            // host's complete environment and private graph ownership.
++            overview: AnyView(overview
++                .environment(\.locale, context.environment.locale)
++                .environment(\.layoutDirection, context.environment.layoutDirection)
++                .environment(\.colorScheme, context.environment.colorScheme)
++                .environment(\.dynamicTypeSize, context.environment.dynamicTypeSize)),
 +            onDismiss: {
 +                isPresented = false
 +                onDismiss()
 +            }
 +        )
-@@ -94,4 +59,21 @@
+@@ -94,4 +66,21 @@
 -    func segueToCustomizeToolbarSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .customizeToolbarButton)
@@ -159,7 +166,7 @@
 +        // UIKit's context must permit interaction with its presented content.
 +        view = anchor
 +        definesPresentationContext = true
-@@ -100,23 +82,3 @@
+@@ -100,23 +89,3 @@
 -    func segueToDaxOnboarding(completion: (() -> Void)? = nil) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -186,7 +193,7 @@
 +    override func viewDidAppear(_ animated: Bool) {
 +        super.viewDidAppear(animated)
 +        scheduleUpdate()
-@@ -125,10 +87,3 @@
+@@ -125,10 +94,3 @@
 -    func segueToHomeRow() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -200,7 +207,7 @@
 +    override func didMove(toParent parent: UIViewController?) {
 +        super.didMove(toParent: parent)
 +        scheduleUpdate()
-@@ -137,4 +92,3 @@
+@@ -137,4 +99,3 @@
 -    func segueToBookmarks() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -208,7 +215,7 @@
 +    override func viewDidLayoutSubviews() {
 +        super.viewDidLayoutSubviews()
 +        scheduleUpdate()
-@@ -143,10 +97,6 @@
+@@ -143,10 +104,6 @@
 -    func segueToEditCurrentBookmark() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -225,7 +232,7 @@
 +        self.onDismiss = onDismiss
 +        hostingController?.rootView = overview
 +        scheduleUpdate()
-@@ -155,5 +105,7 @@
+@@ -155,5 +112,7 @@
 -    func segueToEditBookmark(_ bookmark: BookmarkEntity) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -238,7 +245,7 @@
 +        if hostingController != nil {
 +            dismiss(animated: false)
 +            hostingController = nil
-@@ -163,21 +115,7 @@
+@@ -163,21 +122,7 @@
 -    private func launchBookmarksViewController(completion: ((BookmarksViewController) -> Void)? = nil) {
 -        Logger.lifecycle.debug(#function)
 -
@@ -267,7 +274,7 @@
 +            guard let self else { return }
 +            self.updateScheduled = false
 +            self.updatePresentation()
-@@ -187,189 +125,26 @@
+@@ -187,189 +132,26 @@
 -    func segueToReportBrokenSite(entryPoint: PrivacyDashboardEntryPoint = .report) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -483,7 +490,7 @@
 +                self.isTransitioning = false
 +                self.onDismiss?()
 +                self.scheduleUpdate()
-@@ -380,4 +155,13 @@
+@@ -380,4 +162,27 @@
 -    func segueToDebugSettings() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -492,7 +499,17 @@
 +    /// Read-only native facts for the existing acceptance observer. No UI or
 +    /// production reporter is installed, and no reader state is changed.
 +    var acceptancePresentationSnapshot: [String: Any] {
-+        ["wantsOverview": wantsOverview,
++        var ancestors: [[String: Any]] = []
++        var current = hostingController?.viewIfLoaded
++        for _ in 0..<8 {
++            guard let view = current else { break }
++            ancestors.append(["class": String(describing: type(of: view)),
++                              "hidden": view.isHidden, "alpha": Double(view.alpha),
++                              "accessibilityHidden": view.accessibilityElementsHidden,
++                              "interactionEnabled": view.isUserInteractionEnabled])
++            current = view.superview
++        }
++        return ["wantsOverview": wantsOverview,
 +         "isViewLoaded": isViewLoaded,
 +         "isInWindow": viewIfLoaded?.window != nil,
 +         "boundsWidth": Double(viewIfLoaded?.bounds.width ?? 0),
@@ -500,8 +517,12 @@
 +         "parentClass": parent.map { String(describing: type(of: $0)) } ?? "none",
 +         "presentedClass": presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
 +         "hasHostingController": hostingController != nil,
-+         "isTransitioning": isTransitioning]
-@@ -385,305 +169 @@
++         "isTransitioning": isTransitioning,
++         "presentedBoundsWidth": Double(hostingController?.viewIfLoaded?.bounds.width ?? 0),
++         "presentedBoundsHeight": Double(hostingController?.viewIfLoaded?.bounds.height ?? 0),
++         "presentedInWindow": hostingController?.viewIfLoaded?.window != nil,
++         "presentedViewAncestors": ancestors]
+@@ -385,305 +190 @@
 -
 -    func segueToSettingsCookiePopupManagement() {
 -        Logger.lifecycle.debug(#function)
@@ -808,7 +829,7 @@
 -    }
 -
 +    #endif
-@@ -691,86 +171 @@
+@@ -691,86 +192 @@
 -
 -// Exists to fire a did disappear notification for settings when the controller did disappear
 -//  so that we get the event regardless of where in the UI hierarchy it happens.
