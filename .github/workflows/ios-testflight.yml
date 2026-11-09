@@ -80,7 +80,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Cache the original pinned Sharp libvips archive
+      - name: Cache the original pinned Sharp native archives
         if: hashFiles('Vendor/SefariaMobile/Upstream/package-lock.json') != ''
         env:
           GH_TOKEN: ${{ github.token }}

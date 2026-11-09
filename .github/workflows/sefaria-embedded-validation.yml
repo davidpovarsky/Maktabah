@@ -155,7 +155,7 @@ jobs:
             exit 1
           fi
 
-      - name: Cache the original pinned Sharp libvips archive
+      - name: Cache the original pinned Sharp native archives
         if: hashFiles('Scripts/CI/prepare-pinned-sharp-libvips.py') != '' && hashFiles('Vendor/SefariaMobile/Upstream/package-lock.json') != ''
         env:
           GH_TOKEN: ${{ github.token }}
