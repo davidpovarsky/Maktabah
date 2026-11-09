@@ -23,20 +23,25 @@ struct CrestReaderLabApp: App {
             "ScheherazadeNew-Regular.ttf",
             "UthmanTN1-Ver10.otf"
         ]
+        // Swift Playgrounds on iPad does not always generate Bundle.module.
+        // Discover resource bundles dynamically, without relying on that symbol.
+        let embeddedBundles = (try? FileManager.default.contentsOfDirectory(
+            at: Bundle.main.bundleURL,
+            includingPropertiesForKeys: nil
+        ))?.compactMap { url -> Bundle? in
+            guard url.pathExtension == "bundle" else { return nil }
+            return Bundle(url: url)
+        } ?? []
+        let bundles = [Bundle.main] + embeddedBundles + Bundle.allBundles + Bundle.allFrameworks
+
         for name in files {
             let parts = name.split(separator: ".", maxSplits: 1)
             guard parts.count == 2 else { continue }
             let file = String(parts[0]), ext = String(parts[1])
-            #if SWIFT_PACKAGE
-            let packageURL = Bundle.module.url(forResource: file, withExtension: ext, subdirectory: "Fonts")
-                ?? Bundle.module.url(forResource: file, withExtension: ext)
-            #else
-            let packageURL: URL? = nil
-            #endif
-            guard let url = packageURL
-                ?? Bundle.main.url(forResource: file, withExtension: ext, subdirectory: "Fonts")
-                ?? Bundle.main.url(forResource: file, withExtension: ext)
-            else { continue }
+            guard let url = bundles.lazy.compactMap({ bundle -> URL? in
+                bundle.url(forResource: file, withExtension: ext, subdirectory: "Fonts")
+                    ?? bundle.url(forResource: file, withExtension: ext)
+            }).first else { continue }
             var error: Unmanaged<CFError>?
             _ = CTFontManagerRegisterFontsForURL(url as CFURL, .process, &error)
             if let error { _ = error.takeRetainedValue() }

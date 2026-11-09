@@ -6,7 +6,7 @@ import AppleProductTypes
 let package = Package(
     name: "CrestReaderLab",
     defaultLocalization: "he",
-    platforms: [.iOS("26.1")],
+    platforms: [.iOS("26.0")],
     products: [
         .iOSApplication(
             name: "Crest Reader Lab",
@@ -34,7 +34,7 @@ let package = Package(
 #else
 let package = Package(
     name: "CrestReaderLab",
-    platforms: [.iOS("26.1")],
+    platforms: [.iOS("26.0")],
     products: [.executable(name: "CrestReaderLab", targets: ["AppModule"])],
     targets: [.executableTarget(name: "AppModule", path: "Sources", resources: [.process("Resources")])],
     swiftLanguageModes: [.v5]

@@ -14,7 +14,7 @@ This is an experimental App Playground built from ORIGINAL source files, not a v
 
 1. In Files, download and unzip the experiment archive if received as ZIP.
 2. Open the CrestReaderLab.swiftpm folder in Swift Playgrounds (App Playground).
-3. Run on an iPad using iPadOS 26.1 or later. The project expects only one App entry point: Sources/App.swift. Do not add a second MyApp.swift with @main.
+3. Run on an iPad using iPadOS 26.0 or later. The project expects only one App entry point: Sources/App.swift. Do not add a second MyApp.swift with @main.
 
 ## Limits and verification
 
@@ -29,3 +29,7 @@ This is an experimental App Playground built from ORIGINAL source files, not a v
 - Crest source: pauljoda/Crest, checkout 74b3c75.
 - Maktabah source: bismillah-100/Maktabah, commit 46e893c65139fbb1e582d6595b0d220ea912324a.
 - Copied source files in Original folders were imported unchanged, except iOSCustomIbarotTextView.swift, which is the verbatim single-class excerpt from the upstream full iOSIbarotTextView.swift. Byte-for-byte source can be verified against original files.
+
+## iPad Swift Playgrounds compatibility fix
+- App Playground deployment target is now iOS 26.0, compatible with a 26.0 SDK.
+- Font registration no longer references Bundle.module; it uses discovered resource bundles and Bundle.main.

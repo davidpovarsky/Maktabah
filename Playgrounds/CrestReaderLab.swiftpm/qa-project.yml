@@ -6,7 +6,7 @@ targets:
   CrestReaderLabQA:
     type: application
     platform: iOS
-    deploymentTarget: "26.1"
+    deploymentTarget: "26.0"
     sources:
       - path: Sources
     settings:
