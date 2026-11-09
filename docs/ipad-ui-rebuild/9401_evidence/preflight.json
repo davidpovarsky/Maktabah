@@ -64,8 +64,10 @@
   "portable_reports": [
     {
       "output": "workspace-compile.log",
-      "sha256": "35746c21d9db309873c00ddd69d22dbe794d0dbd3c7835e02920b3403277c4ff",
-      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim."
+      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim.",
+      "raw_capture_sha256": "35746c21d9db309873c00ddd69d22dbe794d0dbd3c7835e02920b3403277c4ff",
+      "sha256": "e1e26ad1c5c3efa40cf5f10eaece34c303d1229dda02bbac472d14d72db87784",
+      "normalization": "Compiler output line endings/trailing whitespace normalized for Git; no diagnostic content removed."
     },
     {
       "output": "workspace-test-results.log",
@@ -74,8 +76,10 @@
     },
     {
       "output": "9401-component-compile.log",
-      "sha256": "6249a2ae59b2e32110d7d29ca8cd56e83ecaf193e183dd2f6a30c46c587a7c57",
-      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim."
+      "qualification": "Actual existing portable Swift suites. Source contracts match committed candidate by manifest retention gate; no UI/runtime claim.",
+      "raw_capture_sha256": "6249a2ae59b2e32110d7d29ca8cd56e83ecaf193e183dd2f6a30c46c587a7c57",
+      "sha256": "7b386271ddda45f2d6b5ac126e61c92ed7d3544412dec435693600b03f873763",
+      "normalization": "Compiler output line endings/trailing whitespace normalized for Git; no diagnostic content removed."
     },
     {
       "output": "9401-component-results.log",
