@@ -17,6 +17,7 @@ struct iOSReaderView: View {
     var viewModel: ReaderViewModel
     var textViewState = TextViewState.shared
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(iOSNavigationManager.self) var bManager
 
     var isRegularLayout: Bool {
@@ -82,6 +83,9 @@ struct iOSReaderView: View {
 
     private var tableOfContentsIsPresented: Bool {
         guard let columnVisibility else { return false }
+        if let sidebarCoordinator {
+            return sidebarCoordinator.page == .contents && columnVisibility.wrappedValue != .detailOnly
+        }
         return columnVisibility.wrappedValue != .detailOnly
     }
 

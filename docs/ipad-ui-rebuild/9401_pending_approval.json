@@ -1,0 +1,22 @@
+{
+  "status": "APPROVED_EXACT_HUNK",
+  "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+  "baseline_and_current_blob": "9578ce48ac743cdca1fb02ca03a3dfc9b2c53824",
+  "proposed_blob": "67146db4a47746c8412a8ee7d8b16328ff951e19",
+  "diff_sha256": "8aeef9463f7d37fd8c90d1d40073f8f422231cbb50477c25743090677bac014c",
+  "protected_added_lines": 4,
+  "applied": true,
+  "reason": "Original TOC action must switch library to contents instead of closing an already-visible library sidebar. Original toolbar subtree remains byte-identical.",
+  "authorization_reference": "Owner reply in this chat, 2026-11-10: מאשר את ה־diff המדויק",
+  "upstream_sha": "46e893c65139fbb1e582d6595b0d220ea912324a",
+  "alternatives_rejected": [
+    "Replacing or suppressing the original toolbar button violates directive.",
+    "Falsifying the split-visibility Binding confuses the original native sidebar reveal state.",
+    "A reconstructed reader wrapper duplicates protected visual behavior."
+  ],
+  "regression_scope": [
+    "iPad shared sidebar library/content toggle state",
+    "iPhone sees nil coordinator and retains the original expression"
+  ],
+  "rollback": "Restore the recorded 9578ce48 baseline blob; retain draft for re-review."
+}

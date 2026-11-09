@@ -1,0 +1,13 @@
+diff --git a/Source/Features/Reader/iOS/iOSReaderView.swift b/Source/Features/Reader/iOS/iOSReaderView.swift
+--- a/Source/Features/Reader/iOS/iOSReaderView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderView.swift
+@@ -19,2 +19,3 @@
+     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
++    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
+     @Environment(iOSNavigationManager.self) var bManager
+@@ -84,2 +85,5 @@
+         guard let columnVisibility else { return false }
++        if let sidebarCoordinator {
++            return sidebarCoordinator.page == .contents && columnVisibility.wrappedValue != .detailOnly
++        }
+         return columnVisibility.wrappedValue != .detailOnly

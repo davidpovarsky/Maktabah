@@ -2,6 +2,10 @@
 
 No exceptions approved as of 2026-10-22.
 
+## 2026-11-10 — exact 9401 shared-sidebar reader state hook
+
+Owner explicitly replied **“מאשר את ה־diff המדויק”** to the current chat's four-line proposal for `Source/Features/Reader/iOS/iOSReaderView.swift`. The frozen executable hunks are [9401_PENDING_OWNER_HOOK.diff](../ipad-ui-rebuild/9401_PENDING_OWNER_HOOK.diff); exact original/proposed blob IDs, patch SHA256, rejected alternatives, scope and rollback are in [9401_pending_approval.json](../ipad-ui-rebuild/9401_pending_approval.json). Only the shared-sidebar environment property and page-aware `tableOfContentsIsPresented` expression are approved; the complete original toolbar subtree remains unchanged. This records actual owner approval before application, not self-approval. Main-session verification; device acceptance and review date remain pending owner physical-iPad feedback. No other future protected hunk is authorized.
+
 ## 2026-11-04 — Faithful iPad UI rebuild
 
 Owner authorization is the current chat request to execute the attached complete package, including `AGENT_EXECUTION_PROMPT.md` §4 stage 3 and `RESTORE_AND_FILE_BY_FILE_PLAN.md`. It expressly authorizes only the listed narrow hooks, target membership and package pins. See `docs/ipad-ui-rebuild/OWNERSHIP_AND_AUTHORIZATION.md` for exact files, alternatives, regression scope and recovery. The final implemented hunks are recorded in `docs/ipad-ui-rebuild/PROTECTED_HUNKS.diff`; this entry does not authorize unrelated edits or future upstream divergence. No signer, trust key or boundary-checker policy is changed. Runtime/device gates remain open until supported by evidence.
