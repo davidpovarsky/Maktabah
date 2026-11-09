@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 import subprocess
 import sys
+import time
 import uuid
 from datetime import datetime, timezone
 
@@ -153,8 +154,24 @@ for index, size in enumerate(diagnostic_sizes if diagnostic_cases else ["11", "1
         install_owned_app(app, "com.davidpovarsky.chavrusatext", 600)
         (root / "sim_udid.txt").write_text(udid)
         phase("PROVISIONING_NATIVE_FIXTURES")
-        subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--artifact-label", size],
-                       check=True, timeout=720)
+        for fixture_attempt in range(2):
+            try:
+                subprocess.run([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--artifact-label", size],
+                               check=True, timeout=720)
+                break
+            except subprocess.CalledProcessError:
+                report = artifacts / f"miniTest10-native-fixture-install-{size}.json"
+                failure = json.loads(report.read_text()) if report.is_file() else {}
+                errors = failure.get("errors") or []
+                transient_download = (failure.get("phase") == "install" and bool(errors)
+                    and all(re.search(r"\bHTTP (502|503|504)\b", str(error)) for error in errors))
+                if fixture_attempt != 0 or failure.get("passed") is not False or not transient_download:
+                    raise
+                # Preserve the real failed report. Relaunch the same native
+                # installer once; every data/profile/hash check remains intact.
+                shutil.copyfile(report, artifacts / f"miniTest10-native-fixture-install-{size}-attempt-1.json")
+                phase("RETRYING_TRANSIENT_FIXTURE_DOWNLOAD", attempt=2)
+                time.sleep(5)
         selection = ["SafariPrototypeReferenceTests", "FaithfulReaderVisualBaselineTests"]
         if size == "phone":
             selection = ["FaithfulReaderIPhoneTests"]

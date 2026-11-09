@@ -225,9 +225,9 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     func exerciseOverviewReplacement(orientation: UIDeviceOrientation, phone: Bool) throws {
         XCUIDevice.shared.orientation = orientation
         let platform = phone ? "phone" : (orientation.isLandscape ? "landscape" : "portrait")
-        // The original linked-book navigation exposes a real nonzero source
-        // position with this supported preference. Do not assign an offset or
-        // infer document position from UIKit's stale contentSize cache.
+        // This supported preference renders genuine text beyond the viewport.
+        // Its canonical navigation may restore the top or a later position;
+        // establish the required nonzero position through the actual reader.
         launchReader(recordViewport: true, fontSize: 48)
         try exerciseOverviewAtCurrentPosition(platform: platform + "-nonzero", phone: phone, requiresNonzeroPosition: true)
         // Also retain full-display visual proof at the original 19pt default.
@@ -240,6 +240,23 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let reader = app.textViews["reader-text"]
         let initial = try viewport()
         try attachViewport(initial, named: "replacement-viewport-opening-" + platform)
+        capture("replacement-reader-initial-" + platform)
+        var positioned = try viewport()
+        if requiresNonzeroPosition {
+            for attempt in 1...2 {
+                let documentY = try XCTUnwrap(positioned.contentOffsetY) + XCTUnwrap(positioned.topInset)
+                if positioned.source > 0 && documentY > 5 { break }
+                // A short real pan stays inside the original text view and
+                // avoids selection/long-press and end-of-document navigation.
+                // Never assign an offset or use the stale contentSize cache.
+                let start = reader.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.7))
+                let end = start.withOffset(CGVector(dx: 0, dy: -min(220, reader.frame.height * 0.3)))
+                start.press(forDuration: 0.05, thenDragTo: end)
+                positioned = try viewport()
+                try attachViewport(positioned, named: "replacement-viewport-user-pan-\(attempt)-" + platform)
+                retainNativeEvidence("replacement-user-pan-\(attempt)-" + platform)
+            }
+        }
         capture("replacement-reader-before-" + platform)
         // Observe again after the full-frame settling check, not a stale report
         // from before native layout. The source/pixel anchor is authoritative.
