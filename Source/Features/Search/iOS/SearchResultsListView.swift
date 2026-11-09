@@ -125,6 +125,7 @@ struct SearchResultsListView: View {
                         }
                     }
                 }
+                .listRowBackground(Color.appBackground)
                 .listRowSeparator(.visible)
                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                 .id(group.id)
@@ -142,6 +143,7 @@ struct SearchResultsListView: View {
                         .padding(.vertical, 8)
                     Spacer()
                 }
+                .listRowBackground(Color.appBackground)
                 .listRowSeparator(.hidden)
             } else if hasMore {
                 Button(action: { onLoadMore?() }) {
@@ -155,10 +157,13 @@ struct SearchResultsListView: View {
                     }
                 }
                 .buttonStyle(.plain)
+                .listRowBackground(Color.appBackground)
                 .listRowSeparator(.hidden)
             }
         }
         .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .background(Color.appBackground)
     }
 }
 

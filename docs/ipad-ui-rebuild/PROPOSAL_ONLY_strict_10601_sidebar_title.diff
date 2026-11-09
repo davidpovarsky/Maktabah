@@ -1,0 +1,6 @@
+diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
+index 42cd0f42..0e23bb26 100644
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -112,0 +113 @@ struct iPadLayout: View {
++                        .navigationBarTitleDisplayMode(.inline)

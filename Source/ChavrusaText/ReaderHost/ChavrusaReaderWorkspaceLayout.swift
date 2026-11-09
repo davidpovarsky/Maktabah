@@ -1,6 +1,13 @@
 import FloatingPanel
 import SwiftUI
 
+/// Width is measured inside the detail column, after the library sidebar.
+enum ChavrusaReaderWorkspaceWidthPolicy {
+    static func canDock(detailWidth: CGFloat, minimumReaderWidth: CGFloat) -> Bool {
+        detailWidth.isFinite && detailWidth >= minimumReaderWidth + 300 + 18
+    }
+}
+
 /// The original workspace's HStack, resize handle and FloatingPanel composition.
 /// Keep Reader in one structural position as the native window/sidebar changes;
 /// the original TextKit instance can then preserve its source anchor on reflow.

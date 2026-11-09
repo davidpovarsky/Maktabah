@@ -21,6 +21,10 @@ final class StudyWorkspaceNavigationAdapter {
 
     var selection: StudySceneSelection? { store.snapshot?.scenes[sceneID] }
     var group: StudyTabGroup? { store.selectedGroup(scene: sceneID) }
+    var activeDocumentID: UUID? {
+        guard let group else { return nil }
+        return StudyWorkspaceProjectionPolicy.activeDocumentID(in: group, selection: selection)
+    }
     var profile: StudyProfile? { store.snapshot?.profiles.first { $0.id == selection?.profileID } }
     var groups: [StudyTabGroup] {
         (store.snapshot?.groups.filter { $0.profileID == selection?.profileID } ?? []).sorted { $0.order < $1.order }
@@ -83,72 +87,82 @@ final class StudyWorkspaceNavigationAdapter {
         let previousActive = manager.activeTabId
         let previousBackend = BackendCoordinator.shared.activeBackendID
         let previousGroup = liveGroupID
-        if let previousGroup, store.snapshot?.groups.contains(where: { $0.id == previousGroup }) == true {
-            try persistProjection(previousTabs, activeID: previousActive, groupID: previousGroup, backend: previousBackend)
-            cache[previousGroup, default: [:]][previousBackend] = previousTabs
-        }
+        let outgoingDocuments = capture(previousTabs, backend: previousBackend)
+        let previousGeneration = BackendCoordinator.shared.generation
         guard let target = store.snapshot?.groups.first(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
         let requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
         let desiredBackend = StudyWorkspaceProjectionPolicy.backend(restoring: restoringBackend, requestedID: requested,
                                                                    documents: target.tabs, fallback: previousBackend)
         let documents = target.tabs.filter { $0.backend == desiredBackend }
         let retained = cache[id]?[desiredBackend] ?? []
-        // Resolve every book before mutating either coordinator; no partial group publication.
-        let staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
-            if let existing = retained.first(where: { $0.id == document.id }) { return existing }
-            if let existing = previousTabs.first(where: { $0.id == document.id }), previousBackend == desiredBackend { return existing }
-            return try hydrate(document)
-        }
-        do {
-            if desiredBackend != previousBackend {
-                try await BackendCoordinator.shared.commitCheckedAsync(desiredBackend)
-                guard BackendCoordinator.shared.activeBackendID == desiredBackend else { throw StudyWorkspaceError.backendMismatch }
+        try await ChavrusaTextTargetBackendBookResolver.shared.withTargetCatalog(in: desiredBackend) {
+            guard BackendCoordinator.shared.activeBackendID == previousBackend,
+                  BackendCoordinator.shared.generation == previousGeneration else {
+                throw BackendTransitionError.transitionSuperseded
             }
-            try store.transaction { value in
-                guard let current = value.groups.first(where: { $0.id == id }), current.tabs == target.tabs,
-                      current.profileID == target.profileID else { throw StudyWorkspaceError.invalidMembership }
-                var scene = value.scenes[sceneID] ?? .init(profileID: target.profileID, groupID: id)
-                scene.profileID = target.profileID
-                scene.groupID = id
-                var activeIDs = scene.activeTabIDsByGroup ?? [:]
-                if let active = staged.first(where: { $0.id == requested }) ?? staged.first { activeIDs[id] = active.id }
-                else { activeIDs.removeValue(forKey: id) }
-                scene.activeTabIDsByGroup = activeIDs
-                value.scenes[sceneID] = scene
-                value.lastActiveSceneID = sceneID
+            // Every document is resolved against the target catalog while the
+            // outgoing reader and committed backend are still intact.
+            let staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
+                if let existing = retained.first(where: { $0.id == document.id }), matches(existing, document) { return existing }
+                if previousBackend == desiredBackend,
+                   let existing = previousTabs.first(where: { $0.id == document.id }), matches(existing, document) { return existing }
+                return try hydrate(document)
             }
-            manager.openTabs = staged
-            for document in documents {
-                guard let tab = staged.first(where: { $0.id == document.id }), tab.viewModel.contentText.isEmpty else { continue }
-                if let locator = document.session.locator {
-                    tab.viewModel.loadBackendContent(locator)
-                } else {
-                    tab.viewModel.loadInitialContent(initialContentId: document.session.contentId)
+            try await BackendCoordinator.shared.commitCheckedAsync(desiredBackend, beforeCommit: {
+                try store.transaction { value in
+                    guard let current = value.groups.first(where: { $0.id == id }), current.tabs == target.tabs,
+                          current.profileID == target.profileID else { throw StudyWorkspaceError.invalidMembership }
+                    if let previousGroup,
+                       let index = value.groups.firstIndex(where: { $0.id == previousGroup }) {
+                        let merged = StudyWorkspaceProjectionPolicy.merging(live: outgoingDocuments,
+                            into: value.groups[index].tabs, backend: previousBackend)
+                        value.groups[index].tabs = merged
+                        value.groups[index].activeTabID = previousActive.flatMap { active in merged.contains { $0.id == active } ? active : nil }
+                    }
+                    var scene = value.scenes[sceneID] ?? .init(profileID: target.profileID, groupID: id)
+                    scene.profileID = target.profileID
+                    scene.groupID = id
+                    var activeIDs = scene.activeTabIDsByGroup ?? [:]
+                    if let previousGroup, let previousActive { activeIDs[previousGroup] = previousActive }
+                    if let active = staged.first(where: { $0.id == requested }) ?? staged.first { activeIDs[id] = active.id }
+                    else { activeIDs.removeValue(forKey: id) }
+                    scene.activeTabIDsByGroup = activeIDs
+                    value.scenes[sceneID] = scene
+                    value.lastActiveSceneID = sceneID
                 }
-                tab.viewModel.loadTOC(book: tab.book)
-            }
-            if let active = requested.flatMap({ id in staged.first { $0.id == id } }) ?? staged.first {
-                manager.selectTab(id: active.id)
-                active.viewModel.needsScrollRestore = true
-            } else {
-                // Use the canonical close path to normalize an empty projection.
-                manager.openTabs = previousTabs
-                for tab in previousTabs { manager.closeTab(id: tab.id) }
-            }
-            liveGroupID = id
-            liveBackend = desiredBackend
-            cache[id, default: [:]][desiredBackend] = staged
-            manager.persistCurrentSession(immediate: true)
-        } catch {
-            if BackendCoordinator.shared.activeBackendID != previousBackend {
-                do { try await BackendCoordinator.shared.commitCheckedAsync(previousBackend) }
-                catch { errorMessage = "לא ניתן לשחזר את מקור הספרייה: \(error.localizedDescription)" }
-            }
-            manager.openTabs = previousTabs
-            if let previousActive { manager.selectTab(id: previousActive) }
-            manager.persistCurrentSession(immediate: true)
-            throw error
+            }, publish: {
+                // Nonthrowing publication, before the backend notification.
+                manager.openTabs = staged
+                for document in documents {
+                    guard let tab = staged.first(where: { $0.id == document.id }), tab.viewModel.contentText.isEmpty else { continue }
+                    if let locator = document.session.locator {
+                        tab.viewModel.loadBackendContent(locator)
+                    } else {
+                        tab.viewModel.loadInitialContent(initialContentId: document.session.contentId)
+                    }
+                    tab.viewModel.loadTOC(book: tab.book)
+                }
+                if let active = staged.first(where: { $0.id == requested }) ?? staged.first {
+                    manager.selectTab(id: active.id)
+                    active.viewModel.needsScrollRestore = true
+                } else {
+                    manager.openTabs = previousTabs
+                    for tab in previousTabs { manager.closeTab(id: tab.id) }
+                }
+                if let previousGroup { cache[previousGroup, default: [:]][previousBackend] = previousTabs }
+                liveGroupID = id
+                liveBackend = desiredBackend
+                cache[id, default: [:]][desiredBackend] = staged
+            })
         }
+        manager.persistCurrentSession(immediate: true)
+    }
+
+    private func matches(_ tab: iOSNavigationManager.ReaderTab, _ document: ReaderDocumentTab) -> Bool {
+        TargetBackendBookIdentity.matches(id: document.session.bookId, backend: document.backend,
+            workKey: document.session.backendLocator?.workKey ?? document.session.locator?.workKey ?? tab.book.backendLocator?.workKey,
+            candidateID: tab.book.id, candidateBackend: tab.book.backendLocator?.backend,
+            candidateWorkKey: tab.book.backendLocator?.workKey)
     }
 
     func moveTab(_ id: UUID, to targetID: UUID, copy: Bool, manager: iOSNavigationManager) {
@@ -238,9 +252,12 @@ final class StudyWorkspaceNavigationAdapter {
     private func hydrate(_ document: ReaderDocumentTab) throws -> iOSNavigationManager.ReaderTab {
         let state = document.session
         let book = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
-            id: state.bookId, backendLocator: state.backendLocator?.workKey,
+            id: state.bookId, backendLocator: state.backendLocator?.workKey ?? state.locator?.workKey,
             title: state.bookTitle, in: document.backend)
-        guard (book.backendLocator?.backend ?? .otzaria) == document.backend else {
+        guard TargetBackendBookIdentity.matches(id: state.bookId, backend: document.backend,
+            workKey: state.backendLocator?.workKey ?? state.locator?.workKey ?? book.backendLocator?.workKey,
+            candidateID: book.id, candidateBackend: book.backendLocator?.backend,
+            candidateWorkKey: book.backendLocator?.workKey) else {
             throw StudyWorkspaceError.backendMismatch
         }
         let vm = ReaderViewModel(book: book)

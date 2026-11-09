@@ -203,6 +203,13 @@ extension BackendSwitchParticipant {
     func abortTransition(from currentBackend: BackendID, to targetBackend: BackendID, error: Error) {}
 }
 
+/// Optional persistence boundary for hosts that keep per-backend tab files.
+/// Neutral catalog/tool builds do not depend on the app's session adapter.
+protocol BackendSnapshotStaging: Sendable {
+    @MainActor func withSnapshotRollback(_ operation: () async throws -> Void) async throws
+    func flushStagedSnapshots() throws
+}
+
 final class WeakSwitchParticipant: @unchecked Sendable {
     weak var value: (any BackendSwitchParticipant)?
     init(_ value: any BackendSwitchParticipant) {
@@ -254,9 +261,18 @@ final class BackendCoordinator {
     private var registrations: [BackendID: LibraryBackendRegistration] = [:]
     private var inFlightCancellations: [UUID: @Sendable () -> Void] = [:]
     private let defaults: UserDefaults
+    private let sessionSnapshots: (any BackendSnapshotStaging)?
+    private var activeSessionSnapshots: (any BackendSnapshotStaging)? {
+        #if canImport(UIKit)
+        sessionSnapshots ?? BackendNavigationAdapter.shared
+        #else
+        sessionSnapshots
+        #endif
+    }
 
-    init(defaults: UserDefaults = .standard) {
+    init(defaults: UserDefaults = .standard, sessionSnapshots: (any BackendSnapshotStaging)? = nil) {
         self.defaults = defaults
+        self.sessionSnapshots = sessionSnapshots
         let args = ProcessInfo.processInfo.arguments
         let argBackend: BackendID? = {
             if let idx = args.firstIndex(where: { $0 == "-smokeBackend" || $0 == "-preferredBackend" }),
@@ -358,7 +374,7 @@ final class BackendCoordinator {
     func commitAsync(_ backendID: BackendID) async -> Bool {
         lastTransitionErrorMessage = nil
         do {
-            try await performTwoPhaseSwitchAsync(to: backendID)
+            try await commitCheckedAsync(backendID)
             lastTransitionErrorMessage = nil
             return true
         } catch {
@@ -367,8 +383,32 @@ final class BackendCoordinator {
         }
     }
 
-    func commitCheckedAsync(_ backendID: BackendID) async throws {
-        try await performTwoPhaseSwitchAsync(to: backendID)
+    func commitCheckedAsync(_ backendID: BackendID,
+                            beforeCommit: () throws -> Void = {},
+                            publish: () -> Void = {}) async throws {
+        guard !isTransitioning else { throw BackendTransitionError.transitionSuperseded }
+        let expectedGeneration = generation
+        let expectedBackend = activeBackendID
+        func commit() async throws {
+            guard generation == expectedGeneration, activeBackendID == expectedBackend else {
+                throw BackendTransitionError.transitionSuperseded
+            }
+            if let snapshots = activeSessionSnapshots {
+                try await snapshots.withSnapshotRollback {
+                    try await performTwoPhaseSwitchAsync(to: backendID, beforeCommit: beforeCommit, publish: publish)
+                }
+            } else {
+                try await performTwoPhaseSwitchAsync(to: backendID, beforeCommit: beforeCommit, publish: publish)
+            }
+        }
+        #if canImport(UIKit)
+        let resolver = ChavrusaTextTargetBackendBookResolver.shared
+        if backendID != .otzaria, !resolver.hasPreparedCatalog(for: backendID) {
+            try await resolver.withTargetCatalog(in: backendID) { try await commit() }
+            return
+        }
+        #endif
+        try await commit()
     }
 
     /// Compatibility entry point for callers whose selection is immediately usable.
@@ -462,12 +502,18 @@ final class BackendCoordinator {
         }
     }
 
-    private func performTwoPhaseSwitchAsync(to targetBackend: BackendID) async throws {
+    private func performTwoPhaseSwitchAsync(to targetBackend: BackendID,
+                                          beforeCommit: () throws -> Void = {},
+                                          publish: () -> Void = {}) async throws {
         guard !isTransitioning else {
             throw BackendTransitionError.transitionSuperseded
         }
         let wasCommitted = committedBackendID == targetBackend
         guard !wasCommitted || targetBackend != activeBackendID else {
+            try Task.checkCancellation()
+            try activeSessionSnapshots?.flushStagedSnapshots()
+            try beforeCommit()
+            publish()
             pendingBackendID = nil
             return
         }
@@ -498,6 +544,12 @@ final class BackendCoordinator {
                 let transition = try await participant.prepareTransitionAsync(from: currentBackend, to: targetBackend, token: thisToken)
                 preparedTransitions[ObjectIdentifier(participant)] = transition
             }
+            try Task.checkCancellation()
+            guard thisToken == activeTransitionToken else { throw BackendTransitionError.transitionSuperseded }
+            // Last throwing step. Persistent group selection must succeed before
+            // backend/defaults/session publication; failures abort all participants.
+            try activeSessionSnapshots?.flushStagedSnapshots()
+            try beforeCommit()
         } catch {
             for participant in activeParticipants {
                 participant.abortTransition(from: currentBackend, to: targetBackend, error: error)
@@ -539,6 +591,8 @@ final class BackendCoordinator {
             participant.publishTransition(to: targetBackend, transition: transition)
         }
 
+        publish()
+
         // PHASE 4: POST NOTIFICATION (Exactly once, after state & UI publication agree)
         NotificationCenter.default.post(name: .activeLibraryBackendDidChange, object: targetBackend)
 
@@ -546,6 +600,15 @@ final class BackendCoordinator {
         for participant in activeParticipants {
             participant.completeTransition(to: targetBackend)
         }
+    }
+
+    func catalog(for backend: BackendID, forceRefresh: Bool = false) async throws -> [LibraryCatalogNode] {
+        guard let provider = registrations[backend]?.catalog else {
+            throw BackendTransitionError.missingTargetCatalog(backend)
+        }
+        let nodes = try await provider.catalog(forceRefresh: forceRefresh)
+        try Task.checkCancellation()
+        return nodes
     }
 
     func catalog(forceRefresh: Bool = false) async throws -> [LibraryCatalogNode] {

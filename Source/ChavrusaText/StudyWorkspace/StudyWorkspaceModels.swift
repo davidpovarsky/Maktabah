@@ -33,6 +33,11 @@ struct StudyTabGroup: Codable, Equatable, Identifiable, Sendable {
 }
 
 enum StudyWorkspaceProjectionPolicy {
+    static func activeDocumentID(in group: StudyTabGroup, selection: StudySceneSelection?) -> UUID? {
+        let requested = selection?.activeTabIDsByGroup?[group.id] ?? group.activeTabID
+        return group.tabs.first(where: { $0.id == requested })?.id ?? group.tabs.first?.id
+    }
+
     /// Replace the live backend's slots in order without moving foreign-source
     /// documents to the front whenever a reading checkpoint is saved.
     static func merging(live: [ReaderDocumentTab], into saved: [ReaderDocumentTab], backend: BackendID) -> [ReaderDocumentTab] {

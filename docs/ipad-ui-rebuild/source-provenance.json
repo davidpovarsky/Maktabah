@@ -148,8 +148,8 @@
     "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
     "destination": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
     "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
-    "reason": "Exact SafariGlass, GlassButtonGroup and original motion equations/gestures/springs. Widen access levels; bypass touch deformation under Reduce Motion. Demo app/state/screens excluded.",
-    "destinationSHA256": "fa4d911c69d5ea9181d371c91448d272f3b868e2332e4504cd79aadf7439de81"
+    "reason": "Exact SafariGlass, GlassButtonGroup and original motion equations/gestures/springs. Widen access levels; bypass touch deformation under Reduce Motion. Demo app/state/screens excluded. Strict 10601 BUG-06: native interactive glass only on existing grouped actions; baseline-to-current patch: source-diffs/Strict10601-SafariGlass.diff. No position, geometry, or backing-owner change.",
+    "destinationSHA256": "80651917d8e10fc1ba8ec2a73af060bb61d68e0193dfda85b1c2e0a456470076"
   },
   {
     "repo": "DuckDuckGo-apple-browsers",

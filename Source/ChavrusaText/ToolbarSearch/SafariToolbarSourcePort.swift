@@ -4,12 +4,13 @@ import SwiftUI
 // A single Liquid Glass backing per toolbar group (iPadOS 26+), with a material fallback.
 struct SafariGlass: ViewModifier {
     let radius: CGFloat
+    var isInteractive = false
 
     @ViewBuilder
     func body(content: Content) -> some View {
         let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
         if #available(iOS 26.0, *) {
-            content.glassEffect(.regular, in: shape)
+            content.glassEffect(.regular.interactive(isInteractive), in: shape)
         } else {
             content
                 .background(.regularMaterial, in: shape)
@@ -31,7 +32,7 @@ struct GlassButtonGroup<Content: View>: View {
         }
         .padding(.horizontal, 5)
         .frame(height: 52)
-        .modifier(SafariGlass(radius: 26))
+        .modifier(SafariGlass(radius: 26, isInteractive: true))
     }
 }
 

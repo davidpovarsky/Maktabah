@@ -1,0 +1,198 @@
+{
+  "baseline": "cd5e8fef38ea2f8cfc9e3f27fbc995ade94934ec",
+  "duckDuckGoPin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
+  "audit": [
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+      "originalSHA256": "7f029400d9365eb095a8b32e02b188f0eabd6bd4a85572eb3b8d4771b4d966fc",
+      "currentSHA256": "a6db2cc014017eec30fda9991f251f686feadc2b5e454494b73e1f7ba6e27b0f",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+      "originalSHA256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+      "currentSHA256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+      "originalSHA256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+      "currentSHA256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/Command.swift",
+      "originalSHA256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+      "currentSHA256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/CommandShortcut.swift",
+      "originalSHA256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+      "currentSHA256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Recents/RecentCommands.swift",
+      "originalSHA256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+      "currentSHA256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteResults.swift",
+      "originalSHA256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+      "currentSHA256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+      "originalSHA256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+      "currentSHA256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift",
+      "originalSHA256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+      "currentSHA256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+      "originalSHA256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+      "currentSHA256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "originalSHA256": "d33809cb1628b7418f11625c5107f2510298472ecbef11e28c2c855b48ea5b3c",
+      "currentSHA256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift",
+      "originalSHA256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+      "currentSHA256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+      "originalSHA256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+      "currentSHA256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+      "originalSHA256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+      "currentSHA256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+      "originalSHA256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+      "currentSHA256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+      "originalSHA256": "69bdf8e28cc9428f0293f3931e8b6c77c3f67a2acd807339720c0fd2feaf79cd",
+      "currentSHA256": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+      "originalSHA256": "b6445ea87271f769da5948ebc6ad9665f90659452246b91bfc5ba4245eff6cc2",
+      "currentSHA256": "8ae46e5812f2782c0a5a197b62f4ec39d504ae68f75dc9be7779a3b440fbcbf0",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+      "originalSHA256": "fd600406b508106fbb2d0297f3ea3ef67926f238de7ff0ddd0217d5769d26c32",
+      "currentSHA256": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+      "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "currentSHA256": "80651917d8e10fc1ba8ec2a73af060bb61d68e0193dfda85b1c2e0a456470076",
+      "unchangedFrom10601": false
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+      "originalSHA256": "2aba6f273860245081a2d88bdd20902acc6099907907989e1d88d7356444ddf3",
+      "currentSHA256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+      "originalSHA256": "25b3e118b3abc5acfe0aea411f371056d219ca344edc204137f41e26fd663aa7",
+      "currentSHA256": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift",
+      "originalSHA256": "8e823b02a50adfd826e852495834e69e984fd75fda34780750be7e0dc5ad5245",
+      "currentSHA256": "ad26afe377a4322056b2c06ede3cca4182fa6f42fbc5f8ad783f651ebd682db8",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
+      "originalSHA256": "04b31e8a5a8b1f8913298674a3435dfeec9776ff0df3849fc177d9d2c2fc9ceb",
+      "currentSHA256": "8b5002462ce45aa379b69e5a7c69afbf4507f93e75f16bd106a8126fad392994",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "currentSHA256": "2f7b6765c4eb500f53b74a7261c372ad3c9d738d40f104705f4f02c938fdb0e2",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "currentSHA256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "originalSHA256": "a12100a4c78e4d32da6df3ea7d137766a3da7a82fad2cdb84d4f371c12a9c8cf",
+      "currentSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "originalSHA256": "6e8bb3fda08c289202c0abec6beeefb57a91bd420111c6f9506e768d97a88c57",
+      "currentSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "originalSHA256": "3c17cdbf42a3720645a558320f5fb28da29090f040f5d7a3c94745d43f6118ad",
+      "currentSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "originalSHA256": "efcdd9ebba2697b2ef8b7dcbf3f71f27e4b5c26a73d8a5da47123edc28e73ca5",
+      "currentSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "originalSHA256": "9ca6e76e744090cb10984d40fe770de2051dd3b24d81f5fcefac2adaf7bd4b33",
+      "currentSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+      "originalSHA256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "currentSHA256": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9",
+      "unchangedFrom10601": true
+    },
+    {
+      "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+      "originalSHA256": "78a3a1b88b49c29d7e5cbb880349c88f42679d4254a4f397b9acbc803f4b0f05",
+      "currentSHA256": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
+      "unchangedFrom10601": true
+    }
+  ]
+}

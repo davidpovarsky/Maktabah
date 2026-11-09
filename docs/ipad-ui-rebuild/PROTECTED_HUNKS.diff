@@ -564,3 +564,50 @@ index 053b1a10..e362c40f 100644
 +				E81109000000000000000001 /* ReaderOverviewPresentation.swift */,
 @@ -4786,0 +4790 @@
 +				E81109000000000000000002 /* ReaderOverviewPresentation.swift in Sources */,
+
+# 2026-11-09 strict 10601: exact owner-approved changes; zero-context diff
+diff --git a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+index 90a3328f..c42ab4af 100644
+--- a/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
++++ b/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift
+@@ -89,0 +90,2 @@ struct iOSReaderWorkspaceView: View {
++    @ScaledMetric private var minimumReaderWidth: CGFloat = 430
++    @State private var detailColumnWidth: CGFloat = 0
+@@ -153,3 +155,3 @@ struct iOSReaderWorkspaceView: View {
+-            // The faithful Inspector always overlays Reader through the existing
+-            // FloatingPanel. Docking it reserves an opaque reading-theme column.
+-            return true
++            return !ChavrusaReaderWorkspaceWidthPolicy.canDock(
++                detailWidth: detailColumnWidth, minimumReaderWidth: minimumReaderWidth
++            )
+@@ -262,0 +265,3 @@ struct iOSReaderWorkspaceView: View {
++        .onChange(of: shouldPresentPanelInContent) { _, _ in
++            updatePanelPresentation()
++        }
+@@ -303 +308 @@ struct iOSReaderWorkspaceView: View {
+-                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - 430))
++                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - minimumReaderWidth - 18))
+@@ -326,0 +332 @@ struct iOSReaderWorkspaceView: View {
++        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailColumnWidth = $0 }
+@@ -622 +628 @@ struct iOSReaderWorkspaceView: View {
+-            } else if useWideLayout {
++            } else if sidebarCoordinator != nil || useWideLayout {
+diff --git a/Source/Features/Search/iOS/SearchResultsListView.swift b/Source/Features/Search/iOS/SearchResultsListView.swift
+index 1354ba65..34c3d6a7 100644
+--- a/Source/Features/Search/iOS/SearchResultsListView.swift
++++ b/Source/Features/Search/iOS/SearchResultsListView.swift
+@@ -127,0 +128 @@ struct SearchResultsListView: View {
++                .listRowBackground(Color.appBackground)
+@@ -144,0 +146 @@ struct SearchResultsListView: View {
++                .listRowBackground(Color.appBackground)
+@@ -157,0 +160 @@ struct SearchResultsListView: View {
++                .listRowBackground(Color.appBackground)
+@@ -161,0 +165,2 @@ struct SearchResultsListView: View {
++        .scrollContentBackground(.hidden)
++        .background(Color.appBackground)
+diff --git a/Source/UI/iOS/Views/iPadLayout.swift b/Source/UI/iOS/Views/iPadLayout.swift
+index 42cd0f42..0e23bb26 100644
+--- a/Source/UI/iOS/Views/iPadLayout.swift
++++ b/Source/UI/iOS/Views/iPadLayout.swift
+@@ -112,0 +113 @@ struct iPadLayout: View {
++                        .navigationBarTitleDisplayMode(.inline)

@@ -27,7 +27,7 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
         coordinator.model.selectedID = selectedID
         coordinator.model.onMove = onReorder
         controller.loadViewIfNeeded()
-        controller.theme = ReaderTabsTheme(tabsBarBackgroundColor: backgroundColor, omniBarBackgroundColor: backgroundColor)
+        controller.theme = ReaderTabsTheme(tabsBarBackgroundColor: .appSecondaryBackground, omniBarBackgroundColor: backgroundColor)
         if oldIDs == tabs.map(\.id) {
             controller.refreshStyleInPlace(tabsModel: coordinator.model, scrollToSelected: true)
         } else {

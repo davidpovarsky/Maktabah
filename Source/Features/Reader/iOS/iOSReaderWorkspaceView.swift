@@ -87,6 +87,8 @@ struct iOSReaderWorkspaceView: View {
 
     @State private var compactContentsRequested = false
     @State private var compactUsesContentsFallback = false
+    @ScaledMetric private var minimumReaderWidth: CGFloat = 430
+    @State private var detailColumnWidth: CGFloat = 0
     @State private var panelWidth = Self.defaultPanelWidth
     @State private var dragStartWidth: CGFloat?
     @State private var showPanelSheet = false
@@ -150,9 +152,9 @@ struct iOSReaderWorkspaceView: View {
         // Both pages occupy the same sidebar. Selecting a page must not switch
         // between two structural reader branches and recreate its TextKit view.
         if sidebarCoordinator != nil {
-            // The faithful Inspector always overlays Reader through the existing
-            // FloatingPanel. Docking it reserves an opaque reading-theme column.
-            return true
+            return !ChavrusaReaderWorkspaceWidthPolicy.canDock(
+                detailWidth: detailColumnWidth, minimumReaderWidth: minimumReaderWidth
+            )
         }
         return useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }
@@ -260,6 +262,9 @@ struct iOSReaderWorkspaceView: View {
         .onChange(of: horizontalSizeClass) { _, _ in
             updatePanelPresentation()
         }
+        .onChange(of: shouldPresentPanelInContent) { _, _ in
+            updatePanelPresentation()
+        }
         .onChange(of: floatingPanelState) { _, newState in
             if shouldPresentPanelInContent, newState == .hidden, showPanel {
                 viewModel.closeReaderInspector()
@@ -300,7 +305,7 @@ struct iOSReaderWorkspaceView: View {
     private var workspaceDetail: some View {
         GeometryReader { geometry in
             if sidebarCoordinator != nil {
-                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - 430))
+                let maximum = min(Self.maximumPanelWidth, max(Self.minimumPanelWidth, geometry.size.width - minimumReaderWidth - 18))
                 ChavrusaReaderWorkspaceLayout(
                     reader: readerSurface,
                     panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel),
@@ -324,6 +329,7 @@ struct iOSReaderWorkspaceView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-workspace")
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailColumnWidth = $0 }
     }
 
     private var readerSurface: some View {
@@ -619,7 +625,7 @@ struct iOSReaderWorkspaceView: View {
                 if floatingPanelState == nil || floatingPanelState == .hidden {
                     floatingPanelState = .half
                 }
-            } else if useWideLayout {
+            } else if sidebarCoordinator != nil || useWideLayout {
                 showPanelSheet = false
                 floatingPanelState = .hidden
             } else {

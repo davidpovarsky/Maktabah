@@ -1,5 +1,25 @@
 # Faithful iPad UI rebuild — ownership and authorization
 
+## 2026-11-09 — Strict 10601 protected-hunk approval
+
+In the current chat the owner answered the exact proposal question:
+“מאשר את השינויים המדויקים בשני הקבצים ואת בדיקתם”. The question identified
+`PROPOSAL_ONLY_strict_10601_protected.diff` and both protected files. This
+authorizes only that recorded diff: measured detail-width docking/state hooks
+in `iOSReaderWorkspaceView.swift`, and three row-background plus List backing
+modifiers in `SearchResultsListView.swift`. It does not authorize other hunks,
+navigation restructuring, renderer changes, or Simulator execution. The proposal
+is retained verbatim as the approval scope; rollback reverses it together with
+the downstream width policy. Physical iPad acceptance remains pending.
+
+The owner separately answered “מאשר את השורה המדויקת ואת בדיקתה” to
+`PROPOSAL_ONLY_strict_10601_sidebar_title.diff`: exactly one inline-title modifier
+inside the enabled host's Library navigation content in `iPadLayout.swift`.
+Reader already uses inline mode; Apple documents automatic root navigation
+titles as large. This removes that inconsistent title-mode ownership without
+removing any native bar/control. Pixel-level attribution of the screenshot's
+blank band remains OWNER_ACCEPTANCE_PENDING, not a claimed runtime fix.
+
 2026-11-08 current owner attachment, “תיקון נאמנות חזותית למקורות המקוריים”, explicitly requests continuing `experiment/ipad-ui-faithful-from-9401` at `661d53e0`, restoring Inspector chrome and floating presentation, Safari source grouping, toolbar overview/add actions, empty-strip removal, original overview interactions, transparent safe-area dots, real Native/CI screenshots and a commit. No Asana writes or main merge. This continuation runs in the primary session without delegation.
 
 The sole new protected app delta is `Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift`, `shouldPresentPanelInContent`'s enabled-sidebar branch: return true to keep the existing FloatingPanel active independently of sidebar visibility. The owner names this exact file as an allowed essential connection in §2. A downstream-only `floats=true` argument was rejected because the protected existing presentation-state machine would still set FloatingPanelState.hidden with the sidebar closed. Original flag-off/phone branches remain unchanged. Rollback: revert this conditional delta and downstream chrome option together. Native checks compare reader width with/without Inspector and verify close. Current upstream HEAD observed read-only: `46e893c65139fbb1e582d6595b0d220ea912324a`; local merge base `a0ed0df908a6cb38bc459d4baaeb400f447b2fc4`. Exact delta is appended in PROTECTED_HUNKS.diff; no policy/checker exceptions changed.

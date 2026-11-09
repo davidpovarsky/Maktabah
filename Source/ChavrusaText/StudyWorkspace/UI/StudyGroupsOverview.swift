@@ -24,7 +24,7 @@ struct StudyGroupsOverview: View {
                 documents: (workspace.group?.tabs ?? []).map {
                     ReaderTabSwitcherDocument(id: $0.id, title: $0.session.bookTitle ?? "ספר", subtitle: $0.backend.displayName)
                 },
-                selectedID: workspace.group?.activeTabID,
+                selectedID: workspace.activeDocumentID,
                 layoutMode: tabSwitcherLayout,
                 onSelect: openDocument,
                 onClose: closeDocument,
@@ -132,7 +132,7 @@ struct StudyGroupsOverview: View {
     private func openDocument(_ document: ReaderTabSwitcherDocument) {
         // Like returning to the browser's already-selected tab: no navigation
         // or restoration should run just to uncover its existing view.
-        if workspace.group?.activeTabID == document.id {
+        if workspace.activeDocumentID == document.id {
             onClose()
             return
         }

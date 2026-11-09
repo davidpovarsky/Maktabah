@@ -32,12 +32,66 @@ enum BackendTransitionState: Equatable, Sendable {
 /// rather than destructively discarding all open tabs when switching between backends.
 /// P3-2 & Final Gate: Ensures strict transaction ordering (disk write before cache update),
 /// serialized disk I/O under lock protection, and input validation without phantom cache states.
-final class BackendNavigationAdapter: @unchecked Sendable {
+final class BackendNavigationAdapter: BackendSnapshotStaging, @unchecked Sendable {
     static let shared = BackendNavigationAdapter()
 
     private let lock = NSLock()
     private var inMemoryCache: [String: Data] = [:]
     private let storageDirectory: URL
+    private enum OriginalSnapshot { case missing, bytes(Data) }
+    private var stagedSnapshots: [BackendID: Data]?
+    private var originalSnapshots: [BackendID: OriginalSnapshot] = [:]
+    private var flushedBackends: Set<BackendID> = []
+
+    /// Async preparation may save snapshots through existing participants.
+    /// Keep those writes in memory until all participants have validated.
+    @MainActor
+    func withSnapshotRollback(_ operation: () async throws -> Void) async throws {
+        try lock.withSnapshotLock {
+            guard stagedSnapshots == nil, originalSnapshots.isEmpty else {
+                throw BackendTransitionError.transitionSuperseded
+            }
+            stagedSnapshots = [:]
+        }
+        do {
+            try await operation()
+            lock.withSnapshotLock { stagedSnapshots = nil; originalSnapshots = [:]; flushedBackends = [] }
+        } catch {
+            let originals = lock.withSnapshotLock { () -> [BackendID: OriginalSnapshot] in
+                stagedSnapshots = nil
+                return originalSnapshots.filter { flushedBackends.contains($0.key) }
+            }
+            defer { lock.withSnapshotLock { originalSnapshots = [:]; flushedBackends = [] } }
+            // A flush may have written earlier files before another write or
+            // the workspace transaction failed. Restore exact previous bytes.
+            var restorationError: Error?
+            for (backend, original) in originals {
+                do {
+                    switch original {
+                    case .bytes(let data): try saveBackendSessionSnapshot(backend: backend, sessionData: data)
+                    case .missing:
+                        _ = try clearBackendSessionSnapshot(backend: backend)
+                    }
+                } catch {
+                    restorationError = restorationError ?? error
+                }
+            }
+            if let restorationError { throw restorationError }
+            throw error
+        }
+    }
+
+    func flushStagedSnapshots() throws {
+        let pending = lock.withSnapshotLock { () -> [BackendID: Data] in
+            let pending = stagedSnapshots ?? [:]
+            stagedSnapshots = nil
+            return pending
+        }
+        for backend in pending.keys.sorted(by: { $0.rawValue < $1.rawValue }) {
+            lock.withSnapshotLock { _ = flushedBackends.insert(backend) }
+            try saveBackendSessionSnapshot(backend: backend, sessionData: pending[backend]!)
+        }
+    }
 
     private(set) var transitionState: BackendTransitionState = .idle
     private(set) var lastTransitionError: String? = nil
@@ -79,6 +133,14 @@ final class BackendNavigationAdapter: @unchecked Sendable {
         defer { lock.unlock() }
 
         let targetURL = fileURL(for: backend)
+        if stagedSnapshots != nil {
+            if originalSnapshots[backend] == nil {
+                originalSnapshots[backend] = FileManager.default.fileExists(atPath: targetURL.path)
+                    ? .bytes(try Data(contentsOf: targetURL)) : .missing
+            }
+            stagedSnapshots?[backend] = sessionData
+            return
+        }
         let parentDir = targetURL.deletingLastPathComponent()
         try FileManager.default.createDirectory(at: parentDir, withIntermediateDirectories: true)
 
@@ -135,6 +197,7 @@ final class BackendNavigationAdapter: @unchecked Sendable {
         lock.lock()
         defer { lock.unlock() }
 
+        if let staged = stagedSnapshots?[backend] { return staged }
         if let cached = inMemoryCache[backend.rawValue] {
             return cached
         }
@@ -163,6 +226,7 @@ final class BackendNavigationAdapter: @unchecked Sendable {
         lock.lock()
         defer { lock.unlock() }
 
+        guard stagedSnapshots == nil else { throw BackendTransitionError.transitionSuperseded }
         let targetURL = fileURL(for: backend)
         let fileExisted = FileManager.default.fileExists(atPath: targetURL.path)
         if fileExisted {
@@ -345,5 +409,13 @@ final class BackendNavigationAdapter: @unchecked Sendable {
         transitionState = .idle
         lastTransitionError = nil
         lock.unlock()
+    }
+}
+
+private extension NSLock {
+    func withSnapshotLock<T>(_ body: () throws -> T) rethrows -> T {
+        lock()
+        defer { unlock() }
+        return try body()
     }
 }

@@ -95,6 +95,13 @@ Important unresolved questions or uncertainties.
 
 ## Planned / Todo
 
+- [ ] Review legacy synchronous backend entry points separately from the strict
+  10601 async settings/group repair. `iOSMainView`, annotation navigation and
+  Bootstrap still call synchronous `commit`; cold target catalogs cannot be
+  awaited there. The new target-scoped catalog and snapshot staging cover the
+  async settings/group paths. Any routing change in original app/navigation
+  files needs an exact owner-approved hook and real device regression evidence.
+
 - [ ] Verify a genuinely compact iPad window below the regular-width size class in the faithful rebuild. `iOSMainView` currently chooses `iPhoneLayout` solely by size class, which can discard the new iPad host when a physical iPad window becomes compact. The prepared window drag currently targets 55% of landscape width and may remain regular. Check actual geometry first; if needed use only the package-authorized minimal Scene routing hook, preserving phone/flags-off defaults and the existing FloatingPanel. Do not fake the size class or broadly rewrite root navigation.
 
 - [ ] Separate native bootstrap search-acceptance expectations by data profile. `OtzariaNativeBootstrapAcceptanceRunner` currently requires exactly `18_879` index documents in its optional search fixture, which is specific to miniTest10. Full production UI provisioning therefore uses the original digest/schema-verified installer with that optional fixture disabled; this is not full production search acceptance. Do not broaden DB/search-engine changes as part of the faithful UI rebuild.

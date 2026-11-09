@@ -1,0 +1,12 @@
+diff --git a/Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift b/Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift
+index 40ddb128..eb01613f 100644
+--- a/Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift
++++ b/Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift
+@@ -6,0 +7 @@ struct SafariGlass: ViewModifier {
++    var isInteractive = false
+@@ -12 +13 @@ struct SafariGlass: ViewModifier {
+-            content.glassEffect(.regular, in: shape)
++            content.glassEffect(.regular.interactive(isInteractive), in: shape)
+@@ -34 +35 @@ struct GlassButtonGroup<Content: View>: View {
+-        .modifier(SafariGlass(radius: 26))
++        .modifier(SafariGlass(radius: 26, isInteractive: true))
