@@ -21,18 +21,28 @@ private struct ReaderSidebarCoordinatorKey: EnvironmentKey {
     static let defaultValue: ReaderSidebarPageCoordinator? = nil
 }
 
+private struct Exact9401WorkspaceKey: EnvironmentKey {
+    static let defaultValue: StudyWorkspaceNavigationAdapter? = nil
+}
+
 extension EnvironmentValues {
+    var exact9401Workspace: StudyWorkspaceNavigationAdapter? {
+        get { self[Exact9401WorkspaceKey.self] }
+        set { self[Exact9401WorkspaceKey.self] = newValue }
+    }
     var chavrusaReaderSidebar: ReaderSidebarPageCoordinator? {
         get { self[ReaderSidebarCoordinatorKey.self] }
         set { self[ReaderSidebarCoordinatorKey.self] = newValue }
     }
 }
 
-/// One viewer-only native action. The existing palette owns its input, material,
-/// command identity, dismissal and UIKit Escape handling.
-struct Exact9401PaletteLauncher: ViewModifier {
+/// Viewer-only native search and study profile actions. Existing components
+/// continue to own palette commands and profile/group management behavior.
+struct Exact9401ViewerToolbar: ViewModifier {
     let manager: iOSNavigationManager
     @State private var isPresented = false
+    @State private var showsProfiles = false
+    @Environment(\.exact9401Workspace) private var workspace
 
     func body(content: Content) -> some View {
         content
@@ -44,6 +54,14 @@ struct Exact9401PaletteLauncher: ViewModifier {
                         Label("חיפוש מהיר בספרייה", systemImage: "magnifyingglass")
                     }
                     .accessibilityIdentifier("reader-command-palette-launcher")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    if let workspace {
+                        StudyProfileMenu(workspace: workspace, manager: manager, usesNativeToolbar: true) {
+                            isPresented = false
+                            showsProfiles = true
+                        }
+                    }
                 }
             }
             .overlay(alignment: .top) {
@@ -60,7 +78,13 @@ struct Exact9401PaletteLauncher: ViewModifier {
                     }
                 }
             }
-            .onDisappear { isPresented = false }
+            .sheet(isPresented: $showsProfiles) {
+                if let workspace {
+                    StudyProfileManagementView(workspace: workspace, manager: manager)
+                }
+            }
+            .onChange(of: workspace?.selection?.profileID) { _, _ in isPresented = false }
+            .onDisappear { isPresented = false; showsProfiles = false }
     }
 }
 
@@ -74,6 +98,7 @@ struct Exact9401WorkspaceLifecycle: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .environment(\.exact9401Workspace, workspace)
             .background {
                 if MaktabahApp.isIpad {
                     ReaderSceneIdentityReader { sceneID = $0 }

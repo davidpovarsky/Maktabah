@@ -137,7 +137,7 @@ struct iPadLayout: View {
                 .background(Color.appBackground)
                 .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("reader-detail-column")
-                .modifier(Exact9401PaletteLauncher(manager: bManager))
+                .modifier(Exact9401ViewerToolbar(manager: bManager))
         }
         .navigationSplitViewStyle(.balanced)
         .background(Color.appBackground.ignoresSafeArea())
