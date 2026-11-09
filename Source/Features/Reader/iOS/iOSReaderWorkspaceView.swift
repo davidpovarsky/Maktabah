@@ -82,8 +82,10 @@ struct iOSReaderWorkspaceView: View {
 
     @Environment(iOSNavigationManager.self) private var navigationManager
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.chavrusaReaderSidebar) private var sidebarCoordinator
     @Environment(\.layoutDirection) private var layoutDirection
 
+    @State private var detailColumnWidth: CGFloat = 0
     @State private var compactContentsRequested = false
     @State private var compactUsesContentsFallback = false
     @State private var panelWidth = Self.defaultPanelWidth
@@ -139,11 +141,17 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var contentsIsOpen: Bool {
-        libraryColumnVisibility != .detailOnly
+        if let sidebarCoordinator {
+            return sidebarCoordinator.page == .contents && libraryColumnVisibility != .detailOnly
+        }
+        return libraryColumnVisibility != .detailOnly
     }
 
     private var shouldPresentPanelInContent: Bool {
-        useWideLayout && librarySidebarIsOpen && contentsIsOpen
+        if sidebarCoordinator != nil {
+            return detailColumnWidth < 430 + Self.minimumPanelWidth + 18
+        }
+        return useWideLayout && librarySidebarIsOpen && contentsIsOpen
     }
 
     private var showPanel: Bool {
@@ -249,6 +257,9 @@ struct iOSReaderWorkspaceView: View {
         .onChange(of: horizontalSizeClass) { _, _ in
             updatePanelPresentation()
         }
+        .onChange(of: shouldPresentPanelInContent) { _, _ in
+            updatePanelPresentation()
+        }
         .onChange(of: floatingPanelState) { _, newState in
             if shouldPresentPanelInContent, newState == .hidden, showPanel {
                 viewModel.closeReaderInspector()
@@ -288,7 +299,11 @@ struct iOSReaderWorkspaceView: View {
     @ViewBuilder
     private var workspaceDetail: some View {
         GeometryReader { geometry in
-            if useWideLayout {
+            if sidebarCoordinator != nil {
+                // One original HStack/reader position across page and width
+                // changes; only the inspector moves between docking/floating.
+                wideWorkspace(totalWidth: geometry.size.width)
+            } else if useWideLayout {
                 if shouldPresentPanelInContent {
                     floatingWorkspace
                 } else {
@@ -302,6 +317,7 @@ struct iOSReaderWorkspaceView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("reader-workspace")
+        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailColumnWidth = $0 }
     }
 
     private var readerSurface: some View {
@@ -382,7 +398,7 @@ struct iOSReaderWorkspaceView: View {
                 .geometryGroup()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            if showPanel {
+            if showPanel && !(sidebarCoordinator != nil && shouldPresentPanelInContent) {
                 panelResizeHandle(allowedMaximum: allowedMaximum)
                     .transition(.opacity)
                 inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
@@ -394,6 +410,12 @@ struct iOSReaderWorkspaceView: View {
             }
         }
         .animation(.snappy(duration: 0.42, extraBounce: 0), value: showPanel)
+        .modifier(SharedSidebarFloatingPanel(
+            isEnabled: sidebarCoordinator != nil,
+            isFloating: shouldPresentPanelInContent,
+            state: $floatingPanelState,
+            panel: inspectorPanel(showsCloseButton: true, chrome: .floatingPanel)
+        ))
     }
 
     private func panelResizeHandle(allowedMaximum: CGFloat) -> some View {
@@ -515,6 +537,10 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func openContents() {
+        if sidebarCoordinator != nil {
+            presentContents()
+            return
+        }
         if !useWideLayout, showPanelSheet {
             pendingCompactContentsOpen = true
             viewModel.closeReaderInspector()
@@ -532,6 +558,12 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func presentContents() {
+        if let sidebarCoordinator {
+            sidebarCoordinator.showContents()
+            preferredCompactColumn = .sidebar
+            withAnimation(.snappy(duration: 0.34, extraBounce: 0)) { libraryColumnVisibility = .all }
+            return
+        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.34, extraBounce: 0)) {
                 compactContentsRequested = true
@@ -548,6 +580,11 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func closeContents() {
+        if sidebarCoordinator != nil {
+            preferredCompactColumn = .detail
+            withAnimation(.snappy(duration: 0.30, extraBounce: 0)) { libraryColumnVisibility = .detailOnly }
+            return
+        }
         if !useWideLayout {
             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) {
                 compactContentsRequested = false
@@ -584,7 +621,7 @@ struct iOSReaderWorkspaceView: View {
                 if floatingPanelState == nil || floatingPanelState == .hidden {
                     floatingPanelState = .half
                 }
-            } else if useWideLayout {
+            } else if sidebarCoordinator != nil || useWideLayout {
                 showPanelSheet = false
                 floatingPanelState = .hidden
             } else {
@@ -689,5 +726,30 @@ struct iOSReaderWorkspaceView: View {
         let completion = pendingNotesDidChange
         pendingNotesDidChange = nil
         completion?()
+    }
+}
+
+/// Same native FloatingPanel configuration as the authentic floatingWorkspace.
+/// Attach it without changing the original reader's HStack position on reflow.
+/// This file is fork-owned (absent from upstream 46e893c6).
+private struct SharedSidebarFloatingPanel<Panel: View>: ViewModifier {
+    let isEnabled: Bool
+    let isFloating: Bool
+    @Binding var state: FloatingPanelState?
+    let panel: Panel
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if isEnabled {
+            content
+                .floatingPanel { _ in
+                    if isFloating { panel }
+                }
+                .floatingPanelState($state)
+                .floatingPanelLayout(StudyContentFloatingPanelLayout())
+                .floatingPanelSurfaceAppearance(.transparent(cornerRadius: 26))
+        } else {
+            content
+        }
     }
 }
