@@ -16,6 +16,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Restoring the original iPad reader must preserve the scene-lived StudyWorkspaceNavigationAdapter outside visible chrome. Its old ChavrusaReaderHost alone attached the sidecar/checkpoint lifecycle; detaching that host without a scene-level attachment silently loses later checkpoints and group reconciliation. The exact-9401 branch attaches it through the existing main-view modifier and exposes the same adapter to native profile actions; physical-device acceptance remains pending.
+
 - Native menu labels may insert Unicode bidi isolates around interpolated group names (`העבר אל ⁨שם⁩`), and the original Library action is `Select…`. Match the real menu's action prefix and group membership while keeping uniqueness/scope assertions; do not assume plain concatenated labels. Cold reader assertions must wait for the actual asynchronous sidecar projection, and retain before/after UUID-scoped sidecar attachments to distinguish stored-state loss from hydration timing.
 
 - Genuine 9401 compact-window captures in run 42008440372 show UIKit replacing the overflowed `reader-more-menu` with a native `BottomOverflowBarButtonItem` in the original bottom toolbar. Measure actual visible native controls for reader-body pixel checks; neither a missing overflowed child identifier nor a full-height Toolbar accessibility frame proves that the bottom bar disappeared. The 13-inch window was 375×557 with real text visible; retain its native screenshot/hierarchy as evidence.
