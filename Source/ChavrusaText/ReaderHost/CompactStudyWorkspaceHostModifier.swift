@@ -25,6 +25,7 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .modifier(Exact9401WorkspaceLifecycle(manager: manager))
             .background {
                 if Self.isEnabled {
                     ReaderSceneIdentityReader { sceneID = $0 }
