@@ -1,5 +1,13 @@
 # Faithful iPad rebuild — execution status
 
+## Seven-fix experimental delivery10701 — 2026-11-09
+
+**Delivered ChavrusaText 1.0.0 (10701), Apple VALID**, expired=false, observed 2026-11-09T15:11:26.348169+00:00. Exact source `1b0641a7e9c1a743f05f46aa06c74e7658642265`, pushed branch `experiment/ipad-ui-faithful-from-9401`; [successful run42628632080](https://github.com/davidpovarsky/Maktabah/actions/runs/42628632080). [Full Hebrew delivery report, seven-issue matrix, ownership, signing, evidence and pending owner checklist](SEVEN_FIXES_TESTFLIGHT_10701.md).
+
+Current-source checks passed: 379 components, 61 workspace, 57 seven-fix assertions; Swift parsing/membership, 32 provenance hashes and exact three-file protected proposal. Real device-target build/archive/sign/export, IPA and Apple validation/upload/processing passed. Downloaded IPA hash/plist independently matched CI; SHA256 `08486ada7122062f5709934edee94139507f177b8d4ac1e8effe406c79cea8ea`. Team NA6HPWARQ2, expected bundle/App Groups/iCloud/production APNs retained. Artifact13685562167, `ChavrusaText-production-signed-ipa-10701`; tester assignment/installability NOT_VERIFIED.
+
+BUG01/02/05/06/07 are implemented with runtime limits; **BUG03/04 remain PARTIAL**, including the unproven whole top-gap cause and unchanged strip-below-native-toolbar relationship. All physical iPad/portrait/multitasking/visual/rollback-race acceptance remains **OWNER_ACCEPTANCE_PENDING**. Simulator cases NOT_RUN at the owner's instruction. One dispatch/watcher; no Asana writes, subagents, main merge, signing/pin/workflow/test-gate changes or data reset. The source-candidate entry below records the state before this successful delivery.
+
 ## Seven-defect experimental candidate — 2026-11-09
 
 `[נועם | DEV] [MAIN_SESSION]`, NORMAL. Current work starts from clean `cd5e8fef38ea2f8cfc9e3f27fbc995ade94934ec` on `experiment/ipad-ui-faithful-from-9401`. [Pre-edit ownership/cause matrix](SEVEN_FIXES_20261109.md), [owner-approved exact protected hooks](SEVEN_FIXES_APPROVED_HOOKS.diff), and [current source audit](source-audit-seven-fixes-20261109.json). This entry supersedes the historical floating-Inspector requirement for this candidate.
