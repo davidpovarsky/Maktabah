@@ -1,0 +1,45 @@
+name: Crest + Maktabah Original Reader Playground Validation
+
+on:
+  push:
+    branches:
+      - experiment/crest-reader-playground
+    paths:
+      - "Playgrounds/CrestReaderLab.swiftpm/**"
+      - ".github/workflows/crest-reader-playground.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-typecheck:
+    runs-on: macos-26
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect Apple SDK
+        run: |
+          xcodebuild -version
+          xcrun swift --version
+      - name: Install XcodeGen
+        run: |
+          command -v xcodegen || brew install xcodegen
+      - name: Generate iOS project from exact Playground sources
+        working-directory: Playgrounds/CrestReaderLab.swiftpm
+        run: |
+          xcodegen generate --spec qa-project.yml
+      - name: Compile real iOS SwiftUI sources (unsigned simulator)
+        working-directory: Playgrounds/CrestReaderLab.swiftpm
+        run: |
+          set -o pipefail
+          xcodebuild -project CrestReaderLabQA.xcodeproj -scheme CrestReaderLabQA \
+            -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build.log
+      - name: Retain diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crest-reader-playground-build-log
+          path: Playgrounds/CrestReaderLab.swiftpm/build.log
+          if-no-files-found: ignore

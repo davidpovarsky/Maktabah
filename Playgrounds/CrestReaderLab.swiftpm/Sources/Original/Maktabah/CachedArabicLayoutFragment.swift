@@ -1,0 +1,105 @@
+//
+//  CachedArabicLayoutFragment.swift
+//  Maktabah
+//
+//  Created by Ghoys Mawahib on 01/07/26.
+//
+
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(Cocoa)
+import Cocoa
+#endif
+
+// MARK: - Cached Layout Fragment
+
+class CachedArabicLayoutFragment: NSTextLayoutFragment {
+    /// Cache level grafis
+    private var cachedLayer: CGLayer?
+
+    private var hasActiveSelection: Bool {
+        guard let tlm = textLayoutManager else { return false }
+        let fragmentRange = rangeInElement
+        for selection in tlm.textSelections {
+            for selRange in selection.textRanges where !selRange.isEmpty {
+                if fragmentRange.intersects(selRange) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    override func draw(at point: CGPoint, in context: CGContext) {
+        let bounds = renderingSurfaceBounds
+        guard bounds.width > 0, bounds.height > 0 else {
+            super.draw(at: point, in: context)
+            return
+        }
+
+        if hasActiveSelection {
+            if TextViewState.shared.enhancedUnderline, TextViewState.shared.isThinUnderlineFont,
+               let element = textElement
+            {
+                EnhancedUnderlineRenderer.drawUnderlines(
+                    for: element,
+                    lineFragments: textLineFragments,
+                    drawPoint: point,
+                    in: context
+                )
+            }
+            super.draw(at: point, in: context)
+            return
+        }
+
+        if cachedLayer == nil {
+            cachedLayer = CGLayer(context, size: bounds.size, auxiliaryInfo: nil)
+
+            if let layerContext = cachedLayer?.context {
+                let drawPoint = CGPoint(x: -bounds.minX, y: -bounds.minY)
+
+                if TextViewState.shared.enhancedUnderline, TextViewState.shared.isThinUnderlineFont,
+                   let element = textElement
+                {
+                    EnhancedUnderlineRenderer.drawUnderlines(
+                        for: element,
+                        lineFragments: textLineFragments,
+                        drawPoint: drawPoint,
+                        in: layerContext
+                    )
+                }
+
+                super.draw(at: drawPoint, in: layerContext)
+            }
+        }
+
+        if let layer = cachedLayer {
+            let targetPoint = CGPoint(x: point.x + bounds.minX, y: point.y + bounds.minY)
+            context.draw(layer, at: targetPoint)
+        }
+    }
+
+    /// Hapus cache jika paragraf ini diedit, di-highlight, atau berubah font
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        cachedLayer = nil
+    }
+}
+
+// MARK: - TextKit 2 Delegates
+
+#if os(macOS)
+extension IbarotTextView: @MainActor NSTextLayoutManagerDelegate {
+    /// Fungsi ini akan dipanggil otomatis oleh TextKit 2 setiap kali ia butuh merender paragraf baru
+    func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, textLayoutFragmentFor location: NSTextLocation, in textElement: NSTextElement) -> NSTextLayoutFragment {
+        CachedArabicLayoutFragment(textElement: textElement, range: textElement.elementRange)
+    }
+}
+#else
+extension iOSCustomIbarotTextView: @MainActor NSTextLayoutManagerDelegate {
+    /// Fungsi ini akan dipanggil otomatis oleh TextKit 2 setiap kali ia butuh merender paragraf baru
+    func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, textLayoutFragmentFor location: NSTextLocation, in textElement: NSTextElement) -> NSTextLayoutFragment {
+        CachedArabicLayoutFragment(textElement: textElement, range: textElement.elementRange)
+    }
+}
+#endif
