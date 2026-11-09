@@ -13,6 +13,70 @@ final class ReaderOverviewPresentationTests: XCTestCase {
         func updateUIView(_ view: UIScrollView, context: Context) {}
     }
 
+    @MainActor private final class PresentationFlag: ObservableObject {
+        @Published var isPresented = false
+    }
+
+    private struct SwiftUIPresentationProbe: View {
+        @ObservedObject var flag: PresentationFlag
+        let scroll: UIScrollView
+        var body: some View {
+            ScrollProbe(scroll: scroll).overlay {
+                ReaderOverviewPresentation(isPresented: $flag.isPresented) {
+                    Text("Source overview").frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+            }
+        }
+    }
+
+    @MainActor
+    func testSwiftUIBindingActuallyPresentsTheContextAndReturnsToItsReader() throws {
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let oldKey = scene.windows.first(where: \.isKeyWindow)
+        let window = UIWindow(windowScene: scene)
+        let scroll = UIScrollView()
+        scroll.contentInsetAdjustmentBehavior = .never
+        scroll.contentSize = CGSize(width: window.bounds.width, height: window.bounds.height * 5)
+        let flag = PresentationFlag()
+        let host = UIHostingController(rootView: SwiftUIPresentationProbe(flag: flag, scroll: scroll))
+        window.rootViewController = host
+        window.makeKeyAndVisible()
+        host.view.layoutIfNeeded()
+        defer { window.isHidden = true; oldKey?.makeKeyAndVisible() }
+        @MainActor func findAnchor(_ controller: UIViewController) -> ReaderOverviewPresentationController? {
+            if let anchor = controller as? ReaderOverviewPresentationController { return anchor }
+            for child in controller.children {
+                if let anchor = findAnchor(child) { return anchor }
+            }
+            return nil
+        }
+        waitUntil("The real SwiftUI representable controller must attach") { findAnchor(host) != nil }
+        let anchor = try XCTUnwrap(findAnchor(host))
+        XCTAssertTrue(anchor.view.window === window)
+        XCTAssertGreaterThan(anchor.view.bounds.width, 80)
+        XCTAssertGreaterThan(anchor.view.bounds.height, 80)
+        scroll.contentOffset = CGPoint(x: 0, y: 481)
+        for _ in 0..<2 {
+            flag.isPresented = true
+            waitUntil("Changing the actual SwiftUI binding must present, with a real context-sized anchor") {
+                anchor.presentedViewController?.view.window === window
+            }
+            let shown = try XCTUnwrap(anchor.presentedViewController)
+            XCTAssertEqual(shown.modalPresentationStyle, .overCurrentContext)
+            XCTAssertFalse(shown.presentationController is UISheetPresentationController)
+            XCTAssertEqual(shown.view.bounds.width, window.bounds.width, accuracy: 1)
+            XCTAssertEqual(shown.view.bounds.height, window.bounds.height, accuracy: 1)
+            let hit = try XCTUnwrap(window.hitTest(CGPoint(x: window.bounds.midX, y: window.bounds.midY), with: nil))
+            XCTAssertTrue(hit === shown.view || hit.isDescendant(of: shown.view))
+            flag.isPresented = false
+            waitUntil("The actual SwiftUI binding must return to its original reader") { anchor.presentedViewController == nil }
+            XCTAssertTrue(scroll.window === window)
+            XCTAssertEqual(scroll.contentOffset.y, 481, accuracy: 1)
+        }
+    }
+
     @MainActor
     func testClosedSwiftUIPresentationAllowsTouchesToReachTheReader() throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)

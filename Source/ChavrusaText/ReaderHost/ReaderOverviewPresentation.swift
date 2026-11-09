@@ -31,7 +31,18 @@ private struct ReaderOverviewPresentationAnchor<Overview: View>: UIViewControlle
     let overview: Overview
 
     func makeUIViewController(context: Context) -> ReaderOverviewPresentationController {
-        ReaderOverviewPresentationController()
+        let controller = ReaderOverviewPresentationController()
+        controller.loadViewIfNeeded()
+        return controller
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiViewController: ReaderOverviewPresentationController,
+                      context: Context) -> CGSize? {
+        guard let width = proposal.width, let height = proposal.height,
+              width.isFinite, height.isFinite, width > 0, height > 0 else { return nil }
+        // The clear UIKit anchor has no intrinsic content size. Its actual
+        // view must accept the context proposal, not just its outer frame.
+        return CGSize(width: width, height: height)
     }
 
     func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
@@ -62,7 +73,8 @@ final class ReaderOverviewPresentationController: UIViewController {
         let anchor = UIView()
         anchor.backgroundColor = .clear
         anchor.isOpaque = false
-        anchor.isUserInteractionEnabled = false
+        // SwiftUI excludes the closed wrapper from hit testing. When open,
+        // UIKit's context must permit interaction with its presented content.
         view = anchor
         definesPresentationContext = true
     }
@@ -139,5 +151,21 @@ final class ReaderOverviewPresentationController: UIViewController {
             }
         }
     }
+
+    #if DEBUG
+    /// Read-only native facts for the existing acceptance observer. No UI or
+    /// production reporter is installed, and no reader state is changed.
+    var acceptancePresentationSnapshot: [String: Any] {
+        ["wantsOverview": wantsOverview,
+         "isViewLoaded": isViewLoaded,
+         "isInWindow": viewIfLoaded?.window != nil,
+         "boundsWidth": Double(viewIfLoaded?.bounds.width ?? 0),
+         "boundsHeight": Double(viewIfLoaded?.bounds.height ?? 0),
+         "parentClass": parent.map { String(describing: type(of: $0)) } ?? "none",
+         "presentedClass": presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
+         "hasHostingController": hostingController != nil,
+         "isTransitioning": isTransitioning]
+    }
+    #endif
 }
 #endif

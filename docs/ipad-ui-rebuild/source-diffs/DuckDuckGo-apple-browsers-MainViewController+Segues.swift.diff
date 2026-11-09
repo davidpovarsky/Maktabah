@@ -98,18 +98,32 @@
 +    @Binding var isPresented: Bool
 +    let onDismiss: () -> Void
 +    let overview: Overview
-@@ -76,4 +33,2 @@
+@@ -76,4 +33,4 @@
 -    func segueToAppearanceSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .appearance)
 -        }, deepLinkTarget: .appearance)
 +    func makeUIViewController(context: Context) -> ReaderOverviewPresentationController {
-+        ReaderOverviewPresentationController()
-@@ -82,4 +37,9 @@
++        let controller = ReaderOverviewPresentationController()
++        controller.loadViewIfNeeded()
++        return controller
+@@ -82,4 +39,7 @@
 -    func segueToGeneralSettings() {
 -        launchSettings(completion: {
 -            $0.triggerDeepLinkNavigation(to: .general)
 -        }, deepLinkTarget: .general)
++    func sizeThatFits(_ proposal: ProposedViewSize, uiViewController: ReaderOverviewPresentationController,
++                      context: Context) -> CGSize? {
++        guard let width = proposal.width, let height = proposal.height,
++              width.isFinite, height.isFinite, width > 0, height > 0 else { return nil }
++        // The clear UIKit anchor has no intrinsic content size. Its actual
++        // view must accept the context proposal, not just its outer frame.
++        return CGSize(width: width, height: height)
+@@ -88,4 +48,9 @@
+-    func segueToCustomizeAddressBarSettings() {
+-        launchSettings(completion: {
+-            $0.triggerDeepLinkNavigation(to: .customizeAddressBarButton)
+-        }, deepLinkTarget: .customizeAddressBarButton)
 +    func updateUIViewController(_ controller: ReaderOverviewPresentationController, context: Context) {
 +        controller.configure(
 +            isPresented: isPresented,
@@ -119,11 +133,11 @@
 +                onDismiss()
 +            }
 +        )
-@@ -88,4 +48,20 @@
--    func segueToCustomizeAddressBarSettings() {
+@@ -94,4 +59,21 @@
+-    func segueToCustomizeToolbarSettings() {
 -        launchSettings(completion: {
--            $0.triggerDeepLinkNavigation(to: .customizeAddressBarButton)
--        }, deepLinkTarget: .customizeAddressBarButton)
+-            $0.triggerDeepLinkNavigation(to: .customizeToolbarButton)
+-        }, deepLinkTarget: .customizeToolbarButton)
 +    static func dismantleUIViewController(_ controller: ReaderOverviewPresentationController, coordinator: ()) {
 +        controller.tearDownPresentation()
 +    }
@@ -141,18 +155,11 @@
 +        let anchor = UIView()
 +        anchor.backgroundColor = .clear
 +        anchor.isOpaque = false
-+        anchor.isUserInteractionEnabled = false
++        // SwiftUI excludes the closed wrapper from hit testing. When open,
++        // UIKit's context must permit interaction with its presented content.
 +        view = anchor
 +        definesPresentationContext = true
-@@ -94,4 +70,3 @@
--    func segueToCustomizeToolbarSettings() {
--        launchSettings(completion: {
--            $0.triggerDeepLinkNavigation(to: .customizeToolbarButton)
--        }, deepLinkTarget: .customizeToolbarButton)
-+    override func viewDidAppear(_ animated: Bool) {
-+        super.viewDidAppear(animated)
-+        scheduleUpdate()
-@@ -100,23 +75,3 @@
+@@ -100,23 +82,3 @@
 -    func segueToDaxOnboarding(completion: (() -> Void)? = nil) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -176,10 +183,10 @@
 -            onboardingViewModel: viewModel
 -        )
 -        present(controller, animated: false, completion: completion)
-+    override func didMove(toParent parent: UIViewController?) {
-+        super.didMove(toParent: parent)
++    override func viewDidAppear(_ animated: Bool) {
++        super.viewDidAppear(animated)
 +        scheduleUpdate()
-@@ -125,10 +80,3 @@
+@@ -125,10 +87,3 @@
 -    func segueToHomeRow() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -190,21 +197,18 @@
 -        }
 -        controller.modalPresentationStyle = .overCurrentContext
 -        present(controller, animated: true)
-+    override func viewDidLayoutSubviews() {
-+        super.viewDidLayoutSubviews()
++    override func didMove(toParent parent: UIViewController?) {
++        super.didMove(toParent: parent)
 +        scheduleUpdate()
-@@ -137,4 +85,6 @@
+@@ -137,4 +92,3 @@
 -    func segueToBookmarks() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
 -        launchBookmarksViewController()
-+    func configure(isPresented: Bool, overview: AnyView, onDismiss: @escaping () -> Void) {
-+        wantsOverview = isPresented
-+        self.overview = overview
-+        self.onDismiss = onDismiss
-+        hostingController?.rootView = overview
++    override func viewDidLayoutSubviews() {
++        super.viewDidLayoutSubviews()
 +        scheduleUpdate()
-@@ -143,17 +93,7 @@
+@@ -143,10 +97,6 @@
 -    func segueToEditCurrentBookmark() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -215,8 +219,13 @@
 -            return
 -        }
 -        segueToEditBookmark(bookmark)
--    }
--
++    func configure(isPresented: Bool, overview: AnyView, onDismiss: @escaping () -> Void) {
++        wantsOverview = isPresented
++        self.overview = overview
++        self.onDismiss = onDismiss
++        hostingController?.rootView = overview
++        scheduleUpdate()
+@@ -155,5 +105,7 @@
 -    func segueToEditBookmark(_ bookmark: BookmarkEntity) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -229,7 +238,7 @@
 +        if hostingController != nil {
 +            dismiss(animated: false)
 +            hostingController = nil
-@@ -163,21 +103,7 @@
+@@ -163,21 +115,7 @@
 -    private func launchBookmarksViewController(completion: ((BookmarksViewController) -> Void)? = nil) {
 -        Logger.lifecycle.debug(#function)
 -
@@ -258,7 +267,7 @@
 +            guard let self else { return }
 +            self.updateScheduled = false
 +            self.updatePresentation()
-@@ -187,189 +113,26 @@
+@@ -187,189 +125,26 @@
 -    func segueToReportBrokenSite(entryPoint: PrivacyDashboardEntryPoint = .report) {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
@@ -474,13 +483,25 @@
 +                self.isTransitioning = false
 +                self.onDismiss?()
 +                self.scheduleUpdate()
-@@ -379,311 +141,0 @@
--
+@@ -380,4 +155,13 @@
 -    func segueToDebugSettings() {
 -        Logger.lifecycle.debug(#function)
 -        hideAllHighlightsIfNeeded()
 -        launchDebugSettings()
--    }
++    #if DEBUG
++    /// Read-only native facts for the existing acceptance observer. No UI or
++    /// production reporter is installed, and no reader state is changed.
++    var acceptancePresentationSnapshot: [String: Any] {
++        ["wantsOverview": wantsOverview,
++         "isViewLoaded": isViewLoaded,
++         "isInWindow": viewIfLoaded?.window != nil,
++         "boundsWidth": Double(viewIfLoaded?.bounds.width ?? 0),
++         "boundsHeight": Double(viewIfLoaded?.bounds.height ?? 0),
++         "parentClass": parent.map { String(describing: type(of: $0)) } ?? "none",
++         "presentedClass": presentedViewController.map { String(describing: type(of: $0)) } ?? "none",
++         "hasHostingController": hostingController != nil,
++         "isTransitioning": isTransitioning]
+@@ -385,305 +169 @@
 -
 -    func segueToSettingsCookiePopupManagement() {
 -        Logger.lifecycle.debug(#function)
@@ -786,7 +807,8 @@
 -        return currentViewController
 -    }
 -
-@@ -691,86 +143 @@
++    #endif
+@@ -691,86 +171 @@
 -
 -// Exists to fire a did disappear notification for settings when the controller did disappear
 -//  so that we get the event regardless of where in the UI hierarchy it happens.

@@ -291,14 +291,16 @@
       "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
       "pin": "f1d574485cf2f0586bcb284e8b3ca8c2f6ff7f32",
       "originalSHA256": "78a3a1b88b49c29d7e5cbb880349c88f42679d4254a4f397b9acbc803f4b0f05",
-      "normalizedPortSHA256": "a4201665f82ff2b2cd7df1ed1d4656e71054f4ba90a5ff6512eb8de39c097ee8",
+      "normalizedPortSHA256": "8016c5b804951be0398ce96510b8363cbe6c289338c3b4a4f7c997d54da3a004",
       "identicalNormalizedSource": false,
-      "diffLines": 876
+      "diffLines": 898
     },
     {
       "original": "Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
       "pin": "19d1b35397af4f10ae70cfb3f444c9de87383b53",
       "originalSHA256": "4613d6e83237fcff481cc8324c2eec437319d4699ad40dc33b33bc7f6ac0a7b9",
+      "pinnedLockVerified": true,
+      "dedicatedCheckoutCompared": false,
       "identicalNormalizedSource": true,
       "integration": "usesMinimalChrome=false; original 22pt radius, regularMaterial, 1pt border, shadow and 8pt outer padding; hide only the two optional headings"
     }

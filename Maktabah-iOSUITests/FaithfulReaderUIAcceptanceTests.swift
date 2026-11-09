@@ -54,9 +54,16 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
     let workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
     struct Viewport: Codable {
+        struct Presentation: Codable {
+            let wantsOverview: Bool; let isViewLoaded: Bool; let isInWindow: Bool
+            let boundsWidth: Double; let boundsHeight: Double
+            let parentClass: String; let presentedClass: String
+            let hasHostingController: Bool; let isTransitioning: Bool
+        }
         let source: Int; let offset: Double; let object: Int; let requestID: String
         let contentHeight: Double?; let viewportHeight: Double?; let contentOffsetY: Double?
         let topInset: Double?; let bottomInset: Double?
+        let overviewPresentations: [Presentation]?
     }
     func launchReader(enabled: Bool = true, scenario: String = "reader", backend: String = "otzaria", language: String = "he", background: Int = 0, recordViewport: Bool = false, fontSize: Float? = nil) {
         // The downstream observer reads the actual original source anchor;
@@ -250,8 +257,12 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         for selectsCurrent in (requiresNonzeroPosition ? [false, true] : [false]) {
             tap(app.buttons[actionID])
             let overview = app.descendants(matching: .any)["study-groups-overview"]
-            XCTAssertTrue(overview.waitForExistence(timeout: 20))
+            let opened = overview.waitForExistence(timeout: 20)
             retainNativeEvidence("replacement-context-before-assertions-" + platform)
+            if !opened, let report = try? viewport() {
+                try attachViewport(report, named: "replacement-presentation-failure-" + platform)
+            }
+            XCTAssertTrue(opened, "The real source action must display the actual overview")
             XCTAssertEqual(overview.frame.width, app.frame.width, accuracy: 2,
                            "The source overview must occupy the reader context's whole width")
             XCTAssertGreaterThanOrEqual(overview.frame.height, app.frame.height * 0.9,

@@ -64,7 +64,19 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
             guard let source = fields["source"].flatMap(Int.init),
                   let offset = fields["offset"].flatMap(Double.init), offset.isFinite,
                   let object = fields["object"].flatMap(Int.init) else { return }
+            var presentations: [[String: Any]] = []
+            var visited = Set<ObjectIdentifier>()
+            @MainActor func inspectController(_ controller: UIViewController) {
+                guard visited.insert(ObjectIdentifier(controller)).inserted else { return }
+                if let anchor = controller as? ReaderOverviewPresentationController {
+                    presentations.append(anchor.acceptancePresentationSnapshot)
+                }
+                for child in controller.children { inspectController(child) }
+                if let presented = controller.presentedViewController { inspectController(presented) }
+            }
+            if let root = window.rootViewController { inspectController(root) }
             let report: [String: Any] = ["source": source, "offset": offset, "object": object,
+                                          "overviewPresentations": presentations,
                                           "contentHeight": Double(text.contentSize.height),
                                           "viewportHeight": Double(text.bounds.height),
                                           "contentOffsetY": Double(text.contentOffset.y),
