@@ -80,6 +80,12 @@ jobs:
         with:
           node-version: 22
 
+      - name: Cache the original pinned Sharp libvips archive
+        if: hashFiles('Vendor/SefariaMobile/Upstream/package-lock.json') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 Scripts/CI/prepare-pinned-sharp-libvips.py
+
       - name: Install Sefaria-Mobile JS Dependencies
         if: hashFiles('Vendor/SefariaMobile/Upstream/package.json') != ''
         working-directory: Vendor/SefariaMobile/Upstream
