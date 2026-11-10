@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "tested_source_sha": "8632dd3165c9dabdee62931f0e011f542b4bc815",
+  "scope": "Unchanged 11001 application source and unapplied proposal; no repaired app candidate",
+  "execution_mode": "MAIN_SESSION_NO_SUBAGENTS",
+  "results": [
+    {"command": "Scripts/CI/verify-9401-exact-source.py", "exit_code": 0, "result": "PASS", "inventory": 780, "exact_9401": 80, "existing_exceptions": 9},
+    {"command": "Scripts/CI/test-9401-exact-source.py", "exit_code": 0, "tests_passed": 20},
+    {"command": "Scripts/CI/test-faithful-workspace.py", "exit_code": 0, "checks_passed": 61, "toolchain": "Windows Swift 6.3.3", "scope": "Portable Swift compilation and execution"},
+    {"command": "bash Scripts/run-chavrusa-component-tests.sh build/artifacts/native-sidebar-baseline-components.exe", "exit_code": 0, "assertions_passed": 379, "assertions_failed": 0, "toolchain": "Windows Swift 6.3.3", "scope": "Portable Swift compilation and execution"},
+    {"command": "Scripts/CI/verify-otzaria-xcode-project.py", "exit_code": 0, "otzaria_swift_sources": 91, "search_frameworks": 2},
+    {"command": "git diff --check", "exit_code": 0},
+    {"command": "git apply --check docs/ipad-ui-rebuild/native-sidebar-11001/PENDING_OWNER_iPadLayout.diff", "exit_code": 0, "patch_applied": false},
+    {"command": "apple-doctor --json", "exit_code": 0, "apple_sdk_available_locally": false, "portable_swift_only": true},
+    {"command": "apple-api UIKit UISplitViewController preferredSplitBehavior --sdk iphoneos --xcode stable --json", "run_id": 42729995234, "run_url": "https://github.com/davidpovarsky/apple-devtools/actions/runs/42729995234", "conclusion": "success", "observed_symbol": "UISplitViewController.preferredSplitBehavior", "qualification": "Read-only SDK query. Command selected UISplitViewController; its output includes preferredSplitBehavior. This is not an app compile or validated split integration."}
+  ],
+  "new_repair_route_and_mutation_tests": "NOT_RUN_PENDING_OWNER_APPROVAL_AND_IMPLEMENTATION",
+  "new_repair_state_machine_tests": "NOT_RUN_PENDING_OWNER_APPROVAL_AND_IMPLEMENTATION",
+  "generic_ios_device_build": "NOT_RUN_PENDING_OWNER_APPROVAL_AND_IMPLEMENTATION",
+  "archive_signing_ipa_upload": "NOT_RUN",
+  "apple_processing_new_repair": "NOT_APPLICABLE_NO_NEW_BUILD",
+  "tester_assignment_and_installability": "NOT_VERIFIED",
+  "simulator_execution": "NOT_RUN_FORBIDDEN_BY_OWNER",
+  "device_acceptance": "OWNER_DEVICE_ACCEPTANCE_PENDING",
+  "guard_or_approval_policy_changed": false,
+  "protected_hunk_applied": false,
+  "asana_written": false,
+  "merged": false,
+  "experiment_branch_pushed": false,
+  "known_limitation": "The existing provenance/negative suite passes the unchanged 11001 composition despite its reported UI defects; these checks do not verify native search, toggle visibility, or tiled geometry."
+}

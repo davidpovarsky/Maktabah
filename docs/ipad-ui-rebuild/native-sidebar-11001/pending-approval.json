@@ -1,0 +1,40 @@
+{
+  "status": "PENDING_OWNER_EXACT_HUNK_APPROVAL",
+  "applied": false,
+  "owner_approval_reference": null,
+  "starting_sha": "8632dd3165c9dabdee62931f0e011f542b4bc815",
+  "file": "Source/UI/iOS/Views/iPadLayout.swift",
+  "ownership": "UPSTREAM_OWNED",
+  "upstream_sha": "46e893c65139fbb1e582d6595b0d220ea912324a",
+  "upstream_blob": "11842dfc000cd50562090694ca74e1a090ac28d8",
+  "original_lineage": {
+    "introduced_commit": "449e6b6102e4e88d42e45932696106af451ade6b",
+    "historical_path": "Source/iOS/Views/iPadLayout.swift",
+    "current_path_is_renamed_original": true
+  },
+  "before_blob": "80154afddb61a6ef19b04044287851c396057e9e",
+  "proposed_blob": "e541d660cdeae48d5f378e1ee198147e6c7f8d85",
+  "patch": "PENDING_OWNER_iPadLayout.diff",
+  "patch_sha256": "fbc92c2d348514a7876b945e530dcc9c30d7a5135de63a24477dfd4454f5f2dc",
+  "scope": "Five localized source-line changes: TOC owns original NavigationStack; remove two active/inactive bar visibility overrides and two sidebarToggle removals. No reader toolbar change authorized.",
+  "dependency": "Downstream pager must mount only the selected page before this proposal can be released; this patch alone is NOT a completed repair.",
+  "rejected_alternatives": [
+    "Wrap false-embedded TOC in downstream NavigationStack: leaves upstream visibility override and sidebarToggle removal; does not repair native toggle ownership.",
+    "Keep opacity-switched mounted navigation trees: hidden navigation/search publishers remain in hierarchy.",
+    "Edit frozen iOSTOCView or add TextField: violates exact 9401 component identity.",
+    "Add manual reader toolbar button without new approval: previous four-line state hook does not authorize toolbar changes.",
+    "Replace the root split, reader, or TOC with copied implementations: violates ownership and original UI requirements."
+  ],
+  "regression_scope": [
+    "library and TOC native search/title/toolbar",
+    "native sidebar toggle scope",
+    "compact navigation",
+    "single reader identity",
+    "RTL gesture ownership",
+    "wide docked geometry remains unmeasured"
+  ],
+  "rollback": "Proposal is unapplied. If subsequently approved and applied, reverse only this exact patch on the isolated experiment branch; leave original worktrees and persisted data untouched.",
+  "review": "Main-session source/provenance review only; no independent subagent or physical-device QA.",
+  "review_date": "2026-11-10",
+  "future_changes_require_new_exact_hunk_approval": true
+}
