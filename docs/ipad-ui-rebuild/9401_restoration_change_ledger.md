@@ -1,5 +1,13 @@
 # Authentic 9401 restoration — change ledger
 
+## 2026-11-10 — native sidebar repair follow-up
+
+The entries below retain the historical 11001 delivery record. New isolated branch `experiment/ipad-ui-9401-native-sidebar-toc-fix` starts at actual verified tip `8632dd3165c9dabdee62931f0e011f542b4bc815`. Source commit `dcc405d1d82c7dc70118c7e02bdc827dee5c58a7` changes only the exact newly owner-approved five-line `iPadLayout.swift` hook and downstream-owned `ReaderSidebarPager.swift`; all other 11001 application/vendor/build/workflow contracts and all 80 EXACT_9401_BLOB entries remain unchanged. Original reader toolbar, TOC, row and tab implementations are not edited. Approval, before/after provenance, old-pin fail-closed transition and implementation boundaries are recorded under `native-sidebar-11001/` and in the upstream exception register.
+
+The pager conditionally mounts one original navigation owner. Its existing page controls retain their appearance; page swiping is confined to that strip. An additive `UIViewControllerRepresentable` configures the existing public double-column ancestor, without replacing its children or delegate: request `.tile` only when actual width accommodates native primary width plus at least 430pt reader/divider, scaled for Dynamic Type; otherwise retain native adaptation. On iPadOS 27 request the existing native display-mode button with `.always`; add no manual toolbar item. Original columnVisibility/preferredCompactColumn bindings remain the sole visibility/navigation state. Selected TOC anchor and view models remain original; remounting the TOC reconstructs its local query/expansion state as with its original navigation lifetime.
+
+Evidence changes are a separate commit from application changes. The guard retains all previous assertions and adds exact owner-approved iPad/pager pins, 11001 retention checks and native navigation/search/toggle/tile/gesture invariants. All 20 prior negative tests remain, with 14 additional mutations. Actual portable policy: 27 assertions; existing workspace: 61; component/backend/RPC: 379; source adversarial: 34. These are static/portable evidence, not physical geometry or interaction acceptance. Generic-device compilation and distribution must still pass through the existing production TestFlight workflow before a new delivery can be reported. No simulator, UI test, merge, Asana update, signing/configuration/pin change or new workflow was introduced.
+
 Status: **SOURCE_VERIFIED_DEVICE_ACCEPTANCE_PENDING**, main session only, 2026-11-10. This is a locally committed candidate, not a TestFlight delivery or visual acceptance.
 
 ## Pinned provenance and isolation

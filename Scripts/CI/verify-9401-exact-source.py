@@ -35,6 +35,14 @@ PROFILE_MANAGEMENT = "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManageme
 APPROVAL = "docs/ipad-ui-rebuild/9401_pending_approval.json"
 APPROVED_PATCH = "docs/ipad-ui-rebuild/9401_PENDING_OWNER_HOOK.diff"
 APPROVED_READER_BLOB = "67146db4a47746c8412a8ee7d8b16328ff951e19"
+PAGER = "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
+NATIVE_APPROVAL = "docs/ipad-ui-rebuild/native-sidebar-11001/pending-approval.json"
+NATIVE_PATCH = "docs/ipad-ui-rebuild/native-sidebar-11001/PENDING_OWNER_iPadLayout.diff"
+NATIVE_IPAD_BLOB = "e541d660cdeae48d5f378e1ee198147e6c7f8d85"
+NATIVE_PAGER_BLOB = "6eb5f29afdf42cad7acbf5ef6ae3d535cb29c238"
+NATIVE_PATCH_SHA256 = "fbc92c2d348514a7876b945e530dcc9c30d7a5135de63a24477dfd4454f5f2dc"
+RELEASE_11001 = "0d2ac9c46fe33d5a650fcf9ee7e66b2aa8bd2a73"
+NATIVE_OWNER_REPLY = "Owner response in this chat on 2026-11-10: מאשר את ה־diff המדויק ב־iPadLayout.swift. המשך לביצוע מלא לפי המסמך, כולל הבדיקות והעלאת build production ל־TestFlight לאחר שכל השערים עוברים."
 
 # Reasons concern retained feature-base code, not permission to edit it.
 RETAINED_EXCEPTIONS = {
@@ -188,7 +196,7 @@ def make_manifest(ref):
                 approved_reader = path == READER and b == APPROVED_READER_BLOB
                 entry.update(status="DECLARED_EXCEPTION",
                              necessity="Exact four-line page-aware TOC state hook approved by owner." if approved_reader else SEAM_REASONS.get(path, RETAINED_EXCEPTIONS.get(path, "UNEXPLAINED")),
-                             approval_state="EXPLICIT_OWNER_EXACT_HUNK" if approved_reader else "SCOPED_DIRECTIVE_A_B" if path in SEAM_REASONS else "RETAINED_UNEDITED_FEATURE_BASE" if path in RETAINED_EXCEPTIONS and b == f else "OWNER_HUNK_REVIEW_REQUIRED",
+                             approval_state="EXPLICIT_OWNER_NATIVE_SIDEBAR_HUNK" if path == IPAD and b == NATIVE_IPAD_BLOB else "EXPLICIT_OWNER_EXACT_HUNK" if approved_reader else "SCOPED_DIRECTIVE_A_B" if path in SEAM_REASONS else "RETAINED_UNEDITED_FEATURE_BASE" if path in RETAINED_EXCEPTIONS and b == f else "OWNER_HUNK_REVIEW_REQUIRED",
                              approval_reference="Owner reply in this chat, 2026-11-10: מאשר את ה־diff המדויק; frozen patch and approval record committed." if approved_reader else "Owner request to execute attached 2026-11-09 directive, sections 2.2/3/4; profile toolbar follow-up 2026-11-10." if path in SEAM_REASONS else "Directive sections 2.2/5: retain necessary current semantics; no new protected edit applied." if path in RETAINED_EXCEPTIONS and b == f else None,
                              exact_diff=git("diff", "--no-ext-diff", BASE, ref, "--", path),
                              unchanged_blocks=unchanged_blocks(content(BASE, path), content(ref, path)) if b else [])
@@ -202,8 +210,15 @@ def make_manifest(ref):
         elif b == f:
             entry.update(status="BACKEND_RETAINED", feature_identical=True)
         else:
-            entry.update(status="DOWNSTREAM_INTEGRATION" if path in (SIDEBAR, COMPACT) else "UNEXPLAINED_CHANGE",
+            entry.update(status="DOWNSTREAM_INTEGRATION" if path in (SIDEBAR, COMPACT, PAGER) else "UNEXPLAINED_CHANGE",
                          feature_identical=False)
+        if path == IPAD and b == NATIVE_IPAD_BLOB:
+            entry.update(approval_reference=NATIVE_OWNER_REPLY,
+                         necessity="Original shared-sidebar composition plus exact newly approved native TOC/search/toggle ownership hook.")
+        if path == PAGER:
+            entry.update(necessity="One active original navigation owner and public native split configuration; no reader or toolbar replacement.",
+                         reviewed_blob=NATIVE_PAGER_BLOB,
+                         release_11001_diff=git("diff", "--no-ext-diff", RELEASE_11001, ref, "--", path))
         entries.append(entry)
     return {"schema_version": 1, "baseline_9401_sha": BASE, "feature_base_sha": FEATURE,
             "upstream_sha": UPSTREAM, "source_commit": final_sha,
@@ -292,7 +307,69 @@ def source_issues(files, baseline):
     if ("wideWorkspace(totalWidth: geometry.size.width)\n            } else if useWideLayout" not in workspace
             or ".modifier(SharedSidebarFloatingPanel(" not in workspace):
         issues.append("BLOCKED_STABLE_READER_GEOMETRY_HOOK")
+    issues.extend(native_sidebar_issues(files))
     return issues
+
+
+def native_sidebar_issues(files):
+    """Static composition/configuration checks, never runtime geometry acceptance."""
+    text = lambda path: files.get(path, b"").decode("utf-8")
+    ipad, pager, toc, workspace = map(text, (IPAD, PAGER, TOC, WORKSPACE))
+    active_toc = ipad.split("private var activeReaderTableOfContents", 1)[-1].split("private var activeReaderTab", 1)[0]
+    viewer = ipad.split("private var viewerTabContent", 1)[-1].split("private var activeReaderTableOfContents", 1)[0]
+    issues = []
+    if ("embedsNavigationStack: true" not in active_toc
+            or "embedsNavigationStack: false" in active_toc
+            or ".toolbarVisibility(" in viewer
+            or re.search(r"\bNavigationStack\s*\{", pager.split("struct ReaderSidebarPager", 1)[-1].split("private var sidebarSwipe", 1)[0].split("var body:", 1)[-1])):
+        issues.append("NATIVE_TOC_NAVIGATION_OWNER_REQUIRED")
+    if ('.searchable(text: $searchText, prompt: String(localized: "Search Contents"))' not in toc
+            or "TOCNodeRow(" not in toc or "scrollSelected(proxy: proxy)" not in toc
+            or 'prompt: String(localized: "Search Library")' not in viewer):
+        issues.append("ORIGINAL_NATIVE_SEARCH_AND_TOC_REQUIRED")
+    if not re.search(r"Group\s*\{\s*if coordinator\.page == \.library\s*\{\s*library\(true\)\s*\}\s*else\s*\{\s*contents\(true\)\s*\}\s*\}", pager):
+        issues.append("ONE_ACTIVE_SIDEBAR_PAGE_REQUIRED")
+    if any(token in pager for token in (".opacity(", "ZStack {", "NavigationSplitView(", "UISplitViewController(", "UIHostingController(", ".offset(", "UIScreen.main", "split.delegate =")):
+        issues.append("NO_COMPETING_SIDEBAR_OR_READER_OVERLAY")
+    if (".toolbar(removing: .sidebarToggle)" in viewer + active_toc
+            or "split.displayModeButtonVisibility = .always" not in pager
+            or "ToolbarItem(" in pager
+            or not re.search(r"if #available\(iOS 27\.0, \*\)\s*\{\s*if split\.displayModeButtonVisibility != \.always\s*\{\s*split\.displayModeButtonVisibility = \.always\s*\}", pager)):
+        issues.append("REACHABLE_SINGLE_NATIVE_SIDEBAR_TOGGLE_REQUIRED")
+    if (".background { ReaderSidebarSplitConfiguration() }" not in pager
+            or "guard let split = splitViewController, split.style == .doubleColumn" not in pager
+            or "ReaderSidebarPolicy.canTile(" not in pager
+            or "UISplitViewController.SplitBehavior.tile" not in pager
+            or "split.preferredSplitBehavior = behavior" not in pager
+            or "split.view.safeAreaLayoutGuide.layoutFrame.width" not in pager
+            or "UIFontMetrics.default.scaledValue" not in pager
+            or "split.isCollapsed" not in pager
+            or "restoreConfiguration()" not in pager
+            or "split.preferredDisplayMode =" in pager):
+        issues.append("ADAPTIVE_NATIVE_TILE_CONFIGURATION_REQUIRED")
+    controls = pager.split(".safeAreaInset(edge: .bottom, spacing: 0)", 1)
+    if (len(controls) != 2 or ".simultaneousGesture(sidebarSwipe)" in controls[0]
+            or controls[1].count(".simultaneousGesture(sidebarSwipe)") != 1
+            or "isRTL: layoutDirection == .rightToLeft" not in pager):
+        issues.append("PAGE_GESTURE_MUST_LEAVE_NATIVE_EDGE_AND_LIST_FREE")
+    if (viewer.count("iOSReaderTabView(") != 1 or "} content: {" in viewer
+            or "sidebarCoordinator.showContents()\n            preferredCompactColumn = .sidebar" not in workspace
+            or "withAnimation(.snappy(duration: 0.34, extraBounce: 0)) { libraryColumnVisibility = .all }\n            return" not in workspace
+            or "tab.viewModel.didSelectTOCNode(id: id)" not in active_toc):
+        issues.append("SHARED_TOC_BINDING_AND_ORIGINAL_READER_REQUIRED")
+    return issues
+
+
+def native_approval_issues(record, patch):
+    if (record.get("status") != "APPROVED_EXACT_HUNK" or record.get("applied") is not True
+            or record.get("file") != IPAD or record.get("starting_sha") != "8632dd3165c9dabdee62931f0e011f542b4bc815"
+            or record.get("before_blob") != "80154afddb61a6ef19b04044287851c396057e9e"
+            or record.get("proposed_blob") != NATIVE_IPAD_BLOB
+            or record.get("owner_approval_reference") != NATIVE_OWNER_REPLY
+            or record.get("patch_sha256") != NATIVE_PATCH_SHA256
+            or hashlib.sha256(patch).hexdigest() != NATIVE_PATCH_SHA256):
+        return ["EXACT_NATIVE_SIDEBAR_APPROVAL_INVALID"]
+    return []
 
 
 def approval_issues(record, patch):
@@ -331,7 +408,9 @@ def verify(manifest, ref):
                         and entry["feature_blob"] == entry["final_blob"])
             approved_reader = (path == READER and entry.get("approval_state") == "EXPLICIT_OWNER_EXACT_HUNK"
                                and entry["final_blob"] == APPROVED_READER_BLOB)
-            if not (scoped or retained or approved_reader):
+            approved_native = (path == IPAD and entry.get("approval_state") == "EXPLICIT_OWNER_NATIVE_SIDEBAR_HUNK"
+                               and entry["final_blob"] == NATIVE_IPAD_BLOB)
+            if not (scoped or retained or approved_reader or approved_native):
                 failures.append("OWNER_HUNK_REVIEW_REQUIRED:" + path)
             if entry.get("exact_diff") != git("diff", "--no-ext-diff", BASE, ref, "--", path):
                 failures.append("EXCEPTION_DIFF_DRIFT:" + path)
@@ -352,6 +431,20 @@ def verify(manifest, ref):
         else:
             failures.extend(approval_issues(json.loads(content(ref, APPROVAL)), content(ref, APPROVED_PATCH)))
     failures.extend(source_issues(files, original))
+    if final.get(IPAD, {}).get("blob") != NATIVE_IPAD_BLOB:
+        failures.append("EXACT_NATIVE_IPAD_HUNK_REQUIRED")
+    if final.get(PAGER, {}).get("blob") != NATIVE_PAGER_BLOB:
+        failures.append("NATIVE_PAGER_REVIEWED_SOURCE_DRIFT")
+    if NATIVE_APPROVAL not in final or NATIVE_PATCH not in final:
+        failures.append("EXACT_NATIVE_SIDEBAR_APPROVAL_MISSING")
+    else:
+        failures.extend(native_approval_issues(json.loads(content(ref, NATIVE_APPROVAL)), content(ref, NATIVE_PATCH)))
+    release = tree(RELEASE_11001)
+    for path in set(release) | set(final):
+        if path not in (IPAD, PAGER) and (path.startswith(("Source/", "Vendor/", "Packages/", "Maktabah.xcodeproj/", ".github/workflows/"))
+                or path in ("Podfile", "Podfile.lock", ".gitmodules") or path.endswith(("Package.resolved", "Cargo.lock"))):
+            if release.get(path, {}).get("blob") != final.get(path, {}).get("blob"):
+                failures.append("RETAINED_11001_CONTRACT_DRIFT:" + path)
     return failures
 
 

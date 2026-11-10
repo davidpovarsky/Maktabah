@@ -114,6 +114,68 @@ class NegativeControls(unittest.TestCase):
         self.assertIn("VISUAL_CLASSIFICATION_BYPASS:" + gate.TOC,
                       self.mutated_manifest(gate.TOC, status="BACKEND_RETAINED"))
 
+    def test_native_toc_cannot_disable_its_navigation_owner(self):
+        self.assertIn("NATIVE_TOC_NAVIGATION_OWNER_REQUIRED", self.changed(gate.IPAD,
+                      b"embedsNavigationStack: true", b"embedsNavigationStack: false"))
+
+    def test_original_search_cannot_be_replaced_with_textfield(self):
+        self.assertIn("ORIGINAL_NATIVE_SEARCH_AND_TOC_REQUIRED", self.changed(gate.TOC,
+                      b'.searchable(text: $searchText, prompt: String(localized: "Search Contents"))',
+                      b'.overlay { TextField("Search Contents", text: $searchText) }'))
+
+    def test_native_toggle_removal_is_rejected(self):
+        self.assertIn("REACHABLE_SINGLE_NATIVE_SIDEBAR_TOGGLE_REQUIRED", self.changed(gate.IPAD,
+                      b"embedsNavigationStack: true,", b"embedsNavigationStack: true,\n .toolbar(removing: .sidebarToggle)"))
+
+    def test_native_toggle_on_27_cannot_become_unreachable(self):
+        self.assertIn("REACHABLE_SINGLE_NATIVE_SIDEBAR_TOGGLE_REQUIRED", self.changed(gate.PAGER,
+                      b"if #available(iOS 27.0, *) {", b"if #available(iOS 27.0, *) { return\n"))
+
+    def test_only_selected_sidebar_page_may_be_mounted(self):
+        self.assertIn("ONE_ACTIVE_SIDEBAR_PAGE_REQUIRED", self.changed(gate.PAGER,
+                      b"library(true)", b"library(true)\n contents(false).opacity(0)"))
+
+    def test_sidebar_cannot_be_a_reader_overlay(self):
+        self.assertIn("NO_COMPETING_SIDEBAR_OR_READER_OVERLAY", self.changed(gate.PAGER,
+                      b"Group {", b"ZStack {"))
+
+    def test_third_toc_split_is_rejected(self):
+        self.assertIn("SINGLE_READER_TWO_COLUMN_REQUIRED", self.changed(gate.IPAD,
+                      b"} detail: {\n            iOSReaderTabView(",
+                      b"} content: { iOSTOCView() } detail: {\n            iOSReaderTabView("))
+
+    def test_tile_cannot_be_replaced_with_overlay(self):
+        self.assertIn("ADAPTIVE_NATIVE_TILE_CONFIGURATION_REQUIRED", self.changed(gate.PAGER,
+                      b"UISplitViewController.SplitBehavior.tile", b"UISplitViewController.SplitBehavior.overlay"))
+
+    def test_page_swipe_cannot_capture_whole_sidebar(self):
+        self.assertIn("PAGE_GESTURE_MUST_LEAVE_NATIVE_EDGE_AND_LIST_FREE", self.changed(gate.PAGER,
+                      b'.accessibilityIdentifier("reader-sidebar-pager")',
+                      b'.accessibilityIdentifier("reader-sidebar-pager")\n .simultaneousGesture(sidebarSwipe)'))
+
+    def test_no_duplicate_manual_toggle_can_be_added(self):
+        self.assertIn("REACHABLE_SINGLE_NATIVE_SIDEBAR_TOGGLE_REQUIRED", self.changed(gate.PAGER,
+                      b"library(true)", b"library(true).toolbar { ToolbarItem(placement: .topBarLeading) {} }"))
+
+    def test_toc_selection_keeps_actual_reader_anchor_callback(self):
+        self.assertIn("SHARED_TOC_BINDING_AND_ORIGINAL_READER_REQUIRED", self.changed(gate.IPAD,
+                      b"tab.viewModel.didSelectTOCNode(id: id)", b"print(id)"))
+
+    def test_actual_compact_toc_route_must_show_same_sidebar(self):
+        self.assertIn("SHARED_TOC_BINDING_AND_ORIGINAL_READER_REQUIRED", self.changed(gate.WORKSPACE,
+                      b"sidebarCoordinator.showContents()", b"sidebarCoordinator.showLibrary()"))
+
+    def test_native_approval_requires_actual_owner_response(self):
+        record = json.loads(gate.content("HEAD", gate.NATIVE_APPROVAL))
+        record["owner_approval_reference"] = None
+        self.assertIn("EXACT_NATIVE_SIDEBAR_APPROVAL_INVALID",
+                      gate.native_approval_issues(record, gate.content("HEAD", gate.NATIVE_PATCH)))
+
+    def test_native_approval_patch_cannot_be_broadened(self):
+        record = json.loads(gate.content("HEAD", gate.NATIVE_APPROVAL))
+        self.assertIn("EXACT_NATIVE_SIDEBAR_APPROVAL_INVALID",
+                      gate.native_approval_issues(record, gate.content("HEAD", gate.NATIVE_PATCH) + b"extra hunk"))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

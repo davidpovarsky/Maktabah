@@ -1,0 +1,12 @@
+{
+  "tested_sha": "dcc405d1d82c7dc70118c7e02bdc827dee5c58a7",
+  "old_guard_ref": "8632dd3165c9dabdee62931f0e011f542b4bc815",
+  "result": "FAIL_CLOSED",
+  "failures": [
+    "FINAL_BLOB_DRIFT:Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+    "FINAL_BLOB_DRIFT:Source/UI/iOS/Views/iPadLayout.swift",
+    "EXCEPTION_DIFF_DRIFT:Source/UI/iOS/Views/iPadLayout.swift",
+    "UNCHANGED_BLOCK_EVIDENCE_DRIFT:Source/UI/iOS/Views/iPadLayout.swift"
+  ],
+  "resolution": "Separate evidence commit validates actual owner approval, freezes the exact approved iPad blob and reviewed downstream pager, retains all previous negative tests and adds native composition checks. No upload uses this intermediate failing pin."
+}
