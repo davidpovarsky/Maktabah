@@ -1,0 +1,221 @@
+{
+  "baseline": "8632dd3165c9dabdee62931f0e011f542b4bc815",
+  "delivery_sha": "8420392303f3a31535c11020282d3e11dbc4dd26",
+  "qualification": "Includes source, tests and all documentation/evidence added since the starting tip, including this final evidence change.",
+  "application_files_changed": [
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift"
+  ],
+  "files": [
+    {
+      "file": "PROJECT_BOARD.md",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Record the discovered difference between Git identity and navigation ownership/runtime proof.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "Scripts/CI/test-9401-exact-source.py",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Focused actual portable-policy or adversarial source tests; no simulator execution or app target membership change.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "Scripts/CI/test-native-sidebar-policy.py",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Focused actual portable-policy or adversarial source tests; no simulator execution or app target membership change.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "Scripts/CI/verify-9401-exact-source.py",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Separate fail-closed evidence extension: exact authorized pins, original UI/toolbar checks, full 11001 retention and native composition invariants; previous checks retained.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "One selected original navigation owner, book-scoped TOC identity, original page controls, strip-only RTL swipe and public configuration of the existing native split.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "Source/UI/iOS/Views/iPadLayout.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "role": "Only the exact five-line owner-approved TOC navigation/bar/toggle composition hook; final blob e541d660cdeae48d5f378e1ee198147e6c7f8d85.",
+      "new_upstream_hunk_approval_reference": "Owner response in this chat; frozen PENDING_OWNER_iPadLayout.diff and pending-approval.json; upstream exception register."
+    },
+    {
+      "file": "docs/architecture/UPSTREAM_EXCEPTION_REGISTER.md",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Record actual received exact-hunk owner approval before source editing; no change to ownership policy.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/9401_exact_source_manifest.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/9401_restoration_change_ledger.md",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Ownership, implementation, delivery or physical-device acceptance documentation; historical states explicitly distinguished from delivered status.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/DELIVERY.he.md",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Ownership, implementation, delivery or physical-device acceptance documentation; historical states explicitly distinguished from delivered status.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/IMPLEMENTATION_SCOPE.md",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Ownership, implementation, delivery or physical-device acceptance documentation; historical states explicitly distinguished from delivered status.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/PENDING_OWNER_iPadLayout.diff",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Frozen exact proposed/approved protected hunk; not an additional application source edit.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/REVIEW.he.md",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Ownership, implementation, delivery or physical-device acceptance documentation; historical states explicitly distinguished from delivered status.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/artifact.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/build-warning-review.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/cancelled-before-upload.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/changed-files.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/delivery.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/device-build-run.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-diff-check.log",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Actual non-simulator preflight output; empty logs mean command succeeded without diagnostics, not device acceptance.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-membership.log",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Actual non-simulator preflight output; empty logs mean command succeeded without diagnostics, not device acceptance.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-negative-controls.log",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Actual non-simulator preflight output; empty logs mean command succeeded without diagnostics, not device acceptance.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-policy.log",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Actual non-simulator preflight output; empty logs mean command succeeded without diagnostics, not device acceptance.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-preflight.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-source-gate.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-source-invariance.log",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Actual non-simulator preflight output; empty logs mean command succeeded without diagnostics, not device acceptance.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/final-syntax.log",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Actual non-simulator preflight output; empty logs mean command succeeded without diagnostics, not device acceptance.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/legacy-guard-transition.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/pending-approval.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Verifiable approval status, actual owner response, exact before/after blobs, patch digest, scope and rollback.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/preflight.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/provenance-after.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/provenance-before.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/source-gate-delivery.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "docs/ipad-ui-rebuild/native-sidebar-11001/testflight-processing.json",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Machine-readable source/provenance, test, build, artifact or Apple processing evidence; not new application functionality.",
+      "new_upstream_hunk_approval_reference": null
+    },
+    {
+      "file": "tools/test_native_sidebar_policy.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "role": "Focused actual portable-policy or adversarial source tests; no simulator execution or app target membership change.",
+      "new_upstream_hunk_approval_reference": null
+    }
+  ]
+}

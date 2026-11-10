@@ -1,12 +1,14 @@
 # תיקון sidebar ו־TOC המקורי — דוח מסירה
 
-2026-11-10. מצב לפני הפצה: **LOCAL_PREFLIGHT_PASS_DEVICE_BUILD_PENDING**. כל בדיקות המכשיר הפיזי הן **OWNER_DEVICE_ACCEPTANCE_PENDING**. סקירה, מימוש ובדיקות בסשן הראשי; ללא סוכני משנה.
+2026-11-10. מצב: **SIGNED_PRODUCTION_TESTFLIGHT_VALID_DEVICE_ACCEPTANCE_PENDING**. הועלה בהצלחה build ‏**1.0.0 (11201)** בפרופיל **production**, ועיבוד Apple הוא **VALID**. כל בדיקות המכשיר הפיזי הן **OWNER_DEVICE_ACCEPTANCE_PENDING**. סקירה, מימוש ובדיקות בסשן הראשי; ללא סוכני משנה.
 
 ## מקור, ענף ואישור
 
 המאגר הוא [davidpovarsky/Maktabah](https://github.com/davidpovarsky/Maktabah). ענף הניסוי החדש הוא `experiment/ipad-ui-9401-native-sidebar-toc-fix`, ב־worktree נפרד `C:/Users/DAVID/Code/Maktabah-9401-native-sidebar-toc-fix`. הבסיס המרוחק אומת: `8632dd3165c9dabdee62931f0e011f542b4bc815`. מקור 11001 בפועל הוא `0d2ac9c46fe33d5a650fcf9ee7e66b2aa8bd2a73`; מקור 9401 הוא `f243d06603cbe506de8f27ea8b9a479af4415e2e`; upstream הנוכחי אומת ב־`46e893c65139fbb1e582d6595b0d220ea912324a`.
 
-מקור התיקון הראשוני נרשם ב־`dcc405d1d82c7dc70118c7e02bdc827dee5c58a7`. מקור היישום הסופי, כולל זהות TOC לפי UUID של לשונית הספר, הוא `8ea4f57806b9f1f6766bfda0a0828cdc07cf6645`. הרחבת guard והראיות נמצאת ב־commits נפרדים. commits מאוחרים של ראיות אינם משנים קוד יישום. SHA ההפצה המדויק, מספר build ותוצאות Apple יירשמו לאחר ריצת ההפצה; אין לייחס את build ‏11001 לתיקון הזה.
+מקור התיקון הראשוני נרשם ב־`dcc405d1d82c7dc70118c7e02bdc827dee5c58a7`. מקור היישום הסופי, כולל זהות TOC לפי UUID של לשונית הספר, הוא `8ea4f57806b9f1f6766bfda0a0828cdc07cf6645`. הרחבת guard והראיות נמצאת ב־commits נפרדים. SHA ההפצה המדויק הוא **`8420392303f3a31535c11020282d3e11dbc4dd26`**: [המקור שנבנה](https://github.com/davidpovarsky/Maktabah/commit/8420392303f3a31535c11020282d3e11dbc4dd26), [ענף הניסוי](https://github.com/davidpovarsky/Maktabah/tree/experiment/ipad-ui-9401-native-sidebar-toc-fix). עדכוני התיעוד לאחר ההפצה אינם משנים את קוד היישום שנבנה.
+
+[ריצת TestFlight ‏42736585184](https://github.com/davidpovarsky/Maktabah/actions/runs/42736585184) הסתיימה בהצלחה. [תוצר ה־IPA החתום והלוגים](https://github.com/davidpovarsky/Maktabah/actions/runs/42736585184/artifacts/13730522249), SHA256 של ה־IPA: `b64cc534c16a3089ea5294740eb2dc412d3a822cee58bd1713d9bdab41f10803`. נתוני המסירה המדויקים נמצאים ב־[delivery.json](delivery.json); תשובת Apple נמצאת ב־[testflight-processing.json](testflight-processing.json). זמינות לקבוצות בודקים והתקנה במכשיר לא אומתו.
 
 החריג החדש היחיד בקובץ upstream הוא ה־[diff המדויק ב־iPadLayout.swift](PENDING_OWNER_iPadLayout.diff), שאושר במפורש בהודעת המשתמש: “מאשר את ה־diff המדויק ב־iPadLayout.swift. המשך לביצוע מלא לפי המסמך, כולל הבדיקות והעלאת build production ל־TestFlight לאחר שכל השערים עוברים.” רישום האישור, ה־blob וה־SHA256 נמצאים ב־[pending-approval.json](pending-approval.json) וב־[רישום החריגים](../../architecture/UPSTREAM_EXCEPTION_REGISTER.md). ה־blob שהתקבל הוא בדיוק `e541d660cdeae48d5f378e1ee198147e6c7f8d85`.
 
@@ -30,7 +32,7 @@
 | `Scripts/CI/verify-9401-exact-source.py`,‏ `Scripts/CI/test-9401-exact-source.py` | הרחבת ראיות נפרדת: pin מדויק לאישור ולמקור ה־pager, שימור 11001, ובדיקות שליליות להרכבת החיפוש/כפתור/עגינה |
 | `docs/architecture/UPSTREAM_EXCEPTION_REGISTER.md` | תיעוד האישור האמיתי לפני עריכת המקור |
 | `docs/ipad-ui-rebuild/9401_exact_source_manifest.json`,‏ `9401_restoration_change_ledger.md`,‏ `PROJECT_BOARD.md` | עדכון inventory, ledger ותגלית על גבולות guard סטטי |
-| קובצי `native-sidebar-11001/` | סקירה, מטריצה לפני העריכה, diff מוקפא, אישור, provenance לפני/אחרי, מעבר guard, פלט בדיקות ודוח זה; הרשימה המדויקת זמינה ב־Git diff |
+| קובצי `native-sidebar-11001/` | סקירה, מטריצה לפני העריכה, diff מוקפא, אישור, provenance לפני/אחרי, מעבר guard, פלט בדיקות ודוח זה; כל שם קובץ ותפקידו מפורטים ב־[changed-files.json](changed-files.json) |
 
 כל שאר חוזי היישום, הספקים, הנתונים, ה־vendor והפרויקט/חתימה/workflows תואמים ל־11001. החריג הקודם בן ארבע השורות ב־iOSReaderView נשמר ללא שינוי; אין אישור חדש או שינוי ב־toolbar שלו. סיכון מיזוג upstream חדש מוגבל ל־hunk המאושר ב־iPadLayout; הלוגיקה הנוספת מבודדת בקובץ downstream קיים.
 
@@ -66,7 +68,9 @@
 - suites קיימים שהורצו מחדש לאחר שינוי המקור: 61/61 workspace ו־379/379 component/backend/RPC.
 - בדיקת membership: PASS; אין שינוי ביעדים או פרויקט. parsing של המקורות ששונו ו־`git diff --check`: PASS. parsing ב־Windows אינו typecheck של SwiftUI/UIKit.
 - ה־guard הישן דחה את שני blobs ששונו. ההרחבה הנפרדת לא ביטלה את הכשל: היא מאמתת את האישור האמיתי, מקבעת את שני המקורות המצומצמים ומוסיפה בדיקות. [תיעוד מעבר ה־pin](legacy-guard-transition.json).
-- Device build, archive, signing, export, upload ו־Apple processing: **PENDING** ברגע כתיבת דוח preflight זה. יעד ההפצה הוא `production`, workflow קיים `ios-testflight.yml`, ללא שינוי workflow ועם expected_sha מלא.
+- Device build ל־`generic/platform=iOS`, archive, חתימה והרשאות, export, בדיקות IPA, אימות והעלאה ל־App Store Connect: **SUCCESS**. עיבוד Apple: **VALID**, ‏1.0.0 (11201), ‏`expired=false`. פרופיל `production` אומת מתוך ה־Info.plist של ה־IPA עצמו; אותו bundle ID ותמיכה ב־iPhone/iPad נשמרו. ה־SDK שנבנה בפועל: `iphoneos27.2`, ‏Xcode ‏27.2. ה־workflow הקיים נשמר ללא שינוי וננעל ל־expected_sha המלא.
+- לוג ה־archive המלא מאשר קומפילציה בפועל של `ReaderSidebarPager.swift` ו־`iPadLayout.swift` ביעד האפליקציה. לוג ה־run המשולב ב־GitHub השמיט חלק מבאצ׳י הקומפילציה, ולכן ראיית המקורות וה־warnings נלקחה מתוצר `logs/archive.log` המלא. [build-warning-review.json](build-warning-review.json) כולל hash של הלוג; לא נמצאו warnings בשני המקורות ששונו. אין כאן החלפת ראיות ב־Windows parse.
+- [source-gate-delivery.json](source-gate-delivery.json) מאמת שוב PASS מול אובייקטי Git של SHA ההפצה המדויק `8420392303f3a31535c11020282d3e11dbc4dd26`.
 - ריצה ראשונה `42734945451` בוטלה במהלך בניית Otzaria כדי לכלול את תיקון זהות הספר. לפי metadata סופי, archive/upload/processing לא בוצעו; ראו [cancelled-before-upload.json](cancelled-before-upload.json). אין build TestFlight מריצה זו. המועמד המעודכן מיועד להעלאה סופית יחידה.
 - לא הופעלו סימולטור, UI tests או matrix רב־פלטפורמי; לא בוצעו merge, Asana update או שינוי נתוני משתמש.
 

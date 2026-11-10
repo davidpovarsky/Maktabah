@@ -1,0 +1,78 @@
+{
+  "starting_sha": "8632dd3165c9dabdee62931f0e011f542b4bc815",
+  "delivery_sha": "8420392303f3a31535c11020282d3e11dbc4dd26",
+  "source_change_commit": "8ea4f57806b9f1f6766bfda0a0828cdc07cf6645",
+  "branch": "experiment/ipad-ui-9401-native-sidebar-toc-fix",
+  "data_profile": "production",
+  "workflow": ".github/workflows/ios-testflight.yml",
+  "dispatch_count": 2,
+  "successful_upload_count": 1,
+  "cancelled_before_archive_or_upload": [
+    42734945451
+  ],
+  "run_id": 42736585184,
+  "run_number": 112,
+  "run_attempt": 1,
+  "run_url": "https://github.com/davidpovarsky/Maktabah/actions/runs/42736585184",
+  "workflow_conclusion": "success",
+  "device_target": "generic/platform=iOS",
+  "actual_compilation_of_changed_sources": {
+    "ReaderSidebarPager.swift": true,
+    "iPadLayout.swift": true
+  },
+  "archive": "SUCCESS",
+  "signing_and_entitlements": "SUCCESS",
+  "ipa_export_and_validation": "SUCCESS",
+  "upload": "SUCCESS",
+  "ipa_identity": {
+    "CFBundleIdentifier": "com.davidpovarsky.chavrusatext",
+    "CFBundleShortVersionString": "1.0.0",
+    "CFBundleVersion": "11201",
+    "OtzariaDefaultDataProfile": "production",
+    "DTSDKName": "iphoneos27.2",
+    "DTPlatformName": "iphoneos",
+    "DTXcode": "2720",
+    "MinimumOSVersion": "18.6",
+    "UIDeviceFamily": [
+      1,
+      2
+    ]
+  },
+  "ipa_sha256": "b64cc534c16a3089ea5294740eb2dc412d3a822cee58bd1713d9bdab41f10803",
+  "apple": {
+    "appId": "6809559414",
+    "buildId": "78f4cf1f-d84a-4a57-aa1d-de472790916c",
+    "buildNumber": "11201",
+    "bundleId": "com.davidpovarsky.chavrusatext",
+    "expired": false,
+    "observedAt": "2026-11-10T02:41:13.144608+00:00",
+    "processingState": "VALID",
+    "uploadedDate": "2026-11-09T18:40:04-08:00",
+    "version": "1.0.0"
+  },
+  "artifact": {
+    "id": 13730522249,
+    "name": "ChavrusaText-production-signed-ipa-11201",
+    "size_in_bytes": 94105341,
+    "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/42736585184/artifacts/13730522249"
+  },
+  "source_tests": 36,
+  "sidebar_policy_assertions": 27,
+  "workspace_assertions": 61,
+  "component_assertions": 379,
+  "exact_9401_files": 80,
+  "simulator_execution": "NOT_RUN",
+  "owner_device_acceptance": "OWNER_DEVICE_ACCEPTANCE_PENDING",
+  "tester_assignment": "NOT_VERIFIED",
+  "installability": "NOT_VERIFIED",
+  "public_app_store_submission": false,
+  "merged_to_main": false,
+  "asana_written": false,
+  "qualification": "Apple VALID and a signed device archive do not prove visual/interaction acceptance or tester eligibility.",
+  "source_gate": "PASS",
+  "source_gate_evidence": "source-gate-delivery.json",
+  "application_contract_changes_from_11001": [
+    "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift"
+  ]
+}

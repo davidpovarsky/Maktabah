@@ -1,0 +1,710 @@
+{
+  "attempt": 1,
+  "conclusion": "success",
+  "headBranch": "experiment/ipad-ui-9401-native-sidebar-toc-fix",
+  "headSha": "8420392303f3a31535c11020282d3e11dbc4dd26",
+  "jobs": [
+    {
+      "completedAt": "2026-11-10T02:42:30Z",
+      "conclusion": "success",
+      "databaseId": 129567206550,
+      "name": "Build, Sign, and Deliver ChavrusaText (production)",
+      "startedAt": "2026-11-10T01:33:15Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-10T01:33:18Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-10T01:33:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:33:20Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 2,
+          "startedAt": "2026-11-10T01:33:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:34:03Z",
+          "conclusion": "success",
+          "name": "Checkout repository",
+          "number": 3,
+          "startedAt": "2026-11-10T01:33:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:34:04Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 4,
+          "startedAt": "2026-11-10T01:34:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:34:09Z",
+          "conclusion": "success",
+          "name": "Select Xcode 27",
+          "number": 5,
+          "startedAt": "2026-11-10T01:34:04Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:34:10Z",
+          "conclusion": "success",
+          "name": "Setup Node.js",
+          "number": 6,
+          "startedAt": "2026-11-10T01:34:09Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:34:13Z",
+          "conclusion": "success",
+          "name": "Cache the original pinned Sharp native archives",
+          "number": 7,
+          "startedAt": "2026-11-10T01:34:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:34:49Z",
+          "conclusion": "success",
+          "name": "Install Sefaria-Mobile JS Dependencies",
+          "number": 8,
+          "startedAt": "2026-11-10T01:34:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:37:42Z",
+          "conclusion": "success",
+          "name": "Install CocoaPods",
+          "number": 9,
+          "startedAt": "2026-11-10T01:34:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:20Z",
+          "conclusion": "success",
+          "name": "Build Sefaria Production Metro Bundle",
+          "number": 10,
+          "startedAt": "2026-11-10T01:37:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:21Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 11,
+          "startedAt": "2026-11-10T01:38:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:23Z",
+          "conclusion": "success",
+          "name": "Run dtolnay/rust-toolchain@stable",
+          "number": 12,
+          "startedAt": "2026-11-10T01:38:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:24Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 13,
+          "startedAt": "2026-11-10T01:38:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:25Z",
+          "conclusion": "success",
+          "name": "Identify Rust toolchain",
+          "number": 14,
+          "startedAt": "2026-11-10T01:38:24Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:26Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 15,
+          "startedAt": "2026-11-10T01:38:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:26Z",
+          "conclusion": "success",
+          "name": "Cache Cargo registry",
+          "number": 16,
+          "startedAt": "2026-11-10T01:38:26Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:27Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 17,
+          "startedAt": "2026-11-10T01:38:26Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:28Z",
+          "conclusion": "success",
+          "name": "Cache Otzaria framework",
+          "number": 18,
+          "startedAt": "2026-11-10T01:38:27Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:29Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 19,
+          "startedAt": "2026-11-10T01:38:28Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:29Z",
+          "conclusion": "success",
+          "name": "Validate restored Otzaria framework",
+          "number": 20,
+          "startedAt": "2026-11-10T01:38:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:30Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 21,
+          "startedAt": "2026-11-10T01:38:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:32Z",
+          "conclusion": "success",
+          "name": "Materialize pinned Otzaria upstream checkout",
+          "number": 22,
+          "startedAt": "2026-11-10T01:38:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:38:33Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 23,
+          "startedAt": "2026-11-10T01:38:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:48:06Z",
+          "conclusion": "success",
+          "name": "Build Otzaria XCFramework",
+          "number": 24,
+          "startedAt": "2026-11-10T01:38:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:48:07Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 25,
+          "startedAt": "2026-11-10T01:48:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:49:54Z",
+          "conclusion": "success",
+          "name": "Verify Otzaria framework",
+          "number": 26,
+          "startedAt": "2026-11-10T01:48:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:49:55Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 27,
+          "startedAt": "2026-11-10T01:49:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:49:55Z",
+          "conclusion": "success",
+          "name": "Cache Zayit framework",
+          "number": 28,
+          "startedAt": "2026-11-10T01:49:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:49:56Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 29,
+          "startedAt": "2026-11-10T01:49:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:49:56Z",
+          "conclusion": "success",
+          "name": "Validate restored Zayit framework",
+          "number": 30,
+          "startedAt": "2026-11-10T01:49:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:49:57Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 31,
+          "startedAt": "2026-11-10T01:49:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:53:22Z",
+          "conclusion": "success",
+          "name": "Build Zayit XCFramework",
+          "number": 32,
+          "startedAt": "2026-11-10T01:49:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:53:23Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 33,
+          "startedAt": "2026-11-10T01:53:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:53:24Z",
+          "conclusion": "success",
+          "name": "Verify Zayit framework",
+          "number": 34,
+          "startedAt": "2026-11-10T01:53:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:53:25Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 35,
+          "startedAt": "2026-11-10T01:53:24Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:53:40Z",
+          "conclusion": "success",
+          "name": "Cache Swift package dependencies",
+          "number": 36,
+          "startedAt": "2026-11-10T01:53:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:53:41Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 37,
+          "startedAt": "2026-11-10T01:53:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:14Z",
+          "conclusion": "success",
+          "name": "Resolve Swift packages",
+          "number": 38,
+          "startedAt": "2026-11-10T01:53:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:16Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 39,
+          "startedAt": "2026-11-10T01:54:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:16Z",
+          "conclusion": "success",
+          "name": "Validate selected data profile",
+          "number": 40,
+          "startedAt": "2026-11-10T01:54:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:16Z",
+          "conclusion": "skipped",
+          "name": "Live Activity · refresh",
+          "number": 41,
+          "startedAt": "2026-11-10T01:54:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:16Z",
+          "conclusion": "skipped",
+          "name": "Verify published miniTest10 assets",
+          "number": 42,
+          "startedAt": "2026-11-10T01:54:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:17Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 43,
+          "startedAt": "2026-11-10T01:54:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:17Z",
+          "conclusion": "success",
+          "name": "Verify Xcode integration",
+          "number": 44,
+          "startedAt": "2026-11-10T01:54:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:18Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 45,
+          "startedAt": "2026-11-10T01:54:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:27Z",
+          "conclusion": "success",
+          "name": "Test stabilization and Otzaria storage policies",
+          "number": 46,
+          "startedAt": "2026-11-10T01:54:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:28Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 47,
+          "startedAt": "2026-11-10T01:54:27Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:53Z",
+          "conclusion": "success",
+          "name": "Test corrected backend selection and Sefaria identity contracts",
+          "number": 48,
+          "startedAt": "2026-11-10T01:54:28Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:55Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 49,
+          "startedAt": "2026-11-10T01:54:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:55Z",
+          "conclusion": "success",
+          "name": "Compute unique build number",
+          "number": 50,
+          "startedAt": "2026-11-10T01:54:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:56Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 51,
+          "startedAt": "2026-11-10T01:54:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:56Z",
+          "conclusion": "success",
+          "name": "Restore App Store Connect API key",
+          "number": 52,
+          "startedAt": "2026-11-10T01:54:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:54:57Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 53,
+          "startedAt": "2026-11-10T01:54:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:55:12Z",
+          "conclusion": "success",
+          "name": "Verify App Store Connect app and registered Bundle ID",
+          "number": 54,
+          "startedAt": "2026-11-10T01:54:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:55:13Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 55,
+          "startedAt": "2026-11-10T01:55:12Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:55:14Z",
+          "conclusion": "success",
+          "name": "Verify Immutable Candidate SHA",
+          "number": 56,
+          "startedAt": "2026-11-10T01:55:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:55:14Z",
+          "conclusion": "success",
+          "name": "Import Apple Distribution certificate",
+          "number": 57,
+          "startedAt": "2026-11-10T01:55:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T01:55:15Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 58,
+          "startedAt": "2026-11-10T01:55:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:13:42Z",
+          "conclusion": "success",
+          "name": "Obtain and verify App Store provisioning before archive",
+          "number": 59,
+          "startedAt": "2026-11-10T01:55:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:13:44Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 60,
+          "startedAt": "2026-11-10T02:13:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:14:00Z",
+          "conclusion": "success",
+          "name": "Signing preflight check",
+          "number": 61,
+          "startedAt": "2026-11-10T02:13:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:14:01Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 62,
+          "startedAt": "2026-11-10T02:14:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:30:38Z",
+          "conclusion": "success",
+          "name": "Archive signed app",
+          "number": 63,
+          "startedAt": "2026-11-10T02:14:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:30:40Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 64,
+          "startedAt": "2026-11-10T02:30:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:30:40Z",
+          "conclusion": "success",
+          "name": "Verify archived profile and app entitlements",
+          "number": 65,
+          "startedAt": "2026-11-10T02:30:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:30:41Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 66,
+          "startedAt": "2026-11-10T02:30:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:31:14Z",
+          "conclusion": "success",
+          "name": "Export App Store Connect IPA",
+          "number": 67,
+          "startedAt": "2026-11-10T02:30:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:31:15Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 68,
+          "startedAt": "2026-11-10T02:31:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:31:16Z",
+          "conclusion": "success",
+          "name": "Validate exported IPA",
+          "number": 69,
+          "startedAt": "2026-11-10T02:31:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:31:17Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 70,
+          "startedAt": "2026-11-10T02:31:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:32:25Z",
+          "conclusion": "success",
+          "name": "Validate with App Store Connect",
+          "number": 71,
+          "startedAt": "2026-11-10T02:31:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:32:26Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 72,
+          "startedAt": "2026-11-10T02:32:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:33:30Z",
+          "conclusion": "success",
+          "name": "Upload to App Store Connect and TestFlight",
+          "number": 73,
+          "startedAt": "2026-11-10T02:32:26Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:33:31Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 74,
+          "startedAt": "2026-11-10T02:33:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:41:13Z",
+          "conclusion": "success",
+          "name": "Wait for Apple TestFlight processing",
+          "number": 75,
+          "startedAt": "2026-11-10T02:33:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:41:14Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 76,
+          "startedAt": "2026-11-10T02:41:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:41:20Z",
+          "conclusion": "success",
+          "name": "Upload signed IPA and build logs",
+          "number": 77,
+          "startedAt": "2026-11-10T02:41:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:41:21Z",
+          "conclusion": "success",
+          "name": "Live Activity · refresh",
+          "number": 78,
+          "startedAt": "2026-11-10T02:41:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:41:21Z",
+          "conclusion": "success",
+          "name": "Remove temporary signing material",
+          "number": 79,
+          "startedAt": "2026-11-10T02:41:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:41:51Z",
+          "conclusion": "success",
+          "name": "Post Cache Swift package dependencies",
+          "number": 153,
+          "startedAt": "2026-11-10T02:41:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:41:59Z",
+          "conclusion": "success",
+          "name": "Post Cache Zayit framework",
+          "number": 154,
+          "startedAt": "2026-11-10T02:41:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:42:17Z",
+          "conclusion": "success",
+          "name": "Post Cache Otzaria framework",
+          "number": 155,
+          "startedAt": "2026-11-10T02:41:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:42:25Z",
+          "conclusion": "success",
+          "name": "Post Cache Cargo registry",
+          "number": 156,
+          "startedAt": "2026-11-10T02:42:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:42:26Z",
+          "conclusion": "success",
+          "name": "Post Setup Node.js",
+          "number": 157,
+          "startedAt": "2026-11-10T02:42:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:42:26Z",
+          "conclusion": "success",
+          "name": "Post Checkout repository",
+          "number": 158,
+          "startedAt": "2026-11-10T02:42:26Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-10T02:42:28Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 159,
+          "startedAt": "2026-11-10T02:42:26Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/42736585184/job/129567206550"
+    }
+  ],
+  "number": 112,
+  "status": "completed",
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/42736585184"
+}

@@ -1,0 +1,11 @@
+{
+  "raw_warning_line_count": 1457,
+  "distinct_warning_lines": 689,
+  "changed_source_warnings": [],
+  "compiled_changed_sources": {
+    "ReaderSidebarPager.swift": true,
+    "iPadLayout.swift": true
+  },
+  "archive_log_sha256": "ebfcb93493dba780dac05a94d1429a314ca79e78266c2dffc1481c33342e1080",
+  "qualification": "Actual complete signed-archive.log artifact, not isolated Windows parsing. GitHub combined run log omits some app SwiftCompile batches; full archive artifact contains both changed sources. Existing third-party/build-system warnings are outside this repair scope."
+}
