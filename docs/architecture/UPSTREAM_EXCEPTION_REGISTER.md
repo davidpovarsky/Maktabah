@@ -2,6 +2,10 @@
 
 No exceptions approved as of 2026-10-22.
 
+## 2026-11-10 — exact native-sidebar TOC composition hook
+
+Owner reply in this chat: **“מאשר את ה־diff המדויק ב־iPadLayout.swift. המשך לביצוע מלא לפי המסמך, כולל הבדיקות והעלאת build production ל־TestFlight לאחר שכל השערים עוברים.”** This approves only the frozen five-line change in [PENDING_OWNER_iPadLayout.diff](../ipad-ui-rebuild/native-sidebar-11001/PENDING_OWNER_iPadLayout.diff), SHA256 `fbc92c2d348514a7876b945e530dcc9c30d7a5135de63a24477dfd4454f5f2dc`, from blob `80154afddb61a6ef19b04044287851c396057e9e` to `e541d660cdeae48d5f378e1ee198147e6c7f8d85`. It enables the original TOC navigation stack and removes two bar-visibility overrides and two sidebar-toggle removals. Alternatives, ownership, scope and rollback are in [pending-approval.json](../ipad-ui-rebuild/native-sidebar-11001/pending-approval.json). No additional reader-toolbar, TOC implementation, upstream, project-membership or workflow edit is authorized. Main-session implementation; physical-device acceptance remains pending. Re-review on next upstream sync or any change to this exact hunk.
+
 ## 2026-11-10 — exact 9401 shared-sidebar reader state hook
 
 Owner explicitly replied **“מאשר את ה־diff המדויק”** to the current chat's four-line proposal for `Source/Features/Reader/iOS/iOSReaderView.swift`. The frozen executable hunks are [9401_PENDING_OWNER_HOOK.diff](../ipad-ui-rebuild/9401_PENDING_OWNER_HOOK.diff); exact original/proposed blob IDs, patch SHA256, rejected alternatives, scope and rollback are in [9401_pending_approval.json](../ipad-ui-rebuild/9401_pending_approval.json). Only the shared-sidebar environment property and page-aware `tableOfContentsIsPresented` expression are approved; the complete original toolbar subtree remains unchanged. This records actual owner approval before application, not self-approval. Main-session verification; device acceptance and review date remain pending owner physical-iPad feedback. No other future protected hunk is authorized.
