@@ -1,6 +1,7 @@
 test_actual_compact_toc_route_must_show_same_sidebar (__main__.NegativeControls) ... ok
 test_added_duplicate_title_bar (__main__.NegativeControls) ... ok
 test_backend_retention_drift (__main__.NegativeControls) ... ok
+test_book_local_toc_ids_cannot_reuse_previous_book_state (__main__.NegativeControls) ... ok
 test_changed_approved_hunk_artifact (__main__.NegativeControls) ... ok
 test_changed_global_tab (__main__.NegativeControls) ... ok
 test_changed_original_inspector_toggle (__main__.NegativeControls) ... ok
@@ -30,10 +31,11 @@ test_second_reader_instance (__main__.NegativeControls) ... ok
 test_sidebar_cannot_be_a_reader_overlay (__main__.NegativeControls) ... ok
 test_third_toc_split_is_rejected (__main__.NegativeControls) ... ok
 test_tile_cannot_be_replaced_with_overlay (__main__.NegativeControls) ... ok
+test_toc_identity_cannot_follow_an_inactive_book (__main__.NegativeControls) ... ok
 test_toc_selection_keeps_actual_reader_anchor_callback (__main__.NegativeControls) ... ok
 test_visual_classification_bypass (__main__.NegativeControls) ... ok
 
 ----------------------------------------------------------------------
-Ran 34 tests in 10.416s
+Ran 36 tests in 10.436s
 
 OK

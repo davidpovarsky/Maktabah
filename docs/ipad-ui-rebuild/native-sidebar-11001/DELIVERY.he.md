@@ -6,7 +6,7 @@
 
 המאגר הוא [davidpovarsky/Maktabah](https://github.com/davidpovarsky/Maktabah). ענף הניסוי החדש הוא `experiment/ipad-ui-9401-native-sidebar-toc-fix`, ב־worktree נפרד `C:/Users/DAVID/Code/Maktabah-9401-native-sidebar-toc-fix`. הבסיס המרוחק אומת: `8632dd3165c9dabdee62931f0e011f542b4bc815`. מקור 11001 בפועל הוא `0d2ac9c46fe33d5a650fcf9ee7e66b2aa8bd2a73`; מקור 9401 הוא `f243d06603cbe506de8f27ea8b9a479af4415e2e`; upstream הנוכחי אומת ב־`46e893c65139fbb1e582d6595b0d220ea912324a`.
 
-מקור היישום המתוקן נרשם ב־`dcc405d1d82c7dc70118c7e02bdc827dee5c58a7`. הרחבת guard והראיות נמצאת ב־commit נפרד `5f5e7a69`. commits מאוחרים של ראיות אינם משנים קוד יישום. SHA ההפצה המדויק, מספר build ותוצאות Apple יירשמו לאחר ריצת ההפצה; אין לייחס את build ‏11001 לתיקון הזה.
+מקור התיקון הראשוני נרשם ב־`dcc405d1d82c7dc70118c7e02bdc827dee5c58a7`. מקור היישום הסופי, כולל זהות TOC לפי UUID של לשונית הספר, הוא `8ea4f57806b9f1f6766bfda0a0828cdc07cf6645`. הרחבת guard והראיות נמצאת ב־commits נפרדים. commits מאוחרים של ראיות אינם משנים קוד יישום. SHA ההפצה המדויק, מספר build ותוצאות Apple יירשמו לאחר ריצת ההפצה; אין לייחס את build ‏11001 לתיקון הזה.
 
 החריג החדש היחיד בקובץ upstream הוא ה־[diff המדויק ב־iPadLayout.swift](PENDING_OWNER_iPadLayout.diff), שאושר במפורש בהודעת המשתמש: “מאשר את ה־diff המדויק ב־iPadLayout.swift. המשך לביצוע מלא לפי המסמך, כולל הבדיקות והעלאת build production ל־TestFlight לאחר שכל השערים עוברים.” רישום האישור, ה־blob וה־SHA256 נמצאים ב־[pending-approval.json](pending-approval.json) וב־[רישום החריגים](../../architecture/UPSTREAM_EXCEPTION_REGISTER.md). ה־blob שהתקבל הוא בדיוק `e541d660cdeae48d5f378e1ee198147e6c7f8d85`.
 
@@ -54,19 +54,20 @@
 | תוספות מאושרות | Exact9401ViewerToolbar: magnifyingglass יחיד ל־Command Palette ותפריט StudyProfileMenu; אותה management view ואותו coordinator של הסצנה |
 | קורא תחתון | iOSReaderBottomToolbarView המקורי: עמוד קודם/הבא, navigation label/בחירה, חיפוש, More עם Text Options/TOC/Annotations ו־Display by כאשר זמין |
 
-מצבי loading/error/empty, סינון, בחירת עוגן, expansion ו־scroll-to-selected נשארים בקוד המקורי. ל־TOC יש חיפוש בענף הרשימה הטעונה בלבד, כפי שהיה ב־9401. מעבר דף מרכיב מחדש את state החיפוש/ההרחבה המקומי של רכיב ה־TOC; ה־view model, הספר והעוגן הנבחר נשארים באותם בעלים, והמקור מחשב שוב את מסלול ההרחבה והגלילה לעוגן. לא נטענת מופע קורא חדש עקב החלפת דף sidebar או שינוי רוחב.
+מצבי loading/error/empty, סינון, בחירת עוגן, expansion ו־scroll-to-selected נשארים בקוד המקורי. ל־TOC יש חיפוש בענף הרשימה הטעונה בלבד, כפי שהיה ב־9401. מעבר דף מרכיב מחדש את state החיפוש/ההרחבה המקומי של רכיב ה־TOC; ה־view model, הספר והעוגן הנבחר נשארים באותם בעלים, והמקור מחשב שוב את מסלול ההרחבה והגלילה לעוגן. דף ה־TOC מזוהה לפי UUID של לשונית הספר הפעילה בפועל, כדי שמזהי סעיפים חופפים בשני ספרים לא ישאירו state וגלילה מהספר הקודם. לא נטענת מופע קורא חדש עקב החלפת דף sidebar או שינוי רוחב.
 
 ## בדיקות והפצה
 
 [final-preflight.json](final-preflight.json) ופלטי `final-*` מתעדים את ה־SHA שנבדק ואת ה־hash של כל פלט:
 
 - guard המקור: PASS, ‏780 פריטים, 80 EXACT ו־9 חריגים מתועדים.
-- בדיקות מקור שליליות: 34/34 PASS, כולל כל 20 הבדיקות הקודמות.
+- בדיקות מקור שליליות: 36/36 PASS, כולל כל 20 הבדיקות הקודמות ושתי בדיקות לזהות ספר/לשונית.
 - מדיניות ה־pager האמיתית: 27/27 PASS — גבולות רוחב, divider, Dynamic Type, compact, RTL, כיווני מחווה, כיוון אלכסוני ושינויי חלון.
 - suites קיימים שהורצו מחדש לאחר שינוי המקור: 61/61 workspace ו־379/379 component/backend/RPC.
 - בדיקת membership: PASS; אין שינוי ביעדים או פרויקט. parsing של המקורות ששונו ו־`git diff --check`: PASS. parsing ב־Windows אינו typecheck של SwiftUI/UIKit.
 - ה־guard הישן דחה את שני blobs ששונו. ההרחבה הנפרדת לא ביטלה את הכשל: היא מאמתת את האישור האמיתי, מקבעת את שני המקורות המצומצמים ומוסיפה בדיקות. [תיעוד מעבר ה־pin](legacy-guard-transition.json).
 - Device build, archive, signing, export, upload ו־Apple processing: **PENDING** ברגע כתיבת דוח preflight זה. יעד ההפצה הוא `production`, workflow קיים `ios-testflight.yml`, ללא שינוי workflow ועם expected_sha מלא.
+- ריצה ראשונה `42734945451` בוטלה במהלך בניית Otzaria כדי לכלול את תיקון זהות הספר. לפי metadata סופי, archive/upload/processing לא בוצעו; ראו [cancelled-before-upload.json](cancelled-before-upload.json). אין build TestFlight מריצה זו. המועמד המעודכן מיועד להעלאה סופית יחידה.
 - לא הופעלו סימולטור, UI tests או matrix רב־פלטפורמי; לא בוצעו merge, Asana update או שינוי נתוני משתמש.
 
 ## בדיקת בעלים במכשיר פיזי — הכול PENDING

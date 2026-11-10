@@ -1,6 +1,6 @@
 {
-  "tested_ref": "5f5e7a6917e5cd4d460c3d2137e5e0f0cf8a62a7",
-  "application_source_commit": "dcc405d1d82c7dc70118c7e02bdc827dee5c58a7",
+  "tested_ref": "8ea4f57806b9f1f6766bfda0a0828cdc07cf6645",
+  "application_source_commit": "8ea4f57806b9f1f6766bfda0a0828cdc07cf6645",
   "scope": "Actual source/provenance/portable preflight. Windows parse is not Apple-framework compilation.",
   "commands": [
     {
@@ -10,7 +10,7 @@
       ],
       "exit_code": 0,
       "output": "final-source-gate.json",
-      "sha256": "fa44b05e6ae1c43d768540d71eb78514507c7483d70a3197088bb8813babc41a"
+      "sha256": "93d0c7b40d70ef84e2f8f3c74016a62ff6e0e4d249cc079b9d9f4b0098067680"
     },
     {
       "command": [
@@ -19,7 +19,7 @@
       ],
       "exit_code": 0,
       "output": "final-negative-controls.log",
-      "sha256": "63abf0c39b2ce5c6d5dbdf732c432249d20af170440065362ce4279a102ec05d"
+      "sha256": "38cf0b414fa233f76f89d4173b1c84f793f1f7b668e824c36f36cf41493f331f"
     },
     {
       "command": [
@@ -28,7 +28,7 @@
       ],
       "exit_code": 0,
       "output": "final-policy.log",
-      "sha256": "7ee9b6767c411ca982defe27a3831295c25f6b3858136aea7a66511c5555f7bb"
+      "sha256": "be9a30570acc1ceb3af616af3366a4d05faa5ceeedf4aa7730981f9a9c5a00d4"
     },
     {
       "command": [
@@ -68,7 +68,7 @@
         "git",
         "diff",
         "--exit-code",
-        "dcc405d1d82c7dc70118c7e02bdc827dee5c58a7",
+        "8ea4f57806b9f1f6766bfda0a0828cdc07cf6645",
         "HEAD",
         "--",
         "Source",
@@ -82,11 +82,11 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],
-  "negative_tests": 34,
+  "negative_tests": 36,
   "actual_portable_sidebar_policy_assertions": 27,
   "existing_workspace_assertions": 61,
   "existing_component_assertions": 379,
-  "existing_suite_source_note": "Both existing suites were recompiled/executed after dcc405d1, before this evidence-only commit. All actual Source/Vendor/Packages/project/workflow blobs match that tested source commit; final-source-invariance.log verifies this.",
+  "existing_suite_source_note": "Both existing suites were recompiled/executed after dcc405d1. The later book-identity correction changes only the pager UI branch, which neither existing portable suite compiles. Existing portable suite input source blobs remain unchanged. The actual pager policy is freshly recompiled and run by final-policy.log; final-source-invariance.log checks the final app source against 8ea4f578.",
   "sdk_query": {
     "url": "https://github.com/davidpovarsky/apple-devtools/actions/runs/42733665190",
     "conclusion": "success",

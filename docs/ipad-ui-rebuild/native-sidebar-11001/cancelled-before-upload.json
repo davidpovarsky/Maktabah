@@ -1,0 +1,13 @@
+{
+  "run_id": 42734945451,
+  "url": "https://github.com/davidpovarsky/Maktabah/actions/runs/42734945451",
+  "sha": "a3f26317bf49102d7eb7c630b15101ddb8054ac6",
+  "conclusion": "cancelled",
+  "reason": "Cancelled before archive/upload to include reader-tab-scoped TOC identity discovered during source edge-case review",
+  "distribution_steps": {
+    "Archive signed app": "skipped",
+    "Upload to App Store Connect and TestFlight": "skipped",
+    "Wait for Apple TestFlight processing": "skipped"
+  },
+  "upload": "NOT_EXECUTED"
+}

@@ -33,7 +33,7 @@
     "RTL gesture ownership",
     "wide docked geometry remains unmeasured"
   ],
-  "rollback": "Proposal is unapplied. If subsequently approved and applied, reverse only this exact patch on the isolated experiment branch; leave original worktrees and persisted data untouched.",
+  "rollback": "If rollback is requested, reverse only the exact applied approved patch on this isolated experimental branch. Do not reset original worktrees or user data.",
   "review": "Main-session source/provenance review only; no independent subagent or physical-device QA.",
   "review_date": "2026-11-10",
   "future_changes_require_new_exact_hunk_approval": true

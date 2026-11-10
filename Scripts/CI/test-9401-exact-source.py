@@ -176,6 +176,15 @@ class NegativeControls(unittest.TestCase):
         self.assertIn("EXACT_NATIVE_SIDEBAR_APPROVAL_INVALID",
                       gate.native_approval_issues(record, gate.content("HEAD", gate.NATIVE_PATCH) + b"extra hunk"))
 
+    def test_book_local_toc_ids_cannot_reuse_previous_book_state(self):
+        self.assertIn("TOC_IDENTITY_MUST_FOLLOW_ACTUAL_READER_TAB", self.changed(gate.PAGER,
+                      b".id(activeContentsReaderID)", b".id(UUID())"))
+
+    def test_toc_identity_cannot_follow_an_inactive_book(self):
+        self.assertIn("TOC_IDENTITY_MUST_FOLLOW_ACTUAL_READER_TAB", self.changed(gate.PAGER,
+                      b"navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId })?.id",
+                      b"navigationManager.openTabs.first?.id"))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

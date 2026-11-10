@@ -39,7 +39,7 @@ PAGER = "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
 NATIVE_APPROVAL = "docs/ipad-ui-rebuild/native-sidebar-11001/pending-approval.json"
 NATIVE_PATCH = "docs/ipad-ui-rebuild/native-sidebar-11001/PENDING_OWNER_iPadLayout.diff"
 NATIVE_IPAD_BLOB = "e541d660cdeae48d5f378e1ee198147e6c7f8d85"
-NATIVE_PAGER_BLOB = "6eb5f29afdf42cad7acbf5ef6ae3d535cb29c238"
+NATIVE_PAGER_BLOB = "c69160b770623ceee4ef921092d855439133a109"
 NATIVE_PATCH_SHA256 = "fbc92c2d348514a7876b945e530dcc9c30d7a5135de63a24477dfd4454f5f2dc"
 RELEASE_11001 = "0d2ac9c46fe33d5a650fcf9ee7e66b2aa8bd2a73"
 NATIVE_OWNER_REPLY = "Owner response in this chat on 2026-11-10: מאשר את ה־diff המדויק ב־iPadLayout.swift. המשך לביצוע מלא לפי המסמך, כולל הבדיקות והעלאת build production ל־TestFlight לאחר שכל השערים עוברים."
@@ -327,8 +327,13 @@ def native_sidebar_issues(files):
             or "TOCNodeRow(" not in toc or "scrollSelected(proxy: proxy)" not in toc
             or 'prompt: String(localized: "Search Library")' not in viewer):
         issues.append("ORIGINAL_NATIVE_SEARCH_AND_TOC_REQUIRED")
-    if not re.search(r"Group\s*\{\s*if coordinator\.page == \.library\s*\{\s*library\(true\)\s*\}\s*else\s*\{\s*contents\(true\)\s*\}\s*\}", pager):
+    pager_code = re.sub(r"//[^\n]*", "", pager)
+    if not re.search(r"Group\s*\{\s*if coordinator\.page == \.library\s*\{\s*library\(true\)\s*\}\s*else\s*\{\s*contents\(true\)\s*\.id\(activeContentsReaderID\)\s*\}\s*\}", pager_code):
         issues.append("ONE_ACTIVE_SIDEBAR_PAGE_REQUIRED")
+    if (".id(activeContentsReaderID)" not in pager_code
+            or "navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId })?.id" not in pager_code
+            or "?? navigationManager.openTabs.first?.id" not in pager_code):
+        issues.append("TOC_IDENTITY_MUST_FOLLOW_ACTUAL_READER_TAB")
     if any(token in pager for token in (".opacity(", "ZStack {", "NavigationSplitView(", "UISplitViewController(", "UIHostingController(", ".offset(", "UIScreen.main", "split.delegate =")):
         issues.append("NO_COMPETING_SIDEBAR_OR_READER_OVERLAY")
     if (".toolbar(removing: .sidebarToggle)" in viewer + active_toc
