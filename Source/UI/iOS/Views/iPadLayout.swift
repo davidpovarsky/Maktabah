@@ -120,12 +120,10 @@ struct iPadLayout: View {
                 .toolbarBackground(Color.appBackground, for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .background(Color.appBackground)
-                .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
                 .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("library-column")
             } contents: { isActive in
                 activeReaderTableOfContents
-                    .toolbarVisibility(isActive ? .visible : .hidden, for: .navigationBar)
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("toc-column")
             }
@@ -152,13 +150,12 @@ struct iPadLayout: View {
                 selectedId: selectedTOCNode(for: tab.viewModel)?.id,
                 bookTitle: tab.book.book,
                 onClose: closeTableOfContents,
-                embedsNavigationStack: false,
+                embedsNavigationStack: true,
                 onSelect: { id in
                     tab.viewModel.didSelectTOCNode(id: id)
                     if horizontalSizeClass == .compact { closeTableOfContents() }
                 }
             )
-            .toolbar(removing: .sidebarToggle)
             .onAppear {
                 if tab.viewModel.tocViewModel.tocNodes.isEmpty && !tab.viewModel.tocViewModel.isLoading {
                     tab.viewModel.loadTOC(book: tab.book)
@@ -175,7 +172,6 @@ struct iPadLayout: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
-            .toolbar(removing: .sidebarToggle)
             .background(Color.appBackground)
         }
     }

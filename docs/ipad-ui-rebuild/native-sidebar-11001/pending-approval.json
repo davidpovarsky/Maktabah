@@ -1,7 +1,7 @@
 {
-  "status": "PENDING_OWNER_EXACT_HUNK_APPROVAL",
-  "applied": false,
-  "owner_approval_reference": null,
+  "status": "APPROVED_EXACT_HUNK",
+  "applied": true,
+  "owner_approval_reference": "Owner response in this chat on 2026-11-10: מאשר את ה־diff המדויק ב־iPadLayout.swift. המשך לביצוע מלא לפי המסמך, כולל הבדיקות והעלאת build production ל־TestFlight לאחר שכל השערים עוברים.",
   "starting_sha": "8632dd3165c9dabdee62931f0e011f542b4bc815",
   "file": "Source/UI/iOS/Views/iPadLayout.swift",
   "ownership": "UPSTREAM_OWNED",
