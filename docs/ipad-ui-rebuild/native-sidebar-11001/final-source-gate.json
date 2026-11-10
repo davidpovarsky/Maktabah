@@ -1,0 +1,14 @@
+{
+  "ref": "5f5e7a6917e5cd4d460c3d2137e5e0f0cf8a62a7",
+  "inventory_counts": {
+    "BACKEND_RETAINED": 660,
+    "EXACT_9401_BLOB": 80,
+    "INACTIVE_RETAINED_NEW_UI": 26,
+    "DOWNSTREAM_INTEGRATION": 3,
+    "ACTIVE_PROFILE_UI": 2,
+    "DECLARED_EXCEPTION": 9
+  },
+  "gate": "PASS",
+  "failures": [],
+  "device_acceptance": "OWNER_DEVICE_ACCEPTANCE_PENDING"
+}

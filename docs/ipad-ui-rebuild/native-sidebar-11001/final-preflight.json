@@ -1,0 +1,105 @@
+{
+  "tested_ref": "5f5e7a6917e5cd4d460c3d2137e5e0f0cf8a62a7",
+  "application_source_commit": "dcc405d1d82c7dc70118c7e02bdc827dee5c58a7",
+  "scope": "Actual source/provenance/portable preflight. Windows parse is not Apple-framework compilation.",
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+        "Scripts/CI/verify-9401-exact-source.py"
+      ],
+      "exit_code": 0,
+      "output": "final-source-gate.json",
+      "sha256": "fa44b05e6ae1c43d768540d71eb78514507c7483d70a3197088bb8813babc41a"
+    },
+    {
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+        "Scripts/CI/test-9401-exact-source.py"
+      ],
+      "exit_code": 0,
+      "output": "final-negative-controls.log",
+      "sha256": "63abf0c39b2ce5c6d5dbdf732c432249d20af170440065362ce4279a102ec05d"
+    },
+    {
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+        "Scripts/CI/test-native-sidebar-policy.py"
+      ],
+      "exit_code": 0,
+      "output": "final-policy.log",
+      "sha256": "7ee9b6767c411ca982defe27a3831295c25f6b3858136aea7a66511c5555f7bb"
+    },
+    {
+      "command": [
+        "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+        "Scripts/CI/verify-otzaria-xcode-project.py"
+      ],
+      "exit_code": 0,
+      "output": "final-membership.log",
+      "sha256": "8d125683e02f0cc64db9cf05a7e83e69a4f900a1b4cd5fc8bcc670e57062968f"
+    },
+    {
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+        "Source/UI/iOS/Views/iPadLayout.swift"
+      ],
+      "exit_code": 0,
+      "output": "final-syntax.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "8632dd3165c9dabdee62931f0e011f542b4bc815",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "output": "final-diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "dcc405d1d82c7dc70118c7e02bdc827dee5c58a7",
+        "HEAD",
+        "--",
+        "Source",
+        "Vendor",
+        "Packages",
+        "Maktabah.xcodeproj",
+        ".github"
+      ],
+      "exit_code": 0,
+      "output": "final-source-invariance.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "negative_tests": 34,
+  "actual_portable_sidebar_policy_assertions": 27,
+  "existing_workspace_assertions": 61,
+  "existing_component_assertions": 379,
+  "existing_suite_source_note": "Both existing suites were recompiled/executed after dcc405d1, before this evidence-only commit. All actual Source/Vendor/Packages/project/workflow blobs match that tested source commit; final-source-invariance.log verifies this.",
+  "sdk_query": {
+    "url": "https://github.com/davidpovarsky/apple-devtools/actions/runs/42733665190",
+    "conclusion": "success",
+    "symbol": "UISplitViewController.displayModeButtonVisibility",
+    "introduced_ios": "14.5"
+  },
+  "sdk_query_runner_attempts": {
+    "42733334362": "failure with no jobs on xcode-27 label; no compilation or simulator ran",
+    "42733483019": "failure with no jobs on array-form label; no compilation or simulator ran"
+  },
+  "device_sdk_build": "PENDING_EXISTING_TESTFLIGHT_WORKFLOW_BEFORE_UPLOAD",
+  "device_acceptance": "OWNER_DEVICE_ACCEPTANCE_PENDING",
+  "simulator_execution": "NOT_RUN",
+  "workflow_changes": false,
+  "new_protected_hunks_beyond_owner_approved_patch": false
+}
