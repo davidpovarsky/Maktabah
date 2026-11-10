@@ -27,6 +27,7 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
     let library: (Bool) -> Library
     let contents: (Bool) -> Contents
     @Environment(\.layoutDirection) private var layoutDirection
+    @Environment(iOSNavigationManager.self) private var navigationManager
 
     var body: some View {
         // Each original page owns its NavigationStack. An unselected page must
@@ -36,6 +37,9 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
                 library(true)
             } else {
                 contents(true)
+                    // Node IDs are book-local. Recreate only the TOC's local
+                    // search/expansion/scroll state when its reader changes.
+                    .id(activeContentsReaderID)
             }
         }
         .accessibilityElement(children: .contain)
@@ -50,6 +54,11 @@ struct ReaderSidebarPager<Library: View, Contents: View>: View {
             .contentShape(Rectangle())
             .simultaneousGesture(sidebarSwipe)
         }
+    }
+
+    private var activeContentsReaderID: UUID? {
+        navigationManager.openTabs.first(where: { $0.id == navigationManager.activeTabId })?.id
+            ?? navigationManager.openTabs.first?.id
     }
 
     private var sidebarSwipe: some Gesture {
