@@ -1,0 +1,17 @@
+{
+  "base": "29f8b4d39c7ea7b49d359a8c57236094e623a9ad",
+  "source_commits_in_order": [
+    "83c13b412e8c38ec354b112d699d53c83d2352d8",
+    "75ea765de3d768402bf89798b6006b2aea7f9477"
+  ],
+  "artifact_hash_normalization": "UTF-8 text with CRLF normalized to LF",
+  "artifact_lf_sha256": {
+    "baseline-evidence.json": "d82fb2a19b08d44450064e47469fd56abbb9cd088bd15f68002230ca3658633c",
+    "baseline-window-excerpt.log": "3535bbb89efd131fa7536d248d3fde7015588559cda805696b1cc144a4bf3bce",
+    "DIAGNOSIS.md": "d7916100370c1251bfc60b7fef76933674d52db8a0520897d522a2f6551cc1df",
+    "lease.json": "b5093753689c728343a9f79763da5c5bf8c3f5d244b21f76a173973209d9e561",
+    "source.patch": "799b12dcb3b4b643e7c9169ec84da63cc3fd5f2e07bb579b20f9ca18ab79cc42",
+    "verification.json": "44a17ed3eaf306bab11e2e2ee35c5cce89dfa0efdad957fb2380a3d91df890bd",
+    "verify_source.py": "817fd708aef4b3e7120fc919fce325f70f3ef44b39a835491e9ca1ec6564fb67"
+  }
+}
