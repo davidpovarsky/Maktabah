@@ -61,8 +61,21 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
                        context: ActionExecutionContext) async -> UISceneAcknowledgement {
         await commitCurrent(command, context: context, reader: readerCommand)
     }
+    /// Future public-v2 consumer: retain the ORIGINAL binder-issued wrapper and
+    /// the caller's original admission. Never re-prepare or re-admit here. The
+    /// caller owns release after this full completion check (or full Core result
+    /// for content, which still enters through the actual reader sink above).
+    public func commitPrepared(_ prepared: UIAuthorizedSceneCommand,
+                               admitted: ActionNavigationState) async -> UISceneAcknowledgement {
+        guard prepared.command.route.route.content == nil else {
+            return .notSupported(.init(code: "core_reader_command_required", message: "Use canonical reader.open."))
+        }
+        return await commitCurrent(prepared.command, context: admitted.context, reader: nil,
+                                   originalPreparation: prepared, borrowedAdmission: admitted)
+    }
     private func commitCurrent(_ command: UISceneCommand, context: ActionExecutionContext,
-                               reader: ActionOpenReaderCommand?) async -> UISceneAcknowledgement {
+                               reader: ActionOpenReaderCommand?, originalPreparation: UIAuthorizedSceneCommand? = nil,
+                               borrowedAdmission: ActionNavigationState? = nil) async -> UISceneAcknowledgement {
         let requestID = command.invocation.requestId, sceneID = command.scene.sceneID
         var didDispatch = false
         do {
@@ -75,21 +88,31 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             guard dispatches.count < capacity else { throw UIRouteError(.unavailable, "native_dispatch_ledger_full") }
             guard let driver = drivers[sceneID] else { throw UIRouteError(.unavailable, "scene_driver_missing") }
             let admitted: ActionNavigationState
-            if reader == nil { admitted = try authority.admit(context: context, sceneID: sceneID) }
+            let ownsAdmission = reader == nil && originalPreparation == nil
+            if ownsAdmission { admitted = try authority.admit(context: context, sceneID: sceneID) }
             else {
-                admitted = try authority.navigationState(sceneID: sceneID.rawValue)
-                guard admitted.active, admitted.context == context else { throw UIRouteError(.staleState, "native_context_changed") }
+                let live = try authority.navigationState(sceneID: sceneID.rawValue)
+                guard live.active, live.context == context else { throw UIRouteError(.staleState, "native_context_changed") }
+                if let borrowedAdmission {
+                    guard borrowedAdmission.active, borrowedAdmission.sceneID == sceneID.rawValue,
+                          borrowedAdmission.context == live.context, borrowedAdmission.lifetimeID == live.lifetimeID,
+                          borrowedAdmission.authorityRevision == live.authorityRevision else {
+                        throw UIRouteError(.staleState, "native_context_changed")
+                    }
+                    admitted = borrowedAdmission
+                } else { admitted = live }
             }
             // Content is admitted by the outer Core invocation owner. Its
             // retained grant must remain live through Core's own post-sink
             // completion check; only that outer owner releases it afterwards.
-            defer { if reader == nil { authority.release(admitted) } }
+            defer { if ownsAdmission { authority.release(admitted) } }
             try driver.validateSurface(command)
             let token = UUID()
             dispatches[requestID] = Dispatch(command: command, context: context, dispatched: false, active: true, token: token)
             defer { if dispatches[requestID]?.token == token { dispatches[requestID]?.active = false } }
             let prepared: UIAuthorizedSceneCommand
-            if let reader { prepared = try command.prepareNavigation(readerCommand: reader) }
+            if let originalPreparation { prepared = originalPreparation }
+            else if let reader { prepared = try command.prepareNavigation(readerCommand: reader) }
             else { prepared = try await command.prepareNavigation(using: core, context: context) }
             // Recheck the actual driver identity after Core preparation awaits.
             guard let currentDriver = drivers[sceneID], currentDriver === driver else { throw UIRouteError(.staleState, "scene_lifetime_changed") }

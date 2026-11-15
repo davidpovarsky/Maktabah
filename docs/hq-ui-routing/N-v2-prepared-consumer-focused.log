@@ -1,0 +1,118 @@
+[0/1] Planning build
+Building for debugging...
+[0/15] Write swift-version-2807070033DA82CF.txt
+[1/15] Write sources
+[6/16] Emitting module OtzariaActionCore
+[7/19] Compiling OtzariaActionCore EmbeddedActionResponseProof.swift
+[8/19] Compiling OtzariaActionCore ActionExecutor.swift
+[9/19] Compiling OtzariaActionCore ActionNavigationAuthority.swift
+[10/36] Compiling OtzariaActionCore ActionBackendArgumentTarget.swift
+[11/36] Compiling OtzariaActionCore ActionSearchArgumentMapping.swift
+[12/36] Compiling OtzariaActionCore ActionSearchSemantics.swift
+[13/36] Compiling OtzariaActionCore BackendSemanticProfile.swift
+[14/36] Compiling OtzariaActionCore ActionJSON.swift
+[15/36] Compiling OtzariaActionCore ActionReferences.swift
+[16/36] Compiling OtzariaActionCore ActionRequest.swift
+[17/36] Compiling OtzariaActionCore ActionSchemaValidator.swift
+[18/36] Compiling OtzariaActionCore ActionSearch.swift
+[19/36] Compiling OtzariaActionCore ActionWireCodec.swift
+[20/36] Compiling OtzariaActionCore ActionDeadline.swift
+[21/36] Compiling OtzariaActionCore ActionExecutionContext.swift
+[22/36] Compiling OtzariaActionCore ActionPolicy.swift
+[23/36] Compiling OtzariaActionCore ActionValidation.swift
+[24/36] Compiling OtzariaActionCore ActionPorts.swift
+[25/36] Compiling OtzariaActionCore ActionRegistry.swift
+[26/36] Compiling OtzariaActionCore CatalogActionResolver.swift
+[27/37] Wrapping AST for OtzariaActionCore for debugging
+[29/38] Emitting module OtzariaUIRouting
+[30/47] Compiling OtzariaUIRouting PublicNavigationV2Codec.swift
+[31/47] Compiling OtzariaUIRouting UIRouteCodec.swift
+[32/47] Compiling OtzariaUIRouting UIRouteSchemas.swift
+[33/47] Compiling OtzariaUIRouting PublicNavigationV2.swift
+[34/47] Compiling OtzariaUIRouting PublicNavigationLocalBinding.swift
+[35/47] Compiling OtzariaUIRouting SceneNavigationPort.swift
+[36/47] Compiling OtzariaUIRouting UIDestinationDescriptor.swift
+[37/47] Compiling OtzariaUIRouting UIDestinationPublicNavigationV2.swift
+[38/47] Compiling OtzariaUIRouting UIDestinationRegistry.swift
+[39/48] Compiling OtzariaUIRouting RouteSpec.swift
+[40/49] Wrapping AST for OtzariaUIRouting for debugging
+[42/50] Emitting module ChavrusaUIRoutingHost
+[43/61] Compiling ChavrusaUIRoutingHost NativeIntentOutcome.swift
+[44/61] Compiling ChavrusaUIRoutingHost NativeIntentService.swift
+[45/61] Compiling ChavrusaUIRoutingHost NativeNavigationAuthority.swift
+[46/61] Compiling ChavrusaUIRoutingHost NativeObservationDeadline.swift
+[47/61] Compiling ChavrusaUIRoutingHost NativePresentationObserver.swift
+[48/61] Compiling ChavrusaUIRoutingHost NativeRouteInbox.swift
+[49/61] Compiling ChavrusaUIRoutingHost NativeRouteURL.swift
+[50/61] Compiling ChavrusaUIRoutingHost NativeSceneDirectory.swift
+[51/61] Compiling ChavrusaUIRoutingHost NativeSceneIdentity.swift
+[52/61] Compiling ChavrusaUIRoutingHost NativeSceneNavigationOrchestrator.swift
+[53/61] Compiling ChavrusaUIRoutingHost NativeSurfaceState.swift
+[54/62] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[56/63] Emitting module ChavrusaUIRoutingHostTests
+[57/71] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[58/71] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[59/71] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[60/71] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+[61/71] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[62/71] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[63/71] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[64/71] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[65/72] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[66/72] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[67/73] Write sources
+[69/74] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[70/76] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[71/76] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[72/77] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[73/78] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[74/78] Write sources
+[76/79] Emitting module ChavrusaUIRoutingHostPackageTests
+[77/80] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[78/80] Write Objects.LinkFileList
+[79/80] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (89.04s)
+Test Suite 'Selected tests' started at 2026-11-15 17:24:22.656
+
+Test Suite 'NativePublicPreparedCommitTests' started at 2026-11-15 17:24:22.658
+
+Test Case 'NativePublicPreparedCommitTests.testConsumedOriginalMappingOrGenerationDriftCannotBeRepreparedIntoSuccess' started at 2026-11-15 17:24:22.658
+
+Test Case 'NativePublicPreparedCommitTests.testConsumedOriginalMappingOrGenerationDriftCannotBeRepreparedIntoSuccess' passed (1.195 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testFinalMappingDriftAfterDispatchRemainsUncertainAndDoesNotReleaseOwner' started at 2026-11-15 17:24:23.854
+
+Test Case 'NativePublicPreparedCommitTests.testFinalMappingDriftAfterDispatchRemainsUncertainAndDoesNotReleaseOwner' passed (0.353 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testOldPreparedAdmissionAndCleanupCannotTakeReplacementContext' started at 2026-11-15 17:24:24.207
+
+Test Case 'NativePublicPreparedCommitTests.testOldPreparedAdmissionAndCleanupCannotTakeReplacementContext' passed (0.42 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testOriginalBoundSurfaceCompletesWithoutReplacingOrReleasingAdmissionOnAllBackends' started at 2026-11-15 17:24:24.628
+
+Test Case 'NativePublicPreparedCommitTests.testOriginalBoundSurfaceCompletesWithoutReplacingOrReleasingAdmissionOnAllBackends' passed (0.513 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testPreparedCancellationJoinsObserverCleanupAndRetainsOuterAdmission' started at 2026-11-15 17:24:25.140
+
+Test Case 'NativePublicPreparedCommitTests.testPreparedCancellationJoinsObserverCleanupAndRetainsOuterAdmission' passed (0.171 seconds)
+
+Test Case 'NativePublicPreparedCommitTests.testRetainedBoundReaderRouteUsesActualCoreSinkAndHoldsAdmissionUntilWholeResult' started at 2026-11-15 17:24:25.311
+
+Test Case 'NativePublicPreparedCommitTests.testRetainedBoundReaderRouteUsesActualCoreSinkAndHoldsAdmissionUntilWholeResult' passed (0.525 seconds)
+
+Test Suite 'NativePublicPreparedCommitTests' passed at 2026-11-15 17:24:25.836
+
+	 Executed 6 tests, with 0 failures (0 unexpected) in 3.177 (3.177) seconds
+
+Test Suite 'Selected tests' passed at 2026-11-15 17:24:25.836
+
+	 Executed 6 tests, with 0 failures (0 unexpected) in 3.177 (3.177) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+

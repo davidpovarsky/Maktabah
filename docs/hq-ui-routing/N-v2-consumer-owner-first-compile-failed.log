@@ -1,0 +1,468 @@
+[0/1] Planning build
+Building for debugging...
+[0/13] Write swift-version-2807070033DA82CF.txt
+[1/11] Write sources
+[4/12] Emitting module ChavrusaUIRoutingHost
+[5/13] Compiling ChavrusaUIRoutingHost NativeBindingSourceObservation.swift
+[6/14] Wrapping AST for ChavrusaUIRoutingHost for debugging
+[8/15] Emitting module ChavrusaUIRoutingHostTests
+[9/24] Compiling ChavrusaUIRoutingHostTests NativeBindingSourceObservationTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[10/24] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[11/24] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[12/24] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[13/24] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[14/24] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[15/24] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[16/24] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+[17/24] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:28:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+26 |         let invocation = ActionPortInvocation(requestId: UUID(), snapshot: backend.value, deadlineUptimeNanoseconds: UInt64.max)
+
+27 |         let first = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+28 |         source.select("B") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+29 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+30 |             XCTAssertThrowsError(try first.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:34:28: error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+32 |         let replacement = try authority.admit(context: context, sceneID: scene)
+
+33 |         let second = try core.prepareNavigationSynchronously(sceneID: scene.rawValue, invocation: invocation, context: context)
+
+34 |         source.select("A") {
+
+   |                            `- error: invalid conversion from throwing function of type '() throws -> Void' to non-throwing function type '() -> Void'
+
+35 |             XCTAssertThrowsError(try authority.navigationState(sceneID: scene.rawValue))
+
+36 |             XCTAssertThrowsError(try second.validateFreshness())
+
+
+
+C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\Tests\ChavrusaUIRoutingHostTests\NativeBindingSourceObservationTests.swift:60:18: warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+58 |         var invalidations = 0
+
+59 |         var observation: NativeBindingSourceObservation? = .init(readRevision: { source.snapshot?.revision }, onInvalidation: { invalidations += 1 })
+
+60 |         weak var released = observation
+
+   |                  `- warning: weak variable 'released' was never mutated; consider changing to 'let' constant [#WeakMutability]
+
+61 |         observation = nil
+
+62 |         XCTAssertNil(released)
+
+
+
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>
+
+error: fatalError

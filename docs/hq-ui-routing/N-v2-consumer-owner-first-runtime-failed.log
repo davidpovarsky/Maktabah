@@ -1,0 +1,38 @@
+[0/1] Planning build
+Building for debugging...
+[0/12] Write swift-version-2807070033DA82CF.txt
+[1/12] Write sources
+[3/10] Emitting module ChavrusaUIRoutingHostTests
+[4/19] Compiling ChavrusaUIRoutingHostTests NativeBindingSourceObservationTests.swift
+[5/19] Compiling ChavrusaUIRoutingHostTests NativeIntentServiceTests.swift
+[6/19] Compiling ChavrusaUIRoutingHostTests NativePresentationObserverTests.swift
+[7/19] Compiling ChavrusaUIRoutingHostTests NativePublicPreparedCommitTests.swift
+[8/19] Compiling ChavrusaUIRoutingHostTests NativeRouteInboxTests.swift
+[9/19] Compiling ChavrusaUIRoutingHostTests NativeRouteURLTests.swift
+[10/19] Compiling ChavrusaUIRoutingHostTests NativeSceneDirectoryTests.swift
+[11/19] Compiling ChavrusaUIRoutingHostTests NativeSceneNavigationOrchestratorTests.swift
+[12/19] Compiling ChavrusaUIRoutingHostTests NativeSurfaceStateTests.swift
+[13/20] Wrapping AST for ChavrusaUIRoutingHostTests for debugging
+[14/20] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageDiscoveredTests.derived\all-discovered-tests.swift
+[15/21] Write sources
+[17/22] Emitting module ChavrusaUIRoutingHostPackageDiscoveredTests
+[18/24] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests ChavrusaUIRoutingHostTests.swift
+[19/24] Compiling ChavrusaUIRoutingHostPackageDiscoveredTests all-discovered-tests.swift
+[20/25] C:\Users\DAVID\Code\Maktabah-ui-navigation-wave-20261115\Source\ChavrusaText\UIRoutingHost\.build\x86_64-unknown-windows-msvc\debug\ChavrusaUIRoutingHostPackageTests.derived\runner.swift
+[21/26] Wrapping AST for ChavrusaUIRoutingHostPackageDiscoveredTests for debugging
+[22/26] Write sources
+[24/27] Emitting module ChavrusaUIRoutingHostPackageTests
+[25/28] Compiling ChavrusaUIRoutingHostPackageTests runner.swift
+[26/28] Write Objects.LinkFileList
+[27/28] Linking ChavrusaUIRoutingHostPackageTests.xctest
+Build complete! (21.77s)
+Could not cast value of type '(ChavrusaUIRoutingHostTests.NativeBindingSourceObservationTests) -> @Swift.MainActor () throws -> ()' (00007FFAC2E69E28) to '(ChavrusaUIRoutingHostTests.NativeBindingSourceObservationTests) -> () throws -> ()' (00007FFAC2E6A038).
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.001 seconds.
+
