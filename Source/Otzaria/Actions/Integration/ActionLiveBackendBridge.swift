@@ -1,17 +1,35 @@
 import Foundation
 import OtzariaActionCore
 
-/// Factory only: this tranche does not register it in the app or UI. Network
-/// evidence and a matching Embedded bundle/epoch proof must come from trusted
-/// application observations, never from an ActionRequest or coarse capability bit.
+// Exact port from P's frozen Core065148d3. The app target compiles this
+// conformance beside the factory after the manager wires the same Core product.
+extension ActionBackendCoordinatorFacade: ActionSynchronousBackendStatePort {}
+
+/// App composition supplies one facade for P's existing typed ports. Discovery
+/// observes the active runtime without initializing it or mutating user data.
 @MainActor
 enum ActionLiveBackendBridge {
+    /// Core, Resolver and Scene navigation must all consume this same authority.
+    /// `make` is retained for explicit isolated compositions/tests only.
+    static let shared = make(coordinator: .shared)
+
     static func make(coordinator: BackendCoordinator,
-                     otzariaSearchReadiness: @escaping @Sendable (ActionBackendSnapshot) async -> ActionReadinessEvidence = { _ in .unknown },
-                     legacyNetwork: @escaping @Sendable () async -> ActionReadinessEvidence = { .unknown },
-                     verifiedEmbeddedSearchEpoch: @escaping @Sendable () async -> UInt64? = { nil }) -> ActionBackendCoordinatorFacade {
+                     otzariaSearchReadiness: (@Sendable (ActionBackendSnapshot) async -> ActionReadinessEvidence)? = nil,
+                     legacyNetwork: @escaping @Sendable () async -> ActionReadinessEvidence = { .unknown }) -> ActionBackendCoordinatorFacade {
         ActionBackendCoordinatorFacade(coordinator: coordinator,
             epoch: { await SefariaJSRPCBridge.shared.sessionEpoch },
+            currentEpoch: { SefariaJSRPCBridge.shared.currentSessionEpoch },
+            resourceWitness: {
+                let bridge = OtzariaMaktabahBridge.shared
+                let generation = bridge.generationSnapshot()
+                let path = bridge.databasePath
+                let profile = OtzariaDataProfileRegistry.activeProfileID
+                let search = OtzariaTantivySearchRepository.shared.resourceObservation(databasePath: path)
+                guard generation == bridge.generationSnapshot(), path == bridge.databasePath,
+                      profile == OtzariaDataProfileRegistry.activeProfileID else { throw ActionPortError.staleState }
+                return .init(databaseGeneration: generation, searchRevision: search.revision,
+                    profileID: profile, databasePath: path, searchFingerprint: search.fingerprint)
+            },
             readiness: { snapshot in
                 var result = ActionBackendRuntimeEvidence(snapshot: snapshot)
                 switch snapshot.backend {
@@ -24,7 +42,10 @@ enum ActionLiveBackendBridge {
                     // Compatibility is necessary, but does not prove an open,
                     // complete index. Consume a trusted app observation rather
                     // than opening the writer-capable engine during assessment.
-                    result.search = proofs.1 ? await otzariaSearchReadiness(snapshot) : .unavailable
+                    if proofs.1 {
+                        if let otzariaSearchReadiness { result.search = await otzariaSearchReadiness(snapshot) }
+                        else { result.search = proofs.2 }
+                    } else { result.search = .unavailable }
                 case .sefaria:
                     result.network = await legacyNetwork()
                     let installed = await SefariaBackend.shared.packages.installedWorkKeys()
@@ -35,7 +56,8 @@ enum ActionLiveBackendBridge {
                 case .sefariaEmbedded:
                     let runtime = SefariaRuntimeManager.shared
                     let state = await runtime.state
-                    let readiness = await runtime.readiness
+                    guard let epoch = snapshot.rpcEpoch else { return result }
+                    let readiness = await runtime.observedReadiness(for: epoch)
                     let transport = await SefariaJSRPCBridge.shared.isTransportReady
                     result.host = state.isReady && transport && readiness.hostReady ? .ready : .unavailable
                     result.embeddedCatalog = readiness.catalogReady ? .ready : .unavailable
@@ -44,8 +66,12 @@ enum ActionLiveBackendBridge {
                     result.catalog = result.host.isReady && readiness.catalogReady ? .ready : .unavailable
                     result.references = result.catalog
                     result.search = result.host.isReady && readiness.catalogReady && readiness.searchReady ? .ready : .unavailable
-                    let verified = await verifiedEmbeddedSearchEpoch()
-                    result.embeddedResponseFidelity = verified != nil && verified == snapshot.rpcEpoch ? .ready : .unknown
+                    if result.host.isReady {
+                        // Unknown method on an older deployed bundle fails
+                        // closed. A matching local source file proves nothing.
+                        let proof = try? await EmbeddedActionRPC.contract(snapshot: snapshot)
+                        result.embeddedResponseFidelity = proof == true ? .ready : .unknown
+                    }
                 }
                 return result
             }, embeddedSearch: { query, invocation in
@@ -62,13 +88,14 @@ private enum ActionLiveReadinessProof {
     /// Read-only subset of the existing artifact policy. Do not invoke the
     /// manager's recovery/status helpers: a semantic read must not repair/move
     /// indexes or refresh/download data as a side effect.
-    static func otzaria() -> (Bool, Bool) {
+    static func otzaria() -> (Bool, Bool, ActionReadinessEvidence) {
         let databaseReady = (try? OtzariaMaktabahBridge.shared.withDatabase { database in
             let book = try database.fetch(query: "SELECT 1 FROM book LIMIT 1") { $0.int(at: 0) }.first == 1
             let category = try database.fetch(query: "SELECT 1 FROM category LIMIT 1") { $0.int(at: 0) }.first == 1
             return book && category
         }) == true
-        guard databaseReady, let path = OtzariaMaktabahBridge.shared.databasePath else { return (databaseReady, false) }
+        guard databaseReady, let path = OtzariaMaktabahBridge.shared.databasePath else { return (databaseReady, false, .unavailable) }
+        let profile = OtzariaDataProfileRegistry.activeProfileID
         do {
             let manager = OtzariaSearchIndexManager.shared
             let url = manager.indexURL(for: path)
@@ -76,9 +103,10 @@ private enum ActionLiveReadinessProof {
             let build = try OtzariaSearchEngineBridge.buildInfo()
             guard let identity = manager.storedIdentity(indexURL: url),
                   OtzariaSearchArtifactPolicy.managedIdentityMatchesCanonicalData(identity, currentDatabase: current, build: build),
-                  try OtzariaSearchEngineBridge.checkCompatibility(indexURL: url).compatible else { return (true, false) }
+                  try OtzariaSearchEngineBridge.checkCompatibility(indexURL: url).compatible else { return (true, false, .unavailable) }
+            var expectedCount: UInt64?
             if OtzariaDatabaseAccessController.shared.source == .managedInternal {
-                guard let databaseBytes = Int64(exactly: current.fileSize) else { return (true, false) }
+                guard let databaseBytes = Int64(exactly: current.fileSize) else { return (true, false, .unavailable) }
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let storage = try OtzariaDatabaseStorage()
@@ -88,13 +116,25 @@ private enum ActionLiveReadinessProof {
                     from: Data(contentsOf: url.appendingPathComponent("otzaria_prebuilt_installation.json")))
                 try OtzariaSearchArtifactPolicy.validate(manifest, database: database,
                     databaseBytes: databaseBytes, build: build)
-            } else if identity.database != current { return (true, false) }
-            return (true, true)
-        } catch { return (true, false) }
+                expectedCount = UInt64(exactly: manifest.lexicalArtifact.documentCount)
+            } else if identity.database != current { return (true, false, .unavailable) }
+            let count = OtzariaTantivySearchRepository.shared.observedOpenIndexDocumentCount(databasePath: path)
+            guard profile == OtzariaDataProfileRegistry.activeProfileID,
+                  path == OtzariaMaktabahBridge.shared.databasePath else { return (true, false, .unknown) }
+            guard let count else { return (true, true, .unknown) }
+            return (true, true, count > 0 && (expectedCount == nil || count == expectedCount) ? .ready : .unavailable)
+        } catch { return (true, false, .unavailable) }
     }
 }
 
 private enum EmbeddedActionRPC {
+    static func contract(snapshot: ActionBackendSnapshot) async throws -> Bool {
+        let nonce = UUID().uuidString
+        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: snapshot,
+            deadlineUptimeNanoseconds: DispatchTime.now().uptimeNanoseconds + 2_000_000_000)
+        let body = try await response(method: "runtime.actionContract", params: ["nonce": .string(nonce)], invocation: invocation)
+        return EmbeddedActionResponseProof.matchesRuntimeContract(body, nonce: nonce)
+    }
     static func catalog(invocation: ActionPortInvocation) async throws -> [LibraryCatalogNode] {
         let body = try await response(method: "catalog.toc", params: [:], invocation: invocation)
         let entries = try EmbeddedActionResponseProof.catalogEntries(body, invocation: invocation)

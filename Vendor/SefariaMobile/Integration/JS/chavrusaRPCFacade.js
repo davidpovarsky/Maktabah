@@ -83,6 +83,7 @@ export async function loadTextWithProvenance(ref, context = true, versions, fall
 export class ChavrusaRPCFacade {
   static dispatch = null;
   static activeDownloadingPackage = null;
+  static activeResourceOperations = 0;
 
   static setDispatch(d) {
     ChavrusaRPCFacade.dispatch = d;
@@ -107,10 +108,25 @@ export class ChavrusaRPCFacade {
       }
     }
 
+    const mutatesResources = ['downloads.install', 'downloads.remove', 'updates.download'].includes(method);
+    if (mutatesResources) { ChavrusaRPCFacade.activeResourceOperations += 1; }
     try {
       let result = null;
       switch (method) {
         // --- DIAGNOSTICS & RUNTIME ---
+        case 'runtime.actionContract': {
+          // Read-only proof from the actually loaded facade, not Swift's cached
+          // capability bits. Never initialize/download anything during discovery.
+          result = {
+            contract: 'chavrusa.actions.search-fidelity.v1',
+            searchFidelitySchema: 1,
+            nonce: typeof params.nonce === 'string' ? params.nonce : null,
+            catalogReady: Array.isArray(global.Sefaria?.toc) && global.Sefaria.toc.length > 0,
+            searchReady: typeof global.Sefaria?.search?.execute_query === 'function',
+            resourcesStable: ChavrusaRPCFacade.activeResourceOperations === 0,
+          };
+          break;
+        }
         case 'diagnostic.echo': {
           if (params?.injectError) {
             return {
@@ -209,9 +225,23 @@ export class ChavrusaRPCFacade {
           break;
 
         // --- RELATIONSHIPS ---
-        case 'relationships.links':
-          result = await OfflineOnline.loadRelated(params.ref, params.online !== false);
+        case 'relationships.links': {
+          const related = await OfflineOnline.loadRelated(params.ref, params.online !== false);
+          // Use the original engine's reference-to-work resolver. Native code
+          // must not split a ref or mistake the full ref for its catalog title.
+          const withIdentity = link => {
+            if (!link || typeof link !== 'object' || Array.isArray(link)) { return link; }
+            const ref = link.sourceRef || link.ref;
+            const work = typeof ref === 'string' && typeof global.Sefaria?.textTitleForRef === 'function'
+              ? global.Sefaria.textTitleForRef(ref) : null;
+            return {...link, sourceWorkKey: typeof work === 'string' && work.length > 0 ? work : null};
+          };
+          if (Array.isArray(related)) { result = related.map(withIdentity); }
+          else if (related && typeof related === 'object' && Array.isArray(related.links)) {
+            result = {...related, links: related.links.map(withIdentity)};
+          } else { result = related; }
           break;
+        }
 
         // --- SEARCH ---
         case 'search.query': {
@@ -482,6 +512,8 @@ export class ChavrusaRPCFacade {
         sessionGeneration,
         backendID: 'sefariaEmbedded',
       };
+    } finally {
+      if (mutatesResources) { ChavrusaRPCFacade.activeResourceOperations -= 1; }
     }
   }
 

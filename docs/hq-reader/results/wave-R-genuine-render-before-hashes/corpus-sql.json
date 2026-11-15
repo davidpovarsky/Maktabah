@@ -1,0 +1,421 @@
+{
+  "profile": "miniTest10-v6",
+  "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "authority": "Python SQLite actual released corpus subset; SQL metadata only; no Swift decoder/UI/full-DB/iPad acceptance",
+  "sqlite_version": "3.45.3",
+  "books": [
+    {
+      "book_id": 103,
+      "title": "ברכות",
+      "source_rows": 2875,
+      "queries_verified": 8626,
+      "fixture_plans": [
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=?)"
+          ],
+          [
+            12,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            17,
+            12,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            34,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            39,
+            34,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ]
+      ]
+    },
+    {
+      "book_id": 28,
+      "title": "תהילים",
+      "source_rows": 2678,
+      "queries_verified": 8035,
+      "fixture_plans": [
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=?)"
+          ],
+          [
+            12,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            17,
+            12,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            34,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            39,
+            34,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ]
+      ]
+    },
+    {
+      "book_id": 3152,
+      "title": "דרשות הר\"ן",
+      "source_rows": 528,
+      "queries_verified": 1585,
+      "fixture_plans": [
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=?)"
+          ],
+          [
+            12,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            17,
+            12,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            34,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            39,
+            34,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex=?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ],
+        [
+          [
+            4,
+            0,
+            0,
+            "SEARCH l USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            14,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 1"
+          ],
+          [
+            19,
+            14,
+            0,
+            "SEARCH p USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex<?)"
+          ],
+          [
+            36,
+            0,
+            0,
+            "CORRELATED SCALAR SUBQUERY 2"
+          ],
+          [
+            41,
+            36,
+            0,
+            "SEARCH n USING COVERING INDEX idx_line_book_index (bookId=? AND lineIndex>?)"
+          ]
+        ]
+      ]
+    }
+  ],
+  "render_input": {
+    "sha256": "6d4113bde5b8e944e611c1ef5debb9e7543fd889056d53af90b5a8b60cec4d50",
+    "bytes": 2699771,
+    "preparation": "Python zstandard fixture decoder; actual Swift neutral renderer tested separately"
+  }
+}

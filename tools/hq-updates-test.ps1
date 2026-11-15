@@ -15,14 +15,14 @@ $service = Join-Path $repo 'Source/ChavrusaText/BookUpdates/MaktabahBookUpdateSa
 $parser = Join-Path $buildRoot 'ProductionCatalog.swift'
 & py -3.12 -B (Join-Path $repo 'tools/hq-updates-extract-fixtures.py') $parser
 if ($LASTEXITCODE -ne 0) { throw 'Catalog fixture extraction failed.' }
-& swiftc -typecheck -swift-version 6 -I $buildRoot $service (Join-Path $fixtureRoot 'ProductionShims.swift')
+& swiftc -typecheck -swift-version 6 -I $buildRoot $service (Join-Path $buildRoot 'ProductionBackendID.swift') (Join-Path $fixtureRoot 'ProductionShims.swift')
 if ($LASTEXITCODE -ne 0) { throw 'Portable production adapter typecheck failed (compiler doubles, not Apple validation).' }
-& swiftc -D HQ_UPDATES_FIXTURE -I $buildRoot -L $lib $service $parser (Join-Path $fixtureRoot 'main.swift') -o $exe
+& swiftc -swift-version 6 -D HQ_UPDATES_FIXTURE -I $buildRoot -L $lib $service $parser (Join-Path $fixtureRoot 'main.swift') -o $exe
 if ($LASTEXITCODE -ne 0) { throw 'Focused portable safety fixture compilation failed.' }
 & $exe $buildRoot
 if ($LASTEXITCODE -ne 0) { throw 'Safety fixtures failed.' }
 $adapterExe = Join-Path $buildRoot 'hq-updates-adapter-tests.exe'
-& swiftc -parse-as-library -swift-version 6 -I $buildRoot -L $lib $service (Join-Path $fixtureRoot 'ProductionShims.swift') (Join-Path $fixtureRoot 'AdapterMain.swift') -o $adapterExe
+& swiftc -parse-as-library -swift-version 6 -I $buildRoot -L $lib $service $parser (Join-Path $buildRoot 'ProductionBackendID.swift') (Join-Path $buildRoot 'ProductionEntryPoints.swift') (Join-Path $fixtureRoot 'ProductionShims.swift') (Join-Path $fixtureRoot 'AdapterMain.swift') -o $adapterExe
 if ($LASTEXITCODE -ne 0) { throw 'Focused adapter fixture compilation failed.' }
 & $adapterExe
 if ($LASTEXITCODE -ne 0) { throw 'Adapter fixtures failed.' }

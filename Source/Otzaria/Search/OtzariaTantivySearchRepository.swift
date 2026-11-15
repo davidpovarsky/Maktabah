@@ -10,6 +10,19 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
 
     private let manager = OtzariaSearchIndexManager.shared
     private var engineCache: [String: OtzariaSearchEngineBridge] = [:]
+    private var engineStamps: [String: OpenIndexStamp] = [:]
+    private var publicationRevision: UInt64 = 0
+    private let revisionLock = NSLock()
+
+    private func readPublicationRevision() -> UInt64 {
+        revisionLock.lock(); defer { revisionLock.unlock() }
+        return publicationRevision
+    }
+
+    private func advancePublicationRevision() {
+        revisionLock.lock(); defer { revisionLock.unlock() }
+        publicationRevision &+= 1
+    }
     private var indexingDatabasePaths: Set<String> = []
     private let lock = NSRecursiveLock()
 
@@ -25,6 +38,7 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
             return cached
         }
         let indexURL = manager.indexURL(for: databasePath)
+        let before = try? openIndexStamp(databasePath: databasePath)
         let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
         do {
             try Self.configureRequiredDictionaries(
@@ -38,7 +52,63 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
             throw error
         }
         engineCache[databasePath] = engine
+        if let before, before == (try? openIndexStamp(databasePath: databasePath)) {
+            engineStamps[databasePath] = before
+        }
         return engine
+    }
+
+    /// Discovery can inspect an already-open engine, but must never construct
+    /// one (the native constructor can create/write an index). A disk/profile
+    /// change makes the observation unknown, even if a cached engine still works.
+    func observedOpenIndexDocumentCount(databasePath: String) -> UInt64? {
+        lock.lock()
+        defer { lock.unlock() }
+        guard !indexingDatabasePaths.contains(databasePath),
+              let engine = engineCache[databasePath], let stamp = engineStamps[databasePath],
+              stamp == (try? openIndexStamp(databasePath: databasePath)),
+              let count = try? engine.documentCount(),
+              stamp == (try? openIndexStamp(databasePath: databasePath)) else { return nil }
+        return count
+    }
+
+    /// Current source evidence, not an action generation or cached readiness.
+    /// Revision detects supported A -> B -> A invalidations between observations.
+    func resourceObservation(databasePath: String?) -> (revision: UInt64, fingerprint: Data?) {
+        // Synchronous commit guards must not wait behind a long FFI query.
+        // This lock protects the source revision only, never an engine/await.
+        let before = readPublicationRevision()
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        let fingerprint = databasePath.flatMap { path in
+            (try? openIndexStamp(databasePath: path)).flatMap { try? encoder.encode($0) }
+        }
+        let after = readPublicationRevision()
+        return (after, before == after ? fingerprint : nil)
+    }
+
+    private struct OpenIndexStamp: Codable, Equatable, Sendable {
+        let profile: String
+        let database: OtzariaIndexFingerprint
+        let path: String
+        let metadata: Data
+        let identity: Data
+    }
+
+    private func openIndexStamp(databasePath: String) throws -> OpenIndexStamp {
+        let url = manager.indexURL(for: databasePath)
+        return try OpenIndexStamp(profile: OtzariaDataProfileRegistry.activeProfileID,
+            database: manager.currentFingerprint(databasePath: databasePath), path: url.path,
+            metadata: smallMetadata(at: url.appendingPathComponent("meta.json")),
+            identity: smallMetadata(at: manager.identityURL(indexURL: url)))
+    }
+
+    private func smallMetadata(at url: URL) throws -> Data {
+        let size = try FileManager.default.attributesOfItem(atPath: url.path)[.size] as? NSNumber
+        guard let size, size.uint64Value <= 1_048_576 else {
+            throw OtzariaSearchError.invalidEngineResponse("Search readiness metadata is missing or oversized")
+        }
+        return try Data(contentsOf: url)
     }
 
     @discardableResult
@@ -96,9 +166,11 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func invalidate(databasePath: String) {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
+            engineStamps[databasePath] = nil
         }
         OtzariaIndexFileLogger.log("repository cache invalidated databasePath=\(databasePath)")
     }
@@ -110,19 +182,23 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func closeAllEngines() {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         for engine in engineCache.values {
             engine.close()
         }
         engineCache.removeAll()
+        engineStamps.removeAll()
         OtzariaIndexFileLogger.log("repository closeAllEngines done")
     }
 
     func beginExclusiveIndexing(databasePath: String) {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
+            engineStamps[databasePath] = nil
         }
         indexingDatabasePaths.insert(databasePath)
         OtzariaIndexFileLogger.log("exclusive indexing begin databasePath=\(databasePath)")
@@ -131,9 +207,11 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     func endExclusiveIndexing(databasePath: String) {
         lock.lock()
         defer { lock.unlock() }
+        advancePublicationRevision()
         if let engine = engineCache[databasePath] {
             engine.close()
             engineCache[databasePath] = nil
+            engineStamps[databasePath] = nil
         }
         indexingDatabasePaths.remove(databasePath)
         OtzariaIndexFileLogger.log("exclusive indexing end databasePath=\(databasePath)")

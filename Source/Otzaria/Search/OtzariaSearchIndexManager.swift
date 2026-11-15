@@ -98,6 +98,9 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
     }
 
     func writeIdentity(_ identity: OtzariaIndexBuildIdentity, indexURL: URL) throws {
+        let publishesActive = indexURL == self.indexURL(for: identity.database.databasePath)
+        if publishesActive { OtzariaTantivySearchRepository.shared.invalidate(databasePath: identity.database.databasePath) }
+        defer { if publishesActive { OtzariaTantivySearchRepository.shared.invalidate(databasePath: identity.database.databasePath) } }
         try atomicWrite(identity, to: identityURL(indexURL: indexURL))
     }
 
@@ -277,6 +280,8 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
     }
 
     func promoteBuildingIndex(databasePath: String) throws {
+        OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
+        defer { OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath) }
         let profileID = OtzariaDataProfileRegistry.activeProfileID
         try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profileID)") {
             let fileManager = FileManager.default
@@ -310,6 +315,8 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
     }
 
     func clearIndex(databasePath: String) throws {
+        OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
+        defer { OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath) }
         let profileID = OtzariaDataProfileRegistry.activeProfileID
         try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profileID)") {
             let fileManager = FileManager.default
@@ -448,7 +455,9 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
 
                 if candidate != target {
                     guard !fileManager.fileExists(atPath: target.path) else { continue }
+                    OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
                     try fileManager.moveItem(at: candidate, to: target)
+                    OtzariaTantivySearchRepository.shared.invalidate(databasePath: databasePath)
                 }
                 let repaired = OtzariaIndexBuildIdentity(
                     database: try currentFingerprint(databasePath: databasePath),

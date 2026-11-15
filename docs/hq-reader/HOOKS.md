@@ -1,5 +1,24 @@
 # Reader lane pre-edit ownership audit
 
+## Wave R follow-up pre-edit matrix
+
+`Source/LibraryBackend/LibraryBackendModels.swift` is DOWNSTREAM_OWNED and
+absent from pinned upstream d46af139. Plan: only skip existing normalization
+passes when their ASCII trigger is absent; retain their exact order and
+replacement rules. No API, renderer, storage, UI or TextKit replacement.
+Alternative: leave repeated regex/entity processing on plain strings; genuine
+whole-book Windows model baselines now show this is worth a scoped experiment.
+Check: unchanged mixed-Unicode/mode/HTML invariants plus SHA256 identity of
+the full rendered output of released Berakhot, Tehillim and Derashot content
+before/after, and actual locator/range coverage for every nonempty source row.
+This remains portable model evidence, not Apple/TextKit/iPad acceptance.
+Rollback: revert only the follow-up commit. The original protected
+`Reader+Content.swift` callsite remains read-only; moving its synchronous
+render-model construction off MainActor would need a coherent integration
+decision and actual native behavior evidence.
+
+## Historical initial tranche
+
 Pinned upstream: `d46af139b3a265399c16d87f5923acd8e3444024`; base `df2a21941afa46da716387fce9de620865d2a151`. Manual provenance review, not an automated guard PASS.
 
 All source below is DOWNSTREAM_OWNED and absent from the pinned upstream tree. No original Maktabah source/hook is edited.

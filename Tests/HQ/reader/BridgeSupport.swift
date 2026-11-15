@@ -11,8 +11,10 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     var readingUnitService: OtzariaReadingUnitService?
     var currentReadingUnitMode: OtzariaUnitMode = .paragraph
     var fallbackContent: BookContent?
+    var onRequireDatabase: (() -> Void)?
     init(database: SQLiteDatabase) { self.database = database }
     func requireDatabase() throws -> SQLiteDatabase {
+        onRequireDatabase?()
         guard let database else { throw CancellationError() }
         return database
     }

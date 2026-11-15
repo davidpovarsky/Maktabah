@@ -1,0 +1,66 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-2807070033DA82CF.txt
+[1/4] Write sources
+[2/4] Copying Resources
+[4/5] Emitting module OtzariaActionCoreTests
+[5/6] Compiling OtzariaActionCoreTests CatalogActionResolverTests.swift
+[6/13] C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageDiscoveredTests.derived\all-discovered-tests.swift
+[7/14] Wrapping AST for OtzariaActionCoreTests for debugging
+[8/14] Write sources
+[10/15] Emitting module OtzariaActionCorePackageDiscoveredTests
+[11/17] Compiling OtzariaActionCorePackageDiscoveredTests OtzariaActionCoreTests.swift
+[12/17] Compiling OtzariaActionCorePackageDiscoveredTests all-discovered-tests.swift
+[13/18] C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\.build\x86_64-unknown-windows-msvc\debug\OtzariaActionCorePackageTests.derived\runner.swift
+[14/19] Wrapping AST for OtzariaActionCorePackageDiscoveredTests for debugging
+[15/19] Write sources
+[17/20] Emitting module OtzariaActionCorePackageTests
+[18/21] Compiling OtzariaActionCorePackageTests runner.swift
+[19/21] Write Objects.LinkFileList
+[20/21] Linking OtzariaActionCorePackageTests.xctest
+Build complete! (64.18s)
+Test Suite 'Selected tests' started at 2026-11-15 14:22:52.362
+
+Test Suite 'CatalogActionResolverTests' started at 2026-11-15 14:22:52.408
+
+Test Case 'CatalogActionResolverTests.testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity' started at 2026-11-15 14:22:52.408
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:239: error: CatalogActionResolverTests.testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity : XCTAssertEqual failed: ("256") is not equal to ("1") - one proof per identical qualified reference
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:239: error: CatalogActionResolverTests.testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity : XCTAssertEqual failed: ("256") is not equal to ("1") - one proof per identical qualified reference
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:239: error: CatalogActionResolverTests.testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity : XCTAssertEqual failed: ("256") is not equal to ("1") - one proof per identical qualified reference
+
+Test Case 'CatalogActionResolverTests.testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity' failed (0.175 seconds)
+
+Test Case 'CatalogActionResolverTests.testIdenticalSectionAndFocusShareExistenceProof' started at 2026-11-15 14:22:52.584
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:252: error: CatalogActionResolverTests.testIdenticalSectionAndFocusShareExistenceProof : XCTAssertEqual failed: ("2") is not equal to ("1") -
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:252: error: CatalogActionResolverTests.testIdenticalSectionAndFocusShareExistenceProof : XCTAssertEqual failed: ("2") is not equal to ("1") -
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:252: error: CatalogActionResolverTests.testIdenticalSectionAndFocusShareExistenceProof : XCTAssertEqual failed: ("2") is not equal to ("1") -
+
+Test Case 'CatalogActionResolverTests.testIdenticalSectionAndFocusShareExistenceProof' failed (0.003 seconds)
+
+Test Case 'CatalogActionResolverTests.testProofDeduplicationKeepsDataRevisionsDistinct' started at 2026-11-15 14:22:52.587
+
+C:\Users\DAVID\Code\Maktabah-hq-actions-resolver-20261115\Source\Otzaria\Actions\Tests\OtzariaActionCoreTests\Resolver\CatalogActionResolverTests.swift:267: error: CatalogActionResolverTests.testProofDeduplicationKeepsDataRevisionsDistinct : XCTAssertEqual failed: ("3") is not equal to ("2") -
+
+Test Case 'CatalogActionResolverTests.testProofDeduplicationKeepsDataRevisionsDistinct' failed (0.002 seconds)
+
+Test Suite 'CatalogActionResolverTests' failed at 2026-11-15 14:22:52.589
+
+	 Executed 3 tests, with 7 failures (0 unexpected) in 0.18 (0.18) seconds
+
+Test Suite 'Selected tests' failed at 2026-11-15 14:22:52.589
+
+	 Executed 3 tests, with 7 failures (0 unexpected) in 0.18 (0.18) seconds
+
+◊ Test run started.
+
+→ Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+
+→ Target Platform: x86_64-unknown-windows-msvc
+
+√ Test run with 0 tests in 0 suites passed after 0.002 seconds.

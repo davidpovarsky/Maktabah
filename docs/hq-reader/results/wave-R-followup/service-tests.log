@@ -1,0 +1,2 @@
+service: lazy sparse line lookups map 4 selected metadata rows across 7 requests on 10,000 rows; no content fetch or whole-book summary retention
+service: PASS —

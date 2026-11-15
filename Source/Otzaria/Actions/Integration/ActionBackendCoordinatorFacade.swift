@@ -13,28 +13,55 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
     private let coordinator: BackendCoordinator
     private let readiness: ReadinessProbe
     private let epoch: EpochProbe
+    private let currentEpoch: (@MainActor @Sendable () throws -> UInt64?)?
+    private let resourceWitness: (@MainActor @Sendable () throws -> BackendCoordinator.ResourceWitness)?
     private let embeddedSearch: EmbeddedSearch?
     private let embeddedReferenceProof: EmbeddedReferenceProof?
     private let embeddedCatalog: EmbeddedCatalog?
 
     init(coordinator: BackendCoordinator, epoch: @escaping EpochProbe = { nil },
+         currentEpoch: (@MainActor @Sendable () throws -> UInt64?)? = nil,
+         resourceWitness: (@MainActor @Sendable () throws -> BackendCoordinator.ResourceWitness)? = nil,
          readiness: @escaping ReadinessProbe = { .init(snapshot: $0) },
          embeddedSearch: EmbeddedSearch? = nil,
          embeddedReferenceProof: EmbeddedReferenceProof? = nil,
          embeddedCatalog: EmbeddedCatalog? = nil) {
-        self.coordinator = coordinator; self.epoch = epoch; self.readiness = readiness
+        self.coordinator = coordinator; self.epoch = epoch; self.currentEpoch = currentEpoch; self.readiness = readiness
+        self.resourceWitness = resourceWitness
         self.embeddedSearch = embeddedSearch; self.embeddedReferenceProof = embeddedReferenceProof
         self.embeddedCatalog = embeddedCatalog
     }
 
     func snapshot() async throws -> ActionBackendSnapshot {
         try Task.checkCancellation()
+        if currentEpoch != nil { return try currentBackendSnapshot() }
+        try observeCurrentResources()
         let backend = ActionAppIdentityBridge.actionBackend(coordinator.activeBackendID)
         let generation = coordinator.generation
         let rpcEpoch = backend == .sefariaEmbedded ? await epoch() : nil
+        try observeCurrentResources()
         guard generation == coordinator.generation,
               backend == ActionAppIdentityBridge.actionBackend(coordinator.activeBackendID) else { throw ActionPortError.staleState }
         return .init(backend: backend, generation: generation, rpcEpoch: rpcEpoch)
+    }
+
+    /// P's synchronous commit guard reads the same production authority as the
+    /// async port. An async-only Embedded composition cannot invent a value.
+    func currentBackendSnapshot() throws -> ActionBackendSnapshot {
+        try observeCurrentResources()
+        let backend = ActionAppIdentityBridge.actionBackend(coordinator.activeBackendID)
+        let epoch: UInt64?
+        if backend == .sefariaEmbedded {
+            guard let currentEpoch, let actual = try currentEpoch() else { throw ActionPortError.unavailable }
+            epoch = actual
+        } else { epoch = nil }
+        return .init(backend: backend, generation: coordinator.generation, rpcEpoch: epoch)
+    }
+
+    private func observeCurrentResources() throws {
+        if coordinator.activeBackendID == .otzaria, let resourceWitness {
+            coordinator.observeResourceWitness(try resourceWitness(), for: .otzaria)
+        }
     }
 
     private func currentEvidence(for backend: ActionBackendID) async throws -> ActionBackendRuntimeEvidence {
@@ -118,6 +145,7 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
             do { result = try await embeddedSearch(query, invocation) }
             catch { throw safe(error) }
             try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: query.backend)
+            try await require("search.query", backend: query.backend, query: query, invocation: invocation)
             guard result.hits.allSatisfy({ $0.locator.backend == query.backend && works.workKeys.contains($0.locator.workKey) }) else {
                 throw ActionPortError.invalidResponse
             }

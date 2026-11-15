@@ -80,3 +80,57 @@ Independent Roni thread 01a1dc8b-f9bd-7d63-a628-7ad3d06196e8 reproduced an old N
 - EXECUTED_PASS: `py -3 tools/hq-inspector-fixtures.py --case notes`, exit 0. Four blocked-load combinations cover segment/section scope with range-only changes and locator+range changes in the same book. Assertions preserve both direct original notes and the original range fallback while excluding the newer unrelated note. All prior Notes heartbeat, persisted/unsaved and generation/backend/book/cancellation checks also pass. Evidence: notes-immutable-range.log.
 - REUSED_VERIFIED_PASS: prior links/SQL/grouping/snippets/tap checks from 5aa235a; their production files are unchanged by this correction. No broad suite or Apple build was repeated.
 - Production hunk: only move the range snapshot before await plus an explanatory comment in downstream MaktabahTorahInspectorAdapter.swift. Rollback: revert the follow-up commit. Independent retest and all physical/production gates remain OPEN.
+
+## Wave restart: source-isolated Embedded selection and Notes (2026-11-15)
+
+Acting thread 01a1df8b-4498-76c1-8cca-cd5c11120b7a, [נועם | DEV] [MAIN_SESSION].
+Owner activation: Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/OWNER_ACTIVATION.md.
+Pre-edit branch codex/otzaria-inspector-20261115 at a1bfa5f8ec89535115fd825efdd292d8e3bee5e3 was clean. Upstream HEAD reverified by git ls-remote as d46af139b3a265399c16d87f5923acd8e3444024; this adapter remains absent from that upstream tree. No merge-base/ancestry assertion is made.
+
+Corrected two source identity errors in downstream MaktabahTorahInspectorAdapter.swift:
+- Explicit Sefaria/Embedded segment selection now requires active backend and the same work as its section. Section fallback preserves locator.backend instead of hardcoding sefaria, and rejects a stale foreign section.
+- Notes now require matching backend AND work before accepting equal canonical/preferred reference text or section containment. Equal text/ranges in another provider/work cannot establish annotation identity. Existing range fallback, immutable pre-await range, cancellation, cold background loading and unsaved notes remain intact.
+
+Only production adapter changed (9 added/6 removed); no Reader/SQLite, Core, shared ports, Kit, project, workflow or upstream hooks changed. Test boundary types and the existing Python harness were extended to extract actual selection/currentUnitSelection/otzariaSelection/locator(selection) methods plus original Notes methods. Locator cache lookup, framework/bridge values and DB/decoder remain explicit substitutes; this is not native rendering or RPC proof. Exact remembered backend/work/position is asserted. Native TextLocator has no catalog/data revision fields; no revision is fabricated or silently claimed as verified.
+
+EXECUTED_EXPECTED_FAIL at frozen a1bfa5f8:
+- selection-baseline-20261115.log: equal-ref foreign backend/work Notes are included (sefaria).
+- provider-baseline-20261115.log: Embedded selection returns the wrong provider.
+Both commands exited 1 at their behavioral assertion after successful compilation.
+
+EXECUTED_PASS: py -3 tools/hq-inspector-fixtures.py --case all, exit 0. Evidence fixtures-wave-20261115.log, 11 groups (100/500/2000 relationships; two content layouts; error/empty/retry; cancellation; note scope; actual tap; cold Notes including same-book immutable range; source selection/Notes). selection-fixed-20261115.log separately records focused success. Windows Swift6.3.3 / Python3.12; portable boundaries only. Existing FixtureError output is an intentional baseline assertion, not a hidden compile failure.
+
+Native execution availability: apple-doctor confirms Windows has no Apple SDK. Connected Desktop Commander torah-social reports Linux, not a Mac. No physical iPad/full corpus, production ZSTD, RSS/p95 or native source/Notes result is inferred. Manager owns coherent S/P/I app target composition and cross-feature acceptance. Both source tasks remain OPEN. Rollback: revert this wave correction commit; preexisting a1bfa5f8 stays intact.
+
+
+## Continued wave: document mode and cancelled warm-source lookups
+
+Pre-edit HEAD1c2fa5cfc3288bf16720e2345ce0b6dac3d571d2, same branch/worktree, clean. Acting thread01a1df8b-4498-76c1-8cca-cd5c11120b7a, [נועם | DEV] [MAIN_SESSION]. Ownership/provenance remain downstream-only. Three production lines changed in the existing adapter: previous/next descriptor reads now use the immutable effectiveMode already used to load the requested document; activeLocator checks cancellation before it can return a cached source. No Reader/SQLite implementation, Core, S adapter, app/project/workflow/Kit or upstream edit.
+
+The existing fixture harness now compiles the entire actual mapOtzariaDocument and activeLocator methods, actual ReadingUnit/UnitMode/Descriptor models, actual neutral library section/version/text-mode types and actual OtzariaInspectorDocumentMapper. These production models/mappers are read for compilation only; no source edits were made to them. TorahInspector document value types and the getReadingUnit/adjacent service boundary are explicit test substitutes in DocumentFixtureBoundary.swift. The point-source branch invokes the actual fetchLineContent service SQL against the disposable SQLite fixture with its counted plain-text decoder. This strengthens method coverage without claiming Apple, native rendering, genuine corpus units or ZSTD proof.
+
+EXECUTED_EXPECTED_FAIL against frozen1c2fa5cf, after successful compilation:
+- document-mode-baseline-20261115.log: requested paragraph document used chapter adjacent descriptors.
+- source-gate-baseline-20261115.log: cancelled warm-cache source lookup returned data.
+Each command exited1 on its intended behavioral assertion.
+
+EXECUTED_PASS: py -3 tools/hq-inspector-fixtures.py --case all, exit0, 13 groups. fixtures-source-document-20261115.log retains all prior11 groups and adds nine current/requested mode combinations with exact sparse source/adjacent refs and remembered mode; single-line point SQL fast path without whole-unit fetch; blocked document loader generation/cancellation rejection before cache writes; exact/missing/foreign/unknown source guards and cancellation before cached data. Windows portable Swift6.3.3 only. Existing links100/500/2000, error/empty/retry, cancellation, immutable Notes range, source Notes isolation and actual tap cases all pass with the actual model extraction.
+
+Manager assigned SefariaEmbeddedRelationshipsAdapter exclusively to S after I reported real response failures becoming empty arrays and full sourceRef being used as workKey. I does not duplicate or edit S catalog/RPC/parser work. Source/Notes native acceptance awaits the genuine combined S/I packet. The root project board records the separately discovered unbounded locator cache and the canonical-identity prerequisite for safe eviction; no unrelated cache refactor was made. FullDB, iPad, productionZSTD/RSS/p95 and native runtime gates remain OPEN. Rollback: revert this follow-up commit only.
+
+
+## Genuine pinned miniTest10 source audit (Windows portable boundary)
+
+Production source under test remains8cc9c6752763de742d2c1ceef3c407a87eb002c7; this follow-up changes only existing test boundary/fixtures/runner and evidence. No application source changes. Existing actual BookSchemaCompatibility and LineContentCompatibility scalar SQL projections are now compiled by the runner instead of fixture equivalents; this correctly exercises the real missing-filePath fallback on schema6. P/R/S-owned production files are read, not edited.
+
+Data: existing miniTest10-v6 profile, archive7774478bytes SHA256 e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3; extracted DB15470592bytes SHA256 d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef. The exact pinned release asset was downloaded/extracted into ignored build/hq-inspector-corpus-20261115 only. Existing Scripts/verify-mini-test10-profile.py PASS validates10book IDs,18879line/content rows,4851links,1608coverage rows,526suppressed sides,1ZSTDdictionary, schema6/version32, foreign keys and integrity=ok. Evidence miniTest10-identity-20261115.log. No user/installed database was opened.
+
+Command: py -3 tools/hq-inspector-fixtures.py --case corpus --database build/hq-inspector-corpus-20261115/miniTest10.db. Explicit corpus mode requires that exact size/digest under this worktree's build directory. Queries use SQLite mode=ro&immutable=1; the file SHA is rechecked after completion. Archive and database are retained in ignored build cache, not committed. The default synthetic suite remains stdlib-only; corpus mode uses the already installed Python zstandard dependency.
+
+EXECUTED_PASS12 corpus windows: entire indexed source book plus first/middle/last line for each of Tehillim28(2678lines), Berakhot103(2875lines), DerashotHaRan3152(528lines). An independent Python row/set oracle iterates genuine link/coverage/suppression records rather than using the production SQL CTE. Every complete source identity tuple(linkID, linkedBookID, linkedLineID, linkedLineIndex) matches. All-book relationship counts1238/1460/255 respectively; genuine point windows may correctly be empty. Grouping preserves every returned relationship, only requested tail snippets are hydrated, and the last real source's snippet equals its exact point-query content. miniTest10-source-audit-20261115.log.
+
+88 actual readonly queries were retained with parameters, row/frame counts and raw EXPLAIN QUERY PLAN. All26 metadata queries used idx_line_book_index as a covering book/line search; none decoded content frames. Coverage/suppression and source/target links used their genuine indexes; no unindexed link scan was observed in those plans.27 dictionary-compressed frames were decoded for requested snippets/point parity at the Python boundary. Database SHA remained unchanged. Raw audit miniTest10-source-audit-20261115.json; compact identity/index/frame/source-hash summary miniTest10-source-summary-20261115.json. Source SHA256 values describe UTF8 production text normalized exactly as compiled by the fixture.
+
+EXECUTED_PASS existing13-group synthetic suite after real schema-projection extraction: fixtures-native-schema-20261115.log. Explicit outside-build corpus DB and --database on noncorpus mode are rejected with expected exit2 before compilation/DB access: corpus-boundary-negative-20261115.log. Runner syntax check also PASS.
+
+Limits remain strict: dictionary decoding here uses Python/libzstd, NOT production Swift/C decoder; no Apple app, UI, iPad, MainActor/RSS/p95 or full production performance claim. miniTest10 is a genuine schema6/v32 subset, not the current production release. During read-only source preparation, official latest was verified as v38-20261112163847(443459877), whose DB is multipart schema7. Assigned I's release parser still selects monolithic asset names. This concrete compatibility/source-pin issue was routed to manager for D/R ownership; I did not alter their downloader or silently call v32 data latest production. Exact native/coherent source and physical acceptance remain OPEN.

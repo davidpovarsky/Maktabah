@@ -1,0 +1,4 @@
+PASS: actual runtime action-contract handler; read-only current catalog/search proof, absent/non-callable engine rejected
+PASS: complete actual JS dispatcher keeps resources busy until promise settles; success/error finally cleanup verified
+PASS: actual related dispatcher preserves source fields and uses original engine work resolver without splitting refs
+PASS: 11 actual-handler payload cases; old hits/total/start/size preserved; source failure propagated

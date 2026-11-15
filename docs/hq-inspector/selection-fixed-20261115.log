@@ -1,0 +1,4 @@
+Source: working tree; case: selection
+   Creating library C:\Users\DAVID\AppData\Local\Temp\hq-inspector-ju12w_6h\inspector-fixtures.lib and object C:\Users\DAVID\AppData\Local\Temp\hq-inspector-ju12w_6h\inspector-fixtures.exp
+
+PASS actual selection + Notes: Sefaria/Embedded provider, exact section/segment, foreign backend/work isolation, stale/missing section

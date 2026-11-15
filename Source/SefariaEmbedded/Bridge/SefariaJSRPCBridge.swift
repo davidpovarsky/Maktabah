@@ -9,8 +9,23 @@
 
 import Foundation
 
-protocol SefariaJSTransport: Sendable {
+protocol SefariaJSTransport: AnyObject, Sendable {
     func sendToJS(jsonString: String) async throws
+}
+
+/// The single epoch authority. The RPC actor is the only writer; synchronous
+/// commit guards read this same value rather than a MainActor mirror/cache.
+private final class SefariaRPCSessionEpoch: @unchecked Sendable {
+    private let lock = NSLock()
+    private var value: UInt64 = 1
+    func read() -> UInt64 {
+        lock.lock(); defer { lock.unlock() }
+        return value
+    }
+    func write(_ value: UInt64) {
+        lock.lock(); defer { lock.unlock() }
+        self.value = value
+    }
 }
 
 actor SefariaJSRPCBridge {
@@ -28,7 +43,15 @@ actor SefariaJSRPCBridge {
 
     private(set) var isReady: Bool = false
     private(set) var hasActiveListeners: Bool = false
-    private(set) var sessionEpoch: UInt64 = 1
+    private nonisolated let epochAuthority = SefariaRPCSessionEpoch()
+    private(set) var sessionEpoch: UInt64 {
+        get { epochAuthority.read() }
+        set { epochAuthority.write(newValue) }
+    }
+    nonisolated var currentSessionEpoch: UInt64 { epochAuthority.read() }
+    private var resourceMutationInProgress = false
+
+    var resourcesAreStable: Bool { !resourceMutationInProgress }
 
     var hasTransport: Bool {
         return transport != nil
@@ -41,16 +64,25 @@ actor SefariaJSRPCBridge {
     private init() {}
 
     func setSessionEpoch(_ epoch: UInt64) {
+        guard epoch != sessionEpoch else { return }
+        cancelAll(reason: "Session epoch changed")
+        isReady = false
         self.sessionEpoch = epoch
     }
 
     func bumpSessionEpoch() -> UInt64 {
+        cancelAll(reason: "Session epoch changed")
         sessionEpoch &+= 1
         return sessionEpoch
     }
 
     func setTransport(_ transport: (any SefariaJSTransport)?) {
-        NSLog("[SefariaJSRPCBridge] setTransport called (transport: %@)", String(describing: transport))
+        if let current = self.transport, let transport, current === transport { return }
+        // A replacement host must repeat its handshake. Old requests and
+        // readiness cannot be carried across two Hermes instances.
+        _ = bumpSessionEpoch()
+        isReady = false
+        hasActiveListeners = false
         self.transport = transport
         if transport == nil {
             self.isReady = false
@@ -63,6 +95,7 @@ actor SefariaJSRPCBridge {
         if let current = self.transport, (current as AnyObject) === (transport as AnyObject) {
             NSLog("[SefariaJSRPCBridge] clearTransportIfMatches: clearing transport")
             self.transport = nil
+            _ = bumpSessionEpoch()
             self.isReady = false
             self.hasActiveListeners = false
             cancelAll(reason: "Transport invalidated")
@@ -129,8 +162,34 @@ actor SefariaJSRPCBridge {
         generation: UInt64? = nil,
         timeoutMs: Int = 15000
     ) async throws -> SefariaRPCResponse {
+        try Task.checkCancellation()
+        // Invalidate read snapshots at both boundaries of a resource mutation.
+        // Read-only action discovery never initiates one of these operations.
+        let mutatesResources = ["downloads.install", "downloads.remove", "updates.download"].contains(method)
+        if mutatesResources {
+            guard !resourceMutationInProgress else {
+                throw SefariaRPCError(code: "RESOURCE_BUSY", message: "Another resource operation is active", retryable: true)
+            }
+            if let generation, generation != sessionEpoch {
+                throw SefariaRPCError(code: "STALE_GENERATION", message: "RPC session changed", retryable: true)
+            }
+            _ = bumpSessionEpoch()
+            resourceMutationInProgress = true
+        }
+        defer {
+            if mutatesResources {
+                resourceMutationInProgress = false
+                _ = bumpSessionEpoch()
+            }
+        }
         let requestID = UUID().uuidString
-        let effectiveGeneration = generation ?? sessionEpoch
+        let effectiveGeneration = mutatesResources ? sessionEpoch : generation ?? sessionEpoch
+        guard effectiveGeneration == sessionEpoch else {
+            throw SefariaRPCError(code: "STALE_GENERATION", message: "RPC session changed", retryable: true)
+        }
+        guard timeoutMs > 0, timeoutMs <= 600_000 else {
+            throw SefariaRPCError(code: "INVALID_TIMEOUT", message: "RPC timeout is outside supported bounds")
+        }
         let envelope = SefariaRPCEnvelope(
             protocolVersion: "1.0",
             requestID: requestID,
@@ -169,6 +228,8 @@ actor SefariaJSRPCBridge {
                 )
                 Task {
                     do {
+                        guard self.inFlightRequests[requestID] != nil,
+                              self.sessionEpoch == effectiveGeneration else { return }
                         try await transport.sendToJS(jsonString: jsonString)
                     } catch {
                         self.failInFlight(requestID: requestID, error: error)
@@ -242,7 +303,7 @@ actor SefariaJSRPCBridge {
         }
 
         // Strict generation validation: response must match in-flight generation (no zero-bypass)
-        if response.sessionGeneration != req.generation {
+        if response.sessionGeneration != req.generation || req.generation != sessionEpoch {
             req.continuation.resume(throwing: SefariaRPCError(
                 code: "STALE_GENERATION",
                 message: "Response generation \(response.sessionGeneration) does not match in-flight generation \(req.generation)",

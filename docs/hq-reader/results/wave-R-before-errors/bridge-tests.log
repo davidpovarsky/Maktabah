@@ -1,0 +1,29 @@
+2026-11-15 16:18:17.260 bridge.exe[9412:7268] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 16:18:17.263 bridge.exe[9412:7268] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=3
+2026-11-15 16:18:17.263 bridge.exe[9412:7268] [Otzaria] makeBookContent unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 plainChars=16 htmlChars=16
+2026-11-15 16:18:17.269 bridge.exe[9412:8aec] [Otzaria] getReadingUnit start bookId=103 lineIndex=0 mode=paragraph
+2026-11-15 16:18:17.269 bridge.exe[9412:8aec] [Otzaria] getReadingUnit done bookId=103 lineIndex=0 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=0
+2026-11-15 16:18:17.270 bridge.exe[9412:8aec] [Otzaria] getReadingUnit start bookId=103 lineIndex=0 mode=paragraph
+2026-11-15 16:18:17.271 bridge.exe[9412:8aec] [Otzaria] getReadingUnit done bookId=103 lineIndex=0 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=0
+2026-11-15 16:18:17.272 bridge.exe[9412:8aec] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 16:18:17.272 bridge.exe[9412:8aec] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=nil unit=nil durationMs=0
+2026-11-15 16:18:17.272 bridge.exe[9412:8aec] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 16:18:17.272 bridge.exe[9412:8aec] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=ok unitId=toc:11 tocEntryId=11 title=א level=1 start=0 end=1 lines=2 durationMs=0
+2026-11-15 16:18:17.272 bridge.exe[9412:8aec] [Otzaria] getFirstReadingUnit start bookId=103 mode=paragraph
+2026-11-15 16:18:17.274 bridge.exe[9412:8aec] [Otzaria] getFirstReadingUnit error bookId=103 mode=paragraph error=The operation could not be completed. (bridge.(unknown context at $7ff7d4b3b700).ReaderFixtureError error 0.)
+2026-11-15 16:18:17.275 bridge.exe[9412:8aec] [Otzaria] getFirstReadingUnit done bookId=103 mode=paragraph result=nil unit=nil durationMs=1
+bridge/BridgeTests.swift:82: Fatal error: source read failure must reach the reader, never become a partial fallback
+Current stack trace:
+0    swiftCore.dll                      0x00007ffac4d7e730 swift_reportError + 94
+1    swiftCore.dll                      0x00007ffac4e1dc00 swift_stdlib_reportFatalErrorInFile + 132
+2    swiftCore.dll                      0x00007ffac4a573e0 StaticString.withUTF8Buffer<A>(_:) + 872
+3    swiftCore.dll                      0x00007ffac4a567b0 _assertionFailure(_:_:file:line:flags:) + 262
+4    bridge.exe                         0x00007ff7d4b0da40 type metadata accessor for BackendPaginationState + 111156
+5    swift_Concurrency.dll              0x00007ffb48ca2cb0 UnimplementedTaskExecutor.__deallocating_deinit + 25902
+6    swift_Concurrency.dll              0x00007ffb48ca9d60 swift_job_run + 114
+7    dispatch.dll                       0x00007ffb65bdd6d0 dispatch_queue_set_width + 1952
+8    dispatch.dll                       0x00007ffb65bdd6d0 dispatch_queue_set_width + 4994
+9    dispatch.dll                       0x00007ffb65be2b70 dispatch_prohibit_transition_to_multithreaded + 8630
+10   ucrtbase.dll                       0x00007ffb8b16cbe0 wcsrchr + 336
+11   KERNEL32.DLL                       0x00007ffb8b73dd90 BaseThreadInitThunk + 23
+12   ntdll.dll                          0x00007ffb8d7d9c30 RtlUserThreadStart + 44

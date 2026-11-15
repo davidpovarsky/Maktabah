@@ -53,8 +53,19 @@ def preflight(config):
         require(capture("git", "rev-parse", config["engine_producer_sha"] + ":" + path) == expected_tree,
                 "Prebuilt engine producer source differs: " + path)
     require(capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile/Upstream") == config["sefaria_gitlink"], "Sefaria pin drift")
-    require(capture("git", "rev-parse", config["resource_producer_sha"] + ":Vendor/SefariaMobile") ==
-            capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile"), "Bundled JS producer source differs")
+    resource_tree = capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile")
+    overlays = config.get("embedded_js_overlay_paths", [])
+    if overlays:
+        # The old immutable resource artifact remains a verified baseline, not
+        # a matching bundle for new JS. Rebuild only this reviewed downstream
+        # facade overlay using the unchanged pinned upstream and npm lock.
+        require(overlays == ["Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"], "Unreviewed Embedded resource overlay")
+        changed = capture("git", "diff", "--name-only", config["resource_producer_sha"], "HEAD", "--", "Vendor/SefariaMobile").splitlines()
+        require(changed == overlays, "Embedded overlay changed unrelated resource sources")
+        result["embedded_bundle_build"] = {"mode": "REBUILD_EXACT_REVIEWED_JS", "overlay_paths": overlays, "source_tree": resource_tree}
+    else:
+        require(capture("git", "rev-parse", config["resource_producer_sha"] + ":Vendor/SefariaMobile") ==
+                resource_tree, "Bundled JS producer source differs")
     lock = ROOT / "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
     result["package_resolved_sha256"] = digest(lock)
     result["package_pins"] = pins(lock)
@@ -181,6 +192,23 @@ def install_real_pods(report):
     shutil.copyfile(committed_lock, workspace_lock)
     report["native_context"]["staged_workspace_package_lock_sha256"] = digest(workspace_lock)
     require(pins(workspace_lock) == report["package_pins"], "Generated workspace pin drift")
+
+
+def prepare_matching_embedded_bundle(config, report):
+    if not config.get("embedded_js_overlay_paths"):
+        return
+    vendor = ROOT / "Vendor/SefariaMobile/Upstream"
+    bundle = ROOT / "build/jsbundle/main.jsbundle"
+    historical = digest(bundle)
+    logged(["npx", "--no-install", "react-native", "bundle",
+            "--config", "../Integration/metro.config.embedded.js", "--platform", "ios", "--dev", "false",
+            "--entry-file", "../Integration/index.embedded.js", "--bundle-output", str(bundle),
+            "--assets-dest", str(bundle.parent)], "matching-embedded-bundle.log", report, cwd=vendor)
+    require(bundle.is_file() and bundle.stat().st_size > 0, "Matching Metro bundle is missing or empty")
+    require(capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile") == report["embedded_bundle_build"]["source_tree"], "Embedded source changed during bundling")
+    report["embedded_bundle_build"].update(historical_bundle_sha256=historical, bundle_sha256=digest(bundle),
+        overlay_source_sha256={path: digest(ROOT / path) for path in config["embedded_js_overlay_paths"]})
+    report["resource_inputs"]["jsbundle_sha256"] = digest(bundle)
 
 
 def verify_actual_sources(report):
@@ -311,6 +339,7 @@ def main():
         report["developer_dir"] = os.environ.get("DEVELOPER_DIR") or capture("xcode-select", "-p")
         prepare_react_sources(config, report)
         restore(config, report)
+        prepare_matching_embedded_bundle(config, report)
         install_real_pods(report)
         for framework, header in [("Vendor/OtzariaSearchEngine/OtzariaSearchEngine.xcframework", "otzaria_search_engine.h"),
                                   ("Vendor/ZayitSearchPort/build/MaktabahZayitSearch.xcframework", "maktabah_zayit_search.h")]:
@@ -334,6 +363,10 @@ def main():
                    "ARCHS=arm64", "ONLY_ACTIVE_ARCH=YES", "ENABLE_USER_SCRIPT_SANDBOXING=NO",
                    "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
         logged(command, "simulator-build-for-testing.log" if args.build_for_testing else "unsigned-app-build.log", report)
+        built_bundle = derived_data / "Build/Products/Debug-iphonesimulator/Maktabah.app/main.jsbundle"
+        require(built_bundle.is_file(), "Built app has no Embedded bundle")
+        require(digest(built_bundle) == report["resource_inputs"]["jsbundle_sha256"], "Built app copied a nonmatching Embedded bundle")
+        report["built_app_embedded_bundle_sha256"] = digest(built_bundle)
         require(pins(lock) == report["package_pins"], "Build changed committed package revisions")
         report["package_resolved_after_sha256"] = digest(lock)
         report["status"] = "SIMULATOR_BUILD_FOR_REAL_UI_PASS" if args.build_for_testing else "UNSIGNED_APP_BUILD_PASS"

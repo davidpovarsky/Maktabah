@@ -120,7 +120,7 @@ extension BookUpdateManager {
 
     func fetchAuthIndexEntries(from url: URL) async throws -> [AuthIndexEntry] {
         let csv = try await fetchCSVString(from: url)
-        return parseAuthIndexCSV(csv)
+        return try parseAuthIndexCSV(csv)
     }
 
     func fetchAuthIndexEntriesIfNeeded(from url: URL?) async throws -> [AuthIndexEntry] {
@@ -131,11 +131,11 @@ extension BookUpdateManager {
     // MARK: - PARSE CSV
 
     func parseIndexCSV(_ csv: String) throws -> [BookIndexEntry] {
-        try MaktabahBookUpdateSafety.validateCatalogText(csv)
-        let rows = CSVParser.parse(csv, separator: ";")
+        let rows = try MaktabahBookUpdateSafety.catalogRows(csv)
         guard !rows.isEmpty else { return [] }
 
         let dataRows = trimHeaderIfNeeded(rows, headerKey: "bkid")
+        try MaktabahBookUpdateSafety.validateCatalogIDs(dataRows)
 
         return try dataRows.filter { !$0.allSatisfy { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty } }.compactMap { columns in
             try MaktabahBookUpdateSafety.validateCatalogRow(columns)
@@ -159,13 +159,15 @@ extension BookUpdateManager {
         }
     }
 
-    func parseAuthIndexCSV(_ csv: String) -> [AuthIndexEntry] {
-        let rows = CSVParser.parse(csv, separator: ";")
+    func parseAuthIndexCSV(_ csv: String) throws -> [AuthIndexEntry] {
+        let rows = try MaktabahBookUpdateSafety.catalogRows(csv)
         guard !rows.isEmpty else { return [] }
 
         let dataRows = trimHeaderIfNeeded(rows, headerKey: "authid")
+        try MaktabahBookUpdateSafety.validateCatalogIDs(dataRows)
 
-        return dataRows.compactMap { columns in
+        return try dataRows.filter { !$0.allSatisfy { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty } }.compactMap { columns in
+            try MaktabahBookUpdateSafety.validateAuthorCatalogRow(columns)
             guard columns.count >= 3 else { return nil }
             guard let authId = Int(columns[0]) else { return nil }
             guard let versionName = Int64(columns[1]) else { return nil }

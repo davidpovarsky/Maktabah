@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import argparse
 import re
+import runpy
 import sys
 
 root = Path(__file__).resolve().parents[2]
-project_path = root / "Maktabah.xcodeproj" / "project.pbxproj"
+arguments = argparse.ArgumentParser()
+arguments.add_argument('--project-path', type=Path, default=root / 'Maktabah.xcodeproj/project.pbxproj')
+project_path = arguments.parse_args().project_path
 text = project_path.read_text(encoding="utf-8")
 
 native_section_match = re.search(
@@ -60,6 +64,29 @@ frameworks = phase_body(phase_id("Frameworks"), "Frameworks")
 resources = phase_body(phase_id("Resources"), "Resources")
 
 missing = []
+parse = runpy.run_path(str(root / 'docs/hq-integration/verify_source_registration.py'))['parse']
+project, _ = parse(text)
+objects = project['objects']
+target = objects['F30576DD2FA46222005732C6']
+framework_phase = next(objects[item] for item in target['buildPhases'] if objects[item]['isa'] == 'PBXFrameworksBuildPhase')
+package_roots = {'Actions': 'OtzariaActionCore', 'UIRouting': 'OtzariaUIRouting'}
+for folder, name in package_roots.items():
+    package_path = root / 'Source/Otzaria' / folder
+    if not (package_path / 'Package.swift').is_file():
+        continue
+    products = [item for item in target.get('packageProductDependencies', [])
+                if objects[item].get('productName') == name]
+    if len(products) != 1:
+        missing.append(f'{name}: exactly one iOS package product dependency required')
+        continue
+    product = products[0]
+    package = objects.get(objects[product].get('package'), {})
+    if package.get('isa') != 'XCLocalSwiftPackageReference' or package.get('relativePath') != f'Source/Otzaria/{folder}':
+        missing.append(f'{name}: wrong local package reference')
+    elif objects[product]['package'] not in objects[project['rootObject']].get('packageReferences', []):
+        missing.append(f'{name}: package missing from project references')
+    if sum(objects[item].get('productRef') == product for item in framework_phase['files']) != 1:
+        missing.append(f'{name}: exactly one linked package product required')
 # The real app uses explicit ChavrusaText membership even though MaktabahTests
 # is synchronized. A standalone SDK compile cannot establish target membership.
 overview_bridge = root / "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift"
@@ -68,6 +95,14 @@ if overview_bridge.is_file() and "/* ReaderOverviewPresentation.swift in Sources
 for source in sorted((root / "Source" / "Otzaria").rglob("*.swift")):
     if "Experimental" in source.parts:
         continue
+    relative = source.relative_to(root / 'Source/Otzaria').parts
+    if relative[0] in package_roots:
+        # SPM compiles its Sources and owns its manifest/tests. Only explicit
+        # Integration sources outside that target belong in app source phases.
+        if (len(relative) > 1 and relative[1] in {'Sources', 'Tests'}) or relative[1:] == ('Package.swift',):
+            if f'/* {source.name} in Sources */' in sources:
+                missing.append(f'SPM-owned file compiled into app: {source.relative_to(root).as_posix()}')
+            continue
     token = f"/* {source.name} in Sources */"
     if token not in sources:
         missing.append(source.relative_to(root).as_posix())
@@ -94,7 +129,7 @@ if missing:
     raise SystemExit(1)
 
 print(
-    "Verified Maktabah-iOS project membership for "
+    "Verified Maktabah-iOS app/package source ownership for "
     f"{len(list((root / 'Source' / 'Otzaria').rglob('*.swift')))} Otzaria Swift files, "
     "both search frameworks, and required dictionaries"
 )

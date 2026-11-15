@@ -20,6 +20,10 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         if only == "scope" { try await noteScopeFixtures(); return }
         if only == "tap" { try await tapFixtures(); return }
         if only == "notes" { try await notesLoadingFixtures(); return }
+        if only == "selection" { try await selectionFixtures(); return }
+        if only == "document" { try await documentFixtures(); return }
+        if only == "gate" { try await sourceGateFixtures(); return }
+        if only == "corpus" { try corpusFixtures(); return }
         for count in [100, 500, 2000] {
             let bridge = bridge()
             // Duplicated, reversed, sparse indexes exercise exact windowing and
@@ -138,6 +142,9 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         try await noteScopeFixtures()
         try await tapFixtures()
         try await notesLoadingFixtures()
+        try await selectionFixtures()
+        try await documentFixtures()
+        try await sourceGateFixtures()
         print("ALL INSPECTOR FIXTURES PASSED (portable boundaries; no physical/production performance claim)")
     }
 
@@ -177,6 +184,145 @@ func expect(_ condition: @autoclosure () -> Bool, _ message: String) throws {
         viewModel.didTapReaderText(at: 0)
         try expect(mappedTask.isCancelled && viewModel.selectedSegmentLocator == own, "mapped tap cancels stale anchor task and keeps newest selection")
         print("PASS actual reader tap paths: shell/no eager SQL/stale cancellation")
+    }
+
+    static func corpusFixtures() throws {
+        for bookID in [28, 103, 3152] {
+            let indexes = try bridge().database.fetch(query: "SELECT lineIndex FROM line WHERE bookId = ? ORDER BY lineIndex", parameters: [bookID]) { $0.int(at: 0) }
+            try expect(!indexes.isEmpty, "digest-pinned source book exists")
+            for (name, window) in [("all", indexes), ("first", [indexes[0]]), ("middle", [indexes[indexes.count / 2]]), ("last", [indexes[indexes.count - 1]])] {
+                let bridge = bridge()
+                bridge.database.splitContent = true
+                let expected = try bridge.database.corpusExpectedLinks(bookID: bookID, indexes: window)
+                let sources = try bridge.getLinksMetadataForLineIndices(bookID: bookID, sourceLineIndices: window)
+                let actual = Set(sources.map { "\($0.id):\($0.linkedBookId):\($0.linkedLineId):\($0.linkedLineIndex)" })
+                try expect(actual == expected, "genuine corpus exact relationship set book=\(bookID) scope=\(name)")
+                try expect(sources.allSatisfy { $0.content.isEmpty } && OtzariaLineContentDecoder.decoded == 0, "genuine compressed metadata remains decode-free")
+                try expect(bridge.database.metadataQueries == (window.count + 399) / 400, "genuine corpus bounded SQL batches")
+                let grouped = OtzariaLinkedSourceGrouping.indexGroups(from: sources)
+                try expect(grouped.reduce(0) { $0 + $1.count } == sources.count, "genuine corpus grouping retains all sources")
+                let tail = Array(sources.suffix(8))
+                let visible = tail.enumerated().map { index, source in
+                    TorahLinkedSource(id: "visible-\(index)", sourceRef: "otzaria:v1:\(source.linkedBookId):\(source.linkedLineIndex)")
+                }
+                let snippets = try bridge.fetchSnippets(for: visible)
+                try expect(snippets.count == visible.count && OtzariaLineContentDecoder.decoded <= visible.count, "only requested genuine compressed snippets are hydrated")
+                if let last = tail.last, let id = visible.last?.id {
+                    let point = try bridge.fetchLineContent(bookId: last.linkedBookId, lineIndex: last.linkedLineIndex)
+                    try expect(point != nil && snippets[id] == point?.content.otsariaPlainText, "last real source locator matches exact point SQL text")
+                }
+                print("PASS miniTest10 book=\(bookID) scope=\(name) lines=\(window.count) relationships=\(sources.count) visibleSnippets=\(snippets.count) exact row/set oracle, grouping, lazy dictionary decode, last-source point parity")
+            }
+        }
+    }
+
+    @MainActor static func sourceGateFixtures() async throws {
+        BackendCoordinator.shared.activeBackendID = .otzaria
+        let session = DocumentScopeFixture()
+        let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(100))
+        session.locators["cached"] = locator
+        let exact = try session.activeLocator(for: "cached", providerID: "otzaria")
+        try expect(exact == locator, "warm source cache preserves exact qualified locator")
+        for provider in [nil, "sefaria", "unknown"] as [String?] {
+            do { _ = try session.activeLocator(for: "cached", providerID: provider); throw FixtureError(message: "foreign/missing provider accepted") }
+            catch TorahError.missingProvider {}
+        }
+        do { _ = try session.activeLocator(for: "unknown", providerID: "otzaria"); throw FixtureError(message: "unknown source accepted") }
+        catch TorahError.invalidReference {}
+        let cancelled = Task { @MainActor in
+            withUnsafeCurrentTask { $0?.cancel() }
+            return try session.activeLocator(for: "cached", providerID: "otzaria")
+        }
+        do { _ = try await cancelled.value; throw FixtureError(message: "cancelled warm source cache lookup returned data") }
+        catch is CancellationError {}
+        try expect(session.otzaria.database.queryCount == 0, "source gate never reads/decodes DB")
+        print("PASS actual source gate: exact warm locator, missing/foreign provider, unknown reference, cancellation before cached data")
+    }
+
+    @MainActor static func documentFixtures() async throws {
+        BackendCoordinator.shared.activeBackendID = .otzaria
+        for current in [OtzariaUnitMode.chapter, .paragraph, .line] {
+            for requested in [OtzariaUnitMode.paragraph, .line, .chapter] {
+                let session = DocumentScopeFixture()
+                session.otzaria.currentReadingUnitMode = current
+                let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(100))
+                let request = "otzaria:unit-request:v1:1:100:\(requested.storageValue)"
+                let document = try await session.mapOtzariaDocument(locator: locator, requestedReference: request)
+                let calls = session.otzaria.documentState.modes
+                try expect(calls.map(\.0) == ["unit", "previous", "next"], "one real adapter unit/adjacent lookup path")
+                try expect(calls.allSatisfy { $0.1 == requested }, "document and adjacent descriptors use immutable requested mode \(requested), current=\(current)")
+                let stride: Int = requested == .chapter ? 100 : requested == .paragraph ? 10 : 1
+                try expect(document.previousSectionRef == "otzaria:v1:1:\(100 - stride)" && document.nextSectionRef == "otzaria:v1:1:\(102 + stride)", "exact adjacent source descriptor locators, no current-mode substitution")
+                try expect(document.providerID == "otzaria" && document.requestedRef == request && document.sectionRef == "otzaria:v1:1:100", "document preserves source and request identity")
+                try expect(document.segments.map(\.canonicalRef) == ["otzaria:v1:1:100", "otzaria:v1:1:102"], "exact sparse source line locators")
+                try expect(session.units[request]?.mode == requested, "remembered unit retains source mode")
+            }
+        }
+        // Point-source expansion must retain its cheap one-line path.
+        let session = DocumentScopeFixture()
+        let locator = TextLocator(backend: .otzaria, workKey: "book:1", position: .legacyLine(100))
+        let document = try await session.mapOtzariaDocument(locator: locator, requestedReference: "otzaria:v1:1:100")
+        try expect(document.segments.count == 1 && document.segments[0].text == "base 50" && session.otzaria.documentState.modes.isEmpty, "point expansion does not decode/request a whole unit")
+        for stale in ["generation", "cancel"] {
+            let session = DocumentScopeFixture()
+            let entered = DispatchSemaphore(value: 0), release = DispatchSemaphore(value: 0)
+            session.otzaria.documentState.onUnit = {
+                entered.signal()
+                _ = release.wait(timeout: .now() + 3)
+            }
+            let request = Task { @MainActor in
+                try await session.mapOtzariaDocument(locator: locator, requestedReference: "otzaria:unit-request:v1:1:100:paragraph")
+            }
+            let started = await Task.detached { entered.wait(timeout: .now() + 3) == .success }.value
+            try expect(started, "document loader started")
+            if stale == "generation" { BackendCoordinator.shared.generation += 1 } else { request.cancel() }
+            release.signal()
+            do { _ = try await request.value; throw FixtureError(message: "stale document returned") }
+            catch is CancellationError {}
+            try expect(session.locators.isEmpty && session.units.isEmpty, "stale/cancelled document never writes source caches")
+        }
+        print("PASS actual document method: nine requested/current mode pairs, exact unit/adjacent/sparse locators, point-source fast path, stale/cancel cache isolation")
+    }
+
+    @MainActor static func selectionFixtures() async throws {
+        defer { BackendCoordinator.shared.activeBackendID = .otzaria; AnnotationManager.shared.rows = [] }
+        for backend in [BackendID.sefariaEmbedded, .sefaria] {
+            BackendCoordinator.shared.activeBackendID = backend
+            let section = TextLocator(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis 1"))
+            let segment = TextLocator(backend: backend, workKey: "Genesis", position: .canonicalRef("Genesis 1:2"))
+            let viewModel = ReaderViewModel()
+            viewModel.backendSection = FixtureSection(locator: section)
+            viewModel.selectedSegmentLocator = segment
+            let session = NoteScopeFixture()
+            session.readerViewModel = viewModel
+            guard let selected = session.selection(sefariaLocator: segment, otzariaLine: nil) else {
+                throw FixtureError(message: "missing native selection")
+            }
+            try expect(selected.providerID == backend.rawValue, "selection preserves active provider \(backend)")
+            try expect(selected.scope == .segment && selected.canonicalRef == "Genesis 1" && selected.preferredSegmentRef == "Genesis 1:2", "explicit segment remains exact \(backend)")
+            try expect(session.locator(for: selected) == segment, "source locator preserves exact backend/work/position \(backend)")
+            let current = session.selection(sefariaLocator: nil, otzariaLine: nil)
+            try expect(current?.providerID == backend.rawValue && current?.scope == .section, "current section preserves active provider \(backend)")
+
+            func note(_ id: Int64, backend: BackendID, workKey: String) -> Annotation {
+                Annotation(id: id, bkId: 1, contentId: 0, range: NSRange(location: 0, length: 4), rangeDiacritics: NSRange(location: 0, length: 4), colorHex: "#ffff00", type: .highlight, note: "note-\(id)", createdAt: 1, context: "base", page: 1, part: 1, backendLocator: TextLocator(backend: backend, workKey: workKey, position: .canonicalRef("Genesis 1:2")))
+            }
+            // Equal reference strings and ranges in a different engine/work
+            // must never be used as cross-source annotation identity.
+            AnnotationManager.shared.rows = [note(1, backend: backend, workKey: "Genesis"), note(2, backend: backend == .sefaria ? .sefariaEmbedded : .sefaria, workKey: "Genesis"), note(3, backend: backend, workKey: "Other")]
+            let notes = try await session.notes(for: selected)
+            try expect(notes.map(\.note) == ["note-1"], "Notes excludes equal-ref foreign backend/work \(backend)")
+            if let current {
+                let sectionNotes = try await session.notes(for: current)
+                try expect(sectionNotes.map(\.note) == ["note-1"], "section Notes excludes equal-ref foreign backend/work \(backend)")
+            }
+
+            viewModel.backendSection = FixtureSection(locator: TextLocator(backend: backend == .sefaria ? .sefariaEmbedded : .sefaria, workKey: "Genesis", position: .canonicalRef("Genesis 1")))
+            try expect(session.selection(sefariaLocator: nil, otzariaLine: nil) == nil, "stale foreign section rejected")
+            viewModel.backendSection = nil
+            try expect(session.selection(sefariaLocator: nil, otzariaLine: nil) == nil, "missing section remains absent")
+        }
+        print("PASS actual selection + Notes: Sefaria/Embedded provider, exact section/segment, foreign backend/work isolation, stale/missing section")
     }
 
     @MainActor static func notesLoadingFixtures() async throws {

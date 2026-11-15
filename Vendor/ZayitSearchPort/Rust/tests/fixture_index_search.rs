@@ -3,6 +3,8 @@ use maktabah_zayit_search::{
     models::{DataPaths, SearchFilters, SearchRequest},
 };
 use rusqlite::{params, Connection};
+use std::collections::HashSet;
+use std::ffi::{CStr, CString};
 use std::{path::Path, process::Command};
 use tempfile::tempdir;
 
@@ -79,6 +81,100 @@ fn builds_and_searches_a_real_sqlite_fixture() {
         .expect("search with book filter");
     assert_eq!(filtered.hits.len(), 1);
     assert_eq!(filtered.hits[0].book_id, 20);
+
+    // Execute the public C ABI used by the Swift wrapper, not a mocked
+    // repository. All DB/index paths belong to this disposable fixture.
+    let paths = DataPaths {
+        seforim_db: seforim_db.to_string_lossy().into_owned(),
+        lexical_db: lexical_db.to_string_lossy().into_owned(),
+        index_dir: index_dir.to_string_lossy().into_owned(),
+    };
+    unsafe {
+        use maktabah_zayit_search::ffi::*;
+        let encoded = CString::new(serde_json::to_string(&paths).unwrap()).unwrap();
+        let opened = ffi_json(mzayit_engine_create(encoded.as_ptr()));
+        let engine_id = opened["engine_id"]
+            .as_u64()
+            .expect("FFI opens real generated index");
+        let mut ids = HashSet::new();
+        for (offset, count, last) in [(0, 50, false), (50, 50, false), (100, 25, true)] {
+            let query = SearchRequest {
+                query: "מבחןעימוד".into(),
+                near: 0,
+                limit: 50,
+                offset,
+                filters: SearchFilters {
+                    book_ids: vec![10],
+                    ..SearchFilters::default()
+                },
+            };
+            let input = CString::new(serde_json::to_string(&query).unwrap()).unwrap();
+            let value = ffi_json(mzayit_engine_search(engine_id, input.as_ptr()));
+            let page: maktabah_zayit_search::models::SearchPage =
+                serde_json::from_value(value).expect("FFI page shape");
+            assert_eq!(page.total_hits, 125);
+            assert_eq!(page.hits.len(), count);
+            assert_eq!(page.is_last_page, last);
+            for hit in page.hits {
+                assert!(
+                    ids.insert(hit.line_id),
+                    "paging returned a duplicate stable hit ID"
+                );
+                assert_eq!(hit.book_id, 10);
+                assert_eq!(hit.line_index as i64, hit.line_id - 1000);
+                assert_eq!(hit.stable_book_key, "demo/sefer-yesod");
+                assert!(hit.snippet_html.contains("מבחןעימוד"));
+                assert!(!hit.matched_terms.is_empty());
+            }
+        }
+        assert_eq!(ids.len(), 125);
+        // Three distinct known-match Hebrew queries both unfiltered and with
+        // the actual source book filter; these are fixture, not corpus proofs.
+        for text in ["מיוחד", "שלום", "מבחןעימוד"] {
+            for filters in [
+                SearchFilters::default(),
+                SearchFilters {
+                    book_ids: vec![10],
+                    ..SearchFilters::default()
+                },
+            ] {
+                let input =
+                    CString::new(serde_json::to_string(&request(text, filters)).unwrap()).unwrap();
+                let page: maktabah_zayit_search::models::SearchPage = serde_json::from_value(
+                    ffi_json(mzayit_engine_search(engine_id, input.as_ptr())),
+                )
+                .unwrap();
+                assert!(
+                    !page.hits.is_empty(),
+                    "known fixture query returned empty: {text}"
+                );
+            }
+        }
+        mzayit_engine_destroy(engine_id);
+        let query = CString::new(
+            serde_json::to_string(&request("שלום", SearchFilters::default())).unwrap(),
+        )
+        .unwrap();
+        let stale = ffi_json(mzayit_engine_search(engine_id, query.as_ptr()));
+        assert!(
+            stale.get("error").is_some(),
+            "closed engine must return an error, not a zero-hit page"
+        );
+        let reopened = ffi_json(mzayit_engine_create(encoded.as_ptr()));
+        let reopened_id = reopened["engine_id"].as_u64().expect("FFI reopens index");
+        let page: maktabah_zayit_search::models::SearchPage =
+            serde_json::from_value(ffi_json(mzayit_engine_search(reopened_id, query.as_ptr())))
+                .unwrap();
+        assert!(!page.hits.is_empty());
+        mzayit_engine_destroy(reopened_id);
+    }
+}
+
+unsafe fn ffi_json(pointer: *mut std::os::raw::c_char) -> serde_json::Value {
+    assert!(!pointer.is_null(), "FFI returned a null JSON string");
+    let bytes = CStr::from_ptr(pointer).to_bytes().to_vec();
+    maktabah_zayit_search::ffi::mzayit_string_free(pointer);
+    serde_json::from_slice(&bytes).expect("FFI returns valid JSON")
 }
 
 fn request(query: &str, filters: SearchFilters) -> SearchRequest {
@@ -150,6 +246,13 @@ fn create_seforim_fixture(path: &Path) {
         params![201, 20, 0, "שלום בית ואור גדול"],
     )
     .unwrap();
+    for line in 1..=125 {
+        conn.execute(
+            "INSERT INTO line VALUES (?1, 10, ?2, ?3)",
+            params![1000 + line, line, format!("מבחןעימוד רשומה {line}")],
+        )
+        .unwrap();
+    }
 }
 
 fn create_lexical_fixture(path: &Path) {

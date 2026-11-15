@@ -184,6 +184,32 @@ actor BridgeFixtureProofGate {
         await gate.waitForStart(); await epoch.bump(); await gate.release()
         do { _ = try await waiting.value; fatalError("stale RPC epoch accepted") }
         catch { check(true, "Embedded RPC epoch change invalidates actual facade completion") }
-        print("PASS: \(assertions) Integration assertions using real app coordinator/models/protocols and real facade/identity bridge; providers are doubles")
+        do { _ = try bridge.currentBackendSnapshot(); fatalError("async-only Embedded authority produced a synchronous snapshot") }
+        catch { check(true, "async-only Embedded compositions fail closed for synchronous commit") }
+        let actualRPC = SefariaJSRPCBridge.shared
+        let synchronous = ActionBackendCoordinatorFacade(coordinator: coordinator,
+            epoch: { await actualRPC.sessionEpoch }, currentEpoch: { actualRPC.currentSessionEpoch })
+        let immediate = try synchronous.currentBackendSnapshot()
+        check(immediate == (try await synchronous.snapshot()), "production async and synchronous ports share the actual epoch authority")
+        _ = await actualRPC.bumpSessionEpoch()
+        let changed = try synchronous.currentBackendSnapshot()
+        check(changed.rpcEpoch != immediate.rpcEpoch && changed.generation == immediate.generation,
+              "synchronous guard observes actual RPC drift even without coordinator generation change")
+        check(changed == (try await synchronous.snapshot()), "async snapshot delegates to current authoritative synchronous snapshot")
+        let concurrentReader = Task.detached { () -> Bool in
+            var previous = actualRPC.currentSessionEpoch
+            for _ in 0..<10_000 {
+                let value = actualRPC.currentSessionEpoch
+                if value < previous { return false }
+                previous = value
+            }
+            return true
+        }
+        for _ in 0..<128 { _ = await actualRPC.bumpSessionEpoch() }
+        check(await concurrentReader.value, "concurrent sync reads and actor writes use one synchronized monotonic epoch cell")
+        try await runtimeChecks()
+        try await relationshipsChecks()
+        try await resourceChecks(coordinator: coordinator, provider: providers[.otzaria]!)
+        print("PASS: \(assertions) Integration assertions using real app coordinator/models/protocols, facade, RPC bridge and runtime manager; providers/transport are doubles, no Hermes or Apple UI")
     }
 }

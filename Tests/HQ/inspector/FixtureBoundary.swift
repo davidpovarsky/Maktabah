@@ -2,7 +2,9 @@ import Foundation
 import Dispatch
 
 // Boundary substitutes only: actual generated service SQL executes in SQLite.
-// Decoder instrumentation uses plain text; it does not validate production zstd.
+// Default decoder instrumentation uses plain text. The explicit corpus case
+// decodes real dictionary frames in the Python query boundary; it does not
+// validate the production Swift/C ZSTD decoder or Apple runtime.
 struct FixtureError: Error { let message: String }
 struct SQLiteRow {
     let values: [Any]
@@ -22,6 +24,21 @@ final class SQLiteDatabase: @unchecked Sendable {
     var brokenMetadata = false
     var splitContent = false
     init(path: String) { self.path = path }
+    func corpusExpectedLinks(bookID: Int, indexes: [Int]) throws -> Set<String> {
+        let process = Process(), input = Pipe(), output = Pipe()
+        process.executableURL = URL(fileURLWithPath: CommandLine.arguments[1])
+        process.arguments = [CommandLine.arguments[2], "--oracle", path]
+        process.standardInput = input; process.standardOutput = output
+        try process.run()
+        input.fileHandleForWriting.write(try JSONSerialization.data(withJSONObject: ["bookID": bookID, "indexes": indexes]))
+        try input.fileHandleForWriting.close()
+        let data = output.fileHandleForReading.readDataToEndOfFile()
+        process.waitUntilExit()
+        guard process.terminationStatus == 0,
+              let body = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let rows = body["rows"] as? [[Int]] else { throw FixtureError(message: "corpus oracle failed") }
+        return Set(rows.map { $0.map(String.init).joined(separator: ":") })
+    }
     func fetch<T>(query: String, parameters: [Any] = [], map: (SQLiteRow) throws -> T) throws -> [T] {
         queryCount += 1
         let metadata = query.contains("WITH win")
@@ -61,32 +78,18 @@ final class OtzariaMaktabahBridge: @unchecked Sendable {
     let database: SQLiteDatabase
     var currentReadingUnitMode: OtzariaUnitMode = .chapter
     var cachedAnchor: OtzariaLineAnchor?
+    let documentState = FixtureDocumentState()
     init(database: SQLiteDatabase) { self.database = database }
     func withDatabase<T>(_ work: (SQLiteDatabase) throws -> T) throws -> T { try work(database) }
     func lineAnchor(bookId: Int, contentId: Int, characterIndex: Int) -> OtzariaLineAnchor? { cachedAnchor }
     func lineAnchorAsync(bookId: Int, contentId: Int, characterIndex: Int) async -> OtzariaLineAnchor? { cachedAnchor }
+    func cachedReadingUnit(bookId: Int, contentId: Int, mode: OtzariaUnitMode) -> OtzariaReadingUnit? { nil }
 }
 struct OtzariaDatabaseCapabilities {
     let hasLinkRanges = true
     let hasSuppressedLinkSides = true
     let hasSplitLineContent: Bool
     init(database: SQLiteDatabase) throws { hasSplitLineContent = database.splitContent }
-}
-struct OtzariaBookSchemaProjection {
-    let filePath: String; let isBaseBook: String; let dependenceType: String
-}
-enum OtzariaBookSchemaCompatibility {
-    static func projection(in db: SQLiteDatabase, alias: String) throws -> OtzariaBookSchemaProjection {
-        OtzariaBookSchemaProjection(filePath: "\(alias).filePath", isBaseBook: "\(alias).isBaseBook", dependenceType: "\(alias).dependenceType")
-    }
-}
-struct OtzariaLineContentProjection { let join: String; let expression: String }
-enum OtzariaLineContentCompatibility {
-    static func projection(capabilities: OtzariaDatabaseCapabilities, lineAlias: String, contentAlias: String) -> OtzariaLineContentProjection {
-        capabilities.hasSplitLineContent
-        ? OtzariaLineContentProjection(join: "LEFT JOIN line_content \(contentAlias) ON \(contentAlias).id = \(lineAlias).id", expression: "\(contentAlias).content")
-        : OtzariaLineContentProjection(join: "", expression: "\(lineAlias).content")
-    }
 }
 final class OtzariaLineContentDecoder {
     nonisolated(unsafe) static var decoded = 0
@@ -106,14 +109,6 @@ struct TorahLinkedSource: Sendable {
     let id: ID
     let sourceRef: String
 }
-struct OtzariaReadingUnit {
-    let bookId: Int
-    let id = "fixture-unit"
-    let startLineIndex = 0
-    let endLineIndex = 3998
-    let sourceLineIndices: [Int]
-}
-enum OtzariaUnitMode { case chapter }
 struct OtzariaPerformanceTelemetry: Sendable {
     static let shared = Self()
     func begin(_ name: String) -> Self { self }
@@ -123,18 +118,27 @@ struct OtzariaFileLogger: Sendable {
     static let shared = Self()
     func log(_ message: String) {}
 }
-extension String { var otsariaPlainText: String { self } }
+extension String {
+    var otsariaPlainText: String { self }
+    var readerPlainText: String { self }
+}
 
-enum BackendID: String, Sendable { case otzaria, sefaria, sefariaEmbedded }
-struct TextLocator: Equatable, Sendable {
-    enum Position: Equatable, Sendable { case legacyLine(Int), canonicalRef(String) }
+enum BackendID: String, Codable, Sendable {
+    case otzaria, sefaria, sefariaEmbedded
+    var displayName: String { rawValue }
+}
+struct TextLocator: Hashable, Codable, Sendable {
+    enum Position: Hashable, Codable, Sendable { case legacyLine(Int), canonicalRef(String) }
     let backend: BackendID; let workKey: String; let position: Position
     var persistenceKey: String { "\(backend):\(workKey):\(position)" }
 }
 struct TorahInspectorSelection: Sendable {
     enum Scope: Sendable { case section, segment }
-    let providerID: String; let canonicalRef: String; let scope: Scope
-    var preferredSegmentRef: String? { scope == .segment ? canonicalRef : nil }
+    let providerID: String; let canonicalRef: String; let preferredSegmentRef: String?; let scope: Scope
+    init(providerID: String, canonicalRef: String, preferredSegmentRef: String? = nil, scope: Scope) {
+        self.providerID = providerID; self.canonicalRef = canonicalRef; self.scope = scope
+        self.preferredSegmentRef = preferredSegmentRef ?? (scope == .segment ? canonicalRef : nil)
+    }
 }
 struct TorahInspectorNote: Sendable {
     let id: String; let selectedText: String; let note: String; let tag: String?
@@ -171,6 +175,7 @@ struct FixtureBook {
     let id: Int
     var backendLocator: TextLocator? { TextLocator(backend: .otzaria, workKey: "book:\(id)", position: .legacyLine(0)) }
 }
+struct FixtureSection { let locator: TextLocator }
 struct FixtureMapping { let locator: TextLocator }
 struct FixtureRenderModel {
     let mapping: FixtureMapping
@@ -190,6 +195,7 @@ struct FixtureReaderState { var selectedRange: NSRange? }
     var otzariaSourcesIsLoading = false
     var readerState = FixtureReaderState()
     var backendRenderModel: FixtureRenderModel?
+    var backendSection: FixtureSection?
     var currentBook: FixtureBook? = FixtureBook(id: 1)
     var currentContentId = 0
     var currentHeRef: String?

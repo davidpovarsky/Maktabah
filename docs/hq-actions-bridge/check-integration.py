@@ -24,6 +24,14 @@ files = [
     "Source/LibraryBackend/BackendCoordinator.swift",
     "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
     "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+    "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+    "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+    "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+    "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+    "Source/SefariaEmbedded/Adapters/SefariaEmbeddedRelationshipsAdapter.swift",
+    "docs/hq-actions-bridge/RuntimeAcceptance.swift",
+    "docs/hq-actions-bridge/RelationshipsAcceptance.swift",
+    "docs/hq-actions-bridge/ResourceAcceptance.swift",
     "docs/hq-actions-bridge/IntegrationAcceptance.swift",
 ]
 with tempfile.TemporaryDirectory(prefix="hq-actions-integration-") as folder:
