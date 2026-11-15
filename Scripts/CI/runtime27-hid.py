@@ -12,6 +12,7 @@ import logging
 import os
 from pathlib import Path
 import platform
+import re
 import secrets
 import subprocess
 import sys
@@ -19,6 +20,7 @@ import tarfile
 import tempfile
 import time
 import urllib.request
+import uuid
 import venv
 
 VERSION = "1.7.8"
@@ -82,13 +84,16 @@ class HIDComparison:
         commands = [
             [self.tools["companion"], "--udid", self.udid, "--grpc-domain-sock", str(self.socket)],
             [self.tools["python"], str(Path(__file__).resolve()), "serve", "--socket", str(self.socket),
-             "--udid", self.udid, "--containers", str(self.container.parent), "--token", self.token,
+             "--udid", self.udid, "--containers", str(self.container.parent),
              "--ready", str(self.ready), "--evidence", str(self.artifacts / f"hid-{self.label}.jsonl")],
         ]
         for index, command in enumerate(commands):
             log = (self.artifacts / f"hid-{self.label}-{index}.log").open("w")
             self.logs.append(log)
-            self.processes.append(subprocess.Popen(command, env=environment, stdout=log, stderr=subprocess.STDOUT))
+            process_environment = environment.copy()
+            if index == 1:
+                process_environment["R27_HID_AUTH_TOKEN"] = self.token
+            self.processes.append(subprocess.Popen(command, env=process_environment, stdout=log, stderr=subprocess.STDOUT))
             limit = time.monotonic() + 60
             expected = self.socket if index == 0 else self.ready
             while not expected.exists():
@@ -99,6 +104,9 @@ class HIDComparison:
         if report["udid"] != self.udid:
             raise RuntimeError("HID target does not match owned disposable simulator")
         return {"TEST_RUNNER_R27_HID_TOKEN": self.token}
+
+    def redact_evidence(self, text):
+        return re.sub(re.escape(self.token), "<redacted-hid-token>", text, flags=re.IGNORECASE)
 
     def stop(self):
         for process in reversed(self.processes):
@@ -115,25 +123,32 @@ class HIDComparison:
 
 
 async def dispatch_request(request, token, udid, client):
-    result = {"request": request.name, "udid": udid, "transport": "idb-real-HID", "delivered": False}
+    # Private IPC basenames contain the credential. Never copy a path/name or
+    # unvalidated payload into either exported JSONL or the attached ACK.
+    result = {"request_id": str(uuid.uuid4()), "udid": udid, "transport": "idb-real-HID", "delivered": False}
+    validated = False
     try:
         data = json.loads(request.read_text())
         nonce = data["nonce"]
         key = data["key"]
         if (data["token"] != token or key not in KEYS or isinstance(key, bool)
-                or not isinstance(nonce, str) or request.name != f"r27-hid-{token}-{nonce}.request.json"
+                or not isinstance(nonce, str) or not token or token.casefold() in nonce.casefold()
+                or request.name != f"r27-hid-{token}-{nonce}.request.json"
                 or not 0 <= time.time() - request.stat().st_mtime < 30):
             raise ValueError("Invalid/stale/non-whitelisted owned HID request")
         result.update(nonce=nonce, key=key)
+        validated = True
         await asyncio.wait_for(client.key(key, duration=0.05), timeout=10)
         result["delivered"] = True
-    except Exception as error:
-        result["error"] = str(error)
+    except Exception:
+        # Exception details may include private paths, argv or credentials.
+        result["error"] = "HID transport failed" if validated else "HID request rejected"
     result["time"] = time.time()
     return result
 
 
 async def serve(args):
+    token = os.environ.pop("R27_HID_AUTH_TOKEN")
     from idb.grpc.client import Client
     from idb.common.types import DomainSocketAddress
     seen = set()
@@ -142,24 +157,27 @@ async def serve(args):
             raise RuntimeError("Direct companion returned an unexpected UDID")
         Path(args.ready).write_text(json.dumps({"udid": args.udid, "transport": "idb-real-HID"}))
         while True:
-            for request in Path(args.containers).glob(f"*/Documents/r27-hid-{args.token}-*.request.json"):
+            for request in Path(args.containers).glob(f"*/Documents/r27-hid-{token}-*.request.json"):
                 if request in seen:
                     continue
                 seen.add(request)
-                result = await dispatch_request(request, args.token, args.udid, client)
+                result = await dispatch_request(request, token, args.udid, client)
                 with Path(args.evidence).open("a") as evidence:
                     evidence.write(json.dumps(result) + "\n")
                 ack = request.with_name(request.name.replace(".request.json", ".ack.json"))
                 temporary = ack.with_suffix(".tmp")
-                temporary.write_text(json.dumps(result))
-                temporary.replace(ack)
+                try:
+                    temporary.write_text(json.dumps(result))
+                    temporary.replace(ack)
+                except OSError:
+                    raise RuntimeError("Could not write owned HID acknowledgement") from None
             await asyncio.sleep(0.1)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("mode", choices=["prepare", "serve"])
-    for name in ["socket", "udid", "containers", "token", "ready", "evidence", "out"]:
+    for name in ["socket", "udid", "containers", "ready", "evidence", "out"]:
         parser.add_argument("--" + name)
     args = parser.parse_args()
     if args.mode == "prepare":

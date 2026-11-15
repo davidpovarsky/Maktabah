@@ -1,0 +1,46 @@
+{
+  "scope": "HID provider/evidence boundary only; no native/SDK/CI/watch/retry for this correction",
+  "prior_private_artifact": {
+    "run": 43755146411,
+    "artifact": 14179625929,
+    "preserved": true,
+    "downloaded_text_files_scanned": 23,
+    "raw_credential_matches": [
+      {
+        "path": "artifacts/runtime27/hid-11-window.jsonl",
+        "occurrences": 4
+      },
+      {
+        "path": "artifacts/visual-11-window/AE28CA5F-86C9-4F77-8622-4753FE268324.json",
+        "occurrences": 1
+      },
+      {
+        "path": "artifacts/visual-11-window/C3E0FC7A-62F7-411B-9521-ACD44DE7C84B.json",
+        "occurrences": 1
+      },
+      {
+        "path": "artifacts/visual-11-window/C45BE397-FCB0-4587-A012-05AC84B9B34E.json",
+        "occurrences": 1
+      },
+      {
+        "path": "artifacts/visual-11-window/EFB870B7-2C90-4021-9FDD-03D248DA23D7.json",
+        "occurrences": 1
+      }
+    ],
+    "all_archive_member_names_checked": 2096,
+    "raw_credential_in_member_names": false,
+    "limitation": "Read-only scan of downloaded relevant text. Matching prior raw JSONL/ACK retained unchanged, not copied into Git. No actual credential or raw matching record printed."
+  },
+  "source_findings": [
+    "Exported request.name contained credential in JSONL and attached ACK",
+    "Private server argv exposed token to potential process/exception diagnostics; moved only server auth to private environment, consumed before client imports",
+    "Raw transport exception text and ACK I/O tracebacks could expose private filenames; replaced with fixed failure categories",
+    "Swift request/ACK file I/O could expose token-bearing NSError paths; converted to fixed fail-closed errors and credential-free canonical ACK attachment",
+    "Existing app launch environment is explicitly constructed from profile/overrides, not full test environment. Native artifact upload paths exclude private app Documents; viewport copy glob is faithful-*.viewport.json, not HID request/ACK paths",
+    "Matrix stdout now redacts the known job credential before log/console retention; no environment dict or raw argv is exported by the provider"
+  ],
+  "correction": "Token-free generated request_id plus validated safe nonce/key/owned UDID; no request basename export. Existing auth equality, nonce filename matching, staleness and key whitelist retained; reject nonce containing credential. No app callback/second key/acceptance shortcut.",
+  "focused_checks": "12 focused local provider checks PASS: prior6 auth/staleness/whitelist/delivery boundaries plus6 success/rejected-auth/key/nonce/malformed/transport-exception/export-redaction cases. Swift syntax parse/Python syntax PASS only.",
+  "original_ui_oracles_and_method_bodies": "Entire test file identical to f123 outside private sendNativeHID helper; normalized proof passed. All Source app files unchanged; native pan producer remains c42e537c. No native validation claimed for this privacy correction.",
+  "delivery": "One immutable source/evidence packet with next genuine handoff, as requested; current pre-correction native source remains separately qualified."
+}

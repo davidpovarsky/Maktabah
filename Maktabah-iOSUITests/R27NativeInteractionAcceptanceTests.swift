@@ -399,15 +399,29 @@ final class R27NativePadTests: R27NativeUIBase {
         let request = URL(fileURLWithPath: prefix.path + ".request.json")
         let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
         let payload: [String: Any] = ["token": token, "nonce": nonce, "key": usage.rawValue]
-        try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
-        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+        // Keep private IPC paths out of XCTest's automatic NSError reporting.
+        do {
+            try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
+        } catch {
+            XCTFail("Could not write owned HID request")
+            return
+        }
+        let acknowledged = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
             predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
-        )], timeout: 20), .completed, "Real HID transport must acknowledge this exact request")
-        let response = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: ack)) as? [String: Any])
+        )], timeout: 20)
+        XCTAssertEqual(acknowledged, .completed, "Real HID transport must acknowledge this exact request")
+        guard acknowledged == .completed,
+              let data = try? Data(contentsOf: ack),
+              let response = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any],
+              let publicData = try? JSONSerialization.data(withJSONObject: response, options: [.sortedKeys]),
+              String(decoding: publicData, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
+            XCTFail("HID acknowledgement must be valid and credential-free")
+            return
+        }
         XCTAssertEqual(response["nonce"] as? String, nonce)
         XCTAssertEqual(response["key"] as? Int, usage.rawValue)
         XCTAssertEqual(response["delivered"] as? Bool, true, "Transport error: \(response)")
-        let attachment = XCTAttachment(data: try Data(contentsOf: ack), uniformTypeIdentifier: "public.json")
+        let attachment = XCTAttachment(data: publicData, uniformTypeIdentifier: "public.json")
         attachment.name = "r27-hid-transport-only-\(usage.rawValue)"
         attachment.lifetime = .keepAlways
         add(attachment)

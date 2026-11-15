@@ -240,6 +240,8 @@ for index, scenario in enumerate(scenarios):
         with (artifacts / f"test-simulator-{label}.log").open("w") as log:
             process = subprocess.Popen(command, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
             for line in process.stdout:
+                if hid_comparison is not None:
+                    line = hid_comparison.redact_evidence(line)
                 log.write(line)
                 log.flush()
                 print(line, end="", flush=True)
