@@ -1,0 +1,66 @@
+{
+  "source": "5c6670b6f213f8a0defb1eadc32260e85c976dc6",
+  "base": "86a8b8b47595b11074c2030b9c23b00f4a32addc",
+  "failed_checkout": "5b46c400df45e3a6eb4fa552e0b0cb4a7e1ce018",
+  "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+  "before_lf_sha256": "d04bb370070ac478ffdc8857197fdb8df0d1ca420a2ae75ed863af5771682d45",
+  "after_lf_sha256": "4cfbffca1fd0ddb4862b764c944b01efa818e54200cd2fd33688036fee0adfc8",
+  "source_audits": [
+    "UI/state prefix identical",
+    "existing event/action tail identical",
+    "one superclass read/call at each added boundary"
+  ],
+  "commands": [
+    {
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios17.0",
+        "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'iPhone'"
+    },
+    {
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-macosx14.0",
+        "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
+      ],
+      "exit_code": 0,
+      "output": "<unknown>:0: warning: SDK settings were ignored as 'SDKSettings.json' could not be parsed\n<unknown>:0: warning: using sysroot for 'Windows' but targeting 'MacOSX'"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "86a8b8b47595b11074c2030b9c23b00f4a32addc",
+        "5c6670b6f213f8a0defb1eadc32260e85c976dc6"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--reverse",
+        "--check",
+        "--unidiff-zero",
+        "C:\\Users\\DAVID\\Code\\Maktabah-hq-sidebar-20261115\\docs\\hq-ui-inventory\\r27-escape\\dispatch\\source.patch"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "toolchain": "Swift version 6.3.3 (swift-6.3.3-RELEASE)\nTarget: x86_64-unknown-windows-msvc\nBuild config: +assertions",
+  "Apple_SDK_builds_by_U": 0,
+  "native_UI_tests_by_U": 0,
+  "descriptor_route_values": "NOT_RUN"
+}
