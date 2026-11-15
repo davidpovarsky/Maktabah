@@ -86,4 +86,32 @@ if all(path.is_file() for path in toolbar_sources):
     (artifacts / "toolbar-sdk-compile.json").write_text(json.dumps(toolbar_report, indent=2))
     print(json.dumps(toolbar_report, indent=2))
     print(toolbar_result.stdout)
-raise SystemExit(result.returncode or toolbar_code)
+# UI03/04 downstream package: compile the real sources and their actual Core /
+# UIRouting dependencies for the installed iOS SDK. Windows excludes UIKit and
+# AppIntents, so portable tests alone cannot validate these declarations.
+# This extends the existing manual SDK check; it changes no workflow triggers,
+# app target membership, deployment target, signing or runtime acceptance.
+native_host_code = 0
+native_host = Path("Source/ChavrusaText/UIRoutingHost")
+if (native_host / "Package.swift").is_file():
+    native_host_command = ["xcrun", "swift", "build", "--package-path", str(native_host),
+                           "--triple", "arm64-apple-ios26.0-simulator", "--sdk", str(sdk),
+                           "-j", "2", "-Xswiftc", "-strict-concurrency=complete"]
+    native_host_result = subprocess.run(native_host_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    native_host_code = native_host_result.returncode
+    (artifacts / "native-routing-host-sdk.log").write_text(native_host_result.stdout, encoding="utf-8")
+    native_host_sources = [native_host / "Package.swift", *sorted((native_host / "Sources").rglob("*.swift"))]
+    native_host_report = {"sourceSHA": report["sourceSHA"], "xcode": version, "sdk": str(sdk),
+                          "target": "arm64-apple-ios26.0-simulator", "command": native_host_command,
+                          "status": "SDK_COMPILE_PASS" if native_host_code == 0 else "BUILD_FAILED",
+                          "notRuntimeAcceptance": True, "nativeUITestsExecuted": 0,
+                          "sourceHashes": {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in native_host_sources}}
+    (artifacts / "native-routing-host-sdk.json").write_text(json.dumps(native_host_report, indent=2), encoding="utf-8")
+    # Retain the new evidence in the existing workflow's already-uploaded files.
+    report["nativeRoutingHost"] = native_host_report
+    (artifacts / "ui-acceptance-typecheck.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    with (artifacts / "ui-acceptance-typecheck.log").open("a", encoding="utf-8") as output:
+        output.write("\n=== Native routing host SDK compilation ===\n" + native_host_result.stdout)
+    print(json.dumps(native_host_report, indent=2))
+    print(native_host_result.stdout)
+raise SystemExit(result.returncode or toolbar_code or native_host_code)
