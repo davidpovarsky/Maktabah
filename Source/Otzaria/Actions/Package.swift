@@ -5,7 +5,7 @@ let package = Package(
     name: "OtzariaActionCore",
     products: [.library(name: "OtzariaActionCore", targets: ["OtzariaActionCore"])],
     targets: [
-        .target(name: "OtzariaActionCore", resources: [.copy("Resources")]),
+        .target(name: "OtzariaActionCore", resources: [.process("Resources")]),
         .testTarget(name: "OtzariaActionCoreTests", dependencies: ["OtzariaActionCore"])
     ],
     swiftLanguageModes: [.v6]

@@ -25,7 +25,7 @@ public struct ActionRegistry: Sendable {
     }
     public func descriptor(for action: String) -> ActionDescriptor? { byID[action] }
     public static func resource(_ name: String) throws -> Data {
-        guard let url = Bundle.module.url(forResource: name, withExtension: nil, subdirectory: "Resources") else {
+        guard let url = Bundle.module.url(forResource: name, withExtension: nil) else {
             throw ActionContractError.invalid("bundled_contract")
         }
         return try Data(contentsOf: url)

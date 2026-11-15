@@ -55,6 +55,16 @@ final class WireSecurityTests: XCTestCase {
         }
     }
     func testFrozenCatalogAndElevenExamplesProject() throws {
+        // A copied top-level Resources directory changes signed bundle layout.
+        // Process JSON into Bundle.module's normal resource root instead, and
+        // keep every frozen contract loadable without a subdirectory fallback.
+        XCTAssertFalse(FileManager.default.fileExists(atPath: Bundle.module.bundleURL.appendingPathComponent("Resources").path))
+        for name in ["action-catalog.v1.json", "action-request.v1.schema.json", "action-result.v1.schema.json",
+                     "backend-acceptance-cases.v1.json", "backend-capability-matrix.v1.json", "examples.v1.json"] {
+            let url = try XCTUnwrap(Bundle.module.url(forResource: name, withExtension: nil))
+            XCTAssertEqual(try ActionRegistry.resource(name), try Data(contentsOf: url))
+            _ = try JSONDecoder().decode(ActionJSON.self, from: ActionRegistry.resource(name))
+        }
         let registry = try ActionRegistry()
         XCTAssertEqual(registry.descriptors.count, 29)
         XCTAssertEqual(ActionRegistry.implemented.count, 5)

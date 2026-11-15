@@ -86,8 +86,8 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
 
     /// Synchronous final guard: call once, immediately before native mutation on
     /// MainActor, with no intervening await. Failure never authorizes an effect.
-    /// Fresh context/rights/lifetime and snapshot come from the retained SAME
-    /// authority object, not from caller-provided current-state arguments.
+    /// Fresh native context/rights/lifetime and backend snapshot come from their
+    /// retained exact authorities, not caller-provided current-state arguments.
     public func authorizeCommit(invocation: ActionPortInvocation, sceneID: String,
                                 destination: ActionReaderDestination? = nil) throws {
         guard !consumed else { throw ActionNavigationError(.failed, "navigation_preparation_consumed") }
@@ -96,5 +96,13 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
         }
         try validateLive()
         consumed = true
+    }
+
+    /// Freshness check after native observation/layout waits, not another grant.
+    /// The commit guard must already have succeeded. Failure may follow an
+    /// actual effect: it proves neither rollback nor absence of that effect.
+    public func validateCompletion() throws {
+        guard consumed else { throw ActionNavigationError(.failed, "navigation_commit_not_authorized") }
+        try validateLive()
     }
 }

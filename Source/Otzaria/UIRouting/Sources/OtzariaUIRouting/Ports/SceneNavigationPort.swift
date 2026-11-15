@@ -98,6 +98,12 @@ public struct UIAuthorizedSceneCommand: Sendable {
     @MainActor public func authorizeCommit(current: UISceneSnapshot) throws {
         try command.authorizeCommit(current: current, using: authorization)
     }
+    /// Check the exact observed native result AND current canonical authority
+    /// after any layout/readiness await. This cannot authorize/repeat mutation.
+    @MainActor public func validateCompletion(receipt: UISceneReceipt, observed: UISceneSnapshot) throws {
+        try receipt.validate(for: command, observed: observed)
+        try authorization.validateCompletion()
+    }
 }
 public struct UISceneReceipt: Sendable, Equatable {
     public let requestId: UUID

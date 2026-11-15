@@ -53,3 +53,5 @@ Current frozen-input disposition supersedes that historical43eb paragraph: consu
 ## Native navigation authorization addition (15 November)
 
 [CONTRACT_NAVIGATION_AUTHORIZATION_20261115.md](CONTRACT_NAVIGATION_AUTHORIZATION_20261115.md) adds canonical Core preparation for genuinely UI-only destinations with empty semantic actions, a complete-command-bound non-Codable UIAuthorizedSceneCommand, and its final synchronous MainActor guard. Structural validateCurrent alone is not native authorization. Reader content continues through reader.open/Resolver/sink and exact receipts; no metadata action is fabricated to back Settings/History/sidebar. Mandatory DISC currentScene and cooperative deadline scope remain.
+
+The additive `UIAuthorizedSceneCommand.validateCompletion(receipt:observed:)` checks the actual bound UI result plus current Core/N authority after native observation awaits. A bare structural receipt check does not replace it; the consumed commit grant cannot be reused for mutation. See the post-observation section of the navigation contract.
