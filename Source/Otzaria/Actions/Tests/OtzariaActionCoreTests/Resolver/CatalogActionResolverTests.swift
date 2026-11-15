@@ -226,6 +226,62 @@ final class CatalogActionResolverTests: XCTestCase, @unchecked Sendable {
         await assertError(.invalidResponse) { _ = try await r.resolveWork(.init(backend: .otzaria, query: "x"), invocation: i) }
     }
 
+    func testDuplicateReferencesShareExistenceProofWithoutCollapsingAmbiguity() async throws {
+        for backend in ActionBackendID.allCases {
+            let source = ResolverSource(backend), ref = work(backend), locator = text(work(backend))
+            let candidate = ActionCandidate(ref: try ActionJSON.encoded(locator).object!, title: "source position", kind: .segment)
+            await source.setup([entry(ref)], response: .ambiguous(Array(repeating: candidate, count: 256)), verified: [locator])
+            let r = resolver(source), i = await source.invocation()
+            let result = try await r.resolveReference(.init(backend: backend, text: "source ambiguity"), invocation: i)
+            guard case .ambiguous(let candidates) = result else { return XCTFail("source ambiguity promoted") }
+            XCTAssertEqual(candidates, [candidate])
+            let calls = await source.calls
+            XCTAssertEqual(calls.filter { $0 == "validate" }.count, 1, "one proof per identical qualified reference")
+        }
+    }
+
+    func testIdenticalSectionAndFocusShareExistenceProof() async throws {
+        for backend in ActionBackendID.allCases {
+            let source = ResolverSource(backend), ref = work(backend), locator = text(work(backend))
+            await source.setup([entry(ref)], verified: [locator])
+            let r = resolver(source), i = await source.invocation()
+            let destination = ActionReaderDestination(sectionLocator: locator, focusLocator: locator, presentationMode: .newTab)
+            let result = try await r.validateDestination(destination, invocation: i)
+            XCTAssertEqual(result, destination)
+            let calls = await source.calls
+            XCTAssertEqual(calls.filter { $0 == "validate" }.count, 1)
+        }
+    }
+
+    func testProofDeduplicationKeepsDataRevisionsDistinct() async throws {
+        let source = ResolverSource(.sefaria), ref = work(.sefaria)
+        let first = ActionTextRef(backend: .sefaria, workKey: ref.workKey, position: .canonicalRef("Work 1 1"), dataRevision: "a")
+        let second = ActionTextRef(backend: .sefaria, workKey: ref.workKey, position: first.position, dataRevision: "b")
+        let candidates = try [first, second, first].map { ActionCandidate(ref: try ActionJSON.encoded($0).object!, title: "source position", kind: .segment) }
+        await source.setup([entry(ref)], response: .ambiguous(candidates), verified: [first, second])
+        let r = resolver(source), i = await source.invocation()
+        let result = try await r.resolveReference(.init(backend: .sefaria, text: "ambiguous revisions"), invocation: i)
+        guard case .ambiguous(let output) = result else { return XCTFail("revisions collapsed") }
+        XCTAssertEqual(output.count, 2)
+        let calls = await source.calls
+        XCTAssertEqual(calls.filter { $0 == "validate" }.count, 2)
+    }
+
+    func testExistenceProofsNeverSurviveTheInvocation() async throws {
+        let source = ResolverSource(.sefariaEmbedded), ref = work(.sefariaEmbedded), locator = text(work(.sefariaEmbedded))
+        let candidate = ActionCandidate(ref: try ActionJSON.encoded(locator).object!, title: "source position", kind: .segment)
+        let response = ActionResolution<ActionTextRef>.ambiguous([candidate, candidate])
+        await source.setup([entry(ref)], response: response, verified: [locator])
+        let r = resolver(source), first = await source.invocation()
+        _ = try await r.resolveReference(.init(backend: .sefariaEmbedded, text: "source ambiguity"), invocation: first)
+        // Even an unchanged snapshot never carries proof into another request.
+        await source.setup([entry(ref)], response: response, verified: [])
+        let second = await source.invocation()
+        await assertError(.invalidResponse) {
+            _ = try await r.resolveReference(.init(backend: .sefariaEmbedded, text: "source ambiguity"), invocation: second)
+        }
+    }
+
     func testGenerationBackendAndEpochChangeAcrossEveryDataAwait() async throws {
         for mutation in ["generation", "backend", "epoch"] {
             for stage in ["catalog", "reference", "validate"] {

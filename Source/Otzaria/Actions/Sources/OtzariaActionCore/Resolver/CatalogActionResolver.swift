@@ -123,10 +123,14 @@ public actor CatalogActionResolver: ActionResolverPort {
                 try requireSourceReference(ref, backend: query.backend, work: query.workRef, catalog: entries)
                 try requireSourceText(candidate.title, maximum: 512)
                 if let reason = candidate.reason { try requireSourceText(reason, maximum: 1_000) }
-                do { try await validateExactly(ref, invocation) }
-                catch ActionPortError.notFound { throw ActionPortError.invalidResponse }
                 // Preserve source metadata; never promote a capped ambiguity to unique.
-                if unique[ref] == nil { unique[ref] = candidate }
+                // One existence proof per full qualified ref in this invocation;
+                // duplicate candidates must not multiply DB/RPC reads.
+                if unique[ref] == nil {
+                    do { try await validateExactly(ref, invocation) }
+                    catch ActionPortError.notFound { throw ActionPortError.invalidResponse }
+                    unique[ref] = candidate
+                }
             }
             let output = unique.keys.sorted(by: textLess)
                 .prefix(25).compactMap { unique[$0] }
@@ -152,7 +156,7 @@ public actor CatalogActionResolver: ActionResolverPort {
             try requireSourceReference(focus, backend: section.backend, work: nil, catalog: entries)
         }
         try await validateExactly(section, invocation)
-        if let focus = destination.focusLocator { try await validateExactly(focus, invocation) }
+        if let focus = destination.focusLocator, focus != section { try await validateExactly(focus, invocation) }
         try await checkpoint(invocation)
         return destination
     }
