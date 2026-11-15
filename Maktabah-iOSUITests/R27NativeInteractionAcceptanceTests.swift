@@ -114,6 +114,7 @@ final class R27NativePadTests: R27NativeUIBase {
         _ = exerciseGlobalHistorySubmission(enabled: true)
     }
 
+    @MainActor
     func testNormalBootstrapNativeWindowResizePaletteAndInspector() throws {
         XCTAssertTrue(isPad)
         // Reuse original measured resize/restore, palette typing/Escape and
